@@ -330,11 +330,11 @@ const MODULES = [
     directUrl: PRO_DEFAULT_URL
   },
   {
-    key: "resaPro",
-    name: "DIGIY RESA PRO",
-    icon: "📆",
-    tag: "PLANNING • CONFIRM",
-    desc: "Gestion réservations côté PRO. Confirmations, annulations.",
+    key: "resaTablePro",
+    name: "DIGIY RESA TABLE PRO",
+    icon: "🪑",
+    tag: "PLANNING TABLES • RESTO",
+    desc: "Gestion réservations tables restaurant côté PRO.",
     kind: "pro",
     status: "priorite",
     statusLabel: "PRIORITÉ",
@@ -714,6 +714,8 @@ function askPhone() {
    INIT
    ========================= */
 function boot() {
+  console.log("🦅 DIGIY HUB - Boot started!");
+  
   modulesGridEl = $("#modulesGrid");
   phoneTextEl   = $("#phoneText");
   searchInputEl = $("#searchInput");
@@ -721,13 +723,23 @@ function boot() {
   statPublicEl  = $("#statPublic");
   statProEl     = $("#statPro");
 
+  console.log("📋 Elements:", {
+    modulesGrid: modulesGridEl,
+    phoneText: phoneTextEl,
+    searchInput: searchInputEl
+  });
+
   modal.init();
   hub.init();
+
+  console.log("🎯 Modal & Hub initialized");
 
   // state load
   state.phone  = normPhone(localStorage.getItem(STORAGE_PHONE) || "");
   state.filter = localStorage.getItem(STORAGE_FILTER) || "all";
   state.q      = localStorage.getItem(STORAGE_SEARCH) || "";
+
+  console.log("💾 State loaded:", state);
 
   // phone buttons
   $("#btnEditPhone")?.addEventListener("click", askPhone);
@@ -771,24 +783,57 @@ function boot() {
   // BOUTONS FLOTTANTS
   // ===========================
   
-  // 🏷️ Tarifs DIGIY
-  $("#tarif-bubble-btn")?.addEventListener("click", () => {
-    hub.open(LINKS.tarifs);
+  console.log("🔘 Setting up floating buttons...");
+  
+  const tarifBtn = $("#tarif-bubble-btn");
+  const espaceBtn = $("#espace-pro-btn");
+  const ndimbalHelpBtn = $("#digiy-help-btn");
+  
+  console.log("🔍 Found buttons:", {
+    tarif: tarifBtn,
+    espace: espaceBtn,
+    ndimbal: ndimbalHelpBtn
   });
+  
+  // 🏷️ Tarifs DIGIY
+  if (tarifBtn) {
+    tarifBtn.addEventListener("click", () => {
+      console.log("🏷️ TARIF CLICKED!");
+      hub.open(LINKS.tarifs);
+    });
+    console.log("✅ Tarif listener attached");
+  } else {
+    console.error("❌ tarif-bubble-btn NOT FOUND!");
+  }
 
   // 🧰 ESPACE PRO
-  $("#espace-pro-btn")?.addEventListener("click", () => {
-    hub.open(withPhone(PRO_DEFAULT_URL, state.phone, "phone"));
-  });
+  if (espaceBtn) {
+    espaceBtn.addEventListener("click", () => {
+      console.log("🧰 ESPACE PRO CLICKED!");
+      hub.open(withPhone(PRO_DEFAULT_URL, state.phone, "phone"));
+    });
+    console.log("✅ Espace PRO listener attached");
+  } else {
+    console.error("❌ espace-pro-btn NOT FOUND!");
+  }
 
   // ♾️ NDIMBAL - ouvrir popup
-  $("#digiy-help-btn")?.addEventListener("click", () => {
-    const ndimbal = $("#digiy-ndimbal");
-    if (ndimbal) {
-      ndimbal.classList.remove("hidden");
-      ndimbal.setAttribute("aria-hidden", "false");
-    }
-  });
+  if (ndimbalHelpBtn) {
+    ndimbalHelpBtn.addEventListener("click", () => {
+      console.log("♾️ NDIMBAL CLICKED!");
+      const ndimbal = $("#digiy-ndimbal");
+      if (ndimbal) {
+        ndimbal.classList.remove("hidden");
+        ndimbal.setAttribute("aria-hidden", "false");
+        console.log("✅ NDIMBAL popup opened");
+      } else {
+        console.error("❌ digiy-ndimbal popup NOT FOUND!");
+      }
+    });
+    console.log("✅ NDIMBAL listener attached");
+  } else {
+    console.error("❌ digiy-help-btn NOT FOUND!");
+  }
 
   // NDIMBAL - fermer
   $("#digiyCloseBtn")?.addEventListener("click", () => {
@@ -855,6 +900,8 @@ function boot() {
   $$(".tab").forEach(btn => btn.classList.toggle("active", btn.dataset.filter === state.filter));
 
   render();
+  
+  console.log("🎉 DIGIY HUB - Boot completed successfully!");
 }
 
 document.addEventListener("DOMContentLoaded", boot);
