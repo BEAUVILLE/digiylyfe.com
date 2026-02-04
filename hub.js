@@ -32,7 +32,6 @@ const LINKS = {
   market:       "https://beauville.github.io/digiy-market/",
   jobs:         "https://beauville.github.io/digiy-jobs/",
   pay:          "https://beauville.github.io/digiy-pay/",
-  resa:         "https://beauville.github.io/digiy-resa/",
   resaTable:    "https://beauville.github.io/digiy-resa-table/",
   notable:      "https://beauville.github.io/digiy-notable/",
 
@@ -160,17 +159,6 @@ const MODULES = [
     kind: "public",
     status: "priorite",
     statusLabel: "PRIORITÉ",
-    phoneParam: true
-  },
-  {
-    key: "resa",
-    name: "DIGIY RESA",
-    icon: "📅",
-    tag: "RÉSERVATIONS",
-    desc: "Planning, confirmations, gestion des réservations. Direct, sans commission.",
-    kind: "public",
-    status: "live",
-    statusLabel: "LIVE",
     phoneParam: true
   },
   {
