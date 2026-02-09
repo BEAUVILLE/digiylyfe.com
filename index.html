@@ -23,34 +23,44 @@
   <link rel="stylesheet" href="./hub.css?v=enhanced1"/>
 
   <style>
-    /* Verrouillage total des rebonds et décalages */
+    /* On verrouille le fond pour éviter le rebond élastique */
     html, body {
-      position: fixed;
       overflow: hidden;
       width: 100%;
       height: 100%;
       margin: 0;
       padding: 0;
-      /* Empêche le défilement élastique sur iOS */
-      -webkit-overflow-scrolling: touch;
-      touch-action: none; 
+      background: #061b14;
     }
 
-    /* On autorise le scroll uniquement à l'intérieur de l'app */
+    /* C'est ICI qu'on autorise les interactions */
     .app {
       width: 100%;
       height: 100%;
       overflow-y: auto;
-      overflow-x: hidden; /* Tue le flottement gauche-droite */
+      overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
       display: flex;
       flex-direction: column;
-      /* Permet aux gestes de fonctionner ici uniquement */
+      /* On autorise les clics et le défilement vertical uniquement */
       touch-action: pan-y; 
     }
 
-    /* Protection des éléments interactifs */
-    img, a, .logo, .btn {
+    /* On s'assure que les boutons et liens reçoivent bien les clics */
+    button, a, .tab, .btn {
+      touch-action: manipulation;
+      cursor: pointer;
+      position: relative;
+      z-index: 10; /* Pour passer au-dessus du blindage */
+    }
+
+    /* Protection contre le zoom sur les inputs sans bloquer la saisie */
+    input {
+      font-size: 16px !important; /* Force iOS à ne pas zoomer */
+      touch-action: manipulation;
+    }
+
+    img, .logo {
       -webkit-user-drag: none;
       -webkit-touch-callout: none;
     }
