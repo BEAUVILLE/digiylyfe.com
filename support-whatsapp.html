@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <meta name="theme-color" content="#020617"/>
+  <title>DIGIY — Support WhatsApp (0 API)</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root{
+      --bg:#020617; --card:#0b1222; --card2:#0a1020; --line:#22304a;
+      --ink:#f8fafc; --muted:#cbd5e1; --soft:#94a3b8;
+      --gold:#facc15; --green:#22c55e; --orange:#fb923c; --red:#fb7185;
+      --r:18px; --shadow:0 18px 55px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; min-height:100vh; background:radial-gradient(1200px 600px at 15% -10%, rgba(250,204,21,.14), transparent 55%),
+                                 radial-gradient(900px 500px at 90% 0%, rgba(34,197,94,.12), transparent 60%),
+                                 var(--bg);
+      color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding:18px 14px 30px}
+    .top{
+      display:flex; gap:12px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+      padding:14px; border:1px solid rgba(255,255,255,.10); border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+    }
+    .logo{
+      width:46px; height:46px; border-radius:16px;
+      display:grid; place-items:center; font-weight:900;
+      background:linear-gradient(135deg, rgba(250,204,21,.95), rgba(34,197,94,.75));
+      color:#071016;
+    }
+    h1{font-size:16px; margin:0 0 3px}
+    .sub{font-size:12px; color:var(--muted)}
+    .pill{
+      font-size:12px; padding:7px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14); color:var(--muted);
+      background:rgba(2,6,23,.45);
+      display:flex; gap:8px; align-items:center;
+    }
+    .dot{width:8px; height:8px; border-radius:99px; background:var(--red)}
+    .dot.ok{background:var(--green)}
+    .controls{
+      width:100%;
+      display:grid; gap:10px;
+      grid-template-columns: 1.2fr 0.7fr 0.7fr 0.7fr;
+    }
+    @media (max-width:900px){
+      .controls{grid-template-columns:1fr 1fr}
+    }
+    .field{
+      background:rgba(11,18,34,.72);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px; padding:10px 10px;
+      display:flex; gap:8px; align-items:center;
+    }
+    .field input, .field select{
+      width:100%;
+      background:transparent; border:0; outline:0;
+      color:var(--ink); font-size:13px;
+    }
+    .field label{font-size:12px; color:var(--soft)}
+    .btn{
+      cursor:pointer; user-select:none;
+      padding:10px 12px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(180deg, rgba(250,204,21,.18), rgba(250,204,21,.08));
+      color:var(--ink);
+      font-weight:800; font-size:13px;
+      display:flex; gap:8px; align-items:center; justify-content:center;
+    }
+    .btn.ghost{
+      background:rgba(255,255,255,.05);
+      font-weight:700;
+    }
+    .grid{
+      margin-top:14px;
+      display:grid; gap:12px;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+    }
+    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
+    .card{
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-radius:22px; padding:14px; box-shadow:var(--shadow);
+    }
+    .row{display:flex; gap:10px; justify-content:space-between; align-items:flex-start}
+    .k{font-size:12px; color:var(--muted)}
+    .v{font-size:13px; font-weight:800}
+    .msg{
+      margin-top:10px;
+      padding:10px; border-radius:16px;
+      background:rgba(2,6,23,.55);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+      font-size:13px; white-space:pre-wrap;
+    }
+    .actions{
+      margin-top:10px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .btn2{
+      cursor:pointer; user-select:none;
+      padding:10px 12px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--ink);
+      font-weight:800; font-size:13px;
+      display:flex; gap:8px; align-items:center; justify-content:center;
+      flex:1;
+      min-width:140px;
+    }
+    .btn2.gold{background:linear-gradient(180deg, rgba(250,204,21,.22), rgba(250,204,21,.10))}
+    .btn2.green{background:linear-gradient(180deg, rgba(34,197,94,.20), rgba(34,197,94,.08))}
+    .toast{
+      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+      background:rgba(2,6,23,.85);
+      border:1px solid rgba(255,255,255,.14);
+      color:var(--ink);
+      padding:10px 12px; border-radius:14px;
+      display:none; gap:10px; align-items:center;
+      box-shadow:var(--shadow);
+      max-width:92vw;
+      font-size:13px;
+    }
+    .toast.show{display:flex}
+    .small{font-size:12px; color:var(--soft); margin-top:6px}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <div class="logo">∞</div>
+        <div>
+          <h1>DIGIY — Support WhatsApp (0 API)</h1>
+          <div class="sub">On lit les replies générées par SWARM, puis on envoie à la main via WhatsApp.</div>
+        </div>
+      </div>
+      <div class="pill" id="statusPill">
+        <span class="dot" id="dot"></span>
+        <span id="statusTxt">Déconnecté</span>
+      </div>
+
+      <div class="controls">
+        <div class="field">
+          <div style="min-width:86px">
+            <label>Recherche</label>
+            <div class="k">business/msg</div>
+          </div>
+          <input id="q" placeholder="Ex: Baptiste, Saly, réserver..." />
+        </div>
+
+        <div class="field">
+          <div style="min-width:72px">
+            <label>Business</label>
+            <div class="k">filtre</div>
+          </div>
+          <select id="business"></select>
+        </div>
+
+        <div class="field">
+          <div style="min-width:52px">
+            <label>Ville</label>
+            <div class="k">filtre</div>
+          </div>
+          <select id="city"></select>
+        </div>
+
+        <button class="btn" id="refreshBtn">↻ Actualiser</button>
+        <button class="btn ghost" id="autoBtn">⏱ Auto: OFF</button>
+        <button class="btn ghost" id="clearBtn">✕ Reset filtres</button>
+
+        <div class="field" style="grid-column:1/-1">
+          <div style="min-width:110px">
+            <label>WhatsApp</label>
+            <div class="k">numéro client</div>
+          </div>
+          <input id="phone" placeholder="Ex: 221771234567 (sans + ni espaces)" inputmode="numeric"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="small">
+      Astuce : si tu n’as pas le numéro client, tu copies le texte et tu le colles dans ton WhatsApp direct.
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><span>✅</span><span id="toastTxt">Copié.</span></div>
+
+  <script>
+    // ============================
+    // ✅ CONFIG SUPABASE (ANON)
+    // ============================
+    const SUPABASE_URL = "CHANGE_ME_SUPABASE_URL";
+    const SUPABASE_ANON_KEY = "CHANGE_ME_SUPABASE_ANON_KEY";
+
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: { persistSession: true }
+    });
+
+    const VIEW = "v_support_whatsapp_ready";
+
+    // UI refs
+    const grid = document.getElementById('grid');
+    const q = document.getElementById('q');
+    const businessSel = document.getElementById('business');
+    const citySel = document.getElementById('city');
+    const phone = document.getElementById('phone');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const autoBtn = document.getElementById('autoBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const statusTxt = document.getElementById('statusTxt');
+    const dot = document.getElementById('dot');
+
+    const toast = document.getElementById('toast');
+    const toastTxt = document.getElementById('toastTxt');
+
+    let allRows = [];
+    let auto = false;
+    let timer = null;
+
+    function showToast(msg){
+      toastTxt.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=>toast.classList.remove('show'), 1200);
+    }
+
+    function setStatus(ok, txt){
+      dot.classList.toggle('ok', !!ok);
+      statusTxt.textContent = txt;
+    }
+
+    function norm(s){ return String(s || '').toLowerCase(); }
+
+    function fillSelect(sel, values, placeholder){
+      const cur = sel.value;
+      sel.innerHTML = '';
+      const opt0 = document.createElement('option');
+      opt0.value = '';
+      opt0.textContent = placeholder;
+      sel.appendChild(opt0);
+      for(const v of values){
+        const o = document.createElement('option');
+        o.value = v;
+        o.textContent = v;
+        sel.appendChild(o);
+      }
+      if([...sel.options].some(o=>o.value===cur)) sel.value = cur;
+    }
+
+    async function copyText(text){
+      await navigator.clipboard.writeText(text);
+      showToast("Copié ✅");
+    }
+
+    function openWhatsApp(phoneDigits, message){
+      const p = String(phoneDigits || '').replace(/[^\d]/g,'').trim();
+      const text = encodeURIComponent(message);
+      const url = p
+        ? `https://wa.me/${p}?text=${text}`
+        : `https://wa.me/?text=${text}`;
+      window.open(url, '_blank');
+    }
+
+    function buildMsg(row){
+      // Priorité : FR + WO si dispo
+      const fr = row.reply_fr || '';
+      const wo = row.reply_wo || '';
+      if(fr && wo) return `${fr}\n\n${wo}`;
+      return row.reply_short || fr || wo || '';
+    }
+
+    function render(rows){
+      grid.innerHTML = '';
+      if(!rows.length){
+        grid.innerHTML = `<div class="card" style="grid-column:1/-1">
+          <div class="row"><div class="v">Rien à afficher</div><div class="k">Change filtre / Actualiser</div></div>
+        </div>`;
+        return;
+      }
+
+      for(const r of rows){
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const msg = buildMsg(r);
+
+        card.innerHTML = `
+          <div class="row">
+            <div>
+              <div class="v">${r.business || '—'} ${r.city ? '— ' + r.city : ''}</div>
+              <div class="k">task: ${r.task_id}</div>
+            </div>
+            <div class="k">${r.finished_at ? new Date(r.finished_at).toLocaleString() : ''}</div>
+          </div>
+
+          <div class="msg"><b>Client:</b> ${r.customer_msg || '—'}</div>
+          <div class="msg"><b>Réponse prête:</b>\n${msg || '—'}</div>
+
+          <div class="actions">
+            <button class="btn2 gold">📋 Copier</button>
+            <button class="btn2 green">🟢 WhatsApp</button>
+          </div>
+        `;
+
+        const btnCopy = card.querySelectorAll('button')[0];
+        const btnWa = card.querySelectorAll('button')[1];
+
+        btnCopy.onclick = () => copyText(msg);
+        btnWa.onclick = () => openWhatsApp(phone.value, msg);
+
+        grid.appendChild(card);
+      }
+    }
+
+    function applyFilters(){
+      const qq = norm(q.value);
+      const b = businessSel.value;
+      const c = citySel.value;
+
+      let rows = [...allRows];
+
+      if(b) rows = rows.filter(r => (r.business || '') === b);
+      if(c) rows = rows.filter(r => (r.city || '') === c);
+
+      if(qq){
+        rows = rows.filter(r => {
+          const hay = [
+            r.business, r.city, r.customer_msg,
+            r.reply_short, r.reply_fr, r.reply_wo
+          ].map(norm).join(' ');
+          return hay.includes(qq);
+        });
+      }
+
+      render(rows);
+    }
+
+    async function load(){
+      setStatus(false, "Chargement…");
+      const { data, error } = await sb.from(VIEW).select('*').limit(60);
+      if(error){
+        setStatus(false, "Erreur Supabase");
+        grid.innerHTML = `<div class="card" style="grid-column:1/-1">
+          <div class="v" style="color:var(--red)">Erreur: ${error.message}</div>
+          <div class="k">Vérifie URL/ANON + RLS sur la view.</div>
+        </div>`;
+        return;
+      }
+
+      allRows = data || [];
+      setStatus(true, `OK — ${allRows.length} replies`);
+      // remplir filtres
+      const businesses = [...new Set(allRows.map(r=>r.business).filter(Boolean))].sort();
+      const cities = [...new Set(allRows.map(r=>r.city).filter(Boolean))].sort();
+      fillSelect(businessSel, businesses, "Tous");
+      fillSelect(citySel, cities, "Toutes");
+
+      applyFilters();
+    }
+
+    function setAuto(on){
+      auto = on;
+      autoBtn.textContent = on ? "⏱ Auto: ON" : "⏱ Auto: OFF";
+      autoBtn.classList.toggle('ghost', !on);
+      if(timer) clearInterval(timer);
+      if(on){
+        timer = setInterval(load, 6000);
+      }
+    }
+
+    // events
+    refreshBtn.onclick = load;
+    autoBtn.onclick = () => setAuto(!auto);
+    clearBtn.onclick = () => {
+      q.value = '';
+      businessSel.value = '';
+      citySel.value = '';
+      applyFilters();
+    };
+
+    q.oninput = applyFilters;
+    businessSel.onchange = applyFilters;
+    citySel.onchange = applyFilters;
+
+    // boot
+    load();
+  </script>
+</body>
+</html>
