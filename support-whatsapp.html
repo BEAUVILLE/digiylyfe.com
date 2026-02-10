@@ -313,9 +313,10 @@ const SUPABASE_ANON_KEY =
           <div class="msg"><b>Réponse prête:</b>\n${msg || '—'}</div>
 
           <div class="actions">
-            <button class="btn2 gold">📋 Copier</button>
-            <button class="btn2 green">🟢 WhatsApp</button>
-          </div>
+  <button class="btn2 gold">📋 Copier</button>
+  <button class="btn2 green">🟢 WhatsApp</button>
+  <button class="btn2" style="background:linear-gradient(180deg, rgba(250,204,21,.22), rgba(250,204,21,.10))">✅ Envoyé</button>
+</div>
         `;
 
         const btnCopy = card.querySelectorAll('button')[0];
