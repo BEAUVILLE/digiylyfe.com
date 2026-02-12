@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- HUB -->
+  <url><loc>https://digiylyfe.com/</loc></url>
+  <url><loc>https://apps.digiylyfe.com/</loc></url>
+  <url><loc>https://tarifs.digiylyfe.com/</loc></url>
+  <url><loc>https://admin.digiylyfe.com/</loc></url>
+
+  <!-- PUBLIC MODULES -->
+  <url><loc>https://vas-chez-digiy.digiylyfe.com/</loc></url>
+  <url><loc>https://bonne-affaire.digiylyfe.com/</loc></url>
+  <url><loc>https://ndimbal-map.digiylyfe.com/</loc></url>
+  <url><loc>https://driver-client.digiylyfe.com/</loc></url>
+  <url><loc>https://loc.digiylyfe.com/</loc></url>
+  <url><loc>https://resto.digiylyfe.com/</loc></url>
+  <url><loc>https://build.digiylyfe.com/</loc></url>
+  <url><loc>https://explore.digiylyfe.com/</loc></url>
+  <url><loc>https://market.digiylyfe.com/</loc></url>
+  <url><loc>https://jobs.digiylyfe.com/</loc></url>
+  <url><loc>https://pay.digiylyfe.com/</loc></url>
+  <url><loc>https://resa-table-resto.digiylyfe.com/</loc></url>
+  <url><loc>https://notable.digiylyfe.com/</loc></url>
+
+  <!-- NDIMBAL -->
+  <url><loc>https://ndimbal-annonces.digiylyfe.com/</loc></url>
+  <url><loc>https://ndimbal-loc.digiylyfe.com/</loc></url>
+
+  <!-- PRO PORTALS -->
+  <url><loc>https://inscription-pro.digiylyfe.com/</loc></url>
+  <url><loc>https://pro-espace.digiylyfe.com/</loc></url>
+
+  <!-- PRO MODULES -->
+  <url><loc>https://pro-driver.digiylyfe.com/</loc></url>
+  <url><loc>https://pro-loc.digiylyfe.com/</loc></url>
+  <url><loc>https://pro-build.digiylyfe.com/</loc></url>
+  <url><loc>https://pro-market.digiylyfe.com/</loc></url>
+  <url><loc>https://pro-job.digiylyfe.com/</loc></url>
+  <url><loc>https://pro-resto.digiylyfe.com/</loc></url>
+  <url><loc>https://pro-resa-resto.digiylyfe.com/</loc></url>
+  <url><loc>https://pro-caisse.digiylyfe.com/</loc></url>
+  <url><loc>https://pro-fret-client.digiylyfe.com/</loc></url>
+  <url><loc>https://pro-fret-chauffeur.digiylyfe.com/</loc></url>
+
+</urlset>
