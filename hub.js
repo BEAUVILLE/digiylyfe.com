@@ -14,43 +14,79 @@ const state = {
 };
 
 /* =========================
-   LINKS
+   LINKS (SOUS-DOMAINES OFFICIELS)
    ========================= */
 const LINKS = {
-  digiylyfe:    "https://digiylyfe.com",
-  tarifs:       "https://beauville.github.io/digiy/",
-  ndimbalMap:   "https://beauville.github.io/digiy-mdimbal-map/",
-  hubDrive:     "https://beauville.github.io/digiy-hub-drive/",
+  digiylyfe:    "https://digiylyfe.com/",
+  apps:         "https://apps.digiylyfe.com/",
+  admin:        "https://admin.digiylyfe.com/",
+  tarifs:       "https://tarifs.digiylyfe.com/",
+
+  // ✅ NOUVEAU : "Vas chez DIGIY"
+  vasChezDigiy: "https://vas-chez-digiy.digiylyfe.com/",
+
+  // NDIMBAL
+  ndimbalMap:       "https://ndimbal-map.digiylyfe.com/",
+  ndimbalAnnonces:  "https://ndimbal-annonces.digiylyfe.com/",
+  ndimbalLoc:       "https://ndimbal-loc.digiylyfe.com/",
+
+  // ✅ HubDrive = NDIMBAL annonces (comme tu as dit)
+  hubDrive:     "https://ndimbal-annonces.digiylyfe.com/",
 
   // Public
-  bonneAffaire: "https://beauville.github.io/digiy-bonne-affaire/",
-  driverClient: "https://beauville.github.io/digiy-driver-client/",
-  loc:          "https://beauville.github.io/digiy-loc/",
-  resto:        "https://beauville.github.io/digiy-resto/",
-  build:        "https://beauville.github.io/digiy-build/",
-  explore:      "https://beauville.github.io/digiy-explore/",
-  market:       "https://beauville.github.io/digiy-market/",
-  jobs:         "https://beauville.github.io/digiy-jobs/",
-  pay:          "https://beauville.github.io/digiy-pay/",
-  resaTable:    "https://beauville.github.io/digiy-resa-table/",
+  bonneAffaire: "https://bonne-affaire.digiylyfe.com/",
+  driverClient: "https://driver-client.digiylyfe.com/",
+  loc:          "https://loc.digiylyfe.com/",
+  resto:        "https://resto.digiylyfe.com/", // (chez toi sur VPS, ok)
+  build:        "https://build.digiylyfe.com/",
+  explore:      "https://explore.digiylyfe.com/",
+  market:       "https://market.digiylyfe.com/",
+  jobs:         "https://jobs.digiylyfe.com/",
+  pay:          "https://pay.digiylyfe.com/",
+  resaTable:    "https://resa-table-resto.digiylyfe.com/",
+
+  // ✅ Notable reste sur GitHub (comme tu veux)
   notable:      "https://beauville.github.io/digiy-notable/",
 
   // PRO
-  inscriptionPro: "https://beauville.github.io/inscription-digiy/",
-  espacePro:      "https://beauville.github.io/inscription-digiy/",
-  
-  // FRET PIN direct
-  fretClientProPin:     "https://beauville.github.io/fret-client-pro/pin.html",
-  fretChauffeurProPin:  "https://beauville.github.io/fret-chauffeur-pro/pin.html"
+  inscriptionPro: "https://inscription-pro.digiylyfe.com/",
+  espacePro:      "https://pro-espace.digiylyfe.com/",
+
+  // Modules PRO dédiés
+  driverPro:    "https://pro-driver.digiylyfe.com/",
+  locPro:       "https://pro-loc.digiylyfe.com/",
+  caissePro:    "https://pro-caisse.digiylyfe.com/",
+  buildPro:     "https://pro-build.digiylyfe.com/",
+  marketPro:    "https://pro-market.digiylyfe.com/",
+  jobsPro:      "https://pro-job.digiylyfe.com/",
+  restoPro:     "https://pro-resto.digiylyfe.com/",
+  resaTablePro: "https://pro-resa-resto.digiylyfe.com/",
+  payPro:       "https://pay.digiylyfe.com/",      // si tu crées pro-pay, tu changes ici
+  explorePro:   "https://explore.digiylyfe.com/",  // si tu crées pro-explore, tu changes ici
+
+  // FRET PIN direct (SOUS-DOMAINES)
+  fretClientProPin:     "https://pro-fret-client.digiylyfe.com/pin.html",
+  fretChauffeurProPin:  "https://pro-fret-chauffeur.digiylyfe.com/pin.html"
 };
 
-const PRO_DEFAULT_URL = LINKS.inscriptionPro;
+const PRO_DEFAULT_URL = LINKS.espacePro;
 
 /* =========================
    MODULES DATA-DRIVEN
    ========================= */
 const MODULES = [
   /* -------- PUBLIC -------- */
+  {
+    key: "vasChezDigiy",
+    name: "VAS CHEZ DIGIY",
+    icon: "🧭",
+    tag: "ACCÈS RAPIDE",
+    desc: "Entrée rapide vers l’écosystème DIGIY. Simple, direct, terrain.",
+    kind: "public",
+    status: "nouveau",
+    statusLabel: "NOUVEAU",
+    phoneParam: false
+  },
   {
     key: "bonneAffaire",
     name: "DIGIY BONNE AFFAIRE",
@@ -195,7 +231,7 @@ const MODULES = [
     status: "nouveau",
     statusLabel: "NOUVEAU",
     phoneParam: true,
-    directUrl: PRO_DEFAULT_URL
+    directUrl: LINKS.inscriptionPro
   },
   {
     key: "espacePro",
@@ -207,7 +243,7 @@ const MODULES = [
     status: "live",
     statusLabel: "LIVE",
     phoneParam: true,
-    directUrl: PRO_DEFAULT_URL
+    directUrl: LINKS.espacePro
   },
   {
     key: "driverPro",
@@ -219,7 +255,7 @@ const MODULES = [
     status: "live",
     statusLabel: "LIVE",
     phoneParam: true,
-    directUrl: PRO_DEFAULT_URL
+    directUrl: LINKS.driverPro
   },
   {
     key: "locPro",
@@ -231,7 +267,7 @@ const MODULES = [
     status: "live",
     statusLabel: "LIVE",
     phoneParam: true,
-    directUrl: PRO_DEFAULT_URL
+    directUrl: LINKS.locPro
   },
   {
     key: "caissePro",
@@ -243,7 +279,7 @@ const MODULES = [
     status: "nouveau",
     statusLabel: "NOUVEAU",
     phoneParam: true,
-    directUrl: PRO_DEFAULT_URL
+    directUrl: LINKS.caissePro
   },
   {
     key: "buildPro",
@@ -255,7 +291,7 @@ const MODULES = [
     status: "priorite",
     statusLabel: "PRIORITÉ",
     phoneParam: true,
-    directUrl: PRO_DEFAULT_URL
+    directUrl: LINKS.buildPro
   },
   {
     key: "marketPro",
@@ -267,7 +303,7 @@ const MODULES = [
     status: "priorite",
     statusLabel: "PRIORITÉ",
     phoneParam: true,
-    directUrl: PRO_DEFAULT_URL
+    directUrl: LINKS.marketPro
   },
   {
     key: "jobsPro",
@@ -279,7 +315,7 @@ const MODULES = [
     status: "priorite",
     statusLabel: "PRIORITÉ",
     phoneParam: true,
-    directUrl: PRO_DEFAULT_URL
+    directUrl: LINKS.jobsPro
   },
   {
     key: "restoPro",
@@ -291,7 +327,7 @@ const MODULES = [
     status: "priorite",
     statusLabel: "PRIORITÉ",
     phoneParam: true,
-    directUrl: PRO_DEFAULT_URL
+    directUrl: LINKS.restoPro
   },
   {
     key: "explorePro",
@@ -303,7 +339,7 @@ const MODULES = [
     status: "priorite",
     statusLabel: "PRIORITÉ",
     phoneParam: true,
-    directUrl: PRO_DEFAULT_URL
+    directUrl: LINKS.explorePro
   },
   {
     key: "payPro",
@@ -315,7 +351,7 @@ const MODULES = [
     status: "priorite",
     statusLabel: "PRIORITÉ",
     phoneParam: true,
-    directUrl: PRO_DEFAULT_URL
+    directUrl: LINKS.payPro
   },
   {
     key: "resaTablePro",
@@ -327,7 +363,7 @@ const MODULES = [
     status: "priorite",
     statusLabel: "PRIORITÉ",
     phoneParam: true,
-    directUrl: PRO_DEFAULT_URL
+    directUrl: LINKS.resaTablePro
   },
   // FRET PIN direct
   {
@@ -558,8 +594,8 @@ function badgeHTML(kind, status, statusLabel) {
 function getModuleUrl(m) {
   let base = m.directUrl || LINKS[m.key] || "";
 
-  if (m.kind === "pro") {
-    base = m.directUrl || PRO_DEFAULT_URL;
+  if (m.kind === "pro" && !m.directUrl) {
+    base = PRO_DEFAULT_URL;
   }
 
   if (!base) return "";
@@ -702,8 +738,6 @@ function askPhone() {
    INIT
    ========================= */
 function boot() {
-  console.log("🦅 DIGIY HUB - Boot started!");
-  
   modulesGridEl = $("#modulesGrid");
   phoneTextEl   = $("#phoneText");
   searchInputEl = $("#searchInput");
@@ -711,23 +745,13 @@ function boot() {
   statPublicEl  = $("#statPublic");
   statProEl     = $("#statPro");
 
-  console.log("📋 Elements:", {
-    modulesGrid: modulesGridEl,
-    phoneText: phoneTextEl,
-    searchInput: searchInputEl
-  });
-
   modal.init();
   hub.init();
-
-  console.log("🎯 Modal & Hub initialized");
 
   // state load
   state.phone  = normPhone(localStorage.getItem(STORAGE_PHONE) || "");
   state.filter = localStorage.getItem(STORAGE_FILTER) || "all";
   state.q      = localStorage.getItem(STORAGE_SEARCH) || "";
-
-  console.log("💾 State loaded:", state);
 
   // phone buttons
   $("#btnEditPhone")?.addEventListener("click", askPhone);
@@ -740,10 +764,6 @@ function boot() {
   // hero CTAs
   $("#btnGetHub")?.addEventListener("click", () => hub.open(withPhone(PRO_DEFAULT_URL, state.phone, "phone")));
   $("#btnDeals")?.addEventListener("click", () => hub.open(LINKS.bonneAffaire));
-  $("#btnAlreadyAccess")?.addEventListener("click", () => modal.info({
-    title: "Accès PRO",
-    text: "Choisis un module PRO : tu seras redirigé vers l'inscription / accès frérot."
-  }));
 
   // tabs
   $$(".tab").forEach(btn => btn.addEventListener("click", () => setFilter(btn.dataset.filter)));
@@ -770,69 +790,33 @@ function boot() {
   // ===========================
   // BOUTONS FLOTTANTS
   // ===========================
-  
-  console.log("🔘 Setting up floating buttons...");
-  
   const tarifBtn = $("#tarif-bubble-btn");
   const espaceBtn = $("#espace-pro-btn");
   const ndimbalHelpBtn = $("#digiy-help-btn");
-  
-  console.log("🔍 Found buttons:", {
-    tarif: tarifBtn,
-    espace: espaceBtn,
-    ndimbal: ndimbalHelpBtn
-  });
-  
+
   // 🏷️ Tarifs DIGIY
-  if (tarifBtn) {
-    tarifBtn.addEventListener("click", () => {
-      console.log("🏷️ TARIF CLICKED!");
-      hub.open(LINKS.tarifs);
-    });
-    console.log("✅ Tarif listener attached");
-  } else {
-    console.error("❌ tarif-bubble-btn NOT FOUND!");
-  }
+  if (tarifBtn) tarifBtn.addEventListener("click", () => hub.open(LINKS.tarifs));
 
   // 🧰 ESPACE PRO
-  if (espaceBtn) {
-    espaceBtn.addEventListener("click", () => {
-      console.log("🧰 ESPACE PRO CLICKED!");
-      hub.open(withPhone(PRO_DEFAULT_URL, state.phone, "phone"));
-    });
-    console.log("✅ Espace PRO listener attached");
-  } else {
-    console.error("❌ espace-pro-btn NOT FOUND!");
-  }
+  if (espaceBtn) espaceBtn.addEventListener("click", () => hub.open(withPhone(PRO_DEFAULT_URL, state.phone, "phone")));
 
   // ♾️ NDIMBAL - ouvrir popup
   if (ndimbalHelpBtn) {
     ndimbalHelpBtn.addEventListener("click", () => {
-      console.log("♾️ NDIMBAL CLICKED!");
       const ndimbal = $("#digiy-ndimbal");
       if (ndimbal) {
         ndimbal.classList.remove("hidden");
         ndimbal.setAttribute("aria-hidden", "false");
-        console.log("✅ NDIMBAL popup opened");
-      } else {
-        console.error("❌ digiy-ndimbal popup NOT FOUND!");
       }
     });
-    console.log("✅ NDIMBAL listener attached");
-  } else {
-    console.error("❌ digiy-help-btn NOT FOUND!");
   }
 
   // 📖 MANIFESTE - ouvrir dans nouvel onglet
   const manifestoBtn = document.getElementById('manifesto-bubble-btn');
   if (manifestoBtn) {
     manifestoBtn.addEventListener('click', () => {
-      console.log("📖 MANIFESTE CLICKED!");
       window.open('https://digiylyfe.net/la-revolution-digitale-africaine-sans-commission/', '_blank');
     });
-    console.log("✅ Manifeste listener attached");
-  } else {
-    console.log("⚠️ manifesto-bubble-btn NOT FOUND (normal si pas encore ajouté au HTML)");
   }
 
   // NDIMBAL - fermer
@@ -858,7 +842,7 @@ function boot() {
       if (!btn || !btn.dataset.action) return;
 
       const action = btn.dataset.action;
-      
+
       ndimbalPopup.classList.add("hidden");
       ndimbalPopup.setAttribute("aria-hidden", "true");
 
@@ -900,8 +884,6 @@ function boot() {
   $$(".tab").forEach(btn => btn.classList.toggle("active", btn.dataset.filter === state.filter));
 
   render();
-  
-  console.log("🎉 DIGIY HUB - Boot completed successfully!");
 }
 
 document.addEventListener("DOMContentLoaded", boot);
