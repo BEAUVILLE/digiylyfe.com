@@ -5,14 +5,17 @@
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-const STORAGE_PHONE  = "DIGIY_HUB_PHONE";
-const STORAGE_FILTER = "DIGIY_HUB_FILTER";
-const STORAGE_SEARCH = "DIGIY_HUB_SEARCH";
+const STORAGE_PHONE    = "DIGIY_HUB_PHONE";
+const STORAGE_FILTER   = "DIGIY_HUB_FILTER";
+const STORAGE_SEARCH   = "DIGIY_HUB_SEARCH";
+const STORAGE_FAVORITES = "DIGIY_HUB_FAVORITES"; // NEW
+const STORAGE_ANALYTICS = "DIGIY_HUB_ANALYTICS"; // NEW
 
 const state = {
   phone: "",
   filter: "all", // all | public | pro
-  q: ""
+  q: "",
+  favorites: [] // NEW
 };
 
 /* =========================
@@ -74,40 +77,40 @@ const LINKS = {
 const PRO_DEFAULT_URL = LINKS.espacePro;
 
 /* =========================
-   MODULES (définis en dur)
+   MODULES (définis en dur + MÉTADONNÉES)
    ========================= */
 const MODULES = [
   // === PUBLIC ===
-  { key: "bonneAffaire", name: "Bonne Affaire", icon: "🎯", tag: "marketplace", desc: "Deals & offres", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: false },
-  { key: "driverClient", name: "DIGIY DRIVER", icon: "🚗", tag: "transport", desc: "Réserver ta course VTC", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "loc", name: "DIGIY LOC", icon: "🏠", tag: "accommodation", desc: "Trouver un logement", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "resto", name: "DIGIY RESTO", icon: "🍽️", tag: "restaurant", desc: "Commander à manger", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "resaTable", name: "Résa Table", icon: "📅", tag: "reservation", desc: "Réserver une table", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "build", name: "DIGIY BUILD", icon: "🏗️", tag: "services", desc: "Services de construction", kind: "public", status: "beta", statusLabel: "BETA", phoneParam: true },
-  { key: "explore", name: "Explore", icon: "🗺️", tag: "discovery", desc: "Découvrir la région", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: false },
-  { key: "market", name: "DIGIY MARKET", icon: "🛍️", tag: "marketplace", desc: "Acheter/vendre", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "jobs", name: "DIGIY JOBS", icon: "💼", tag: "emploi", desc: "Offres d'emploi", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "pay", name: "DIGIY PAY", icon: "💳", tag: "paiement", desc: "Portefeuille digital", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "notable", name: "Notable", icon: "📝", tag: "documentation", desc: "Blog & ressources", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: false },
+  { key: "bonneAffaire", name: "Bonne Affaire", icon: "🎯", tag: "marketplace", desc: "Deals & offres", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: false, createdAt: "2025-12-01", featured: true },
+  { key: "driverClient", name: "DIGIY DRIVER", icon: "🚗", tag: "transport", desc: "Réserver ta course VTC", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-10-15", featured: true },
+  { key: "loc", name: "DIGIY LOC", icon: "🏠", tag: "accommodation", desc: "Trouver un logement", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-11-20", featured: true },
+  { key: "resto", name: "DIGIY RESTO", icon: "🍽️", tag: "restaurant", desc: "Commander à manger", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-11-15", featured: true },
+  { key: "resaTable", name: "Résa Table", icon: "📅", tag: "reservation", desc: "Réserver une table", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2026-01-20", featured: false },
+  { key: "build", name: "DIGIY BUILD", icon: "🏗️", tag: "services", desc: "Services de construction", kind: "public", status: "beta", statusLabel: "BETA", phoneParam: true, createdAt: "2026-02-01", featured: false },
+  { key: "explore", name: "Explore", icon: "🗺️", tag: "discovery", desc: "Découvrir la région", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: false, createdAt: "2025-12-10", featured: false },
+  { key: "market", name: "DIGIY MARKET", icon: "🛍️", tag: "marketplace", desc: "Acheter/vendre", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-10-01", featured: true },
+  { key: "jobs", name: "DIGIY JOBS", icon: "💼", tag: "emploi", desc: "Offres d'emploi", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-11-01", featured: false },
+  { key: "pay", name: "DIGIY PAY", icon: "💳", tag: "paiement", desc: "Portefeuille digital", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-09-15", featured: true },
+  { key: "notable", name: "Notable", icon: "📝", tag: "documentation", desc: "Blog & ressources", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: false, createdAt: "2025-08-01", featured: false },
   
   // === NDIMBAL ===
-  { key: "ndimbalMap", name: "NDIMBAL Map", icon: "🗺️", tag: "ndimbal", desc: "Carte des annonces", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "ndimbalAnnonces", name: "NDIMBAL Annonces", icon: "📢", tag: "ndimbal", desc: "Hub Drive - Vendre", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "ndimbalLoc", name: "NDIMBAL Loc", icon: "🏡", tag: "ndimbal", desc: "Locations NDIMBAL", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true },
+  { key: "ndimbalMap", name: "NDIMBAL Map", icon: "🗺️", tag: "ndimbal", desc: "Carte des annonces", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-12-15", featured: true },
+  { key: "ndimbalAnnonces", name: "NDIMBAL Annonces", icon: "📢", tag: "ndimbal", desc: "Hub Drive - Vendre", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-11-01", featured: true },
+  { key: "ndimbalLoc", name: "NDIMBAL Loc", icon: "🏡", tag: "ndimbal", desc: "Locations NDIMBAL", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-12-20", featured: false },
 
   // === PRO ===
-  { key: "inscriptionPro", name: "Inscription PRO", icon: "✍️", tag: "auth", desc: "Créer compte professionnel", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "espacePro", name: "Espace PRO", icon: "🏢", tag: "dashboard", desc: "Tableau de bord pro", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "driverPro", name: "DIGIY DRIVER PRO", icon: "🚗", tag: "vtc", desc: "Gérer ta flotte VTC", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "locPro", name: "DIGIY LOC PRO", icon: "🏠", tag: "properties", desc: "Gérer tes logements", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "restoPro", name: "DIGIY RESTO PRO", icon: "👨‍🍳", tag: "restaurant", desc: "Gérer ton resto", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "caissePro", name: "Caisse PRO", icon: "💰", tag: "pos", desc: "Point de vente", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "buildPro", name: "DIGIY BUILD PRO", icon: "🏗️", tag: "construction", desc: "Gérer chantiers", kind: "pro", status: "beta", statusLabel: "BETA", phoneParam: true },
-  { key: "marketPro", name: "DIGIY MARKET PRO", icon: "🛍️", tag: "marketplace", desc: "Vendre sur market", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "jobsPro", name: "DIGIY JOBS PRO", icon: "💼", tag: "recruitement", desc: "Recruter", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "payPro", name: "DIGIY PAY PRO", icon: "💳", tag: "paiement", desc: "Gérer paiements", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true },
-  { key: "explorePro", name: "Explore PRO", icon: "🗺️", tag: "analytics", desc: "Analytics & stats", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: false },
-  { key: "resaTablePro", name: "Résa Table PRO", icon: "📅", tag: "reservation", desc: "Gérer réservations", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true }
+  { key: "inscriptionPro", name: "Inscription PRO", icon: "✍️", tag: "auth", desc: "Créer compte professionnel", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-09-01", featured: true },
+  { key: "espacePro", name: "Espace PRO", icon: "🏢", tag: "dashboard", desc: "Tableau de bord pro", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-09-01", featured: true },
+  { key: "driverPro", name: "DIGIY DRIVER PRO", icon: "🚗", tag: "vtc", desc: "Gérer ta flotte VTC", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-10-15", featured: true },
+  { key: "locPro", name: "DIGIY LOC PRO", icon: "🏠", tag: "properties", desc: "Gérer tes logements", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-11-20", featured: true },
+  { key: "restoPro", name: "DIGIY RESTO PRO", icon: "👨‍🍳", tag: "restaurant", desc: "Gérer ton resto", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-11-15", featured: true },
+  { key: "caissePro", name: "Caisse PRO", icon: "💰", tag: "pos", desc: "Point de vente", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-10-01", featured: false },
+  { key: "buildPro", name: "DIGIY BUILD PRO", icon: "🏗️", tag: "construction", desc: "Gérer chantiers", kind: "pro", status: "beta", statusLabel: "BETA", phoneParam: true, createdAt: "2026-02-01", featured: false },
+  { key: "marketPro", name: "DIGIY MARKET PRO", icon: "🛍️", tag: "marketplace", desc: "Vendre sur market", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-10-01", featured: false },
+  { key: "jobsPro", name: "DIGIY JOBS PRO", icon: "💼", tag: "recruitement", desc: "Recruter", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-11-01", featured: false },
+  { key: "payPro", name: "DIGIY PAY PRO", icon: "💳", tag: "paiement", desc: "Gérer paiements", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-09-15", featured: false },
+  { key: "explorePro", name: "Explore PRO", icon: "🗺️", tag: "analytics", desc: "Analytics & stats", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: false, createdAt: "2025-12-01", featured: false },
+  { key: "resaTablePro", name: "Résa Table PRO", icon: "📅", tag: "reservation", desc: "Gérer réservations", kind: "pro", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2026-01-20", featured: false }
 ];
 
 /* =========================
@@ -260,7 +263,7 @@ let modulesGridEl, phoneTextEl, searchInputEl;
 let statTotalEl, statPublicEl, statProEl;
 
 /* =========================
-   FILTERS
+   FILTERS & FAVORITES
    ========================= */
 function setFilter(f) {
   state.filter = f;
@@ -275,10 +278,26 @@ function setSearch(q) {
   render();
 }
 
+function toggleFavorite(key) {
+  const idx = state.favorites.indexOf(key);
+  if (idx >= 0) {
+    state.favorites.splice(idx, 1);
+  } else {
+    state.favorites.push(key);
+  }
+  localStorage.setItem(STORAGE_FAVORITES, JSON.stringify(state.favorites));
+  render();
+  trackAnalytic(key, "favorite");
+}
+
+function isFavorite(key) {
+  return state.favorites.includes(key);
+}
+
 function getFilteredModules() {
   const q = (state.q || "").trim().toLowerCase();
 
-  return MODULES.filter(m => {
+  let filtered = MODULES.filter(m => {
     if (state.filter === "public" && m.kind !== "public") return false;
     if (state.filter === "pro" && m.kind !== "pro") return false;
     if (!q) return true;
@@ -286,6 +305,83 @@ function getFilteredModules() {
     const hay = [m.key, m.name, m.tag, m.desc, m.kind, m.status, m.statusLabel].join(" ").toLowerCase();
     return hay.includes(q);
   });
+
+  // 🌟 Trier: favoris d'abord
+  filtered.sort((a, b) => {
+    const aFav = isFavorite(a.key) ? 1 : 0;
+    const bFav = isFavorite(b.key) ? 1 : 0;
+    return bFav - aFav;
+  });
+
+  return filtered;
+}
+
+// 📊 ANALYTICS simple
+function trackAnalytic(key, action) {
+  try {
+    let analytics = {};
+    const stored = localStorage.getItem(STORAGE_ANALYTICS);
+    if (stored) analytics = JSON.parse(stored);
+
+    if (!analytics[key]) {
+      analytics[key] = { clicks: 0, favorites: 0, lastClick: null };
+    }
+
+    if (action === "click") {
+      analytics[key].clicks += 1;
+      analytics[key].lastClick = new Date().toISOString();
+    } else if (action === "favorite") {
+      analytics[key].favorites = (analytics[key].favorites || 0) + 1;
+    }
+
+    localStorage.setItem(STORAGE_ANALYTICS, JSON.stringify(analytics));
+  } catch (e) {
+    console.warn("[DIGIY] Analytics failed:", e);
+  }
+}
+
+function getModulePopularity(key) {
+  try {
+    const stored = localStorage.getItem(STORAGE_ANALYTICS);
+    if (!stored) return 0;
+    const analytics = JSON.parse(stored);
+    return (analytics[key]?.clicks || 0);
+  } catch (e) {
+    return 0;
+  }
+}
+
+// 🎯 Calculer les statuts dynamiques
+function getSmartStatus(m) {
+  const popularity = getModulePopularity(m.key);
+  const now = new Date();
+  const moduleDate = new Date(m.createdAt || "2025-01-01");
+  const daysSinceCreation = Math.floor((now - moduleDate) / (1000 * 60 * 60 * 24));
+
+  // Ordre de priorité: HOT > NOUVEAU > FEATURED > status original
+  if (popularity >= 5) {
+    return { status: "hot", label: "🔥 HOT", priority: 1 };
+  }
+  if (daysSinceCreation <= 7) {
+    return { status: "nouveau", label: "🆕 NOUVEAU", priority: 2 };
+  }
+  if (m.featured) {
+    return { status: "featured", label: "⭐ FEATURED", priority: 3 };
+  }
+  if (m.status === "beta") {
+    return { status: "beta", label: "🔧 BETA", priority: 4 };
+  }
+  if (m.status === "soon") {
+    return { status: "soon", label: "⏳ BIENTÔT", priority: 5 };
+  }
+  
+  return { status: m.status, label: m.statusLabel, priority: 99 };
+}
+
+function getDaysAgo(dateStr) {
+  const moduleDate = new Date(dateStr || "2025-01-01");
+  const now = new Date();
+  return Math.floor((now - moduleDate) / (1000 * 60 * 60 * 24));
 }
 
 function updateStats(filtered) {
@@ -305,7 +401,19 @@ function badgeHTML(kind, status, statusLabel) {
   const kindBadge = `<span class="badge kind-${kind}">${kind === "pro" ? "PRO" : "PUBLIC"}</span>`;
   const st = status || "soon";
   const label = statusLabel || st.toUpperCase();
-  const stBadge = `<span class="badge ${st}">${escapeHtml(label)}</span>`;
+  
+  // Classes CSS pour chaque status
+  const statusClasses = {
+    "hot": "badge hot-badge",
+    "nouveau": "badge nouveau-badge",
+    "featured": "badge featured-badge",
+    "beta": "badge beta-badge",
+    "soon": "badge soon-badge",
+    "live": "badge live-badge"
+  };
+  
+  const badgeClass = statusClasses[st] || "badge live-badge";
+  const stBadge = `<span class="${badgeClass}">${escapeHtml(label)}</span>`;
   return kindBadge + stBadge;
 }
 
@@ -328,18 +436,31 @@ function getModuleUrl(m) {
 function cardHTML(m) {
   const url = getModuleUrl(m);
   const disabled = !url;
+  const fav = isFavorite(m.key);
+  const popularity = getModulePopularity(m.key);
+  
+  // Utiliser les statuts intelligents
+  const smartStatus = getSmartStatus(m);
+  const isHot = smartStatus.status === "hot";
+  const isNouveau = smartStatus.status === "nouveau";
+  
+  // Classe CSS pour la card si HOT ou NOUVEAU
+  const cardClass = isHot ? "card card-hot" : (isNouveau ? "card card-nouveau" : "card");
 
   return `
-    <div class="card" tabindex="0" role="button" aria-label="${escapeHtml(m.name)}" data-key="${escapeHtml(m.key)}">
+    <div class="${cardClass}" tabindex="0" role="button" aria-label="${escapeHtml(m.name)}" data-key="${escapeHtml(m.key)}">
       <div class="cardTop">
         <div class="icon">${escapeHtml(m.icon || "∞")}</div>
         <div style="flex:1;min-width:0">
-          <div class="cardTitle">${escapeHtml(m.name)}</div>
+          <div class="cardTitle">
+            ${escapeHtml(m.name)}
+            ${fav ? '<span class="favStar">⭐</span>' : ''}
+          </div>
           <div class="cardTag">${escapeHtml(m.tag || "")}</div>
           <div class="cardDesc">${escapeHtml(m.desc || "")}</div>
 
           <div class="badges">
-            ${badgeHTML(m.kind, m.status, m.statusLabel)}
+            ${badgeHTML(m.kind, smartStatus.status, smartStatus.label)}
           </div>
         </div>
       </div>
@@ -347,6 +468,9 @@ function cardHTML(m) {
       <div class="cardActions">
         <button class="btn ${disabled ? "disabled" : "primary"}" data-action="open" ${disabled ? "disabled" : ""} type="button">
           Ouvrir →
+        </button>
+        <button class="btn ${disabled ? "disabled" : ""}" data-action="favorite" ${disabled ? "disabled" : ""} type="button">
+          ${fav ? '⭐ Favoris' : '☆ Ajouter'}
         </button>
         <button class="btn ${disabled ? "disabled" : ""}" data-action="copy" ${disabled ? "disabled" : ""} type="button">
           Copier lien
@@ -378,12 +502,20 @@ function renderGrid() {
       const m = MODULES.find(x => x.key === key);
       if (!m) return;
 
+      if (btn && btn.dataset.action === "favorite") {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleFavorite(key);
+        return;
+      }
+
       if (btn && btn.dataset.action === "copy") {
         e.preventDefault();
         e.stopPropagation();
         const link = getModuleUrl(m);
         if (!link) return;
         navigator.clipboard?.writeText(link).catch(() => {});
+        trackAnalytic(key, "click");
         modal.info({ title: "Copié ✅", text: `Lien copié.<br><small>${escapeHtml(link)}</small>` });
         return;
       }
@@ -428,6 +560,7 @@ function openModule(key) {
     return;
   }
 
+  trackAnalytic(key, "click"); // 📊 Track le clic
   hub.open(url);
 }
 
@@ -474,6 +607,14 @@ function boot() {
   state.phone  = normPhone(localStorage.getItem(STORAGE_PHONE) || "");
   state.filter = localStorage.getItem(STORAGE_FILTER) || "all";
   state.q      = localStorage.getItem(STORAGE_SEARCH) || "";
+  
+  // 🌟 Charger les favoris
+  try {
+    const favStr = localStorage.getItem(STORAGE_FAVORITES);
+    state.favorites = favStr ? JSON.parse(favStr) : [];
+  } catch (e) {
+    state.favorites = [];
+  }
 
   // phone buttons
   $("#btnEditPhone")?.addEventListener("click", askPhone);
