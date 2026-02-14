@@ -1,299 +1,624 @@
-/* modules.js — DIGIY ROYAL HUB / PRO-ESPACE
-   - Centralise l'annuaire des modules (light)
-   - Recherche + filtres + badges
-   - ✅ PRO passe par pro-espace (rond-point)
-   - ✅ Phone auto si mémorisé (DIGIY_HUB_PHONE)
-   - Aucune dépendance
+/* DIGIY HUB F16 ENHANCED — Business-ready • Data-driven • 0% commission
+   ✅ NOUVEAU : MODULES JSON (moins lourd, plus lisible mobile)
+   - On charge ./modules.json
+   - Plus de gros tableau MODULES en dur dans hub.js
 */
 
-export const DIGIY_MODULES = [
-  // ✅ PRO (pilotes)
-  {
-    id: "loc-pro",
-    name: "DIGIY LOC PRO",
-    slug: "loc-pro",
-    kind: "pro",
-    status: "live",          // live | beta | off
-    city: "Saly",
-    tags: ["logement", "reservation", "vitrine", "cockpit"],
-    url: "https://pro-loc.digiylyfe.com/" // (ton sous-domaine pro)
-  },
-  {
-    id: "driver-pro",
-    name: "DIGIY DRIVER PRO",
-    slug: "driver-pro",
-    kind: "pro",
-    status: "beta",
-    city: "Dakar",
-    tags: ["chauffeur", "trajet", "0% commission", "cockpit"],
-    url: "https://pro-driver.digiylyfe.com/"
-  },
-  {
-    id: "build-pro",
-    name: "DIGIY BUILD PRO",
-    slug: "build-pro",
-    kind: "pro",
-    status: "beta",
-    city: "Dakar",
-    tags: ["artisan", "devis", "chantier", "cockpit"],
-    url: "https://pro-build.digiylyfe.com/"
-  },
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  // 🌍 HUB / vitrine
-  {
-    id: "royal",
-    name: "DIGIY ROYAL",
-    slug: "royal",
-    kind: "hub",
-    status: "live",
-    city: "Global",
-    tags: ["hub", "0% commission", "vitrine"],
-    url: "https://apps.digiylyfe.com/"
-  },
+const STORAGE_PHONE  = "DIGIY_HUB_PHONE";
+const STORAGE_FILTER = "DIGIY_HUB_FILTER";
+const STORAGE_SEARCH = "DIGIY_HUB_SEARCH";
 
-  // ➕ Ajoute tes autres modules ici (market, explore, pay, jobs…)
-];
-
-const STORAGE_PHONE = "DIGIY_HUB_PHONE"; // même clé que ton hub.js (ROYAL)
+const state = {
+  phone: "",
+  filter: "all", // all | public | pro
+  q: ""
+};
 
 /* =========================
-   CONFIG ROUTING (CENTRAL PRO)
-========================= */
-const PRO_CENTRAL_URL = "https://pro-espace.digiylyfe.com/";
+   LINKS (SOUS-DOMAINES OFFICIELS)
+   ========================= */
+const LINKS = {
+  digiylyfe:    "https://digiylyfe.com/",
+  apps:         "https://apps.digiylyfe.com/",
+  admin:        "https://admin.digiylyfe.com/",
+  tarifs:       "https://tarifs.digiylyfe.com/",
+
+  // ✅ "Vas chez DIGIY"
+  vasChezDigiy: "https://vas-chez-digiy.digiylyfe.com/",
+
+  // NDIMBAL
+  ndimbalMap:       "https://ndimbal-map.digiylyfe.com/",
+  ndimbalAnnonces:  "https://ndimbal-annonces.digiylyfe.com/",
+  ndimbalLoc:       "https://ndimbal-loc.digiylyfe.com/",
+
+  // ✅ HubDrive = NDIMBAL annonces
+  hubDrive:     "https://ndimbal-annonces.digiylyfe.com/",
+
+  // Public
+  bonneAffaire: "https://bonne-affaire.digiylyfe.com/",
+  driverClient: "https://driver-client.digiylyfe.com/",
+  loc:          "https://loc.digiylyfe.com/",
+  resto:        "https://resto.digiylyfe.com/",
+  build:        "https://build.digiylyfe.com/",
+  explore:      "https://explore.digiylyfe.com/",
+  market:       "https://market.digiylyfe.com/",
+  jobs:         "https://jobs.digiylyfe.com/",
+  pay:          "https://pay.digiylyfe.com/",
+  resaTable:    "https://resa-table-resto.digiylyfe.com/",
+
+  // GitHub
+  notable:      "https://beauville.github.io/digiy-notable/",
+
+  // PRO
+  inscriptionPro: "https://inscription-pro.digiylyfe.com/",
+  espacePro:      "https://pro-espace.digiylyfe.com/",
+
+  // Modules PRO dédiés
+  driverPro:    "https://pro-driver.digiylyfe.com/",
+  locPro:       "https://pro-loc.digiylyfe.com/",
+  caissePro:    "https://pro-caisse.digiylyfe.com/",
+  buildPro:     "https://pro-build.digiylyfe.com/",
+  marketPro:    "https://pro-market.digiylyfe.com/",
+  jobsPro:      "https://pro-job.digiylyfe.com/",
+  restoPro:     "https://pro-resto.digiylyfe.com/",
+  resaTablePro: "https://pro-resa-resto.digiylyfe.com/",
+  payPro:       "https://pay.digiylyfe.com/",
+  explorePro:   "https://explore.digiylyfe.com/",
+
+  // FRET PIN direct
+  fretClientProPin:     "https://pro-fret-client.digiylyfe.com/pin.html",
+  fretChauffeurProPin:  "https://pro-fret-chauffeur.digiylyfe.com/pin.html"
+};
+
+const PRO_DEFAULT_URL = LINKS.espacePro;
 
 /* =========================
-   DOM helpers
-========================= */
-function el(tag, attrs = {}, children = []) {
-  const n = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs)) {
-    if (k === "class") n.className = v;
-    else if (k === "html") n.innerHTML = v;
-    else if (k.startsWith("on") && typeof v === "function") n.addEventListener(k.slice(2), v);
-    else n.setAttribute(k, v);
-  }
-  for (const c of children) n.appendChild(typeof c === "string" ? document.createTextNode(c) : c);
-  return n;
-}
+   MODULES DATA-DRIVEN (JSON)
+   ========================= */
+let MODULES = [];
+const MODULES_JSON_URL = "./modules.json"; // à la racine du repo
 
-function norm(s) {
-  return (s || "").toString().toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
-}
-
-function getPhone() {
+async function loadModulesJSON() {
   try {
-    const p = localStorage.getItem(STORAGE_PHONE) || "";
-    return p.trim();
-  } catch (_) {
-    return "";
+    const url = `${MODULES_JSON_URL}?v=${Date.now()}`; // cache-bust
+    const r = await fetch(url, { cache: "no-store" });
+    if (!r.ok) throw new Error(`modules.json HTTP ${r.status}`);
+    const j = await r.json();
+
+    const arr = Array.isArray(j.modules) ? j.modules : [];
+    // Sanitization légère (éviter crash si JSON incomplet)
+    MODULES = arr
+      .filter(m => m && typeof m === "object")
+      .map(m => ({
+        key: String(m.key || "").trim(),
+        name: String(m.name || "").trim(),
+        icon: m.icon || "∞",
+        tag: String(m.tag || "").trim(),
+        desc: String(m.desc || "").trim(),
+        kind: (m.kind === "pro" ? "pro" : "public"),
+        status: String(m.status || "").trim(),          // live | nouveau | officiel | priorite | gratuit | beta...
+        statusLabel: String(m.statusLabel || "").trim(),// texte badge
+        phoneParam: !!m.phoneParam,
+        directUrl: m.directUrl ? String(m.directUrl).trim() : "" // optionnel
+      }))
+      .filter(m => m.key && m.name);
+
+    return true;
+  } catch (e) {
+    console.warn("[DIGIY HUB] loadModulesJSON failed:", e?.message || e);
+    MODULES = [];
+    return false;
   }
 }
 
-function withParam(url, k, v) {
+/* =========================
+   HELPERS
+   ========================= */
+function normPhone(p) {
+  if (!p) return "";
+  let s = String(p).trim();
+  s = s.replace(/[^\d+]/g, "");
+  if (s && !s.startsWith("+")) {
+    if (s.startsWith("221")) s = "+" + s;
+  }
+  return s;
+}
+
+function withPhone(url, phone, param = "phone") {
   if (!url) return "";
-  if (!v) return url;
+  if (!phone) return url;
   try {
     const u = new URL(url);
-    u.searchParams.set(k, v);
+    u.searchParams.set(param, phone);
     return u.toString();
   } catch (_) {
     const sep = url.includes("?") ? "&" : "?";
-    return url + sep + encodeURIComponent(k) + "=" + encodeURIComponent(v);
+    return url + sep + encodeURIComponent(param) + "=" + encodeURIComponent(phone);
   }
 }
 
-/* =========================
-   Routing DIGIY
-   - PUBLIC/HUB : direct
-   - PRO : via pro-espace (rond-point) + module + phone
-========================= */
-function resolveOpenUrl(m, phone) {
-  if (!m?.url) return "";
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (m) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;",
+    '"': "&quot;", "'": "&#039;"
+  }[m]));
+}
 
-  // ✅ PRO => rond-point central
-  if (m.kind === "pro") {
-    let u = PRO_CENTRAL_URL;
-    if (phone) u = withParam(u, "phone", phone);
-    // module = identifiant stable
-    u = withParam(u, "module", m.id || m.slug || "");
-    // optionnel : destination (le module url direct, si pro-espace veut la lire)
-    u = withParam(u, "to", m.url);
-    return u;
+/* =========================
+   MODAL
+   ========================= */
+const modal = {
+  root: null,
+  titleEl: null,
+  textEl: null,
+  okBtn: null,
+  cancelBtn: null,
+  _onOk: null,
+  _onCancel: null,
+
+  init() {
+    this.root = $("#modal");
+    this.titleEl = $("#modalTitle");
+    this.textEl = $("#modalText");
+    this.okBtn = $("#modalOk");
+    this.cancelBtn = $("#modalCancel");
+    if (!this.root) return;
+
+    this.okBtn?.addEventListener("click", () => {
+      this.hide();
+      if (typeof this._onOk === "function") this._onOk();
+    });
+    this.cancelBtn?.addEventListener("click", () => {
+      this.hide();
+      if (typeof this._onCancel === "function") this._onCancel();
+    });
+
+    this.root.addEventListener("click", (e) => {
+      if (e.target === this.root) this.hide();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !this.root.classList.contains("hidden")) this.hide();
+    });
+  },
+
+  show({ title, text, okText = "OK", cancelText = "Annuler", onOk = null, onCancel = null, hideCancel = false }) {
+    if (!this.root) return;
+    this.titleEl.textContent = title || "Info";
+    this.textEl.innerHTML = text || "";
+    this.okBtn.textContent = okText;
+    this.cancelBtn.textContent = cancelText;
+    this._onOk = onOk;
+    this._onCancel = onCancel;
+    this.cancelBtn.style.display = hideCancel ? "none" : "";
+    this.root.classList.remove("hidden");
+    this.root.setAttribute("aria-hidden", "false");
+  },
+
+  info({ title, text, okText = "OK" }) {
+    this.show({ title, text, okText, hideCancel: true });
+  },
+
+  hide() {
+    if (!this.root) return;
+    this.root.classList.add("hidden");
+    this.root.setAttribute("aria-hidden", "true");
+    this._onOk = null;
+    this._onCancel = null;
+  }
+};
+
+/* =========================
+   HUB OVERLAY
+   ========================= */
+const hub = {
+  overlay: null,
+  frame: null,
+  backBtn: null,
+  closeBtn: null,
+
+  init() {
+    this.overlay = $("#hubOverlay");
+    this.frame = $("#hubFrame");
+    this.backBtn = $("#hubBackBtn");
+    this.closeBtn = $("#hubCloseBtn");
+    if (!this.overlay || !this.frame) return;
+
+    const close = () => this.close();
+    this.closeBtn?.addEventListener("click", close);
+    this.backBtn?.addEventListener("click", close);
+
+    this.overlay.addEventListener("click", (e) => {
+      if (e.target === this.overlay) close();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !this.overlay.classList.contains("hidden")) close();
+    });
+  },
+
+  open(url) {
+    if (!url) return;
+    this.frame.src = url;
+    this.overlay.classList.remove("hidden");
+    this.overlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  },
+
+  close() {
+    if (!this.overlay) return;
+    this.overlay.classList.add("hidden");
+    this.overlay.setAttribute("aria-hidden", "true");
+    this.frame.src = "about:blank";
+    document.body.style.overflow = "";
+  }
+};
+
+/* =========================
+   UI REFS
+   ========================= */
+let modulesGridEl, phoneTextEl, searchInputEl;
+let statTotalEl, statPublicEl, statProEl;
+
+/* =========================
+   FILTERS
+   ========================= */
+function setFilter(f) {
+  state.filter = f;
+  localStorage.setItem(STORAGE_FILTER, f);
+  $$(".tab").forEach(btn => btn.classList.toggle("active", btn.dataset.filter === f));
+  render();
+}
+
+function setSearch(q) {
+  state.q = q;
+  localStorage.setItem(STORAGE_SEARCH, q);
+  render();
+}
+
+function getFilteredModules() {
+  const q = (state.q || "").trim().toLowerCase();
+
+  return MODULES.filter(m => {
+    if (state.filter === "public" && m.kind !== "public") return false;
+    if (state.filter === "pro" && m.kind !== "pro") return false;
+    if (!q) return true;
+
+    const hay = [m.key, m.name, m.tag, m.desc, m.kind, m.status, m.statusLabel].join(" ").toLowerCase();
+    return hay.includes(q);
+  });
+}
+
+function updateStats(filtered) {
+  const total = filtered.length;
+  const pub = filtered.filter(m => m.kind === "public").length;
+  const pro = filtered.filter(m => m.kind === "pro").length;
+
+  if (statTotalEl) statTotalEl.textContent = String(total);
+  if (statPublicEl) statPublicEl.textContent = String(pub);
+  if (statProEl) statProEl.textContent = String(pro);
+}
+
+/* =========================
+   CARDS
+   ========================= */
+function badgeHTML(kind, status, statusLabel) {
+  const kindBadge = `<span class="badge kind-${kind}">${kind === "pro" ? "PRO" : "PUBLIC"}</span>`;
+  const st = status || "soon";
+  const label = statusLabel || st.toUpperCase();
+  const stBadge = `<span class="badge ${st}">${escapeHtml(label)}</span>`;
+  return kindBadge + stBadge;
+}
+
+function getModuleUrl(m) {
+  let base = m.directUrl || LINKS[m.key] || "";
+
+  // fallback : si module PRO sans directUrl, on l’envoie vers le portail PRO
+  if (m.kind === "pro" && !m.directUrl && !LINKS[m.key]) {
+    base = PRO_DEFAULT_URL;
   }
 
-  // ✅ HUB/CLIENT/PUBLIC => direct + phone si tu veux
-  // (tu peux décider phone=true seulement sur certains modules)
-  return phone ? withParam(m.url, "phone", phone) : m.url;
+  if (!base) return "";
+
+  if (m.phoneParam && state.phone) {
+    base = withPhone(base, state.phone, "phone");
+  }
+  return base;
 }
 
-/* =========================
-   UI helpers
-========================= */
-function badge(status) {
-  const map = {
-    live: { t: "LIVE", c: "digiy-badge digiy-live" },
-    beta: { t: "BETA", c: "digiy-badge digiy-beta" },
-    off:  { t: "OFF",  c: "digiy-badge digiy-off" },
-  };
-  const b = map[status] || { t: status?.toUpperCase() || "?", c: "digiy-badge" };
-  return el("span", { class: b.c }, [b.t]);
-}
+function cardHTML(m) {
+  const url = getModuleUrl(m);
+  const disabled = !url;
 
-function pill(text) {
-  return el("span", { class: "digiy-pill" }, [text]);
-}
+  return `
+    <div class="card" tabindex="0" role="button" aria-label="${escapeHtml(m.name)}" data-key="${escapeHtml(m.key)}">
+      <div class="cardTop">
+        <div class="icon">${escapeHtml(m.icon || "∞")}</div>
+        <div style="flex:1;min-width:0">
+          <div class="cardTitle">${escapeHtml(m.name)}</div>
+          <div class="cardTag">${escapeHtml(m.tag || "")}</div>
+          <div class="cardDesc">${escapeHtml(m.desc || "")}</div>
 
-function renderStyles(root) {
-  const css = `
-  .digiy-wrap{max-width:1100px;margin:0 auto;padding:16px}
-  .digiy-top{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
-  .digiy-input{flex:1;min-width:240px;padding:12px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.18);color:#fff;outline:none}
-  .digiy-select{padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.18);color:#fff;outline:none}
-  .digiy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-  .digiy-card{border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.22);padding:14px;box-shadow:0 18px 55px rgba(0,0,0,.35)}
-  .digiy-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-  .digiy-title{font-weight:900;letter-spacing:.2px}
-  .digiy-sub{opacity:.8;font-size:.92rem;margin-top:6px}
-  .digiy-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-  .digiy-pill{font-size:.78rem;padding:6px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.14);opacity:.9}
-  .digiy-badge{font-size:.72rem;padding:6px 9px;border-radius:999px;font-weight:1000;border:1px solid rgba(255,255,255,.14)}
-  .digiy-live{background:rgba(34,197,94,.18)}
-  .digiy-beta{background:rgba(250,204,21,.18)}
-  .digiy-off{background:rgba(244,63,94,.14)}
-  .digiy-btn{margin-top:12px;width:100%;padding:12px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);color:#fff;font-weight:1000;cursor:pointer}
-  .digiy-btn:hover{background:rgba(255,255,255,.12)}
-  .digiy-empty{opacity:.85;padding:14px;border-radius:14px;border:1px dashed rgba(255,255,255,.18)}
-  .digiy-mini{opacity:.72;font-size:.85rem;margin-top:8px;line-height:1.35}
+          <div class="badges">
+            ${badgeHTML(m.kind, m.status, m.statusLabel)}
+          </div>
+        </div>
+      </div>
+
+      <div class="cardActions">
+        <button class="btn ${disabled ? "disabled" : "primary"}" data-action="open" ${disabled ? "disabled" : ""} type="button">
+          Ouvrir →
+        </button>
+        <button class="btn ${disabled ? "disabled" : ""}" data-action="copy" ${disabled ? "disabled" : ""} type="button">
+          Copier lien
+        </button>
+      </div>
+    </div>
   `;
-  root.appendChild(el("style", { html: css }));
 }
 
-export function mountModulesApp({
-  targetId = "modulesApp",
-  modules = DIGIY_MODULES,
-  defaultKind = "all" // all | pro | client | hub
-} = {}) {
-  const target = document.getElementById(targetId);
-  if (!target) throw new Error(`modules.js: container #${targetId} introuvable`);
+/* =========================
+   RENDER
+   ========================= */
+function renderGrid() {
+  const grid = modulesGridEl;
+  if (!grid) return;
 
-  const phone = getPhone();
+  const filtered = getFilteredModules();
+  grid.innerHTML = filtered.length
+    ? filtered.map(cardHTML).join("")
+    : `<div class="empty">
+         Aucun module ne correspond à ta recherche frérot.<br>
+         <small style="opacity:.75">Si c'est vide, vérifie <b>modules.json</b>.</small>
+       </div>`;
 
-  target.innerHTML = "";
-  renderStyles(target);
+  $$(".card", grid).forEach(card => {
+    card.addEventListener("click", (e) => {
+      const btn = e.target?.closest?.("button");
+      const key = card.getAttribute("data-key");
+      const m = MODULES.find(x => x.key === key);
+      if (!m) return;
 
-  const state = {
-    q: "",
-    kind: defaultKind,
-    status: "all",
-    city: "all",
-  };
+      if (btn && btn.dataset.action === "copy") {
+        e.preventDefault();
+        e.stopPropagation();
+        const link = getModuleUrl(m);
+        if (!link) return;
+        navigator.clipboard?.writeText(link).catch(() => {});
+        modal.info({ title: "Copié ✅", text: `Lien copié.<br><small>${escapeHtml(link)}</small>` });
+        return;
+      }
 
-  const qInput = el("input", {
-    class: "digiy-input",
-    placeholder: "Recherche : logement, chauffeur, artisan, pay, market…",
-    oninput: (e) => { state.q = e.target.value; draw(); }
+      openModule(key);
+    });
+
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openModule(card.getAttribute("data-key"));
+      }
+    });
   });
 
-  const kindSel = el("select", {
-    class: "digiy-select",
-    onchange: (e) => { state.kind = e.target.value; draw(); }
-  }, [
-    el("option", { value: "all" }, ["Tous"]),
-    el("option", { value: "pro" }, ["PRO"]),
-    el("option", { value: "client" }, ["CLIENT"]),
-    el("option", { value: "hub" }, ["HUB"]),
-  ]);
-  kindSel.value = defaultKind;
-
-  const statusSel = el("select", {
-    class: "digiy-select",
-    onchange: (e) => { state.status = e.target.value; draw(); }
-  }, [
-    el("option", { value: "all" }, ["Tous statuts"]),
-    el("option", { value: "live" }, ["LIVE"]),
-    el("option", { value: "beta" }, ["BETA"]),
-    el("option", { value: "off" }, ["OFF"]),
-  ]);
-
-  const cities = Array.from(new Set(modules.map(m => m.city).filter(Boolean)))
-    .sort((a,b)=>a.localeCompare(b));
-
-  const citySel = el("select", {
-    class: "digiy-select",
-    onchange: (e) => { state.city = e.target.value; draw(); }
-  }, [
-    el("option", { value: "all" }, ["Toutes villes"]),
-    ...cities.map(c => el("option", { value: c }, [c]))
-  ]);
-
-  const top = el("div", { class: "digiy-wrap" }, [
-    el("div", { class: "digiy-top" }, [qInput, kindSel, statusSel, citySel]),
-  ]);
-
-  const grid = el("div", { class: "digiy-grid" });
-  top.appendChild(grid);
-
-  // mini hint phone
-  top.appendChild(el("div", { class: "digiy-mini" }, [
-    phone
-      ? `📱 Numéro détecté : ${phone} — il sera envoyé aux modules compatibles.`
-      : `📱 Aucun numéro mémorisé — tu peux le saisir depuis DIGIY ROYAL pour activer l’auto-passage.`
-  ]));
-
-  target.appendChild(top);
-
-  function matches(m) {
-    if (state.kind !== "all" && m.kind !== state.kind) return false;
-    if (state.status !== "all" && m.status !== state.status) return false;
-    if (state.city !== "all" && m.city !== state.city) return false;
-
-    const hay = norm([m.name, m.slug, m.city, m.status, m.kind, ...(m.tags||[])].join(" "));
-    const needle = norm(state.q);
-    if (needle && !hay.includes(needle)) return false;
-
-    return true;
-  }
-
-  function card(m) {
-    const head = el("div", { class: "digiy-head" }, [
-      el("div", {}, [
-        el("div", { class: "digiy-title" }, [m.name]),
-        el("div", { class: "digiy-sub" }, [`${(m.kind || "client").toUpperCase()} • ${m.city || "—"}`]),
-      ]),
-      badge(m.status)
-    ]);
-
-    const tagsRow = el("div", { class: "digiy-row" }, (m.tags || []).slice(0, 6).map(pill));
-
-    const btn = el("button", {
-      class: "digiy-btn",
-      onclick: () => {
-        const u = resolveOpenUrl(m, phone);
-        if (!u) return;
-        window.open(u, "_blank", "noopener");
-      }
-    }, [m.kind === "pro" ? "Entrer (PRO)" : "Ouvrir"]);
-
-    return el("div", { class: "digiy-card" }, [head, tagsRow, btn]);
-  }
-
-  function draw() {
-    grid.innerHTML = "";
-    const list = modules.filter(matches);
-
-    if (!list.length) {
-      grid.appendChild(el("div", { class: "digiy-empty" }, [
-        "Aucun module trouvé. Essaie un mot-clé (ex: “chauffeur”, “artisan”, “paiement”)."
-      ]));
-      return;
-    }
-
-    // Tri : live d’abord, puis beta, puis off
-    const rank = { live: 0, beta: 1, off: 2 };
-    list.sort((a,b) => (rank[a.status] ?? 9) - (rank[b.status] ?? 9) || a.name.localeCompare(b.name));
-
-    for (const m of list) grid.appendChild(card(m));
-  }
-
-  draw();
+  updateStats(filtered);
 }
+
+function renderPhone() {
+  if (!phoneTextEl) return;
+  phoneTextEl.textContent = state.phone ? state.phone : "non mémorisé";
+}
+
+function render() {
+  renderPhone();
+  renderGrid();
+}
+
+/* =========================
+   ACTIONS
+   ========================= */
+function openModule(key) {
+  const m = MODULES.find(x => x.key === key);
+  if (!m) return;
+
+  const url = getModuleUrl(m);
+  if (!url) {
+    modal.info({
+      title: "Module non disponible",
+      text: "Lien non défini frérot."
+    });
+    return;
+  }
+
+  hub.open(url);
+}
+
+function askPhone() {
+  modal.show({
+    title: "Numéro (optionnel)",
+    text:
+      `Entre ton numéro (ex: <b>+221771234567</b>)<br>
+       <small>Le HUB peut l'envoyer à certains modules.</small>
+       <div style="margin-top:10px">
+         <input id="phonePrompt"
+           style="width:100%;padding:12px;border-radius:14px;border:1px solid rgba(148,163,184,.25);background:rgba(2,6,23,.18);color:#fff;outline:none"
+           placeholder="+221..." value="${escapeHtml(state.phone)}"/>
+       </div>`,
+    okText: "Enregistrer",
+    cancelText: "Annuler",
+    onOk: () => {
+      const inp = $("#phonePrompt");
+      const val = normPhone(inp?.value || "");
+      state.phone = val;
+      localStorage.setItem(STORAGE_PHONE, val);
+      render();
+    }
+  });
+
+  setTimeout(() => $("#phonePrompt")?.focus(), 50);
+}
+
+/* =========================
+   INIT
+   ========================= */
+async function boot() {
+  modulesGridEl = $("#modulesGrid");
+  phoneTextEl   = $("#phoneText");
+  searchInputEl = $("#searchInput");
+  statTotalEl   = $("#statTotal");
+  statPublicEl  = $("#statPublic");
+  statProEl     = $("#statPro");
+
+  modal.init();
+  hub.init();
+
+  // state load
+  state.phone  = normPhone(localStorage.getItem(STORAGE_PHONE) || "");
+  state.filter = localStorage.getItem(STORAGE_FILTER) || "all";
+  state.q      = localStorage.getItem(STORAGE_SEARCH) || "";
+
+  // ✅ Charger modules.json avant le rendu
+  const ok = await loadModulesJSON();
+  if (!ok) {
+    modal.info({
+      title: "Modules indisponibles",
+      text: "Le fichier <b>modules.json</b> n'a pas pu être chargé. Vérifie qu'il est bien à la racine du repo ROYAL."
+    });
+  }
+
+  // phone buttons
+  $("#btnEditPhone")?.addEventListener("click", askPhone);
+  $("#btnClearPhone")?.addEventListener("click", () => {
+    state.phone = "";
+    localStorage.removeItem(STORAGE_PHONE);
+    render();
+  });
+
+  // hero CTAs
+  $("#btnGetHub")?.addEventListener("click", () => hub.open(withPhone(PRO_DEFAULT_URL, state.phone, "phone")));
+  $("#btnDeals")?.addEventListener("click", () => hub.open(LINKS.bonneAffaire));
+
+  // tabs
+  $$(".tab").forEach(btn => btn.addEventListener("click", () => setFilter(btn.dataset.filter)));
+
+  // search
+  if (searchInputEl) {
+    searchInputEl.value = state.q || "";
+    searchInputEl.addEventListener("input", () => setSearch(searchInputEl.value));
+  }
+
+  $("#btnReset")?.addEventListener("click", () => {
+    state.q = "";
+    localStorage.removeItem(STORAGE_SEARCH);
+    if (searchInputEl) searchInputEl.value = "";
+    setFilter("all");
+  });
+
+  // brand scroll top
+  $("#homeBrand")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // ===========================
+  // BOUTONS FLOTTANTS
+  // ===========================
+  const tarifBtn = $("#tarif-bubble-btn");
+  const espaceBtn = $("#espace-pro-btn");
+  const ndimbalHelpBtn = $("#digiy-help-btn");
+
+  // 🏷️ Tarifs DIGIY
+  if (tarifBtn) tarifBtn.addEventListener("click", () => hub.open(LINKS.tarifs));
+
+  // 🧰 ESPACE PRO
+  if (espaceBtn) espaceBtn.addEventListener("click", () => hub.open(withPhone(PRO_DEFAULT_URL, state.phone, "phone")));
+
+  // ♾️ NDIMBAL - ouvrir popup
+  if (ndimbalHelpBtn) {
+    ndimbalHelpBtn.addEventListener("click", () => {
+      const ndimbal = $("#digiy-ndimbal");
+      if (ndimbal) {
+        ndimbal.classList.remove("hidden");
+        ndimbal.setAttribute("aria-hidden", "false");
+      }
+    });
+  }
+
+  // 📖 MANIFESTE - ouvrir dans nouvel onglet
+  const manifestoBtn = document.getElementById('manifesto-bubble-btn');
+  if (manifestoBtn) {
+    manifestoBtn.addEventListener('click', () => {
+      window.open('https://digiylyfe.net/la-revolution-digitale-africaine-sans-commission/', '_blank');
+    });
+  }
+
+  // NDIMBAL - fermer
+  $("#digiyCloseBtn")?.addEventListener("click", () => {
+    const ndimbal = $("#digiy-ndimbal");
+    if (ndimbal) {
+      ndimbal.classList.add("hidden");
+      ndimbal.setAttribute("aria-hidden", "true");
+    }
+  });
+
+  // NDIMBAL - actions
+  const ndimbalPopup = $("#digiy-ndimbal");
+  if (ndimbalPopup) {
+    ndimbalPopup.addEventListener("click", (e) => {
+      if (e.target === ndimbalPopup) {
+        ndimbalPopup.classList.add("hidden");
+        ndimbalPopup.setAttribute("aria-hidden", "true");
+        return;
+      }
+
+      const btn = e.target?.closest?.("button");
+      if (!btn || !btn.dataset.action) return;
+
+      const action = btn.dataset.action;
+
+      ndimbalPopup.classList.add("hidden");
+      ndimbalPopup.setAttribute("aria-hidden", "true");
+
+      if (action === "sell") {
+        hub.open(withPhone(LINKS.hubDrive, state.phone, "phone"));
+      } else if (action === "job") {
+        hub.open(withPhone(LINKS.jobs, state.phone, "phone"));
+      } else if (action === "qr") {
+        const qrModal = $("#qrModal");
+        if (qrModal) {
+          qrModal.classList.remove("hidden");
+          qrModal.setAttribute("aria-hidden", "false");
+        }
+      }
+    });
+  }
+
+  // QR Modal - fermer
+  $("#qrClose")?.addEventListener("click", () => {
+    const qrModal = $("#qrModal");
+    if (qrModal) {
+      qrModal.classList.add("hidden");
+      qrModal.setAttribute("aria-hidden", "true");
+    }
+  });
+
+  // QR Modal - fermer sur fond
+  const qrModalPopup = $("#qrModal");
+  if (qrModalPopup) {
+    qrModalPopup.addEventListener("click", (e) => {
+      if (e.target === qrModalPopup) {
+        qrModalPopup.classList.add("hidden");
+        qrModalPopup.setAttribute("aria-hidden", "true");
+      }
+    });
+  }
+
+  // apply tab active
+  $$(".tab").forEach(btn => btn.classList.toggle("active", btn.dataset.filter === state.filter));
+
+  render();
+}
+
+document.addEventListener("DOMContentLoaded", () => { boot(); });
