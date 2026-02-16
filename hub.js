@@ -625,7 +625,14 @@ function boot() {
   });
 
   // hero CTAs
-  $("#btnGetHub")?.addEventListener("click", () => hub.open(withPhone(PRO_DEFAULT_URL, state.phone, "phone")));
+ // CTA principal : rester sur la vitrine et descendre vers les modules
+$("#btnGetHub")?.addEventListener("click", () => {
+  const modulesSection = document.querySelector(".section");
+  if (modulesSection) {
+    modulesSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+});
+
   $("#btnDeals")?.addEventListener("click", () => hub.open(LINKS.bonneAffaire));
 
   // tabs
