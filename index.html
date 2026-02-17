@@ -32,33 +32,130 @@
     }, { passive: false });
   </script>
 
-  <!-- ✅ Patch anti-boutons-qui-cachent-le-contenu (garde Tarifs/NDIMBAL à droite) -->
+  <!-- ✅ PATCH UI: floats + manifesto + padding (pour ne rien cacher) -->
   <style>
-    /* On garde une marge en bas pour que rien ne soit caché par les boutons fixes */
-    .main{ padding-bottom: 200px !important; }
+    /* Ne pas masquer le bas (tarifs etc.) */
+    .main{ padding-bottom: 260px !important; }
     .footer{ padding-bottom: 90px !important; }
 
-    /* Boutons flottants un peu plus gros + zone safe iPhone */
-    .floatBtn{
-      padding:14px 16px !important;
-      font-size:14px !important;
-      border-radius:999px !important;
+    /* --- Manifesto hero --- */
+    .manifestoHero { max-width: 1200px; margin: 20px auto 0; padding: 0 18px; }
+    .manifestoContainer{
+      background: linear-gradient(135deg, rgba(11,42,31,.95) 0%, rgba(10,36,27,.85) 100%);
+      border: 1px solid rgba(148,163,184,.28);
+      border-radius: 26px;
+      padding: 40px 30px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .manifestoContainer::before{
+      content:""; position:absolute; inset:-100px;
+      background:
+        radial-gradient(600px 300px at 30% 20%, rgba(246,196,83,.12), transparent 60%),
+        radial-gradient(600px 300px at 70% 80%, rgba(22,163,74,.10), transparent 60%);
+      pointer-events:none; opacity:.8;
+    }
+    .manifestoIcon{ font-size:64px; margin-bottom:20px; position:relative; z-index:1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+    .manifestoTitle{
+      position:relative; z-index:1;
+      font-family: var(--fontA);
+      font-weight: 900;
+      font-size: 36px;
+      line-height: 1.15;
+      margin: 0 0 15px 0;
+      color: #FFD700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 0 20px rgba(255,215,0,0.3);
+    }
+    .manifestoSubtitle{
+      position:relative; z-index:1;
+      font-family: var(--fontA);
+      font-weight: 800;
+      font-size: 18px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      letter-spacing: .5px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+    .manifestoText{
+      position:relative; z-index:1;
+      font-size: 19px;
+      line-height: 1.7;
+      color: #F8FAFC;
+      max-width: 760px;
+      margin: 0 auto 30px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    .manifestoText strong{
+      color:#FFD700; font-weight: 900;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6), 0 0 15px rgba(255,215,0,0.2);
+    }
+    .manifestoBtns{
+      position:relative; z-index:1;
+      display:flex; gap: 15px;
+      justify-content:center; flex-wrap:wrap;
+    }
+    .manifestoPrimary{
+      border-color: rgba(246,196,83,.55) !important;
+      background: linear-gradient(135deg, rgba(246,196,83,.30), rgba(22,163,74,.25)) !important;
+      font-size: 16px !important;
+      padding: 14px 22px !important;
+      color:#fff !important;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    .manifestoOutline{
+      background: transparent !important;
+      border-color: rgba(22,163,74,.55) !important;
+      font-size: 16px !important;
+      padding: 14px 22px !important;
+      color:#fff !important;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
     }
 
-    /* Conserve Tarifs + NDIMBAL à droite */
-    #tarif-bubble-btn{ right:14px !important; left:auto !important; bottom:18px !important; }
-    #digiy-help-btn{ right:14px !important; left:auto !important; bottom:68px !important; }
+    /* --- Float buttons: droite (Tarifs + NDIMBAL), gauche (PRO + 🎧 Vision) --- */
+    .floatBtn{
+      position:fixed;
+      z-index:30;
+      border-radius:999px;
+      padding:14px 16px !important;
+      border:1px solid rgba(148,163,184,.26);
+      background: rgba(2,6,23,.30);
+      color:var(--ink);
+      font-family:var(--fontA);
+      font-weight:900;
+      cursor:pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      transition: all .2s ease;
+      font-size:14px !important;
+    }
+    .floatBtn:hover{ border-color: rgba(246,196,83,.35); transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,.45); }
+    .floatBtn:active{ transform: translateY(0px) scale(.98); }
 
-    /* PRO + VISION (audio) à gauche pour ne pas masquer Tarifs */
-    #espace-pro-btn{ left:14px !important; right:auto !important; bottom:18px !important; }
-    #manifesto-bubble-btn{ left:14px !important; right:auto !important; bottom:68px !important; }
+    /* Droite */
+    #tarif-bubble-btn{ right:14px; bottom:18px; left:auto; }
+    #digiy-help-btn{ right:14px; bottom:68px; left:auto; }
+
+    /* Gauche */
+    #espace-pro-btn{ left:14px; bottom:18px; right:auto; }
+    #vision-bubble-btn{ left:14px; bottom:68px; right:auto; }
 
     @media (max-width:560px){
-      .main{ padding-bottom: 220px !important; }
-      #tarif-bubble-btn{ right:10px !important; bottom:14px !important; }
-      #digiy-help-btn{ right:10px !important; bottom:62px !important; }
-      #espace-pro-btn{ left:10px !important; bottom:14px !important; }
-      #manifesto-bubble-btn{ left:10px !important; bottom:62px !important; }
+      .manifestoContainer{ padding: 30px 20px; }
+      .manifestoIcon{ font-size: 48px; }
+      .manifestoTitle{ font-size: 26px; }
+      .manifestoSubtitle{ font-size: 15px; }
+      .manifestoText{ font-size: 17px; }
+      .manifestoBtns{ flex-direction: column; }
+      .manifestoPrimary, .manifestoOutline{ width:100%; }
+
+      #tarif-bubble-btn{ right:10px; bottom:14px; }
+      #digiy-help-btn{ right:10px; bottom:62px; }
+      #espace-pro-btn{ left:10px; bottom:14px; }
+      #vision-bubble-btn{ left:10px; bottom:62px; }
+      .main{ padding-bottom: 280px !important; }
     }
   </style>
 </head>
@@ -149,7 +246,7 @@
       </div>
     </header>
 
-    <!-- SECTION HERO MANIFESTE -->
+    <!-- HERO “AFRIQUE ENRACINÉE” + CTA (le 🎧 ici lit la VISION, pas le manifeste) -->
     <section class="manifestoHero">
       <div class="manifestoContainer">
         <div class="manifestoIcon">🦅</div>
@@ -168,141 +265,22 @@
         </p>
 
         <div class="manifestoBtns">
-          <!-- (Optionnel) Lien manifeste si tu le remets plus tard -->
-          <!--
-          <a href="https://digiylyfe.net/la-revolution-digitale-africaine-sans-commission/" target="_blank" rel="noopener" class="btn manifestoPrimary">
-            📖 LIRE LE MANIFESTE
-          </a>
-          -->
+          <!-- 🎧 Vision (important) -->
+          <button class="btn manifestoPrimary"
+                  type="button"
+                  data-digiy-audio
+                  data-target="#vision-digiy"
+                  data-lang="fr-FR"
+                  data-rate="0.95">🎧 Écouter la VISION</button>
 
-          <button class="btn manifestoOutline" id="btnScrollModules" type="button">
-            🌐 VOIR LES MODULES
-          </button>
+          <!-- Scroll modules -->
+          <button class="btn manifestoOutline" id="btnScrollModules" type="button">🌐 Voir les modules</button>
 
-          <a href="https://articles.digiylyfe.com" target="_blank" rel="noopener" class="btn manifestoOutline">
-            📰 LIRE LES ARTICLES
-          </a>
+          <!-- Articles -->
+          <a href="https://articles.digiylyfe.com" target="_blank" rel="noopener" class="btn manifestoOutline">📰 Lire les articles</a>
         </div>
       </div>
     </section>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const scrollBtn = document.getElementById('btnScrollModules');
-        if (scrollBtn) {
-          scrollBtn.addEventListener('click', () => {
-            const modulesSection = document.querySelector('.section');
-            if (modulesSection) modulesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          });
-        }
-      });
-    </script>
-
-    <!-- CSS MANIFESTO (gardé ici tel que tu l’avais) -->
-    <style>
-      .manifestoHero { max-width: 1200px; margin: 20px auto 0; padding: 0 18px; }
-      .manifestoContainer {
-        background: linear-gradient(135deg, rgba(11,42,31,.95) 0%, rgba(10,36,27,.85) 100%);
-        border: 1px solid rgba(148,163,184,.28);
-        border-radius: 26px;
-        padding: 40px 30px;
-        box-shadow: 0 18px 60px rgba(0,0,0,.35);
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-      .manifestoContainer::before {
-        content: "";
-        position: absolute;
-        inset: -100px;
-        background:
-          radial-gradient(600px 300px at 30% 20%, rgba(246,196,83,.12), transparent 60%),
-          radial-gradient(600px 300px at 70% 80%, rgba(22,163,74,.10), transparent 60%);
-        pointer-events: none;
-        opacity: 0.8;
-      }
-      .manifestoIcon {
-        font-size: 64px;
-        margin-bottom: 20px;
-        animation: manifestoFloat 3s ease-in-out infinite;
-        position: relative;
-        z-index: 1;
-        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-      }
-      @keyframes manifestoFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-      .manifestoTitle {
-        position: relative; z-index: 1;
-        font-family: var(--fontA);
-        font-weight: 900;
-        font-size: 36px;
-        line-height: 1.15;
-        margin: 0 0 15px 0;
-        color: #FFD700;
-        letter-spacing: 1px;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 0 20px rgba(255,215,0,0.3);
-      }
-      .manifestoSubtitle {
-        position: relative; z-index: 1;
-        font-family: var(--fontA);
-        font-weight: 700;
-        font-size: 18px;
-        color: #FFFFFF;
-        margin-bottom: 20px;
-        letter-spacing: 0.5px;
-        text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-      }
-      .manifestoText {
-        position: relative; z-index: 1;
-        font-size: 19px;
-        line-height: 1.7;
-        color: #F8FAFC;
-        max-width: 700px;
-        margin: 0 auto 30px;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-      }
-      .manifestoText strong {
-        color: #FFD700;
-        font-weight: 900;
-        text-shadow: 0 2px 6px rgba(0,0,0,0.6), 0 0 15px rgba(255,215,0,0.2);
-      }
-      .manifestoBtns {
-        position: relative; z-index: 1;
-        display: flex;
-        gap: 15px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .manifestoPrimary {
-        border-color: rgba(246,196,83,.55);
-        background: linear-gradient(135deg, rgba(246,196,83,.30), rgba(22,163,74,.25));
-        font-size: 16px;
-        padding: 14px 30px;
-        color: #FFFFFF;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-      }
-      .manifestoOutline {
-        background: transparent;
-        border-color: rgba(22,163,74,.55);
-        font-size: 16px;
-        padding: 14px 30px;
-        color: #FFFFFF;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-      }
-      .manifestoOutline:hover{
-        border-color: rgba(22,163,74,.75);
-        background: rgba(22,163,74,.15);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      }
-      @media (max-width: 560px) {
-        .manifestoContainer { padding: 30px 20px; }
-        .manifestoIcon { font-size: 48px; }
-        .manifestoTitle { font-size: 26px; }
-        .manifestoSubtitle { font-size: 15px; }
-        .manifestoText { font-size: 17px; }
-        .manifestoBtns { flex-direction: column; }
-        .manifestoPrimary, .manifestoOutline { width: 100%; }
-      }
-    </style>
 
     <main class="main">
       <section class="section">
@@ -320,10 +298,17 @@
         <div id="modulesGrid" class="grid" aria-live="polite"></div>
       </section>
 
-      <!-- ✅ VISION (sans bouton ici, car le bouton est en flottant "🎧 Vision") -->
+      <!-- ✅ VISION (LE TEXTE LE PLUS IMPORTANT) -->
       <section class="section">
         <div class="sectionHead">
           <h2>VISION</h2>
+
+          <button class="btn tiny"
+                  type="button"
+                  data-digiy-audio
+                  data-target="#vision-digiy"
+                  data-lang="fr-FR"
+                  data-rate="0.95">🎧 Écouter</button>
         </div>
 
         <div id="vision-digiy" class="note">
@@ -373,23 +358,18 @@
       </footer>
     </main>
 
-    <!-- Boutons flottants -->
+    <!-- ✅ Boutons flottants (droite = Tarifs + NDIMBAL / gauche = PRO + Vision) -->
     <button id="tarif-bubble-btn" class="floatBtn" type="button">🏷️ Tarifs</button>
+    <button id="digiy-help-btn" class="floatBtn" type="button">♾️ NDIMBAL</button>
 
     <button id="espace-pro-btn" class="floatBtn" type="button">🧰 PRO</button>
-
-    <!-- ✅ remplace "Lire le manifeste" : lecture audio de la VISION -->
-    <button id="manifesto-bubble-btn"
+    <button id="vision-bubble-btn"
             class="floatBtn"
+            type="button"
             data-digiy-audio
             data-target="#vision-digiy"
             data-lang="fr-FR"
-            data-rate="0.95"
-            type="button">
-      🎧 Vision
-    </button>
-
-    <button id="digiy-help-btn" class="floatBtn" type="button">♾️ NDIMBAL</button>
+            data-rate="0.95">🎧 Vision</button>
 
     <!-- NDIMBAL popup -->
     <div id="digiy-ndimbal" class="ndimbal hidden" aria-hidden="true">
@@ -452,7 +432,20 @@
 
   </div>
 
-  <!-- ✅ AUDIO helper (hébergé sur apps.digiylyfe.com) -->
+  <!-- JS local: scroll vers modules -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const scrollBtn = document.getElementById('btnScrollModules');
+      if (scrollBtn) {
+        scrollBtn.addEventListener('click', () => {
+          const modulesSection = document.querySelector('.section');
+          if (modulesSection) modulesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+    });
+  </script>
+
+  <!-- ✅ DIGIY AUDIO (doit être présent partout) -->
   <script defer src="https://apps.digiylyfe.com/assets/digiy-audio.js?v=4"></script>
 </body>
 </html>
