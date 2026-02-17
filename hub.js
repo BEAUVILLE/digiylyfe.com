@@ -148,28 +148,138 @@ function escapeHtml(s) {
   }[m]));
 }
 
-/* =========================
-   ✅ DIGIY AUDIO (TTS) — NEW
-   ========================= */
-function digiySpeak(text, lang = "fr-FR", rate = 1) {
-  try {
-    if (!("speechSynthesis" in window)) {
-      modal?.info({ title: "Audio", text: "Audio non supporté sur ce navigateur." });
-      return;
-    }
-    const msg = new SpeechSynthesisUtterance(String(text || ""));
-    msg.lang = lang;
-    msg.rate = Math.max(0.6, Math.min(1.3, Number(rate) || 1));
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(msg);
-  } catch (e) {
-    console.warn("[DIGIY AUDIO] speak error", e);
-  }
-}
+/* DIGIY AUDIO — Global Inject (v2) */
+(function () {
+  const ID_PLAY  = "digiyAudioFabPlay";
+  const ID_STOP  = "digiyAudioFabStop";
+  const STYLE_ID = "digiyAudioFabStyle";
 
-function digiyStop() {
-  try { window.speechSynthesis.cancel(); } catch (_) {}
+  function speak(text, lang = "fr-FR", rate = 1) {
+    try {
+      if (!("speechSynthesis" in window)) return;
+      const u = new SpeechSynthesisUtterance(String(text || ""));
+      u.lang = lang;
+      u.rate = Math.max(0.6, Math.min(1.3, Number(rate) || 1));
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+
+  function stop() {
+    try { window.speechSynthesis.cancel(); } catch (e) {}
+  }
+
+  // expose global
+  window.DIGIY_SPEAK = speak;
+  window.DIGIY_STOP  = stop;
+
+  function getSmartText() {
+    const main = document.querySelector("main");
+    const t1 = main ? (main.innerText || "").trim() : "";
+    if (t1.length >= 40) return t1;
+
+    const a = document.querySelector("article, section");
+    const t2 = a ? (a.innerText || "").trim() : "";
+    if (t2.length >= 40) return t2;
+
+    const t3 = (document.body?.innerText || "").trim();
+    if (t3.length >= 40) return t3;
+
+    return document.title || "DIGIYLYFE";
+  }
+
+  function ensureStyle() {
+    if (document.getElementById(STYLE_ID)) return;
+    const st = document.createElement("style");
+    st.id = STYLE_ID;
+    st.textContent = `
+#${ID_PLAY}, #${ID_STOP}{
+  all: unset !important;
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  right: 14px !important;
+  border-radius: 999px !important;
+  padding: 12px 14px !important;
+  font-weight: 900 !important;
+  letter-spacing: .2px !important;
+  border: 2px solid rgba(250,204,21,.85) !important;
+  background: rgba(2,6,23,.78) !important;
+  color: #fff !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.45) !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
+#${ID_PLAY}{ bottom: 14px !important; }
+#${ID_STOP}{ bottom: 64px !important; border-color: rgba(255,255,255,.35) !important; }
+#${ID_PLAY}:active, #${ID_STOP}:active{ transform: scale(.98) !important; }
+`;
+    document.head.appendChild(st);
+  }
+
+  function ensureButtons() {
+    ensureStyle();
+
+    if (!document.getElementById(ID_STOP)) {
+      const b = document.createElement("button");
+      b.id = ID_STOP;
+      b.type = "button";
+      b.textContent = "⏹ Stop";
+      b.addEventListener("click", stop);
+      document.body.appendChild(b);
+    }
+
+    if (!document.getElementById(ID_PLAY)) {
+      const b = document.createElement("button");
+      b.id = ID_PLAY;
+      b.type = "button";
+      b.textContent = "🎧 Écouter";
+      b.addEventListener("click", () => speak(getSmartText(), "fr-FR", 1));
+      document.body.appendChild(b);
+    }
+  }
+
+  // Compat: data-digiy-audio handler (v1 behavior)
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-digiy-audio]");
+    if (!btn) return;
+
+    const lang = btn.getAttribute("data-lang") || "fr-FR";
+    const rate = btn.getAttribute("data-rate") || "1";
+    const sel  = btn.getAttribute("data-target") || "";
+    let text   = btn.getAttribute("data-text") || "";
+
+    if (!text && sel) {
+      const node = document.querySelector(sel);
+      text = node ? (node.innerText || node.textContent || "") : "";
+    }
+    if (!text.trim()) text = document.title || "DIGIYLYFE";
+
+    speak(text, lang, rate);
+  });
+
+  function boot() {
+    ensureButtons();
+    // SPA safety: if DOM changes, re-add buttons
+    try {
+      new MutationObserver(() => ensureButtons())
+        .observe(document.documentElement, { childList: true, subtree: true });
+    } catch (e) {}
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop();
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();
+
 
 /* =========================
    MODAL
