@@ -593,3 +593,27 @@ a{color:inherit; text-decoration:none}
   #manifesto-bubble-btn{bottom:73px}
   #digiy-help-btn{bottom:98px}
 }
+/* ✅ FLOAT DOCK LEFT (plus gros + ne cache rien) */
+.floatBtn{
+  left:14px !important;
+  right:auto !important;
+  width:auto;
+  min-width: 132px;
+  padding:14px 16px !important;
+  font-size:14px !important;
+  border-radius: 999px;
+}
+
+/* ordre vertical propre */
+#tarif-bubble-btn{bottom:18px !important}
+#espace-pro-btn{bottom:76px !important}
+#manifesto-bubble-btn{bottom:134px !important}
+#digiy-help-btn{bottom:192px !important}
+
+@media (max-width:560px){
+  .floatBtn{ left:10px !important; right:auto !important; min-width: 124px; padding:13px 14px !important; }
+  #tarif-bubble-btn{bottom:14px !important}
+  #espace-pro-btn{bottom:70px !important}
+  #manifesto-bubble-btn{bottom:126px !important}
+  #digiy-help-btn{bottom:182px !important}
+}
