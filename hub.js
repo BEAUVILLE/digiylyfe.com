@@ -25,8 +25,8 @@ const LINKS = {
   digiylyfe:    "https://digiylyfe.com/",
   apps:         "https://apps.digiylyfe.com/",
   admin:        "https://admin.digiylyfe.com/",
-   audio:        "https://apps.digiylyfe.com/audio/",  
-   tarifs:       "https://tarifs.digiylyfe.com/",
+  audio:        "https://apps.digiylyfe.com/audio/",
+  tarifs:       "https://tarifs.digiylyfe.com/",
 
   // ✅ "Vas chez DIGIY"
   vasChezDigiy: "https://vas-chez-digiy.digiylyfe.com/",
@@ -92,9 +92,9 @@ const MODULES = [
   { key: "market", name: "DIGIY MARKET", icon: "🛍️", tag: "marketplace", desc: "Acheter/vendre", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-10-01", featured: true },
   { key: "jobs", name: "DIGIY JOBS", icon: "💼", tag: "emploi", desc: "Offres d'emploi", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-11-01", featured: false },
   { key: "pay", name: "DIGIY PAY", icon: "💳", tag: "paiement", desc: "Portefeuille digital", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-09-15", featured: true },
-  { key: "audio", name: "DIGIY AUDIO", icon: "🎵", tag: "content", desc: "Écoute articles et contenus", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: false, createdAt: "2026-02-17", featured: true },   
-   { key: "notable", name: "Notable", icon: "📝", tag: "documentation", desc: "Blog & ressources", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: false, createdAt: "2025-08-01", featured: false },
-  
+  { key: "audio", name: "DIGIY AUDIO", icon: "🎵", tag: "content", desc: "Écoute articles et contenus", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: false, createdAt: "2026-02-17", featured: true },
+  { key: "notable", name: "Notable", icon: "📝", tag: "documentation", desc: "Blog & ressources", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: false, createdAt: "2025-08-01", featured: false },
+
   // === NDIMBAL ===
   { key: "ndimbalMap", name: "NDIMBAL Map", icon: "🗺️", tag: "ndimbal", desc: "Carte des annonces", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-12-15", featured: true },
   { key: "ndimbalAnnonces", name: "NDIMBAL Annonces", icon: "📢", tag: "ndimbal", desc: "Hub Drive - Vendre", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-11-01", featured: true },
@@ -146,6 +146,29 @@ function escapeHtml(s) {
     "&": "&amp;", "<": "&lt;", ">": "&gt;",
     '"': "&quot;", "'": "&#039;"
   }[m]));
+}
+
+/* =========================
+   ✅ DIGIY AUDIO (TTS) — NEW
+   ========================= */
+function digiySpeak(text, lang = "fr-FR", rate = 1) {
+  try {
+    if (!("speechSynthesis" in window)) {
+      modal?.info({ title: "Audio", text: "Audio non supporté sur ce navigateur." });
+      return;
+    }
+    const msg = new SpeechSynthesisUtterance(String(text || ""));
+    msg.lang = lang;
+    msg.rate = Math.max(0.6, Math.min(1.3, Number(rate) || 1));
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(msg);
+  } catch (e) {
+    console.warn("[DIGIY AUDIO] speak error", e);
+  }
+}
+
+function digiyStop() {
+  try { window.speechSynthesis.cancel(); } catch (_) {}
 }
 
 /* =========================
@@ -255,6 +278,7 @@ const hub = {
     this.overlay.setAttribute("aria-hidden", "true");
     this.frame.src = "about:blank";
     document.body.style.overflow = "";
+    digiyStop(); // ✅ stop audio quand on ferme
   }
 };
 
@@ -376,7 +400,7 @@ function getSmartStatus(m) {
   if (m.status === "soon") {
     return { status: "soon", label: "⏳ BIENTÔT", priority: 5 };
   }
-  
+
   return { status: m.status, label: m.statusLabel, priority: 99 };
 }
 
@@ -403,7 +427,7 @@ function badgeHTML(kind, status, statusLabel) {
   const kindBadge = `<span class="badge kind-${kind}">${kind === "pro" ? "PRO" : "PUBLIC"}</span>`;
   const st = status || "soon";
   const label = statusLabel || st.toUpperCase();
-  
+
   // Classes CSS pour chaque status
   const statusClasses = {
     "hot": "badge hot-badge",
@@ -413,7 +437,7 @@ function badgeHTML(kind, status, statusLabel) {
     "soon": "badge soon-badge",
     "live": "badge live-badge"
   };
-  
+
   const badgeClass = statusClasses[st] || "badge live-badge";
   const stBadge = `<span class="${badgeClass}">${escapeHtml(label)}</span>`;
   return kindBadge + stBadge;
@@ -435,17 +459,17 @@ function getModuleUrl(m) {
   return base;
 }
 
+/* ✅ UPDATED: cardHTML + bouton 🎧 */
 function cardHTML(m) {
   const url = getModuleUrl(m);
   const disabled = !url;
   const fav = isFavorite(m.key);
-  const popularity = getModulePopularity(m.key);
-  
+
   // Utiliser les statuts intelligents
   const smartStatus = getSmartStatus(m);
   const isHot = smartStatus.status === "hot";
   const isNouveau = smartStatus.status === "nouveau";
-  
+
   // Classe CSS pour la card si HOT ou NOUVEAU
   const cardClass = isHot ? "card card-hot" : (isNouveau ? "card card-nouveau" : "card");
 
@@ -471,9 +495,15 @@ function cardHTML(m) {
         <button class="btn ${disabled ? "disabled" : "primary"}" data-action="open" ${disabled ? "disabled" : ""} type="button">
           Ouvrir →
         </button>
+
+        <button class="btn ${disabled ? "disabled" : ""}" data-action="listen" ${disabled ? "disabled" : ""} type="button">
+          🎧 Écouter
+        </button>
+
         <button class="btn ${disabled ? "disabled" : ""}" data-action="favorite" ${disabled ? "disabled" : ""} type="button">
           ${fav ? '⭐ Favoris' : '☆ Ajouter'}
         </button>
+
         <button class="btn ${disabled ? "disabled" : ""}" data-action="copy" ${disabled ? "disabled" : ""} type="button">
           Copier lien
         </button>
@@ -504,6 +534,7 @@ function renderGrid() {
       const m = MODULES.find(x => x.key === key);
       if (!m) return;
 
+      // ✅ FAVORITE
       if (btn && btn.dataset.action === "favorite") {
         e.preventDefault();
         e.stopPropagation();
@@ -511,6 +542,7 @@ function renderGrid() {
         return;
       }
 
+      // ✅ COPY
       if (btn && btn.dataset.action === "copy") {
         e.preventDefault();
         e.stopPropagation();
@@ -522,6 +554,16 @@ function renderGrid() {
         return;
       }
 
+      // ✅ LISTEN (🎧)
+      if (btn && btn.dataset.action === "listen") {
+        e.preventDefault();
+        e.stopPropagation();
+        const phrase = `${m.name}. ${m.desc}.`;
+        digiySpeak(phrase, "fr-FR", 1);
+        return;
+      }
+
+      // ✅ OPEN (click sur card ou bouton ouvrir)
       openModule(key);
     });
 
@@ -609,7 +651,7 @@ function boot() {
   state.phone  = normPhone(localStorage.getItem(STORAGE_PHONE) || "");
   state.filter = localStorage.getItem(STORAGE_FILTER) || "all";
   state.q      = localStorage.getItem(STORAGE_SEARCH) || "";
-  
+
   // 🌟 Charger les favoris
   try {
     const favStr = localStorage.getItem(STORAGE_FAVORITES);
@@ -627,13 +669,13 @@ function boot() {
   });
 
   // hero CTAs
- // CTA principal : rester sur la vitrine et descendre vers les modules
-$("#btnGetHub")?.addEventListener("click", () => {
-  const modulesSection = document.querySelector(".section");
-  if (modulesSection) {
-    modulesSection.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-});
+  // CTA principal : rester sur la vitrine et descendre vers les modules
+  $("#btnGetHub")?.addEventListener("click", () => {
+    const modulesSection = document.querySelector(".section");
+    if (modulesSection) {
+      modulesSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
 
   $("#btnDeals")?.addEventListener("click", () => hub.open(LINKS.bonneAffaire));
 
