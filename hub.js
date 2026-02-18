@@ -5,17 +5,19 @@
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-const STORAGE_PHONE    = "DIGIY_HUB_PHONE";
-const STORAGE_FILTER   = "DIGIY_HUB_FILTER";
-const STORAGE_SEARCH   = "DIGIY_HUB_SEARCH";
+const STORAGE_PHONE     = "DIGIY_HUB_PHONE";
+const STORAGE_FILTER    = "DIGIY_HUB_FILTER";
+const STORAGE_SEARCH    = "DIGIY_HUB_SEARCH";
 const STORAGE_FAVORITES = "DIGIY_HUB_FAVORITES"; // NEW
 const STORAGE_ANALYTICS = "DIGIY_HUB_ANALYTICS"; // NEW
+const STORAGE_CITY      = "DIGIY_HUB_CITY";      // NEW
 
 const state = {
   phone: "",
   filter: "all", // all | public | pro
   q: "",
-  favorites: [] // NEW
+  favorites: [], // NEW
+  city: "all"    // NEW: all | saly-mbour | dakar | thies | touba ...
 };
 
 /* =========================
@@ -76,6 +78,53 @@ const LINKS = {
 };
 
 const PRO_DEFAULT_URL = LINKS.espacePro;
+
+/* =========================
+   VILLES (déploiement local)
+   NOTE: URLs "ville" optionnelles. Si vide => modal “bientôt”.
+   ========================= */
+const CITIES = [
+  { key: "all",        name: "Toutes les villes", status: "live", label: "🌍 GLOBAL",       url: "" },
+  { key: "saly-mbour", name: "Saly • Mbour",      status: "live", label: "✅ LIVE",         url: "" },
+  { key: "dakar",      name: "Dakar",            status: "beta", label: "🟡 LANCEMENT",     url: "" },
+  { key: "thies",      name: "Thiès",            status: "soon", label: "⚪ BIENTÔT",       url: "" },
+  { key: "touba",      name: "Touba",            status: "soon", label: "⚪ BIENTÔT",       url: "" }
+];
+
+function getCity(key) {
+  return CITIES.find(c => c.key === key) || CITIES[0];
+}
+
+function setCity(cityKey) {
+  state.city = cityKey || "all";
+  localStorage.setItem(STORAGE_CITY, state.city);
+}
+
+function openCity(cityKey) {
+  const c = getCity(cityKey);
+  setCity(c.key);
+
+  // Si tu poses plus tard des pages par ville, mets l’URL dans CITIES[].url
+  if (!c.url) {
+    modal.info({
+      title: `DIGIY ${escapeHtml(c.name)}`,
+      text: `${escapeHtml(c.label)}<br><br>On ouvre ville par ville pour créer un noyau solide : pros équipés, visibles, clients directs.`
+    });
+    return;
+  }
+  hub.open(c.url);
+}
+
+function joinCityFlow() {
+  const c = getCity(state.city);
+
+  // On ouvre l’inscription PRO + ville (optionnel)
+  const url = new URL(LINKS.inscriptionPro);
+  if (c && c.key && c.key !== "all") url.searchParams.set("city", c.key);
+  if (state.phone) url.searchParams.set("phone", state.phone);
+
+  hub.open(url.toString());
+}
 
 /* =========================
    MODULES (définis en dur + MÉTADONNÉES)
@@ -280,6 +329,9 @@ function escapeHtml(s) {
   }
 })();
 
+// ✅ Compat aliases (évite les bugs silencieux)
+const digiySpeak = (...args) => (window.DIGIY_SPEAK ? window.DIGIY_SPEAK(...args) : null);
+const digiyStop  = (...args) => (window.DIGIY_STOP  ? window.DIGIY_STOP(...args)  : null);
 
 /* =========================
    MODAL
@@ -538,7 +590,7 @@ function badgeHTML(kind, status, statusLabel) {
   const st = status || "soon";
   const label = statusLabel || st.toUpperCase();
 
-  // Classes CSS pour chaque status
+  // Classes CSS pour chaque status (⚠️ nécessite CSS correspondant si tu veux différencier visuellement)
   const statusClasses = {
     "hot": "badge hot-badge",
     "nouveau": "badge nouveau-badge",
@@ -761,6 +813,7 @@ function boot() {
   state.phone  = normPhone(localStorage.getItem(STORAGE_PHONE) || "");
   state.filter = localStorage.getItem(STORAGE_FILTER) || "all";
   state.q      = localStorage.getItem(STORAGE_SEARCH) || "";
+  state.city   = localStorage.getItem(STORAGE_CITY) || "all";
 
   // 🌟 Charger les favoris
   try {
@@ -843,6 +896,26 @@ function boot() {
     });
   }
 
+  // ===========================
+  // VILLES (bloc vitrine)
+  // ===========================
+  // boutons "Voir" sur les villes (data-city)
+  document.querySelectorAll("[data-city]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const cityKey = btn.getAttribute("data-city") || "all";
+      openCity(cityKey);
+    });
+  });
+
+  // bouton "Devenir partenaire (ma ville)"
+  const joinCityBtn = document.getElementById("btnJoinCity");
+  if (joinCityBtn) {
+    joinCityBtn.addEventListener("click", () => joinCityFlow());
+  }
+
+  // ===========================
+  // NDIMBAL POPUP + QR
+  // ===========================
   // NDIMBAL - fermer
   $("#digiyCloseBtn")?.addEventListener("click", () => {
     const ndimbal = $("#digiy-ndimbal");
