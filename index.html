@@ -157,91 +157,34 @@
       #vision-bubble-btn{ left:10px; bottom:62px; }
       .main{ padding-bottom: 280px !important; }
     }
+
+    /* ✅ Spotlight module (simple, compatible) */
+    .spotlight{
+      margin-top: 14px;
+      border-radius: 22px;
+      border: 1px solid rgba(148,163,184,.22);
+      background: rgba(2,6,23,.25);
+      box-shadow: 0 18px 50px rgba(0,0,0,.25);
+      padding: 16px;
+    }
+    .spotlightRow{
+      display:flex; gap:12px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+    }
+    .spotlightTitle{
+      font-family: var(--fontA);
+      font-weight: 1000;
+      letter-spacing: .3px;
+      margin:0;
+    }
+    .spotlightSub{
+      margin-top:6px;
+      color: rgba(255,255,255,.86);
+      font-weight: 800;
+      line-height: 1.35;
+      max-width: 720px;
+    }
+    .spotlightBtns{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
   </style>
-<!-- ✅ DIGIY VILLES — Déploiement ville par ville -->
-<section class="citiesSection" id="digiy-villes">
-  <div class="citiesCard">
-    <div class="citiesInner">
-
-      <div class="citiesHead">
-        <div>
-          <h3 class="citiesTitle">📍 DIGIY se déploie ville par ville</h3>
-          <p class="citiesSub">
-            On construit des <b>noyaux locaux</b> : des pros équipés, visibles, et trouvables facilement.
-            <br><b>Objectif :</b> créer des écosystèmes forts, quartier par quartier, ville par ville.
-          </p>
-        </div>
-
-        <div class="citiesRight">
-          <span class="cityPill">🧠 Stratégie : densité locale</span>
-          <span class="cityPill">🦅 Pionniers : visibilité max</span>
-        </div>
-      </div>
-
-      <div class="citiesGrid">
-        <!-- LIVE -->
-        <div class="cityCard">
-          <div class="cityLeft">
-            <div class="cityName">DIGIY SALY • MBOUR</div>
-            <div class="cityMeta">
-              <span class="badge live">✅ LIVE</span>
-              <span class="badge">Tourisme • Logements • Drivers</span>
-            </div>
-          </div>
-          <button class="btn outline cityBtn" type="button" data-city="saly-mbour">Voir</button>
-        </div>
-
-        <!-- NEXT -->
-        <div class="cityCard">
-          <div class="cityLeft">
-            <div class="cityName">DIGIY DAKAR</div>
-            <div class="cityMeta">
-              <span class="badge next">🟡 LANCEMENT</span>
-              <span class="badge">Services • Boutiques • Resto</span>
-            </div>
-          </div>
-          <button class="btn outline cityBtn" type="button" data-city="dakar">Voir</button>
-        </div>
-
-        <!-- SOON -->
-        <div class="cityCard">
-          <div class="cityLeft">
-            <div class="cityName">DIGIY THIÈS</div>
-            <div class="cityMeta">
-              <span class="badge soon">⚪ BIENTÔT</span>
-              <span class="badge">Artisans • Transport • Commerce</span>
-            </div>
-          </div>
-          <button class="btn ghost cityBtn" type="button" data-city="thies">Bientôt</button>
-        </div>
-
-        <!-- SOON -->
-        <div class="cityCard">
-          <div class="cityLeft">
-            <div class="cityName">DIGIY TOUBA</div>
-            <div class="cityMeta">
-              <span class="badge soon">⚪ BIENTÔT</span>
-              <span class="badge">Marché • Services • Logistique</span>
-            </div>
-          </div>
-          <button class="btn ghost cityBtn" type="button" data-city="touba">Bientôt</button>
-        </div>
-      </div>
-
-      <div class="citiesFoot">
-        <strong>Pro dans une de ces villes ?</strong> Tu peux rejoindre les premiers partenaires et
-        créer ta fiche en quelques minutes — <b>en ligne immédiatement</b>.
-      </div>
-
-      <div class="manifestoBtns" style="margin-top:14px">
-        <button class="btn manifestoPrimary" id="btnJoinCity" type="button">🧩 Devenir partenaire (ma ville)</button>
-        <button class="btn manifestoOutline" id="btnScrollModules2" type="button">🌐 Voir les modules</button>
-      </div>
-
-    </div>
-  </div>
-</section>
-  
 </head>
 
 <body>
@@ -274,6 +217,11 @@
           <div class="ctaRow">
             <button id="btnGetHub" class="btn primary" type="button">🚀 Entrer dans mon HUB DIGIY</button>
             <button id="btnDeals" class="btn outline" type="button">💥 Découvrir les Bonnes Affaires</button>
+
+            <!-- ✅ NOUVEAU: lien direct module public -->
+            <a class="btn outline" href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener">
+              🚕 Galerie Chauffeurs
+            </a>
           </div>
 
           <div class="miniRow">
@@ -293,6 +241,23 @@
             <div class="pioneerRight">
               <div class="pioneerN" id="pioneersLeft">87</div>
               <div class="pioneerL">restantes</div>
+            </div>
+          </div>
+
+          <!-- ✅ Spotlight module (visible tout de suite) -->
+          <div class="spotlight" role="region" aria-label="Module mis en avant">
+            <div class="spotlightRow">
+              <div>
+                <h3 class="spotlightTitle">🚕 DIGIY DRIVER — Galerie Chauffeurs</h3>
+                <div class="spotlightSub">
+                  Trouve un chauffeur par zone, contact direct WhatsApp, 0% commission.
+                  <br>Parfait pour le terrain : QR, partage WhatsApp, Facebook, groupes locaux.
+                </div>
+              </div>
+              <div class="spotlightBtns">
+                <a class="btn primary" href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener">Ouvrir</a>
+                <a class="btn outline" href="https://driver.digiylyfe.com/" target="_blank" rel="noopener">Devenir chauffeur</a>
+              </div>
             </div>
           </div>
         </div>
@@ -362,6 +327,94 @@
 
           <!-- Articles -->
           <a href="https://articles.digiylyfe.com" target="_blank" rel="noopener" class="btn manifestoOutline">📰 Lire les articles</a>
+
+          <!-- ✅ Accès direct Galerie Chauffeurs -->
+          <a href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener" class="btn manifestoOutline">🚕 Galerie Chauffeurs</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ DIGIY VILLES — (déplacé AU BON ENDROIT : dans le body) -->
+    <section class="citiesSection" id="digiy-villes">
+      <div class="citiesCard">
+        <div class="citiesInner">
+
+          <div class="citiesHead">
+            <div>
+              <h3 class="citiesTitle">📍 DIGIY se déploie ville par ville</h3>
+              <p class="citiesSub">
+                On construit des <b>noyaux locaux</b> : des pros équipés, visibles, et trouvables facilement.
+                <br><b>Objectif :</b> créer des écosystèmes forts, quartier par quartier, ville par ville.
+              </p>
+            </div>
+
+            <div class="citiesRight">
+              <span class="cityPill">🧠 Stratégie : densité locale</span>
+              <span class="cityPill">🦅 Pionniers : visibilité max</span>
+            </div>
+          </div>
+
+          <div class="citiesGrid">
+            <!-- LIVE -->
+            <div class="cityCard">
+              <div class="cityLeft">
+                <div class="cityName">DIGIY SALY • MBOUR</div>
+                <div class="cityMeta">
+                  <span class="badge live">✅ LIVE</span>
+                  <span class="badge">Tourisme • Logements • Drivers</span>
+                </div>
+              </div>
+              <button class="btn outline cityBtn" type="button" data-city="saly-mbour">Voir</button>
+            </div>
+
+            <!-- NEXT -->
+            <div class="cityCard">
+              <div class="cityLeft">
+                <div class="cityName">DIGIY DAKAR</div>
+                <div class="cityMeta">
+                  <span class="badge next">🟡 LANCEMENT</span>
+                  <span class="badge">Services • Boutiques • Resto</span>
+                </div>
+              </div>
+              <button class="btn outline cityBtn" type="button" data-city="dakar">Voir</button>
+            </div>
+
+            <!-- SOON -->
+            <div class="cityCard">
+              <div class="cityLeft">
+                <div class="cityName">DIGIY THIÈS</div>
+                <div class="cityMeta">
+                  <span class="badge soon">⚪ BIENTÔT</span>
+                  <span class="badge">Artisans • Transport • Commerce</span>
+                </div>
+              </div>
+              <button class="btn ghost cityBtn" type="button" data-city="thies">Bientôt</button>
+            </div>
+
+            <!-- SOON -->
+            <div class="cityCard">
+              <div class="cityLeft">
+                <div class="cityName">DIGIY TOUBA</div>
+                <div class="cityMeta">
+                  <span class="badge soon">⚪ BIENTÔT</span>
+                  <span class="badge">Marché • Services • Logistique</span>
+                </div>
+              </div>
+              <button class="btn ghost cityBtn" type="button" data-city="touba">Bientôt</button>
+            </div>
+          </div>
+
+          <div class="citiesFoot">
+            <strong>Pro dans une de ces villes ?</strong> Tu peux rejoindre les premiers partenaires et
+            créer ta fiche en quelques minutes — <b>en ligne immédiatement</b>.
+          </div>
+
+          <div class="manifestoBtns" style="margin-top:14px">
+            <button class="btn manifestoPrimary" id="btnJoinCity" type="button">🧩 Devenir partenaire (ma ville)</button>
+            <button class="btn manifestoOutline" id="btnScrollModules2" type="button">🌐 Voir les modules</button>
+            <a class="btn manifestoOutline" href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener">🚕 Galerie Chauffeurs</a>
+          </div>
+
         </div>
       </div>
     </section>
@@ -377,6 +430,12 @@
             <span class="pill priorite">PRIORITÉ</span>
             <span class="pill gratuit">GRATUIT</span>
           </div>
+        </div>
+
+        <!-- ✅ Petit rappel juste avant la grille (visible, terrain) -->
+        <div class="note" style="margin-bottom:12px;">
+          <b>🚕 NOUVEAU :</b> <a href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener">Galerie Chauffeurs DIGIY DRIVER</a>
+          — trouve un chauffeur par zone, contact WhatsApp direct.
         </div>
 
         <div id="modulesGrid" class="grid" aria-live="polite"></div>
@@ -520,12 +579,15 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const scrollBtn = document.getElementById('btnScrollModules');
-      if (scrollBtn) {
-        scrollBtn.addEventListener('click', () => {
-          const modulesSection = document.querySelector('.section');
-          if (modulesSection) modulesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+      const scrollBtn2 = document.getElementById('btnScrollModules2');
+
+      function goModules(){
+        const modulesSection = document.querySelector('.section');
+        if (modulesSection) modulesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+
+      if (scrollBtn)  scrollBtn.addEventListener('click', goModules);
+      if (scrollBtn2) scrollBtn2.addEventListener('click', goModules);
     });
   </script>
 
