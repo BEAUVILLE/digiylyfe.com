@@ -277,7 +277,15 @@ a{color:inherit; text-decoration:none}
   background: rgba(2,6,23,.10);
 }
 
-.main{max-width:1200px; margin:0 auto; padding:16px 18px 120px; position:relative;}
+/* ✅ Safety padding pour ne pas cacher le bas avec les floats */
+.main{
+  max-width:1200px;
+  margin:0 auto;
+  padding:16px 18px 120px;
+  padding-bottom: calc(120px + env(safe-area-inset-bottom));
+  position:relative;
+}
+
 .section{margin-top:16px;}
 .sectionHead{
   display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
@@ -417,13 +425,16 @@ a{color:inherit; text-decoration:none}
 .sep{opacity:.35}
 .footTiny{margin-top:6px; font-size:12px; opacity:.9}
 
-/* Float buttons */
+/* =========================
+   ✅ FLOAT BUTTONS — UN SEUL SYSTÈME (FIN DES DOUBLONS)
+   - Base unique
+   - Position par ID (droite/gauche)
+   ========================= */
 .floatBtn{
   position:fixed;
-  right:14px;
   z-index:30;
   border-radius:999px;
-  padding:12px 14px;
+  padding:14px 16px;
   border:1px solid rgba(148,163,184,.26);
   background: rgba(2,6,23,.30);
   color:var(--ink);
@@ -434,16 +445,32 @@ a{color:inherit; text-decoration:none}
   backdrop-filter: blur(10px);
   transition: all .2s ease;
 }
-#tarif-bubble-btn{bottom:18px}
-#espace-pro-btn{bottom:64px}
-#manifesto-bubble-btn{bottom:87px}
-#digiy-help-btn{bottom:110px}
 .floatBtn:hover{
   border-color: rgba(246,196,83,.35);
   transform: translateY(-2px);
   box-shadow: 0 14px 40px rgba(0,0,0,.45);
 }
 .floatBtn:active{transform: translateY(0px) scale(.98);}
+
+/* ✅ Droite */
+#tarif-bubble-btn{ right:14px; left:auto; bottom:18px; }
+#digiy-help-btn{ right:14px; left:auto; bottom:68px; }
+
+/* ✅ Gauche */
+#espace-pro-btn{ left:14px; right:auto; bottom:18px; }
+#vision-bubble-btn{ left:14px; right:auto; bottom:68px; }
+
+@media (max-width: 560px){
+  .floatBtn{
+    padding:12px 14px;
+    font-size:14px;
+  }
+  #tarif-bubble-btn{ right:10px; bottom:14px; }
+  #digiy-help-btn{ right:10px; bottom:62px; }
+
+  #espace-pro-btn{ left:10px; bottom:14px; }
+  #vision-bubble-btn{ left:10px; bottom:62px; }
+}
 
 /* NDIMBAL popup */
 .ndimbal{
@@ -545,9 +572,7 @@ a{color:inherit; text-decoration:none}
   font-weight:900;
   transition: all .2s ease;
 }
-.hubBtn:hover{
-  transform: translateY(-1px);
-}
+.hubBtn:hover{ transform: translateY(-1px); }
 .hubBtn.back{border-color: rgba(246,196,83,.25)}
 .hubBtn.back:hover{
   border-color: rgba(246,196,83,.45);
@@ -587,57 +612,8 @@ a{color:inherit; text-decoration:none}
   .grid{grid-template-columns: 1fr;}
   .heroLeft h1{font-size:24px;}
   .cardActions .btn{min-width: 0; flex: 1;}
-  .floatBtn{right:10px; font-size:13px; padding:10px 12px;}
-  #tarif-bubble-btn{bottom:14px}
-  #espace-pro-btn{bottom:56px}
-  #manifesto-bubble-btn{bottom:73px}
-  #digiy-help-btn{bottom:98px}
-}
-/* =========================
-   FLOAT BUTTONS (RESTENT À DROITE)
-   ========================= */
-.floatBtn{
-  position:fixed;
-  right:14px;
-  left:auto;
-  z-index:30;
-  border-radius:999px;
-  padding:12px 14px;
-  border:1px solid rgba(148,163,184,.26);
-  background: rgba(2,6,23,.30);
-  color:var(--ink);
-  font-family:var(--fontA);
-  font-weight:900;
-  cursor:pointer;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
-  backdrop-filter: blur(10px);
-  transition: all .2s ease;
 }
 
-#tarif-bubble-btn{bottom:18px}
-#espace-pro-btn{bottom:64px}
-#manifesto-bubble-btn{bottom:87px}
-#digiy-help-btn{bottom:110px}
-
-.floatBtn:hover{
-  border-color: rgba(246,196,83,.35);
-  transform: translateY(-2px);
-  box-shadow: 0 14px 40px rgba(0,0,0,.45);
-}
-.floatBtn:active{transform: translateY(0px) scale(.98);}
-
-@media (max-width: 560px){
-  .floatBtn{
-    right:10px;
-    left:auto;
-    font-size:14px;            /* un poil plus gros */
-    padding:12px 14px;         /* un poil plus gros */
-  }
-  #tarif-bubble-btn{bottom:14px}
-  #espace-pro-btn{bottom:56px}
-  #manifesto-bubble-btn{bottom:73px}
-  #digiy-help-btn{bottom:98px}
-}
 /* =========================
    DIGIY VILLES (ville par ville) — no conflict
    ========================= */
@@ -729,11 +705,7 @@ a{color:inherit; text-decoration:none}
 .cityBadge.soon{ border-color: rgba(148,163,184,.35); color: rgba(148,163,184,.95); }
 .cityBadge.officiel{ border-color: rgba(246,196,83,.35); color: rgba(246,196,83,.95); }
 
-.cityHint{
-  color: var(--muted);
-  font-size:12.5px;
-}
-
+.cityHint{ color: var(--muted); font-size:12.5px; }
 .cityBtn{ border-radius:999px; padding:10px 12px !important; font-size:12px !important; white-space:nowrap; }
 
 .citiesFoot{
