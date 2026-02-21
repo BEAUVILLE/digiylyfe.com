@@ -114,7 +114,7 @@
       text-shadow: 0 1px 3px rgba(0,0,0,0.4);
     }
 
-    /* --- Float buttons: droite (Tarifs + NDIMBAL), gauche (PRO + 🎧 Vision) --- */
+    /* --- Float buttons --- */
     .floatBtn{
       position:fixed;
       z-index:30;
@@ -137,6 +137,7 @@
     /* Droite */
     #tarif-bubble-btn{ right:14px; bottom:18px; left:auto; }
     #digiy-help-btn{ right:14px; bottom:68px; left:auto; }
+    #knowledge-float-btn{ right:14px; bottom:118px; left:auto; }
 
     /* Gauche */
     #espace-pro-btn{ left:14px; bottom:18px; right:auto; }
@@ -153,12 +154,13 @@
 
       #tarif-bubble-btn{ right:10px; bottom:14px; }
       #digiy-help-btn{ right:10px; bottom:62px; }
+      #knowledge-float-btn{ right:10px; bottom:110px; }
       #espace-pro-btn{ left:10px; bottom:14px; }
       #vision-bubble-btn{ left:10px; bottom:62px; }
       .main{ padding-bottom: 280px !important; }
     }
 
-    /* ✅ Spotlight module (simple, compatible) */
+    /* ✅ Spotlight module */
     .spotlight{
       margin-top: 14px;
       border-radius: 22px;
@@ -217,8 +219,6 @@
           <div class="ctaRow">
             <button id="btnGetHub" class="btn primary" type="button">🚀 Entrer dans mon HUB DIGIY</button>
             <button id="btnDeals" class="btn outline" type="button">💥 Découvrir les Bonnes Affaires</button>
-
-            <!-- ✅ NOUVEAU: lien direct module public -->
             <a class="btn outline" href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener">
               🚕 Galerie Chauffeurs
             </a>
@@ -244,7 +244,6 @@
             </div>
           </div>
 
-          <!-- ✅ Spotlight module (visible tout de suite) -->
           <div class="spotlight" role="region" aria-label="Module mis en avant">
             <div class="spotlightRow">
               <div>
@@ -295,7 +294,6 @@
       </div>
     </header>
 
-    <!-- HERO “AFRIQUE ENRACINÉE” + CTA (le 🎧 ici lit la VISION, pas le manifeste) -->
     <section class="manifestoHero">
       <div class="manifestoContainer">
         <div class="manifestoIcon">🦅</div>
@@ -314,27 +312,21 @@
         </p>
 
         <div class="manifestoBtns">
-          <!-- 🎧 Vision (important) -->
           <button class="btn manifestoPrimary"
                   type="button"
                   data-digiy-audio
                   data-target="#vision-digiy"
                   data-lang="fr-FR"
                   data-rate="0.95">🎧 Écouter la VISION</button>
-
-          <!-- Scroll modules -->
           <button class="btn manifestoOutline" id="btnScrollModules" type="button">🌐 Voir les modules</button>
-
-          <!-- Articles -->
           <a href="https://articles.digiylyfe.com" target="_blank" rel="noopener" class="btn manifestoOutline">📰 Lire les articles</a>
-
-          <!-- ✅ Accès direct Galerie Chauffeurs -->
           <a href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener" class="btn manifestoOutline">🚕 Galerie Chauffeurs</a>
+          <!-- ✅ NOUVEAU : Bouton Assistant IA -->
+          <a href="https://knowledge.digiylyfe.com/widget/" target="_blank" rel="noopener" class="btn manifestoOutline">🧠 Assistant DIGIY IA</a>
         </div>
       </div>
     </section>
 
-    <!-- ✅ DIGIY VILLES — (déplacé AU BON ENDROIT : dans le body) -->
     <section class="citiesSection" id="digiy-villes">
       <div class="citiesCard">
         <div class="citiesInner">
@@ -355,7 +347,6 @@
           </div>
 
           <div class="citiesGrid">
-            <!-- LIVE -->
             <div class="cityCard">
               <div class="cityLeft">
                 <div class="cityName">DIGIY SALY • MBOUR</div>
@@ -367,7 +358,6 @@
               <button class="btn outline cityBtn" type="button" data-city="saly-mbour">Voir</button>
             </div>
 
-            <!-- NEXT -->
             <div class="cityCard">
               <div class="cityLeft">
                 <div class="cityName">DIGIY DAKAR</div>
@@ -379,7 +369,6 @@
               <button class="btn outline cityBtn" type="button" data-city="dakar">Voir</button>
             </div>
 
-            <!-- SOON -->
             <div class="cityCard">
               <div class="cityLeft">
                 <div class="cityName">DIGIY THIÈS</div>
@@ -391,7 +380,6 @@
               <button class="btn ghost cityBtn" type="button" data-city="thies">Bientôt</button>
             </div>
 
-            <!-- SOON -->
             <div class="cityCard">
               <div class="cityLeft">
                 <div class="cityName">DIGIY TOUBA</div>
@@ -432,7 +420,6 @@
           </div>
         </div>
 
-        <!-- ✅ Petit rappel juste avant la grille (visible, terrain) -->
         <div class="note" style="margin-bottom:12px;">
           <b>🚕 NOUVEAU :</b> <a href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener">Galerie Chauffeurs DIGIY DRIVER</a>
           — trouve un chauffeur par zone, contact WhatsApp direct.
@@ -441,11 +428,9 @@
         <div id="modulesGrid" class="grid" aria-live="polite"></div>
       </section>
 
-      <!-- ✅ VISION (LE TEXTE LE PLUS IMPORTANT) -->
       <section class="section">
         <div class="sectionHead">
           <h2>VISION</h2>
-
           <button class="btn tiny"
                   type="button"
                   data-digiy-audio
@@ -456,34 +441,29 @@
 
         <div id="vision-digiy" class="note">
           <p>
-            DIGIYLYFE est né d’une idée simple : rendre les outils numériques accessibles à tous.
-            Aujourd’hui, une grande partie de l’économie locale fonctionne encore hors du digital,
+            DIGIYLYFE est né d'une idée simple : rendre les outils numériques accessibles à tous.
+            Aujourd'hui, une grande partie de l'économie locale fonctionne encore hors du digital,
             alors que les clients utilisent déjà leurs téléphones pour chercher, communiquer et acheter.
           </p>
-
           <p>
             DIGIYLYFE veut créer un pont entre le terrain et le numérique. La plateforme permet aux
-            professionnels d’exister en ligne simplement, dans plusieurs langues, y compris les langues
+            professionnels d'exister en ligne simplement, dans plusieurs langues, y compris les langues
             locales, afin que chacun puisse comprendre et utiliser ces outils.
           </p>
-
           <p>
-            DIGIYLYFE s’inscrit dans une dynamique mondiale : permettre aux économies locales de reprendre
+            DIGIYLYFE s'inscrit dans une dynamique mondiale : permettre aux économies locales de reprendre
             une part de souveraineté numérique et économique.
           </p>
-
           <p>
             En donnant aux professionnels les outils pour travailler en ligne sans intermédiaires,
-            DIGIYLYFE contribue à garder la valeur, les opportunités et l’innovation au cœur des territoires.
+            DIGIYLYFE contribue à garder la valeur, les opportunités et l'innovation au cœur des territoires.
           </p>
-
           <p>
-            L’objectif est de construire une économie digitale plus juste, plus locale et plus accessible.
+            L'objectif est de construire une économie digitale plus juste, plus locale et plus accessible.
             Une économie où les professionnels gardent leurs revenus, où les clients trouvent facilement
             des services, et où la technologie reste au service des humains.
           </p>
-
-          <p><strong>DIGIYLYFE, l’Afrique enracinée, connectée au monde.</strong></p>
+          <p><strong>DIGIYLYFE, l'Afrique enracinée, connectée au monde.</strong></p>
         </div>
       </section>
 
@@ -501,10 +481,15 @@
       </footer>
     </main>
 
-    <!-- ✅ Boutons flottants (droite = Tarifs + NDIMBAL / gauche = PRO + Vision) -->
+    <!-- Boutons flottants droite -->
     <button id="tarif-bubble-btn" class="floatBtn" type="button">🏷️ Tarifs</button>
     <button id="digiy-help-btn" class="floatBtn" type="button">♾️ NDIMBAL</button>
+    <!-- ✅ NOUVEAU : Bouton flottant DIGIY KNOWLEDGE IA -->
+    <button id="knowledge-float-btn" class="floatBtn" type="button"
+            onclick="window.open('https://knowledge.digiylyfe.com/widget/','_blank')"
+            title="Assistant DIGIY IA">🧠 IA</button>
 
+    <!-- Boutons flottants gauche -->
     <button id="espace-pro-btn" class="floatBtn" type="button">🧰 PRO</button>
     <button id="vision-bubble-btn"
             class="floatBtn"
@@ -519,13 +504,11 @@
       <div class="ndimbalBox" role="dialog" aria-modal="true">
         <div class="ndimbalTitle">♾️ NDIMBAL</div>
         <div class="ndimbalText"><b>Naka nga def frérot ?</b><br>Dis-moi ce que tu veux faire, je te pointe au bon endroit.</div>
-
         <div class="ndimbalActions">
           <button class="btn primary" type="button" data-action="sell">📋 Publier une mission</button>
           <button class="btn outline" type="button" data-action="job">💼 Trouver du travail</button>
           <button class="btn ghost" type="button" data-action="qr">📷 QR DIGIYLYFE</button>
         </div>
-
         <button class="btn tiny danger" type="button" id="digiyCloseBtn" style="margin-top:10px">❌ Quitter</button>
       </div>
     </div>
@@ -537,17 +520,15 @@
           <div class="qrTitle">♾️ QR DIGIYLYFE</div>
           <button id="qrClose" class="btn tiny" type="button">✖ Fermer</button>
         </div>
-
         <img
           src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=https://digiylyfe.com/"
           alt="QR DIGIYLYFE" class="qrImg">
-
         <div class="qrText">📱 Scanne pour ouvrir DIGIYLYFE</div>
         <a href="https://digiylyfe.com/" target="_blank" rel="noopener" class="qrLink">Ouvrir DIGIY →</a>
       </div>
     </div>
 
-    <!-- HUB overlay (iframe) -->
+    <!-- HUB overlay -->
     <div id="hubOverlay" class="hubOverlay hidden" aria-hidden="true">
       <div class="hubCard" role="dialog" aria-modal="true">
         <div class="hubTop">
@@ -580,18 +561,20 @@
     document.addEventListener('DOMContentLoaded', () => {
       const scrollBtn = document.getElementById('btnScrollModules');
       const scrollBtn2 = document.getElementById('btnScrollModules2');
-
       function goModules(){
         const modulesSection = document.querySelector('.section');
         if (modulesSection) modulesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-
       if (scrollBtn)  scrollBtn.addEventListener('click', goModules);
       if (scrollBtn2) scrollBtn2.addEventListener('click', goModules);
     });
   </script>
 
-  <!-- ✅ DIGIY AUDIO (doit être présent partout) -->
+  <!-- ✅ DIGIY AUDIO -->
   <script defer src="https://apps.digiylyfe.com/assets/digiy-audio.js?v=4"></script>
+
+  <!-- ✅ DIGIY KNOWLEDGE — Assistant IA flottant -->
+  <script defer src="https://knowledge.digiylyfe.com/widget/embed.js"></script>
+
 </body>
 </html>
