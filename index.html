@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
   <title>DIGIYLYFE — L'Afrique enracinée, connectée au monde</title>
-  <meta name="theme-color" content="#0b1612"/>
+  <meta name="theme-color" content="#0c1713"/>
   <meta
     name="description"
     content="DIGIYLYFE — modules publics et modules pro. 0% commission. Paiement direct au pro. Mobile-first, premium, compact."
@@ -23,19 +23,28 @@
 
   <style>
     :root{
-      --bg:#0b1612;
-      --card:#12211b;
-      --card2:#182922;
+      --bg:#0c1713;
+      --bg-2:#101d18;
+      --card:#14231d;
+      --card-2:#1a2b23;
       --line:rgba(255,255,255,.10);
       --text:#f8f5ef;
-      --muted:rgba(248,245,239,.68);
+      --muted:rgba(248,245,239,.70);
 
+      /* DIGIY premium */
       --champ:#f4dfb5;
       --champ-2:#d8b56a;
-      --berry:#c35a7d;
-      --berry-2:#8e3757;
-      --green:#22c55e;
+
+      /* Sénégal */
+      --senegal-green:#00853f;
+      --senegal-green-2:#00a651;
+      --senegal-green-soft:rgba(0,133,63,.10);
+      --senegal-green-soft-2:rgba(0,166,81,.14);
+
+      /* Accents */
+      --red-soft:rgba(227,27,35,.10);
       --blue:#60a5fa;
+      --blue-soft:rgba(96,165,250,.10);
 
       --radius:22px;
       --shadow:0 20px 60px rgba(0,0,0,.38);
@@ -51,9 +60,9 @@
       font-family:var(--fontB);
       color:var(--text);
       background:
-        radial-gradient(900px 500px at 10% 0%, rgba(244,223,181,.09), transparent 55%),
-        radial-gradient(900px 520px at 100% 100%, rgba(195,90,125,.10), transparent 55%),
-        linear-gradient(180deg,#0a1511 0%, #0b1612 100%);
+        radial-gradient(900px 500px at 8% 0%, rgba(244,223,181,.10), transparent 55%),
+        radial-gradient(900px 520px at 100% 100%, rgba(0,166,81,.12), transparent 55%),
+        linear-gradient(180deg,#0a1511 0%, #0c1713 100%);
     }
 
     a{ color:inherit; text-decoration:none; }
@@ -65,7 +74,7 @@
     }
 
     .shell{
-      background:linear-gradient(180deg, rgba(18,33,27,.98), rgba(15,28,23,.96));
+      background:linear-gradient(180deg, rgba(20,35,29,.98), rgba(16,30,24,.96));
       border:1px solid var(--line);
       border-radius:var(--radius);
       padding:16px;
@@ -89,8 +98,8 @@
     }
 
     .logo{
-      width:42px;
-      height:42px;
+      width:44px;
+      height:44px;
       border-radius:14px;
       display:grid;
       place-items:center;
@@ -99,14 +108,13 @@
       font-size:22px;
       color:#fff;
       border:1px solid rgba(244,223,181,.24);
-      background:linear-gradient(135deg, rgba(244,223,181,.18), rgba(195,90,125,.12));
+      background:
+        linear-gradient(135deg, rgba(244,223,181,.22), rgba(0,166,81,.14));
       box-shadow:0 10px 26px rgba(0,0,0,.22);
       flex:0 0 auto;
     }
 
-    .brandText{
-      min-width:0;
-    }
+    .brandText{ min-width:0; }
 
     .brandTitle{
       font-family:var(--fontA);
@@ -147,7 +155,7 @@
     }
 
     .langSwitch button.active{
-      background:linear-gradient(135deg, rgba(244,223,181,.20), rgba(195,90,125,.18));
+      background:linear-gradient(135deg, rgba(244,223,181,.20), rgba(0,166,81,.18));
       color:#fff;
     }
 
@@ -173,32 +181,35 @@
       font-weight:1000;
       font-family:var(--fontA);
       cursor:pointer;
+      transition:.18s ease;
     }
 
+    .menuBtn:hover{ transform:translateY(-1px); }
+
     .menuBtn.gold{
-      border-color:rgba(244,223,181,.26);
-      background:rgba(244,223,181,.06);
+      border-color:rgba(244,223,181,.30);
+      background:rgba(244,223,181,.08);
       color:var(--champ);
     }
 
     .menuBtn.public{
-      border-color:rgba(96,165,250,.25);
+      border-color:rgba(96,165,250,.24);
       background:rgba(96,165,250,.08);
-      color:#d8e9ff;
+      color:#dcebff;
     }
 
     .menuBtn.pro{
-      border-color:rgba(34,197,94,.25);
-      background:rgba(34,197,94,.08);
-      color:#d9ffe6;
+      border-color:rgba(0,166,81,.30);
+      background:rgba(0,166,81,.11);
+      color:#e1ffec;
     }
 
     .hero{
       border:1px solid rgba(244,223,181,.12);
       background:
         radial-gradient(420px 220px at 0% 0%, rgba(244,223,181,.08), transparent 60%),
-        radial-gradient(420px 220px at 100% 100%, rgba(195,90,125,.08), transparent 60%),
-        linear-gradient(180deg, rgba(244,223,181,.05), rgba(195,90,125,.04)),
+        radial-gradient(420px 220px at 100% 100%, rgba(0,166,81,.10), transparent 60%),
+        linear-gradient(180deg, rgba(244,223,181,.05), rgba(0,166,81,.05)),
         rgba(0,0,0,.08);
       border-radius:20px;
       padding:16px;
@@ -222,8 +233,8 @@
     h1{
       margin:0;
       font-family:var(--fontA);
-      font-size:28px;
-      line-height:1.08;
+      font-size:30px;
+      line-height:1.06;
       font-weight:1000;
       letter-spacing:.2px;
       max-width:12ch;
@@ -234,9 +245,9 @@
     .sub{
       margin-top:10px;
       color:var(--muted);
-      line-height:1.5;
+      line-height:1.55;
       font-size:14px;
-      max-width:660px;
+      max-width:680px;
     }
 
     .sub strong{ color:#fff; }
@@ -283,7 +294,10 @@
       font-size:14px;
       color:var(--text);
       background:rgba(255,255,255,.03);
+      transition:.18s ease;
     }
+
+    .btn:hover{ transform:translateY(-1px); }
 
     .btn.gold{
       border-color:rgba(244,223,181,.34);
@@ -292,8 +306,9 @@
     }
 
     .btn.ok{
-      border-color:rgba(34,197,94,.35);
-      background:rgba(34,197,94,.08);
+      border-color:rgba(0,166,81,.38);
+      background:rgba(0,166,81,.12);
+      color:#eafff0;
     }
 
     .statusBar{
@@ -370,10 +385,11 @@
       cursor:pointer;
       font-weight:1000;
       font-family:var(--fontA);
+      transition:.18s ease;
     }
 
     .filterBtn.active{
-      border-color:rgba(244,223,181,.30);
+      border-color:rgba(244,223,181,.32);
       background:rgba(244,223,181,.08);
       color:#fff3cf;
     }
@@ -387,20 +403,17 @@
       -webkit-overflow-scrolling:touch;
     }
 
-    .moduleRail::-webkit-scrollbar{
-      height:6px;
-    }
-
+    .moduleRail::-webkit-scrollbar{ height:6px; }
     .moduleRail::-webkit-scrollbar-thumb{
       background:rgba(255,255,255,.14);
       border-radius:999px;
     }
 
     .moduleBtn{
-      min-width:160px;
+      min-width:166px;
       border:1px solid rgba(244,223,181,.16);
       background:
-        linear-gradient(180deg, rgba(244,223,181,.06), rgba(195,90,125,.05)),
+        linear-gradient(180deg, rgba(244,223,181,.06), rgba(255,255,255,.03)),
         rgba(255,255,255,.02);
       color:var(--text);
       border-radius:18px;
@@ -408,7 +421,7 @@
       text-align:left;
       cursor:pointer;
       scroll-snap-align:start;
-      transition:transform .08s ease, border-color .18s ease, box-shadow .18s ease;
+      transition:.18s ease;
       font-family:var(--fontB);
     }
 
@@ -422,14 +435,14 @@
     .moduleBtn.publicCard{
       border-color:rgba(96,165,250,.18);
       background:
-        linear-gradient(180deg, rgba(96,165,250,.07), rgba(255,255,255,.03)),
+        linear-gradient(180deg, rgba(96,165,250,.08), rgba(255,255,255,.03)),
         rgba(255,255,255,.02);
     }
 
     .moduleBtn.proCard{
-      border-color:rgba(34,197,94,.18);
+      border-color:rgba(0,166,81,.22);
       background:
-        linear-gradient(180deg, rgba(34,197,94,.07), rgba(255,255,255,.03)),
+        linear-gradient(180deg, rgba(0,166,81,.10), rgba(255,255,255,.03)),
         rgba(255,255,255,.02);
     }
 
@@ -478,20 +491,20 @@
     }
 
     .miniBadge.public{
-      color:#d8e9ff;
-      border-color:rgba(96,165,250,.28);
-      background:rgba(96,165,250,.08);
+      color:#dcebff;
+      border-color:rgba(96,165,250,.26);
+      background:rgba(96,165,250,.09);
     }
 
     .miniBadge.pro{
-      color:#d9ffe6;
-      border-color:rgba(34,197,94,.28);
-      background:rgba(34,197,94,.08);
+      color:#e1ffec;
+      border-color:rgba(0,166,81,.30);
+      background:rgba(0,166,81,.12);
     }
 
     .miniBadge.loco{
       color:#fff3cf;
-      border-color:rgba(244,223,181,.28);
+      border-color:rgba(244,223,181,.30);
       background:rgba(244,223,181,.08);
     }
 
@@ -565,27 +578,27 @@
     }
 
     .focusBadge.public{
-      color:#d8e9ff;
-      border-color:rgba(96,165,250,.28);
-      background:rgba(96,165,250,.08);
+      color:#dcebff;
+      border-color:rgba(96,165,250,.26);
+      background:rgba(96,165,250,.09);
     }
 
     .focusBadge.pro{
-      color:#d9ffe6;
-      border-color:rgba(34,197,94,.28);
-      background:rgba(34,197,94,.08);
+      color:#e1ffec;
+      border-color:rgba(0,166,81,.30);
+      background:rgba(0,166,81,.12);
     }
 
     .focusBadge.gold{
       color:#fff3cf;
-      border-color:rgba(244,223,181,.28);
+      border-color:rgba(244,223,181,.30);
       background:rgba(244,223,181,.08);
     }
 
     .focusText{
       margin-top:14px;
       color:#f0ece3;
-      line-height:1.55;
+      line-height:1.58;
       font-size:14px;
     }
 
@@ -607,7 +620,7 @@
     .visionText,
     .closingText{
       color:var(--muted);
-      line-height:1.55;
+      line-height:1.58;
       font-size:14px;
     }
 
@@ -644,7 +657,7 @@
       align-items:center;
       justify-content:space-between;
       border:1px solid rgba(244,223,181,.16);
-      background:rgba(18,33,27,.96);
+      background:rgba(20,35,29,.96);
       border-radius:18px;
       padding:10px;
       box-shadow:0 14px 40px rgba(0,0,0,.32);
@@ -683,12 +696,8 @@
     @media (max-width:640px){
       h1{ font-size:24px; }
       .brandSub{ max-width:160px; }
-      .stickyActions{
-        width:100%;
-      }
-      .stickyActions .btn{
-        flex:1;
-      }
+      .stickyActions{ width:100%; }
+      .stickyActions .btn{ flex:1; }
     }
   </style>
 </head>
@@ -717,12 +726,12 @@
         <button class="menuBtn public" id="menuPublic" type="button">Modules Publics</button>
         <button class="menuBtn pro" id="menuPro" type="button">Modules PRO</button>
         <a class="menuBtn" href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener">Tarifs</a>
-        <a class="menuBtn" href="https://articles.digiylyfe.com/" target="_blank" rel="noopener">Articles</a>
+        <a class="menuBtn" href="https://vas-chez-digiy.digiylyfe.com/" target="_blank" rel="noopener">Vas chez DIGIY</a>
         <a class="menuBtn" href="https://knowledge.digiylyfe.com/widget/" target="_blank" rel="noopener">Assistant IA</a>
       </div>
 
       <section class="hero" id="hero">
-        <div class="heroPill">DIGIYLYFE ∞ · public + pro · mobile-first · terrain</div>
+        <div class="heroPill">DIGIYLYFE ∞ · public + pro · vert Sénégal · terrain</div>
 
         <h1>
           Les outils DIGIY
@@ -731,8 +740,8 @@
 
         <p class="sub">
           Ici, on sépare clairement les <strong>modules publics</strong> et les <strong>modules pro</strong>.
-          Le visiteur comprend vite où il entre, sans être noyé. Même âme DIGIY, mais avec plus de calme,
-          plus de clarté, plus de commerce.
+          Le visiteur comprend vite où il entre, sans être noyé. Même âme DIGIY,
+          mais avec une lumière plus vivante, plus locale, plus Sénégal.
         </p>
 
         <div class="heroChips">
@@ -740,7 +749,7 @@
           <span class="chip">Paiement direct</span>
           <span class="chip">Modules publics</span>
           <span class="chip">Modules pro</span>
-          <span class="chip">Afrique enracinée</span>
+          <span class="chip">Vert Sénégal</span>
         </div>
 
         <div class="heroActions">
@@ -806,7 +815,7 @@
 
           <div class="focusActions">
             <a class="btn gold" id="focusOpen" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir le module</a>
-            <a class="btn" href="https://pro-espace.digiylyfe.com/" target="_blank" rel="noopener">Espace PRO</a>
+            <a class="btn ok" href="https://pro-espace.digiylyfe.com/" target="_blank" rel="noopener">Espace PRO</a>
           </div>
         </div>
       </section>
@@ -847,7 +856,7 @@
 
       <div class="footer">
         <strong>DIGIYLYFE ∞</strong><br/>
-        modules publics + modules pro · 0% commission · paiement direct au pro · présentation plus calme
+        modules publics + modules pro · 0% commission · paiement direct au pro · identité plus vivante
       </div>
     </div>
   </div>
@@ -908,46 +917,46 @@
       };
 
       const MODULES = [
-        { key:"bonneAffaire",   name:"Bonne Affaire",      icon:"🎯", desc:"Deals & offres",                 kind:"public", hint:"Marketplace", loco:false },
-        { key:"driverClient",   name:"DIGIY DRIVER",       icon:"🚗", desc:"Réserver ta course VTC",        kind:"public", hint:"Mobilité client", loco:false },
-        { key:"loc",            name:"DIGIY LOC",          icon:"🏠", desc:"Trouver un logement",           kind:"public", hint:"Location", loco:false },
-        { key:"resto",          name:"DIGIY RESTO",        icon:"🍽️", desc:"Commander à manger",            kind:"public", hint:"Restauration", loco:false },
-        { key:"resaTable",      name:"Résa Table",         icon:"📅", desc:"Réserver une table",            kind:"public", hint:"Réservation", loco:false },
-        { key:"build",          name:"DIGIY BUILD",        icon:"🏗️", desc:"Services de construction",      kind:"public", hint:"Services terrain", loco:false },
-        { key:"explore",        name:"Explore",            icon:"🗺️", desc:"Découvrir la région",           kind:"public", hint:"Locomotive • découverte", loco:true },
-        { key:"market",         name:"DIGIY MARKET",       icon:"🛍️", desc:"Acheter / vendre",              kind:"public", hint:"Commerce", loco:false },
-        { key:"jobs",           name:"DIGIY JOBS",         icon:"💼", desc:"Offres d'emploi",               kind:"public", hint:"Emploi", loco:false },
-        { key:"pay",            name:"DIGIY PAY",          icon:"💳", desc:"Portefeuille digital",          kind:"public", hint:"Paiement", loco:false },
-        { key:"audio",          name:"DIGIY AUDIO",        icon:"🎵", desc:"Écoute articles et contenus",   kind:"public", hint:"Audio", loco:false },
-        { key:"notable",        name:"Notable",            icon:"📝", desc:"Blog & ressources",             kind:"public", hint:"Ressources", loco:false },
-        { key:"ndimbalMap",     name:"NDIMBAL Map",        icon:"🗺️", desc:"Carte des annonces",            kind:"public", hint:"NDIMBAL", loco:false },
-        { key:"ndimbalAnnonces",name:"NDIMBAL Annonces",   icon:"📢", desc:"Hub Drive - Vendre",            kind:"public", hint:"NDIMBAL", loco:false },
-        { key:"ndimbalLoc",     name:"NDIMBAL Loc",        icon:"🏡", desc:"Locations NDIMBAL",             kind:"public", hint:"NDIMBAL", loco:false },
+        { key:"bonneAffaire",   name:"Bonne Affaire",      icon:"🎯", desc:"Deals & offres",              kind:"public", loco:false },
+        { key:"driverClient",   name:"DIGIY DRIVER",       icon:"🚗", desc:"Réserver ta course VTC",     kind:"public", loco:false },
+        { key:"loc",            name:"DIGIY LOC",          icon:"🏠", desc:"Trouver un logement",        kind:"public", loco:false },
+        { key:"resto",          name:"DIGIY RESTO",        icon:"🍽️", desc:"Commander à manger",         kind:"public", loco:false },
+        { key:"resaTable",      name:"Résa Table",         icon:"📅", desc:"Réserver une table",         kind:"public", loco:false },
+        { key:"build",          name:"DIGIY BUILD",        icon:"🏗️", desc:"Services de construction",   kind:"public", loco:false },
+        { key:"explore",        name:"Explore",            icon:"🗺️", desc:"Découvrir la région",        kind:"public", loco:true },
+        { key:"market",         name:"DIGIY MARKET",       icon:"🛍️", desc:"Acheter / vendre",           kind:"public", loco:false },
+        { key:"jobs",           name:"DIGIY JOBS",         icon:"💼", desc:"Offres d'emploi",            kind:"public", loco:false },
+        { key:"pay",            name:"DIGIY PAY",          icon:"💳", desc:"Portefeuille digital",       kind:"public", loco:false },
+        { key:"audio",          name:"DIGIY AUDIO",        icon:"🎵", desc:"Écoute articles et contenus",kind:"public", loco:false },
+        { key:"notable",        name:"Notable",            icon:"📝", desc:"Blog & ressources",          kind:"public", loco:false },
+        { key:"ndimbalMap",     name:"NDIMBAL Map",        icon:"🗺️", desc:"Carte des annonces",         kind:"public", loco:false },
+        { key:"ndimbalAnnonces",name:"NDIMBAL Annonces",   icon:"📢", desc:"Hub Drive - Vendre",         kind:"public", loco:false },
+        { key:"ndimbalLoc",     name:"NDIMBAL Loc",        icon:"🏡", desc:"Locations NDIMBAL",          kind:"public", loco:false },
 
-        { key:"inscriptionPro", name:"Inscription PRO",    icon:"✍️", desc:"Créer compte professionnel",    kind:"pro", hint:"Entrée pro", loco:false },
-        { key:"espacePro",      name:"Espace PRO",         icon:"🏢", desc:"Tableau de bord pro",           kind:"pro", hint:"Cockpit", loco:false },
-        { key:"driverPro",      name:"DIGIY DRIVER PRO",   icon:"🚗", desc:"Gérer ta flotte VTC",           kind:"pro", hint:"Mobilité pro", loco:false },
-        { key:"locPro",         name:"DIGIY LOC PRO",      icon:"🏠", desc:"Gérer tes logements",           kind:"pro", hint:"Location pro", loco:false },
-        { key:"restoPro",       name:"DIGIY RESTO PRO",    icon:"👨‍🍳", desc:"Gérer ton resto",              kind:"pro", hint:"Restauration pro", loco:false },
-        { key:"caissePro",      name:"Caisse PRO",         icon:"💰", desc:"Point de vente",                kind:"pro", hint:"POS pro", loco:false },
-        { key:"buildPro",       name:"DIGIY BUILD PRO",    icon:"🏗️", desc:"Gérer chantiers",              kind:"pro", hint:"Build pro", loco:false },
-        { key:"marketPro",      name:"DIGIY MARKET PRO",   icon:"🛍️", desc:"Vendre sur market",            kind:"pro", hint:"Market pro", loco:false },
-        { key:"jobsPro",        name:"DIGIY JOBS PRO",     icon:"💼", desc:"Recruter",                      kind:"pro", hint:"Jobs pro", loco:false },
-        { key:"payPro",         name:"DIGIY PAY PRO",      icon:"💳", desc:"Gérer paiements",              kind:"pro", hint:"Pay pro", loco:false },
-        { key:"explorePro",     name:"Explore PRO",        icon:"🗺️", desc:"Analytics & stats",            kind:"pro", hint:"Explore pro", loco:false },
-        { key:"resaTablePro",   name:"Résa Table PRO",     icon:"📅", desc:"Gérer réservations",           kind:"pro", hint:"Réservation pro", loco:false },
-        { key:"fretClientProPin",   name:"FRET CLIENT PRO",    icon:"📦", desc:"PIN expéditeur",               kind:"pro", hint:"Fret client", loco:false },
-        { key:"fretChauffeurProPin",name:"FRET CHAUFFEUR PRO", icon:"🚚", desc:"PIN chauffeur",                kind:"pro", hint:"Fret chauffeur", loco:false }
+        { key:"inscriptionPro", name:"Inscription PRO",    icon:"✍️", desc:"Créer compte professionnel", kind:"pro", loco:false },
+        { key:"espacePro",      name:"Espace PRO",         icon:"🏢", desc:"Tableau de bord pro",        kind:"pro", loco:false },
+        { key:"driverPro",      name:"DIGIY DRIVER PRO",   icon:"🚗", desc:"Gérer ta flotte VTC",        kind:"pro", loco:false },
+        { key:"locPro",         name:"DIGIY LOC PRO",      icon:"🏠", desc:"Gérer tes logements",        kind:"pro", loco:false },
+        { key:"restoPro",       name:"DIGIY RESTO PRO",    icon:"👨‍🍳", desc:"Gérer ton resto",           kind:"pro", loco:false },
+        { key:"caissePro",      name:"Caisse PRO",         icon:"💰", desc:"Point de vente",             kind:"pro", loco:false },
+        { key:"buildPro",       name:"DIGIY BUILD PRO",    icon:"🏗️", desc:"Gérer chantiers",           kind:"pro", loco:false },
+        { key:"marketPro",      name:"DIGIY MARKET PRO",   icon:"🛍️", desc:"Vendre sur market",         kind:"pro", loco:false },
+        { key:"jobsPro",        name:"DIGIY JOBS PRO",     icon:"💼", desc:"Recruter",                   kind:"pro", loco:false },
+        { key:"payPro",         name:"DIGIY PAY PRO",      icon:"💳", desc:"Gérer paiements",           kind:"pro", loco:false },
+        { key:"explorePro",     name:"Explore PRO",        icon:"🗺️", desc:"Analytics & stats",         kind:"pro", loco:false },
+        { key:"resaTablePro",   name:"Résa Table PRO",     icon:"📅", desc:"Gérer réservations",        kind:"pro", loco:false },
+        { key:"fretClientProPin",   name:"FRET CLIENT PRO",    icon:"📦", desc:"PIN expéditeur",            kind:"pro", loco:false },
+        { key:"fretChauffeurProPin",name:"FRET CHAUFFEUR PRO", icon:"🚚", desc:"PIN chauffeur",             kind:"pro", loco:false }
       ];
 
       const COPY = {
         explore: "DIGIY EXPLORE sert de porte d’entrée propre pour montrer le territoire, les expériences, les découvertes et la présence locale, sans lancer un embouteillage d’informations.",
         driverClient: "DIGIY DRIVER côté public aide le client à trouver et réserver sa course rapidement, avec une lecture claire et directe.",
-        loc: "DIGIY LOC côté public donne envie de découvrir un logement sans surcharge visuelle ni autoroute de contenu.",
+        loc: "DIGIY LOC côté public donne envie de découvrir un logement sans surcharge visuelle ni bruit inutile.",
         resto: "DIGIY RESTO côté public permet de voir, comprendre et commander vite, dans un ton propre et chaleureux.",
-        resaTable: "Résa Table côté public simplifie la réservation avec une porte claire, sans détour ni bruit inutile.",
+        resaTable: "Résa Table côté public simplifie la réservation avec une porte claire, sans détour ni confusion.",
         market: "DIGIY MARKET côté public met les produits et vitrines en avant avec une lecture plus marchande et plus nette.",
-        jobs: "DIGIY JOBS côté public aide à voir les opportunités d’emploi et à entrer dans l’action sans confusion.",
+        jobs: "DIGIY JOBS côté public aide à voir les opportunités d’emploi et à entrer dans l’action sans brouillard.",
         pay: "DIGIY PAY côté public pose la logique de paiement simple et directe, au service du terrain.",
         audio: "DIGIY AUDIO permet d’écouter les contenus et articles dans une logique plus fluide, plus humaine.",
         notable: "Notable rassemble les ressources, idées et contenus écrits dans une présentation plus calme.",
@@ -1047,7 +1056,9 @@
         const item = MODULES.find(m => m.key === currentKey) || MODULES[0];
         const href = LINKS[item.key] || LINKS.digiylyfe;
         const text = COPY[item.key] || item.desc || "";
-        const badge = item.loco ? "👑 Vitrine locomotive" : (item.kind === "public" ? "🌍 Module public" : "🧰 Module pro");
+        const badge = item.loco
+          ? "👑 Vitrine locomotive"
+          : (item.kind === "public" ? "🌍 Module public" : "🧰 Module pro");
 
         focusIcon.textContent = item.icon;
         focusLabel.textContent = item.name;
