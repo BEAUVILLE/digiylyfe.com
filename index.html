@@ -4,10 +4,10 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
   <title>DIGIYLYFE — L'Afrique enracinée, connectée au monde</title>
-  <meta name="theme-color" content="#067a3a"/>
+  <meta name="theme-color" content="#00853f"/>
   <meta
     name="description"
-    content="DIGIYLYFE — modules publics et modules pro. 0% commission. Paiement direct au pro. Mobile-first, premium, compact."
+    content="DIGIYLYFE — modules publics et modules pro, 0% commission, paiement direct au pro, vitrine compacte et mobile-first."
   />
 
   <link rel="icon" href="./icon-192.png" sizes="192x192"/>
@@ -25,413 +25,389 @@
     :root{
       --bg:#067a3a;
       --bg2:#04130d;
-      --card:#0b2a1f;
-      --card2:#0a241b;
+      --card:#0c281d;
+      --card2:#102f23;
       --ink:#f8fafc;
-      --muted:rgba(248,250,252,.72);
-      --line:rgba(148,163,184,.28);
+      --muted:rgba(248,250,252,.74);
+      --line:rgba(255,255,255,.10);
 
       --gold:#f6c453;
       --green:#00a651;
       --green-deep:#00853f;
-      --red:#ef4444;
       --blue:#3b82f6;
-      --purple:#a855f7;
+      --red:#ef4444;
 
-      --live:#22c55e;
-      --beta:#f59e0b;
-      --soon:#94a3b8;
-      --nouveau:#3b82f6;
-      --priorite:#a855f7;
-      --officiel:#f6c453;
-      --gratuit:#22c55e;
+      --shadow:0 18px 60px rgba(0,0,0,.34);
+      --radius:22px;
+      --radius2:28px;
 
-      --shadow: 0 18px 60px rgba(0,0,0,.35);
-      --radius: 18px;
-      --radius2: 26px;
-
-      --fontA: "Outfit", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      --fontB: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --fontA:"Outfit",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      --fontB:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
     html{scroll-behavior:smooth}
-
     body{
       margin:0;
       font-family:var(--fontB);
       color:var(--ink);
       background:
-        radial-gradient(1200px 720px at 10% 0%, rgba(0,166,81,.30), transparent 52%),
-        radial-gradient(950px 620px at 90% 12%, rgba(246,196,83,.14), transparent 55%),
-        linear-gradient(180deg, #067a3a 0%, #0b5f31 16%, #083123 44%, #04130d 100%);
+        radial-gradient(1200px 720px at 10% 0%, rgba(0,166,81,.32), transparent 52%),
+        radial-gradient(900px 560px at 100% 8%, rgba(246,196,83,.14), transparent 56%),
+        linear-gradient(180deg, #067a3a 0%, #0b5f31 16%, #082e20 46%, #04130d 100%);
       overflow-x:hidden;
     }
 
-    a{color:inherit; text-decoration:none}
+    a{color:inherit;text-decoration:none}
 
     .bg{
       position:fixed; inset:0;
       background:
-        radial-gradient(900px 440px at 18% 72%, rgba(246,196,83,.10), transparent 70%),
-        radial-gradient(820px 420px at 82% 68%, rgba(0,166,81,.16), transparent 70%);
+        radial-gradient(900px 420px at 18% 74%, rgba(246,196,83,.10), transparent 70%),
+        radial-gradient(860px 400px at 82% 68%, rgba(0,166,81,.16), transparent 70%);
       pointer-events:none;
       opacity:.95;
     }
 
-    .app{min-height:100%}
-
-    .top{
-      position:relative;
-      padding:22px 18px 0;
-      max-width:1200px;
+    .wrap{
+      max-width:1100px;
       margin:0 auto;
+      padding:14px 14px 120px;
+      position:relative;
+      z-index:1;
     }
 
-    .top::before{
+    .shell{
+      background:
+        linear-gradient(180deg, rgba(8,109,53,.24), rgba(12,40,29,.96) 20%, rgba(9,24,18,.98) 100%);
+      border:1px solid var(--line);
+      border-radius:var(--radius2);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .shell::before{
       content:"";
       display:block;
       height:4px;
-      border-radius:999px;
-      margin:0 0 14px 0;
-      background:linear-gradient(90deg, #00a651 0%, #00853f 44%, #f6c453 100%);
+      background:linear-gradient(90deg, #00a651 0%, #00853f 45%, #f6c453 100%);
+    }
+
+    .topbar{
+      padding:14px 16px 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.08);
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(12px);
     }
 
     .brand{
       display:flex;
-      gap:12px;
       align-items:center;
-      cursor:pointer;
+      gap:12px;
+      min-width:0;
     }
 
     .logo{
-      width:48px; height:48px;
+      width:46px;
+      height:46px;
       border-radius:14px;
-      background: linear-gradient(135deg, rgba(0,166,81,.95), rgba(0,133,63,.88));
+      background:linear-gradient(135deg, rgba(0,166,81,.95), rgba(0,133,63,.88));
       border:1px solid rgba(255,255,255,.14);
-      display:flex; align-items:center; justify-content:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       font-family:var(--fontA);
       font-weight:900;
       font-size:22px;
-      box-shadow: var(--shadow), 0 0 0 3px rgba(246,196,83,.08);
+      box-shadow:var(--shadow), 0 0 0 3px rgba(246,196,83,.08);
+      flex:0 0 auto;
     }
 
-    .brandText .title{
+    .brandTitle{
+      font-family:var(--fontA);
+      font-size:16px;
+      font-weight:900;
+      letter-spacing:.6px;
+      line-height:1.1;
+    }
+
+    .brandSub{
+      color:rgba(248,250,252,.78);
+      font-size:12px;
+      margin-top:3px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:260px;
+    }
+
+    .menuRow{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .menuBtn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--ink);
+      min-height:40px;
+      padding:0 14px;
+      border-radius:999px;
       font-family:var(--fontA);
       font-weight:900;
-      letter-spacing:.8px;
-      font-size:18px;
+      font-size:12px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      transition:.18s ease;
     }
 
-    .brandText .subtitle{
-      color:rgba(248,250,252,.78);
-      font-size:13px;
-      margin-top:2px;
+    .menuBtn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(246,196,83,.32);
+    }
+
+    .menuBtn.home{
+      background:linear-gradient(135deg, rgba(0,166,81,.22), rgba(0,133,63,.20));
+      border-color:rgba(255,255,255,.12);
+    }
+
+    .menuBtn.public{
+      border-color:rgba(246,196,83,.28);
+      color:#fff0c8;
+      background:rgba(246,196,83,.08);
+    }
+
+    .menuBtn.pro{
+      border-color:rgba(0,166,81,.34);
+      color:#dfffe9;
+      background:rgba(0,166,81,.12);
     }
 
     .hero{
-      margin-top:18px;
+      padding:18px 16px 10px;
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:16px;
-      align-items:stretch;
+      grid-template-columns:1.05fr .95fr;
+      gap:14px;
     }
 
-    .heroLeft, .heroRight{min-height:320px;}
-
-    .heroLeft{
-      background:
-        radial-gradient(620px 300px at 18% 18%, rgba(255,255,255,.08), transparent 60%),
-        radial-gradient(620px 300px at 82% 70%, rgba(246,196,83,.12), transparent 60%),
-        linear-gradient(135deg, rgba(0,166,81,.40), rgba(0,133,63,.26) 42%, rgba(10,36,27,.92) 100%);
+    .heroCard,
+    .heroSide{
       border:1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius2);
-      padding:20px;
-      box-shadow: var(--shadow);
-      position:relative;
+      border-radius:24px;
+      box-shadow:var(--shadow);
       overflow:hidden;
     }
 
-    .heroLeft::after{
-      content:"";
-      position:absolute; inset:-80px;
+    .heroCard{
       background:
-        radial-gradient(620px 290px at 20% 18%, rgba(246,196,83,.12), transparent 60%),
-        radial-gradient(620px 290px at 78% 62%, rgba(0,166,81,.14), transparent 60%);
-      pointer-events:none;
-      opacity:.9;
+        radial-gradient(620px 300px at 18% 18%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(620px 300px at 82% 70%, rgba(246,196,83,.12), transparent 60%),
+        linear-gradient(135deg, rgba(0,166,81,.38), rgba(0,133,63,.24) 42%, rgba(10,36,27,.92) 100%);
+      padding:18px;
+      position:relative;
     }
 
     .eyebrow{
-      position:relative;
-      z-index:1;
       font-family:var(--fontA);
       font-weight:900;
-      letter-spacing:.25px;
+      letter-spacing:.24px;
       color:rgba(255,245,214,.96);
       font-size:12px;
       text-transform:uppercase;
       margin-bottom:10px;
     }
 
-    .heroLeft h1{
-      position:relative;
-      z-index:1;
+    h1{
+      margin:0 0 10px;
       font-family:var(--fontA);
       font-weight:900;
-      margin:0 0 10px;
-      font-size:32px;
-      line-height:1.05;
+      font-size:34px;
+      line-height:1.04;
     }
 
-    .gold{color:rgba(246,196,83,.98)}
-    .green{color:rgba(110,255,161,.98)}
-    .dot{color:var(--gold); margin-left:6px; font-size:14px; vertical-align:middle;}
+    .gold{color:var(--gold)}
 
-    .heroLeft p{
-      position:relative;
-      z-index:1;
-      margin:0 0 16px;
-      color:rgba(248,250,252,.84);
-      line-height:1.55;
+    .heroText{
+      margin:0;
+      color:rgba(248,250,252,.85);
+      line-height:1.58;
+      font-size:14px;
+      max-width:56ch;
     }
 
-    .ctaRow{
-      position:relative;
-      z-index:1;
+    .heroActions{
+      margin-top:14px;
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      margin:10px 0 14px;
     }
-
-    .miniRow{
-      position:relative;
-      z-index:1;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .chip{
-      display:inline-flex; gap:10px; align-items:center;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(2,6,23,.18);
-    }
-
-    .chipK{font-size:12px; color:var(--muted)}
-    .chipV{font-weight:800; font-family:var(--fontA)}
 
     .btn{
       border:1px solid var(--line);
-      background: rgba(2,6,23,.18);
+      background:rgba(2,6,23,.18);
       color:var(--ink);
-      padding:12px 14px;
-      border-radius:14px;
+      min-height:50px;
+      padding:0 15px;
+      border-radius:16px;
       cursor:pointer;
-      font-weight:800;
       font-family:var(--fontA);
-      letter-spacing:.2px;
-      transition: transform .08s ease, background .2s ease, border-color .2s ease, opacity .2s ease;
-      user-select:none;
+      font-weight:900;
+      font-size:14px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:8px;
+      transition:.18s ease;
     }
 
     .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(246,196,83,.35);
+      transform:translateY(-1px);
+      border-color:rgba(246,196,83,.35);
     }
-
-    .btn:active{transform: translateY(0px) scale(.99);}
 
     .btn.primary{
-      border-color: rgba(255,255,255,.14);
-      background: linear-gradient(135deg, #00a651, #00853f);
+      border-color:rgba(255,255,255,.14);
+      background:linear-gradient(135deg, #00a651, #00853f);
       color:#fff;
-      box-shadow: 0 12px 28px rgba(0,133,63,.22);
+      box-shadow:0 12px 28px rgba(0,133,63,.22);
     }
 
-    .btn.ghost{background: transparent;}
-
-    .btn.outline{
-      background: transparent;
-      border-color: rgba(246,196,83,.34);
-      color:rgba(255,243,207,.98);
+    .btn.gold{
+      border-color:rgba(246,196,83,.34);
+      background:rgba(246,196,83,.08);
+      color:#fff2cc;
     }
 
-    .btn.tiny{
-      padding:10px 12px;
-      font-size:12px;
-      border-radius:999px;
-    }
-
-    .btn.danger{border-color: rgba(239,68,68,.45);}
-    .btn.disabled{opacity:.45; cursor:not-allowed; transform:none !important;}
-
-    .pioneerStrip{
-      position:relative;
-      z-index:1;
+    .heroChips{
       margin-top:14px;
       display:flex;
-      justify-content:space-between;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .chip{
+      display:inline-flex;
       align-items:center;
-      gap:12px;
-      padding:14px;
-      border-radius:18px;
-      border:1px solid rgba(246,196,83,.22);
-      background: rgba(2,6,23,.10);
-    }
-
-    .pioneerTitle{font-family:var(--fontA); font-weight:900}
-    .pioneerText{color:var(--muted); font-size:12.5px; margin-top:2px}
-    .pioneerRight{text-align:right}
-    .pioneerN{
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:26px;
-      color:rgba(246,196,83,.98);
-    }
-    .pioneerL{color:var(--muted); font-size:12px}
-
-    .panel{
-      background:
-        linear-gradient(180deg, rgba(9,44,31,.88), rgba(8,28,20,.82));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius2);
-      padding:16px;
-      box-shadow: var(--shadow);
-      height:100%;
-    }
-
-    .panelTitle{
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:16px;
-    }
-
-    .panelHint{
-      color:rgba(248,250,252,.74);
-      font-size:13px;
-      margin-top:4px;
-    }
-
-    .controls{margin-top:12px;}
-    .tabs{display:flex; gap:8px; flex-wrap:wrap;}
-
-    .tab{
-      border:1px solid var(--line);
+      gap:8px;
+      padding:8px 11px;
       border-radius:999px;
-      padding:10px 12px;
-      background: transparent;
-      color:var(--ink);
-      cursor:pointer;
-      font-family:var(--fontA);
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.12);
+      font-size:11px;
       font-weight:900;
-      font-size:12px;
-      transition: all .2s ease;
+      font-family:var(--fontA);
     }
 
-    .tab:hover{
-      border-color: rgba(0,166,81,.28);
-      background: rgba(0,166,81,.10);
+    .heroSide{
+      background:linear-gradient(180deg, rgba(9,44,31,.88), rgba(8,28,20,.82));
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
     }
 
-    .tab.active{
-      background: rgba(0,166,81,.16);
-      border-color: rgba(0,166,81,.34);
+    .sideTitle{
+      font-family:var(--fontA);
+      font-size:16px;
+      font-weight:900;
     }
 
-    .searchBox{display:flex; gap:8px; margin-top:10px;}
-
-    .searchBox input{
-      flex:1;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px 12px;
-      background: rgba(2,6,23,.18);
-      color:var(--ink);
-      outline:none;
-      font-family:var(--fontB);
-      transition: border-color .2s ease;
+    .sideText{
+      color:rgba(248,250,252,.76);
+      line-height:1.55;
+      font-size:13px;
     }
-
-    .searchBox input:focus{
-      border-color: rgba(0,166,81,.34);
-    }
-
-    .searchBox input::placeholder{color:rgba(248,250,252,.45);}
 
     .stats{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns:repeat(3,1fr);
       gap:10px;
-      margin-top:12px;
     }
 
     .stat{
       border:1px solid var(--line);
       border-radius:16px;
       padding:12px;
-      background: rgba(2,6,23,.14);
+      background:rgba(2,6,23,.14);
     }
 
     .statN{
       font-family:var(--fontA);
       font-weight:900;
       font-size:20px;
-      color:#ffffff;
     }
 
     .statL{
-      color:var(--muted);
+      margin-top:3px;
       font-size:12px;
-      margin-top:2px;
+      color:var(--muted);
     }
 
-    .note{
-      margin-top:12px;
-      color:var(--muted);
-      font-size:12.5px;
-      line-height:1.45;
+    .compactNote{
       border:1px dashed rgba(148,163,184,.35);
       border-radius:16px;
       padding:12px;
-      background: rgba(2,6,23,.10);
+      color:var(--muted);
+      background:rgba(2,6,23,.10);
+      line-height:1.5;
+      font-size:12.5px;
     }
 
     .main{
-      max-width:1200px;
-      margin:0 auto;
-      padding:16px 18px 120px;
-      padding-bottom: calc(120px + env(safe-area-inset-bottom));
-      position:relative;
+      padding:8px 16px 24px;
     }
 
-    .section{margin-top:16px;}
+    .section{
+      margin-top:14px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      background:linear-gradient(180deg, rgba(10,48,34,.76), rgba(8,28,20,.70));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
 
     .sectionHead{
+      padding:14px 14px 10px;
       display:flex;
       align-items:flex-end;
       justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
 
-    .sectionHead h2{
+    .sectionTitle{
       margin:0;
       font-family:var(--fontA);
+      font-size:18px;
       font-weight:900;
       letter-spacing:.2px;
     }
 
-    .legend{display:flex; gap:8px; flex-wrap:wrap;}
+    .sectionSub{
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.5;
+    }
+
+    .pillRow{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
 
     .pill{
       font-family:var(--fontA);
@@ -440,564 +416,366 @@
       padding:8px 10px;
       border-radius:999px;
       border:1px solid var(--line);
-      background: rgba(2,6,23,.14);
+      background:rgba(2,6,23,.14);
     }
 
-    .pill.live{border-color: rgba(34,197,94,.35); color: rgba(34,197,94,.95);}
-    .pill.beta{border-color: rgba(245,158,11,.35); color: rgba(245,158,11,.95);}
-    .pill.soon{border-color: rgba(148,163,184,.35); color: rgba(148,163,184,.95);}
-    .pill.nouveau{border-color: rgba(59,130,246,.35); color: rgba(59,130,246,.95);}
-    .pill.priorite{border-color: rgba(168,85,247,.35); color: rgba(168,85,247,.95);}
-    .pill.officiel{border-color: rgba(246,196,83,.35); color: rgba(246,196,83,.95);}
-    .pill.gratuit{border-color: rgba(34,197,94,.35); color: rgba(34,197,94,.95);}
-    .pill.public{border-color: rgba(246,196,83,.35); color: rgba(246,196,83,.96);}
-    .pill.pro{border-color: rgba(0,166,81,.34); color: rgba(110,255,161,.98);}
-
-    .grid{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
+    .pill.public{
+      border-color:rgba(246,196,83,.32);
+      color:#fff0c8;
     }
 
-    .card{
-      border:1px solid var(--line);
-      border-radius: var(--radius2);
-      background:
-        linear-gradient(180deg, rgba(10,48,34,.78), rgba(8,28,20,.72));
-      box-shadow: var(--shadow);
+    .pill.pro{
+      border-color:rgba(0,166,81,.34);
+      color:#dfffe9;
+    }
+
+    .railWrap{
       padding:14px;
-      display:flex;
-      flex-direction:column;
-      min-height:180px;
-      cursor:pointer;
-      transition: transform .08s ease, border-color .2s ease, background .2s ease;
-      outline:none;
     }
 
-    .card:hover{
-      transform: translateY(-2px);
-      border-color: rgba(246,196,83,.28);
-      background:
-        linear-gradient(180deg, rgba(11,56,39,.86), rgba(8,30,21,.78));
-    }
-
-    .card:active{transform: translateY(0px) scale(.995);}
-
-    .cardTop{
+    .moduleRail{
       display:flex;
       gap:10px;
-      align-items:flex-start;
+      overflow-x:auto;
+      padding-bottom:4px;
+      scroll-snap-type:x proximity;
+      -webkit-overflow-scrolling:touch;
     }
 
-    .icon{
-      width:42px; height:42px;
-      border-radius:14px;
-      display:flex; align-items:center; justify-content:center;
-      background: rgba(0,166,81,.10);
-      border:1px solid rgba(255,255,255,.12);
-      font-size:18px;
-      flex-shrink:0;
+    .moduleRail::-webkit-scrollbar{height:6px}
+    .moduleRail::-webkit-scrollbar-thumb{
+      background:rgba(255,255,255,.14);
+      border-radius:999px;
     }
 
-    .cardTitle{
-      font-family:var(--fontA);
-      font-weight:900;
-      margin:0 0 4px;
-      font-size:15px;
-      letter-spacing:.2px;
+    .moduleBtn{
+      min-width:170px;
+      max-width:190px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)), rgba(0,0,0,.10);
+      color:var(--ink);
+      border-radius:20px;
+      padding:14px 12px;
+      text-align:left;
+      cursor:pointer;
+      scroll-snap-align:start;
+      transition:.18s ease;
     }
 
-    .cardTag{
-      color:var(--gold);
-      font-size:11px;
-      font-weight:800;
-      font-family:var(--fontA);
-      letter-spacing:.3px;
+    .moduleBtn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(246,196,83,.28);
+    }
+
+    .moduleBtn.active{
+      border-color:rgba(246,196,83,.42);
+      box-shadow:0 10px 28px rgba(246,196,83,.08);
+    }
+
+    .moduleBtn.publicCard{
+      border-color:rgba(246,196,83,.20);
+      background:
+        linear-gradient(180deg, rgba(246,196,83,.10), rgba(255,255,255,.03)),
+        rgba(0,0,0,.08);
+    }
+
+    .moduleBtn.proCard{
+      border-color:rgba(0,166,81,.24);
+      background:
+        linear-gradient(180deg, rgba(0,166,81,.14), rgba(255,255,255,.03)),
+        rgba(0,0,0,.08);
+    }
+
+    .moduleBtn.loco{
+      border-color:rgba(246,196,83,.34);
+      box-shadow:0 12px 30px rgba(246,196,83,.08);
+    }
+
+    .moduleEmoji{
+      font-size:20px;
+      display:block;
       margin-bottom:6px;
     }
 
-    .cardDesc{
-      margin:0;
-      color:var(--muted);
+    .moduleName{
       font-size:13px;
+      font-weight:1100;
+      font-family:var(--fontA);
+    }
+
+    .moduleHint{
+      margin-top:4px;
+      font-size:11px;
+      color:var(--muted);
+      line-height:1.35;
+      min-height:30px;
+    }
+
+    .miniBadges{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+
+    .miniBadge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:5px 8px;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:1100;
+      letter-spacing:.3px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.10);
+      font-family:var(--fontA);
+    }
+
+    .miniBadge.public{
+      color:#fff0c8;
+      border-color:rgba(246,196,83,.28);
+      background:rgba(246,196,83,.08);
+    }
+
+    .miniBadge.pro{
+      color:#dfffe9;
+      border-color:rgba(0,166,81,.30);
+      background:rgba(0,166,81,.12);
+    }
+
+    .miniBadge.live{
+      color:#bbf7d0;
+      border-color:rgba(34,197,94,.30);
+      background:rgba(34,197,94,.08);
+    }
+
+    .miniBadge.beta{
+      color:#fde68a;
+      border-color:rgba(245,158,11,.30);
+      background:rgba(245,158,11,.08);
+    }
+
+    .miniBadge.loco{
+      color:#fff3cf;
+      border-color:rgba(246,196,83,.30);
+      background:rgba(246,196,83,.08);
+    }
+
+    .focus{
+      margin-top:14px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      background:linear-gradient(180deg, rgba(10,48,34,.82), rgba(8,28,20,.76));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .focusInner{
+      padding:16px;
+    }
+
+    .focusTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .focusLeft{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      min-width:0;
+    }
+
+    .focusIcon{
+      width:56px;
+      height:56px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+      background:rgba(0,166,81,.12);
+      border:1px solid rgba(255,255,255,.12);
+      flex:0 0 auto;
+    }
+
+    .focusLabel{
+      font-family:var(--fontA);
+      font-size:22px;
+      font-weight:900;
+      line-height:1.1;
+    }
+
+    .focusHint{
+      margin-top:5px;
+      font-size:13px;
+      color:var(--muted);
       line-height:1.45;
     }
 
-    .badges{
+    .focusBadges{
       display:flex;
       gap:8px;
       flex-wrap:wrap;
-      margin-top:10px;
     }
 
-    .badge{
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:11px;
-      padding:6px 8px;
+    .focusBadge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 11px;
       border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(2,6,23,.12);
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.10);
+      font-size:11px;
+      font-weight:1000;
+      font-family:var(--fontA);
+      white-space:nowrap;
     }
 
-    .badge.kind-public{
-      border-color: rgba(246,196,83,.35);
-      color: rgba(246,196,83,.96);
+    .focusBadge.public{
+      color:#fff0c8;
+      border-color:rgba(246,196,83,.28);
+      background:rgba(246,196,83,.08);
     }
 
-    .badge.kind-pro{
-      border-color: rgba(0,166,81,.34);
-      color: rgba(110,255,161,.98);
+    .focusBadge.pro{
+      color:#dfffe9;
+      border-color:rgba(0,166,81,.30);
+      background:rgba(0,166,81,.12);
     }
 
-    .badge.live{border-color: rgba(34,197,94,.35); color: rgba(34,197,94,.95);}
-    .badge.beta{border-color: rgba(245,158,11,.35); color: rgba(245,158,11,.95);}
-    .badge.soon{border-color: rgba(148,163,184,.35); color: rgba(148,163,184,.95);}
-    .badge.nouveau{border-color: rgba(59,130,246,.35); color: rgba(59,130,246,.95);}
-    .badge.priorite{border-color: rgba(168,85,247,.35); color: rgba(168,85,247,.95);}
-    .badge.officiel{border-color: rgba(246,196,83,.35); color: rgba(246,196,83,.95);}
-    .badge.gratuit{border-color: rgba(34,197,94,.35); color: rgba(34,197,94,.95);}
+    .focusBadge.gold{
+      color:#fff3cf;
+      border-color:rgba(246,196,83,.30);
+      background:rgba(246,196,83,.08);
+    }
 
-    .cardActions{
-      margin-top:auto;
+    .focusText{
+      margin-top:14px;
+      color:#f0ece3;
+      line-height:1.58;
+      font-size:14px;
+      max-width:70ch;
+    }
+
+    .focusActions{
+      margin-top:14px;
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      padding-top:12px;
-    }
-
-    .cardActions .btn{
-      width:auto;
-      flex:1;
-      min-width:140px;
-    }
-
-    .smallLink{
-      opacity:.75;
-      font-size:12px;
-      color:var(--muted);
-      word-break:break-all;
-      margin-top:10px;
-    }
-
-    .empty{
-      grid-column:1/-1;
-      padding:16px;
-      border:1px dashed rgba(148,163,184,.35);
-      border-radius:18px;
-      background: rgba(2,6,23,.10);
-      color:var(--muted);
     }
 
     .footer{
-      margin-top:26px;
-      border-top:1px solid rgba(148,163,184,.18);
-      padding-top:16px;
+      margin-top:14px;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:14px 2px 0;
       color:var(--muted);
-    }
-
-    .footLine{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
+      font-size:12px;
+      line-height:1.55;
     }
 
     .footBrand{
       font-family:var(--fontA);
       font-weight:900;
-      color:rgba(246,196,83,.95);
+      color:var(--gold);
+    }
+
+    .footLine{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
     }
 
     .sep{opacity:.35}
-    .footTiny{margin-top:6px; font-size:12px; opacity:.9}
 
-    .floatBtn{
+    .stickyBar{
       position:fixed;
+      left:0; right:0; bottom:0;
       z-index:30;
-      border-radius:999px;
-      padding:14px 16px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(6,33,22,.62);
-      color:var(--ink);
-      font-family:var(--fontA);
-      font-weight:900;
-      cursor:pointer;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      backdrop-filter: blur(10px);
-      transition: all .2s ease;
+      padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+      background:linear-gradient(180deg, rgba(11,22,18,.04), rgba(11,22,18,.96) 35%);
+      backdrop-filter:blur(10px);
     }
 
-    .floatBtn:hover{
-      border-color: rgba(246,196,83,.35);
-      transform: translateY(-2px);
-      box-shadow: 0 14px 40px rgba(0,0,0,.45);
-    }
-
-    .floatBtn:active{transform: translateY(0px) scale(.98);}
-
-    #tarif-bubble-btn{ right:14px; left:auto; bottom:18px; }
-    #digiy-help-btn{ right:14px; left:auto; bottom:68px; }
-    #espace-pro-btn{ left:14px; right:auto; bottom:18px; }
-    #vision-bubble-btn{ left:14px; right:auto; bottom:68px; }
-
-    .ndimbal{
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.55);
-      display:flex; align-items:center; justify-content:center;
-      padding:18px; z-index:60;
-      backdrop-filter: blur(4px);
-    }
-
-    .ndimbal.hidden{display:none;}
-
-    .ndimbalBox{
-      width:min(520px, 100%);
-      border-radius:22px;
-      border:1px solid rgba(148,163,184,.25);
-      background: linear-gradient(180deg, rgba(11,42,31,.98), rgba(10,36,27,.94));
-      box-shadow: var(--shadow);
-      padding:16px;
-    }
-
-    .ndimbalTitle{font-family:var(--fontA); font-weight:900; font-size:18px;}
-    .ndimbalText{margin-top:8px; color:var(--muted); line-height:1.5;}
-    .ndimbalActions{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;}
-
-    .qrModal{
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.55);
-      display:flex; align-items:center; justify-content:center;
-      padding:18px; z-index:70;
-      backdrop-filter: blur(4px);
-    }
-
-    .qrModal.hidden{display:none;}
-
-    .qrContent{
-      width:min(520px, 100%);
-      border-radius:22px;
-      border:1px solid rgba(148,163,184,.25);
-      background: linear-gradient(180deg, rgba(11,42,31,.98), rgba(10,36,27,.94));
-      box-shadow: var(--shadow);
-      padding:16px;
-    }
-
-    .qrHeader{
+    .stickyInner{
+      max-width:1100px;
+      margin:0 auto;
       display:flex;
+      gap:10px;
+      flex-wrap:wrap;
       align-items:center;
       justify-content:space-between;
-      gap:10px;
-    }
-
-    .qrTitle{font-family:var(--fontA); font-weight:900}
-
-    .qrImg{
-      display:block;
-      width:min(320px, 100%);
-      margin:12px auto;
+      border:1px solid rgba(0,166,81,.22);
+      background:rgba(12,40,29,.96);
       border-radius:18px;
-      border:1px solid rgba(148,163,184,.20)
+      padding:10px;
+      box-shadow:0 14px 40px rgba(0,0,0,.32);
     }
 
-    .qrText{text-align:center; color:var(--muted); margin-top:8px}
-
-    .qrLink{
-      display:block;
-      margin-top:12px;
-      text-align:center;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid rgba(246,196,83,.28);
-      background: rgba(246,196,83,.10);
-      font-family:var(--fontA);
-      font-weight:900;
-      transition: all .2s ease;
-    }
-
-    .qrLink:hover{
-      border-color: rgba(246,196,83,.45);
-      background: rgba(246,196,83,.18);
-    }
-
-    .hubOverlay{
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.62);
-      display:flex; align-items:center; justify-content:center;
-      padding:10px; z-index:80;
-      backdrop-filter: blur(4px);
-    }
-
-    .hubOverlay.hidden{display:none;}
-
-    .hubCard{
-      width:min(1180px, 100%);
-      height:min(86vh, 760px);
-      border-radius:22px;
-      border:1px solid rgba(148,163,184,.25);
-      background: linear-gradient(180deg, rgba(11,42,31,.98), rgba(10,36,27,.94));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
-
-    .hubTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 12px;
-      border-bottom:1px solid rgba(148,163,184,.18);
-    }
-
-    .hubBrand{font-family:var(--fontA); font-weight:900}
-    .hubTopBtns{display:flex; gap:10px; flex-wrap:wrap}
-
-    .hubBtn{
-      border:1px solid rgba(148,163,184,.25);
-      background: rgba(2,6,23,.18);
-      color:var(--ink);
-      padding:10px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      font-family:var(--fontA);
-      font-weight:900;
-      transition: all .2s ease;
-    }
-
-    .hubBtn:hover{ transform: translateY(-1px); }
-
-    .hubBtn.back{border-color: rgba(246,196,83,.25)}
-    .hubBtn.back:hover{
-      border-color: rgba(246,196,83,.45);
-      background: rgba(246,196,83,.10);
-    }
-
-    .hubBtn.close{border-color: rgba(239,68,68,.25)}
-    .hubBtn.close:hover{
-      border-color: rgba(239,68,68,.45);
-      background: rgba(239,68,68,.10);
-    }
-
-    #hubFrame{
+    .stickyInfo{
+      min-width:0;
       flex:1;
-      width:100%;
-      border:0;
-      background:#000;
     }
 
-    .modal{
-      position:fixed; inset:0;
-      display:flex; align-items:center; justify-content:center;
-      padding:18px;
-      background: rgba(0,0,0,.55);
-      z-index:90;
-      backdrop-filter: blur(4px);
-    }
-
-    .modal.hidden{display:none;}
-
-    .modalCard{
-      width:min(520px, 100%);
-      border-radius:22px;
-      border:1px solid rgba(148,163,184,.25);
-      background: linear-gradient(180deg, rgba(11,42,31,.98), rgba(10,36,27,.94));
-      box-shadow: var(--shadow);
-      padding:16px;
-    }
-
-    .modalTitle{
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:16px;
-    }
-
-    .modalText{
-      margin-top:8px;
-      color:var(--muted);
-      line-height:1.5;
-    }
-
-    .modalActions{
-      margin-top:14px;
-      display:flex;
-      justify-content:flex-end;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .citiesSection{
-      max-width:1200px;
-      margin:18px auto 0;
-      padding:0 18px;
-    }
-
-    .citiesCard{
-      background: linear-gradient(180deg, rgba(10,48,34,.78), rgba(8,28,20,.72));
-      border:1px solid var(--line);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .citiesCard::before{
-      content:"";
-      position:absolute; inset:-90px;
-      background:
-        radial-gradient(650px 320px at 25% 20%, rgba(246,196,83,.10), transparent 60%),
-        radial-gradient(650px 320px at 75% 75%, rgba(0,166,81,.12), transparent 60%);
-      pointer-events:none;
-      opacity:.85;
-    }
-
-    .citiesInner{
-      position:relative;
-      z-index:1;
-      padding:18px;
-    }
-
-    .citiesHead{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    }
-
-    .citiesTitle{
-      margin:0;
-      font-family:var(--fontA);
-      font-weight:900;
-      letter-spacing:.2px;
-      color: rgba(246,196,83,.98);
-    }
-
-    .citiesSub{
-      margin:8px 0 0 0;
-      color: var(--muted);
-      line-height:1.55;
-      max-width:820px;
-    }
-
-    .citiesPills{display:flex; gap:8px; flex-wrap:wrap;}
-
-    .cityPill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(2,6,23,.14);
-      font-family:var(--fontA);
-      font-weight:900;
+    .stickyTitle{
       font-size:12px;
-      color: rgba(248,250,252,.92);
+      color:var(--muted);
+      margin-bottom:4px;
     }
 
-    .citiesGrid{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:12px;
-    }
-
-    .cityCard{
-      grid-column: span 6;
-      border-radius:18px;
-      border:1px solid var(--line);
-      background: rgba(2,6,23,.14);
-      padding:14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.22);
-    }
-
-    .cityLeft{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-
-    .cityName{
+    .stickyValue{
+      font-size:14px;
+      font-weight:1100;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
       font-family:var(--fontA);
-      font-weight:900;
-      color: rgba(248,250,252,.98);
-      letter-spacing:.2px;
     }
 
-    .cityMeta{
+    .stickyActions{
       display:flex;
       gap:8px;
       flex-wrap:wrap;
-      align-items:center;
     }
 
-    .cityBadge{
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:11px;
-      padding:6px 8px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(2,6,23,.12);
+    .stickyActions .btn{
+      min-height:44px;
+      width:auto;
+      padding:0 14px;
     }
 
-    .cityBadge.live{ border-color: rgba(34,197,94,.35); color: rgba(34,197,94,.95); }
-    .cityBadge.beta{ border-color: rgba(245,158,11,.35); color: rgba(245,158,11,.95); }
-    .cityBadge.soon{ border-color: rgba(148,163,184,.35); color: rgba(148,163,184,.95); }
-    .cityBadge.officiel{ border-color: rgba(246,196,83,.35); color: rgba(246,196,83,.95); }
-
-    .cityHint{
-      color: var(--muted);
-      font-size:12.5px;
-    }
-
-    .cityBtn{
-      border-radius:999px;
-      padding:10px 12px !important;
-      font-size:12px !important;
-      white-space:nowrap;
-    }
-
-    .citiesFoot{
-      margin-top:12px;
-      padding-top:12px;
-      border-top:1px solid rgba(148,163,184,.16);
-      color: var(--muted);
-      line-height:1.55;
-    }
-
-    .citiesFoot strong{
-      color: rgba(246,196,83,.98);
-      font-weight:900;
-      font-family:var(--fontA);
-    }
-
-    @media (max-width: 980px){
-      .hero{grid-template-columns: 1fr;}
-      .grid{grid-template-columns: repeat(2, 1fr);}
-    }
-
-    @media (max-width: 880px){
-      .cityCard{ grid-column: span 12; }
-    }
-
-    @media (max-width: 560px){
-      .grid{grid-template-columns: 1fr;}
-      .heroLeft h1{font-size:26px;}
-      .cardActions .btn{min-width: 0; flex: 1;}
-      .floatBtn{
-        padding:12px 14px;
-        font-size:14px;
+    @media (max-width:980px){
+      .hero{
+        grid-template-columns:1fr;
       }
-      #tarif-bubble-btn{ right:10px; bottom:14px; }
-      #digiy-help-btn{ right:10px; bottom:62px; }
-      #espace-pro-btn{ left:10px; bottom:14px; }
-      #vision-bubble-btn{ left:10px; bottom:62px; }
+    }
+
+    @media (max-width:640px){
+      h1{font-size:27px}
+      .menuRow{width:100%}
+      .menuBtn{flex:1}
+      .stats{grid-template-columns:1fr 1fr 1fr}
+    }
+
+    @media (max-width:560px){
+      .stickyActions{
+        width:100%;
+      }
+      .stickyActions .btn{
+        flex:1;
+      }
+      .brandSub{
+        max-width:180px;
+      }
+      .moduleBtn{
+        min-width:155px;
+      }
     }
   </style>
 </head>
@@ -1005,336 +783,377 @@
 <body>
   <div class="bg"></div>
 
-  <div class="app">
-    <header class="top">
-      <a class="brand" href="https://digiylyfe.com/" target="_blank" rel="noopener" id="homeBrand" aria-label="Accueil DIGIYLYFE">
-        <div class="logo">∞</div>
-        <div class="brandText">
-          <div class="title">DIGIYLYFE</div>
-          <div class="subtitle">L'Afrique enracinée, connectée au monde</div>
+  <div class="wrap">
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="http://digiylyfe.com" id="homeBrand" aria-label="Retour accueil DIGIYLYFE">
+          <div class="logo">∞</div>
+          <div>
+            <div class="brandTitle">DIGIYLYFE</div>
+            <div class="brandSub">L'Afrique enracinée, connectée au monde</div>
+          </div>
+        </a>
+
+        <div class="menuRow">
+          <a class="menuBtn home" href="http://digiylyfe.com">Accueil</a>
+          <a class="menuBtn public" href="#public">Public</a>
+          <a class="menuBtn pro" href="#pro">PRO</a>
+          <a class="menuBtn" href="https://tarifs.digiylyfe.com/?return=http%3A%2F%2Fdigiylyfe.com" target="_blank" rel="noopener">Tarifs</a>
+          <a class="menuBtn" href="https://knowledge.digiylyfe.com/widget/?return=http%3A%2F%2Fdigiylyfe.com" target="_blank" rel="noopener">IA</a>
         </div>
-      </a>
+      </header>
 
-      <div class="hero">
-        <div class="heroLeft">
-          <div class="eyebrow">DIGIYLYFE ∞ · public + pro · terrain</div>
-
+      <section class="hero">
+        <div class="heroCard">
+          <div class="eyebrow">DIGIYLYFE ∞ · compact · public + pro · Sénégal</div>
           <h1>
-            L'Afrique enracinée,
-            <span class="gold">connectée au monde</span><span class="dot">●</span>
+            Une entrée claire.
+            <span class="gold">Deux mondes bien rangés.</span>
           </h1>
-
-          <p>
-            <strong>Modules publics pour les clients. Modules pro pour les professionnels.</strong><br>
-            Une seule vitrine, une lecture plus claire, 0% commission, paiement direct au pro.
+          <p class="heroText">
+            Le visiteur entre par <strong>PUBLIC</strong>. Le professionnel entre par <strong>PRO</strong>.
+            Même force DIGIY, moins d’autoroute, plus de clarté, plus de commerce, et tous les retours vers
+            <strong>http://digiylyfe.com</strong>.
           </p>
 
-          <div class="ctaRow">
-            <a id="heroOpenBtn" class="btn primary" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener">
-              🧭 Ouvrir le module
-            </a>
-            <a class="btn outline" href="#modules">🚀 Voir les modules</a>
-            <a class="btn ghost" href="https://knowledge.digiylyfe.com/widget/" target="_blank" rel="noopener">
-              🧠 Assistant IA
-            </a>
+          <div class="heroActions">
+            <a class="btn primary" id="heroOpenBtn" href="https://explore.digiylyfe.com/?return=http%3A%2F%2Fdigiylyfe.com" target="_blank" rel="noopener">🧭 Ouvrir le focus</a>
+            <a class="btn gold" href="#public">🌍 Voir le public</a>
           </div>
 
-          <div class="miniRow">
-            <div class="chip">
-              <span class="chipK">Lecture</span>
-              <span class="chipV">PUBLIC + PRO bien séparés</span>
-            </div>
-          </div>
-
-          <div class="pioneerStrip">
-            <div class="pioneerLeft">
-              <div class="pioneerTitle">🔥 DIGIY entre d’abord par son identité</div>
-              <div class="pioneerText">Vert vivant, présence claire, navigation plus propre, commerce direct.</div>
-            </div>
-            <div class="pioneerRight">
-              <div class="pioneerN" id="countAllHero">0</div>
-              <div class="pioneerL">modules posés</div>
-            </div>
+          <div class="heroChips">
+            <span class="chip">0% commission</span>
+            <span class="chip">Paiement direct</span>
+            <span class="chip">Retour vers digiylyfe.com</span>
+            <span class="chip">Vert Sénégal</span>
           </div>
         </div>
 
-        <div class="heroRight">
-          <div class="panel">
-            <div class="panelTitle">🧭 Navigation DIGIY</div>
-            <div class="panelHint">Filtre vite entre public et pro, puis entre dans le bon univers.</div>
+        <aside class="heroSide">
+          <div class="sideTitle">Vue rapide</div>
+          <div class="sideText">
+            Une vitrine plus compacte, un menu horizontal, un bloc public, un bloc pro, puis un focus unique pour ouvrir la bonne porte.
+          </div>
 
-            <div class="controls">
-              <div class="tabs" role="tablist" aria-label="Filtres">
-                <button class="tab active" data-filter="all" type="button">Tous</button>
-                <button class="tab" data-filter="public" type="button">Public</button>
-                <button class="tab" data-filter="pro" type="button">PRO</button>
-              </div>
-
-              <div class="searchBox">
-                <input id="searchInput" type="search" placeholder="Chercher… ex: driver, loc, pay, pro" autocomplete="off"/>
-                <button id="btnReset" class="btn tiny" type="button">Reset</button>
-              </div>
+          <div class="stats">
+            <div class="stat">
+              <div class="statN" id="statTotal">0</div>
+              <div class="statL">Total</div>
             </div>
-
-            <div class="stats" role="status" aria-live="polite">
-              <div class="stat">
-                <div class="statN" id="statTotal">0</div>
-                <div class="statL">Total</div>
-              </div>
-              <div class="stat">
-                <div class="statN" id="statPublic">0</div>
-                <div class="statL">Public</div>
-              </div>
-              <div class="stat">
-                <div class="statN" id="statPro">0</div>
-                <div class="statL">PRO</div>
-              </div>
+            <div class="stat">
+              <div class="statN" id="statPublic">0</div>
+              <div class="statL">Public</div>
             </div>
-
-            <div class="note">
-              <b>Vision :</b> le public découvre, commande, réserve. Le pro gère, pilote, vend et avance.
+            <div class="stat">
+              <div class="statN" id="statPro">0</div>
+              <div class="statL">PRO</div>
             </div>
           </div>
-        </div>
+
+          <div class="compactNote">
+            <b>Règle DIGIY :</b> tous les liens sortants portent un paramètre de retour pointant vers
+            <b>http://digiylyfe.com</b>.
+          </div>
+        </aside>
+      </section>
+
+      <main class="main">
+        <section class="section" id="public">
+          <div class="sectionHead">
+            <div>
+              <h2 class="sectionTitle">Modules Publics</h2>
+              <div class="sectionSub">Pour les clients, visiteurs, commandes, réservations et découverte.</div>
+            </div>
+            <div class="pillRow">
+              <span class="pill public">PUBLIC</span>
+              <span class="pill">Client</span>
+            </div>
+          </div>
+
+          <div class="railWrap">
+            <div class="moduleRail" id="publicRail"></div>
+          </div>
+        </section>
+
+        <section class="section" id="pro">
+          <div class="sectionHead">
+            <div>
+              <h2 class="sectionTitle">Modules PRO</h2>
+              <div class="sectionSub">Pour gérer, piloter, vendre, recruter, encaisser et avancer.</div>
+            </div>
+            <div class="pillRow">
+              <span class="pill pro">PRO</span>
+              <span class="pill">Cockpit</span>
+            </div>
+          </div>
+
+          <div class="railWrap">
+            <div class="moduleRail" id="proRail"></div>
+          </div>
+        </section>
+
+        <section class="focus">
+          <div class="focusInner">
+            <div class="focusTop">
+              <div class="focusLeft">
+                <div class="focusIcon" id="focusIcon">🗺️</div>
+                <div>
+                  <div class="focusLabel" id="focusLabel">Explore</div>
+                  <div class="focusHint" id="focusHint">Découvrir la région</div>
+                </div>
+              </div>
+
+              <div class="focusBadges">
+                <div class="focusBadge public" id="focusKind">PUBLIC</div>
+                <div class="focusBadge gold" id="focusBadge">👑 Focus DIGIY</div>
+              </div>
+            </div>
+
+            <div class="focusText" id="focusText">
+              DIGIY EXPLORE sert de porte d’entrée claire pour montrer le territoire, les expériences,
+              les découvertes et la présence locale sans noyer le visiteur.
+            </div>
+
+            <div class="focusActions">
+              <a class="btn primary" id="focusOpenBtn" href="https://explore.digiylyfe.com/?return=http%3A%2F%2Fdigiylyfe.com" target="_blank" rel="noopener">Ouvrir le module</a>
+              <a class="btn gold" href="http://digiylyfe.com">← Retour DIGIYLYFE</a>
+            </div>
+
+            <footer class="footer">
+              <div class="footLine">
+                <span class="footBrand">DIGIYLYFE ∞</span>
+                <span class="sep">·</span>
+                <span>0% commission</span>
+                <span class="sep">·</span>
+                <span>paiement direct</span>
+                <span class="sep">·</span>
+                <span>retour central vers http://digiylyfe.com</span>
+              </div>
+            </footer>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="stickyBar">
+    <div class="stickyInner">
+      <div class="stickyInfo">
+        <div class="stickyTitle">Module sélectionné</div>
+        <div class="stickyValue" id="stickyValue">Explore • PUBLIC • Découvrir la région</div>
       </div>
-    </header>
-
-    <main class="main">
-      <section class="section" id="modules">
-        <div class="sectionHead">
-          <h2>Modules DIGIY</h2>
-          <div class="legend">
-            <span class="pill public">PUBLIC</span>
-            <span class="pill.pro">PRO</span>
-            <span class="pill live">LIVE</span>
-            <span class="pill beta">BETA</span>
-            <span class="pill officiel">OFFICIEL</span>
-          </div>
-        </div>
-
-        <div id="modulesGrid" class="grid" aria-live="polite"></div>
-      </section>
-
-      <section class="section">
-        <div class="sectionHead">
-          <h2>Vision</h2>
-        </div>
-        <div class="note">
-          DIGIYLYFE construit des outils simples, puissants et respectueux du terrain.
-          Ici, le numérique ne remplace pas l’humain : il l’équipe, il le rend visible,
-          il protège sa valeur. La vitrine ne doit pas noyer. Elle doit orienter.
-        </div>
-      </section>
-
-      <footer class="footer">
-        <div class="footLine">
-          <span class="footBrand">DIGIYLYFE ∞</span>
-          <span class="sep">·</span>
-          <span>0% commission</span>
-          <span class="sep">·</span>
-          <span>paiement direct</span>
-          <span class="sep">·</span>
-          <span>identité verte assumée</span>
-        </div>
-        <div class="footTiny">PUBLIC + PRO · made for the terrain · Sénégal first</div>
-      </footer>
-    </main>
+      <div class="stickyActions">
+        <a class="btn gold" href="http://digiylyfe.com">Accueil</a>
+        <a class="btn primary" id="stickyOpenBtn" href="https://explore.digiylyfe.com/?return=http%3A%2F%2Fdigiylyfe.com" target="_blank" rel="noopener">Ouvrir</a>
+      </div>
+    </div>
   </div>
 
   <script>
-    (function () {
+    (function(){
       "use strict";
 
+      const HOME_RETURN = "http://digiylyfe.com";
+
       const LINKS = {
-        digiylyfe:    "https://digiylyfe.com/",
-        apps:         "https://apps.digiylyfe.com/",
-        admin:        "https://admin.digiylyfe.com/",
-        audio:        "https://apps.digiylyfe.com/audio/",
-        tarifs:       "https://tarifs.digiylyfe.com/",
-        vasChezDigiy: "https://vas-chez-digiy.digiylyfe.com/",
-
-        ndimbalMap:       "https://ndimbal-map.digiylyfe.com/",
-        ndimbalAnnonces:  "https://ndimbal-annonces.digiylyfe.com/",
-        ndimbalLoc:       "https://ndimbal-loc.digiylyfe.com/",
-        hubDrive:         "https://ndimbal-annonces.digiylyfe.com/",
-
         bonneAffaire: "https://bonne-affaire.digiylyfe.com/",
         driverClient: "https://driver-client.digiylyfe.com/",
-        loc:          "https://loc.digiylyfe.com/",
-        resto:        "https://resto.digiylyfe.com/",
-        build:        "https://build.digiylyfe.com/",
-        explore:      "https://explore.digiylyfe.com/",
-        market:       "https://market.digiylyfe.com/",
-        jobs:         "https://jobs.digiylyfe.com/",
-        pay:          "https://pay.digiylyfe.com/",
-        resaTable:    "https://resa-table-resto.digiylyfe.com/",
-        notable:      "https://beauville.github.io/digiy-notable/",
+        loc: "https://loc.digiylyfe.com/",
+        resto: "https://resto.digiylyfe.com/",
+        resaTable: "https://resa-table-resto.digiylyfe.com/",
+        build: "https://build.digiylyfe.com/",
+        explore: "https://explore.digiylyfe.com/",
+        market: "https://market.digiylyfe.com/",
+        jobs: "https://jobs.digiylyfe.com/",
+        pay: "https://pay.digiylyfe.com/",
+        audio: "https://apps.digiylyfe.com/audio/",
+        notable: "https://beauville.github.io/digiy-notable/",
+        ndimbalMap: "https://ndimbal-map.digiylyfe.com/",
+        ndimbalAnnonces: "https://ndimbal-annonces.digiylyfe.com/",
+        ndimbalLoc: "https://ndimbal-loc.digiylyfe.com/",
 
         inscriptionPro: "https://inscription-pro.digiylyfe.com/",
-        espacePro:      "https://pro-espace.digiylyfe.com/",
-        driverPro:    "https://pro-driver.digiylyfe.com/",
-        locPro:       "https://pro-loc.digiylyfe.com/",
-        caissePro:    "https://pro-caisse.digiylyfe.com/",
-        buildPro:     "https://pro-build.digiylyfe.com/",
-        marketPro:    "https://pro-market.digiylyfe.com/",
-        jobsPro:      "https://pro-job.digiylyfe.com/",
-        restoPro:     "https://pro-resto.digiylyfe.com/",
+        espacePro: "https://pro-espace.digiylyfe.com/",
+        driverPro: "https://pro-driver.digiylyfe.com/",
+        locPro: "https://pro-loc.digiylyfe.com/",
+        restoPro: "https://pro-resto.digiylyfe.com/",
+        caissePro: "https://pro-caisse.digiylyfe.com/",
+        buildPro: "https://pro-build.digiylyfe.com/",
+        marketPro: "https://pro-market.digiylyfe.com/",
+        jobsPro: "https://pro-job.digiylyfe.com/",
+        payPro: "https://pay.digiylyfe.com/",
+        explorePro: "https://explore.digiylyfe.com/",
         resaTablePro: "https://pro-resa-resto.digiylyfe.com/",
-        payPro:       "https://pay.digiylyfe.com/",
-        explorePro:   "https://explore.digiylyfe.com/",
-        fretClientProPin:    "https://pro-fret-client.digiylyfe.com/pin.html",
+        fretClientProPin: "https://pro-fret-client.digiylyfe.com/pin.html",
         fretChauffeurProPin: "https://pro-fret-chauffeur.digiylyfe.com/pin.html"
       };
 
-      const MODULES = [
-        { key: "bonneAffaire", name: "Bonne Affaire", icon: "🎯", tag: "marketplace", desc: "Deals & offres", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "driverClient", name: "DIGIY DRIVER", icon: "🚗", tag: "transport", desc: "Réserver ta course VTC", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "loc", name: "DIGIY LOC", icon: "🏠", tag: "accommodation", desc: "Trouver un logement", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "resto", name: "DIGIY RESTO", icon: "🍽️", tag: "restaurant", desc: "Commander à manger", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "resaTable", name: "Résa Table", icon: "📅", tag: "reservation", desc: "Réserver une table", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "build", name: "DIGIY BUILD", icon: "🏗️", tag: "services", desc: "Services de construction", kind: "public", status: "beta", statusLabel: "BETA" },
-        { key: "explore", name: "Explore", icon: "🗺️", tag: "discovery", desc: "Découvrir la région", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "market", name: "DIGIY MARKET", icon: "🛍️", tag: "marketplace", desc: "Acheter / vendre", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "jobs", name: "DIGIY JOBS", icon: "💼", tag: "emploi", desc: "Offres d'emploi", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "pay", name: "DIGIY PAY", icon: "💳", tag: "paiement", desc: "Portefeuille digital", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "audio", name: "DIGIY AUDIO", icon: "🎵", tag: "content", desc: "Écoute articles et contenus", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "notable", name: "Notable", icon: "📝", tag: "documentation", desc: "Blog & ressources", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "ndimbalMap", name: "NDIMBAL Map", icon: "🗺️", tag: "ndimbal", desc: "Carte des annonces", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "ndimbalAnnonces", name: "NDIMBAL Annonces", icon: "📢", tag: "ndimbal", desc: "Hub Drive - Vendre", kind: "public", status: "live", statusLabel: "LIVE" },
-        { key: "ndimbalLoc", name: "NDIMBAL Loc", icon: "🏡", tag: "ndimbal", desc: "Locations NDIMBAL", kind: "public", status: "live", statusLabel: "LIVE" },
-
-        { key: "inscriptionPro", name: "Inscription PRO", icon: "✍️", tag: "auth", desc: "Créer compte professionnel", kind: "pro", status: "live", statusLabel: "LIVE" },
-        { key: "espacePro", name: "Espace PRO", icon: "🏢", tag: "dashboard", desc: "Tableau de bord pro", kind: "pro", status: "live", statusLabel: "LIVE" },
-        { key: "driverPro", name: "DIGIY DRIVER PRO", icon: "🚗", tag: "vtc", desc: "Gérer ta flotte VTC", kind: "pro", status: "live", statusLabel: "LIVE" },
-        { key: "locPro", name: "DIGIY LOC PRO", icon: "🏠", tag: "properties", desc: "Gérer tes logements", kind: "pro", status: "live", statusLabel: "LIVE" },
-        { key: "restoPro", name: "DIGIY RESTO PRO", icon: "👨‍🍳", tag: "restaurant", desc: "Gérer ton resto", kind: "pro", status: "live", statusLabel: "LIVE" },
-        { key: "caissePro", name: "Caisse PRO", icon: "💰", tag: "pos", desc: "Point de vente", kind: "pro", status: "live", statusLabel: "LIVE" },
-        { key: "buildPro", name: "DIGIY BUILD PRO", icon: "🏗️", tag: "construction", desc: "Gérer chantiers", kind: "pro", status: "beta", statusLabel: "BETA" },
-        { key: "marketPro", name: "DIGIY MARKET PRO", icon: "🛍️", tag: "marketplace", desc: "Vendre sur market", kind: "pro", status: "live", statusLabel: "LIVE" },
-        { key: "jobsPro", name: "DIGIY JOBS PRO", icon: "💼", tag: "recruitment", desc: "Recruter", kind: "pro", status: "live", statusLabel: "LIVE" },
-        { key: "payPro", name: "DIGIY PAY PRO", icon: "💳", tag: "paiement", desc: "Gérer paiements", kind: "pro", status: "live", statusLabel: "LIVE" },
-        { key: "explorePro", name: "Explore PRO", icon: "🗺️", tag: "analytics", desc: "Analytics & stats", kind: "pro", status: "live", statusLabel: "LIVE" },
-        { key: "resaTablePro", name: "Résa Table PRO", icon: "📅", tag: "reservation", desc: "Gérer réservations", kind: "pro", status: "live", statusLabel: "LIVE" },
-        { key: "fretClientProPin", name: "FRET CLIENT PRO", icon: "📦", tag: "fret", desc: "PIN expéditeur", kind: "pro", status: "live", statusLabel: "LIVE" },
-        { key: "fretChauffeurProPin", name: "FRET CHAUFFEUR PRO", icon: "🚚", tag: "fret", desc: "PIN chauffeur", kind: "pro", status: "live", statusLabel: "LIVE" }
+      const PUBLIC_MODULES = [
+        { key:"explore", name:"Explore", icon:"🗺️", desc:"Découvrir la région", status:"LIVE", loco:true },
+        { key:"driverClient", name:"DIGIY DRIVER", icon:"🚗", desc:"Réserver ta course VTC", status:"LIVE" },
+        { key:"loc", name:"DIGIY LOC", icon:"🏠", desc:"Trouver un logement", status:"LIVE" },
+        { key:"resto", name:"DIGIY RESTO", icon:"🍽️", desc:"Commander à manger", status:"LIVE" },
+        { key:"resaTable", name:"Résa Table", icon:"📅", desc:"Réserver une table", status:"LIVE" },
+        { key:"market", name:"DIGIY MARKET", icon:"🛍️", desc:"Acheter / vendre", status:"LIVE" },
+        { key:"jobs", name:"DIGIY JOBS", icon:"💼", desc:"Offres d'emploi", status:"LIVE" },
+        { key:"pay", name:"DIGIY PAY", icon:"💳", desc:"Portefeuille digital", status:"LIVE" },
+        { key:"bonneAffaire", name:"Bonne Affaire", icon:"🎯", desc:"Deals & offres", status:"LIVE" },
+        { key:"build", name:"DIGIY BUILD", icon:"🏗️", desc:"Services de construction", status:"BETA" },
+        { key:"audio", name:"DIGIY AUDIO", icon:"🎵", desc:"Écoute articles et contenus", status:"LIVE" },
+        { key:"notable", name:"Notable", icon:"📝", desc:"Blog & ressources", status:"LIVE" },
+        { key:"ndimbalMap", name:"NDIMBAL Map", icon:"🗺️", desc:"Carte des annonces", status:"LIVE" },
+        { key:"ndimbalAnnonces", name:"NDIMBAL Annonces", icon:"📢", desc:"Hub Drive - Vendre", status:"LIVE" },
+        { key:"ndimbalLoc", name:"NDIMBAL Loc", icon:"🏡", desc:"Locations NDIMBAL", status:"LIVE" }
       ];
 
-      const state = {
-        filter: "all",
-        q: ""
+      const PRO_MODULES = [
+        { key:"inscriptionPro", name:"Inscription PRO", icon:"✍️", desc:"Créer compte professionnel", status:"LIVE" },
+        { key:"espacePro", name:"Espace PRO", icon:"🏢", desc:"Tableau de bord pro", status:"LIVE" },
+        { key:"driverPro", name:"DIGIY DRIVER PRO", icon:"🚗", desc:"Gérer ta flotte VTC", status:"LIVE" },
+        { key:"locPro", name:"DIGIY LOC PRO", icon:"🏠", desc:"Gérer tes logements", status:"LIVE" },
+        { key:"restoPro", name:"DIGIY RESTO PRO", icon:"👨‍🍳", desc:"Gérer ton resto", status:"LIVE" },
+        { key:"caissePro", name:"Caisse PRO", icon:"💰", desc:"Point de vente", status:"LIVE" },
+        { key:"buildPro", name:"DIGIY BUILD PRO", icon:"🏗️", desc:"Gérer chantiers", status:"BETA" },
+        { key:"marketPro", name:"DIGIY MARKET PRO", icon:"🛍️", desc:"Vendre sur market", status:"LIVE" },
+        { key:"jobsPro", name:"DIGIY JOBS PRO", icon:"💼", desc:"Recruter", status:"LIVE" },
+        { key:"payPro", name:"DIGIY PAY PRO", icon:"💳", desc:"Gérer paiements", status:"LIVE" },
+        { key:"explorePro", name:"Explore PRO", icon:"🗺️", desc:"Analytics & stats", status:"LIVE" },
+        { key:"resaTablePro", name:"Résa Table PRO", icon:"📅", desc:"Gérer réservations", status:"LIVE" },
+        { key:"fretClientProPin", name:"FRET CLIENT PRO", icon:"📦", desc:"PIN expéditeur", status:"LIVE" },
+        { key:"fretChauffeurProPin", name:"FRET CHAUFFEUR PRO", icon:"🚚", desc:"PIN chauffeur", status:"LIVE" }
+      ];
+
+      const COPY = {
+        explore: "DIGIY EXPLORE sert de porte d’entrée claire pour montrer le territoire, les expériences, les découvertes et la présence locale sans noyer le visiteur.",
+        driverClient: "DIGIY DRIVER côté public aide le client à trouver et réserver sa course rapidement, avec une lecture directe et un retour vers DIGIYLYFE.",
+        loc: "DIGIY LOC côté public donne envie de découvrir un logement sans surcharge visuelle.",
+        resto: "DIGIY RESTO côté public permet de voir, comprendre et commander vite, dans un ton propre et chaleureux.",
+        resaTable: "Résa Table côté public simplifie la réservation avec une porte claire et rapide.",
+        market: "DIGIY MARKET côté public met les produits et vitrines en avant avec une lecture plus marchande.",
+        jobs: "DIGIY JOBS côté public aide à voir les opportunités d’emploi sans brouillard.",
+        pay: "DIGIY PAY côté public pose la logique de paiement simple et directe, au service du terrain.",
+        bonneAffaire: "Bonne Affaire met en avant les deals et les opportunités dans une lecture directe.",
+        build: "DIGIY BUILD côté public valorise les services terrain avec plus de lisibilité.",
+        audio: "DIGIY AUDIO permet d’écouter les contenus et articles dans une logique plus fluide.",
+        notable: "Notable rassemble ressources, idées et contenus écrits dans une présentation calme.",
+        ndimbalMap: "NDIMBAL Map ouvre la carte et la découverte locale avec un accès direct aux annonces.",
+        ndimbalAnnonces: "NDIMBAL Annonces sert de hub d’annonces pour publier et vendre.",
+        ndimbalLoc: "NDIMBAL Loc concentre la location dans un espace simple et direct.",
+
+        inscriptionPro: "Inscription PRO est la porte d’entrée pour les professionnels qui veulent rejoindre l’écosystème DIGIY.",
+        espacePro: "Espace PRO est le cockpit central pour retrouver son univers professionnel et piloter proprement.",
+        driverPro: "DIGIY DRIVER PRO aide le chauffeur à suivre son activité avec une entrée claire.",
+        locPro: "DIGIY LOC PRO aide à gérer les logements, accès et activité dans une logique compacte.",
+        restoPro: "DIGIY RESTO PRO sert à piloter le restaurant, les commandes et la présence terrain.",
+        caissePro: "Caisse PRO rassemble la logique point de vente dans une interface directe.",
+        buildPro: "DIGIY BUILD PRO valorise la gestion des chantiers et du savoir-faire.",
+        marketPro: "DIGIY MARKET PRO sert à gérer sa vitrine commerce et son activité côté pro.",
+        jobsPro: "DIGIY JOBS PRO donne au recruteur un accès clair pour publier et suivre.",
+        payPro: "DIGIY PAY PRO concentre la gestion des paiements dans une porte métier plus lisible.",
+        explorePro: "Explore PRO ouvre la lecture analytics et stats côté professionnel.",
+        resaTablePro: "Résa Table PRO permet de gérer les réservations et le flux client.",
+        fretClientProPin: "FRET CLIENT PRO ouvre l’entrée PIN de l’expéditeur dans une logique opérationnelle.",
+        fretChauffeurProPin: "FRET CHAUFFEUR PRO ouvre l’entrée PIN du chauffeur pour le pilotage terrain."
       };
 
-      const modulesGridEl = document.getElementById("modulesGrid");
-      const statTotalEl = document.getElementById("statTotal");
-      const statPublicEl = document.getElementById("statPublic");
-      const statProEl = document.getElementById("statPro");
-      const countAllHeroEl = document.getElementById("countAllHero");
-      const searchInputEl = document.getElementById("searchInput");
+      const publicRail = document.getElementById("publicRail");
+      const proRail = document.getElementById("proRail");
+      const statTotal = document.getElementById("statTotal");
+      const statPublic = document.getElementById("statPublic");
+      const statPro = document.getElementById("statPro");
+
+      const focusIcon = document.getElementById("focusIcon");
+      const focusLabel = document.getElementById("focusLabel");
+      const focusHint = document.getElementById("focusHint");
+      const focusKind = document.getElementById("focusKind");
+      const focusBadge = document.getElementById("focusBadge");
+      const focusText = document.getElementById("focusText");
+      const focusOpenBtn = document.getElementById("focusOpenBtn");
       const heroOpenBtn = document.getElementById("heroOpenBtn");
+      const stickyOpenBtn = document.getElementById("stickyOpenBtn");
+      const stickyValue = document.getElementById("stickyValue");
 
-      function escapeHtml(s) {
-        return String(s).replace(/[&<>"']/g, (m) => ({
-          "&": "&amp;", "<": "&lt;", ">": "&gt;",
-          '"': "&quot;", "'": "&#039;"
-        }[m]));
-      }
+      let currentKey = "explore";
+      let currentKind = "public";
 
-      function getFilteredModules() {
-        const q = state.q.trim().toLowerCase();
-        return MODULES.filter(m => {
-          if (state.filter === "public" && m.kind !== "public") return false;
-          if (state.filter === "pro" && m.kind !== "pro") return false;
-          if (!q) return true;
-          const hay = [m.key, m.name, m.tag, m.desc, m.kind, m.status].join(" ").toLowerCase();
-          return hay.includes(q);
-        });
-      }
-
-      function badgeHTML(kind, status, statusLabel) {
-        const kindBadge = `<span class="badge kind-${kind}">${kind === "pro" ? "PRO" : "PUBLIC"}</span>`;
-        const statusClass = status === "beta" ? "beta" : "live";
-        const statusBadge = `<span class="badge ${statusClass}">${escapeHtml(statusLabel)}</span>`;
-        return kindBadge + statusBadge;
-      }
-
-      function cardHTML(m) {
-        const url = LINKS[m.key] || LINKS.digiylyfe;
-        return `
-          <a class="card" href="${escapeHtml(url)}" target="_blank" rel="noopener" aria-label="${escapeHtml(m.name)}">
-            <div class="cardTop">
-              <div class="icon">${escapeHtml(m.icon)}</div>
-              <div style="flex:1;min-width:0">
-                <div class="cardTitle">${escapeHtml(m.name)}</div>
-                <div class="cardTag">${escapeHtml(m.tag)}</div>
-                <p class="cardDesc">${escapeHtml(m.desc)}</p>
-                <div class="badges">
-                  ${badgeHTML(m.kind, m.status, m.statusLabel)}
-                </div>
-              </div>
-            </div>
-
-            <div class="cardActions">
-              <span class="btn ${m.kind === "pro" ? "" : "outline"}">Ouvrir →</span>
-            </div>
-
-            <div class="smallLink">${escapeHtml(url)}</div>
-          </a>
-        `;
-      }
-
-      function updateStats(filtered) {
-        const total = filtered.length;
-        const pub = filtered.filter(m => m.kind === "public").length;
-        const pro = filtered.filter(m => m.kind === "pro").length;
-
-        statTotalEl.textContent = String(total);
-        statPublicEl.textContent = String(pub);
-        statProEl.textContent = String(pro);
-      }
-
-      function render() {
-        const filtered = getFilteredModules();
-
-        modulesGridEl.innerHTML = filtered.length
-          ? filtered.map(cardHTML).join("")
-          : `<div class="empty">Aucun module ne correspond à ta recherche frérot.</div>`;
-
-        updateStats(filtered);
-      }
-
-      function setFilter(f) {
-        state.filter = f;
-        document.querySelectorAll(".tab").forEach(btn => {
-          btn.classList.toggle("active", btn.dataset.filter === f);
-        });
-
-        if (f === "pro") {
-          heroOpenBtn.href = LINKS.espacePro;
-        } else {
-          heroOpenBtn.href = LINKS.explore;
+      function withReturn(url){
+        try{
+          const u = new URL(url);
+          u.searchParams.set("return", HOME_RETURN);
+          return u.toString();
+        }catch(e){
+          return url;
         }
-
-        render();
       }
 
-      document.querySelectorAll(".tab").forEach(btn => {
-        btn.addEventListener("click", () => setFilter(btn.dataset.filter));
-      });
+      function renderCounts(){
+        statTotal.textContent = String(PUBLIC_MODULES.length + PRO_MODULES.length);
+        statPublic.textContent = String(PUBLIC_MODULES.length);
+        statPro.textContent = String(PRO_MODULES.length);
+      }
 
-      searchInputEl.addEventListener("input", () => {
-        state.q = searchInputEl.value || "";
-        render();
-      });
+      function renderRail(container, modules, kind){
+        container.innerHTML = modules.map(item => `
+          <button
+            class="moduleBtn ${kind === "public" ? "publicCard" : "proCard"} ${item.key === currentKey ? "active" : ""} ${item.loco ? "loco" : ""}"
+            type="button"
+            data-kind="${kind}"
+            data-key="${item.key}">
+            <span class="moduleEmoji">${item.icon}</span>
+            <div class="moduleName">${item.name}</div>
+            <div class="moduleHint">${item.desc}</div>
+            <div class="miniBadges">
+              <span class="miniBadge ${kind}">${kind === "public" ? "PUBLIC" : "PRO"}</span>
+              <span class="miniBadge ${item.status === "BETA" ? "beta" : "live"}">${item.status}</span>
+              ${item.loco ? `<span class="miniBadge loco">FOCUS</span>` : ``}
+            </div>
+          </button>
+        `).join("");
 
-      document.getElementById("btnReset").addEventListener("click", () => {
-        state.q = "";
-        state.filter = "all";
-        searchInputEl.value = "";
-        setFilter("all");
-      });
+        container.querySelectorAll("[data-key]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            currentKey = btn.getAttribute("data-key") || "explore";
+            currentKind = btn.getAttribute("data-kind") || "public";
+            renderAll();
+          });
+        });
+      }
 
-      countAllHeroEl.textContent = String(MODULES.length);
-      setFilter("all");
+      function getModule(key, kind){
+        const arr = kind === "pro" ? PRO_MODULES : PUBLIC_MODULES;
+        return arr.find(x => x.key === key) || arr[0];
+      }
+
+      function renderFocus(){
+        const item = getModule(currentKey, currentKind);
+        const href = withReturn(LINKS[item.key] || HOME_RETURN);
+        const text = COPY[item.key] || item.desc;
+        const badge = item.loco ? "👑 Focus DIGIY" : (currentKind === "public" ? "🌍 Module public" : "🧰 Module pro");
+
+        focusIcon.textContent = item.icon;
+        focusLabel.textContent = item.name;
+        focusHint.textContent = item.desc;
+
+        focusKind.textContent = currentKind === "public" ? "PUBLIC" : "PRO";
+        focusKind.className = `focusBadge ${currentKind}`;
+
+        focusBadge.textContent = badge;
+        focusText.textContent = text;
+
+        focusOpenBtn.href = href;
+        heroOpenBtn.href = href;
+        stickyOpenBtn.href = href;
+        stickyValue.textContent = `${item.name} • ${currentKind === "public" ? "PUBLIC" : "PRO"} • ${item.desc}`;
+      }
+
+      function renderAll(){
+        renderRail(publicRail, PUBLIC_MODULES, "public");
+        renderRail(proRail, PRO_MODULES, "pro");
+        renderFocus();
+      }
+
+      renderCounts();
+      renderAll();
     })();
   </script>
 </body>
