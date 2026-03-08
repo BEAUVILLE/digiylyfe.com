@@ -1,580 +1,691 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"/>
-  <meta name="theme-color" content="#061b14"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#061b14" />
 
-  <title>DIGIY ROYAL ∞ — L'Afrique enracinée, connectée au monde</title>
-  <meta name="description" content="DIGIY ROYAL — Tous les outils pour ton business en Afrique. 0% commission. Paiement direct au pro." />
+  <title>DIGIYLYFE ∞ — L'Afrique enracinée, connectée au monde</title>
+  <meta
+    name="description"
+    content="DIGIYLYFE — des outils simples, premium et directs pour faire avancer ton business. 0% commission. Paiement direct au pro."
+  />
 
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="DIGIY ROYAL">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="DIGIYLYFE" />
+  <meta name="mobile-web-app-capable" content="yes" />
 
-  <link rel="icon" href="./icon-192.png" sizes="192x192">
-  <link rel="apple-touch-icon" href="./icon-192.png">
-  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon-192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <link rel="manifest" href="./manifest.json" />
 
-  <link rel="stylesheet" href="./hub.css?v=enhanced1"/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
-  <script defer src="./hub.js?v=enhanced1"></script>
-
-  <script>
-    document.addEventListener('touchmove', function (e) {
-      if (window.navigator.standalone) {
-        // Empêche le rebond Safari quand on est en mode "App"
-        // e.preventDefault();
-      }
-    }, { passive: false });
-  </script>
-
-  <!-- ✅ PATCH UI: floats + manifesto + padding (pour ne rien cacher) -->
   <style>
-    /* Ne pas masquer le bas (tarifs etc.) */
-    .main{ padding-bottom: 260px !important; }
-    .footer{ padding-bottom: 90px !important; }
-
-    /* --- Manifesto hero --- */
-    .manifestoHero { max-width: 1200px; margin: 20px auto 0; padding: 0 18px; }
-    .manifestoContainer{
-      background: linear-gradient(135deg, rgba(11,42,31,.95) 0%, rgba(10,36,27,.85) 100%);
-      border: 1px solid rgba(148,163,184,.28);
-      border-radius: 26px;
-      padding: 40px 30px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    :root{
+      --bg:#061b14;
+      --bg2:#082117;
+      --card:rgba(8,29,21,.78);
+      --card-strong:rgba(11,42,31,.96);
+      --line:rgba(255,255,255,.10);
+      --line-strong:rgba(246,196,83,.22);
+      --text:#edf8f0;
+      --muted:rgba(237,248,240,.74);
+      --gold:#f6c453;
+      --gold-2:#ffdf8c;
+      --green:#22c55e;
+      --green-soft:rgba(34,197,94,.16);
+      --shadow:0 18px 60px rgba(0,0,0,.34);
+      --radius:24px;
+      --fontA:"Outfit",system-ui,-apple-system,sans-serif;
+      --fontB:"Manrope",system-ui,-apple-system,sans-serif;
+      --max:1120px;
     }
-    .manifestoContainer::before{
-      content:""; position:absolute; inset:-100px;
+
+    *{ box-sizing:border-box; }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:var(--fontB);
       background:
-        radial-gradient(600px 300px at 30% 20%, rgba(246,196,83,.12), transparent 60%),
-        radial-gradient(600px 300px at 70% 80%, rgba(22,163,74,.10), transparent 60%);
-      pointer-events:none; opacity:.8;
-    }
-    .manifestoIcon{ font-size:64px; margin-bottom:20px; position:relative; z-index:1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
-    .manifestoTitle{
-      position:relative; z-index:1;
-      font-family: var(--fontA);
-      font-weight: 900;
-      font-size: 36px;
-      line-height: 1.15;
-      margin: 0 0 15px 0;
-      color: #FFD700;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 0 20px rgba(255,215,0,0.3);
-    }
-    .manifestoSubtitle{
-      position:relative; z-index:1;
-      font-family: var(--fontA);
-      font-weight: 800;
-      font-size: 18px;
-      color: #FFFFFF;
-      margin-bottom: 20px;
-      letter-spacing: .5px;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-    }
-    .manifestoText{
-      position:relative; z-index:1;
-      font-size: 19px;
-      line-height: 1.7;
-      color: #F8FAFC;
-      max-width: 760px;
-      margin: 0 auto 30px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-    .manifestoText strong{
-      color:#FFD700; font-weight: 900;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.6), 0 0 15px rgba(255,215,0,0.2);
-    }
-    .manifestoBtns{
-      position:relative; z-index:1;
-      display:flex; gap: 15px;
-      justify-content:center; flex-wrap:wrap;
-    }
-    .manifestoPrimary{
-      border-color: rgba(246,196,83,.55) !important;
-      background: linear-gradient(135deg, rgba(246,196,83,.30), rgba(22,163,74,.25)) !important;
-      font-size: 16px !important;
-      padding: 14px 22px !important;
-      color:#fff !important;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-    }
-    .manifestoOutline{
-      background: transparent !important;
-      border-color: rgba(22,163,74,.55) !important;
-      font-size: 16px !important;
-      padding: 14px 22px !important;
-      color:#fff !important;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        radial-gradient(900px 460px at 15% -10%, rgba(246,196,83,.10), transparent 60%),
+        radial-gradient(900px 460px at 100% 0%, rgba(34,197,94,.10), transparent 58%),
+        linear-gradient(180deg, #061b14 0%, #04120d 100%);
+      min-height:100vh;
+      overflow-x:hidden;
     }
 
-    /* --- Float buttons --- */
-    .floatBtn{
-      position:fixed;
-      z-index:30;
-      border-radius:999px;
-      padding:14px 16px !important;
-      border:1px solid rgba(148,163,184,.26);
-      background: rgba(2,6,23,.30);
-      color:var(--ink);
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .page{
+      width:min(100%, var(--max));
+      margin:0 auto;
+      padding:18px 16px 44px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:18px;
+      position:sticky;
+      top:0;
+      z-index:20;
+      padding:12px 0 6px;
+      backdrop-filter:blur(12px);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
       font-family:var(--fontA);
       font-weight:900;
-      cursor:pointer;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      backdrop-filter: blur(10px);
-      transition: all .2s ease;
-      font-size:14px !important;
-    }
-    .floatBtn:hover{ border-color: rgba(246,196,83,.35); transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,.45); }
-    .floatBtn:active{ transform: translateY(0px) scale(.98); }
-
-    /* Droite */
-    #tarif-bubble-btn{ right:14px; bottom:18px; left:auto; }
-    #digiy-help-btn{ right:14px; bottom:68px; left:auto; }
-    #knowledge-float-btn{ right:14px; bottom:118px; left:auto; }
-
-    /* Gauche */
-    #espace-pro-btn{ left:14px; bottom:18px; right:auto; }
-    #vision-bubble-btn{ left:14px; bottom:68px; right:auto; }
-
-    @media (max-width:560px){
-      .manifestoContainer{ padding: 30px 20px; }
-      .manifestoIcon{ font-size: 48px; }
-      .manifestoTitle{ font-size: 26px; }
-      .manifestoSubtitle{ font-size: 15px; }
-      .manifestoText{ font-size: 17px; }
-      .manifestoBtns{ flex-direction: column; }
-      .manifestoPrimary, .manifestoOutline{ width:100%; }
-
-      #tarif-bubble-btn{ right:10px; bottom:14px; }
-      #digiy-help-btn{ right:10px; bottom:62px; }
-      #knowledge-float-btn{ right:10px; bottom:110px; }
-      #espace-pro-btn{ left:10px; bottom:14px; }
-      #vision-bubble-btn{ left:10px; bottom:62px; }
-      .main{ padding-bottom: 280px !important; }
+      font-size:24px;
+      color:#fff;
+      background:
+        linear-gradient(135deg, rgba(246,196,83,.26), rgba(34,197,94,.22));
+      border:1px solid rgba(246,196,83,.25);
+      box-shadow:var(--shadow);
+      flex:0 0 auto;
     }
 
-    /* ✅ Spotlight module */
-    .spotlight{
-      margin-top: 14px;
-      border-radius: 22px;
-      border: 1px solid rgba(148,163,184,.22);
-      background: rgba(2,6,23,.25);
-      box-shadow: 0 18px 50px rgba(0,0,0,.25);
-      padding: 16px;
+    .brandText{
+      min-width:0;
     }
-    .spotlightRow{
-      display:flex; gap:12px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+
+    .brandTitle{
+      font-family:var(--fontA);
+      font-size:15px;
+      font-weight:900;
+      letter-spacing:.8px;
+      color:#fff;
+      line-height:1.05;
     }
-    .spotlightTitle{
-      font-family: var(--fontA);
-      font-weight: 1000;
-      letter-spacing: .3px;
+
+    .brandSub{
+      margin-top:3px;
+      font-size:11px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .topAction{
+      flex:0 0 auto;
+    }
+
+    .hero{
+      display:grid;
+      gap:14px;
+      margin-top:10px;
+    }
+
+    .heroCard,
+    .sectionCard,
+    .closingCard{
+      position:relative;
+      overflow:hidden;
+      border-radius:28px;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(11,42,31,.94), rgba(8,28,20,.92));
+      box-shadow:var(--shadow);
+    }
+
+    .heroCard::before,
+    .sectionCard::before,
+    .closingCard::before{
+      content:"";
+      position:absolute;
+      inset:-120px;
+      background:
+        radial-gradient(500px 240px at 18% 18%, rgba(246,196,83,.11), transparent 60%),
+        radial-gradient(500px 240px at 85% 85%, rgba(34,197,94,.09), transparent 58%);
+      pointer-events:none;
+    }
+
+    .heroInner,
+    .sectionInner,
+    .closingInner{
+      position:relative;
+      z-index:1;
+      padding:24px 18px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(246,196,83,.20);
+      background:rgba(246,196,83,.08);
+      color:var(--gold-2);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.3px;
+      margin-bottom:14px;
+    }
+
+    h1,h2,h3,p{
       margin:0;
     }
-    .spotlightSub{
-      margin-top:6px;
-      color: rgba(255,255,255,.86);
-      font-weight: 800;
-      line-height: 1.35;
-      max-width: 720px;
+
+    .heroTitle{
+      font-family:var(--fontA);
+      font-size:34px;
+      line-height:1.05;
+      font-weight:900;
+      letter-spacing:-.02em;
+      max-width:9.8em;
     }
-    .spotlightBtns{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+
+    .gold{
+      color:var(--gold);
+      text-shadow:0 0 18px rgba(246,196,83,.12);
+    }
+
+    .heroText{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.62;
+      max-width:38rem;
+    }
+
+    .heroText strong{
+      color:#fff;
+      font-weight:800;
+    }
+
+    .miniChips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .miniChip{
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:12px;
+      font-weight:800;
+      color:#f3fbf5;
+    }
+
+    .ctaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      appearance:none;
+      border:none;
+      outline:none;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:48px;
+      padding:0 16px;
+      border-radius:16px;
+      font-family:var(--fontA);
+      font-weight:900;
+      font-size:14px;
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .btnPrimary{
+      color:#0d160f;
+      background:linear-gradient(135deg, var(--gold), #f7d57a);
+      box-shadow:0 14px 34px rgba(246,196,83,.18);
+    }
+
+    .btnSecondary{
+      color:#fff;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    .btnGhost{
+      color:var(--gold-2);
+      background:rgba(246,196,83,.07);
+      border:1px solid rgba(246,196,83,.16);
+    }
+
+    .sectionCard{
+      margin-top:16px;
+    }
+
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    .sectionTitle{
+      font-family:var(--fontA);
+      font-size:24px;
+      line-height:1.1;
+      font-weight:900;
+    }
+
+    .sectionSub{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+      max-width:40rem;
+    }
+
+    .modulesGrid{
+      display:grid;
+      gap:12px;
+    }
+
+    .moduleCard{
+      position:relative;
+      overflow:hidden;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      padding:16px;
+      display:grid;
+      gap:14px;
+    }
+
+    .moduleCard.loco{
+      border-color:var(--line-strong);
+      background:
+        linear-gradient(180deg, rgba(246,196,83,.10), rgba(255,255,255,.03));
+      box-shadow:0 12px 34px rgba(246,196,83,.08);
+    }
+
+    .moduleTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .moduleLeft{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      min-width:0;
+    }
+
+    .moduleIcon{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-size:24px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      flex:0 0 auto;
+    }
+
+    .moduleCard.loco .moduleIcon{
+      background:rgba(246,196,83,.12);
+      border-color:rgba(246,196,83,.18);
+    }
+
+    .moduleMeta{
+      min-width:0;
+    }
+
+    .moduleTitle{
+      font-family:var(--fontA);
+      font-size:18px;
+      line-height:1.1;
+      font-weight:900;
+      color:#fff;
+      letter-spacing:.2px;
+    }
+
+    .moduleHint{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .moduleBadge{
+      flex:0 0 auto;
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.3px;
+      color:#0d160f;
+      background:linear-gradient(135deg, var(--gold), #ffe3a1);
+      white-space:nowrap;
+    }
+
+    .moduleBottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .moduleLine{
+      font-size:13px;
+      font-weight:800;
+      color:#f3fbf5;
+      opacity:.92;
+    }
+
+    .moduleBtn{
+      min-height:42px;
+      padding:0 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      color:#fff;
+      font-family:var(--fontA);
+      font-weight:900;
+      font-size:13px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+
+    .visionText{
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.72;
+      max-width:46rem;
+    }
+
+    .visionText strong{
+      color:#fff;
+    }
+
+    .closingCard{
+      margin-top:16px;
+      border-color:rgba(246,196,83,.16);
+    }
+
+    .closingTitle{
+      font-family:var(--fontA);
+      font-size:26px;
+      line-height:1.08;
+      font-weight:900;
+      max-width:12em;
+    }
+
+    .closingText{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.65;
+      max-width:40rem;
+    }
+
+    .footer{
+      margin-top:18px;
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.6;
+      padding:4px 6px 0;
+    }
+
+    .footer strong{
+      color:#fff;
+    }
+
+    @media (min-width:720px){
+      .page{
+        padding:22px 20px 54px;
+      }
+
+      .heroInner,
+      .sectionInner,
+      .closingInner{
+        padding:30px 26px;
+      }
+
+      .heroTitle{
+        font-size:50px;
+      }
+
+      .sectionTitle{
+        font-size:30px;
+      }
+
+      .modulesGrid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+
+      .moduleCard.loco{
+        grid-column:1 / -1;
+      }
+
+      .closingTitle{
+        font-size:34px;
+      }
+    }
+
+    @media (min-width:980px){
+      .heroInner{
+        padding:36px 34px;
+      }
+
+      .sectionInner,
+      .closingInner{
+        padding:32px 30px;
+      }
+
+      .heroTitle{
+        font-size:58px;
+      }
+    }
   </style>
 </head>
-
 <body>
-  <div class="bg"></div>
-
-  <div class="app">
-    <header class="top">
-      <a class="brand" href="#" id="homeBrand" aria-label="Retour haut de page">
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Retour en haut">
         <div class="logo">∞</div>
         <div class="brandText">
-          <div class="title">DIGIY ROYAL</div>
-          <div class="subtitle">L'Afrique enracinée, connectée au monde</div>
+          <div class="brandTitle">DIGIYLYFE</div>
+          <div class="brandSub">L'Afrique enracinée, connectée au monde</div>
         </div>
       </a>
 
-      <div class="hero">
-        <div class="heroLeft">
-          <div class="eyebrow">DIGIY ROYAL</div>
-
-          <h1>
-            L'Afrique enracinée, connectée au monde.<br>
-            <span class="gold">Tout ton business dans ta main</span><span class="dot">●</span>
-          </h1>
-
-          <p>
-            <strong>Chauffeur, restaurant, boutique, logement, artisan.</strong><br>
-            Un seul abonnement. Tous les outils. Paiement direct au pro.
-          </p>
-
-          <div class="ctaRow">
-            <button id="btnGetHub" class="btn primary" type="button">🚀 Entrer dans mon HUB DIGIY</button>
-            <button id="btnDeals" class="btn outline" type="button">💥 Découvrir les Bonnes Affaires</button>
-            <a class="btn outline" href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener">
-              🚕 Galerie Chauffeurs
-            </a>
-          </div>
-
-          <div class="miniRow">
-            <div class="chip" title="Le HUB peut envoyer ton numéro à certains modules si supporté">
-              <span class="chipK">📱 Numéro</span>
-              <span id="phoneText" class="chipV">non mémorisé</span>
-            </div>
-            <button id="btnEditPhone" class="btn tiny" type="button">Modifier</button>
-            <button id="btnClearPhone" class="btn tiny danger" type="button">Effacer</button>
-          </div>
-
-          <div class="pioneerStrip" aria-hidden="true">
-            <div class="pioneerLeft">
-              <div class="pioneerTitle">🔥 Accès pionniers limité</div>
-              <div class="pioneerText">Prix bloqué à vie pour les premiers abonnés DIGIY.</div>
-            </div>
-            <div class="pioneerRight">
-              <div class="pioneerN" id="pioneersLeft">87</div>
-              <div class="pioneerL">restantes</div>
-            </div>
-          </div>
-
-          <div class="spotlight" role="region" aria-label="Module mis en avant">
-            <div class="spotlightRow">
-              <div>
-                <h3 class="spotlightTitle">🚕 DIGIY DRIVER — Galerie Chauffeurs</h3>
-                <div class="spotlightSub">
-                  Trouve un chauffeur par zone, contact direct WhatsApp, 0% commission.
-                  <br>Parfait pour le terrain : QR, partage WhatsApp, Facebook, groupes locaux.
-                </div>
-              </div>
-              <div class="spotlightBtns">
-                <a class="btn primary" href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener">Ouvrir</a>
-                <a class="btn outline" href="https://driver.digiylyfe.com/" target="_blank" rel="noopener">Devenir chauffeur</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="heroRight">
-          <div class="panel">
-            <div class="panelTitle">🧭 Navigation F16 Enhanced</div>
-            <div class="panelHint">Filtre + recherche + modules data-driven. Business ready.</div>
-
-            <div class="controls">
-              <div class="tabs" role="tablist" aria-label="Filtres">
-                <button class="tab active" data-filter="all" type="button">Tous</button>
-                <button class="tab" data-filter="public" type="button">Public</button>
-                <button class="tab" data-filter="pro" type="button">PRO</button>
-              </div>
-
-              <div class="searchBox">
-                <input id="searchInput" type="search" placeholder="Chercher… (ex: driver, resto, caisse, pay)" autocomplete="off"/>
-                <button id="btnReset" class="btn tiny" type="button">Reset</button>
-              </div>
-            </div>
-
-            <div class="stats" role="status" aria-live="polite">
-              <div class="stat"><div class="statN" id="statTotal">0</div><div class="statL">Total</div></div>
-              <div class="stat"><div class="statN" id="statPublic">0</div><div class="statL">Public</div></div>
-              <div class="stat"><div class="statN" id="statPro">0</div><div class="statL">PRO</div></div>
-            </div>
-
-            <div class="note">
-              <b>💡 Astuce terrain :</b> si ton numéro est mémorisé, le HUB peut l'envoyer en paramètre aux modules
-              (quand le module le supporte). Sinon, navigation simple frérot.
-            </div>
-          </div>
-        </div>
-      </div>
+      <a class="btn btnGhost topAction" href="#modules">Modules</a>
     </header>
 
-    <section class="manifestoHero">
-      <div class="manifestoContainer">
-        <div class="manifestoIcon">🦅</div>
+    <section class="heroCard" id="top">
+      <div class="heroInner">
+        <div class="eyebrow">DIGIYLYFE ∞ · direct · local · premium</div>
 
-        <h2 class="manifestoTitle">
-          L'AFRIQUE ENRACINÉE<br>CONNECTÉE AU MONDE
-        </h2>
+        <h1 class="heroTitle">
+          Tout ton business
+          <span class="gold">dans ta main</span>
+        </h1>
 
-        <div class="manifestoSubtitle">
-          26 modules professionnels • 0% de commission • 100% de vos revenus
-        </div>
-
-        <p class="manifestoText">
-          Pendant que les plateformes prennent 25% de vos revenus, DIGIYLYFE vous propose un modèle révolutionnaire :
-          <strong>gardez 100% de ce que vous gagnez.</strong>
+        <p class="heroText">
+          Une vitrine claire. Des outils solides. Une logique simple :
+          <strong>0% commission</strong>, paiement direct au pro, expérience mobile pensée pour le terrain.
         </p>
 
-        <div class="manifestoBtns">
-          <button class="btn manifestoPrimary"
-                  type="button"
-                  data-digiy-audio
-                  data-target="#vision-digiy"
-                  data-lang="fr-FR"
-                  data-rate="0.95">🎧 Écouter la VISION</button>
-          <button class="btn manifestoOutline" id="btnScrollModules" type="button">🌐 Voir les modules</button>
-          <a href="https://articles.digiylyfe.com" target="_blank" rel="noopener" class="btn manifestoOutline">📰 Lire les articles</a>
-          <a href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener" class="btn manifestoOutline">🚕 Galerie Chauffeurs</a>
-          <!-- ✅ NOUVEAU : Bouton Assistant IA -->
-          <a href="https://knowledge.digiylyfe.com/widget/" target="_blank" rel="noopener" class="btn manifestoOutline">🧠 Assistant DIGIY IA</a>
+        <div class="miniChips">
+          <div class="miniChip">0% commission</div>
+          <div class="miniChip">Paiement direct</div>
+          <div class="miniChip">Mobile-first</div>
+          <div class="miniChip">Afrique enracinée</div>
+        </div>
+
+        <div class="ctaRow">
+          <a class="btn btnPrimary" href="#modules">Voir les modules</a>
+          <a class="btn btnSecondary" href="#vision">Lire la vision</a>
         </div>
       </div>
     </section>
 
-    <section class="citiesSection" id="digiy-villes">
-      <div class="citiesCard">
-        <div class="citiesInner">
-
-          <div class="citiesHead">
-            <div>
-              <h3 class="citiesTitle">📍 DIGIY se déploie ville par ville</h3>
-              <p class="citiesSub">
-                On construit des <b>noyaux locaux</b> : des pros équipés, visibles, et trouvables facilement.
-                <br><b>Objectif :</b> créer des écosystèmes forts, quartier par quartier, ville par ville.
-              </p>
-            </div>
-
-            <div class="citiesRight">
-              <span class="cityPill">🧠 Stratégie : densité locale</span>
-              <span class="cityPill">🦅 Pionniers : visibilité max</span>
-            </div>
+    <section class="sectionCard" id="modules">
+      <div class="sectionInner">
+        <div class="sectionHead">
+          <div>
+            <h2 class="sectionTitle">Les modules DIGIY</h2>
+            <p class="sectionSub">
+              Pas un mur de bruit. Juste des portes claires pour avancer, vendre, servir et gérer proprement.
+            </p>
           </div>
+        </div>
 
-          <div class="citiesGrid">
-            <div class="cityCard">
-              <div class="cityLeft">
-                <div class="cityName">DIGIY SALY • MBOUR</div>
-                <div class="cityMeta">
-                  <span class="badge live">✅ LIVE</span>
-                  <span class="badge">Tourisme • Logements • Drivers</span>
-                </div>
-              </div>
-              <button class="btn outline cityBtn" type="button" data-city="saly-mbour">Voir</button>
-            </div>
+        <div id="modulesGrid" class="modulesGrid" aria-live="polite"></div>
+      </div>
+    </section>
 
-            <div class="cityCard">
-              <div class="cityLeft">
-                <div class="cityName">DIGIY DAKAR</div>
-                <div class="cityMeta">
-                  <span class="badge next">🟡 LANCEMENT</span>
-                  <span class="badge">Services • Boutiques • Resto</span>
-                </div>
-              </div>
-              <button class="btn outline cityBtn" type="button" data-city="dakar">Voir</button>
-            </div>
-
-            <div class="cityCard">
-              <div class="cityLeft">
-                <div class="cityName">DIGIY THIÈS</div>
-                <div class="cityMeta">
-                  <span class="badge soon">⚪ BIENTÔT</span>
-                  <span class="badge">Artisans • Transport • Commerce</span>
-                </div>
-              </div>
-              <button class="btn ghost cityBtn" type="button" data-city="thies">Bientôt</button>
-            </div>
-
-            <div class="cityCard">
-              <div class="cityLeft">
-                <div class="cityName">DIGIY TOUBA</div>
-                <div class="cityMeta">
-                  <span class="badge soon">⚪ BIENTÔT</span>
-                  <span class="badge">Marché • Services • Logistique</span>
-                </div>
-              </div>
-              <button class="btn ghost cityBtn" type="button" data-city="touba">Bientôt</button>
-            </div>
+    <section class="sectionCard" id="vision">
+      <div class="sectionInner">
+        <div class="sectionHead">
+          <div>
+            <h2 class="sectionTitle">L’esprit DIGIY</h2>
           </div>
+        </div>
 
-          <div class="citiesFoot">
-            <strong>Pro dans une de ces villes ?</strong> Tu peux rejoindre les premiers partenaires et
-            créer ta fiche en quelques minutes — <b>en ligne immédiatement</b>.
-          </div>
+        <p class="visionText">
+          DIGIYLYFE construit des outils simples, puissants et respectueux du terrain.
+          Ici, le numérique ne remplace pas l’humain :
+          <strong>il l’équipe, il le rend visible, il protège sa valeur</strong>.
+          Le but n’est pas de noyer les gens dans des fonctions.
+          Le but, c’est qu’un pro puisse ouvrir son téléphone, comprendre vite, agir vite, gagner proprement.
+        </p>
+      </div>
+    </section>
 
-          <div class="manifestoBtns" style="margin-top:14px">
-            <button class="btn manifestoPrimary" id="btnJoinCity" type="button">🧩 Devenir partenaire (ma ville)</button>
-            <button class="btn manifestoOutline" id="btnScrollModules2" type="button">🌐 Voir les modules</button>
-            <a class="btn manifestoOutline" href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener">🚕 Galerie Chauffeurs</a>
-          </div>
+    <section class="closingCard">
+      <div class="closingInner">
+        <h2 class="closingTitle">
+          Une seule entrée. Plusieurs métiers. Une seule dignité.
+        </h2>
 
+        <p class="closingText">
+          DIGIYLYFE rassemble mobilité, location, restauration, réservation, caisse, commerce, artisans et fret
+          dans une présentation plus calme, plus nette et plus premium.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn btnPrimary" href="#modules">Entrer dans DIGIYLYFE</a>
+          <a class="btn btnSecondary" href="#vision">Comprendre la vision</a>
         </div>
       </div>
     </section>
 
-    <main class="main">
-      <section class="section">
-        <div class="sectionHead">
-          <h2>Tous tes modules DIGIY</h2>
-          <div class="legend">
-            <span class="pill officiel">OFFICIEL</span>
-            <span class="pill nouveau">NOUVEAU</span>
-            <span class="pill live">LIVE</span>
-            <span class="pill priorite">PRIORITÉ</span>
-            <span class="pill gratuit">GRATUIT</span>
-          </div>
-        </div>
-
-        <div class="note" style="margin-bottom:12px;">
-          <b>🚕 NOUVEAU :</b> <a href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener">Galerie Chauffeurs DIGIY DRIVER</a>
-          — trouve un chauffeur par zone, contact WhatsApp direct.
-        </div>
-
-        <div id="modulesGrid" class="grid" aria-live="polite"></div>
-      </section>
-
-      <section class="section">
-        <div class="sectionHead">
-          <h2>VISION</h2>
-          <button class="btn tiny"
-                  type="button"
-                  data-digiy-audio
-                  data-target="#vision-digiy"
-                  data-lang="fr-FR"
-                  data-rate="0.95">🎧 Écouter</button>
-        </div>
-
-        <div id="vision-digiy" class="note">
-          <p>
-            DIGIYLYFE est né d'une idée simple : rendre les outils numériques accessibles à tous.
-            Aujourd'hui, une grande partie de l'économie locale fonctionne encore hors du digital,
-            alors que les clients utilisent déjà leurs téléphones pour chercher, communiquer et acheter.
-          </p>
-          <p>
-            DIGIYLYFE veut créer un pont entre le terrain et le numérique. La plateforme permet aux
-            professionnels d'exister en ligne simplement, dans plusieurs langues, y compris les langues
-            locales, afin que chacun puisse comprendre et utiliser ces outils.
-          </p>
-          <p>
-            DIGIYLYFE s'inscrit dans une dynamique mondiale : permettre aux économies locales de reprendre
-            une part de souveraineté numérique et économique.
-          </p>
-          <p>
-            En donnant aux professionnels les outils pour travailler en ligne sans intermédiaires,
-            DIGIYLYFE contribue à garder la valeur, les opportunités et l'innovation au cœur des territoires.
-          </p>
-          <p>
-            L'objectif est de construire une économie digitale plus juste, plus locale et plus accessible.
-            Une économie où les professionnels gardent leurs revenus, où les clients trouvent facilement
-            des services, et où la technologie reste au service des humains.
-          </p>
-          <p><strong>DIGIYLYFE, l'Afrique enracinée, connectée au monde.</strong></p>
-        </div>
-      </section>
-
-      <footer class="footer">
-        <div class="footLine">
-          <span class="footBrand">DIGIYLYFE ∞</span>
-          <span class="sep">·</span>
-          <span>0% commission</span>
-          <span class="sep">·</span>
-          <span>paiement direct</span>
-          <span class="sep">·</span>
-          <span>L'Afrique enracinée, connectée au monde</span>
-        </div>
-        <div class="footTiny">F16 Enhanced · Data-driven · Business-ready · Made in Sénégal 🇸🇳</div>
-      </footer>
-    </main>
-
-    <!-- Boutons flottants droite -->
-    <button id="tarif-bubble-btn" class="floatBtn" type="button">🏷️ Tarifs</button>
-    <button id="digiy-help-btn" class="floatBtn" type="button">♾️ NDIMBAL</button>
-    <!-- ✅ NOUVEAU : Bouton flottant DIGIY KNOWLEDGE IA -->
-    <button id="knowledge-float-btn" class="floatBtn" type="button"
-            onclick="window.open('https://knowledge.digiylyfe.com/widget/','_blank')"
-            title="Assistant DIGIY IA">🧠 IA</button>
-
-    <!-- Boutons flottants gauche -->
-    <button id="espace-pro-btn" class="floatBtn" type="button">🧰 PRO</button>
-    <button id="vision-bubble-btn"
-            class="floatBtn"
-            type="button"
-            data-digiy-audio
-            data-target="#vision-digiy"
-            data-lang="fr-FR"
-            data-rate="0.95">🎧 Vision</button>
-
-    <!-- NDIMBAL popup -->
-    <div id="digiy-ndimbal" class="ndimbal hidden" aria-hidden="true">
-      <div class="ndimbalBox" role="dialog" aria-modal="true">
-        <div class="ndimbalTitle">♾️ NDIMBAL</div>
-        <div class="ndimbalText"><b>Naka nga def frérot ?</b><br>Dis-moi ce que tu veux faire, je te pointe au bon endroit.</div>
-        <div class="ndimbalActions">
-          <button class="btn primary" type="button" data-action="sell">📋 Publier une mission</button>
-          <button class="btn outline" type="button" data-action="job">💼 Trouver du travail</button>
-          <button class="btn ghost" type="button" data-action="qr">📷 QR DIGIYLYFE</button>
-        </div>
-        <button class="btn tiny danger" type="button" id="digiyCloseBtn" style="margin-top:10px">❌ Quitter</button>
-      </div>
-    </div>
-
-    <!-- QR modal -->
-    <div id="qrModal" class="qrModal hidden" aria-hidden="true">
-      <div class="qrContent" role="dialog" aria-modal="true">
-        <div class="qrHeader">
-          <div class="qrTitle">♾️ QR DIGIYLYFE</div>
-          <button id="qrClose" class="btn tiny" type="button">✖ Fermer</button>
-        </div>
-        <img
-          src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=https://digiylyfe.com/"
-          alt="QR DIGIYLYFE" class="qrImg">
-        <div class="qrText">📱 Scanne pour ouvrir DIGIYLYFE</div>
-        <a href="https://digiylyfe.com/" target="_blank" rel="noopener" class="qrLink">Ouvrir DIGIY →</a>
-      </div>
-    </div>
-
-    <!-- HUB overlay -->
-    <div id="hubOverlay" class="hubOverlay hidden" aria-hidden="true">
-      <div class="hubCard" role="dialog" aria-modal="true">
-        <div class="hubTop">
-          <div class="hubBrand">♾️ DIGIY HUB</div>
-          <div class="hubTopBtns">
-            <button class="hubBtn back" id="hubBackBtn" type="button">← Retour HUB</button>
-            <button class="hubBtn close" id="hubCloseBtn" type="button">✖ Fermer</button>
-          </div>
-        </div>
-        <iframe id="hubFrame" title="Module DIGIY" allow="geolocation; camera; microphone"></iframe>
-      </div>
-    </div>
-
-    <!-- Modal simple -->
-    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
-      <div class="modalCard">
-        <div class="modalTitle" id="modalTitle">Titre</div>
-        <div class="modalText" id="modalText">Texte</div>
-        <div class="modalActions">
-          <button id="modalCancel" class="btn ghost" type="button">Annuler</button>
-          <button id="modalOk" class="btn primary" type="button">OK</button>
-        </div>
-      </div>
-    </div>
-
+    <footer class="footer">
+      <strong>DIGIYLYFE ∞</strong><br />
+      0% commission · paiement direct au pro · mobile-first · made for the terrain
+    </footer>
   </div>
 
-  <!-- JS local: scroll vers modules -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const scrollBtn = document.getElementById('btnScrollModules');
-      const scrollBtn2 = document.getElementById('btnScrollModules2');
-      function goModules(){
-        const modulesSection = document.querySelector('.section');
-        if (modulesSection) modulesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-      if (scrollBtn)  scrollBtn.addEventListener('click', goModules);
-      if (scrollBtn2) scrollBtn2.addEventListener('click', goModules);
-    });
+    const MODULE_LINKS = {
+      EXPLORE: "#",
+      DRIVER: "#",
+      LOC: "#",
+      RESTO: "#",
+      RESA_TABLE: "#",
+      POS: "#",
+      MARKET: "#",
+      BUILD: "#",
+      FRET_PRO: "#",
+      FRET_CLIENT_PRO: "#"
+    };
+
+    const MODULES = [
+      { module:"EXPLORE", icon:"🧭", label:"EXPLORE", hint:"Locomotive • Agence & tourisme", loco:true },
+
+      { module:"DRIVER", icon:"🚗", label:"DRIVER", hint:"Mobilité terrain" },
+      { module:"LOC", icon:"🏠", label:"LOC", hint:"Location premium" },
+      { module:"RESTO", icon:"🍽️", label:"RESTO", hint:"Restauration pro" },
+      { module:"RESA_TABLE", icon:"📅", label:"RÉSA", hint:"Réservation tables" },
+      { module:"POS", icon:"🧾", label:"POS", hint:"Caisse" },
+      { module:"MARKET", icon:"🛒", label:"MARKET", hint:"Vitrine commerce" },
+      { module:"BUILD", icon:"🏗️", label:"BUILD", hint:"Artisans & devis" },
+      { module:"FRET_PRO", icon:"🚚", label:"FRET PRO", hint:"Chauffeur" },
+      { module:"FRET_CLIENT_PRO", icon:"📦", label:"FRET CLIENT", hint:"Expéditeur" }
+    ];
+
+    const grid = document.getElementById("modulesGrid");
+
+    function renderModules() {
+      grid.innerHTML = MODULES.map((item) => {
+        const href = MODULE_LINKS[item.module] || "#";
+        const badge = item.loco ? `<div class="moduleBadge">LOCOMOTIVE</div>` : "";
+        const locoClass = item.loco ? "loco" : "";
+
+        return `
+          <article class="moduleCard ${locoClass}">
+            <div class="moduleTop">
+              <div class="moduleLeft">
+                <div class="moduleIcon">${item.icon}</div>
+                <div class="moduleMeta">
+                  <h3 class="moduleTitle">${item.label}</h3>
+                  <p class="moduleHint">${item.hint}</p>
+                </div>
+              </div>
+              ${badge}
+            </div>
+
+            <div class="moduleBottom">
+              <div class="moduleLine">Une porte claire. Une action simple.</div>
+              <a class="moduleBtn" href="${href}" aria-label="Ouvrir ${item.label}">
+                Ouvrir
+              </a>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    renderModules();
   </script>
-
-  <!-- ✅ DIGIY AUDIO -->
-  <script defer src="https://apps.digiylyfe.com/assets/digiy-audio.js?v=4"></script>
-
-  <!-- ✅ DIGIY KNOWLEDGE — Assistant IA flottant -->
-  <script defer src="https://knowledge.digiylyfe.com/widget/embed.js"></script>
-
 </body>
 </html>
