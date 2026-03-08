@@ -25,39 +25,43 @@
     :root{
       --bg:#067a3a;
       --bg2:#04130d;
-      --card:#0c281d;
-      --card2:#102f23;
+      --card:#0b2a1f;
+      --card2:#0a241b;
       --ink:#f8fafc;
-      --muted:rgba(248,250,252,.74);
-      --line:rgba(255,255,255,.10);
+      --muted:rgba(248,250,252,.72);
+      --line:rgba(148,163,184,.28);
 
       --gold:#f6c453;
       --green:#00a651;
       --green-deep:#00853f;
-      --blue:#3b82f6;
       --red:#ef4444;
+      --blue:#3b82f6;
+      --purple:#a855f7;
 
       --live:#22c55e;
       --beta:#f59e0b;
+      --soon:#94a3b8;
 
-      --shadow:0 18px 60px rgba(0,0,0,.34);
-      --radius:22px;
-      --radius2:28px;
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:26px;
 
-      --fontA:"Outfit",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      --fontB:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      --fontA:"Outfit", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --fontB:"Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
     *{box-sizing:border-box}
+    html,body{height:100%}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
       font-family:var(--fontB);
       color:var(--ink);
       background:
-        radial-gradient(1200px 720px at 10% 0%, rgba(0,166,81,.32), transparent 52%),
-        radial-gradient(900px 560px at 100% 8%, rgba(246,196,83,.14), transparent 56%),
-        linear-gradient(180deg, #067a3a 0%, #0b5f31 16%, #082e20 46%, #04130d 100%);
+        radial-gradient(1200px 720px at 10% 0%, rgba(0,166,81,.30), transparent 52%),
+        radial-gradient(950px 620px at 90% 12%, rgba(246,196,83,.14), transparent 55%),
+        linear-gradient(180deg, #067a3a 0%, #0b5f31 16%, #083123 44%, #04130d 100%);
       overflow-x:hidden;
     }
 
@@ -67,19 +71,24 @@
       position:fixed;
       inset:0;
       background:
-        radial-gradient(900px 420px at 18% 74%, rgba(246,196,83,.10), transparent 70%),
-        radial-gradient(860px 400px at 82% 68%, rgba(0,166,81,.16), transparent 70%);
+        radial-gradient(900px 440px at 18% 72%, rgba(246,196,83,.10), transparent 70%),
+        radial-gradient(820px 420px at 82% 68%, rgba(0,166,81,.16), transparent 70%);
       pointer-events:none;
       opacity:.95;
       z-index:0;
     }
 
-    .wrap{
-      max-width:1140px;
-      margin:0 auto;
-      padding:14px 14px 120px;
+    .app{
+      min-height:100%;
       position:relative;
       z-index:1;
+    }
+
+    .wrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:14px 14px 260px;
+      position:relative;
     }
 
     .shell{
@@ -95,36 +104,38 @@
       content:"";
       display:block;
       height:4px;
-      background:linear-gradient(90deg, #00a651 0%, #00853f 45%, #f6c453 100%);
+      background:linear-gradient(90deg, #00a651 0%, #00853f 44%, #f6c453 100%);
     }
 
-    /* ===== TOP ===== */
+    /* =========================
+       TOP / BRAND
+       ========================= */
     .topbar{
-      padding:14px 16px 12px;
+      position:sticky;
+      top:0;
+      z-index:25;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
+      padding:14px 16px 12px;
       border-bottom:1px solid rgba(255,255,255,.08);
       background:rgba(0,0,0,.10);
-      position:sticky;
-      top:0;
-      z-index:30;
       backdrop-filter:blur(12px);
     }
 
     .brand{
       display:flex;
-      align-items:center;
       gap:12px;
-      min-width:0;
+      align-items:center;
       cursor:pointer;
+      min-width:0;
     }
 
     .logo{
-      width:46px;
-      height:46px;
+      width:48px;
+      height:48px;
       border-radius:14px;
       background:linear-gradient(135deg, rgba(0,166,81,.95), rgba(0,133,63,.88));
       border:1px solid rgba(255,255,255,.14);
@@ -138,29 +149,28 @@
       flex:0 0 auto;
     }
 
-    .brandTitle{
+    .brandText .title{
       font-family:var(--fontA);
-      font-size:16px;
       font-weight:900;
-      letter-spacing:.6px;
-      line-height:1.1;
+      letter-spacing:.8px;
+      font-size:18px;
     }
 
-    .brandSub{
+    .brandText .subtitle{
       color:rgba(248,250,252,.78);
-      font-size:12px;
-      margin-top:3px;
+      font-size:13px;
+      margin-top:2px;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
-      max-width:270px;
+      max-width:260px;
     }
 
     .menuBar{
-      padding:10px 16px 12px;
       display:flex;
       gap:8px;
       overflow-x:auto;
+      padding:10px 16px 12px;
       border-bottom:1px solid rgba(255,255,255,.06);
       background:rgba(0,0,0,.08);
       -webkit-overflow-scrolling:touch;
@@ -205,93 +215,135 @@
     }
 
     .menuBtn.public{
-      border-color:rgba(246,196,83,.28);
-      color:#fff0c8;
-      background:rgba(246,196,83,.08);
+      border-color:rgba(246,196,83,.35);
+      color:rgba(246,196,83,.96);
     }
 
     .menuBtn.pro{
       border-color:rgba(0,166,81,.34);
-      color:#dfffe9;
-      background:rgba(0,166,81,.12);
+      color:rgba(110,255,161,.98);
     }
 
-    /* ===== HERO ===== */
+    /* =========================
+       HERO
+       ========================= */
     .hero{
-      padding:18px 16px 10px;
+      margin:18px 16px 0;
       display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:14px;
+      grid-template-columns:1.2fr .8fr;
+      gap:16px;
+      align-items:stretch;
     }
 
-    .heroCard,
-    .heroSide{
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
+    .heroLeft, .heroRight{min-height:320px}
 
-    .heroCard{
+    .heroLeft{
       background:
         radial-gradient(620px 300px at 18% 18%, rgba(255,255,255,.08), transparent 60%),
         radial-gradient(620px 300px at 82% 70%, rgba(246,196,83,.12), transparent 60%),
-        linear-gradient(135deg, rgba(0,166,81,.38), rgba(0,133,63,.24) 42%, rgba(10,36,27,.92) 100%);
-      padding:18px;
+        linear-gradient(135deg, rgba(0,166,81,.40), rgba(0,133,63,.26) 42%, rgba(10,36,27,.92) 100%);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--radius2);
+      padding:20px;
+      box-shadow:var(--shadow);
       position:relative;
+      overflow:hidden;
+    }
+
+    .heroLeft::after{
+      content:"";
+      position:absolute;
+      inset:-80px;
+      background:
+        radial-gradient(620px 290px at 20% 18%, rgba(246,196,83,.12), transparent 60%),
+        radial-gradient(620px 290px at 78% 62%, rgba(0,166,81,.14), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
     }
 
     .eyebrow{
       font-family:var(--fontA);
       font-weight:900;
-      letter-spacing:.24px;
+      letter-spacing:.25px;
       color:rgba(255,245,214,.96);
       font-size:12px;
       text-transform:uppercase;
       margin-bottom:10px;
+      position:relative;
+      z-index:1;
     }
 
-    h1{
-      margin:0 0 10px;
+    .heroLeft h1{
+      position:relative;
+      z-index:1;
       font-family:var(--fontA);
       font-weight:900;
-      font-size:34px;
-      line-height:1.04;
+      margin:0 0 10px;
+      font-size:32px;
+      line-height:1.05;
     }
 
-    .gold{color:var(--gold)}
-
-    .heroText{
-      margin:0;
-      color:rgba(248,250,252,.85);
-      line-height:1.58;
-      font-size:14px;
-      max-width:56ch;
+    .gold{color:rgba(246,196,83,.98)}
+    .heroLeft p{
+      position:relative;
+      z-index:1;
+      margin:0 0 16px;
+      color:rgba(248,250,252,.84);
+      line-height:1.55;
     }
 
-    .heroActions{
-      margin-top:14px;
+    .ctaRow{
+      position:relative;
+      z-index:1;
       display:flex;
       gap:10px;
       flex-wrap:wrap;
+      margin:10px 0 14px;
     }
 
+    .chip{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(2,6,23,.18);
+      position:relative;
+      z-index:1;
+    }
+
+    .chipK{font-size:12px;color:var(--muted)}
+    .chipV{font-weight:800;font-family:var(--fontA)}
+
+    .heroChips{
+      position:relative;
+      z-index:1;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    /* =========================
+       BUTTONS
+       ========================= */
     .btn{
       border:1px solid var(--line);
       background:rgba(2,6,23,.18);
       color:var(--ink);
-      min-height:50px;
-      padding:0 15px;
-      border-radius:16px;
+      padding:12px 14px;
+      border-radius:14px;
       cursor:pointer;
+      font-weight:800;
       font-family:var(--fontA);
-      font-weight:900;
-      font-size:14px;
+      letter-spacing:.2px;
+      transition:transform .08s ease, background .2s ease, border-color .2s ease, opacity .2s ease;
+      user-select:none;
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:8px;
-      transition:.18s ease;
       text-align:center;
     }
 
@@ -300,6 +352,8 @@
       border-color:rgba(246,196,83,.35);
     }
 
+    .btn:active{transform:translateY(0) scale(.99)}
+
     .btn.primary{
       border-color:rgba(255,255,255,.14);
       background:linear-gradient(135deg, #00a651, #00853f);
@@ -307,56 +361,50 @@
       box-shadow:0 12px 28px rgba(0,133,63,.22);
     }
 
-    .btn.gold{
+    .btn.ghost{background:transparent}
+    .btn.outline{
+      background:transparent;
       border-color:rgba(246,196,83,.34);
-      background:rgba(246,196,83,.08);
-      color:#fff2cc;
+      color:rgba(255,243,207,.98);
     }
 
-    .heroChips{
-      margin-top:14px;
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 11px;
+    .btn.tiny{
+      padding:10px 12px;
+      font-size:12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.12);
-      font-size:11px;
-      font-weight:900;
-      font-family:var(--fontA);
     }
 
-    .heroSide{
+    .btn.danger{border-color:rgba(239,68,68,.45)}
+
+    /* =========================
+       RIGHT PANEL
+       ========================= */
+    .panel{
       background:linear-gradient(180deg, rgba(9,44,31,.88), rgba(8,28,20,.82));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--radius2);
       padding:16px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
+      box-shadow:var(--shadow);
+      height:100%;
     }
 
-    .sideTitle{
+    .panelTitle{
       font-family:var(--fontA);
-      font-size:16px;
       font-weight:900;
+      font-size:16px;
     }
 
-    .sideText{
-      color:rgba(248,250,252,.76);
-      line-height:1.55;
+    .panelHint{
+      color:rgba(248,250,252,.74);
       font-size:13px;
+      margin-top:4px;
     }
 
     .stats{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
+      grid-template-columns:repeat(3, 1fr);
       gap:10px;
+      margin-top:12px;
     }
 
     .stat{
@@ -370,31 +418,38 @@
       font-family:var(--fontA);
       font-weight:900;
       font-size:20px;
+      color:#fff;
     }
 
     .statL{
-      margin-top:3px;
-      font-size:12px;
       color:var(--muted);
+      font-size:12px;
+      margin-top:2px;
     }
 
-    .compactNote{
+    .note{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.45;
       border:1px dashed rgba(148,163,184,.35);
       border-radius:16px;
       padding:12px;
-      color:var(--muted);
       background:rgba(2,6,23,.10);
-      line-height:1.5;
-      font-size:12.5px;
     }
 
-    /* ===== SECTIONS ===== */
+    /* =========================
+       MAIN
+       ========================= */
     .main{
-      padding:8px 16px 24px;
+      max-width:1200px;
+      margin:0 auto;
+      padding:16px 18px 120px;
+      position:relative;
     }
 
     .section{
-      margin-top:14px;
+      margin-top:16px;
       border:1px solid rgba(255,255,255,.08);
       border-radius:24px;
       background:linear-gradient(180deg, rgba(10,48,34,.76), rgba(8,28,20,.70));
@@ -413,10 +468,9 @@
       border-bottom:1px solid rgba(255,255,255,.06);
     }
 
-    .sectionTitle{
+    .sectionHead h2{
       margin:0;
       font-family:var(--fontA);
-      font-size:18px;
       font-weight:900;
       letter-spacing:.2px;
     }
@@ -425,9 +479,10 @@
       color:var(--muted);
       font-size:12.5px;
       line-height:1.5;
+      margin-top:4px;
     }
 
-    .pillRow{
+    .legend{
       display:flex;
       gap:8px;
       flex-wrap:wrap;
@@ -443,16 +498,14 @@
       background:rgba(2,6,23,.14);
     }
 
-    .pill.public{
-      border-color:rgba(246,196,83,.32);
-      color:#fff0c8;
-    }
+    .pill.live{border-color:rgba(34,197,94,.35);color:rgba(34,197,94,.95)}
+    .pill.beta{border-color:rgba(245,158,11,.35);color:rgba(245,158,11,.95)}
+    .pill.public{border-color:rgba(246,196,83,.35);color:rgba(246,196,83,.96)}
+    .pill.pro{border-color:rgba(0,166,81,.34);color:rgba(110,255,161,.98)}
 
-    .pill.pro{
-      border-color:rgba(0,166,81,.34);
-      color:#dfffe9;
-    }
-
+    /* =========================
+       RAILS
+       ========================= */
     .railWrap{
       position:relative;
       padding:14px;
@@ -480,9 +533,7 @@
       opacity:.92;
     }
 
-    .railWrapDesktop{
-      position:relative;
-    }
+    .railWrapDesktop{position:relative}
 
     .railArrow{
       position:absolute;
@@ -506,12 +557,9 @@
       backdrop-filter:blur(10px);
     }
 
-    .railArrow:hover{
-      border-color:rgba(246,196,83,.34);
-    }
-
-    .railArrow.left{ left:6px; }
-    .railArrow.right{ right:6px; }
+    .railArrow:hover{border-color:rgba(246,196,83,.34)}
+    .railArrow.left{left:6px}
+    .railArrow.right{right:6px}
 
     .moduleRail{
       display:flex;
@@ -644,7 +692,9 @@
       background:rgba(246,196,83,.08);
     }
 
-    /* ===== FOCUS ===== */
+    /* =========================
+       FOCUS
+       ========================= */
     .focus{
       margin-top:14px;
       border:1px solid rgba(255,255,255,.08);
@@ -654,9 +704,7 @@
       overflow:hidden;
     }
 
-    .focusInner{
-      padding:16px;
-    }
+    .focusInner{padding:16px}
 
     .focusTop{
       display:flex;
@@ -753,7 +801,9 @@
       flex-wrap:wrap;
     }
 
-    /* ===== FOOTER ===== */
+    /* =========================
+       FOOTER
+       ========================= */
     .footer{
       margin-top:14px;
       border-top:1px solid rgba(255,255,255,.08);
@@ -763,22 +813,175 @@
       line-height:1.55;
     }
 
+    .footLine{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
     .footBrand{
       font-family:var(--fontA);
       font-weight:900;
-      color:var(--gold);
-    }
-
-    .footLine{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
+      color:rgba(246,196,83,.95);
     }
 
     .sep{opacity:.35}
 
-    /* ===== STICKY BAR ===== */
+    /* =========================
+       FLOAT BUTTONS
+       ========================= */
+    .floatBtn{
+      position:fixed;
+      z-index:40;
+      border-radius:999px;
+      padding:14px 16px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(6,33,22,.62);
+      color:var(--ink);
+      font-family:var(--fontA);
+      font-weight:900;
+      cursor:pointer;
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+      backdrop-filter:blur(10px);
+      transition:all .2s ease;
+    }
+
+    .floatBtn:hover{
+      border-color:rgba(246,196,83,.35);
+      transform:translateY(-2px);
+      box-shadow:0 14px 40px rgba(0,0,0,.45);
+    }
+
+    .floatBtn:active{transform:translateY(0) scale(.98)}
+
+    /* Droite */
+    #tarif-bubble-btn{ right:14px; bottom:18px; }
+    #digiy-help-btn{ right:14px; bottom:68px; }
+    #knowledge-float-btn{ right:14px; bottom:118px; }
+
+    /* Gauche */
+    #espace-pro-btn{ left:14px; bottom:18px; }
+    #vision-bubble-btn{ left:14px; bottom:68px; }
+
+    /* =========================
+       NDIMBAL POPUP
+       ========================= */
+    .ndimbal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:60;
+      backdrop-filter:blur(4px);
+    }
+
+    .ndimbal.hidden{display:none}
+
+    .ndimbalBox{
+      width:min(520px, 100%);
+      border-radius:22px;
+      border:1px solid rgba(148,163,184,.25);
+      background:linear-gradient(180deg, rgba(11,42,31,.98), rgba(10,36,27,.94));
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+
+    .ndimbalTitle{
+      font-family:var(--fontA);
+      font-weight:900;
+      font-size:18px;
+    }
+
+    .ndimbalText{
+      margin-top:8px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .ndimbalActions{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    /* =========================
+       QR MODAL
+       ========================= */
+    .qrModal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:70;
+      backdrop-filter:blur(4px);
+    }
+
+    .qrModal.hidden{display:none}
+
+    .qrContent{
+      width:min(520px, 100%);
+      border-radius:22px;
+      border:1px solid rgba(148,163,184,.25);
+      background:linear-gradient(180deg, rgba(11,42,31,.98), rgba(10,36,27,.94));
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+
+    .qrHeader{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .qrTitle{
+      font-family:var(--fontA);
+      font-weight:900;
+    }
+
+    .qrImg{
+      display:block;
+      width:min(320px, 100%);
+      margin:12px auto;
+      border-radius:18px;
+      border:1px solid rgba(148,163,184,.20);
+    }
+
+    .qrText{
+      text-align:center;
+      color:var(--muted);
+      margin-top:8px;
+    }
+
+    .qrLink{
+      display:block;
+      margin-top:12px;
+      text-align:center;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(246,196,83,.28);
+      background:rgba(246,196,83,.10);
+      font-family:var(--fontA);
+      font-weight:900;
+      transition:all .2s ease;
+    }
+
+    .qrLink:hover{
+      border-color:rgba(246,196,83,.45);
+      background:rgba(246,196,83,.18);
+    }
+
+    /* =========================
+       STICKY BAR
+       ========================= */
     .stickyBar{
       position:fixed;
       left:0;
@@ -791,7 +994,7 @@
     }
 
     .stickyInner{
-      max-width:1140px;
+      max-width:1200px;
       margin:0 auto;
       display:flex;
       gap:10px;
@@ -837,22 +1040,36 @@
       padding:0 14px;
     }
 
-    /* ===== MOBILE ===== */
+    /* =========================
+       RESPONSIVE
+       ========================= */
     @media (max-width:980px){
       .hero{grid-template-columns:1fr;}
     }
 
     @media (max-width:640px){
-      h1{font-size:27px}
-      .stats{grid-template-columns:1fr 1fr 1fr}
-      .railHint{display:block}
-      .railArrow{display:none}
+      .heroLeft h1{font-size:27px;}
+      .stats{grid-template-columns:1fr 1fr 1fr;}
+      .railHint{display:block;}
+      .railArrow{display:none;}
     }
 
     @media (max-width:560px){
+      .floatBtn{
+        padding:12px 14px;
+        font-size:14px;
+      }
+
+      #tarif-bubble-btn{ right:10px; bottom:14px; }
+      #digiy-help-btn{ right:10px; bottom:62px; }
+      #knowledge-float-btn{ right:10px; bottom:110px; }
+
+      #espace-pro-btn{ left:10px; bottom:14px; }
+      #vision-bubble-btn{ left:10px; bottom:62px; }
+
       .stickyActions{width:100%}
       .stickyActions .btn{flex:1}
-      .brandSub{max-width:180px}
+      .brandText .subtitle{max-width:180px}
       .moduleBtn{min-width:160px}
     }
   </style>
@@ -861,176 +1078,233 @@
 <body>
   <div class="bg"></div>
 
-  <div class="wrap">
-    <div class="shell">
+  <div class="app">
+    <div class="wrap">
+      <div class="shell">
 
-      <header class="topbar">
-        <a class="brand" href="http://digiylyfe.com" id="homeBrand" aria-label="Retour accueil DIGIYLYFE">
-          <div class="logo">∞</div>
-          <div>
-            <div class="brandTitle">DIGIYLYFE</div>
-            <div class="brandSub">L'Afrique enracinée, connectée au monde</div>
-          </div>
-        </a>
-      </header>
-
-      <nav class="menuBar" aria-label="Navigation DIGIY">
-        <a class="menuBtn home" href="http://digiylyfe.com">Accueil</a>
-        <a class="menuBtn public" href="#public">Public</a>
-        <a class="menuBtn pro" href="#pro">PRO</a>
-        <a class="menuBtn" id="menuVasChezDigiy" href="#">Vas chez DIGIY</a>
-        <a class="menuBtn" id="menuAudio" href="#">DIGIY AUDIO</a>
-        <a class="menuBtn" id="menuIA" href="#">Assistant IA</a>
-        <a class="menuBtn" id="menuTarifs" href="#">Tarifs</a>
-      </nav>
-
-      <section class="hero">
-        <div class="heroCard">
-          <div class="eyebrow">DIGIYLYFE ∞ · SUPA APPS · ROYAL · Sénégal</div>
-          <h1>
-            Une entrée claire.
-            <span class="gold">Un écosystème souverain.</span>
-          </h1>
-          <p class="heroText">
-            Le visiteur entre par <strong>PUBLIC</strong>. Le professionnel entre par <strong>PRO</strong>.
-            Une SUPA APPS structurée, indépendante, enracinée, avec retour central vers
-            <strong>http://digiylyfe.com</strong>.
-          </p>
-
-          <div class="heroActions">
-            <a class="btn primary" id="heroOpenBtn" href="#">🧭 Ouvrir le focus</a>
-            <a class="btn gold" href="#public">🌍 Voir le public</a>
-          </div>
-
-          <div class="heroChips">
-            <span class="chip">0% commission</span>
-            <span class="chip">Paiement direct</span>
-            <span class="chip">Retour vers digiylyfe.com</span>
-            <span class="chip">Vert Sénégal</span>
-          </div>
-        </div>
-
-        <aside class="heroSide">
-          <div class="sideTitle">Vue rapide</div>
-          <div class="sideText">
-            Une vitrine compacte, un menu horizontal, un bloc public, un bloc pro, puis un focus unique pour ouvrir la bonne porte.
-          </div>
-
-          <div class="stats">
-            <div class="stat">
-              <div class="statN" id="statTotal">0</div>
-              <div class="statL">Total</div>
+        <header class="topbar">
+          <a class="brand" href="http://digiylyfe.com" id="homeBrand" aria-label="Retour accueil DIGIYLYFE">
+            <div class="logo">∞</div>
+            <div class="brandText">
+              <div class="title">DIGIYLYFE</div>
+              <div class="subtitle">L'Afrique enracinée, connectée au monde</div>
             </div>
-            <div class="stat">
-              <div class="statN" id="statPublic">0</div>
-              <div class="statL">Public</div>
+          </a>
+        </header>
+
+        <nav class="menuBar" aria-label="Navigation DIGIY">
+          <a class="menuBtn home" href="http://digiylyfe.com">Accueil</a>
+          <a class="menuBtn public" href="#public">Public</a>
+          <a class="menuBtn pro" href="#pro">PRO</a>
+          <a class="menuBtn" id="menuVasChezDigiy" href="#">Vas chez DIGIY</a>
+          <a class="menuBtn" id="menuAudio" href="#">DIGIY AUDIO</a>
+          <a class="menuBtn" id="menuIA" href="#">Assistant IA</a>
+          <a class="menuBtn" id="menuTarifs" href="#">Tarifs</a>
+        </nav>
+
+        <section class="hero">
+          <div class="heroLeft">
+            <div class="eyebrow">DIGIYLYFE ∞ · SUPA APPS · ROYAL · Sénégal</div>
+
+            <h1>
+              Une entrée claire.<br>
+              <span class="gold">Un écosystème souverain.</span>
+            </h1>
+
+            <p>
+              Le visiteur entre par <strong>PUBLIC</strong>. Le professionnel entre par <strong>PRO</strong>.
+              Une SUPA APPS structurée, indépendante, enracinée, avec retour central vers
+              <strong>http://digiylyfe.com</strong>.
+            </p>
+
+            <div class="ctaRow">
+              <a class="btn primary" id="heroOpenBtn" href="#">🧭 Ouvrir le focus</a>
+              <a class="btn outline" href="#public">🌍 Voir le public</a>
             </div>
-            <div class="stat">
-              <div class="statN" id="statPro">0</div>
-              <div class="statL">PRO</div>
+
+            <div class="heroChips">
+              <span class="chip"><span class="chipK">0%</span><span class="chipV">commission</span></span>
+              <span class="chip"><span class="chipK">Paiement</span><span class="chipV">direct</span></span>
+              <span class="chip"><span class="chipK">Retour</span><span class="chipV">DIGIYLYFE</span></span>
             </div>
           </div>
 
-          <div class="compactNote">
-            <b>Règle DIGIY :</b> chaque ouverture module emporte un paramètre
-            <b>return=http://digiylyfe.com</b> pour garder le retour central propre.
-          </div>
-        </aside>
-      </section>
+          <aside class="heroRight">
+            <div class="panel">
+              <div class="panelTitle">Vue rapide</div>
+              <div class="panelHint">
+                Une vitrine compacte, un menu horizontal, un bloc public, un bloc pro, puis un focus unique pour ouvrir la bonne porte.
+              </div>
 
-      <main class="main">
-        <section class="section" id="public">
-          <div class="sectionHead">
-            <div>
-              <h2 class="sectionTitle">Modules Publics</h2>
-              <div class="sectionSub">Pour les clients, visiteurs, commandes, réservations, découverte et orientation terrain.</div>
-            </div>
-            <div class="pillRow">
-              <span class="pill public">PUBLIC</span>
-              <span class="pill">Client</span>
-            </div>
-          </div>
-
-          <div class="railWrap railWrapDesktop">
-            <button class="railArrow left" id="publicLeft" type="button" aria-label="Défiler à gauche">‹</button>
-            <div class="railHint" id="publicHint">👉 Glisse vers la droite pour voir les autres modules</div>
-            <div class="moduleRail" id="publicRail"></div>
-            <button class="railArrow right" id="publicRight" type="button" aria-label="Défiler à droite">›</button>
-          </div>
-        </section>
-
-        <section class="section" id="pro">
-          <div class="sectionHead">
-            <div>
-              <h2 class="sectionTitle">Modules PRO</h2>
-              <div class="sectionSub">Pour gérer, piloter, vendre, recruter, encaisser et faire tourner la machine proprement.</div>
-            </div>
-            <div class="pillRow">
-              <span class="pill pro">PRO</span>
-              <span class="pill">Cockpit</span>
-            </div>
-          </div>
-
-          <div class="railWrap railWrapDesktop">
-            <button class="railArrow left" id="proLeft" type="button" aria-label="Défiler à gauche">‹</button>
-            <div class="railHint" id="proHint">👉 Glisse vers la droite pour voir les autres modules</div>
-            <div class="moduleRail" id="proRail"></div>
-            <button class="railArrow right" id="proRight" type="button" aria-label="Défiler à droite">›</button>
-          </div>
-        </section>
-
-        <section class="focus">
-          <div class="focusInner">
-            <div class="focusTop">
-              <div class="focusLeft">
-                <div class="focusIcon" id="focusIcon">🗺️</div>
-                <div>
-                  <div class="focusLabel" id="focusLabel">Explore</div>
-                  <div class="focusHint" id="focusHint">Découvrir la région</div>
+              <div class="stats">
+                <div class="stat">
+                  <div class="statN" id="statTotal">0</div>
+                  <div class="statL">Total</div>
+                </div>
+                <div class="stat">
+                  <div class="statN" id="statPublic">0</div>
+                  <div class="statL">Public</div>
+                </div>
+                <div class="stat">
+                  <div class="statN" id="statPro">0</div>
+                  <div class="statL">PRO</div>
                 </div>
               </div>
 
-              <div class="focusBadges">
-                <div class="focusBadge public" id="focusKind">PUBLIC</div>
-                <div class="focusBadge gold" id="focusBadge">👑 Focus DIGIY</div>
+              <div class="note">
+                <b>Règle DIGIY :</b> chaque ouverture module emporte un paramètre
+                <b>return=http://digiylyfe.com</b> pour garder le retour central propre.
               </div>
             </div>
-
-            <div class="focusText" id="focusText">
-              DIGIY EXPLORE sert de porte d’entrée claire pour montrer le territoire, les expériences, les découvertes et la présence locale sans noyer le visiteur.
-            </div>
-
-            <div class="focusActions">
-              <a class="btn primary" id="focusOpenBtn" href="#">Ouvrir le module</a>
-              <a class="btn gold" href="http://digiylyfe.com">← Retour DIGIYLYFE</a>
-            </div>
-
-            <footer class="footer">
-              <div class="footLine">
-                <span class="footBrand">DIGIYLYFE ∞</span>
-                <span class="sep">·</span>
-                <span>0% commission</span>
-                <span class="sep">·</span>
-                <span>paiement direct</span>
-                <span class="sep">·</span>
-                <span>retour central vers http://digiylyfe.com</span>
-              </div>
-            </footer>
-          </div>
+          </aside>
         </section>
-      </main>
-    </div>
-  </div>
 
-  <div class="stickyBar">
-    <div class="stickyInner">
-      <div class="stickyInfo">
-        <div class="stickyTitle">Module sélectionné</div>
-        <div class="stickyValue" id="stickyValue">Explore • PUBLIC • Découvrir la région</div>
+        <main class="main">
+          <section class="section" id="public">
+            <div class="sectionHead">
+              <div>
+                <h2>Modules Publics</h2>
+                <div class="sectionSub">
+                  Pour les clients, visiteurs, commandes, réservations, découverte et orientation terrain.
+                </div>
+              </div>
+
+              <div class="legend">
+                <span class="pill public">PUBLIC</span>
+                <span class="pill live">CLIENT</span>
+              </div>
+            </div>
+
+            <div class="railWrap railWrapDesktop">
+              <button class="railArrow left" id="publicLeft" type="button" aria-label="Défiler à gauche">‹</button>
+              <div class="railHint" id="publicHint">👉 Glisse vers la droite pour voir les autres modules</div>
+              <div class="moduleRail" id="publicRail"></div>
+              <button class="railArrow right" id="publicRight" type="button" aria-label="Défiler à droite">›</button>
+            </div>
+          </section>
+
+          <section class="section" id="pro">
+            <div class="sectionHead">
+              <div>
+                <h2>Modules PRO</h2>
+                <div class="sectionSub">
+                  Pour gérer, piloter, vendre, recruter, encaisser et faire tourner la machine proprement.
+                </div>
+              </div>
+
+              <div class="legend">
+                <span class="pill pro">PRO</span>
+                <span class="pill live">COCKPIT</span>
+              </div>
+            </div>
+
+            <div class="railWrap railWrapDesktop">
+              <button class="railArrow left" id="proLeft" type="button" aria-label="Défiler à gauche">‹</button>
+              <div class="railHint" id="proHint">👉 Glisse vers la droite pour voir les autres modules</div>
+              <div class="moduleRail" id="proRail"></div>
+              <button class="railArrow right" id="proRight" type="button" aria-label="Défiler à droite">›</button>
+            </div>
+          </section>
+
+          <section class="focus">
+            <div class="focusInner">
+              <div class="focusTop">
+                <div class="focusLeft">
+                  <div class="focusIcon" id="focusIcon">🗺️</div>
+                  <div>
+                    <div class="focusLabel" id="focusLabel">Explore</div>
+                    <div class="focusHint" id="focusHint">Découvrir la région</div>
+                  </div>
+                </div>
+
+                <div class="focusBadges">
+                  <div class="focusBadge public" id="focusKind">PUBLIC</div>
+                  <div class="focusBadge gold" id="focusBadge">👑 Focus DIGIY</div>
+                </div>
+              </div>
+
+              <div class="focusText" id="focusText">
+                DIGIY EXPLORE sert de porte d’entrée claire pour montrer le territoire, les expériences, les découvertes et la présence locale sans noyer le visiteur.
+              </div>
+
+              <div class="focusActions">
+                <a class="btn primary" id="focusOpenBtn" href="#">Ouvrir le module</a>
+                <a class="btn outline" href="http://digiylyfe.com">← Retour DIGIYLYFE</a>
+              </div>
+
+              <footer class="footer">
+                <div class="footLine">
+                  <span class="footBrand">DIGIYLYFE ∞</span>
+                  <span class="sep">·</span>
+                  <span>0% commission</span>
+                  <span class="sep">·</span>
+                  <span>paiement direct</span>
+                  <span class="sep">·</span>
+                  <span>retour central vers http://digiylyfe.com</span>
+                </div>
+              </footer>
+            </div>
+          </section>
+        </main>
       </div>
-      <div class="stickyActions">
-        <a class="btn gold" href="http://digiylyfe.com">Accueil</a>
-        <a class="btn primary" id="stickyOpenBtn" href="#">Ouvrir</a>
+    </div>
+
+    <!-- Boutons flottants droite -->
+    <button id="tarif-bubble-btn" class="floatBtn" type="button">🏷️ Tarifs</button>
+    <button id="digiy-help-btn" class="floatBtn" type="button">♾️ NDIMBAL</button>
+    <button id="knowledge-float-btn" class="floatBtn" type="button" title="Assistant DIGIY IA">🧠 IA</button>
+
+    <!-- Boutons flottants gauche -->
+    <button id="espace-pro-btn" class="floatBtn" type="button">🧰 PRO</button>
+    <button id="vision-bubble-btn" class="floatBtn" type="button">🎧 AUDIO</button>
+
+    <!-- NDIMBAL popup -->
+    <div id="digiy-ndimbal" class="ndimbal hidden" aria-hidden="true">
+      <div class="ndimbalBox" role="dialog" aria-modal="true">
+        <div class="ndimbalTitle">♾️ NDIMBAL</div>
+        <div class="ndimbalText">
+          <b>Naka nga def frérot ?</b><br>
+          Dis-moi ce que tu veux faire, je te pointe au bon endroit.
+        </div>
+
+        <div class="ndimbalActions">
+          <button class="btn primary" type="button" data-action="sell">📋 Publier une mission</button>
+          <button class="btn outline" type="button" data-action="job">💼 Trouver du travail</button>
+          <button class="btn ghost" type="button" data-action="qr">📷 QR DIGIYLYFE</button>
+        </div>
+
+        <button class="btn tiny danger" type="button" id="digiyCloseBtn" style="margin-top:10px">❌ Quitter</button>
+      </div>
+    </div>
+
+    <!-- QR modal -->
+    <div id="qrModal" class="qrModal hidden" aria-hidden="true">
+      <div class="qrContent" role="dialog" aria-modal="true">
+        <div class="qrHeader">
+          <div class="qrTitle">♾️ QR DIGIYLYFE</div>
+          <button id="qrClose" class="btn tiny" type="button">✖ Fermer</button>
+        </div>
+
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=https://digiylyfe.com/"
+          alt="QR DIGIYLYFE"
+          class="qrImg"
+        >
+        <div class="qrText">📱 Scanne pour ouvrir DIGIYLYFE</div>
+        <a href="https://digiylyfe.com/" target="_blank" rel="noopener" class="qrLink">Ouvrir DIGIY →</a>
+      </div>
+    </div>
+
+    <div class="stickyBar">
+      <div class="stickyInner">
+        <div class="stickyInfo">
+          <div class="stickyTitle">Module sélectionné</div>
+          <div class="stickyValue" id="stickyValue">Explore • PUBLIC • Découvrir la région</div>
+        </div>
+        <div class="stickyActions">
+          <a class="btn outline" href="http://digiylyfe.com">Accueil</a>
+          <a class="btn primary" id="stickyOpenBtn" href="#">Ouvrir</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1249,7 +1523,6 @@
         focusOpenBtn.href = href;
         heroOpenBtn.href = href;
         stickyOpenBtn.href = href;
-
         stickyValue.textContent = `${item.name} • ${currentKind === "public" ? "PUBLIC" : "PRO"} • ${item.desc}`;
       }
 
@@ -1310,18 +1583,103 @@
         renderFocus();
       }
 
+      function openExternal(url){
+        window.open(withReturn(url), "_blank", "noopener,noreferrer");
+      }
+
       // Menu direct
       menuVasChezDigiy.href = withReturn(LINKS.vasChezDigiy);
       menuAudio.href = withReturn(LINKS.audio);
       menuIA.href = withReturn(LINKS.assistantIA);
       menuTarifs.href = withReturn(LINKS.tarifs);
 
+      // Boutons flottants
+      const tarifBtn = document.getElementById("tarif-bubble-btn");
+      const helpBtn = document.getElementById("digiy-help-btn");
+      const knowledgeBtn = document.getElementById("knowledge-float-btn");
+      const proBtn = document.getElementById("espace-pro-btn");
+      const audioBtn = document.getElementById("vision-bubble-btn");
+
+      if(tarifBtn) tarifBtn.addEventListener("click", () => openExternal(LINKS.tarifs));
+      if(knowledgeBtn) knowledgeBtn.addEventListener("click", () => openExternal(LINKS.assistantIA));
+      if(proBtn) proBtn.addEventListener("click", () => openExternal(LINKS.espacePro));
+      if(audioBtn) audioBtn.addEventListener("click", () => openExternal(LINKS.audio));
+
+      // NDIMBAL popup
+      const ndimbal = document.getElementById("digiy-ndimbal");
+      const closeBtn = document.getElementById("digiyCloseBtn");
+      const qrModal = document.getElementById("qrModal");
+      const qrClose = document.getElementById("qrClose");
+
+      if(helpBtn && ndimbal){
+        helpBtn.addEventListener("click", () => {
+          ndimbal.classList.remove("hidden");
+          ndimbal.setAttribute("aria-hidden", "false");
+        });
+      }
+
+      if(closeBtn && ndimbal){
+        closeBtn.addEventListener("click", () => {
+          ndimbal.classList.add("hidden");
+          ndimbal.setAttribute("aria-hidden", "true");
+        });
+      }
+
+      if(ndimbal){
+        ndimbal.addEventListener("click", (e) => {
+          if(e.target === ndimbal){
+            ndimbal.classList.add("hidden");
+            ndimbal.setAttribute("aria-hidden", "true");
+            return;
+          }
+
+          const btn = e.target.closest("button[data-action]");
+          if(!btn) return;
+
+          const action = btn.getAttribute("data-action");
+          ndimbal.classList.add("hidden");
+          ndimbal.setAttribute("aria-hidden", "true");
+
+          if(action === "sell"){
+            openExternal(LINKS.ndimbalAnnonces);
+          } else if(action === "job"){
+            openExternal(LINKS.jobs);
+          } else if(action === "qr"){
+            if(qrModal){
+              qrModal.classList.remove("hidden");
+              qrModal.setAttribute("aria-hidden", "false");
+            }
+          }
+        });
+      }
+
+      if(qrClose && qrModal){
+        qrClose.addEventListener("click", () => {
+          qrModal.classList.add("hidden");
+          qrModal.setAttribute("aria-hidden", "true");
+        });
+
+        qrModal.addEventListener("click", (e) => {
+          if(e.target === qrModal){
+            qrModal.classList.add("hidden");
+            qrModal.setAttribute("aria-hidden", "true");
+          }
+        });
+      }
+
+      // Brand scroll top
+      const homeBrand = document.getElementById("homeBrand");
+      if(homeBrand){
+        homeBrand.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
       renderCounts();
       renderAll();
-
       bindRailHint(publicRail, publicHint);
       bindRailHint(proRail, proHint);
-
       bindRailArrows("publicRail", "publicLeft", "publicRight");
       bindRailArrows("proRail", "proLeft", "proRight");
     })();
