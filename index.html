@@ -1,27 +1,21 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#061b14" />
-
-  <title>DIGIYLYFE ∞ — L'Afrique enracinée, connectée au monde</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <title>DIGIYLYFE — L'Afrique enracinée, connectée au monde</title>
+  <meta name="theme-color" content="#0b1612"/>
   <meta
     name="description"
-    content="DIGIYLYFE — des outils simples, premium et directs pour faire avancer ton business. 0% commission. Paiement direct au pro."
+    content="DIGIYLYFE — des outils premium, simples et directs pour faire avancer ton business. 0% commission. Paiement direct au pro."
   />
 
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="DIGIYLYFE" />
-  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="icon" href="./icon-192.png" sizes="192x192"/>
+  <link rel="apple-touch-icon" href="./icon-192.png"/>
+  <link rel="manifest" href="./manifest.json"/>
 
-  <link rel="icon" href="./icon-192.png" sizes="192x192" />
-  <link rel="apple-touch-icon" href="./icon-192.png" />
-  <link rel="manifest" href="./manifest.json" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link
     href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
@@ -29,41 +23,37 @@
 
   <style>
     :root{
-      --bg:#061b14;
-      --bg2:#082117;
-      --card:rgba(8,29,21,.78);
-      --card-strong:rgba(11,42,31,.96);
+      --bg:#0b1612;
+      --card:#12211b;
+      --card2:#182922;
       --line:rgba(255,255,255,.10);
-      --line-strong:rgba(246,196,83,.22);
-      --text:#edf8f0;
-      --muted:rgba(237,248,240,.74);
-      --gold:#f6c453;
-      --gold-2:#ffdf8c;
+      --text:#f8f5ef;
+      --muted:rgba(248,245,239,.68);
+
+      --champ:#f4dfb5;
+      --champ-2:#d8b56a;
+      --berry:#c35a7d;
+      --berry-2:#8e3757;
       --green:#22c55e;
-      --green-soft:rgba(34,197,94,.16);
-      --shadow:0 18px 60px rgba(0,0,0,.34);
-      --radius:24px;
+      --warn:#f59e0b;
+
+      --radius:22px;
+      --shadow:0 20px 60px rgba(0,0,0,.38);
       --fontA:"Outfit",system-ui,-apple-system,sans-serif;
       --fontB:"Manrope",system-ui,-apple-system,sans-serif;
-      --max:1120px;
     }
 
-    *{ box-sizing:border-box; }
-
-    html{
-      scroll-behavior:smooth;
-    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
 
     body{
       margin:0;
-      color:var(--text);
       font-family:var(--fontB);
       background:
-        radial-gradient(900px 460px at 15% -10%, rgba(246,196,83,.10), transparent 60%),
-        radial-gradient(900px 460px at 100% 0%, rgba(34,197,94,.10), transparent 58%),
-        linear-gradient(180deg, #061b14 0%, #04120d 100%);
-      min-height:100vh;
-      overflow-x:hidden;
+        radial-gradient(900px 500px at 10% 0%, rgba(244,223,181,.09), transparent 55%),
+        radial-gradient(900px 520px at 100% 100%, rgba(195,90,125,.10), transparent 55%),
+        linear-gradient(180deg,#0a1511 0%, #0b1612 100%);
+      color:var(--text);
     }
 
     a{
@@ -71,46 +61,49 @@
       text-decoration:none;
     }
 
-    .page{
-      width:min(100%, var(--max));
+    .wrap{
+      max-width:920px;
       margin:0 auto;
-      padding:18px 16px 44px;
+      padding:14px 14px 110px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(18,33,27,.98), rgba(15,28,23,.96));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:var(--shadow);
     }
 
     .topbar{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
-      margin-bottom:18px;
-      position:sticky;
-      top:0;
-      z-index:20;
-      padding:12px 0 6px;
-      backdrop-filter:blur(12px);
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
     }
 
-    .brand{
+    .brandRow{
       display:flex;
       align-items:center;
-      gap:12px;
+      gap:10px;
       min-width:0;
     }
 
     .logo{
-      width:44px;
-      height:44px;
-      border-radius:16px;
+      width:42px;
+      height:42px;
+      border-radius:14px;
       display:grid;
       place-items:center;
       font-family:var(--fontA);
-      font-weight:900;
-      font-size:24px;
+      font-weight:1000;
+      font-size:22px;
       color:#fff;
-      background:
-        linear-gradient(135deg, rgba(246,196,83,.26), rgba(34,197,94,.22));
-      border:1px solid rgba(246,196,83,.25);
-      box-shadow:var(--shadow);
+      border:1px solid rgba(244,223,181,.24);
+      background:linear-gradient(135deg, rgba(244,223,181,.18), rgba(195,90,125,.12));
+      box-shadow:0 10px 26px rgba(0,0,0,.22);
       flex:0 0 auto;
     }
 
@@ -120,139 +113,156 @@
 
     .brandTitle{
       font-family:var(--fontA);
-      font-size:15px;
-      font-weight:900;
-      letter-spacing:.8px;
-      color:#fff;
-      line-height:1.05;
+      font-size:14px;
+      font-weight:1000;
+      letter-spacing:.4px;
+      line-height:1.1;
     }
 
     .brandSub{
-      margin-top:3px;
-      font-size:11px;
+      margin-top:4px;
       color:var(--muted);
+      font-size:11px;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
     }
 
-    .topAction{
-      flex:0 0 auto;
-    }
-
-    .hero{
-      display:grid;
-      gap:14px;
-      margin-top:10px;
-    }
-
-    .heroCard,
-    .sectionCard,
-    .closingCard{
-      position:relative;
-      overflow:hidden;
-      border-radius:28px;
+    .lang-switch{
+      display:flex;
+      gap:6px;
+      padding:4px;
+      border-radius:999px;
       border:1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(11,42,31,.94), rgba(8,28,20,.92));
-      box-shadow:var(--shadow);
+      background:rgba(255,255,255,.03);
     }
 
-    .heroCard::before,
-    .sectionCard::before,
-    .closingCard::before{
-      content:"";
-      position:absolute;
-      inset:-120px;
-      background:
-        radial-gradient(500px 240px at 18% 18%, rgba(246,196,83,.11), transparent 60%),
-        radial-gradient(500px 240px at 85% 85%, rgba(34,197,94,.09), transparent 58%);
-      pointer-events:none;
-    }
-
-    .heroInner,
-    .sectionInner,
-    .closingInner{
-      position:relative;
-      z-index:1;
-      padding:24px 18px;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
+    .lang-switch button{
+      border:none;
       padding:8px 12px;
       border-radius:999px;
-      border:1px solid rgba(246,196,83,.20);
-      background:rgba(246,196,83,.08);
-      color:var(--gold-2);
+      cursor:pointer;
+      font-weight:1000;
       font-size:12px;
-      font-weight:800;
-      letter-spacing:.3px;
+      background:transparent;
+      color:var(--text);
+      font-family:var(--fontA);
+    }
+
+    .lang-switch button.active{
+      background:linear-gradient(135deg, rgba(244,223,181,.20), rgba(195,90,125,.18));
+      color:#fff;
+    }
+
+    .menuBar{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
       margin-bottom:14px;
     }
 
-    h1,h2,h3,p{
-      margin:0;
+    .menuBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:40px;
+      padding:0 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-size:12px;
+      font-weight:1000;
+      font-family:var(--fontA);
     }
 
-    .heroTitle{
-      font-family:var(--fontA);
-      font-size:34px;
-      line-height:1.05;
+    .menuBtn.gold{
+      border-color:rgba(244,223,181,.26);
+      background:rgba(244,223,181,.06);
+      color:var(--champ);
+    }
+
+    .hero{
+      border:1px solid rgba(244,223,181,.12);
+      background:
+        radial-gradient(450px 240px at 0% 0%, rgba(244,223,181,.08), transparent 60%),
+        radial-gradient(450px 240px at 100% 100%, rgba(195,90,125,.08), transparent 60%),
+        linear-gradient(180deg, rgba(244,223,181,.05), rgba(195,90,125,.04)),
+        rgba(0,0,0,.08);
+      border-radius:20px;
+      padding:16px;
+    }
+
+    .heroPill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid rgba(244,223,181,.24);
+      background:rgba(244,223,181,.06);
+      color:var(--champ);
+      font-size:12px;
+      white-space:nowrap;
       font-weight:900;
-      letter-spacing:-.02em;
-      max-width:9.8em;
+      margin-bottom:12px;
+    }
+
+    h1{
+      margin:0;
+      font-family:var(--fontA);
+      font-size:28px;
+      line-height:1.08;
+      font-weight:1000;
+      letter-spacing:.2px;
+      max-width:12ch;
     }
 
     .gold{
-      color:var(--gold);
-      text-shadow:0 0 18px rgba(246,196,83,.12);
+      color:var(--champ);
     }
 
-    .heroText{
-      margin-top:14px;
+    .sub{
+      margin-top:10px;
       color:var(--muted);
-      font-size:16px;
-      line-height:1.62;
-      max-width:38rem;
+      line-height:1.5;
+      font-size:14px;
+      max-width:620px;
     }
 
-    .heroText strong{
+    .sub strong{
       color:#fff;
-      font-weight:800;
     }
 
-    .miniChips{
+    .heroChips{
       display:flex;
+      gap:8px;
       flex-wrap:wrap;
-      gap:10px;
-      margin-top:18px;
+      margin-top:14px;
     }
 
-    .miniChip{
-      padding:10px 12px;
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:8px 10px;
       border-radius:999px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      font-size:12px;
-      font-weight:800;
-      color:#f3fbf5;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      font-size:11px;
+      font-weight:1000;
+      color:#fff;
     }
 
-    .ctaRow{
+    .heroActions{
       display:flex;
-      flex-wrap:wrap;
       gap:10px;
-      margin-top:18px;
+      flex-wrap:wrap;
+      margin-top:14px;
     }
 
     .btn{
-      appearance:none;
-      border:none;
-      outline:none;
-      cursor:pointer;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -260,432 +270,603 @@
       min-height:48px;
       padding:0 16px;
       border-radius:16px;
+      border:1px solid var(--line);
+      cursor:pointer;
+      font-weight:1100;
       font-family:var(--fontA);
-      font-weight:900;
       font-size:14px;
-      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      color:var(--text);
+      background:rgba(255,255,255,.03);
     }
 
-    .btn:hover{
-      transform:translateY(-1px);
+    .btn.ok{
+      border-color:rgba(34,197,94,.35);
+      background:rgba(34,197,94,.08);
     }
 
-    .btnPrimary{
-      color:#0d160f;
-      background:linear-gradient(135deg, var(--gold), #f7d57a);
-      box-shadow:0 14px 34px rgba(246,196,83,.18);
+    .btn.gold{
+      border-color:rgba(244,223,181,.34);
+      background:rgba(244,223,181,.08);
+      color:#fff3cf;
     }
 
-    .btnSecondary{
-      color:#fff;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-    }
-
-    .btnGhost{
-      color:var(--gold-2);
-      background:rgba(246,196,83,.07);
-      border:1px solid rgba(246,196,83,.16);
-    }
-
-    .sectionCard{
-      margin-top:16px;
-    }
-
-    .sectionHead{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:16px;
+    .hr{
+      height:1px;
+      background:var(--line);
+      margin:14px 0;
     }
 
     .sectionTitle{
-      font-family:var(--fontA);
-      font-size:24px;
-      line-height:1.1;
-      font-weight:900;
-    }
-
-    .sectionSub{
-      margin-top:8px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.55;
-      max-width:40rem;
-    }
-
-    .modulesGrid{
-      display:grid;
-      gap:12px;
-    }
-
-    .moduleCard{
-      position:relative;
-      overflow:hidden;
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.08);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      padding:16px;
-      display:grid;
-      gap:14px;
-    }
-
-    .moduleCard.loco{
-      border-color:var(--line-strong);
-      background:
-        linear-gradient(180deg, rgba(246,196,83,.10), rgba(255,255,255,.03));
-      box-shadow:0 12px 34px rgba(246,196,83,.08);
-    }
-
-    .moduleTop{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    .moduleLeft{
-      display:flex;
-      align-items:flex-start;
-      gap:12px;
-      min-width:0;
-    }
-
-    .moduleIcon{
-      width:48px;
-      height:48px;
-      border-radius:16px;
-      display:grid;
-      place-items:center;
-      font-size:24px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.08);
-      flex:0 0 auto;
-    }
-
-    .moduleCard.loco .moduleIcon{
-      background:rgba(246,196,83,.12);
-      border-color:rgba(246,196,83,.18);
-    }
-
-    .moduleMeta{
-      min-width:0;
-    }
-
-    .moduleTitle{
-      font-family:var(--fontA);
-      font-size:18px;
-      line-height:1.1;
-      font-weight:900;
-      color:#fff;
-      letter-spacing:.2px;
-    }
-
-    .moduleHint{
-      margin-top:6px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.5;
-    }
-
-    .moduleBadge{
-      flex:0 0 auto;
-      padding:8px 10px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.3px;
-      color:#0d160f;
-      background:linear-gradient(135deg, var(--gold), #ffe3a1);
-      white-space:nowrap;
-    }
-
-    .moduleBottom{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+      color:var(--champ);
+      font-weight:1200;
+      margin-bottom:10px;
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
+      gap:8px;
+      font-family:var(--fontA);
     }
 
-    .moduleLine{
-      font-size:13px;
-      font-weight:800;
-      color:#f3fbf5;
-      opacity:.92;
+    .sectionTitle::after{
+      content:"";
+      flex:1;
+      height:1px;
+      background:rgba(244,223,181,.16);
+    }
+
+    .moduleRail{
+      display:flex;
+      gap:10px;
+      overflow-x:auto;
+      padding-bottom:4px;
+      scroll-snap-type:x proximity;
+      -webkit-overflow-scrolling:touch;
+    }
+
+    .moduleRail::-webkit-scrollbar{
+      height:6px;
+    }
+
+    .moduleRail::-webkit-scrollbar-thumb{
+      background:rgba(255,255,255,.14);
+      border-radius:999px;
     }
 
     .moduleBtn{
-      min-height:42px;
-      padding:0 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);
-      color:#fff;
-      font-family:var(--fontA);
-      font-weight:900;
+      min-width:138px;
+      border:1px solid rgba(244,223,181,.16);
+      background:
+        linear-gradient(180deg, rgba(244,223,181,.06), rgba(195,90,125,.05)),
+        rgba(255,255,255,.02);
+      color:var(--text);
+      border-radius:18px;
+      padding:14px 12px;
+      text-align:left;
+      cursor:pointer;
+      scroll-snap-align:start;
+      transition:transform .08s ease, border-color .18s ease, box-shadow .18s ease;
+      font-family:var(--fontB);
+    }
+
+    .moduleBtn:active{ transform:translateY(1px); }
+
+    .moduleBtn.active{
+      border-color:rgba(244,223,181,.45);
+      box-shadow:0 10px 28px rgba(244,223,181,.08);
+    }
+
+    .moduleBtn.loco{
+      border-color:rgba(244,223,181,.34);
+      background:
+        radial-gradient(120px 70px at 20% 0%, rgba(244,223,181,.16), transparent 60%),
+        radial-gradient(140px 90px at 100% 100%, rgba(195,90,125,.16), transparent 60%),
+        linear-gradient(180deg, rgba(244,223,181,.08), rgba(195,90,125,.07)),
+        rgba(255,255,255,.03);
+      box-shadow:0 12px 30px rgba(244,223,181,.08);
+    }
+
+    .moduleEmoji{
+      font-size:20px;
+      display:block;
+      margin-bottom:6px;
+    }
+
+    .moduleName{
       font-size:13px;
+      font-weight:1100;
+    }
+
+    .moduleHint{
+      margin-top:4px;
+      font-size:11px;
+      color:var(--muted);
+      line-height:1.3;
+    }
+
+    .locoBadge{
       display:inline-flex;
       align-items:center;
-      justify-content:center;
-      gap:8px;
+      gap:6px;
+      margin-top:6px;
+      padding:5px 9px;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:1100;
+      letter-spacing:.3px;
+      color:#fff3cf;
+      border:1px solid rgba(244,223,181,.28);
+      background:rgba(244,223,181,.08);
     }
 
-    .visionText{
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.72;
-      max-width:46rem;
+    .focusCard{
+      border:1px solid rgba(244,223,181,.16);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)),
+        rgba(0,0,0,.10);
+      border-radius:20px;
+      padding:16px;
     }
 
-    .visionText strong{
-      color:#fff;
+    .focusTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
-    .closingCard{
-      margin-top:16px;
-      border-color:rgba(246,196,83,.16);
+    .focusLeft{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      min-width:0;
     }
 
-    .closingTitle{
-      font-family:var(--fontA);
+    .focusIcon{
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
       font-size:26px;
-      line-height:1.08;
-      font-weight:900;
-      max-width:12em;
+      border:1px solid rgba(244,223,181,.18);
+      background:rgba(244,223,181,.06);
+      flex:0 0 auto;
     }
 
-    .closingText{
-      margin-top:12px;
+    .focusLabel{
+      font-family:var(--fontA);
+      font-size:20px;
+      font-weight:1000;
+      line-height:1.1;
+    }
+
+    .focusHint{
+      margin-top:5px;
       color:var(--muted);
-      font-size:15px;
-      line-height:1.65;
-      max-width:40rem;
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .focusBadge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 11px;
+      border-radius:999px;
+      border:1px solid rgba(244,223,181,.22);
+      background:rgba(244,223,181,.06);
+      color:#fff3cf;
+      font-size:11px;
+      font-weight:1000;
+      white-space:nowrap;
+    }
+
+    .focusText{
+      margin-top:14px;
+      color:#f0ece3;
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    .focusActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .visionBox,
+    .closingBox{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+      padding:14px;
+    }
+
+    .visionText,
+    .closingText{
+      color:var(--muted);
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    .visionText strong,
+    .closingText strong{
+      color:#fff;
     }
 
     .footer{
-      margin-top:18px;
-      text-align:center;
+      margin-top:14px;
       color:var(--muted);
       font-size:12px;
-      line-height:1.6;
-      padding:4px 6px 0;
+      line-height:1.55;
+      text-align:center;
     }
 
     .footer strong{
       color:#fff;
     }
 
-    @media (min-width:720px){
-      .page{
-        padding:22px 20px 54px;
-      }
-
-      .heroInner,
-      .sectionInner,
-      .closingInner{
-        padding:30px 26px;
-      }
-
-      .heroTitle{
-        font-size:50px;
-      }
-
-      .sectionTitle{
-        font-size:30px;
-      }
-
-      .modulesGrid{
-        grid-template-columns:repeat(2, minmax(0,1fr));
-      }
-
-      .moduleCard.loco{
-        grid-column:1 / -1;
-      }
-
-      .closingTitle{
-        font-size:34px;
-      }
+    .stickyBar{
+      position:fixed;
+      left:0; right:0; bottom:0;
+      z-index:20;
+      padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+      background:linear-gradient(180deg, rgba(11,22,18,.04), rgba(11,22,18,.96) 35%);
+      backdrop-filter:blur(10px);
     }
 
-    @media (min-width:980px){
-      .heroInner{
-        padding:36px 34px;
-      }
+    .stickyInner{
+      max-width:920px;
+      margin:0 auto;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      border:1px solid rgba(244,223,181,.16);
+      background:rgba(18,33,27,.96);
+      border-radius:18px;
+      padding:10px;
+      box-shadow:0 14px 40px rgba(0,0,0,.32);
+    }
 
-      .sectionInner,
-      .closingInner{
-        padding:32px 30px;
-      }
+    .stickyInfo{
+      min-width:0;
+      flex:1;
+    }
 
-      .heroTitle{
-        font-size:58px;
+    .stickyTitle{
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+
+    .stickyValue{
+      font-size:14px;
+      font-weight:1100;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .stickyActions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .stickyActions .btn{
+      min-height:44px;
+      padding:0 14px;
+    }
+
+    @media (max-width:640px){
+      h1{ font-size:24px; }
+      .brandSub{ max-width:160px; }
+      .stickyActions{
+        width:100%;
+      }
+      .stickyActions .btn{
+        flex:1;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <header class="topbar">
-      <a class="brand" href="#top" aria-label="Retour en haut">
-        <div class="logo">∞</div>
-        <div class="brandText">
-          <div class="brandTitle">DIGIYLYFE</div>
-          <div class="brandSub">L'Afrique enracinée, connectée au monde</div>
+  <div class="wrap">
+    <div class="card">
+
+      <div class="topbar">
+        <a class="brandRow" href="https://digiylyfe.com/" aria-label="Accueil DIGIYLYFE">
+          <div class="logo">∞</div>
+          <div class="brandText">
+            <div class="brandTitle">DIGIYLYFE</div>
+            <div class="brandSub">L'Afrique enracinée, connectée au monde</div>
+          </div>
+        </a>
+
+        <div class="lang-switch" aria-label="Choix de langue">
+          <button id="lang-fr" class="active" type="button">FR</button>
+          <button id="lang-wo" type="button">WO</button>
         </div>
-      </a>
+      </div>
 
-      <a class="btn btnGhost topAction" href="#modules">Modules</a>
-    </header>
+      <div class="menuBar">
+        <a class="menuBtn gold" href="https://digiylyfe.com/" target="_blank" rel="noopener">Accueil</a>
+        <a class="menuBtn" href="https://articles.digiylyfe.com/" target="_blank" rel="noopener">Articles</a>
+        <a class="menuBtn" href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener">Galerie Chauffeurs</a>
+        <a class="menuBtn" href="https://knowledge.digiylyfe.com/widget/" target="_blank" rel="noopener">Assistant IA</a>
+      </div>
 
-    <section class="heroCard" id="top">
-      <div class="heroInner">
-        <div class="eyebrow">DIGIYLYFE ∞ · direct · local · premium</div>
+      <section class="hero" id="hero">
+        <div class="heroPill">DIGIYLYFE ∞ · premium · mobile-first · terrain</div>
 
-        <h1 class="heroTitle">
+        <h1>
           Tout ton business
           <span class="gold">dans ta main</span>
         </h1>
 
-        <p class="heroText">
-          Une vitrine claire. Des outils solides. Une logique simple :
-          <strong>0% commission</strong>, paiement direct au pro, expérience mobile pensée pour le terrain.
+        <p class="sub">
+          DIGIYLYFE rassemble des outils clairs pour la mobilité, la location, la restauration,
+          la caisse, le commerce, les artisans et le fret.
+          Une logique simple :
+          <strong>0% commission</strong>, paiement direct au pro, expérience propre sur téléphone.
         </p>
 
-        <div class="miniChips">
-          <div class="miniChip">0% commission</div>
-          <div class="miniChip">Paiement direct</div>
-          <div class="miniChip">Mobile-first</div>
-          <div class="miniChip">Afrique enracinée</div>
+        <div class="heroChips">
+          <span class="chip">0% commission</span>
+          <span class="chip">Paiement direct</span>
+          <span class="chip">Modules clairs</span>
+          <span class="chip">Afrique enracinée</span>
         </div>
 
-        <div class="ctaRow">
-          <a class="btn btnPrimary" href="#modules">Voir les modules</a>
-          <a class="btn btnSecondary" href="#vision">Lire la vision</a>
+        <div class="heroActions">
+          <a class="btn gold" id="heroOpenBtn" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener">🧭 Ouvrir le module</a>
+          <a class="btn ok" href="#modules">🚀 Voir les modules</a>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="sectionCard" id="modules">
-      <div class="sectionInner">
-        <div class="sectionHead">
-          <div>
-            <h2 class="sectionTitle">Les modules DIGIY</h2>
-            <p class="sectionSub">
-              Pas un mur de bruit. Juste des portes claires pour avancer, vendre, servir et gérer proprement.
-            </p>
+      <div class="hr"></div>
+
+      <section id="modules">
+        <div class="sectionTitle">Menu modules</div>
+        <div class="moduleRail" id="moduleRail"></div>
+      </section>
+
+      <div class="hr"></div>
+
+      <section>
+        <div class="sectionTitle">Focus module</div>
+
+        <div class="focusCard">
+          <div class="focusTop">
+            <div class="focusLeft">
+              <div class="focusIcon" id="focusIcon">🧭</div>
+              <div>
+                <div class="focusLabel" id="focusLabel">EXPLORE</div>
+                <div class="focusHint" id="focusHint">Locomotive • Agence & tourisme</div>
+              </div>
+            </div>
+
+            <div class="focusBadge" id="focusBadge">👑 Module locomotive</div>
+          </div>
+
+          <div class="focusText" id="focusText">
+            DIGIY EXPLORE ouvre la marche. C’est la vitrine locomotive pour mettre en avant l’agence,
+            les expériences, les circuits, les lieux et la force du territoire sans noyer le visiteur.
+          </div>
+
+          <div class="focusActions">
+            <a class="btn gold" id="focusOpen" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir le module</a>
+            <a class="btn" href="https://digiylyfe.com/" target="_blank" rel="noopener">Voir la suite DIGIY</a>
           </div>
         </div>
+      </section>
 
-        <div id="modulesGrid" class="modulesGrid" aria-live="polite"></div>
-      </div>
-    </section>
+      <div class="hr"></div>
 
-    <section class="sectionCard" id="vision">
-      <div class="sectionInner">
-        <div class="sectionHead">
-          <div>
-            <h2 class="sectionTitle">L’esprit DIGIY</h2>
+      <section id="vision">
+        <div class="sectionTitle">Vision DIGIY</div>
+        <div class="visionBox">
+          <div class="visionText">
+            DIGIYLYFE construit des outils simples, puissants et respectueux du terrain.
+            Ici, le numérique ne remplace pas l’humain :
+            <strong>il l’équipe, il le rend visible, il protège sa valeur.</strong>
+            L’idée n’est pas de montrer tout d’un coup.
+            L’idée, c’est qu’un visiteur comprenne vite, respire, clique, avance.
           </div>
         </div>
+      </section>
 
-        <p class="visionText">
-          DIGIYLYFE construit des outils simples, puissants et respectueux du terrain.
-          Ici, le numérique ne remplace pas l’humain :
-          <strong>il l’équipe, il le rend visible, il protège sa valeur</strong>.
-          Le but n’est pas de noyer les gens dans des fonctions.
-          Le but, c’est qu’un pro puisse ouvrir son téléphone, comprendre vite, agir vite, gagner proprement.
-        </p>
-      </div>
-    </section>
+      <div class="hr"></div>
 
-    <section class="closingCard">
-      <div class="closingInner">
-        <h2 class="closingTitle">
-          Une seule entrée. Plusieurs métiers. Une seule dignité.
-        </h2>
+      <section id="contact">
+        <div class="sectionTitle">Entrée DIGIY</div>
+        <div class="closingBox">
+          <div class="closingText">
+            Une seule vitrine, plusieurs métiers, une même dignité.
+            DIGIYLYFE met en avant des modules propres, lisibles et prêts pour le commerce réel.
+            <strong>Tu choisis une porte, tu avances sans confusion.</strong>
+          </div>
 
-        <p class="closingText">
-          DIGIYLYFE rassemble mobilité, location, restauration, réservation, caisse, commerce, artisans et fret
-          dans une présentation plus calme, plus nette et plus premium.
-        </p>
-
-        <div class="ctaRow">
-          <a class="btn btnPrimary" href="#modules">Entrer dans DIGIYLYFE</a>
-          <a class="btn btnSecondary" href="#vision">Comprendre la vision</a>
+          <div class="heroActions" style="margin-top:14px;">
+            <a class="btn ok" id="mainEnterBtn" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener">➡️ Entrer dans le module sélectionné</a>
+            <a class="btn" href="https://knowledge.digiylyfe.com/widget/" target="_blank" rel="noopener">🧠 Ouvrir l’assistant</a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <footer class="footer">
-      <strong>DIGIYLYFE ∞</strong><br />
-      0% commission · paiement direct au pro · mobile-first · made for the terrain
-    </footer>
+      <div class="footer">
+        <strong>DIGIYLYFE ∞</strong><br/>
+        0% commission · paiement direct au pro · présentation plus calme · made for the terrain
+      </div>
+
+    </div>
+  </div>
+
+  <div class="stickyBar">
+    <div class="stickyInner">
+      <div class="stickyInfo">
+        <div class="stickyTitle">Module sélectionné</div>
+        <div class="stickyValue" id="stickyValue">EXPLORE • Locomotive • Agence & tourisme</div>
+      </div>
+      <div class="stickyActions">
+        <a class="btn" href="#modules">Modules</a>
+        <a class="btn gold" id="stickyOpenBtn" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir</a>
+      </div>
+    </div>
   </div>
 
   <script>
-    const MODULE_LINKS = {
-      EXPLORE: "#",
-      DRIVER: "#",
-      LOC: "#",
-      RESTO: "#",
-      RESA_TABLE: "#",
-      POS: "#",
-      MARKET: "#",
-      BUILD: "#",
-      FRET_PRO: "#",
-      FRET_CLIENT_PRO: "#"
-    };
+    (function(){
+      "use strict";
 
-    const MODULES = [
-      { module:"EXPLORE", icon:"🧭", label:"EXPLORE", hint:"Locomotive • Agence & tourisme", loco:true },
+      const MODULES = [
+        { module:"EXPLORE", icon:"🧭", label:"EXPLORE", hint:"Locomotive • Agence & tourisme", loco:true },
+        { module:"DRIVER", icon:"🚗", label:"DRIVER", hint:"Mobilité terrain" },
+        { module:"LOC", icon:"🏠", label:"LOC", hint:"Location premium" },
+        { module:"RESTO", icon:"🍽️", label:"RESTO", hint:"Restauration pro" },
+        { module:"RESA_TABLE", icon:"📅", label:"RÉSA", hint:"Réservation tables" },
+        { module:"POS", icon:"🧾", label:"POS", hint:"Caisse" },
+        { module:"MARKET", icon:"🛒", label:"MARKET", hint:"Vitrine commerce" },
+        { module:"BUILD", icon:"🏗️", label:"BUILD", hint:"Artisans & devis" },
+        { module:"FRET_PRO", icon:"🚚", label:"FRET PRO", hint:"Chauffeur" },
+        { module:"FRET_CLIENT_PRO", icon:"📦", label:"FRET CLIENT", hint:"Expéditeur" }
+      ];
 
-      { module:"DRIVER", icon:"🚗", label:"DRIVER", hint:"Mobilité terrain" },
-      { module:"LOC", icon:"🏠", label:"LOC", hint:"Location premium" },
-      { module:"RESTO", icon:"🍽️", label:"RESTO", hint:"Restauration pro" },
-      { module:"RESA_TABLE", icon:"📅", label:"RÉSA", hint:"Réservation tables" },
-      { module:"POS", icon:"🧾", label:"POS", hint:"Caisse" },
-      { module:"MARKET", icon:"🛒", label:"MARKET", hint:"Vitrine commerce" },
-      { module:"BUILD", icon:"🏗️", label:"BUILD", hint:"Artisans & devis" },
-      { module:"FRET_PRO", icon:"🚚", label:"FRET PRO", hint:"Chauffeur" },
-      { module:"FRET_CLIENT_PRO", icon:"📦", label:"FRET CLIENT", hint:"Expéditeur" }
-    ];
+      const MODULE_LINKS = {
+        EXPLORE: "https://explore.digiylyfe.com/",
+        DRIVER: "https://driver.digiylyfe.com/",
+        LOC: "https://loc.digiylyfe.com/",
+        RESTO: "https://resto.digiylyfe.com/",
+        RESA_TABLE: "https://resa.digiylyfe.com/",
+        POS: "https://pos.digiylyfe.com/",
+        MARKET: "https://market.digiylyfe.com/",
+        BUILD: "https://build.digiylyfe.com/",
+        FRET_PRO: "https://fret-pro.digiylyfe.com/",
+        FRET_CLIENT_PRO: "https://fret-client.digiylyfe.com/"
+      };
 
-    const grid = document.getElementById("modulesGrid");
+      const MODULE_COPY = {
+        EXPLORE: {
+          text: "DIGIY EXPLORE ouvre la marche. C’est la vitrine locomotive pour mettre en avant l’agence, les expériences, les circuits, les lieux et la force du territoire sans noyer le visiteur.",
+          badge: "👑 Module locomotive"
+        },
+        DRIVER: {
+          text: "DIGIY DRIVER met la mobilité terrain au premier plan. Le client comprend vite, trouve vite, et entre en contact sans tourner dans un labyrinthe.",
+          badge: "🚗 Mobilité directe"
+        },
+        LOC: {
+          text: "DIGIY LOC présente des logements avec une image plus propre, plus premium et plus respirable. On retire le bruit, on garde la confiance et l’envie de réserver.",
+          badge: "🏠 Location premium"
+        },
+        RESTO: {
+          text: "DIGIY RESTO donne au restaurant une présence claire, chaleureuse et sérieuse. Le visiteur voit l’essentiel, sent l’ambiance, puis avance vers l’action.",
+          badge: "🍽️ Restauration pro"
+        },
+        RESA_TABLE: {
+          text: "DIGIY RÉSA simplifie la réservation de tables avec un parcours lisible. Peu de friction, peu de surcharge, juste ce qu’il faut pour réserver vite.",
+          badge: "📅 Réservation simple"
+        },
+        POS: {
+          text: "DIGIY POS met la caisse et la gestion dans une logique directe. Le ton reste propre, pro et mobile-first, sans jargon qui fatigue.",
+          badge: "🧾 Gestion claire"
+        },
+        MARKET: {
+          text: "DIGIY MARKET aide le commerce à se montrer sans se disperser. Une vitrine plus nette, plus marchande, plus facile à partager.",
+          badge: "🛒 Commerce visible"
+        },
+        BUILD: {
+          text: "DIGIY BUILD valorise les artisans, les devis et le savoir-faire. Le pro gagne en présence et le client comprend rapidement à qui il parle.",
+          badge: "🏗️ Artisans & devis"
+        },
+        FRET_PRO: {
+          text: "DIGIY FRET PRO donne au chauffeur une porte claire pour proposer ses services. On cherche l’efficacité terrain avant tout.",
+          badge: "🚚 Côté chauffeur"
+        },
+        FRET_CLIENT_PRO: {
+          text: "DIGIY FRET CLIENT structure l’entrée expéditeur. Besoin, contact, mouvement : le message reste propre et orienté action.",
+          badge: "📦 Côté expéditeur"
+        }
+      };
 
-    function renderModules() {
-      grid.innerHTML = MODULES.map((item) => {
-        const href = MODULE_LINKS[item.module] || "#";
-        const badge = item.loco ? `<div class="moduleBadge">LOCOMOTIVE</div>` : "";
-        const locoClass = item.loco ? "loco" : "";
+      const rail = document.getElementById("moduleRail");
+      const focusIcon = document.getElementById("focusIcon");
+      const focusLabel = document.getElementById("focusLabel");
+      const focusHint = document.getElementById("focusHint");
+      const focusText = document.getElementById("focusText");
+      const focusBadge = document.getElementById("focusBadge");
+      const focusOpen = document.getElementById("focusOpen");
+      const stickyValue = document.getElementById("stickyValue");
+      const stickyOpenBtn = document.getElementById("stickyOpenBtn");
+      const mainEnterBtn = document.getElementById("mainEnterBtn");
+      const heroOpenBtn = document.getElementById("heroOpenBtn");
 
-        return `
-          <article class="moduleCard ${locoClass}">
-            <div class="moduleTop">
-              <div class="moduleLeft">
-                <div class="moduleIcon">${item.icon}</div>
-                <div class="moduleMeta">
-                  <h3 class="moduleTitle">${item.label}</h3>
-                  <p class="moduleHint">${item.hint}</p>
-                </div>
-              </div>
-              ${badge}
-            </div>
+      let currentModule = "EXPLORE";
 
-            <div class="moduleBottom">
-              <div class="moduleLine">Une porte claire. Une action simple.</div>
-              <a class="moduleBtn" href="${href}" aria-label="Ouvrir ${item.label}">
-                Ouvrir
-              </a>
-            </div>
-          </article>
-        `;
-      }).join("");
-    }
+      function renderRail(){
+        rail.innerHTML = MODULES.map(item => `
+          <button
+            class="moduleBtn ${item.module === currentModule ? "active" : ""} ${item.loco ? "loco" : ""}"
+            type="button"
+            data-module="${item.module}">
+            <span class="moduleEmoji">${item.icon}</span>
+            <div class="moduleName">${item.label}</div>
+            <div class="moduleHint">${item.hint}</div>
+            ${item.loco ? `<div class="locoBadge">👑 LOCOMOTIVE</div>` : ``}
+          </button>
+        `).join("");
 
-    renderModules();
+        rail.querySelectorAll("[data-module]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            currentModule = btn.getAttribute("data-module") || "EXPLORE";
+            renderRail();
+            renderFocus();
+          });
+        });
+      }
+
+      function renderFocus(){
+        const item = MODULES.find(x => x.module === currentModule) || MODULES[0];
+        const copy = MODULE_COPY[item.module] || { text:item.hint, badge:"DIGIY" };
+        const href = MODULE_LINKS[item.module] || "https://digiylyfe.com/";
+
+        focusIcon.textContent = item.icon;
+        focusLabel.textContent = item.label;
+        focusHint.textContent = item.hint;
+        focusText.textContent = copy.text;
+        focusBadge.textContent = copy.badge;
+
+        focusOpen.href = href;
+        stickyOpenBtn.href = href;
+        mainEnterBtn.href = href;
+        heroOpenBtn.href = href;
+
+        stickyValue.textContent = `${item.label} • ${item.hint}`;
+      }
+
+      const langFr = document.getElementById("lang-fr");
+      const langWo = document.getElementById("lang-wo");
+      const savedLang = localStorage.getItem("digiy_lang") || "fr";
+
+      function setLang(lang){
+        localStorage.setItem("digiy_lang", lang);
+        langFr.classList.toggle("active", lang === "fr");
+        langWo.classList.toggle("active", lang === "wo");
+      }
+
+      langFr.addEventListener("click", () => setLang("fr"));
+      langWo.addEventListener("click", () => setLang("wo"));
+
+      setLang(savedLang);
+      renderRail();
+      renderFocus();
+    })();
   </script>
 </body>
 </html>
