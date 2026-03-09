@@ -107,9 +107,6 @@
       background:linear-gradient(90deg, #00a651 0%, #00853f 44%, #f6c453 100%);
     }
 
-    /* =========================
-       TOP / BRAND
-       ========================= */
     .topbar{
       position:sticky;
       top:0;
@@ -224,9 +221,6 @@
       color:rgba(110,255,161,.98);
     }
 
-    /* =========================
-       HERO
-       ========================= */
     .hero{
       margin:18px 16px 0;
       display:grid;
@@ -325,9 +319,6 @@
       margin-top:12px;
     }
 
-    /* =========================
-       BUTTONS
-       ========================= */
     .btn{
       border:1px solid var(--line);
       background:rgba(2,6,23,.18);
@@ -376,9 +367,6 @@
 
     .btn.danger{border-color:rgba(239,68,68,.45)}
 
-    /* =========================
-       RIGHT PANEL
-       ========================= */
     .panel{
       background:linear-gradient(180deg, rgba(9,44,31,.88), rgba(8,28,20,.82));
       border:1px solid rgba(255,255,255,.10);
@@ -438,9 +426,6 @@
       background:rgba(2,6,23,.10);
     }
 
-    /* =========================
-       MAIN
-       ========================= */
     .main{
       max-width:1200px;
       margin:0 auto;
@@ -503,9 +488,6 @@
     .pill.public{border-color:rgba(246,196,83,.35);color:rgba(246,196,83,.96)}
     .pill.pro{border-color:rgba(0,166,81,.34);color:rgba(110,255,161,.98)}
 
-    /* =========================
-       RAILS
-       ========================= */
     .railWrap{
       position:relative;
       padding:14px;
@@ -692,9 +674,6 @@
       background:rgba(246,196,83,.08);
     }
 
-    /* =========================
-       FOCUS
-       ========================= */
     .focus{
       margin-top:14px;
       border:1px solid rgba(255,255,255,.08);
@@ -801,9 +780,6 @@
       flex-wrap:wrap;
     }
 
-    /* =========================
-       FOOTER
-       ========================= */
     .footer{
       margin-top:14px;
       border-top:1px solid rgba(255,255,255,.08);
@@ -828,9 +804,6 @@
 
     .sep{opacity:.35}
 
-    /* =========================
-       FLOAT BUTTONS
-       ========================= */
     .floatBtn{
       position:fixed;
       z-index:40;
@@ -855,18 +828,13 @@
 
     .floatBtn:active{transform:translateY(0) scale(.98)}
 
-    /* Droite */
     #tarif-bubble-btn{ right:14px; bottom:18px; }
     #digiy-help-btn{ right:14px; bottom:68px; }
     #knowledge-float-btn{ right:14px; bottom:118px; }
 
-    /* Gauche */
     #espace-pro-btn{ left:14px; bottom:18px; }
     #vision-bubble-btn{ left:14px; bottom:68px; }
 
-    /* =========================
-       NDIMBAL POPUP
-       ========================= */
     .ndimbal{
       position:fixed;
       inset:0;
@@ -909,9 +877,6 @@
       flex-wrap:wrap;
     }
 
-    /* =========================
-       QR MODAL
-       ========================= */
     .qrModal{
       position:fixed;
       inset:0;
@@ -979,9 +944,6 @@
       background:rgba(246,196,83,.18);
     }
 
-    /* =========================
-       STICKY BAR
-       ========================= */
     .stickyBar{
       position:fixed;
       left:0;
@@ -1040,9 +1002,6 @@
       padding:0 14px;
     }
 
-    /* =========================
-       RESPONSIVE
-       ========================= */
     @media (max-width:980px){
       .hero{grid-template-columns:1fr;}
     }
@@ -1249,16 +1208,13 @@
       </div>
     </div>
 
-    <!-- Boutons flottants droite -->
     <button id="tarif-bubble-btn" class="floatBtn" type="button">🏷️ Tarifs</button>
     <button id="digiy-help-btn" class="floatBtn" type="button">♾️ NDIMBAL</button>
     <button id="knowledge-float-btn" class="floatBtn" type="button" title="Assistant DIGIY IA">🧠 IA</button>
 
-    <!-- Boutons flottants gauche -->
     <button id="espace-pro-btn" class="floatBtn" type="button">🧰 PRO</button>
     <button id="vision-bubble-btn" class="floatBtn" type="button">🎧 AUDIO</button>
 
-    <!-- NDIMBAL popup -->
     <div id="digiy-ndimbal" class="ndimbal hidden" aria-hidden="true">
       <div class="ndimbalBox" role="dialog" aria-modal="true">
         <div class="ndimbalTitle">♾️ NDIMBAL</div>
@@ -1277,7 +1233,6 @@
       </div>
     </div>
 
-    <!-- QR modal -->
     <div id="qrModal" class="qrModal hidden" aria-hidden="true">
       <div class="qrContent" role="dialog" aria-modal="true">
         <div class="qrHeader">
@@ -1344,7 +1299,7 @@
         ndimbalAnnonces: "https://ndimbal-annonces.digiylyfe.com/",
         ndimbalLoc: "https://ndimbal-loc.digiylyfe.com/",
 
-        inscriptionPro: "https://inscription-pro.digiylyfe.com/",
+        inscriptionPro: "https://commencer-a-payer.digiylyfe.com/",
         espacePro: "https://pro-espace.digiylyfe.com/",
         driverPro: "https://pro-driver.digiylyfe.com/",
         locPro: "https://pro-loc.digiylyfe.com/",
@@ -1364,39 +1319,44 @@
 
       const PUBLIC_MODULES = [
         { key:"explore", name:"Explore", icon:"🗺️", desc:"Découvrir la région", status:"LIVE", loco:true },
-        { key:"vasChezDigiy", name:"Vas chez DIGIY", icon:"📍", desc:"Portail terrain DIGIY", status:"LIVE" },
+
         { key:"driverClient", name:"DIGIY DRIVER", icon:"🚗", desc:"Réserver ta course VTC", status:"LIVE" },
         { key:"loc", name:"DIGIY LOC", icon:"🏠", desc:"Trouver un logement", status:"LIVE" },
-        { key:"resto", name:"DIGIY RESTO", icon:"🍽️", desc:"Commander à manger", status:"LIVE" },
         { key:"resaTable", name:"Résa Table", icon:"📅", desc:"Réserver une table", status:"LIVE" },
+        { key:"resto", name:"DIGIY RESTO", icon:"🍽️", desc:"Commander à manger", status:"LIVE" },
         { key:"market", name:"DIGIY MARKET", icon:"🛍️", desc:"Acheter / vendre", status:"LIVE" },
-        { key:"jobs", name:"DIGIY JOBS", icon:"💼", desc:"Offres d'emploi", status:"LIVE" },
         { key:"pay", name:"DIGIY PAY", icon:"💳", desc:"Portefeuille digital", status:"LIVE" },
+        { key:"jobs", name:"DIGIY JOBS", icon:"💼", desc:"Offres d'emploi", status:"LIVE" },
+        { key:"notable", name:"Notable", icon:"📝", desc:"Blog & ressources", status:"LIVE" },
+        { key:"ndimbalLoc", name:"NDIMBAL Loc", icon:"🏡", desc:"Locations NDIMBAL", status:"LIVE" },
+        { key:"ndimbalAnnonces", name:"NDIMBAL Annonces", icon:"📢", desc:"Hub Drive - Vendre", status:"LIVE" },
+        { key:"ndimbalMap", name:"NDIMBAL Map", icon:"🗺️", desc:"Carte des annonces", status:"LIVE" },
+        { key:"vasChezDigiy", name:"Vas chez DIGIY", icon:"📍", desc:"Portail terrain DIGIY", status:"LIVE" },
         { key:"audio", name:"DIGIY AUDIO", icon:"🎵", desc:"Écouter articles et contenus", status:"LIVE" },
+
         { key:"assistantIA", name:"Assistant IA", icon:"🧠", desc:"Assistant DIGIY Knowledge", status:"LIVE" },
         { key:"bonneAffaire", name:"Bonne Affaire", icon:"🎯", desc:"Deals & offres", status:"LIVE" },
-        { key:"build", name:"DIGIY BUILD", icon:"🏗️", desc:"Services de construction", status:"BETA" },
-        { key:"notable", name:"Notable", icon:"📝", desc:"Blog & ressources", status:"LIVE" },
-        { key:"ndimbalMap", name:"NDIMBAL Map", icon:"🗺️", desc:"Carte des annonces", status:"LIVE" },
-        { key:"ndimbalAnnonces", name:"NDIMBAL Annonces", icon:"📢", desc:"Hub Drive - Vendre", status:"LIVE" },
-        { key:"ndimbalLoc", name:"NDIMBAL Loc", icon:"🏡", desc:"Locations NDIMBAL", status:"LIVE" }
+        { key:"build", name:"DIGIY BUILD", icon:"🏗️", desc:"Services de construction", status:"BETA" }
       ];
 
       const PRO_MODULES = [
+        { key:"explorePro", name:"Explore PRO", icon:"🗺️", desc:"Analytics & stats", status:"LIVE", loco:true },
+
         { key:"inscriptionPro", name:"Inscription PRO", icon:"✍️", desc:"Créer compte professionnel", status:"LIVE" },
         { key:"espacePro", name:"Espace PRO", icon:"🏢", desc:"Tableau de bord pro", status:"LIVE" },
+
         { key:"driverPro", name:"DIGIY DRIVER PRO", icon:"🚗", desc:"Gérer ta flotte VTC", status:"LIVE" },
-        { key:"locPro", name:"DIGIY LOC PRO", icon:"🏠", desc:"Gérer tes logements", status:"LIVE" },
-        { key:"restoPro", name:"DIGIY RESTO PRO", icon:"👨‍🍳", desc:"Gérer ton resto", status:"LIVE" },
-        { key:"caissePro", name:"Caisse PRO", icon:"💰", desc:"Point de vente", status:"LIVE" },
-        { key:"buildPro", name:"DIGIY BUILD PRO", icon:"🏗️", desc:"Gérer chantiers", status:"BETA" },
-        { key:"marketPro", name:"DIGIY MARKET PRO", icon:"🛍️", desc:"Vendre sur market", status:"LIVE" },
-        { key:"jobsPro", name:"DIGIY JOBS PRO", icon:"💼", desc:"Recruter", status:"LIVE" },
-        { key:"payPro", name:"DIGIY PAY PRO", icon:"💳", desc:"Gérer paiements", status:"LIVE" },
-        { key:"explorePro", name:"Explore PRO", icon:"🗺️", desc:"Analytics & stats", status:"LIVE" },
         { key:"resaTablePro", name:"Résa Table PRO", icon:"📅", desc:"Gérer réservations", status:"LIVE" },
+        { key:"restoPro", name:"DIGIY RESTO PRO", icon:"👨‍🍳", desc:"Gérer ton resto", status:"LIVE" },
+        { key:"marketPro", name:"DIGIY MARKET PRO", icon:"🛍️", desc:"Vendre sur market", status:"LIVE" },
+        { key:"caissePro", name:"Caisse PRO", icon:"💰", desc:"Point de vente", status:"LIVE" },
+        { key:"jobsPro", name:"DIGIY JOBS PRO", icon:"💼", desc:"Recruter", status:"LIVE" },
         { key:"fretClientProPin", name:"FRET CLIENT PRO", icon:"📦", desc:"PIN expéditeur", status:"LIVE" },
-        { key:"fretChauffeurProPin", name:"FRET CHAUFFEUR PRO", icon:"🚚", desc:"PIN chauffeur", status:"LIVE" }
+        { key:"fretChauffeurProPin", name:"FRET CHAUFFEUR PRO", icon:"🚚", desc:"PIN chauffeur", status:"LIVE" },
+
+        { key:"locPro", name:"DIGIY LOC PRO", icon:"🏠", desc:"Gérer tes logements", status:"LIVE" },
+        { key:"payPro", name:"DIGIY PAY PRO", icon:"💳", desc:"Gérer paiements", status:"LIVE" },
+        { key:"buildPro", name:"DIGIY BUILD PRO", icon:"🏗️", desc:"Gérer chantiers", status:"BETA" }
       ];
 
       const COPY = {
@@ -1587,13 +1547,11 @@
         window.open(withReturn(url), "_blank", "noopener,noreferrer");
       }
 
-      // Menu direct
       menuVasChezDigiy.href = withReturn(LINKS.vasChezDigiy);
       menuAudio.href = withReturn(LINKS.audio);
       menuIA.href = withReturn(LINKS.assistantIA);
       menuTarifs.href = withReturn(LINKS.tarifs);
 
-      // Boutons flottants
       const tarifBtn = document.getElementById("tarif-bubble-btn");
       const helpBtn = document.getElementById("digiy-help-btn");
       const knowledgeBtn = document.getElementById("knowledge-float-btn");
@@ -1605,7 +1563,6 @@
       if(proBtn) proBtn.addEventListener("click", () => openExternal(LINKS.espacePro));
       if(audioBtn) audioBtn.addEventListener("click", () => openExternal(LINKS.audio));
 
-      // NDIMBAL popup
       const ndimbal = document.getElementById("digiy-ndimbal");
       const closeBtn = document.getElementById("digiyCloseBtn");
       const qrModal = document.getElementById("qrModal");
@@ -1667,7 +1624,6 @@
         });
       }
 
-      // Brand scroll top
       const homeBrand = document.getElementById("homeBrand");
       if(homeBrand){
         homeBrand.addEventListener("click", (e) => {
