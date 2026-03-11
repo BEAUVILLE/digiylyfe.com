@@ -38,14 +38,12 @@
     .app{min-height:100%;position:relative;z-index:1;}
     .wrap{max-width:1200px;margin:0 auto;padding:14px 14px 260px;}
 
-    /* SHELL */
     .shell{
       background:linear-gradient(180deg,rgba(8,109,53,.24),rgba(12,40,29,.96) 20%,rgba(9,24,18,.98) 100%);
       border:1px solid var(--line);border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
     }
     .shell::before{content:"";display:block;height:4px;background:linear-gradient(90deg,#00a651 0%,#00853f 44%,#f6c453 100%);}
 
-    /* TOPBAR */
     .topbar{
       position:sticky;top:0;z-index:25;
       display:flex;align-items:center;gap:12px;flex-wrap:wrap;
@@ -64,9 +62,6 @@
     .brandText .title{font-family:var(--fontA);font-weight:900;letter-spacing:.8px;font-size:18px;}
     .brandText .subtitle{color:rgba(248,250,252,.78);font-size:13px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px;}
 
-    /* ═══════════════════════════════════
-       BARRE MENU — 2 LIGNES FLEX-WRAP
-    ═══════════════════════════════════ */
     .menuBar{
       padding:8px 14px 10px;
       border-bottom:1px solid rgba(255,255,255,.07);
@@ -105,7 +100,6 @@
     .mBtn.green{background:linear-gradient(135deg,rgba(0,166,81,.17),rgba(0,0,0,.48));border-color:rgba(0,166,81,.32);color:#dcffe8;}
     .mBtn.green:hover{border-color:rgba(0,166,81,.55);box-shadow:0 3px 12px rgba(0,166,81,.10);}
 
-    /* MAIN */
     .main{max-width:1200px;margin:0 auto;padding:16px 18px 120px;}
 
     .section{
@@ -127,7 +121,6 @@
     .pill.public{border-color:rgba(246,196,83,.35);color:rgba(246,196,83,.96)}
     .pill.pro{border-color:rgba(0,166,81,.34);color:rgba(110,255,161,.98)}
 
-    /* RAILS */
     .railWrap{position:relative;padding:14px;}
     .railWrap::after{
       content:"";position:absolute;top:14px;right:14px;width:52px;height:calc(100% - 28px);
@@ -152,7 +145,6 @@
     .moduleRail::-webkit-scrollbar{height:6px}
     .moduleRail::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:999px;}
 
-    /* ═══ PAVÉS CLIQUABLES ═══ */
     .moduleBtn{
       min-width:158px;max-width:188px;
       border:1px solid rgba(255,255,255,.10);
@@ -196,7 +188,6 @@
     .miniBadge.beta{color:#fde68a;border-color:rgba(245,158,11,.30);background:rgba(245,158,11,.08);}
     .miniBadge.loco{color:#fff3cf;border-color:rgba(246,196,83,.30);background:rgba(246,196,83,.08);}
 
-    /* FOCUS */
     .focus{
       margin-top:14px;border:1px solid rgba(255,255,255,.08);border-radius:24px;
       background:linear-gradient(180deg,rgba(10,48,34,.82),rgba(8,28,20,.76));
@@ -216,7 +207,6 @@
     .focusText{margin-top:14px;color:#f0ece3;line-height:1.58;font-size:14px;max-width:72ch;}
     .focusActions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;}
 
-    /* STORY */
     .storyBlock{margin-top:14px;border:1px solid rgba(255,255,255,.08);border-radius:24px;background:linear-gradient(180deg,rgba(10,48,34,.82),rgba(8,28,20,.76));box-shadow:var(--shadow);overflow:hidden;}
     .storyWrap{padding:16px;}
     .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;align-items:stretch;}
@@ -238,7 +228,6 @@
     .chipK{font-size:12px;color:var(--muted)} .chipV{font-weight:800;font-family:var(--fontA)}
     .heroChips{position:relative;z-index:1;display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
 
-    /* BUTTONS */
     .btn{
       border:1px solid var(--line);background:rgba(2,6,23,.18);color:var(--ink);
       padding:12px 14px;border-radius:14px;cursor:pointer;font-weight:800;
@@ -267,7 +256,6 @@
     .footBrand{font-family:var(--fontA);font-weight:900;color:rgba(246,196,83,.95);}
     .sep{opacity:.35}
 
-    /* FLOAT BTNS */
     .floatBtn{
       position:fixed;z-index:40;border-radius:999px;padding:14px 16px;
       border:1px solid rgba(255,255,255,.14);background:rgba(6,33,22,.62);
@@ -282,7 +270,6 @@
     #espace-pro-btn{left:14px;bottom:18px;}
     #vision-bubble-btn{left:14px;bottom:68px;}
 
-    /* MODALS */
     .ndimbal,.qrModal{
       position:fixed;inset:0;background:rgba(0,0,0,.55);
       display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(4px);
@@ -305,7 +292,6 @@
     .qrLink{display:block;margin-top:12px;text-align:center;padding:12px 14px;border-radius:14px;border:1px solid rgba(246,196,83,.28);background:rgba(246,196,83,.10);font-family:var(--fontA);font-weight:900;transition:all .2s;}
     .qrLink:hover{border-color:rgba(246,196,83,.45);background:rgba(246,196,83,.18);}
 
-    /* STICKY BAR */
     .stickyBar{
       position:fixed;left:0;right:0;bottom:0;z-index:30;
       padding:10px 12px calc(10px + env(safe-area-inset-bottom));
@@ -324,7 +310,6 @@
     .stickyActions{display:flex;gap:8px;}
     .stickyActions .btn{min-height:44px;padding:0 14px;}
 
-    /* RESPONSIVE */
     @media(max-width:980px){.hero{grid-template-columns:1fr;}}
     @media(max-width:640px){
       .railHint{display:block;} .railArrow{display:none;}
@@ -365,20 +350,18 @@
         </a>
       </header>
 
-      <!-- ═══ BARRE MENU 2 LIGNES ═══ -->
       <nav class="menuBar" aria-label="Navigation DIGIY">
 
-        <!-- LIGNE 1 — CLIENT PUBLIC -->
         <div class="menuRow">
           <a class="mBtn home" href="https://digiylyfe.com">🏠</a>
           <span class="rowLabel c">CLIENT</span>
           <a class="mBtn gold" id="mn-market"            href="#">🛍️ Market</a>
-          <a class="mBtn gold" id="mn-driver"            href="#">🚗 Driver</a>
-          <a class="mBtn gold" id="mn-chauffeurs"        href="#">🚘 Galerie</a>
           <a class="mBtn gold" id="mn-explore"           href="#">🗺️ Explore</a>
           <a class="mBtn gold" id="mn-loc"               href="#">🏠 LOC</a>
-          <a class="mBtn gold" id="mn-resatable"         href="#">📅 Résa Table</a>
           <a class="mBtn gold" id="mn-jobs"              href="#">💼 Jobs</a>
+          <a class="mBtn gold" id="mn-chauffeurs"        href="#">🚘 Galerie</a>
+          <a class="mBtn gold" id="mn-driver"            href="#">🚗 Driver</a>
+          <a class="mBtn gold" id="mn-resatable"         href="#">📅 Résa Table</a>
           <a class="mBtn gold" id="mn-pay"               href="#">💳 PAY</a>
           <a class="mBtn gold" id="mn-vaschezmoi"        href="#">📍 Vas chez DIGIY</a>
           <a class="mBtn gold" id="mn-ndimbal-loc"       href="#">🏡 NDIMBAL Loc</a>
@@ -389,19 +372,18 @@
           <a class="mBtn gold" id="mn-tarifs"            href="#">🏷️ Tarifs</a>
         </div>
 
-        <!-- LIGNE 2 — PRO -->
         <div class="menuRow">
           <span class="rowLabel p">PRO</span>
           <a class="mBtn green" id="mn-espace-pro"       href="#">🏢 Espace PRO</a>
           <a class="mBtn green" id="mn-inscription-pro"  href="#">✍️ Inscription PRO</a>
           <a class="mBtn green" id="mn-market-pro"       href="#">🛍️ Market PRO</a>
           <a class="mBtn green" id="mn-caisse-pro"       href="#">💰 Caisse PRO</a>
-          <a class="mBtn green" id="mn-driver-pro"       href="#">🚗 Driver PRO</a>
           <a class="mBtn green" id="mn-jobs-pro"         href="#">💼 Jobs PRO</a>
           <a class="mBtn green" id="mn-loc-pro"          href="#">🏠 LOC PRO</a>
           <a class="mBtn green" id="mn-build-pro"        href="#">🏗️ Build PRO</a>
-          <a class="mBtn green" id="mn-resatable-pro"    href="#">📅 Résa Table PRO</a>
           <a class="mBtn green" id="mn-explore-pro"      href="#">🗺️ Explore PRO</a>
+          <a class="mBtn green" id="mn-driver-pro"       href="#">🚗 Driver PRO</a>
+          <a class="mBtn green" id="mn-resatable-pro"    href="#">📅 Résa Table PRO</a>
           <a class="mBtn green" id="mn-pay-pro"          href="#">💳 PAY PRO</a>
         </div>
 
@@ -413,7 +395,7 @@
           <div class="sectionHead">
             <div>
               <h2>Écosystème Public</h2>
-              <div class="sectionSub">Clique sur un pavé pour ouvrir la porte directement.</div>
+              <div class="sectionSub">Les grandes portes d'abord. Les services plus spécialisés ensuite.</div>
             </div>
             <div class="legend">
               <span class="pill public">PUBLIC</span>
@@ -432,7 +414,7 @@
           <div class="sectionHead">
             <div>
               <h2>Écosystème PRO</h2>
-              <div class="sectionSub">Clique sur un pavé pour ouvrir la porte PRO directement.</div>
+              <div class="sectionSub">Le cockpit business d'abord. Les métiers spécialisés ensuite.</div>
             </div>
             <div class="legend">
               <span class="pill pro">PRO</span>
@@ -498,13 +480,13 @@
               <aside class="heroRight">
                 <div class="panel">
                   <div class="panelTitle">Cap DIGIY</div>
-                  <div class="panelHint">Une vitrine pensée pour montrer d'abord les portes utiles, puis la vision qui porte l'ensemble.</div>
+                  <div class="panelHint">Une vitrine pensée pour montrer d'abord les grandes portes de l'écosystème, puis les services plus spécialisés.</div>
                   <div class="stats">
                     <div class="stat"><div class="statN">VENDRE</div><div class="statL">Market, vitrines, présence commerciale</div></div>
                     <div class="stat"><div class="statN">PILOTER</div><div class="statL">Espace PRO, caisse, gestion, activité</div></div>
-                    <div class="stat"><div class="statN">GRANDIR</div><div class="statL">Jobs, build, services, traction terrain</div></div>
+                    <div class="stat"><div class="statN">RELIER</div><div class="statL">Jobs, mobilité, services, traction terrain</div></div>
                   </div>
-                  <div class="note"><b>Lecture DIGIY :</b> la vitrine ne montre pas juste des modules. Elle montre un <b>écosystème business</b> capable de tirer les autres wagons dans le bon sens.</div>
+                  <div class="note"><b>Lecture DIGIY :</b> la vitrine montre d'abord un <b>écosystème business</b>. Les services plus précis, comme la mobilité, restent bien présents mais en second rideau de sens.</div>
                 </div>
               </aside>
             </div>
@@ -566,11 +548,16 @@
   const HOME = "https://digiylyfe.com";
 
   function wr(url){
-    try{ const u=new URL(url,location.href); u.searchParams.set("return",HOME); return u.toString(); }
-    catch(e){ return url; }
+    try{
+      const u = new URL(url, location.href);
+      u.searchParams.set("return", HOME);
+      return u.toString();
+    }catch(e){
+      return url;
+    }
   }
 
-  const L={
+  const L = {
     market:"https://market.digiylyfe.com/",
     driver:"https://driver-client.digiylyfe.com/",
     galerieChauffeurs:"https://beauville.github.io/galerie-chauffeurs/",
@@ -600,46 +587,46 @@
     payPro:"https://pay.digiylyfe.com/"
   };
 
-  const PUB=[
-    {key:"market",           name:"DIGIY MARKET",        icon:"🛍️",desc:"Acheter / vendre",              status:"LIVE",loco:true},
-    {key:"driver",           name:"DIGIY DRIVER",        icon:"🚗",desc:"Commander une course",          status:"LIVE"},
-    {key:"galerieChauffeurs",name:"Galerie Chauffeurs",  icon:"🚘",desc:"Voir les profils chauffeurs",   status:"LIVE"},
-    {key:"explore",          name:"DIGIY EXPLORE",       icon:"🗺️",desc:"Découvrir la région",           status:"LIVE"},
-    {key:"loc",              name:"DIGIY LOC",           icon:"🏠",desc:"Trouver un logement",           status:"LIVE"},
-    {key:"resaTable",        name:"Résa Table",          icon:"📅",desc:"Réserver une table",            status:"LIVE"},
-    {key:"jobs",             name:"DIGIY JOBS",          icon:"💼",desc:"Offres d'emploi",               status:"LIVE"},
-    {key:"pay",              name:"DIGIY PAY",           icon:"💳",desc:"Portefeuille digital",          status:"LIVE"},
-    {key:"vasChezDigiy",     name:"Vas chez DIGIY",      icon:"📍",desc:"Portail terrain DIGIY",         status:"LIVE"},
-    {key:"ndimbalLoc",       name:"NDIMBAL Loc",         icon:"🏡",desc:"Locations NDIMBAL",             status:"LIVE"},
-    {key:"ndimbalMap",       name:"NDIMBAL Map",         icon:"🗺️",desc:"Carte des annonces",           status:"LIVE"},
-    {key:"ndimbalAnnonces",  name:"NDIMBAL Annonces",    icon:"📢",desc:"Publier / vendre",              status:"LIVE"},
-    {key:"audio",            name:"DIGIY AUDIO",         icon:"🎵",desc:"Écouter les contenus",          status:"LIVE"},
-    {key:"assistantIA",      name:"Assistant IA",        icon:"🧠",desc:"Assistant DIGIY Knowledge",    status:"LIVE"},
-    {key:"build",            name:"DIGIY BUILD",         icon:"🏗️",desc:"Services de construction",     status:"BETA"},
+  const PUB = [
+    {key:"market",            name:"DIGIY MARKET",       icon:"🛍️",desc:"Acheter / vendre",                    status:"LIVE",loco:true},
+    {key:"explore",           name:"DIGIY EXPLORE",      icon:"🗺️",desc:"Découvrir la région",                 status:"LIVE"},
+    {key:"loc",               name:"DIGIY LOC",          icon:"🏠",desc:"Trouver un logement",                 status:"LIVE"},
+    {key:"jobs",              name:"DIGIY JOBS",         icon:"💼",desc:"Offres d'emploi",                     status:"LIVE"},
+    {key:"galerieChauffeurs", name:"Galerie Chauffeurs", icon:"🚘",desc:"Voir les profils chauffeurs",         status:"LIVE"},
+    {key:"driver",            name:"DIGIY DRIVER",       icon:"🚗",desc:"Mobilité avec savoir-être",           status:"LIVE"},
+    {key:"resaTable",         name:"Résa Table",         icon:"📅",desc:"Réserver une table",                  status:"LIVE"},
+    {key:"pay",               name:"DIGIY PAY",          icon:"💳",desc:"Portefeuille digital",                status:"LIVE"},
+    {key:"vasChezDigiy",      name:"Vas chez DIGIY",     icon:"📍",desc:"Portail terrain DIGIY",               status:"LIVE"},
+    {key:"ndimbalLoc",        name:"NDIMBAL Loc",        icon:"🏡",desc:"Locations NDIMBAL",                   status:"LIVE"},
+    {key:"ndimbalMap",        name:"NDIMBAL Map",        icon:"🗺️",desc:"Carte des annonces",                  status:"LIVE"},
+    {key:"ndimbalAnnonces",   name:"NDIMBAL Annonces",   icon:"📢",desc:"Publier / vendre",                    status:"LIVE"},
+    {key:"audio",             name:"DIGIY AUDIO",        icon:"🎵",desc:"Écouter les contenus",                status:"LIVE"},
+    {key:"assistantIA",       name:"Assistant IA",       icon:"🧠",desc:"Assistant DIGIY Knowledge",          status:"LIVE"},
+    {key:"build",             name:"DIGIY BUILD",        icon:"🏗️",desc:"Services de construction",           status:"BETA"}
   ];
 
-  const PRO=[
-    {key:"espacePro",     name:"Espace PRO",        icon:"🏢",desc:"Cockpit central professionnel", status:"LIVE",loco:true},
-    {key:"marketPro",     name:"MARKET PRO",        icon:"🛍️",desc:"Vendre sur market",            status:"LIVE",loco:true},
-    {key:"inscriptionPro",name:"Inscription PRO",   icon:"✍️",desc:"Créer compte professionnel",   status:"LIVE"},
-    {key:"caissePro",     name:"Caisse PRO",        icon:"💰",desc:"Point de vente",               status:"LIVE"},
-    {key:"driverPro",     name:"DRIVER PRO",        icon:"🚗",desc:"Cockpit chauffeur",            status:"LIVE"},
-    {key:"jobsPro",       name:"JOBS PRO",          icon:"💼",desc:"Recruter",                     status:"LIVE"},
-    {key:"locPro",        name:"LOC PRO",           icon:"🏠",desc:"Gérer tes logements",          status:"LIVE"},
-    {key:"resaTablePro",  name:"Résa Table PRO",    icon:"📅",desc:"Gérer réservations",           status:"LIVE"},
-    {key:"explorePro",    name:"Explore PRO",       icon:"🗺️",desc:"Analytics & stats",           status:"LIVE"},
-    {key:"payPro",        name:"PAY PRO",           icon:"💳",desc:"Gérer paiements",             status:"LIVE"},
-    {key:"buildPro",      name:"BUILD PRO",         icon:"🏗️",desc:"Gérer chantiers",            status:"BETA"},
+  const PRO = [
+    {key:"espacePro",      name:"Espace PRO",      icon:"🏢",desc:"Cockpit central professionnel", status:"LIVE",loco:true},
+    {key:"marketPro",      name:"MARKET PRO",      icon:"🛍️",desc:"Vendre sur market",            status:"LIVE",loco:true},
+    {key:"inscriptionPro", name:"Inscription PRO", icon:"✍️",desc:"Créer compte professionnel",   status:"LIVE"},
+    {key:"caissePro",      name:"Caisse PRO",      icon:"💰",desc:"Point de vente",               status:"LIVE"},
+    {key:"jobsPro",        name:"JOBS PRO",        icon:"💼",desc:"Recruter",                     status:"LIVE"},
+    {key:"locPro",         name:"LOC PRO",         icon:"🏠",desc:"Gérer tes logements",          status:"LIVE"},
+    {key:"buildPro",       name:"BUILD PRO",       icon:"🏗️",desc:"Gérer chantiers",             status:"BETA"},
+    {key:"explorePro",     name:"Explore PRO",     icon:"🗺️",desc:"Analytics & stats",           status:"LIVE"},
+    {key:"driverPro",      name:"DRIVER PRO",      icon:"🚗",desc:"Pilotage chauffeur",           status:"LIVE"},
+    {key:"resaTablePro",   name:"Résa Table PRO",  icon:"📅",desc:"Gérer réservations",           status:"LIVE"},
+    {key:"payPro",         name:"PAY PRO",         icon:"💳",desc:"Gérer paiements",              status:"LIVE"}
   ];
 
-  const COPY={
+  const COPY = {
     market:"DIGIY MARKET sert de locomotive business pour montrer tout de suite le mouvement, l'échange, la vente, l'opportunité et l'économie locale en action.",
-    driver:"DIGIY DRIVER connecte le client à une commande simple, directe et sans détour.",
-    galerieChauffeurs:"La Galerie met en avant les profils, la présence terrain et la valeur humaine du transport DIGIY.",
     explore:"DIGIY EXPLORE garde la noblesse du territoire et de la découverte — il élève la vision et donne de la respiration.",
     loc:"DIGIY LOC donne envie de trouver un logement sans surcharge visuelle.",
-    resaTable:"Résa Table simplifie la réservation avec une porte claire et rapide.",
     jobs:"DIGIY JOBS aide à voir les opportunités d'emploi sans brouillard.",
+    galerieChauffeurs:"La Galerie des chauffeurs montre d'abord l'humain, la confiance, le visage et la qualité de présence avant la simple commande.",
+    driver:"DIGIY DRIVER ne se positionne pas comme une logique de masse. Il propose une mobilité plus humaine, plus propre, avec le savoir-être au cœur du service.",
+    resaTable:"Résa Table simplifie la réservation avec une porte claire et rapide.",
     pay:"DIGIY PAY pose la logique de paiement simple et directe, au service du terrain.",
     vasChezDigiy:"Vas chez DIGIY sert de porte d'entrée terrain pour orienter rapidement vers l'univers DIGIY.",
     ndimbalLoc:"NDIMBAL Loc concentre la location dans un espace simple et direct.",
@@ -652,157 +639,249 @@
     marketPro:"MARKET PRO sert de locomotive commerciale côté pro. Il pousse la vitrine, la vente et la traction économique.",
     inscriptionPro:"Inscription PRO est la porte d'entrée pour les professionnels qui veulent rejoindre l'écosystème DIGIY.",
     caissePro:"Caisse PRO rassemble la logique point de vente dans une interface directe et compacte.",
-    driverPro:"DRIVER PRO est le cockpit du chauffeur : courses, revenus, historique, profil — tout en un.",
     jobsPro:"JOBS PRO donne au recruteur un accès clair pour publier et suivre ses offres.",
     locPro:"LOC PRO aide à gérer les logements, accès et activité dans une logique compacte.",
-    resaTablePro:"Résa Table PRO permet de gérer les réservations et le flux client avec efficacité.",
-    explorePro:"Explore PRO garde la lecture premium et analytics côté professionnel.",
-    payPro:"PAY PRO concentre la gestion des paiements dans une porte métier lisible.",
     buildPro:"BUILD PRO valorise la gestion des chantiers et du savoir-faire artisan.",
+    explorePro:"Explore PRO garde la lecture premium et analytics côté professionnel.",
+    driverPro:"DRIVER PRO garde le rail métier chauffeur, mais sans prendre toute la devanture. Il reste une porte spécialisée, utile et claire.",
+    resaTablePro:"Résa Table PRO permet de gérer les réservations et le flux client avec efficacité.",
+    payPro:"PAY PRO concentre la gestion des paiements dans une porte métier lisible."
   };
 
-  let curKey="market", curKind="public";
+  let curKey = "market";
+  let curKind = "public";
 
-  const $=id=>document.getElementById(id);
-  const pubRail=$("publicRail"), proRail=$("proRail");
-  const pubHint=$("publicHint"), proHintEl=$("proHint");
-  const focusIcon=$("focusIcon"), focusLabel=$("focusLabel"), focusHint=$("focusHint");
-  const focusKind=$("focusKind"), focusBadge=$("focusBadge"), focusText=$("focusText");
-  const focusOpenBtn=$("focusOpenBtn"), heroOpenBtn=$("heroOpenBtn");
-  const stickyOpen=$("stickyOpenBtn"), stickyVal=$("stickyValue");
+  const $ = (id) => document.getElementById(id);
+  const pubRail = $("publicRail");
+  const proRail = $("proRail");
+  const pubHint = $("publicHint");
+  const proHintEl = $("proHint");
+  const focusIcon = $("focusIcon");
+  const focusLabel = $("focusLabel");
+  const focusHint = $("focusHint");
+  const focusKind = $("focusKind");
+  const focusBadge = $("focusBadge");
+  const focusText = $("focusText");
+  const focusOpenBtn = $("focusOpenBtn");
+  const heroOpenBtn = $("heroOpenBtn");
+  const stickyOpen = $("stickyOpenBtn");
+  const stickyVal = $("stickyValue");
 
-  function sc(s){return s==="BETA"?"beta":"live";}
-  function getMod(key,kind){const a=kind==="pro"?PRO:PUB;return a.find(x=>x.key===key)||a[0];}
+  function sc(s){
+    return s === "BETA" ? "beta" : "live";
+  }
 
-  function renderRail(container,modules,kind){
-    container.innerHTML=modules.map(item=>{
-      const href=wr(L[item.key]||HOME);
-      return`<a class="moduleBtn ${kind==="public"?"publicCard":"proCard"} ${item.key===curKey?"active":""} ${item.loco?"loco":""}"
-        href="${href}" target="_blank" rel="noopener noreferrer"
-        data-kind="${kind}" data-key="${item.key}">
-        <span class="moduleEmoji">${item.icon}</span>
-        <div class="moduleName">${item.name}</div>
-        <div class="moduleHint">${item.desc}</div>
-        <div class="miniBadges">
-          <span class="miniBadge ${kind}">${kind==="public"?"PUBLIC":"PRO"}</span>
-          <span class="miniBadge ${sc(item.status)}">${item.status}</span>
-          ${item.loco?`<span class="miniBadge loco">LOCO</span>`:""}
-        </div>
-        <div class="openHint">↗ Ouvrir</div>
-      </a>`;
+  function getMod(key, kind){
+    const arr = kind === "pro" ? PRO : PUB;
+    return arr.find(x => x.key === key) || arr[0];
+  }
+
+  function renderRail(container, modules, kind){
+    container.innerHTML = modules.map(item => {
+      const href = wr(L[item.key] || HOME);
+      return `
+        <a class="moduleBtn ${kind === "public" ? "publicCard" : "proCard"} ${item.key === curKey ? "active" : ""} ${item.loco ? "loco" : ""}"
+           href="${href}" target="_blank" rel="noopener noreferrer"
+           data-kind="${kind}" data-key="${item.key}">
+          <span class="moduleEmoji">${item.icon}</span>
+          <div class="moduleName">${item.name}</div>
+          <div class="moduleHint">${item.desc}</div>
+          <div class="miniBadges">
+            <span class="miniBadge ${kind}">${kind === "public" ? "PUBLIC" : "PRO"}</span>
+            <span class="miniBadge ${sc(item.status)}">${item.status}</span>
+            ${item.loco ? `<span class="miniBadge loco">LOCO</span>` : ""}
+          </div>
+          <div class="openHint">↗ Ouvrir</div>
+        </a>
+      `;
     }).join("");
 
-    container.querySelectorAll("[data-key]").forEach(el=>{
-      el.addEventListener("mouseenter",()=>{
-        curKey=el.getAttribute("data-key");
-        curKind=el.getAttribute("data-kind");
+    container.querySelectorAll("[data-key]").forEach(el => {
+      el.addEventListener("mouseenter", () => {
+        curKey = el.getAttribute("data-key");
+        curKind = el.getAttribute("data-kind");
         updateFocus();
-        container.querySelectorAll(".moduleBtn").forEach(b=>b.classList.remove("active"));
+        container.querySelectorAll(".moduleBtn").forEach(b => b.classList.remove("active"));
         el.classList.add("active");
       });
     });
   }
 
   function updateFocus(){
-    const item=getMod(curKey,curKind);
-    const href=wr(L[item.key]||HOME);
-    focusIcon.textContent=item.icon;
-    focusLabel.textContent=item.name;
-    focusHint.textContent=item.desc;
-    focusKind.textContent=curKind==="public"?"PUBLIC":"PRO";
-    focusKind.className=`focusBadge ${curKind}`;
-    focusBadge.textContent=item.loco?(curKind==="public"?"👑 Locomotive business":"👑 Locomotive pro"):(curKind==="public"?"🌍 Porte publique":"🧰 Porte pro");
-    focusText.textContent=COPY[item.key]||item.desc;
-    focusOpenBtn.href=heroOpenBtn.href=stickyOpen.href=href;
-    stickyVal.textContent=`${item.name} • ${curKind==="public"?"PUBLIC":"PRO"} • ${item.desc}`;
+    const item = getMod(curKey, curKind);
+    const href = wr(L[item.key] || HOME);
+
+    focusIcon.textContent = item.icon;
+    focusLabel.textContent = item.name;
+    focusHint.textContent = item.desc;
+    focusKind.textContent = curKind === "public" ? "PUBLIC" : "PRO";
+    focusKind.className = `focusBadge ${curKind}`;
+    focusBadge.textContent = item.loco
+      ? (curKind === "public" ? "👑 Locomotive business" : "👑 Locomotive pro")
+      : (curKind === "public" ? "🌍 Porte publique" : "🧰 Porte pro");
+
+    focusText.textContent = COPY[item.key] || item.desc;
+    focusOpenBtn.href = heroOpenBtn.href = stickyOpen.href = href;
+    stickyVal.textContent = `${item.name} • ${curKind === "public" ? "PUBLIC" : "PRO"} • ${item.desc}`;
   }
 
-  function renderAll(){renderRail(pubRail,PUB,"public");renderRail(proRail,PRO,"pro");updateFocus();}
+  function renderAll(){
+    renderRail(pubRail, PUB, "public");
+    renderRail(proRail, PRO, "pro");
+    updateFocus();
+  }
 
-  function bindRailHint(rail,hint){
+  function bindRailHint(rail, hint){
     function upd(){
-      const max=rail.scrollWidth-rail.clientWidth;
-      hint.style.display=(max>8&&window.innerWidth<=640&&rail.scrollLeft<=12)?"block":"none";
+      const max = rail.scrollWidth - rail.clientWidth;
+      hint.style.display = (max > 8 && window.innerWidth <= 640 && rail.scrollLeft <= 12) ? "block" : "none";
     }
-    rail.addEventListener("scroll",upd,{passive:true});
-    window.addEventListener("resize",upd);
+    rail.addEventListener("scroll", upd, {passive:true});
+    window.addEventListener("resize", upd);
     requestAnimationFrame(upd);
   }
 
-  function bindArrows(rId,lId,rBId){
-    const rail=$(rId),left=$(lId),right=$(rBId);
-    if(!rail||!left||!right)return;
-    left.addEventListener("click",()=>rail.scrollBy({left:-260,behavior:"smooth"}));
-    right.addEventListener("click",()=>rail.scrollBy({left:260,behavior:"smooth"}));
+  function bindArrows(rId, lId, rBId){
+    const rail = $(rId);
+    const left = $(lId);
+    const right = $(rBId);
+    if(!rail || !left || !right) return;
+
+    left.addEventListener("click", () => rail.scrollBy({left:-260, behavior:"smooth"}));
+    right.addEventListener("click", () => rail.scrollBy({left:260, behavior:"smooth"}));
+
     function upd(){
-      const max=rail.scrollWidth-rail.clientWidth;
-      if(window.innerWidth<=640||max<=8){left.style.display=right.style.display="none";return;}
-      left.style.display=rail.scrollLeft>8?"flex":"none";
-      right.style.display=rail.scrollLeft<max-8?"flex":"none";
+      const max = rail.scrollWidth - rail.clientWidth;
+      if(window.innerWidth <= 640 || max <= 8){
+        left.style.display = "none";
+        right.style.display = "none";
+        return;
+      }
+      left.style.display = rail.scrollLeft > 8 ? "flex" : "none";
+      right.style.display = rail.scrollLeft < max - 8 ? "flex" : "none";
     }
-    rail.addEventListener("scroll",upd,{passive:true});
-    window.addEventListener("resize",upd);
+
+    rail.addEventListener("scroll", upd, {passive:true});
+    window.addEventListener("resize", upd);
     requestAnimationFrame(upd);
   }
 
-  function openExt(url){window.open(wr(url),"_blank","noopener,noreferrer");}
+  function openExt(url){
+    window.open(wr(url), "_blank", "noopener,noreferrer");
+  }
 
-  /* Menu bar links */
-  const menuMap={
-    "mn-market":L.market,"mn-driver":L.driver,"mn-chauffeurs":L.galerieChauffeurs,
-    "mn-explore":L.explore,"mn-loc":L.loc,"mn-resatable":L.resaTable,
-    "mn-jobs":L.jobs,"mn-pay":L.pay,"mn-vaschezmoi":L.vasChezDigiy,
-    "mn-ndimbal-loc":L.ndimbalLoc,"mn-ndimbal-map":L.ndimbalMap,"mn-ndimbal-annonces":L.ndimbalAnnonces,
-    "mn-audio":L.audio,"mn-ia":L.assistantIA,"mn-tarifs":L.tarifs,
-    "mn-espace-pro":L.espacePro,"mn-inscription-pro":L.inscriptionPro,
-    "mn-market-pro":L.marketPro,"mn-caisse-pro":L.caissePro,"mn-driver-pro":L.driverPro,
-    "mn-jobs-pro":L.jobsPro,"mn-loc-pro":L.locPro,"mn-build-pro":L.buildPro,
-    "mn-resatable-pro":L.resaTablePro,"mn-explore-pro":L.explorePro,
+  const menuMap = {
+    "mn-market":L.market,
+    "mn-explore":L.explore,
+    "mn-loc":L.loc,
+    "mn-jobs":L.jobs,
+    "mn-chauffeurs":L.galerieChauffeurs,
+    "mn-driver":L.driver,
+    "mn-resatable":L.resaTable,
+    "mn-pay":L.pay,
+    "mn-vaschezmoi":L.vasChezDigiy,
+    "mn-ndimbal-loc":L.ndimbalLoc,
+    "mn-ndimbal-map":L.ndimbalMap,
+    "mn-ndimbal-annonces":L.ndimbalAnnonces,
+    "mn-audio":L.audio,
+    "mn-ia":L.assistantIA,
+    "mn-tarifs":L.tarifs,
+    "mn-espace-pro":L.espacePro,
+    "mn-inscription-pro":L.inscriptionPro,
+    "mn-market-pro":L.marketPro,
+    "mn-caisse-pro":L.caissePro,
+    "mn-jobs-pro":L.jobsPro,
+    "mn-loc-pro":L.locPro,
+    "mn-build-pro":L.buildPro,
+    "mn-explore-pro":L.explorePro,
+    "mn-driver-pro":L.driverPro,
+    "mn-resatable-pro":L.resaTablePro,
     "mn-pay-pro":L.payPro
   };
-  Object.entries(menuMap).forEach(([id,url])=>{
-    const el=$(id);
-    if(el){el.href=wr(url);el.target="_blank";el.rel="noopener noreferrer";}
+
+  Object.entries(menuMap).forEach(([id, url]) => {
+    const el = $(id);
+    if(el){
+      el.href = wr(url);
+      el.target = "_blank";
+      el.rel = "noopener noreferrer";
+    }
   });
 
-  /* Float buttons */
-  [["tarif-bubble-btn",L.tarifs],["knowledge-float-btn",L.assistantIA],["espace-pro-btn",L.espacePro],["vision-bubble-btn",L.audio]]
-    .forEach(([id,url])=>{ const el=$(id); if(el)el.addEventListener("click",()=>openExt(url)); });
+  [
+    ["tarif-bubble-btn", L.tarifs],
+    ["knowledge-float-btn", L.assistantIA],
+    ["espace-pro-btn", L.espacePro],
+    ["vision-bubble-btn", L.audio]
+  ].forEach(([id, url]) => {
+    const el = $(id);
+    if(el) el.addEventListener("click", () => openExt(url));
+  });
 
-  /* NDIMBAL */
-  const nd=$("digiy-ndimbal"),qrM=$("qrModal");
-  const showNd=()=>{nd.classList.remove("hidden");nd.setAttribute("aria-hidden","false");};
-  const hideNd=()=>{nd.classList.add("hidden");nd.setAttribute("aria-hidden","true");};
-  const showQr=()=>{qrM.classList.remove("hidden");qrM.setAttribute("aria-hidden","false");};
-  const hideQr=()=>{qrM.classList.add("hidden");qrM.setAttribute("aria-hidden","true");};
+  const nd = $("digiy-ndimbal");
+  const qrM = $("qrModal");
 
-  const helpBtn=$("digiy-help-btn");
-  if(helpBtn)helpBtn.addEventListener("click",showNd);
-  const closeBtn=$("digiyCloseBtn");
-  if(closeBtn)closeBtn.addEventListener("click",hideNd);
+  const showNd = () => {
+    nd.classList.remove("hidden");
+    nd.setAttribute("aria-hidden","false");
+  };
+
+  const hideNd = () => {
+    nd.classList.add("hidden");
+    nd.setAttribute("aria-hidden","true");
+  };
+
+  const showQr = () => {
+    qrM.classList.remove("hidden");
+    qrM.setAttribute("aria-hidden","false");
+  };
+
+  const hideQr = () => {
+    qrM.classList.add("hidden");
+    qrM.setAttribute("aria-hidden","true");
+  };
+
+  const helpBtn = $("digiy-help-btn");
+  if(helpBtn) helpBtn.addEventListener("click", showNd);
+
+  const closeBtn = $("digiyCloseBtn");
+  if(closeBtn) closeBtn.addEventListener("click", hideNd);
+
   if(nd){
-    nd.addEventListener("click",e=>{
-      if(e.target===nd){hideNd();return;}
-      const b=e.target.closest("[data-action]");
-      if(!b)return; hideNd();
-      const a=b.getAttribute("data-action");
-      if(a==="sell")openExt(L.ndimbalAnnonces);
-      else if(a==="job")openExt(L.jobs);
-      else if(a==="qr")showQr();
+    nd.addEventListener("click", e => {
+      if(e.target === nd){
+        hideNd();
+        return;
+      }
+      const b = e.target.closest("[data-action]");
+      if(!b) return;
+
+      hideNd();
+      const a = b.getAttribute("data-action");
+
+      if(a === "sell") openExt(L.ndimbalAnnonces);
+      else if(a === "job") openExt(L.jobs);
+      else if(a === "qr") showQr();
     });
   }
-  const qrClose=$("qrClose");
-  if(qrClose)qrClose.addEventListener("click",hideQr);
-  if(qrM)qrM.addEventListener("click",e=>{if(e.target===qrM)hideQr();});
 
-  const homeBrand=$("homeBrand");
-  if(homeBrand)homeBrand.addEventListener("click",e=>{e.preventDefault();window.scrollTo({top:0,behavior:"smooth"});});
+  const qrClose = $("qrClose");
+  if(qrClose) qrClose.addEventListener("click", hideQr);
+  if(qrM) qrM.addEventListener("click", e => { if(e.target === qrM) hideQr(); });
+
+  const homeBrand = $("homeBrand");
+  if(homeBrand){
+    homeBrand.addEventListener("click", e => {
+      e.preventDefault();
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  }
 
   renderAll();
-  bindRailHint(pubRail,pubHint);
-  bindRailHint(proRail,proHintEl);
-  bindArrows("publicRail","publicLeft","publicRight");
-  bindArrows("proRail","proLeft","proRight");
+  bindRailHint(pubRail, pubHint);
+  bindRailHint(proRail, proHintEl);
+  bindArrows("publicRail", "publicLeft", "publicRight");
+  bindArrows("proRail", "proLeft", "proRight");
 })();
 </script>
 </body>
