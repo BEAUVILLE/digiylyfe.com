@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-  <title>DIGIYLYFE — L'Afrique enracinée, connectée au monde</title>
+  <title>DIGIYLYFE — Écosystème business</title>
   <meta name="theme-color" content="#00853f"/>
   <meta
     name="description"
-    content="DIGIYLYFE — écosystème business enraciné, accès public et pro, 0% commission, paiement direct au professionnel."
+    content="DIGIYLYFE — écosystème business enraciné, accès client et pro, 0% commission, paiement direct au professionnel."
   />
 
   <link rel="icon" href="./icon-192.png" sizes="192x192"/>
@@ -25,16 +25,15 @@
     :root{
       --bg:#067a3a;
       --bg2:#04130d;
-      --card:#0b2a1f;
-      --card2:#0a241b;
       --ink:#f8fafc;
       --muted:rgba(248,250,252,.72);
-      --line:rgba(148,163,184,.26);
+      --line:rgba(148,163,184,.28);
 
       --gold:#f6c453;
-      --gold-deep:#d7a632;
+      --goldBg:rgba(246,196,83,.12);
       --green:#00a651;
-      --green-deep:#00853f;
+      --greenDeep:#00853f;
+      --greenBg:rgba(0,166,81,.14);
 
       --live:#22c55e;
       --beta:#f59e0b;
@@ -50,6 +49,7 @@
     *{box-sizing:border-box}
     html,body{height:100%}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
       font-family:var(--fontB);
@@ -59,17 +59,9 @@
         radial-gradient(950px 620px at 90% 12%, rgba(246,196,83,.14), transparent 55%),
         linear-gradient(180deg, #067a3a 0%, #0b5f31 16%, #083123 44%, #04130d 100%);
       overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-
-    a, button, .btn, .floatBtn, .laneBtn, .moduleCard{
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
     }
 
     a{color:inherit;text-decoration:none}
-    button{font:inherit}
 
     .bg{
       position:fixed;
@@ -82,11 +74,16 @@
       z-index:0;
     }
 
-    .app{min-height:100%;position:relative;z-index:1}
+    .app{
+      min-height:100%;
+      position:relative;
+      z-index:1;
+    }
+
     .wrap{
-      max-width:1200px;
+      max-width:1180px;
       margin:0 auto;
-      padding:14px 14px 260px;
+      padding:14px 14px 120px;
       position:relative;
     }
 
@@ -109,15 +106,15 @@
     .topbar{
       position:sticky;
       top:0;
-      z-index:40;
+      z-index:30;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
-      padding:14px 16px 12px;
+      padding:14px 16px;
       border-bottom:1px solid rgba(255,255,255,.08);
-      background:rgba(0,0,0,.14);
+      background:rgba(0,0,0,.12);
       backdrop-filter:blur(12px);
     }
 
@@ -161,201 +158,24 @@
       max-width:260px;
     }
 
-    .menuMega{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      padding:12px 16px 14px;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      background:rgba(0,0,0,.10);
-    }
-
-    .menuLane{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    .laneTag{
-      flex:0 0 auto;
-      min-width:84px;
-      height:42px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:14px;
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:12px;
-      letter-spacing:.6px;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 8px 24px rgba(0,0,0,.20);
-    }
-
-    .clientTag{
-      background:linear-gradient(135deg, #f6c453, #d8a52c);
-      color:#101010;
-      border-color:rgba(246,196,83,.55);
-    }
-
-    .proTag{
-      background:linear-gradient(135deg, #00a651, #00853f);
-      color:#fff;
-      border-color:rgba(0,166,81,.50);
-    }
-
-    .laneScroll{
+    .topActions{
       display:flex;
       gap:8px;
-      overflow-x:auto;
-      padding-bottom:2px;
-      -webkit-overflow-scrolling:touch;
-      scroll-snap-type:x proximity;
-      min-width:0;
-      flex:1;
-    }
-
-    .laneScroll::-webkit-scrollbar{height:6px}
-    .laneScroll::-webkit-scrollbar-thumb{
-      background:rgba(255,255,255,.14);
-      border-radius:999px;
-    }
-
-    .laneBtn{
-      min-height:42px;
-      padding:0 14px;
-      border-radius:999px;
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:12px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      white-space:nowrap;
-      flex:0 0 auto;
-      scroll-snap-align:start;
-      transition:.18s ease;
-      border:1px solid rgba(255,255,255,.10);
-      background:#0b0b0b;
-      color:#f8fafc;
-      user-select:none;
-    }
-
-    .laneBtn:hover{
-      transform:translateY(-1px);
-    }
-
-    .laneBtn.home{
-      background:linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
-      border-color:rgba(255,255,255,.16);
-      color:#fff;
-    }
-
-    .clientBtn{
-      background:linear-gradient(180deg, rgba(246,196,83,.18), rgba(0,0,0,.92));
-      border-color:rgba(246,196,83,.36);
-      color:#fff1c8;
-    }
-
-    .clientBtn:hover{
-      border-color:rgba(246,196,83,.56);
-      box-shadow:0 8px 20px rgba(246,196,83,.12);
-    }
-
-    .proBtn{
-      background:linear-gradient(180deg, rgba(0,166,81,.18), rgba(0,0,0,.92));
-      border-color:rgba(0,166,81,.34);
-      color:#dcffe8;
-    }
-
-    .proBtn:hover{
-      border-color:rgba(0,166,81,.56);
-      box-shadow:0 8px 20px rgba(0,166,81,.12);
-    }
-
-    .quickBar{
-      padding:14px 16px 0;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-
-    .quickCard{
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:22px;
-      padding:16px;
-      box-shadow:var(--shadow);
-    }
-
-    .quickCard.client{
-      background:linear-gradient(180deg, rgba(246,196,83,.16), rgba(12,20,16,.90));
-    }
-
-    .quickCard.pro{
-      background:linear-gradient(180deg, rgba(0,166,81,.18), rgba(12,20,16,.90));
-    }
-
-    .quickTag{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:28px;
-      padding:0 10px;
-      border-radius:999px;
-      font-family:var(--fontA);
-      font-size:11px;
-      font-weight:900;
-      border:1px solid rgba(255,255,255,.12);
-      margin-bottom:8px;
-    }
-
-    .quickCard.client .quickTag{
-      background:rgba(246,196,83,.16);
-      color:#fff1c8;
-      border-color:rgba(246,196,83,.30);
-    }
-
-    .quickCard.pro .quickTag{
-      background:rgba(0,166,81,.16);
-      color:#dcffe8;
-      border-color:rgba(0,166,81,.30);
-    }
-
-    .quickTitle{
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:22px;
-      line-height:1.06;
-      margin:0 0 8px;
-    }
-
-    .quickText{
-      color:rgba(248,250,252,.84);
-      line-height:1.55;
-      font-size:14px;
-      margin:0 0 12px;
-    }
-
-    .quickActions{
-      display:flex;
-      gap:10px;
       flex-wrap:wrap;
+      align-items:center;
     }
 
     .btn{
       border:1px solid var(--line);
       background:rgba(2,6,23,.18);
       color:var(--ink);
-      min-height:46px;
-      padding:0 14px;
+      padding:12px 14px;
       border-radius:14px;
       cursor:pointer;
       font-weight:800;
       font-family:var(--fontA);
       letter-spacing:.2px;
       transition:transform .08s ease, background .2s ease, border-color .2s ease;
-      user-select:none;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -365,10 +185,7 @@
 
     .btn:hover{
       transform:translateY(-1px);
-      border-color:rgba(246,196,83,.35);
     }
-
-    .btn:active{transform:translateY(0) scale(.99)}
 
     .btn.primary{
       border-color:rgba(255,255,255,.14);
@@ -377,50 +194,119 @@
       box-shadow:0 12px 28px rgba(0,133,63,.22);
     }
 
-    .btn.outline{
+    .btn.client{
+      border-color:rgba(246,196,83,.38);
+      background:rgba(246,196,83,.12);
+      color:#fff3cf;
+    }
+
+    .btn.pro{
+      border-color:rgba(0,166,81,.40);
+      background:rgba(0,166,81,.16);
+      color:#dfffe9;
+    }
+
+    .btn.ghost{
       background:transparent;
-      border-color:rgba(246,196,83,.34);
-      color:rgba(255,243,207,.98);
     }
 
-    .btn.clientFill{
-      background:linear-gradient(135deg, #f6c453, #d7a632);
-      color:#101010;
-      border-color:rgba(246,196,83,.45);
-      box-shadow:0 12px 28px rgba(246,196,83,.18);
+    .hero{
+      margin:14px 16px 0;
+      padding:18px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:24px;
+      background:
+        radial-gradient(620px 300px at 18% 18%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(620px 300px at 82% 70%, rgba(246,196,83,.12), transparent 60%),
+        linear-gradient(135deg, rgba(0,166,81,.40), rgba(0,133,63,.26) 42%, rgba(10,36,27,.92) 100%);
+      box-shadow:var(--shadow);
     }
 
-    .btn.ghost{background:transparent}
-    .btn.tiny{
-      min-height:40px;
-      padding:0 12px;
+    .eyebrow{
+      font-family:var(--fontA);
+      font-weight:900;
+      letter-spacing:.25px;
+      color:rgba(255,245,214,.96);
       font-size:12px;
-      border-radius:999px;
+      text-transform:uppercase;
+      margin-bottom:8px;
     }
 
-    .btn.danger{border-color:rgba(239,68,68,.45)}
+    h1{
+      margin:0;
+      font-family:var(--fontA);
+      font-size:30px;
+      line-height:1.06;
+      font-weight:900;
+    }
+
+    .gold{color:rgba(246,196,83,.98)}
+
+    .hero p{
+      margin:12px 0 0;
+      max-width:820px;
+      color:rgba(248,250,252,.86);
+      line-height:1.55;
+    }
+
+    .gateRow{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .gate{
+      border-radius:20px;
+      padding:16px;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .gate.client{
+      background:linear-gradient(180deg, rgba(246,196,83,.16), rgba(255,255,255,.03));
+      border-color:rgba(246,196,83,.30);
+    }
+
+    .gate.pro{
+      background:linear-gradient(180deg, rgba(0,166,81,.18), rgba(255,255,255,.03));
+      border-color:rgba(0,166,81,.30);
+    }
+
+    .gateTitle{
+      font-family:var(--fontA);
+      font-weight:900;
+      font-size:18px;
+    }
+
+    .gateMini{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:4px;
+    }
 
     .main{
-      max-width:1200px;
-      margin:0 auto;
-      padding:16px 18px 120px;
-      position:relative;
+      padding:16px;
     }
 
     .section{
-      margin-top:16px;
+      margin-top:14px;
       border:1px solid rgba(255,255,255,.08);
       border-radius:24px;
       background:linear-gradient(180deg, rgba(10,48,34,.76), rgba(8,28,20,.70));
       box-shadow:var(--shadow);
       overflow:hidden;
-      scroll-margin-top:110px;
+      scroll-margin-top:90px;
     }
 
     .sectionHead{
-      padding:14px 14px 10px;
+      padding:14px;
       display:flex;
-      align-items:flex-end;
+      align-items:center;
       justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
@@ -431,15 +317,11 @@
       margin:0;
       font-family:var(--fontA);
       font-weight:900;
-      letter-spacing:.2px;
+      font-size:22px;
     }
 
-    .sectionSub{
-      color:var(--muted);
-      font-size:12.5px;
-      line-height:1.5;
-      margin-top:4px;
-    }
+    .sectionHead.pro h2{color:#dfffe9}
+    .sectionHead.client h2{color:#fff0c8}
 
     .legend{
       display:flex;
@@ -457,24 +339,52 @@
       background:rgba(2,6,23,.14);
     }
 
-    .pill.live{border-color:rgba(34,197,94,.35);color:rgba(34,197,94,.95)}
-    .pill.beta{border-color:rgba(245,158,11,.35);color:rgba(245,158,11,.95)}
-    .pill.public{border-color:rgba(246,196,83,.35);color:rgba(246,196,83,.96)}
-    .pill.pro{border-color:rgba(0,166,81,.34);color:rgba(110,255,161,.98)}
+    .pill.client{
+      border-color:rgba(246,196,83,.35);
+      color:#fff0c8;
+      background:rgba(246,196,83,.08);
+    }
+
+    .pill.pro{
+      border-color:rgba(0,166,81,.34);
+      color:#dfffe9;
+      background:rgba(0,166,81,.12);
+    }
+
+    .pill.live{
+      border-color:rgba(34,197,94,.35);
+      color:#bbf7d0;
+    }
 
     .railWrap{
       position:relative;
       padding:14px;
     }
 
-    .railHint{
-      margin:0 0 10px 2px;
-      font-size:12px;
+    .railArrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:3;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(6,20,14,.82);
+      color:#fff;
+      font-size:28px;
       font-weight:900;
-      font-family:var(--fontA);
-      color:#fff3cf;
-      opacity:.92;
+      line-height:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      box-shadow:0 10px 26px rgba(0,0,0,.32);
+      backdrop-filter:blur(10px);
     }
+
+    .railArrow.left{left:6px}
+    .railArrow.right{right:6px}
 
     .moduleRail{
       display:flex;
@@ -492,76 +402,67 @@
       border-radius:999px;
     }
 
-    .moduleCard{
-      min-width:180px;
-      max-width:198px;
+    .moduleBtn{
+      min-width:164px;
+      max-width:180px;
       border:1px solid rgba(255,255,255,.10);
-      border-radius:20px;
+      background:rgba(0,0,0,.12);
+      color:var(--ink);
+      border-radius:18px;
       padding:14px 12px;
+      text-align:left;
+      cursor:pointer;
       scroll-snap-align:start;
       transition:.18s ease;
       flex:0 0 auto;
-      display:block;
-      user-select:none;
     }
 
-    .moduleCard:hover{
+    .moduleBtn:hover{
       transform:translateY(-1px);
     }
 
-    .moduleCard.publicCard{
-      border-color:rgba(246,196,83,.22);
-      background:
-        linear-gradient(180deg, rgba(246,196,83,.10), rgba(255,255,255,.03)),
-        rgba(0,0,0,.08);
-    }
-
-    .moduleCard.publicCard:hover{
-      border-color:rgba(246,196,83,.38);
+    .moduleBtn.active{
       box-shadow:0 10px 28px rgba(246,196,83,.08);
     }
 
-    .moduleCard.proCard{
+    .moduleBtn.clientCard{
+      border-color:rgba(246,196,83,.22);
+      background:
+        linear-gradient(180deg, rgba(246,196,83,.10), rgba(255,255,255,.02)),
+        rgba(0,0,0,.10);
+    }
+
+    .moduleBtn.proCard{
       border-color:rgba(0,166,81,.24);
       background:
-        linear-gradient(180deg, rgba(0,166,81,.14), rgba(255,255,255,.03)),
-        rgba(0,0,0,.08);
+        linear-gradient(180deg, rgba(0,166,81,.14), rgba(255,255,255,.02)),
+        rgba(0,0,0,.10);
     }
 
-    .moduleCard.proCard:hover{
-      border-color:rgba(0,166,81,.40);
-      box-shadow:0 10px 28px rgba(0,166,81,.08);
-    }
-
-    .moduleCard.loco{
-      box-shadow:0 12px 30px rgba(246,196,83,.08);
+    .moduleBtn.loco{
+      border-color:rgba(246,196,83,.34);
     }
 
     .moduleEmoji{
-      font-size:20px;
+      font-size:22px;
       display:block;
-      margin-bottom:6px;
+      margin-bottom:8px;
     }
 
     .moduleName{
       font-size:13px;
       font-weight:1100;
       font-family:var(--fontA);
-    }
-
-    .moduleHint{
-      margin-top:4px;
-      font-size:11px;
-      color:var(--muted);
-      line-height:1.35;
-      min-height:30px;
+      min-height:34px;
+      display:flex;
+      align-items:center;
     }
 
     .miniBadges{
       display:flex;
       gap:6px;
       flex-wrap:wrap;
-      margin-top:8px;
+      margin-top:10px;
     }
 
     .miniBadge{
@@ -578,7 +479,7 @@
       font-family:var(--fontA);
     }
 
-    .miniBadge.public{
+    .miniBadge.client{
       color:#fff0c8;
       border-color:rgba(246,196,83,.28);
       background:rgba(246,196,83,.08);
@@ -608,7 +509,7 @@
       background:rgba(246,196,83,.08);
     }
 
-    .storyBlock{
+    .focus{
       margin-top:14px;
       border:1px solid rgba(255,255,255,.08);
       border-radius:24px;
@@ -617,221 +518,123 @@
       overflow:hidden;
     }
 
-    .storyWrap{padding:16px}
+    .focusInner{padding:16px}
 
-    .hero{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:16px;
-      align-items:stretch;
-    }
-
-    .heroLeft, .heroRight{min-height:320px}
-
-    .heroLeft{
-      background:
-        radial-gradient(620px 300px at 18% 18%, rgba(255,255,255,.08), transparent 60%),
-        radial-gradient(620px 300px at 82% 70%, rgba(246,196,83,.12), transparent 60%),
-        linear-gradient(135deg, rgba(0,166,81,.40), rgba(0,133,63,.26) 42%, rgba(10,36,27,.92) 100%);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:var(--radius2);
-      padding:20px;
-      box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .heroLeft::after{
-      content:"";
-      position:absolute;
-      inset:-80px;
-      background:
-        radial-gradient(620px 290px at 20% 18%, rgba(246,196,83,.12), transparent 60%),
-        radial-gradient(620px 290px at 78% 62%, rgba(0,166,81,.14), transparent 60%);
-      pointer-events:none;
-      opacity:.9;
-    }
-
-    .eyebrow{
-      font-family:var(--fontA);
-      font-weight:900;
-      letter-spacing:.25px;
-      color:rgba(255,245,214,.96);
-      font-size:12px;
-      text-transform:uppercase;
-      margin-bottom:10px;
-      position:relative;
-      z-index:1;
-    }
-
-    .heroLeft h1{
-      position:relative;
-      z-index:1;
-      font-family:var(--fontA);
-      font-weight:900;
-      margin:0 0 10px;
-      font-size:32px;
-      line-height:1.05;
-    }
-
-    .gold{color:rgba(246,196,83,.98)}
-
-    .heroLeft p{
-      position:relative;
-      z-index:1;
-      margin:0 0 16px;
-      color:rgba(248,250,252,.84);
-      line-height:1.55;
-    }
-
-    .ctaRow{
-      position:relative;
-      z-index:1;
+    .focusTop{
       display:flex;
-      gap:10px;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
       flex-wrap:wrap;
-      margin:10px 0 14px;
     }
 
-    .chip{
-      display:inline-flex;
-      gap:10px;
+    .focusLeft{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      min-width:0;
+    }
+
+    .focusIcon{
+      width:56px;
+      height:56px;
+      border-radius:16px;
+      display:flex;
       align-items:center;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(2,6,23,.18);
-      position:relative;
-      z-index:1;
+      justify-content:center;
+      font-size:28px;
+      background:rgba(0,166,81,.12);
+      border:1px solid rgba(255,255,255,.12);
+      flex:0 0 auto;
     }
 
-    .chipK{font-size:12px;color:var(--muted)}
-    .chipV{font-weight:800;font-family:var(--fontA)}
-
-    .heroChips{
-      position:relative;
-      z-index:1;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
-
-    .panel{
-      background:linear-gradient(180deg, rgba(9,44,31,.88), rgba(8,28,20,.82));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:var(--radius2);
-      padding:16px;
-      box-shadow:var(--shadow);
-      height:100%;
-    }
-
-    .panelTitle{
+    .focusLabel{
       font-family:var(--fontA);
+      font-size:22px;
       font-weight:900;
-      font-size:16px;
+      line-height:1.1;
     }
 
-    .panelHint{
-      color:rgba(248,250,252,.74);
+    .focusHint{
+      margin-top:5px;
       font-size:13px;
-      margin-top:4px;
-    }
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .stat{
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:12px;
-      background:rgba(2,6,23,.14);
-    }
-
-    .statN{
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:18px;
-      color:#fff;
-    }
-
-    .statL{
       color:var(--muted);
-      font-size:12px;
-      margin-top:2px;
-      line-height:1.35;
-    }
-
-    .note{
-      margin-top:12px;
-      color:var(--muted);
-      font-size:12.5px;
       line-height:1.45;
-      border:1px dashed rgba(148,163,184,.35);
-      border-radius:16px;
-      padding:12px;
-      background:rgba(2,6,23,.10);
     }
 
-    .footer{
+    .focusBadges{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .focusBadge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 11px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.10);
+      font-size:11px;
+      font-weight:1000;
+      font-family:var(--fontA);
+      white-space:nowrap;
+    }
+
+    .focusBadge.client{
+      color:#fff0c8;
+      border-color:rgba(246,196,83,.28);
+      background:rgba(246,196,83,.08);
+    }
+
+    .focusBadge.pro{
+      color:#dfffe9;
+      border-color:rgba(0,166,81,.30);
+      background:rgba(0,166,81,.12);
+    }
+
+    .focusBadge.gold{
+      color:#fff3cf;
+      border-color:rgba(246,196,83,.30);
+      background:rgba(246,196,83,.08);
+    }
+
+    .focusText{
       margin-top:14px;
-      border-top:1px solid rgba(255,255,255,.08);
-      padding:14px 2px 0;
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.55;
+      color:#f0ece3;
+      line-height:1.58;
+      font-size:14px;
+      max-width:72ch;
     }
 
-    .footLine{
+    .focusActions{
+      margin-top:14px;
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      align-items:center;
     }
-
-    .footBrand{
-      font-family:var(--fontA);
-      font-weight:900;
-      color:rgba(246,196,83,.95);
-    }
-
-    .sep{opacity:.35}
 
     .floatBtn{
       position:fixed;
-      z-index:60;
+      z-index:40;
       border-radius:999px;
-      min-height:48px;
-      padding:0 16px;
+      padding:14px 16px;
       border:1px solid rgba(255,255,255,.14);
-      background:rgba(6,33,22,.72);
+      background:rgba(6,33,22,.62);
       color:var(--ink);
       font-family:var(--fontA);
       font-weight:900;
       cursor:pointer;
       box-shadow:0 10px 30px rgba(0,0,0,.35);
       backdrop-filter:blur(10px);
-      transition:all .2s ease;
     }
-
-    .floatBtn:hover{
-      border-color:rgba(246,196,83,.35);
-      transform:translateY(-2px);
-      box-shadow:0 14px 40px rgba(0,0,0,.45);
-    }
-
-    .floatBtn:active{transform:translateY(0) scale(.98)}
 
     #tarif-bubble-btn{ right:14px; bottom:18px; }
-    #digiy-help-btn{ right:14px; bottom:74px; }
-    #knowledge-float-btn{ right:14px; bottom:130px; }
-
+    #digiy-help-btn{ right:14px; bottom:68px; }
+    #knowledge-float-btn{ right:14px; bottom:118px; }
     #espace-pro-btn{ left:14px; bottom:18px; }
-    #vision-bubble-btn{ left:14px; bottom:74px; }
+    #vision-bubble-btn{ left:14px; bottom:68px; }
 
     .ndimbal,
     .qrModal{
@@ -842,7 +645,7 @@
       align-items:center;
       justify-content:center;
       padding:18px;
-      z-index:80;
+      z-index:70;
       backdrop-filter:blur(4px);
     }
 
@@ -910,117 +713,33 @@
       background:rgba(246,196,83,.10);
       font-family:var(--fontA);
       font-weight:900;
-      transition:all .2s ease;
     }
 
-    .qrLink:hover{
-      border-color:rgba(246,196,83,.45);
-      background:rgba(246,196,83,.18);
-    }
-
-    .stickyBar{
-      position:fixed;
-      left:0;
-      right:0;
-      bottom:0;
-      z-index:50;
-      padding:10px 12px calc(10px + env(safe-area-inset-bottom));
-      background:linear-gradient(180deg, rgba(11,22,18,.04), rgba(11,22,18,.96) 35%);
-      backdrop-filter:blur(10px);
-    }
-
-    .stickyInner{
-      max-width:1200px;
-      margin:0 auto;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      border:1px solid rgba(0,166,81,.22);
-      background:rgba(12,40,29,.96);
-      border-radius:18px;
-      padding:10px;
-      box-shadow:0 14px 40px rgba(0,0,0,.32);
-    }
-
-    .stickyInfo{
-      min-width:0;
-      flex:1;
-    }
-
-    .stickyTitle{
-      font-size:12px;
-      color:var(--muted);
-      margin-bottom:4px;
-    }
-
-    .stickyValue{
-      font-size:14px;
-      font-weight:1100;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      font-family:var(--fontA);
-    }
-
-    .stickyActions{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .stickyActions .btn{
-      min-height:44px;
-      width:auto;
-      padding:0 14px;
-    }
-
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr;}
-      .quickBar{grid-template-columns:1fr;}
+    @media (max-width:820px){
+      .gateRow{
+        grid-template-columns:1fr;
+      }
     }
 
     @media (max-width:640px){
-      .menuMega{padding:10px 12px 12px}
-      .menuLane{align-items:flex-start;flex-direction:column;gap:8px}
-      .laneTag{
-        min-width:auto;
-        width:100%;
-        height:40px;
-        justify-content:flex-start;
-        padding:0 14px;
-      }
-      .lane height:40px;
-        justify-content:flex-start;
-        padding:0 14px;
-      }
-      .laneScroll{width:100%}
-      .heroLeft h1{font-size:27px}
-      .stats{grid-template-columns:1fr 1fr 1fr}
+      h1{font-size:26px}
+      .railArrow{display:none}
     }
 
     @media (max-width:560px){
-      .wrap{padding:10px 10px 260px}
-      .main{padding:14px 14px 120px}
-      .quickBar{padding:12px 12px 0}
-      .moduleCard{min-width:164px}
       .floatBtn{
-        min-height:44px;
-        padding:0 14px;
+        padding:12px 14px;
         font-size:14px;
       }
+
       #tarif-bubble-btn{ right:10px; bottom:14px; }
       #digiy-help-btn{ right:10px; bottom:62px; }
       #knowledge-float-btn{ right:10px; bottom:110px; }
-
       #espace-pro-btn{ left:10px; bottom:14px; }
       #vision-bubble-btn{ left:10px; bottom:62px; }
 
-      .stickyActions{width:100%}
-      .stickyActions .btn{flex:1}
       .brandText .subtitle{max-width:180px}
-      .stats{grid-template-columns:1fr}
+      .moduleBtn{min-width:150px;max-width:164px}
     }
   </style>
 </head>
@@ -1033,194 +752,108 @@
       <div class="shell">
 
         <header class="topbar">
-          <a class="brand" href="https://digiylyfe.com" aria-label="Retour accueil DIGIYLYFE">
+          <a class="brand" href="http://digiylyfe.com" id="homeBrand" aria-label="Retour accueil DIGIYLYFE">
             <div class="logo">∞</div>
             <div class="brandText">
               <div class="title">DIGIYLYFE</div>
-              <div class="subtitle">L'Afrique enracinée, connectée au monde</div>
+              <div class="subtitle">Écosystème business enraciné</div>
             </div>
           </a>
+
+          <div class="topActions">
+            <a class="btn client" href="#client">CLIENT</a>
+            <a class="btn pro" href="#pro">PRO</a>
+            <a class="btn ghost" id="menuAudio" href="#">AUDIO</a>
+            <a class="btn ghost" id="menuIA" href="#">IA</a>
+            <a class="btn ghost" id="menuTarifs" href="#">TARIFS</a>
+          </div>
         </header>
 
-        <nav class="menuMega" aria-label="Navigation DIGIY">
-          <div class="menuLane">
-            <div class="laneTag clientTag">CLIENT</div>
-            <div class="laneScroll">
-              <a class="laneBtn home" href="https://digiylyfe.com">Accueil</a>
-              <a class="laneBtn clientBtn" href="#public">Modules client</a>
-              <a class="laneBtn clientBtn" id="menuMarket" href="#">Market</a>
-              <a class="laneBtn clientBtn" id="menuExplore" href="#">Explore</a>
-              <a class="laneBtn clientBtn" id="menuDriver" href="#">Driver</a>
-              <a class="laneBtn clientBtn" id="menuLoc" href="#">Loc</a>
-              <a class="laneBtn clientBtn" id="menuResa" href="#">Résa Table</a>
-              <a class="laneBtn clientBtn" id="menuBuild" href="#">Build</a>
-              <a class="laneBtn clientBtn" id="menuJobs" href="#">Jobs</a>
-              <a class="laneBtn clientBtn" id="menuPay" href="#">Pay</a>
-              <a class="laneBtn clientBtn" id="menuVasChezDigiy" href="#">Vas chez DIGIY</a>
-              <a class="laneBtn clientBtn" id="menuAudio" href="#">DIGIY AUDIO</a>
-              <a class="laneBtn clientBtn" id="menuIA" href="#">Assistant IA</a>
-              <a class="laneBtn clientBtn" id="menuTarifs" href="#">Tarifs</a>
-            </div>
-          </div>
+        <section class="hero">
+          <div class="eyebrow">DIGIYLYFE ∞ · BUSINESS · AFRIQUE · TERRAIN</div>
+          <h1>Deux portes claires.<br><span class="gold">CLIENT et PRO.</span></h1>
+          <p>
+            DIGIYLYFE relie le public et les professionnels dans une même logique :
+            vendre, piloter, trouver, encaisser et faire tourner l’économie locale.
+          </p>
 
-          <div class="menuLane">
-            <div class="laneTag proTag">PRO</div>
-            <div class="laneScroll">
-              <a class="laneBtn proBtn" href="#pro">Modules PRO</a>
-              <a class="laneBtn proBtn" id="menuEspaceProTop" href="#">Espace PRO</a>
-              <a class="laneBtn proBtn" id="menuInscriptionProTop" href="#">Inscription PRO</a>
-              <a class="laneBtn proBtn" id="menuMarketProTop" href="#">Market PRO</a>
-              <a class="laneBtn proBtn" id="menuCaisseProTop" href="#">Caisse PRO</a>
-              <a class="laneBtn proBtn" id="menuJobsProTop" href="#">Jobs PRO</a>
-              <a class="laneBtn proBtn" id="menuLocProTop" href="#">Loc PRO</a>
-              <a class="laneBtn proBtn" id="menuDriverProTop" href="#">Driver PRO</a>
-              <a class="laneBtn proBtn" id="menuResaProTop" href="#">Résa Table PRO</a>
-              <a class="laneBtn proBtn" id="menuPayProTop" href="#">Pay PRO</a>
-              <a class="laneBtn proBtn" id="menuBuildProTop" href="#">Build PRO</a>
-            </div>
-          </div>
-        </nav>
+          <div class="gateRow">
+            <a class="gate client" href="#client">
+              <div>
+                <div class="gateTitle">🌍 CLIENT</div>
+                <div class="gateMini">Découvrir, acheter, réserver, explorer</div>
+              </div>
+              <span class="btn client">Entrer</span>
+            </a>
 
-        <section class="quickBar">
-          <div class="quickCard client">
-            <div class="quickTag">CLIENT</div>
-            <h1 class="quickTitle">Entrer tout de suite côté public</h1>
-            <p class="quickText">
-              Acheter, réserver, découvrir, trouver un chauffeur, un logement, un artisan ou une opportunité sans se taper toute la présentation avant.
-            </p>
-            <div class="quickActions">
-              <a class="btn clientFill" id="quickClientOpen" href="#">🛍️ Ouvrir MARKET</a>
-              <a class="btn outline" href="#public">Voir tous les modules client</a>
-            </div>
-          </div>
-
-          <div class="quickCard pro">
-            <div class="quickTag">PRO</div>
-            <h2 class="quickTitle">Entrer tout de suite côté pro</h2>
-            <p class="quickText">
-              Cockpit central, vente, caisse, logement, recrutement, chauffeur, réservations et gestion métier dans le même rail.
-            </p>
-            <div class="quickActions">
-              <a class="btn primary" id="quickProOpen" href="#">🧰 Ouvrir ESPACE PRO</a>
-              <a class="btn outline" href="#pro">Voir tous les modules PRO</a>
-            </div>
+            <a class="gate pro" href="#pro">
+              <div>
+                <div class="gateTitle">🧰 PRO</div>
+                <div class="gateMini">Cockpit, vente, caisse, recrutement</div>
+              </div>
+              <span class="btn pro">Aller au poste</span>
+            </a>
           </div>
         </section>
 
         <main class="main">
-          <section class="section" id="public">
-            <div class="sectionHead">
-              <div>
-                <h2>Écosystème Client / Public</h2>
-                <div class="sectionSub">
-                  Toutes les portes client remises sur les rails : market, explore, driver, loc, résa table, build et les autres.
-                </div>
-              </div>
-
-              <div class="legend">
-                <span class="pill public">CLIENT</span>
-                <span class="pill live">ACCÈS DIRECT</span>
-              </div>
-            </div>
-
-            <div class="railWrap">
-              <div class="railHint">👉 Glisse vers la droite sur téléphone</div>
-              <div class="moduleRail" id="publicRail"></div>
-            </div>
-          </section>
-
           <section class="section" id="pro">
-            <div class="sectionHead">
-              <div>
-                <h2>Écosystème PRO</h2>
-                <div class="sectionSub">
-                  Porte centrale et rails métiers pour vendre, piloter, encaisser, recruter et structurer l’activité.
-                </div>
-              </div>
-
+            <div class="sectionHead pro">
+              <h2>PRO</h2>
               <div class="legend">
                 <span class="pill pro">PRO</span>
-                <span class="pill live">COCKPIT</span>
+                <span class="pill live">POSTE</span>
               </div>
             </div>
 
             <div class="railWrap">
-              <div class="railHint">👉 Glisse vers la droite sur téléphone</div>
+              <button class="railArrow left" id="proLeft" type="button" aria-label="Défiler à gauche">‹</button>
               <div class="moduleRail" id="proRail"></div>
+              <button class="railArrow right" id="proRight" type="button" aria-label="Défiler à droite">›</button>
             </div>
           </section>
 
-          <section class="storyBlock" id="vision">
-            <div class="storyWrap">
-              <div class="hero">
-                <div class="heroLeft">
-                  <div class="eyebrow">DIGIYLYFE ∞ · ÉCOSYSTÈME BUSINESS · AFRIQUE · TERRAIN</div>
+          <section class="section" id="client">
+            <div class="sectionHead client">
+              <h2>CLIENT</h2>
+              <div class="legend">
+                <span class="pill client">CLIENT</span>
+                <span class="pill live">PUBLIC</span>
+              </div>
+            </div>
 
-                  <h1>
-                    Faire tourner l’économie locale.<br>
-                    <span class="gold">Ouvrir un écosystème business enraciné.</span>
-                  </h1>
+            <div class="railWrap">
+              <button class="railArrow left" id="clientLeft" type="button" aria-label="Défiler à gauche">‹</button>
+              <div class="moduleRail" id="clientRail"></div>
+              <button class="railArrow right" id="clientRight" type="button" aria-label="Défiler à droite">›</button>
+            </div>
+          </section>
 
-                  <p>
-                    DIGIYLYFE relie le <strong>public</strong> et le <strong>pro</strong> dans une même logique :
-                    vendre, découvrir, travailler, encaisser, recruter et faire vivre l’activité locale avec une lecture claire,
-                    humaine et souveraine.
-                  </p>
-
-                  <div class="ctaRow">
-                    <a class="btn clientFill" id="heroOpenClient" href="#">🛍️ Ouvrir MARKET</a>
-                    <a class="btn primary" id="heroOpenPro" href="#">🧰 Ouvrir ESPACE PRO</a>
-                  </div>
-
-                  <div class="heroChips">
-                    <span class="chip"><span class="chipK">0%</span><span class="chipV">commission</span></span>
-                    <span class="chip"><span class="chipK">Paiement</span><span class="chipV">direct</span></span>
-                    <span class="chip"><span class="chipK">Terrain</span><span class="chipV">vivant</span></span>
+          <section class="focus">
+            <div class="focusInner">
+              <div class="focusTop">
+                <div class="focusLeft">
+                  <div class="focusIcon" id="focusIcon">🏢</div>
+                  <div>
+                    <div class="focusLabel" id="focusLabel">Espace PRO</div>
+                    <div class="focusHint" id="focusHint">Cockpit central professionnel</div>
                   </div>
                 </div>
 
-                <aside class="heroRight">
-                  <div class="panel">
-                    <div class="panelTitle">Cap DIGIY</div>
-                    <div class="panelHint">
-                      D’abord les portes utiles. Ensuite la vision. Comme ça celui qui veut entrer dans un module entre tout de suite.
-                    </div>
+                <div class="focusBadges">
+                  <div class="focusBadge pro" id="focusKind">PRO</div>
+                  <div class="focusBadge gold" id="focusBadge">👑 Accès direct</div>
+                </div>
+              </div>
 
-                    <div class="stats">
-                      <div class="stat">
-                        <div class="statN">VENDRE</div>
-                        <div class="statL">Market, vitrines, présence commerciale</div>
-                      </div>
-                      <div class="stat">
-                        <div class="statN">PILOTER</div>
-                        <div class="statL">Espace PRO, caisse, gestion, activité</div>
-                      </div>
-                      <div class="stat">
-                        <div class="statN">GRANDIR</div>
-                        <div class="statL">Jobs, build, services, traction terrain</div>
-                      </div>
-                    </div>
+              <div class="focusText" id="focusText">
+                Espace PRO est la maison centrale du professionnel. C’est le cockpit qui rassure, regroupe et remet chaque activité dans le bon rail.
+              </div>
 
-                    <div class="note">
-                      <b>Lecture DIGIY :</b> la vitrine ne montre pas juste des modules.
-                      Elle montre un <b>écosystème business</b> capable de tirer les autres wagons dans le bon sens.
-                    </div>
-
-                    <footer class="footer">
-                      <div class="footLine">
-                        <span class="footBrand">DIGIYLYFE ∞</span>
-                        <span class="sep">·</span>
-                        <span>écosystème business</span>
-                        <span class="sep">·</span>
-                        <span>0% commission</span>
-                        <span class="sep">·</span>
-                        <span>paiement direct</span>
-                        <span class="sep">·</span>
-                        <span>économie locale en mouvement</span>
-                      </div>
-                    </footer>
-                  </div>
-                </aside>
+              <div class="focusActions">
+                <a class="btn primary" id="focusOpenBtn" href="#">Ouvrir</a>
+                <a class="btn ghost" href="#pro">Voir le rail PRO</a>
+                <a class="btn ghost" href="#client">Voir le rail CLIENT</a>
               </div>
             </div>
           </section>
@@ -1231,7 +864,6 @@
     <button id="tarif-bubble-btn" class="floatBtn" type="button">🏷️ Tarifs</button>
     <button id="digiy-help-btn" class="floatBtn" type="button">♾️ NDIMBAL</button>
     <button id="knowledge-float-btn" class="floatBtn" type="button" title="Assistant DIGIY IA">🧠 IA</button>
-
     <button id="espace-pro-btn" class="floatBtn" type="button">🧰 PRO</button>
     <button id="vision-bubble-btn" class="floatBtn" type="button">🎧 AUDIO</button>
 
@@ -1240,16 +872,16 @@
         <div class="ndimbalTitle">♾️ NDIMBAL</div>
         <div class="ndimbalText">
           <b>Naka nga def frérot ?</b><br>
-          Dis-moi ce que tu veux faire, je te pointe au bon endroit.
+          Dis-moi ce que tu veux faire.
         </div>
 
         <div class="ndimbalActions">
-          <button class="btn primary" type="button" data-action="sell">📋 Publier une mission</button>
-          <button class="btn outline" type="button" data-action="job">💼 Trouver du travail</button>
-          <button class="btn ghost" type="button" data-action="qr">📷 QR DIGIYLYFE</button>
+          <button class="btn primary" type="button" data-action="sell">📋 Publier</button>
+          <button class="btn ghost" type="button" data-action="job">💼 Travail</button>
+          <button class="btn ghost" type="button" data-action="qr">📷 QR</button>
         </div>
 
-        <button class="btn tiny danger" type="button" id="digiyCloseBtn" style="margin-top:10px">❌ Quitter</button>
+        <button class="btn ghost" type="button" id="digiyCloseBtn" style="margin-top:10px">Fermer</button>
       </div>
     </div>
 
@@ -1257,7 +889,7 @@
       <div class="qrContent" role="dialog" aria-modal="true">
         <div class="qrHeader">
           <div class="qrTitle">♾️ QR DIGIYLYFE</div>
-          <button id="qrClose" class="btn tiny" type="button">✖ Fermer</button>
+          <button id="qrClose" class="btn ghost" type="button">Fermer</button>
         </div>
 
         <img
@@ -1265,22 +897,8 @@
           alt="QR DIGIYLYFE"
           class="qrImg"
         >
-        <div class="qrText">📱 Scanne pour ouvrir DIGIYLYFE</div>
+        <div class="qrText">Scanne pour ouvrir DIGIYLYFE</div>
         <a href="https://digiylyfe.com/" target="_blank" rel="noopener" class="qrLink">Ouvrir DIGIY →</a>
-      </div>
-    </div>
-
-    <div class="stickyBar">
-      <div class="stickyInner">
-        <div class="stickyInfo">
-          <div class="stickyTitle">Accès rapide</div>
-          <div class="stickyValue">Client : MARKET • Pro : ESPACE PRO</div>
-        </div>
-        <div class="stickyActions">
-          <a class="btn outline" href="https://digiylyfe.com">Accueil</a>
-          <a class="btn clientFill" id="stickyMarketBtn" href="#">Market</a>
-          <a class="btn primary" id="stickyProBtn" href="#">Espace PRO</a>
-        </div>
       </div>
     </div>
   </div>
@@ -1289,7 +907,7 @@
     (function(){
       "use strict";
 
-      const HOME_RETURN = "https://digiylyfe.com";
+      const HOME_RETURN = "http://digiylyfe.com";
 
       function withReturn(url){
         try{
@@ -1301,140 +919,205 @@
         }
       }
 
-      function go(url){
-        window.location.href = withReturn(url);
-      }
-
       const LINKS = {
-        market: "https://market.digiylyfe.com/",
-        explore: "https://explore.digiylyfe.com/",
-        driverPublic: "https://beauville.github.io/galerie-chauffeurs/",
+        galerieChauffeurs: "https://beauville.github.io/galerie-chauffeurs/",
         loc: "https://loc.digiylyfe.com/",
         resaTable: "https://resa-table-resto.digiylyfe.com/",
         build: "https://build.digiylyfe.com/",
+        explore: "https://explore.digiylyfe.com/",
+        market: "https://market.digiylyfe.com/",
         jobs: "https://jobs.digiylyfe.com/",
         pay: "https://pay.digiylyfe.com/",
-        ndimbalLoc: "https://ndimbal-loc.digiylyfe.com/",
-        ndimbalAnnonces: "https://ndimbal-annonces.digiylyfe.com/",
-        ndimbalMap: "https://ndimbal-map.digiylyfe.com/",
         vasChezDigiy: "https://vas-chez-digiy.digiylyfe.com/",
         audio: "https://beauville.github.io/digiy-audio/",
         assistantIA: "https://knowledge.digiylyfe.com/widget/",
-        tarifs: "https://tarifs.digiylyfe.com/",
+        ndimbalMap: "https://ndimbal-map.digiylyfe.com/",
+        ndimbalAnnonces: "https://ndimbal-annonces.digiylyfe.com/",
+        ndimbalLoc: "https://ndimbal-loc.digiylyfe.com/",
 
         inscriptionPro: "https://commencer-a-payer.digiylyfe.com/",
         espacePro: "https://pro-espace.digiylyfe.com/",
-        marketPro: "https://pro-market.digiylyfe.com/",
-        caissePro: "https://pro-caisse.digiylyfe.com/",
-        jobsPro: "https://pro-job.digiylyfe.com/",
         locPro: "https://pro-loc.digiylyfe.com/",
-        driverPro: "https://pro-driver.digiylyfe.com/",
-        resaTablePro: "https://pro-resa-resto.digiylyfe.com/",
-        payPro: "https://pay.digiylyfe.com/",
+        caissePro: "https://pro-caisse.digiylyfe.com/",
         buildPro: "https://pro-build.digiylyfe.com/",
-        explorePro: "https://explore.digiylyfe.com/"
+        marketPro: "https://pro-market.digiylyfe.com/",
+        jobsPro: "https://pro-job.digiylyfe.com/",
+        payPro: "https://pay.digiylyfe.com/",
+        explorePro: "https://explore.digiylyfe.com/",
+        resaTablePro: "https://pro-resa-resto.digiylyfe.com/",
+        tarifs: "https://tarifs.digiylyfe.com/"
       };
 
-      const PUBLIC_MODULES = [
-        { key:"market", name:"DIGIY MARKET", icon:"🛍️", desc:"Acheter / vendre", status:"LIVE", loco:true },
-        { key:"explore", name:"DIGIY EXPLORE", icon:"🗺️", desc:"Découvrir la région", status:"LIVE" },
-        { key:"driverPublic", name:"DIGIY DRIVER", icon:"🚘", desc:"Galerie des chauffeurs", status:"LIVE" },
-        { key:"loc", name:"DIGIY LOC", icon:"🏠", desc:"Trouver un logement", status:"LIVE" },
-        { key:"resaTable", name:"RÉSA TABLE", icon:"📅", desc:"Réserver une table", status:"LIVE" },
-        { key:"build", name:"DIGIY BUILD", icon:"🏗️", desc:"Trouver un artisan", status:"LIVE" },
-        { key:"jobs", name:"DIGIY JOBS", icon:"💼", desc:"Voir les opportunités", status:"LIVE" },
-        { key:"pay", name:"DIGIY PAY", icon:"💳", desc:"Portefeuille digital", status:"LIVE" },
-        { key:"ndimbalLoc", name:"NDIMBAL LOC", icon:"🏡", desc:"Locations NDIMBAL", status:"LIVE" },
-        { key:"ndimbalAnnonces", name:"NDIMBAL ANNONCES", icon:"📢", desc:"Hub annonces", status:"LIVE" },
-        { key:"ndimbalMap", name:"NDIMBAL MAP", icon:"🧭", desc:"Carte des annonces", status:"LIVE" },
-        { key:"vasChezDigiy", name:"VAS CHEZ DIGIY", icon:"📍", desc:"Portail terrain DIGIY", status:"LIVE" },
-        { key:"audio", name:"DIGIY AUDIO", icon:"🎧", desc:"Écouter les contenus", status:"LIVE" },
-        { key:"assistantIA", name:"ASSISTANT IA", icon:"🧠", desc:"Knowledge DIGIY", status:"LIVE" }
+      const CLIENT_MODULES = [
+        { key:"market", name:"DIGIY MARKET", icon:"🛍️", status:"LIVE", loco:true },
+        { key:"explore", name:"EXPLORE", icon:"🗺️", status:"LIVE" },
+        { key:"galerieChauffeurs", name:"GALERIE CHAUFFEURS", icon:"🚘", status:"LIVE" },
+        { key:"loc", name:"DIGIY LOC", icon:"🏠", status:"LIVE" },
+        { key:"resaTable", name:"RÉSA TABLE", icon:"📅", status:"LIVE" },
+        { key:"jobs", name:"DIGIY JOBS", icon:"💼", status:"LIVE" },
+        { key:"pay", name:"DIGIY PAY", icon:"💳", status:"LIVE" },
+        { key:"ndimbalLoc", name:"NDIMBAL LOC", icon:"🏡", status:"LIVE" },
+        { key:"ndimbalAnnonces", name:"NDIMBAL ANNONCES", icon:"📢", status:"LIVE" },
+        { key:"ndimbalMap", name:"NDIMBAL MAP", icon:"🗺️", status:"LIVE" },
+        { key:"vasChezDigiy", name:"VAS CHEZ DIGIY", icon:"📍", status:"LIVE" },
+        { key:"audio", name:"DIGIY AUDIO", icon:"🎵", status:"LIVE" },
+        { key:"assistantIA", name:"ASSISTANT IA", icon:"🧠", status:"LIVE" },
+        { key:"build", name:"DIGIY BUILD", icon:"🏗️", status:"BETA" }
       ];
 
       const PRO_MODULES = [
-        { key:"espacePro", name:"ESPACE PRO", icon:"🏢", desc:"Cockpit central professionnel", status:"LIVE", loco:true },
-        { key:"inscriptionPro", name:"INSCRIPTION PRO", icon:"✍️", desc:"Entrée professionnelle", status:"LIVE" },
-        { key:"marketPro", name:"MARKET PRO", icon:"🛍️", desc:"Vendre sur MARKET", status:"LIVE", loco:true },
-        { key:"caissePro", name:"CAISSE PRO", icon:"💰", desc:"Point de vente", status:"LIVE" },
-        { key:"jobsPro", name:"JOBS PRO", icon:"💼", desc:"Recruter", status:"LIVE" },
-        { key:"locPro", name:"LOC PRO", icon:"🏠", desc:"Gérer les logements", status:"LIVE" },
-        { key:"driverPro", name:"DRIVER PRO", icon:"🚘", desc:"Cockpit chauffeurs", status:"LIVE" },
-        { key:"resaTablePro", name:"RÉSA TABLE PRO", icon:"📅", desc:"Gérer les réservations", status:"LIVE" },
-        { key:"payPro", name:"PAY PRO", icon:"💳", desc:"Gérer les paiements", status:"LIVE" },
-        { key:"buildPro", name:"BUILD PRO", icon:"🏗️", desc:"Gérer les chantiers", status:"BETA" },
-        { key:"explorePro", name:"EXPLORE PRO", icon:"🗺️", desc:"Lecture premium", status:"LIVE" }
+        { key:"espacePro", name:"ESPACE PRO", icon:"🏢", status:"LIVE", loco:true },
+        { key:"marketPro", name:"MARKET PRO", icon:"🛍️", status:"LIVE", loco:true },
+        { key:"caissePro", name:"CAISSE PRO", icon:"💰", status:"LIVE" },
+        { key:"jobsPro", name:"JOBS PRO", icon:"💼", status:"LIVE" },
+        { key:"locPro", name:"LOC PRO", icon:"🏠", status:"LIVE" },
+        { key:"payPro", name:"PAY PRO", icon:"💳", status:"LIVE" },
+        { key:"resaTablePro", name:"RÉSA TABLE PRO", icon:"📅", status:"LIVE" },
+        { key:"inscriptionPro", name:"INSCRIPTION PRO", icon:"✍️", status:"LIVE" },
+        { key:"explorePro", name:"EXPLORE PRO", icon:"🗺️", status:"LIVE" },
+        { key:"buildPro", name:"BUILD PRO", icon:"🏗️", status:"BETA" }
       ];
 
-      function moduleCard(item, kind){
-        const href = withReturn(LINKS[item.key] || HOME_RETURN);
-        const kindLabel = kind === "public" ? "CLIENT" : "PRO";
-        const kindClass = kind === "public" ? "publicCard" : "proCard";
-        const statusClass = item.status === "BETA" ? "beta" : "live";
+      const COPY = {
+        market: "DIGIY MARKET sert de locomotive business pour montrer tout de suite le mouvement, l’échange, la vente et l’économie locale en action.",
+        explore: "EXPLORE garde la noblesse du territoire, de l’image et de la découverte.",
+        galerieChauffeurs: "Galerie des chauffeurs met en avant les profils et la présence terrain.",
+        loc: "DIGIY LOC ouvre la porte logement.",
+        resaTable: "RÉSA TABLE simplifie la réservation.",
+        jobs: "DIGIY JOBS ouvre les opportunités.",
+        pay: "DIGIY PAY pose le paiement simple.",
+        ndimbalLoc: "NDIMBAL LOC concentre la location.",
+        ndimbalAnnonces: "NDIMBAL ANNONCES sert de hub publication.",
+        ndimbalMap: "NDIMBAL MAP ouvre la carte locale.",
+        vasChezDigiy: "VAS CHEZ DIGIY sert de portail terrain.",
+        audio: "DIGIY AUDIO ouvre l’écoute.",
+        assistantIA: "ASSISTANT IA guide et oriente.",
+        build: "DIGIY BUILD valorise les services terrain.",
 
-        return `
-          <a
-            class="moduleCard ${kindClass} ${item.loco ? "loco" : ""}"
-            href="${href}"
-            aria-label="${item.name}">
-            <span class="moduleEmoji">${item.icon}</span>
-            <div class="moduleName">${item.name}</div>
-            <div class="moduleHint">${item.desc}</div>
-            <div class="miniBadges">
-              <span class="miniBadge ${kind === "public" ? "public" : "pro"}">${kindLabel}</span>
-              <span class="miniBadge ${statusClass}">${item.status}</span>
-              ${item.loco ? `<span class="miniBadge loco">LOCO</span>` : ``}
-            </div>
-          </a>
-        `;
-      }
+        espacePro: "Espace PRO est la maison centrale du professionnel. C’est le cockpit qui rassure, regroupe et remet chaque activité dans le bon rail.",
+        marketPro: "MARKET PRO pousse la vitrine, la vente et la traction économique côté pro.",
+        caissePro: "CAISSE PRO ouvre le poste d’encaissement.",
+        jobsPro: "JOBS PRO ouvre le recrutement.",
+        locPro: "LOC PRO ouvre la gestion logement.",
+        payPro: "PAY PRO ouvre la gestion des paiements.",
+        resaTablePro: "RÉSA TABLE PRO gère les réservations.",
+        inscriptionPro: "INSCRIPTION PRO ouvre l’entrée professionnelle.",
+        explorePro: "EXPLORE PRO garde la lecture premium et analytics.",
+        buildPro: "BUILD PRO structure les chantiers."
+      };
 
-      const publicRail = document.getElementById("publicRail");
+      const clientRail = document.getElementById("clientRail");
       const proRail = document.getElementById("proRail");
 
-      if(publicRail){
-        publicRail.innerHTML = PUBLIC_MODULES.map(item => moduleCard(item, "public")).join("");
+      const focusIcon = document.getElementById("focusIcon");
+      const focusLabel = document.getElementById("focusLabel");
+      const focusHint = document.getElementById("focusHint");
+      const focusKind = document.getElementById("focusKind");
+      const focusBadge = document.getElementById("focusBadge");
+      const focusText = document.getElementById("focusText");
+      const focusOpenBtn = document.getElementById("focusOpenBtn");
+
+      const menuAudio = document.getElementById("menuAudio");
+      const menuIA = document.getElementById("menuIA");
+      const menuTarifs = document.getElementById("menuTarifs");
+
+      let currentKey = "espacePro";
+      let currentKind = "pro";
+
+      function getStatusClass(status){
+        return status === "BETA" ? "beta" : "live";
       }
 
-      if(proRail){
-        proRail.innerHTML = PRO_MODULES.map(item => moduleCard(item, "pro")).join("");
+      function getModule(key, kind){
+        const arr = kind === "pro" ? PRO_MODULES : CLIENT_MODULES;
+        return arr.find(x => x.key === key) || arr[0];
       }
 
-      function setHref(id, url){
-        const el = document.getElementById(id);
-        if(el) el.href = withReturn(url);
+      function renderRail(container, modules, kind){
+        container.innerHTML = modules.map(item => `
+          <button
+            class="moduleBtn ${kind === "client" ? "clientCard" : "proCard"} ${item.key === currentKey ? "active" : ""} ${item.loco ? "loco" : ""}"
+            type="button"
+            data-kind="${kind}"
+            data-key="${item.key}">
+            <span class="moduleEmoji">${item.icon}</span>
+            <div class="moduleName">${item.name}</div>
+            <div class="miniBadges">
+              <span class="miniBadge ${kind}">${kind.toUpperCase()}</span>
+              <span class="miniBadge ${getStatusClass(item.status)}">${item.status}</span>
+              ${item.loco ? `<span class="miniBadge loco">LOCO</span>` : ``}
+            </div>
+          </button>
+        `).join("");
+
+        container.querySelectorAll("[data-key]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            currentKey = btn.getAttribute("data-key") || "espacePro";
+            currentKind = btn.getAttribute("data-kind") || "pro";
+            renderFocus();
+            renderRail(clientRail, CLIENT_MODULES, "client");
+            renderRail(proRail, PRO_MODULES, "pro");
+          });
+        });
       }
 
-      setHref("menuMarket", LINKS.market);
-      setHref("menuExplore", LINKS.explore);
-      setHref("menuDriver", LINKS.driverPublic);
-      setHref("menuLoc", LINKS.loc);
-      setHref("menuResa", LINKS.resaTable);
-      setHref("menuBuild", LINKS.build);
-      setHref("menuJobs", LINKS.jobs);
-      setHref("menuPay", LINKS.pay);
-      setHref("menuVasChezDigiy", LINKS.vasChezDigiy);
-      setHref("menuAudio", LINKS.audio);
-      setHref("menuIA", LINKS.assistantIA);
-      setHref("menuTarifs", LINKS.tarifs);
+      function renderFocus(){
+        const item = getModule(currentKey, currentKind);
+        const href = withReturn(LINKS[item.key] || HOME_RETURN);
+        const text = COPY[item.key] || item.name;
+        const badge = item.loco
+          ? (currentKind === "pro" ? "👑 Accès direct" : "👑 Locomotive business")
+          : (currentKind === "pro" ? "🧰 Porte pro" : "🌍 Porte client");
 
-      setHref("menuEspaceProTop", LINKS.espacePro);
-      setHref("menuInscriptionProTop", LINKS.inscriptionPro);
-      setHref("menuMarketProTop", LINKS.marketPro);
-      setHref("menuCaisseProTop", LINKS.caissePro);
-      setHref("menuJobsProTop", LINKS.jobsPro);
-      setHref("menuLocProTop", LINKS.locPro);
-      setHref("menuDriverProTop", LINKS.driverPro);
-      setHref("menuResaProTop", LINKS.resaTablePro);
-      setHref("menuPayProTop", LINKS.payPro);
-      setHref("menuBuildProTop", LINKS.buildPro);
+        focusIcon.textContent = item.icon;
+        focusLabel.textContent = item.name;
+        focusHint.textContent = currentKind === "pro" ? "Accès professionnel" : "Accès client";
+        focusKind.textContent = currentKind.toUpperCase();
+        focusKind.className = `focusBadge ${currentKind}`;
+        focusBadge.textContent = badge;
+        focusText.textContent = text;
+        focusOpenBtn.href = href;
+      }
 
-      setHref("quickClientOpen", LINKS.market);
-      setHref("quickProOpen", LINKS.espacePro);
-      setHref("heroOpenClient", LINKS.market);
-      setHref("heroOpenPro", LINKS.espacePro);
-      setHref("stickyMarketBtn", LINKS.market);
-      setHref("stickyProBtn", LINKS.espacePro);
+      function bindRailArrows(railId, leftId, rightId){
+        const rail = document.getElementById(railId);
+        const left = document.getElementById(leftId);
+        const right = document.getElementById(rightId);
+        if(!rail || !left || !right) return;
+
+        const STEP = 260;
+
+        left.addEventListener("click", () => {
+          rail.scrollBy({ left: -STEP, behavior: "smooth" });
+        });
+
+        right.addEventListener("click", () => {
+          rail.scrollBy({ left: STEP, behavior: "smooth" });
+        });
+
+        function update(){
+          const max = rail.scrollWidth - rail.clientWidth;
+          if(window.innerWidth <= 640 || max <= 8){
+            left.style.display = "none";
+            right.style.display = "none";
+            return;
+          }
+          left.style.display = rail.scrollLeft > 8 ? "flex" : "none";
+          right.style.display = rail.scrollLeft < max - 8 ? "flex" : "none";
+        }
+
+        rail.addEventListener("scroll", update, { passive:true });
+        window.addEventListener("resize", update);
+        requestAnimationFrame(update);
+      }
+
+      function openExternal(url){
+        window.open(withReturn(url), "_blank", "noopener,noreferrer");
+      }
+
+      menuAudio.href = withReturn(LINKS.audio);
+      menuIA.href = withReturn(LINKS.assistantIA);
+      menuTarifs.href = withReturn(LINKS.tarifs);
 
       const tarifBtn = document.getElementById("tarif-bubble-btn");
       const helpBtn = document.getElementById("digiy-help-btn");
@@ -1442,10 +1125,10 @@
       const proBtn = document.getElementById("espace-pro-btn");
       const audioBtn = document.getElementById("vision-bubble-btn");
 
-      if(tarifBtn) tarifBtn.addEventListener("click", () => go(LINKS.tarifs));
-      if(knowledgeBtn) knowledgeBtn.addEventListener("click", () => go(LINKS.assistantIA));
-      if(proBtn) proBtn.addEventListener("click", () => go(LINKS.espacePro));
-      if(audioBtn) audioBtn.addEventListener("click", () => go(LINKS.audio));
+      if(tarifBtn) tarifBtn.addEventListener("click", () => openExternal(LINKS.tarifs));
+      if(knowledgeBtn) knowledgeBtn.addEventListener("click", () => openExternal(LINKS.assistantIA));
+      if(proBtn) proBtn.addEventListener("click", () => openExternal(LINKS.espacePro));
+      if(audioBtn) audioBtn.addEventListener("click", () => openExternal(LINKS.audio));
 
       const ndimbal = document.getElementById("digiy-ndimbal");
       const closeBtn = document.getElementById("digiyCloseBtn");
@@ -1482,9 +1165,9 @@
           ndimbal.setAttribute("aria-hidden", "true");
 
           if(action === "sell"){
-            go(LINKS.ndimbalAnnonces);
+            openExternal(LINKS.ndimbalAnnonces);
           } else if(action === "job"){
-            go(LINKS.jobs);
+            openExternal(LINKS.jobs);
           } else if(action === "qr"){
             if(qrModal){
               qrModal.classList.remove("hidden");
@@ -1507,6 +1190,20 @@
           }
         });
       }
+
+      const homeBrand = document.getElementById("homeBrand");
+      if(homeBrand){
+        homeBrand.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      renderRail(clientRail, CLIENT_MODULES, "client");
+      renderRail(proRail, PRO_MODULES, "pro");
+      renderFocus();
+      bindRailArrows("clientRail", "clientLeft", "clientRight");
+      bindRailArrows("proRail", "proLeft", "proRight");
     })();
   </script>
 </body>
