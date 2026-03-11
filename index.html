@@ -175,7 +175,6 @@
     }
     .moduleBtn.proCard:hover{border-color:rgba(0,166,81,.48);}
     .moduleBtn.loco{border-color:rgba(246,196,83,.34);box-shadow:0 12px 30px rgba(246,196,83,.08);}
-    /* hint "ouvrir" visible au hover */
     .moduleBtn .openHint{
       display:none;margin-top:7px;font-size:10px;font-family:var(--fontA);
       font-weight:900;color:rgba(246,196,83,.80);letter-spacing:.2px;
@@ -404,7 +403,6 @@
           <a class="mBtn green" id="mn-resatable-pro"    href="#">📅 Résa Table PRO</a>
           <a class="mBtn green" id="mn-explore-pro"      href="#">🗺️ Explore PRO</a>
           <a class="mBtn green" id="mn-pay-pro"          href="#">💳 PAY PRO</a>
-          <a class="mBtn green" id="mn-fret-pro"         href="#">🚛 Fret PRO</a>
         </div>
 
       </nav>
@@ -574,7 +572,7 @@
 
   const L={
     market:"https://market.digiylyfe.com/",
-    driver:"https://driver.digiylyfe.com/",
+    driver:"https://driver-client.digiylyfe.com/",
     galerieChauffeurs:"https://beauville.github.io/galerie-chauffeurs/",
     explore:"https://explore.digiylyfe.com/",
     loc:"https://loc.digiylyfe.com/",
@@ -593,52 +591,50 @@
     inscriptionPro:"https://commencer-a-payer.digiylyfe.com/",
     marketPro:"https://pro-market.digiylyfe.com/",
     caissePro:"https://pro-caisse.digiylyfe.com/",
-    driverPro:"https://driver-pro.digiylyfe.com/",
+    driverPro:"https://pro-driver.digiylyfe.com/",
     jobsPro:"https://pro-job.digiylyfe.com/",
     locPro:"https://pro-loc.digiylyfe.com/",
     buildPro:"https://pro-build.digiylyfe.com/",
     resaTablePro:"https://pro-resa-resto.digiylyfe.com/",
     explorePro:"https://explore.digiylyfe.com/",
-    payPro:"https://pay.digiylyfe.com/",
-    fretPro:"https://fret.digiylyfe.com/",
+    payPro:"https://pay.digiylyfe.com/"
   };
 
   const PUB=[
     {key:"market",           name:"DIGIY MARKET",        icon:"🛍️",desc:"Acheter / vendre",              status:"LIVE",loco:true},
-    {key:"driver",           name:"DIGIY DRIVER",         icon:"🚗",desc:"Appeler un chauffeur",          status:"LIVE"},
-    {key:"galerieChauffeurs",name:"Galerie Chauffeurs",   icon:"🚘",desc:"Voir les profils chauffeurs",   status:"LIVE"},
-    {key:"explore",          name:"DIGIY EXPLORE",        icon:"🗺️",desc:"Découvrir la région",          status:"LIVE"},
-    {key:"loc",              name:"DIGIY LOC",            icon:"🏠",desc:"Trouver un logement",          status:"LIVE"},
-    {key:"resaTable",        name:"Résa Table",           icon:"📅",desc:"Réserver une table",           status:"LIVE"},
-    {key:"jobs",             name:"DIGIY JOBS",           icon:"💼",desc:"Offres d'emploi",              status:"LIVE"},
-    {key:"pay",              name:"DIGIY PAY",            icon:"💳",desc:"Portefeuille digital",         status:"LIVE"},
-    {key:"vasChezDigiy",     name:"Vas chez DIGIY",       icon:"📍",desc:"Portail terrain DIGIY",        status:"LIVE"},
-    {key:"ndimbalLoc",       name:"NDIMBAL Loc",          icon:"🏡",desc:"Locations NDIMBAL",            status:"LIVE"},
-    {key:"ndimbalMap",       name:"NDIMBAL Map",          icon:"🗺️",desc:"Carte des annonces",          status:"LIVE"},
-    {key:"ndimbalAnnonces",  name:"NDIMBAL Annonces",     icon:"📢",desc:"Publier / vendre",             status:"LIVE"},
-    {key:"audio",            name:"DIGIY AUDIO",          icon:"🎵",desc:"Écouter les contenus",        status:"LIVE"},
-    {key:"assistantIA",      name:"Assistant IA",         icon:"🧠",desc:"Assistant DIGIY Knowledge",   status:"LIVE"},
-    {key:"build",            name:"DIGIY BUILD",          icon:"🏗️",desc:"Services de construction",   status:"BETA"},
+    {key:"driver",           name:"DIGIY DRIVER",        icon:"🚗",desc:"Commander une course",          status:"LIVE"},
+    {key:"galerieChauffeurs",name:"Galerie Chauffeurs",  icon:"🚘",desc:"Voir les profils chauffeurs",   status:"LIVE"},
+    {key:"explore",          name:"DIGIY EXPLORE",       icon:"🗺️",desc:"Découvrir la région",           status:"LIVE"},
+    {key:"loc",              name:"DIGIY LOC",           icon:"🏠",desc:"Trouver un logement",           status:"LIVE"},
+    {key:"resaTable",        name:"Résa Table",          icon:"📅",desc:"Réserver une table",            status:"LIVE"},
+    {key:"jobs",             name:"DIGIY JOBS",          icon:"💼",desc:"Offres d'emploi",               status:"LIVE"},
+    {key:"pay",              name:"DIGIY PAY",           icon:"💳",desc:"Portefeuille digital",          status:"LIVE"},
+    {key:"vasChezDigiy",     name:"Vas chez DIGIY",      icon:"📍",desc:"Portail terrain DIGIY",         status:"LIVE"},
+    {key:"ndimbalLoc",       name:"NDIMBAL Loc",         icon:"🏡",desc:"Locations NDIMBAL",             status:"LIVE"},
+    {key:"ndimbalMap",       name:"NDIMBAL Map",         icon:"🗺️",desc:"Carte des annonces",           status:"LIVE"},
+    {key:"ndimbalAnnonces",  name:"NDIMBAL Annonces",    icon:"📢",desc:"Publier / vendre",              status:"LIVE"},
+    {key:"audio",            name:"DIGIY AUDIO",         icon:"🎵",desc:"Écouter les contenus",          status:"LIVE"},
+    {key:"assistantIA",      name:"Assistant IA",        icon:"🧠",desc:"Assistant DIGIY Knowledge",    status:"LIVE"},
+    {key:"build",            name:"DIGIY BUILD",         icon:"🏗️",desc:"Services de construction",     status:"BETA"},
   ];
 
   const PRO=[
-    {key:"espacePro",    name:"Espace PRO",       icon:"🏢",desc:"Cockpit central professionnel", status:"LIVE",loco:true},
-    {key:"marketPro",    name:"MARKET PRO",        icon:"🛍️",desc:"Vendre sur market",           status:"LIVE",loco:true},
-    {key:"inscriptionPro",name:"Inscription PRO",  icon:"✍️",desc:"Créer compte professionnel",  status:"LIVE"},
-    {key:"caissePro",    name:"Caisse PRO",        icon:"💰",desc:"Point de vente",              status:"LIVE"},
-    {key:"driverPro",    name:"DRIVER PRO",        icon:"🚗",desc:"Cockpit chauffeur",           status:"LIVE"},
-    {key:"jobsPro",      name:"JOBS PRO",          icon:"💼",desc:"Recruter",                    status:"LIVE"},
-    {key:"locPro",       name:"LOC PRO",           icon:"🏠",desc:"Gérer tes logements",         status:"LIVE"},
-    {key:"resaTablePro", name:"Résa Table PRO",    icon:"📅",desc:"Gérer réservations",          status:"LIVE"},
-    {key:"explorePro",   name:"Explore PRO",       icon:"🗺️",desc:"Analytics & stats",          status:"LIVE"},
-    {key:"payPro",       name:"PAY PRO",           icon:"💳",desc:"Gérer paiements",            status:"LIVE"},
-    {key:"fretPro",      name:"FRET PRO",          icon:"🚛",desc:"Gestion fret B2B",           status:"LIVE"},
-    {key:"buildPro",     name:"BUILD PRO",         icon:"🏗️",desc:"Gérer chantiers",           status:"BETA"},
+    {key:"espacePro",     name:"Espace PRO",        icon:"🏢",desc:"Cockpit central professionnel", status:"LIVE",loco:true},
+    {key:"marketPro",     name:"MARKET PRO",        icon:"🛍️",desc:"Vendre sur market",            status:"LIVE",loco:true},
+    {key:"inscriptionPro",name:"Inscription PRO",   icon:"✍️",desc:"Créer compte professionnel",   status:"LIVE"},
+    {key:"caissePro",     name:"Caisse PRO",        icon:"💰",desc:"Point de vente",               status:"LIVE"},
+    {key:"driverPro",     name:"DRIVER PRO",        icon:"🚗",desc:"Cockpit chauffeur",            status:"LIVE"},
+    {key:"jobsPro",       name:"JOBS PRO",          icon:"💼",desc:"Recruter",                     status:"LIVE"},
+    {key:"locPro",        name:"LOC PRO",           icon:"🏠",desc:"Gérer tes logements",          status:"LIVE"},
+    {key:"resaTablePro",  name:"Résa Table PRO",    icon:"📅",desc:"Gérer réservations",           status:"LIVE"},
+    {key:"explorePro",    name:"Explore PRO",       icon:"🗺️",desc:"Analytics & stats",           status:"LIVE"},
+    {key:"payPro",        name:"PAY PRO",           icon:"💳",desc:"Gérer paiements",             status:"LIVE"},
+    {key:"buildPro",      name:"BUILD PRO",         icon:"🏗️",desc:"Gérer chantiers",            status:"BETA"},
   ];
 
   const COPY={
     market:"DIGIY MARKET sert de locomotive business pour montrer tout de suite le mouvement, l'échange, la vente, l'opportunité et l'économie locale en action.",
-    driver:"DIGIY DRIVER connecte les passagers aux chauffeurs de confiance — direct, rapide, 0% commission.",
+    driver:"DIGIY DRIVER connecte le client à une commande simple, directe et sans détour.",
     galerieChauffeurs:"La Galerie met en avant les profils, la présence terrain et la valeur humaine du transport DIGIY.",
     explore:"DIGIY EXPLORE garde la noblesse du territoire et de la découverte — il élève la vision et donne de la respiration.",
     loc:"DIGIY LOC donne envie de trouver un logement sans surcharge visuelle.",
@@ -662,7 +658,6 @@
     resaTablePro:"Résa Table PRO permet de gérer les réservations et le flux client avec efficacité.",
     explorePro:"Explore PRO garde la lecture premium et analytics côté professionnel.",
     payPro:"PAY PRO concentre la gestion des paiements dans une porte métier lisible.",
-    fretPro:"FRET PRO structure la gestion du fret B2B avec une interface claire et directe.",
     buildPro:"BUILD PRO valorise la gestion des chantiers et du savoir-faire artisan.",
   };
 
@@ -763,7 +758,7 @@
     "mn-market-pro":L.marketPro,"mn-caisse-pro":L.caissePro,"mn-driver-pro":L.driverPro,
     "mn-jobs-pro":L.jobsPro,"mn-loc-pro":L.locPro,"mn-build-pro":L.buildPro,
     "mn-resatable-pro":L.resaTablePro,"mn-explore-pro":L.explorePro,
-    "mn-pay-pro":L.payPro,"mn-fret-pro":L.fretPro,
+    "mn-pay-pro":L.payPro
   };
   Object.entries(menuMap).forEach(([id,url])=>{
     const el=$(id);
