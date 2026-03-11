@@ -163,28 +163,69 @@
       max-width:260px;
     }
 
-    .menuBar{
+    .menuMega{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:12px 16px 14px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      background:rgba(0,0,0,.10);
+    }
+
+    .menuLane{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .laneTag{
+      flex:0 0 auto;
+      min-width:78px;
+      height:42px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:14px;
+      font-family:var(--fontA);
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:.6px;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 8px 24px rgba(0,0,0,.20);
+    }
+
+    .clientTag{
+      background:linear-gradient(135deg, #f6c453, #d8a52c);
+      color:#101010;
+      border-color:rgba(246,196,83,.55);
+    }
+
+    .proTag{
+      background:linear-gradient(135deg, #00a651, #00853f);
+      color:#ffffff;
+      border-color:rgba(0,166,81,.50);
+    }
+
+    .laneScroll{
       display:flex;
       gap:8px;
       overflow-x:auto;
-      padding:10px 16px 12px;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      background:rgba(0,0,0,.08);
+      padding-bottom:2px;
       -webkit-overflow-scrolling:touch;
       scroll-snap-type:x proximity;
+      min-width:0;
+      flex:1;
     }
 
-    .menuBar::-webkit-scrollbar{height:6px}
-    .menuBar::-webkit-scrollbar-thumb{
+    .laneScroll::-webkit-scrollbar{height:6px}
+    .laneScroll::-webkit-scrollbar-thumb{
       background:rgba(255,255,255,.14);
       border-radius:999px;
     }
 
-    .menuBtn{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--ink);
-      min-height:40px;
+    .laneBtn{
+      min-height:42px;
       padding:0 14px;
       border-radius:999px;
       font-family:var(--fontA);
@@ -194,238 +235,45 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
-      transition:.18s ease;
       white-space:nowrap;
-      scroll-snap-align:start;
       flex:0 0 auto;
+      scroll-snap-align:start;
+      transition:.18s ease;
+      border:1px solid rgba(255,255,255,.10);
+      background:#0b0b0b;
+      color:#f8fafc;
     }
 
-    .menuBtn:hover{
+    .laneBtn:hover{
       transform:translateY(-1px);
-      border-color:rgba(246,196,83,.32);
     }
 
-    .menuBtn.home{
-      background:linear-gradient(135deg, rgba(0,166,81,.22), rgba(0,133,63,.20));
-      border-color:rgba(255,255,255,.12);
+    .laneBtn.home{
+      background:linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+      border-color:rgba(255,255,255,.16);
+      color:#fff;
     }
 
-    .menuBtn.public{
-      border-color:rgba(246,196,83,.35);
-      color:rgba(246,196,83,.96);
+    .clientBtn{
+      background:linear-gradient(180deg, rgba(246,196,83,.18), rgba(0,0,0,.92));
+      border-color:rgba(246,196,83,.36);
+      color:#fff1c8;
     }
 
-    .menuBtn.pro{
+    .clientBtn:hover{
+      border-color:rgba(246,196,83,.56);
+      box-shadow:0 8px 20px rgba(246,196,83,.12);
+    }
+
+    .proBtn{
+      background:linear-gradient(180deg, rgba(0,166,81,.18), rgba(0,0,0,.92));
       border-color:rgba(0,166,81,.34);
-      color:rgba(110,255,161,.98);
+      color:#dcffe8;
     }
 
-    .hero{
-      margin:18px 16px 0;
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:16px;
-      align-items:stretch;
-    }
-
-    .heroLeft, .heroRight{min-height:320px}
-
-    .heroLeft{
-      background:
-        radial-gradient(620px 300px at 18% 18%, rgba(255,255,255,.08), transparent 60%),
-        radial-gradient(620px 300px at 82% 70%, rgba(246,196,83,.12), transparent 60%),
-        linear-gradient(135deg, rgba(0,166,81,.40), rgba(0,133,63,.26) 42%, rgba(10,36,27,.92) 100%);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:var(--radius2);
-      padding:20px;
-      box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .heroLeft::after{
-      content:"";
-      position:absolute;
-      inset:-80px;
-      background:
-        radial-gradient(620px 290px at 20% 18%, rgba(246,196,83,.12), transparent 60%),
-        radial-gradient(620px 290px at 78% 62%, rgba(0,166,81,.14), transparent 60%);
-      pointer-events:none;
-      opacity:.9;
-    }
-
-    .eyebrow{
-      font-family:var(--fontA);
-      font-weight:900;
-      letter-spacing:.25px;
-      color:rgba(255,245,214,.96);
-      font-size:12px;
-      text-transform:uppercase;
-      margin-bottom:10px;
-      position:relative;
-      z-index:1;
-    }
-
-    .heroLeft h1{
-      position:relative;
-      z-index:1;
-      font-family:var(--fontA);
-      font-weight:900;
-      margin:0 0 10px;
-      font-size:32px;
-      line-height:1.05;
-    }
-
-    .gold{color:rgba(246,196,83,.98)}
-
-    .heroLeft p{
-      position:relative;
-      z-index:1;
-      margin:0 0 16px;
-      color:rgba(248,250,252,.84);
-      line-height:1.55;
-    }
-
-    .ctaRow{
-      position:relative;
-      z-index:1;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin:10px 0 14px;
-    }
-
-    .chip{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(2,6,23,.18);
-      position:relative;
-      z-index:1;
-    }
-
-    .chipK{font-size:12px;color:var(--muted)}
-    .chipV{font-weight:800;font-family:var(--fontA)}
-
-    .heroChips{
-      position:relative;
-      z-index:1;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
-
-    .btn{
-      border:1px solid var(--line);
-      background:rgba(2,6,23,.18);
-      color:var(--ink);
-      padding:12px 14px;
-      border-radius:14px;
-      cursor:pointer;
-      font-weight:800;
-      font-family:var(--fontA);
-      letter-spacing:.2px;
-      transition:transform .08s ease, background .2s ease, border-color .2s ease, opacity .2s ease;
-      user-select:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      text-align:center;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      border-color:rgba(246,196,83,.35);
-    }
-
-    .btn:active{transform:translateY(0) scale(.99)}
-
-    .btn.primary{
-      border-color:rgba(255,255,255,.14);
-      background:linear-gradient(135deg, #00a651, #00853f);
-      color:#fff;
-      box-shadow:0 12px 28px rgba(0,133,63,.22);
-    }
-
-    .btn.ghost{background:transparent}
-    .btn.outline{
-      background:transparent;
-      border-color:rgba(246,196,83,.34);
-      color:rgba(255,243,207,.98);
-    }
-
-    .btn.tiny{
-      padding:10px 12px;
-      font-size:12px;
-      border-radius:999px;
-    }
-
-    .btn.danger{border-color:rgba(239,68,68,.45)}
-
-    .panel{
-      background:linear-gradient(180deg, rgba(9,44,31,.88), rgba(8,28,20,.82));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:var(--radius2);
-      padding:16px;
-      box-shadow:var(--shadow);
-      height:100%;
-    }
-
-    .panelTitle{
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:16px;
-    }
-
-    .panelHint{
-      color:rgba(248,250,252,.74);
-      font-size:13px;
-      margin-top:4px;
-    }
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .stat{
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:12px;
-      background:rgba(2,6,23,.14);
-    }
-
-    .statN{
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:18px;
-      color:#fff;
-    }
-
-    .statL{
-      color:var(--muted);
-      font-size:12px;
-      margin-top:2px;
-      line-height:1.35;
-    }
-
-    .note{
-      margin-top:12px;
-      color:var(--muted);
-      font-size:12.5px;
-      line-height:1.45;
-      border:1px dashed rgba(148,163,184,.35);
-      border-radius:16px;
-      padding:12px;
-      background:rgba(2,6,23,.10);
+    .proBtn:hover{
+      border-color:rgba(0,166,81,.56);
+      box-shadow:0 8px 20px rgba(0,166,81,.12);
     }
 
     .main{
@@ -782,6 +630,225 @@
       flex-wrap:wrap;
     }
 
+    .storyBlock{
+      margin-top:14px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      background:linear-gradient(180deg, rgba(10,48,34,.82), rgba(8,28,20,.76));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .storyWrap{
+      padding:16px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:16px;
+      align-items:stretch;
+    }
+
+    .heroLeft, .heroRight{min-height:320px}
+
+    .heroLeft{
+      background:
+        radial-gradient(620px 300px at 18% 18%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(620px 300px at 82% 70%, rgba(246,196,83,.12), transparent 60%),
+        linear-gradient(135deg, rgba(0,166,81,.40), rgba(0,133,63,.26) 42%, rgba(10,36,27,.92) 100%);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--radius2);
+      padding:20px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .heroLeft::after{
+      content:"";
+      position:absolute;
+      inset:-80px;
+      background:
+        radial-gradient(620px 290px at 20% 18%, rgba(246,196,83,.12), transparent 60%),
+        radial-gradient(620px 290px at 78% 62%, rgba(0,166,81,.14), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    .eyebrow{
+      font-family:var(--fontA);
+      font-weight:900;
+      letter-spacing:.25px;
+      color:rgba(255,245,214,.96);
+      font-size:12px;
+      text-transform:uppercase;
+      margin-bottom:10px;
+      position:relative;
+      z-index:1;
+    }
+
+    .heroLeft h1{
+      position:relative;
+      z-index:1;
+      font-family:var(--fontA);
+      font-weight:900;
+      margin:0 0 10px;
+      font-size:32px;
+      line-height:1.05;
+    }
+
+    .gold{color:rgba(246,196,83,.98)}
+
+    .heroLeft p{
+      position:relative;
+      z-index:1;
+      margin:0 0 16px;
+      color:rgba(248,250,252,.84);
+      line-height:1.55;
+    }
+
+    .ctaRow{
+      position:relative;
+      z-index:1;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:10px 0 14px;
+    }
+
+    .chip{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(2,6,23,.18);
+      position:relative;
+      z-index:1;
+    }
+
+    .chipK{font-size:12px;color:var(--muted)}
+    .chipV{font-weight:800;font-family:var(--fontA)}
+
+    .heroChips{
+      position:relative;
+      z-index:1;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .btn{
+      border:1px solid var(--line);
+      background:rgba(2,6,23,.18);
+      color:var(--ink);
+      padding:12px 14px;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:800;
+      font-family:var(--fontA);
+      letter-spacing:.2px;
+      transition:transform .08s ease, background .2s ease, border-color .2s ease, opacity .2s ease;
+      user-select:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      text-align:center;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(246,196,83,.35);
+    }
+
+    .btn:active{transform:translateY(0) scale(.99)}
+
+    .btn.primary{
+      border-color:rgba(255,255,255,.14);
+      background:linear-gradient(135deg, #00a651, #00853f);
+      color:#fff;
+      box-shadow:0 12px 28px rgba(0,133,63,.22);
+    }
+
+    .btn.ghost{background:transparent}
+    .btn.outline{
+      background:transparent;
+      border-color:rgba(246,196,83,.34);
+      color:rgba(255,243,207,.98);
+    }
+
+    .btn.tiny{
+      padding:10px 12px;
+      font-size:12px;
+      border-radius:999px;
+    }
+
+    .btn.danger{border-color:rgba(239,68,68,.45)}
+
+    .panel{
+      background:linear-gradient(180deg, rgba(9,44,31,.88), rgba(8,28,20,.82));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--radius2);
+      padding:16px;
+      box-shadow:var(--shadow);
+      height:100%;
+    }
+
+    .panelTitle{
+      font-family:var(--fontA);
+      font-weight:900;
+      font-size:16px;
+    }
+
+    .panelHint{
+      color:rgba(248,250,252,.74);
+      font-size:13px;
+      margin-top:4px;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .stat{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:rgba(2,6,23,.14);
+    }
+
+    .statN{
+      font-family:var(--fontA);
+      font-weight:900;
+      font-size:18px;
+      color:#fff;
+    }
+
+    .statL{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:2px;
+      line-height:1.35;
+    }
+
+    .note{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.45;
+      border:1px dashed rgba(148,163,184,.35);
+      border-radius:16px;
+      padding:12px;
+      background:rgba(2,6,23,.10);
+    }
+
     .footer{
       margin-top:14px;
       border-top:1px solid rgba(255,255,255,.08);
@@ -1009,10 +1076,28 @@
     }
 
     @media (max-width:640px){
-      .heroLeft h1{font-size:27px;}
-      .stats{grid-template-columns:1fr 1fr 1fr;}
       .railHint{display:block;}
       .railArrow{display:none;}
+      .heroLeft h1{font-size:27px;}
+      .stats{grid-template-columns:1fr 1fr 1fr;}
+      .menuMega{
+        padding:10px 12px 12px;
+      }
+      .menuLane{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:8px;
+      }
+      .laneTag{
+        min-width:auto;
+        width:100%;
+        height:40px;
+        justify-content:flex-start;
+        padding:0 14px;
+      }
+      .laneScroll{
+        width:100%;
+      }
     }
 
     @media (max-width:560px){
@@ -1044,7 +1129,7 @@
       <div class="shell">
 
         <header class="topbar">
-          <a class="brand" href="http://digiylyfe.com" id="homeBrand" aria-label="Retour accueil DIGIYLYFE">
+          <a class="brand" href="https://digiylyfe.com" id="homeBrand" aria-label="Retour accueil DIGIYLYFE">
             <div class="logo">∞</div>
             <div class="brandText">
               <div class="title">DIGIYLYFE</div>
@@ -1053,72 +1138,36 @@
           </a>
         </header>
 
-        <nav class="menuBar" aria-label="Navigation DIGIY">
-          <a class="menuBtn home" href="http://digiylyfe.com">Accueil</a>
-          <a class="menuBtn public" href="#public">Public</a>
-          <a class="menuBtn pro" href="#pro">PRO</a>
-          <a class="menuBtn" id="menuVasChezDigiy" href="#">Vas chez DIGIY</a>
-          <a class="menuBtn" id="menuAudio" href="#">DIGIY AUDIO</a>
-          <a class="menuBtn" id="menuIA" href="#">Assistant IA</a>
-          <a class="menuBtn" id="menuTarifs" href="#">Tarifs</a>
-        </nav>
-
-        <section class="hero">
-          <div class="heroLeft">
-            <div class="eyebrow">DIGIYLYFE ∞ · ÉCOSYSTÈME BUSINESS · AFRIQUE · TERRAIN</div>
-
-            <h1>
-              Faire tourner l’économie locale.<br>
-              <span class="gold">Ouvrir un écosystème business enraciné.</span>
-            </h1>
-
-            <p>
-              DIGIYLYFE relie le <strong>public</strong> et le <strong>pro</strong> dans une même logique :
-              vendre, découvrir, travailler, encaisser, recruter et faire vivre l’activité locale avec une lecture claire,
-              humaine et souveraine.
-            </p>
-
-            <div class="ctaRow">
-              <a class="btn primary" id="heroOpenBtn" href="#">🛍️ Ouvrir la locomotive business</a>
-              <a class="btn outline" href="#pro">🧰 Voir la porte PRO</a>
-            </div>
-
-            <div class="heroChips">
-              <span class="chip"><span class="chipK">0%</span><span class="chipV">commission</span></span>
-              <span class="chip"><span class="chipK">Paiement</span><span class="chipV">direct</span></span>
-              <span class="chip"><span class="chipK">Terrain</span><span class="chipV">vivant</span></span>
+        <nav class="menuMega" aria-label="Navigation DIGIY">
+          <div class="menuLane clientLane">
+            <div class="laneTag clientTag">CLIENT</div>
+            <div class="laneScroll">
+              <a class="laneBtn home" href="https://digiylyfe.com">Accueil</a>
+              <a class="laneBtn clientBtn" href="#public">Explorer</a>
+              <a class="laneBtn clientBtn" id="menuMarket" href="#">Market</a>
+              <a class="laneBtn clientBtn" id="menuExplore" href="#">Explore</a>
+              <a class="laneBtn clientBtn" id="menuChauffeurs" href="#">Chauffeurs</a>
+              <a class="laneBtn clientBtn" id="menuVasChezDigiy" href="#">Vas chez DIGIY</a>
+              <a class="laneBtn clientBtn" id="menuAudio" href="#">DIGIY AUDIO</a>
+              <a class="laneBtn clientBtn" id="menuIA" href="#">Assistant IA</a>
+              <a class="laneBtn clientBtn" id="menuTarifs" href="#">Tarifs</a>
             </div>
           </div>
 
-          <aside class="heroRight">
-            <div class="panel">
-              <div class="panelTitle">Cap DIGIY</div>
-              <div class="panelHint">
-                Une vitrine pensée pour donner envie d’entrer dans l’économie vivante : commerce, activité, travail, pilotage et présence terrain.
-              </div>
-
-              <div class="stats">
-                <div class="stat">
-                  <div class="statN">VENDRE</div>
-                  <div class="statL">Market, vitrines, présence commerciale</div>
-                </div>
-                <div class="stat">
-                  <div class="statN">PILOTER</div>
-                  <div class="statL">Espace PRO, caisse, gestion, activité</div>
-                </div>
-                <div class="stat">
-                  <div class="statN">GRANDIR</div>
-                  <div class="statL">Jobs, build, services, traction terrain</div>
-                </div>
-              </div>
-
-              <div class="note">
-                <b>Lecture DIGIY :</b> la vitrine ne présente pas une simple collection de modules.
-                Elle montre un <b>écosystème business</b> capable de faire avancer les autres wagons.
-              </div>
+          <div class="menuLane proLane">
+            <div class="laneTag proTag">PRO</div>
+            <div class="laneScroll">
+              <a class="laneBtn proBtn" href="#pro">Porte PRO</a>
+              <a class="laneBtn proBtn" id="menuEspaceProTop" href="#">Espace PRO</a>
+              <a class="laneBtn proBtn" id="menuInscriptionProTop" href="#">Inscription PRO</a>
+              <a class="laneBtn proBtn" id="menuMarketProTop" href="#">Market PRO</a>
+              <a class="laneBtn proBtn" id="menuCaisseProTop" href="#">Caisse PRO</a>
+              <a class="laneBtn proBtn" id="menuJobsProTop" href="#">Jobs PRO</a>
+              <a class="laneBtn proBtn" id="menuLocProTop" href="#">Loc PRO</a>
+              <a class="laneBtn proBtn" id="menuBuildProTop" href="#">Build PRO</a>
             </div>
-          </aside>
-        </section>
+          </div>
+        </nav>
 
         <main class="main">
           <section class="section" id="public">
@@ -1126,7 +1175,7 @@
               <div>
                 <h2>Écosystème Public</h2>
                 <div class="sectionSub">
-                  Pour entrer dans le business vivant : acheter, découvrir, écouter, explorer, voir les profils, trouver une opportunité.
+                  Accès direct aux portes publiques : acheter, découvrir, réserver, écouter, trouver une opportunité.
                 </div>
               </div>
 
@@ -1149,7 +1198,7 @@
               <div>
                 <h2>Écosystème PRO</h2>
                 <div class="sectionSub">
-                  Pour gérer, vendre, piloter, encaisser et structurer son activité avec une porte centrale et des rails métiers.
+                  Accès direct aux portes professionnelles : gérer, piloter, vendre, encaisser, recruter et structurer.
                 </div>
               </div>
 
@@ -1190,7 +1239,7 @@
 
               <div class="focusActions">
                 <a class="btn primary" id="focusOpenBtn" href="#">Ouvrir</a>
-                <a class="btn outline" href="http://digiylyfe.com">← Retour DIGIYLYFE</a>
+                <a class="btn outline" href="https://digiylyfe.com">← Retour DIGIYLYFE</a>
               </div>
 
               <footer class="footer">
@@ -1206,6 +1255,67 @@
                   <span>économie locale en mouvement</span>
                 </div>
               </footer>
+            </div>
+          </section>
+
+          <section class="storyBlock" id="vision">
+            <div class="storyWrap">
+              <div class="hero">
+                <div class="heroLeft">
+                  <div class="eyebrow">DIGIYLYFE ∞ · ÉCOSYSTÈME BUSINESS · AFRIQUE · TERRAIN</div>
+
+                  <h1>
+                    Faire tourner l’économie locale.<br>
+                    <span class="gold">Ouvrir un écosystème business enraciné.</span>
+                  </h1>
+
+                  <p>
+                    DIGIYLYFE relie le <strong>public</strong> et le <strong>pro</strong> dans une même logique :
+                    vendre, découvrir, travailler, encaisser, recruter et faire vivre l’activité locale avec une lecture claire,
+                    humaine et souveraine.
+                  </p>
+
+                  <div class="ctaRow">
+                    <a class="btn primary" id="heroOpenBtn" href="#">🛍️ Ouvrir la locomotive business</a>
+                    <a class="btn outline" href="#pro">🧰 Voir la porte PRO</a>
+                  </div>
+
+                  <div class="heroChips">
+                    <span class="chip"><span class="chipK">0%</span><span class="chipV">commission</span></span>
+                    <span class="chip"><span class="chipK">Paiement</span><span class="chipV">direct</span></span>
+                    <span class="chip"><span class="chipK">Terrain</span><span class="chipV">vivant</span></span>
+                  </div>
+                </div>
+
+                <aside class="heroRight">
+                  <div class="panel">
+                    <div class="panelTitle">Cap DIGIY</div>
+                    <div class="panelHint">
+                      Une vitrine pensée pour montrer d’abord les portes utiles, puis la vision qui porte l’ensemble.
+                    </div>
+
+                    <div class="stats">
+                      <div class="stat">
+                        <div class="statN">VENDRE</div>
+                        <div class="statL">Market, vitrines, présence commerciale</div>
+                      </div>
+                      <div class="stat">
+                        <div class="statN">PILOTER</div>
+                        <div class="statL">Espace PRO, caisse, gestion, activité</div>
+                      </div>
+                      <div class="stat">
+                        <div class="statN">GRANDIR</div>
+                        <div class="statL">Jobs, build, services, traction terrain</div>
+                      </div>
+                    </div>
+
+                    <div class="note">
+                      <b>Lecture DIGIY :</b> la vitrine ne montre pas juste des modules.
+                      Elle montre un <b>écosystème business</b> capable de tirer les autres wagons dans le bon sens.
+                    </div>
+                  </div>
+                </aside>
+              </div>
             </div>
           </section>
         </main>
@@ -1261,7 +1371,7 @@
           <div class="stickyValue" id="stickyValue">DIGIY MARKET • PUBLIC • Acheter / vendre</div>
         </div>
         <div class="stickyActions">
-          <a class="btn outline" href="http://digiylyfe.com">Accueil</a>
+          <a class="btn outline" href="https://digiylyfe.com">Accueil</a>
           <a class="btn primary" id="stickyOpenBtn" href="#">Ouvrir</a>
         </div>
       </div>
@@ -1272,7 +1382,7 @@
     (function(){
       "use strict";
 
-      const HOME_RETURN = "http://digiylyfe.com";
+      const HOME_RETURN = "https://digiylyfe.com";
 
       function withReturn(url){
         try{
@@ -1285,7 +1395,6 @@
       }
 
       const LINKS = {
-        bonneAffaire: "https://bonne-affaire.digiylyfe.com/",
         galerieChauffeurs: "https://beauville.github.io/galerie-chauffeurs/",
         loc: "https://loc.digiylyfe.com/",
         resaTable: "https://resa-table-resto.digiylyfe.com/",
@@ -1329,7 +1438,6 @@
         { key:"vasChezDigiy", name:"Vas chez DIGIY", icon:"📍", desc:"Portail terrain DIGIY", status:"LIVE" },
         { key:"audio", name:"DIGIY AUDIO", icon:"🎵", desc:"Écouter articles et contenus", status:"LIVE" },
         { key:"assistantIA", name:"Assistant IA", icon:"🧠", desc:"Assistant DIGIY Knowledge", status:"LIVE" },
-        { key:"bonneAffaire", name:"Bonne Affaire", icon:"🎯", desc:"Deals & offres", status:"LIVE" },
         { key:"build", name:"DIGIY BUILD", icon:"🏗️", desc:"Services de construction", status:"BETA" }
       ];
 
@@ -1357,7 +1465,6 @@
         pay: "DIGIY PAY côté public pose la logique de paiement simple et directe, au service du terrain.",
         audio: "DIGIY AUDIO permet d’écouter les contenus et articles dans une logique plus fluide et plus humaine.",
         assistantIA: "Assistant IA ouvre le knowledge DIGIY pour guider, répondre et orienter rapidement.",
-        bonneAffaire: "Bonne Affaire met en avant les deals et les opportunités dans une lecture directe.",
         build: "DIGIY BUILD côté public valorise les services terrain avec plus de lisibilité.",
         ndimbalMap: "NDIMBAL Map ouvre la carte et la découverte locale avec un accès direct aux annonces.",
         ndimbalAnnonces: "NDIMBAL Annonces sert de hub d’annonces pour publier et vendre.",
@@ -1391,10 +1498,21 @@
       const stickyOpenBtn = document.getElementById("stickyOpenBtn");
       const stickyValue = document.getElementById("stickyValue");
 
+      const menuMarket = document.getElementById("menuMarket");
+      const menuExplore = document.getElementById("menuExplore");
+      const menuChauffeurs = document.getElementById("menuChauffeurs");
       const menuVasChezDigiy = document.getElementById("menuVasChezDigiy");
       const menuAudio = document.getElementById("menuAudio");
       const menuIA = document.getElementById("menuIA");
       const menuTarifs = document.getElementById("menuTarifs");
+
+      const menuEspaceProTop = document.getElementById("menuEspaceProTop");
+      const menuInscriptionProTop = document.getElementById("menuInscriptionProTop");
+      const menuMarketProTop = document.getElementById("menuMarketProTop");
+      const menuCaisseProTop = document.getElementById("menuCaisseProTop");
+      const menuJobsProTop = document.getElementById("menuJobsProTop");
+      const menuLocProTop = document.getElementById("menuLocProTop");
+      const menuBuildProTop = document.getElementById("menuBuildProTop");
 
       let currentKey = "market";
       let currentKind = "public";
@@ -1520,10 +1638,21 @@
         window.open(withReturn(url), "_blank", "noopener,noreferrer");
       }
 
-      menuVasChezDigiy.href = withReturn(LINKS.vasChezDigiy);
-      menuAudio.href = withReturn(LINKS.audio);
-      menuIA.href = withReturn(LINKS.assistantIA);
-      menuTarifs.href = withReturn(LINKS.tarifs);
+      if(menuMarket) menuMarket.href = withReturn(LINKS.market);
+      if(menuExplore) menuExplore.href = withReturn(LINKS.explore);
+      if(menuChauffeurs) menuChauffeurs.href = withReturn(LINKS.galerieChauffeurs);
+      if(menuVasChezDigiy) menuVasChezDigiy.href = withReturn(LINKS.vasChezDigiy);
+      if(menuAudio) menuAudio.href = withReturn(LINKS.audio);
+      if(menuIA) menuIA.href = withReturn(LINKS.assistantIA);
+      if(menuTarifs) menuTarifs.href = withReturn(LINKS.tarifs);
+
+      if(menuEspaceProTop) menuEspaceProTop.href = withReturn(LINKS.espacePro);
+      if(menuInscriptionProTop) menuInscriptionProTop.href = withReturn(LINKS.inscriptionPro);
+      if(menuMarketProTop) menuMarketProTop.href = withReturn(LINKS.marketPro);
+      if(menuCaisseProTop) menuCaisseProTop.href = withReturn(LINKS.caissePro);
+      if(menuJobsProTop) menuJobsProTop.href = withReturn(LINKS.jobsPro);
+      if(menuLocProTop) menuLocProTop.href = withReturn(LINKS.locPro);
+      if(menuBuildProTop) menuBuildProTop.href = withReturn(LINKS.buildPro);
 
       const tarifBtn = document.getElementById("tarif-bubble-btn");
       const helpBtn = document.getElementById("digiy-help-btn");
