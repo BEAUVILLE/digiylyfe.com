@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
     :root{
-      --ink:#f8fafc; --muted:rgba(248,250,252,.72); --line:rgba(148,163,184,.28);
+      --ink:#f8fafc; --muted:rgba(248,163,184,.28);
       --gold:#f6c453; --green:#00a651; --green-deep:#00853f;
       --shadow:0 18px 60px rgba(0,0,0,.35); --radius2:26px;
       --fontA:"Outfit",system-ui,-apple-system,sans-serif;
@@ -80,7 +80,7 @@
       font-size:10px;letter-spacing:.6px;padding:3px 8px;border-radius:6px;
     }
     .rowLabel.c{background:rgba(246,196,83,.16);color:#ffd97a;border:1px solid rgba(246,196,83,.26);}
-    .rowLabel.p{background:rgba(0,166,81,.16);  color:#7bffb0;border:1px solid rgba(0,166,81,.26);}
+    .rowLabel.p{background:rgba(0,166,81,.16);color:#7bffb0;border:1px solid rgba(0,166,81,.26);}
 
     .mBtn{
       display:inline-flex;align-items:center;gap:4px;
@@ -128,27 +128,38 @@
       background:linear-gradient(90deg,rgba(12,40,29,0),rgba(12,40,29,.94));
     }
     .railWrapDesktop{position:relative}
-    .railHint{display:none;margin:0 0 10px 2px;font-size:12px;font-weight:900;font-family:var(--fontA);color:#fff3cf;opacity:.92;}
+    .railHint{
+      display:none;
+      margin:0 0 12px 2px;
+      font-size:16px;
+      font-weight:1000;
+      font-family:var(--fontA);
+      color:#fff0c8;
+      opacity:1;
+      letter-spacing:.2px;
+      line-height:1.2;
+      text-shadow:0 3px 10px rgba(0,0,0,.25);
+    }
     .railArrow{
       position:absolute;top:50%;transform:translateY(-50%);z-index:3;
-      width:42px;height:42px;border-radius:999px;border:1px solid rgba(255,255,255,.14);
-      background:rgba(6,20,14,.82);color:#fff;font-size:28px;font-weight:900;line-height:1;
+      width:46px;height:46px;border-radius:999px;border:1px solid rgba(255,255,255,.14);
+      background:rgba(6,20,14,.82);color:#fff;font-size:30px;font-weight:900;line-height:1;
       display:flex;align-items:center;justify-content:center;cursor:pointer;
       box-shadow:0 10px 26px rgba(0,0,0,.32);backdrop-filter:blur(10px);
     }
     .railArrow:hover{border-color:rgba(246,196,83,.34)}
     .railArrow.left{left:6px} .railArrow.right{right:6px}
     .moduleRail{
-      display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;
+      display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;
       scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;
     }
     .moduleRail::-webkit-scrollbar{height:6px}
     .moduleRail::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:999px;}
 
     .moduleBtn{
-      min-width:158px;max-width:188px;
+      min-width:220px;max-width:255px;min-height:186px;
       border:1px solid rgba(255,255,255,.10);
-      color:var(--ink);border-radius:20px;padding:14px 12px;text-align:left;
+      color:var(--ink);border-radius:24px;padding:18px 16px;text-align:left;
       cursor:pointer;scroll-snap-align:start;transition:.18s ease;flex:0 0 auto;
       text-decoration:none;display:block;
       background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02)),rgba(0,0,0,.10);
@@ -168,18 +179,22 @@
     .moduleBtn.proCard:hover{border-color:rgba(0,166,81,.48);}
     .moduleBtn.loco{border-color:rgba(246,196,83,.34);box-shadow:0 12px 30px rgba(246,196,83,.08);}
     .moduleBtn .openHint{
-      display:none;margin-top:7px;font-size:10px;font-family:var(--fontA);
-      font-weight:900;color:rgba(246,196,83,.80);letter-spacing:.2px;
+      display:block;
+      margin-top:10px;
+      font-size:12px;
+      font-family:var(--fontA);
+      font-weight:1000;
+      color:rgba(246,196,83,.92);
+      letter-spacing:.2px;
     }
-    .moduleBtn:hover .openHint{display:block;}
 
-    .moduleEmoji{font-size:20px;display:block;margin-bottom:6px;}
-    .moduleName{font-size:13px;font-weight:900;font-family:var(--fontA);}
-    .moduleHint{margin-top:4px;font-size:11px;color:var(--muted);line-height:1.35;min-height:28px;}
-    .miniBadges{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px;}
+    .moduleEmoji{font-size:30px;display:block;margin-bottom:10px;}
+    .moduleName{font-size:18px;font-weight:1000;font-family:var(--fontA);line-height:1.2;}
+    .moduleHint{margin-top:6px;font-size:14px;color:rgba(248,250,252,.80);line-height:1.45;min-height:42px;}
+    .miniBadges{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
     .miniBadge{
-      display:inline-flex;align-items:center;gap:4px;padding:4px 7px;
-      border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.2px;
+      display:inline-flex;align-items:center;gap:4px;padding:5px 8px;
+      border-radius:999px;font-size:10.5px;font-weight:1000;letter-spacing:.2px;
       border:1px solid var(--line);background:rgba(0,0,0,.10);font-family:var(--fontA);
     }
     .miniBadge.public{color:#fff0c8;border-color:rgba(246,196,83,.28);background:rgba(246,196,83,.08);}
@@ -310,14 +325,30 @@
     .stickyActions{display:flex;gap:8px;}
     .stickyActions .btn{min-height:44px;padding:0 14px;}
 
-    @media(max-width:980px){.hero{grid-template-columns:1fr;}}
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr;}
+    }
     @media(max-width:640px){
-      .railHint{display:block;} .railArrow{display:none;}
-      .heroLeft h1{font-size:26px;} .stats{grid-template-columns:1fr 1fr 1fr;}
+      .railHint{display:block;font-size:18px;font-weight:1000;}
+      .railArrow{display:none;}
+      .heroLeft h1{font-size:26px;}
+      .stats{grid-template-columns:1fr 1fr 1fr;}
       .menuBar{padding:6px 10px 8px;}
       .menuRow{gap:4px;}
       .mBtn{height:28px;padding:0 9px;font-size:11px;}
       .rowLabel{font-size:9.5px;padding:3px 7px;}
+
+      .moduleBtn{
+        min-width:240px;
+        max-width:280px;
+        min-height:194px;
+        padding:18px 16px;
+      }
+      .moduleEmoji{font-size:32px;}
+      .moduleName{font-size:19px;}
+      .moduleHint{font-size:14px;min-height:48px;}
+      .miniBadge{font-size:11px;}
+      .moduleBtn .openHint{font-size:12px;}
     }
     @media(max-width:480px){
       .floatBtn{padding:11px 13px;font-size:13px;}
@@ -329,7 +360,15 @@
       .stickyActions{width:100%}
       .stickyActions .btn{flex:1}
       .brandText .subtitle{max-width:150px}
-      .moduleBtn{min-width:145px;}
+      .moduleBtn{
+        min-width:248px;
+        max-width:286px;
+        min-height:198px;
+      }
+      .railHint{
+        font-size:19px;
+        font-weight:1000;
+      }
     }
   </style>
 </head>
@@ -358,7 +397,7 @@
           <a class="mBtn gold" id="mn-market"            href="#">🛍️ Market</a>
           <a class="mBtn gold" id="mn-explore"           href="#">🗺️ Explore</a>
           <a class="mBtn gold" id="mn-loc"               href="#">🏠 LOC</a>
-          <a class="mBtn gold" id="mn-resatable"         href="#">📅 Résa Table</a>
+          <a class="mBtn gold" id="mn-resatable"         href="#">📅 RÉSA MULTI-BUSINESS</a>
           <a class="mBtn gold" id="mn-driver"            href="#">🚗 Driver</a>
           <a class="mBtn gold" id="mn-chauffeurs"        href="#">👑 Driver Ambassadeur</a>
           <a class="mBtn gold" id="mn-jobs"              href="#">💼 Jobs</a>
@@ -380,7 +419,7 @@
           <a class="mBtn green" id="mn-market-pro"       href="#">🛍️ Market PRO</a>
           <a class="mBtn green" id="mn-caisse-pro"       href="#">💰 Caisse PRO</a>
           <a class="mBtn green" id="mn-loc-pro"          href="#">🏠 LOC PRO</a>
-          <a class="mBtn green" id="mn-resatable-pro"    href="#">📅 Résa Table PRO</a>
+          <a class="mBtn green" id="mn-resatable-pro"    href="#">📅 RÉSA PRO</a>
           <a class="mBtn green" id="mn-driver-pro"       href="#">🚗 Driver PRO</a>
           <a class="mBtn green" id="mn-jobs-pro"         href="#">💼 Jobs PRO</a>
           <a class="mBtn green" id="mn-build-pro"        href="#">🏗️ Build PRO</a>
@@ -405,7 +444,7 @@
           </div>
           <div class="railWrap railWrapDesktop">
             <button class="railArrow left" id="publicLeft" type="button">‹</button>
-            <div class="railHint" id="publicHint">👉 Glisse pour voir les autres portes</div>
+            <div class="railHint" id="publicHint">👉 GLISSE POUR VOIR LES AUTRES PORTES</div>
             <div class="moduleRail" id="publicRail"></div>
             <button class="railArrow right" id="publicRight" type="button">›</button>
           </div>
@@ -424,7 +463,7 @@
           </div>
           <div class="railWrap railWrapDesktop">
             <button class="railArrow left" id="proLeft" type="button">‹</button>
-            <div class="railHint" id="proHint">👉 Glisse pour voir les autres portes</div>
+            <div class="railHint" id="proHint">👉 GLISSE POUR VOIR LES AUTRES PORTES</div>
             <div class="moduleRail" id="proRail"></div>
             <button class="railArrow right" id="proRight" type="button">›</button>
           </div>
@@ -484,7 +523,7 @@
                   <div class="panelHint">Une vitrine pensée pour montrer d'abord les grandes portes de l'écosystème, puis les usages spécialisés dans le bon ordre terrain.</div>
                   <div class="stats">
                     <div class="stat"><div class="statN">VENDRE</div><div class="statL">Market, vitrines, présence commerciale</div></div>
-                    <div class="stat"><div class="statN">VIVRE</div><div class="statL">Explore, Loc, Résa Table, territoire</div></div>
+                    <div class="stat"><div class="statN">VIVRE</div><div class="statL">Explore, Loc, Réservation multi-business, territoire</div></div>
                     <div class="stat"><div class="statN">BOUGER</div><div class="statL">Driver, Ambassadeur, puis Jobs et Build</div></div>
                   </div>
                   <div class="note"><b>Lecture DIGIY :</b> la vitrine raconte d'abord un <b>écosystème business</b>, puis ouvre les rails terrain dans une lecture plus fluide : vivre, réserver, bouger, travailler et construire.</div>
@@ -589,42 +628,42 @@
   };
 
   const PUB = [
-    {key:"market",            name:"DIGIY MARKET",        icon:"🛍️",desc:"Acheter / vendre",                   status:"LIVE",loco:true},
-    {key:"explore",           name:"DIGIY EXPLORE",       icon:"🗺️",desc:"Découvrir la région",                status:"LIVE"},
-    {key:"loc",               name:"DIGIY LOC",           icon:"🏠",desc:"Trouver un logement",                status:"LIVE"},
-    {key:"resaTable",         name:"Résa Table",          icon:"📅",desc:"Réserver une table",                 status:"LIVE"},
-    {key:"driver",            name:"DIGIY DRIVER",        icon:"🚗",desc:"Commander une course",               status:"LIVE"},
-    {key:"galerieChauffeurs", name:"DRIVER AMBASSADEUR",  icon:"👑",desc:"La mobilité avec style et savoir-être", status:"LIVE"},
-    {key:"jobs",              name:"DIGIY JOBS",          icon:"💼",desc:"Offres d'emploi",                    status:"LIVE"},
-    {key:"build",             name:"DIGIY BUILD",         icon:"🏗️",desc:"Services de construction",          status:"BETA"},
-    {key:"ndimbalAnnonces",   name:"NDIMBAL Annonces",    icon:"📢",desc:"Publier / vendre",                   status:"LIVE"},
-    {key:"pay",               name:"DIGIY PAY",           icon:"💳",desc:"Portefeuille digital",               status:"LIVE"},
-    {key:"vasChezDigiy",      name:"Vas chez DIGIY",      icon:"📍",desc:"Portail terrain DIGIY",              status:"LIVE"},
-    {key:"ndimbalLoc",        name:"NDIMBAL Loc",         icon:"🏡",desc:"Locations NDIMBAL",                  status:"LIVE"},
-    {key:"ndimbalMap",        name:"NDIMBAL Map",         icon:"🗺️",desc:"Carte des annonces",                 status:"LIVE"},
-    {key:"audio",             name:"DIGIY AUDIO",         icon:"🎵",desc:"Écouter les contenus",               status:"LIVE"},
-    {key:"assistantIA",       name:"Assistant IA",        icon:"🧠",desc:"Assistant DIGIY Knowledge",         status:"LIVE"}
+    {key:"market",            name:"DIGIY MARKET",        icon:"🛍️",desc:"Acheter / vendre",                           status:"LIVE",loco:true},
+    {key:"explore",           name:"DIGIY EXPLORE",       icon:"🗺️",desc:"Découvrir la région",                        status:"LIVE"},
+    {key:"loc",               name:"DIGIY LOC",           icon:"🏠",desc:"Trouver un logement",                        status:"LIVE"},
+    {key:"resaTable",         name:"RÉSA MULTI-BUSINESS", icon:"📅",desc:"Réserver un rendez-vous ou un service",     status:"LIVE"},
+    {key:"driver",            name:"DIGIY DRIVER",        icon:"🚗",desc:"Commander une course",                       status:"LIVE"},
+    {key:"galerieChauffeurs", name:"DRIVER AMBASSADEUR",  icon:"👑",desc:"La mobilité avec style et savoir-être",     status:"LIVE"},
+    {key:"jobs",              name:"DIGIY JOBS",          icon:"💼",desc:"Offres d'emploi",                            status:"LIVE"},
+    {key:"build",             name:"DIGIY BUILD",         icon:"🏗️",desc:"Services de construction",                  status:"BETA"},
+    {key:"ndimbalAnnonces",   name:"NDIMBAL Annonces",    icon:"📢",desc:"Publier / vendre",                           status:"LIVE"},
+    {key:"pay",               name:"DIGIY PAY",           icon:"💳",desc:"Portefeuille digital",                       status:"LIVE"},
+    {key:"vasChezDigiy",      name:"Vas chez DIGIY",      icon:"📍",desc:"Portail terrain DIGIY",                      status:"LIVE"},
+    {key:"ndimbalLoc",        name:"NDIMBAL Loc",         icon:"🏡",desc:"Locations NDIMBAL",                          status:"LIVE"},
+    {key:"ndimbalMap",        name:"NDIMBAL Map",         icon:"🗺️",desc:"Carte des annonces",                         status:"LIVE"},
+    {key:"audio",             name:"DIGIY AUDIO",         icon:"🎵",desc:"Écouter les contenus",                       status:"LIVE"},
+    {key:"assistantIA",       name:"Assistant IA",        icon:"🧠",desc:"Assistant DIGIY Knowledge",                  status:"LIVE"}
   ];
 
   const PRO = [
-    {key:"espacePro",      name:"Espace PRO",      icon:"🏢",desc:"Cockpit central professionnel", status:"LIVE",loco:true},
-    {key:"inscriptionPro", name:"Inscription PRO", icon:"✍️",desc:"Créer compte professionnel",   status:"LIVE"},
-    {key:"marketPro",      name:"MARKET PRO",      icon:"🛍️",desc:"Vendre sur market",            status:"LIVE",loco:true},
-    {key:"caissePro",      name:"Caisse PRO",      icon:"💰",desc:"Point de vente",               status:"LIVE"},
-    {key:"locPro",         name:"LOC PRO",         icon:"🏠",desc:"Gérer tes logements",          status:"LIVE"},
-    {key:"resaTablePro",   name:"Résa Table PRO",  icon:"📅",desc:"Gérer réservations",           status:"LIVE"},
-    {key:"driverPro",      name:"DRIVER PRO",      icon:"🚗",desc:"Pilotage chauffeur",           status:"LIVE"},
-    {key:"jobsPro",        name:"JOBS PRO",        icon:"💼",desc:"Recruter",                     status:"LIVE"},
-    {key:"buildPro",       name:"BUILD PRO",       icon:"🏗️",desc:"Gérer chantiers",             status:"BETA"},
-    {key:"explorePro",     name:"Explore PRO",     icon:"🗺️",desc:"Analytics & stats",           status:"LIVE"},
-    {key:"payPro",         name:"PAY PRO",         icon:"💳",desc:"Gérer paiements",              status:"LIVE"}
+    {key:"espacePro",      name:"Espace PRO",   icon:"🏢",desc:"Cockpit central professionnel",         status:"LIVE",loco:true},
+    {key:"inscriptionPro", name:"Inscription PRO", icon:"✍️",desc:"Créer compte professionnel",       status:"LIVE"},
+    {key:"marketPro",      name:"MARKET PRO",   icon:"🛍️",desc:"Vendre sur market",                     status:"LIVE",loco:true},
+    {key:"caissePro",      name:"Caisse PRO",   icon:"💰",desc:"Point de vente",                        status:"LIVE"},
+    {key:"locPro",         name:"LOC PRO",      icon:"🏠",desc:"Gérer tes logements",                   status:"LIVE"},
+    {key:"resaTablePro",   name:"RÉSA PRO",     icon:"📅",desc:"Gérer rendez-vous et réservations",     status:"LIVE"},
+    {key:"driverPro",      name:"DRIVER PRO",   icon:"🚗",desc:"Pilotage chauffeur",                    status:"LIVE"},
+    {key:"jobsPro",        name:"JOBS PRO",     icon:"💼",desc:"Recruter",                              status:"LIVE"},
+    {key:"buildPro",       name:"BUILD PRO",    icon:"🏗️",desc:"Gérer chantiers",                      status:"BETA"},
+    {key:"explorePro",     name:"Explore PRO",  icon:"🗺️",desc:"Analytics & stats",                    status:"LIVE"},
+    {key:"payPro",         name:"PAY PRO",      icon:"💳",desc:"Gérer paiements",                       status:"LIVE"}
   ];
 
   const COPY = {
     market:"DIGIY MARKET sert de locomotive business pour montrer tout de suite le mouvement, l'échange, la vente, l'opportunité et l'économie locale en action.",
     explore:"DIGIY EXPLORE garde la noblesse du territoire et de la découverte — il élève la vision et donne de la respiration.",
     loc:"DIGIY LOC donne envie de trouver un logement sans surcharge visuelle.",
-    resaTable:"Résa Table simplifie la réservation avec une porte claire et rapide.",
+    resaTable:"RÉSA MULTI-BUSINESS simplifie la prise de rendez-vous et la réservation de services avec une porte claire et rapide.",
     driver:"DIGIY DRIVER répond au besoin immédiat : se déplacer maintenant, simplement, clairement, sans détour.",
     galerieChauffeurs:"DRIVER AMBASSADEUR montre la version noble du rail mobilité : style, présence, savoir-être et qualité humaine du service.",
     jobs:"DIGIY JOBS aide à voir les opportunités d'emploi à tête plus reposée, après les besoins terrain immédiats.",
@@ -641,7 +680,7 @@
     marketPro:"MARKET PRO sert de locomotive commerciale côté pro. Il pousse la vitrine, la vente et la traction économique.",
     caissePro:"Caisse PRO rassemble la logique point de vente dans une interface directe et compacte.",
     locPro:"LOC PRO aide à gérer les logements, accès et activité dans une logique compacte.",
-    resaTablePro:"Résa Table PRO permet de gérer les réservations et le flux client avec efficacité.",
+    resaTablePro:"RÉSA PRO permet de gérer les rendez-vous, réservations et le flux client avec efficacité.",
     driverPro:"DRIVER PRO garde le rail métier chauffeur avec une logique opérationnelle immédiate, avant le temps plus posé de JOBS PRO.",
     jobsPro:"JOBS PRO donne au recruteur un accès clair pour publier et suivre ses offres, après les besoins métier immédiats.",
     buildPro:"BUILD PRO valorise la gestion des chantiers et du savoir-faire artisan.",
@@ -692,7 +731,7 @@
             <span class="miniBadge ${sc(item.status)}">${item.status}</span>
             ${item.loco ? `<span class="miniBadge loco">LOCO</span>` : ""}
           </div>
-          <div class="openHint">↗ Ouvrir</div>
+          <div class="openHint">↗ OUVRIR</div>
         </a>`;
     }).join("");
 
@@ -744,8 +783,8 @@
   function bindArrows(rId, lId, rBId){
     const rail = $(rId), left = $(lId), right = $(rBId);
     if(!rail || !left || !right) return;
-    left.addEventListener("click", () => rail.scrollBy({left:-260, behavior:"smooth"}));
-    right.addEventListener("click", () => rail.scrollBy({left:260, behavior:"smooth"}));
+    left.addEventListener("click", () => rail.scrollBy({left:-300, behavior:"smooth"}));
+    right.addEventListener("click", () => rail.scrollBy({left:300, behavior:"smooth"}));
     function upd(){
       const max = rail.scrollWidth - rail.clientWidth;
       if(window.innerWidth <= 640 || max <= 8){ left.style.display = right.style.display = "none"; return; }
