@@ -954,6 +954,56 @@
         font-weight:1000;
       }
     }
+/* ===== PATCH TITRE FAVORIS — BLANC BRILLANT ===== */
+
+.favTitle{
+  margin:0;
+  font-family:var(--fontA);
+  font-size:30px;
+  font-weight:1000;
+  letter-spacing:.8px;
+  line-height:1.05;
+  color:#ffffff;
+  text-transform:uppercase;
+  text-shadow:
+    0 0 10px rgba(255,255,255,.20),
+    0 0 22px rgba(255,255,255,.10),
+    0 4px 16px rgba(0,0,0,.30);
+}
+
+#favoritesSection .sectionSub{
+  font-size:16px;
+  font-weight:900;
+  line-height:1.5;
+  color:rgba(255,255,255,.96);
+  text-shadow:0 2px 10px rgba(0,0,0,.22);
+}
+
+#favoritesCountPill{
+  font-size:13px;
+  font-weight:1000;
+  color:#ffffff;
+  border-color:rgba(255,255,255,.28);
+  background:rgba(255,255,255,.08);
+  box-shadow:0 0 18px rgba(255,255,255,.08);
+}
+
+@media(max-width:640px){
+  .favTitle{
+    font-size:32px;
+    font-weight:1000;
+    line-height:1.02;
+  }
+
+  #favoritesSection .sectionSub{
+    font-size:17px;
+    font-weight:900;
+  }
+
+  #favoritesCountPill{
+    font-size:14px;
+  }
+}    
   </style>
 </head>
 
@@ -1016,7 +1066,7 @@
         <section class="section" id="favoritesSection">
           <div class="sectionHead">
             <div>
-              <h2>Mes portes rapides</h2>
+             <h2 class="favTitle">⭐ MES FAVORIS</h2>
               <div class="sectionSub">Pose ici tes modules préférés. Appuie sur l’étoile ⭐ d’un pavé pour le garder en haut.</div>
             </div>
             <div class="legend">
