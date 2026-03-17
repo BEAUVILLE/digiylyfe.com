@@ -24,38 +24,42 @@ const state = {
    LINKS (SOUS-DOMAINES OFFICIELS)
    ========================= */
 const LINKS = {
-  digiylyfe:    "https://digiylyfe.com/",
-  apps:         "https://apps.digiylyfe.com/",
-  admin:        "https://admin.digiylyfe.com/",
-  audio:        "https://apps.digiylyfe.com/audio/",
-  tarifs:       "https://tarifs.digiylyfe.com/",
+  digiylyfe: "https://digiylyfe.com/",
+  apps: "https://apps.digiylyfe.com/",
+  admin: "https://admin.digiylyfe.com/",
+  audio: "https://apps.digiylyfe.com/audio/",
+  tarifs: "https://tarifs.digiylyfe.com/",
 
-  // ✅ "Vas chez DIGIY"
   vasChezDigiy: "https://vas-chez-digiy.digiylyfe.com/",
 
-  // NDIMBAL
-  ndimbalMap:       "https://ndimbal-map.digiylyfe.com/",
-  ndimbalAnnonces:  "https://ndimbal-annonces.digiylyfe.com/",
-  ndimbalLoc:       "https://ndimbal-loc.digiylyfe.com/",
+  ndimbalMap: "https://ndimbal-map.digiylyfe.com/",
+  ndimbalAnnonces: "https://ndimbal-annonces.digiylyfe.com/",
+  ndimbalLoc: "https://ndimbal-loc.digiylyfe.com/",
+  hubDrive: "https://ndimbal-annonces.digiylyfe.com/",
 
-  // ✅ HubDrive = NDIMBAL annonces
-  hubDrive:     "https://ndimbal-annonces.digiylyfe.com/",
-
-  // Public
-  bonneAffaire: "https://bonne-affaire.digiylyfe.com/",
   driverClient: "https://driver-client.digiylyfe.com/",
-  loc:          "https://loc.digiylyfe.com/",
-  resto:        "https://resto.digiylyfe.com/",
-  build:        "https://build.digiylyfe.com/",
-  explore:      "https://explore.digiylyfe.com/",
-  market:       "https://market.digiylyfe.com/",
-  jobs:         "https://jobs.digiylyfe.com/",
-  pay:          "https://pay.digiylyfe.com/",
-  resaTable:    "https://resa-table-resto.digiylyfe.com/",
+  loc: "https://loc.digiylyfe.com/",
+  resto: "https://resto.digiylyfe.com/",
+  build: "https://build.digiylyfe.com/",
+  explore: "https://explore.digiylyfe.com/",
+  market: "https://market.digiylyfe.com/",
+  jobs: "https://jobs.digiylyfe.com/",
+  pay: "https://pay.digiylyfe.com/",
+  resaTable: "https://resa-table-resto.digiylyfe.com/",
 
-  // GitHub
-  notable:      "https://beauville.github.io/digiy-notable/",
+  inscriptionPro: "https://commencer-a-payer.digiylyfe.com/",
+  espacePro: "https://pro-espace.digiylyfe.com/",
 
+  driverPro: "https://pro-driver.digiylyfe.com/",
+  locPro: "https://pro-loc.digiylyfe.com/",
+  caissePro: "https://commerce-pro.digiylyfe.com/",
+  buildPro: "https://pro-build.digiylyfe.com/",
+  marketPro: "https://pro-market.digiylyfe.com/",
+  jobsPro: "https://pro-job.digiylyfe.com/",
+  resaTablePro: "https://pro-resa-resto.digiylyfe.com/",
+  payPro: "https://pro-pay.digiylyfe.com/pin.html?redirect=cockpit",
+  explorePro: "https://explore.digiylyfe.com/admin-pin.html"
+};
   // PRO
   inscriptionPro: "https://inscription-pro.digiylyfe.com/",
   espacePro:      "https://pro-espace.digiylyfe.com/",
