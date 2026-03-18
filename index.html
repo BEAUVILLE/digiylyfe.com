@@ -141,7 +141,7 @@
     .stickyInner{max-width:1200px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;border:1px solid rgba(0,166,81,.22);background:rgba(12,40,29,.96);border-radius:18px;padding:10px;box-shadow:0 14px 40px rgba(0,0,0,.32);}
     .stickyInfo{min-width:0;flex:1;}.stickyTitle{font-size:12px;color:var(--muted);margin-bottom:4px;}
     .stickyValue{font-size:14px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--fontA);}
-    .stickyActions{display:flex;gap:8px;}.stickyActions .btn{min-height:44px;padding:0 14px;}
+    .stickyActions{display:flex;gap:8px;flex-wrap:wrap;}.stickyActions .btn{min-height:44px;padding:0 14px;}
 
     .heroImgFrame{position:relative;width:100%;height:100%;min-height:300px;border-radius:var(--radius2);overflow:hidden;border:1px solid rgba(246,196,83,.38);box-shadow:0 18px 60px rgba(0,0,0,.50),0 0 0 1px rgba(246,196,83,.10);background:#04130d;}
     .heroImgFrame img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .6s ease;}
@@ -204,6 +204,7 @@
       <nav class="menuBar" aria-label="Navigation DIGIY">
         <div class="menuRow">
           <a class="mBtn home" href="https://orange-pig-270004.hostingersite.com">🏠</a>
+          <a class="mBtn home" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Vision</a>
           <span class="rowLabel c">CLIENT</span>
           <a class="mBtn gold" id="mn-market" href="#">🛍️ Market</a>
           <a class="mBtn gold" id="mn-explore" href="#">🗺️ Explore</a>
@@ -346,6 +347,7 @@
                 <div class="ctaRow">
                   <a class="btn primary" id="heroOpenBtn" href="#" target="_blank" rel="noopener">🛍️ Locomotive business</a>
                   <a class="btn outline" href="#pro">🧰 Porte PRO</a>
+                  <a class="btn ghost" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Lire la vision</a>
                 </div>
                 <div class="heroChips">
                   <span class="chip"><span class="chipK">0%</span><span class="chipV">commission</span></span>
@@ -411,6 +413,19 @@
     </div>
   </div>
 
+  <div class="stickyBar">
+    <div class="stickyInner">
+      <div class="stickyInfo">
+        <div class="stickyTitle">Porte sélectionnée</div>
+        <div class="stickyValue" id="stickyValue">DIGIY MARKET • PUBLIC • Acheter / vendre</div>
+      </div>
+      <div class="stickyActions">
+        <a class="btn outline" href="https://orange-pig-270004.hostingersite.com">Accueil</a>
+        <a class="btn ghost" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Vision</a>
+        <a class="btn primary" id="stickyOpenBtn" href="#" target="_blank" rel="noopener">↗ Ouvrir</a>
+      </div>
+    </div>
+  </div>
 
 <script>
 (function(){"use strict";
