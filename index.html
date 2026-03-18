@@ -811,7 +811,7 @@
       width:100%;
       height:100%;
       object-fit:cover;
-      object-position:center top;
+      object-position:center 28%;
       display:block;
       transition:transform .6s ease;
     }
@@ -917,14 +917,15 @@
       box-shadow:0 14px 45px rgba(0,0,0,.50);
       max-width:940px;
       margin:0 auto;
-      height:360px;
+      height:300px;
+      background:#04130d;
     }
 
     .showcaseImgWrap img{
       width:100%;
       height:100%;
       object-fit:cover;
-      object-position:center center;
+      object-position:center 28%;
       display:block;
       transition:transform .5s ease;
     }
@@ -988,6 +989,9 @@
 
     @media(max-width:980px){
       .hero{grid-template-columns:1fr;}
+      .heroRight{min-height:260px;}
+      .heroImgFrame{min-height:260px;}
+      .showcaseImgWrap{height:260px;}
     }
 
     @media(max-width:640px){
@@ -1008,8 +1012,12 @@
       .favTitle{font-size:32px;}
       #favoritesSection .sectionSub{font-size:17px;}
       #favoritesCountPill{font-size:14px;}
-      .showcaseImgWrap{max-width:100%;height:220px;}
+      .showcaseImgWrap{max-width:100%;height:215px;}
       .showcaseCta{max-width:100%;}
+      .heroRight{min-height:230px;}
+      .heroImgFrame{min-height:230px;}
+      .heroImgFrame img,
+      .showcaseImgWrap img{object-position:center 26%;}
     }
 
     @media(max-width:480px){
@@ -1022,6 +1030,7 @@
       .brandText .subtitle{max-width:150px}
       .moduleBtn{min-width:248px;max-width:286px;min-height:198px;}
       .railHint{font-size:19px;}
+      .showcaseImgWrap{height:205px;}
     }
   </style>
 </head>
@@ -1195,6 +1204,7 @@
               <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
                 <a class="btn primary" href="https://orange-pig-270004.hostingersite.com" target="_blank" rel="noopener">↗ Explorer l'écosystème</a>
                 <a class="btn outline" href="#pro">🧰 Espace PRO</a>
+                <a class="btn ghost" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Voir la vision</a>
               </div>
             </div>
           </div>
