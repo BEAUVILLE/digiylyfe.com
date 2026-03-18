@@ -156,11 +156,11 @@
     .showcaseTitle{font-family:var(--fontA);font-weight:900;font-size:13px;color:rgba(246,196,83,.88);letter-spacing:.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
     .showcaseTitle::before{content:"";display:block;width:28px;height:2px;background:linear-gradient(90deg,rgba(246,196,83,.75),transparent);border-radius:999px;}
     .showcaseTitle::after{content:"";display:block;flex:1;height:1px;background:linear-gradient(90deg,rgba(246,196,83,.28),transparent);}
-    .showcaseImgWrap{position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(246,196,83,.30);box-shadow:0 14px 45px rgba(0,0,0,.50);}
+    .showcaseImgWrap{position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(246,196,83,.30);box-shadow:0 14px 45px rgba(0,0,0,.50);max-width:940px;margin:0 auto;}
     .showcaseImgWrap img{width:100%;display:block;transition:transform .5s ease;}
     .showcaseImgWrap:hover img{transform:scale(1.015);}
     .showcaseImgWrap::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(135deg,rgba(246,196,83,.08) 0%,transparent 45%,rgba(0,166,81,.06) 100%);}
-    .showcaseCta{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;}
+    .showcaseCta{margin:14px auto 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;max-width:940px;}
     .showcaseDesc{font-size:13px;color:rgba(248,250,252,.72);line-height:1.5;max-width:55ch;}
 
     .favTitle{margin:0;font-family:var(--fontA);font-size:30px;font-weight:1000;letter-spacing:.8px;line-height:1.05;color:#ffffff;text-transform:uppercase;text-shadow:0 0 10px rgba(255,255,255,.20),0 0 22px rgba(255,255,255,.10),0 4px 16px rgba(0,0,0,.30);}
@@ -175,6 +175,7 @@
       .moduleBtn{min-width:240px;max-width:280px;min-height:194px;padding:18px 16px;}
       .moduleEmoji{font-size:32px;}.moduleName{font-size:19px;}.moduleHint{font-size:14px;min-height:48px;}.miniBadge{font-size:11px;}.moduleBtn .openHint{font-size:12px;}
       .favToggle{width:40px;height:40px;font-size:19px;}.favTitle{font-size:32px;}#favoritesSection .sectionSub{font-size:17px;}#favoritesCountPill{font-size:14px;}
+      .showcaseImgWrap,.showcaseCta{max-width:100%;}
     }
     @media(max-width:480px){
       .floatBtn{padding:11px 13px;font-size:13px;}
@@ -204,7 +205,7 @@
       <nav class="menuBar" aria-label="Navigation DIGIY">
         <div class="menuRow">
           <a class="mBtn home" href="https://orange-pig-270004.hostingersite.com">🏠</a>
-          <a class="mBtn home" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Vision</a>
+          <a class="mBtn home" href="#vision">📜 Vision</a>
           <span class="rowLabel c">CLIENT</span>
           <a class="mBtn gold" id="mn-market" href="#">🛍️ Market</a>
           <a class="mBtn gold" id="mn-explore" href="#">🗺️ Explore</a>
@@ -347,7 +348,7 @@
                 <div class="ctaRow">
                   <a class="btn primary" id="heroOpenBtn" href="#" target="_blank" rel="noopener">🛍️ Locomotive business</a>
                   <a class="btn outline" href="#pro">🧰 Porte PRO</a>
-                  <a class="btn ghost" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Lire la vision</a>
+                  <a class="btn ghost" href="#vision">📜 Lire la vision</a>
                 </div>
                 <div class="heroChips">
                   <span class="chip"><span class="chipK">0%</span><span class="chipV">commission</span></span>
@@ -413,7 +414,6 @@
     </div>
   </div>
 
-
 <script>
 (function(){"use strict";
 const HOME="https://orange-pig-270004.hostingersite.com",FAVORITES_KEY="digiylyfe_favorites_v1",FAVORITES_MAX=3;
@@ -455,7 +455,7 @@ const COPY={market:"DIGIY MARKET sert de locomotive business pour montrer tout d
 
 let curKey="market",curKind="public";
 const $=(id)=>document.getElementById(id);
-const pubRail=$("publicRail"),proRail=$("proRail"),favRail=$("favoritesRail"),favEmpty=$("favoritesEmpty"),favCountPill=$("favoritesCountPill"),pubHint=$("publicHint"),proHintEl=$("proHint"),focusIcon=$("focusIcon"),focusLabel=$("focusLabel"),focusHint=$("focusHint"),focusKind=$("focusKind"),focusBadge=$("focusBadge"),focusText=$("focusText"),focusOpenBtn=$("focusOpenBtn"),heroOpenBtn=$("heroOpenBtn"),stickyOpen=$("stickyOpenBtn"),stickyVal=$("stickyValue");
+const pubRail=$("publicRail"),proRail=$("proRail"),favRail=$("favoritesRail"),favEmpty=$("favoritesEmpty"),favCountPill=$("favoritesCountPill"),pubHint=$("publicHint"),proHintEl=$("proHint"),focusIcon=$("focusIcon"),focusLabel=$("focusLabel"),focusHint=$("focusHint"),focusKind=$("focusKind"),focusBadge=$("focusBadge"),focusText=$("focusText"),focusOpenBtn=$("focusOpenBtn"),heroOpenBtn=$("heroOpenBtn");
 
 function sc(s){return s==="BETA"?"beta":"live";}
 function findMod(key,kind){const arr=kind==="pro"?PRO:PUB;return arr.find(x=>x.key===key)||null;}
@@ -471,7 +471,7 @@ function cardHTML(item,kind){const href=wr(L[item.key]||HOME);const active=item.
 function bindModuleInteractions(container){if(!container)return;container.querySelectorAll(".moduleBtn[data-key]").forEach(el=>{el.addEventListener("mouseenter",()=>{curKey=el.getAttribute("data-key");curKind=el.getAttribute("data-kind");updateFocus();document.querySelectorAll(".moduleBtn").forEach(b=>b.classList.remove("active"));el.classList.add("active");});el.addEventListener("focus",()=>{curKey=el.getAttribute("data-key");curKind=el.getAttribute("data-kind");updateFocus();document.querySelectorAll(".moduleBtn").forEach(b=>b.classList.remove("active"));el.classList.add("active");});});container.querySelectorAll(".favToggle[data-fav-key]").forEach(btn=>{btn.addEventListener("click",(e)=>{e.preventDefault();e.stopPropagation();const kind=btn.getAttribute("data-fav-kind")||"public";const key=btn.getAttribute("data-fav-key")||"";toggleFavorite(kind,key);});});}
 function renderRail(container,modules,kind){container.innerHTML=modules.map(item=>cardHTML(item,kind)).join("");bindModuleInteractions(container);}
 function renderFavorites(){const items=favoriteModules();favCountPill.textContent=items.length<=1?`${items.length} FAVORI`:`${items.length} FAVORIS`;if(!items.length){favRail.innerHTML="";favEmpty.style.display="block";return;}favEmpty.style.display="none";favRail.innerHTML=items.map(item=>cardHTML(item,item.kind)).join("");bindModuleInteractions(favRail);}
-function updateFocus(){const item=getMod(curKey,curKind);const href=wr(L[item.key]||HOME);focusIcon.textContent=item.icon;focusLabel.textContent=item.name;focusHint.textContent=item.desc;focusKind.textContent=curKind==="public"?"PUBLIC":"PRO";focusKind.className=`focusBadge ${curKind}`;focusBadge.textContent=item.loco?(curKind==="public"?"👑 Locomotive business":"👑 Locomotive pro"):(curKind==="public"?"🌍 Porte publique":"🧰 Porte pro");focusText.textContent=COPY[item.key]||item.desc;focusOpenBtn.href=heroOpenBtn.href=stickyOpen.href=href;stickyVal.textContent=`${item.name} • ${curKind==="public"?"PUBLIC":"PRO"} • ${item.desc}`;}
+function updateFocus(){const item=getMod(curKey,curKind);const href=wr(L[item.key]||HOME);focusIcon.textContent=item.icon;focusLabel.textContent=item.name;focusHint.textContent=item.desc;focusKind.textContent=curKind==="public"?"PUBLIC":"PRO";focusKind.className=`focusBadge ${curKind}`;focusBadge.textContent=item.loco?(curKind==="public"?"👑 Locomotive business":"👑 Locomotive pro"):(curKind==="public"?"🌍 Porte publique":"🧰 Porte pro");focusText.textContent=COPY[item.key]||item.desc;focusOpenBtn.href=heroOpenBtn.href=href;}
 function renderAll(){renderFavorites();renderRail(pubRail,PUB,"public");renderRail(proRail,PRO,"pro");updateFocus();}
 function bindRailHint(rail,hint){function upd(){const max=rail.scrollWidth-rail.clientWidth;hint.style.display=(max>8&&window.innerWidth<=640&&rail.scrollLeft<=12)?"block":"none";}rail.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);requestAnimationFrame(upd);}
 function bindArrows(rId,lId,rBId){const rail=$(rId),left=$(lId),right=$(rBId);if(!rail||!left||!right)return;left.addEventListener("click",()=>rail.scrollBy({left:-300,behavior:"smooth"}));right.addEventListener("click",()=>rail.scrollBy({left:300,behavior:"smooth"}));function upd(){const max=rail.scrollWidth-rail.clientWidth;if(window.innerWidth<=640||max<=8){left.style.display="none";right.style.display="none";return;}left.style.display=rail.scrollLeft>8?"flex":"none";right.style.display=rail.scrollLeft<max-8?"flex":"none";}rail.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);requestAnimationFrame(upd);}
