@@ -5,19 +5,19 @@
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-const STORAGE_PHONE     = "DIGIY_HUB_PHONE";
-const STORAGE_FILTER    = "DIGIY_HUB_FILTER";
-const STORAGE_SEARCH    = "DIGIY_HUB_SEARCH";
-const STORAGE_FAVORITES = "DIGIY_HUB_FAVORITES"; // NEW
-const STORAGE_ANALYTICS = "DIGIY_HUB_ANALYTICS"; // NEW
-const STORAGE_CITY      = "DIGIY_HUB_CITY";      // NEW
+const STORAGE_PHONE = "DIGIY_HUB_PHONE";
+const STORAGE_FILTER = "DIGIY_HUB_FILTER";
+const STORAGE_SEARCH = "DIGIY_HUB_SEARCH";
+const STORAGE_FAVORITES = "DIGIY_HUB_FAVORITES";
+const STORAGE_ANALYTICS = "DIGIY_HUB_ANALYTICS";
+const STORAGE_CITY = "DIGIY_HUB_CITY";
 
 const state = {
   phone: "",
   filter: "all", // all | public | pro
   q: "",
-  favorites: [], // NEW
-  city: "all"    // NEW: all | saly-mbour | dakar | thies | touba ...
+  favorites: [],
+  city: "all" // all | saly-mbour | dakar | thies | touba ...
 };
 
 /* =========================
@@ -56,29 +56,10 @@ const LINKS = {
   buildPro: "https://pro-build.digiylyfe.com/",
   marketPro: "https://pro-market.digiylyfe.com/",
   jobsPro: "https://pro-job.digiylyfe.com/",
+  restoPro: "https://pro-resto.digiylyfe.com/",
   resaTablePro: "https://pro-resa-resto.digiylyfe.com/",
   payPro: "https://pro-pay.digiylyfe.com/pin.html?redirect=cockpit",
   explorePro: "https://explore.digiylyfe.com/admin-pin.html"
-};
-  // PRO
-  inscriptionPro: "https://inscription-pro.digiylyfe.com/",
-  espacePro:      "https://pro-espace.digiylyfe.com/",
-
-  // Modules PRO dédiés
-  driverPro:    "https://pro-driver.digiylyfe.com/",
-  locPro:       "https://pro-loc.digiylyfe.com/",
-  caissePro:    "https://pro-caisse.digiylyfe.com/",
-  buildPro:     "https://pro-build.digiylyfe.com/",
-  marketPro:    "https://pro-market.digiylyfe.com/",
-  jobsPro:      "https://pro-job.digiylyfe.com/",
-  restoPro:     "https://pro-resto.digiylyfe.com/",
-  resaTablePro: "https://pro-resa-resto.digiylyfe.com/",
-  payPro:       "https://pay.digiylyfe.com/",
-  explorePro:   "https://explore.digiylyfe.com/",
-
-  // FRET PIN direct
-  fretClientProPin:     "https://pro-fret-client.digiylyfe.com/pin.html",
-  fretChauffeurProPin:  "https://pro-fret-chauffeur.digiylyfe.com/pin.html"
 };
 
 const PRO_DEFAULT_URL = LINKS.espacePro;
@@ -88,11 +69,11 @@ const PRO_DEFAULT_URL = LINKS.espacePro;
    NOTE: URLs "ville" optionnelles. Si vide => modal “bientôt”.
    ========================= */
 const CITIES = [
-  { key: "all",        name: "Toutes les villes", status: "live", label: "🌍 GLOBAL",       url: "" },
-  { key: "saly-mbour", name: "Saly • Mbour",      status: "live", label: "✅ LIVE",         url: "" },
-  { key: "dakar",      name: "Dakar",            status: "beta", label: "🟡 LANCEMENT",     url: "" },
-  { key: "thies",      name: "Thiès",            status: "soon", label: "⚪ BIENTÔT",       url: "" },
-  { key: "touba",      name: "Touba",            status: "soon", label: "⚪ BIENTÔT",       url: "" }
+  { key: "all", name: "Toutes les villes", status: "live", label: "🌍 GLOBAL", url: "" },
+  { key: "saly-mbour", name: "Saly • Mbour", status: "live", label: "✅ LIVE", url: "" },
+  { key: "dakar", name: "Dakar", status: "beta", label: "🟡 LANCEMENT", url: "" },
+  { key: "thies", name: "Thiès", status: "soon", label: "⚪ BIENTÔT", url: "" },
+  { key: "touba", name: "Touba", status: "soon", label: "⚪ BIENTÔT", url: "" }
 ];
 
 function getCity(key) {
@@ -108,7 +89,6 @@ function openCity(cityKey) {
   const c = getCity(cityKey);
   setCity(c.key);
 
-  // Si tu poses plus tard des pages par ville, mets l’URL dans CITIES[].url
   if (!c.url) {
     modal.info({
       title: `DIGIY ${escapeHtml(c.name)}`,
@@ -116,14 +96,14 @@ function openCity(cityKey) {
     });
     return;
   }
+
   hub.open(c.url);
 }
 
 function joinCityFlow() {
   const c = getCity(state.city);
-
-  // On ouvre l’inscription PRO + ville (optionnel)
   const url = new URL(LINKS.inscriptionPro);
+
   if (c && c.key && c.key !== "all") url.searchParams.set("city", c.key);
   if (state.phone) url.searchParams.set("phone", state.phone);
 
@@ -135,7 +115,6 @@ function joinCityFlow() {
    ========================= */
 const MODULES = [
   // === PUBLIC ===
-  { key: "bonneAffaire", name: "Bonne Affaire", icon: "🎯", tag: "marketplace", desc: "Deals & offres", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: false, createdAt: "2025-12-01", featured: true },
   { key: "driverClient", name: "DIGIY DRIVER", icon: "🚗", tag: "transport", desc: "Réserver ta course VTC", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-10-15", featured: true },
   { key: "loc", name: "DIGIY LOC", icon: "🏠", tag: "accommodation", desc: "Trouver un logement", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-11-20", featured: true },
   { key: "resto", name: "DIGIY RESTO", icon: "🍽️", tag: "restaurant", desc: "Commander à manger", kind: "public", status: "live", statusLabel: "LIVE", phoneParam: true, createdAt: "2025-11-15", featured: true },
@@ -184,6 +163,7 @@ function normPhone(p) {
 function withPhone(url, phone, param = "phone") {
   if (!url) return "";
   if (!phone) return url;
+
   try {
     const u = new URL(url);
     u.searchParams.set(param, phone);
@@ -195,16 +175,19 @@ function withPhone(url, phone, param = "phone") {
 }
 
 function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, (m) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;",
-    '"': "&quot;", "'": "&#039;"
+  return String(s).replace(/[&<>"']/g, m => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
   }[m]));
 }
 
 /* DIGIY AUDIO — Global Inject (v2) */
 (function () {
-  const ID_PLAY  = "digiyAudioFabPlay";
-  const ID_STOP  = "digiyAudioFabStop";
+  const ID_PLAY = "digiyAudioFabPlay";
+  const ID_STOP = "digiyAudioFabStop";
   const STYLE_ID = "digiyAudioFabStyle";
 
   function speak(text, lang = "fr-FR", rate = 1) {
@@ -219,12 +202,13 @@ function escapeHtml(s) {
   }
 
   function stop() {
-    try { window.speechSynthesis.cancel(); } catch (e) {}
+    try {
+      window.speechSynthesis.cancel();
+    } catch (e) {}
   }
 
-  // expose global
   window.DIGIY_SPEAK = speak;
-  window.DIGIY_STOP  = stop;
+  window.DIGIY_STOP = stop;
 
   function getSmartText() {
     const main = document.querySelector("main");
@@ -243,6 +227,7 @@ function escapeHtml(s) {
 
   function ensureStyle() {
     if (document.getElementById(STYLE_ID)) return;
+
     const st = document.createElement("style");
     st.id = STYLE_ID;
     st.textContent = `
@@ -294,28 +279,27 @@ function escapeHtml(s) {
     }
   }
 
-  // Compat: data-digiy-audio handler (v1 behavior)
-  document.addEventListener("click", (e) => {
+  document.addEventListener("click", e => {
     const btn = e.target.closest("[data-digiy-audio]");
     if (!btn) return;
 
     const lang = btn.getAttribute("data-lang") || "fr-FR";
     const rate = btn.getAttribute("data-rate") || "1";
-    const sel  = btn.getAttribute("data-target") || "";
-    let text   = btn.getAttribute("data-text") || "";
+    const sel = btn.getAttribute("data-target") || "";
+    let text = btn.getAttribute("data-text") || "";
 
     if (!text && sel) {
       const node = document.querySelector(sel);
       text = node ? (node.innerText || node.textContent || "") : "";
     }
-    if (!text.trim()) text = document.title || "DIGIYLYFE";
 
+    if (!text.trim()) text = document.title || "DIGIYLYFE";
     speak(text, lang, rate);
   });
 
-  function boot() {
+  function bootAudio() {
     ensureButtons();
-    // SPA safety: if DOM changes, re-add buttons
+
     try {
       new MutationObserver(() => ensureButtons())
         .observe(document.documentElement, { childList: true, subtree: true });
@@ -327,15 +311,14 @@ function escapeHtml(s) {
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot);
+    document.addEventListener("DOMContentLoaded", bootAudio);
   } else {
-    boot();
+    bootAudio();
   }
 })();
 
-// ✅ Compat aliases (évite les bugs silencieux)
 const digiySpeak = (...args) => (window.DIGIY_SPEAK ? window.DIGIY_SPEAK(...args) : null);
-const digiyStop  = (...args) => (window.DIGIY_STOP  ? window.DIGIY_STOP(...args)  : null);
+const digiyStop = (...args) => (window.DIGIY_STOP ? window.DIGIY_STOP(...args) : null);
 
 /* =========================
    MODAL
@@ -361,22 +344,24 @@ const modal = {
       this.hide();
       if (typeof this._onOk === "function") this._onOk();
     });
+
     this.cancelBtn?.addEventListener("click", () => {
       this.hide();
       if (typeof this._onCancel === "function") this._onCancel();
     });
 
-    this.root.addEventListener("click", (e) => {
+    this.root.addEventListener("click", e => {
       if (e.target === this.root) this.hide();
     });
 
-    window.addEventListener("keydown", (e) => {
+    window.addEventListener("keydown", e => {
       if (e.key === "Escape" && !this.root.classList.contains("hidden")) this.hide();
     });
   },
 
   show({ title, text, okText = "OK", cancelText = "Annuler", onOk = null, onCancel = null, hideCancel = false }) {
     if (!this.root) return;
+
     this.titleEl.textContent = title || "Info";
     this.textEl.innerHTML = text || "";
     this.okBtn.textContent = okText;
@@ -394,6 +379,7 @@ const modal = {
 
   hide() {
     if (!this.root) return;
+
     this.root.classList.add("hidden");
     this.root.setAttribute("aria-hidden", "true");
     this._onOk = null;
@@ -418,14 +404,15 @@ const hub = {
     if (!this.overlay || !this.frame) return;
 
     const close = () => this.close();
+
     this.closeBtn?.addEventListener("click", close);
     this.backBtn?.addEventListener("click", close);
 
-    this.overlay.addEventListener("click", (e) => {
+    this.overlay.addEventListener("click", e => {
       if (e.target === this.overlay) close();
     });
 
-    window.addEventListener("keydown", (e) => {
+    window.addEventListener("keydown", e => {
       if (e.key === "Escape" && !this.overlay.classList.contains("hidden")) close();
     });
   },
@@ -444,7 +431,7 @@ const hub = {
     this.overlay.setAttribute("aria-hidden", "true");
     this.frame.src = "about:blank";
     document.body.style.overflow = "";
-    digiyStop(); // ✅ stop audio quand on ferme
+    digiyStop();
   }
 };
 
@@ -472,11 +459,13 @@ function setSearch(q) {
 
 function toggleFavorite(key) {
   const idx = state.favorites.indexOf(key);
+
   if (idx >= 0) {
     state.favorites.splice(idx, 1);
   } else {
     state.favorites.push(key);
   }
+
   localStorage.setItem(STORAGE_FAVORITES, JSON.stringify(state.favorites));
   render();
   trackAnalytic(key, "favorite");
@@ -489,7 +478,7 @@ function isFavorite(key) {
 function getFilteredModules() {
   const q = (state.q || "").trim().toLowerCase();
 
-  let filtered = MODULES.filter(m => {
+  const filtered = MODULES.filter(m => {
     if (state.filter === "public" && m.kind !== "public") return false;
     if (state.filter === "pro" && m.kind !== "pro") return false;
     if (!q) return true;
@@ -498,7 +487,6 @@ function getFilteredModules() {
     return hay.includes(q);
   });
 
-  // 🌟 Trier: favoris d'abord
   filtered.sort((a, b) => {
     const aFav = isFavorite(a.key) ? 1 : 0;
     const bFav = isFavorite(b.key) ? 1 : 0;
@@ -508,7 +496,9 @@ function getFilteredModules() {
   return filtered;
 }
 
-// 📊 ANALYTICS simple
+/* =========================
+   ANALYTICS SIMPLE
+   ========================= */
 function trackAnalytic(key, action) {
   try {
     let analytics = {};
@@ -537,32 +527,34 @@ function getModulePopularity(key) {
     const stored = localStorage.getItem(STORAGE_ANALYTICS);
     if (!stored) return 0;
     const analytics = JSON.parse(stored);
-    return (analytics[key]?.clicks || 0);
+    return analytics[key]?.clicks || 0;
   } catch (e) {
     return 0;
   }
 }
 
-// 🎯 Calculer les statuts dynamiques
 function getSmartStatus(m) {
   const popularity = getModulePopularity(m.key);
   const now = new Date();
   const moduleDate = new Date(m.createdAt || "2025-01-01");
   const daysSinceCreation = Math.floor((now - moduleDate) / (1000 * 60 * 60 * 24));
 
-  // Ordre de priorité: HOT > NOUVEAU > FEATURED > status original
   if (popularity >= 5) {
     return { status: "hot", label: "🔥 HOT", priority: 1 };
   }
+
   if (daysSinceCreation <= 7) {
     return { status: "nouveau", label: "🆕 NOUVEAU", priority: 2 };
   }
+
   if (m.featured) {
     return { status: "featured", label: "⭐ FEATURED", priority: 3 };
   }
+
   if (m.status === "beta") {
     return { status: "beta", label: "🔧 BETA", priority: 4 };
   }
+
   if (m.status === "soon") {
     return { status: "soon", label: "⏳ BIENTÔT", priority: 5 };
   }
@@ -594,14 +586,13 @@ function badgeHTML(kind, status, statusLabel) {
   const st = status || "soon";
   const label = statusLabel || st.toUpperCase();
 
-  // Classes CSS pour chaque status (⚠️ nécessite CSS correspondant si tu veux différencier visuellement)
   const statusClasses = {
-    "hot": "badge hot-badge",
-    "nouveau": "badge nouveau-badge",
-    "featured": "badge featured-badge",
-    "beta": "badge beta-badge",
-    "soon": "badge soon-badge",
-    "live": "badge live-badge"
+    hot: "badge hot-badge",
+    nouveau: "badge nouveau-badge",
+    featured: "badge featured-badge",
+    beta: "badge beta-badge",
+    soon: "badge soon-badge",
+    live: "badge live-badge"
   };
 
   const badgeClass = statusClasses[st] || "badge live-badge";
@@ -612,7 +603,6 @@ function badgeHTML(kind, status, statusLabel) {
 function getModuleUrl(m) {
   let base = m.directUrl || LINKS[m.key] || "";
 
-  // fallback : si module PRO sans directUrl, on l'envoie vers le portail PRO
   if (m.kind === "pro" && !m.directUrl && !LINKS[m.key]) {
     base = PRO_DEFAULT_URL;
   }
@@ -622,21 +612,19 @@ function getModuleUrl(m) {
   if (m.phoneParam && state.phone) {
     base = withPhone(base, state.phone, "phone");
   }
+
   return base;
 }
 
-/* ✅ UPDATED: cardHTML + bouton 🎧 */
 function cardHTML(m) {
   const url = getModuleUrl(m);
   const disabled = !url;
   const fav = isFavorite(m.key);
 
-  // Utiliser les statuts intelligents
   const smartStatus = getSmartStatus(m);
   const isHot = smartStatus.status === "hot";
   const isNouveau = smartStatus.status === "nouveau";
 
-  // Classe CSS pour la card si HOT ou NOUVEAU
   const cardClass = isHot ? "card card-hot" : (isNouveau ? "card card-nouveau" : "card");
 
   return `
@@ -667,7 +655,7 @@ function cardHTML(m) {
         </button>
 
         <button class="btn ${disabled ? "disabled" : ""}" data-action="favorite" ${disabled ? "disabled" : ""} type="button">
-          ${fav ? '⭐ Favoris' : '☆ Ajouter'}
+          ${fav ? "⭐ Favoris" : "☆ Ajouter"}
         </button>
 
         <button class="btn ${disabled ? "disabled" : ""}" data-action="copy" ${disabled ? "disabled" : ""} type="button">
@@ -686,6 +674,7 @@ function renderGrid() {
   if (!grid) return;
 
   const filtered = getFilteredModules();
+
   grid.innerHTML = filtered.length
     ? filtered.map(cardHTML).join("")
     : `<div class="empty">
@@ -694,13 +683,12 @@ function renderGrid() {
        </div>`;
 
   $$(".card", grid).forEach(card => {
-    card.addEventListener("click", (e) => {
+    card.addEventListener("click", e => {
       const btn = e.target?.closest?.("button");
       const key = card.getAttribute("data-key");
       const m = MODULES.find(x => x.key === key);
       if (!m) return;
 
-      // ✅ FAVORITE
       if (btn && btn.dataset.action === "favorite") {
         e.preventDefault();
         e.stopPropagation();
@@ -708,7 +696,6 @@ function renderGrid() {
         return;
       }
 
-      // ✅ COPY
       if (btn && btn.dataset.action === "copy") {
         e.preventDefault();
         e.stopPropagation();
@@ -720,7 +707,6 @@ function renderGrid() {
         return;
       }
 
-      // ✅ LISTEN (🎧)
       if (btn && btn.dataset.action === "listen") {
         e.preventDefault();
         e.stopPropagation();
@@ -729,11 +715,10 @@ function renderGrid() {
         return;
       }
 
-      // ✅ OPEN (click sur card ou bouton ouvrir)
       openModule(key);
     });
 
-    card.addEventListener("keydown", (e) => {
+    card.addEventListener("keydown", e => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         openModule(card.getAttribute("data-key"));
@@ -770,15 +755,14 @@ function openModule(key) {
     return;
   }
 
-  trackAnalytic(key, "click"); // 📊 Track le clic
+  trackAnalytic(key, "click");
   hub.open(url);
 }
 
 function askPhone() {
   modal.show({
     title: "Numéro (optionnel)",
-    text:
-      `Entre ton numéro (ex: <b>+221771234567</b>)<br>
+    text: `Entre ton numéro (ex: <b>+221771234567</b>)<br>
        <small>Le HUB peut l'envoyer à certains modules.</small>
        <div style="margin-top:10px">
          <input id="phonePrompt"
@@ -804,22 +788,20 @@ function askPhone() {
    ========================= */
 function boot() {
   modulesGridEl = $("#modulesGrid");
-  phoneTextEl   = $("#phoneText");
+  phoneTextEl = $("#phoneText");
   searchInputEl = $("#searchInput");
-  statTotalEl   = $("#statTotal");
-  statPublicEl  = $("#statPublic");
-  statProEl     = $("#statPro");
+  statTotalEl = $("#statTotal");
+  statPublicEl = $("#statPublic");
+  statProEl = $("#statPro");
 
   modal.init();
   hub.init();
 
-  // state load
-  state.phone  = normPhone(localStorage.getItem(STORAGE_PHONE) || "");
+  state.phone = normPhone(localStorage.getItem(STORAGE_PHONE) || "");
   state.filter = localStorage.getItem(STORAGE_FILTER) || "all";
-  state.q      = localStorage.getItem(STORAGE_SEARCH) || "";
-  state.city   = localStorage.getItem(STORAGE_CITY) || "all";
+  state.q = localStorage.getItem(STORAGE_SEARCH) || "";
+  state.city = localStorage.getItem(STORAGE_CITY) || "all";
 
-  // 🌟 Charger les favoris
   try {
     const favStr = localStorage.getItem(STORAGE_FAVORITES);
     state.favorites = favStr ? JSON.parse(favStr) : [];
@@ -827,16 +809,14 @@ function boot() {
     state.favorites = [];
   }
 
-  // phone buttons
   $("#btnEditPhone")?.addEventListener("click", askPhone);
+
   $("#btnClearPhone")?.addEventListener("click", () => {
     state.phone = "";
     localStorage.removeItem(STORAGE_PHONE);
     render();
   });
 
-  // hero CTAs
-  // CTA principal : rester sur la vitrine et descendre vers les modules
   $("#btnGetHub")?.addEventListener("click", () => {
     const modulesSection = document.querySelector(".section");
     if (modulesSection) {
@@ -844,12 +824,8 @@ function boot() {
     }
   });
 
-  $("#btnDeals")?.addEventListener("click", () => hub.open(LINKS.bonneAffaire));
-
-  // tabs
   $$(".tab").forEach(btn => btn.addEventListener("click", () => setFilter(btn.dataset.filter)));
 
-  // search
   if (searchInputEl) {
     searchInputEl.value = state.q || "";
     searchInputEl.addEventListener("input", () => setSearch(searchInputEl.value));
@@ -862,26 +838,23 @@ function boot() {
     setFilter("all");
   });
 
-  // brand scroll top
-  $("#homeBrand")?.addEventListener("click", (e) => {
+  $("#homeBrand")?.addEventListener("click", e => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  // ===========================
-  // BOUTONS FLOTTANTS
-  // ===========================
   const tarifBtn = $("#tarif-bubble-btn");
   const espaceBtn = $("#espace-pro-btn");
   const ndimbalHelpBtn = $("#digiy-help-btn");
 
-  // 🏷️ Tarifs DIGIY
   if (tarifBtn) tarifBtn.addEventListener("click", () => hub.open(LINKS.tarifs));
 
-  // 🧰 ESPACE PRO
-  if (espaceBtn) espaceBtn.addEventListener("click", () => hub.open(withPhone(PRO_DEFAULT_URL, state.phone, "phone")));
+  if (espaceBtn) {
+    espaceBtn.addEventListener("click", () => {
+      hub.open(withPhone(PRO_DEFAULT_URL, state.phone, "phone"));
+    });
+  }
 
-  // ♾️ NDIMBAL - ouvrir popup
   if (ndimbalHelpBtn) {
     ndimbalHelpBtn.addEventListener("click", () => {
       const ndimbal = $("#digiy-ndimbal");
@@ -892,18 +865,13 @@ function boot() {
     });
   }
 
-  // 📖 MANIFESTE - ouvrir dans nouvel onglet
-  const manifestoBtn = document.getElementById('manifesto-bubble-btn');
+  const manifestoBtn = document.getElementById("manifesto-bubble-btn");
   if (manifestoBtn) {
-    manifestoBtn.addEventListener('click', () => {
-      window.open('https://digiylyfe.net/la-revolution-digitale-africaine-sans-commission/', '_blank');
+    manifestoBtn.addEventListener("click", () => {
+      window.open("https://digiylyfe.net/la-revolution-digitale-africaine-sans-commission/", "_blank");
     });
   }
 
-  // ===========================
-  // VILLES (bloc vitrine)
-  // ===========================
-  // boutons "Voir" sur les villes (data-city)
   document.querySelectorAll("[data-city]").forEach(btn => {
     btn.addEventListener("click", () => {
       const cityKey = btn.getAttribute("data-city") || "all";
@@ -911,16 +879,11 @@ function boot() {
     });
   });
 
-  // bouton "Devenir partenaire (ma ville)"
   const joinCityBtn = document.getElementById("btnJoinCity");
   if (joinCityBtn) {
     joinCityBtn.addEventListener("click", () => joinCityFlow());
   }
 
-  // ===========================
-  // NDIMBAL POPUP + QR
-  // ===========================
-  // NDIMBAL - fermer
   $("#digiyCloseBtn")?.addEventListener("click", () => {
     const ndimbal = $("#digiy-ndimbal");
     if (ndimbal) {
@@ -929,10 +892,9 @@ function boot() {
     }
   });
 
-  // NDIMBAL - actions
   const ndimbalPopup = $("#digiy-ndimbal");
   if (ndimbalPopup) {
-    ndimbalPopup.addEventListener("click", (e) => {
+    ndimbalPopup.addEventListener("click", e => {
       if (e.target === ndimbalPopup) {
         ndimbalPopup.classList.add("hidden");
         ndimbalPopup.setAttribute("aria-hidden", "true");
@@ -961,7 +923,6 @@ function boot() {
     });
   }
 
-  // QR Modal - fermer
   $("#qrClose")?.addEventListener("click", () => {
     const qrModal = $("#qrModal");
     if (qrModal) {
@@ -970,10 +931,9 @@ function boot() {
     }
   });
 
-  // QR Modal - fermer sur fond
   const qrModalPopup = $("#qrModal");
   if (qrModalPopup) {
-    qrModalPopup.addEventListener("click", (e) => {
+    qrModalPopup.addEventListener("click", e => {
       if (e.target === qrModalPopup) {
         qrModalPopup.classList.add("hidden");
         qrModalPopup.setAttribute("aria-hidden", "true");
@@ -981,10 +941,11 @@ function boot() {
     });
   }
 
-  // apply tab active
   $$(".tab").forEach(btn => btn.classList.toggle("active", btn.dataset.filter === state.filter));
 
   render();
 }
 
-document.addEventListener("DOMContentLoaded", () => { boot(); });
+document.addEventListener("DOMContentLoaded", () => {
+  boot();
+});
