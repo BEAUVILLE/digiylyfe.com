@@ -336,6 +336,7 @@
       scroll-snap-type:x proximity;
       -webkit-overflow-scrolling:touch;
       scroll-behavior:smooth;
+      touch-action:pan-x;
     }
 
     .moduleRail::-webkit-scrollbar{height:6px}
@@ -1143,8 +1144,38 @@
     }
 
     @media(max-width:640px){
-      .railHint{display:block;font-size:18px;font-weight:1000;}
-      .railArrow{display:none;}
+      .railHint{
+        display:block;
+        font-size:18px;
+        font-weight:1000;
+      }
+
+      .railWrap{
+        padding-bottom:76px;
+      }
+
+      .railArrow{
+        display:flex;
+        top:auto;
+        bottom:14px;
+        transform:none;
+        width:52px;
+        height:52px;
+        font-size:30px;
+        border-radius:999px;
+        background:rgba(6,20,14,.94);
+        border:1px solid rgba(246,196,83,.28);
+        box-shadow:0 12px 28px rgba(0,0,0,.34);
+      }
+
+      .railArrow.left{
+        left:12px;
+      }
+
+      .railArrow.right{
+        right:12px;
+      }
+
       .heroLeft h1{font-size:26px;}
       .menuBar{padding:6px 10px 8px;}
       .menuRow{gap:4px;}
@@ -1816,12 +1847,25 @@
     const rail=$(rId),left=$(lId),right=$(rBId);
     if(!rail||!left||!right) return;
 
-    left.addEventListener("click",()=>rail.scrollBy({left:-300,behavior:"smooth"}));
-    right.addEventListener("click",()=>rail.scrollBy({left:300,behavior:"smooth"}));
+    function getStep(){
+      const firstCard = rail.querySelector(".moduleBtn");
+      if(!firstCard) return 300;
+      const styles = window.getComputedStyle(rail);
+      const gap = parseInt(styles.columnGap || styles.gap || 14, 10) || 14;
+      return Math.round(firstCard.getBoundingClientRect().width + gap);
+    }
+
+    left.addEventListener("click",()=>{
+      rail.scrollBy({ left:-getStep(), behavior:"smooth" });
+    });
+
+    right.addEventListener("click",()=>{
+      rail.scrollBy({ left:getStep(), behavior:"smooth" });
+    });
 
     function upd(){
       const max=rail.scrollWidth-rail.clientWidth;
-      if(window.innerWidth<=640||max<=8){
+      if(max<=8){
         left.style.display="none";
         right.style.display="none";
         return;
