@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>DIGIYLYFE — Notre méthode pro</title>
+  <meta name="description" content="La méthode DIGIYLYFE : site léger, présence forte, action directe. Google attire, DIGIY convertit." />
+  <meta name="theme-color" content="#067a3a" />
+  <meta name="robots" content="index,follow" />
+
+  <style>
+    :root{
+      --bg:#04130d;
+      --bg2:#067a3a;
+      --panel:#0b2a1f;
+      --panel2:#103528;
+      --card:#0f2f24;
+      --line:rgba(255,255,255,.10);
+      --text:#f8fafc;
+      --muted:rgba(248,250,252,.78);
+      --gold:#d4a84f;
+      --gold2:#f2d487;
+      --accent:#16c172;
+      --danger:#ef4444;
+      --shadow:0 20px 60px rgba(0,0,0,.28);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(22,193,114,.12), transparent 30%),
+        radial-gradient(circle at top right, rgba(212,168,79,.10), transparent 24%),
+        linear-gradient(180deg, #062117 0%, #04130d 100%);
+      line-height:1.6;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .container{
+      width:min(100% - 32px, var(--max));
+      margin-inline:auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:40;
+      backdrop-filter: blur(10px);
+      background:rgba(4,19,13,.72);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .topbar-inner{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+      letter-spacing:.3px;
+    }
+
+    .brand-mark{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, #0d3b2a, #1d8c57);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+      font-size:20px;
+    }
+
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+    }
+
+    .brand-text strong{
+      font-size:1rem;
+      color:var(--gold2);
+      letter-spacing:.4px;
+    }
+
+    .brand-text span{
+      font-size:.82rem;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-weight:800;
+      letter-spacing:.2px;
+      transition:.18s ease;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--gold), #b78b34);
+      color:#111827;
+      box-shadow:0 12px 30px rgba(212,168,79,.24);
+    }
+
+    .btn-outline{
+      border-color:rgba(255,255,255,.12);
+      color:var(--text);
+      background:rgba(255,255,255,.02);
+    }
+
+    .btn-green{
+      background:linear-gradient(135deg, #15b86b, #0d8c50);
+      color:white;
+      box-shadow:0 12px 30px rgba(21,184,107,.20);
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:72px 0 28px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.18fr .82fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .hero-main,
+    .hero-side{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero-main{
+      padding:34px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-main::before{
+      content:"";
+      position:absolute;
+      inset:auto -80px -80px auto;
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(212,168,79,.18), transparent 68%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(212,168,79,.10);
+      color:var(--gold2);
+      border:1px solid rgba(212,168,79,.20);
+      font-size:.84rem;
+      font-weight:900;
+      letter-spacing:.35px;
+      text-transform:uppercase;
+    }
+
+    h1,h2,h3{
+      margin:0 0 14px;
+      line-height:1.08;
+    }
+
+    h1{
+      margin-top:18px;
+      font-size:clamp(2.2rem, 5vw, 4.4rem);
+      letter-spacing:-.03em;
+    }
+
+    .hero p.lead{
+      margin:0;
+      font-size:clamp(1.05rem, 2.1vw, 1.28rem);
+      color:var(--muted);
+      max-width:760px;
+    }
+
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      margin-top:24px;
+    }
+
+    .pill{
+      min-height:84px;
+      padding:16px;
+      border-radius:22px;
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+    }
+
+    .pill b{
+      display:block;
+      font-size:1rem;
+      margin-bottom:6px;
+      color:#fff;
+    }
+
+    .pill span{
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    .hero-cta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:26px;
+    }
+
+    .hero-side{
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      justify-content:space-between;
+    }
+
+    .quote-card,
+    .stat-card{
+      border-radius:24px;
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      padding:20px;
+    }
+
+    .quote-card strong{
+      display:block;
+      color:var(--gold2);
+      font-size:1.02rem;
+      margin-bottom:10px;
+    }
+
+    .quote-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:.98rem;
+    }
+
+    .stat-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .stat-card .num{
+      display:block;
+      font-size:1.55rem;
+      font-weight:900;
+      color:#fff;
+      line-height:1;
+      margin-bottom:8px;
+    }
+
+    .stat-card .label{
+      display:block;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    section{
+      padding:26px 0;
+    }
+
+    .section-head{
+      max-width:780px;
+      margin-bottom:22px;
+    }
+
+    .section-kicker{
+      display:inline-block;
+      margin-bottom:10px;
+      color:var(--gold2);
+      font-weight:900;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:.78rem;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      font-size:1.02rem;
+    }
+
+    .cards-3{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:18px;
+    }
+
+    .cards-2{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .card .icon{
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      margin-bottom:14px;
+      font-size:24px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .card h3{
+      font-size:1.18rem;
+      margin-bottom:8px;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .card ul{
+      margin:14px 0 0;
+      padding-left:18px;
+      color:var(--muted);
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .check-list,
+    .dont-list{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:12px;
+    }
+
+    .check-list li,
+    .dont-list li{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px 16px;
+      background:rgba(255,255,255,.025);
+    }
+
+    .check-list li::before{
+      content:"✓ ";
+      color:#34d399;
+      font-weight:900;
+    }
+
+    .dont-list li::before{
+      content:"✕ ";
+      color:#fb7185;
+      font-weight:900;
+    }
+
+    .formula{
+      padding:34px;
+      border-radius:32px;
+      background:
+        radial-gradient(circle at top right, rgba(212,168,79,.12), transparent 26%),
+        linear-gradient(135deg, #0c2e22, #0a1d16);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      text-align:center;
+    }
+
+    .formula .mini{
+      display:inline-block;
+      margin-bottom:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--gold2);
+      font-size:.82rem;
+      font-weight:900;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    .formula h2{
+      font-size:clamp(1.8rem, 4vw, 3rem);
+      margin-bottom:10px;
+    }
+
+    .formula p{
+      margin:0 auto;
+      max-width:760px;
+      color:var(--muted);
+      font-size:1.05rem;
+    }
+
+    .formula .bigline{
+      margin-top:18px;
+      font-size:clamp(1.1rem, 2.2vw, 1.4rem);
+      font-weight:900;
+      color:#fff;
+    }
+
+    .cta{
+      padding:10px 0 80px;
+    }
+
+    .cta-box{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:32px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .cta-main,
+    .cta-side{
+      border-radius:24px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      padding:22px;
+    }
+
+    .cta-main p,
+    .cta-side p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .cta-buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:20px;
+    }
+
+    footer{
+      padding:26px 0 44px;
+      color:rgba(248,250,252,.6);
+      font-size:.92rem;
+      text-align:center;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .cards-3,
+      .cards-2,
+      .split,
+      .cta-box{
+        grid-template-columns:1fr;
+      }
+
+      .hero-points,
+      .stat-grid{
+        grid-template-columns:1fr;
+      }
+
+      .topbar-inner{
+        min-height:auto;
+        padding:12px 0;
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .nav-actions{
+        width:100%;
+      }
+
+      .nav-actions .btn{
+        flex:1 1 auto;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero{
+        padding-top:46px;
+      }
+
+      .hero-main,
+      .hero-side,
+      .card,
+      .formula,
+      .cta-main,
+      .cta-side{
+        padding:18px;
+        border-radius:22px;
+      }
+
+      h1{
+        font-size:2.15rem;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/">
+        <div class="brand-mark">♾️</div>
+        <div class="brand-text">
+          <strong>DIGIYLYFE</strong>
+          <span>Notre méthode pro</span>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <a class="btn btn-outline" href="/">Retour au site</a>
+        <a class="btn btn-primary" href="https://commencer-a-payer.digiylyfe.com/">Activer ma fiche pro</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-main">
+          <div class="eyebrow">Méthode DIGIY • simple, claire, rentable</div>
+          <h1>Google attire.<br>DIGIY convertit.</h1>
+          <p class="lead">
+            Chez DIGIY, une fiche pro ne doit pas devenir un entrepôt de photos.
+            Elle doit rester légère, rapide, claire et vendeuse.
+            Nous gardons l’essentiel, nous renforçons la crédibilité, et nous poussons vers l’action directe.
+          </p>
+
+          <div class="hero-points">
+            <div class="pill">
+              <b>Site léger</b>
+              <span>Les bonnes infos, les bons visuels, zéro surcharge inutile.</span>
+            </div>
+            <div class="pill">
+              <b>Présence forte</b>
+              <span>Google Maps, vidéo, lieu, téléphone, confiance locale.</span>
+            </div>
+            <div class="pill">
+              <b>Action directe</b>
+              <span>WhatsApp, appel, réservation, commande ou prise de contact rapide.</span>
+            </div>
+          </div>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="https://commencer-a-payer.digiylyfe.com/">Activer ma fiche pro</a>
+            <a class="btn btn-green" href="#preparer">Ce que je dois préparer</a>
+            <a class="btn btn-outline" href="#doctrine">Lire la doctrine</a>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="quote-card">
+            <strong>La logique DIGIY</strong>
+            <p>
+              Nous ne cherchons pas à empiler des pages lourdes.
+              Nous cherchons à rendre un professionnel visible, crédible et facile à contacter.
+            </p>
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat-card">
+              <span class="num">1</span>
+              <span class="label">fiche claire pour se présenter</span>
+            </div>
+            <div class="stat-card">
+              <span class="num">1</span>
+              <span class="label">vidéo pour donner la vraie perspective</span>
+            </div>
+            <div class="stat-card">
+              <span class="num">1</span>
+              <span class="label">présence Google pour rassurer</span>
+            </div>
+            <div class="stat-card">
+              <span class="num">1</span>
+              <span class="label">WhatsApp pour convertir vite</span>
+            </div>
+          </div>
+
+          <div class="quote-card">
+            <strong>La phrase à retenir</strong>
+            <p>
+              Moins de lourdeur. Plus de clarté. Plus de confiance. Plus de conversion.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="doctrine">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Doctrine</div>
+          <h2>Pourquoi nous ne surchargeons pas les fiches</h2>
+          <p>
+            Beaucoup de sites deviennent lourds, confus et fatigants parce qu’ils veulent tout montrer d’un coup.
+            DIGIY fait l’inverse : nous gardons le cœur utile sur la fiche, puis nous laissons les outils extérieurs renforcer la preuve sociale.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <article class="card">
+            <div class="icon">⚡</div>
+            <h3>Rapidité</h3>
+            <p>
+              Une fiche légère charge plus vite, surtout sur mobile et dans les zones où la connexion n’est pas parfaite.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🧭</div>
+            <h3>Clarté</h3>
+            <p>
+              Le client comprend plus vite qui vous êtes, où vous êtes, ce que vous proposez et comment vous contacter.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">💬</div>
+            <h3>Conversion</h3>
+            <p>
+              Une page claire pousse plus naturellement vers l’action : WhatsApp, appel, réservation, commande ou prise de rendez-vous.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">La méthode</div>
+          <h2>Ce que DIGIY garde et ce que Google renforce</h2>
+          <p>
+            DIGIY reste la porte de conversion. Google renforce la confiance et la visibilité locale.
+          </p>
+        </div>
+
+        <div class="cards-2">
+          <article class="card">
+            <div class="icon">♾️</div>
+            <h3>Ce que DIGIY garde sur la fiche</h3>
+            <ul>
+              <li>Photo forte ou visuel principal</li>
+              <li>Description claire et humaine</li>
+              <li>Prix ou fourchette simple</li>
+              <li>Lieu</li>
+              <li>Bouton WhatsApp / appel</li>
+              <li>Bouton “Voir la vidéo” si disponible</li>
+              <li>Bouton “Ouvrir dans Google Maps” si disponible</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="icon">📍</div>
+            <h3>Ce que Google peut renforcer</h3>
+            <ul>
+              <li>Découverte locale sur Maps</li>
+              <li>Photos et vidéos complémentaires</li>
+              <li>Itinéraire rapide</li>
+              <li>Preuve sociale et cohérence terrain</li>
+              <li>Présence visible hors du site principal</li>
+              <li>Réassurance pour les nouveaux clients</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Vision terrain</div>
+          <h2>Photo, vidéo, Google Maps : chaque couche a son rôle</h2>
+          <p>
+            Nous n’opposons pas les outils. Nous leur donnons une place juste.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <article class="card">
+            <div class="icon">🖼️</div>
+            <h3>La photo</h3>
+            <p>
+              Elle accroche l’œil. Elle pose le premier niveau de confiance. Elle doit être propre, nette et utile.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🎬</div>
+            <h3>La vidéo</h3>
+            <p>
+              Elle donne la perspective réelle. Elle fait ressentir le lieu, l’ambiance, le volume et la circulation. Elle parle souvent plus que dix photos.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🗺️</div>
+            <h3>Google Maps</h3>
+            <p>
+              Il rassure, ancre le lieu dans le réel et facilite le passage du digital au terrain.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="preparer">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Préparer sa fiche</div>
+          <h2>Ce que nous conseillons à chaque pro</h2>
+          <p>
+            Pas besoin de 200 fichiers. Il faut préparer juste ce qu’il faut, proprement.
+          </p>
+        </div>
+
+        <div class="split">
+          <div class="card">
+            <h3>À préparer</h3>
+            <ul class="check-list">
+              <li>Une belle photo principale</li>
+              <li>5 à 10 photos utiles maximum</li>
+              <li>Une vidéo simple si possible</li>
+              <li>Le lien WhatsApp ou le numéro</li>
+              <li>Le lieu exact ou la zone couverte</li>
+              <li>Les prix ou une base tarifaire claire</li>
+              <li>Le lien Google Maps ou Google Business si disponible</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>À éviter</h3>
+            <ul class="dont-list">
+              <li>Accumuler trop de photos similaires</li>
+              <li>Mettre des textes trop longs et flous</li>
+              <li>Cacher les infos de contact</li>
+              <li>Laisser le client chercher les prix partout</li>
+              <li>Envoyer vers dix plateformes différentes sans rail clair</li>
+              <li>Faire une page lourde qui fatigue le téléphone</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="formula">
+          <div class="mini">La formule DIGIY</div>
+          <h2>Site léger. Présence forte. Action directe.</h2>
+          <p>
+            Notre rôle n’est pas de faire joli pour rien. Notre rôle est de rendre un professionnel visible, crédible et facile à choisir.
+          </p>
+          <div class="bigline">
+            Google attire et rassure. DIGIY clarifie et convertit.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <div class="cta-main">
+            <h2>Prêt à poser votre présence pro ?</h2>
+            <p>
+              Une fiche claire, une vraie présence terrain, un contact direct, une vidéo si vous en avez une,
+              et un rail simple pour être trouvé puis choisi.
+            </p>
+
+            <div class="cta-buttons">
+              <a class="btn btn-primary" href="https://commencer-a-payer.digiylyfe.com/">Activer ma fiche pro</a>
+              <a class="btn btn-outline" href="https://digiylyfe.com/">Voir DIGIYLYFE</a>
+            </div>
+          </div>
+
+          <div class="cta-side">
+            <h3>Pour qui ?</h3>
+            <p>
+              Commerçants, chauffeurs, logements, artisans, services terrain, restauration, conciergerie,
+              professionnels de quartier et entrepreneurs du réel.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      DIGIYLYFE — un visage simple, un moteur profond.
+    </div>
+  </footer>
+
+</body>
+</html>
