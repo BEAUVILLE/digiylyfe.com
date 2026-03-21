@@ -321,6 +321,95 @@ const digiySpeak = (...args) => (window.DIGIY_SPEAK ? window.DIGIY_SPEAK(...args
 const digiyStop = (...args) => (window.DIGIY_STOP ? window.DIGIY_STOP(...args) : null);
 
 /* =========================
+   PWA INSTALL
+   ========================= */
+let deferredInstallPrompt = null;
+
+function isStandaloneMode() {
+  return (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true
+  );
+}
+
+function isIOSDevice() {
+  return /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+}
+
+function showInstallHelp() {
+  if (isIOSDevice()) {
+    modal.info({
+      title: "Installer DIGIY HUB",
+      text: "Sur iPhone : ouvre le site dans <b>Safari</b>, touche <b>Partager</b>, puis choisis <b>Ajouter à l’écran d’accueil</b>."
+    });
+    return;
+  }
+
+  modal.info({
+    title: "Installer DIGIY HUB",
+    text: "Si l’installation ne part pas encore, recharge la page puis ouvre le menu du navigateur et choisis <b>Installer l’application</b> ou <b>Ajouter à l’écran d’accueil</b>.<br><br>Vérifie aussi que <b>manifest.json</b>, <b>sw.js</b>, <b>icon-192.png</b> et <b>icon-512.png</b> sont bien en place."
+  });
+}
+
+function initPWAInstall() {
+  const installBtn = $("#install-app-btn");
+  if (!installBtn) return;
+
+  if (isStandaloneMode()) {
+    installBtn.hidden = true;
+    return;
+  }
+
+  installBtn.hidden = false;
+
+  window.addEventListener("beforeinstallprompt", e => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    installBtn.hidden = false;
+  });
+
+  installBtn.addEventListener("click", async () => {
+    if (deferredInstallPrompt) {
+      try {
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+      } catch (e) {
+        console.warn("[DIGIY] PWA prompt failed:", e);
+      }
+
+      deferredInstallPrompt = null;
+
+      if (isStandaloneMode()) {
+        installBtn.hidden = true;
+      }
+
+      return;
+    }
+
+    showInstallHelp();
+  });
+
+  window.addEventListener("appinstalled", () => {
+    deferredInstallPrompt = null;
+    installBtn.hidden = true;
+  });
+}
+
+function registerServiceWorker() {
+  if (!("serviceWorker" in navigator)) return;
+
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => {
+        console.log("[DIGIY] Service worker OK");
+      })
+      .catch(err => {
+        console.warn("[DIGIY] SW registration failed:", err);
+      });
+  });
+}
+
+/* =========================
    MODAL
    ========================= */
 const modal = {
@@ -796,6 +885,8 @@ function boot() {
 
   modal.init();
   hub.init();
+  initPWAInstall();
+  registerServiceWorker();
 
   state.phone = normPhone(localStorage.getItem(STORAGE_PHONE) || "");
   state.filter = localStorage.getItem(STORAGE_FILTER) || "all";
