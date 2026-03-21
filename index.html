@@ -4,1987 +4,1072 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
   <title>DIGIYLYFE — L'Afrique enracinée, connectée au monde</title>
+
   <meta name="theme-color" content="#00853f"/>
   <meta name="description" content="DIGIYLYFE — écosystème business enraciné, accès public et pro, 0% commission, paiement direct au professionnel."/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="DIGIYLYFE"/>
+
   <link rel="icon" href="./icon-192.png" sizes="192x192"/>
   <link rel="apple-touch-icon" href="./icon-192.png"/>
   <link rel="manifest" href="./manifest.json"/>
+
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
   <style>
     :root{
-      --ink:#f8fafc;
-      --muted:rgba(248,250,252,.72);
-      --line:rgba(148,163,184,.28);
-      --gold:#f6c453;
-      --green:#00a651;
-      --green-deep:#00853f;
-      --shadow:0 18px 60px rgba(0,0,0,.35);
-      --radius2:26px;
-      --fontA:"Outfit",system-ui,-apple-system,sans-serif;
-      --fontB:"Manrope",system-ui,-apple-system,sans-serif;
+      --bg:#04110d;
+      --bg-2:#071a14;
+      --card:#0b2a1f;
+      --card-2:#103526;
+      --line:rgba(255,255,255,.12);
+      --line-2:rgba(255,255,255,.2);
+      --text:#f6fff8;
+      --muted:#b8d2c1;
+      --green:#0f9d58;
+      --green-2:#15c26b;
+      --gold:#d4af37;
+      --gold-2:#f0cc62;
+      --shadow:0 16px 50px rgba(0,0,0,.28);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1180px;
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
     html{scroll-behavior:smooth}
-
     body{
       margin:0;
-      font-family:var(--fontB);
-      color:var(--ink);
-      overflow-x:hidden;
+      color:var(--text);
       background:
-        radial-gradient(1200px 720px at 10% 0%,rgba(0,166,81,.30),transparent 52%),
-        radial-gradient(950px 620px at 90% 12%,rgba(246,196,83,.14),transparent 55%),
-        linear-gradient(180deg,#067a3a 0%,#0b5f31 16%,#083123 44%,#04130d 100%);
+        radial-gradient(circle at top right, rgba(212,175,55,.12), transparent 22%),
+        radial-gradient(circle at top left, rgba(15,157,88,.15), transparent 24%),
+        linear-gradient(180deg, #03100c 0%, #051710 42%, #061c14 100%);
+      font-family:"Manrope",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
     }
 
     a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
 
-    .bg{
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.95;
-      z-index:0;
-      background:
-        radial-gradient(900px 440px at 18% 72%,rgba(246,196,83,.10),transparent 70%),
-        radial-gradient(820px 420px at 82% 68%,rgba(0,166,81,.16),transparent 70%);
-    }
-
-    .app{min-height:100%;position:relative;z-index:1;}
-    .wrap{max-width:1200px;margin:0 auto;padding:14px 14px 140px;}
-
-    .shell{
-      background:linear-gradient(180deg,rgba(8,109,53,.24),rgba(12,40,29,.96) 20%,rgba(9,24,18,.98) 100%);
-      border:1px solid var(--line);
-      border-radius:var(--radius2);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-
-    .shell::before{
-      content:"";
-      display:block;
-      height:4px;
-      background:linear-gradient(90deg,#00a651 0%,#00853f 44%,#f6c453 100%);
+    .wrap{
+      width:min(var(--max), calc(100% - 28px));
+      margin:0 auto;
     }
 
     .topbar{
       position:sticky;
       top:0;
-      z-index:25;
+      z-index:40;
+      backdrop-filter:blur(16px);
+      background:rgba(4,17,13,.72);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .topbar-inner{
+      min-height:72px;
       display:flex;
       align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-      padding:14px 16px 12px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      background:rgba(0,0,0,.10);
-      backdrop-filter:blur(12px);
+      justify-content:space-between;
+      gap:16px;
     }
 
     .brand{
       display:flex;
-      gap:12px;
       align-items:center;
-      cursor:pointer;
+      gap:12px;
       min-width:0;
     }
 
-    .logo{
-      width:48px;
-      height:48px;
+    .brand-badge{
+      width:42px;
+      height:42px;
       border-radius:14px;
+      display:grid;
+      place-items:center;
+      font-family:"Outfit",sans-serif;
+      font-weight:900;
+      letter-spacing:.03em;
+      color:#082114;
+      background:linear-gradient(135deg,var(--gold),var(--gold-2));
+      box-shadow:0 10px 26px rgba(212,175,55,.22);
       flex:0 0 auto;
-      background:linear-gradient(135deg,rgba(0,166,81,.95),rgba(0,133,63,.88));
-      border:1px solid rgba(255,255,255,.14);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:22px;
-      box-shadow:var(--shadow),0 0 0 3px rgba(246,196,83,.08);
     }
 
-    .brandText .title{
-      font-family:var(--fontA);
+    .brand-text{min-width:0}
+    .brand-text strong{
+      display:block;
+      font-family:"Outfit",sans-serif;
+      font-size:1rem;
       font-weight:900;
-      letter-spacing:.8px;
-      font-size:18px;
+      letter-spacing:.04em;
+      line-height:1;
     }
-
-    .brandText .subtitle{
-      color:rgba(248,250,252,.78);
-      font-size:13px;
-      margin-top:2px;
+    .brand-text span{
+      display:block;
+      color:var(--muted);
+      font-size:.85rem;
+      margin-top:4px;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
-      max-width:260px;
     }
 
-    .menuBar{
-      padding:8px 14px 10px;
-      border-bottom:1px solid rgba(255,255,255,.07);
-      background:rgba(0,0,0,.12);
-      backdrop-filter:blur(8px);
-    }
-
-    .menuRow{
+    .top-actions{
       display:flex;
       align-items:center;
-      gap:5px;
+      gap:10px;
       flex-wrap:wrap;
-      padding:3px 0;
+      justify-content:flex-end;
     }
 
-    .menuRow+.menuRow{
-      border-top:1px solid rgba(255,255,255,.05);
-      padding-top:6px;
-      margin-top:4px;
-    }
-
-    .rowLabel{
-      flex:0 0 auto;
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:10px;
-      letter-spacing:.6px;
-      padding:3px 8px;
-      border-radius:6px;
-    }
-
-    .rowLabel.c{
-      background:rgba(246,196,83,.16);
-      color:#ffd97a;
-      border:1px solid rgba(246,196,83,.26);
-    }
-
-    .rowLabel.p{
-      background:rgba(0,166,81,.16);
-      color:#7bffb0;
-      border:1px solid rgba(0,166,81,.26);
-    }
-
-    .mBtn{
-      display:inline-flex;
-      align-items:center;
-      gap:4px;
-      height:30px;
-      padding:0 10px;
-      border-radius:999px;
-      font-family:var(--fontA);
-      font-weight:800;
-      font-size:11.5px;
-      white-space:nowrap;
-      flex:0 0 auto;
+    .btn{
+      appearance:none;
+      border:0;
       cursor:pointer;
-      text-decoration:none;
-      color:var(--ink);
-      border:1px solid transparent;
-      transition:transform .12s,border-color .15s,box-shadow .15s;
-    }
-
-    .mBtn:hover{transform:translateY(-1px)}
-    .mBtn:active{transform:scale(.96)}
-
-    .mBtn.home{
-      background:rgba(255,255,255,.10);
-      border-color:rgba(255,255,255,.18);
-      color:#fff;
-    }
-
-    .mBtn.home:hover{border-color:rgba(255,255,255,.32)}
-
-    .mBtn.gold{
-      background:linear-gradient(135deg,rgba(246,196,83,.13),rgba(0,0,0,.48));
-      border-color:rgba(246,196,83,.26);
-      color:#fff3cf;
-    }
-
-    .mBtn.gold:hover{
-      border-color:rgba(246,196,83,.52);
-      box-shadow:0 3px 12px rgba(246,196,83,.10);
-    }
-
-    .mBtn.green{
-      background:linear-gradient(135deg,rgba(0,166,81,.17),rgba(0,0,0,.48));
-      border-color:rgba(0,166,81,.32);
-      color:#dcffe8;
-    }
-
-    .mBtn.green:hover{
-      border-color:rgba(0,166,81,.55);
-      box-shadow:0 3px 12px rgba(0,166,81,.10);
-    }
-
-    .digiyIntroBlock{
-      margin:16px 18px 0;
-      border:1px solid rgba(246,196,83,.26);
-      border-radius:30px;
-      background:
-        radial-gradient(980px 420px at 12% 0%, rgba(246,196,83,.12), transparent 52%),
-        radial-gradient(840px 360px at 88% 100%, rgba(0,166,81,.13), transparent 52%),
-        linear-gradient(180deg, rgba(10,48,34,.92), rgba(8,28,20,.82));
-      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.06);
-      overflow:hidden;
-    }
-
-    .digiyIntroInner{
-      padding:28px 22px;
-      text-align:center;
-    }
-
-    .digiyIntroBadge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
       border-radius:999px;
-      border:1px solid rgba(246,196,83,.28);
-      background:rgba(246,196,83,.10);
-      color:#fff0c8;
-      font-family:var(--fontA);
-      font-size:11px;
-      font-weight:1000;
-      letter-spacing:.9px;
-      text-transform:uppercase;
-    }
-
-    .digiyIntroTitle{
-      margin:18px auto 12px;
-      max-width:900px;
-      font-family:var(--fontA);
-      font-size:clamp(34px, 6vw, 64px);
-      font-weight:1000;
-      line-height:1.02;
-      letter-spacing:-.03em;
-      color:#ffffff;
-      text-shadow:0 4px 18px rgba(0,0,0,.26);
-    }
-
-    .gold{color:rgba(246,196,83,.98)}
-
-    .digiyIntroText{
-      max-width:860px;
-      margin:0 auto;
-      font-size:17px;
-      line-height:1.75;
-      color:rgba(248,250,252,.86);
-    }
-
-    .digiyIntroFormula{
-      margin:14px auto 0;
-      max-width:760px;
-      font-family:var(--fontA);
-      font-size:16px;
-      font-weight:900;
-      color:#fff0c8;
-      letter-spacing:.2px;
-    }
-
-    .digiyIntroActions{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:24px;
-    }
-
-    .digiyHeroBigBtn{
-      min-height:62px;
-      padding:0 24px;
-      border-radius:999px;
-      font-size:15px;
-      font-weight:1000;
-      box-shadow:0 16px 36px rgba(0,0,0,.14);
-    }
-
-    .digiyIntroMini{
-      display:flex;
-      align-items:stretch;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:24px;
-    }
-
-    .digiyIntroMiniCard{
-      min-width:220px;
-      max-width:260px;
-      padding:14px 14px 12px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
-      text-align:left;
-    }
-
-    .digiyIntroMiniCard b{
-      display:block;
-      font-family:var(--fontA);
-      font-size:13px;
-      font-weight:1000;
-      color:#ffffff;
-      margin-bottom:6px;
-    }
-
-    .digiyIntroMiniCard span{
-      display:block;
-      font-size:13px;
-      line-height:1.55;
-      color:rgba(248,250,252,.74);
-    }
-
-    .main{max-width:1200px;margin:0 auto;padding:16px 18px 80px;}
-
-    .section{
-      margin-top:16px;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:24px;
-      background:linear-gradient(180deg,rgba(10,48,34,.76),rgba(8,28,20,.70));
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      scroll-margin-top:110px;
-    }
-
-    .sectionHead{
-      padding:14px 14px 10px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-
-    .sectionHead h2{
-      margin:0;
-      font-family:var(--fontA);
-      font-weight:900;
-      letter-spacing:.2px;
-    }
-
-    .sectionSub{
-      color:var(--muted);
-      font-size:12.5px;
-      line-height:1.5;
-      margin-top:4px;
-    }
-
-    .legend{display:flex;gap:8px;flex-wrap:wrap;}
-
-    .pill{
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:11px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(2,6,23,.14);
-    }
-
-    .pill.live{border-color:rgba(34,197,94,.35);color:rgba(34,197,94,.95)}
-    .pill.beta{border-color:rgba(245,158,11,.35);color:rgba(245,158,11,.95)}
-    .pill.public{border-color:rgba(246,196,83,.35);color:rgba(246,196,83,.96)}
-    .pill.pro{border-color:rgba(0,166,81,.34);color:rgba(110,255,161,.98)}
-
-    .railWrap{position:relative;padding:14px;}
-    .railWrap::after{
-      content:"";
-      position:absolute;
-      top:14px;
-      right:14px;
-      width:52px;
-      height:calc(100% - 28px);
-      pointer-events:none;
-      border-radius:0 20px 20px 0;
-      background:linear-gradient(90deg,rgba(12,40,29,0),rgba(12,40,29,.94));
-    }
-
-    .railWrapDesktop{position:relative}
-
-    .railHint{
-      display:none;
-      margin:0 0 12px 2px;
-      font-size:16px;
-      font-weight:1000;
-      font-family:var(--fontA);
-      color:#fff0c8;
-      letter-spacing:.2px;
-      line-height:1.2;
-      text-shadow:0 3px 10px rgba(0,0,0,.25);
-    }
-
-    .railArrow{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      z-index:3;
-      width:46px;
-      height:46px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(6,20,14,.82);
-      color:#fff;
-      font-size:30px;
-      font-weight:900;
+      padding:14px 18px;
+      font-weight:800;
+      font-size:.95rem;
       line-height:1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      box-shadow:0 10px 26px rgba(0,0,0,.32);
-      backdrop-filter:blur(10px);
-    }
-
-    .railArrow:hover{border-color:rgba(246,196,83,.34)}
-    .railArrow.left{left:6px}
-    .railArrow.right{right:6px}
-
-    .moduleRail{
-      display:flex;
-      gap:14px;
-      overflow-x:auto;
-      padding-bottom:8px;
-      scroll-snap-type:x proximity;
-      -webkit-overflow-scrolling:touch;
-      scroll-behavior:smooth;
-      touch-action:pan-x;
-    }
-
-    .moduleRail::-webkit-scrollbar{height:6px}
-    .moduleRail::-webkit-scrollbar-thumb{
-      background:rgba(255,255,255,.14);
-      border-radius:999px;
-    }
-
-    .moduleSlot{position:relative;flex:0 0 auto;}
-
-    .moduleBtn{
-      min-width:220px;
-      max-width:255px;
-      min-height:186px;
-      border:1px solid rgba(255,255,255,.10);
-      color:var(--ink);
-      border-radius:24px;
-      padding:18px 16px;
-      text-align:left;
-      cursor:pointer;
-      scroll-snap-align:start;
-      transition:.18s ease;
-      flex:0 0 auto;
-      text-decoration:none;
-      display:block;
-      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02)),rgba(0,0,0,.10);
-    }
-
-    .moduleBtn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.28)}
-    .moduleBtn:active{transform:scale(.98)}
-    .moduleBtn.active{border-color:rgba(246,196,83,.55);box-shadow:0 10px 28px rgba(246,196,83,.12)}
-
-    .moduleBtn.publicCard{
-      border-color:rgba(246,196,83,.20);
-      background:linear-gradient(180deg,rgba(246,196,83,.10),rgba(255,255,255,.03)),rgba(0,0,0,.08);
-    }
-
-    .moduleBtn.publicCard:hover{border-color:rgba(246,196,83,.48)}
-
-    .moduleBtn.proCard{
-      border-color:rgba(0,166,81,.24);
-      background:linear-gradient(180deg,rgba(0,166,81,.14),rgba(255,255,255,.03)),rgba(0,0,0,.08);
-    }
-
-    .moduleBtn.proCard:hover{border-color:rgba(0,166,81,.48)}
-
-    .moduleBtn.loco{
-      border-color:rgba(246,196,83,.34);
-      box-shadow:0 12px 30px rgba(246,196,83,.08);
-    }
-
-    .moduleBtn .openHint{
-      display:block;
-      margin-top:10px;
-      font-size:12px;
-      font-family:var(--fontA);
-      font-weight:1000;
-      color:rgba(246,196,83,.92);
-      letter-spacing:.2px;
-    }
-
-    .moduleEmoji{font-size:30px;display:block;margin-bottom:10px;}
-
-    .moduleName{
-      font-size:18px;
-      font-weight:1000;
-      font-family:var(--fontA);
-      line-height:1.2;
-      padding-right:34px;
-    }
-
-    .moduleHint{
-      margin-top:6px;
-      font-size:14px;
-      color:rgba(248,250,252,.80);
-      line-height:1.45;
-      min-height:42px;
-    }
-
-    .miniBadges{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
-
-    .miniBadge{
+      transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease, background .18s ease;
       display:inline-flex;
       align-items:center;
-      gap:4px;
-      padding:5px 8px;
-      border-radius:999px;
-      font-size:10.5px;
-      font-weight:1000;
-      letter-spacing:.2px;
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.10);
-      font-family:var(--fontA);
-    }
-
-    .miniBadge.public{color:#fff0c8;border-color:rgba(246,196,83,.28);background:rgba(246,196,83,.08)}
-    .miniBadge.pro{color:#dfffe9;border-color:rgba(0,166,81,.30);background:rgba(0,166,81,.12)}
-    .miniBadge.live{color:#bbf7d0;border-color:rgba(34,197,94,.30);background:rgba(34,197,94,.08)}
-    .miniBadge.beta{color:#fde68a;border-color:rgba(245,158,11,.30);background:rgba(245,158,11,.08)}
-    .miniBadge.loco{color:#fff3cf;border-color:rgba(246,196,83,.30);background:rgba(246,196,83,.08)}
-    .miniBadge.fav{color:#fff0c8;border-color:rgba(246,196,83,.35);background:rgba(246,196,83,.12)}
-
-    .favToggle{
-      position:absolute;
-      top:10px;
-      right:10px;
-      z-index:4;
-      width:38px;
-      height:38px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(6,20,14,.86);
-      color:#fff3cf;
-      display:flex;
-      align-items:center;
       justify-content:center;
-      cursor:pointer;
-      font-size:18px;
-      font-weight:1000;
-      box-shadow:0 10px 22px rgba(0,0,0,.24);
-      backdrop-filter:blur(8px);
-      transition:transform .12s ease,border-color .15s ease,background .15s ease;
-    }
-
-    .favToggle:hover{
-      transform:translateY(-1px);
-      border-color:rgba(246,196,83,.45);
-      background:rgba(16,45,31,.95);
-    }
-
-    .favToggle:active{transform:scale(.96)}
-
-    .favToggle.active{
-      border-color:rgba(246,196,83,.52);
-      background:rgba(246,196,83,.12);
-      color:#ffe083;
-    }
-
-    .favoritesEmpty{
-      border:1px dashed rgba(246,196,83,.22);
-      border-radius:18px;
-      padding:14px 16px;
-      background:rgba(246,196,83,.05);
-      color:#fff2cf;
-      font-size:14px;
-      line-height:1.5;
-      font-weight:800;
-    }
-
-    .focus{
-      margin-top:14px;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:24px;
-      background:linear-gradient(180deg,rgba(10,48,34,.82),rgba(8,28,20,.76));
+      gap:10px;
+      font-family:"Manrope",sans-serif;
+      text-align:center;
       box-shadow:var(--shadow);
-      overflow:hidden;
     }
 
-    .focusInner{padding:16px;}
-
-    .focusTop{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
+    .btn:hover{transform:translateY(-1px)}
+    .btn:active{transform:translateY(0)}
+    .btn-primary{
+      color:#082114;
+      background:linear-gradient(135deg,var(--gold),var(--gold-2));
     }
-
-    .focusLeft{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      min-width:0;
+    .btn-secondary{
+      color:var(--text);
+      background:linear-gradient(135deg, rgba(21,194,107,.18), rgba(21,194,107,.1));
+      border:1px solid rgba(21,194,107,.35);
+      box-shadow:none;
     }
-
-    .focusIcon{
-      width:56px;
-      height:56px;
-      border-radius:16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:28px;
-      background:rgba(0,166,81,.12);
+    .btn-ghost{
+      color:var(--text);
+      background:rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.12);
-      flex:0 0 auto;
+      box-shadow:none;
     }
-
-    .focusLabel{
-      font-family:var(--fontA);
-      font-size:22px;
-      font-weight:900;
-      line-height:1.1;
-    }
-
-    .focusHint{
-      margin-top:5px;
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.45;
-    }
-
-    .focusBadges{display:flex;gap:8px;flex-wrap:wrap;}
-
-    .focusBadge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 11px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.10);
-      font-size:11px;
-      font-weight:900;
-      font-family:var(--fontA);
-      white-space:nowrap;
-    }
-
-    .focusBadge.public{color:#fff0c8;border-color:rgba(246,196,83,.28);background:rgba(246,196,83,.08)}
-    .focusBadge.pro{color:#dfffe9;border-color:rgba(0,166,81,.30);background:rgba(0,166,81,.12)}
-    .focusBadge.gold{color:#fff3cf;border-color:rgba(246,196,83,.30);background:rgba(246,196,83,.08)}
-
-    .focusText{
-      margin-top:14px;
-      color:#f0ece3;
-      line-height:1.58;
-      font-size:14px;
-      max-width:72ch;
-    }
-
-    .focusActions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;}
-
-    .storyBlock{
-      margin-top:14px;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:24px;
-      background:linear-gradient(180deg,rgba(10,48,34,.82),rgba(8,28,20,.76));
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-
-    .storyWrap{padding:16px;}
+    .btn[hidden]{display:none !important}
 
     .hero{
+      position:relative;
+      padding:38px 0 24px;
+    }
+
+    .hero-grid{
       display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:16px;
+      grid-template-columns:1.08fr .92fr;
+      gap:22px;
       align-items:stretch;
     }
 
-    .heroLeft,.heroRight{min-height:300px;}
-
-    .heroLeft{
-      background:
-        radial-gradient(620px 300px at 18% 18%,rgba(255,255,255,.08),transparent 60%),
-        radial-gradient(620px 300px at 82% 70%,rgba(246,196,83,.12),transparent 60%),
-        linear-gradient(135deg,rgba(0,166,81,.40),rgba(0,133,63,.26) 42%,rgba(10,36,27,.92) 100%);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:var(--radius2);
-      padding:20px;
+    .panel{
+      background:linear-gradient(180deg, rgba(11,42,31,.92), rgba(7,28,20,.96));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
       box-shadow:var(--shadow);
-      position:relative;
       overflow:hidden;
+      position:relative;
     }
 
-    .heroLeft::after{
-      content:"";
-      position:absolute;
-      inset:-80px;
-      pointer-events:none;
-      opacity:.9;
-      background:
-        radial-gradient(620px 290px at 20% 18%,rgba(246,196,83,.12),transparent 60%),
-        radial-gradient(620px 290px at 78% 62%,rgba(0,166,81,.14),transparent 60%);
+    .hero-copy{
+      padding:30px 26px 28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      min-height:100%;
     }
 
     .eyebrow{
-      font-family:var(--fontA);
-      font-weight:900;
-      letter-spacing:.25px;
-      color:rgba(255,245,214,.96);
-      font-size:12px;
-      text-transform:uppercase;
-      margin-bottom:10px;
-      position:relative;
-      z-index:1;
-    }
-
-    .heroLeft h1{
-      position:relative;
-      z-index:1;
-      font-family:var(--fontA);
-      font-weight:900;
-      margin:0 0 10px;
-      font-size:32px;
-      line-height:1.05;
-    }
-
-    .heroLeft p{
-      position:relative;
-      z-index:1;
-      margin:0 0 16px;
-      color:rgba(248,250,252,.84);
-      line-height:1.55;
-    }
-
-    .ctaRow{
-      position:relative;
-      z-index:1;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin:10px 0 14px;
-    }
-
-    .chip{
       display:inline-flex;
-      gap:10px;
       align-items:center;
+      gap:10px;
+      width:max-content;
+      max-width:100%;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(212,175,55,.22);
+      background:rgba(212,175,55,.08);
+      color:#f7e3a1;
+      font-weight:800;
+      font-size:.83rem;
+      letter-spacing:.03em;
+      margin-bottom:18px;
+    }
+
+    .hero h1{
+      margin:0;
+      font-family:"Outfit",sans-serif;
+      font-size:clamp(2.15rem, 4vw, 4.4rem);
+      line-height:.98;
+      letter-spacing:-.03em;
+      max-width:12ch;
+    }
+
+    .hero h1 .accent{color:#ffe08c}
+    .hero p.lead{
+      margin:18px 0 0;
+      max-width:58ch;
+      color:var(--muted);
+      font-size:1.03rem;
+      line-height:1.7;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:24px;
+    }
+
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:12px;
+      margin-top:24px;
+    }
+
+    .point{
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      padding:14px 14px;
+    }
+
+    .point strong{
+      display:block;
+      font-family:"Outfit",sans-serif;
+      font-size:1.08rem;
+      margin-bottom:4px;
+    }
+
+    .point span{
+      color:var(--muted);
+      font-size:.9rem;
+      line-height:1.45;
+    }
+
+    .hero-visual{
+      padding:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100%;
+    }
+
+    .africa-card{
+      width:100%;
+      min-height:420px;
+      border-radius:24px;
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.1);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(240,204,98,.18), transparent 24%),
+        radial-gradient(circle at 80% 16%, rgba(15,157,88,.14), transparent 30%),
+        linear-gradient(180deg,#082116 0%,#071a13 100%);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .africa-content{
+      position:absolute;
+      inset:0;
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      padding:22px;
+    }
+
+    .vision-chip{
+      justify-self:start;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      color:#f5f7f6;
+      font-weight:800;
+      font-size:.84rem;
+    }
+
+    .africa-stage{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:230px;
+      padding:8px 8px 0;
+    }
+
+    .africa-svg{
+      width:min(100%, 530px);
+      height:auto;
+      filter:drop-shadow(0 16px 36px rgba(0,0,0,.28));
+      opacity:.98;
+    }
+
+    .africa-label{
+      position:absolute;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      text-align:center;
+      width:min(92%, 460px);
+      padding:12px 16px;
+      border-radius:18px;
+      background:rgba(3,15,11,.72);
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(10px);
+    }
+
+    .africa-label strong{
+      display:block;
+      font-family:"Outfit",sans-serif;
+      font-size:1.1rem;
+      margin-bottom:4px;
+    }
+
+    .africa-label span{
+      display:block;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.45;
+    }
+
+    .orbit-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      padding-top:6px;
+    }
+
+    .orbit-tags span{
       padding:10px 12px;
       border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(2,6,23,.18);
-      position:relative;
-      z-index:1;
-    }
-
-    .chipK{font-size:12px;color:var(--muted)}
-    .chipV{font-weight:800;font-family:var(--fontA)}
-    .heroChips{position:relative;z-index:1;display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
-
-    .btn{
-      border:1px solid var(--line);
-      background:rgba(2,6,23,.18);
-      color:var(--ink);
-      padding:12px 14px;
-      border-radius:14px;
-      cursor:pointer;
+      font-size:.82rem;
       font-weight:800;
-      font-family:var(--fontA);
-      letter-spacing:.2px;
-      transition:transform .08s,background .2s,border-color .2s;
-      user-select:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      text-align:center;
+      letter-spacing:.02em;
+      color:#eaf8ee;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.05);
     }
 
-    .btn:hover{transform:translateY(-1px);border-color:rgba(246,196,83,.35)}
-    .btn:active{transform:translateY(0) scale(.99)}
-
-    .btn.primary{
-      border-color:rgba(255,255,255,.14);
-      background:linear-gradient(135deg,#00a651,#00853f);
-      color:#fff;
-      box-shadow:0 12px 28px rgba(0,133,63,.22);
-    }
-
-    .btn.ghost{background:transparent}
-    .btn.outline{
-      background:transparent;
-      border-color:rgba(246,196,83,.34);
-      color:rgba(255,243,207,.98);
-    }
-
-    .btn.tiny{padding:10px 12px;font-size:12px;border-radius:999px}
-    .btn.danger{border-color:rgba(239,68,68,.45)}
-
-    .footer{
-      margin-top:14px;
-      border-top:1px solid rgba(255,255,255,.08);
-      padding:14px 2px 0;
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.55;
-    }
-
-    .footLine{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
-    .footBrand{font-family:var(--fontA);font-weight:900;color:rgba(246,196,83,.95)}
-    .sep{opacity:.35}
-
-    .floatBtn{
-      position:fixed;
-      z-index:40;
-      border-radius:999px;
-      padding:14px 16px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(6,33,22,.62);
-      color:var(--ink);
-      font-family:var(--fontA);
-      font-weight:900;
-      cursor:pointer;
-      box-shadow:0 10px 30px rgba(0,0,0,.35);
-      backdrop-filter:blur(10px);
-      transition:all .2s;
-    }
-
-    .floatBtn:hover{border-color:rgba(246,196,83,.35);transform:translateY(-2px)}
-    .floatBtn:active{transform:scale(.98)}
-
-    #tarif-bubble-btn{right:14px;bottom:18px;}
-    #digiy-help-btn{right:14px;bottom:68px;}
-    #knowledge-float-btn{right:14px;bottom:118px;}
-    #espace-pro-btn{left:14px;bottom:18px;}
-    #vision-bubble-btn{left:14px;bottom:68px;}
-
-    .ndimbal,.qrModal{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.55);
+    .install-banner{
+      margin-top:18px;
+      padding:16px 18px;
+      border-radius:20px;
+      background:linear-gradient(135deg, rgba(21,194,107,.12), rgba(212,175,55,.08));
+      border:1px solid rgba(255,255,255,.08);
       display:flex;
       align-items:center;
-      justify-content:center;
-      padding:18px;
-      backdrop-filter:blur(4px);
-    }
-
-    .ndimbal{z-index:60}
-    .qrModal{z-index:70}
-    .ndimbal.hidden,.qrModal.hidden{display:none}
-
-    .ndimbalBox,.qrContent{
-      width:min(520px,100%);
-      border-radius:22px;
-      border:1px solid rgba(148,163,184,.25);
-      background:linear-gradient(180deg,rgba(11,42,31,.98),rgba(10,36,27,.94));
-      box-shadow:var(--shadow);
-      padding:16px;
-    }
-
-    .ndimbalTitle{font-family:var(--fontA);font-weight:900;font-size:18px;}
-    .ndimbalText{margin-top:8px;color:var(--muted);line-height:1.5;}
-    .ndimbalActions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;}
-    .qrHeader{display:flex;align-items:center;justify-content:space-between;gap:10px;}
-    .qrTitle{font-family:var(--fontA);font-weight:900;}
-    .qrImg{display:block;width:min(320px,100%);margin:12px auto;border-radius:18px;border:1px solid rgba(148,163,184,.20);}
-    .qrText{text-align:center;color:var(--muted);margin-top:8px;}
-    .qrLink{
-      display:block;
-      margin-top:12px;
-      text-align:center;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid rgba(246,196,83,.28);
-      background:rgba(246,196,83,.10);
-      font-family:var(--fontA);
-      font-weight:900;
-      transition:all .2s;
-    }
-
-    .qrLink:hover{
-      border-color:rgba(246,196,83,.45);
-      background:rgba(246,196,83,.18);
-    }
-
-    .heroImgFrame{
-      position:relative;
-      width:100%;
-      height:100%;
-      min-height:300px;
-      border-radius:var(--radius2);
-      overflow:hidden;
-      border:1px solid rgba(246,196,83,.38);
-      box-shadow:0 18px 60px rgba(0,0,0,.50),0 0 0 1px rgba(246,196,83,.10);
-      background:#04130d;
-    }
-
-    .heroImgFrame img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center 28%;
-      display:block;
-      transition:transform .6s ease;
-    }
-
-    .heroImgFrame:hover img{transform:scale(1.03)}
-
-    .heroImgFrame::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:2;
-      pointer-events:none;
-      background:linear-gradient(135deg,rgba(246,196,83,.09) 0%,transparent 40%,rgba(0,166,81,.07) 100%);
-    }
-
-    .heroImgFrame::after{
-      content:"∞";
-      position:absolute;
-      top:12px;
-      right:14px;
-      z-index:3;
-      font-size:22px;
-      color:rgba(246,196,83,.70);
-      font-family:var(--fontA);
-      font-weight:900;
-      line-height:1;
-      text-shadow:0 0 14px rgba(246,196,83,.35);
-    }
-
-    .heroImgBadge{
-      position:absolute;
-      bottom:0;
-      left:0;
-      right:0;
-      z-index:3;
-      padding:10px 14px;
-      background:linear-gradient(0deg,rgba(4,19,13,.94) 0%,transparent 100%);
-      display:flex;
-      align-items:center;
-      gap:8px;
+      justify-content:space-between;
+      gap:14px;
       flex-wrap:wrap;
     }
 
-    .heroImgTag{
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:11px;
-      padding:5px 10px;
-      border-radius:999px;
-      border:1px solid rgba(246,196,83,.40);
-      background:rgba(246,196,83,.14);
-      color:#fff3cf;
-      letter-spacing:.3px;
+    .install-banner strong{
+      display:block;
+      font-size:1rem;
+      margin-bottom:3px;
     }
 
-    .showcaseSection{
-      margin-top:16px;
-      border:1px solid rgba(246,196,83,.24);
-      border-radius:var(--radius2);
-      background:linear-gradient(180deg,rgba(10,48,34,.82),rgba(8,28,20,.76));
-      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.07);
-      overflow:hidden;
-      scroll-margin-top:110px;
+    .install-banner span{
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.5;
     }
 
-    .showcaseInner{padding:18px;}
+    .section{
+      padding:24px 0 6px;
+    }
 
-    .showcaseTitle{
-      font-family:var(--fontA);
-      font-weight:900;
-      font-size:13px;
-      color:rgba(246,196,83,.88);
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      margin-bottom:14px;
+    .section-head{
       display:flex;
-      align-items:center;
-      gap:8px;
+      align-items:end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:16px;
+      flex-wrap:wrap;
     }
 
-    .showcaseTitle::before{
-      content:"";
-      display:block;
-      width:28px;
-      height:2px;
-      background:linear-gradient(90deg,rgba(246,196,83,.75),transparent);
-      border-radius:999px;
+    .section-head h2{
+      margin:0;
+      font-family:"Outfit",sans-serif;
+      font-size:clamp(1.6rem, 2.3vw, 2.5rem);
+      line-height:1.05;
+      letter-spacing:-.02em;
     }
 
-    .showcaseTitle::after{
-      content:"";
-      display:block;
-      flex:1;
-      height:1px;
-      background:linear-gradient(90deg,rgba(246,196,83,.28),transparent);
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      max-width:62ch;
+      line-height:1.65;
     }
 
-    .showcaseImgWrap{
-      position:relative;
-      border-radius:20px;
-      overflow:hidden;
-      border:1px solid rgba(246,196,83,.30);
-      box-shadow:0 14px 45px rgba(0,0,0,.50);
-      max-width:940px;
-      margin:0 auto;
-      height:300px;
-      background:#04130d;
+    .modules{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:16px;
     }
 
-    .showcaseImgWrap img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center 28%;
-      display:block;
-      transition:transform .5s ease;
-    }
-
-    .showcaseImgWrap:hover img{transform:scale(1.015)}
-
-    .showcaseImgWrap::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:2;
-      pointer-events:none;
-      background:linear-gradient(135deg,rgba(246,196,83,.08) 0%,transparent 45%,rgba(0,166,81,.06) 100%);
-    }
-
-    .showcaseCta{
-      margin:14px auto 0;
+    .module{
+      padding:18px;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(11,42,31,.95), rgba(9,31,23,.94));
+      border:1px solid rgba(255,255,255,.09);
+      box-shadow:var(--shadow);
       display:flex;
+      flex-direction:column;
+      gap:14px;
+      min-height:230px;
+    }
+
+    .module-top{
+      display:flex;
+      justify-content:space-between;
       gap:10px;
+      align-items:flex-start;
+    }
+
+    .module-icon{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-size:1.3rem;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      flex:0 0 auto;
+    }
+
+    .module-badge{
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:.74rem;
+      font-weight:900;
+      letter-spacing:.04em;
+      color:#ffe08c;
+      background:rgba(212,175,55,.12);
+      border:1px solid rgba(212,175,55,.18);
+      flex:0 0 auto;
+    }
+
+    .module h3{
+      margin:0;
+      font-family:"Outfit",sans-serif;
+      font-size:1.18rem;
+      line-height:1.1;
+    }
+
+    .module p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.62;
+      font-size:.95rem;
+    }
+
+    .module-links{
+      margin-top:auto;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .module-links a{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.04);
+      font-size:.85rem;
+      font-weight:800;
+    }
+
+    .module-links a.primary{
+      color:#082114;
+      background:linear-gradient(135deg,var(--gold),var(--gold-2));
+      border:none;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .stat{
+      padding:18px;
+      border-radius:20px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+    }
+
+    .stat strong{
+      display:block;
+      font-family:"Outfit",sans-serif;
+      font-size:1.6rem;
+      line-height:1;
+      margin-bottom:8px;
+      color:#ffe08c;
+    }
+
+    .stat span{
+      color:var(--muted);
+      line-height:1.5;
+      font-size:.92rem;
+    }
+
+    .cta{
+      padding:32px 0 56px;
+    }
+
+    .cta-box{
+      padding:28px 24px;
+      border-radius:28px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(212,175,55,.14), transparent 28%),
+        linear-gradient(135deg, rgba(11,42,31,.98), rgba(7,28,20,.98));
+      border:1px solid rgba(255,255,255,.09);
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:18px;
+      align-items:center;
+    }
+
+    .cta-box h3{
+      margin:0 0 8px;
+      font-family:"Outfit",sans-serif;
+      font-size:clamp(1.5rem, 2.3vw, 2.35rem);
+      line-height:1.05;
+      letter-spacing:-.02em;
+    }
+
+    .cta-box p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:60ch;
+    }
+
+    .footer{
+      padding:8px 0 28px;
+      color:#b4ccb9;
+      font-size:.92rem;
+    }
+
+    .footer-inner{
+      display:flex;
       flex-wrap:wrap;
       align-items:center;
       justify-content:space-between;
-      max-width:940px;
+      gap:12px;
+      padding-top:12px;
+      border-top:1px solid rgba(255,255,255,.08);
     }
 
-    .showcaseDesc{
-      font-size:13px;
-      color:rgba(248,250,252,.72);
-      line-height:1.5;
-      max-width:55ch;
+    .hint{
+      margin-top:12px;
+      padding:14px 16px;
+      border-radius:16px;
+      color:#ecf8ef;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      line-height:1.55;
+      font-size:.92rem;
     }
 
-    .favTitle{
-      margin:0;
-      font-family:var(--fontA);
-      font-size:30px;
-      font-weight:1000;
-      letter-spacing:.8px;
-      line-height:1.05;
-      color:#ffffff;
-      text-transform:uppercase;
-      text-shadow:0 0 10px rgba(255,255,255,.20),0 0 22px rgba(255,255,255,.10),0 4px 16px rgba(0,0,0,.30);
-    }
+    .hidden{display:none !important}
 
-    #favoritesSection .sectionSub{
-      font-size:16px;
-      font-weight:900;
-      line-height:1.5;
-      color:rgba(255,255,255,.96);
-      text-shadow:0 2px 10px rgba(0,0,0,.22);
-    }
-
-    #favoritesCountPill{
-      font-size:13px;
-      font-weight:1000;
-      color:#ffffff;
-      border-color:rgba(255,255,255,.28);
-      background:rgba(255,255,255,.08);
-      box-shadow:0 0 18px rgba(255,255,255,.08);
-    }
-
-    #signature-digiy{
-      margin-top:18px;
-    }
-
-    #signature-digiy .showcaseImgWrap{
-      max-width:760px;
-      height:auto;
-      background:#071710;
-      border-color:rgba(246,196,83,.34);
-      box-shadow:0 18px 50px rgba(0,0,0,.42);
-    }
-
-    #signature-digiy .showcaseImgWrap img{
-      width:100%;
-      height:auto;
-      object-fit:contain;
-      object-position:center;
-      display:block;
-    }
-
-    #signature-digiy .showcaseDesc{
-      text-align:center;
-      max-width:60ch;
-      margin:0 auto;
-    }
-
-    @media(max-width:980px){
-      .hero{grid-template-columns:1fr;}
-      .heroRight{min-height:260px;}
-      .heroImgFrame{min-height:260px;}
-      .showcaseImgWrap{height:260px;}
-    }
-
-    @media(max-width:640px){
-      .digiyIntroInner{
-        padding:20px 14px;
+    @media (max-width: 1080px){
+      .hero-grid{
+        grid-template-columns:1fr;
       }
-
-      .digiyIntroText,
-      .digiyIntroFormula{
-        font-size:15px;
+      .modules{
+        grid-template-columns:repeat(2, minmax(0,1fr));
       }
+      .stats{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+      .cta-box{
+        grid-template-columns:1fr;
+      }
+    }
 
-      .digiyIntroActions{
+    @media (max-width: 720px){
+      .topbar-inner{
+        align-items:flex-start;
+        padding:12px 0;
+      }
+      .top-actions{
+        width:100%;
+        justify-content:flex-start;
+      }
+      .hero{
+        padding-top:18px;
+      }
+      .hero-copy{
+        padding:22px 18px 20px;
+      }
+      .hero-visual{
+        padding:14px;
+      }
+      .africa-card{
+        min-height:360px;
+      }
+      .africa-stage{
+        min-height:180px;
+      }
+      .hero-points{
+        grid-template-columns:1fr;
+      }
+      .modules{
+        grid-template-columns:1fr;
+      }
+      .stats{
+        grid-template-columns:1fr;
+      }
+      .section{
+        padding-top:20px;
+      }
+      .btn{
+        width:100%;
+      }
+      .hero-actions,
+      .module-links{
         flex-direction:column;
       }
-
-      .digiyHeroBigBtn{
-        width:100%;
+      .install-banner{
+        align-items:flex-start;
       }
-
-      .digiyIntroMiniCard{
-        width:100%;
-        max-width:none;
-        min-width:0;
+      .footer-inner{
+        flex-direction:column;
+        align-items:flex-start;
       }
-
-      .railHint{
-        display:block;
-        font-size:18px;
-        font-weight:1000;
-      }
-
-      .railWrap{
-        padding-bottom:76px;
-      }
-
-      .railArrow{
-        display:flex;
-        top:auto;
-        bottom:14px;
-        transform:none;
-        width:52px;
-        height:52px;
-        font-size:30px;
-        border-radius:999px;
-        background:rgba(6,20,14,.94);
-        border:1px solid rgba(246,196,83,.28);
-        box-shadow:0 12px 28px rgba(0,0,0,.34);
-      }
-
-      .railArrow.left{
-        left:12px;
-      }
-
-      .railArrow.right{
-        right:12px;
-      }
-
-      .heroLeft h1{font-size:26px;}
-      .menuBar{padding:6px 10px 8px;}
-      .menuRow{gap:4px;}
-      .mBtn{height:28px;padding:0 9px;font-size:11px;}
-      .rowLabel{font-size:9.5px;padding:3px 7px;}
-      .moduleBtn{min-width:240px;max-width:280px;min-height:194px;padding:18px 16px;}
-      .moduleEmoji{font-size:32px;}
-      .moduleName{font-size:19px;}
-      .moduleHint{font-size:14px;min-height:48px;}
-      .miniBadge{font-size:11px;}
-      .moduleBtn .openHint{font-size:12px;}
-      .favToggle{width:40px;height:40px;font-size:19px;}
-      .favTitle{font-size:32px;}
-      #favoritesSection .sectionSub{font-size:17px;}
-      #favoritesCountPill{font-size:14px;}
-      .showcaseImgWrap{max-width:100%;height:215px;}
-      .showcaseCta{max-width:100%;}
-      .heroRight{min-height:230px;}
-      .heroImgFrame{min-height:230px;}
-      .heroImgFrame img,
-      .showcaseImgWrap img{object-position:center 26%;}
-      #signature-digiy .showcaseImgWrap{height:auto;}
-      #signature-digiy .showcaseImgWrap img{object-position:center;}
-    }
-
-    @media(max-width:480px){
-      .floatBtn{padding:11px 13px;font-size:13px;}
-      #tarif-bubble-btn{right:10px;bottom:14px;}
-      #digiy-help-btn{right:10px;bottom:60px;}
-      #knowledge-float-btn{right:10px;bottom:106px;}
-      #espace-pro-btn{left:10px;bottom:14px;}
-      #vision-bubble-btn{left:10px;bottom:60px;}
-      .brandText .subtitle{max-width:150px}
-      .moduleBtn{min-width:248px;max-width:286px;min-height:198px;}
-      .railHint{font-size:19px;}
-      .showcaseImgWrap{height:205px;}
-      #signature-digiy .showcaseImgWrap{height:auto;}
     }
   </style>
 </head>
-
 <body>
-<div class="bg"></div>
-<div class="app">
-  <div class="wrap">
-    <div class="shell">
-
-      <header class="topbar">
-        <a class="brand" href="https://orange-pig-270004.hostingersite.com" id="homeBrand">
-          <div class="logo">&#x221E;</div>
-          <div class="brandText">
-            <div class="title">DIGIYLYFE</div>
-            <div class="subtitle">L'Afrique enracinée, connectée au monde</div>
-          </div>
-        </a>
-      </header>
-
-      <nav class="menuBar" aria-label="Navigation DIGIY">
-        <div class="menuRow">
-          <a class="mBtn home" href="https://orange-pig-270004.hostingersite.com">🏠</a>
-          <a class="mBtn home" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Vision</a>
-          <span class="rowLabel c">CLIENT</span>
-          <a class="mBtn gold" id="mn-market" href="#">🛍️ Market</a>
-          <a class="mBtn gold" id="mn-explore" href="#">🗺️ Explore</a>
-          <a class="mBtn gold" id="mn-loc" href="#">🏠 LOC</a>
-          <a class="mBtn gold" id="mn-resatable" href="#">📅 RÉSA MULTI-BUSINESS</a>
-          <a class="mBtn gold" id="mn-driver" href="#">🚗 Driver</a>
-          <a class="mBtn gold" id="mn-chauffeurs" href="#">👑 Driver Ambassadeur</a>
-          <a class="mBtn gold" id="mn-jobs" href="#">💼 Jobs</a>
-          <a class="mBtn gold" id="mn-build" href="#">🏗️ Build</a>
-          <a class="mBtn gold" id="mn-ndimbal-annonces" href="#">📢 NDIMBAL Annonces</a>
-          <a class="mBtn gold" id="mn-pay" href="#">💳 PAY</a>
-          <a class="mBtn gold" id="mn-vaschezmoi" href="#">📍 Vas chez DIGIY</a>
-          <a class="mBtn gold" id="mn-ndimbal-loc" href="#">🏡 NDIMBAL Loc</a>
-          <a class="mBtn gold" id="mn-ndimbal-map" href="#">🗺️ NDIMBAL Map</a>
-          <a class="mBtn gold" id="mn-audio" href="#">🎵 AUDIO</a>
-          <a class="mBtn gold" id="mn-ia" href="#">🧠 IA</a>
-          <a class="mBtn gold" id="mn-tarifs" href="#">🏷️ Tarifs</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="./" aria-label="Retour accueil DIGIYLYFE">
+        <div class="brand-badge">D</div>
+        <div class="brand-text">
+          <strong>DIGIYLYFE</strong>
+          <span>L’Afrique enracinée, connectée au monde</span>
         </div>
+      </a>
 
-        <div class="menuRow">
-          <span class="rowLabel p">PRO</span>
-          <a class="mBtn green" id="mn-espace-pro" href="#">🏢 Espace PRO</a>
-          <a class="mBtn green" id="mn-inscription-pro" href="#">✍️ Inscription PRO</a>
-          <a class="mBtn green" id="mn-market-pro" href="#">🛍️ Market PRO</a>
-          <a class="mBtn green" id="mn-caisse-pro" href="#">💰 Caisse PRO</a>
-          <a class="mBtn green" id="mn-loc-pro" href="#">🏠 LOC PRO</a>
-          <a class="mBtn green" id="mn-resatable-pro" href="#">📅 RÉSA PRO</a>
-          <a class="mBtn green" id="mn-driver-pro" href="#">🚗 Driver PRO</a>
-          <a class="mBtn green" id="mn-jobs-pro" href="#">💼 Jobs PRO</a>
-          <a class="mBtn green" id="mn-build-pro" href="#">🏗️ Build PRO</a>
-          <a class="mBtn green" id="mn-explore-pro" href="#">🗺️ Explore PRO</a>
-          <a class="mBtn green" id="mn-pay-pro" href="#">💳 PAY PRO</a>
-        </div>
-      </nav>
+      <div class="top-actions">
+        <a class="btn btn-ghost" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir la vision</a>
+        <a class="btn btn-secondary" href="https://commencer-a-payer.digiylyfe.com/" target="_blank" rel="noopener">Activer un module</a>
+        <button id="installBtnTop" class="btn btn-primary" type="button">Installer l’app</button>
+      </div>
+    </div>
+  </header>
 
-      <section class="digiyIntroBlock" id="intro-digiy">
-        <div class="digiyIntroInner">
-          <div class="digiyIntroBadge">Introduction · Méthode DIGIY</div>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <article class="panel hero-copy">
+          <div class="eyebrow">∞ Écosystème business enraciné • direct au pro • 0% commission</div>
 
-          <h1 class="digiyIntroTitle">
-            Pourquoi <span class="gold">DIGIY</span> est simple et puissant
+          <h1>
+            L’Afrique <span class="accent">enracinée</span>,
+            connectée au monde.
           </h1>
 
-          <p class="digiyIntroText">
-            DIGIY ne cherche pas à compliquer la vie du professionnel avec une usine lourde.
-            Nous construisons des fiches légères, claires et crédibles, capables de montrer
-            l’essentiel, de rassurer avec le terrain, et de pousser vers l’action directe.
+          <p class="lead">
+            DIGIYLYFE rassemble des outils simples, puissants et humains pour rendre visible le travail réel,
+            fluidifier les échanges, renforcer les pros du terrain et garder une logique propre : accès direct,
+            paiement direct au professionnel, souveraineté et clarté.
           </p>
 
-          <div class="digiyIntroFormula">
-            Google attire et rassure. DIGIY clarifie et convertit.
+          <div class="hero-actions">
+            <a class="btn btn-secondary" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">Voir la vision</a>
+            <a class="btn btn-ghost" href="#modules">Voir l’écosystème</a>
+            <button id="installBtnHero" class="btn btn-primary" type="button">Installer sur mon téléphone</button>
           </div>
 
-          <div class="digiyIntroActions">
-            <a class="btn primary digiyHeroBigBtn" href="https://digiylyfe.com/notre-methode.html">
-              ✨ Pourquoi DIGIY est simple et puissant
-            </a>
-
-            <a class="btn outline digiyHeroBigBtn" href="https://commencer-a-payer.digiylyfe.com/">
-              🚀 Activer ma fiche pro
-            </a>
-
-            <a class="btn ghost digiyHeroBigBtn" href="https://beauville.github.io/digiy-audio/" target="_blank" rel="noopener">
-              🎧 Écouter la vision DIGIY
-            </a>
+          <div class="hero-points">
+            <div class="point">
+              <strong>0% commission</strong>
+              <span>Le client parle au pro. Le pro garde sa relation, sa visibilité et sa marge.</span>
+            </div>
+            <div class="point">
+              <strong>Paiement direct</strong>
+              <span>Wave, cash, wallets et autres rails terrain sans détour inutile.</span>
+            </div>
+            <div class="point">
+              <strong>Modules vivants</strong>
+              <span>Logement, transport, réservation, commerce, jobs, marché, paiements et plus.</span>
+            </div>
           </div>
 
-          <div class="digiyIntroMini">
-            <div class="digiyIntroMiniCard">
-              <b>Site léger</b>
-              <span>Les bonnes informations, les bons visuels, sans surcharge inutile.</span>
+          <div class="install-banner" id="installBanner">
+            <div>
+              <strong>Installe DIGIYLYFE comme une vraie app</strong>
+              <span>Tu peux l’ouvrir depuis l’écran d’accueil, comme une application posée sur ton téléphone.</span>
             </div>
+            <button id="installBtnBanner" class="btn btn-primary" type="button">Installer maintenant</button>
+          </div>
 
-            <div class="digiyIntroMiniCard">
-              <b>Présence forte</b>
-              <span>Vidéo, Google Maps, lieu, prix, confiance locale et lecture claire.</span>
-            </div>
+          <div id="iosHint" class="hint hidden">
+            <strong>iPhone / iPad :</strong> ouvre le menu <b>Partager</b> dans Safari, puis choisis
+            <b>Sur l’écran d’accueil</b>. Là, ça se pose proprement comme une app.
+          </div>
+        </article>
 
-            <div class="digiyIntroMiniCard">
-              <b>Action directe</b>
-              <span>WhatsApp, appel, réservation, commande ou prise de contact rapide.</span>
+        <aside class="panel hero-visual">
+          <div class="africa-card">
+            <div class="africa-content">
+              <div class="vision-chip">DIGIYLYFE ∞ souveraineté digitale enracinée</div>
+
+              <div class="africa-stage">
+                <svg class="africa-svg" viewBox="0 0 800 560" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Carte stylisée de l’Afrique">
+                  <defs>
+                    <linearGradient id="goldMap" x1="129" y1="74" x2="645" y2="493" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#F6D772"/>
+                      <stop offset="1" stop-color="#D4AF37"/>
+                    </linearGradient>
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="6.5" result="coloredBlur"/>
+                      <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                  </defs>
+
+                  <path filter="url(#glow)" d="M329.58 77.42C351.12 70.2 377.27 73.1 396.49 86.89C412.67 98.5 428.42 112.52 446.26 122.05C464.72 131.91 487.62 135.2 500.65 151.12C511.87 164.83 514.27 183.52 524.52 198.03C537.4 216.24 559.58 226.79 569.92 246.74C578.34 262.98 577.44 282.82 571.07 300C564.71 317.17 553.45 332.16 545.4 348.61C537.04 365.7 532.51 384.6 522.09 400.46C509.61 419.48 490.78 433.75 472.14 446.67C455.45 458.23 437.98 469.21 418.58 475.16C399.17 481.12 377.25 481.57 359.06 472.53C343.14 464.62 330.78 451.17 316.57 440.66C300.48 428.77 282.06 420.28 264.03 411.76C239.88 400.35 215.2 388.15 196.95 370.1C177.46 350.81 166.23 324.52 161.85 297.45C157.46 270.38 159.37 242.4 157.12 215.03C154.91 188.1 147.74 160.59 155.4 134.68C162.49 110.7 181.53 91.2 204.84 81.09C228.14 70.97 255.14 69.84 280.24 73.38C296.96 75.74 313.59 82.78 329.58 77.42Z" fill="url(#goldMap)" opacity=".98"/>
+
+                  <path d="M464 383C474 398 486 412 494 428C500 439 503 453 499 465C495 476 486 485 473 489C459 493 443 491 431 484C421 477 414 465 408 454C401 440 396 425 388 412C379 397 366 384 359 368C352 350 350 329 358 313C366 296 384 286 403 288C422 290 438 303 446 320C454 337 454 360 464 383Z" fill="#F9E7AE" opacity=".9"/>
+                </svg>
+
+                <div class="africa-label">
+                  <strong>L’Afrique connecté au monde</strong>
+                  <span>Une base locale forte, des outils simples, une vision claire, une montée en puissance sans trahir le terrain.</span>
+                </div>
+              </div>
+
+              <div class="orbit-tags">
+                <span>LOC</span>
+                <span>DRIVER</span>
+                <span>RESA</span>
+                <span>BUILD</span>
+                <span>JOBS</span>
+                <span>MON COMMERCE</span>
+                <span>PRO MARKET</span>
+                <span>EXPLORE</span>
+                <span>PAY</span>
+              </div>
             </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="modules">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Les wagons déjà sur les rails</h2>
+          </div>
+          <p>
+            Une logique claire : des outils spécialisés, reliés à une colonne vertébrale commune, sans foire compliquée.
+            Le client voit, comprend, contacte. Le pro pilote.
+          </p>
+        </div>
+
+        <div class="modules">
+          <article class="module">
+            <div class="module-top">
+              <div class="module-icon">🏠</div>
+              <div class="module-badge">HÉBERGEMENT</div>
+            </div>
+            <h3>DIGIY LOC</h3>
+            <p>Logements, locations courtes durées, visibilité locale, contact direct, paiement direct au pro.</p>
+            <div class="module-links">
+              <a class="primary" href="https://loc.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir</a>
+              <a href="https://commencer-a-payer.digiylyfe.com/" target="_blank" rel="noopener">Version pro</a>
+            </div>
+          </article>
+
+          <article class="module">
+            <div class="module-top">
+              <div class="module-icon">🚗</div>
+              <div class="module-badge">TRANSPORT</div>
+            </div>
+            <h3>DIGIY DRIVER</h3>
+            <p>Chauffeurs visibles, trajets clairs, tarifs propres, lien direct avec le client sans détour inutile.</p>
+            <div class="module-links">
+              <a class="primary" href="https://driver.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir</a>
+              <a href="https://commencer-a-payer.digiylyfe.com/" target="_blank" rel="noopener">Version pro</a>
+            </div>
+          </article>
+
+          <article class="module">
+            <div class="module-top">
+              <div class="module-icon">📅</div>
+              <div class="module-badge">RÉSERVATION</div>
+            </div>
+            <h3>DIGIY RESA</h3>
+            <p>Réserver simplement un service, une visite, une disponibilité, avec lecture claire et parcours net.</p>
+            <div class="module-links">
+              <a class="primary" href="https://resa.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir</a>
+              <a href="https://commencer-a-payer.digiylyfe.com/" target="_blank" rel="noopener">Version pro</a>
+            </div>
+          </article>
+
+          <article class="module">
+            <div class="module-top">
+              <div class="module-icon">🛠️</div>
+              <div class="module-badge">MULTI SERVICES</div>
+            </div>
+            <h3>BUILD</h3>
+            <p>Travaux, dépannage, entretien, chantier et services pratiques pour le terrain et les métiers réels.</p>
+            <div class="module-links">
+              <a class="primary" href="https://build.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir</a>
+              <a href="https://commencer-a-payer.digiylyfe.com/" target="_blank" rel="noopener">Version pro</a>
+            </div>
+          </article>
+
+          <article class="module">
+            <div class="module-top">
+              <div class="module-icon">💼</div>
+              <div class="module-badge">MISSIONS</div>
+            </div>
+            <h3>DIGIY JOBS</h3>
+            <p>Missions, emplois, bureau de tri, candidatures et organisation humaine autour du travail réel.</p>
+            <div class="module-links">
+              <a class="primary" href="https://job.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir</a>
+              <a href="https://commencer-a-payer.digiylyfe.com/" target="_blank" rel="noopener">Version pro</a>
+            </div>
+          </article>
+
+          <article class="module">
+            <div class="module-top">
+              <div class="module-icon">🛍️</div>
+              <div class="module-badge">CAISSE</div>
+            </div>
+            <h3>MON COMMERCE</h3>
+            <p>Encaissement, gestion simple, visibilité business et premier cockpit commerçant enraciné au terrain.</p>
+            <div class="module-links">
+              <a class="primary" href="https://mon-commerce.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir</a>
+              <a href="https://commerce-pro.digiylyfe.com/" target="_blank" rel="noopener">Version pro</a>
+            </div>
+          </article>
+
+          <article class="module">
+            <div class="module-top">
+              <div class="module-icon">🏪</div>
+              <div class="module-badge">MARCHÉ</div>
+            </div>
+            <h3>PRO MARKET</h3>
+            <p>Boutique, catalogue, produits, présence commerçante et cockpit vendeur relié à l’écosystème.</p>
+            <div class="module-links">
+              <a class="primary" href="https://market.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir</a>
+              <a href="https://pro-market.digiylyfe.com/" target="_blank" rel="noopener">Version pro</a>
+            </div>
+          </article>
+
+          <article class="module">
+            <div class="module-top">
+              <div class="module-icon">🌍</div>
+              <div class="module-badge">TOURISME</div>
+            </div>
+            <h3>DIGIY EXPLORE</h3>
+            <p>Spots, expériences, présence tourisme et mise en lumière du territoire avec contact direct.</p>
+            <div class="module-links">
+              <a class="primary" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir</a>
+              <a href="https://commencer-a-payer.digiylyfe.com/" target="_blank" rel="noopener">Version pro</a>
+            </div>
+          </article>
+
+          <article class="module">
+            <div class="module-top">
+              <div class="module-icon">💳</div>
+              <div class="module-badge">COCKPIT</div>
+            </div>
+            <h3>MON ARGENT by DIGIY</h3>
+            <p>Lecture financière claire, pilotage du visible, vision du net, épargne, flux et respiration business.</p>
+            <div class="module-links">
+              <a class="primary" href="https://pay.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir</a>
+              <a href="https://commencer-a-payer.digiylyfe.com/" target="_blank" rel="noopener">Activer</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>0%</strong>
+            <span>Commission plateforme sur la relation client ↔ professionnel.</span>
+          </div>
+          <div class="stat">
+            <strong>Direct</strong>
+            <span>Le terrain parle au terrain, sans détour qui étouffe le pro.</span>
+          </div>
+          <div class="stat">
+            <strong>Local</strong>
+            <span>Langues, usages, paiements et réalités enracinés dans le vécu.</span>
+          </div>
+          <div class="stat">
+            <strong>Stable</strong>
+            <span>Une base pensée pour durer, scaler et rester lisible.</span>
           </div>
         </div>
-      </section>
-
-      <main class="main">
-
-        <section class="section" id="favoritesSection">
-          <div class="sectionHead">
-            <div>
-              <h2 class="favTitle">⭐ MES FAVORIS</h2>
-              <div class="sectionSub">Pose ici tes modules préférés. Appuie sur l'étoile ⭐ d'un pavé pour le garder en haut.</div>
-            </div>
-            <div class="legend">
-              <span class="pill public">JUSQU'À 3</span>
-              <span class="pill live" id="favoritesCountPill">0 FAVORI</span>
-            </div>
-          </div>
-          <div class="railWrap">
-            <div class="favoritesEmpty" id="favoritesEmpty">⭐ Aucun favori pour le moment. Ajoute DIGIY DRIVER, DIGIY LOC, RÉSA ou toute autre porte que tu veux garder ici.</div>
-            <div class="moduleRail" id="favoritesRail"></div>
-          </div>
-        </section>
-
-        <section class="section" id="public">
-          <div class="sectionHead">
-            <div>
-              <h2>Écosystème Public</h2>
-              <div class="sectionSub">Vendre, découvrir, réserver, bouger, travailler, construire puis publier.</div>
-            </div>
-            <div class="legend">
-              <span class="pill public">PUBLIC</span>
-              <span class="pill live">BUSINESS</span>
-            </div>
-          </div>
-          <div class="railWrap railWrapDesktop">
-            <button class="railArrow left" id="publicLeft" type="button">&#x2039;</button>
-            <div class="railHint" id="publicHint">👉 GLISSE POUR VOIR LES AUTRES PORTES</div>
-            <div class="moduleRail" id="publicRail"></div>
-            <button class="railArrow right" id="publicRight" type="button">&#x203A;</button>
-          </div>
-        </section>
-
-        <section class="section" id="pro">
-          <div class="sectionHead">
-            <div>
-              <h2>Écosystème PRO</h2>
-              <div class="sectionSub">Le cockpit d'abord, puis les rails métiers dans le même sens terrain.</div>
-            </div>
-            <div class="legend">
-              <span class="pill pro">PRO</span>
-              <span class="pill live">COCKPIT</span>
-            </div>
-          </div>
-          <div class="railWrap railWrapDesktop">
-            <button class="railArrow left" id="proLeft" type="button">&#x2039;</button>
-            <div class="railHint" id="proHint">👉 GLISSE POUR VOIR LES AUTRES PORTES</div>
-            <div class="moduleRail" id="proRail"></div>
-            <button class="railArrow right" id="proRight" type="button">&#x203A;</button>
-          </div>
-        </section>
-
-        <section class="focus">
-          <div class="focusInner">
-            <div class="focusTop">
-              <div class="focusLeft">
-                <div class="focusIcon" id="focusIcon">🛍️</div>
-                <div>
-                  <div class="focusLabel" id="focusLabel">DIGIY MARKET</div>
-                  <div class="focusHint" id="focusHint">Acheter / vendre</div>
-                </div>
-              </div>
-              <div class="focusBadges">
-                <div class="focusBadge public" id="focusKind">PUBLIC</div>
-                <div class="focusBadge gold" id="focusBadge">👑 Locomotive business</div>
-              </div>
-            </div>
-
-            <div class="focusText" id="focusText">
-              DIGIY MARKET sert de locomotive business pour montrer tout de suite le mouvement, l'échange, la vente, l'opportunité et l'économie locale en action.
-            </div>
-
-            <div class="focusActions">
-              <a class="btn primary" id="focusOpenBtn" href="#" target="_blank" rel="noopener">↗ Ouvrir</a>
-              <a class="btn outline" href="https://orange-pig-270004.hostingersite.com">← Retour DIGIYLYFE</a>
-            </div>
-
-            <footer class="footer">
-              <div class="footLine">
-                <span class="footBrand">DIGIYLYFE &#x221E;</span>
-                <span class="sep">·</span><span>0% commission</span>
-                <span class="sep">·</span><span>paiement direct</span>
-                <span class="sep">·</span><span>économie locale en mouvement</span>
-              </div>
-            </footer>
-          </div>
-        </section>
-
-        <section class="showcaseSection" id="visuels">
-          <div class="showcaseInner">
-            <div class="showcaseTitle">DIGIYLYFE · L'AFRIQUE CONNECTÉE · SERVICES EN LIGNE</div>
-
-            <div class="showcaseImgWrap">
-              <img
-                src="https://digiylyfe.net/wp-content/uploads/2026/03/digiy_services_avec_logo.webp"
-                alt="DIGIYLYFE — L'Afrique enracinée, connectée au monde — services en ligne"
-                loading="lazy"
-                width="1536"
-                height="1024"
-              />
-            </div>
-
-            <div class="showcaseCta">
-              <div class="showcaseDesc">
-                Zéro commission · 100% indépendance · Paiement direct au professionnel · L'Afrique enracinée, connectée au monde &#x221E;
-              </div>
-              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
-                <a class="btn outline" href="#pro">🧰 Espace PRO</a>
-                <a class="btn ghost" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Voir la vision</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="storyBlock" id="vision">
-          <div class="storyWrap">
-            <div class="hero">
-              <div class="heroLeft">
-                <div class="eyebrow">DIGIYLYFE &#x221E; · ÉCOSYSTÈME BUSINESS · AFRIQUE · TERRAIN</div>
-                <h1>Faire tourner l'économie locale.<br><span class="gold">Ouvrir un écosystème business enraciné.</span></h1>
-                <p>DIGIYLYFE relie le <strong>public</strong> et le <strong>pro</strong> dans une même logique : vendre, découvrir, travailler, encaisser, recruter et faire vivre l'activité locale.</p>
-
-                <div class="ctaRow">
-                  <a class="btn primary" id="heroOpenBtn" href="#" target="_blank" rel="noopener">🛍️ Locomotive business</a>
-                  <a class="btn outline" href="#pro">🧰 Porte PRO</a>
-                  <a class="btn ghost" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Vision</a>
-                </div>
-
-                <div class="heroChips">
-                  <span class="chip"><span class="chipK">0%</span><span class="chipV">commission</span></span>
-                  <span class="chip"><span class="chipK">Paiement</span><span class="chipV">direct</span></span>
-                  <span class="chip"><span class="chipK">Terrain</span><span class="chipV">vivant</span></span>
-                </div>
-              </div>
-
-              <aside class="heroRight">
-                <div class="heroImgFrame">
-                  <img
-                    src="https://digiylyfe.net/wp-content/uploads/2026/03/digiy_services_avec_logo.webp"
-                    alt="DIGIYLYFE — services en ligne"
-                    loading="lazy"
-                    width="768"
-                    height="512"
-                  />
-                  <div class="heroImgBadge">
-                    <span class="heroImgTag">🛍️ MARKET</span>
-                    <span class="heroImgTag">🚗 DRIVER</span>
-                    <span class="heroImgTag">🏗️ BUILD</span>
-                    <span class="heroImgTag">🗺️ EXPLORE</span>
-                    <span class="heroImgTag">0% commission</span>
-                  </div>
-                </div>
-              </aside>
-            </div>
-          </div>
-        </section>
-
-        <section class="showcaseSection" id="signature-digiy">
-          <div class="showcaseInner">
-            <div class="showcaseTitle">DIGIYLYFE · SIGNATURE</div>
-
-            <div class="showcaseImgWrap">
-              <img
-                src="https://digiylyfe.net/wp-content/uploads/2026/03/digiylyfe_logo_qr.jpeg"
-                alt="DIGIYLYFE — logo et QR"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="showcaseCta" style="justify-content:center;">
-              <div class="showcaseDesc">
-                DIGIYLYFE ∞ — la signature du rail, l'ancrage du terrain, l'ouverture vers le monde.
-              </div>
-            </div>
-          </div>
-        </section>
-
-      </main>
-    </div>
-  </div>
-
-  <button id="tarif-bubble-btn" class="floatBtn" type="button">🏷️ Tarifs</button>
-  <button id="digiy-help-btn" class="floatBtn" type="button">&#x267E;️ NDIMBAL</button>
-  <button id="knowledge-float-btn" class="floatBtn" type="button">🧠 IA</button>
-  <button id="espace-pro-btn" class="floatBtn" type="button">🧰 PRO</button>
-  <button id="vision-bubble-btn" class="floatBtn" type="button">🎧 AUDIO</button>
-  <button id="install-app-btn" class="floatBtn" type="button" hidden>📲 Installer l’app</button>
-
-  <div id="digiy-ndimbal" class="ndimbal hidden" aria-hidden="true">
-    <div class="ndimbalBox" role="dialog" aria-modal="true">
-      <div class="ndimbalTitle">&#x267E;️ NDIMBAL</div>
-      <div class="ndimbalText"><b>Naka nga def frérot ?</b><br>Dis-moi ce que tu veux faire, je te pointe au bon endroit.</div>
-      <div class="ndimbalActions">
-        <button class="btn primary" type="button" data-action="sell">📋 Publier une mission</button>
-        <button class="btn outline" type="button" data-action="job">💼 Trouver du travail</button>
-        <button class="btn ghost" type="button" data-action="qr">📷 QR DIGIYLYFE</button>
       </div>
-      <button class="btn tiny danger" type="button" id="digiyCloseBtn" style="margin-top:10px">❌ Quitter</button>
-    </div>
-  </div>
+    </section>
 
-  <div id="qrModal" class="qrModal hidden" aria-hidden="true">
-    <div class="qrContent" role="dialog" aria-modal="true">
-      <div class="qrHeader">
-        <div class="qrTitle">&#x267E;️ QR DIGIYLYFE</div>
-        <button id="qrClose" class="btn tiny" type="button">✖ Fermer</button>
-      </div>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=https://orange-pig-270004.hostingersite.com/" alt="QR DIGIYLYFE" class="qrImg">
-      <div class="qrText">📱 Scanne pour ouvrir DIGIYLYFE</div>
-      <a href="https://orange-pig-270004.hostingersite.com/" target="_blank" rel="noopener" class="qrLink">Ouvrir DIGIY →</a>
-    </div>
-  </div>
+    <section class="cta">
+      <div class="wrap">
+        <div class="cta-box">
+          <div>
+            <h3>Poser l’app. Ouvrir. Travailler.</h3>
+            <p>
+              DIGIYLYFE peut vivre comme une vraie app sur téléphone. Tu la poses sur l’écran d’accueil,
+              tu l’ouvres en un geste, et le terrain continue d’avancer.
+            </p>
+          </div>
 
-<script>
-(function(){
-  "use strict";
-
-  const HOME="https://orange-pig-270004.hostingersite.com",
-        FAVORITES_KEY="digiylyfe_favorites_v1",
-        FAVORITES_MAX=3;
-
-  function wr(url){
-    try{
-      const u=new URL(url,location.href);
-      u.searchParams.set("return",HOME);
-      return u.toString();
-    }catch(e){
-      return url;
-    }
-  }
-
-  const L={
-    market:"https://market.digiylyfe.com/",
-    driver:"https://driver-client.digiylyfe.com/",
-    galerieChauffeurs:"https://beauville.github.io/galerie-chauffeurs/",
-    explore:"https://explore.digiylyfe.com/",
-    loc:"https://loc.digiylyfe.com/",
-    resaTable:"https://resa-table-resto.digiylyfe.com/",
-    jobs:"https://jobs.digiylyfe.com/",
-    pay:"https://pay.digiylyfe.com/",
-    vasChezDigiy:"https://vas-chez-digiy.digiylyfe.com/",
-    ndimbalLoc:"https://ndimbal-loc.digiylyfe.com/",
-    ndimbalMap:"https://ndimbal-map.digiylyfe.com/",
-    ndimbalAnnonces:"https://ndimbal-annonces.digiylyfe.com/",
-    audio:"https://beauville.github.io/digiy-audio/",
-    assistantIA:"https://knowledge.digiylyfe.com/widget/",
-    build:"https://build.digiylyfe.com/",
-    tarifs:"https://tarifs.digiylyfe.com/",
-    espacePro:"https://pro-espace.digiylyfe.com/",
-    inscriptionPro:"https://commencer-a-payer.digiylyfe.com/",
-    marketPro:"https://pro-market.digiylyfe.com/",
-    caissePro:"https://commerce-pro.digiylyfe.com/",
-    driverPro:"https://pro-driver.digiylyfe.com/",
-    jobsPro:"https://pro-job.digiylyfe.com/",
-    locPro:"https://pro-loc.digiylyfe.com/",
-    buildPro:"https://pro-build.digiylyfe.com/",
-    resaTablePro:"https://pro-resa-resto.digiylyfe.com/",
-    explorePro:"https://explore.digiylyfe.com/admin-pin.html",
-    payPro:"https://pro-pay.digiylyfe.com/pin.html?redirect=cockpit"
-  };
-
-  const PUB=[
-    {key:"market",name:"DIGIY MARKET",icon:"🛍️",desc:"Acheter / vendre",status:"LIVE",loco:true},
-    {key:"explore",name:"DIGIY EXPLORE",icon:"🗺️",desc:"Découvrir la région",status:"LIVE"},
-    {key:"loc",name:"DIGIY LOC",icon:"🏠",desc:"Trouver un logement",status:"LIVE"},
-    {key:"resaTable",name:"RÉSA MULTI-BUSINESS",icon:"📅",desc:"Réserver un rendez-vous ou un service",status:"LIVE"},
-    {key:"driver",name:"DIGIY DRIVER",icon:"🚗",desc:"Commander une course",status:"LIVE"},
-    {key:"galerieChauffeurs",name:"DRIVER AMBASSADEUR",icon:"👑",desc:"La mobilité avec style et savoir-être",status:"LIVE"},
-    {key:"jobs",name:"DIGIY JOBS",icon:"💼",desc:"Offres d'emploi",status:"LIVE"},
-    {key:"build",name:"DIGIY BUILD",icon:"🏗️",desc:"Services de construction",status:"BETA"},
-    {key:"ndimbalAnnonces",name:"NDIMBAL Annonces",icon:"📢",desc:"Publier / vendre",status:"LIVE"},
-    {key:"pay",name:"DIGIY PAY",icon:"💳",desc:"Portefeuille digital",status:"LIVE"},
-    {key:"vasChezDigiy",name:"Vas chez DIGIY",icon:"📍",desc:"Portail terrain DIGIY",status:"LIVE"},
-    {key:"ndimbalLoc",name:"NDIMBAL Loc",icon:"🏡",desc:"Locations NDIMBAL",status:"LIVE"},
-    {key:"ndimbalMap",name:"NDIMBAL Map",icon:"🗺️",desc:"Carte des annonces",status:"LIVE"},
-    {key:"audio",name:"DIGIY AUDIO",icon:"🎵",desc:"Écouter les contenus",status:"LIVE"},
-    {key:"assistantIA",name:"Assistant IA",icon:"🧠",desc:"Assistant DIGIY Knowledge",status:"LIVE"}
-  ];
-
-  const PRO=[
-    {key:"espacePro",name:"Espace PRO",icon:"🏢",desc:"Cockpit central professionnel",status:"LIVE",loco:true},
-    {key:"inscriptionPro",name:"Inscription PRO",icon:"✍️",desc:"Créer compte professionnel",status:"LIVE"},
-    {key:"marketPro",name:"MARKET PRO",icon:"🛍️",desc:"Vendre sur market",status:"LIVE",loco:true},
-    {key:"caissePro",name:"Caisse PRO",icon:"💰",desc:"Point de vente",status:"LIVE"},
-    {key:"locPro",name:"LOC PRO",icon:"🏠",desc:"Gérer tes logements",status:"LIVE"},
-    {key:"resaTablePro",name:"RÉSA PRO",icon:"📅",desc:"Gérer rendez-vous et réservations",status:"LIVE"},
-    {key:"driverPro",name:"DRIVER PRO",icon:"🚗",desc:"Pilotage chauffeur",status:"LIVE"},
-    {key:"jobsPro",name:"JOBS PRO",icon:"💼",desc:"Recruter",status:"LIVE"},
-    {key:"buildPro",name:"BUILD PRO",icon:"🏗️",desc:"Gérer chantiers",status:"BETA"},
-    {key:"explorePro",name:"Explore PRO",icon:"🗺️",desc:"Analytics & stats",status:"LIVE"},
-    {key:"payPro",name:"PAY PRO",icon:"💳",desc:"Gérer paiements",status:"LIVE"}
-  ];
-
-  const COPY={
-    market:"DIGIY MARKET sert de locomotive business pour montrer tout de suite le mouvement, l'échange, la vente, l'opportunité et l'économie locale en action.",
-    explore:"DIGIY EXPLORE garde la noblesse du territoire et de la découverte — il élève la vision et donne de la respiration.",
-    loc:"DIGIY LOC donne envie de trouver un logement sans surcharge visuelle.",
-    resaTable:"RÉSA MULTI-BUSINESS simplifie la prise de rendez-vous et la réservation de services avec une porte claire et rapide.",
-    driver:"DIGIY DRIVER répond au besoin immédiat : se déplacer maintenant, simplement, clairement, sans détour.",
-    galerieChauffeurs:"DRIVER AMBASSADEUR montre la version noble du rail mobilité : style, présence, savoir-être et qualité humaine du service.",
-    jobs:"DIGIY JOBS aide à voir les opportunités d'emploi à tête plus reposée, après les besoins terrain immédiats.",
-    build:"DIGIY BUILD valorise les services terrain avec plus de lisibilité et ouvre le rail des métiers concrets.",
-    ndimbalAnnonces:"NDIMBAL Annonces sert de hub pour publier, diffuser et vendre juste après le bloc terrain, dans une logique d'action.",
-    pay:"DIGIY PAY pose la logique de paiement simple et directe, au service du terrain.",
-    vasChezDigiy:"Vas chez DIGIY sert de porte d'entrée terrain pour orienter rapidement vers l'univers DIGIY.",
-    ndimbalLoc:"NDIMBAL Loc concentre la location dans un espace simple et direct.",
-    ndimbalMap:"NDIMBAL Map ouvre la carte et la découverte locale avec un accès direct aux annonces.",
-    audio:"DIGIY AUDIO permet d'écouter les contenus et articles dans une logique plus fluide et plus humaine.",
-    assistantIA:"Assistant IA ouvre le knowledge DIGIY pour guider, répondre et orienter rapidement.",
-    espacePro:"Espace PRO est la maison centrale du professionnel — le cockpit qui rassure, regroupe et remet chaque activité dans le bon rail.",
-    inscriptionPro:"Inscription PRO est la porte d'entrée pour les professionnels qui veulent rejoindre l'écosystème DIGIY.",
-    marketPro:"MARKET PRO sert de locomotive commerciale côté pro. Il pousse la vitrine, la vente et la traction économique.",
-    caissePro:"Caisse PRO rassemble la logique point de vente dans une interface directe et compacte.",
-    locPro:"LOC PRO aide à gérer les logements, accès et activité dans une logique compacte.",
-    resaTablePro:"RÉSA PRO permet de gérer les rendez-vous, réservations et le flux client avec efficacité.",
-    driverPro:"DRIVER PRO garde le rail métier chauffeur avec une logique opérationnelle immédiate, avant le temps plus posé de JOBS PRO.",
-    jobsPro:"JOBS PRO donne au recruteur un accès clair pour publier et suivre ses offres, après les besoins métier immédiats.",
-    buildPro:"BUILD PRO valorise la gestion des chantiers et du savoir-faire artisan.",
-    explorePro:"Explore PRO garde la lecture premium et analytics côté professionnel.",
-    payPro:"PAY PRO concentre la gestion des paiements dans une porte métier lisible."
-  };
-
-  let curKey="market",curKind="public";
-
-  const $=(id)=>document.getElementById(id);
-  const pubRail=$("publicRail"),
-        proRail=$("proRail"),
-        favRail=$("favoritesRail"),
-        favEmpty=$("favoritesEmpty"),
-        favCountPill=$("favoritesCountPill"),
-        pubHint=$("publicHint"),
-        proHintEl=$("proHint"),
-        focusIcon=$("focusIcon"),
-        focusLabel=$("focusLabel"),
-        focusHint=$("focusHint"),
-        focusKind=$("focusKind"),
-        focusBadge=$("focusBadge"),
-        focusText=$("focusText"),
-        focusOpenBtn=$("focusOpenBtn"),
-        heroOpenBtn=$("heroOpenBtn");
-
-  function sc(s){return s==="BETA"?"beta":"live";}
-  function findMod(key,kind){
-    const arr=kind==="pro"?PRO:PUB;
-    return arr.find(x=>x.key===key)||null;
-  }
-
-  function getMod(key,kind){
-    const arr=kind==="pro"?PRO:PUB;
-    return findMod(key,kind)||arr[0];
-  }
-
-  function favId(kind,key){return `${kind}:${key}`;}
-
-  function loadFavorites(){
-    try{
-      const raw=localStorage.getItem(FAVORITES_KEY);
-      const arr=JSON.parse(raw||"[]");
-      return Array.isArray(arr)?arr.filter(x=>typeof x==="string").slice(0,FAVORITES_MAX):[];
-    }catch(e){
-      return [];
-    }
-  }
-
-  let favorites=loadFavorites();
-
-  function saveFavorites(){
-    localStorage.setItem(FAVORITES_KEY,JSON.stringify(favorites.slice(0,FAVORITES_MAX)));
-  }
-
-  function isFavorite(kind,key){
-    return favorites.includes(favId(kind,key));
-  }
-
-  function favoriteModules(){
-    return favorites.map(id=>{
-      const parts=String(id).split(":");
-      const kind=parts[0];
-      const key=parts[1];
-      const item=findMod(key,kind);
-      return item?{...item,kind}:null;
-    }).filter(Boolean);
-  }
-
-  function toggleFavorite(kind,key){
-    const id=favId(kind,key);
-    const idx=favorites.indexOf(id);
-
-    if(idx>=0){
-      favorites.splice(idx,1);
-      saveFavorites();
-      renderAll();
-      return;
-    }
-
-    if(favorites.length>=FAVORITES_MAX){
-      alert("Maximum 3 favoris, frérot.");
-      return;
-    }
-
-    favorites.unshift(id);
-    saveFavorites();
-    renderAll();
-  }
-
-  function cardHTML(item,kind){
-    const href=wr(L[item.key]||HOME);
-    const active=item.key===curKey&&kind===curKind;
-    const fav=isFavorite(kind,item.key);
-
-    return `<div class="moduleSlot">
-      <button class="favToggle ${fav?"active":""}" type="button" data-fav-kind="${kind}" data-fav-key="${item.key}" title="${fav?"Retirer des favoris":"Ajouter aux favoris"}" aria-label="${fav?"Retirer des favoris":"Ajouter aux favoris"}">${fav?"⭐":"☆"}</button>
-      <a class="moduleBtn ${kind==="public"?"publicCard":"proCard"} ${active?"active":""} ${item.loco?"loco":""}" href="${href}" target="_blank" rel="noopener noreferrer" data-kind="${kind}" data-key="${item.key}">
-        <span class="moduleEmoji">${item.icon}</span>
-        <div class="moduleName">${item.name}</div>
-        <div class="moduleHint">${item.desc}</div>
-        <div class="miniBadges">
-          <span class="miniBadge ${kind}">${kind==="public"?"PUBLIC":"PRO"}</span>
-          <span class="miniBadge ${sc(item.status)}">${item.status}</span>
-          ${item.loco?`<span class="miniBadge loco">LOCO</span>`:""}
-          ${fav?`<span class="miniBadge fav">FAVORI</span>`:""}
+          <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <button id="installBtnBottom" class="btn btn-primary" type="button">Installer l’app</button>
+            <a class="btn btn-secondary" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">Voir la vision</a>
+          </div>
         </div>
-        <div class="openHint">↗ OUVRIR</div>
-      </a>
-    </div>`;
-  }
+      </div>
+    </section>
+  </main>
 
-  function bindModuleInteractions(container){
-    if(!container) return;
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div>© <span id="year"></span> DIGIYLYFE — Écosystème business enraciné.</div>
+      <div>Paiement direct au professionnel • Lecture claire • Terrain d’abord</div>
+    </div>
+  </footer>
 
-    container.querySelectorAll(".moduleBtn[data-key]").forEach(el=>{
-      el.addEventListener("mouseenter",()=>{
-        curKey=el.getAttribute("data-key");
-        curKind=el.getAttribute("data-kind");
-        updateFocus();
-        document.querySelectorAll(".moduleBtn").forEach(b=>b.classList.remove("active"));
-        el.classList.add("active");
+  <script>
+    (() => {
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      const installButtons = [
+        document.getElementById('installBtnTop'),
+        document.getElementById('installBtnHero'),
+        document.getElementById('installBtnBanner'),
+        document.getElementById('installBtnBottom')
+      ].filter(Boolean);
+
+      const iosHint = document.getElementById('iosHint');
+      const installBanner = document.getElementById('installBanner');
+
+      let deferredPrompt = null;
+
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const isInStandalone =
+        window.matchMedia('(display-mode: standalone)').matches ||
+        window.navigator.standalone === true;
+
+      function showButtons(show){
+        installButtons.forEach(btn => {
+          btn.hidden = !show;
+          btn.style.display = show ? 'inline-flex' : 'none';
+        });
+      }
+
+      function showIOSHint(show){
+        if (!iosHint) return;
+        iosHint.classList.toggle('hidden', !show);
+      }
+
+      function hideInstallUI(){
+        showButtons(false);
+        if (installBanner) installBanner.classList.add('hidden');
+      }
+
+      function showInstallUI(){
+        showButtons(true);
+        if (installBanner) installBanner.classList.remove('hidden');
+      }
+
+      async function installApp(){
+        if (deferredPrompt) {
+          try {
+            deferredPrompt.prompt();
+            await deferredPrompt.userChoice;
+          } catch(e) {
+            console.warn('Prompt installation annulé ou indisponible', e);
+          } finally {
+            deferredPrompt = null;
+            if (!isIOS) hideInstallUI();
+          }
+          return;
+        }
+
+        if (isIOS && !isInStandalone) {
+          showIOSHint(true);
+          const target = iosHint || document.body;
+          target.scrollIntoView({ behavior:'smooth', block:'center' });
+          return;
+        }
+
+        showIOSHint(false);
+      }
+
+      installButtons.forEach(btn => {
+        btn.addEventListener('click', installApp);
       });
 
-      el.addEventListener("focus",()=>{
-        curKey=el.getAttribute("data-key");
-        curKind=el.getAttribute("data-kind");
-        updateFocus();
-        document.querySelectorAll(".moduleBtn").forEach(b=>b.classList.remove("active"));
-        el.classList.add("active");
-      });
-    });
-
-    container.querySelectorAll(".favToggle[data-fav-key]").forEach(btn=>{
-      btn.addEventListener("click",(e)=>{
+      window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
-        e.stopPropagation();
-        const kind=btn.getAttribute("data-fav-kind")||"public";
-        const key=btn.getAttribute("data-fav-key")||"";
-        toggleFavorite(kind,key);
+        deferredPrompt = e;
+        showInstallUI();
+        showIOSHint(false);
       });
-    });
-  }
 
-  function renderRail(container,modules,kind){
-    container.innerHTML=modules.map(item=>cardHTML(item,kind)).join("");
-    bindModuleInteractions(container);
-  }
+      window.addEventListener('appinstalled', () => {
+        deferredPrompt = null;
+        hideInstallUI();
+        showIOSHint(false);
+      });
 
-  function renderFavorites(){
-    const items=favoriteModules();
-    favCountPill.textContent=items.length<=1?`${items.length} FAVORI`:`${items.length} FAVORIS`;
-
-    if(!items.length){
-      favRail.innerHTML="";
-      favEmpty.style.display="block";
-      return;
-    }
-
-    favEmpty.style.display="none";
-    favRail.innerHTML=items.map(item=>cardHTML(item,item.kind)).join("");
-    bindModuleInteractions(favRail);
-  }
-
-  function updateFocus(){
-    const item=getMod(curKey,curKind);
-    const href=wr(L[item.key]||HOME);
-
-    focusIcon.textContent=item.icon;
-    focusLabel.textContent=item.name;
-    focusHint.textContent=item.desc;
-    focusKind.textContent=curKind==="public"?"PUBLIC":"PRO";
-    focusKind.className=`focusBadge ${curKind}`;
-    focusBadge.textContent=item.loco?(curKind==="public"?"👑 Locomotive business":"👑 Locomotive pro"):(curKind==="public"?"🌍 Porte publique":"🧰 Porte pro");
-    focusText.textContent=COPY[item.key]||item.desc;
-    focusOpenBtn.href=href;
-    heroOpenBtn.href=href;
-  }
-
-  function renderAll(){
-    renderFavorites();
-    renderRail(pubRail,PUB,"public");
-    renderRail(proRail,PRO,"pro");
-    updateFocus();
-  }
-
-  function bindRailHint(rail,hint){
-    function upd(){
-      const max=rail.scrollWidth-rail.clientWidth;
-      hint.style.display=(max>8&&window.innerWidth<=640&&rail.scrollLeft<=12)?"block":"none";
-    }
-    rail.addEventListener("scroll",upd,{passive:true});
-    window.addEventListener("resize",upd);
-    requestAnimationFrame(upd);
-  }
-
-  function bindArrows(rId,lId,rBId){
-    const rail=$(rId),left=$(lId),right=$(rBId);
-    if(!rail||!left||!right) return;
-
-    function getStep(){
-      const firstCard = rail.querySelector(".moduleBtn");
-      if(!firstCard) return 300;
-      const styles = window.getComputedStyle(rail);
-      const gap = parseInt(styles.columnGap || styles.gap || 14, 10) || 14;
-      return Math.round(firstCard.getBoundingClientRect().width + gap);
-    }
-
-    left.addEventListener("click",()=>{
-      rail.scrollBy({ left:-getStep(), behavior:"smooth" });
-    });
-
-    right.addEventListener("click",()=>{
-      rail.scrollBy({ left:getStep(), behavior:"smooth" });
-    });
-
-    function upd(){
-      const max=rail.scrollWidth-rail.clientWidth;
-      if(max<=8){
-        left.style.display="none";
-        right.style.display="none";
-        return;
+      if (isInStandalone) {
+        hideInstallUI();
+      } else if (isIOS) {
+        showInstallUI();
+        showIOSHint(true);
+      } else {
+        showButtons(false);
       }
-      left.style.display=rail.scrollLeft>8?"flex":"none";
-      right.style.display=rail.scrollLeft<max-8?"flex":"none";
-    }
 
-    rail.addEventListener("scroll",upd,{passive:true});
-    window.addEventListener("resize",upd);
-    requestAnimationFrame(upd);
-  }
-
-  function openExt(url){
-    window.open(wr(url),"_blank","noopener,noreferrer");
-  }
-
-  const menuMap={
-    "mn-market":L.market,
-    "mn-explore":L.explore,
-    "mn-loc":L.loc,
-    "mn-resatable":L.resaTable,
-    "mn-driver":L.driver,
-    "mn-chauffeurs":L.galerieChauffeurs,
-    "mn-jobs":L.jobs,
-    "mn-build":L.build,
-    "mn-ndimbal-annonces":L.ndimbalAnnonces,
-    "mn-pay":L.pay,
-    "mn-vaschezmoi":L.vasChezDigiy,
-    "mn-ndimbal-loc":L.ndimbalLoc,
-    "mn-ndimbal-map":L.ndimbalMap,
-    "mn-audio":L.audio,
-    "mn-ia":L.assistantIA,
-    "mn-tarifs":L.tarifs,
-    "mn-espace-pro":L.espacePro,
-    "mn-inscription-pro":L.inscriptionPro,
-    "mn-market-pro":L.marketPro,
-    "mn-caisse-pro":L.caissePro,
-    "mn-loc-pro":L.locPro,
-    "mn-resatable-pro":L.resaTablePro,
-    "mn-driver-pro":L.driverPro,
-    "mn-jobs-pro":L.jobsPro,
-    "mn-build-pro":L.buildPro,
-    "mn-explore-pro":L.explorePro,
-    "mn-pay-pro":L.payPro
-  };
-
-  Object.entries(menuMap).forEach(([id,url])=>{
-    const el=$(id);
-    if(el){
-      el.href=wr(url);
-      el.target="_blank";
-      el.rel="noopener noreferrer";
-    }
-  });
-
-  [["tarif-bubble-btn",L.tarifs],["knowledge-float-btn",L.assistantIA],["espace-pro-btn",L.espacePro],["vision-bubble-btn",L.audio]].forEach(([id,url])=>{
-    const el=$(id);
-    if(el) el.addEventListener("click",()=>openExt(url));
-  });
-
-  const nd=$("digiy-ndimbal"),qrM=$("qrModal");
-  const showNd=()=>{nd.classList.remove("hidden");nd.setAttribute("aria-hidden","false");};
-  const hideNd=()=>{nd.classList.add("hidden");nd.setAttribute("aria-hidden","true");};
-  const showQr=()=>{qrM.classList.remove("hidden");qrM.setAttribute("aria-hidden","false");};
-  const hideQr=()=>{qrM.classList.add("hidden");qrM.setAttribute("aria-hidden","true");};
-
-  const helpBtn=$("digiy-help-btn");
-  if(helpBtn) helpBtn.addEventListener("click",showNd);
-
-  const closeBtn=$("digiyCloseBtn");
-  if(closeBtn) closeBtn.addEventListener("click",hideNd);
-
-  if(nd){
-    nd.addEventListener("click",e=>{
-      if(e.target===nd){
-        hideNd();
-        return;
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').catch((err) => {
+            console.warn('Service worker non enregistré :', err);
+          });
+        });
       }
-      const b=e.target.closest("[data-action]");
-      if(!b) return;
-      hideNd();
-      const a=b.getAttribute("data-action");
-      if(a==="sell") openExt(L.ndimbalAnnonces);
-      else if(a==="job") openExt(L.jobs);
-      else if(a==="qr") showQr();
-    });
-  }
-
-  const qrClose=$("qrClose");
-  if(qrClose) qrClose.addEventListener("click",hideQr);
-  if(qrM) qrM.addEventListener("click",e=>{if(e.target===qrM) hideQr();});
-
-  const firstFav=favoriteModules()[0];
-  if(firstFav){
-    curKey=firstFav.key;
-    curKind=firstFav.kind;
-  }
-
-  renderAll();
-  bindRailHint(pubRail,pubHint);
-  bindRailHint(proRail,proHintEl);
-  bindArrows("publicRail","publicLeft","publicRight");
-  bindArrows("proRail","proLeft","proRight");
-})();
-</script>
+    })();
+  </script>
 </body>
 </html>
