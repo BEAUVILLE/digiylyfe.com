@@ -4,7 +4,8 @@ const ASSETS = [
   "./index.html",
   "./manifest.json",
   "./icon-192.png",
-  "./icon-512.png"
+  "./icon-512.png",
+  "./apple-touch-icon.png"
 ];
 
 self.addEventListener("install", (event) => {
@@ -19,7 +20,9 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((keys) =>
       Promise.all(
         keys.map((key) => {
-          if (key !== CACHE_NAME) return caches.delete(key);
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
         })
       )
     )
@@ -31,6 +34,8 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request))
+    caches.match(event.request).then((cached) => {
+      return cached || fetch(event.request);
+    })
   );
 });
