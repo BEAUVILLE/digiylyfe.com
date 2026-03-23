@@ -1313,56 +1313,395 @@
         </div>
       </nav>
 
-      <section class="digiyIntroBlock" id="intro-digiy">
-        <div class="digiyIntroInner">
-          <div class="digiyIntroBadge">Introduction · Méthode DIGIY</div>
+      <section id="intro-digiy">
+        <style>
+          #intro-digiy{
+            --bg:#07130f;
+            --bg2:#0c1d17;
+            --card:rgba(255,255,255,.06);
+            --line:rgba(255,255,255,.12);
+            --text:#f7f8f8;
+            --muted:#cfe0d7;
+            --gold:#f6c453;
+            --green:#22c55e;
+            --green2:#16a34a;
+            --shadow:0 20px 60px rgba(0,0,0,.28);
+            position:relative;
+            overflow:hidden;
+            margin:16px 18px 0;
+            border:1px solid rgba(246,196,83,.26);
+            border-radius:30px;
+            background:
+              radial-gradient(900px 500px at 10% 0%, rgba(246,196,83,.13), transparent 55%),
+              radial-gradient(700px 400px at 90% 20%, rgba(34,197,94,.16), transparent 55%),
+              linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+            color:var(--text);
+            box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.06);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          }
 
-          <h1 class="digiyIntroTitle">
-            Pourquoi <span class="gold">DIGIY</span> est simple et puissant
-          </h1>
+          #intro-digiy *{box-sizing:border-box;}
 
-          <p class="digiyIntroText">
-            DIGIY ne cherche pas à compliquer la vie du professionnel avec une usine lourde.
-            Nous construisons des fiches légères, claires et crédibles, capables de montrer
-            l’essentiel, de rassurer avec le terrain, et de pousser vers l’action directe.
-          </p>
+          #intro-digiy .wrap{
+            max-width:1180px;
+            margin:0 auto;
+            display:grid;
+            grid-template-columns:1.2fr .8fr;
+            gap:28px;
+            align-items:stretch;
+            padding:32px 22px;
+          }
 
-          <div class="digiyIntroFormula">
-            Google attire et rassure. DIGIY clarifie et convertit.
-          </div>
+          #intro-digiy .left,
+          #intro-digiy .right{
+            position:relative;
+            z-index:1;
+          }
 
-          <div class="digiyIntroActions">
-            <a class="btn primary digiyHeroBigBtn" href="https://digiylyfe.com/notre-methode.html">
-              ✨ Pourquoi DIGIY est simple et puissant
-            </a>
+          #intro-digiy .eyebrow{
+            display:inline-flex;
+            align-items:center;
+            gap:10px;
+            padding:10px 14px;
+            border:1px solid var(--line);
+            border-radius:999px;
+            background:rgba(255,255,255,.04);
+            color:var(--gold);
+            font-size:13px;
+            font-weight:800;
+            letter-spacing:.12em;
+            text-transform:uppercase;
+            backdrop-filter:blur(10px);
+          }
 
-            <a class="btn outline digiyHeroBigBtn" href="https://commencer-a-payer.digiylyfe.com/">
-              🚀 Activer ma fiche pro
-            </a>
+          #intro-digiy .dot{
+            width:8px;
+            height:8px;
+            border-radius:50%;
+            background:var(--green);
+            box-shadow:0 0 0 6px rgba(34,197,94,.12);
+          }
 
-            <button class="btn primary digiyHeroBigBtn" id="install-app-hero-btn" type="button">
-              📲 Installer l’app
-            </button>
+          #intro-digiy h1{
+            margin:20px 0 14px;
+            font-size:clamp(40px, 7vw, 76px);
+            line-height:.96;
+            letter-spacing:-.04em;
+            font-weight:900;
+            font-family:"Outfit",system-ui,-apple-system,sans-serif;
+          }
 
-            <a class="btn ghost digiyHeroBigBtn" href="https://beauville.github.io/digiy-audio/" target="_blank" rel="noopener">
-              🎧 Écouter la vision DIGIY
-            </a>
-          </div>
+          #intro-digiy h1 span{
+            display:block;
+            color:var(--gold);
+          }
 
-          <div class="digiyIntroMini">
-            <div class="digiyIntroMiniCard">
-              <b>Site léger</b>
-              <span>Les bonnes informations, les bons visuels, sans surcharge inutile.</span>
+          #intro-digiy .lead{
+            max-width:760px;
+            margin:0 0 22px;
+            font-size:clamp(18px, 2.2vw, 23px);
+            line-height:1.5;
+            color:var(--muted);
+            font-weight:500;
+          }
+
+          #intro-digiy .lead strong{
+            color:var(--text);
+            font-weight:800;
+          }
+
+          #intro-digiy .chips{
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin:0 0 24px;
+            padding:0;
+            list-style:none;
+          }
+
+          #intro-digiy .chips li{
+            padding:11px 14px;
+            border-radius:999px;
+            border:1px solid var(--line);
+            background:rgba(255,255,255,.05);
+            font-size:14px;
+            font-weight:700;
+            color:#eef7f1;
+          }
+
+          #intro-digiy .cta{
+            display:flex;
+            flex-wrap:wrap;
+            gap:12px;
+            margin:10px 0 18px;
+          }
+
+          #intro-digiy .btnx{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            min-height:54px;
+            padding:0 18px;
+            border-radius:14px;
+            font-weight:900;
+            text-decoration:none;
+            transition:transform .18s ease, opacity .18s ease, box-shadow .18s ease;
+            box-shadow:var(--shadow);
+            font-family:"Outfit",system-ui,-apple-system,sans-serif;
+            letter-spacing:.2px;
+            border:1px solid transparent;
+            cursor:pointer;
+          }
+
+          #intro-digiy .btnx:hover{
+            transform:translateY(-2px);
+            opacity:.97;
+          }
+
+          #intro-digiy .btnx-primary{
+            background:linear-gradient(180deg, var(--green) 0%, var(--green2) 100%);
+            color:#07130f;
+          }
+
+          #intro-digiy .btnx-secondary{
+            background:rgba(255,255,255,.06);
+            color:var(--text);
+            border-color:var(--line);
+            box-shadow:none;
+          }
+
+          #intro-digiy .mini{
+            font-size:14px;
+            color:#dbe8e0;
+            margin-top:10px;
+            line-height:1.6;
+          }
+
+          #intro-digiy .mini strong{
+            color:var(--gold);
+          }
+
+          #intro-digiy .card{
+            height:100%;
+            padding:24px;
+            border-radius:24px;
+            background:linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.04) 100%);
+            border:1px solid var(--line);
+            backdrop-filter:blur(10px);
+            box-shadow:var(--shadow);
+          }
+
+          #intro-digiy .card-top{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:14px;
+            margin-bottom:18px;
+          }
+
+          #intro-digiy .badge{
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            padding:8px 12px;
+            border-radius:999px;
+            background:rgba(246,196,83,.12);
+            color:var(--gold);
+            font-size:12px;
+            font-weight:800;
+            letter-spacing:.08em;
+            text-transform:uppercase;
+            border:1px solid rgba(246,196,83,.22);
+            font-family:"Outfit",system-ui,-apple-system,sans-serif;
+          }
+
+          #intro-digiy .identity{
+            display:grid;
+            gap:12px;
+            margin-bottom:18px;
+          }
+
+          #intro-digiy .identity .name{
+            font-size:26px;
+            font-weight:900;
+            letter-spacing:-.02em;
+            font-family:"Outfit",system-ui,-apple-system,sans-serif;
+          }
+
+          #intro-digiy .identity .meta{
+            color:var(--muted);
+            font-size:14px;
+            line-height:1.6;
+          }
+
+          #intro-digiy .proof{
+            display:grid;
+            gap:12px;
+            margin:20px 0;
+          }
+
+          #intro-digiy .proof-item{
+            display:flex;
+            gap:12px;
+            align-items:flex-start;
+            padding:14px;
+            border-radius:18px;
+            background:rgba(255,255,255,.04);
+            border:1px solid rgba(255,255,255,.08);
+          }
+
+          #intro-digiy .proof-num{
+            flex:0 0 34px;
+            width:34px;
+            height:34px;
+            border-radius:12px;
+            display:grid;
+            place-items:center;
+            background:rgba(34,197,94,.16);
+            color:#baf5ca;
+            font-weight:900;
+            font-size:14px;
+            font-family:"Outfit",system-ui,-apple-system,sans-serif;
+          }
+
+          #intro-digiy .proof-text{
+            font-size:14px;
+            line-height:1.6;
+            color:#e8f3ec;
+          }
+
+          #intro-digiy .proof-text strong{
+            color:var(--text);
+          }
+
+          #intro-digiy .manifesto{
+            padding-top:8px;
+            border-top:1px solid rgba(255,255,255,.10);
+            font-size:14px;
+            line-height:1.7;
+            color:#d8e6dd;
+          }
+
+          #intro-digiy .manifesto strong{
+            color:var(--gold);
+          }
+
+          @media (max-width: 920px){
+            #intro-digiy .wrap{
+              grid-template-columns:1fr;
+              padding:24px 16px;
+            }
+            #intro-digiy .card{
+              padding:20px;
+            }
+          }
+
+          @media (max-width: 640px){
+            #intro-digiy{
+              margin:12px 12px 0;
+              border-radius:24px;
+            }
+            #intro-digiy h1{
+              font-size:clamp(34px, 10vw, 54px);
+            }
+            #intro-digiy .lead{
+              font-size:17px;
+            }
+            #intro-digiy .cta{
+              flex-direction:column;
+            }
+            #intro-digiy .btnx{
+              width:100%;
+            }
+          }
+        </style>
+
+        <div class="wrap">
+          <div class="left">
+            <div class="eyebrow">
+              <span class="dot"></span>
+              DIGIYLYFE — DIRECT CHEZ LE PRO
             </div>
 
-            <div class="digiyIntroMiniCard">
-              <b>Présence forte</b>
-              <span>Vidéo, Google Maps, lieu, prix, confiance locale et lecture claire.</span>
+            <h1>
+              DIGIY TE REPRÉSENTE.
+              <span>PAS L’INVERSE.</span>
+            </h1>
+
+            <p class="lead">
+              La présence digitale vivante des pros du terrain.
+              <strong>Ta fiche. Ton QR. Ton client.</strong>
+              DIGIYLYFE te donne une vraie porte d’entrée sur le web, en ton nom propre,
+              sans t’effacer derrière une grande plateforme.
+            </p>
+
+            <ul class="chips">
+              <li>Ton nom devant</li>
+              <li>Ton activité au centre</li>
+              <li>QR professionnel</li>
+              <li>Fiche évolutive</li>
+              <li>Contact direct</li>
+              <li>Réservation / demande</li>
+            </ul>
+
+            <div class="cta">
+              <a class="btnx btnx-primary" href="#public">Voir les portes DIGIY</a>
+              <a class="btnx btnx-secondary" href="https://commencer-a-payer.digiylyfe.com/">Activer ma présence</a>
+              <button class="btnx btnx-primary" id="install-app-hero-btn" type="button">📲 Installer l’app</button>
+              <a class="btnx btnx-secondary" href="https://beauville.github.io/digiy-audio/" target="_blank" rel="noopener">🎧 Écouter la vision DIGIY</a>
             </div>
 
-            <div class="digiyIntroMiniCard">
-              <b>Action directe</b>
-              <span>WhatsApp, appel, réservation, commande ou prise de contact rapide.</span>
+            <p class="mini">
+              <strong>DIGIYLYFE :</strong> hébergement, réservation, resto, boutique, artisan, entrepreneur, chauffeur.
+            </p>
+          </div>
+
+          <div class="right">
+            <div class="card">
+              <div class="card-top">
+                <div class="badge">Présence en nom propre</div>
+              </div>
+
+              <div class="identity">
+                <div class="name">TON ACTIVITÉ MÉRITE SA PROPRE PORTE D’ENTRÉE</div>
+                <div class="meta">
+                  Avec DIGIYLYFE, le client ne tombe plus seulement sur une plateforme.
+                  Il arrive <strong>chez le pro</strong> : sa fiche, ses clips, ses infos,
+                  son contact, sa relation directe.
+                </div>
+              </div>
+
+              <div class="proof">
+                <div class="proof-item">
+                  <div class="proof-num">01</div>
+                  <div class="proof-text">
+                    <strong>Tu existes en ton nom.</strong><br>
+                    La fiche sert le professionnel, pas l’intermédiaire.
+                  </div>
+                </div>
+
+                <div class="proof-item">
+                  <div class="proof-num">02</div>
+                  <div class="proof-text">
+                    <strong>Ta présence évolue avec le temps.</strong><br>
+                    Photos, clips, offres, nouveautés, services : ta vitrine grandit avec toi.
+                  </div>
+                </div>
+
+                <div class="proof-item">
+                  <div class="proof-num">03</div>
+                  <div class="proof-text">
+                    <strong>Le client revient direct chez toi.</strong><br>
+                    WhatsApp, appel, réservation, demande, repérage local, QR partageable.
+                  </div>
+                </div>
+              </div>
+
+              <div class="manifesto">
+                <strong>DIGIYLYFE ajoute de la valeur au pro.</strong>
+                Il ne lui vole pas sa lumière. Il le renforce dans sa présence sur le net,
+                libre dans son image, libre dans son rythme, libre dans ses choix.
+              </div>
             </div>
           </div>
         </div>
