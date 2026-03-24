@@ -1035,6 +1035,19 @@
       color:#fff3cf;
     }
 
+    #install-app-btn{
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      background:linear-gradient(135deg,#00a651,#00853f);
+      border-color:rgba(255,255,255,.18);
+      color:#fff;
+      box-shadow:0 14px 36px rgba(0,133,63,.28);
+    }
+
+    #install-app-btn:hover{transform:translateX(-50%) translateY(-2px);border-color:rgba(246,196,83,.35);}
+    #install-app-btn:active{transform:translateX(-50%) scale(.98);}
+
     .ndimbal,.qrModal{
       position:fixed;
       inset:0;
@@ -1345,6 +1358,7 @@
       .floatBtn{padding:11px 13px;font-size:13px;}
       #espace-pro-btn{left:10px;bottom:14px;}
       #explore-float-btn{right:10px;bottom:14px;}
+      #install-app-btn{bottom:68px;}
       .brandText .subtitle{max-width:150px}
       .moduleBtn{min-width:248px;max-width:286px;min-height:198px;}
       .railHint{font-size:19px;}
@@ -1659,6 +1673,7 @@
 
   <button id="espace-pro-btn" class="floatBtn" type="button">🧰 Espace PRO</button>
   <button id="explore-float-btn" class="floatBtn" type="button">🗺️ Explorer</button>
+  <button id="install-app-btn" class="floatBtn" type="button">📲 Installer l'app</button>
 
   <div id="digiy-ndimbal" class="ndimbal hidden" aria-hidden="true">
     <div class="ndimbalBox" role="dialog" aria-modal="true">
@@ -2094,7 +2109,7 @@
   bindArrows("proRail","proLeft","proRight");
 
   // Install
-  const installButtons=[$("install-app-hero-btn")].filter(Boolean);
+  const installButtons=[$("install-app-btn"),$("install-app-hero-btn")].filter(Boolean);
   const installModal=$("installModal");
   const installTitle=$("installTitle");
   const installText=$("installText");
