@@ -1384,14 +1384,14 @@
           <span class="rowLabel c">CLIENT</span>
           <a class="mBtn gold" id="mn-explore" href="#">🗺️ Explore</a>
           <a class="mBtn gold" id="mn-driver" href="#">🚗 Driver</a>
-          <a class="mBtn gold" id="mn-chauffeurs" href="#">👑 Driver Ambassadeur</a>
+          <a class="mBtn gold" id="mn-chauffeurs" href="#">👑 Ambassadeur</a>
           <a class="mBtn gold" id="mn-loc" href="#">🏠 LOC</a>
-          <a class="mBtn gold" id="mn-resatable" href="#">📅 RÉSA MULTI-BUSINESS</a>
+          <a class="mBtn gold" id="mn-resatable" href="#">📅 RÉSA</a>
           <a class="mBtn gold" id="mn-build" href="#">🏗️ Build</a>
           <a class="mBtn gold" id="mn-mon-commerce" href="#">👜 Mon Commerce</a>
           <a class="mBtn gold" id="mn-market" href="#">🛍️ Market</a>
           <a class="mBtn gold" id="mn-jobs" href="#">💼 Jobs</a>
-          <a class="mBtn gold" id="mn-ndimbal-annonces" href="#">📢 NDIMBAL Annonces</a>
+          <a class="mBtn gold" id="mn-ndimbal-annonces" href="#">📢 Annonces</a>
           <a class="mBtn gold" id="mn-pay" href="#">💳 PAY</a>
           <a class="mBtn gold" id="mn-vaschezmoi" href="#">📍 Vas chez DIGIY</a>
           <a class="mBtn gold" id="mn-ndimbal-loc" href="#">🏡 NDIMBAL Loc</a>
@@ -1795,24 +1795,26 @@
     payPro:"https://pro-pay.digiylyfe.com/pin.html?redirect=cockpit"
   };
 
-  // ─── HIÉRARCHIE CORRIGÉE : EXPLORE EN LOCOMOTIVE ───────
+  // ─── HIÉRARCHIE FINALE : EXPLORE LOCO · 8 DEVANT · SECONDAIRES DERRIÈRE ───
   const PUB=[
-    {key:"explore",    name:"DIGIY EXPLORE",         icon:"🗺️", desc:"Découvrir les spots & la région",       status:"LIVE", loco:true},
-    {key:"driver",     name:"DIGIY DRIVER",           icon:"🚗", desc:"Commander une course maintenant",       status:"LIVE"},
-    {key:"galerieChauffeurs",name:"DRIVER AMBASSADEUR",icon:"👑",desc:"La mobilité avec style et savoir-être", status:"LIVE"},
-    {key:"loc",        name:"DIGIY LOC",              icon:"🏠", desc:"Trouver un logement chez le pro",       status:"LIVE"},
-    {key:"resaTable",  name:"RÉSA MULTI-BUSINESS",    icon:"📅", desc:"Réserver un rendez-vous ou un service", status:"LIVE"},
-    {key:"build",      name:"DIGIY BUILD",            icon:"🏗️", desc:"Artisans & services de construction",   status:"BETA"},
-    {key:"monCommerce",name:"MON COMMERCE",           icon:"👜", desc:"Caisse élégante pour boutiques & mode",  status:"LIVE"},
-    {key:"market",     name:"DIGIY MARKET",           icon:"🛍️", desc:"Acheter / vendre — échanges locaux",    status:"LIVE"},
-    {key:"jobs",       name:"DIGIY JOBS",             icon:"💼", desc:"Offres d'emploi",                      status:"LIVE"},
-    {key:"ndimbalAnnonces",name:"NDIMBAL Annonces",   icon:"📢", desc:"Publier / vendre",                     status:"LIVE"},
-    {key:"pay",        name:"DIGIY PAY",              icon:"💳", desc:"Portefeuille digital",                  status:"LIVE"},
-    {key:"vasChezDigiy",name:"Vas chez DIGIY",        icon:"📍", desc:"Portail terrain DIGIY",                status:"LIVE"},
-    {key:"ndimbalLoc", name:"NDIMBAL Loc",            icon:"🏡", desc:"Locations NDIMBAL",                    status:"LIVE"},
-    {key:"ndimbalMap", name:"NDIMBAL Map",            icon:"🗺️", desc:"Carte des annonces",                   status:"LIVE"},
-    {key:"audio",      name:"DIGIY AUDIO",            icon:"🎵", desc:"Écouter les contenus",                 status:"LIVE"},
-    {key:"assistantIA",name:"Assistant IA",           icon:"🧠", desc:"Assistant DIGIY Knowledge",            status:"LIVE"}
+    // ── DEVANT — le territoire vivant ──
+    {key:"explore",         name:"DIGIY EXPLORE",       icon:"🗺️", desc:"Découvrir les spots & la région",      status:"LIVE", loco:true},
+    {key:"driver",          name:"DIGIY DRIVER",         icon:"🚗", desc:"Commander une course maintenant",      status:"LIVE"},
+    {key:"galerieChauffeurs",name:"DRIVER AMBASSADEUR",  icon:"👑", desc:"La mobilité avec style et savoir-être",status:"LIVE"},
+    {key:"loc",             name:"DIGIY LOC",            icon:"🏠", desc:"Trouver un logement chez le pro",      status:"LIVE"},
+    {key:"resaTable",       name:"RÉSA MULTI-BUSINESS",  icon:"📅", desc:"Réserver un rendez-vous ou un service",status:"LIVE"},
+    {key:"build",           name:"DIGIY BUILD",          icon:"🏗️", desc:"Artisans & services de construction",  status:"BETA"},
+    {key:"monCommerce",     name:"MON COMMERCE",         icon:"👜", desc:"Caisse élégante pour boutiques & mode", status:"LIVE"},
+    {key:"market",          name:"DIGIY MARKET",         icon:"🛍️", desc:"Acheter / vendre — échanges locaux",   status:"LIVE"},
+    // ── UN CRAN DERRIÈRE — utile mais pas au premier souffle ──
+    {key:"jobs",            name:"DIGIY JOBS",           icon:"💼", desc:"Offres d'emploi",                     status:"LIVE"},
+    {key:"ndimbalAnnonces", name:"NDIMBAL Annonces",     icon:"📢", desc:"Publier / vendre",                    status:"LIVE"},
+    {key:"pay",             name:"DIGIY PAY",            icon:"💳", desc:"Portefeuille digital",                 status:"LIVE"},
+    {key:"vasChezDigiy",    name:"Vas chez DIGIY",       icon:"📍", desc:"Portail terrain DIGIY",               status:"LIVE"},
+    {key:"ndimbalLoc",      name:"NDIMBAL Loc",          icon:"🏡", desc:"Locations NDIMBAL",                   status:"LIVE"},
+    {key:"ndimbalMap",      name:"NDIMBAL Map",          icon:"🗺️", desc:"Carte des annonces",                  status:"LIVE"},
+    {key:"audio",           name:"DIGIY AUDIO",          icon:"🎵", desc:"Écouter les contenus",                status:"LIVE"},
+    {key:"assistantIA",     name:"Assistant IA",         icon:"🧠", desc:"Assistant DIGIY Knowledge",           status:"LIVE"}
   ];
 
   const PRO=[
