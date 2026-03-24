@@ -1019,24 +1019,21 @@
     .floatBtn:hover{border-color:rgba(246,196,83,.35);transform:translateY(-2px)}
     .floatBtn:active{transform:scale(.98)}
 
-    #tarif-bubble-btn{right:14px;bottom:18px;}
-    #digiy-help-btn{right:14px;bottom:68px;}
-    #knowledge-float-btn{right:14px;bottom:118px;}
-    #espace-pro-btn{left:14px;bottom:18px;}
-    #vision-bubble-btn{left:14px;bottom:68px;}
-
-    #install-app-btn{
-      left:50%;
+    #espace-pro-btn{
+      left:14px;
       bottom:18px;
-      transform:translateX(-50%);
-      background:linear-gradient(135deg,#00a651,#00853f);
-      border-color:rgba(255,255,255,.18);
-      color:#fff;
-      box-shadow:0 14px 36px rgba(0,133,63,.28);
+      background:linear-gradient(135deg,rgba(0,166,81,.22),rgba(0,0,0,.55));
+      border-color:rgba(0,166,81,.38);
+      color:#dcffe8;
     }
 
-    #install-app-btn:hover{transform:translateX(-50%) translateY(-2px);border-color:rgba(246,196,83,.35);}
-    #install-app-btn:active{transform:translateX(-50%) scale(.98);}
+    #explore-float-btn{
+      right:14px;
+      bottom:18px;
+      background:linear-gradient(135deg,rgba(246,196,83,.16),rgba(0,0,0,.55));
+      border-color:rgba(246,196,83,.36);
+      color:#fff3cf;
+    }
 
     .ndimbal,.qrModal{
       position:fixed;
@@ -1346,12 +1343,8 @@
 
     @media(max-width:480px){
       .floatBtn{padding:11px 13px;font-size:13px;}
-      #tarif-bubble-btn{right:10px;bottom:14px;}
-      #digiy-help-btn{right:10px;bottom:60px;}
-      #knowledge-float-btn{right:10px;bottom:106px;}
       #espace-pro-btn{left:10px;bottom:14px;}
-      #vision-bubble-btn{left:10px;bottom:60px;}
-      #install-app-btn{bottom:106px;}
+      #explore-float-btn{right:10px;bottom:14px;}
       .brandText .subtitle{max-width:150px}
       .moduleBtn{min-width:248px;max-width:286px;min-height:198px;}
       .railHint{font-size:19px;}
@@ -1639,48 +1632,6 @@
           </div>
         </section>
 
-        <section class="storyBlock" id="vision">
-          <div class="storyWrap">
-            <div class="hero">
-              <div class="heroLeft">
-                <div class="eyebrow">DIGIYLYFE &#x221E; · TERRITOIRE · AFRIQUE · TERRAIN VIVANT</div>
-                <h1>Un lieu. Des gens. Une économie.<br><span class="gold">Enracinée, connectée, en mouvement.</span></h1>
-                <p>DIGIYLYFE part du <strong>territoire</strong> — ses spots, ses pros, ses services. EXPLORE ouvre la porte. Le reste suit naturellement : bouger, dormir, réserver, construire, vendre.</p>
-
-                <div class="ctaRow">
-                  <a class="btn primary" id="heroOpenBtn" href="#" target="_blank" rel="noopener">🗺️ Porte territoire</a>
-                  <a class="btn outline" href="#pro">🧰 Porte PRO</a>
-                  <a class="btn ghost" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Vision</a>
-                </div>
-
-                <div class="heroChips">
-                  <span class="chip"><span class="chipK">0%</span><span class="chipV">commission</span></span>
-                  <span class="chip"><span class="chipK">Paiement</span><span class="chipV">direct</span></span>
-                  <span class="chip"><span class="chipK">Territoire</span><span class="chipV">vivant</span></span>
-                </div>
-              </div>
-
-              <aside class="heroRight">
-                <div class="heroImgFrame">
-                  <img
-                    src="https://digiylyfe.com/wp-content/uploads/2025/09/Image-6.jpeg"
-                    alt="DIGIYLYFE — Petite Côte, territoire vivant"
-                    loading="eager"
-                    width="768"
-                    height="512"
-                    onerror="this.onerror=null;this.src='https://digiylyfe.net/wp-content/uploads/2026/03/digiy_services_avec_logo.webp'"
-                  />
-                  <div class="heroImgBadge">
-                    <span class="heroImgTag">🗺️ EXPLORE</span>
-                    <span class="heroImgTag">🏖️ Petite Côte</span>
-                    <span class="heroImgTag">Saly · Mbour</span>
-                    <span class="heroImgTag">0% commission</span>
-                  </div>
-                </div>
-              </aside>
-            </div>
-          </div>
-        </section>
 
         <section class="showcaseSection" id="signature-digiy">
           <div class="showcaseInner">
@@ -1706,12 +1657,8 @@
     </div>
   </div>
 
-  <button id="tarif-bubble-btn" class="floatBtn" type="button">🏷️ Tarifs</button>
-  <button id="digiy-help-btn" class="floatBtn" type="button">&#x267E;️ NDIMBAL</button>
-  <button id="knowledge-float-btn" class="floatBtn" type="button">🧠 IA</button>
-  <button id="espace-pro-btn" class="floatBtn" type="button">🧰 PRO</button>
-  <button id="vision-bubble-btn" class="floatBtn" type="button">🎧 AUDIO</button>
-  <button id="install-app-btn" class="floatBtn" type="button">📲 Installer l'app</button>
+  <button id="espace-pro-btn" class="floatBtn" type="button">🧰 Espace PRO</button>
+  <button id="explore-float-btn" class="floatBtn" type="button">🗺️ Explorer</button>
 
   <div id="digiy-ndimbal" class="ndimbal hidden" aria-hidden="true">
     <div class="ndimbalBox" role="dialog" aria-modal="true">
@@ -2011,7 +1958,7 @@
     focusBadge.textContent=item.loco?(curKind==="public"?"🗺️ Porte territoire":"👑 Locomotive pro"):(curKind==="public"?"🌍 Porte publique":"🧰 Porte pro");
     focusText.textContent=COPY[item.key]||item.desc;
     focusOpenBtn.href=href;
-    heroOpenBtn.href=href;
+    if(heroOpenBtn) heroOpenBtn.href=href;
   }
 
   function renderAll(){
@@ -2106,10 +2053,11 @@
     if(el){el.href=wr(url);el.target="_blank";el.rel="noopener noreferrer";}
   });
 
-  [["tarif-bubble-btn",L.tarifs],["knowledge-float-btn",L.assistantIA],["espace-pro-btn",L.espacePro],["vision-bubble-btn",L.audio]].forEach(([id,url])=>{
-    const el=$(id);
-    if(el)el.addEventListener("click",()=>openExt(url));
-  });
+  // Float buttons — 2 seulement
+  const espaceProBtn=$("espace-pro-btn");
+  if(espaceProBtn) espaceProBtn.addEventListener("click",()=>openExt(L.espacePro));
+  const exploreFloatBtn=$("explore-float-btn");
+  if(exploreFloatBtn) exploreFloatBtn.addEventListener("click",()=>openExt(L.explore));
 
   const nd=$("digiy-ndimbal"),qrM=$("qrModal");
   const showNd=()=>{nd.classList.remove("hidden");nd.setAttribute("aria-hidden","false");};
@@ -2117,8 +2065,7 @@
   const showQr=()=>{qrM.classList.remove("hidden");qrM.setAttribute("aria-hidden","false");};
   const hideQr=()=>{qrM.classList.add("hidden");qrM.setAttribute("aria-hidden","true");};
 
-  const helpBtn=$("digiy-help-btn");
-  if(helpBtn)helpBtn.addEventListener("click",showNd);
+  // NDIMBAL accessible via hero CTA
   const closeBtn=$("digiyCloseBtn");
   if(closeBtn)closeBtn.addEventListener("click",hideNd);
   if(nd){
@@ -2147,7 +2094,7 @@
   bindArrows("proRail","proLeft","proRight");
 
   // Install
-  const installButtons=[$("install-app-btn"),$("install-app-hero-btn")].filter(Boolean);
+  const installButtons=[$("install-app-hero-btn")].filter(Boolean);
   const installModal=$("installModal");
   const installTitle=$("installTitle");
   const installText=$("installText");
