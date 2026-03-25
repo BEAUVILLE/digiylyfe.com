@@ -1035,6 +1035,12 @@
       color:#fff3cf;
     }
 
+    #digiy-help-btn{
+      right:14px;
+      bottom:68px;
+      background:rgba(6,33,22,.62);
+    }
+
     #install-app-btn{
       left:50%;
       bottom:18px;
@@ -1358,6 +1364,7 @@
       .floatBtn{padding:11px 13px;font-size:13px;}
       #espace-pro-btn{left:10px;bottom:14px;}
       #explore-float-btn{right:10px;bottom:14px;}
+      #digiy-help-btn{right:10px;bottom:60px;}
       #install-app-btn{bottom:68px;}
       .brandText .subtitle{max-width:150px}
       .moduleBtn{min-width:248px;max-width:286px;min-height:198px;}
@@ -1674,6 +1681,7 @@
   <button id="espace-pro-btn" class="floatBtn" type="button">🧰 Espace PRO</button>
   <button id="explore-float-btn" class="floatBtn" type="button">🗺️ Explorer</button>
   <button id="install-app-btn" class="floatBtn" type="button">📲 Installer l'app</button>
+  <button id="digiy-help-btn" class="floatBtn" type="button">∞ NDIMBAL</button>
 
   <div id="digiy-ndimbal" class="ndimbal hidden" aria-hidden="true">
     <div class="ndimbalBox" role="dialog" aria-modal="true">
@@ -2081,6 +2089,8 @@
   const hideQr=()=>{qrM.classList.add("hidden");qrM.setAttribute("aria-hidden","true");};
 
   // NDIMBAL accessible via hero CTA
+  const helpBtn=$("digiy-help-btn");
+  if(helpBtn) helpBtn.addEventListener("click",showNd);
   const closeBtn=$("digiyCloseBtn");
   if(closeBtn)closeBtn.addEventListener("click",hideNd);
   if(nd){
