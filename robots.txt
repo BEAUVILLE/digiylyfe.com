@@ -1,0 +1,129 @@
+# ============================================================
+# DIGIYLYFE — robots.txt
+# Doctrine : Façade ouverte. Cœur protégé.
+# L'Afrique enracinée, connectée au monde. ∞
+# ============================================================
+
+# --- CRAWLERS IA & MOTEURS DE RECHERCHE ---
+# Autorisés sur toute la façade publique
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /explore/
+Allow: /market/
+Allow: /jobs/
+Allow: /build/
+Allow: /loc/
+Allow: /resa/
+Allow: /driver/
+Allow: /caisse/
+Allow: /pay/
+
+# --- PAGES SENSIBLES : ACCÈS INTERDIT ---
+# Espaces pro, PIN, cockpit, admin, sessions
+
+Disallow: /pin.html
+Disallow: /cockpit.html
+Disallow: /dashboard-pro.html
+Disallow: /admin.html
+Disallow: /admin/
+Disallow: /pro/
+Disallow: /guard.js
+
+# Patterns sensibles (slug, token, session, phone)
+Disallow: /*?slug=
+Disallow: /*?phone=
+Disallow: /*?token=
+Disallow: /*?session=
+Disallow: /*?pin=
+
+# Modules PRO internes
+Disallow: /pro-explore/
+Disallow: /caisse-pro/
+Disallow: /driver-pro/
+Disallow: /loc-pro/
+Disallow: /jobs-pro/
+Disallow: /build-pro/
+Disallow: /pay-pro/
+Disallow: /market-pro/
+
+# API & endpoints métiers
+Disallow: /api/
+Disallow: /.supabase/
+Disallow: /rpc/
+Disallow: /functions/
+
+# ============================================================
+# CRAWLERS IA — RÈGLES SPÉCIFIQUES
+# Bienvenue sur la façade. Pas dans la maison.
+# ============================================================
+
+User-agent: GPTBot
+Allow: /
+Disallow: /pro/
+Disallow: /pin.html
+Disallow: /cockpit.html
+Disallow: /api/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /pro/
+Disallow: /pin.html
+Disallow: /cockpit.html
+Disallow: /api/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /pro/
+Disallow: /pin.html
+Disallow: /cockpit.html
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /pro/
+Disallow: /pin.html
+Disallow: /cockpit.html
+Disallow: /api/
+
+User-agent: Applebot
+Allow: /
+Disallow: /pro/
+Disallow: /pin.html
+Disallow: /cockpit.html
+Disallow: /api/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /pro/
+Disallow: /pin.html
+Disallow: /cockpit.html
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /pro/
+Disallow: /pin.html
+Disallow: /cockpit.html
+Disallow: /api/
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /pro/
+Disallow: /pin.html
+Disallow: /cockpit.html
+Disallow: /api/
+
+User-agent: meta-externalagent
+Allow: /
+Disallow: /pro/
+Disallow: /pin.html
+Disallow: /cockpit.html
+Disallow: /api/
+
+# ============================================================
+# SITEMAP
+# ============================================================
+
+Sitemap: https://digiylyfe.com/sitemap.xml
