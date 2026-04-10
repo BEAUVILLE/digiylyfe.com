@@ -1,4 +1,5 @@
 
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -216,68 +217,39 @@
     @media(max-width:920px){#intro-digiy .wrap{grid-template-columns:1fr;padding:24px 16px;}}
     @media(max-width:640px){#intro-digiy{margin:12px 12px 0;border-radius:24px;}#intro-digiy .cta{flex-direction:column;}#intro-digiy .btnx{width:100%;}}
 
-    
-    /* ── BANDE DE FORCE ── */
+    .heroPulse{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px;}
+    .heroPulseCard{padding:14px 12px;border-radius:18px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));box-shadow:0 12px 30px rgba(0,0,0,.16);}
+    .heroPulseWord{font-family:var(--fontA);font-size:clamp(18px,2vw,26px);font-weight:1000;line-height:1;color:#fff;letter-spacing:-.03em;}
+    .heroPulseNote{margin-top:8px;font-size:12.5px;line-height:1.45;color:#d5e5dc;}
+    @media(max-width:980px){.heroPulse{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    @media(max-width:640px){.heroPulse{grid-template-columns:1fr;}}
+
+    /* ── DIGIY · RUPTURE ── */
     #force-digiy{
       margin:16px 18px 0;
-      border:1px solid rgba(246,196,83,.24);
-      border-radius:28px;
+      border:1px solid rgba(246,196,83,.26);
+      border-radius:30px;
       overflow:hidden;
       background:
-        radial-gradient(780px 360px at 0% 0%,rgba(246,196,83,.10),transparent 56%),
-        radial-gradient(820px 380px at 100% 10%,rgba(0,166,81,.13),transparent 58%),
-        linear-gradient(180deg,rgba(10,48,34,.82),rgba(8,28,20,.80));
-      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.05);
+        radial-gradient(900px 420px at 0% 0%,rgba(246,196,83,.14),transparent 56%),
+        radial-gradient(900px 420px at 100% 0%,rgba(0,166,81,.16),transparent 58%),
+        linear-gradient(180deg,rgba(10,48,34,.90),rgba(8,28,20,.84));
+      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.06);
     }
-    #force-digiy .forceInner{padding:22px 20px 24px;}
-    #force-digiy .forceTop{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;}
-    #force-digiy .forceKicker{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 12px;border-radius:999px;
-      border:1px solid rgba(246,196,83,.24);
-      background:rgba(246,196,83,.08);color:#fff0c8;
-      font-family:var(--fontA);font-size:11px;font-weight:1000;letter-spacing:.10em;text-transform:uppercase;
-    }
-    #force-digiy h2{
-      margin:10px 0 0;
-      font-family:var(--fontA);font-size:clamp(24px,3.5vw,42px);
-      line-height:1.08;font-weight:1000;letter-spacing:-.03em;color:#fff;
-      max-width:16ch;
-    }
-    #force-digiy .forceLead{
-      max-width:60ch;color:rgba(248,250,252,.82);
-      font-size:14.5px;line-height:1.65;
-    }
-    #force-digiy .forceGrid{
-      display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:12px;margin-top:18px;
-    }
-    #force-digiy .forceCard{
-      padding:16px;border-radius:20px;
-      border:1px solid rgba(255,255,255,.09);
-      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
-      box-shadow:0 14px 36px rgba(0,0,0,.18);
-    }
-    #force-digiy .forceIcon{
-      width:42px;height:42px;border-radius:14px;display:grid;place-items:center;
-      font-size:20px;background:rgba(0,166,81,.14);border:1px solid rgba(0,166,81,.22);margin-bottom:12px;
-    }
-    #force-digiy .forceCard h3{
-      margin:0;font-family:var(--fontA);font-size:16px;font-weight:900;line-height:1.15;color:#fff;
-    }
-    #force-digiy .forceCard p{
-      margin:8px 0 0;font-size:13.5px;line-height:1.62;color:rgba(248,250,252,.78);
-    }
-    #force-digiy .forceFoot{
-      margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);
-      font-family:var(--fontA);font-size:15px;font-weight:900;line-height:1.6;color:#86efac;
-    }
-    @media(max-width:980px){#force-digiy .forceGrid{grid-template-columns:repeat(2,minmax(0,1fr));}}
-    @media(max-width:640px){
-      #force-digiy{margin:14px 12px 0;border-radius:24px;}
-      #force-digiy .forceInner{padding:18px 16px 20px;}
-      #force-digiy .forceGrid{grid-template-columns:1fr;}
-    }
+    #force-digiy .forceInner{padding:26px 22px 26px;}
+    #force-digiy .forceTop{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;align-items:end;}
+    #force-digiy .forceKicker{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(246,196,83,.24);background:rgba(246,196,83,.08);color:#fff0c8;font-family:var(--fontA);font-size:11px;font-weight:1000;letter-spacing:.10em;text-transform:uppercase;}
+    #force-digiy h2{margin:12px 0 0;font-family:var(--fontA);font-size:clamp(30px,4.5vw,58px);line-height:.98;font-weight:1000;letter-spacing:-.04em;color:#fff;max-width:14ch;}
+    #force-digiy .forceLead{max-width:62ch;color:rgba(248,250,252,.84);font-size:15px;line-height:1.72;}
+    #force-digiy .forceGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:20px;}
+    #force-digiy .forceCard{padding:18px 16px 16px;border-radius:24px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));box-shadow:0 18px 42px rgba(0,0,0,.22);min-height:200px;}
+    #force-digiy .forceIcon{display:inline-flex;align-items:center;justify-content:center;min-width:54px;height:54px;padding:0 16px;border-radius:16px;font-family:var(--fontA);font-size:24px;font-weight:1000;background:rgba(0,166,81,.16);border:1px solid rgba(0,166,81,.24);margin-bottom:14px;color:#fff;}
+    #force-digiy .forceCard h3{margin:0;font-family:var(--fontA);font-size:24px;font-weight:1000;line-height:1.02;color:#fff;letter-spacing:-.03em;}
+    #force-digiy .forceCard p{margin:10px 0 0;font-size:14px;line-height:1.65;color:rgba(248,250,252,.80);}
+    #force-digiy .forceFoot{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);font-family:var(--fontA);font-size:18px;font-weight:1000;line-height:1.6;color:#86efac;}
+    @media(max-width:980px){#force-digiy .forceTop{grid-template-columns:1fr;}#force-digiy .forceGrid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    @media(max-width:640px){#force-digiy{margin:14px 12px 0;border-radius:24px;}#force-digiy .forceInner{padding:20px 16px 22px;}#force-digiy .forceGrid{grid-template-columns:1fr;}#force-digiy h2{max-width:none;}}
+
 
 /* ── MAIN ── */
     .main{max-width:1200px;margin:0 auto;padding:16px 18px 80px;}
@@ -379,53 +351,66 @@
     .showcaseCta{margin:14px auto 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;max-width:940px;}
     .showcaseDesc{font-size:13px;color:rgba(248,250,252,.72);line-height:1.5;max-width:55ch;}
 
-
-    /* ── MAISON DIGIY ── */
+    /* ── DIGIY · THÉÂTRE DU TERRITOIRE ── */
     #maison-digiy{
       margin:18px 18px 0;
       border:1px solid rgba(246,196,83,.24);
       border-radius:30px;
       overflow:hidden;
       background:
-        radial-gradient(760px 360px at 8% 0%,rgba(246,196,83,.10),transparent 56%),
-        radial-gradient(720px 340px at 92% 8%,rgba(0,166,81,.12),transparent 58%),
-        linear-gradient(180deg,rgba(10,48,34,.84),rgba(8,28,20,.82));
+        radial-gradient(820px 360px at 10% 0%,rgba(246,196,83,.11),transparent 56%),
+        radial-gradient(760px 340px at 92% 8%,rgba(0,166,81,.13),transparent 58%),
+        linear-gradient(180deg,rgba(10,48,34,.88),rgba(8,28,20,.84));
       box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.05);
     }
-    #maison-digiy .maisonInner{padding:24px 20px 24px;}
-    #maison-digiy .maisonTop{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px;}
-    #maison-digiy .maisonKicker{
-      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
-      border:1px solid rgba(246,196,83,.22);background:rgba(246,196,83,.08);
-      color:#f6c453;font-family:var(--fontA);font-size:12px;font-weight:1000;letter-spacing:.10em;text-transform:uppercase;
-    }
-    #maison-digiy h2{
-      margin:0;font-family:var(--fontA);font-size:clamp(26px,4vw,46px);line-height:1.06;font-weight:1000;letter-spacing:-.03em;color:#fff;
-      max-width:780px;
-    }
-    #maison-digiy .maisonLead{max-width:54ch;color:rgba(248,250,252,.82);font-size:14.5px;line-height:1.65;}
-    #maison-digiy .maisonGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:16px;}
-    #maison-digiy .maisonCard{
-      position:relative;padding:18px 16px 18px;border-radius:22px;border:1px solid rgba(255,255,255,.10);
-      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));box-shadow:0 14px 40px rgba(0,0,0,.18);
-    }
-    #maison-digiy .maisonNo{
-      width:38px;height:38px;border-radius:999px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;
-      font-family:var(--fontA);font-size:14px;font-weight:1000;border:1px solid rgba(246,196,83,.26);background:rgba(246,196,83,.08);color:#fff3cf;
-    }
-    #maison-digiy .maisonCard h3{margin:0 0 8px;font-family:var(--fontA);font-size:18px;line-height:1.1;font-weight:1000;color:#fff;}
-    #maison-digiy .maisonCard p{margin:0;color:rgba(248,250,252,.82);font-size:14px;line-height:1.65;}
-    #maison-digiy .maisonFoot{
-      margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);
-      font-family:var(--fontA);font-size:15px;font-weight:900;line-height:1.6;color:#86efac;
-    }
-    @media(max-width:980px){#maison-digiy .maisonGrid{grid-template-columns:repeat(2,minmax(0,1fr));}}
-    @media(max-width:640px){
-      #maison-digiy{margin:14px 12px 0;border-radius:24px;}
-      #maison-digiy .maisonInner{padding:18px 16px 20px;}
-      #maison-digiy .maisonGrid{grid-template-columns:1fr;}
-    }
+    #maison-digiy .maisonInner{padding:26px 22px 26px;}
+    #maison-digiy .maisonTop{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:end;margin-bottom:16px;}
+    #maison-digiy .maisonKicker{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(246,196,83,.22);background:rgba(246,196,83,.08);color:#f6c453;font-family:var(--fontA);font-size:12px;font-weight:1000;letter-spacing:.10em;text-transform:uppercase;}
+    #maison-digiy h2{margin:10px 0 0;font-family:var(--fontA);font-size:clamp(28px,4.2vw,52px);line-height:1.02;font-weight:1000;letter-spacing:-.04em;color:#fff;max-width:16ch;}
+    #maison-digiy .maisonLead{max-width:58ch;color:rgba(248,250,252,.84);font-size:15px;line-height:1.72;}
+    #maison-digiy .maisonGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px;}
+    #maison-digiy .maisonCard{position:relative;padding:20px 18px 18px;border-radius:24px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));box-shadow:0 18px 40px rgba(0,0,0,.18);min-height:230px;}
+    #maison-digiy .maisonNo{width:auto;height:auto;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;padding:8px 12px;font-family:var(--fontA);font-size:11px;font-weight:1000;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(246,196,83,.26);background:rgba(246,196,83,.08);color:#fff3cf;}
+    #maison-digiy .maisonCard h3{margin:0 0 10px;font-family:var(--fontA);font-size:24px;line-height:1.02;font-weight:1000;color:#fff;letter-spacing:-.03em;}
+    #maison-digiy .maisonCard p{margin:0;color:rgba(248,250,252,.84);font-size:14.2px;line-height:1.7;}
+    #maison-digiy .maisonFoot{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);font-family:var(--fontA);font-size:18px;font-weight:1000;line-height:1.6;color:#fff3cf;}
+    @media(max-width:980px){#maison-digiy .maisonTop{grid-template-columns:1fr;}#maison-digiy .maisonGrid{grid-template-columns:1fr;}}
+    @media(max-width:640px){#maison-digiy{margin:14px 12px 0;border-radius:24px;}#maison-digiy .maisonInner{padding:20px 16px 22px;}}
 
+
+
+
+
+    /* ── DIGIY · ARGUMENT BUDGET PRO ── */
+    #budget-digiy{
+      margin:18px 18px 0;
+      border:1px solid rgba(246,196,83,.26);
+      border-radius:30px;
+      overflow:hidden;
+      background:
+        radial-gradient(860px 360px at 8% 0%,rgba(246,196,83,.12),transparent 56%),
+        radial-gradient(780px 340px at 92% 10%,rgba(0,166,81,.14),transparent 58%),
+        linear-gradient(180deg,rgba(10,48,34,.90),rgba(8,28,20,.85));
+      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.05);
+    }
+    #budget-digiy .budgetInner{padding:26px 22px 28px;}
+    #budget-digiy .budgetTop{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:end;margin-bottom:16px;}
+    #budget-digiy .budgetKicker{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(246,196,83,.24);background:rgba(246,196,83,.08);color:#fff0c8;font-family:var(--fontA);font-size:12px;font-weight:1000;letter-spacing:.08em;text-transform:uppercase;}
+    #budget-digiy h2{margin:12px 0 0;font-family:var(--fontA);font-size:clamp(28px,4vw,48px);line-height:1.06;font-weight:1000;letter-spacing:-.03em;color:#fff;}
+    #budget-digiy .budgetLead{font-size:15px;line-height:1.7;color:rgba(248,250,252,.86);max-width:62ch;}
+    #budget-digiy .budgetLead strong{color:#fff3cf;}
+    #budget-digiy .budgetBand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:8px 0 16px;}
+    #budget-digiy .budgetPill{padding:12px 14px;border-radius:18px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));font-family:var(--fontA);font-size:12px;font-weight:1000;color:#fff;letter-spacing:.02em;}
+    #budget-digiy .budgetPill strong{display:block;font-size:16px;color:#f6c453;margin-bottom:4px;}
+    #budget-digiy .budgetCard{padding:18px;border-radius:24px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));box-shadow:0 14px 40px rgba(0,0,0,.18);}
+    #budget-digiy .budgetCardTitle{display:flex;align-items:center;gap:12px;font-family:var(--fontA);font-size:22px;line-height:1.15;font-weight:1000;color:#fff;}
+    #budget-digiy .budgetIcon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;flex:0 0 auto;background:rgba(0,166,81,.14);border:1px solid rgba(0,166,81,.24);font-size:26px;}
+    #budget-digiy .budgetText{margin-top:14px;font-size:15px;line-height:1.78;color:rgba(248,250,252,.90);}
+    #budget-digiy .budgetText strong{color:#fff3cf;}
+    #budget-digiy .budgetActions{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;}
+    #budget-digiy .budgetFoot{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);font-family:var(--fontA);font-size:15px;font-weight:1000;line-height:1.6;color:#93f5b7;}
+    @media(max-width:980px){#budget-digiy .budgetTop{grid-template-columns:1fr;}#budget-digiy .budgetBand{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    @media(max-width:640px){#budget-digiy{margin:16px 12px 0;border-radius:24px;}#budget-digiy .budgetInner{padding:22px 16px 24px;}#budget-digiy .budgetBand{grid-template-columns:1fr;}}
 
     /* ── FAVORIS ── */
     .favTitle{margin:0;font-family:var(--fontA);font-size:30px;font-weight:1000;letter-spacing:.8px;line-height:1.05;color:#ffffff;text-transform:uppercase;text-shadow:0 0 10px rgba(255,255,255,.20),0 0 22px rgba(255,255,255,.10),0 4px 16px rgba(0,0,0,.30);}
@@ -1004,22 +989,22 @@
             </div>
 
             <h1>
-              UN LIEU VIVANT.
-              <em>TU LE DÉCOUVRES. TU T'Y POSES. TU Y VIS.</em>
+              L'AFRIQUE DU TERRAIN ENTRE EN LIGNE.
+              <em>TU DÉCOUVRES. TU CONTACTES. TU PAIES DIRECT.</em>
             </h1>
 
             <p class="lead">
               Saly, Mbour, Dakar, le Sénégal profond.
-              <strong>Spots, hébergements, chauffeurs, artisans — tout est là, enraciné.</strong>
+              <strong>DIGIYLYFE relie les lieux, les métiers et l'argent réel pour que le territoire ne reste plus invisible.</strong>
             </p>
 
             <ul class="territory-chips">
-              <li>🗺️ Découvrir les spots</li>
-              <li>🚗 Trouver un chauffeur</li>
-              <li>🏠 Trouver où dormir</li>
-              <li>📅 Réserver un service</li>
-              <li>🏗️ Trouver un artisan</li>
-              <li>🌍 Économie locale vivante</li>
+              <li>🗺️ Entrer dans le territoire</li>
+              <li>🚗 Contacter un chauffeur</li>
+              <li>🏠 Dormir en direct</li>
+              <li>📅 Réserver sans détour</li>
+              <li>🏗️ Trouver le savoir-faire</li>
+              <li>🌍 Faire tourner l'économie locale</li>
             </ul>
 
             <div class="cta">
@@ -1030,16 +1015,34 @@
             </div>
 
             <p class="mini">
-              <strong>DIGIYLYFE :</strong> logement · mobilité · artisan · boutique · entrepreneur.
-              0% commission · paiement direct au professionnel ∞<br>
-              Ici, le territoire n'est pas décoratif : il devient visible, joignable, réservable et vivant.
+              <strong>DIGIYLYFE :</strong> le territoire devient visible, joignable, réservable et monétisable sans intermédiaire inutile.
+              0% commission · paiement direct · présence utile · écosystème de travail ∞
             </p>
+
+            <div class="heroPulse" aria-label="Forces DIGIYLYFE">
+              <div class="heroPulseCard">
+                <div class="heroPulseWord">0%</div>
+                <div class="heroPulseNote">commission sur la relation directe avec le professionnel.</div>
+              </div>
+              <div class="heroPulseCard">
+                <div class="heroPulseWord">DIRECT</div>
+                <div class="heroPulseNote">contact, accord et paiement sans brouillard inutile.</div>
+              </div>
+              <div class="heroPulseCard">
+                <div class="heroPulseWord">TERRITOIRE</div>
+                <div class="heroPulseNote">Saly, Mbour, Dakar, Petite Côte, puis plus loin encore.</div>
+              </div>
+              <div class="heroPulseCard">
+                <div class="heroPulseWord">VIVANT</div>
+                <div class="heroPulseNote">un monde de travail qui se voit, se contacte et tourne pour de vrai.</div>
+              </div>
+            </div>
           </div>
 
           <div class="right">
             <div class="card">
               <div class="card-top">
-                <div class="badge">🗺️ Les grandes portes</div>
+                <div class="badge">⚡ Entrer par la vie</div>
               </div>
 
               <!-- GATES : intention humaine, zéro nom de module -->
@@ -1089,98 +1092,147 @@
               </div>
 
               <div class="manifesto">
-                <strong>Tu découvres. Tu bouges. Tu te poses. Tu réserves. Tu construis. Tu achètes.</strong><br>
-                L'échange vient naturellement après l'ancrage dans le lieu.
+                <strong>Ici, on n'empile pas des pages.</strong><br>
+                On ouvre le territoire, on relie les métiers, on garde la main sur l'échange et le paiement direct.
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section id="force-digiy" aria-label="Ce que DIGIYLYFE change vraiment">
+      <section id="force-digiy" aria-label="La rupture DIGIYLYFE">
         <div class="forceInner">
           <div class="forceTop">
             <div>
-              <div class="forceKicker">DIGIYLYFE · PLUS QU'UN SITE</div>
-              <h2>Un territoire qui travaille déjà.</h2>
+              <div class="forceKicker">DIGIYLYFE · RUPTURE</div>
+              <h2>Plus qu'un site.<br>Une force de territoire.</h2>
             </div>
             <div class="forceLead">
-              Ici, on ne pose pas une page isolée dans le vide. On relie la découverte,
-              le travail, le contact direct et l'argent réel dans un même mouvement vivant.
+              DIGIYLYFE ne vend pas une simple présence isolée. DIGIYLYFE relie le lieu,
+              le client, le professionnel et l'argent réel dans la même maison.
+              Ici, on ne te montre pas seulement sur internet. On te met en place.
             </div>
           </div>
 
           <div class="forceGrid">
             <article class="forceCard">
-              <div class="forceIcon">🌍</div>
-              <h3>Une présence enracinée</h3>
-              <p>Le territoire parle avant la technique. On voit les lieux, les gens, les usages et le mouvement réel.</p>
+              <div class="forceIcon">0%</div>
+              <h3>Commission</h3>
+              <p>La valeur ne s'évapore pas dans une plateforme qui prend sa part à chaque passage. La relation reste droite.</p>
             </article>
 
             <article class="forceCard">
-              <div class="forceIcon">🤝</div>
-              <h3>Contact direct</h3>
-              <p>Le client va au professionnel sans détour inutile. La relation reste humaine, locale et claire.</p>
+              <div class="forceIcon">↗</div>
+              <h3>Direct</h3>
+              <p>Le client appelle, réserve, se déplace et paie sans brouillard inutile. Le pro garde la main du début à la fin.</p>
             </article>
 
             <article class="forceCard">
-              <div class="forceIcon">💳</div>
-              <h3>Paiement direct</h3>
-              <p>0% commission. L'argent ne s'évapore pas dans l'intermédiaire. Le professionnel garde la main sur sa vente.</p>
+              <div class="forceIcon">🏘️</div>
+              <h3>Enraciné</h3>
+              <p>On part du quartier, du secteur, de la ville et du pays. Le territoire n'est pas décoratif. Il est la base.</p>
             </article>
 
             <article class="forceCard">
-              <div class="forceIcon">🧰</div>
-              <h3>Écosystème de travail</h3>
-              <p>Le public cherche, découvre et réserve. Le pro vend, conduit, loue, encaisse et se rend visible dans la même maison.</p>
+              <div class="forceIcon">∞</div>
+              <h3>Extensible</h3>
+              <p>Une fois posé ici, le monde peut s'ouvrir plus loin. DIGIYLYFE grandit sans perdre son ancrage.</p>
             </article>
           </div>
 
           <div class="forceFoot">
-            DIGIYLYFE ne montre pas seulement des activités. DIGIYLYFE relie le territoire, le travail et l'échange direct.
+            Là où d'autres posent une page, DIGIYLYFE installe une présence utile, directe et reliée à l'économie réelle.
           </div>
         </div>
       </section>
 
-      <section id="maison-digiy" aria-label="La maison DIGIYLYFE">
+
+
+      <section id="budget-digiy" aria-label="L'argument budget DIGIYLYFE">
+        <div class="budgetInner">
+          <div class="budgetTop">
+            <div>
+              <div class="budgetKicker">DIGIYLYFE · POSITIONNEMENT PETITS PROS</div>
+              <h2>Pas besoin de viser un gros budget pour n'avoir qu'une présence.</h2>
+            </div>
+            <div class="budgetLead">
+              <strong>DIGIYLYFE défend une autre logique.</strong> Pas une présence seule qui dort.
+              Mais une présence digitale que le professionnel peut porter lui-même,
+              avec ses outils, son contact direct, son paiement direct, et une place réelle
+              dans l'écosystème du business.
+            </div>
+          </div>
+
+          <div class="budgetBand">
+            <div class="budgetPill"><strong>Budget plus juste</strong>pensé pour la réalité des petits pros</div>
+            <div class="budgetPill"><strong>Outils pro</strong>pas seulement une vitrine qui montre</div>
+            <div class="budgetPill"><strong>Trouvable sur le web</strong>et visible dans les circuits du net</div>
+            <div class="budgetPill"><strong>0% commission</strong>paiement direct au professionnel</div>
+          </div>
+
+          <div class="budgetCard">
+            <div class="budgetCardTitle">
+              <div class="budgetIcon">💼</div>
+              <div>Le petit pro n'a pas besoin d'un site qui dort. Il a besoin d'une présence qui travaille avec lui.</div>
+            </div>
+
+            <div class="budgetText">
+              Pas besoin de dépenser lourd pour n'obtenir qu'une simple présence.
+              Avec <strong>DIGIYLYFE</strong>, le professionnel peut <strong>se représenter lui-même</strong>
+              dans l'écosystème du business, <strong>être trouvé sur le web et dans Google</strong>,
+              montrer son activité, recevoir ses clients, vendre, encaisser et garder la main sur son travail.
+              <br><br>
+              Ici, tu ne paies pas seulement pour apparaître.
+              <strong>Tu entres dans une maison vivante</strong> avec des outils concrets,
+              une présence utile, un contact direct et un paiement direct.
+            </div>
+
+            <div class="budgetActions">
+              <a class="btn primary" href="https://commencer-a-payer.digiylyfe.com/">Rejoindre DIGIY</a>
+              <a class="btn outline" href="#public">Découvrir les portes</a>
+            </div>
+          </div>
+
+          <div class="budgetFoot">
+            Une présence seule coûte. Une présence reliée au territoire, aux clients et aux outils métier vaut davantage.
+          </div>
+        </div>
+      </section>
+
+      <section id="maison-digiy" aria-label="Le théâtre du territoire DIGIYLYFE">
         <div class="maisonInner">
           <div class="maisonTop">
             <div>
-              <div class="maisonKicker">DIGIYLYFE · LA MAISON COMPLÈTE</div>
-              <h2>On ne te laisse pas seul avec un site. On te place dans une maison qui relie la vie, le travail et l'argent.</h2>
+              <div class="maisonKicker">DIGIYLYFE · LE THÉÂTRE DU TERRITOIRE</div>
+              <h2>Tout le monde n'entre pas par la même porte. Tout le monde fait pourtant tourner la même maison.</h2>
             </div>
             <div class="maisonLead">
-              Ici, celui qui découvre peut devenir client. Celui qui travaille peut devenir visible. Celui qui vend peut encaisser direct. Et tout cela reste enraciné dans le même territoire.
+              Celui qui cherche ne vient pas comme celui qui travaille. Celui qui découvre n'entre pas comme celui qui encaisse.
+              Mais chez DIGIYLYFE, ces chemins se croisent enfin dans un même monde vivant.
             </div>
           </div>
 
           <div class="maisonGrid">
             <article class="maisonCard">
-              <div class="maisonNo">01</div>
-              <h3>Le lieu parle</h3>
-              <p>Spots, quartiers, hébergements, chauffeurs, artisans, boutiques. Le territoire n'est pas une carte vide : il a déjà des portes humaines.</p>
+              <div class="maisonNo">POUR CELUI QUI CHERCHE</div>
+              <h3>Découvrir, bouger, dormir, réserver.</h3>
+              <p>Le public entre par la vie réelle. Un lieu, un chauffeur, un logement, un artisan, une boutique. Pas un labyrinthe technique. Une entrée humaine.</p>
             </article>
 
             <article class="maisonCard">
-              <div class="maisonNo">02</div>
-              <h3>Le client circule</h3>
-              <p>Il découvre, il compare, il appelle, il réserve. DIGIYLYFE garde cette circulation simple, directe et sans détour inutile.</p>
+              <div class="maisonNo">POUR CELUI QUI TRAVAILLE</div>
+              <h3>Vendre, conduire, louer, encaisser.</h3>
+              <p>Le professionnel ne reçoit pas juste une vitrine. Il reçoit une place dans un écosystème qui lui donne visibilité, contact direct et paiement lisible.</p>
             </article>
 
             <article class="maisonCard">
-              <div class="maisonNo">03</div>
-              <h3>Le professionnel garde la main</h3>
-              <p>Il conduit, il loue, il vend, il recrute, il encaisse. Sa présence ne dépend pas d'un annuaire froid mais d'un écosystème vivant.</p>
-            </article>
-
-            <article class="maisonCard">
-              <div class="maisonNo">04</div>
-              <h3>L'argent reste lisible</h3>
-              <p>0% commission, paiement direct, relation claire. Ce qui entre, ce qui sort et ce qui reste peut enfin redevenir visible.</p>
+              <div class="maisonNo">POUR LE TERRITOIRE</div>
+              <h3>Le lieu cesse d'être invisible.</h3>
+              <p>Quand les métiers, les services, l'accueil et l'argent restent reliés localement, le territoire reprend de la force au lieu d'être aspiré ailleurs.</p>
             </article>
           </div>
 
           <div class="maisonFoot">
-            DIGIYLYFE donne plus qu'une présence : une place vivante dans l'économie réelle, enracinée ici et ouverte au monde.
+            DIGIYLYFE donne au professionnel plus qu'une présence : une place vivante dans l'économie réelle, enracinée ici et ouverte au monde.
           </div>
         </div>
       </section>
