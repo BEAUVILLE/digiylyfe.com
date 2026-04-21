@@ -440,43 +440,103 @@
     .qrLink:hover{border-color:rgba(246,196,83,.45);background:rgba(246,196,83,.18);}
 
     /* ════════════════════════════════════════════
-       PATCH MOBILE NAV — nav collapsée par défaut
+       DRAWER NAV MOBILE — remplace la nav inline
        Uniquement ≤ 640px, desktop intact
     ════════════════════════════════════════════ */
+
+    /* ── DRAWER OVERLAY ── */
+    #navDrawer{
+      position:fixed;inset:0;z-index:50;
+      display:flex;flex-direction:column;justify-content:flex-end;
+      background:rgba(0,0,0,.60);
+      backdrop-filter:blur(6px);
+      opacity:0;pointer-events:none;
+      transition:opacity .25s ease;
+    }
+    #navDrawer.open{opacity:1;pointer-events:all;}
+
+    .drawerSheet{
+      background:linear-gradient(180deg,#0a2a1c 0%,#061410 100%);
+      border:1px solid rgba(246,196,83,.18);
+      border-bottom:none;
+      border-radius:28px 28px 0 0;
+      padding:0 0 env(safe-area-inset-bottom,14px);
+      max-height:88vh;
+      overflow-y:auto;
+      transform:translateY(100%);
+      transition:transform .28s cubic-bezier(.32,.72,0,1);
+    }
+    #navDrawer.open .drawerSheet{transform:translateY(0);}
+
+    .drawerHandle{
+      width:40px;height:4px;border-radius:999px;
+      background:rgba(255,255,255,.22);
+      margin:12px auto 0;
+    }
+
+    .drawerHeader{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 18px 10px;
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .drawerHeaderTitle{
+      font-family:var(--fontA);font-weight:900;font-size:13px;
+      letter-spacing:.8px;color:rgba(246,196,83,.80);text-transform:uppercase;
+    }
+    .drawerClose{
+      width:32px;height:32px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);
+      color:#fff;font-size:16px;line-height:1;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;
+    }
+
+    .drawerGroup{padding:14px 14px 4px;}
+    .drawerGroupLabel{
+      font-family:var(--fontA);font-weight:900;font-size:10px;
+      letter-spacing:.8px;text-transform:uppercase;
+      padding:5px 10px;border-radius:6px;
+      display:inline-flex;margin-bottom:10px;
+    }
+    .drawerGroupLabel.c{background:rgba(246,196,83,.22);color:#ffe080;border:1px solid rgba(246,196,83,.45);}
+    .drawerGroupLabel.p{background:rgba(0,166,81,.20);color:#9bffb8;border:1px solid rgba(0,166,81,.42);}
+    .drawerGroupLabel.s{background:rgba(255,255,255,.10);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.22);}
+
+    .drawerLinks{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
+    .drawerLink{
+      display:flex;align-items:center;gap:12px;
+      padding:13px 14px;border-radius:16px;
+      font-family:var(--fontA);font-size:15px;font-weight:800;
+      color:#fff;text-decoration:none;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      transition:background .15s,border-color .15s;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .drawerLink:active{background:rgba(255,255,255,.10);}
+    .drawerLink.gold{border-color:rgba(246,196,83,.14);color:#fff3cf;}
+    .drawerLink.gold:active{background:rgba(246,196,83,.10);border-color:rgba(246,196,83,.30);}
+    .drawerLink.green{border-color:rgba(0,166,81,.14);color:#dcffe8;}
+    .drawerLink.green:active{background:rgba(0,166,81,.10);border-color:rgba(0,166,81,.30);}
+    .drawerLink .dlIcon{font-size:20px;flex:0 0 28px;text-align:center;}
+    .drawerLink .dlArrow{margin-left:auto;opacity:.38;font-size:13px;}
+
+    .drawerDivider{height:1px;background:rgba(255,255,255,.06);margin:2px 14px 6px;}
+
     @media(max-width:640px){
-
-      /* Afficher le bouton toggle dans la topbar */
+      /* Afficher le bouton toggle */
       .menuToggleBtn{display:inline-flex;}
-
-      /* Masquer les topSignals pour libérer de la place */
+      /* Masquer topSignals */
       .topSignals{display:none;}
-
-      /* Nav fermée par défaut */
-      .menuBar{
-        display:none;
-        /* animation d'ouverture */
-      }
-
-      /* Nav ouverte — classe ajoutée par JS */
-      .menuBar.nav-open{
-        display:block;
-        animation:navSlideIn .22s ease;
-      }
-
-      @keyframes navSlideIn{
-        from{opacity:0;transform:translateY(-8px);}
-        to{opacity:1;transform:translateY(0);}
-      }
-
-      /* Hero arrive immédiatement après le topbar */
+      /* Cacher la nav inline sur mobile */
+      .menuBar{display:none !important;}
+      /* Hero collé au topbar */
       #intro-bonheur{margin-top:0;border-radius:0 0 24px 24px;border-top:none;}
-
-      /* Reste du responsive existant */
+      /* Rails */
       .railHint{display:block;font-size:18px;font-weight:900;}.railWrap{padding-bottom:76px;}
       .railArrow{display:flex;top:auto;bottom:14px;transform:none;width:52px;height:52px;font-size:30px;border-radius:999px;background:rgba(6,20,14,.94);border:1px solid rgba(246,196,83,.28);box-shadow:0 12px 28px rgba(0,0,0,.34);}
       .railArrow.left{left:12px;}.railArrow.right{right:12px;}
-      .menuBar{padding:6px 10px 8px;}.menuRow{gap:4px;}
-      .mBtn{height:28px;padding:0 9px;font-size:11px;}.rowLabel{font-size:9.5px;padding:3px 7px;}
       .moduleBtn{min-width:240px;max-width:280px;min-height:194px;padding:18px 16px;}
       .moduleEmoji{font-size:32px;}.moduleName{font-size:18px;}.moduleHint{font-size:14px;min-height:48px;}
       .miniBadge{font-size:11px;}.moduleBtn .openHint{font-size:12px;}
@@ -1147,74 +1207,64 @@
   Object.entries(menuMap).forEach(([id,url])=>{const el=$(id);if(el){el.href=wr(url);el.target="_blank";el.rel="noopener noreferrer";}});
 
   /* ════════════════════════════════════
-     PATCH — TOGGLE NAV MOBILE
+     DRAWER NAV MOBILE
   ════════════════════════════════════ */
   const menuToggleBtn=$("menuToggleBtn");
-  const mainMenuBar=$("mainMenuBar");
   const menuToggleIcon=$("menuToggleIcon");
   const menuToggleLabel=$("menuToggleLabel");
-  let navOpen=false;
+  const navDrawer=$("navDrawer");
+  const drawerCloseBtn=$("drawerCloseBtn");
 
-  function toggleNav(){
-    navOpen=!navOpen;
-    if(navOpen){
-      mainMenuBar.classList.add("nav-open");
-      mainMenuBar.style.display=""; // laisse le CSS gérer
-      menuToggleBtn.classList.add("open");
-      menuToggleBtn.setAttribute("aria-expanded","true");
-      menuToggleIcon.textContent="✕";
-      menuToggleLabel.textContent="FERMER";
-    } else {
-      mainMenuBar.classList.remove("nav-open");
-      mainMenuBar.style.display="none";
-      menuToggleBtn.classList.remove("open");
-      menuToggleBtn.setAttribute("aria-expanded","false");
-      menuToggleIcon.textContent="☰";
-      menuToggleLabel.textContent="MENU";
-    }
+  function openDrawer(){
+    navDrawer.classList.add("open");
+    menuToggleBtn.classList.add("open");
+    menuToggleBtn.setAttribute("aria-expanded","true");
+    menuToggleIcon.textContent="✕";
+    menuToggleLabel.textContent="FERMER";
+    document.body.style.overflow="hidden";
+  }
+  function closeDrawer(){
+    navDrawer.classList.remove("open");
+    menuToggleBtn.classList.remove("open");
+    menuToggleBtn.setAttribute("aria-expanded","false");
+    menuToggleIcon.textContent="☰";
+    menuToggleLabel.textContent="MENU";
+    document.body.style.overflow="";
   }
 
-  // Sur mobile : nav fermée par défaut au chargement
-  function initNav(){
-    if(window.innerWidth<=640){
-      mainMenuBar.style.display="none";
-      navOpen=false;
-    } else {
-      // Desktop : nav toujours visible, bouton caché via CSS
-      mainMenuBar.style.display="";
-      navOpen=true;
-    }
-  }
-
-  if(menuToggleBtn){
-    menuToggleBtn.addEventListener("click",toggleNav);
-  }
-
-  // Ferme la nav si on clique sur un lien à l'intérieur (mobile)
-  if(mainMenuBar){
-    mainMenuBar.querySelectorAll("a.mBtn").forEach(link=>{
-      link.addEventListener("click",()=>{
-        if(window.innerWidth<=640 && navOpen){
-          toggleNav();
-        }
-      });
-    });
-  }
-
-  // Réajuste au resize (passage desktop ↔ mobile)
-  window.addEventListener("resize",()=>{
-    if(window.innerWidth>640){
-      mainMenuBar.style.display="";
-      menuToggleBtn.classList.remove("open");
-      menuToggleIcon.textContent="☰";
-      menuToggleLabel.textContent="MENU";
-      navOpen=true;
-    } else if(!navOpen){
-      mainMenuBar.style.display="none";
-    }
+  if(menuToggleBtn) menuToggleBtn.addEventListener("click",()=>{
+    navDrawer.classList.contains("open") ? closeDrawer() : openDrawer();
+  });
+  if(drawerCloseBtn) drawerCloseBtn.addEventListener("click",closeDrawer);
+  if(navDrawer) navDrawer.addEventListener("click",e=>{
+    if(e.target===navDrawer) closeDrawer();
   });
 
-  initNav();
+  /* URLs du drawer — mêmes destinations que la nav desktop */
+  const drawerMap={
+    "dm-explore":L.explore,"dm-driver":L.driver,"dm-chauffeurs":L.galerieChauffeurs,
+    "dm-loc":L.loc,"dm-resatable":L.resaTable,"dm-build":L.build,
+    "dm-mon-commerce":L.monCommerce,"dm-market":L.market,"dm-jobs":L.jobs,
+    "dm-tarifs":L.tarifs,
+    "dm-ndimbal-annonces":L.ndimbalAnnonces,"dm-pay":L.pay,"dm-vaschezmoi":L.vasChezDigiy,
+    "dm-ndimbal-loc":L.ndimbalLoc,"dm-ndimbal-map":L.ndimbalMap,
+    "dm-audio":L.audio,"dm-ia":L.assistantIA,
+    "dm-espace-pro":L.espacePro,"dm-inscription-pro":L.inscriptionPro,
+    "dm-market-pro":L.marketPro,"dm-caisse-pro":L.caissePro,
+    "dm-loc-pro":L.locPro,"dm-resatable-pro":L.resaTablePro,
+    "dm-driver-pro":L.driverPro,"dm-jobs-pro":L.jobsPro,
+    "dm-build-pro":L.buildPro,"dm-explore-pro":L.explorePro,
+    "dm-pay-pro":L.payPro
+  };
+  Object.entries(drawerMap).forEach(([id,url])=>{
+    const el=$(id);
+    if(el){
+      el.href=wr(url);
+      el.target="_blank";
+      el.rel="noopener noreferrer";
+      el.addEventListener("click",closeDrawer);
+    }
+  });
   /* ════════════════════════════════════ */
 
   /* FLOAT BUTTONS */
@@ -1274,5 +1324,71 @@
 
 })();
 </script>
+  <!-- ════ DRAWER NAV MOBILE ════ -->
+  <div id="navDrawer" role="dialog" aria-modal="true" aria-label="Menu DIGIYLYFE">
+    <div class="drawerSheet">
+      <div class="drawerHandle"></div>
+      <div class="drawerHeader">
+        <span class="drawerHeaderTitle">∞ DIGIYLYFE — MENU</span>
+        <button class="drawerClose" id="drawerCloseBtn" type="button" aria-label="Fermer">✕</button>
+      </div>
+
+      <!-- JE CHERCHE -->
+      <div class="drawerGroup">
+        <div class="drawerGroupLabel c">JE CHERCHE</div>
+        <div class="drawerLinks">
+          <a class="drawerLink gold" id="dm-explore"      href="#"><span class="dlIcon">🗺️</span>Découvrir le territoire<span class="dlArrow">›</span></a>
+          <a class="drawerLink gold" id="dm-driver"       href="#"><span class="dlIcon">🚗</span>Un chauffeur<span class="dlArrow">›</span></a>
+          <a class="drawerLink gold" id="dm-chauffeurs"   href="#"><span class="dlIcon">👑</span>Nos chauffeurs<span class="dlArrow">›</span></a>
+          <a class="drawerLink gold" id="dm-loc"          href="#"><span class="dlIcon">🏠</span>Où dormir<span class="dlArrow">›</span></a>
+          <a class="drawerLink gold" id="dm-resatable"    href="#"><span class="dlIcon">📅</span>Réserver<span class="dlArrow">›</span></a>
+          <a class="drawerLink gold" id="dm-build"        href="#"><span class="dlIcon">🏗️</span>Un artisan<span class="dlArrow">›</span></a>
+          <a class="drawerLink gold" id="dm-mon-commerce" href="#"><span class="dlIcon">👜</span>Mon commerce<span class="dlArrow">›</span></a>
+          <a class="drawerLink gold" id="dm-market"       href="#"><span class="dlIcon">🛍️</span>Les boutiques<span class="dlArrow">›</span></a>
+          <a class="drawerLink gold" id="dm-jobs"         href="#"><span class="dlIcon">💼</span>Du travail<span class="dlArrow">›</span></a>
+          <a class="drawerLink gold" id="dm-tarifs"       href="#"><span class="dlIcon">🏷️</span>Tarifs<span class="dlArrow">›</span></a>
+        </div>
+      </div>
+
+      <div class="drawerDivider"></div>
+
+      <!-- JE TRAVAILLE -->
+      <div class="drawerGroup">
+        <div class="drawerGroupLabel p">JE TRAVAILLE</div>
+        <div class="drawerLinks">
+          <a class="drawerLink green" id="dm-espace-pro"      href="#"><span class="dlIcon">🏢</span>Mon activité<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-inscription-pro" href="#"><span class="dlIcon">✍️</span>Rejoindre DIGIY<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-market-pro"      href="#"><span class="dlIcon">🛍️</span>Je vends<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-caisse-pro"      href="#"><span class="dlIcon">💰</span>Mon commerce<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-loc-pro"         href="#"><span class="dlIcon">🏠</span>Je loue<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-resatable-pro"   href="#"><span class="dlIcon">📅</span>Mes réservations<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-driver-pro"      href="#"><span class="dlIcon">🚗</span>Je conduis<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-jobs-pro"        href="#"><span class="dlIcon">💼</span>Je recrute<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-explore-pro"     href="#"><span class="dlIcon">🗺️</span>Ma visibilité<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-build-pro"       href="#"><span class="dlIcon">🏗️</span>Mes services<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-pay-pro"         href="#"><span class="dlIcon">💳</span>Mon argent<span class="dlArrow">›</span></a>
+        </div>
+      </div>
+
+      <div class="drawerDivider"></div>
+
+      <!-- AUSSI -->
+      <div class="drawerGroup">
+        <div class="drawerGroupLabel s">AUSSI</div>
+        <div class="drawerLinks">
+          <a class="drawerLink" id="dm-ndimbal-annonces" href="#"><span class="dlIcon">📢</span>Annonces<span class="dlArrow">›</span></a>
+          <a class="drawerLink" id="dm-pay"              href="#"><span class="dlIcon">💳</span>Mon argent<span class="dlArrow">›</span></a>
+          <a class="drawerLink" id="dm-vaschezmoi"       href="#"><span class="dlIcon">📍</span>Venir chez DIGIY<span class="dlArrow">›</span></a>
+          <a class="drawerLink" id="dm-ndimbal-loc"      href="#"><span class="dlIcon">🏡</span>Locations<span class="dlArrow">›</span></a>
+          <a class="drawerLink" id="dm-ndimbal-map"      href="#"><span class="dlIcon">🗺️</span>La carte<span class="dlArrow">›</span></a>
+          <a class="drawerLink" id="dm-audio"            href="#"><span class="dlIcon">🎵</span>Écouter<span class="dlArrow">›</span></a>
+          <a class="drawerLink" id="dm-ia"               href="#"><span class="dlIcon">🧠</span>Poser une question<span class="dlArrow">›</span></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
 </body>
 </html>
