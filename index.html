@@ -209,6 +209,33 @@
     @media(max-width:920px){#intro-digiy .wrap{grid-template-columns:1fr;padding:24px 16px;}}
     @media(max-width:640px){#intro-digiy{margin:12px 12px 0;border-radius:24px;}#intro-digiy .cta{flex-direction:column;}#intro-digiy .btnx{width:100%;}}
 
+    /* ── HERO V2 BONHEUR BUSINESS ── */
+    #intro-bonheur{
+      position:relative;overflow:hidden;margin:16px 18px 0;
+      border:1px solid rgba(246,196,83,.26);border-radius:30px;
+      background:radial-gradient(900px 500px at 12% 0%,rgba(246,196,83,.14),transparent 55%),
+        radial-gradient(700px 420px at 88% 18%,rgba(34,197,94,.16),transparent 55%),
+        linear-gradient(180deg,#07130f 0%,#0c1d17 100%);
+      color:#fff;box-shadow:0 20px 60px rgba(0,0,0,.28),0 0 0 1px rgba(246,196,83,.06);
+    }
+    #intro-bonheur .wrap{max-width:1080px;margin:0 auto;padding:38px 22px 34px;text-align:center;display:block;}
+    #intro-bonheur .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.04);color:#f6c453;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-family:var(--fontA);}
+    #intro-bonheur .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 6px rgba(34,197,94,.12);}
+    #intro-bonheur h1{margin:22px auto 10px;font-size:clamp(42px,7vw,86px);line-height:.92;letter-spacing:-.05em;font-weight:1000;font-family:var(--fontA);color:#fff;max-width:13ch;}
+    #intro-bonheur h1 em{display:block;color:#f6c453;font-style:normal;}
+    #intro-bonheur .lead{max-width:760px;margin:0 auto;font-size:clamp(17px,2vw,22px);line-height:1.6;color:#d5e5dc;font-weight:500;}
+    #intro-bonheur .lead strong{color:#fff;}
+    #intro-bonheur .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:22px 0 16px;}
+    #intro-bonheur .btnx{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 20px;border-radius:14px;font-weight:900;text-decoration:none;transition:transform .18s ease,opacity .18s ease,box-shadow .18s ease;font-family:var(--fontA);letter-spacing:.2px;border:1px solid transparent;cursor:pointer;font-size:15px;}
+    #intro-bonheur .btnx:hover{transform:translateY(-2px);opacity:.97;}
+    #intro-bonheur .btnx-primary{background:linear-gradient(180deg,#22c55e 0%,#16a34a 100%);color:#07130f;box-shadow:0 16px 36px rgba(0,133,63,.26);}
+    #intro-bonheur .btnx-secondary{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.12);}
+    #intro-bonheur .heroLink{display:inline-block;margin-top:4px;color:#fff3cf;font-weight:1000;text-decoration:none;border-bottom:1px solid rgba(246,196,83,.35);font-family:var(--fontA);}
+    #intro-bonheur .mini{margin-top:14px;font-size:13.5px;line-height:1.65;color:#dbe8e0;max-width:74ch;margin-left:auto;margin-right:auto;}
+    #intro-bonheur .mini strong{color:#f6c453;}
+    @media(max-width:640px){#intro-bonheur{margin:12px 12px 0;border-radius:24px;}#intro-bonheur .wrap{padding:26px 16px 24px;}#intro-bonheur .cta{flex-direction:column;}#intro-bonheur .btnx{width:100%;}}
+
+
     .heroPulse{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px;}
     .heroPulseCard{padding:14px 12px;border-radius:18px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));box-shadow:0 12px 30px rgba(0,0,0,.16);}
     .heroPulseWord{font-family:var(--fontA);font-size:clamp(18px,2vw,26px);font-weight:1000;line-height:1;color:#fff;letter-spacing:-.03em;}
@@ -556,99 +583,35 @@
         </div>
       </nav>
 
-      <!-- HERO — PORTE DU TERRITOIRE -->
-      <section id="intro-digiy">
+      <!-- HERO V2 — BONHEUR BUSINESS -->
+      <section id="intro-bonheur">
         <div class="wrap">
-          <div class="left">
-            <div class="eyebrow">
-              <span class="dot"></span>
-              DIGIYLYFE — ENTRE DANS LE TERRITOIRE
-            </div>
-            <h1>
-              L'AFRIQUE DU TERRAIN ENTRE EN LIGNE.
-              <em>TU DÉCOUVRES. TU CONTACTES. TU PAIES DIRECT.</em>
-            </h1>
-            <p class="lead">
-              Saly, Mbour, Dakar, le Sénégal profond.
-              <strong>DIGIYLYFE relie les lieux, les métiers et l'argent réel pour que le territoire ne reste plus invisible.</strong>
-            </p>
-            <ul class="territory-chips">
-              <li>🗺️ Entrer dans le territoire</li>
-              <li>🚗 Contacter un chauffeur</li>
-              <li>🏠 Dormir en direct</li>
-              <li>📅 Réserver sans détour</li>
-              <li>🏗️ Trouver le savoir-faire</li>
-              <li>🌍 Faire tourner l'économie locale</li>
-            </ul>
-            <div class="cta">
-              <a class="btnx btnx-primary" href="#public">🗺️ Découvrir le territoire</a>
-              <a class="btnx btnx-secondary" href="https://commencer-a-payer.digiylyfe.com/">Rejoindre DIGIY en Pro</a>
-              <button class="btnx btnx-gold" id="install-app-hero-btn" type="button">📲 Installer l'app</button>
-              <a class="btnx btnx-secondary" href="https://digiy-audio.digiylyfe.com/" target="_blank" rel="noopener">🎧 Écouter la vision</a>
-            </div>
-            <p class="mini">
-              <strong>DIGIYLYFE :</strong> des présences vivantes, reliées à de vrais <strong>LOGICIELS business</strong> pour conduire, louer, réserver, vendre et gérer son activité.
-              0% commission · paiement direct · présence utile · écosystème de travail ∞
-            </p>
-            <div class="heroPulse" aria-label="Forces DIGIYLYFE">
-              <div class="heroPulseCard">
-                <div class="heroPulseWord">0%</div>
-                <div class="heroPulseNote">commission sur la relation directe avec le professionnel.</div>
-              </div>
-              <div class="heroPulseCard">
-                <div class="heroPulseWord">DIRECT</div>
-                <div class="heroPulseNote">contact, accord et paiement sans brouillard inutile.</div>
-              </div>
-              <div class="heroPulseCard">
-                <div class="heroPulseWord">TERRITOIRE</div>
-                <div class="heroPulseNote">Saly, Mbour, Dakar, Petite Côte, puis plus loin encore.</div>
-              </div>
-              <div class="heroPulseCard">
-                <div class="heroPulseWord">VIVANT</div>
-                <div class="heroPulseNote">un monde de travail qui se voit, se contacte et tourne pour de vrai.</div>
-              </div>
-            </div>
+          <div class="eyebrow">
+            <span class="dot"></span>
+            DIGIYLYFE — BONHEUR BUSINESS
           </div>
-
-          <div class="right">
-            <div class="card">
-              <div class="card-top">
-                <div class="badge">⚡ Entrer par la vie</div>
-              </div>
-              <div class="gates">
-                <a class="gate" id="gate-explore" href="#public">
-                  <div class="gate-icon">🗺️</div>
-                  <div class="gate-body"><strong>Découvrir un lieu</strong><span>Spots, ambiances, Petite Côte — entre et repère.</span></div>
-                </a>
-                <a class="gate" id="gate-driver" href="#public">
-                  <div class="gate-icon">🚗</div>
-                  <div class="gate-body"><strong>Trouver un chauffeur</strong><span>Un chauffeur sur le terrain, maintenant.</span></div>
-                </a>
-                <a class="gate" id="gate-loc" href="#public">
-                  <div class="gate-icon">🏠</div>
-                  <div class="gate-body"><strong>Trouver où dormir</strong><span>Direct chez le propriétaire, sans intermédiaire.</span></div>
-                </a>
-                <a class="gate" id="gate-resa" href="#public">
-                  <div class="gate-icon">📅</div>
-                  <div class="gate-body"><strong>Réserver un service</strong><span>Rendez-vous, créneau, prestation — en 2 clics.</span></div>
-                </a>
-                <a class="gate" id="gate-build" href="#public">
-                  <div class="gate-icon">🏗️</div>
-                  <div class="gate-body"><strong>Trouver un artisan</strong><span>Plombier, maçon, électricien — le terrain qui construit.</span></div>
-                </a>
-                <a class="gate" id="gate-mon-commerce" href="#public">
-                  <div class="gate-icon">👜</div>
-                  <div class="gate-body"><strong>Voir les boutiques</strong><span>Mode, sacs, chaussures — le commerce local, élégant.</span></div>
-                </a>
-              </div>
-              <div class="manifesto">
-                <strong>Ici, on n'empile pas des pages.</strong><br>
-                On ouvre le territoire, on relie les métiers, on garde la main sur l'échange et le paiement direct.
-              </div>
-            </div>
+          <h1>
+            LE BONHEUR<br/>BUSINESS<em>EST LÀ.</em>
+          </h1>
+          <p class="lead">
+            <strong>DIGIYLYFE relie les lieux, les métiers et l'argent réel</strong>
+            pour que le territoire se voie, se contacte et travaille sans détour.
+          </p>
+          <div class="cta">
+            <a class="btnx btnx-primary" href="#public">🗺️ Découvrir le territoire</a>
+            <a class="btnx btnx-secondary" href="https://commencer-a-payer.digiylyfe.com/">✍️ Rejoindre DIGIY</a>
+            <a class="btnx btnx-secondary" href="https://digiy-audio.digiylyfe.com/" target="_blank" rel="noopener">🎧 Écouter la vision</a>
           </div>
+          <a class="heroLink" href="https://digiylyfe.net/digiylyfe-com/" target="_blank" rel="noopener noreferrer">
+            https://digiylyfe.net/digiylyfe-com/
+          </a>
+          <p class="mini">
+            <strong>0% commission</strong> · paiement direct · présence utile · économie locale en mouvement ·
+            L'Afrique enracinée, connectée au monde ∞
+          </p>
         </div>
       </section>
+
 
       <!-- BANDEAU → DIGIYLYFE.NET -->
       <div id="net-bridge" aria-label="Lien vers la revue DIGIYLYFE">
