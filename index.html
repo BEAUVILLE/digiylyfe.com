@@ -131,6 +131,23 @@
     .signalChip.green{border-color:rgba(0,166,81,.58);background:rgba(0,166,81,.26);color:#b8ffce;}
     .signalChip.soft{color:#fff;border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.14);}
 
+    /* ── MENU TOGGLE BUTTON (mobile only) ── */
+    .menuToggleBtn{
+      display:none; /* masqué desktop */
+      align-items:center;gap:8px;
+      margin-left:auto;
+      padding:9px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.28);
+      background:rgba(255,255,255,.12);
+      color:#fff;font-family:var(--fontA);font-size:12px;font-weight:900;
+      cursor:pointer;letter-spacing:.2px;
+      transition:border-color .15s,background .15s;
+      flex:0 0 auto;
+    }
+    .menuToggleBtn:hover{border-color:rgba(246,196,83,.45);background:rgba(246,196,83,.12);color:#fff3cf;}
+    .menuToggleBtn.open{border-color:rgba(246,196,83,.50);background:rgba(246,196,83,.14);color:#fff3cf;}
+    .menuToggleBtn .menuToggleIcon{font-size:16px;line-height:1;}
+
     /* ── NAV ── */
     .menuBar{padding:8px 14px 10px;border-bottom:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.32);backdrop-filter:blur(8px);}
     .menuRow{display:flex;align-items:center;gap:5px;flex-wrap:wrap;padding:3px 0;}
@@ -221,7 +238,7 @@
     #intro-bonheur .wrap{max-width:1080px;margin:0 auto;padding:38px 22px 34px;text-align:center;display:block;}
     #intro-bonheur .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.04);color:#f6c453;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-family:var(--fontA);}
     #intro-bonheur .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 6px rgba(34,197,94,.12);}
-    #intro-bonheur h1{margin:22px auto 10px;font-size:clamp(42px,7vw,86px);line-height:.92;letter-spacing:-.05em;font-weight:1000;font-family:var(--fontA);color:#fff;max-width:13ch;}
+    #intro-bonheur h1{margin:22px auto 10px;font-size:clamp(42px,7vw,86px);line-height:.92;letter-spacing:-.05em;font-weight:900;font-family:var(--fontA);color:#fff;max-width:13ch;}
     #intro-bonheur h1 em{display:block;color:#f6c453;font-style:normal;}
     #intro-bonheur .lead{max-width:760px;margin:0 auto;font-size:clamp(17px,2vw,22px);line-height:1.6;color:#d5e5dc;font-weight:500;}
     #intro-bonheur .lead strong{color:#fff;}
@@ -233,8 +250,12 @@
     #intro-bonheur .heroLink{display:inline-block;margin-top:4px;color:#fff3cf;font-weight:1000;text-decoration:none;border-bottom:1px solid rgba(246,196,83,.35);font-family:var(--fontA);}
     #intro-bonheur .mini{margin-top:14px;font-size:13.5px;line-height:1.65;color:#dbe8e0;max-width:74ch;margin-left:auto;margin-right:auto;}
     #intro-bonheur .mini strong{color:#f6c453;}
-    @media(max-width:640px){#intro-bonheur{margin:12px 12px 0;border-radius:24px;}#intro-bonheur .wrap{padding:26px 16px 24px;}#intro-bonheur .cta{flex-direction:column;}#intro-bonheur .btnx{width:100%;}}
-
+    @media(max-width:640px){
+      #intro-bonheur{margin:12px 12px 0;border-radius:24px;}
+      #intro-bonheur .wrap{padding:26px 16px 24px;}
+      #intro-bonheur .cta{flex-direction:column;}
+      #intro-bonheur .btnx{width:100%;}
+    }
 
     .heroPulse{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px;}
     .heroPulseCard{padding:14px 12px;border-radius:18px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));box-shadow:0 12px 30px rgba(0,0,0,.16);}
@@ -260,7 +281,7 @@
     .railWrap{position:relative;padding:14px;}
     .railWrap::after{content:"";position:absolute;top:14px;right:14px;width:52px;height:calc(100% - 28px);pointer-events:none;border-radius:0 20px 20px 0;background:linear-gradient(90deg,rgba(12,40,29,0),rgba(12,40,29,.94));}
     .railWrapDesktop{position:relative}
-    .railHint{display:none;margin:0 0 12px 2px;font-size:16px;font-weight:1000;font-family:var(--fontA);color:#fff0c8;letter-spacing:.2px;line-height:1.2;text-shadow:0 3px 10px rgba(0,0,0,.25);}
+    .railHint{display:none;margin:0 0 12px 2px;font-size:16px;font-weight:900;font-family:var(--fontA);color:#fff0c8;letter-spacing:.2px;line-height:1.2;text-shadow:0 3px 10px rgba(0,0,0,.25);}
     .railArrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:46px;height:46px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(6,20,14,.82);color:#fff;font-size:30px;font-weight:900;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 26px rgba(0,0,0,.32);backdrop-filter:blur(10px);}
     .railArrow:hover{border-color:rgba(246,196,83,.34)}.railArrow.left{left:6px}.railArrow.right{right:6px}
     .moduleRail{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;touch-action:pan-x;}
@@ -282,12 +303,12 @@
     .moduleBtn.proCard{border-color:rgba(0,166,81,.42);background:linear-gradient(180deg,rgba(0,166,81,.22),rgba(0,166,81,.08));}
     .moduleBtn.proCard:hover{border-color:rgba(0,166,81,.65)}
     .moduleBtn.loco{border-color:rgba(246,196,83,.55);box-shadow:0 12px 30px rgba(246,196,83,.14);}
-    .moduleBtn .openHint{display:block;margin-top:10px;font-size:12px;font-family:var(--fontA);font-weight:1000;color:rgba(246,196,83,.92);letter-spacing:.2px;}
+    .moduleBtn .openHint{display:block;margin-top:10px;font-size:12px;font-family:var(--fontA);font-weight:900;color:rgba(246,196,83,.92);letter-spacing:.2px;}
     .moduleEmoji{font-size:30px;display:block;margin-bottom:10px;}
     .moduleName{font-size:17px;font-weight:1000;font-family:var(--fontA);line-height:1.2;padding-right:34px;color:#fff;}
     .moduleHint{margin-top:6px;font-size:13.5px;color:rgba(255,255,255,.88);line-height:1.45;min-height:42px;}
     .miniBadges{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
-    .miniBadge{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;border-radius:999px;font-size:10.5px;font-weight:1000;letter-spacing:.2px;border:1px solid var(--line);background:rgba(0,0,0,.10);font-family:var(--fontA);}
+    .miniBadge{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;border-radius:999px;font-size:10.5px;font-weight:900;letter-spacing:.2px;border:1px solid var(--line);background:rgba(0,0,0,.10);font-family:var(--fontA);}
     .miniBadge.public{color:#fff0c8;border-color:rgba(246,196,83,.28);background:rgba(246,196,83,.08)}
     .miniBadge.pro{color:#dfffe9;border-color:rgba(0,166,81,.30);background:rgba(0,166,81,.12)}
     .miniBadge.live{color:#bbf7d0;border-color:rgba(34,197,94,.30);background:rgba(34,197,94,.08)}
@@ -368,98 +389,28 @@
     }
     #net-bridge .bridge-btn:hover{border-color:rgba(246,196,83,.55);background:rgba(246,196,83,.16);}
 
-
-
     /* ── ACCÈS DIRECTS MÉTIER ── */
     #quick-business-doors{
-      margin:16px 18px 0;
-      padding:18px 20px;
-      border-radius:24px;
+      margin:16px 18px 0;padding:18px 20px;border-radius:24px;
       border:1px solid rgba(246,196,83,.24);
       background:linear-gradient(135deg,rgba(246,196,83,.06),rgba(0,166,81,.08));
       box-shadow:var(--shadow);
     }
-    #quick-business-doors .doors-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:14px;
-    }
-    #quick-business-doors .doors-title{
-      font-family:var(--fontA);
-      font-size:16px;
-      font-weight:900;
-      color:#fff3cf;
-      line-height:1.35;
-    }
-    #quick-business-doors .doors-sub{
-      margin-top:4px;
-      font-size:13px;
-      line-height:1.5;
-      color:rgba(248,250,252,.74);
-      max-width:62ch;
-    }
-    #quick-business-doors .doors-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px;
-    }
-    #quick-business-doors .doorCard{
-      display:block;
-      padding:16px 16px 14px;
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,.14);
-      background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.04));
-      text-decoration:none;
-      color:#fff;
-      transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease;
-      box-shadow:0 10px 28px rgba(0,0,0,.18);
-    }
-    #quick-business-doors .doorCard:hover{
-      transform:translateY(-2px);
-      border-color:rgba(246,196,83,.40);
-      box-shadow:0 14px 34px rgba(0,0,0,.24);
-    }
-    #quick-business-doors .doorIcon{
-      font-size:28px;
-      display:block;
-      margin-bottom:10px;
-    }
-    #quick-business-doors .doorName{
-      font-family:var(--fontA);
-      font-size:18px;
-      font-weight:1000;
-      line-height:1.2;
-      color:#fff;
-    }
-    #quick-business-doors .doorText{
-      margin-top:6px;
-      font-size:13.5px;
-      line-height:1.5;
-      color:rgba(248,250,252,.84);
-    }
-    #quick-business-doors .doorHint{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      margin-top:10px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(246,196,83,.26);
-      background:rgba(246,196,83,.08);
-      font-size:11px;
-      font-weight:1000;
-      color:#fff0c8;
-      font-family:var(--fontA);
-    }
+    #quick-business-doors .doors-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+    #quick-business-doors .doors-title{font-family:var(--fontA);font-size:16px;font-weight:900;color:#fff3cf;line-height:1.35;}
+    #quick-business-doors .doors-sub{margin-top:4px;font-size:13px;line-height:1.5;color:rgba(248,250,252,.74);max-width:62ch;}
+    #quick-business-doors .doors-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+    #quick-business-doors .doorCard{display:block;padding:16px 16px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.04));text-decoration:none;color:#fff;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease;box-shadow:0 10px 28px rgba(0,0,0,.18);}
+    #quick-business-doors .doorCard:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.40);box-shadow:0 14px 34px rgba(0,0,0,.24);}
+    #quick-business-doors .doorIcon{font-size:28px;display:block;margin-bottom:10px;}
+    #quick-business-doors .doorName{font-family:var(--fontA);font-size:18px;font-weight:1000;line-height:1.2;color:#fff;}
+    #quick-business-doors .doorText{margin-top:6px;font-size:13.5px;line-height:1.5;color:rgba(248,250,252,.84);}
+    #quick-business-doors .doorHint{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:6px 10px;border-radius:999px;border:1px solid rgba(246,196,83,.26);background:rgba(246,196,83,.08);font-size:11px;font-weight:900;color:#fff0c8;font-family:var(--fontA);}
 
     /* ── FAVORIS ── */
     .favTitle{margin:0;font-family:var(--fontA);font-size:30px;font-weight:1000;letter-spacing:.8px;line-height:1.05;color:#ffffff !important;text-transform:uppercase;text-shadow:0 0 10px rgba(255,255,255,.20),0 0 22px rgba(255,255,255,.10),0 4px 16px rgba(0,0,0,.30);}
     #favoritesSection .sectionSub{font-size:16px;font-weight:900;line-height:1.5;color:#ffffff !important;text-shadow:0 2px 10px rgba(0,0,0,.22);}
-    #favoritesCountPill{font-size:13px;font-weight:1000;color:#ffffff;border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.08);box-shadow:0 0 18px rgba(255,255,255,.08);}
-    /* Force blanc sur TOUTES sections */
+    #favoritesCountPill{font-size:13px;font-weight:900;color:#ffffff;border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.08);box-shadow:0 0 18px rgba(255,255,255,.08);}
     .section{color:#fff;}
     .section .sectionHead h2{color:#fff !important;}
     .section .sectionSub{color:rgba(255,255,255,.82) !important;}
@@ -488,9 +439,40 @@
     .qrLink{display:block;margin-top:12px;text-align:center;padding:12px 14px;border-radius:14px;border:1px solid rgba(246,196,83,.28);background:rgba(246,196,83,.10);font-family:var(--fontA);font-weight:900;transition:all .2s;}
     .qrLink:hover{border-color:rgba(246,196,83,.45);background:rgba(246,196,83,.18);}
 
-    /* ── RESPONSIVE ── */
+    /* ════════════════════════════════════════════
+       PATCH MOBILE NAV — nav collapsée par défaut
+       Uniquement ≤ 640px, desktop intact
+    ════════════════════════════════════════════ */
     @media(max-width:640px){
-      .railHint{display:block;font-size:18px;font-weight:1000;}.railWrap{padding-bottom:76px;}
+
+      /* Afficher le bouton toggle dans la topbar */
+      .menuToggleBtn{display:inline-flex;}
+
+      /* Masquer les topSignals pour libérer de la place */
+      .topSignals{display:none;}
+
+      /* Nav fermée par défaut */
+      .menuBar{
+        display:none;
+        /* animation d'ouverture */
+      }
+
+      /* Nav ouverte — classe ajoutée par JS */
+      .menuBar.nav-open{
+        display:block;
+        animation:navSlideIn .22s ease;
+      }
+
+      @keyframes navSlideIn{
+        from{opacity:0;transform:translateY(-8px);}
+        to{opacity:1;transform:translateY(0);}
+      }
+
+      /* Hero arrive immédiatement après le topbar */
+      #intro-bonheur{margin-top:0;border-radius:0 0 24px 24px;border-top:none;}
+
+      /* Reste du responsive existant */
+      .railHint{display:block;font-size:18px;font-weight:900;}.railWrap{padding-bottom:76px;}
       .railArrow{display:flex;top:auto;bottom:14px;transform:none;width:52px;height:52px;font-size:30px;border-radius:999px;background:rgba(6,20,14,.94);border:1px solid rgba(246,196,83,.28);box-shadow:0 12px 28px rgba(0,0,0,.34);}
       .railArrow.left{left:12px;}.railArrow.right{right:12px;}
       .menuBar{padding:6px 10px 8px;}.menuRow{gap:4px;}
@@ -503,18 +485,97 @@
       .showcaseImgWrap{max-width:100%;height:215px;}.showcaseCta{max-width:100%;}
       #signature-digiy .showcaseImgWrap{height:auto;}#signature-digiy .showcaseImgWrap img{object-position:center;}
       #net-bridge{margin:14px 12px 0;}
-
       #quick-business-doors{margin:14px 12px 0;padding:16px;}
       #quick-business-doors .doors-grid{grid-template-columns:1fr;}
     }
+
     @media(max-width:480px){
       .floatBtn{padding:11px 13px;font-size:13px;}#espace-pro-btn{left:10px;bottom:14px;}
       #explore-float-btn{right:10px;bottom:14px;}#digiy-help-btn{right:10px;bottom:60px;}
       #install-app-btn{bottom:68px;}.brandText .subtitle{max-width:150px}
-      .topSignals{width:100%;margin-left:0;justify-content:flex-start}
-      .signalChip{font-size:10.5px;padding:7px 10px}
       .moduleBtn{min-width:248px;max-width:286px;min-height:198px;}.railHint{font-size:19px;}
       .showcaseImgWrap{height:205px;}#signature-digiy .showcaseImgWrap{height:auto;}
+    }
+
+    /* ── MÉDAILLE DIGIYLYFE ── */
+    #medaille-digiy{
+      margin:0;
+      padding:36px 18px 28px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(180deg,rgba(8,109,53,.12) 0%,rgba(6,33,22,.0) 100%);
+      border-bottom:1px solid rgba(246,196,83,.10);
+    }
+    .medailleWrap{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
+    }
+    .medailleGlow{
+      position:absolute;
+      top:50%;left:50%;
+      transform:translate(-50%,-56%);
+      width:340px;height:340px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(246,196,83,.18) 0%,rgba(0,166,81,.08) 45%,transparent 72%);
+      pointer-events:none;
+      z-index:0;
+      filter:blur(18px);
+    }
+    .medailleFrame{
+      position:relative;
+      z-index:1;
+      width:clamp(220px,55vw,340px);
+      height:clamp(220px,55vw,340px);
+      border-radius:50%;
+      overflow:hidden;
+      border:2px solid rgba(246,196,83,.35);
+      box-shadow:
+        0 0 0 6px rgba(246,196,83,.07),
+        0 0 0 12px rgba(0,166,81,.05),
+        0 24px 60px rgba(0,0,0,.45),
+        0 4px 20px rgba(246,196,83,.18);
+      transition:transform .4s ease, box-shadow .4s ease;
+    }
+    .medailleFrame:hover{
+      transform:scale(1.025);
+      box-shadow:
+        0 0 0 8px rgba(246,196,83,.12),
+        0 0 0 16px rgba(0,166,81,.06),
+        0 30px 70px rgba(0,0,0,.50),
+        0 6px 28px rgba(246,196,83,.26);
+    }
+    .medailleImg{
+      width:100%;height:100%;
+      display:block;
+      object-fit:cover;
+      object-position:center;
+    }
+    .medailleCaption{
+      position:relative;z-index:1;
+      display:flex;flex-direction:column;align-items:center;gap:4px;
+      text-align:center;
+    }
+    .medailleLine{
+      font-family:var(--fontA);
+      font-size:13px;
+      font-weight:900;
+      color:rgba(246,196,83,.88);
+      letter-spacing:.06em;
+    }
+    .medailleSub{
+      font-family:var(--fontB);
+      font-size:12px;
+      font-weight:600;
+      color:rgba(248,250,252,.55);
+      letter-spacing:.04em;
+    }
+    @media(max-width:640px){
+      #medaille-digiy{padding:28px 14px 22px;}
+      .medailleGlow{width:260px;height:260px;}
     }
   </style>
 </head>
@@ -532,16 +593,24 @@
             <div class="subtitle">L'Afrique enracinée, connectée au monde</div>
           </div>
         </a>
+
+        <!-- SIGNAUX — visibles desktop, masqués mobile -->
         <div class="topSignals" aria-label="Forces DIGIYLYFE">
           <span class="signalChip gold">0% commission</span>
           <span class="signalChip green">Paiement direct</span>
           <span class="signalChip soft">Territoire vivant</span>
           <span class="signalChip soft">LOGICIELS métier</span>
         </div>
+
+        <!-- BOUTON MENU MOBILE — masqué desktop -->
+        <button class="menuToggleBtn" id="menuToggleBtn" type="button" aria-expanded="false" aria-controls="mainMenuBar" aria-label="Ouvrir le menu">
+          <span class="menuToggleIcon" id="menuToggleIcon">☰</span>
+          <span id="menuToggleLabel">MENU</span>
+        </button>
       </header>
 
       <!-- NAV — DOCTRINE FAÇADE -->
-      <nav class="menuBar" aria-label="Navigation DIGIY">
+      <nav class="menuBar" id="mainMenuBar" aria-label="Navigation DIGIY">
         <div class="menuRow">
           <a class="mBtn home" href="https://digiylyfe.com/">🏠</a>
           <a class="mBtn home" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Vision</a>
@@ -613,6 +682,25 @@
       </section>
 
 
+      <!-- MÉDAILLE DIGIYLYFE — la place qu'elle mérite -->
+      <section id="medaille-digiy" aria-label="Médaille DIGIYLYFE">
+        <div class="medailleWrap">
+          <div class="medailleGlow"></div>
+          <div class="medailleFrame">
+            <img
+              src="https://digiylyfe.net/wp-content/uploads/2026/03/digiylyfe_logo_qr.jpeg"
+              class="medailleImg"
+              alt="DIGIYLYFE — L'Afrique enracinée, connectée au monde. Zéro commission, 100% indépendance. La main tendue."
+              loading="eager"
+            />
+          </div>
+          <div class="medailleCaption">
+            <span class="medailleLine">∞ &nbsp; Zéro commission · 100% indépendance · La main tendue</span>
+            <span class="medailleSub">L'Afrique enracinée, connectée au monde</span>
+          </div>
+        </div>
+      </section>
+
       <!-- BANDEAU → DIGIYLYFE.NET -->
       <div id="net-bridge" aria-label="Lien vers la revue DIGIYLYFE">
         <div class="bridge-text">
@@ -624,8 +712,6 @@
         </a>
       </div>
 
-
-
       <div id="quick-business-doors" aria-label="Accès directs DIGIYLYFE">
         <div class="doors-head">
           <div>
@@ -635,40 +721,21 @@
             </div>
           </div>
         </div>
-
         <div class="doors-grid">
-          <a
-            class="doorCard"
-            href="https://mon-commerce.digiylyfe.com/?return=https%3A%2F%2Fdigiylyfe.com%2F"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Ouvrir Mon commerce"
-          >
+          <a class="doorCard" href="https://mon-commerce.digiylyfe.com/?return=https%3A%2F%2Fdigiylyfe.com%2F" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Mon commerce">
             <span class="doorIcon">👜</span>
             <div class="doorName">Mon commerce</div>
-            <div class="doorText">
-              Entrer directement dans la vitrine commerce DIGIYLYFE.
-            </div>
+            <div class="doorText">Entrer directement dans la vitrine commerce DIGIYLYFE.</div>
             <div class="doorHint">↗ Ouvrir maintenant</div>
           </a>
-
-          <a
-            class="doorCard"
-            href="https://driver.digiylyfe.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Ouvrir Driver"
-          >
+          <a class="doorCard" href="https://driver.digiylyfe.com/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Driver">
             <span class="doorIcon">🚗</span>
             <div class="doorName">Driver</div>
-            <div class="doorText">
-              Entrer directement dans l’univers chauffeur DIGIYLYFE.
-            </div>
+            <div class="doorText">Entrer directement dans l'univers chauffeur DIGIYLYFE.</div>
             <div class="doorHint">↗ Ouvrir maintenant</div>
           </a>
         </div>
       </div>
-
 
       <main class="main">
 
@@ -796,12 +863,8 @@
             <div class="showcaseCta" style="justify-content:center;">
               <div class="showcaseDesc">
                 <span style="display:block;font-size:18px;font-weight:1000;color:#fff3cf;margin-bottom:8px;">Le bonheur business est là.</span>
-                <a
-                  href="https://digiylyfe.net/digiylyfe-com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style="color:#fff3cf;font-weight:900;text-decoration:none;border-bottom:1px solid rgba(246,196,83,.35);word-break:break-word;"
-                >
+                <a href="https://digiylyfe.net/digiylyfe-com/" target="_blank" rel="noopener noreferrer"
+                  style="color:#fff3cf;font-weight:1000;text-decoration:none;border-bottom:1px solid rgba(246,196,83,.35);word-break:break-word;">
                   https://digiylyfe.net/digiylyfe-com/
                 </a>
               </div>
@@ -1068,10 +1131,6 @@
 
   function openExt(url){window.open(wr(url),"_blank","noopener,noreferrer");}
 
-  /* GATES HERO */
-  const gateMap={"gate-explore":L.explore,"gate-driver":L.driver,"gate-loc":L.loc,"gate-resa":L.resaTable,"gate-build":L.build,"gate-mon-commerce":L.monCommerce};
-  Object.entries(gateMap).forEach(([id,url])=>{const el=$(id);if(el){el.href=wr(url);el.target="_blank";el.rel="noopener noreferrer";}});
-
   /* NAV MENU */
   const menuMap={
     "mn-explore":L.explore,"mn-driver":L.driver,"mn-chauffeurs":L.galerieChauffeurs,
@@ -1086,6 +1145,77 @@
     "mn-explore-pro":L.explorePro,"mn-pay-pro":L.payPro
   };
   Object.entries(menuMap).forEach(([id,url])=>{const el=$(id);if(el){el.href=wr(url);el.target="_blank";el.rel="noopener noreferrer";}});
+
+  /* ════════════════════════════════════
+     PATCH — TOGGLE NAV MOBILE
+  ════════════════════════════════════ */
+  const menuToggleBtn=$("menuToggleBtn");
+  const mainMenuBar=$("mainMenuBar");
+  const menuToggleIcon=$("menuToggleIcon");
+  const menuToggleLabel=$("menuToggleLabel");
+  let navOpen=false;
+
+  function toggleNav(){
+    navOpen=!navOpen;
+    if(navOpen){
+      mainMenuBar.classList.add("nav-open");
+      mainMenuBar.style.display=""; // laisse le CSS gérer
+      menuToggleBtn.classList.add("open");
+      menuToggleBtn.setAttribute("aria-expanded","true");
+      menuToggleIcon.textContent="✕";
+      menuToggleLabel.textContent="FERMER";
+    } else {
+      mainMenuBar.classList.remove("nav-open");
+      mainMenuBar.style.display="none";
+      menuToggleBtn.classList.remove("open");
+      menuToggleBtn.setAttribute("aria-expanded","false");
+      menuToggleIcon.textContent="☰";
+      menuToggleLabel.textContent="MENU";
+    }
+  }
+
+  // Sur mobile : nav fermée par défaut au chargement
+  function initNav(){
+    if(window.innerWidth<=640){
+      mainMenuBar.style.display="none";
+      navOpen=false;
+    } else {
+      // Desktop : nav toujours visible, bouton caché via CSS
+      mainMenuBar.style.display="";
+      navOpen=true;
+    }
+  }
+
+  if(menuToggleBtn){
+    menuToggleBtn.addEventListener("click",toggleNav);
+  }
+
+  // Ferme la nav si on clique sur un lien à l'intérieur (mobile)
+  if(mainMenuBar){
+    mainMenuBar.querySelectorAll("a.mBtn").forEach(link=>{
+      link.addEventListener("click",()=>{
+        if(window.innerWidth<=640 && navOpen){
+          toggleNav();
+        }
+      });
+    });
+  }
+
+  // Réajuste au resize (passage desktop ↔ mobile)
+  window.addEventListener("resize",()=>{
+    if(window.innerWidth>640){
+      mainMenuBar.style.display="";
+      menuToggleBtn.classList.remove("open");
+      menuToggleIcon.textContent="☰";
+      menuToggleLabel.textContent="MENU";
+      navOpen=true;
+    } else if(!navOpen){
+      mainMenuBar.style.display="none";
+    }
+  });
+
+  initNav();
+  /* ════════════════════════════════════ */
 
   /* FLOAT BUTTONS */
   const espBtn=$("espace-pro-btn");if(espBtn)espBtn.addEventListener("click",()=>openExt(L.espacePro));
