@@ -1,4 +1,4 @@
-const CACHE_NAME = "digiy-hub-v1";
+const CACHE_NAME = "digiy-hub-v2";
 const ASSETS = [
   "./",
   "./index.html",
