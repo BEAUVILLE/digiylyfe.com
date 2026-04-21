@@ -1209,61 +1209,67 @@
   /* ════════════════════════════════════
      DRAWER NAV MOBILE
   ════════════════════════════════════ */
-  const menuToggleBtn=$("menuToggleBtn");
-  const menuToggleIcon=$("menuToggleIcon");
-  const menuToggleLabel=$("menuToggleLabel");
-  const navDrawer=$("navDrawer");
-  const drawerCloseBtn=$("drawerCloseBtn");
+  window.addEventListener("DOMContentLoaded",()=>{
+    const menuToggleBtn=$("menuToggleBtn");
+    const menuToggleIcon=$("menuToggleIcon");
+    const menuToggleLabel=$("menuToggleLabel");
+    const navDrawer=$("navDrawer");
+    const drawerCloseBtn=$("drawerCloseBtn");
 
-  function openDrawer(){
-    navDrawer.classList.add("open");
-    menuToggleBtn.classList.add("open");
-    menuToggleBtn.setAttribute("aria-expanded","true");
-    menuToggleIcon.textContent="✕";
-    menuToggleLabel.textContent="FERMER";
-    document.body.style.overflow="hidden";
-  }
-  function closeDrawer(){
-    navDrawer.classList.remove("open");
-    menuToggleBtn.classList.remove("open");
-    menuToggleBtn.setAttribute("aria-expanded","false");
-    menuToggleIcon.textContent="☰";
-    menuToggleLabel.textContent="MENU";
-    document.body.style.overflow="";
-  }
-
-  if(menuToggleBtn) menuToggleBtn.addEventListener("click",()=>{
-    navDrawer.classList.contains("open") ? closeDrawer() : openDrawer();
-  });
-  if(drawerCloseBtn) drawerCloseBtn.addEventListener("click",closeDrawer);
-  if(navDrawer) navDrawer.addEventListener("click",e=>{
-    if(e.target===navDrawer) closeDrawer();
-  });
-
-  /* URLs du drawer — mêmes destinations que la nav desktop */
-  const drawerMap={
-    "dm-explore":L.explore,"dm-driver":L.driver,"dm-chauffeurs":L.galerieChauffeurs,
-    "dm-loc":L.loc,"dm-resatable":L.resaTable,"dm-build":L.build,
-    "dm-mon-commerce":L.monCommerce,"dm-market":L.market,"dm-jobs":L.jobs,
-    "dm-tarifs":L.tarifs,
-    "dm-ndimbal-annonces":L.ndimbalAnnonces,"dm-pay":L.pay,"dm-vaschezmoi":L.vasChezDigiy,
-    "dm-ndimbal-loc":L.ndimbalLoc,"dm-ndimbal-map":L.ndimbalMap,
-    "dm-audio":L.audio,"dm-ia":L.assistantIA,
-    "dm-espace-pro":L.espacePro,"dm-inscription-pro":L.inscriptionPro,
-    "dm-market-pro":L.marketPro,"dm-caisse-pro":L.caissePro,
-    "dm-loc-pro":L.locPro,"dm-resatable-pro":L.resaTablePro,
-    "dm-driver-pro":L.driverPro,"dm-jobs-pro":L.jobsPro,
-    "dm-build-pro":L.buildPro,"dm-explore-pro":L.explorePro,
-    "dm-pay-pro":L.payPro
-  };
-  Object.entries(drawerMap).forEach(([id,url])=>{
-    const el=$(id);
-    if(el){
-      el.href=wr(url);
-      el.target="_blank";
-      el.rel="noopener noreferrer";
-      el.addEventListener("click",closeDrawer);
+    if(!menuToggleBtn || !menuToggleIcon || !menuToggleLabel || !navDrawer){
+      return;
     }
+
+    function openDrawer(){
+      navDrawer.classList.add("open");
+      menuToggleBtn.classList.add("open");
+      menuToggleBtn.setAttribute("aria-expanded","true");
+      menuToggleIcon.textContent="✕";
+      menuToggleLabel.textContent="FERMER";
+      document.body.style.overflow="hidden";
+    }
+    function closeDrawer(){
+      navDrawer.classList.remove("open");
+      menuToggleBtn.classList.remove("open");
+      menuToggleBtn.setAttribute("aria-expanded","false");
+      menuToggleIcon.textContent="☰";
+      menuToggleLabel.textContent="MENU";
+      document.body.style.overflow="";
+    }
+
+    menuToggleBtn.addEventListener("click",()=>{
+      navDrawer.classList.contains("open") ? closeDrawer() : openDrawer();
+    });
+    if(drawerCloseBtn) drawerCloseBtn.addEventListener("click",closeDrawer);
+    navDrawer.addEventListener("click",e=>{
+      if(e.target===navDrawer) closeDrawer();
+    });
+
+    /* URLs du drawer — mêmes destinations que la nav desktop */
+    const drawerMap={
+      "dm-explore":L.explore,"dm-driver":L.driver,"dm-chauffeurs":L.galerieChauffeurs,
+      "dm-loc":L.loc,"dm-resatable":L.resaTable,"dm-build":L.build,
+      "dm-mon-commerce":L.monCommerce,"dm-market":L.market,"dm-jobs":L.jobs,
+      "dm-tarifs":L.tarifs,
+      "dm-ndimbal-annonces":L.ndimbalAnnonces,"dm-pay":L.pay,"dm-vaschezmoi":L.vasChezDigiy,
+      "dm-ndimbal-loc":L.ndimbalLoc,"dm-ndimbal-map":L.ndimbalMap,
+      "dm-audio":L.audio,"dm-ia":L.assistantIA,
+      "dm-espace-pro":L.espacePro,"dm-inscription-pro":L.inscriptionPro,
+      "dm-market-pro":L.marketPro,"dm-caisse-pro":L.caissePro,
+      "dm-loc-pro":L.locPro,"dm-resatable-pro":L.resaTablePro,
+      "dm-driver-pro":L.driverPro,"dm-jobs-pro":L.jobsPro,
+      "dm-build-pro":L.buildPro,"dm-explore-pro":L.explorePro,
+      "dm-pay-pro":L.payPro
+    };
+    Object.entries(drawerMap).forEach(([id,url])=>{
+      const el=$(id);
+      if(el){
+        el.href=wr(url);
+        el.target="_blank";
+        el.rel="noopener noreferrer";
+        el.addEventListener("click",closeDrawer);
+      }
+    });
   });
   /* ════════════════════════════════════ */
 
