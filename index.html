@@ -120,6 +120,7 @@
     .logo img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;}
     .brandText .title{font-family:var(--fontA);font-weight:900;letter-spacing:.8px;font-size:18px;}
     .brandText .subtitle{color:rgba(248,250,252,.78);font-size:13px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px;}
+    .brandText .signature{color:rgba(246,196,83,.90);font-size:10.5px;margin-top:3px;font-family:var(--fontA);font-weight:900;letter-spacing:.18em;text-transform:uppercase;}
     .topSignals{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
     .signalChip{
       display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
@@ -250,6 +251,8 @@
     #intro-bonheur .heroLink{display:inline-block;margin-top:4px;color:#fff3cf;font-weight:1000;text-decoration:none;border-bottom:1px solid rgba(246,196,83,.35);font-family:var(--fontA);}
     #intro-bonheur .mini{margin-top:14px;font-size:13.5px;line-height:1.65;color:#dbe8e0;max-width:74ch;margin-left:auto;margin-right:auto;}
     #intro-bonheur .mini strong{color:#f6c453;}
+    #intro-bonheur .heroSignature{display:inline-flex;align-items:center;justify-content:center;margin-top:14px;padding:9px 14px;border-radius:999px;border:1px solid rgba(246,196,83,.24);background:rgba(246,196,83,.08);color:#fff1c5;font-family:var(--fontA);font-size:12px;font-weight:1000;letter-spacing:.18em;text-transform:uppercase;}
+    #intro-bonheur .heroSignature strong{color:#f6c453;font-weight:1000;}
     @media(max-width:640px){
       #intro-bonheur{margin:12px 12px 0;border-radius:24px;}
       #intro-bonheur .wrap{padding:26px 16px 24px;}
@@ -306,6 +309,7 @@
     .moduleBtn .openHint{display:block;margin-top:10px;font-size:12px;font-family:var(--fontA);font-weight:900;color:rgba(246,196,83,.92);letter-spacing:.2px;}
     .moduleEmoji{font-size:30px;display:block;margin-bottom:10px;}
     .moduleName{font-size:17px;font-weight:1000;font-family:var(--fontA);line-height:1.2;padding-right:34px;color:#fff;}
+    .moduleSignature{margin-top:6px;font-size:10.5px;font-family:var(--fontA);font-weight:1000;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,196,83,.86);}
     .moduleHint{margin-top:6px;font-size:13.5px;color:rgba(255,255,255,.88);line-height:1.45;min-height:42px;}
     .miniBadges{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
     .miniBadge{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;border-radius:999px;font-size:10.5px;font-weight:900;letter-spacing:.2px;border:1px solid var(--line);background:rgba(0,0,0,.10);font-family:var(--fontA);}
@@ -331,6 +335,7 @@
     .focusIcon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;background:rgba(0,166,81,.12);border:1px solid rgba(255,255,255,.12);flex:0 0 auto;}
     .focusLabel{font-family:var(--fontA);font-size:22px;font-weight:900;line-height:1.1;}
     .focusHint{margin-top:5px;font-size:13px;color:var(--muted);line-height:1.45;}
+    .focusSignature{margin-top:7px;font-size:11px;font-family:var(--fontA);font-weight:1000;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,196,83,.88);}
     .focusBadges{display:flex;gap:8px;flex-wrap:wrap;}
     .focusBadge{display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.10);font-size:11px;font-weight:900;font-family:var(--fontA);white-space:nowrap;}
     .focusBadge.public{color:#fff0c8;border-color:rgba(246,196,83,.28);background:rgba(246,196,83,.08)}
@@ -349,7 +354,9 @@
     /* ── FOOTER FOCUS ── */
     .footer{margin-top:14px;border-top:1px solid rgba(255,255,255,.08);padding:14px 2px 0;color:var(--muted);font-size:12px;line-height:1.55;}
     .footLine{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
-    .footBrand{font-family:var(--fontA);font-weight:900;color:rgba(246,196,83,.95)}.sep{opacity:.35}
+    .footBrand{font-family:var(--fontA);font-weight:900;color:rgba(246,196,83,.95)}
+    .footSignature{font-family:var(--fontA);font-weight:1000;color:rgba(255,243,207,.95);letter-spacing:.16em;text-transform:uppercase;font-size:10.5px}
+    .sep{opacity:.35}
 
     /* ── SHOWCASE ── */
     .showcaseSection{margin-top:16px;border:1px solid rgba(246,196,83,.24);border-radius:var(--radius2);background:linear-gradient(180deg,rgba(10,48,34,.82),rgba(8,28,20,.76));box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.07);overflow:hidden;scroll-margin-top:110px;}
@@ -651,6 +658,7 @@
           <div class="brandText">
             <div class="title">DIGIYLYFE</div>
             <div class="subtitle">L'Afrique enracinée, connectée au monde</div>
+            <div class="signature">BY DIGIYLYFE</div>
           </div>
         </a>
 
@@ -738,6 +746,7 @@
             <strong>0% commission</strong> · paiement direct · présence utile · économie locale en mouvement ·
             L'Afrique enracinée, connectée au monde ∞
           </p>
+          <div class="heroSignature">FIL ROUGE · <strong>BY DIGIYLYFE</strong></div>
         </div>
       </section>
 
@@ -866,6 +875,7 @@
                 <div>
                   <div class="focusLabel" id="focusLabel">Découvrir le territoire</div>
                   <div class="focusHint" id="focusHint">Spots, lieux, ambiances de la Petite Côte</div>
+                  <div class="focusSignature">BY DIGIYLYFE</div>
                 </div>
               </div>
               <div class="focusBadges">
@@ -883,6 +893,7 @@
             <footer class="footer">
               <div class="footLine">
                 <span class="footBrand">DIGIYLYFE ∞</span>
+                <span class="sep">·</span><span class="footSignature">BY DIGIYLYFE</span>
                 <span class="sep">·</span><span>0% commission</span>
                 <span class="sep">·</span><span>paiement direct</span>
                 <span class="sep">·</span><span>territoire vivant</span>
@@ -1126,6 +1137,7 @@
       <a class="moduleBtn ${kind==="public"?"publicCard":"proCard"}${active?" active":""}${item.loco?" loco":""}" href="${href}" target="_blank" rel="noopener noreferrer" data-kind="${kind}" data-key="${item.key}">
         <span class="moduleEmoji">${item.icon}</span>
         <div class="moduleName">${item.name}</div>
+        <div class="moduleSignature">BY DIGIYLYFE</div>
         <div class="moduleHint">${item.desc}</div>
         <div class="miniBadges">
           <span class="miniBadge ${kind}">${kindLabel}</span>
