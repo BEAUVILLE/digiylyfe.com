@@ -1589,6 +1589,8 @@
     return clone.innerText
       .replace(/\s+/g, ' ')
       .replace(/[^\w\s,.!?;:«»'"%-]/g, ' ')
+      .replace(/DIGIYLYFE/g, 'Digiylyfe')
+      .replace(/DIGIY/g, 'Digiy')
       .trim();
   }
 
@@ -1636,7 +1638,7 @@
 
     utt         = new SpeechSynthesisUtterance(text);
     utt.lang    = 'fr-FR';
-    utt.rate    = 0.92;
+    utt.rate    = 0.7;
     utt.pitch   = 1;
     utt.volume  = 1;
 
@@ -1690,7 +1692,6 @@
 <!-- ============================================================
      FIN DIGIY AUDIO
      ============================================================ -->
-
 
 </body>
 </html>
