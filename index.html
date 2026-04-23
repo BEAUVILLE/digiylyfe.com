@@ -1479,6 +1479,217 @@
 
     </div>
   </div>
+  <!-- ============================================================
+     DIGIY AUDIO — Lecteur universel pour digiylyfe.com
+     À coller juste avant </body> dans ton index.html
+     ============================================================ -->
+
+<style>
+  #digiy-reader {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #d4af37, #b78b34);
+    color: #111827;
+    font-family: 'Outfit', Inter, sans-serif;
+    font-weight: 900;
+    font-size: 15px;
+    padding: 13px 22px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 28px rgba(0,0,0,.24);
+    transition: transform .18s ease, box-shadow .18s ease;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  #digiy-reader:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(0,0,0,.3);
+  }
+
+  #digiy-reader:active {
+    transform: scale(.97);
+  }
+
+  #digiy-reader .d-ico {
+    font-size: 16px;
+    line-height: 1;
+    transition: transform .2s ease;
+  }
+
+  /* Barre de progression */
+  #digiy-bar-wrap {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(212,175,55,.2);
+    z-index: 99998;
+    opacity: 0;
+    transition: opacity .3s ease;
+  }
+
+  #digiy-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #d4af37, #b78b34);
+    transition: width .4s linear;
+  }
+
+  @media (max-width: 600px) {
+    #digiy-reader {
+      bottom: 16px;
+      left: 16px;
+      font-size: 14px;
+      padding: 12px 18px;
+    }
+  }
+</style>
+
+<!-- Bouton -->
+<button id="digiy-reader" aria-label="Écouter la page">
+  <span class="d-ico">▶</span>
+  <span id="digiy-lbl">Écouter</span>
+</button>
+
+<!-- Barre de progression -->
+<div id="digiy-bar-wrap">
+  <div id="digiy-bar"></div>
+</div>
+
+<script>
+(function () {
+
+  /* ── Sélecteurs à EXCLURE ── */
+  const EXCLUDE = [
+    'script', 'style', 'noscript', 'iframe',
+    'nav', 'footer', '.digiy-floating-menu',
+    '#digiy-reader', '#digiy-bar-wrap',
+    '[aria-hidden="true"]'
+  ];
+
+  /* ── Récupère tout le texte visible ── */
+  function getPageText() {
+    // Clone le body pour ne pas toucher le DOM réel
+    const clone = document.body.cloneNode(true);
+
+    // Supprime les éléments exclus
+    EXCLUDE.forEach(sel => {
+      clone.querySelectorAll(sel).forEach(el => el.remove());
+    });
+
+    // Nettoie le texte
+    return clone.innerText
+      .replace(/\s+/g, ' ')
+      .replace(/[^\w\s,.!?;:«»'"%-]/g, ' ')
+      .trim();
+  }
+
+  /* ── État ── */
+  const btn    = document.getElementById('digiy-reader');
+  const lbl    = document.getElementById('digiy-lbl');
+  const ico    = btn.querySelector('.d-ico');
+  const barW   = document.getElementById('digiy-bar-wrap');
+  const bar    = document.getElementById('digiy-bar');
+
+  if (!('speechSynthesis' in window)) {
+    btn.style.display = 'none';
+    return;
+  }
+
+  let playing  = false;
+  let utt      = null;
+  let progress = 0;
+  let timer    = null;
+  let duration = 0;
+
+  /* ── Voix française ── */
+  function getFrVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return voices.find(v => v.lang === 'fr-FR')
+        || voices.find(v => v.lang.startsWith('fr'))
+        || null;
+  }
+
+  /* ── Stop ── */
+  function stop() {
+    window.speechSynthesis.cancel();
+    clearInterval(timer);
+    playing   = false;
+    ico.textContent = '▶';
+    lbl.textContent = 'Écouter';
+    barW.style.opacity = '0';
+    bar.style.width    = '0%';
+  }
+
+  /* ── Play ── */
+  function play() {
+    const text = getPageText();
+    if (!text) return;
+
+    utt         = new SpeechSynthesisUtterance(text);
+    utt.lang    = 'fr-FR';
+    utt.rate    = 0.92;
+    utt.pitch   = 1;
+    utt.volume  = 1;
+
+    // Attendre voix si besoin
+    const v = getFrVoice();
+    if (v) utt.voice = v;
+
+    // Durée estimée pour la barre (mots / débit)
+    const words = text.split(' ').length;
+    duration = (words / 2.5) * 1000; // ~2.5 mots/sec à rate 0.92
+
+    utt.onstart = () => {
+      barW.style.opacity = '1';
+      progress = 0;
+      bar.style.width = '0%';
+      const step = 200;
+      timer = setInterval(() => {
+        progress += step;
+        const pct = Math.min((progress / duration) * 100, 99);
+        bar.style.width = pct + '%';
+      }, 200);
+    };
+
+    utt.onend = () => {
+      bar.style.width = '100%';
+      setTimeout(stop, 400);
+    };
+
+    utt.onerror = stop;
+
+    window.speechSynthesis.speak(utt);
+    playing         = true;
+    ico.textContent = '⏸';
+    lbl.textContent = 'Pause';
+  }
+
+  /* ── Toggle ── */
+  btn.addEventListener('click', () => playing ? stop() : play());
+
+  /* ── Recharge voix async (Chrome) ── */
+  if (window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = () => {};
+  }
+
+  /* ── Stop si changement de page (SPA) ── */
+  window.addEventListener('beforeunload', stop);
+
+})();
+</script>
+
+<!-- ============================================================
+     FIN DIGIY AUDIO
+     ============================================================ -->
 
 
 </body>
