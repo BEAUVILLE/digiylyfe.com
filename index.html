@@ -1479,7 +1479,7 @@
 
     </div>
   </div>
-  <!-- ============================================================
+<!-- ============================================================
      DIGIY AUDIO — Lecteur universel pour digiylyfe.com
      À coller juste avant </body> dans ton index.html
      ============================================================ -->
@@ -1615,7 +1615,8 @@
   /* ── Voix française ── */
   function getFrVoice() {
     const voices = window.speechSynthesis.getVoices();
-    return voices.find(v => v.lang === 'fr-FR')
+    return voices.find(v => v.name === 'Google français')
+        || voices.find(v => v.lang === 'fr-FR')
         || voices.find(v => v.lang.startsWith('fr'))
         || null;
   }
@@ -1692,6 +1693,5 @@
 <!-- ============================================================
      FIN DIGIY AUDIO
      ============================================================ -->
-
 </body>
 </html>
