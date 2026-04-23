@@ -1480,7 +1480,7 @@
     </div>
   </div>
 <!-- ============================================================
-     DIGIY AUDIO — V3 FINAL
+     DIGIY AUDIO — V4 FINAL
      À coller juste avant </body> dans ton index.html
      ============================================================ -->
 
@@ -1522,82 +1522,195 @@ transition:width .18s linear
 <span id="digiy-lbl">Écouter DIGIY</span>
 </button>
 
-<div id="digiy-bar-wrap"><div id="digiy-bar"></div></div>
+<div id="digiy-bar-wrap" aria-hidden="true"><div id="digiy-bar"></div></div>
 
 <script>
-(function(){
+(function () {
+  var TEXTE = "Bienvenue sur DIGIYLYFE. Ici, la Petite Côte se montre, se relie et avance. Ici, pas de commission qui t’écrase. Pas d’intermédiaire qui te détourne. Tu cherches un chauffeur ? Il est joignable directement. Tu cherches où dormir ? Le lieu et son contact sont là. Tu veux réserver, trouver un artisan, acheter local ou chercher du travail ? DIGIYLYFE te met en face du réel. Simple. Direct. Humain. DIGIYLYFE, une présence digitale enracinée dans le territoire. Le bonheur business est là. Par DIGIYLYFE.";
 
-var TEXTE="Bienvenue sur DIGIYLYFE. Ici, la Petite Côte se montre, se relie et avance. Ici, pas de commission qui t’écrase. Pas d’intermédiaire qui te détourne. Tu cherches un chauffeur ? Il est joignable directement. Tu cherches où dormir ? Le lieu et son contact sont là. Tu veux réserver, trouver un artisan, acheter local ou chercher du travail ? DIGIYLYFE te met en face du réel. Simple. Direct. Humain. DIGIYLYFE, une présence digitale enracinée dans le territoire. Le bonheur business est là. Par DIGIYLYFE.";
+  var btn = document.getElementById('digiy-reader');
+  var lbl = document.getElementById('digiy-lbl');
+  var ico = btn ? btn.querySelector('.d-ico') : null;
+  var barWrap = document.getElementById('digiy-bar-wrap');
+  var bar = document.getElementById('digiy-bar');
 
-var btn=document.getElementById('digiy-reader');
-var lbl=document.getElementById('digiy-lbl');
-var ico=btn.querySelector('.d-ico');
-var barW=document.getElementById('digiy-bar-wrap');
-var bar=document.getElementById('digiy-bar');
+  if (!btn || !lbl || !ico || !barWrap || !bar) return;
+  if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
+    btn.style.display = 'none';
+    return;
+  }
 
-if(!('speechSynthesis'in window)){btn.style.display='none';return;}
+  var synth = window.speechSynthesis;
+  var utterance = null;
+  var playing = false;
+  var timer = null;
+  var currentLaunchId = 0;
 
-var synth=window.speechSynthesis;
-var playing=false;
-var utt=null;
-var timer=null;
+  function setIdle() {
+    playing = false;
+    ico.innerHTML = '&#9654;';
+    lbl.textContent = 'Écouter DIGIY';
+    btn.setAttribute('aria-label', 'Écouter DIGIY');
+    clearInterval(timer);
+    timer = null;
+    barWrap.style.opacity = '0';
+    bar.style.width = '0%';
+  }
 
-function getVoice(){
-var v=synth.getVoices();
-return v.find(x=>/fr/i.test(x.lang))||null;
-}
+  function setPlaying() {
+    playing = true;
+    ico.innerHTML = '&#9632;';
+    lbl.textContent = 'Arrêter DIGIY';
+    btn.setAttribute('aria-label', 'Arrêter DIGIY');
+  }
 
-function stop(){
-synth.cancel();
-clearInterval(timer);
-playing=false;
-ico.innerHTML='&#9654;';
-lbl.textContent='Écouter DIGIY';
-barW.style.opacity='0';
-bar.style.width='0%';
-}
+  function scoreVoice(v) {
+    var name = (v.name || '').toLowerCase();
+    var lang = (v.lang || '').toLowerCase();
+    var score = 0;
 
-function play(){
+    if (/^fr/.test(lang)) score += 40;
+    if (/fr-fr/.test(lang)) score += 20;
 
-synth.cancel();
+    if (/google/.test(name)) score += 8;
+    if (/female|woman|femme/.test(name)) score += 35;
 
-utt=new SpeechSynthesisUtterance(TEXTE);
-utt.lang='fr-FR';
-utt.rate=0.84;
+    if (/amelie|marie|audrey|julie|celine|virginie|lea|claire|sophie|alice|eloise/.test(name)) score += 45;
 
-var voice=getVoice();
-if(voice)utt.voice=voice;
+    if (/siri/.test(name)) score += 10;
+    if (/thomas|daniel|paul|nicolas|male|homme/.test(name)) score -= 20;
 
-var words=TEXTE.split(' ').length;
-var duration=words*500;
-var progress=0;
+    return score;
+  }
 
-utt.onstart=function(){
-barW.style.opacity='1';
-timer=setInterval(function(){
-progress+=150;
-bar.style.width=Math.min((progress/duration)*100,98)+'%';
-},150);
-};
+  function getPreferredFrenchVoice() {
+    var voices = synth.getVoices() || [];
+    if (!voices.length) return null;
 
-utt.onend=function(){
-bar.style.width='100%';
-setTimeout(stop,300);
-};
+    var frenchVoices = voices.filter(function (v) {
+      return /^fr/i.test(v.lang || '');
+    });
 
-synth.speak(utt);
+    if (!frenchVoices.length) return null;
 
-playing=true;
-ico.innerHTML='&#9632;';
-lbl.textContent='Arrêter DIGIY';
-}
+    frenchVoices.sort(function (a, b) {
+      return scoreVoice(b) - scoreVoice(a);
+    });
 
-btn.onclick=function(){
-playing?stop():play();
-};
+    return frenchVoices[0] || null;
+  }
 
-window.onbeforeunload=stop;
+  function stop() {
+    clearInterval(timer);
+    timer = null;
+    try { synth.cancel(); } catch (e) {}
+    utterance = null;
+    setIdle();
+  }
 
+  function startProgress(text, launchId) {
+    var words = (text.trim().match(/\S+/g) || []).length;
+    var estimatedDuration = Math.max(2500, words * 520);
+    var elapsed = 0;
+
+    clearInterval(timer);
+    bar.style.width = '0%';
+    barWrap.style.opacity = '1';
+
+    timer = setInterval(function () {
+      if (!playing || launchId !== currentLaunchId) {
+        clearInterval(timer);
+        timer = null;
+        return;
+      }
+
+      elapsed += 150;
+      var pct = Math.min((elapsed / estimatedDuration) * 100, 97);
+      bar.style.width = pct + '%';
+    }, 150);
+  }
+
+  function launch() {
+    currentLaunchId += 1;
+    var launchId = currentLaunchId;
+
+    try { synth.cancel(); } catch (e) {}
+
+    utterance = new SpeechSynthesisUtterance(TEXTE);
+    utterance.lang = 'fr-FR';
+    utterance.rate = 0.84;
+    utterance.pitch = 1.08;
+    utterance.volume = 1;
+
+    var voice = getPreferredFrenchVoice();
+    if (voice) utterance.voice = voice;
+
+    utterance.onstart = function () {
+      if (launchId !== currentLaunchId) return;
+      setPlaying();
+      startProgress(TEXTE, launchId);
+    };
+
+    utterance.onend = function () {
+      if (launchId !== currentLaunchId) return;
+      clearInterval(timer);
+      timer = null;
+      bar.style.width = '100%';
+      setTimeout(function () {
+        if (launchId === currentLaunchId) setIdle();
+      }, 250);
+    };
+
+    utterance.onerror = function () {
+      if (launchId !== currentLaunchId) return;
+      stop();
+    };
+
+    synth.speak(utterance);
+  }
+
+  function play() {
+    if (playing) return;
+    if (synth.speaking || synth.pending) {
+      try { synth.cancel(); } catch (e) {}
+    }
+
+    var voices = synth.getVoices();
+    if (voices && voices.length) {
+      launch();
+      return;
+    }
+
+    var launched = false;
+
+    function handleVoicesChanged() {
+      if (launched) return;
+      launched = true;
+      synth.removeEventListener('voiceschanged', handleVoicesChanged);
+      launch();
+    }
+
+    synth.addEventListener('voiceschanged', handleVoicesChanged);
+
+    setTimeout(function () {
+      if (launched) return;
+      launched = true;
+      synth.removeEventListener('voiceschanged', handleVoicesChanged);
+      launch();
+    }, 700);
+  }
+
+  btn.addEventListener('click', function () {
+    if (playing) stop();
+    else play();
+  });
+
+  window.addEventListener('beforeunload', stop);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden && playing) stop();
+  });
+
+  setIdle();
 })();
 </script>
 
