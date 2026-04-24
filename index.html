@@ -755,15 +755,15 @@
           <span class="rowLabel p">JE TRAVAILLE</span>
           <a class="mBtn green" id="mn-espace-pro"      href="#">🏢 Mon activité</a>
           <a class="mBtn green" id="mn-inscription-pro" href="#">✍️ Rejoindre DIGIY</a>
-          <a class="mBtn green" id="mn-market-pro"      href="#">🛍️ Je vends</a>
-          <a class="mBtn green" id="mn-caisse-pro"      href="#">💰 Mon commerce</a>
-          <a class="mBtn green" id="mn-loc-pro"         href="#">🏠 Je loue</a>
-          <a class="mBtn green" id="mn-resatable-pro"   href="#">📅 Mes réservations</a>
-          <a class="mBtn green" id="mn-driver-pro"      href="#">🚗 Je conduis</a>
-          <a class="mBtn green" id="mn-jobs-pro"        href="#">💼 Je recrute</a>
-          <a class="mBtn green" id="mn-explore-pro"     href="#">🗺️ Ma visibilité</a>
-          <a class="mBtn green" id="mn-build-pro"       href="#">🏗️ Mes services</a>
-          <a class="mBtn green" id="mn-pay-pro"         href="#">💳 Mon argent</a>
+          <a class="mBtn green" id="mn-market-pro"      href="#">🛍️ Je vends / MARKET</a>
+          <a class="mBtn green" id="mn-caisse-pro"      href="#">💰 Mon commerce / CAISSE</a>
+          <a class="mBtn green" id="mn-loc-pro"         href="#">🏠 Je loue / LOC</a>
+          <a class="mBtn green" id="mn-resatable-pro"   href="#">📅 Je réserve / RÉSA</a>
+          <a class="mBtn green" id="mn-driver-pro"      href="#">🚗 Je conduis / DRIVER</a>
+          <a class="mBtn green" id="mn-jobs-pro"        href="#">💼 Je recrute / JOBS</a>
+          <a class="mBtn green" id="mn-explore-pro"     href="#">🗺️ Me faire connaître / EXPLORE</a>
+          <a class="mBtn green" id="mn-build-pro"       href="#">🏗️ Mes services / MULTI</a>
+          <a class="mBtn green" id="mn-pay-pro"         href="#">💳 Mon argent / PAY</a>
         </div>
         <div class="menuRow secondary">
           <span class="rowLabel s">AUSSI</span>
@@ -1141,15 +1141,15 @@
   const PRO=[
     {key:"espacePro",     name:"Mon activité",          icon:"🏢", desc:"Tout commence ici — espace central, propre et direct",    status:"LIVE", loco:true},
     {key:"inscriptionPro",name:"Rejoindre DIGIY",       icon:"✍️", desc:"Créer mon compte pro — simple, sans paperasse",           status:"LIVE"},
-    {key:"marketPro",     name:"Je vends",              icon:"🛍️", desc:"Ma vitrine, mes produits, mes ventes en ligne",           status:"LIVE", loco:true},
-    {key:"caissePro",     name:"Mon commerce",          icon:"💰", desc:"Encaisser, voir mes ventes, gérer mes produits",          status:"LIVE"},
-    {key:"locPro",        name:"Je loue",               icon:"🏠", desc:"Mes logements, mes disponibilités, mes clients",          status:"LIVE"},
-    {key:"resaTablePro",  name:"Mes réservations",      icon:"📅", desc:"Mes créneaux et rendez-vous — propre et sans appel",     status:"LIVE"},
-    {key:"driverPro",     name:"Je conduis",            icon:"🚗", desc:"Mes courses, mes zones, mon activité chauffeur",          status:"LIVE"},
-    {key:"jobsPro",       name:"Je recrute",            icon:"💼", desc:"Publier une offre, suivre les candidatures",              status:"LIVE"},
-    {key:"buildPro",      name:"Mes services",          icon:"🏗️", desc:"Mes chantiers, mes propositions, mon activité artisan",   status:"BETA"},
-    {key:"explorePro",    name:"Ma visibilité",         icon:"🗺️", desc:"Ma présence terrain — statistiques et audience",         status:"LIVE"},
-    {key:"payPro",        name:"Mon argent",            icon:"💳", desc:"Voir mes paiements — en un coup d'œil, sans jargon",     status:"LIVE"}
+    {key:"marketPro",     name:"Je vends — MARKET",     icon:"🛍️", desc:"Ma boutique en ligne, mes produits, mes ventes directes",           status:"LIVE", loco:true},
+    {key:"caissePro",     name:"Mon commerce — CAISSE", icon:"💰", desc:"Encaisser, suivre mes ventes, garder la main sur ma boutique",          status:"LIVE"},
+    {key:"locPro",        name:"Je loue — LOC",         icon:"🏠", desc:"Mes logements, mes disponibilités, mes clients",          status:"LIVE"},
+    {key:"resaTablePro",  name:"Je réserve — RÉSA",     icon:"📅", desc:"Mes créneaux, mes rendez-vous, mon planning",     status:"LIVE"},
+    {key:"driverPro",     name:"Je conduis — DRIVER",   icon:"🚗", desc:"Mes courses, mes zones, mon activité chauffeur",          status:"LIVE"},
+    {key:"jobsPro",       name:"Je recrute — JOBS",     icon:"💼", desc:"Publier une offre, suivre les candidatures",              status:"LIVE"},
+    {key:"buildPro",      name:"Mes services — MULTI",  icon:"🏗️", desc:"Mes chantiers, mes propositions, mon activité terrain",   status:"BETA"},
+    {key:"explorePro",    name:"Me faire connaître — EXPLORE", icon:"🗺️", desc:"Poser mon lieu, mon activité ou mon adresse sur le territoire",         status:"LIVE"},
+    {key:"payPro",        name:"Mon argent — PAY",      icon:"💳", desc:"Voir mes paiements — en un coup d'œil, sans jargon",     status:"LIVE"}
   ];
 
   const COPY={
@@ -1171,15 +1171,15 @@
     assistantIA: "Tu as une question. Pose-la. L'assistant connaît le terrain DIGIY et répond directement, sans te faire chercher.",
     espacePro:    "Tout commence ici. Ton espace professionnel — propre, direct, sans menu inutile. Tu arrives, tu vois ce qu'il faut faire, tu agis. C'est tout.",
     inscriptionPro: "Tu veux travailler avec DIGIY. Tu crées ton compte — simplement, clairement. Pas de formulaire de 20 champs. En quelques minutes, tu es dedans.",
-    marketPro:    "Ta vitrine en ligne. Tes produits sont visibles, tes ventes se font, ta présence commerciale existe. Tout dans un seul endroit.",
-    caissePro:    "Nouveau client — tu encaisses. Fin de journée — tu vois ce qui est rentré. Ton stock — tu le suis. Rien de plus, rien de moins.",
-    locPro:       "Tes logements sont là, tes disponibilités sont visibles, tes clients trouvent directement. Tu gères depuis un seul endroit, sans te perdre.",
-    resaTablePro: "Tes créneaux sont bloqués. Tes clients ne t'appellent plus pour rien. Ton agenda est propre. Tu conduis ta journée.",
-    driverPro:    "Tu conduis. DIGIY gère le reste — les zones, les courses disponibles, ta visibilité terrain. Tu te concentres sur la route.",
-    jobsPro:      "Tu cherches quelqu'un. Tu publies l'offre, tu reçois les candidatures, tu choisis. Direct, sans portail qui complique.",
-    buildPro:     "Tes chantiers, tes propositions, ton activité d'artisan — tout dans un seul espace. Le savoir-faire mérite une vitrine propre.",
-    explorePro:   "EXPLORE est ta locomotive de visibilité. Tu vois qui te regarde, comment tu es vu sur le territoire, et comment ta présence attire le reste.",
-    payPro:       "Ton argent qui rentre — visible, clair, sans attendre. Tu ouvres, tu vois, tu sais où tu en es."
+    marketPro:    "Je vends — MARKET. Tes produits sont visibles, tes ventes se font, ta présence commerciale existe. Tout dans un seul endroit.",
+    caissePro:    "Mon commerce — CAISSE. Nouveau client — tu encaisses. Fin de journée — tu vois ce qui est rentré. Ton stock — tu le suis. Rien de plus, rien de moins.",
+    locPro:       "Je loue — LOC. Tes logements sont là, tes disponibilités sont visibles, tes clients trouvent directement. Tu gères depuis un seul endroit, sans te perdre.",
+    resaTablePro: "Je réserve — RÉSA. Tes créneaux sont bloqués. Tes clients ne t'appellent plus pour rien. Ton agenda est propre. Tu conduis ta journée.",
+    driverPro:    "Je conduis — DRIVER. Tu conduis. DIGIY t’aide à poser tes zones, tes tarifs et ta présence terrain. Tu te concentres sur la route.",
+    jobsPro:      "Je recrute — JOBS. Tu cherches quelqu'un. Tu publies l'offre, tu reçois les candidatures, tu choisis. Direct, sans portail qui complique.",
+    buildPro:     "Mes services — MULTI-SERVICE. Tes chantiers, tes propositions, ton activité terrain — tout dans un seul espace. Le savoir-faire mérite une vitrine propre.",
+    explorePro:   "Me faire connaître — EXPLORE PRO. Pose ton lieu, ton activité ou ton adresse sur le territoire DIGIY. Tu deviens visible là où les gens cherchent.",
+    payPro:       "Mon argent — PAY. Ton argent qui rentre — visible, clair, sans attendre. Tu ouvres, tu vois, tu sais où tu en es."
   };
 
   let curKey="explore", curKind="public";
@@ -1460,15 +1460,15 @@
         <div class="drawerLinks">
           <a class="drawerLink green" id="dm-espace-pro"      href="#"><span class="dlIcon">🏢</span>Mon activité<span class="dlArrow">›</span></a>
           <a class="drawerLink green" id="dm-inscription-pro" href="#"><span class="dlIcon">✍️</span>Rejoindre DIGIY<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-market-pro"      href="#"><span class="dlIcon">🛍️</span>Je vends<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-caisse-pro"      href="#"><span class="dlIcon">💰</span>Mon commerce<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-loc-pro"         href="#"><span class="dlIcon">🏠</span>Je loue<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-resatable-pro"   href="#"><span class="dlIcon">📅</span>Mes réservations<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-driver-pro"      href="#"><span class="dlIcon">🚗</span>Je conduis<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-jobs-pro"        href="#"><span class="dlIcon">💼</span>Je recrute<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-explore-pro"     href="#"><span class="dlIcon">🗺️</span>Ma visibilité<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-build-pro"       href="#"><span class="dlIcon">🏗️</span>Mes services<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-pay-pro"         href="#"><span class="dlIcon">💳</span>Mon argent<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-market-pro"      href="#"><span class="dlIcon">🛍️</span>Je vends / MARKET<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-caisse-pro"      href="#"><span class="dlIcon">💰</span>Mon commerce / CAISSE<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-loc-pro"         href="#"><span class="dlIcon">🏠</span>Je loue / LOC<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-resatable-pro"   href="#"><span class="dlIcon">📅</span>Je réserve / RÉSA<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-driver-pro"      href="#"><span class="dlIcon">🚗</span>Je conduis / DRIVER<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-jobs-pro"        href="#"><span class="dlIcon">💼</span>Je recrute / JOBS<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-explore-pro"     href="#"><span class="dlIcon">🗺️</span>Me faire connaître / EXPLORE<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-build-pro"       href="#"><span class="dlIcon">🏗️</span>Mes services / MULTI<span class="dlArrow">›</span></a>
+          <a class="drawerLink green" id="dm-pay-pro"         href="#"><span class="dlIcon">💳</span>Mon argent / PAY<span class="dlArrow">›</span></a>
         </div>
       </div>
 
