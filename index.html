@@ -420,12 +420,12 @@
     .section .sectionHead h2{color:#fff !important;}
     .section .sectionSub{color:rgba(255,255,255,.82) !important;}
 
-    /* ── FLOAT BUTTONS ── */
-    .floatBtn{position:fixed;z-index:40;border-radius:999px;padding:14px 16px;border:1px solid rgba(255,255,255,.14);background:rgba(6,33,22,.62);color:var(--ink);font-family:var(--fontA);font-weight:900;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px);transition:all .2s;}
+    /* ── FLOAT BUTTONS — V CIBLÉE MOBILE / AUDIO SAFE ── */
+    .floatBtn{position:fixed;z-index:40;border-radius:999px;padding:14px 16px;border:1px solid rgba(255,255,255,.14);background:rgba(6,33,22,.62);color:var(--ink);font-family:var(--fontA);font-weight:900;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px);transition:all .2s;white-space:nowrap;}
     .floatBtn:hover{border-color:rgba(246,196,83,.35);transform:translateY(-2px)}.floatBtn:active{transform:scale(.98)}
     #espace-pro-btn{left:14px;bottom:18px;background:linear-gradient(135deg,rgba(0,166,81,.22),rgba(0,0,0,.55));border-color:rgba(0,166,81,.38);color:#dcffe8;}
     #explore-float-btn{right:14px;bottom:18px;background:linear-gradient(135deg,rgba(246,196,83,.16),rgba(0,0,0,.55));border-color:rgba(246,196,83,.36);color:#fff3cf;}
-    #digiy-help-btn{right:14px;bottom:68px;background:rgba(6,33,22,.62);}
+    #digiy-help-btn{right:14px;bottom:72px;background:rgba(6,33,22,.62);}
     #install-app-btn{left:50%;bottom:18px;transform:translateX(-50%);background:linear-gradient(135deg,#00a651,#00853f);border-color:rgba(255,255,255,.18);color:#fff;box-shadow:0 14px 36px rgba(0,133,63,.28);}
     #install-app-btn:hover{transform:translateX(-50%) translateY(-2px);border-color:rgba(246,196,83,.35);}
     #install-app-btn:active{transform:translateX(-50%) scale(.98);}
@@ -552,12 +552,23 @@
       #net-bridge{margin:14px 12px 0;}
       #quick-business-doors{margin:14px 12px 0;padding:16px;}
       #quick-business-doors .doors-grid{grid-template-columns:1fr;}
+
+      /* V ciblée : grille fixe lisible sur téléphone
+         Rang 1 : activité / découvrir · Rang 2 : audio / NDIMBAL · Rang 3 : installer */
+      .floatBtn{padding:11px 13px;font-size:13px;max-width:46vw;overflow:hidden;text-overflow:ellipsis;}
+      #espace-pro-btn{left:10px;bottom:14px;}
+      #explore-float-btn{right:10px;bottom:14px;}
+      #digiy-help-btn{right:10px;bottom:66px;}
+      #install-app-btn{left:50%;bottom:118px;max-width:70vw;}
     }
 
     @media(max-width:480px){
-      .floatBtn{padding:11px 13px;font-size:13px;}#espace-pro-btn{left:10px;bottom:14px;}
-      #explore-float-btn{right:10px;bottom:14px;}#digiy-help-btn{right:10px;bottom:60px;}
-      #install-app-btn{bottom:68px;}.brandText .subtitle{max-width:210px;font-size:12px;}.brandText .byline{font-size:16px;margin-top:6px;}
+      .floatBtn{padding:10px 12px;font-size:12.5px;}
+      #espace-pro-btn{left:10px;bottom:14px;}
+      #explore-float-btn{right:10px;bottom:14px;}
+      #digiy-help-btn{right:10px;bottom:64px;}
+      #install-app-btn{bottom:112px;}
+      .brandText .subtitle{max-width:210px;font-size:12px;}.brandText .byline{font-size:16px;margin-top:6px;}
       .moduleBtn{min-width:248px;max-width:286px;min-height:198px;}.railHint{font-size:19px;}
       .showcaseImgWrap{height:205px;}#signature-digiy .showcaseImgWrap{height:auto;}
     }
@@ -1486,7 +1497,7 @@
 
 <style>
 #digiy-reader{
-position:fixed;bottom:24px;left:24px;z-index:99999;
+position:fixed;bottom:76px;left:24px;z-index:99999;
 display:inline-flex;align-items:center;gap:10px;
 background:linear-gradient(135deg,#d4af37,#b78b34);
 color:#111827;font-family:'Outfit',Inter,sans-serif;
@@ -1494,7 +1505,7 @@ font-weight:900;font-size:15px;padding:13px 22px;
 border-radius:999px;border:none;cursor:pointer;
 box-shadow:0 8px 28px rgba(0,0,0,.24);
 transition:transform .18s ease,box-shadow .18s ease,opacity .18s ease;
--webkit-tap-highlight-color:transparent;user-select:none
+-webkit-tap-highlight-color:transparent;user-select:none;white-space:nowrap
 }
 #digiy-reader:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(0,0,0,.3)}
 #digiy-reader:active{transform:scale(.97)}
@@ -1512,8 +1523,14 @@ background:linear-gradient(90deg,#d4af37,#b78b34);
 transition:width .18s linear
 }
 
-@media (max-width:600px){
-#digiy-reader{bottom:16px;left:16px;font-size:14px;padding:12px 18px}
+@media (max-width:640px){
+#digiy-reader{bottom:66px;left:10px;font-size:12.5px;padding:10px 12px;max-width:46vw;overflow:hidden;text-overflow:ellipsis}
+#digiy-lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
+
+@media (max-width:380px){
+#digiy-reader{font-size:0;width:44px;height:44px;padding:0;justify-content:center}
+#digiy-reader .d-ico{font-size:16px}
 }
 </style>
 
@@ -1530,6 +1547,8 @@ transition:width .18s linear
 var TEXTE="Bienvenue sur DIGIYLYFE. Ici, la Petite Côte se montre, se relie et avance. Ici, pas de commission qui t’écrase. Pas d’intermédiaire qui te détourne. Tu cherches un chauffeur ? Il est joignable directement. Tu cherches où dormir ? Le lieu et son contact sont là. Tu veux réserver, trouver un artisan, acheter local ou chercher du travail ? DIGIYLYFE te met en face du réel. Simple. Direct. Humain. DIGIYLYFE, une présence digitale enracinée dans le territoire. Le bonheur business est là. Par DIGIYLYFE.";
 
 var btn=document.getElementById('digiy-reader');
+if(!btn)return;
+
 var lbl=document.getElementById('digiy-lbl');
 var ico=btn.querySelector('.d-ico');
 var barW=document.getElementById('digiy-bar-wrap');
@@ -1541,62 +1560,85 @@ var synth=window.speechSynthesis;
 var playing=false;
 var utt=null;
 var timer=null;
+var warnedNoFr=false;
 
 function getVoice(){
-var v=synth.getVoices();
-return v.find(x=>/fr/i.test(x.lang))||null;
+var voices=synth.getVoices()||[];
+return voices.find(function(x){return /^fr/i.test(x.lang||'');})||voices.find(function(x){return /fr/i.test((x.name||'')+' '+(x.lang||''));})||null;
+}
+
+function resetLabel(){
+if(lbl)lbl.textContent='Écouter DIGIY';
+if(ico)ico.innerHTML='&#9654;';
 }
 
 function stop(){
 synth.cancel();
 clearInterval(timer);
 playing=false;
-ico.innerHTML='&#9654;';
-lbl.textContent='Écouter DIGIY';
-barW.style.opacity='0';
-bar.style.width='0%';
+resetLabel();
+if(barW)barW.style.opacity='0';
+if(bar)bar.style.width='0%';
 }
 
 function play(){
-
 synth.cancel();
+clearInterval(timer);
 
 utt=new SpeechSynthesisUtterance(TEXTE);
 utt.lang='fr-FR';
 utt.rate=0.84;
+utt.pitch=1;
 
 var voice=getVoice();
-if(voice)utt.voice=voice;
+if(voice){
+utt.voice=voice;
+} else if(!warnedNoFr){
+warnedNoFr=true;
+btn.title='Voix française non trouvée sur cet appareil : DIGIY lance la lecture avec la voix disponible.';
+if(lbl)lbl.textContent='Lecture simple';
+}
 
 var words=TEXTE.split(' ').length;
 var duration=words*500;
 var progress=0;
 
 utt.onstart=function(){
-barW.style.opacity='1';
+playing=true;
+if(ico)ico.innerHTML='&#9632;';
+if(lbl)lbl.textContent='Arrêter DIGIY';
+if(barW)barW.style.opacity='1';
 timer=setInterval(function(){
 progress+=150;
-bar.style.width=Math.min((progress/duration)*100,98)+'%';
+if(bar)bar.style.width=Math.min((progress/duration)*100,98)+'%';
 },150);
 };
 
+utt.onerror=function(){
+stop();
+btn.disabled=false;
+btn.title='Audio indisponible sur cet appareil pour le moment.';
+if(lbl)lbl.textContent='Audio indisponible';
+setTimeout(resetLabel,1800);
+};
+
 utt.onend=function(){
-bar.style.width='100%';
+if(bar)bar.style.width='100%';
 setTimeout(stop,300);
 };
 
 synth.speak(utt);
-
-playing=true;
-ico.innerHTML='&#9632;';
-lbl.textContent='Arrêter DIGIY';
 }
 
 btn.onclick=function(){
 playing?stop():play();
 };
 
-window.onbeforeunload=stop;
+if(typeof synth.onvoiceschanged!=='undefined'){
+synth.onvoiceschanged=function(){getVoice();};
+}
+
+window.addEventListener('beforeunload',stop);
 
 })();
 </script>
