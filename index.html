@@ -1717,16 +1717,26 @@ var words=TEXTE.split(' ').length;
 var duration=words*500;
 var progress=0;
 
-utt.onstart=function(){
-playing=true;
-if(ico)ico.innerHTML='&#9632;';
-if(lbl)lbl.textContent='Arrêter DIGIY';
-if(barW)barW.style.opacity='1';
-timer=setInterval(function(){
-progress+=150;
-if(bar)bar.style.width=Math.min((progress/duration)*100,98)+'%';
-},150);
-};
+utt = new SpeechSynthesisUtterance(TEXTE);
+
+utt.lang = 'fr-FR';
+utt.rate = 0.88;
+utt.pitch = 1.05;
+utt.volume = 1;
+
+var voices = synth.getVoices() || [];
+var voice =
+  voices.find(function(v){
+    return /^fr/i.test(v.lang || '') && /female|audrey|amelie|hortense|julie|thomas|paul/i.test(v.name || '');
+  }) ||
+  voices.find(function(v){
+    return /^fr/i.test(v.lang || '');
+  }) ||
+  getVoice();
+
+if (voice) {
+  utt.voice = voice;
+}
 
 utt.onerror=function(){
 stop();
