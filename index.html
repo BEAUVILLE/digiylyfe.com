@@ -412,6 +412,61 @@
     #quick-business-doors .doorText{margin-top:6px;font-size:13.5px;line-height:1.5;color:rgba(248,250,252,.84);}
     #quick-business-doors .doorHint{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:6px 10px;border-radius:999px;border:1px solid rgba(246,196,83,.26);background:rgba(246,196,83,.08);font-size:11px;font-weight:900;color:#fff0c8;font-family:var(--fontA);}
 
+
+
+    /* ── FAIRE CIRCULER DIGIY ── */
+    #digiy-circulation{
+      margin:16px 18px 0;
+      padding:18px 20px;
+      border-radius:24px;
+      border:1px solid rgba(246,196,83,.30);
+      background:
+        radial-gradient(820px 340px at 12% 0%,rgba(246,196,83,.13),transparent 58%),
+        radial-gradient(680px 300px at 88% 24%,rgba(0,166,81,.16),transparent 62%),
+        linear-gradient(180deg,rgba(10,48,34,.84),rgba(8,28,20,.78));
+      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.06);
+    }
+    #digiy-circulation .circ-kicker{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 11px;border-radius:999px;
+      border:1px solid rgba(246,196,83,.32);
+      background:rgba(246,196,83,.10);
+      color:#fff3cf;font-family:var(--fontA);font-size:11px;font-weight:1000;
+      letter-spacing:.08em;text-transform:uppercase;
+    }
+    #digiy-circulation .circ-title{
+      margin:12px 0 0;
+      font-family:var(--fontA);font-size:clamp(24px,4vw,42px);font-weight:1000;
+      line-height:1.02;letter-spacing:-.04em;color:#fff;
+    }
+    #digiy-circulation .circ-title span{color:var(--gold);}
+    #digiy-circulation .circ-text{
+      margin:12px 0 0;
+      color:#dbe8e0;font-size:15px;line-height:1.7;font-weight:700;
+      max-width:78ch;
+    }
+    #digiy-circulation .circ-grid{
+      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px;
+    }
+    #digiy-circulation .circ-card{
+      padding:14px 14px 13px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      box-shadow:0 12px 28px rgba(0,0,0,.16);
+    }
+    #digiy-circulation .circ-card strong{
+      display:block;font-family:var(--fontA);font-size:15px;font-weight:1000;color:#fff;margin-bottom:6px;
+    }
+    #digiy-circulation .circ-card span{display:block;font-size:13px;line-height:1.55;color:rgba(248,250,252,.78);}
+    #digiy-circulation .circ-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+    #digiy-circulation .circ-actions .btn{min-height:48px;}
+    #digiy-circulation .circ-line{
+      margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);
+      font-family:var(--fontA);font-size:13px;font-weight:900;color:#fff3cf;line-height:1.55;
+    }
+    @media(max-width:760px){#digiy-circulation .circ-grid{grid-template-columns:1fr;}}
+    @media(max-width:640px){#digiy-circulation{margin:14px 12px 0;padding:16px;}.circ-actions .btn{width:100%;}}
+
     /* ── FAVORIS ── */
     .favTitle{margin:0;font-family:var(--fontA);font-size:30px;font-weight:1000;letter-spacing:.8px;line-height:1.05;color:#ffffff !important;text-transform:uppercase;text-shadow:0 0 10px rgba(255,255,255,.20),0 0 22px rgba(255,255,255,.10),0 4px 16px rgba(0,0,0,.30);}
     #favoritesSection .sectionSub{font-size:16px;font-weight:900;line-height:1.5;color:#ffffff !important;text-shadow:0 2px 10px rgba(0,0,0,.22);}
@@ -510,6 +565,7 @@
 
     .drawerLinks{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
     .drawerLink{
+      width:100%;text-align:left;cursor:pointer;
       display:flex;align-items:center;gap:12px;
       padding:13px 14px;border-radius:16px;
       font-family:var(--fontA);font-size:15px;font-weight:800;
@@ -773,6 +829,8 @@
           <a class="mBtn soft" id="mn-ndimbal-loc"      href="#">🏡 Locations</a>
           <a class="mBtn soft" id="mn-ndimbal-map"      href="#">🗺️ La carte</a>
           <a class="mBtn soft" id="mn-audio"            href="#">🎵 Écouter</a>
+          <button class="mBtn soft" type="button" onclick="window.digiyShareSite&&window.digiyShareSite()">📤 Partager</button>
+          <button class="mBtn soft" type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()">🤝 Suggérer un pro</button>
           <a class="mBtn soft" id="mn-ia"               href="#">🧠 Poser une question</a>
         </div>
       </nav>
@@ -797,7 +855,9 @@
           </p>
           <div class="cta">
             <a class="btnx btnx-primary" href="#public">🗺️ Trouver maintenant</a>
-            <a class="btnx btnx-secondary" href="https://digiy-audio.digiylyfe.com/" target="_blank" rel="noopener">🎧 Écouter la vision</a>
+            <button class="btnx btnx-secondary" type="button" onclick="window.digiyStartAudio&&window.digiyStartAudio()">🎧 Écouter la vision</button>
+            <button class="btnx btnx-gold" type="button" onclick="window.digiyShareSite&&window.digiyShareSite()">📤 Faire circuler</button>
+            <button class="btnx btnx-secondary" type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()">🤝 Suggérer un pro</button>
             <a class="btnx btnx-secondary" href="#pro">🏢 Entrer côté activité</a>
           </div>
           <a class="heroLink" href="https://digiylyfe.net/" target="_blank" rel="noopener noreferrer">
@@ -876,6 +936,29 @@
           Lire la revue DIGIYLYFE →
         </a>
       </div>
+
+      <section id="digiy-circulation" aria-label="Faire circuler DIGIYLYFE">
+        <span class="circ-kicker">📣 Lecture + écoute + terrain</span>
+        <h2 class="circ-title">Fais circuler DIGIY. <span>Fais vivre les pros.</span></h2>
+        <p class="circ-text">
+          Une nouvelle façon d'être visible en tant que pro, c'est puissant. Mais la base, c'est la clientèle :
+          les gens qui cherchent, appellent, réservent, achètent et font tourner les travailleurs du terrain.
+          DIGIYLYFE avance avec les pros, mais il vit grâce aux clients qui les font travailler.
+        </p>
+        <div class="circ-grid">
+          <div class="circ-card"><strong>1. Utilise le site</strong><span>Trouve un chauffeur, un logement, un artisan, une boutique ou un service autour de toi.</span></div>
+          <div class="circ-card"><strong>2. Partage DIGIY</strong><span>Envoie le lien à quelqu'un qui cherche ou à quelqu'un qui travaille.</span></div>
+          <div class="circ-card"><strong>3. Recommande un pro</strong><span>Tu connais quelqu'un de sérieux ? Envoie son contact, le terrain le révélera.</span></div>
+        </div>
+        <div class="circ-actions">
+          <button class="btn primary" type="button" onclick="window.digiyShareSite&&window.digiyShareSite()">📤 Partager DIGIY</button>
+          <button class="btn outline" type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()">🤝 Suggérer un pro du quartier</button>
+          <button class="btn ghost" type="button" onclick="window.digiyStartAudio&&window.digiyStartAudio()">🎧 Écouter le message</button>
+        </div>
+        <div class="circ-line">
+          Sans clients, pas d'activité. Sans circulation, pas de clients. DIGIY avance quand le site tourne dans les mains du peuple.
+        </div>
+      </section>
 
       <div id="quick-business-doors" aria-label="Accès directs DIGIYLYFE">
         <div class="doors-head">
@@ -1493,6 +1576,8 @@
           <a class="drawerLink" id="dm-ndimbal-loc"      href="#"><span class="dlIcon">🏡</span>Locations<span class="dlArrow">›</span></a>
           <a class="drawerLink" id="dm-ndimbal-map"      href="#"><span class="dlIcon">🗺️</span>La carte<span class="dlArrow">›</span></a>
           <a class="drawerLink" id="dm-audio"            href="#"><span class="dlIcon">🎵</span>Écouter<span class="dlArrow">›</span></a>
+          <button class="drawerLink" type="button" onclick="window.digiyShareSite&&window.digiyShareSite()"><span class="dlIcon">📤</span>Partager DIGIY<span class="dlArrow">›</span></button>
+          <button class="drawerLink" type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()"><span class="dlIcon">🤝</span>Suggérer un pro<span class="dlArrow">›</span></button>
           <a class="drawerLink" id="dm-ia"               href="#"><span class="dlIcon">🧠</span>Poser une question<span class="dlArrow">›</span></a>
         </div>
       </div>
@@ -1553,7 +1638,7 @@ transition:width .18s linear
 <script>
 (function(){
 
-var TEXTE="Le bonheur business est là ici. Par DIGIYLYFE. Le complément de whouaps pour être visible, travailler mieux et recevoir son argent directement, avec zéro pour cent de commission. whouaps te permet de parler avec ceux qui te connaissent déjà. DIGIYLYFE t’ouvre au web, au territoire et aux nouveaux clients. Présence digitale, outils métier simples, lien direct, QR, paiement direct. Tu restes visible, tu travailles mieux, et tu gardes ton argent. DIGIYLYFE complète whouaps, avec zéro pour cent de commission. Avec DIGIY, ton client te paie directement. Tu gardes ton argent, sans commission. DIGIY ne prend pas ton argent. DIGIY t’aide à le garder. Paiement direct au pro. Zéro pour cent de commission. Bienvenue sur DIGIYLYFE. Ici, la Petite Côte se montre, se relie et avance. Ici, pas de commission qui t’écrase. Pas d’intermédiaire qui te détourne. Tu cherches un chauffeur ? Il est joignable directement. Tu cherches où dormir ? Le lieu et son contact sont là. Tu veux réserver, trouver un artisan, acheter local ou chercher du travail ? DIGIYLYFE te met en face du réel. Simple. Direct. Humain. DIGIYLYFE, une présence digitale enracinée dans le territoire. Le bonheur business est là ici. Par DIGIYLYFE.";
+var TEXTE="Le bonheur business est là ici. Par DIGIYLYFE. Le complément de whouaps pour être visible, travailler mieux et recevoir son argent directement, avec zéro pour cent de commission. whouaps te permet de parler avec ceux qui te connaissent déjà. DIGIYLYFE t’ouvre au web, au territoire et aux nouveaux clients. Présence digitale, outils métier simples, lien direct, QR, paiement direct. Tu restes visible, tu travailles mieux, et tu gardes ton argent. DIGIYLYFE complète whouaps, avec zéro pour cent de commission. Avec DIGIY, ton client te paie directement. Tu gardes ton argent, sans commission. DIGIY ne prend pas ton argent. DIGIY t’aide à le garder. Paiement direct au pro. Zéro pour cent de commission. Bienvenue sur DIGIYLYFE. Ici, la Petite Côte se montre, se relie et avance. Ici, pas de commission qui t’écrase. Pas d’intermédiaire qui te détourne. Tu cherches un chauffeur ? Il est joignable directement. Tu cherches où dormir ? Le lieu et son contact sont là. Tu veux réserver, trouver un artisan, acheter local ou chercher du travail ? DIGIYLYFE te met en face du réel. Simple. Direct. Humain. DIGIYLYFE, une présence digitale enracinée dans le territoire. Le bonheur business est là ici. Par DIGIYLYFE. Une présence digitale, c’est puissant. Mais une présence ne suffit pas si les clients ne circulent pas. La base, c’est la clientèle : les gens qui cherchent, qui appellent, qui réservent, qui achètent, qui font travailler les pros. Alors si ce site t’aide, utilise-le, partage-le, fais-le circuler. Envoie DIGIYLYFE à quelqu’un qui cherche un chauffeur, un logement, un artisan, un commerce ou un service. Envoie-le aussi à quelqu’un qui travaille et qui mérite d’être visible. Et si tu connais un bon pro de ton quartier, recommande-le-nous. Un commerce sérieux, un chauffeur fiable, un logement propre, un artisan courageux, un service utile. DIGIY est ouvert à ceux qui travaillent, à ceux qui cherchent, à ceux qui avancent. Que l’on soit salarié, indépendant, commerçant, artisan, chauffeur ou travailleur informel, le travail a une valeur. DIGIY avance avec les pros, mais il vit grâce aux clients qui les font travailler. Sans clients, pas d’activité. Sans circulation, pas de clients. Fais tourner le site. Fais entrer les clients. Fais connaître les bons pros. C’est comme ça que le territoire devient vivant.";
 
 var btn=document.getElementById('digiy-reader');
 if(!btn)return;
@@ -1566,6 +1651,26 @@ var bar=document.getElementById('digiy-bar');
 if(!('speechSynthesis'in window)){btn.style.display='none';return;}
 
 var synth=window.speechSynthesis;
+
+var DIGIY_URL='https://digiylyfe.com/';
+var SUGGEST_TEXT='Bonjour DIGIY, je veux suggérer un pro du quartier. Nom : ... Ville/quartier : ... Téléphone/WhatsApp : ... Type d’activité : ... Pourquoi je le recommande : ...';
+var SHARE_TEXT='DIGIYLYFE : trouve un chauffeur, un logement, un artisan, une boutique ou un service. Contact direct, paiement direct au pro, 0% commission.';
+
+window.digiyShareSite=function(){
+  try{
+    if(navigator.share){
+      navigator.share({title:'DIGIYLYFE',text:SHARE_TEXT,url:DIGIY_URL}).catch(function(){});
+      return;
+    }
+  }catch(e){}
+  try{navigator.clipboard&&navigator.clipboard.writeText(DIGIY_URL);}catch(e){}
+  window.open('https://wa.me/?text='+encodeURIComponent(SHARE_TEXT+' '+DIGIY_URL),'_blank','noopener');
+};
+
+window.digiySuggestPro=function(){
+  window.open('https://wa.me/221771342889?text='+encodeURIComponent(SUGGEST_TEXT),'_blank','noopener');
+};
+
 var playing=false;
 var utt=null;
 var timer=null;
@@ -1642,6 +1747,12 @@ synth.speak(utt);
 btn.onclick=function(){
 playing?stop():play();
 };
+
+window.digiyStartAudio=function(){
+  if(playing){return;}
+  play();
+};
+window.digiyStopAudio=stop;
 
 if(typeof synth.onvoiceschanged!=='undefined'){
 synth.onvoiceschanged=function(){getVoice();};
