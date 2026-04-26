@@ -1706,64 +1706,65 @@ if(bar)bar.style.width='0%';
 }
 
 function play(){
-synth.cancel();
-clearInterval(timer);
+  synth.cancel();
+  clearInterval(timer);
 
-utt=new SpeechSynthesisUtterance(TEXTE);
-utt.lang='fr-FR';
-utt.rate=0.84;
-utt.pitch=1;
+  utt = new SpeechSynthesisUtterance(TEXTE);
 
-var voice=getVoice();
-if(voice){
-utt.voice=voice;
-} else if(!warnedNoFr){
-warnedNoFr=true;
-btn.title='Voix française non trouvée sur cet appareil : DIGIY lance la lecture avec la voix disponible.';
-if(lbl)lbl.textContent='Lecture simple';
+  utt.lang = 'fr-FR';
+  utt.rate = 0.88;
+  utt.pitch = 1.05;
+  utt.volume = 1;
+
+  var voices = synth.getVoices() || [];
+  var voice =
+    voices.find(function(v){
+      return /^fr/i.test(v.lang || '') && /female|audrey|amelie|hortense|julie|thomas|paul/i.test(v.name || '');
+    }) ||
+    voices.find(function(v){
+      return /^fr/i.test(v.lang || '');
+    }) ||
+    getVoice();
+
+  if (voice) {
+    utt.voice = voice;
+  } else if (!warnedNoFr) {
+    warnedNoFr = true;
+    btn.title = 'Voix française non trouvée sur cet appareil : DIGIY lance la lecture avec la voix disponible.';
+    if (lbl) lbl.textContent = 'Lecture simple';
+  }
+
+  var words = TEXTE.split(' ').length;
+  var duration = words * 500;
+  var progress = 0;
+
+  playing = true;
+  btn.disabled = false;
+  if (lbl) lbl.textContent = 'Stopper';
+  if (ico) ico.innerHTML = '&#9632;';
+  if (barW) barW.style.opacity = '1';
+  if (bar) bar.style.width = '0%';
+
+  timer = setInterval(function(){
+    progress += 250;
+    if (bar) bar.style.width = Math.min(96, (progress / duration) * 100) + '%';
+  }, 250);
+
+  utt.onerror = function(){
+    stop();
+    btn.disabled = false;
+    btn.title = 'Audio indisponible sur cet appareil pour le moment.';
+    if (lbl) lbl.textContent = 'Audio indisponible';
+    setTimeout(resetLabel, 1800);
+  };
+
+  utt.onend = function(){
+    if (bar) bar.style.width = '100%';
+    setTimeout(stop, 300);
+  };
+
+  synth.speak(utt);
 }
-
-var words=TEXTE.split(' ').length;
-var duration=words*500;
-var progress=0;
-
-utt = new SpeechSynthesisUtterance(TEXTE);
-
-utt.lang = 'fr-FR';
-utt.rate = 0.88;
-utt.pitch = 1.05;
-utt.volume = 1;
-
-var voices = synth.getVoices() || [];
-var voice =
-  voices.find(function(v){
-    return /^fr/i.test(v.lang || '') && /female|audrey|amelie|hortense|julie|thomas|paul/i.test(v.name || '');
-  }) ||
-  voices.find(function(v){
-    return /^fr/i.test(v.lang || '');
-  }) ||
-  getVoice();
-
-if (voice) {
-  utt.voice = voice;
-}
-
-utt.onerror=function(){
-stop();
-btn.disabled=false;
-btn.title='Audio indisponible sur cet appareil pour le moment.';
-if(lbl)lbl.textContent='Audio indisponible';
-setTimeout(resetLabel,1800);
-};
-
-utt.onend=function(){
-if(bar)bar.style.width='100%';
-setTimeout(stop,300);
-};
-
-synth.speak(utt);
-}
-
 btn.onclick=function(){
 playing?stop():play();
 };
