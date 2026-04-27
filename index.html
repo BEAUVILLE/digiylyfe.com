@@ -375,24 +375,91 @@
     #signature-digiy .showcaseImgWrap img{width:100%;height:auto;object-fit:contain;object-position:center;display:block;}
     #signature-digiy .showcaseDesc{text-align:center;max-width:60ch;margin:0 auto;}
 
-    /* ── BANDEAU .NET ── */
+    /* ── BANDEAU VISION + REVUE ── */
     #net-bridge{
       margin:16px 18px 0;
       padding:18px 20px;
       border-radius:24px;
-      border:1px solid rgba(246,196,83,.24);
-      background:linear-gradient(135deg,rgba(246,196,83,.07),rgba(0,166,81,.06));
-      display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+      border:1px solid rgba(246,196,83,.30);
+      background:
+        radial-gradient(720px 260px at 12% 0%,rgba(246,196,83,.13),transparent 60%),
+        radial-gradient(620px 240px at 90% 20%,rgba(0,166,81,.14),transparent 62%),
+        linear-gradient(135deg,rgba(246,196,83,.08),rgba(0,166,81,.07));
+      display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+      box-shadow:0 16px 42px rgba(0,0,0,.22),0 0 0 1px rgba(246,196,83,.05);
     }
-    #net-bridge .bridge-text{font-family:var(--fontA);font-size:14px;font-weight:800;color:#fff3cf;line-height:1.5;}
-    #net-bridge .bridge-text span{display:block;font-size:12px;font-weight:600;color:rgba(248,250,252,.65);margin-top:3px;}
+    #net-bridge .bridge-text{
+      font-family:var(--fontA);font-size:14px;font-weight:800;color:#fff3cf;line-height:1.5;
+      max-width:680px;
+    }
+    #net-bridge .bridge-text span{display:block;font-size:12px;font-weight:600;color:rgba(248,250,252,.68);margin-top:3px;}
+    #net-bridge .bridge-actions{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end;
+      margin-left:auto;
+    }
     #net-bridge .bridge-btn{
-      display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:14px;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;border-radius:14px;
       border:1px solid rgba(246,196,83,.34);background:rgba(246,196,83,.10);
       color:#fff3cf;font-family:var(--fontA);font-size:13px;font-weight:900;
-      text-decoration:none;white-space:nowrap;transition:border-color .15s,background .15s;
+      text-decoration:none;white-space:nowrap;transition:transform .15s,border-color .15s,background .15s,box-shadow .15s;
     }
-    #net-bridge .bridge-btn:hover{border-color:rgba(246,196,83,.55);background:rgba(246,196,83,.16);}
+    #net-bridge .bridge-btn:hover{transform:translateY(-1px);border-color:rgba(246,196,83,.55);background:rgba(246,196,83,.16);}
+
+    #net-bridge .bridge-btn-main{
+      min-height:56px;
+      padding:0 22px;
+      border-radius:18px;
+      border:1px solid rgba(246,196,83,.78);
+      background:
+        radial-gradient(260px 95px at 18% 0%,rgba(255,255,255,.28),transparent 62%),
+        linear-gradient(135deg,#f6c453 0%,#22c55e 100%);
+      color:#06140f;
+      font-size:15px;
+      font-weight:1000;
+      letter-spacing:.1px;
+      box-shadow:
+        0 16px 36px rgba(0,0,0,.32),
+        0 0 0 4px rgba(246,196,83,.11),
+        0 0 30px rgba(246,196,83,.22);
+    }
+    #net-bridge .bridge-btn-main:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.78);
+      background:
+        radial-gradient(260px 95px at 18% 0%,rgba(255,255,255,.34),transparent 62%),
+        linear-gradient(135deg,#ffd86b 0%,#22c55e 100%);
+      box-shadow:
+        0 20px 46px rgba(0,0,0,.38),
+        0 0 0 5px rgba(246,196,83,.15),
+        0 0 38px rgba(246,196,83,.30);
+    }
+    #net-bridge .bridge-btn-secondary{
+      opacity:.88;
+    }
+
+    @media(max-width:640px){
+      #net-bridge{
+        align-items:stretch;
+        padding:16px;
+      }
+      #net-bridge .bridge-text{
+        width:100%;
+      }
+      #net-bridge .bridge-actions{
+        width:100%;
+        margin-left:0;
+      }
+      #net-bridge .bridge-btn,
+      #net-bridge .bridge-btn-main{
+        width:100%;
+        white-space:normal;
+        text-align:center;
+      }
+      #net-bridge .bridge-btn-main{
+        min-height:62px;
+        font-size:15.5px;
+      }
+    }
 
     /* ── ACCÈS DIRECTS MÉTIER ── */
     #quick-business-doors{
@@ -926,15 +993,26 @@
       </section>
 
 
-      <!-- BANDEAU → DIGIYLYFE.NET -->
-      <div id="net-bridge" aria-label="Lien vers la revue DIGIYLYFE">
+      <!-- BANDEAU → VISION + REVUE DIGIYLYFE -->
+      <div id="net-bridge" aria-label="Vision et revue DIGIYLYFE">
         <div class="bridge-text">
           📖 La vision, le manifeste, les phrases du territoire — tout est sur notre revue.
-          <span>Force de territoire · Logiciels business · L'Afrique enracinée, connectée au monde ∞</span>
+          <span>
+            Force de territoire · Logiciels business · L'Afrique enracinée, connectée au monde ∞
+            <br/>
+            📜 Nouvelle page forte : quand l’IA organise le travail, le terrain doit garder la main.
+          </span>
         </div>
-        <a class="bridge-btn" href="https://digiylyfe.net/" target="_blank" rel="noopener">
-          Lire la revue DIGIYLYFE →
-        </a>
+
+        <div class="bridge-actions">
+          <a class="bridge-btn bridge-btn-main" href="https://digiylyfe.com/le-terrain-garde-la-main.html">
+            📜 Lire la vision forte DIGIYLYFE →
+          </a>
+
+          <a class="bridge-btn bridge-btn-secondary" href="https://digiylyfe.net/" target="_blank" rel="noopener">
+            📖 Lire la revue DIGIYLYFE →
+          </a>
+        </div>
       </div>
 
       <section id="digiy-circulation" aria-label="Faire circuler DIGIYLYFE">
