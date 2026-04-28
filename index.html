@@ -269,6 +269,105 @@
     @media(max-width:980px){.heroPulse{grid-template-columns:repeat(2,minmax(0,1fr));}}
     @media(max-width:640px){.heroPulse{grid-template-columns:1fr;}}
 
+
+
+    /* ── INTRO ESPRIT DIGIYLYFE — SOUS LE HERO ── */
+    #esprit-digiylyfe{
+      margin:16px 18px 0;
+      border:1px solid rgba(246,196,83,.34);
+      border-radius:28px;
+      background:
+        radial-gradient(720px 260px at 12% 0%,rgba(246,196,83,.16),transparent 62%),
+        radial-gradient(640px 260px at 88% 20%,rgba(0,166,81,.16),transparent 62%),
+        linear-gradient(135deg,rgba(246,196,83,.09),rgba(0,166,81,.08));
+      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.06);
+      overflow:hidden;
+    }
+    #esprit-digiylyfe .espritInner{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:18px;
+      align-items:center;
+      padding:20px 22px;
+    }
+    #esprit-digiylyfe .espritKicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid rgba(246,196,83,.32);
+      background:rgba(246,196,83,.10);
+      color:#fff3cf;
+      font-family:var(--fontA);
+      font-size:11px;
+      font-weight:1000;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    #esprit-digiylyfe .espritTitle{
+      margin:12px 0 0;
+      font-family:var(--fontA);
+      font-size:clamp(24px,3.6vw,42px);
+      line-height:1.02;
+      letter-spacing:-.04em;
+      font-weight:1000;
+      color:#fff;
+    }
+    #esprit-digiylyfe .espritTitle span{color:var(--gold);}
+    #esprit-digiylyfe .espritText{
+      margin:10px 0 0;
+      max-width:72ch;
+      color:#dbe8e0;
+      font-size:15px;
+      line-height:1.68;
+      font-weight:750;
+    }
+    #esprit-digiylyfe .espritText strong{color:#fff3cf;}
+    #esprit-digiylyfe .espritBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:62px;
+      padding:0 24px;
+      border-radius:18px;
+      border:1px solid rgba(246,196,83,.78);
+      background:
+        radial-gradient(260px 95px at 18% 0%,rgba(255,255,255,.28),transparent 62%),
+        linear-gradient(135deg,#f6c453 0%,#22c55e 100%);
+      color:#06140f;
+      font-family:var(--fontA);
+      font-size:15px;
+      font-weight:1000;
+      text-decoration:none;
+      white-space:nowrap;
+      box-shadow:
+        0 16px 36px rgba(0,0,0,.32),
+        0 0 0 4px rgba(246,196,83,.11),
+        0 0 30px rgba(246,196,83,.22);
+      transition:transform .15s,border-color .15s,background .15s,box-shadow .15s;
+    }
+    #esprit-digiylyfe .espritBtn:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.78);
+      background:
+        radial-gradient(260px 95px at 18% 0%,rgba(255,255,255,.34),transparent 62%),
+        linear-gradient(135deg,#ffd86b 0%,#22c55e 100%);
+      box-shadow:
+        0 20px 46px rgba(0,0,0,.38),
+        0 0 0 5px rgba(246,196,83,.15),
+        0 0 38px rgba(246,196,83,.30);
+    }
+    @media(max-width:760px){
+      #esprit-digiylyfe .espritInner{grid-template-columns:1fr;padding:18px 16px;}
+      #esprit-digiylyfe .espritBtn{width:100%;white-space:normal;text-align:center;min-height:64px;}
+    }
+    @media(max-width:640px){
+      #esprit-digiylyfe{margin:14px 12px 0;border-radius:24px;}
+    }
+
+
     /* ── MAIN ── */
     .main{max-width:1200px;margin:0 auto;padding:16px 18px 80px;}
     .section{margin-top:16px;border:1px solid rgba(255,255,255,.08);border-radius:24px;background:linear-gradient(180deg,rgba(10,48,34,.76),rgba(8,28,20,.70));box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:110px;}
@@ -947,6 +1046,31 @@
 
 
       
+
+      <!-- INTRO → ESPRIT DIGIYLYFE -->
+      <section id="esprit-digiylyfe" aria-label="Écouter et comprendre l’esprit DIGIYLYFE">
+        <div class="espritInner">
+          <div class="espritCopy">
+            <span class="espritKicker">🎧 L’esprit avant l’outil</span>
+            <h2 class="espritTitle">Écouter &amp; comprendre <span>l’esprit DIGIYLYFE</span></h2>
+            <p class="espritText">
+              Avant les boutons, il y a une vision : <strong>le terrain garde la main</strong>.
+              Une affiche, une voix, une promesse : écouter l’esprit DIGIYLYFE pour comprendre
+              pourquoi les pros, les clients, les lieux et l’argent direct restent reliés — sans commission.
+            </p>
+          </div>
+
+          <a
+            class="espritBtn"
+            href="https://esprit-digiylyfe.digiylyfe.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            🎧 Écouter &amp; comprendre l’esprit DIGIYLYFE →
+          </a>
+        </div>
+      </section>
+
       <!-- EMBLÈME DIGIYLYFE SOUS LE HERO -->
       <section id="medaille-digiy" aria-label="Emblème DIGIYLYFE">
         <div class="medailleWrap">
@@ -1015,6 +1139,10 @@
 
           <a class="bridge-btn bridge-btn-secondary" href="https://digiylyfe.net/" target="_blank" rel="noopener">
             📖 Lire la revue DIGIYLYFE →
+          </a>
+
+          <a class="bridge-btn bridge-btn-secondary" href="https://esprit-digiylyfe.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
+            🎧 Écouter &amp; comprendre l’esprit DIGIYLYFE →
           </a>
         </div>
       </div>
