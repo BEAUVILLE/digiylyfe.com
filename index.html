@@ -487,6 +487,31 @@
       display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
       box-shadow:0 16px 42px rgba(0,0,0,.22),0 0 0 1px rgba(246,196,83,.05);
     }
+    #net-bridge .bridge-visual{
+      display:block;
+      width:clamp(170px,22vw,260px);
+      flex:0 0 auto;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(246,196,83,.34);
+      background:rgba(0,0,0,.18);
+      box-shadow:0 16px 38px rgba(0,0,0,.30),0 0 0 4px rgba(246,196,83,.06);
+      transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+    }
+    #net-bridge .bridge-visual:hover{
+      transform:translateY(-2px);
+      border-color:rgba(246,196,83,.62);
+      box-shadow:0 20px 46px rgba(0,0,0,.36),0 0 0 5px rgba(246,196,83,.09);
+    }
+    #net-bridge .bridge-visual img{
+      display:block;
+      width:100%;
+      aspect-ratio:1.18/1;
+      height:auto;
+      object-fit:cover;
+      object-position:center;
+    }
+
     #net-bridge .bridge-text{
       font-family:var(--fontA);font-size:14px;font-weight:800;color:#fff3cf;line-height:1.5;
       max-width:680px;
@@ -540,6 +565,14 @@
       #net-bridge{
         align-items:stretch;
         padding:16px;
+      }
+      #net-bridge .bridge-visual{
+        width:100%;
+        max-width:520px;
+        margin:0 auto 2px;
+      }
+      #net-bridge .bridge-visual img{
+        aspect-ratio:16/10;
       }
       #net-bridge .bridge-text{
         width:100%;
@@ -1119,6 +1152,10 @@
 
       <!-- BANDEAU → ARTICLE VISION + REVUE DIGIYLYFE -->
       <div id="net-bridge" aria-label="Article vision DIGIYLYFE">
+        <a class="bridge-visual" href="https://digiylyfe.net/uber-veut-garder-le-client-dans-son-application-digiy-veut-lamener-chez-le-professionnel/" target="_blank" rel="noopener noreferrer" aria-label="Lire l’article DIGIYLYFE sur Uber et les écosystèmes locaux">
+          <img src="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-14_58_03.png" alt="DIGIYLYFE — plateforme ou écosystème local" loading="lazy" decoding="async"/>
+        </a>
+
         <div class="bridge-text">
           🧭 Uber veut garder le client dans son application. DIGIY veut l’amener chez le professionnel.
           <span>
