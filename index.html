@@ -17,13 +17,13 @@
   <meta property="og:url" content="https://digiylyfe.com/"/>
   <meta property="og:title" content="DIGIYLYFE — Territoire vivant Sénégal"/>
   <meta property="og:description" content="Trouver un chauffeur, un logement, une réservation, un artisan ou une boutique. 0% commission, paiement direct au professionnel."/>
-  <meta property="og:image" content="https://digiylyfe.com/wp-content/uploads/2025/09/Image-6.jpeg"/>
+  <meta property="og:image" content="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png"/>
   <meta property="og:locale" content="fr_SN"/>
   <meta property="og:site_name" content="DIGIYLYFE"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="DIGIYLYFE — Territoire vivant Sénégal"/>
   <meta name="twitter:description" content="Taxi, logement, réservation, artisans, boutiques. Saly, Mbour, Petite Côte. Paiement direct au professionnel."/>
-  <meta name="twitter:image" content="https://digiylyfe.com/wp-content/uploads/2025/09/Image-6.jpeg"/>
+  <meta name="twitter:image" content="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png"/>
   <meta name="geo.region" content="SN-TH"/>
   <meta name="geo.placename" content="Saly, Mbour, Petite Côte, Sénégal"/>
   <meta name="geo.position" content="14.4500;-16.9833"/>
@@ -468,11 +468,113 @@
     .showcaseCta{margin:14px auto 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;max-width:940px;}
     .showcaseDesc{font-size:13px;color:rgba(248,250,252,.72);line-height:1.5;max-width:55ch;}
 
-    /* ── SIGNATURE ── */
-    #signature-digiy{margin-top:18px;}
-    #signature-digiy .showcaseImgWrap{max-width:760px;height:auto;background:#071710;border-color:rgba(246,196,83,.34);box-shadow:0 18px 50px rgba(0,0,0,.42);}
-    #signature-digiy .showcaseImgWrap img{width:100%;height:auto;object-fit:contain;object-position:center;display:block;}
-    #signature-digiy .showcaseDesc{text-align:center;max-width:60ch;margin:0 auto;}
+    /* ── SIGNATURE DIAMANT — VISION DIGIYLYFE ── */
+    #signature-digiy{
+      margin-top:18px;
+      border-color:rgba(246,196,83,.34);
+      background:
+        radial-gradient(780px 320px at 50% 0%,rgba(246,196,83,.14),transparent 62%),
+        radial-gradient(720px 360px at 50% 82%,rgba(0,166,81,.14),transparent 66%),
+        linear-gradient(180deg,rgba(10,48,34,.86),rgba(5,18,13,.88));
+      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.07);
+    }
+    #signature-digiy .showcaseInner{padding:20px 18px 22px;}
+    #signature-digiy .showcaseTitle{
+      justify-content:center;
+      text-align:center;
+      color:#fff3cf;
+      letter-spacing:.12em;
+    }
+    #signature-digiy .signatureIntro{
+      max-width:760px;
+      margin:0 auto 16px;
+      text-align:center;
+      color:#dbe8e0;
+      font-size:15px;
+      line-height:1.7;
+      font-weight:750;
+    }
+    #signature-digiy .signatureIntro strong{color:#fff3cf;}
+    #signature-digiy .showcaseImgWrap{
+      max-width:760px;
+      height:auto;
+      background:#071710;
+      border-radius:28px;
+      border-color:rgba(246,196,83,.42);
+      box-shadow:
+        0 0 0 6px rgba(246,196,83,.055),
+        0 22px 58px rgba(0,0,0,.48),
+        0 0 34px rgba(246,196,83,.12);
+    }
+    #signature-digiy .showcaseImgWrap img{
+      width:100%;
+      height:auto;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+    }
+    #signature-digiy .showcaseImgWrap::before{
+      background:linear-gradient(135deg,rgba(246,196,83,.08) 0%,transparent 42%,rgba(0,166,81,.08) 100%);
+    }
+    #signature-digiy .showcaseCta{
+      justify-content:center;
+      max-width:760px;
+      text-align:center;
+      gap:12px;
+    }
+    #signature-digiy .showcaseDesc{
+      text-align:center;
+      max-width:68ch;
+      margin:0 auto;
+      font-size:14px;
+      color:rgba(248,250,252,.78);
+      line-height:1.65;
+    }
+    #signature-digiy .signatureLine{
+      display:block;
+      font-family:var(--fontA);
+      font-size:18px;
+      font-weight:1000;
+      color:#fff3cf;
+      margin-bottom:8px;
+      letter-spacing:.01em;
+    }
+    #signature-digiy .signatureActions{
+      width:100%;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:4px;
+    }
+    #signature-digiy .signatureBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:48px;
+      padding:0 16px;
+      border-radius:14px;
+      border:1px solid rgba(246,196,83,.34);
+      background:rgba(246,196,83,.10);
+      color:#fff3cf;
+      font-family:var(--fontA);
+      font-size:13px;
+      font-weight:1000;
+      text-decoration:none;
+      transition:transform .15s,border-color .15s,background .15s;
+    }
+    #signature-digiy .signatureBtn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(246,196,83,.58);
+      background:rgba(246,196,83,.16);
+    }
+    @media(max-width:640px){
+      #signature-digiy .showcaseInner{padding:18px 14px 20px;}
+      #signature-digiy .signatureIntro{font-size:13.5px;margin-bottom:14px;}
+      #signature-digiy .showcaseImgWrap{border-radius:22px;}
+      #signature-digiy .signatureBtn{width:100%;min-height:52px;}
+    }
 
     /* ── BANDEAU VISION + REVUE ── */
     #net-bridge{
@@ -1347,25 +1449,45 @@
           </div>
         </section>
 
-        <!-- SIGNATURE -->
-        <section class="showcaseSection" id="signature-digiy">
+        <!-- SIGNATURE DIAMANT DIGIYLYFE -->
+        <section class="showcaseSection" id="signature-digiy" aria-label="Vision DIGIYLYFE — diamant aux mille reflets">
           <div class="showcaseInner">
-            <div class="showcaseTitle">DIGIYLYFE · SIGNATURE</div>
+            <div class="showcaseTitle">DIGIYLYFE · VISION</div>
+
+            <p class="signatureIntro">
+              <strong>Un diamant aux mille reflets.</strong><br/>
+              Chaque langue, chaque métier, chaque quartier porte une lumière.
+              DIGIYLYFE aide ces lumières à devenir visibles, utiles et reliées.
+            </p>
+
             <div class="showcaseImgWrap">
-              <img src="https://digiylyfe.net/wp-content/uploads/2026/03/digiylyfe_logo_qr.jpeg"
-                alt="DIGIYLYFE — logo et QR" loading="lazy"/>
+              <img
+                src="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png"
+                alt="DIGIYLYFE — Un diamant aux mille reflets. Chaque langue est une lumière. Ensemble, nous brillons."
+                loading="lazy"
+                decoding="async"
+              />
             </div>
-            <div class="showcaseCta" style="justify-content:center;">
+
+            <div class="showcaseCta">
               <div class="showcaseDesc">
-                <span style="display:block;font-size:18px;font-weight:1000;color:#fff3cf;margin-bottom:8px;">Le bonheur business est là.</span>
-                <a href="https://digiylyfe.net/digiylyfe-com/" target="_blank" rel="noopener noreferrer"
-                  style="color:#fff3cf;font-weight:1000;text-decoration:none;border-bottom:1px solid rgba(246,196,83,.35);word-break:break-word;">
-                 https://digiylyfe.com/
+                <span class="signatureLine">Chaque lumière du terrain mérite d’être vue.</span>
+                DIGIYLYFE complète WhatsApp avec une présence digitale simple, humaine et directe.
+                Les pros restent visibles, travaillent mieux et reçoivent leur argent directement — sans commission : 0%.
+              </div>
+
+              <div class="signatureActions">
+                <a class="signatureBtn" href="https://esprit-digiylyfe.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
+                  🎧 Écouter l’esprit DIGIYLYFE
+                </a>
+                <a class="signatureBtn" href="https://digiylyfe.net/" target="_blank" rel="noopener noreferrer">
+                  📖 Lire la revue DIGIY
                 </a>
               </div>
             </div>
           </div>
         </section>
+
 
       </main>
     </div>
