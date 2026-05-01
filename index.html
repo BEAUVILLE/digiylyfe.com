@@ -3,2705 +3,679 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-  <title>DIGIYLYFE — Trouver un chauffeur, un logement, une réservation, un artisan, une boutique</title>
+  <title>DIGIYLYFE — Trouver, explorer, publier son activité</title>
   <meta name="theme-color" content="#00853f"/>
-  <meta name="description" content="DIGIYLYFE — Trouver un chauffeur, un logement, une réservation, un artisan ou une boutique sur la Petite Côte. 0% commission. Paiement direct au professionnel. L'Afrique enracinée, connectée au monde."/>
-  <meta name="keywords" content="taxi saly, logement mbour, réservation saly, artisan petite côte, boutique saly, chauffeur mbour, location saly, explore sénégal, digiylyfe, business sénégal, 0 commission sénégal"/>
+  <meta name="description" content="DIGIYLYFE aide à trouver un chauffeur, un logement, une boutique, un service ou un lieu à découvrir. 0% commission, paiement direct au professionnel."/>
+  <meta name="keywords" content="DIGIYLYFE, Saly, Mbour, Petite Côte, chauffeur, logement, boutique, artisan, réservation, Sénégal, 0 commission"/>
   <meta name="author" content="DIGIYLYFE — JB Beauville"/>
-  <meta name="robots" content="index, follow"/>
+  <meta name="robots" content="index,follow"/>
   <link rel="canonical" href="https://digiylyfe.com/"/>
-  <meta name="apple-mobile-web-app-capable" content="yes"/>
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-  <meta name="apple-mobile-web-app-title" content="DIGIYLYFE"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://digiylyfe.com/"/>
-  <meta property="og:title" content="DIGIYLYFE — Territoire vivant Sénégal"/>
-  <meta property="og:description" content="Trouver un chauffeur, un logement, une réservation, un artisan ou une boutique. 0% commission, paiement direct au professionnel."/>
-  <meta property="og:image" content="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png"/>
-  <meta property="og:locale" content="fr_SN"/>
-  <meta property="og:site_name" content="DIGIYLYFE"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="DIGIYLYFE — Territoire vivant Sénégal"/>
-  <meta name="twitter:description" content="Taxi, logement, réservation, artisans, boutiques. Saly, Mbour, Petite Côte. Paiement direct au professionnel."/>
-  <meta name="twitter:image" content="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png"/>
+
+  <!-- FIX 6 : Geo tags SEO local -->
   <meta name="geo.region" content="SN-TH"/>
   <meta name="geo.placename" content="Saly, Mbour, Petite Côte, Sénégal"/>
   <meta name="geo.position" content="14.4500;-16.9833"/>
   <meta name="ICBM" content="14.4500, -16.9833"/>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://digiylyfe.com/"/>
+  <meta property="og:title" content="DIGIYLYFE — Le territoire vivant"/>
+  <meta property="og:description" content="Trouver, explorer, publier son activité. Contact direct, paiement direct, 0% commission."/>
+  <meta property="og:image" content="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png"/>
+  <meta property="og:locale" content="fr_SN"/>
+  <meta property="og:site_name" content="DIGIYLYFE"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="DIGIYLYFE — Le territoire vivant"/>
+  <meta name="twitter:description" content="Chauffeurs, logements, boutiques, services et lieux à découvrir. Paiement direct au professionnel."/>
+  <meta name="twitter:image" content="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png"/>
+
+  <link rel="icon" href="https://digiylyfe.net/wp-content/uploads/2026/04/icon-512-1.png"/>
+  <link rel="apple-touch-icon" href="https://digiylyfe.net/wp-content/uploads/2026/04/icon-512-1.png"/>
+  <!-- FIX 8 : PWA manifest -->
+  <link rel="manifest" href="./manifest.json"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <!-- FIX 7 : poids réduits 700/800/900 uniquement — économise ~15KB réseau -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Manrope:wght@700;800&display=swap" rel="stylesheet"/>
+
+  <!-- FIX 6 : JSON-LD @graph complet — FAQPage + geo restaurés -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@graph": [
+    "@context":"https://schema.org",
+    "@graph":[
       {
-        "@type": "Organization",
-        "@id": "https://digiylyfe.com/",
-        "name": "DIGIYLYFE",
-        "alternateName": "DIGIY",
-        "description": "Écosystème business enraciné Sénégal — taxi, logement, réservation, boutiques, artisans, emploi. 0% commission, paiement direct au professionnel. L'Afrique enracinée, connectée au monde.",
-        "url": "https://digiylyfe.com/",
-        "logo": "https://digiylyfe.com/wp-content/uploads/2025/09/Image-6.jpeg",
-        "telephone": "+221771342889",
-        "address": {"@type":"PostalAddress","addressLocality":"Saly","addressRegion":"Thiès","postalCode":"23000","addressCountry":"SN"},
-        "geo": {"@type":"GeoCoordinates","latitude":14.4500,"longitude":-16.9833},
-        "areaServed": [
+        "@type":"Organization",
+        "@id":"https://digiylyfe.com/",
+        "name":"DIGIYLYFE",
+        "alternateName":"DIGIY",
+        "url":"https://digiylyfe.com/",
+        "logo":"https://digiylyfe.net/wp-content/uploads/2026/04/icon-512-1.png",
+        "telephone":"+221771342889",
+        "address":{"@type":"PostalAddress","addressLocality":"Saly","addressRegion":"Thiès","addressCountry":"SN"},
+        "geo":{"@type":"GeoCoordinates","latitude":14.4500,"longitude":-16.9833},
+        "description":"Écosystème digital enraciné au Sénégal : trouver, explorer et publier son activité avec contact direct, paiement direct et 0% commission.",
+        "areaServed":[
           {"@type":"City","name":"Saly"},{"@type":"City","name":"Mbour"},
           {"@type":"City","name":"Ngaparou"},{"@type":"City","name":"Somone"},
-          {"@type":"City","name":"Dakar"},{"@type":"Country","name":"Sénégal"}
-        ],
-        "sameAs": ["https://digiylyfe.com","https://digiylyfe.net","https://wa.me/221771342889"]
-      },
-      {
-        "@type": "WebSite","name":"DIGIYLYFE","url":"https://digiylyfe.com/",
-        "description":"Taxi Saly, logement Mbour, artisans Petite Côte. 0% commission.",
-        "inLanguage":"fr",
-        "potentialAction":{"@type":"SearchAction","target":"https://digiylyfe.com/?q={search_term_string}","query-input":"required name=search_term_string"}
+          {"@type":"Country","name":"Sénégal"}
+        ]
       },
       {
         "@type":"FAQPage",
         "mainEntity":[
-          {"@type":"Question","name":"Comment trouver un taxi à Saly ou Mbour ?","acceptedAnswer":{"@type":"Answer","text":"Avec DIGIYLYFE, trouve un chauffeur directement depuis le site. Choisis ton départ, ta destination, contacte le chauffeur par WhatsApp. Tarif terrain, 0% commission, paiement direct."}},
+          {"@type":"Question","name":"Comment trouver un taxi à Saly ou Mbour ?","acceptedAnswer":{"@type":"Answer","text":"Avec DIGIYLYFE, trouve un chauffeur directement depuis le site. Tarif terrain, 0% commission, paiement direct."}},
           {"@type":"Question","name":"Comment louer un logement à Saly sans commission ?","acceptedAnswer":{"@type":"Answer","text":"DIGIYLYFE met en relation directe avec le propriétaire. Pas de commission, paiement direct. Logements à Saly, Mbour, Ngaparou, Somone et toute la Petite Côte."}},
           {"@type":"Question","name":"Qu'est-ce que DIGIYLYFE ?","acceptedAnswer":{"@type":"Answer","text":"DIGIYLYFE est un écosystème enraciné au Sénégal. Trouver un taxi, un logement, réserver un service, acheter, vendre, travailler — tout en 0% commission, avec paiement direct au professionnel."}},
-          {"@type":"Question","name":"Comment trouver un artisan à Saly Mbour ?","acceptedAnswer":{"@type":"Answer","text":"DIGIYLYFE liste les artisans et professionnels de la Petite Côte. Plombier, électricien, maçon, guide — contact direct, sans intermédiaire."}}
+          {"@type":"Question","name":"Comment trouver un artisan à Saly Mbour ?","acceptedAnswer":{"@type":"Answer","text":"DIGIYLYFE liste les artisans et professionnels de la Petite Côte. Contact direct, sans intermédiaire."}}
         ]
       }
     ]
   }
   </script>
-  <link rel="icon" href="./icon-192.png" sizes="192x192"/>
-  <link rel="apple-touch-icon" href="./icon-192.png"/>
-  <link rel="manifest" href="./manifest.json"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
   <style>
     :root{
-      --ink:#f8fafc;--muted:rgba(248,250,252,.72);--line:rgba(148,163,184,.28);
-      --gold:#f6c453;--green:#00a651;--green-deep:#00853f;
-      --shadow:0 18px 60px rgba(0,0,0,.35);--radius2:26px;
-      --fontA:"Outfit",system-ui,-apple-system,sans-serif;
-      --fontB:"Manrope",system-ui,-apple-system,sans-serif;
+      --bg:#04130d;
+      --bg2:#082318;
+      --card:rgba(255,255,255,.065);
+      --card2:rgba(255,255,255,.035);
+      --line:rgba(255,255,255,.13);
+      --ink:#f8fafc;
+      --muted:rgba(248,250,252,.76);
+      --soft:rgba(248,250,252,.62);
+      --gold:#f6c453;
+      --gold2:#ffe4a3;
+      --green:#00a651;
+      --green2:#00853f;
+      --shadow:0 20px 60px rgba(0,0,0,.34);
+      --radius:28px;
+      --fontA:"Outfit",system-ui,sans-serif;
+      --fontB:"Manrope",system-ui,sans-serif;
+      --safe-bottom:env(safe-area-inset-bottom,0px);
     }
+
     *{box-sizing:border-box}
-    html,body{height:100%}
     html{scroll-behavior:smooth}
     body{
-      margin:0;font-family:var(--fontB);color:var(--ink);overflow-x:hidden;
+      margin:0;min-height:100vh;color:var(--ink);
+      font-family:var(--fontB);overflow-x:hidden;
       background:
-        radial-gradient(1200px 720px at 10% 0%,rgba(0,166,81,.30),transparent 52%),
-        radial-gradient(950px 620px at 90% 12%,rgba(246,196,83,.14),transparent 55%),
-        linear-gradient(180deg,#067a3a 0%,#0b5f31 16%,#083123 44%,#04130d 100%);
+        radial-gradient(1000px 560px at 10% -8%,rgba(0,166,81,.32),transparent 56%),
+        radial-gradient(900px 520px at 95% 8%,rgba(246,196,83,.18),transparent 52%),
+        linear-gradient(180deg,#067a3a 0%,#0b5f31 18%,#083123 46%,#04130d 100%);
     }
     a{color:inherit;text-decoration:none}
-    .bg{position:fixed;inset:0;pointer-events:none;opacity:.95;z-index:0;
-      background:radial-gradient(900px 440px at 18% 72%,rgba(246,196,83,.10),transparent 70%),
-        radial-gradient(820px 420px at 82% 68%,rgba(0,166,81,.16),transparent 70%);}
-    .app{min-height:100%;position:relative;z-index:1;}
-    .wrap{max-width:1200px;margin:0 auto;padding:14px 14px 140px;}
-    .shell{
-      background:linear-gradient(180deg,rgba(8,109,53,.24),rgba(12,40,29,.96) 20%,rgba(9,24,18,.98) 100%);
-      border:1px solid var(--line);border-radius:var(--radius2);box-shadow:var(--shadow);overflow:hidden;
-    }
-    .shell::before{content:"";display:block;height:4px;background:linear-gradient(90deg,#00a651 0%,#00853f 44%,#f6c453 100%);}
+    button{font:inherit;cursor:pointer}
+    img{max-width:100%;display:block}
+
+    .page{width:min(100%,1120px);margin:0 auto;padding:14px 14px 112px;}
 
     /* ── TOPBAR ── */
     .topbar{
-      position:sticky;top:0;z-index:25;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-      padding:14px 16px 12px;border-bottom:1px solid rgba(255,255,255,.08);
-      background:rgba(0,0,0,.10);backdrop-filter:blur(12px);
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(14px);
+      background:linear-gradient(180deg,rgba(4,19,13,.92),rgba(4,19,13,.72));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:0 0 24px 24px;
+      margin:0 -4px 14px;padding:10px;
+      display:flex;justify-content:space-between;align-items:center;gap:12px;
     }
-    .brand{display:flex;gap:12px;align-items:center;cursor:pointer;min-width:0;}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0;}
     .logo{
-      width:48px;height:48px;border-radius:14px;flex:0 0 auto;overflow:hidden;
-      background:linear-gradient(135deg,rgba(0,166,81,.95),rgba(0,133,63,.88));
-      border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;
-      box-shadow:var(--shadow),0 0 0 3px rgba(246,196,83,.08);
+      width:54px;height:54px;border-radius:20px;overflow:hidden;
+      background:#fff;box-shadow:0 12px 32px rgba(0,0,0,.30);flex:0 0 auto;
     }
-    .logo img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;}
-    .brandText .title{font-family:var(--fontA);font-weight:900;letter-spacing:.8px;font-size:18px;}
-    .brandText .subtitle{color:rgba(248,250,252,.82);font-size:13px;margin-top:2px;line-height:1.2;white-space:normal;overflow:visible;text-overflow:clip;max-width:320px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
-    .brandText .byline{margin-top:8px;font-family:var(--fontA);font-weight:1000;font-size:18px;letter-spacing:.8px;color:var(--gold);line-height:1;}
-    .topSignals{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
-    .signalChip{
-      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.30);background:rgba(255,255,255,.16);
-      font-family:var(--fontA);font-size:11px;font-weight:900;letter-spacing:.2px;color:#fff;
-      box-shadow:0 4px 12px rgba(0,0,0,.18);
+    .logo img{width:100%;height:100%;object-fit:cover}
+    .brand-title{font-family:var(--fontA);font-size:21px;line-height:1;font-weight:900;letter-spacing:.04em;}
+    .brand-sub{margin-top:5px;color:var(--muted);font-size:13px;font-weight:800;line-height:1.35;}
+    .top-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+    .chip{
+      min-height:40px;border-radius:999px;padding:0 12px;
+      display:inline-flex;align-items:center;justify-content:center;gap:7px;
+      border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);
+      color:#fff;font-family:var(--fontA);font-size:12px;font-weight:900;white-space:nowrap;
+      transition:.15s ease;
     }
-    .signalChip.gold{border-color:rgba(246,196,83,.60);background:rgba(246,196,83,.22);color:#ffe898;}
-    .signalChip.green{border-color:rgba(0,166,81,.58);background:rgba(0,166,81,.26);color:#b8ffce;}
-    .signalChip.soft{color:#fff;border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.14);}
+    .chip:hover{border-color:rgba(255,255,255,.30);background:rgba(255,255,255,.14);}
+    .chip.gold{color:#fff3cf;border-color:rgba(246,196,83,.35);background:rgba(246,196,83,.12)}
+    .chip.green{color:#dcffe8;border-color:rgba(0,166,81,.38);background:rgba(0,166,81,.16)}
 
-    /* ── MENU TOGGLE BUTTON (mobile only) ── */
-    .menuToggleBtn{
-      display:none; /* masqué desktop */
-      align-items:center;gap:8px;
-      margin-left:auto;
-      padding:9px 14px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.28);
-      background:rgba(255,255,255,.12);
-      color:#fff;font-family:var(--fontA);font-size:12px;font-weight:900;
-      cursor:pointer;letter-spacing:.2px;
-      transition:border-color .15s,background .15s;
-      flex:0 0 auto;
+    /* ── HERO ── */
+    .hero{
+      position:relative;overflow:hidden;
+      border:1px solid rgba(246,196,83,.28);border-radius:32px;
+      background:
+        radial-gradient(780px 360px at 12% 0%,rgba(246,196,83,.16),transparent 62%),
+        radial-gradient(680px 300px at 88% 22%,rgba(0,166,81,.18),transparent 62%),
+        linear-gradient(180deg,rgba(7,19,15,.90),rgba(8,29,21,.86));
+      box-shadow:var(--shadow);padding:30px 22px;
     }
-    .menuToggleBtn:hover{border-color:rgba(246,196,83,.45);background:rgba(246,196,83,.12);color:#fff3cf;}
-    .menuToggleBtn.open{border-color:rgba(246,196,83,.50);background:rgba(246,196,83,.14);color:#fff3cf;}
-    .menuToggleBtn .menuToggleIcon{font-size:16px;line-height:1;}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;padding:9px 13px;
+      border-radius:999px;border:1px solid rgba(246,196,83,.32);
+      background:rgba(246,196,83,.10);color:#fff3cf;
+      font-family:var(--fontA);font-size:12px;font-weight:900;
+      letter-spacing:.10em;text-transform:uppercase;
+    }
+    .dot{width:9px;height:9px;border-radius:999px;background:var(--green);box-shadow:0 0 0 6px rgba(0,166,81,.13);}
+    h1{
+      margin:20px 0 0;max-width:10ch;font-family:var(--fontA);
+      font-size:clamp(44px,8vw,86px);line-height:.90;letter-spacing:-.06em;font-weight:900;
+    }
+    h1 span{color:var(--gold)}
+    .lead{
+      margin:18px 0 0;max-width:760px;color:#dbe8e0;
+      font-size:clamp(17px,2vw,22px);line-height:1.65;font-weight:800;
+    }
+    .lead strong{color:#fff3cf}
+    .hero-actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;}
 
-    /* ── NAV ── */
-    .menuBar{padding:8px 14px 10px;border-bottom:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.32);backdrop-filter:blur(8px);}
-    .menuRow{display:flex;align-items:center;gap:5px;flex-wrap:wrap;padding:3px 0;}
-    .menuRow+.menuRow{border-top:1px solid rgba(255,255,255,.05);padding-top:6px;margin-top:4px;}
-    .menuRow.secondary{opacity:.72;padding-top:4px;margin-top:2px;border-top:1px dashed rgba(255,255,255,.07);}
-    .menuRow.secondary:hover{opacity:.95;}
-    .rowLabel{flex:0 0 auto;font-family:var(--fontA);font-weight:900;font-size:10px;letter-spacing:.6px;padding:4px 9px;border-radius:6px;}
-    .rowLabel.c{background:rgba(246,196,83,.32);color:#ffe080;border:1px solid rgba(246,196,83,.60);}
-    .rowLabel.p{background:rgba(0,166,81,.30);color:#9bffb8;border:1px solid rgba(0,166,81,.55);}
-    .rowLabel.s{background:rgba(255,255,255,.16);color:rgba(255,255,255,.80);border:1px solid rgba(255,255,255,.30);font-size:9px;}
-    .mBtn{
-      display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 12px;border-radius:999px;
-      font-family:var(--fontA);font-weight:800;font-size:11.5px;white-space:nowrap;flex:0 0 auto;
-      cursor:pointer;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.30);
-      background:rgba(255,255,255,.14);
-      transition:transform .12s,border-color .15s,background .15s,box-shadow .15s;
+    /* ── BTNS ── */
+    .btn{
+      min-height:56px;border-radius:18px;padding:0 20px;
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);
+      color:#fff;font-family:var(--fontA);font-weight:900;font-size:15px;
+      transition:.16s ease;white-space:nowrap;
     }
-    .mBtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.22);}
-    .mBtn:active{transform:scale(.96)}
-    .mBtn.home{background:rgba(255,255,255,.20);border-color:rgba(255,255,255,.45);color:#fff;font-weight:900;}
-    .mBtn.home:hover{background:rgba(255,255,255,.30);}
-    .mBtn.gold{background:rgba(246,196,83,.24);border-color:rgba(246,196,83,.60);color:#fff3cf;font-weight:900;}
-    .mBtn.gold:hover{background:rgba(246,196,83,.36);border-color:rgba(246,196,83,.85);box-shadow:0 3px 14px rgba(246,196,83,.20);}
-    .mBtn.green{background:rgba(0,166,81,.30);border-color:rgba(0,166,81,.62);color:#dcffe8;font-weight:900;}
-    .mBtn.green:hover{background:rgba(0,166,81,.44);border-color:rgba(0,166,81,.85);box-shadow:0 3px 14px rgba(0,166,81,.20);}
-    .mBtn.soft{height:28px;font-size:11px;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.32);color:rgba(255,255,255,.90);}
-    .mBtn.soft:hover{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.55);color:#fff;}
+    .btn:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.38)}
+    .btn:active{transform:scale(.97)}
+    .btn.primary{
+      color:#06140f;border-color:rgba(246,196,83,.72);
+      background:linear-gradient(135deg,#f6c453,#22c55e);
+      box-shadow:0 14px 36px rgba(0,0,0,.28);
+    }
+    .btn.gold{color:#fff3cf;border-color:rgba(246,196,83,.32);background:rgba(246,196,83,.10)}
+    .btn.green{color:#dcffe8;border-color:rgba(0,166,81,.32);background:rgba(0,166,81,.13)}
 
-    /* ── HERO INTRO ── */
-    #intro-digiy{
-      --bg:#07130f;--bg2:#0c1d17;--line-h:rgba(255,255,255,.12);--text:#f7f8f8;--muted:#cfe0d7;
-      --gold:#f6c453;--green-h:#22c55e;--green2:#16a34a;--shadow-h:0 20px 60px rgba(0,0,0,.28);
-      position:relative;overflow:hidden;margin:16px 18px 0;
-      border:1px solid rgba(246,196,83,.26);border-radius:30px;
-      background:radial-gradient(900px 500px at 10% 0%,rgba(246,196,83,.13),transparent 55%),
-        radial-gradient(700px 400px at 90% 20%,rgba(34,197,94,.16),transparent 55%),
-        linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
-      color:var(--text);box-shadow:var(--shadow-h),0 0 0 1px rgba(246,196,83,.06);font-family:var(--fontB);
+    /* ── TYPOGRAPHIE SECTIONS ── */
+    .section-kicker{
+      display:inline-flex;align-items:center;gap:8px;padding:7px 11px;
+      border-radius:999px;border:1px solid rgba(246,196,83,.32);
+      background:rgba(246,196,83,.10);color:#fff3cf;
+      font-family:var(--fontA);font-size:11px;font-weight:900;
+      letter-spacing:.08em;text-transform:uppercase;
     }
-    #intro-digiy *{box-sizing:border-box;}
-    #intro-digiy .wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:stretch;padding:32px 22px;}
-    #intro-digiy .left,#intro-digiy .right{position:relative;z-index:1;}
-    #intro-digiy .eyebrow{
-      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;
-      border:1px solid var(--line-h);border-radius:999px;background:rgba(255,255,255,.04);
-      color:var(--gold);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
-      backdrop-filter:blur(10px);font-family:var(--fontA);
+    .section-title{
+      margin:12px 0 0;font-family:var(--fontA);
+      font-size:clamp(30px,5vw,50px);line-height:1.02;letter-spacing:-.045em;font-weight:900;
     }
-    #intro-digiy .dot{width:8px;height:8px;border-radius:50%;background:var(--green-h);box-shadow:0 0 0 6px rgba(34,197,94,.12);}
-    #intro-digiy h1{margin:20px 0 14px;font-size:clamp(38px,6.5vw,72px);line-height:.96;letter-spacing:-.04em;font-weight:900;font-family:var(--fontA);color:#fff;}
-    #intro-digiy h1 em{display:block;color:var(--gold);font-style:normal;}
-    #intro-digiy .lead{max-width:760px;margin:0 0 22px;font-size:clamp(17px,2vw,21px);line-height:1.55;color:var(--muted);font-weight:500;}
-    #intro-digiy .lead strong{color:var(--text);font-weight:800;}
-    #intro-digiy .territory-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none;}
-    #intro-digiy .territory-chips li{padding:9px 14px;border-radius:999px;border:1px solid rgba(246,196,83,.22);background:rgba(246,196,83,.07);font-size:13px;font-weight:700;color:#f5e9c0;font-family:var(--fontA);letter-spacing:.02em;}
-    #intro-digiy .cta{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0 18px;}
-    #intro-digiy .btnx{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 20px;border-radius:14px;font-weight:900;text-decoration:none;transition:transform .18s ease,opacity .18s ease,box-shadow .18s ease;box-shadow:var(--shadow-h);font-family:var(--fontA);letter-spacing:.2px;border:1px solid transparent;cursor:pointer;font-size:15px;}
-    #intro-digiy .btnx:hover{transform:translateY(-2px);opacity:.97;}
-    #intro-digiy .btnx-primary{background:linear-gradient(180deg,var(--green-h) 0%,var(--green2) 100%);color:#07130f;}
-    #intro-digiy .btnx-secondary{background:rgba(255,255,255,.06);color:var(--text);border-color:var(--line-h);box-shadow:none;}
-    #intro-digiy .btnx-gold{background:linear-gradient(180deg,rgba(246,196,83,.18),rgba(246,196,83,.08));color:#fff3cf;border-color:rgba(246,196,83,.34);box-shadow:none;}
-    #intro-digiy .mini{font-size:13.5px;color:#dbe8e0;margin-top:8px;line-height:1.65;}
-    #intro-digiy .mini strong{color:var(--gold);}
-    #intro-digiy .card{height:100%;padding:22px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.04) 100%);border:1px solid var(--line-h);backdrop-filter:blur(10px);box-shadow:var(--shadow-h);}
-    #intro-digiy .card-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;}
-    #intro-digiy .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(246,196,83,.12);color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(246,196,83,.22);font-family:var(--fontA);}
-    #intro-digiy .gates{display:grid;gap:10px;}
-    #intro-digiy .gate{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:border-color .18s,background .18s;text-decoration:none;color:inherit;cursor:pointer;}
-    #intro-digiy .gate:hover{border-color:rgba(246,196,83,.28);background:rgba(246,196,83,.05);}
-    #intro-digiy .gate-icon{flex:0 0 34px;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:16px;background:rgba(0,166,81,.14);border:1px solid rgba(0,166,81,.22);}
-    #intro-digiy .gate-body{font-size:13.5px;line-height:1.5;color:#e4f1ea;}
-    #intro-digiy .gate-body strong{display:block;font-family:var(--fontA);font-weight:900;color:#fff;font-size:13px;margin-bottom:2px;}
-    #intro-digiy .gate-body span{font-size:12.5px;color:#b8d4c4;}
-    #intro-digiy .manifesto{padding-top:12px;border-top:1px solid rgba(255,255,255,.10);font-size:13px;line-height:1.7;color:#d4e6da;}
-    #intro-digiy .manifesto strong{color:var(--gold);}
-    @media(max-width:920px){#intro-digiy .wrap{grid-template-columns:1fr;padding:24px 16px;}}
-    @media(max-width:640px){#intro-digiy{margin:12px 12px 0;border-radius:24px;}#intro-digiy .cta{flex-direction:column;}#intro-digiy .btnx{width:100%;}}
-
-    /* ── HERO V2 BONHEUR BUSINESS ── */
-    #intro-bonheur{
-      position:relative;overflow:hidden;margin:16px 18px 0;
-      border:1px solid rgba(246,196,83,.26);border-radius:30px;
-      background:radial-gradient(900px 500px at 12% 0%,rgba(246,196,83,.14),transparent 55%),
-        radial-gradient(700px 420px at 88% 18%,rgba(34,197,94,.16),transparent 55%),
-        linear-gradient(180deg,#07130f 0%,#0c1d17 100%);
-      color:#fff;box-shadow:0 20px 60px rgba(0,0,0,.28),0 0 0 1px rgba(246,196,83,.06);
-    }
-    #intro-bonheur .wrap{max-width:1080px;margin:0 auto;padding:38px 22px 34px;text-align:center;display:block;}
-    #intro-bonheur .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.04);color:#f6c453;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-family:var(--fontA);}
-    #intro-bonheur .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 6px rgba(34,197,94,.12);}
-    #intro-bonheur h1{margin:22px auto 0;font-size:clamp(42px,7vw,86px);line-height:.90;letter-spacing:-.05em;font-weight:900;font-family:var(--fontA);color:#fff;max-width:13ch;}
-    #intro-bonheur .heroWord{display:block;}
-    #intro-bonheur .heroWord.gold{color:#f6c453;}
-    #intro-bonheur .heroSig{display:block;margin-top:24px;font-size:clamp(42px,7vw,86px);line-height:.90;letter-spacing:-.05em;font-weight:900;font-family:var(--fontA);color:#f6c453;}
-    #intro-bonheur .heroBreak{display:block;height:14px;}
-    #intro-bonheur h1 em{display:block;color:#f6c453;font-style:normal;}
-    #intro-bonheur .lead{max-width:820px;margin:20px auto 0;font-size:clamp(17px,2vw,22px);line-height:1.68;color:#d5e5dc;font-weight:500;}
-    #intro-bonheur .lead strong{color:#fff;}
-    #intro-bonheur .cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:26px 0 16px;}
-    #intro-bonheur .btnx{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 20px;border-radius:14px;font-weight:900;text-decoration:none;transition:transform .18s ease,opacity .18s ease,box-shadow .18s ease;font-family:var(--fontA);letter-spacing:.2px;border:1px solid transparent;cursor:pointer;font-size:15px;}
-    #intro-bonheur .btnx:hover{transform:translateY(-2px);opacity:.97;}
-    #intro-bonheur .btnx-primary{background:linear-gradient(180deg,#22c55e 0%,#16a34a 100%);color:#07130f;box-shadow:0 16px 36px rgba(0,133,63,.26);}
-    #intro-bonheur .btnx-secondary{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.12);}
-    #intro-bonheur .heroLink{display:inline-block;margin-top:4px;color:#fff3cf;font-weight:1000;text-decoration:none;border-bottom:1px solid rgba(246,196,83,.35);font-family:var(--fontA);}
-    #intro-bonheur .mini{margin-top:14px;font-size:13.5px;line-height:1.65;color:#dbe8e0;max-width:74ch;margin-left:auto;margin-right:auto;}
-    #intro-bonheur .mini strong{color:#f6c453;}
-    @media(max-width:640px){
-      #intro-bonheur{margin:12px 12px 0;border-radius:24px;}
-      #intro-bonheur .wrap{padding:26px 16px 24px;}
-      #intro-bonheur .cta{flex-direction:column;}
-      #intro-bonheur .btnx{width:100%;}
+    .section-title span{color:var(--gold)}
+    .section-text{
+      margin:10px 0 0;color:#dbe8e0;font-size:16px;line-height:1.65;font-weight:800;max-width:78ch;
     }
 
-    .heroPulse{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px;}
-    .heroPulseCard{padding:14px 12px;border-radius:18px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));box-shadow:0 12px 30px rgba(0,0,0,.16);}
-    .heroPulseWord{font-family:var(--fontA);font-size:clamp(18px,2vw,26px);font-weight:1000;line-height:1;color:#fff;letter-spacing:-.03em;}
-    .heroPulseNote{margin-top:8px;font-size:12.5px;line-height:1.45;color:#d5e5dc;}
-    @media(max-width:980px){.heroPulse{grid-template-columns:repeat(2,minmax(0,1fr));}}
-    @media(max-width:640px){.heroPulse{grid-template-columns:1fr;}}
-
-
-
-
-    /* ── DIGIY GARE MOBILE : une entrée, une action ── */
-    #digiy-action-stations{
-      margin:16px 18px 0;
-      border:1px solid rgba(246,196,83,.28);
-      border-radius:26px;
+    /* ── GARE ── */
+    .station{
+      margin-top:16px;border:1px solid rgba(246,196,83,.28);border-radius:28px;
       background:
         radial-gradient(760px 260px at 12% 0%,rgba(246,196,83,.13),transparent 58%),
         radial-gradient(680px 280px at 88% 28%,rgba(0,166,81,.15),transparent 62%),
         linear-gradient(180deg,rgba(10,48,34,.84),rgba(8,28,20,.76));
-      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.06);
-      padding:18px;
+      box-shadow:var(--shadow);padding:20px;
     }
-
-    #digiy-action-stations .station-kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 11px;
-      border-radius:999px;
-      border:1px solid rgba(246,196,83,.32);
-      background:rgba(246,196,83,.10);
-      color:#fff3cf;
-      font-family:var(--fontA);
-      font-size:11px;
-      font-weight:1000;
-      letter-spacing:.08em;
-      text-transform:uppercase;
+    .station-grid{
+      margin-top:16px;display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;
     }
-
-    #digiy-action-stations .station-title{
-      margin:12px 0 0;
-      font-family:var(--fontA);
-      font-size:clamp(28px,4.8vw,48px);
-      line-height:1.02;
-      letter-spacing:-.045em;
-      font-weight:1000;
-      color:#fff;
-      max-width:12ch;
-    }
-
-    #digiy-action-stations .station-title span{color:var(--gold);}
-
-    #digiy-action-stations .station-text{
-      margin:10px 0 0;
-      color:#dbe8e0;
-      font-size:16px;
-      line-height:1.65;
-      font-weight:750;
-      max-width:74ch;
-    }
-
-    #digiy-action-stations .station-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:12px;
-      margin-top:16px;
-    }
-
-    #digiy-action-stations .station-card{
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:12px;
-      min-height:190px;
-      padding:16px;
-      border-radius:22px;
+    .station-card{
+      min-height:206px;border-radius:24px;padding:16px;
       border:1px solid rgba(255,255,255,.13);
       background:
         linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.035)),
         radial-gradient(circle at top left,rgba(246,196,83,.09),transparent 44%);
       box-shadow:0 14px 34px rgba(0,0,0,.20);
-      color:#fff;
-      text-decoration:none;
-      transition:transform .16s ease,border-color .16s ease;
+      display:flex;flex-direction:column;justify-content:space-between;gap:12px;
+      transition:.16s ease;
     }
-
-    #digiy-action-stations .station-card:hover{
-      transform:translateY(-2px);
-      border-color:rgba(246,196,83,.42);
+    .station-card:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.42)}
+    .station-icon{
+      width:64px;height:64px;border-radius:22px;display:grid;place-items:center;
+      font-size:34px;background:rgba(246,196,83,.12);border:1px solid rgba(246,196,83,.24);
     }
-
-    #digiy-action-stations .station-icon{
-      width:62px;
-      height:62px;
-      border-radius:22px;
-      display:grid;
-      place-items:center;
-      font-size:32px;
-      background:rgba(246,196,83,.12);
-      border:1px solid rgba(246,196,83,.24);
+    /* FIX 5 : h3 dans les cartes station — h2 réservé aux titres de section */
+    .station-card h3{
+      margin:0 0 8px;font-family:var(--fontA);font-size:25px;
+      line-height:1.05;letter-spacing:-.035em;font-weight:900;color:var(--ink);
     }
-
-    #digiy-action-stations .station-card h2{
-      margin:0 0 7px;
-      font-family:var(--fontA);
-      font-size:23px;
-      line-height:1.06;
-      font-weight:1000;
-      letter-spacing:-.03em;
+    .station-card p{margin:0;color:rgba(248,250,252,.80);line-height:1.55;font-size:14px;font-weight:800;}
+    .station-cta{
+      min-height:48px;border-radius:999px;
+      display:inline-flex;align-items:center;justify-content:center;
+      border:1px solid rgba(246,196,83,.30);background:rgba(246,196,83,.10);
+      color:#fff3cf;font-family:var(--fontA);font-size:13px;font-weight:900;margin-top:auto;
     }
-
-    #digiy-action-stations .station-card p{
-      margin:0;
-      color:rgba(248,250,252,.80);
-      line-height:1.55;
-      font-size:14px;
-      font-weight:750;
-    }
-
-    #digiy-action-stations .station-cta{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:46px;
-      border-radius:999px;
-      border:1px solid rgba(246,196,83,.30);
-      background:rgba(246,196,83,.10);
-      color:#fff3cf;
-      font-family:var(--fontA);
-      font-size:13px;
-      font-weight:1000;
-      margin-top:auto;
-    }
-
-    #digiy-action-stations .station-card.primary .station-cta{
-      color:#06140f;
-      border-color:rgba(246,196,83,.72);
+    .station-card.primary .station-cta{
+      color:#06140f;border-color:rgba(246,196,83,.72);
       background:linear-gradient(135deg,#f6c453,#22c55e);
     }
 
-    .digiy-mobile-dock{
-      display:none;
+    /* ── PORTES TROUVER ── */
+    .doors{
+      margin-top:16px;display:grid;
+      grid-template-columns:1.05fr .95fr;gap:16px;align-items:start;
+    }
+    .panel{
+      border:1px solid rgba(255,255,255,.11);border-radius:28px;
+      background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035));
+      box-shadow:var(--shadow);padding:18px;
+    }
+    .door-grid{margin-top:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+    .door{
+      border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:14px;
+      background:rgba(255,255,255,.055);min-height:132px;
+      display:flex;flex-direction:column;transition:.16s ease;
+    }
+    .door:hover{transform:translateY(-1px);border-color:rgba(246,196,83,.36)}
+    .door b{display:block;font-family:var(--fontA);font-size:18px;line-height:1.1;margin-bottom:7px;}
+    .door span{display:block;color:var(--muted);font-size:13px;line-height:1.5;font-weight:800;}
+
+    /* ── EXPLORE CARD — FIX 4 : visuel stylisé avec grille carto + pins ── */
+    .explore-card{
+      min-height:100%;border-radius:28px;padding:18px;
+      border:1px solid rgba(246,196,83,.28);
+      background:
+        radial-gradient(680px 280px at 20% 0%,rgba(246,196,83,.16),transparent 58%),
+        linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035));
+      box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px;justify-content:space-between;
+    }
+    .explore-visual{
+      min-height:180px;border-radius:24px;position:relative;overflow:hidden;
+      background:
+        radial-gradient(circle at 28% 14%,rgba(246,196,83,.28),transparent 48%),
+        radial-gradient(circle at 78% 40%,rgba(0,166,81,.24),transparent 48%),
+        linear-gradient(135deg,rgba(4,19,13,.80),rgba(8,40,28,.60));
+      border:1px solid rgba(246,196,83,.22);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:10px;padding:20px;
+    }
+    /* Grille cartographique CSS */
+    .explore-visual::before{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:
+        repeating-linear-gradient(0deg,transparent,transparent 32px,rgba(246,196,83,.045) 33px),
+        repeating-linear-gradient(90deg,transparent,transparent 32px,rgba(246,196,83,.045) 33px);
+    }
+    .explore-visual-label{
+      position:relative;z-index:1;
+      font-family:var(--fontA);font-size:52px;font-weight:900;
+      letter-spacing:-.06em;color:#fff3cf;line-height:1;
+    }
+    .explore-visual-sub{
+      position:relative;z-index:1;
+      font-family:var(--fontA);font-size:11px;font-weight:900;
+      letter-spacing:.16em;text-transform:uppercase;color:rgba(246,196,83,.70);
+    }
+    .explore-pins{position:absolute;inset:0;pointer-events:none;z-index:1;}
+    .pin{
+      position:absolute;width:10px;height:10px;border-radius:50%;
+      background:var(--gold);box-shadow:0 0 0 4px rgba(246,196,83,.20),0 0 12px rgba(246,196,83,.30);
+    }
+    .pin.green{background:var(--green);box-shadow:0 0 0 4px rgba(0,166,81,.20),0 0 12px rgba(0,166,81,.30);}
+
+    /* ── PRO STRIP — FIX 3 : 4 portes métier visibles ── */
+    .pro-strip{
+      margin-top:16px;border-radius:28px;
+      border:1px solid rgba(0,166,81,.32);
+      background:
+        radial-gradient(760px 280px at 8% 0%,rgba(0,166,81,.18),transparent 58%),
+        rgba(255,255,255,.045);
+      box-shadow:var(--shadow);padding:20px;
+    }
+    .pro-strip-head{
+      display:flex;align-items:flex-start;justify-content:space-between;
+      gap:16px;flex-wrap:wrap;margin-bottom:16px;
+    }
+    .pro-strip h2{margin:0;font-family:var(--fontA);font-size:clamp(24px,3.5vw,36px);line-height:1.05;letter-spacing:-.04em;}
+    .pro-strip p{margin:8px 0 0;color:var(--muted);line-height:1.6;font-weight:800;max-width:70ch;}
+    .pro-strip-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start;}
+    .pro-door-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;}
+    .pro-door{
+      border:1px solid rgba(0,166,81,.20);border-radius:20px;padding:14px;
+      background:rgba(0,166,81,.07);transition:.16s ease;display:flex;flex-direction:column;gap:6px;
+    }
+    .pro-door:hover{transform:translateY(-1px);border-color:rgba(0,166,81,.45);background:rgba(0,166,81,.12);}
+    .pro-door b{font-family:var(--fontA);font-size:16px;font-weight:900;line-height:1.1;color:var(--ink);}
+    .pro-door span{color:rgba(220,255,232,.78);font-size:12.5px;line-height:1.45;font-weight:800;}
+    .pro-door-hint{
+      margin-top:auto;padding-top:8px;
+      font-family:var(--fontA);font-size:11px;font-weight:900;
+      color:rgba(154,255,178,.80);letter-spacing:.08em;text-transform:uppercase;
     }
 
-    @media(max-width:760px){
-      .wrap{
-        padding:10px 10px 112px;
-      }
+    /* ── SHARE ── */
+    .share{
+      margin-top:16px;border-radius:28px;border:1px solid rgba(246,196,83,.22);
+      background:rgba(246,196,83,.075);padding:18px;text-align:center;
+    }
+    .share h2{margin:0;font-family:var(--fontA);font-size:28px;letter-spacing:-.035em;}
+    .share p{max-width:760px;margin:10px auto 0;color:#dbe8e0;line-height:1.65;font-weight:800;}
 
-      .topbar{
-        padding:12px;
-        align-items:flex-start;
-      }
+    /* ── FOOTER ── */
+    .footer{
+      margin-top:18px;color:var(--soft);font-size:13px;font-weight:800;line-height:1.6;
+      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:8px 4px 0;
+    }
 
-      .brand{
-        width:100%;
-      }
+    /* ── BOTTOM NAV — masquée desktop ── */
+    .mobile-dock{display:none;}
 
-      .logo{
-        width:54px;
-        height:54px;
-        border-radius:18px;
-      }
+    /* ── RESPONSIVE ── */
+    @media(max-width:860px){
+      .top-actions{display:none}
+      .station-grid,.doors{grid-template-columns:1fr}
+      .pro-door-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .door-grid{grid-template-columns:1fr 1fr}
+    }
 
-      .brandText .title{
-        font-size:21px;
+    @media(max-width:720px){
+      .page{padding:10px 10px 104px}
+      .topbar{align-items:flex-start}
+      .brand{width:100%}
+      .logo{width:56px;height:56px}
+      .brand-title{font-size:22px}
+      .brand-sub{font-size:14px}
+      .hero{padding:26px 16px 22px;border-radius:26px;}
+      h1{font-size:clamp(42px,13vw,64px);max-width:9ch;}
+      .lead{font-size:17px;line-height:1.6;}
+      .hero-actions{display:grid;grid-template-columns:1fr;}
+      .btn{width:100%;min-height:58px;border-radius:18px;font-size:16px;}
+      .station,.panel,.explore-card,.pro-strip,.share{border-radius:24px;padding:16px;}
+      .section-title{font-size:clamp(32px,10vw,46px);}
+      .station-card{
+        min-height:auto;display:grid;grid-template-columns:72px 1fr;
+        align-items:center;gap:13px;padding:15px;
       }
+      .station-icon{width:72px;height:72px;font-size:38px;grid-row:1 / span 2;}
+      .station-card h3{font-size:24px}
+      .station-card p{font-size:15px}
+      .station-cta{grid-column:1/-1;min-height:54px;border-radius:18px;font-size:15px;}
+      .door-grid{grid-template-columns:1fr}
+      .door b{font-size:20px}
+      .door span{font-size:15px}
+      .explore-visual{min-height:140px;}
+      .explore-visual-label{font-size:38px}
+      .pro-door-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .pro-strip-head{flex-direction:column;}
+      .pro-strip-actions .btn{width:100%;}
+      .share .hero-actions{display:grid;grid-template-columns:1fr;}
+      .footer{padding-bottom:10px;}
 
-      .brandText .subtitle{
-        font-size:14px;
-        line-height:1.35;
-      }
-
-      .brandText .byline{
-        font-size:18px;
-      }
-
-      .topSignals{
-        display:none;
-      }
-
-      .menuToggleBtn{
-        display:inline-flex;
-      }
-
-      .menuBar{
-        display:none;
-      }
-
-      .menuBar.open{
-        display:block;
-      }
-
-      #intro-bonheur{
-        margin:12px 12px 0;
-        border-radius:24px;
-      }
-
-      #intro-bonheur .wrap{
-        padding:28px 16px 24px;
-      }
-
-      #intro-bonheur h1{
-        font-size:clamp(42px,13vw,62px);
-      }
-
-      #intro-bonheur .lead{
-        font-size:17px;
-        line-height:1.6;
-      }
-
-      #intro-bonheur .cta{
-        display:grid;
-        grid-template-columns:1fr;
-      }
-
-      #intro-bonheur .btnx{
-        width:100%;
-        min-height:58px;
-        border-radius:18px;
-        font-size:16px;
-      }
-
-      #digiy-action-stations{
-        margin:14px 12px 0;
-        padding:16px;
-        border-radius:24px;
-      }
-
-      #digiy-action-stations .station-title{
-        font-size:clamp(34px,11vw,48px);
-        max-width:10ch;
-      }
-
-      #digiy-action-stations .station-text{
-        font-size:16px;
-        line-height:1.6;
-      }
-
-      #digiy-action-stations .station-grid{
-        grid-template-columns:1fr;
-      }
-
-      #digiy-action-stations .station-card{
-        min-height:auto;
-        display:grid;
-        grid-template-columns:72px 1fr;
-        align-items:center;
-        gap:13px;
-        padding:15px;
-      }
-
-      #digiy-action-stations .station-icon{
-        width:72px;
-        height:72px;
-        font-size:36px;
-        grid-row:1 / span 2;
-      }
-
-      #digiy-action-stations .station-card h2{
-        font-size:24px;
-      }
-
-      #digiy-action-stations .station-card p{
-        font-size:15px;
-      }
-
-      #digiy-action-stations .station-cta{
-        grid-column:1/-1;
-        min-height:54px;
-        border-radius:18px;
-        font-size:15px;
-      }
-
-      #esprit-digiylyfe,
-      #net-bridge,
-      #quick-business-doors,
-      #digiy-circulation,
-      .section,
-      .showcaseSection{
-        margin-left:12px;
-        margin-right:12px;
-        border-radius:22px;
-      }
-
-      .sectionHead h2,
-      .favTitle{
-        font-size:clamp(25px,8vw,36px);
-        line-height:1.05;
-      }
-
-      .sectionSub{
-        font-size:15px !important;
-        line-height:1.55;
-      }
-
-      .moduleBtn{
-        min-width:82vw;
-        min-height:190px;
-        border-radius:24px;
-      }
-
-      .moduleName{
-        font-size:21px;
-      }
-
-      .moduleHint{
-        font-size:15px;
-      }
-
-      .focusLabel{
-        font-size:25px;
-      }
-
-      .focusText{
-        font-size:16px;
-      }
-
-      .floatBtn{
-        display:none !important;
-      }
-
-      .digiy-mobile-dock{
-        position:fixed;
-        left:0;
-        right:0;
-        bottom:0;
-        z-index:100000;
-        display:block;
-        padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));
+      /* Bottom nav activée sur mobile seulement */
+      .mobile-dock{
+        position:fixed;left:0;right:0;bottom:0;z-index:1000;display:block;
+        padding:8px 10px calc(8px + var(--safe-bottom));
         background:linear-gradient(180deg,rgba(4,19,13,0),rgba(4,19,13,.94) 26%,rgba(4,19,13,.99));
         backdrop-filter:blur(12px);
       }
-
-      .digiy-mobile-dock-inner{
-        max-width:760px;
-        margin:0 auto;
-        display:grid;
-        grid-template-columns:repeat(3,1fr);
-        gap:7px;
-        border:1px solid rgba(255,255,255,.12);
-        background:rgba(6,20,14,.94);
-        border-radius:22px;
-        padding:7px;
-        box-shadow:0 16px 44px rgba(0,0,0,.38);
+      .mobile-dock-inner{
+        max-width:760px;margin:0 auto;
+        display:grid;grid-template-columns:repeat(3,1fr);gap:7px;
+        border:1px solid rgba(255,255,255,.12);background:rgba(6,20,14,.94);
+        border-radius:22px;padding:7px;box-shadow:0 16px 44px rgba(0,0,0,.38);
       }
-
-      .digiy-mobile-dock a,
-      .digiy-mobile-dock button{
-        min-height:58px;
-        border-radius:16px;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        gap:3px;
-        color:rgba(248,250,252,.84);
-        font-family:var(--fontA);
-        font-size:11px;
-        font-weight:950;
-        border:1px solid rgba(255,255,255,.08);
-        text-align:center;
-        background:rgba(255,255,255,.04);
-        text-decoration:none;
+      .mobile-dock a{
+        min-height:58px;border-radius:16px;
+        display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+        color:rgba(248,250,252,.84);font-family:var(--fontA);font-size:11px;font-weight:900;
+        border:1px solid rgba(255,255,255,.08);text-align:center;background:rgba(255,255,255,.04);
+        transition:.15s ease;-webkit-tap-highlight-color:transparent;
       }
-
-      .digiy-mobile-dock .primary{
-        color:#06140f;
-        border-color:rgba(246,196,83,.70);
+      .mobile-dock a:active{background:rgba(255,255,255,.10);}
+      .mobile-dock a.primary{
+        color:#06140f;border-color:rgba(246,196,83,.70);
         background:linear-gradient(135deg,#f6c453,#22c55e);
       }
-
-      .digiy-mobile-dock strong{
-        font-size:20px;
-        line-height:1;
-      }
+      .mobile-dock strong{font-size:20px;line-height:1;}
     }
-
-    @media(max-width:430px){
-      #digiy-action-stations .station-card{
-        grid-template-columns:64px 1fr;
-      }
-
-      #digiy-action-stations .station-icon{
-        width:64px;
-        height:64px;
-        font-size:32px;
-      }
-    }
-
-
-    /* ── INTRO ESPRIT DIGIYLYFE — SOUS LE HERO ── */
-    #esprit-digiylyfe{
-      margin:16px 18px 0;
-      border:1px solid rgba(246,196,83,.34);
-      border-radius:28px;
-      background:
-        radial-gradient(720px 260px at 12% 0%,rgba(246,196,83,.16),transparent 62%),
-        radial-gradient(640px 260px at 88% 20%,rgba(0,166,81,.16),transparent 62%),
-        linear-gradient(135deg,rgba(246,196,83,.09),rgba(0,166,81,.08));
-      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.06);
-      overflow:hidden;
-    }
-    #esprit-digiylyfe .espritInner{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) auto;
-      gap:18px;
-      align-items:center;
-      padding:20px 22px;
-    }
-    #esprit-digiylyfe .espritKicker{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 11px;
-      border-radius:999px;
-      border:1px solid rgba(246,196,83,.32);
-      background:rgba(246,196,83,.10);
-      color:#fff3cf;
-      font-family:var(--fontA);
-      font-size:11px;
-      font-weight:1000;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-    #esprit-digiylyfe .espritTitle{
-      margin:12px 0 0;
-      font-family:var(--fontA);
-      font-size:clamp(24px,3.6vw,42px);
-      line-height:1.02;
-      letter-spacing:-.04em;
-      font-weight:1000;
-      color:#fff;
-    }
-    #esprit-digiylyfe .espritTitle span{color:var(--gold);}
-    #esprit-digiylyfe .espritText{
-      margin:10px 0 0;
-      max-width:72ch;
-      color:#dbe8e0;
-      font-size:15px;
-      line-height:1.68;
-      font-weight:750;
-    }
-    #esprit-digiylyfe .espritText strong{color:#fff3cf;}
-    #esprit-digiylyfe .espritBtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      min-height:62px;
-      padding:0 24px;
-      border-radius:18px;
-      border:1px solid rgba(246,196,83,.78);
-      background:
-        radial-gradient(260px 95px at 18% 0%,rgba(255,255,255,.28),transparent 62%),
-        linear-gradient(135deg,#f6c453 0%,#22c55e 100%);
-      color:#06140f;
-      font-family:var(--fontA);
-      font-size:15px;
-      font-weight:1000;
-      text-decoration:none;
-      white-space:nowrap;
-      box-shadow:
-        0 16px 36px rgba(0,0,0,.32),
-        0 0 0 4px rgba(246,196,83,.11),
-        0 0 30px rgba(246,196,83,.22);
-      transition:transform .15s,border-color .15s,background .15s,box-shadow .15s;
-    }
-    #esprit-digiylyfe .espritBtn:hover{
-      transform:translateY(-2px);
-      border-color:rgba(255,255,255,.78);
-      background:
-        radial-gradient(260px 95px at 18% 0%,rgba(255,255,255,.34),transparent 62%),
-        linear-gradient(135deg,#ffd86b 0%,#22c55e 100%);
-      box-shadow:
-        0 20px 46px rgba(0,0,0,.38),
-        0 0 0 5px rgba(246,196,83,.15),
-        0 0 38px rgba(246,196,83,.30);
-    }
-    @media(max-width:760px){
-      #esprit-digiylyfe .espritInner{grid-template-columns:1fr;padding:18px 16px;}
-      #esprit-digiylyfe .espritBtn{width:100%;white-space:normal;text-align:center;min-height:64px;}
-    }
-    @media(max-width:640px){
-      #esprit-digiylyfe{margin:14px 12px 0;border-radius:24px;}
-    }
-
-
-    /* ── MAIN ── */
-    .main{max-width:1200px;margin:0 auto;padding:16px 18px 80px;}
-    .section{margin-top:16px;border:1px solid rgba(255,255,255,.08);border-radius:24px;background:linear-gradient(180deg,rgba(10,48,34,.76),rgba(8,28,20,.70));box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:110px;}
-    .sectionHead{padding:14px 14px 10px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.06);}
-    .sectionHead h2{margin:0;font-family:var(--fontA);font-weight:900;letter-spacing:.2px;color:#fff;}
-    .sectionSub{color:rgba(255,255,255,.80);font-size:12.5px;line-height:1.5;margin-top:4px;}
-    .legend{display:flex;gap:8px;flex-wrap:wrap;}
-    .pill{font-family:var(--fontA);font-weight:900;font-size:11px;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(2,6,23,.14);}
-    .pill.live{border-color:rgba(34,197,94,.35);color:rgba(34,197,94,.95)}
-    .pill.beta{border-color:rgba(245,158,11,.35);color:rgba(245,158,11,.95)}
-    .pill.public{border-color:rgba(246,196,83,.35);color:rgba(246,196,83,.96)}
-    .pill.pro{border-color:rgba(0,166,81,.34);color:rgba(110,255,161,.98)}
-
-    /* ── RAILS ── */
-    .railWrap{position:relative;padding:14px;}
-    .railWrap::after{content:"";position:absolute;top:14px;right:14px;width:52px;height:calc(100% - 28px);pointer-events:none;border-radius:0 20px 20px 0;background:linear-gradient(90deg,rgba(12,40,29,0),rgba(12,40,29,.94));}
-    .railWrapDesktop{position:relative}
-    .railHint{display:none;margin:0 0 12px 2px;font-size:16px;font-weight:900;font-family:var(--fontA);color:#fff0c8;letter-spacing:.2px;line-height:1.2;text-shadow:0 3px 10px rgba(0,0,0,.25);}
-    .railArrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:46px;height:46px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(6,20,14,.82);color:#fff;font-size:30px;font-weight:900;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 26px rgba(0,0,0,.32);backdrop-filter:blur(10px);}
-    .railArrow:hover{border-color:rgba(246,196,83,.34)}.railArrow.left{left:6px}.railArrow.right{right:6px}
-    .moduleRail{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;touch-action:pan-x;}
-    .moduleRail::-webkit-scrollbar{height:6px}
-    .moduleRail::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:999px;}
-    .moduleSlot{position:relative;flex:0 0 auto;}
-    .moduleBtn{
-      min-width:220px;max-width:255px;min-height:186px;
-      border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:24px;
-      padding:18px 16px;text-align:left;cursor:pointer;scroll-snap-align:start;
-      transition:.18s ease;flex:0 0 auto;text-decoration:none;display:block;
-      background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06));
-    }
-    .moduleBtn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.28)}
-    .moduleBtn:active{transform:scale(.98)}
-    .moduleBtn.active{border-color:rgba(246,196,83,.70);box-shadow:0 10px 28px rgba(246,196,83,.18)}
-    .moduleBtn.publicCard{border-color:rgba(246,196,83,.40);background:linear-gradient(180deg,rgba(246,196,83,.18),rgba(246,196,83,.06));}
-    .moduleBtn.publicCard:hover{border-color:rgba(246,196,83,.65)}
-    .moduleBtn.proCard{border-color:rgba(0,166,81,.42);background:linear-gradient(180deg,rgba(0,166,81,.22),rgba(0,166,81,.08));}
-    .moduleBtn.proCard:hover{border-color:rgba(0,166,81,.65)}
-    .moduleBtn.loco{border-color:rgba(246,196,83,.55);box-shadow:0 12px 30px rgba(246,196,83,.14);}
-    .moduleBtn .openHint{display:block;margin-top:10px;font-size:12px;font-family:var(--fontA);font-weight:900;color:rgba(246,196,83,.92);letter-spacing:.2px;}
-    .moduleEmoji{font-size:30px;display:block;margin-bottom:10px;}
-    .moduleName{font-size:17px;font-weight:1000;font-family:var(--fontA);line-height:1.2;padding-right:34px;color:#fff;}
-    .moduleHint{margin-top:6px;font-size:13.5px;color:rgba(255,255,255,.88);line-height:1.45;min-height:42px;}
-    .miniBadges{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
-    .miniBadge{display:inline-flex;align-items:center;gap:4px;padding:5px 8px;border-radius:999px;font-size:10.5px;font-weight:900;letter-spacing:.2px;border:1px solid var(--line);background:rgba(0,0,0,.10);font-family:var(--fontA);}
-    .miniBadge.public{color:#fff0c8;border-color:rgba(246,196,83,.28);background:rgba(246,196,83,.08)}
-    .miniBadge.pro{color:#dfffe9;border-color:rgba(0,166,81,.30);background:rgba(0,166,81,.12)}
-    .miniBadge.live{color:#bbf7d0;border-color:rgba(34,197,94,.30);background:rgba(34,197,94,.08)}
-    .miniBadge.beta{color:#fde68a;border-color:rgba(245,158,11,.30);background:rgba(245,158,11,.08)}
-    .miniBadge.loco{color:#fff3cf;border-color:rgba(246,196,83,.30);background:rgba(246,196,83,.08)}
-    .miniBadge.fav{color:#fff0c8;border-color:rgba(246,196,83,.35);background:rgba(246,196,83,.12)}
-
-    /* ── FAV TOGGLE ── */
-    .favToggle{position:absolute;top:10px;right:10px;z-index:4;width:38px;height:38px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(6,20,14,.86);color:#fff3cf;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;font-weight:1000;box-shadow:0 10px 22px rgba(0,0,0,.24);backdrop-filter:blur(8px);transition:transform .12s ease,border-color .15s ease,background .15s ease;}
-    .favToggle:hover{transform:translateY(-1px);border-color:rgba(246,196,83,.45);background:rgba(16,45,31,.95);}
-    .favToggle:active{transform:scale(.96)}
-    .favToggle.active{border-color:rgba(246,196,83,.52);background:rgba(246,196,83,.12);color:#ffe083;}
-    .favoritesEmpty{border:1px dashed rgba(246,196,83,.22);border-radius:18px;padding:14px 16px;background:rgba(246,196,83,.05);color:#fff2cf;font-size:14px;line-height:1.5;font-weight:800;}
-
-    /* ── FOCUS ── */
-    .focus{margin-top:14px;border:1px solid rgba(255,255,255,.08);border-radius:24px;background:linear-gradient(180deg,rgba(10,48,34,.82),rgba(8,28,20,.76));box-shadow:var(--shadow);overflow:hidden;}
-    .focusInner{padding:16px;}
-    .focusTop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;}
-    .focusLeft{display:flex;gap:12px;align-items:flex-start;min-width:0;}
-    .focusIcon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;background:rgba(0,166,81,.12);border:1px solid rgba(255,255,255,.12);flex:0 0 auto;}
-    .focusLabel{font-family:var(--fontA);font-size:22px;font-weight:900;line-height:1.1;}
-    .focusHint{margin-top:5px;font-size:13px;color:var(--muted);line-height:1.45;}
-    .focusBadges{display:flex;gap:8px;flex-wrap:wrap;}
-    .focusBadge{display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.10);font-size:11px;font-weight:900;font-family:var(--fontA);white-space:nowrap;}
-    .focusBadge.public{color:#fff0c8;border-color:rgba(246,196,83,.28);background:rgba(246,196,83,.08)}
-    .focusBadge.pro{color:#dfffe9;border-color:rgba(0,166,81,.30);background:rgba(0,166,81,.12)}
-    .focusBadge.gold{color:#fff3cf;border-color:rgba(246,196,83,.30);background:rgba(246,196,83,.08)}
-    .focusText{margin-top:14px;color:#f0ece3;line-height:1.65;font-size:14.5px;max-width:72ch;}
-    .focusActions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;}
-
-    /* ── BTN ── */
-    .btn{border:1px solid var(--line);background:rgba(2,6,23,.18);color:var(--ink);padding:12px 14px;border-radius:14px;cursor:pointer;font-weight:800;font-family:var(--fontA);letter-spacing:.2px;transition:transform .08s,background .2s,border-color .2s;user-select:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-align:center;}
-    .btn:hover{transform:translateY(-1px);border-color:rgba(246,196,83,.35)}.btn:active{transform:translateY(0) scale(.99)}
-    .btn.primary{border-color:rgba(255,255,255,.14);background:linear-gradient(135deg,#00a651,#00853f);color:#fff;box-shadow:0 12px 28px rgba(0,133,63,.22);}
-    .btn.ghost{background:transparent}.btn.outline{background:transparent;border-color:rgba(246,196,83,.34);color:rgba(255,243,207,.98);}
-    .btn.tiny{padding:10px 12px;font-size:12px;border-radius:999px}.btn.danger{border-color:rgba(239,68,68,.45)}
-
-    /* ── FOOTER FOCUS ── */
-    .footer{margin-top:14px;border-top:1px solid rgba(255,255,255,.08);padding:14px 2px 0;color:var(--muted);font-size:12px;line-height:1.55;}
-    .footLine{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
-    .footBrand{font-family:var(--fontA);font-weight:900;color:rgba(246,196,83,.95)}.sep{opacity:.35}
-
-    /* ── SHOWCASE ── */
-    .showcaseSection{margin-top:16px;border:1px solid rgba(246,196,83,.24);border-radius:var(--radius2);background:linear-gradient(180deg,rgba(10,48,34,.82),rgba(8,28,20,.76));box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.07);overflow:hidden;scroll-margin-top:110px;}
-    .showcaseInner{padding:18px;}
-    .showcaseTitle{font-family:var(--fontA);font-weight:900;font-size:13px;color:rgba(246,196,83,.88);letter-spacing:.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-    .showcaseTitle::before{content:"";display:block;width:28px;height:2px;background:linear-gradient(90deg,rgba(246,196,83,.75),transparent);border-radius:999px;}
-    .showcaseTitle::after{content:"";display:block;flex:1;height:1px;background:linear-gradient(90deg,rgba(246,196,83,.28),transparent);}
-    .showcaseImgWrap{position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(246,196,83,.30);box-shadow:0 14px 45px rgba(0,0,0,.50);max-width:940px;margin:0 auto;height:300px;background:#04130d;}
-    .showcaseImgWrap img{width:100%;height:100%;object-fit:cover;object-position:center 28%;display:block;transition:transform .5s ease;}
-    .showcaseImgWrap:hover img{transform:scale(1.015)}
-    .showcaseImgWrap::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(135deg,rgba(246,196,83,.08) 0%,transparent 45%,rgba(0,166,81,.06) 100%);}
-    .showcaseCta{margin:14px auto 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;max-width:940px;}
-    .showcaseDesc{font-size:13px;color:rgba(248,250,252,.72);line-height:1.5;max-width:55ch;}
-
-    /* ── SIGNATURE DIAMANT — VISION DIGIYLYFE ── */
-    #signature-digiy{
-      margin-top:18px;
-      border-color:rgba(246,196,83,.34);
-      background:
-        radial-gradient(780px 320px at 50% 0%,rgba(246,196,83,.14),transparent 62%),
-        radial-gradient(720px 360px at 50% 82%,rgba(0,166,81,.14),transparent 66%),
-        linear-gradient(180deg,rgba(10,48,34,.86),rgba(5,18,13,.88));
-      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.07);
-    }
-    #signature-digiy .showcaseInner{padding:20px 18px 22px;}
-    #signature-digiy .showcaseTitle{
-      justify-content:center;
-      text-align:center;
-      color:#fff3cf;
-      letter-spacing:.12em;
-    }
-    #signature-digiy .signatureIntro{
-      max-width:760px;
-      margin:0 auto 16px;
-      text-align:center;
-      color:#dbe8e0;
-      font-size:15px;
-      line-height:1.7;
-      font-weight:750;
-    }
-    #signature-digiy .signatureIntro strong{color:#fff3cf;}
-    #signature-digiy .showcaseImgWrap{
-      max-width:760px;
-      height:auto;
-      background:#071710;
-      border-radius:28px;
-      border-color:rgba(246,196,83,.42);
-      box-shadow:
-        0 0 0 6px rgba(246,196,83,.055),
-        0 22px 58px rgba(0,0,0,.48),
-        0 0 34px rgba(246,196,83,.12);
-    }
-    #signature-digiy .showcaseImgWrap img{
-      width:100%;
-      height:auto;
-      object-fit:contain;
-      object-position:center;
-      display:block;
-    }
-    #signature-digiy .showcaseImgWrap::before{
-      background:linear-gradient(135deg,rgba(246,196,83,.08) 0%,transparent 42%,rgba(0,166,81,.08) 100%);
-    }
-    #signature-digiy .showcaseCta{
-      justify-content:center;
-      max-width:760px;
-      text-align:center;
-      gap:12px;
-    }
-    #signature-digiy .showcaseDesc{
-      text-align:center;
-      max-width:68ch;
-      margin:0 auto;
-      font-size:14px;
-      color:rgba(248,250,252,.78);
-      line-height:1.65;
-    }
-    #signature-digiy .signatureLine{
-      display:block;
-      font-family:var(--fontA);
-      font-size:18px;
-      font-weight:1000;
-      color:#fff3cf;
-      margin-bottom:8px;
-      letter-spacing:.01em;
-    }
-    #signature-digiy .signatureActions{
-      width:100%;
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:4px;
-    }
-    #signature-digiy .signatureBtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      min-height:48px;
-      padding:0 16px;
-      border-radius:14px;
-      border:1px solid rgba(246,196,83,.34);
-      background:rgba(246,196,83,.10);
-      color:#fff3cf;
-      font-family:var(--fontA);
-      font-size:13px;
-      font-weight:1000;
-      text-decoration:none;
-      transition:transform .15s,border-color .15s,background .15s;
-    }
-    #signature-digiy .signatureBtn:hover{
-      transform:translateY(-1px);
-      border-color:rgba(246,196,83,.58);
-      background:rgba(246,196,83,.16);
-    }
-    @media(max-width:640px){
-      #signature-digiy .showcaseInner{padding:18px 14px 20px;}
-      #signature-digiy .signatureIntro{font-size:13.5px;margin-bottom:14px;}
-      #signature-digiy .showcaseImgWrap{border-radius:22px;}
-      #signature-digiy .signatureBtn{width:100%;min-height:52px;}
-    }
-
-    /* ── BANDEAU VISION + REVUE ── */
-    #net-bridge{
-      margin:16px 18px 0;
-      padding:18px 20px;
-      border-radius:24px;
-      border:1px solid rgba(246,196,83,.30);
-      background:
-        radial-gradient(720px 260px at 12% 0%,rgba(246,196,83,.13),transparent 60%),
-        radial-gradient(620px 240px at 90% 20%,rgba(0,166,81,.14),transparent 62%),
-        linear-gradient(135deg,rgba(246,196,83,.08),rgba(0,166,81,.07));
-      display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-      box-shadow:0 16px 42px rgba(0,0,0,.22),0 0 0 1px rgba(246,196,83,.05);
-    }
-    #net-bridge .bridge-visual{
-      display:block;
-      width:clamp(170px,22vw,260px);
-      flex:0 0 auto;
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid rgba(246,196,83,.34);
-      background:rgba(0,0,0,.18);
-      box-shadow:0 16px 38px rgba(0,0,0,.30),0 0 0 4px rgba(246,196,83,.06);
-      transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
-    }
-    #net-bridge .bridge-visual:hover{
-      transform:translateY(-2px);
-      border-color:rgba(246,196,83,.62);
-      box-shadow:0 20px 46px rgba(0,0,0,.36),0 0 0 5px rgba(246,196,83,.09);
-    }
-    #net-bridge .bridge-visual img{
-      display:block;
-      width:100%;
-      aspect-ratio:1.18/1;
-      height:auto;
-      object-fit:cover;
-      object-position:center;
-    }
-
-    #net-bridge .bridge-text{
-      font-family:var(--fontA);font-size:14px;font-weight:800;color:#fff3cf;line-height:1.5;
-      max-width:680px;
-    }
-    #net-bridge .bridge-text span{display:block;font-size:12px;font-weight:600;color:rgba(248,250,252,.68);margin-top:3px;}
-    #net-bridge .bridge-actions{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end;
-      margin-left:auto;
-    }
-    #net-bridge .bridge-btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;border-radius:14px;
-      border:1px solid rgba(246,196,83,.34);background:rgba(246,196,83,.10);
-      color:#fff3cf;font-family:var(--fontA);font-size:13px;font-weight:900;
-      text-decoration:none;white-space:nowrap;transition:transform .15s,border-color .15s,background .15s,box-shadow .15s;
-    }
-    #net-bridge .bridge-btn:hover{transform:translateY(-1px);border-color:rgba(246,196,83,.55);background:rgba(246,196,83,.16);}
-
-    #net-bridge .bridge-btn-main{
-      min-height:56px;
-      padding:0 22px;
-      border-radius:18px;
-      border:1px solid rgba(246,196,83,.78);
-      background:
-        radial-gradient(260px 95px at 18% 0%,rgba(255,255,255,.28),transparent 62%),
-        linear-gradient(135deg,#f6c453 0%,#22c55e 100%);
-      color:#06140f;
-      font-size:15px;
-      font-weight:1000;
-      letter-spacing:.1px;
-      box-shadow:
-        0 16px 36px rgba(0,0,0,.32),
-        0 0 0 4px rgba(246,196,83,.11),
-        0 0 30px rgba(246,196,83,.22);
-    }
-    #net-bridge .bridge-btn-main:hover{
-      transform:translateY(-2px);
-      border-color:rgba(255,255,255,.78);
-      background:
-        radial-gradient(260px 95px at 18% 0%,rgba(255,255,255,.34),transparent 62%),
-        linear-gradient(135deg,#ffd86b 0%,#22c55e 100%);
-      box-shadow:
-        0 20px 46px rgba(0,0,0,.38),
-        0 0 0 5px rgba(246,196,83,.15),
-        0 0 38px rgba(246,196,83,.30);
-    }
-    #net-bridge .bridge-btn-secondary{
-      opacity:.88;
-    }
-
-    @media(max-width:640px){
-      #net-bridge{
-        align-items:stretch;
-        padding:16px;
-      }
-      #net-bridge .bridge-visual{
-        width:100%;
-        max-width:520px;
-        margin:0 auto 2px;
-      }
-      #net-bridge .bridge-visual img{
-        aspect-ratio:16/10;
-      }
-      #net-bridge .bridge-text{
-        width:100%;
-      }
-      #net-bridge .bridge-actions{
-        width:100%;
-        margin-left:0;
-      }
-      #net-bridge .bridge-btn,
-      #net-bridge .bridge-btn-main{
-        width:100%;
-        white-space:normal;
-        text-align:center;
-      }
-      #net-bridge .bridge-btn-main{
-        min-height:62px;
-        font-size:15.5px;
-      }
-    }
-
-    /* ── ACCÈS DIRECTS MÉTIER ── */
-    #quick-business-doors{
-      margin:16px 18px 0;padding:18px 20px;border-radius:24px;
-      border:1px solid rgba(246,196,83,.24);
-      background:linear-gradient(135deg,rgba(246,196,83,.06),rgba(0,166,81,.08));
-      box-shadow:var(--shadow);
-    }
-    #quick-business-doors .doors-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
-    #quick-business-doors .doors-title{font-family:var(--fontA);font-size:16px;font-weight:900;color:#fff3cf;line-height:1.35;}
-    #quick-business-doors .doors-sub{margin-top:4px;font-size:13px;line-height:1.5;color:rgba(248,250,252,.74);max-width:62ch;}
-    #quick-business-doors .doors-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
-    #quick-business-doors .doorCard{display:block;padding:16px 16px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.04));text-decoration:none;color:#fff;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease;box-shadow:0 10px 28px rgba(0,0,0,.18);}
-    #quick-business-doors .doorCard:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.40);box-shadow:0 14px 34px rgba(0,0,0,.24);}
-    #quick-business-doors .doorIcon{font-size:28px;display:block;margin-bottom:10px;}
-    #quick-business-doors .doorName{font-family:var(--fontA);font-size:18px;font-weight:1000;line-height:1.2;color:#fff;}
-    #quick-business-doors .doorText{margin-top:6px;font-size:13.5px;line-height:1.5;color:rgba(248,250,252,.84);}
-    #quick-business-doors .doorHint{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:6px 10px;border-radius:999px;border:1px solid rgba(246,196,83,.26);background:rgba(246,196,83,.08);font-size:11px;font-weight:900;color:#fff0c8;font-family:var(--fontA);}
-
-
-
-    /* ── FAIRE CIRCULER DIGIY ── */
-    #digiy-circulation{
-      margin:16px 18px 0;
-      padding:18px 20px;
-      border-radius:24px;
-      border:1px solid rgba(246,196,83,.30);
-      background:
-        radial-gradient(820px 340px at 12% 0%,rgba(246,196,83,.13),transparent 58%),
-        radial-gradient(680px 300px at 88% 24%,rgba(0,166,81,.16),transparent 62%),
-        linear-gradient(180deg,rgba(10,48,34,.84),rgba(8,28,20,.78));
-      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.06);
-    }
-    #digiy-circulation .circ-kicker{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:7px 11px;border-radius:999px;
-      border:1px solid rgba(246,196,83,.32);
-      background:rgba(246,196,83,.10);
-      color:#fff3cf;font-family:var(--fontA);font-size:11px;font-weight:1000;
-      letter-spacing:.08em;text-transform:uppercase;
-    }
-    #digiy-circulation .circ-title{
-      margin:12px 0 0;
-      font-family:var(--fontA);font-size:clamp(24px,4vw,42px);font-weight:1000;
-      line-height:1.02;letter-spacing:-.04em;color:#fff;
-    }
-    #digiy-circulation .circ-title span{color:var(--gold);}
-    #digiy-circulation .circ-text{
-      margin:12px 0 0;
-      color:#dbe8e0;font-size:15px;line-height:1.7;font-weight:700;
-      max-width:78ch;
-    }
-    #digiy-circulation .circ-grid{
-      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px;
-    }
-    #digiy-circulation .circ-card{
-      padding:14px 14px 13px;border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.06);
-      box-shadow:0 12px 28px rgba(0,0,0,.16);
-    }
-    #digiy-circulation .circ-card strong{
-      display:block;font-family:var(--fontA);font-size:15px;font-weight:1000;color:#fff;margin-bottom:6px;
-    }
-    #digiy-circulation .circ-card span{display:block;font-size:13px;line-height:1.55;color:rgba(248,250,252,.78);}
-    #digiy-circulation .circ-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
-    #digiy-circulation .circ-actions .btn{min-height:48px;}
-    #digiy-circulation .circ-line{
-      margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);
-      font-family:var(--fontA);font-size:13px;font-weight:900;color:#fff3cf;line-height:1.55;
-    }
-    @media(max-width:760px){#digiy-circulation .circ-grid{grid-template-columns:1fr;}}
-    @media(max-width:640px){#digiy-circulation{margin:14px 12px 0;padding:16px;}.circ-actions .btn{width:100%;}}
-
-    /* ── FAVORIS ── */
-    .favTitle{margin:0;font-family:var(--fontA);font-size:30px;font-weight:1000;letter-spacing:.8px;line-height:1.05;color:#ffffff !important;text-transform:uppercase;text-shadow:0 0 10px rgba(255,255,255,.20),0 0 22px rgba(255,255,255,.10),0 4px 16px rgba(0,0,0,.30);}
-    #favoritesSection .sectionSub{font-size:16px;font-weight:900;line-height:1.5;color:#ffffff !important;text-shadow:0 2px 10px rgba(0,0,0,.22);}
-    #favoritesCountPill{font-size:13px;font-weight:900;color:#ffffff;border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.08);box-shadow:0 0 18px rgba(255,255,255,.08);}
-    .section{color:#fff;}
-    .section .sectionHead h2{color:#fff !important;}
-    .section .sectionSub{color:rgba(255,255,255,.82) !important;}
-
-    /* ── FLOAT BUTTONS — V CIBLÉE MOBILE / AUDIO SAFE ── */
-    .floatBtn{position:fixed;z-index:40;border-radius:999px;padding:14px 16px;border:1px solid rgba(255,255,255,.14);background:rgba(6,33,22,.62);color:var(--ink);font-family:var(--fontA);font-weight:900;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px);transition:all .2s;white-space:nowrap;}
-    .floatBtn:hover{border-color:rgba(246,196,83,.35);transform:translateY(-2px)}.floatBtn:active{transform:scale(.98)}
-    #espace-pro-btn{left:14px;bottom:18px;background:linear-gradient(135deg,rgba(0,166,81,.22),rgba(0,0,0,.55));border-color:rgba(0,166,81,.38);color:#dcffe8;}
-    #explore-float-btn{right:14px;bottom:18px;background:linear-gradient(135deg,rgba(246,196,83,.16),rgba(0,0,0,.55));border-color:rgba(246,196,83,.36);color:#fff3cf;}
-    #digiy-help-btn{right:14px;bottom:72px;background:rgba(6,33,22,.62);}
-    #install-app-btn{left:50%;bottom:18px;transform:translateX(-50%);background:linear-gradient(135deg,#00a651,#00853f);border-color:rgba(255,255,255,.18);color:#fff;box-shadow:0 14px 36px rgba(0,133,63,.28);}
-    #install-app-btn:hover{transform:translateX(-50%) translateY(-2px);border-color:rgba(246,196,83,.35);}
-    #install-app-btn:active{transform:translateX(-50%) scale(.98);}
-
-    /* ── MODALS ── */
-    .ndimbal,.qrModal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(4px);}
-    .ndimbal{z-index:60}.qrModal{z-index:70}.ndimbal.hidden,.qrModal.hidden{display:none}
-    .ndimbalBox,.qrContent{width:min(520px,100%);border-radius:22px;border:1px solid rgba(148,163,184,.25);background:linear-gradient(180deg,rgba(11,42,31,.98),rgba(10,36,27,.94));box-shadow:var(--shadow);padding:16px;}
-    .ndimbalTitle{font-family:var(--fontA);font-weight:900;font-size:18px;}
-    .ndimbalText{margin-top:8px;color:var(--muted);line-height:1.5;}
-    .ndimbalActions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;}
-    .qrHeader{display:flex;align-items:center;justify-content:space-between;gap:10px;}
-    .qrTitle{font-family:var(--fontA);font-weight:900;}
-    .qrImg{display:block;width:min(320px,100%);margin:12px auto;border-radius:18px;border:1px solid rgba(148,163,184,.20);}
-    .qrText{text-align:center;color:var(--muted);margin-top:8px;}
-    .qrLink{display:block;margin-top:12px;text-align:center;padding:12px 14px;border-radius:14px;border:1px solid rgba(246,196,83,.28);background:rgba(246,196,83,.10);font-family:var(--fontA);font-weight:900;transition:all .2s;}
-    .qrLink:hover{border-color:rgba(246,196,83,.45);background:rgba(246,196,83,.18);}
-
-    /* ════════════════════════════════════════════
-       DRAWER NAV MOBILE — remplace la nav inline
-       Uniquement ≤ 640px, desktop intact
-    ════════════════════════════════════════════ */
-
-    /* ── DRAWER OVERLAY ── */
-    #navDrawer{
-      position:fixed;inset:0;z-index:50;
-      display:flex;flex-direction:column;justify-content:flex-end;
-      background:rgba(0,0,0,.60);
-      backdrop-filter:blur(6px);
-      opacity:0;pointer-events:none;
-      transition:opacity .25s ease;
-    }
-    #navDrawer.open{opacity:1;pointer-events:all;}
-
-    .drawerSheet{
-      background:linear-gradient(180deg,#0a2a1c 0%,#061410 100%);
-      border:1px solid rgba(246,196,83,.18);
-      border-bottom:none;
-      border-radius:28px 28px 0 0;
-      padding:0 0 env(safe-area-inset-bottom,14px);
-      max-height:88vh;
-      overflow-y:auto;
-      transform:translateY(100%);
-      transition:transform .28s cubic-bezier(.32,.72,0,1);
-    }
-    #navDrawer.open .drawerSheet{transform:translateY(0);}
-
-    .drawerHandle{
-      width:40px;height:4px;border-radius:999px;
-      background:rgba(255,255,255,.22);
-      margin:12px auto 0;
-    }
-
-    .drawerHeader{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 18px 10px;
-      border-bottom:1px solid rgba(255,255,255,.07);
-    }
-    .drawerHeaderTitle{
-      font-family:var(--fontA);font-weight:900;font-size:13px;
-      letter-spacing:.8px;color:rgba(246,196,83,.80);text-transform:uppercase;
-    }
-    .drawerClose{
-      width:32px;height:32px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.08);
-      color:#fff;font-size:16px;line-height:1;
-      display:flex;align-items:center;justify-content:center;
-      cursor:pointer;
-    }
-
-    .drawerGroup{padding:14px 14px 4px;}
-    .drawerGroupLabel{
-      font-family:var(--fontA);font-weight:900;font-size:10px;
-      letter-spacing:.8px;text-transform:uppercase;
-      padding:5px 10px;border-radius:6px;
-      display:inline-flex;margin-bottom:10px;
-    }
-    .drawerGroupLabel.c{background:rgba(246,196,83,.22);color:#ffe080;border:1px solid rgba(246,196,83,.45);}
-    .drawerGroupLabel.p{background:rgba(0,166,81,.20);color:#9bffb8;border:1px solid rgba(0,166,81,.42);}
-    .drawerGroupLabel.s{background:rgba(255,255,255,.10);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.22);}
-
-    .drawerLinks{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
-    .drawerLink{
-      width:100%;text-align:left;cursor:pointer;
-      display:flex;align-items:center;gap:12px;
-      padding:13px 14px;border-radius:16px;
-      font-family:var(--fontA);font-size:15px;font-weight:800;
-      color:#fff;text-decoration:none;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.04);
-      transition:background .15s,border-color .15s;
-      -webkit-tap-highlight-color:transparent;
-    }
-    .drawerLink:active{background:rgba(255,255,255,.10);}
-    .drawerLink.gold{border-color:rgba(246,196,83,.14);color:#fff3cf;}
-    .drawerLink.gold:active{background:rgba(246,196,83,.10);border-color:rgba(246,196,83,.30);}
-    .drawerLink.green{border-color:rgba(0,166,81,.14);color:#dcffe8;}
-    .drawerLink.green:active{background:rgba(0,166,81,.10);border-color:rgba(0,166,81,.30);}
-    .drawerLink .dlIcon{font-size:20px;flex:0 0 28px;text-align:center;}
-    .drawerLink .dlArrow{margin-left:auto;opacity:.38;font-size:13px;}
-
-    .drawerDivider{height:1px;background:rgba(255,255,255,.06);margin:2px 14px 6px;}
-
-    @media(max-width:640px){
-      /* Afficher le bouton toggle */
-      .menuToggleBtn{display:inline-flex;}
-      /* Masquer topSignals */
-      .topSignals{display:none;}
-      /* Cacher la nav inline sur mobile */
-      .menuBar{display:none !important;}
-      /* Hero collé au topbar */
-      #intro-bonheur{margin-top:0;border-radius:0 0 24px 24px;border-top:none;}
-      /* Rails */
-      .railHint{display:block;font-size:18px;font-weight:900;}.railWrap{padding-bottom:76px;}
-      .railArrow{display:flex;top:auto;bottom:14px;transform:none;width:52px;height:52px;font-size:30px;border-radius:999px;background:rgba(6,20,14,.94);border:1px solid rgba(246,196,83,.28);box-shadow:0 12px 28px rgba(0,0,0,.34);}
-      .railArrow.left{left:12px;}.railArrow.right{right:12px;}
-      .moduleBtn{min-width:240px;max-width:280px;min-height:194px;padding:18px 16px;}
-      .moduleEmoji{font-size:32px;}.moduleName{font-size:18px;}.moduleHint{font-size:14px;min-height:48px;}
-      .miniBadge{font-size:11px;}.moduleBtn .openHint{font-size:12px;}
-      .favToggle{width:40px;height:40px;font-size:19px;}.favTitle{font-size:32px;}
-      #favoritesSection .sectionSub{font-size:17px;}#favoritesCountPill{font-size:14px;}
-      .showcaseImgWrap{max-width:100%;height:215px;}.showcaseCta{max-width:100%;}
-      #signature-digiy .showcaseImgWrap{height:auto;}#signature-digiy .showcaseImgWrap img{object-position:center;}
-      #net-bridge{margin:14px 12px 0;}
-      #quick-business-doors{margin:14px 12px 0;padding:16px;}
-      #quick-business-doors .doors-grid{grid-template-columns:1fr;}
-
-      /* V ciblée : grille fixe lisible sur téléphone
-         Rang 1 : activité / découvrir · Rang 2 : audio / NDIMBAL · Rang 3 : installer */
-      .floatBtn{padding:11px 13px;font-size:13px;max-width:46vw;overflow:hidden;text-overflow:ellipsis;}
-      #espace-pro-btn{left:10px;bottom:14px;}
-      #explore-float-btn{right:10px;bottom:14px;}
-      #digiy-help-btn{right:10px;bottom:66px;}
-      #install-app-btn{left:50%;bottom:118px;max-width:70vw;}
-    }
-
-    @media(max-width:480px){
-      .floatBtn{padding:10px 12px;font-size:12.5px;}
-      #espace-pro-btn{left:10px;bottom:14px;}
-      #explore-float-btn{right:10px;bottom:14px;}
-      #digiy-help-btn{right:10px;bottom:64px;}
-      #install-app-btn{bottom:112px;}
-      .brandText .subtitle{max-width:210px;font-size:12px;}.brandText .byline{font-size:16px;margin-top:6px;}
-      .moduleBtn{min-width:248px;max-width:286px;min-height:198px;}.railHint{font-size:19px;}
-      .showcaseImgWrap{height:205px;}#signature-digiy .showcaseImgWrap{height:auto;}
-    }
-
-    /* ── EMBLÈME DIGIYLYFE SOUS LE HERO ── */
-    #medaille-digiy{
-      margin:0;
-      padding:34px 18px 26px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background:linear-gradient(180deg,rgba(8,109,53,.12) 0%,rgba(6,33,22,.0) 100%);
-      border-bottom:1px solid rgba(246,196,83,.10);
-    }
-    .medailleWrap{
-      width:min(100%,760px);
-      position:relative;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:16px;
-      text-align:center;
-    }
-    .medailleGlow{
-      position:absolute;
-      top:44%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      width:min(84vw,520px);
-      height:min(84vw,520px);
-      border-radius:50%;
-      background:radial-gradient(circle,rgba(246,196,83,.18) 0%,rgba(0,166,81,.09) 45%,transparent 72%);
-      pointer-events:none;
-      z-index:0;
-      filter:blur(18px);
-    }
-    .medailleFrame{
-      position:relative;
-      z-index:1;
-      width:min(100%,520px);
-      border-radius:26px;
-      overflow:hidden;
-      border:1px solid rgba(246,196,83,.34);
-      box-shadow:
-        0 0 0 6px rgba(246,196,83,.05),
-        0 18px 50px rgba(0,0,0,.42),
-        0 4px 18px rgba(246,196,83,.12);
-      background:rgba(4,19,13,.82);
-    }
-    .medailleFrame:hover{
-      transform:translateY(-2px);
-      box-shadow:
-        0 0 0 8px rgba(246,196,83,.08),
-        0 24px 60px rgba(0,0,0,.48),
-        0 6px 24px rgba(246,196,83,.18);
-    }
-    .medailleImg{
-      width:100%;
-      height:auto;
-      display:block;
-      object-fit:contain;
-      object-position:center;
-    }
-    .medailleCaption{
-      position:relative;
-      z-index:1;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:8px;
-      text-align:center;
-      max-width:760px;
-    }
-    .medailleLine{
-      font-family:var(--fontA);
-      font-size:16px;
-      font-weight:1000;
-      color:rgba(246,196,83,.96);
-      letter-spacing:.05em;
-      text-transform:uppercase;
-    }
-    .medailleSub{
-      font-family:var(--fontB);
-      font-size:14px;
-      font-weight:600;
-      color:rgba(248,250,252,.78);
-      line-height:1.6;
-      max-width:54ch;
-    }
-    .medailleBtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      min-height:54px;
-      padding:0 20px;
-      border-radius:16px;
-      border:1px solid rgba(246,196,83,.34);
-      background:rgba(246,196,83,.12);
-      color:#fff3cf;
-      font-family:var(--fontA);
-      font-size:15px;
-      font-weight:1000;
-      text-decoration:none;
-      box-shadow:0 12px 32px rgba(0,0,0,.24);
-    }
-    .medailleBtn:hover{
-      background:rgba(246,196,83,.18);
-      border-color:rgba(246,196,83,.55);
-      transform:translateY(-1px);
-    }
-    .medailleUrl{
-      display:block;
-      font-family:var(--fontA);
-      font-size:13px;
-      font-weight:900;
-      line-height:1.5;
-      color:#fff3cf;
-      text-decoration:none;
-      word-break:break-word;
-      max-width:70ch;
-      padding:0 10px;
-    }
-    .medailleUrl:hover{text-decoration:underline;}
-    @media(max-width:640px){
-      #medaille-digiy{padding:28px 14px 22px;}
-      .medailleLine{font-size:14px;}
-      .medailleSub{font-size:13px;}
-      .medailleBtn{width:100%;}
-      .medailleUrl{font-size:12px;}
-    }
-
-</style>
+  </style>
 </head>
+
 <body>
-<div class="bg"></div>
-<div class="app">
-  <div class="wrap">
-    <div class="shell">
+  <div class="page">
 
-      <header class="topbar">
-        <a class="brand" href="https://digiylyfe.com/" id="homeBrand">
-          <div class="logo"><img src="https://digiylyfe.net/wp-content/uploads/2026/03/digiylyfe_logo_qr.jpeg" alt="Logo DIGIYLYFE" loading="eager"/></div>
-          <div class="brandText">
-            <div class="title">DIGIYLYFE</div>
-            <div class="subtitle">Trouver, contacter, avancer sans détour</div>
-            <div class="byline">BY DIGIYLYFE</div>
-          </div>
-        </a>
-
-        <!-- SIGNAUX — visibles desktop, masqués mobile -->
-        <div class="topSignals" aria-label="Forces DIGIYLYFE">
-          <span class="signalChip gold">0% commission</span>
-          <span class="signalChip green">Paiement direct</span>
-          <span class="signalChip soft">Territoire vivant</span>
-          <span class="signalChip soft">LOGICIELS métier</span>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="DIGIYLYFE — accueil">
+        <div class="logo">
+          <img src="https://digiylyfe.net/wp-content/uploads/2026/04/icon-512-1.png" alt="DIGIYLYFE" loading="eager"/>
         </div>
-
-        <!-- BOUTON MENU MOBILE — masqué desktop -->
-        <button class="menuToggleBtn" id="menuToggleBtn" type="button" aria-expanded="false" aria-controls="mainMenuBar" aria-label="Ouvrir le menu">
-          <span class="menuToggleIcon" id="menuToggleIcon">☰</span>
-          <span id="menuToggleLabel">MENU</span>
-        </button>
-      </header>
-
-      <!-- NAV — DOCTRINE FAÇADE -->
-      <nav class="menuBar" id="mainMenuBar" aria-label="Navigation DIGIY">
-        <div class="menuRow">
-          <a class="mBtn home" href="https://digiylyfe.com/">🏠</a>
-          <a class="mBtn home" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Vision</a>
-          <span class="rowLabel c">JE CHERCHE</span>
-          <a class="mBtn gold" id="mn-explore"       href="#">🗺️ Découvrir le territoire</a>
-          <a class="mBtn gold" id="mn-driver"        href="#">🚗 Un chauffeur</a>
-          <a class="mBtn gold" id="mn-chauffeurs"    href="#">👑 Nos chauffeurs</a>
-          <a class="mBtn gold" id="mn-loc"           href="#">🏠 Où dormir</a>
-          <a class="mBtn gold" id="mn-resatable"     href="#">📅 Réserver</a>
-          <a class="mBtn gold" id="mn-build"         href="#">🏗️ Un artisan</a>
-          <a class="mBtn gold" id="mn-mon-commerce"  href="#">👜 Mon commerce</a>
-          <a class="mBtn gold" id="mn-market"        href="#">🛍️ Les boutiques</a>
-          <a class="mBtn gold" id="mn-jobs"          href="#">💼 Du travail</a>
-          <a class="mBtn gold" id="mn-tarifs"        href="#">🏷️ Tarifs</a>
+        <div>
+          <div class="brand-title">DIGIYLYFE</div>
+          <div class="brand-sub">Ancré en Afrique · ouvert au monde</div>
         </div>
-        <div class="menuRow">
-          <span class="rowLabel p">JE TRAVAILLE</span>
-          <a class="mBtn green" id="mn-espace-pro"      href="#">🏢 Mon activité</a>
-          <a class="mBtn green" id="mn-inscription-pro" href="#">✍️ Rejoindre DIGIY</a>
-          <a class="mBtn green" id="mn-market-pro"      href="#">🛍️ Je vends / MARKET</a>
-          <a class="mBtn green" id="mn-caisse-pro"      href="#">💰 Mon commerce / CAISSE</a>
-          <a class="mBtn green" id="mn-loc-pro"         href="#">🏠 Je loue / LOC</a>
-          <a class="mBtn green" id="mn-resatable-pro"   href="#">📅 Je réserve / RÉSA</a>
-          <a class="mBtn green" id="mn-driver-pro"      href="#">🚗 Je conduis / DRIVER</a>
-          <a class="mBtn green" id="mn-jobs-pro"        href="#">💼 Je recrute / JOBS</a>
-          <a class="mBtn green" id="mn-explore-pro"     href="#">🗺️ Me faire connaître / EXPLORE</a>
-          <a class="mBtn green" id="mn-build-pro"       href="#">🏗️ Mes services / MULTI</a>
-          <a class="mBtn green" id="mn-pay-pro"         href="#">💳 Mon argent / PAY</a>
-        </div>
-        <div class="menuRow secondary">
-          <span class="rowLabel s">AUSSI</span>
-          <a class="mBtn soft" id="mn-ndimbal-annonces" href="#">📢 Annonces</a>
-          <a class="mBtn soft" id="mn-pay"              href="#">💳 Mon argent</a>
-          <a class="mBtn soft" id="mn-vaschezmoi"       href="#">📍 Venir chez DIGIY</a>
-          <a class="mBtn soft" id="mn-ndimbal-loc"      href="#">🏡 Locations</a>
-          <a class="mBtn soft" id="mn-ndimbal-map"      href="#">🗺️ La carte</a>
-          <a class="mBtn soft" id="mn-audio"            href="#">🎵 Écouter</a>
-          <button class="mBtn soft" type="button" onclick="window.digiyShareSite&&window.digiyShareSite()">📤 Partager</button>
-          <button class="mBtn soft" type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()">🤝 Suggérer un pro</button>
-          <a class="mBtn soft" id="mn-ia"               href="#">🧠 Poser une question</a>
-        </div>
-      </nav>
+      </a>
 
-      <!-- HERO V2 — BONHEUR BUSINESS -->
-      <section id="intro-bonheur">
-        <div class="wrap">
-          <div class="eyebrow">
-            <span class="dot"></span>
-            DIGIYLYFE — TERRITOIRE VIVANT
-          </div>
-          <h1>
-            <span class="heroWord">LE BONHEUR</span>
-            <span class="heroWord gold">BUSINESS</span>
-            <span class="heroWord gold">EST LÀ ICI.</span>
-            <span class="heroSig">BY DIGIYLYFE</span>
-          </h1>
-          <p class="lead">
-            <strong>Le complément de WhatsApp pour les pros du terrain.</strong>
-            DIGIYLYFE ouvre au web, donne une présence digitale, des outils métier simples et zéro commission.
-            Un chauffeur, un logement, une réservation, un artisan, une boutique : le public trouve une vraie personne, au bon moment, sans détour.
-          </p>
-          <div class="cta">
-            <a class="btnx btnx-primary" href="#public">🗺️ Trouver maintenant</a>
-            <button class="btnx btnx-secondary" type="button" onclick="window.digiyStartAudio&&window.digiyStartAudio()">🎧 Écouter la vision</button>
-            <button class="btnx btnx-gold" type="button" onclick="window.digiyShareSite&&window.digiyShareSite()">📤 Faire circuler</button>
-            <button class="btnx btnx-secondary" type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()">🤝 Suggérer un pro</button>
-            <a class="btnx btnx-secondary" href="#pro">🏢 Entrer côté activité</a>
-          </div>
-          <a class="heroLink" href="https://digiylyfe.net/" target="_blank" rel="noopener noreferrer">
-            digiylyfe.net — la revue qui raconte la vision
-          </a>
-          <div class="payPromise" style="max-width:820px;margin:18px auto 0;padding:18px 18px;border-radius:22px;border:1px solid rgba(246,196,83,.30);background:linear-gradient(180deg,rgba(246,196,83,.10),rgba(255,255,255,.04));box-shadow:0 14px 34px rgba(0,0,0,.22);">
-            <div style="font-family:var(--fontA);font-size:18px;font-weight:1000;color:#fff3cf;letter-spacing:.2px;margin-bottom:8px;">Paiement direct au pro. 0% commission.</div>
-            <div style="font-size:15px;line-height:1.65;color:#e8f4ed;font-weight:700;">
-              Avec DIGIY, ton client te paie directement.<br/>
-              Tu gardes ton argent, sans commission.<br/>
-              DIGIY ne prend pas ton argent : DIGIY t’aide à le garder.
-            </div>
-          </div>
-          <p class="mini">
-            <strong>0% commission</strong> · paiement direct · contact utile · territoire vivant ·
-            L'Afrique enracinée, connectée au monde ∞
-          </p>
+      <div class="top-actions" aria-label="Signaux DIGIYLYFE">
+        <span class="chip gold">0% commission</span>
+        <span class="chip green">Paiement direct</span>
+        <!-- FIX 2 : target + rel sur tous les liens externes -->
+        <a class="chip" href="https://wa.me/221771342889" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+      </div>
+    </header>
+
+    <main id="top">
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="eyebrow"><span class="dot"></span> Territoire vivant · Saly · Mbour · Petite Côte</div>
+        <h1>Le bonheur <span>business</span> est là.</h1>
+        <p class="lead">
+          DIGIYLYFE complète WhatsApp avec une présence digitale et des outils métier simples.
+          Les pros restent visibles, travaillent mieux et reçoivent leur argent directement —
+          <strong>sans commission : 0%.</strong>
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#trouver">🔎 Trouver maintenant</a>
+          <a class="btn gold"    href="https://explore.digiylyfe.com/" target="_blank" rel="noopener noreferrer">🗺️ Explorer le territoire</a>
+          <a class="btn green"   href="#pro">🏢 Côté activité</a>
         </div>
       </section>
 
-
-      
-
-
-      <section id="digiy-action-stations" aria-label="Choisir une action DIGIYLYFE">
-        <div class="station-kicker">🚉 La gare DIGIYLYFE</div>
-        <h2 class="station-title">Choisis ta <span>voie.</span></h2>
-        <p class="station-text">
-          DIGIYLYFE n’est pas un scroll sans fin. Tu arrives, tu choisis une voie, puis tu avances :
-          trouver quelque chose, explorer le territoire vivant, ou entrer côté activité.
-        </p>
-        <p class="station-text" style="margin-top:8px;color:#fff3cf">
-          EXPLORE ouvre la route. Les autres portes donnent les outils pour agir.
+      <!-- LA GARE -->
+      <section class="station" id="gare">
+        <div class="section-kicker">🚉 La gare DIGIYLYFE</div>
+        <h2 class="section-title">Choisis ta <span>voie.</span></h2>
+        <p class="section-text">
+          Tu arrives, tu choisis une voie, puis tu avances.
+          EXPLORE ouvre la route — les autres portes donnent les outils pour agir.
         </p>
 
         <div class="station-grid">
-          <a class="station-card primary" href="#public">
+          <a class="station-card primary" href="#trouver">
             <div class="station-icon">🔎</div>
             <div>
-              <h2>Trouver</h2>
-              <p>Chauffeur, logement, boutique, service, réservation ou lieu à découvrir.</p>
+              <!-- FIX 5 : h3 dans les cartes -->
+              <h3>Trouver</h3>
+              <p>Chauffeur, logement, boutique, service, réservation ou lieu utile.</p>
             </div>
-            <span class="station-cta">Voir les portes</span>
+            <span class="station-cta">Voir les portes →</span>
           </a>
 
-          <a class="station-card" href="https://explore.digiylyfe.com/">
+          <a class="station-card" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
             <div class="station-icon">🗺️</div>
             <div>
-              <h2>Explorer</h2>
-              <p>Découvrir ou faire connaître un lieu, un pro, une adresse utile ou un coin vivant du territoire.</p>
+              <h3>Explorer</h3>
+              <p>Découvrir ou faire connaître un lieu, un pro, une adresse utile.</p>
             </div>
-            <span class="station-cta">Ouvrir EXPLORE</span>
+            <span class="station-cta">Ouvrir EXPLORE →</span>
           </a>
 
           <a class="station-card" href="#pro">
             <div class="station-icon">🏢</div>
             <div>
-              <h2>Côté pro</h2>
+              <h3>Côté pro</h3>
               <p>Publier son activité, choisir son outil, recevoir les clients directement.</p>
             </div>
-            <span class="station-cta">Entrer côté activité</span>
+            <span class="station-cta">Entrer côté activité →</span>
           </a>
         </div>
       </section>
 
-      <!-- INTRO → ESPRIT DIGIYLYFE -->
-      <section id="esprit-digiylyfe" aria-label="Écouter et comprendre l’esprit DIGIYLYFE">
-        <div class="espritInner">
-          <div class="espritCopy">
-            <span class="espritKicker">🎧 L’esprit avant l’outil</span>
-            <h2 class="espritTitle">Écouter &amp; comprendre <span>l’esprit DIGIYLYFE</span></h2>
-            <p class="espritText">
-              Avant les boutons, il y a une vision : <strong>le terrain garde la main</strong>.
-              Une affiche, une voix, une promesse : écouter l’esprit DIGIYLYFE pour comprendre
-              pourquoi les pros, les clients, les lieux et l’argent direct restent reliés — sans commission.
-            </p>
-          </div>
+      <!-- PORTES TROUVER + EXPLORE ASIDE -->
+      <section class="doors" id="trouver" aria-label="Portes de recherche">
 
-          <a
-            class="espritBtn"
-            href="https://esprit-digiylyfe.digiylyfe.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            🎧 Écouter &amp; comprendre l’esprit DIGIYLYFE →
-          </a>
-        </div>
-      </section>
+        <div class="panel">
+          <div class="section-kicker">🔎 Trouver</div>
+          <h2 class="section-title">Les portes utiles.</h2>
+          <p class="section-text">
+            Une porte, une action. Le client choisit ce dont il a besoin — direct, sans détour.
+          </p>
 
-      <!-- EMBLÈME DIGIYLYFE SOUS LE HERO -->
-      <section id="medaille-digiy" aria-label="Emblème DIGIYLYFE">
-        <div class="medailleWrap">
-          <div class="medailleGlow"></div>
-
-          <a
-            class="medailleFrame"
-            href="https://digiylyfe.com/"
-            target="_blank"
-            rel="noopener"
-            aria-label="Accéder à DIGIYLYFE"
-          >
-            <img
-              src="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-22-avr.-2026-15_11_28.png"
-              class="medailleImg"
-              alt="DIGIYLYFE — Le bonheur business est là ici. BY DIGIYLYFE."
-              loading="eager"
-            />
-          </a>
-
-          <div class="medailleCaption">
-            <span class="medailleLine">LE BONHEUR BUSINESS EST LÀ ICI. BY DIGIYLYFE</span>
-            <span class="medailleSub">Trouver, contacter, avancer sans détour. Une porte d’entrée simple vers DIGIYLYFE.</span>
-
-            <a
-              class="medailleBtn"
-              href="https://digiylyfe.com/"
-              target="_blank"
-              rel="noopener"
-            >
-              🌍 ACCÉDER MAINTENANT
+          <div class="door-grid">
+            <a class="door" href="https://loc.digiylyfe.com/"                  target="_blank" rel="noopener noreferrer">
+              <b>🏠 Dormir</b>
+              <span>Logements, chambres, villas. Contact direct au propriétaire.</span>
             </a>
-
-            <a
-              class="medailleUrl"
-              href="https://digiylyfe.com/"
-              target="_blank"
-              rel="noopener"
-            >
-              https://digiylyfe.com/
+            <!-- FIX 1 : driver-client.digiylyfe.com (et non driver) -->
+            <a class="door" href="https://driver-client.digiylyfe.com/"         target="_blank" rel="noopener noreferrer">
+              <b>🚕 Se déplacer</b>
+              <span>Chauffeurs, transfert, courses détaillées. 0% commission.</span>
+            </a>
+            <a class="door" href="https://market.digiylyfe.com/"                target="_blank" rel="noopener noreferrer">
+              <b>🛍️ Acheter</b>
+              <span>Boutiques, produits. Contact direct avec le vendeur.</span>
+            </a>
+            <a class="door" href="https://mon-commerce.digiylyfe.com/"          target="_blank" rel="noopener noreferrer">
+              <b>🏪 Mon commerce</b>
+              <span>Vitrine boutique, caisse, présence locale terrain.</span>
+            </a>
+            <!-- FIX 1 : resa-table-resto.digiylyfe.com (et non resa) -->
+            <a class="door" href="https://resa-table-resto.digiylyfe.com/"      target="_blank" rel="noopener noreferrer">
+              <b>📅 Réserver</b>
+              <span>Choisir un moment, demander une disponibilité rapide.</span>
+            </a>
+            <a class="door" href="https://build.digiylyfe.com/"                 target="_blank" rel="noopener noreferrer">
+              <b>🛠️ Services</b>
+              <span>Artisans, travaux, dépannage, entretien terrain.</span>
             </a>
           </div>
         </div>
-      </section>
 
-
-      <!-- BANDEAU → ARTICLE VISION + REVUE DIGIYLYFE -->
-      <div id="net-bridge" aria-label="Article vision DIGIYLYFE">
-        <a class="bridge-visual" href="https://digiylyfe.net/uber-veut-garder-le-client-dans-son-application-digiy-veut-lamener-chez-le-professionnel/" target="_blank" rel="noopener noreferrer" aria-label="Lire l’article DIGIYLYFE sur Uber et les écosystèmes locaux">
-          <img src="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-15_19_48.png" alt="DIGIYLYFE — plateforme ou écosystème local" loading="lazy" decoding="async"/>
-        </a>
-
-        <div class="bridge-text">
-          🧭 Uber veut garder le client dans son application. DIGIY veut l’amener chez le professionnel.
-          <span>
-            Le monde va vers des écosystèmes : se déplacer, dormir, vendre, réserver, payer, découvrir.
-            <br/>
-            La vraie question devient : qui possède la relation avec le client ?
-            <br/>
-            DIGIYLYFE choisit une voie simple : 0% commission, paiement direct, QR terrain, outils métier et relation chez le pro.
-            <br/>
-            ✨ Uber : super-app de plateforme. DIGIYLYFE : super-écosystème local.
-          </span>
-        </div>
-
-        <div class="bridge-actions">
-          <a class="bridge-btn bridge-btn-main" href="https://digiylyfe.net/uber-veut-garder-le-client-dans-son-application-digiy-veut-lamener-chez-le-professionnel/" target="_blank" rel="noopener noreferrer">
-            📖 Lire l’article : plateforme ou écosystème local →
-          </a>
-
-          <a class="bridge-btn bridge-btn-secondary" href="https://digiylyfe.com/le-terrain-garde-la-main.html">
-            🎧 Lire et écouter la vision DIGIYLYFE →
-          </a>
-
-          <a class="bridge-btn bridge-btn-secondary" href="https://esprit-digiylyfe.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
-            🎧 Écouter &amp; comprendre l’esprit DIGIYLYFE →
-          </a>
-        </div>
-      </div>
-
-      <section id="digiy-circulation" aria-label="Faire circuler DIGIYLYFE">
-        <span class="circ-kicker">📣 Lecture + écoute + terrain</span>
-        <h2 class="circ-title">Fais circuler DIGIY. <span>Fais vivre les pros.</span></h2>
-        <p class="circ-text">
-          Une nouvelle façon d'être visible en tant que pro, c'est puissant. Mais la base, c'est la clientèle :
-          les gens qui cherchent, appellent, réservent, achètent et font tourner les travailleurs du terrain.
-          DIGIYLYFE avance avec les pros, mais il vit grâce aux clients qui les font travailler.
-        </p>
-        <div class="circ-grid">
-          <div class="circ-card"><strong>1. Utilise le site</strong><span>Trouve un chauffeur, un logement, un artisan, une boutique ou un service autour de toi.</span></div>
-          <div class="circ-card"><strong>2. Partage DIGIY</strong><span>Envoie le lien à quelqu'un qui cherche ou à quelqu'un qui travaille.</span></div>
-          <div class="circ-card"><strong>3. Recommande un pro</strong><span>Tu connais quelqu'un de sérieux ? Envoie son contact, le terrain le révélera.</span></div>
-        </div>
-        <div class="circ-actions">
-          <button class="btn primary" type="button" onclick="window.digiyShareSite&&window.digiyShareSite()">📤 Partager DIGIY</button>
-          <button class="btn outline" type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()">🤝 Suggérer un pro du quartier</button>
-          <button class="btn ghost" type="button" onclick="window.digiyStartAudio&&window.digiyStartAudio()">🎧 Écouter le message</button>
-        </div>
-        <div class="circ-line">
-          Sans clients, pas d'activité. Sans circulation, pas de clients. DIGIY avance quand le site tourne dans les mains du peuple.
-        </div>
-      </section>
-
-      <div id="quick-business-doors" aria-label="Accès directs DIGIYLYFE">
-        <div class="doors-head">
+        <!-- FIX 4 : explore-card avec visuel stylisé — carte + pins terrain -->
+        <aside class="explore-card" id="explorer" aria-label="EXPLORE — locomotive territoire">
           <div>
-            <div class="doors-title">Deux portes directes en plus</div>
-            <div class="doors-sub">
-              Sans toucher au reste de la vitrine, on ouvre ici deux accès visibles pour aller droit au but.
-            </div>
-          </div>
-        </div>
-        <div class="doors-grid">
-          <a class="doorCard" href="https://mon-commerce.digiylyfe.com/?return=https%3A%2F%2Fdigiylyfe.com%2F" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Mon commerce">
-            <span class="doorIcon">👜</span>
-            <div class="doorName">Mon commerce</div>
-            <div class="doorText">Entrer directement dans la vitrine commerce DIGIYLYFE.</div>
-            <div class="doorHint">↗ Ouvrir maintenant</div>
-          </a>
-          <a class="doorCard" href="https://driver.digiylyfe.com/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Driver">
-            <span class="doorIcon">🚗</span>
-            <div class="doorName">Driver</div>
-            <div class="doorText">Entrer directement dans l'univers chauffeur DIGIYLYFE.</div>
-            <div class="doorHint">↗ Ouvrir maintenant</div>
-          </a>
-        </div>
-      </div>
-
-      <main class="main">
-
-        <!-- FAVORIS -->
-        <section class="section" id="favoritesSection">
-          <div class="sectionHead">
-            <div>
-              <h2 class="favTitle">⭐ MES FAVORIS</h2>
-              <div class="sectionSub">Épingle ici les portes que tu ouvres le plus souvent. Appuie sur l'étoile ⭐</div>
-            </div>
-            <div class="legend">
-              <span class="pill public">JUSQU'À 3</span>
-              <span class="pill live" id="favoritesCountPill">0 FAVORI</span>
-            </div>
-          </div>
-          <div class="railWrap">
-            <div class="favoritesEmpty" id="favoritesEmpty">⭐ Aucun favori pour l'instant. Ajoute les portes que tu utilises le plus.</div>
-            <div class="moduleRail" id="favoritesRail"></div>
-          </div>
-        </section>
-
-        <!-- SECTION PUBLIQUE -->
-        <section class="section" id="public">
-          <div class="sectionHead">
-            <div>
-              <h2>Ce que tu peux faire ici</h2>
-              <div class="sectionSub">Découvrir · Bouger · Dormir · Réserver · Construire · Acheter — dans cet ordre.</div>
-            </div>
-            <div class="legend">
-              <span class="pill public">POUR TOUS</span>
-              <span class="pill live">TERRITOIRE VIVANT</span>
-            </div>
-          </div>
-          <div class="railWrap railWrapDesktop">
-            <button class="railArrow left" id="publicLeft" type="button">&#x2039;</button>
-            <div class="railHint" id="publicHint">👉 GLISSE POUR VOIR LES AUTRES PORTES</div>
-            <div class="moduleRail" id="publicRail"></div>
-            <button class="railArrow right" id="publicRight" type="button">&#x203A;</button>
-          </div>
-        </section>
-
-        <!-- SECTION PRO -->
-        <section class="section" id="pro">
-          <div class="sectionHead">
-            <div>
-              <h2>Mon activité professionnelle</h2>
-              <div class="sectionSub">Ton espace d'abord. Tes outils ensuite. Toujours dans le bon ordre.</div>
-            </div>
-            <div class="legend">
-              <span class="pill pro">PROS</span>
-              <span class="pill live">MON ESPACE</span>
-            </div>
-          </div>
-          <div class="railWrap railWrapDesktop">
-            <button class="railArrow left" id="proLeft" type="button">&#x2039;</button>
-            <div class="railHint" id="proHint">👉 GLISSE POUR VOIR TES AUTRES OUTILS</div>
-            <div class="moduleRail" id="proRail"></div>
-            <button class="railArrow right" id="proRight" type="button">&#x203A;</button>
-          </div>
-        </section>
-
-        <!-- FOCUS -->
-        <section class="focus">
-          <div class="focusInner">
-            <div class="focusTop">
-              <div class="focusLeft">
-                <div class="focusIcon" id="focusIcon">🗺️</div>
-                <div>
-                  <div class="focusLabel" id="focusLabel">Découvrir le territoire</div>
-                  <div class="focusHint" id="focusHint">Spots, lieux, ambiances de la Petite Côte</div>
-                </div>
-              </div>
-              <div class="focusBadges">
-                <div class="focusBadge public" id="focusKind">POUR TOUS</div>
-                <div class="focusBadge gold" id="focusBadge">🗺️ Porte d'entrée</div>
-              </div>
-            </div>
-            <div class="focusText" id="focusText">
-              La première chose à faire, c'est regarder. Les spots, les lieux, les ambiances — la Petite Côte vivante s'ouvre devant toi avant même que le besoin soit formulé. Tu repères. Tu entres. Tout commence là.
-            </div>
-            <div class="focusActions">
-              <a class="btn primary" id="focusOpenBtn" href="#" target="_blank" rel="noopener">↗ Ouvrir</a>
-              <a class="btn outline" href="https://digiylyfe.com/">← Retour DIGIYLYFE</a>
-            </div>
-            <footer class="footer">
-              <div class="footLine">
-                <span class="footBrand">DIGIYLYFE ∞</span>
-                <span class="sep">·</span><span>0% commission</span>
-                <span class="sep">·</span><span>paiement direct</span>
-                <span class="sep">·</span><span>territoire vivant</span>
-                <span class="sep">·</span><span>économie locale en mouvement</span>
-              </div>
-            </footer>
-          </div>
-        </section>
-
-        <!-- SHOWCASE IMAGE -->
-        <section class="showcaseSection" id="visuels">
-          <div class="showcaseInner">
-            <div class="showcaseTitle">DIGIYLYFE · L'AFRIQUE CONNECTÉE · EXPLORE & TERRITOIRE</div>
-            <div class="showcaseImgWrap">
-              <img src="https://digiylyfe.com/wp-content/uploads/2025/09/Image-6.jpeg"
-                alt="DIGIYLYFE — territoire vivant, Petite Côte Sénégal"
-                loading="lazy" width="1536" height="1024"
-                onerror="this.onerror=null;this.src='https://digiylyfe.net/wp-content/uploads/2026/03/digiy_services_avec_logo.webp'"/>
-            </div>
-            <div class="showcaseCta">
-              <div class="showcaseDesc">Zéro commission · 100% indépendance · Paiement direct au professionnel · L'Afrique enracinée, connectée au monde ∞</div>
-              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
-                <a class="btn outline" href="#pro">🧰 Mon activité pro</a>
-                <a class="btn ghost" href="https://digiylyfe.net/" target="_blank" rel="noopener">📖 Notre revue</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SIGNATURE DIAMANT DIGIYLYFE -->
-        <section class="showcaseSection" id="signature-digiy" aria-label="Vision DIGIYLYFE — diamant aux mille reflets">
-          <div class="showcaseInner">
-            <div class="showcaseTitle">DIGIYLYFE · VISION</div>
-
-            <p class="signatureIntro">
-              <strong>Un diamant aux mille reflets.</strong><br/>
-              Chaque langue, chaque métier, chaque quartier porte une lumière.
-              DIGIYLYFE aide ces lumières à devenir visibles, utiles et reliées.
+            <div class="section-kicker">🗺️ Locomotive</div>
+            <h2 class="section-title">EXPLORE ouvre la route.</h2>
+            <p class="section-text">
+              Découvrir le territoire, les lieux, les adresses et les pros vivants.
+              Ensuite : agir.
             </p>
-
-            <div class="showcaseImgWrap">
-              <img
-                src="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png"
-                alt="DIGIYLYFE — Un diamant aux mille reflets. Chaque langue est une lumière. Ensemble, nous brillons."
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-
-            <div class="showcaseCta">
-              <div class="showcaseDesc">
-                <span class="signatureLine">Chaque lumière du terrain mérite d’être vue.</span>
-                DIGIYLYFE complète WhatsApp avec une présence digitale simple, humaine et directe.
-                Les pros restent visibles, travaillent mieux et reçoivent leur argent directement — sans commission : 0%.
-              </div>
-
-              <div class="signatureActions">
-                <a class="signatureBtn" href="https://esprit-digiylyfe.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
-                  🎧 Écouter l’esprit DIGIYLYFE
-                </a>
-                <a class="signatureBtn" href="https://digiylyfe.net/" target="_blank" rel="noopener noreferrer">
-                  📖 Lire la revue DIGIY
-                </a>
-              </div>
-            </div>
           </div>
-        </section>
 
+          <div class="explore-visual" aria-hidden="true">
+            <div class="explore-pins">
+              <div class="pin"       style="top:22%;left:30%"></div>
+              <div class="pin green" style="top:44%;left:63%"></div>
+              <div class="pin"       style="top:68%;left:41%"></div>
+              <div class="pin green" style="top:29%;left:76%"></div>
+              <div class="pin"       style="top:57%;left:17%"></div>
+            </div>
+            <div class="explore-visual-label">EXPLORE</div>
+            <div class="explore-visual-sub">Petite Côte · Territoire vivant</div>
+          </div>
 
-      </main>
-    </div>
+          <a class="btn primary" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
+            🗺️ Ouvrir EXPLORE
+          </a>
+        </aside>
+      </section>
+
+      <!-- PRO — FIX 3 : portes métier présentes et claires -->
+      <section class="pro-strip" id="pro" aria-label="Espace activité professionnelle">
+        <div class="pro-strip-head">
+          <div>
+            <h2>Côté activité professionnelle</h2>
+            <p>
+              Tu as un commerce, un logement, un véhicule, un service ou une activité ?
+              DIGIYLYFE t'aide à être visible, recevoir les clients et garder le paiement direct.
+            </p>
+          </div>
+          <div class="pro-strip-actions">
+            <a class="btn primary" href="https://commencer-a-payer.digiylyfe.com/" target="_blank" rel="noopener noreferrer">✍️ Rejoindre DIGIY</a>
+            <a class="btn green"   href="https://pro-espace.digiylyfe.com/"         target="_blank" rel="noopener noreferrer">🏢 Mon activité</a>
+          </div>
+        </div>
+
+        <div class="pro-door-grid">
+          <a class="pro-door" href="https://pro-market.digiylyfe.com/"   target="_blank" rel="noopener noreferrer">
+            <b>🛍️ Je vends</b>
+            <span>Ma boutique en ligne, mes produits, mes ventes directes.</span>
+            <div class="pro-door-hint">MARKET →</div>
+          </a>
+          <a class="pro-door" href="https://commerce-pro.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
+            <b>💰 Mon commerce</b>
+            <span>Encaisser, suivre les ventes, gérer la boutique.</span>
+            <div class="pro-door-hint">CAISSE →</div>
+          </a>
+          <a class="pro-door" href="https://pro-loc.digiylyfe.com/"      target="_blank" rel="noopener noreferrer">
+            <b>🏠 Je loue</b>
+            <span>Mes logements, disponibilités, clients directs.</span>
+            <div class="pro-door-hint">LOC →</div>
+          </a>
+          <a class="pro-door" href="https://pro-driver.digiylyfe.com/"   target="_blank" rel="noopener noreferrer">
+            <b>🚗 Je conduis</b>
+            <span>Mes zones, mes tarifs, mon activité chauffeur.</span>
+            <div class="pro-door-hint">DRIVER →</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- FAIRE CIRCULER -->
+      <section class="share" aria-label="Faire circuler DIGIYLYFE">
+        <h2>Faire circuler DIGIYLYFE</h2>
+        <p>
+          Tu connais un pro sérieux, une boutique, un logement ou une adresse utile ?
+          Passe par EXPLORE ou partage le lien autour de toi.
+        </p>
+        <div class="hero-actions" style="justify-content:center;margin-top:14px;">
+          <a class="btn gold" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener noreferrer">🗺️ Faire connaître un lieu</a>
+          <!-- FIX 9 : navigator.share + fallback WhatsApp -->
+          <button class="btn" id="shareBtn" type="button">📤 Faire circuler DIGIY</button>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>DIGIYLYFE · Saly · Sénégal · Afrique ∞</div>
+        <div>0% commission · paiement direct · présence digitale simple</div>
+      </footer>
+    </main>
   </div>
 
-
-  <nav class="digiy-mobile-dock" aria-label="Navigation rapide DIGIYLYFE">
-    <div class="digiy-mobile-dock-inner">
-      <a class="primary" href="#public"><strong>🔎</strong><span>Trouver</span></a>
-      <a href="https://explore.digiylyfe.com/"><strong>🗺️</strong><span>Explorer</span></a>
+  <!-- BOTTOM NAV MOBILE -->
+  <nav class="mobile-dock" aria-label="Navigation rapide DIGIYLYFE">
+    <div class="mobile-dock-inner">
+      <a class="primary" href="#trouver"><strong>🔎</strong><span>Trouver</span></a>
+      <a href="https://explore.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><strong>🗺️</strong><span>Explorer</span></a>
       <a href="#pro"><strong>🏢</strong><span>Pro</span></a>
     </div>
   </nav>
 
-  <!-- FLOAT BUTTONS -->
-  <button id="espace-pro-btn"    class="floatBtn" type="button">🧰 Mon activité pro</button>
-  <button id="explore-float-btn" class="floatBtn" type="button">🗺️ Découvrir</button>
-  <button id="install-app-btn"   class="floatBtn" type="button">📲 Installer l'app</button>
-  <button id="digiy-help-btn"    class="floatBtn" type="button">∞ NDIMBAL</button>
-
-  <!-- NDIMBAL -->
-  <div id="digiy-ndimbal" class="ndimbal hidden" aria-hidden="true">
-    <div class="ndimbalBox" role="dialog" aria-modal="true">
-      <div class="ndimbalTitle">∞ Tu veux quoi ?</div>
-      <div class="ndimbalText"><b>Naka nga def frérot ?</b><br>Dis-moi ce que tu veux faire, je t'envoie au bon endroit.</div>
-      <div class="ndimbalActions">
-        <button class="btn primary" type="button" data-action="sell">📋 Je publie une annonce</button>
-        <button class="btn outline" type="button" data-action="job">💼 Je cherche du travail</button>
-        <button class="btn ghost"   type="button" data-action="qr">📷 QR DIGIYLYFE</button>
-      </div>
-      <button class="btn tiny danger" type="button" id="digiyCloseBtn" style="margin-top:10px">❌ Fermer</button>
-    </div>
-  </div>
-
-  <div id="qrModal" class="qrModal hidden" aria-hidden="true">
-    <div class="qrContent" role="dialog" aria-modal="true">
-      <div class="qrHeader">
-        <div class="qrTitle">∞ QR DIGIYLYFE</div>
-        <button id="qrClose" class="btn tiny" type="button">✖ Fermer</button>
-      </div>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=https%3A%2F%2Fdigiylyfe.com%2F" alt="QR DIGIYLYFE" class="qrImg">
-      <div class="qrText">📱 Scanne pour ouvrir DIGIYLYFE</div>
-      <a href="https://digiylyfe.com/" target="_blank" rel="noopener" class="qrLink">Ouvrir DIGIY →</a>
-    </div>
-  </div>
-
-  <div id="installModal" class="ndimbal hidden" aria-hidden="true">
-    <div class="ndimbalBox" role="dialog" aria-modal="true">
-      <div class="ndimbalTitle" id="installTitle">📲 Installer DIGIYLYFE</div>
-      <div class="ndimbalText" id="installText">Pose DIGIYLYFE sur l'écran d'accueil pour l'ouvrir comme une vraie app.</div>
-      <div class="ndimbalActions">
-        <button class="btn primary" type="button" id="installNowBtn">Installer maintenant</button>
-        <button class="btn tiny danger" type="button" id="installCloseBtn">Fermer</button>
-      </div>
-    </div>
-  </div>
-
-<script>
-(function(){
-  "use strict";
-
-  const HOME="https://digiylyfe.com/",
-        FAVORITES_KEY="digiylyfe_favorites_v1",
-        FAVORITES_MAX=3;
-
-  function wr(url){
-    try{const u=new URL(url,location.href);u.searchParams.set("return",HOME);return u.toString();}
-    catch(e){return url;}
-  }
-
-  const L={
-    market:"https://market.digiylyfe.com/",
-    driver:"https://driver-client.digiylyfe.com/",
-    galerieChauffeurs:"https://beauville.github.io/galerie-chauffeurs/",
-    explore:"https://explore.digiylyfe.com/",
-    loc:"https://loc.digiylyfe.com/",
-    resaTable:"https://resa-table-resto.digiylyfe.com/",
-    jobs:"https://jobs.digiylyfe.com/",
-    pay:"https://pay.digiylyfe.com/",
-    vasChezDigiy:"https://vas-chez-digiy.digiylyfe.com/",
-    ndimbalLoc:"https://ndimbal-loc.digiylyfe.com/",
-    ndimbalMap:"https://ndimbal-map.digiylyfe.com/",
-    ndimbalAnnonces:"https://ndimbal-annonces.digiylyfe.com/",
-    audio:"https://digiy-audio.digiylyfe.com/",
-    assistantIA:"https://knowledge.digiylyfe.com/widget/",
-    build:"https://build.digiylyfe.com/",
-    monCommerce:"https://mon-commerce.digiylyfe.com/",
-    tarifs:"https://tarifs.digiylyfe.com/",
-    espacePro:"https://pro-espace.digiylyfe.com/",
-    inscriptionPro:"https://commencer-a-payer.digiylyfe.com/",
-    marketPro:"https://pro-market.digiylyfe.com/",
-    caissePro:"https://commerce-pro.digiylyfe.com/",
-    driverPro:"https://pro-driver.digiylyfe.com/",
-    jobsPro:"https://pro-job.digiylyfe.com/",
-    locPro:"https://pro-loc.digiylyfe.com/",
-    buildPro:"https://pro-build.digiylyfe.com/",
-    resaTablePro:"https://pro-resa-resto.digiylyfe.com/",
-    explorePro:"https://pro-explore.digiylyfe.com/",
-    payPro:"https://pro-pay.digiylyfe.com/pin.html?redirect=cockpit"
-  };
-
-  const PUB=[
-    {key:"explore",          name:"Découvrir le territoire",  icon:"🗺️", desc:"Spots, lieux, ambiances — entre dans la région",        status:"LIVE", loco:true},
-    {key:"driver",           name:"Trouver un chauffeur",     icon:"🚗", desc:"Un trajet maintenant, direct sur le terrain",            status:"LIVE"},
-    {key:"galerieChauffeurs",name:"Nos chauffeurs",           icon:"👑", desc:"Style, présence, savoir-être — la mobilité qui élève",   status:"LIVE"},
-    {key:"loc",              name:"Trouver où dormir",        icon:"🏠", desc:"Direct chez le propriétaire, sans intermédiaire",        status:"LIVE"},
-    {key:"resaTable",        name:"Réserver",                 icon:"📅", desc:"Un rendez-vous, un créneau, un service — en 2 clics",   status:"LIVE"},
-    {key:"build",            name:"Trouver un artisan",       icon:"🏗️", desc:"Plombier, maçon, électricien — le savoir-faire terrain", status:"BETA"},
-    {key:"monCommerce",      name:"Mon commerce",             icon:"👜", desc:"Boutiques mode, sacs, chaussures — élégant et direct",   status:"LIVE"},
-    {key:"market",           name:"Les boutiques",            icon:"🛍️", desc:"Acheter, vendre — le marché local connecté",             status:"LIVE"},
-    {key:"jobs",             name:"Trouver du travail",       icon:"💼", desc:"Les opportunités du terrain, visibles et directes",      status:"LIVE"},
-    {key:"ndimbalAnnonces",  name:"Publier une annonce",      icon:"📢", desc:"Se faire voir, vendre, diffuser",                        status:"LIVE"},
-    {key:"pay",              name:"Mon argent",               icon:"💳", desc:"Paiement direct, simple, sans friction",                 status:"LIVE"},
-    {key:"vasChezDigiy",     name:"Venir chez DIGIY",         icon:"📍", desc:"La porte terrain pour s'orienter",                       status:"LIVE"},
-    {key:"ndimbalLoc",       name:"Locations",                icon:"🏡", desc:"Logements directs, sans détour",                         status:"LIVE"},
-    {key:"ndimbalMap",       name:"La carte",                 icon:"🗺️", desc:"Voir les annonces autour de toi",                        status:"LIVE"},
-    {key:"audio",            name:"Écouter",                  icon:"🎵", desc:"Les contenus DIGIY en audio",                            status:"LIVE"},
-    {key:"assistantIA",      name:"Poser une question",       icon:"🧠", desc:"L'assistant répond — direct, clair, terrain",            status:"LIVE"}
-  ];
-
-  const PRO=[
-    {key:"espacePro",     name:"Mon activité",          icon:"🏢", desc:"Tout commence ici — espace central, propre et direct",    status:"LIVE", loco:true},
-    {key:"inscriptionPro",name:"Rejoindre DIGIY",       icon:"✍️", desc:"Créer mon compte pro — simple, sans paperasse",           status:"LIVE"},
-    {key:"marketPro",     name:"Je vends — MARKET",     icon:"🛍️", desc:"Ma boutique en ligne, mes produits, mes ventes directes",           status:"LIVE", loco:true},
-    {key:"caissePro",     name:"Mon commerce — CAISSE", icon:"💰", desc:"Encaisser, suivre mes ventes, garder la main sur ma boutique",          status:"LIVE"},
-    {key:"locPro",        name:"Je loue — LOC",         icon:"🏠", desc:"Mes logements, mes disponibilités, mes clients",          status:"LIVE"},
-    {key:"resaTablePro",  name:"Je réserve — RÉSA",     icon:"📅", desc:"Mes créneaux, mes rendez-vous, mon planning",     status:"LIVE"},
-    {key:"driverPro",     name:"Je conduis — DRIVER",   icon:"🚗", desc:"Mes courses, mes zones, mon activité chauffeur",          status:"LIVE"},
-    {key:"jobsPro",       name:"Je recrute — JOBS",     icon:"💼", desc:"Publier une offre, suivre les candidatures",              status:"LIVE"},
-    {key:"buildPro",      name:"Mes services — MULTI",  icon:"🏗️", desc:"Mes chantiers, mes propositions, mon activité terrain",   status:"BETA"},
-    {key:"explorePro",    name:"Me faire connaître — EXPLORE", icon:"🗺️", desc:"Poser mon lieu, mon activité ou mon adresse sur le territoire",         status:"LIVE"},
-    {key:"payPro",        name:"Mon argent — PAY",      icon:"💳", desc:"Voir mes paiements — en un coup d'œil, sans jargon",     status:"LIVE"}
-  ];
-
-  const COPY={
-    explore:   "EXPLORE est la première porte. Les spots, les lieux, les ambiances de la Petite Côte s'ouvrent devant toi avant tout le reste. Tu regardes, tu repères, tu entres.",
-    driver:    "Tu dois aller quelque part. Un chauffeur du terrain prend ta course — direct, sans détour, sans application intermédiaire. Tu appuies, il répond.",
-    galerieChauffeurs: "Les chauffeurs DIGIY ne conduisent pas seulement. Ils représentent. Chaque profil, c'est un visage, un style, un niveau de service. Tu choisis qui te transporte.",
-    loc:       "Tu cherches où dormir ce soir ou pour la semaine. Tu es mis directement en contact avec le propriétaire — pas d'agence, pas de commission, pas de formulaire de 10 champs. Juste une chambre et un accord.",
-    resaTable: "Tu as besoin d'un créneau. Chez le médecin, le coiffeur, le mécanicien, le restaurateur. Deux clics. C'est bloqué. Tu peux passer à autre chose.",
-    build:     "Tu cherches quelqu'un pour construire, réparer, installer. Le bon artisan est là — plombier, maçon, électricien. Tu vois son profil, tu le contactes directement.",
-    monCommerce: "La boutique du quartier mérite mieux qu'un carnet papier. Ici, la caisse est propre, l'image est forte, le client repart avec une belle transaction. Mode, sacs, chaussures — le commerce local à son niveau.",
-    market:    "Tu veux acheter quelque chose ou vendre ce que tu as. Le marché local, connecté et visible — sans plateforme étrangère qui prend sa part.",
-    jobs:      "Tu veux savoir ce qui existe. Les offres du terrain — emplois, missions, contrats — s'affichent devant toi. Tu postules directement. Pas d'intermédiaire.",
-    ndimbalAnnonces: "Tu veux te faire voir ou passer un message. Publie une annonce, diffuse, touche les gens du coin directement.",
-    pay:       "Ton argent. Tes mouvements. Clair, lisible, direct. Sans jargon, sans attente, sans friction.",
-    vasChezDigiy: "Tu es dans la région et tu veux savoir où trouver DIGIY en physique. La porte terrain pour s'orienter rapidement.",
-    ndimbalLoc: "Des locations directes, sans détour. Le complément logement pour qui cherche vite.",
-    ndimbalMap: "La carte. Tu vois ce qui existe autour de toi — annonces, services, lieux — d'un seul regard.",
-    audio:     "Tu préfères écouter que lire. Les contenus DIGIY passent en audio — la vision, les articles, les mises à jour.",
-    assistantIA: "Tu as une question. Pose-la. L'assistant connaît le terrain DIGIY et répond directement, sans te faire chercher.",
-    espacePro:    "Tout commence ici. Ton espace professionnel — propre, direct, sans menu inutile. Tu arrives, tu vois ce qu'il faut faire, tu agis. C'est tout.",
-    inscriptionPro: "Tu veux travailler avec DIGIY. Tu crées ton compte — simplement, clairement. Pas de formulaire de 20 champs. En quelques minutes, tu es dedans.",
-    marketPro:    "Je vends — MARKET. Tes produits sont visibles, tes ventes se font, ta présence commerciale existe. Tout dans un seul endroit.",
-    caissePro:    "Mon commerce — CAISSE. Nouveau client — tu encaisses. Fin de journée — tu vois ce qui est rentré. Ton stock — tu le suis. Rien de plus, rien de moins.",
-    locPro:       "Je loue — LOC. Tes logements sont là, tes disponibilités sont visibles, tes clients trouvent directement. Tu gères depuis un seul endroit, sans te perdre.",
-    resaTablePro: "Je réserve — RÉSA. Tes créneaux sont bloqués. Tes clients ne t'appellent plus pour rien. Ton agenda est propre. Tu conduis ta journée.",
-    driverPro:    "Je conduis — DRIVER. Tu conduis. DIGIY t’aide à poser tes zones, tes tarifs et ta présence terrain. Tu te concentres sur la route.",
-    jobsPro:      "Je recrute — JOBS. Tu cherches quelqu'un. Tu publies l'offre, tu reçois les candidatures, tu choisis. Direct, sans portail qui complique.",
-    buildPro:     "Mes services — MULTI-SERVICE. Tes chantiers, tes propositions, ton activité terrain — tout dans un seul espace. Le savoir-faire mérite une vitrine propre.",
-    explorePro:   "Me faire connaître — EXPLORE PRO. Pose ton lieu, ton activité ou ton adresse sur le territoire DIGIY. Tu deviens visible là où les gens cherchent.",
-    payPro:       "Mon argent — PAY. Ton argent qui rentre — visible, clair, sans attendre. Tu ouvres, tu vois, tu sais où tu en es."
-  };
-
-  let curKey="explore", curKind="public";
-  const $=id=>document.getElementById(id);
-
-  const pubRail=$("publicRail"),proRail=$("proRail"),
-        favRail=$("favoritesRail"),favEmpty=$("favoritesEmpty"),
-        favCountPill=$("favoritesCountPill"),
-        focusIcon=$("focusIcon"),focusLabel=$("focusLabel"),
-        focusHint=$("focusHint"),focusKind=$("focusKind"),
-        focusBadge=$("focusBadge"),focusText=$("focusText"),
-        focusOpenBtn=$("focusOpenBtn");
-
-  function sc(s){return s==="BETA"?"beta":"live";}
-  function findMod(key,kind){return(kind==="pro"?PRO:PUB).find(x=>x.key===key)||null;}
-  function getMod(key,kind){return findMod(key,kind)||(kind==="pro"?PRO:PUB)[0];}
-  function favId(kind,key){return`${kind}:${key}`;}
-
-  function loadFavs(){
-    try{const a=JSON.parse(localStorage.getItem(FAVORITES_KEY)||"[]");return Array.isArray(a)?a.filter(x=>typeof x==="string").slice(0,FAVORITES_MAX):[];}catch{return[];}
-  }
-  let favorites=loadFavs();
-  function saveFavs(){localStorage.setItem(FAVORITES_KEY,JSON.stringify(favorites.slice(0,FAVORITES_MAX)));}
-  function isFav(kind,key){return favorites.includes(favId(kind,key));}
-  function favMods(){return favorites.map(id=>{const[kind,key]=id.split(":");const m=findMod(key,kind);return m?{...m,kind}:null;}).filter(Boolean);}
-  function toggleFav(kind,key){
-    const id=favId(kind,key),idx=favorites.indexOf(id);
-    if(idx>=0){favorites.splice(idx,1);saveFavs();renderAll();return;}
-    if(favorites.length>=FAVORITES_MAX){alert("Maximum 3 favoris.");return;}
-    favorites.unshift(id);saveFavs();renderAll();
-  }
-
-  function cardHTML(item,kind){
-    const href=wr(L[item.key]||HOME);
-    const active=item.key===curKey&&kind===curKind;
-    const fav=isFav(kind,item.key);
-    const kindLabel=kind==="public"?"POUR TOUS":"PRO";
-    return`<div class="moduleSlot">
-      <button class="favToggle${fav?" active":""}" type="button" data-fav-kind="${kind}" data-fav-key="${item.key}" title="${fav?"Retirer":"Ajouter aux favoris"}">${fav?"⭐":"☆"}</button>
-      <a class="moduleBtn ${kind==="public"?"publicCard":"proCard"}${active?" active":""}${item.loco?" loco":""}" href="${href}" target="_blank" rel="noopener noreferrer" data-kind="${kind}" data-key="${item.key}">
-        <span class="moduleEmoji">${item.icon}</span>
-        <div class="moduleName">${item.name}</div>
-        <div class="moduleHint">${item.desc}</div>
-        <div class="miniBadges">
-          <span class="miniBadge ${kind}">${kindLabel}</span>
-          <span class="miniBadge ${sc(item.status)}">${item.status}</span>
-          ${item.loco?'<span class="miniBadge loco">LOCO</span>':""}
-          ${fav?'<span class="miniBadge fav">FAVORI</span>':""}
-        </div>
-        <div class="openHint">↗ OUVRIR</div>
-      </a>
-    </div>`;
-  }
-
-  function bindCards(c){
-    if(!c)return;
-    c.querySelectorAll(".moduleBtn[data-key]").forEach(el=>{
-      const activate=()=>{curKey=el.dataset.key;curKind=el.dataset.kind;updateFocus();document.querySelectorAll(".moduleBtn").forEach(b=>b.classList.remove("active"));el.classList.add("active");};
-      el.addEventListener("mouseenter",activate);el.addEventListener("focus",activate);
-    });
-    c.querySelectorAll(".favToggle[data-fav-key]").forEach(btn=>{
-      btn.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();toggleFav(btn.dataset.favKind||"public",btn.dataset.favKey||"");});
-    });
-  }
-
-  function renderRail(c,mods,kind){c.innerHTML=mods.map(m=>cardHTML(m,kind)).join("");bindCards(c);}
-
-  function renderFavs(){
-    const items=favMods();
-    favCountPill.textContent=`${items.length} FAVORI${items.length>1?"S":""}`;
-    if(!items.length){favRail.innerHTML="";favEmpty.style.display="block";return;}
-    favEmpty.style.display="none";
-    favRail.innerHTML=items.map(m=>cardHTML(m,m.kind)).join("");
-    bindCards(favRail);
-  }
-
-  function updateFocus(){
-    const item=getMod(curKey,curKind);
-    const href=wr(L[item.key]||HOME);
-    focusIcon.textContent=item.icon;
-    focusLabel.textContent=item.name;
-    focusHint.textContent=item.desc;
-    focusKind.textContent=curKind==="public"?"POUR TOUS":"PRO";
-    focusKind.className=`focusBadge ${curKind}`;
-    focusBadge.textContent=item.loco?(curKind==="public"?"🗺️ Porte d'entrée":"👑 Locomotive pro"):(curKind==="public"?"🌍 Porte publique":"🧰 Outil métier");
-    focusText.textContent=COPY[item.key]||item.desc;
-    focusOpenBtn.href=href;
-  }
-
-  function renderAll(){renderFavs();renderRail(pubRail,PUB,"public");renderRail(proRail,PRO,"pro");updateFocus();}
-
-  function bindRailHint(rail,hint){
-    const upd=()=>{const max=rail.scrollWidth-rail.clientWidth;hint.style.display=(max>8&&innerWidth<=640&&rail.scrollLeft<=12)?"block":"none";};
-    rail.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);requestAnimationFrame(upd);
-  }
-
-  function bindArrows(rId,lId,rBId){
-    const rail=$(rId),left=$(lId),right=$(rBId);if(!rail||!left||!right)return;
-    const step=()=>{const c=rail.querySelector(".moduleBtn");if(!c)return 300;const g=parseInt(getComputedStyle(rail).columnGap||14)||14;return Math.round(c.getBoundingClientRect().width+g);};
-    left.addEventListener("click",()=>rail.scrollBy({left:-step(),behavior:"smooth"}));
-    right.addEventListener("click",()=>rail.scrollBy({left:step(),behavior:"smooth"}));
-    const upd=()=>{const max=rail.scrollWidth-rail.clientWidth;if(max<=8){left.style.display=right.style.display="none";return;}left.style.display=rail.scrollLeft>8?"flex":"none";right.style.display=rail.scrollLeft<max-8?"flex":"none";};
-    rail.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);requestAnimationFrame(upd);
-  }
-
-  function openExt(url){window.open(wr(url),"_blank","noopener,noreferrer");}
-
-  /* NAV MENU */
-  const menuMap={
-    "mn-explore":L.explore,"mn-driver":L.driver,"mn-chauffeurs":L.galerieChauffeurs,
-    "mn-loc":L.loc,"mn-resatable":L.resaTable,"mn-build":L.build,
-    "mn-mon-commerce":L.monCommerce,"mn-market":L.market,"mn-jobs":L.jobs,
-    "mn-tarifs":L.tarifs,
-    "mn-ndimbal-annonces":L.ndimbalAnnonces,"mn-pay":L.pay,"mn-vaschezmoi":L.vasChezDigiy,
-    "mn-ndimbal-loc":L.ndimbalLoc,"mn-ndimbal-map":L.ndimbalMap,"mn-audio":L.audio,"mn-ia":L.assistantIA,
-    "mn-espace-pro":L.espacePro,"mn-inscription-pro":L.inscriptionPro,"mn-market-pro":L.marketPro,
-    "mn-caisse-pro":L.caissePro,"mn-loc-pro":L.locPro,"mn-resatable-pro":L.resaTablePro,
-    "mn-driver-pro":L.driverPro,"mn-jobs-pro":L.jobsPro,"mn-build-pro":L.buildPro,
-    "mn-explore-pro":L.explorePro,"mn-pay-pro":L.payPro
-  };
-  Object.entries(menuMap).forEach(([id,url])=>{const el=$(id);if(el){el.href=wr(url);el.target="_blank";el.rel="noopener noreferrer";}});
-
-  /* ════════════════════════════════════
-     DRAWER NAV MOBILE
-  ════════════════════════════════════ */
-  window.addEventListener("DOMContentLoaded",()=>{
-    const menuToggleBtn=$("menuToggleBtn");
-    const menuToggleIcon=$("menuToggleIcon");
-    const menuToggleLabel=$("menuToggleLabel");
-    const navDrawer=$("navDrawer");
-    const drawerCloseBtn=$("drawerCloseBtn");
-
-    if(!menuToggleBtn || !menuToggleIcon || !menuToggleLabel || !navDrawer){
-      return;
+  <script>
+  (function(){
+    /* FIX 9 : Partage natif avec fallback WhatsApp */
+    var shareBtn = document.getElementById("shareBtn");
+    if (shareBtn) {
+      var SHARE_URL  = "https://digiylyfe.com/";
+      var SHARE_TEXT = "DIGIYLYFE : trouve un chauffeur, un logement, un artisan, une boutique. Contact direct, 0% commission.";
+      shareBtn.addEventListener("click", function(){
+        if (navigator.share) {
+          navigator.share({ title:"DIGIYLYFE", text:SHARE_TEXT, url:SHARE_URL }).catch(function(){});
+        } else {
+          window.open(
+            "https://wa.me/?text=" + encodeURIComponent(SHARE_TEXT + " " + SHARE_URL),
+            "_blank", "noopener"
+          );
+        }
+      });
     }
 
-    function openDrawer(){
-      navDrawer.classList.add("open");
-      menuToggleBtn.classList.add("open");
-      menuToggleBtn.setAttribute("aria-expanded","true");
-      menuToggleIcon.textContent="✕";
-      menuToggleLabel.textContent="FERMER";
-      document.body.style.overflow="hidden";
+    /* FIX 8 : Service Worker pour PWA */
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function(){
+        navigator.serviceWorker.register("./sw.js").catch(function(){});
+      });
     }
-    function closeDrawer(){
-      navDrawer.classList.remove("open");
-      menuToggleBtn.classList.remove("open");
-      menuToggleBtn.setAttribute("aria-expanded","false");
-      menuToggleIcon.textContent="☰";
-      menuToggleLabel.textContent="MENU";
-      document.body.style.overflow="";
-    }
-
-    menuToggleBtn.addEventListener("click",()=>{
-      navDrawer.classList.contains("open") ? closeDrawer() : openDrawer();
-    });
-    if(drawerCloseBtn) drawerCloseBtn.addEventListener("click",closeDrawer);
-    navDrawer.addEventListener("click",e=>{
-      if(e.target===navDrawer) closeDrawer();
-    });
-
-    /* URLs du drawer — mêmes destinations que la nav desktop */
-    const drawerMap={
-      "dm-explore":L.explore,"dm-driver":L.driver,"dm-chauffeurs":L.galerieChauffeurs,
-      "dm-loc":L.loc,"dm-resatable":L.resaTable,"dm-build":L.build,
-      "dm-mon-commerce":L.monCommerce,"dm-market":L.market,"dm-jobs":L.jobs,
-      "dm-tarifs":L.tarifs,
-      "dm-ndimbal-annonces":L.ndimbalAnnonces,"dm-pay":L.pay,"dm-vaschezmoi":L.vasChezDigiy,
-      "dm-ndimbal-loc":L.ndimbalLoc,"dm-ndimbal-map":L.ndimbalMap,
-      "dm-audio":L.audio,"dm-ia":L.assistantIA,
-      "dm-espace-pro":L.espacePro,"dm-inscription-pro":L.inscriptionPro,
-      "dm-market-pro":L.marketPro,"dm-caisse-pro":L.caissePro,
-      "dm-loc-pro":L.locPro,"dm-resatable-pro":L.resaTablePro,
-      "dm-driver-pro":L.driverPro,"dm-jobs-pro":L.jobsPro,
-      "dm-build-pro":L.buildPro,"dm-explore-pro":L.explorePro,
-      "dm-pay-pro":L.payPro
-    };
-    Object.entries(drawerMap).forEach(([id,url])=>{
-      const el=$(id);
-      if(el){
-        el.href=wr(url);
-        el.target="_blank";
-        el.rel="noopener noreferrer";
-        el.addEventListener("click",closeDrawer);
-      }
-    });
-  });
-  /* ════════════════════════════════════ */
-
-  /* FLOAT BUTTONS */
-  const espBtn=$("espace-pro-btn");if(espBtn)espBtn.addEventListener("click",()=>openExt(L.espacePro));
-  const expBtn=$("explore-float-btn");if(expBtn)expBtn.addEventListener("click",()=>openExt(L.explore));
-
-  /* NDIMBAL */
-  const nd=$("digiy-ndimbal"),qrM=$("qrModal");
-  const showNd=()=>{nd.classList.remove("hidden");nd.setAttribute("aria-hidden","false");};
-  const hideNd=()=>{nd.classList.add("hidden");nd.setAttribute("aria-hidden","true");};
-  const showQr=()=>{qrM.classList.remove("hidden");qrM.setAttribute("aria-hidden","false");};
-  const hideQr=()=>{qrM.classList.add("hidden");qrM.setAttribute("aria-hidden","true");};
-  const helpBtn=$("digiy-help-btn");if(helpBtn)helpBtn.addEventListener("click",showNd);
-  const closeBtn=$("digiyCloseBtn");if(closeBtn)closeBtn.addEventListener("click",hideNd);
-  if(nd){nd.addEventListener("click",e=>{if(e.target===nd){hideNd();return;}const b=e.target.closest("[data-action]");if(!b)return;hideNd();const a=b.getAttribute("data-action");if(a==="sell")openExt(L.ndimbalAnnonces);else if(a==="job")openExt(L.jobs);else if(a==="qr")showQr();});}
-  const qrClose=$("qrClose");if(qrClose)qrClose.addEventListener("click",hideQr);
-  if(qrM)qrM.addEventListener("click",e=>{if(e.target===qrM)hideQr();});
-
-  /* INIT */
-  const firstFav=favMods()[0];if(firstFav){curKey=firstFav.key;curKind=firstFav.kind;}
-  renderAll();
-  bindRailHint(pubRail,$("publicHint"));
-  bindRailHint(proRail,$("proHint"));
-  bindArrows("publicRail","publicLeft","publicRight");
-  bindArrows("proRail","proLeft","proRight");
-
-  /* INSTALL PWA */
-  const installBtns=[$("install-app-btn"),$("install-app-hero-btn")].filter(Boolean);
-  const installModal=$("installModal"),installNowBtn=$("installNowBtn"),installCloseBtn=$("installCloseBtn");
-  let deferredPrompt=null;
-  const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent||"");
-  const isStandalone=()=>window.matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
-  function syncInstall(){const show=!isStandalone();installBtns.forEach(b=>b.style.display=show?"inline-flex":"none");}
-  function showInstallModal(){
-    if(!installModal)return;
-    if(deferredPrompt){$("installTitle").textContent="📲 Installer DIGIYLYFE";$("installText").innerHTML="<b>Prêt à poser DIGIYLYFE sur ton écran ?</b><br>Appuie ci-dessous pour lancer l'installation.";}
-    else if(isIOS()){$("installTitle").textContent="📲 Installer sur iPhone / iPad";$("installText").innerHTML="<b>Ouvre DIGIYLYFE dans Safari</b><br>1. Appuie sur <b>Partager</b><br>2. Choisis <b>Sur l'écran d'accueil</b><br>3. Valide avec <b>Ajouter</b>";}
-    else{$("installTitle").textContent="📲 Installer DIGIYLYFE";$("installText").innerHTML="<b>Ouvre le menu de ton navigateur</b> puis <b>Installer l'application</b>.";}
-    installModal.classList.remove("hidden");installModal.setAttribute("aria-hidden","false");
-  }
-  function hideInstallModal(){if(!installModal)return;installModal.classList.add("hidden");installModal.setAttribute("aria-hidden","true");}
-  async function triggerInstall(){
-    if(isStandalone()){syncInstall();hideInstallModal();return;}
-    if(deferredPrompt){hideInstallModal();try{deferredPrompt.prompt();await deferredPrompt.userChoice;}catch(e){}deferredPrompt=null;syncInstall();return;}
-    showInstallModal();
-  }
-  installBtns.forEach(b=>b.addEventListener("click",triggerInstall));
-  if(installNowBtn)installNowBtn.addEventListener("click",async()=>{if(deferredPrompt)await triggerInstall();else hideInstallModal();});
-  if(installCloseBtn)installCloseBtn.addEventListener("click",hideInstallModal);
-  if(installModal)installModal.addEventListener("click",e=>{if(e.target===installModal)hideInstallModal();});
-  window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;syncInstall();});
-  window.addEventListener("appinstalled",()=>{deferredPrompt=null;hideInstallModal();syncInstall();});
-  syncInstall();
-
-  /* SERVICE WORKER */
-  if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
-
-})();
-</script>
-  <!-- ════ DRAWER NAV MOBILE ════ -->
-  <div id="navDrawer" role="dialog" aria-modal="true" aria-label="Menu DIGIYLYFE">
-    <div class="drawerSheet">
-      <div class="drawerHandle"></div>
-      <div class="drawerHeader">
-        <span class="drawerHeaderTitle">∞ DIGIYLYFE — MENU</span>
-        <button class="drawerClose" id="drawerCloseBtn" type="button" aria-label="Fermer">✕</button>
-      </div>
-
-      <!-- JE CHERCHE -->
-      <div class="drawerGroup">
-        <div class="drawerGroupLabel c">JE CHERCHE</div>
-        <div class="drawerLinks">
-          <a class="drawerLink gold" id="dm-explore"      href="#"><span class="dlIcon">🗺️</span>Découvrir le territoire<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-driver"       href="#"><span class="dlIcon">🚗</span>Un chauffeur<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-chauffeurs"   href="#"><span class="dlIcon">👑</span>Nos chauffeurs<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-loc"          href="#"><span class="dlIcon">🏠</span>Où dormir<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-resatable"    href="#"><span class="dlIcon">📅</span>Réserver<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-build"        href="#"><span class="dlIcon">🏗️</span>Un artisan<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-mon-commerce" href="#"><span class="dlIcon">👜</span>Mon commerce<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-market"       href="#"><span class="dlIcon">🛍️</span>Les boutiques<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-jobs"         href="#"><span class="dlIcon">💼</span>Du travail<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-tarifs"       href="#"><span class="dlIcon">🏷️</span>Tarifs<span class="dlArrow">›</span></a>
-        </div>
-      </div>
-
-      <div class="drawerDivider"></div>
-
-      <!-- JE TRAVAILLE -->
-      <div class="drawerGroup">
-        <div class="drawerGroupLabel p">JE TRAVAILLE</div>
-        <div class="drawerLinks">
-          <a class="drawerLink green" id="dm-espace-pro"      href="#"><span class="dlIcon">🏢</span>Mon activité<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-inscription-pro" href="#"><span class="dlIcon">✍️</span>Rejoindre DIGIY<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-market-pro"      href="#"><span class="dlIcon">🛍️</span>Je vends / MARKET<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-caisse-pro"      href="#"><span class="dlIcon">💰</span>Mon commerce / CAISSE<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-loc-pro"         href="#"><span class="dlIcon">🏠</span>Je loue / LOC<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-resatable-pro"   href="#"><span class="dlIcon">📅</span>Je réserve / RÉSA<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-driver-pro"      href="#"><span class="dlIcon">🚗</span>Je conduis / DRIVER<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-jobs-pro"        href="#"><span class="dlIcon">💼</span>Je recrute / JOBS<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-explore-pro"     href="#"><span class="dlIcon">🗺️</span>Me faire connaître / EXPLORE<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-build-pro"       href="#"><span class="dlIcon">🏗️</span>Mes services / MULTI<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-pay-pro"         href="#"><span class="dlIcon">💳</span>Mon argent / PAY<span class="dlArrow">›</span></a>
-        </div>
-      </div>
-
-      <div class="drawerDivider"></div>
-
-      <!-- AUSSI -->
-      <div class="drawerGroup">
-        <div class="drawerGroupLabel s">AUSSI</div>
-        <div class="drawerLinks">
-          <a class="drawerLink" id="dm-ndimbal-annonces" href="#"><span class="dlIcon">📢</span>Annonces<span class="dlArrow">›</span></a>
-          <a class="drawerLink" id="dm-pay"              href="#"><span class="dlIcon">💳</span>Mon argent<span class="dlArrow">›</span></a>
-          <a class="drawerLink" id="dm-vaschezmoi"       href="#"><span class="dlIcon">📍</span>Venir chez DIGIY<span class="dlArrow">›</span></a>
-          <a class="drawerLink" id="dm-ndimbal-loc"      href="#"><span class="dlIcon">🏡</span>Locations<span class="dlArrow">›</span></a>
-          <a class="drawerLink" id="dm-ndimbal-map"      href="#"><span class="dlIcon">🗺️</span>La carte<span class="dlArrow">›</span></a>
-          <a class="drawerLink" id="dm-audio"            href="#"><span class="dlIcon">🎵</span>Écouter<span class="dlArrow">›</span></a>
-          <button class="drawerLink" type="button" onclick="window.digiyShareSite&&window.digiyShareSite()"><span class="dlIcon">📤</span>Partager DIGIY<span class="dlArrow">›</span></button>
-          <button class="drawerLink" type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()"><span class="dlIcon">🤝</span>Suggérer un pro<span class="dlArrow">›</span></button>
-          <a class="drawerLink" id="dm-ia"               href="#"><span class="dlIcon">🧠</span>Poser une question<span class="dlArrow">›</span></a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-<!-- ============================================================
-     DIGIY AUDIO — V3 FINAL
-     À coller juste avant </body> dans ton index.html
-     ============================================================ -->
-
-<style>
-#digiy-reader{
-position:fixed;bottom:76px;left:24px;z-index:99999;
-display:inline-flex;align-items:center;gap:10px;
-background:linear-gradient(135deg,#d4af37,#b78b34);
-color:#111827;font-family:'Outfit',Inter,sans-serif;
-font-weight:900;font-size:15px;padding:13px 22px;
-border-radius:999px;border:none;cursor:pointer;
-box-shadow:0 8px 28px rgba(0,0,0,.24);
-transition:transform .18s ease,box-shadow .18s ease,opacity .18s ease;
--webkit-tap-highlight-color:transparent;user-select:none;white-space:nowrap
-}
-#digiy-reader:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(0,0,0,.3)}
-#digiy-reader:active{transform:scale(.97)}
-#digiy-reader:disabled{opacity:.65;cursor:not-allowed}
-#digiy-reader .d-ico{font-size:16px;line-height:1}
-
-#digiy-bar-wrap{
-position:fixed;left:0;right:0;bottom:0;height:3px;
-background:rgba(212,175,55,.2);z-index:99998;
-opacity:0;pointer-events:none;transition:opacity .25s ease
-}
-#digiy-bar{
-width:0%;height:100%;
-background:linear-gradient(90deg,#d4af37,#b78b34);
-transition:width .18s linear
-}
-
-@media (max-width:640px){
-#digiy-reader{bottom:66px;left:10px;font-size:12.5px;padding:10px 12px;max-width:46vw;overflow:hidden;text-overflow:ellipsis}
-#digiy-lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-}
-
-@media (max-width:380px){
-#digiy-reader{font-size:0;width:44px;height:44px;padding:0;justify-content:center}
-#digiy-reader .d-ico{font-size:16px}
-}
-</style>
-
-<button id="digiy-reader" type="button" aria-label="Écouter DIGIY">
-<span class="d-ico">&#9654;</span>
-<span id="digiy-lbl">Écouter DIGIY</span>
-</button>
- <p style="
-  margin-top:10px;
-  font-size:13px;
-  color:#fff3cf;
-  font-weight:900;
-  text-align:center;
-  font-family:Outfit, system-ui, sans-serif;
-">
-  👉 Écoute DIGIY, puis fais-le circuler.
-</p>
-
-<div id="digiy-bar-wrap"><div id="digiy-bar"></div></div>
-
-<script>
-(function(){
-
-var TEXTE = `Le bonheur business est là. Par DIGIYLYFE.
-
-Le complément de WhatsApp pour être visible, travailler mieux et recevoir son argent directement.
-
-WhatsApp te permet de parler avec ceux qui te connaissent déjà.
-DIGIYLYFE t’ouvre au web, au territoire et aux nouveaux clients.
-
-Présence digitale.
-Outils métier simples.
-Lien direct.
-QR.
-Paiement direct.
-
-Tu restes visible.
-Tu travailles mieux.
-Et tu gardes ton argent.
-
-Avec DIGIY, ton client te paie directement.
-Zéro commission sur tes ventes.
-Un abonnement simple, clair et léger — c’est tout.
-
-Bienvenue sur DIGIYLYFE.
-
-Ici, la Petite Côte se montre, se relie et avance.
-
-Pas de commission qui t’écrase.
-Pas d’intermédiaire qui te détourne.
-
-Tu cherches un chauffeur ?
-Tu lui écris directement sur WhatsApp.
-
-Tu cherches où dormir ?
-Tu parles directement au propriétaire.
-
-Tu veux réserver un service ?
-Tu fixes ton moment sans passer par quelqu’un.
-
-Tu veux un artisan ?
-Tu expliques ton besoin directement.
-
-Tu veux découvrir une boutique ?
-Tu appelles ou tu y vas directement.
-
-DIGIYLYFE te met en face du réel.
-Simple.
-Direct.
-Humain.
-
-Une présence digitale enracinée dans le territoire.
-
-Les pros s’ouvrent à la lumière du web.
-Ils gardent leur identité, leur lien direct avec le client, leurs outils métier.
-Sans que personne garde le contrôle à leur place.
-
-Ici, DIGIYLYFE leur rend la totalité du contrôle.
-
-Mais une présence ne suffit pas si les clients ne circulent pas.
-
-La base, c’est la clientèle :
-les gens qui cherchent,
-qui appellent,
-qui réservent,
-qui font travailler les pros.
-
-Alors si ce site t’aide…
-
-utilise-le,
-partage-le,
-fais-le circuler.
-
-Envoie DIGIYLYFE à quelqu’un qui cherche
-un chauffeur,
-un logement,
-un artisan,
-ou un service.
-
-Envoie-le aussi à quelqu’un qui travaille
-et qui mérite d’être visible.
-
-Un commerce sérieux.
-Un chauffeur fiable.
-Un artisan courageux.
-Un service utile.
-
-DIGIY est ouvert à ceux qui travaillent,
-à ceux qui cherchent,
-à ceux qui avancent.
-
-Le travail a une valeur.
-
-DIGIY avance avec les pros.
-Mais il vit grâce aux clients qui les font travailler.
-
-Sans clients, pas d’activité.
-Sans circulation, pas de clients.
-
-La technologie impressionne.
-Mais ce qui compte, c’est l’usage.
-
-Quand les gens commencent à chercher,
-à appeler,
-à réserver,
-à travailler…
-
-alors ça devient réel.
-
-Et quand ça devient un réflexe…
-
-le projet devient vivant.
-
-Fais tourner le site.
-Fais entrer les clients.
-Fais connaître les bons pros.
-
-C’est comme ça que le territoire devient vivant.`;
-  
-var btn=document.getElementById('digiy-reader');
-if(!btn)return;
-
-var lbl=document.getElementById('digiy-lbl');
-var ico=btn.querySelector('.d-ico');
-var barW=document.getElementById('digiy-bar-wrap');
-var bar=document.getElementById('digiy-bar');
-
-if(!('speechSynthesis'in window)){btn.style.display='none';return;}
-
-var synth=window.speechSynthesis;
-
-var DIGIY_URL='https://digiylyfe.com/';
-var SUGGEST_TEXT='Bonjour DIGIY, je veux suggérer un pro du quartier. Nom : ... Ville/quartier : ... Téléphone/WhatsApp : ... Type d’activité : ... Pourquoi je le recommande : ...';
-var SHARE_TEXT='DIGIYLYFE : trouve un chauffeur, un logement, un artisan, une boutique ou un service. Contact direct, paiement direct au pro, 0% commission.';
-
-window.digiyShareSite=function(){
-  try{
-    if(navigator.share){
-      navigator.share({title:'DIGIYLYFE',text:SHARE_TEXT,url:DIGIY_URL}).catch(function(){});
-      return;
-    }
-  }catch(e){}
-  try{navigator.clipboard&&navigator.clipboard.writeText(DIGIY_URL);}catch(e){}
-  window.open('https://wa.me/?text='+encodeURIComponent(SHARE_TEXT+' '+DIGIY_URL),'_blank','noopener');
-};
-
-window.digiySuggestPro=function(){
-  window.open('https://wa.me/221771342889?text='+encodeURIComponent(SUGGEST_TEXT),'_blank','noopener');
-};
-
-var playing=false;
-var utt=null;
-var timer=null;
-var warnedNoFr=false;
-
-function getVoice(){
-var voices=synth.getVoices()||[];
-return voices.find(function(x){return /^fr/i.test(x.lang||'');})||voices.find(function(x){return /fr/i.test((x.name||'')+' '+(x.lang||''));})||null;
-}
-
-function resetLabel(){
-if(lbl)lbl.textContent='Écouter DIGIY';
-if(ico)ico.innerHTML='&#9654;';
-}
-
-function stop(){
-synth.cancel();
-clearInterval(timer);
-playing=false;
-resetLabel();
-if(barW)barW.style.opacity='0';
-if(bar)bar.style.width='0%';
-}
-
-function play(){
-  synth.cancel();
-  clearInterval(timer);
-
-  utt = new SpeechSynthesisUtterance(TEXTE);
-
-  utt.lang = 'fr-FR';
-  utt.rate = 0.88;
-  utt.pitch = 1.05;
-  utt.volume = 1;
-
-  var voices = synth.getVoices() || [];
-  var voice =
-    voices.find(function(v){
-      return /^fr/i.test(v.lang || '') && /female|audrey|amelie|hortense|julie|thomas|paul/i.test(v.name || '');
-    }) ||
-    voices.find(function(v){
-      return /^fr/i.test(v.lang || '');
-    }) ||
-    getVoice();
-
-  if (voice) {
-    utt.voice = voice;
-  } else if (!warnedNoFr) {
-    warnedNoFr = true;
-    btn.title = 'Voix française non trouvée sur cet appareil : DIGIY lance la lecture avec la voix disponible.';
-    if (lbl) lbl.textContent = 'Lecture simple';
-  }
-
-  var words = TEXTE.split(' ').length;
-  var duration = words * 500;
-  var progress = 0;
-
-  playing = true;
-  btn.disabled = false;
-  if (lbl) lbl.textContent = 'Stopper';
-  if (ico) ico.innerHTML = '&#9632;';
-  if (barW) barW.style.opacity = '1';
-  if (bar) bar.style.width = '0%';
-
-  timer = setInterval(function(){
-    progress += 250;
-    if (bar) bar.style.width = Math.min(96, (progress / duration) * 100) + '%';
-  }, 250);
-
-  utt.onerror = function(){
-    stop();
-    btn.disabled = false;
-    btn.title = 'Audio indisponible sur cet appareil pour le moment.';
-    if (lbl) lbl.textContent = 'Audio indisponible';
-    setTimeout(resetLabel, 1800);
-  };
-
-  utt.onend = function(){
-    if (bar) bar.style.width = '100%';
-    setTimeout(stop, 300);
-  };
-
-  synth.speak(utt);
-}
-btn.onclick=function(){
-playing?stop():play();
-};
-
-window.digiyStartAudio=function(){
-  if(playing){return;}
-  play();
-};
-window.digiyStopAudio=stop;
-
-if(typeof synth.onvoiceschanged!=='undefined'){
-synth.onvoiceschanged=function(){getVoice();};
-}
-
-window.addEventListener('beforeunload',stop);
-
-})();
-</script>
-
-<!-- ============================================================
-     FIN DIGIY AUDIO
-     ============================================================ -->
+  })();
+  </script>
 </body>
 </html>
