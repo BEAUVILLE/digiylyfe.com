@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <title>Menu DIGIYLYFE — Toutes les portes</title>
+  <meta name="theme-color" content="#00853f"/>
+  <meta name="description" content="Menu complet DIGIYLYFE : trouver, explorer, publier son activité, accéder aux modules et faire circuler le territoire vivant."/>
+  <meta name="robots" content="index,follow"/>
+  <link rel="canonical" href="https://digiylyfe.com/menu.html"/>
+  <link rel="icon" href="./icon-192.png" sizes="192x192"/>
+  <link rel="apple-touch-icon" href="./icon-192.png"/>
+  <link rel="manifest" href="./manifest.json"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Manrope:wght@700;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --bg:#04130d;
+      --bg2:#082318;
+      --ink:#f8fafc;
+      --muted:rgba(248,250,252,.72);
+      --line:rgba(255,255,255,.13);
+      --gold:#f6c453;
+      --green:#00a651;
+      --green2:#00853f;
+      --shadow:0 22px 70px rgba(0,0,0,.38);
+      --fontA:"Outfit",system-ui,-apple-system,sans-serif;
+      --fontB:"Manrope",system-ui,-apple-system,sans-serif;
+      --safe-bottom:env(safe-area-inset-bottom,0px);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--ink);
+      font-family:var(--fontB);
+      overflow-x:hidden;
+      background:
+        radial-gradient(900px 540px at 8% -10%,rgba(0,166,81,.32),transparent 56%),
+        radial-gradient(820px 500px at 92% 0%,rgba(246,196,83,.18),transparent 52%),
+        linear-gradient(180deg,#067a3a 0%,#0b5f31 18%,#082318 48%,#04130d 100%);
+    }
+
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;cursor:pointer}
+    .page{
+      width:min(1120px,100%);
+      margin:0 auto;
+      padding:14px 14px calc(28px + var(--safe-bottom));
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:0 0 24px 24px;
+      background:rgba(4,19,13,.90);
+      backdrop-filter:blur(14px);
+      padding:10px;
+      box-shadow:0 12px 34px rgba(0,0,0,.22);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .logo{
+      width:54px;
+      height:54px;
+      border-radius:19px;
+      background:#fff;
+      overflow:hidden;
+      flex:0 0 auto;
+      box-shadow:0 12px 32px rgba(0,0,0,.30);
+    }
+
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .brand-title{
+      font-family:var(--fontA);
+      font-size:21px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.04em;
+    }
+
+    .brand-sub{
+      margin-top:5px;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:800;
+      line-height:1.35;
+    }
+
+    .back{
+      min-height:44px;
+      border-radius:999px;
+      padding:0 14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(246,196,83,.30);
+      background:rgba(246,196,83,.10);
+      color:#fff3cf;
+      font-family:var(--fontA);
+      font-size:13px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .hero{
+      margin-top:16px;
+      border:1px solid rgba(246,196,83,.28);
+      border-radius:30px;
+      background:
+        radial-gradient(760px 280px at 12% 0%,rgba(246,196,83,.14),transparent 60%),
+        radial-gradient(680px 260px at 88% 24%,rgba(0,166,81,.16),transparent 62%),
+        linear-gradient(180deg,rgba(8,31,23,.88),rgba(5,18,13,.88));
+      box-shadow:var(--shadow);
+      padding:22px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:30px;
+      padding:0 11px;
+      border-radius:999px;
+      border:1px solid rgba(246,196,83,.32);
+      background:rgba(246,196,83,.10);
+      color:#fff3cf;
+      font-family:var(--fontA);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:14px 0 0;
+      font-family:var(--fontA);
+      font-size:clamp(38px,7vw,72px);
+      line-height:.94;
+      letter-spacing:-.055em;
+      font-weight:900;
+      max-width:10ch;
+    }
+
+    h1 span{color:var(--gold)}
+
+    .lead{
+      margin:14px 0 0;
+      max-width:760px;
+      color:#dbe8e0;
+      font-size:clamp(16px,2vw,20px);
+      line-height:1.65;
+      font-weight:800;
+    }
+
+    .signal-row{
+      margin-top:16px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .signal{
+      min-height:34px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      padding:0 11px;
+      border:1px solid rgba(255,255,255,.13);
+      background:rgba(255,255,255,.06);
+      color:rgba(248,250,252,.86);
+      font-family:var(--fontA);
+      font-size:11px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .signal.gold{border-color:rgba(246,196,83,.34);background:rgba(246,196,83,.10);color:#fff3cf}
+    .signal.green{border-color:rgba(0,166,81,.34);background:rgba(0,166,81,.12);color:#dcffe8}
+
+    .section{
+      margin-top:16px;
+      border:1px solid rgba(255,255,255,.11);
+      border-radius:28px;
+      background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035));
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding-bottom:12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      margin-bottom:14px;
+    }
+
+    .section-title{
+      margin:0;
+      font-family:var(--fontA);
+      font-size:clamp(25px,4vw,38px);
+      line-height:1.04;
+      letter-spacing:-.04em;
+      font-weight:900;
+    }
+
+    .section-title.gold{color:#fff3cf}
+    .section-title.green{color:#dcffe8}
+
+    .section-note{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+      font-weight:800;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .item{
+      min-height:82px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.055);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:13px;
+      text-align:left;
+      transition:.15s ease;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .item:hover{
+      transform:translateY(-2px);
+      border-color:rgba(246,196,83,.32);
+      background:rgba(246,196,83,.08);
+    }
+
+    .item:active{
+      transform:scale(.98);
+    }
+
+    .item.gold{
+      border-color:rgba(246,196,83,.18);
+      background:rgba(246,196,83,.07);
+    }
+
+    .item.green{
+      border-color:rgba(0,166,81,.18);
+      background:rgba(0,166,81,.075);
+    }
+
+    .emoji{
+      width:46px;
+      height:46px;
+      flex:0 0 46px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-size:24px;
+      background:rgba(246,196,83,.12);
+      border:1px solid rgba(246,196,83,.18);
+    }
+
+    .item b{
+      display:block;
+      font-family:var(--fontA);
+      font-size:15px;
+      font-weight:900;
+      line-height:1.15;
+      color:#fff;
+    }
+
+    .item span.txt{
+      display:block;
+      margin-top:4px;
+      color:rgba(248,250,252,.70);
+      font-size:12px;
+      font-weight:800;
+      line-height:1.3;
+    }
+
+    .quick-actions{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .quick{
+      min-height:74px;
+      border-radius:22px;
+      border:1px solid rgba(246,196,83,.22);
+      background:
+        radial-gradient(280px 120px at 10% 0%,rgba(246,196,83,.12),transparent 58%),
+        rgba(255,255,255,.055);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px;
+      text-align:left;
+      font-family:var(--fontA);
+      font-weight:900;
+    }
+
+    .quick .emoji{
+      width:42px;
+      height:42px;
+      flex-basis:42px;
+      font-size:22px;
+    }
+
+    .audio-bar{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      height:3px;
+      background:rgba(246,196,83,.18);
+      opacity:0;
+      pointer-events:none;
+      z-index:999;
+    }
+
+    .audio-progress{
+      width:0%;
+      height:100%;
+      background:linear-gradient(90deg,#f6c453,#22c55e);
+      transition:width .18s linear;
+    }
+
+    .footer{
+      margin-top:18px;
+      color:rgba(248,250,252,.62);
+      font-size:13px;
+      font-weight:800;
+      line-height:1.6;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      padding:8px 4px 0;
+    }
+
+    @media(max-width:860px){
+      .grid{grid-template-columns:1fr 1fr}
+      .quick-actions{grid-template-columns:1fr 1fr}
+    }
+
+    @media(max-width:560px){
+      .page{padding:10px 10px calc(22px + var(--safe-bottom))}
+      .topbar{align-items:flex-start}
+      .brand{width:100%}
+      .back{width:100%}
+      .hero,.section{border-radius:24px;padding:16px}
+      h1{font-size:42px}
+      .grid,.quick-actions{grid-template-columns:1fr}
+      .item,.quick{min-height:68px}
+      .emoji{width:42px;height:42px;flex-basis:42px;font-size:22px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="https://digiylyfe.com/" aria-label="Retour DIGIYLYFE">
+        <div class="logo">
+          <img src="https://digiylyfe.net/wp-content/uploads/2026/03/digiylyfe_logo_qr.jpeg" alt="DIGIYLYFE">
+        </div>
+        <div>
+          <div class="brand-title">DIGIYLYFE</div>
+          <div class="brand-sub">Menu complet · toutes les portes</div>
+        </div>
+      </a>
+      <a class="back" href="https://digiylyfe.com/">← Retour vitrine</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="kicker">☰ Menu DIGIY</div>
+        <h1>Trouver, contacter, <span>avancer.</span></h1>
+        <p class="lead">
+          Toutes les portes DIGIYLYFE au même endroit. Le client cherche. Le pro travaille.
+          Le territoire reste vivant. Le paiement reste direct.
+        </p>
+
+        <div class="signal-row">
+          <span class="signal gold">0% commission</span>
+          <span class="signal green">Paiement direct</span>
+          <span class="signal">Territoire vivant</span>
+          <span class="signal">LOGICIELS métier</span>
+          <span class="signal gold">BY DIGIYLYFE</span>
+        </div>
+
+        <div class="quick-actions" aria-label="Actions rapides">
+          <button class="quick" id="btnAudio" type="button"><span class="emoji">🎵</span><b>Écouter</b></button>
+          <button class="quick" id="btnShare" type="button"><span class="emoji">📤</span><b>Partager</b></button>
+          <button class="quick" id="btnSuggest" type="button"><span class="emoji">🤝</span><b>Suggérer un pro</b></button>
+          <button class="quick" id="btnQuestion" type="button"><span class="emoji">🧠</span><b>Poser une question</b></button>
+        </div>
+      </section>
+
+      <section class="section" id="je-cherche">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title gold">JE CHERCHE</h2>
+            <div class="section-note">Pour trouver vite : lieu, chauffeur, logement, boutique, service, travail.</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <a class="item gold" href="https://digiylyfe.com/"><span class="emoji">🏠</span><span><b>Accueil</b><span class="txt">Retour au site principal.</span></span></a>
+          <a class="item gold" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">📜</span><span><b>Vision</b><span class="txt">Lire l’esprit DIGIYLYFE.</span></span></a>
+          <a class="item gold" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🗺️</span><span><b>Découvrir le territoire</b><span class="txt">EXPLORE ouvre la route.</span></span></a>
+          <a class="item gold" href="https://driver-client.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🚗</span><span><b>Un chauffeur</b><span class="txt">Demander une course.</span></span></a>
+          <a class="item gold" href="https://beauville.github.io/galerie-chauffeurs/" target="_blank" rel="noopener noreferrer"><span class="emoji">👑</span><span><b>Nos chauffeurs</b><span class="txt">Voir les profils visibles.</span></span></a>
+          <a class="item gold" href="https://loc.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🏠</span><span><b>Où dormir</b><span class="txt">Logements et demandes.</span></span></a>
+          <a class="item gold" href="https://resa-table-resto.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">📅</span><span><b>Réserver</b><span class="txt">Table, moment, disponibilité.</span></span></a>
+          <a class="item gold" href="https://build.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🏗️</span><span><b>Un artisan</b><span class="txt">Services, travaux, dépannage.</span></span></a>
+          <a class="item gold" href="https://mon-commerce.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">👜</span><span><b>Mon commerce</b><span class="txt">Boutiques et présence locale.</span></span></a>
+          <a class="item gold" href="https://market.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🛍️</span><span><b>Les boutiques</b><span class="txt">Produits, vendeurs, direct.</span></span></a>
+          <a class="item gold" href="https://jobs.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">💼</span><span><b>Du travail</b><span class="txt">Emploi et opportunités.</span></span></a>
+          <a class="item gold" href="https://digiylyfe.com/#tarifs"><span class="emoji">🏷️</span><span><b>Tarifs</b><span class="txt">Voir les offres DIGIY.</span></span></a>
+        </div>
+      </section>
+
+      <section class="section" id="je-travaille">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title green">JE TRAVAILLE</h2>
+            <div class="section-note">Pour les pros : publier, gérer, vendre, encaisser, conduire, louer, réserver.</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <a class="item green" href="https://pro-espace.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🏢</span><span><b>Mon activité</b><span class="txt">Rond-point central PRO.</span></span></a>
+          <a class="item green" href="https://commencer-a-payer.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">✍️</span><span><b>Rejoindre DIGIY</b><span class="txt">Activer un outil métier.</span></span></a>
+          <a class="item green" href="https://pro-market.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🛍️</span><span><b>Je vends / MARKET</b><span class="txt">Catalogue et ventes.</span></span></a>
+          <a class="item green" href="https://commerce-pro.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">💰</span><span><b>Mon commerce / CAISSE</b><span class="txt">Encaisser et suivre.</span></span></a>
+          <a class="item green" href="https://pro-loc.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🏠</span><span><b>Je loue / LOC</b><span class="txt">Logement et planning.</span></span></a>
+          <a class="item green" href="https://pro-resa-resto.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">📅</span><span><b>Je réserve / RÉSA</b><span class="txt">Planning réservation.</span></span></a>
+          <a class="item green" href="https://pro-driver.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🚗</span><span><b>Je conduis / DRIVER</b><span class="txt">Courses et tarifs.</span></span></a>
+          <a class="item green" href="https://pro-job.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">💼</span><span><b>Je recrute / JOBS</b><span class="txt">Dossiers et candidats.</span></span></a>
+          <a class="item green" href="https://pro-explore.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🗺️</span><span><b>Me faire connaître / EXPLORE</b><span class="txt">Visibilité locale.</span></span></a>
+          <a class="item green" href="https://pro-build.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🏗️</span><span><b>Mes services / MULTI</b><span class="txt">Travaux et services.</span></span></a>
+          <a class="item green" href="https://pay.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">💳</span><span><b>Mon argent / PAY</b><span class="txt">Entrées, dépenses, épargne.</span></span></a>
+        </div>
+      </section>
+
+      <section class="section" id="aussi">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">AUSSI</h2>
+            <div class="section-note">Les actions utiles autour de DIGIYLYFE.</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <a class="item" href="https://digiylyfe.com/#annonces"><span class="emoji">📢</span><span><b>Annonces</b><span class="txt">Informations et nouvelles.</span></span></a>
+          <a class="item" href="https://pay.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">💳</span><span><b>Mon argent</b><span class="txt">Lire ses flux.</span></span></a>
+          <a class="item" href="https://maps.google.com/?q=DIGIYLYFE%20Saly%20S%C3%A9n%C3%A9gal" target="_blank" rel="noopener noreferrer"><span class="emoji">📍</span><span><b>Venir chez DIGIY</b><span class="txt">Ouvrir la carte.</span></span></a>
+          <a class="item" href="https://loc.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🏡</span><span><b>Locations</b><span class="txt">Voir les logements.</span></span></a>
+          <a class="item" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🗺️</span><span><b>La carte</b><span class="txt">Explorer le territoire.</span></span></a>
+          <button class="item" id="btnAudio2" type="button"><span class="emoji">🎵</span><span><b>Écouter</b><span class="txt">Lancer la voix DIGIY.</span></span></button>
+          <button class="item" id="btnShare2" type="button"><span class="emoji">📤</span><span><b>Partager</b><span class="txt">Faire circuler.</span></span></button>
+          <button class="item" id="btnSuggest2" type="button"><span class="emoji">🤝</span><span><b>Suggérer un pro</b><span class="txt">Envoyer un contact.</span></span></button>
+          <button class="item" id="btnQuestion2" type="button"><span class="emoji">🧠</span><span><b>Poser une question</b><span class="txt">Demander de l’aide.</span></span></button>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>DIGIYLYFE · Menu complet · Sénégal</div>
+        <div>0% commission · paiement direct · logiciels métier simples</div>
+      </footer>
+    </main>
+  </div>
+
+  <div class="audio-bar" id="audioBarWrap" aria-hidden="true">
+    <div class="audio-progress" id="audioBar"></div>
+  </div>
+
+  <script>
+  (function(){
+    const DIGIY_URL = "https://digiylyfe.com/";
+    const WHATSAPP = "221771342889";
+    const SHARE_TEXT = "DIGIYLYFE : trouver, explorer et publier son activité. Contact direct, paiement direct, 0% commission.";
+    const AUDIO_TEXT =
+      "Bienvenue sur DIGIYLYFE. Ici, le territoire devient vivant. Tu peux trouver un chauffeur, un logement, une boutique, un artisan, un service ou un lieu à découvrir. DIGIYLYFE complète WhatsApp. Le client contacte directement le professionnel. Le paiement reste direct. La commission reste à zéro. EXPLORE ouvre la route. Les autres modules donnent les outils pour agir.";
+
+    function openUrl(url){
+      try{ window.open(url, "_blank", "noopener,noreferrer"); }
+      catch(_){ location.href = url; }
+    }
+
+    async function shareSite(){
+      const payload = { title:"DIGIYLYFE", text:SHARE_TEXT, url:DIGIY_URL };
+      try{
+        if(navigator.share){
+          await navigator.share(payload);
+        }else{
+          openUrl("https://wa.me/?text=" + encodeURIComponent(SHARE_TEXT + " " + DIGIY_URL));
+        }
+      }catch(_){}
+    }
+
+    function suggestPro(){
+      const msg = "Bonjour DIGIY, je veux suggérer un pro ou un lieu utile. Nom : ... Ville/quartier : ... WhatsApp : ... Activité : ...";
+      openUrl("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg));
+    }
+
+    function askQuestion(){
+      const msg = "Bonjour DIGIY, j’ai une question : ...";
+      openUrl("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg));
+    }
+
+    const synth = window.speechSynthesis;
+    let playing = false;
+    let timer = null;
+    const barWrap = document.getElementById("audioBarWrap");
+    const bar = document.getElementById("audioBar");
+
+    function getVoice(){
+      if(!synth) return null;
+      const voices = synth.getVoices() || [];
+      return voices.find(v => /^fr/i.test(v.lang || "") && /audrey|amelie|hortense|julie|thomas|paul|french/i.test(v.name || ""))
+          || voices.find(v => /^fr/i.test(v.lang || ""))
+          || null;
+    }
+
+    function stopAudio(){
+      try{ synth && synth.cancel(); }catch(_){}
+      clearInterval(timer);
+      playing = false;
+      if(barWrap) barWrap.style.opacity = "0";
+      if(bar) bar.style.width = "0%";
+    }
+
+    function playAudio(){
+      if(!("speechSynthesis" in window)){
+        alert("Audio indisponible sur ce navigateur.");
+        return;
+      }
+      if(playing){
+        stopAudio();
+        return;
+      }
+
+      try{ synth.cancel(); }catch(_){}
+      clearInterval(timer);
+
+      const utt = new SpeechSynthesisUtterance(AUDIO_TEXT);
+      utt.lang = "fr-FR";
+      utt.rate = 0.88;
+      utt.pitch = 1.05;
+      utt.volume = 1;
+
+      const voice = getVoice();
+      if(voice) utt.voice = voice;
+
+      playing = true;
+      if(barWrap) barWrap.style.opacity = "1";
+      if(bar) bar.style.width = "0%";
+
+      let progress = 0;
+      const duration = AUDIO_TEXT.split(" ").length * 500;
+
+      timer = setInterval(() => {
+        progress += 250;
+        if(bar) bar.style.width = Math.min(96, (progress / duration) * 100) + "%";
+      }, 250);
+
+      utt.onend = () => {
+        if(bar) bar.style.width = "100%";
+        setTimeout(stopAudio, 250);
+      };
+      utt.onerror = stopAudio;
+
+      synth.speak(utt);
+    }
+
+    function bind(id, fn){
+      const el = document.getElementById(id);
+      if(el) el.addEventListener("click", fn);
+    }
+
+    bind("btnAudio", playAudio);
+    bind("btnAudio2", playAudio);
+    bind("btnShare", shareSite);
+    bind("btnShare2", shareSite);
+    bind("btnSuggest", suggestPro);
+    bind("btnSuggest2", suggestPro);
+    bind("btnQuestion", askQuestion);
+    bind("btnQuestion2", askQuestion);
+
+    if(synth && typeof synth.onvoiceschanged !== "undefined"){
+      synth.onvoiceschanged = getVoice;
+    }
+
+    window.addEventListener("beforeunload", stopAudio);
+  })();
+  </script>
+</body>
+</html>
