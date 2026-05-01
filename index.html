@@ -373,11 +373,60 @@
       #install-app-btn{left:50%;bottom:118px;max-width:70vw;}
     }
     @media(max-width:480px){
-      .floatBtn{padding:10px 12px;font-size:12.5px;}
-      #install-app-btn{bottom:112px;}
       .brandText .subtitle{max-width:210px;font-size:12px;}
       .moduleBtn{min-width:248px;max-width:286px;}
       .showcaseImgWrap{height:205px;}
+    }
+
+    /* ══════════════════════════════════════
+       BOTTOM NAV — masquée desktop, active mobile
+    ══════════════════════════════════════ */
+    #bottom-nav{display:none;}
+
+    @media(max-width:640px){
+      /* Float buttons remplacés par la bottom nav */
+      .floatBtn{display:none!important;}
+      /* Audio reader au-dessus de la barre */
+      #digiy-reader{bottom:84px!important;left:10px;}
+      /* Espace sous le contenu pour la barre */
+      .wrap{padding-bottom:90px;}
+
+      #bottom-nav{
+        display:block;
+        position:fixed;left:0;right:0;bottom:0;z-index:60;
+        padding:6px 10px calc(6px + env(safe-area-inset-bottom,0px));
+        background:linear-gradient(180deg,rgba(4,19,13,0),rgba(4,19,13,.96) 20%,rgba(4,19,13,1));
+        backdrop-filter:blur(18px);
+      }
+      #bottom-nav-inner{
+        display:grid;grid-template-columns:repeat(4,1fr);gap:5px;
+        background:rgba(6,20,14,.97);
+        border:1px solid rgba(255,255,255,.13);
+        border-radius:22px;padding:6px;
+        box-shadow:0 -4px 30px rgba(0,0,0,.42),0 16px 44px rgba(0,0,0,.38);
+        max-width:520px;margin:0 auto;
+      }
+      .bnav-tab{
+        display:flex;flex-direction:column;align-items:center;justify-content:center;
+        gap:3px;min-height:56px;border-radius:16px;
+        border:1px solid rgba(255,255,255,.07);background:transparent;
+        color:rgba(248,250,252,.68);font-family:var(--fontA);font-size:10.5px;font-weight:900;
+        text-decoration:none;cursor:pointer;letter-spacing:.02em;
+        transition:.15s ease;-webkit-tap-highlight-color:transparent;
+        padding:0;
+      }
+      .bnav-tab:active{background:rgba(255,255,255,.10);transform:scale(.96);}
+      .bnav-tab.bnav-active{
+        color:#fff3cf;border-color:rgba(246,196,83,.30);
+        background:rgba(246,196,83,.12);
+      }
+      .bnav-tab.bnav-primary{
+        color:#06140f;border-color:rgba(246,196,83,.72);
+        background:linear-gradient(135deg,#f6c453,#22c55e);
+        box-shadow:0 6px 18px rgba(0,0,0,.22);
+      }
+      .bnav-tab.bnav-primary:active{opacity:.86;transform:scale(.96);}
+      .bnav-icon{font-size:22px;line-height:1;}
     }
   </style>
 </head>
@@ -704,6 +753,9 @@
       <div class="ndimbalActions">
         <button class="btn primary" type="button" data-action="sell">📋 Je publie une annonce</button>
         <button class="btn outline" type="button" data-action="job">💼 Je cherche du travail</button>
+        <button class="btn outline" type="button" data-action="share">📤 Partager DIGIY</button>
+        <button class="btn ghost"   type="button" data-action="audio">🎧 Écouter la vision</button>
+        <button class="btn ghost"   type="button" data-action="install">📲 Installer l'app</button>
         <button class="btn ghost"   type="button" data-action="qr">📷 QR DIGIYLYFE</button>
       </div>
       <button class="btn tiny danger" type="button" id="digiyCloseBtn" style="margin-top:10px">❌ Fermer</button>
@@ -964,7 +1016,7 @@
   const hideQr=()=>{qrM.classList.add("hidden");qrM.setAttribute("aria-hidden","true");};
   const helpBtn=$("digiy-help-btn");if(helpBtn)helpBtn.addEventListener("click",showNd);
   const closeBtn=$("digiyCloseBtn");if(closeBtn)closeBtn.addEventListener("click",hideNd);
-  if(nd)nd.addEventListener("click",e=>{if(e.target===nd){hideNd();return;}const b=e.target.closest("[data-action]");if(!b)return;hideNd();const a=b.getAttribute("data-action");if(a==="sell")openExt(L.ndimbalAnnonces);else if(a==="job")openExt(L.jobs);else if(a==="qr")showQr();});
+  if(nd)nd.addEventListener("click",e=>{if(e.target===nd){hideNd();return;}const b=e.target.closest("[data-action]");if(!b)return;hideNd();const a=b.getAttribute("data-action");if(a==="sell")openExt(L.ndimbalAnnonces);else if(a==="job")openExt(L.jobs);else if(a==="share")window.digiyShareSite&&window.digiyShareSite();else if(a==="audio")window.digiyStartAudio&&window.digiyStartAudio();else if(a==="install")triggerInstall();else if(a==="qr")showQr();});
   const qrClose=$("qrClose");if(qrClose)qrClose.addEventListener("click",hideQr);
   if(qrM)qrM.addEventListener("click",e=>{if(e.target===qrM)hideQr();});
 
@@ -997,8 +1049,54 @@
   syncInstall();
 
   if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+
+  /* BOTTOM NAV — Plus tab + active state scroll spy */
+  (function(){
+    const bnavPlus=document.getElementById("bnav-plus");
+    if(bnavPlus)bnavPlus.addEventListener("click",()=>{
+      const nd=document.getElementById("digiy-ndimbal");
+      if(nd){nd.classList.remove("hidden");nd.setAttribute("aria-hidden","false");}
+    });
+
+    // Active state : Trouver ou Pro selon position scroll
+    const tabs={trouver:document.getElementById("bnav-trouver"),pro:document.getElementById("bnav-pro")};
+    function updateActive(){
+      const proEl=document.getElementById("pro");
+      if(!proEl||!tabs.trouver||!tabs.pro)return;
+      const proTop=proEl.getBoundingClientRect().top;
+      if(proTop<160){
+        tabs.pro.classList.add("bnav-active");tabs.trouver.classList.remove("bnav-primary");tabs.trouver.classList.remove("bnav-active");
+      }else{
+        tabs.trouver.classList.add("bnav-primary");tabs.trouver.classList.remove("bnav-active");tabs.pro.classList.remove("bnav-active");
+      }
+    }
+    window.addEventListener("scroll",updateActive,{passive:true});
+    updateActive();
+  })();
 })();
 </script>
+
+  <!-- BOTTOM NAV MOBILE — 4 onglets fixes -->
+  <nav id="bottom-nav" aria-label="Navigation principale DIGIYLYFE">
+    <div id="bottom-nav-inner">
+      <a class="bnav-tab bnav-primary" href="#public" id="bnav-trouver">
+        <span class="bnav-icon">🔎</span>
+        <span>Trouver</span>
+      </a>
+      <a class="bnav-tab" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener noreferrer" id="bnav-explorer">
+        <span class="bnav-icon">🗺️</span>
+        <span>Explorer</span>
+      </a>
+      <a class="bnav-tab" href="#pro" id="bnav-pro">
+        <span class="bnav-icon">🏢</span>
+        <span>Pro</span>
+      </a>
+      <button class="bnav-tab" type="button" id="bnav-plus">
+        <span class="bnav-icon">∞</span>
+        <span>Plus</span>
+      </button>
+    </div>
+  </nav>
 
   <div id="navDrawer" role="dialog" aria-modal="true" aria-label="Menu DIGIYLYFE">
     <div class="drawerSheet">
