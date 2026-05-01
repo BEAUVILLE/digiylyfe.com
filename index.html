@@ -673,6 +673,73 @@
       }
     }
 
+  
+    /* DIGIY AUDIO PATCH FINAL */
+    #digiyAudioToast{
+      position:fixed;
+      left:50%;
+      bottom:88px;
+      z-index:1500;
+      transform:translateX(-50%) translateY(12px);
+      opacity:0;
+      pointer-events:none;
+      min-height:44px;
+      max-width:min(92vw,520px);
+      padding:0 14px;
+      border-radius:999px;
+      border:1px solid rgba(246,196,83,.32);
+      background:rgba(6,33,22,.94);
+      color:#fff3cf;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      font-family:var(--fontA);
+      font-size:13px;
+      font-weight:900;
+      box-shadow:0 14px 34px rgba(0,0,0,.36);
+      backdrop-filter:blur(12px);
+      transition:opacity .18s ease, transform .18s ease;
+      text-align:center;
+    }
+
+    #digiyAudioToast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    #digiyAudioBarWrap{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:1600;
+      height:3px;
+      opacity:0;
+      pointer-events:none;
+      background:rgba(246,196,83,.18);
+      transition:opacity .18s ease;
+    }
+
+    #digiyAudioBar{
+      width:0%;
+      height:100%;
+      background:linear-gradient(90deg,#f6c453,#22c55e);
+      transition:width .18s linear;
+    }
+
+    @media(max-width:640px){
+      #digiyAudioToast{
+        bottom:calc(84px + env(safe-area-inset-bottom,0px));
+        font-size:12.5px;
+      }
+
+      #digiyAudioBarWrap{
+        bottom:calc(74px + env(safe-area-inset-bottom,0px));
+      }
+    }
+    /* /DIGIY AUDIO PATCH FINAL */
+
   </style>
 </head>
 <body>
@@ -1317,6 +1384,141 @@
 
   <!-- MENU DESKTOP SIMPLE -->
   <a id="digiyDesktopMenu" href="./menu.html" aria-label="Ouvrir le menu DIGIY">☰ Menu DIGIY</a>
+
+
+  <!-- DIGIY AUDIO PATCH FINAL -->
+  <div id="digiyAudioToast" aria-live="polite">🎧 Audio DIGIY</div>
+  <div id="digiyAudioBarWrap" aria-hidden="true">
+    <div id="digiyAudioBar"></div>
+  </div>
+
+  <script>
+  (function(){
+    const AUDIO_TEXT =
+      "Bienvenue sur DIGIYLYFE. Ici, le territoire devient vivant. Tu peux trouver un chauffeur, un logement, une boutique, un artisan, un service ou un lieu à découvrir. DIGIYLYFE complète WhatsApp. Le client contacte directement le professionnel. Le paiement reste direct. La commission reste à zéro. EXPLORE ouvre la route. Les autres modules donnent les outils pour agir. DIGIYLYFE n'est pas un scroll sans fin. C'est une gare. Tu arrives, tu choisis ta voie, puis tu avances.";
+
+    const toast = document.getElementById("digiyAudioToast");
+    const barWrap = document.getElementById("digiyAudioBarWrap");
+    const bar = document.getElementById("digiyAudioBar");
+
+    let playing = false;
+    let utterance = null;
+    let timer = null;
+
+    function showToast(text){
+      if(!toast) return;
+      toast.textContent = text;
+      toast.classList.add("show");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function getVoice(){
+      const synth = window.speechSynthesis;
+      const voices = synth.getVoices ? synth.getVoices() : [];
+      return voices.find(v => /^fr/i.test(v.lang || "") && /audrey|amelie|hortense|julie|thomas|paul|french/i.test(v.name || ""))
+          || voices.find(v => /^fr/i.test(v.lang || ""))
+          || null;
+    }
+
+    function setButtonLabels(isPlaying){
+      document.querySelectorAll('button[onclick*="digiyStartAudio"], [data-action="audio"]').forEach(btn => {
+        if(btn.tagName === "BUTTON"){
+          const original = btn.getAttribute("data-audio-original") || btn.textContent.trim();
+          if(!btn.getAttribute("data-audio-original")) btn.setAttribute("data-audio-original", original);
+          btn.textContent = isPlaying ? "⏹️ Stop audio" : original;
+        }
+      });
+    }
+
+    function stopAudio(){
+      try{ window.speechSynthesis && window.speechSynthesis.cancel(); }catch(_){}
+      clearInterval(timer);
+      timer = null;
+      playing = false;
+      utterance = null;
+      if(barWrap) barWrap.style.opacity = "0";
+      if(bar) bar.style.width = "0%";
+      setButtonLabels(false);
+    }
+
+    function startAudio(){
+      if(!("speechSynthesis" in window)){
+        showToast("Audio indisponible sur ce navigateur.");
+        return;
+      }
+
+      if(playing){
+        stopAudio();
+        showToast("Audio arrêté.");
+        return;
+      }
+
+      const synth = window.speechSynthesis;
+      try{ synth.cancel(); }catch(_){}
+
+      utterance = new SpeechSynthesisUtterance(AUDIO_TEXT);
+      utterance.lang = "fr-FR";
+      utterance.rate = 0.88;
+      utterance.pitch = 1.05;
+      utterance.volume = 1;
+
+      const voice = getVoice();
+      if(voice) utterance.voice = voice;
+
+      playing = true;
+      setButtonLabels(true);
+      showToast("🎧 Lecture DIGIY lancée");
+
+      if(barWrap) barWrap.style.opacity = "1";
+      if(bar) bar.style.width = "0%";
+
+      let progress = 0;
+      const duration = Math.max(12000, AUDIO_TEXT.split(/\s+/).length * 470);
+
+      clearInterval(timer);
+      timer = setInterval(() => {
+        progress += 250;
+        if(bar) bar.style.width = Math.min(96, (progress / duration) * 100) + "%";
+      }, 250);
+
+      utterance.onend = function(){
+        if(bar) bar.style.width = "100%";
+        setTimeout(stopAudio, 280);
+      };
+
+      utterance.onerror = function(){
+        stopAudio();
+        showToast("Audio interrompu.");
+      };
+
+      synth.speak(utterance);
+    }
+
+    window.digiyStartAudio = startAudio;
+    window.digiyStopAudio = stopAudio;
+
+    if("speechSynthesis" in window && typeof window.speechSynthesis.onvoiceschanged !== "undefined"){
+      window.speechSynthesis.onvoiceschanged = getVoice;
+    }
+
+    window.addEventListener("beforeunload", stopAudio);
+  })();
+  </script>
+  <!-- /DIGIY AUDIO PATCH FINAL -->
+
+  <script>
+  (function(){
+    document.addEventListener("click", function(e){
+      const audioAction = e.target.closest && e.target.closest('[data-action="audio"]');
+      if(audioAction && window.digiyStartAudio){
+        e.preventDefault();
+        window.digiyStartAudio();
+      }
+    });
+  })();
+  </script>
+
 
 </body>
 </html>
