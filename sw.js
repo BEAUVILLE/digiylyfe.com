@@ -1,4 +1,4 @@
-const CACHE_NAME = "digiy-hub-v3"; /* ← incrémenté : purge l'ancien cache au déploiement */
+const CACHE_NAME = "digiy-hub-v7"; /* ← incrémenté : purge l'ancien cache au déploiement */
 
 const ASSETS = [
   "./",
