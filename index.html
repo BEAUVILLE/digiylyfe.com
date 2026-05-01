@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="fr">
 <head>
@@ -503,6 +502,177 @@
       .moduleBtn{min-width:248px;max-width:286px;}
       .showcaseImgWrap{height:205px;}
     }
+  
+    /* PATCH FINAL INDEX RESPIRANT — menu séparé */
+    .menuBar,
+    #mainMenuBar,
+    #navDrawer,
+    #fab-overlay,
+    #fab-items,
+    #digiy-fab,
+    #desktopPlusBtn,
+    #plus-overlay,
+    #plus-sheet,
+    .digiy-plus-wheel,
+    .digiy-plus-backdrop,
+    #bottom-nav{
+      display:none!important;
+    }
+
+    .headerMenuBtn{
+      min-height:42px;
+      padding:0 15px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(246,196,83,.38);
+      background:rgba(246,196,83,.11);
+      color:#fff3cf;
+      font-family:var(--fontA);
+      font-size:13px;
+      font-weight:900;
+      white-space:nowrap;
+      box-shadow:0 10px 24px rgba(0,0,0,.18);
+    }
+
+    .headerMenuBtn:hover{
+      border-color:rgba(246,196,83,.60);
+      background:rgba(246,196,83,.16);
+      transform:translateY(-1px);
+    }
+
+    #digiyDesktopMenu{
+      position:fixed;
+      right:16px;
+      bottom:18px;
+      z-index:1200;
+      min-height:54px;
+      padding:0 18px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      border:1px solid rgba(246,196,83,.38);
+      background:
+        radial-gradient(260px 90px at 18% 0%,rgba(255,255,255,.18),transparent 62%),
+        linear-gradient(135deg,rgba(246,196,83,.18),rgba(0,0,0,.64));
+      color:#fff3cf;
+      font-family:var(--fontA);
+      font-size:14px;
+      font-weight:900;
+      text-decoration:none;
+      box-shadow:0 14px 36px rgba(0,0,0,.36);
+      backdrop-filter:blur(12px);
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    #digiyDesktopMenu:hover{
+      transform:translateY(-2px);
+      border-color:rgba(246,196,83,.58);
+      background:
+        radial-gradient(260px 90px at 18% 0%,rgba(255,255,255,.22),transparent 62%),
+        linear-gradient(135deg,rgba(246,196,83,.24),rgba(0,0,0,.66));
+    }
+
+    #digiyBottomNav{
+      display:none;
+    }
+
+    @media(max-width:640px){
+      .topbar{
+        align-items:center;
+      }
+
+      .topSignals{
+        display:none!important;
+      }
+
+      .headerMenuBtn{
+        margin-left:auto;
+        min-height:44px;
+        padding:0 14px;
+      }
+
+      #digiyDesktopMenu{
+        display:none!important;
+      }
+
+      .floatBtn{
+        display:none!important;
+      }
+
+      #digiy-reader{
+        bottom:86px!important;
+      }
+
+      .wrap{
+        padding-bottom:96px!important;
+      }
+
+      #digiyBottomNav{
+        display:block;
+        position:fixed;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index:1300;
+        padding:6px 10px calc(6px + env(safe-area-inset-bottom,0px));
+        background:linear-gradient(180deg,rgba(4,19,13,0),rgba(4,19,13,.96) 20%,rgba(4,19,13,1));
+        backdrop-filter:blur(18px);
+      }
+
+      .digiyBottomNavInner{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        gap:5px;
+        background:rgba(6,20,14,.97);
+        border:1px solid rgba(255,255,255,.13);
+        border-radius:22px;
+        padding:6px;
+        box-shadow:0 -4px 30px rgba(0,0,0,.42),0 16px 44px rgba(0,0,0,.38);
+        max-width:520px;
+        margin:0 auto;
+      }
+
+      .digiyBottomNavInner a{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:3px;
+        min-height:56px;
+        border-radius:16px;
+        border:1px solid rgba(255,255,255,.07);
+        background:transparent;
+        color:rgba(248,250,252,.72);
+        font-family:var(--fontA);
+        font-size:10.5px;
+        font-weight:900;
+        text-decoration:none;
+        -webkit-tap-highlight-color:transparent;
+      }
+
+      .digiyBottomNavInner a.active{
+        color:#06140f;
+        border-color:rgba(246,196,83,.72);
+        background:linear-gradient(135deg,#f6c453,#22c55e);
+        box-shadow:0 6px 18px rgba(0,0,0,.22);
+      }
+
+      .digiyBottomNavInner strong{
+        font-size:22px;
+        line-height:1;
+      }
+    }
+
+    @media(min-width:641px){
+      #digiyBottomNav{
+        display:none!important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -526,57 +696,11 @@
           <span class="signalChip soft">Territoire vivant</span>
           <span class="signalChip soft">LOGICIELS métier</span>
         </div>
-        <button class="menuToggleBtn" id="menuToggleBtn" type="button" aria-expanded="false" aria-controls="mainMenuBar" aria-label="Ouvrir le menu">
-          <span class="menuToggleIcon" id="menuToggleIcon">☰</span>
-          <span id="menuToggleLabel">MENU</span>
-        </button>
-      </header>
 
-      <nav class="menuBar" id="mainMenuBar" aria-label="Navigation DIGIY">
-        <div class="menuRow">
-          <a class="mBtn home" href="https://digiylyfe.com/">🏠</a>
-          <a class="mBtn home" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener">📜 Vision</a>
-          <span class="rowLabel c">JE CHERCHE</span>
-          <a class="mBtn gold" id="mn-explore"       href="#">🗺️ Découvrir le territoire</a>
-          <a class="mBtn gold" id="mn-driver"        href="#">🚗 Un chauffeur</a>
-          <a class="mBtn gold" id="mn-chauffeurs"    href="#">👑 Nos chauffeurs</a>
-          <a class="mBtn gold" id="mn-loc"           href="#">🏠 Où dormir</a>
-          <a class="mBtn gold" id="mn-resatable"     href="#">📅 Réserver</a>
-          <a class="mBtn gold" id="mn-build"         href="#">🏗️ Un artisan</a>
-          <a class="mBtn gold" id="mn-mon-commerce"  href="#">👜 Mon commerce</a>
-          <a class="mBtn gold" id="mn-market"        href="#">🛍️ Les boutiques</a>
-          <a class="mBtn gold" id="mn-jobs"          href="#">💼 Du travail</a>
-          <a class="mBtn gold" id="mn-tarifs"        href="#">🏷️ Tarifs</a>
-        </div>
-        <div class="menuRow">
-          <span class="rowLabel p">JE TRAVAILLE</span>
-          <a class="mBtn green" id="mn-espace-pro"      href="#">🏢 Mon activité</a>
-          <a class="mBtn green" id="mn-inscription-pro" href="#">✍️ Rejoindre DIGIY</a>
-          <a class="mBtn green" id="mn-market-pro"      href="#">🛍️ Je vends / MARKET</a>
-          <a class="mBtn green" id="mn-caisse-pro"      href="#">💰 Mon commerce / CAISSE</a>
-          <a class="mBtn green" id="mn-loc-pro"         href="#">🏠 Je loue / LOC</a>
-          <a class="mBtn green" id="mn-resatable-pro"   href="#">📅 Je réserve / RÉSA</a>
-          <a class="mBtn green" id="mn-driver-pro"      href="#">🚗 Je conduis / DRIVER</a>
-          <a class="mBtn green" id="mn-jobs-pro"        href="#">💼 Je recrute / JOBS</a>
-          <a class="mBtn green" id="mn-explore-pro"     href="#">🗺️ Me faire connaître / EXPLORE</a>
-          <a class="mBtn green" id="mn-build-pro"       href="#">🏗️ Mes services / MULTI</a>
-          <a class="mBtn green" id="mn-pay-pro"         href="#">💳 Mon argent / PAY</a>
-        </div>
-        <div class="menuRow secondary">
-          <span class="rowLabel s">AUSSI</span>
-          <a class="mBtn soft" id="mn-ndimbal-annonces" href="#">📢 Annonces</a>
-          <a class="mBtn soft" id="mn-pay"              href="#">💳 Mon argent</a>
-          <a class="mBtn soft" id="mn-vaschezmoi"       href="#">📍 Venir chez DIGIY</a>
-          <a class="mBtn soft" id="mn-ndimbal-loc"      href="#">🏡 Locations</a>
-          <a class="mBtn soft" id="mn-ndimbal-map"      href="#">🗺️ La carte</a>
-          <a class="mBtn soft" id="mn-audio"            href="#">🎵 Écouter</a>
-          <button class="mBtn soft" type="button" onclick="window.digiyShareSite&&window.digiyShareSite()">📤 Partager</button>
-          <button class="mBtn soft" type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()">🤝 Suggérer un pro</button>
-          <a class="mBtn soft" id="mn-ia"               href="#">🧠 Poser une question</a>
-        </div>
-      </nav>
+        <a class="headerMenuBtn" href="./menu.html" aria-label="Ouvrir le menu DIGIY">☰ Menu</a>
 
-      <section id="intro-bonheur">
+</header>
+<section id="intro-bonheur">
         <div class="wrap">
           <div class="eyebrow"><span class="dot"></span> DIGIYLYFE — TERRITOIRE VIVANT</div>
           <h1>
@@ -1180,150 +1304,19 @@
 })();
 </script>
 
-  <!-- FAB CAMEMBERT — navigation radiale flottante -->
-  <div id="fab-overlay" aria-hidden="true"></div>
-
-  <div id="fab-items" aria-hidden="true">
-    <a class="fab-item" href="#public" id="fab-trouver">
-      <span class="fab-icon">🔎</span><span>Trouver</span>
-    </a>
-    <span class="fab-label">Trouver</span>
-
-    <a class="fab-item" href="https://explore.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
-      <span class="fab-icon">🗺️</span><span>Explorer</span>
-    </a>
-    <span class="fab-label">Explorer</span>
-
-    <a class="fab-item" href="#pro">
-      <span class="fab-icon">🏢</span><span>Pro</span>
-    </a>
-    <span class="fab-label">Côté pro</span>
-
-    <button class="fab-item" type="button" id="fab-plus">
-      <span class="fab-icon">∞</span><span>Plus</span>
-    </button>
-    <span class="fab-label">Plus</span>
-  </div>
-
-  <button id="digiy-fab" type="button" aria-label="Menu DIGIYLYFE" aria-expanded="false">
-    <span class="fab-main-icon">∞</span>
-    <span class="fab-close">✕</span>
-  </button>
-
-  <div id="navDrawer" role="dialog" aria-modal="true" aria-label="Menu DIGIYLYFE">
-    <div class="drawerSheet">
-      <div class="drawerHandle"></div>
-      <div class="drawerHeader">
-        <span class="drawerHeaderTitle">∞ DIGIYLYFE — MENU</span>
-        <button class="drawerClose" id="drawerCloseBtn" type="button" aria-label="Fermer">✕</button>
-      </div>
-      <div class="drawerGroup">
-        <div class="drawerGroupLabel c">JE CHERCHE</div>
-        <div class="drawerLinks">
-          <a class="drawerLink gold" id="dm-explore"      href="#"><span class="dlIcon">🗺️</span>Découvrir le territoire<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-driver"       href="#"><span class="dlIcon">🚗</span>Un chauffeur<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-chauffeurs"   href="#"><span class="dlIcon">👑</span>Nos chauffeurs<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-loc"          href="#"><span class="dlIcon">🏠</span>Où dormir<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-resatable"    href="#"><span class="dlIcon">📅</span>Réserver<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-build"        href="#"><span class="dlIcon">🏗️</span>Un artisan<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-mon-commerce" href="#"><span class="dlIcon">👜</span>Mon commerce<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-market"       href="#"><span class="dlIcon">🛍️</span>Les boutiques<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-jobs"         href="#"><span class="dlIcon">💼</span>Du travail<span class="dlArrow">›</span></a>
-          <a class="drawerLink gold" id="dm-tarifs"       href="#"><span class="dlIcon">🏷️</span>Tarifs<span class="dlArrow">›</span></a>
-        </div>
-      </div>
-      <div class="drawerDivider"></div>
-      <div class="drawerGroup">
-        <div class="drawerGroupLabel p">JE TRAVAILLE</div>
-        <div class="drawerLinks">
-          <a class="drawerLink green" id="dm-espace-pro"      href="#"><span class="dlIcon">🏢</span>Mon activité<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-inscription-pro" href="#"><span class="dlIcon">✍️</span>Rejoindre DIGIY<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-market-pro"      href="#"><span class="dlIcon">🛍️</span>Je vends / MARKET<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-caisse-pro"      href="#"><span class="dlIcon">💰</span>Mon commerce / CAISSE<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-loc-pro"         href="#"><span class="dlIcon">🏠</span>Je loue / LOC<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-resatable-pro"   href="#"><span class="dlIcon">📅</span>Je réserve / RÉSA<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-driver-pro"      href="#"><span class="dlIcon">🚗</span>Je conduis / DRIVER<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-jobs-pro"        href="#"><span class="dlIcon">💼</span>Je recrute / JOBS<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-explore-pro"     href="#"><span class="dlIcon">🗺️</span>Me faire connaître / EXPLORE<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-build-pro"       href="#"><span class="dlIcon">🏗️</span>Mes services / MULTI<span class="dlArrow">›</span></a>
-          <a class="drawerLink green" id="dm-pay-pro"         href="#"><span class="dlIcon">💳</span>Mon argent / PAY<span class="dlArrow">›</span></a>
-        </div>
-      </div>
-      <div class="drawerDivider"></div>
-      <div class="drawerGroup">
-        <div class="drawerGroupLabel s">AUSSI</div>
-        <div class="drawerLinks">
-          <a class="drawerLink" id="dm-ndimbal-annonces" href="#"><span class="dlIcon">📢</span>Annonces<span class="dlArrow">›</span></a>
-          <a class="drawerLink" id="dm-pay"              href="#"><span class="dlIcon">💳</span>Mon argent<span class="dlArrow">›</span></a>
-          <a class="drawerLink" id="dm-vaschezmoi"       href="#"><span class="dlIcon">📍</span>Venir chez DIGIY<span class="dlArrow">›</span></a>
-          <a class="drawerLink" id="dm-ndimbal-loc"      href="#"><span class="dlIcon">🏡</span>Locations<span class="dlArrow">›</span></a>
-          <a class="drawerLink" id="dm-ndimbal-map"      href="#"><span class="dlIcon">🗺️</span>La carte<span class="dlArrow">›</span></a>
-          <a class="drawerLink" id="dm-audio"            href="#"><span class="dlIcon">🎵</span>Écouter<span class="dlArrow">›</span></a>
-          <button class="drawerLink" type="button" onclick="window.digiyShareSite&&window.digiyShareSite()"><span class="dlIcon">📤</span>Partager DIGIY<span class="dlArrow">›</span></button>
-          <button class="drawerLink" type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()"><span class="dlIcon">🤝</span>Suggérer un pro<span class="dlArrow">›</span></button>
-          <a class="drawerLink" id="dm-ia"               href="#"><span class="dlIcon">🧠</span>Poser une question<span class="dlArrow">›</span></button>
-        </div>
-      </div>
+  <!-- BOTTOM NAV MOBILE SIMPLE -->
+  <nav id="digiyBottomNav" aria-label="Navigation rapide DIGIYLYFE">
+    <div class="digiyBottomNavInner">
+      <a class="active" href="#public"><strong>🔎</strong><span>Trouver</span></a>
+      <a href="https://explore.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><strong>🗺️</strong><span>Explorer</span></a>
+      <a href="#pro"><strong>🏢</strong><span>Pro</span></a>
+      <a href="./menu.html"><strong>☰</strong><span>Menu</span></a>
     </div>
-  </div>
+  </nav>
 
-<style>
-#digiy-reader{position:fixed;bottom:76px;left:24px;z-index:99999;display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#d4af37,#b78b34);color:#111827;font-family:'Outfit',sans-serif;font-weight:900;font-size:15px;padding:13px 22px;border-radius:999px;border:none;cursor:pointer;box-shadow:0 8px 28px rgba(0,0,0,.24);transition:transform .18s ease,box-shadow .18s ease;-webkit-tap-highlight-color:transparent;user-select:none;white-space:nowrap}
-#digiy-reader:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(0,0,0,.3)}
-#digiy-reader:active{transform:scale(.97)}
-#digiy-reader:disabled{opacity:.65;cursor:not-allowed}
-#digiy-reader .d-ico{font-size:16px;line-height:1}
-#digiy-bar-wrap{position:fixed;left:0;right:0;bottom:0;height:3px;background:rgba(212,175,55,.2);z-index:99998;opacity:0;pointer-events:none;transition:opacity .25s ease}
-#digiy-bar{width:0%;height:100%;background:linear-gradient(90deg,#d4af37,#b78b34);transition:width .18s linear}
-@media(max-width:640px){#digiy-reader{bottom:66px;left:10px;font-size:12.5px;padding:10px 12px;max-width:46vw;overflow:hidden;text-overflow:ellipsis}#digiy-lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
-@media(max-width:380px){#digiy-reader{font-size:0;width:44px;height:44px;padding:0;justify-content:center}#digiy-reader .d-ico{font-size:16px}}
-</style>
 
-<button id="digiy-reader" type="button" aria-label="Écouter DIGIY">
-  <span class="d-ico">&#9654;</span>
-  <span id="digiy-lbl">Écouter DIGIY</span>
-</button>
+  <!-- MENU DESKTOP SIMPLE -->
+  <a id="digiyDesktopMenu" href="./menu.html" aria-label="Ouvrir le menu DIGIY">☰ Menu DIGIY</a>
 
-<div id="digiy-bar-wrap"><div id="digiy-bar"></div></div>
-
-<script>
-(function(){
-var TEXTE="Le bonheur business est là. Par DIGIYLYFE.\n\nLe complément de WhatsApp pour être visible, travailler mieux et recevoir son argent directement.\n\nWhatsApp te permet de parler avec ceux qui te connaissent déjà.\nDIGIYLYFE t'ouvre au web, au territoire et aux nouveaux clients.\n\nPrésence digitale.\nOutils métier simples.\nLien direct.\nQR.\nPaiement direct.\n\nTu restes visible.\nTu travailles mieux.\nEt tu gardes ton argent.\n\nAvec DIGIY, ton client te paie directement.\nZéro commission sur tes ventes.\nUn abonnement simple, clair et léger — c'est tout.\n\nBienvenue sur DIGIYLYFE.\n\nIci, la Petite Côte se montre, se relie et avance.\n\nPas de commission qui t'écrase.\nPas d'intermédiaire qui te détourne.\n\nTu cherches un chauffeur ?\nTu lui écris directement sur WhatsApp.\n\nTu cherches où dormir ?\nTu parles directement au propriétaire.\n\nTu veux réserver un service ?\nTu fixes ton moment sans passer par quelqu'un.\n\nTu veux un artisan ?\nTu expliques ton besoin directement.\n\nTu veux découvrir une boutique ?\nTu appelles ou tu y vas directement.\n\nDIGIYLYFE te met en face du réel.\nSimple.\nDirect.\nHumain.\n\nUne présence digitale enracinée dans le territoire.\n\nLes pros s'ouvrent à la lumière du web.\nIls gardent leur identité, leur lien direct avec le client, leurs outils métier.\nSans que personne garde le contrôle à leur place.\n\nIci, DIGIYLYFE leur rend la totalité du contrôle.\n\nMais une présence ne suffit pas si les clients ne circulent pas.\n\nLa base, c'est la clientèle :\nles gens qui cherchent,\nqui appellent,\nqui réservent,\nqui font travailler les pros.\n\nAlors si ce site t'aide…\n\nutilise-le,\npartage-le,\nfais-le circuler.\n\nEnvoie DIGIYLYFE à quelqu'un qui cherche\nun chauffeur,\nun logement,\nun artisan,\nou un service.\n\nEnvoie-le aussi à quelqu'un qui travaille\net qui mérite d'être visible.\n\nUn commerce sérieux.\nUn chauffeur fiable.\nUn artisan courageux.\nUn service utile.\n\nDIGIY est ouvert à ceux qui travaillent,\nà ceux qui cherchent,\nà ceux qui avancent.\n\nLe travail a une valeur.\n\nDIGIY avance avec les pros.\nMais il vit grâce aux clients qui les font travailler.\n\nSans clients, pas d'activité.\nSans circulation, pas de clients.\n\nLa technologie impressionne.\nMais ce qui compte, c'est l'usage.\n\nQuand les gens commencent à chercher,\nà appeler,\nà réserver,\nà travailler…\n\nalors ça devient réel.\n\nEt quand ça devient un réflexe…\n\nle projet devient vivant.\n\nFais tourner le site.\nFais entrer les clients.\nFais connaître les bons pros.\n\nC'est comme ça que le territoire devient vivant.";
-
-var btn=document.getElementById('digiy-reader');
-if(!btn)return;
-var lbl=document.getElementById('digiy-lbl'),ico=btn.querySelector('.d-ico'),barW=document.getElementById('digiy-bar-wrap'),bar=document.getElementById('digiy-bar');
-if(!('speechSynthesis'in window)){btn.style.display='none';return;}
-var synth=window.speechSynthesis,playing=false,utt=null,timer=null,warnedNoFr=false;
-
-function getVoice(){var v=synth.getVoices()||[];return v.find(function(x){return /^fr/i.test(x.lang||'');})||null;}
-function resetLabel(){if(lbl)lbl.textContent='Écouter DIGIY';if(ico)ico.innerHTML='&#9654;';}
-function stop(){synth.cancel();clearInterval(timer);playing=false;resetLabel();if(barW)barW.style.opacity='0';if(bar)bar.style.width='0%';}
-
-function play(){
-  synth.cancel();clearInterval(timer);
-  utt=new SpeechSynthesisUtterance(TEXTE);
-  utt.lang='fr-FR';utt.rate=0.88;utt.pitch=1.05;utt.volume=1;
-  var voices=synth.getVoices()||[];
-  var voice=voices.find(function(v){return /^fr/i.test(v.lang||'')&&/female|audrey|amelie|hortense|julie|thomas|paul/i.test(v.name||'');})||voices.find(function(v){return /^fr/i.test(v.lang||'');})||getVoice();
-  if(voice)utt.voice=voice;
-  else if(!warnedNoFr){warnedNoFr=true;btn.title='Voix française non trouvée : lecture avec la voix disponible.';}
-  var duration=(TEXTE.split(' ').length)*500,progress=0;
-  playing=true;btn.disabled=false;
-  if(lbl)lbl.textContent='Stopper';if(ico)ico.innerHTML='&#9632;';
-  if(barW)barW.style.opacity='1';if(bar)bar.style.width='0%';
-  timer=setInterval(function(){progress+=250;if(bar)bar.style.width=Math.min(96,(progress/duration)*100)+'%';},250);
-  utt.onerror=function(){stop();if(lbl)lbl.textContent='Audio indisponible';setTimeout(resetLabel,1800);};
-  utt.onend=function(){if(bar)bar.style.width='100%';setTimeout(stop,300);};
-  synth.speak(utt);
-}
-
-btn.onclick=function(){playing?stop():play();};
-window.digiyStartAudio=function(){if(!playing)play();};
-window.digiyStopAudio=stop;
-if(typeof synth.onvoiceschanged!=='undefined')synth.onvoiceschanged=function(){getVoice();};
-window.addEventListener('beforeunload',stop);
-})();
-</script>
 </body>
 </html>
