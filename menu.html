@@ -390,6 +390,100 @@
       .item,.quick{min-height:68px}
       .emoji{width:42px;height:42px;flex-basis:42px;font-size:22px}
     }
+  
+    /* ACCORDÉON MOBILE / DESKTOP */
+    .accordion-section{
+      padding:0;
+      overflow:hidden;
+    }
+
+    .accordion-toggle{
+      width:100%;
+      min-height:76px;
+      border:0;
+      background:transparent;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:18px;
+      text-align:left;
+      cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .accordion-toggle-left{
+      min-width:0;
+    }
+
+    .accordion-toggle .section-title{
+      margin:0;
+    }
+
+    .accordion-toggle .section-note{
+      margin-top:5px;
+    }
+
+    .accordion-chevron{
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background:rgba(255,255,255,.06);
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      color:#fff3cf;
+      font-family:var(--fontA);
+      font-size:20px;
+      font-weight:900;
+      transition:transform .18s ease, background .18s ease;
+    }
+
+    .accordion-section.open .accordion-chevron{
+      transform:rotate(180deg);
+      background:rgba(246,196,83,.12);
+      border-color:rgba(246,196,83,.30);
+    }
+
+    .accordion-body{
+      display:none;
+      padding:0 18px 18px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .accordion-section.open .accordion-body{
+      display:block;
+      animation:accordionIn .18s ease-out;
+    }
+
+    @keyframes accordionIn{
+      from{opacity:0;transform:translateY(-6px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .accordion-section.open{
+      border-color:rgba(246,196,83,.22);
+    }
+
+    @media(max-width:560px){
+      .accordion-toggle{
+        min-height:70px;
+        padding:16px;
+      }
+
+      .accordion-body{
+        padding:0 16px 16px;
+      }
+
+      .accordion-chevron{
+        width:38px;
+        height:38px;
+        font-size:18px;
+      }
+    }
+
   </style>
 </head>
 
@@ -433,14 +527,16 @@
         </div>
       </section>
 
-      <section class="section" id="je-cherche">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title gold">JE CHERCHE</h2>
-            <div class="section-note">Pour trouver vite : lieu, chauffeur, logement, boutique, service, travail.</div>
-          </div>
-        </div>
+      <section class="section accordion-section open" id="je-cherche">
+        <button class="accordion-toggle" type="button" aria-expanded="true">
+          <span class="accordion-toggle-left">
+            <span class="section-title gold">JE CHERCHE</span>
+            <span class="section-note">Pour trouver vite : lieu, chauffeur, logement, boutique, service, travail.</span>
+          </span>
+          <span class="accordion-chevron">⌄</span>
+        </button>
 
+        <div class="accordion-body">
         <div class="grid">
           <a class="item gold" href="https://digiylyfe.com/"><span class="emoji">🏠</span><span><b>Accueil</b><span class="txt">Retour au site principal.</span></span></a>
           <a class="item gold" href="https://vision.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">📜</span><span><b>Vision</b><span class="txt">Lire l’esprit DIGIYLYFE.</span></span></a>
@@ -455,16 +551,19 @@
           <a class="item gold" href="https://jobs.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">💼</span><span><b>Du travail</b><span class="txt">Emploi et opportunités.</span></span></a>
           <a class="item gold" href="https://digiylyfe.com/#tarifs"><span class="emoji">🏷️</span><span><b>Tarifs</b><span class="txt">Voir les offres DIGIY.</span></span></a>
         </div>
+        </div>
       </section>
 
-      <section class="section" id="je-travaille">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title green">JE TRAVAILLE</h2>
-            <div class="section-note">Pour les pros : publier, gérer, vendre, encaisser, conduire, louer, réserver.</div>
-          </div>
-        </div>
+      <section class="section accordion-section" id="je-travaille">
+        <button class="accordion-toggle" type="button" aria-expanded="false">
+          <span class="accordion-toggle-left">
+            <span class="section-title green">JE TRAVAILLE</span>
+            <span class="section-note">Pour les pros : publier, gérer, vendre, encaisser, conduire, louer, réserver.</span>
+          </span>
+          <span class="accordion-chevron">⌄</span>
+        </button>
 
+        <div class="accordion-body">
         <div class="grid">
           <a class="item green" href="https://pro-espace.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🏢</span><span><b>Mon activité</b><span class="txt">Rond-point central PRO.</span></span></a>
           <a class="item green" href="https://commencer-a-payer.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">✍️</span><span><b>Rejoindre DIGIY</b><span class="txt">Activer un outil métier.</span></span></a>
@@ -478,16 +577,19 @@
           <a class="item green" href="https://pro-build.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">🏗️</span><span><b>Mes services / MULTI</b><span class="txt">Travaux et services.</span></span></a>
           <a class="item green" href="https://pay.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">💳</span><span><b>Mon argent / PAY</b><span class="txt">Entrées, dépenses, épargne.</span></span></a>
         </div>
+        </div>
       </section>
 
-      <section class="section" id="aussi">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">AUSSI</h2>
-            <div class="section-note">Les actions utiles autour de DIGIYLYFE.</div>
-          </div>
-        </div>
+      <section class="section accordion-section" id="aussi">
+        <button class="accordion-toggle" type="button" aria-expanded="false">
+          <span class="accordion-toggle-left">
+            <span class="section-title ">AUSSI</span>
+            <span class="section-note">Les actions utiles autour de DIGIYLYFE.</span>
+          </span>
+          <span class="accordion-chevron">⌄</span>
+        </button>
 
+        <div class="accordion-body">
         <div class="grid">
           <a class="item" href="https://digiylyfe.com/#annonces"><span class="emoji">📢</span><span><b>Annonces</b><span class="txt">Informations et nouvelles.</span></span></a>
           <a class="item" href="https://pay.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span class="emoji">💳</span><span><b>Mon argent</b><span class="txt">Lire ses flux.</span></span></a>
@@ -498,6 +600,7 @@
           <button class="item" id="btnShare2" type="button"><span class="emoji">📤</span><span><b>Partager</b><span class="txt">Faire circuler.</span></span></button>
           <button class="item" id="btnSuggest2" type="button"><span class="emoji">🤝</span><span><b>Suggérer un pro</b><span class="txt">Envoyer un contact.</span></span></button>
           <button class="item" id="btnQuestion2" type="button"><span class="emoji">🧠</span><span><b>Poser une question</b><span class="txt">Demander de l’aide.</span></span></button>
+        </div>
         </div>
       </section>
 
@@ -632,5 +735,30 @@
     window.addEventListener("beforeunload", stopAudio);
   })();
   </script>
+
+  <script>
+  (function(){
+    document.querySelectorAll(".accordion-section").forEach(function(section){
+      var btn = section.querySelector(".accordion-toggle");
+      if(!btn) return;
+
+      btn.addEventListener("click", function(){
+        var isOpen = section.classList.contains("open");
+
+        document.querySelectorAll(".accordion-section").forEach(function(other){
+          other.classList.remove("open");
+          var otherBtn = other.querySelector(".accordion-toggle");
+          if(otherBtn) otherBtn.setAttribute("aria-expanded", "false");
+        });
+
+        if(!isOpen){
+          section.classList.add("open");
+          btn.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+  })();
+  </script>
+
 </body>
 </html>
