@@ -271,6 +271,388 @@
 
 
 
+
+    /* ── DIGIY GARE MOBILE : une entrée, une action ── */
+    #digiy-action-stations{
+      margin:16px 18px 0;
+      border:1px solid rgba(246,196,83,.28);
+      border-radius:26px;
+      background:
+        radial-gradient(760px 260px at 12% 0%,rgba(246,196,83,.13),transparent 58%),
+        radial-gradient(680px 280px at 88% 28%,rgba(0,166,81,.15),transparent 62%),
+        linear-gradient(180deg,rgba(10,48,34,.84),rgba(8,28,20,.76));
+      box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.06);
+      padding:18px;
+    }
+
+    #digiy-action-stations .station-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid rgba(246,196,83,.32);
+      background:rgba(246,196,83,.10);
+      color:#fff3cf;
+      font-family:var(--fontA);
+      font-size:11px;
+      font-weight:1000;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    #digiy-action-stations .station-title{
+      margin:12px 0 0;
+      font-family:var(--fontA);
+      font-size:clamp(28px,4.8vw,48px);
+      line-height:1.02;
+      letter-spacing:-.045em;
+      font-weight:1000;
+      color:#fff;
+      max-width:12ch;
+    }
+
+    #digiy-action-stations .station-title span{color:var(--gold);}
+
+    #digiy-action-stations .station-text{
+      margin:10px 0 0;
+      color:#dbe8e0;
+      font-size:16px;
+      line-height:1.65;
+      font-weight:750;
+      max-width:74ch;
+    }
+
+    #digiy-action-stations .station-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-top:16px;
+    }
+
+    #digiy-action-stations .station-card{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:12px;
+      min-height:190px;
+      padding:16px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.13);
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.035)),
+        radial-gradient(circle at top left,rgba(246,196,83,.09),transparent 44%);
+      box-shadow:0 14px 34px rgba(0,0,0,.20);
+      color:#fff;
+      text-decoration:none;
+      transition:transform .16s ease,border-color .16s ease;
+    }
+
+    #digiy-action-stations .station-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(246,196,83,.42);
+    }
+
+    #digiy-action-stations .station-icon{
+      width:62px;
+      height:62px;
+      border-radius:22px;
+      display:grid;
+      place-items:center;
+      font-size:32px;
+      background:rgba(246,196,83,.12);
+      border:1px solid rgba(246,196,83,.24);
+    }
+
+    #digiy-action-stations .station-card h2{
+      margin:0 0 7px;
+      font-family:var(--fontA);
+      font-size:23px;
+      line-height:1.06;
+      font-weight:1000;
+      letter-spacing:-.03em;
+    }
+
+    #digiy-action-stations .station-card p{
+      margin:0;
+      color:rgba(248,250,252,.80);
+      line-height:1.55;
+      font-size:14px;
+      font-weight:750;
+    }
+
+    #digiy-action-stations .station-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      border-radius:999px;
+      border:1px solid rgba(246,196,83,.30);
+      background:rgba(246,196,83,.10);
+      color:#fff3cf;
+      font-family:var(--fontA);
+      font-size:13px;
+      font-weight:1000;
+      margin-top:auto;
+    }
+
+    #digiy-action-stations .station-card.primary .station-cta{
+      color:#06140f;
+      border-color:rgba(246,196,83,.72);
+      background:linear-gradient(135deg,#f6c453,#22c55e);
+    }
+
+    .digiy-mobile-dock{
+      display:none;
+    }
+
+    @media(max-width:760px){
+      .wrap{
+        padding:10px 10px 112px;
+      }
+
+      .topbar{
+        padding:12px;
+        align-items:flex-start;
+      }
+
+      .brand{
+        width:100%;
+      }
+
+      .logo{
+        width:54px;
+        height:54px;
+        border-radius:18px;
+      }
+
+      .brandText .title{
+        font-size:21px;
+      }
+
+      .brandText .subtitle{
+        font-size:14px;
+        line-height:1.35;
+      }
+
+      .brandText .byline{
+        font-size:18px;
+      }
+
+      .topSignals{
+        display:none;
+      }
+
+      .menuToggleBtn{
+        display:inline-flex;
+      }
+
+      .menuBar{
+        display:none;
+      }
+
+      .menuBar.open{
+        display:block;
+      }
+
+      #intro-bonheur{
+        margin:12px 12px 0;
+        border-radius:24px;
+      }
+
+      #intro-bonheur .wrap{
+        padding:28px 16px 24px;
+      }
+
+      #intro-bonheur h1{
+        font-size:clamp(42px,13vw,62px);
+      }
+
+      #intro-bonheur .lead{
+        font-size:17px;
+        line-height:1.6;
+      }
+
+      #intro-bonheur .cta{
+        display:grid;
+        grid-template-columns:1fr;
+      }
+
+      #intro-bonheur .btnx{
+        width:100%;
+        min-height:58px;
+        border-radius:18px;
+        font-size:16px;
+      }
+
+      #digiy-action-stations{
+        margin:14px 12px 0;
+        padding:16px;
+        border-radius:24px;
+      }
+
+      #digiy-action-stations .station-title{
+        font-size:clamp(34px,11vw,48px);
+        max-width:10ch;
+      }
+
+      #digiy-action-stations .station-text{
+        font-size:16px;
+        line-height:1.6;
+      }
+
+      #digiy-action-stations .station-grid{
+        grid-template-columns:1fr;
+      }
+
+      #digiy-action-stations .station-card{
+        min-height:auto;
+        display:grid;
+        grid-template-columns:72px 1fr;
+        align-items:center;
+        gap:13px;
+        padding:15px;
+      }
+
+      #digiy-action-stations .station-icon{
+        width:72px;
+        height:72px;
+        font-size:36px;
+        grid-row:1 / span 2;
+      }
+
+      #digiy-action-stations .station-card h2{
+        font-size:24px;
+      }
+
+      #digiy-action-stations .station-card p{
+        font-size:15px;
+      }
+
+      #digiy-action-stations .station-cta{
+        grid-column:1/-1;
+        min-height:54px;
+        border-radius:18px;
+        font-size:15px;
+      }
+
+      #esprit-digiylyfe,
+      #net-bridge,
+      #quick-business-doors,
+      #digiy-circulation,
+      .section,
+      .showcaseSection{
+        margin-left:12px;
+        margin-right:12px;
+        border-radius:22px;
+      }
+
+      .sectionHead h2,
+      .favTitle{
+        font-size:clamp(25px,8vw,36px);
+        line-height:1.05;
+      }
+
+      .sectionSub{
+        font-size:15px !important;
+        line-height:1.55;
+      }
+
+      .moduleBtn{
+        min-width:82vw;
+        min-height:190px;
+        border-radius:24px;
+      }
+
+      .moduleName{
+        font-size:21px;
+      }
+
+      .moduleHint{
+        font-size:15px;
+      }
+
+      .focusLabel{
+        font-size:25px;
+      }
+
+      .focusText{
+        font-size:16px;
+      }
+
+      .floatBtn{
+        display:none !important;
+      }
+
+      .digiy-mobile-dock{
+        position:fixed;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index:100000;
+        display:block;
+        padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));
+        background:linear-gradient(180deg,rgba(4,19,13,0),rgba(4,19,13,.94) 26%,rgba(4,19,13,.99));
+        backdrop-filter:blur(12px);
+      }
+
+      .digiy-mobile-dock-inner{
+        max-width:760px;
+        margin:0 auto;
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:7px;
+        border:1px solid rgba(255,255,255,.12);
+        background:rgba(6,20,14,.94);
+        border-radius:22px;
+        padding:7px;
+        box-shadow:0 16px 44px rgba(0,0,0,.38);
+      }
+
+      .digiy-mobile-dock a,
+      .digiy-mobile-dock button{
+        min-height:58px;
+        border-radius:16px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:3px;
+        color:rgba(248,250,252,.84);
+        font-family:var(--fontA);
+        font-size:11px;
+        font-weight:950;
+        border:1px solid rgba(255,255,255,.08);
+        text-align:center;
+        background:rgba(255,255,255,.04);
+        text-decoration:none;
+      }
+
+      .digiy-mobile-dock .primary{
+        color:#06140f;
+        border-color:rgba(246,196,83,.70);
+        background:linear-gradient(135deg,#f6c453,#22c55e);
+      }
+
+      .digiy-mobile-dock strong{
+        font-size:20px;
+        line-height:1;
+      }
+    }
+
+    @media(max-width:430px){
+      #digiy-action-stations .station-card{
+        grid-template-columns:64px 1fr;
+      }
+
+      #digiy-action-stations .station-icon{
+        width:64px;
+        height:64px;
+        font-size:32px;
+      }
+    }
+
+
     /* ── INTRO ESPRIT DIGIYLYFE — SOUS LE HERO ── */
     #esprit-digiylyfe{
       margin:16px 18px 0;
@@ -1182,6 +1564,45 @@
 
       
 
+
+      <section id="digiy-action-stations" aria-label="Choisir une action DIGIYLYFE">
+        <div class="station-kicker">🚉 La gare DIGIYLYFE</div>
+        <h2 class="station-title">Choisis ta <span>voie.</span></h2>
+        <p class="station-text">
+          DIGIYLYFE n’est pas un scroll sans fin. Tu arrives, tu choisis une porte, puis tu avances :
+          trouver quelque chose, faire connaître quelqu’un, ou entrer côté activité.
+        </p>
+
+        <div class="station-grid">
+          <a class="station-card primary" href="#public">
+            <div class="station-icon">🔎</div>
+            <div>
+              <h2>Trouver</h2>
+              <p>Chauffeur, logement, boutique, service, réservation ou lieu à découvrir.</p>
+            </div>
+            <span class="station-cta">Voir les portes</span>
+          </a>
+
+          <button class="station-card" type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()">
+            <div class="station-icon">🤝</div>
+            <div>
+              <h2>Suggérer</h2>
+              <p>Tu connais un pro, un commerce, un logement ou un service utile ? Fais-le circuler.</p>
+            </div>
+            <span class="station-cta">Suggérer un pro</span>
+          </button>
+
+          <a class="station-card" href="#pro">
+            <div class="station-icon">🏢</div>
+            <div>
+              <h2>Côté pro</h2>
+              <p>Publier son activité, choisir son outil, recevoir les clients directement.</p>
+            </div>
+            <span class="station-cta">Entrer côté activité</span>
+          </a>
+        </div>
+      </section>
+
       <!-- INTRO → ESPRIT DIGIYLYFE -->
       <section id="esprit-digiylyfe" aria-label="Écouter et comprendre l’esprit DIGIYLYFE">
         <div class="espritInner">
@@ -1492,6 +1913,15 @@
       </main>
     </div>
   </div>
+
+
+  <nav class="digiy-mobile-dock" aria-label="Navigation rapide DIGIYLYFE">
+    <div class="digiy-mobile-dock-inner">
+      <a class="primary" href="#public"><strong>🔎</strong><span>Trouver</span></a>
+      <button type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()"><strong>🤝</strong><span>Suggérer</span></button>
+      <a href="#pro"><strong>🏢</strong><span>Pro</span></a>
+    </div>
+  </nav>
 
   <!-- FLOAT BUTTONS -->
   <button id="espace-pro-btn"    class="floatBtn" type="button">🧰 Mon activité pro</button>
