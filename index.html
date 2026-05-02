@@ -36,7 +36,6 @@
   <link rel="manifest" href="./manifest.json"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <!-- OPTIM : poids 400/500/600 retirés — inutilisés dans le CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Manrope:wght@700;800&display=swap" rel="stylesheet"/>
   <style>
     :root{
@@ -146,6 +145,38 @@
     .medailleUrl{display:block;font-family:var(--fontA);font-size:13px;font-weight:900;line-height:1.5;color:#fff3cf;text-decoration:none;word-break:break-word;max-width:70ch;padding:0 10px;}
     @media(max-width:640px){#medaille-digiy{padding:28px 14px 22px;}.medailleLine{font-size:14px;}.medailleSub{font-size:13px;}.medailleBtn{width:100%;}}
 
+    /* ══ DEUX TERRAINS ══ */
+    #deux-terrains{margin:16px 18px 0;padding:22px 22px 20px;border-radius:28px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(10,48,34,.82),rgba(8,28,20,.78));box-shadow:0 18px 60px rgba(0,0,0,.28);overflow:hidden;}
+    #deux-terrains .dt-kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;border:1px solid rgba(246,196,83,.32);background:rgba(246,196,83,.09);color:#fff3cf;font-family:var(--fontA);font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;}
+    #deux-terrains .dt-title{margin:13px 0 0;font-family:var(--fontA);font-size:clamp(26px,3.8vw,44px);font-weight:900;line-height:1.02;letter-spacing:-.04em;color:#fff;}
+    #deux-terrains .dt-title span{color:var(--gold);}
+    #deux-terrains .dt-intro{margin:11px 0 0;max-width:74ch;color:#dbe8e0;font-size:15px;line-height:1.70;font-weight:800;}
+    #deux-terrains .dt-intro strong{color:#fff3cf;}
+    #deux-terrains .dt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px;}
+    #deux-terrains .dt-card{padding:20px 18px 18px;border-radius:22px;border:1px solid rgba(255,255,255,.13);background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.045));box-shadow:0 12px 32px rgba(0,0,0,.18);display:flex;flex-direction:column;gap:10px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;}
+    #deux-terrains .dt-card:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.32);box-shadow:0 18px 44px rgba(0,0,0,.26);}
+    #deux-terrains .dt-card.sn{border-color:rgba(0,166,81,.30);background:linear-gradient(180deg,rgba(0,166,81,.14),rgba(255,255,255,.04));}
+    #deux-terrains .dt-card.fr{border-color:rgba(246,196,83,.28);background:linear-gradient(180deg,rgba(246,196,83,.12),rgba(255,255,255,.04));}
+    #deux-terrains .dt-flag{font-size:36px;line-height:1;}
+    #deux-terrains .dt-country{font-family:var(--fontA);font-size:clamp(20px,2.5vw,26px);font-weight:900;color:#fff;line-height:1.1;}
+    #deux-terrains .dt-desc{font-size:14px;line-height:1.60;color:rgba(248,250,252,.82);font-weight:800;}
+    #deux-terrains .dt-link{display:inline-flex;align-items:center;gap:6px;margin-top:4px;padding:10px 15px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#fff;font-family:var(--fontA);font-size:13px;font-weight:900;text-decoration:none;width:fit-content;transition:background .16s,border-color .16s,transform .14s;}
+    #deux-terrains .dt-link:hover{background:rgba(255,255,255,.14);border-color:rgba(246,196,83,.38);transform:translateY(-1px);}
+    #deux-terrains .dt-card.sn .dt-link{border-color:rgba(0,166,81,.35);background:rgba(0,166,81,.12);color:#dcffe8;}
+    #deux-terrains .dt-card.fr .dt-link{border-color:rgba(246,196,83,.35);background:rgba(246,196,83,.10);color:#fff3cf;}
+    #deux-terrains .dt-clip{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:16px 20px;border-radius:20px;border:1px solid rgba(246,196,83,.28);background:radial-gradient(600px 180px at 20% 0%,rgba(246,196,83,.12),transparent 62%),linear-gradient(135deg,rgba(246,196,83,.07),rgba(0,166,81,.06));}
+    #deux-terrains .dt-clip-text{font-family:var(--fontA);font-size:15px;font-weight:900;color:#fff3cf;line-height:1.4;}
+    #deux-terrains .dt-clip-text span{display:block;font-family:var(--fontB);font-size:13px;font-weight:800;color:rgba(248,250,252,.68);margin-top:3px;}
+    #deux-terrains .dt-clip-btn{display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:0 20px;border-radius:16px;border:1px solid rgba(246,196,83,.72);background:radial-gradient(240px 80px at 18% 0%,rgba(255,255,255,.22),transparent 62%),linear-gradient(135deg,#f6c453 0%,#22c55e 100%);color:#06140f;font-family:var(--fontA);font-size:14px;font-weight:900;text-decoration:none;white-space:nowrap;box-shadow:0 12px 28px rgba(0,0,0,.28),0 0 0 3px rgba(246,196,83,.10);transition:transform .15s,box-shadow .15s;}
+    #deux-terrains .dt-clip-btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,.38),0 0 20px rgba(246,196,83,.20);}
+    @media(max-width:640px){
+      #deux-terrains{margin:14px 12px 0;padding:18px 16px 16px;}
+      #deux-terrains .dt-grid{grid-template-columns:1fr;gap:10px;}
+      #deux-terrains .dt-card{padding:16px 15px 15px;}
+      #deux-terrains .dt-clip{flex-direction:column;align-items:flex-start;padding:14px 16px;}
+      #deux-terrains .dt-clip-btn{width:100%;justify-content:center;}
+    }
+
     /* NET BRIDGE */
     #net-bridge{margin:16px 18px 0;padding:18px 20px;border-radius:24px;border:1px solid rgba(246,196,83,.30);background:radial-gradient(720px 260px at 12% 0%,rgba(246,196,83,.13),transparent 60%),radial-gradient(620px 240px at 90% 20%,rgba(0,166,81,.14),transparent 62%),linear-gradient(135deg,rgba(246,196,83,.08),rgba(0,166,81,.07));display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:0 16px 42px rgba(0,0,0,.22),0 0 0 1px rgba(246,196,83,.05);}
     #net-bridge .bridge-visual{display:block;width:clamp(170px,22vw,260px);flex:0 0 auto;border-radius:22px;overflow:hidden;border:1px solid rgba(246,196,83,.34);background:rgba(0,0,0,.18);box-shadow:0 16px 38px rgba(0,0,0,.30),0 0 0 4px rgba(246,196,83,.06);transition:transform .18s ease,border-color .18s ease;}
@@ -175,18 +206,19 @@
     @media(max-width:760px){#digiy-circulation .circ-grid{grid-template-columns:1fr;}}
     @media(max-width:640px){#digiy-circulation{margin:14px 12px 0;padding:16px;}.circ-actions .btn{width:100%;}}
 
-    /* QUICK DOORS */
+    /* QUICK DOORS — ══ PATCH : grille 3 colonnes ══ */
     #quick-business-doors{margin:16px 18px 0;padding:18px 20px;border-radius:24px;border:1px solid rgba(246,196,83,.24);background:linear-gradient(135deg,rgba(246,196,83,.06),rgba(0,166,81,.08));box-shadow:var(--shadow);}
     #quick-business-doors .doors-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
     #quick-business-doors .doors-title{font-family:var(--fontA);font-size:16px;font-weight:900;color:#fff3cf;line-height:1.35;}
     #quick-business-doors .doors-sub{margin-top:4px;font-size:13px;line-height:1.5;color:rgba(248,250,252,.74);max-width:62ch;}
-    #quick-business-doors .doors-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+    #quick-business-doors .doors-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
     #quick-business-doors .doorCard{display:block;padding:16px 16px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.04));text-decoration:none;color:#fff;transition:transform .15s ease,border-color .15s ease;box-shadow:0 10px 28px rgba(0,0,0,.18);}
     #quick-business-doors .doorCard:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.40);}
     #quick-business-doors .doorIcon{font-size:28px;display:block;margin-bottom:10px;}
     #quick-business-doors .doorName{font-family:var(--fontA);font-size:18px;font-weight:900;line-height:1.2;color:#fff;}
     #quick-business-doors .doorText{margin-top:6px;font-size:13.5px;line-height:1.5;color:rgba(248,250,252,.84);}
     #quick-business-doors .doorHint{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:6px 10px;border-radius:999px;border:1px solid rgba(246,196,83,.26);background:rgba(246,196,83,.08);font-size:11px;font-weight:900;color:#fff0c8;font-family:var(--fontA);}
+    @media(max-width:900px){#quick-business-doors .doors-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
     @media(max-width:640px){#quick-business-doors{margin:14px 12px 0;padding:16px;}#quick-business-doors .doors-grid{grid-template-columns:1fr;}}
 
     /* MAIN */
@@ -300,14 +332,7 @@
     .section .sectionSub{color:rgba(255,255,255,.82)!important;}
 
     /* FLOAT BTNS */
-    .floatBtn{position:fixed;z-index:40;border-radius:999px;padding:14px 16px;border:1px solid rgba(255,255,255,.14);background:rgba(6,33,22,.62);color:var(--ink);font-family:var(--fontA);font-weight:900;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px);transition:all .2s;white-space:nowrap;}
-    .floatBtn:hover{border-color:rgba(246,196,83,.35);transform:translateY(-2px)}.floatBtn:active{transform:scale(.98)}
-    #espace-pro-btn{left:14px;bottom:18px;background:linear-gradient(135deg,rgba(0,166,81,.22),rgba(0,0,0,.55));border-color:rgba(0,166,81,.38);color:#dcffe8;}
-    #explore-float-btn{right:14px;bottom:18px;background:linear-gradient(135deg,rgba(246,196,83,.16),rgba(0,0,0,.55));border-color:rgba(246,196,83,.36);color:#fff3cf;}
-    #digiy-help-btn{right:14px;bottom:72px;background:rgba(6,33,22,.62);}
-    #install-app-btn{left:50%;bottom:18px;transform:translateX(-50%);background:linear-gradient(135deg,#00a651,#00853f);border-color:rgba(255,255,255,.18);color:#fff;box-shadow:0 14px 36px rgba(0,133,63,.28);}
-    #install-app-btn:hover{transform:translateX(-50%) translateY(-2px);}
-    #install-app-btn:active{transform:translateX(-50%) scale(.98);}
+    .floatBtn{position:fixed;z-index:40;border-radius:999px;padding:14px 16px;border:1px solid rgba(255,255,255,.14);background:rgba(6,33,22,.62);color:var(--ink);font-family:var(--fontA);font-weight:900;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px);transition:all .2s;white-space:nowrap;display:none!important;}
 
     /* MODALS */
     .ndimbal,.qrModal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(4px);}
@@ -334,157 +359,30 @@
     .drawerClose{width:32px;height:32px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;}
     .drawerGroup{padding:14px 14px 4px;}
     .drawerGroupLabel{font-family:var(--fontA);font-weight:900;font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:5px 10px;border-radius:6px;display:inline-flex;margin-bottom:10px;}
-    .drawerGroupLabel.c{background:rgba(246,196,83,.22);color:#ffe080;border:1px solid rgba(246,196,83,.45);}
-    .drawerGroupLabel.p{background:rgba(0,166,81,.20);color:#9bffb8;border:1px solid rgba(0,166,81,.42);}
-    .drawerGroupLabel.s{background:rgba(255,255,255,.10);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.22);}
     .drawerLinks{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
-    .drawerLink{width:100%;text-align:left;cursor:pointer;display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:16px;font-family:var(--fontA);font-size:15px;font-weight:800;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);transition:background .15s,border-color .15s;-webkit-tap-highlight-color:transparent;}
-    .drawerLink:active{background:rgba(255,255,255,.10);}
+    .drawerLink{width:100%;text-align:left;cursor:pointer;display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:16px;font-family:var(--fontA);font-size:15px;font-weight:800;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);transition:background .15s,border-color .15s;}
     .drawerLink.gold{border-color:rgba(246,196,83,.14);color:#fff3cf;}
-    .drawerLink.gold:active{background:rgba(246,196,83,.10);border-color:rgba(246,196,83,.30);}
     .drawerLink.green{border-color:rgba(0,166,81,.14);color:#dcffe8;}
-    .drawerLink.green:active{background:rgba(0,166,81,.10);border-color:rgba(0,166,81,.30);}
     .drawerLink .dlIcon{font-size:20px;flex:0 0 28px;text-align:center;}
     .drawerLink .dlArrow{margin-left:auto;opacity:.38;font-size:13px;}
     .drawerDivider{height:1px;background:rgba(255,255,255,.06);margin:2px 14px 6px;}
 
-    /* MOBILE */
+    /* HEADER MENU BTN */
+    .headerMenuBtn{min-height:42px;padding:0 15px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(246,196,83,.38);background:rgba(246,196,83,.11);color:#fff3cf;font-family:var(--fontA);font-size:13px;font-weight:900;white-space:nowrap;box-shadow:0 10px 24px rgba(0,0,0,.18);}
+    .headerMenuBtn:hover{border-color:rgba(246,196,83,.60);background:rgba(246,196,83,.16);transform:translateY(-1px);}
+
+    /* DESKTOP MENU */
+    #digiyDesktopMenu{position:fixed;right:16px;bottom:18px;z-index:1200;min-height:54px;padding:0 18px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid rgba(246,196,83,.38);background:radial-gradient(260px 90px at 18% 0%,rgba(255,255,255,.18),transparent 62%),linear-gradient(135deg,rgba(246,196,83,.18),rgba(0,0,0,.64));color:#fff3cf;font-family:var(--fontA);font-size:14px;font-weight:900;text-decoration:none;box-shadow:0 14px 36px rgba(0,0,0,.36);backdrop-filter:blur(12px);}
+    #digiyDesktopMenu:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.58);}
+
+    /* BOTTOM NAV MOBILE */
+    #digiyBottomNav{display:none;}
     @media(max-width:640px){
       .menuToggleBtn{display:inline-flex;}
-      .topSignals{display:none;}
-      .menuBar{display:none!important;}
-      #intro-bonheur{margin-top:0;border-radius:0 0 24px 24px;border-top:none;}
-      .railHint{display:block;font-size:18px;font-weight:900;}.railWrap{padding-bottom:76px;}
-      .railArrow{display:flex;top:auto;bottom:14px;transform:none;width:52px;height:52px;font-size:30px;border-radius:999px;background:rgba(6,20,14,.94);border:1px solid rgba(246,196,83,.28);}
-      .railArrow.left{left:12px;}.railArrow.right{right:12px;}
-      .moduleBtn{min-width:240px;max-width:280px;min-height:194px;padding:18px 16px;}
-      .moduleEmoji{font-size:32px;}.moduleName{font-size:18px;}.moduleHint{font-size:14px;min-height:48px;}
-      .favTitle{font-size:32px;}
-      #favoritesSection .sectionSub{font-size:17px;}
-      .showcaseImgWrap{max-width:100%;height:215px;}
-      #signature-digiy .showcaseImgWrap{height:auto;}
-      #net-bridge{margin:14px 12px 0;}
-      #quick-business-doors{margin:14px 12px 0;padding:16px;}
-      #quick-business-doors .doors-grid{grid-template-columns:1fr;}
-      .floatBtn{padding:11px 13px;font-size:13px;max-width:46vw;}
-      #espace-pro-btn{left:10px;bottom:14px;}
-      #explore-float-btn{right:10px;bottom:14px;}
-      #digiy-help-btn{right:10px;bottom:66px;}
-      #install-app-btn{left:50%;bottom:118px;max-width:70vw;}
-    }
-    @media(max-width:480px){
-      .brandText .subtitle{max-width:210px;font-size:12px;}
-      .moduleBtn{min-width:248px;max-width:286px;}
-      .showcaseImgWrap{height:205px;}
-    }
-
-    /* ══════════════════════════════════════
-       FAB CAMEMBERT — tous écrans, mobile-first
-       Remplace bottom nav + float buttons
-    ══════════════════════════════════════ */
-
-    /* Float buttons masqués partout — FAB les remplace */
-    .floatBtn{display:none!important;}
-
-    /* Overlay quand le FAB est ouvert */
-    #fab-overlay{
-      position:fixed;inset:0;z-index:1400;
-      background:rgba(4,19,13,.62);backdrop-filter:blur(5px);
-      opacity:0;pointer-events:none;transition:opacity .22s ease;
-    }
-    #fab-overlay.open{opacity:1;pointer-events:all;}
-
-    /* Bouton principal FAB */
-    #digiy-fab{
-      position:fixed;right:16px;bottom:22px;z-index:1600;
-      width:64px;height:64px;border-radius:50%;border:none;
-      background:linear-gradient(135deg,#f6c453 0%,#22c55e 100%);
-      color:#06140f;font-size:26px;font-weight:900;
-      display:flex;align-items:center;justify-content:center;
-      cursor:pointer;
-      box-shadow:0 8px 28px rgba(0,0,0,.38),0 0 0 4px rgba(246,196,83,.22);
-      transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease;
-      -webkit-tap-highlight-color:transparent;user-select:none;
-    }
-    #digiy-fab:active{transform:scale(.93);}
-    #digiy-fab.open{
-      transform:rotate(45deg);
-      box-shadow:0 12px 38px rgba(0,0,0,.50),0 0 0 5px rgba(246,196,83,.32);
-    }
-    #digiy-fab .fab-close{display:none;font-size:28px;}
-    #digiy-fab.open .fab-main-icon{display:none;}
-    #digiy-fab.open .fab-close{display:block;}
-
-    /* Conteneur items — ancré sur le FAB */
-    #fab-items{
-      position:fixed;right:16px;bottom:22px;z-index:1500;
-      width:64px;height:64px;pointer-events:none;
-    }
-
-    /* Item générique */
-    .fab-item{
-      position:absolute;top:50%;left:50%;
-      width:54px;height:54px;border-radius:50%;
-      transform:translate(-50%,-50%) scale(0);opacity:0;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(6,20,14,.94);backdrop-filter:blur(14px);
-      cursor:pointer;text-decoration:none;color:#fff;
-      font-family:var(--fontA);font-size:9.5px;font-weight:900;
-      box-shadow:0 8px 24px rgba(0,0,0,.40);
-      transition:transform .28s cubic-bezier(.34,1.56,.64,1),opacity .18s ease;
-      -webkit-tap-highlight-color:transparent;pointer-events:none;
-    }
-    .fab-item .fab-icon{font-size:22px;line-height:1;}
-
-    /* Labels chip */
-    .fab-label{
-      position:absolute;top:50%;left:50%;
-      transform:translate(-50%,-50%) scale(0);opacity:0;
-      background:rgba(6,20,14,.94);border:1px solid rgba(255,255,255,.14);
-      border-radius:999px;padding:6px 12px;
-      font-family:var(--fontA);font-size:12px;font-weight:900;color:#fff3cf;
-      white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.32);
-      backdrop-filter:blur(10px);pointer-events:none;
-      transition:transform .28s cubic-bezier(.34,1.56,.64,1),opacity .18s ease;
-    }
-
-    /* Arc ouvert — quart de cercle r=108px, angles 90°→180° */
-    #fab-items.open .fab-item{opacity:1;pointer-events:all;}
-    #fab-items.open .fab-label{opacity:1;}
-
-    /* Item 1 — 90° (haut) */
-    #fab-items.open .fab-item:nth-child(1){transform:translate(-50%,-50%) translate(0px,-108px) scale(1);transition-delay:.05s;}
-    #fab-items.open .fab-label:nth-child(2){transform:translate(-50%,-50%) translate(-72px,-108px) scale(1);transition-delay:.05s;}
-    /* Item 2 — 120° */
-    #fab-items.open .fab-item:nth-child(3){transform:translate(-50%,-50%) translate(-54px,-93px) scale(1);transition-delay:.09s;}
-    #fab-items.open .fab-label:nth-child(4){transform:translate(-50%,-50%) translate(-126px,-93px) scale(1);transition-delay:.09s;}
-    /* Item 3 — 150° */
-    #fab-items.open .fab-item:nth-child(5){transform:translate(-50%,-50%) translate(-93px,-54px) scale(1);transition-delay:.13s;}
-    #fab-items.open .fab-label:nth-child(6){transform:translate(-50%,-50%) translate(-165px,-54px) scale(1);transition-delay:.13s;}
-    /* Item 4 — 180° (gauche) */
-    #fab-items.open .fab-item:nth-child(7){transform:translate(-50%,-50%) translate(-108px,0px) scale(1);transition-delay:.17s;}
-    #fab-items.open .fab-label:nth-child(8){transform:translate(-50%,-50%) translate(-180px,0px) scale(1);transition-delay:.17s;}
-
-    /* Audio reader — repositionné bas-gauche symétrique au FAB */
-    #digiy-reader{
-      position:fixed;
-      left:16px!important;bottom:22px!important;right:auto!important;
-      z-index:1500;
-    }
-
-    /* Mobile — ajustements */
-    @media(max-width:640px){
-      .wrap{padding-bottom:90px;}
-      #digiy-fab{width:58px;height:58px;font-size:24px;right:12px;bottom:16px;}
-      #fab-items{right:12px;bottom:16px;width:58px;height:58px;}
-      #digiy-reader{left:12px!important;bottom:16px!important;font-size:13px;padding:0 13px;min-height:48px;}
-      .fab-label{font-size:11px;padding:5px 10px;}
-      /* Nav mobile menuBar cachée — drawer à la place */
-      .menuToggleBtn{display:inline-flex;}
-      .topSignals{display:none;}
-      .menuBar{display:none!important;}
-      #intro-bonheur{margin-top:0;border-radius:0 0 24px 24px;border-top:none;}
+      .topSignals{display:none!important;}
+      .headerMenuBtn{margin-left:auto;}
+      #digiyDesktopMenu{display:none!important;}
+      .wrap{padding-bottom:96px!important;}
       .railHint{display:block;font-size:18px;font-weight:900;}.railWrap{padding-bottom:76px;}
       .railArrow{display:flex;top:auto;bottom:14px;transform:none;width:52px;height:52px;font-size:30px;border-radius:999px;background:rgba(6,20,14,.94);border:1px solid rgba(246,196,83,.28);}
       .railArrow.left{left:12px;}.railArrow.right{right:12px;}
@@ -494,252 +392,17 @@
       .showcaseImgWrap{max-width:100%;height:215px;}
       #signature-digiy .showcaseImgWrap{height:auto;}
       #net-bridge{margin:14px 12px 0;}
-      #quick-business-doors{margin:14px 12px 0;padding:16px;}
-      #quick-business-doors .doors-grid{grid-template-columns:1fr;}
+      #digiyBottomNav{display:block;position:fixed;left:0;right:0;bottom:0;z-index:1300;padding:6px 10px calc(6px + env(safe-area-inset-bottom,0px));background:linear-gradient(180deg,rgba(4,19,13,0),rgba(4,19,13,.96) 20%,rgba(4,19,13,1));backdrop-filter:blur(18px);}
+      .digiyBottomNavInner{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;background:rgba(6,20,14,.97);border:1px solid rgba(255,255,255,.13);border-radius:22px;padding:6px;box-shadow:0 -4px 30px rgba(0,0,0,.42),0 16px 44px rgba(0,0,0,.38);max-width:520px;margin:0 auto;}
+      .digiyBottomNavInner a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:56px;border-radius:16px;border:1px solid rgba(255,255,255,.07);background:transparent;color:rgba(248,250,252,.72);font-family:var(--fontA);font-size:10.5px;font-weight:900;text-decoration:none;}
+      .digiyBottomNavInner a.active{color:#06140f;border-color:rgba(246,196,83,.72);background:linear-gradient(135deg,#f6c453,#22c55e);box-shadow:0 6px 18px rgba(0,0,0,.22);}
+      .digiyBottomNavInner strong{font-size:22px;line-height:1;}
     }
-    @media(max-width:480px){
-      .brandText .subtitle{max-width:210px;font-size:12px;}
-      .moduleBtn{min-width:248px;max-width:286px;}
-      .showcaseImgWrap{height:205px;}
-    }
-  
-    /* PATCH FINAL INDEX RESPIRANT — menu séparé */
-    .menuBar,
-    #mainMenuBar,
-    #navDrawer,
-    #fab-overlay,
-    #fab-items,
-    #digiy-fab,
-    #desktopPlusBtn,
-    #plus-overlay,
-    #plus-sheet,
-    .digiy-plus-wheel,
-    .digiy-plus-backdrop,
-    #bottom-nav{
-      display:none!important;
-    }
+    @media(max-width:480px){.brandText .subtitle{max-width:210px;font-size:12px;}.moduleBtn{min-width:248px;max-width:286px;}.showcaseImgWrap{height:205px;}}
+    @media(min-width:641px){#digiyBottomNav{display:none!important;}}
 
-    .headerMenuBtn{
-      min-height:42px;
-      padding:0 15px;
-      border-radius:999px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border:1px solid rgba(246,196,83,.38);
-      background:rgba(246,196,83,.11);
-      color:#fff3cf;
-      font-family:var(--fontA);
-      font-size:13px;
-      font-weight:900;
-      white-space:nowrap;
-      box-shadow:0 10px 24px rgba(0,0,0,.18);
-    }
-
-    .headerMenuBtn:hover{
-      border-color:rgba(246,196,83,.60);
-      background:rgba(246,196,83,.16);
-      transform:translateY(-1px);
-    }
-
-    #digiyDesktopMenu{
-      position:fixed;
-      right:16px;
-      bottom:18px;
-      z-index:1200;
-      min-height:54px;
-      padding:0 18px;
-      border-radius:999px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:9px;
-      border:1px solid rgba(246,196,83,.38);
-      background:
-        radial-gradient(260px 90px at 18% 0%,rgba(255,255,255,.18),transparent 62%),
-        linear-gradient(135deg,rgba(246,196,83,.18),rgba(0,0,0,.64));
-      color:#fff3cf;
-      font-family:var(--fontA);
-      font-size:14px;
-      font-weight:900;
-      text-decoration:none;
-      box-shadow:0 14px 36px rgba(0,0,0,.36);
-      backdrop-filter:blur(12px);
-      -webkit-tap-highlight-color:transparent;
-    }
-
-    #digiyDesktopMenu:hover{
-      transform:translateY(-2px);
-      border-color:rgba(246,196,83,.58);
-      background:
-        radial-gradient(260px 90px at 18% 0%,rgba(255,255,255,.22),transparent 62%),
-        linear-gradient(135deg,rgba(246,196,83,.24),rgba(0,0,0,.66));
-    }
-
-    #digiyBottomNav{
-      display:none;
-    }
-
-    @media(max-width:640px){
-      .topbar{
-        align-items:center;
-      }
-
-      .topSignals{
-        display:none!important;
-      }
-
-      .headerMenuBtn{
-        margin-left:auto;
-        min-height:44px;
-        padding:0 14px;
-      }
-
-      #digiyDesktopMenu{
-        display:none!important;
-      }
-
-      .floatBtn{
-        display:none!important;
-      }
-
-      #digiy-reader{
-        bottom:86px!important;
-      }
-
-      .wrap{
-        padding-bottom:96px!important;
-      }
-
-      #digiyBottomNav{
-        display:block;
-        position:fixed;
-        left:0;
-        right:0;
-        bottom:0;
-        z-index:1300;
-        padding:6px 10px calc(6px + env(safe-area-inset-bottom,0px));
-        background:linear-gradient(180deg,rgba(4,19,13,0),rgba(4,19,13,.96) 20%,rgba(4,19,13,1));
-        backdrop-filter:blur(18px);
-      }
-
-      .digiyBottomNavInner{
-        display:grid;
-        grid-template-columns:repeat(4,1fr);
-        gap:5px;
-        background:rgba(6,20,14,.97);
-        border:1px solid rgba(255,255,255,.13);
-        border-radius:22px;
-        padding:6px;
-        box-shadow:0 -4px 30px rgba(0,0,0,.42),0 16px 44px rgba(0,0,0,.38);
-        max-width:520px;
-        margin:0 auto;
-      }
-
-      .digiyBottomNavInner a{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        gap:3px;
-        min-height:56px;
-        border-radius:16px;
-        border:1px solid rgba(255,255,255,.07);
-        background:transparent;
-        color:rgba(248,250,252,.72);
-        font-family:var(--fontA);
-        font-size:10.5px;
-        font-weight:900;
-        text-decoration:none;
-        -webkit-tap-highlight-color:transparent;
-      }
-
-      .digiyBottomNavInner a.active{
-        color:#06140f;
-        border-color:rgba(246,196,83,.72);
-        background:linear-gradient(135deg,#f6c453,#22c55e);
-        box-shadow:0 6px 18px rgba(0,0,0,.22);
-      }
-
-      .digiyBottomNavInner strong{
-        font-size:22px;
-        line-height:1;
-      }
-    }
-
-    @media(min-width:641px){
-      #digiyBottomNav{
-        display:none!important;
-      }
-    }
-
-  
-    /* DIGIY AUDIO PATCH FINAL */
-    #digiyAudioToast{
-      position:fixed;
-      left:50%;
-      bottom:88px;
-      z-index:1500;
-      transform:translateX(-50%) translateY(12px);
-      opacity:0;
-      pointer-events:none;
-      min-height:44px;
-      max-width:min(92vw,520px);
-      padding:0 14px;
-      border-radius:999px;
-      border:1px solid rgba(246,196,83,.32);
-      background:rgba(6,33,22,.94);
-      color:#fff3cf;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      font-family:var(--fontA);
-      font-size:13px;
-      font-weight:900;
-      box-shadow:0 14px 34px rgba(0,0,0,.36);
-      backdrop-filter:blur(12px);
-      transition:opacity .18s ease, transform .18s ease;
-      text-align:center;
-    }
-
-    #digiyAudioToast.show{
-      opacity:1;
-      transform:translateX(-50%) translateY(0);
-    }
-
-    #digiyAudioBarWrap{
-      position:fixed;
-      left:0;
-      right:0;
-      bottom:0;
-      z-index:1600;
-      height:3px;
-      opacity:0;
-      pointer-events:none;
-      background:rgba(246,196,83,.18);
-      transition:opacity .18s ease;
-    }
-
-    #digiyAudioBar{
-      width:0%;
-      height:100%;
-      background:linear-gradient(90deg,#f6c453,#22c55e);
-      transition:width .18s linear;
-    }
-
-    @media(max-width:640px){
-      #digiyAudioToast{
-        bottom:calc(84px + env(safe-area-inset-bottom,0px));
-        font-size:12.5px;
-      }
-
-      #digiyAudioBarWrap{
-        bottom:calc(74px + env(safe-area-inset-bottom,0px));
-      }
-    }
-    /* /DIGIY AUDIO PATCH FINAL */
-
+    /* PATCH — masquer menus legacy */
+    .menuBar,#mainMenuBar,#navDrawer,#fab-overlay,#fab-items,#digiy-fab,#bottom-nav{display:none!important;}
   </style>
 </head>
 <body>
@@ -763,11 +426,10 @@
           <span class="signalChip soft">Territoire vivant</span>
           <span class="signalChip soft">LOGICIELS métier</span>
         </div>
-
         <a class="headerMenuBtn" href="./menu.html" aria-label="Ouvrir le menu DIGIY">☰ Menu</a>
+      </header>
 
-</header>
-<section id="intro-bonheur">
+      <section id="intro-bonheur">
         <div class="wrap">
           <div class="eyebrow"><span class="dot"></span> DIGIYLYFE — TERRITOIRE VIVANT</div>
           <h1>
@@ -823,6 +485,34 @@
         </div>
       </section>
 
+      <!-- ══ DEUX TERRAINS — PATCH ══ -->
+      <section id="deux-terrains" aria-label="Une même mission, deux terrains">
+        <span class="dt-kicker">🌍 Une même mission · deux terrains</span>
+        <h2 class="dt-title">DIGIYLYFE reste <span>une seule maison.</span></h2>
+        <p class="dt-intro">Le message s'adapte au territoire, mais la promesse ne change pas : <strong>rendre les activités locales visibles, organisées et payées directement.</strong></p>
+        <div class="dt-grid">
+          <div class="dt-card sn">
+            <div class="dt-flag">🇸🇳</div>
+            <div class="dt-country">Sénégal / Afrique</div>
+            <p class="dt-desc">WhatsApp, Wave, QR, contact direct, économie locale, pros du terrain et souveraineté numérique enracinée.</p>
+            <a class="dt-link" href="#public">👉 Voir les portes utiles</a>
+          </div>
+          <div class="dt-card fr">
+            <div class="dt-flag">🇫🇷</div>
+            <div class="dt-country">France</div>
+            <p class="dt-desc">Petits pros, artisans, commerces, locations, services locaux : présence simple, lien client direct, sans usine à gaz.</p>
+            <a class="dt-link" href="https://digiy-hub.pages.dev/" target="_blank" rel="noopener">⚙️ Équiper mon activité</a>
+          </div>
+        </div>
+        <div class="dt-clip">
+          <div class="dt-clip-text">
+            🎬 Le clip officiel DIGIYLYFE
+            <span>De Saly à Sarlat — territoire vivant · 0% commission · paiement direct</span>
+          </div>
+          <a class="dt-clip-btn" href="https://digiylyfe.net/7508-2/" target="_blank" rel="noopener noreferrer">▶ Regarder le clip</a>
+        </div>
+      </section>
+
       <div id="net-bridge" aria-label="Article vision DIGIYLYFE">
         <a class="bridge-visual" href="https://digiylyfe.net/uber-veut-garder-le-client-dans-son-application-digiy-veut-lamener-chez-le-professionnel/" target="_blank" rel="noopener noreferrer">
           <img src="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-15_19_48.png" alt="DIGIYLYFE — plateforme ou écosystème local" loading="lazy" decoding="async"/>
@@ -855,11 +545,12 @@
         <div class="circ-line">Sans clients, pas d'activité. Sans circulation, pas de clients. DIGIY avance quand le site tourne dans les mains du peuple.</div>
       </section>
 
+      <!-- ══ QUICK DOORS — PATCH : 3 portes ══ -->
       <div id="quick-business-doors" aria-label="Accès directs DIGIYLYFE">
         <div class="doors-head">
           <div>
-            <div class="doors-title">Deux portes directes en plus</div>
-            <div class="doors-sub">Sans toucher au reste de la vitrine, on ouvre ici deux accès visibles pour aller droit au but.</div>
+            <div class="doors-title">Trois portes directes en plus</div>
+            <div class="doors-sub">Sénégal, France et l'univers chauffeur — trois portes directes pour aller droit au but.</div>
           </div>
         </div>
         <div class="doors-grid">
@@ -873,6 +564,12 @@
             <span class="doorIcon">🚗</span>
             <div class="doorName">Driver</div>
             <div class="doorText">Entrer directement dans l'univers chauffeur DIGIYLYFE.</div>
+            <div class="doorHint">↗ Ouvrir maintenant</div>
+          </a>
+          <a class="doorCard" href="https://france.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
+            <span class="doorIcon">🇫🇷</span>
+            <div class="doorName">France · Périgord · Sarlat</div>
+            <div class="doorText">Artisans, commerces, locations, services locaux — lien direct client, 0% commission.</div>
             <div class="doorHint">↗ Ouvrir maintenant</div>
           </a>
         </div>
@@ -1007,11 +704,6 @@
     </div>
   </div>
 
-  <button id="espace-pro-btn"    class="floatBtn" type="button">🧰 Mon activité pro</button>
-  <button id="explore-float-btn" class="floatBtn" type="button">🗺️ Découvrir</button>
-  <button id="install-app-btn"   class="floatBtn" type="button">📲 Installer l'app</button>
-  <button id="digiy-help-btn"    class="floatBtn" type="button">∞ NDIMBAL</button>
-
   <div id="digiy-ndimbal" class="ndimbal hidden" aria-hidden="true">
     <div class="ndimbalBox" role="dialog" aria-modal="true">
       <div class="ndimbalTitle">∞ Tu veux quoi ?</div>
@@ -1058,67 +750,53 @@
   function wr(url){try{const u=new URL(url,location.href);u.searchParams.set("return",HOME);return u.toString();}catch(e){return url;}}
 
   const L={
-    market:"https://market.digiylyfe.com/",
-    driver:"https://driver-client.digiylyfe.com/",
-    galerieChauffeurs:"https://beauville.github.io/galerie-chauffeurs/",
-    explore:"https://explore.digiylyfe.com/",
-    loc:"https://loc.digiylyfe.com/",
-    resaTable:"https://resa-table-resto.digiylyfe.com/",
-    jobs:"https://jobs.digiylyfe.com/",
-    pay:"https://pay.digiylyfe.com/",
-    vasChezDigiy:"https://vas-chez-digiy.digiylyfe.com/",
-    ndimbalLoc:"https://ndimbal-loc.digiylyfe.com/",
-    ndimbalMap:"https://ndimbal-map.digiylyfe.com/",
-    ndimbalAnnonces:"https://ndimbal-annonces.digiylyfe.com/",
-    audio:"https://digiy-audio.digiylyfe.com/",
-    assistantIA:"https://knowledge.digiylyfe.com/widget/",
-    build:"https://build.digiylyfe.com/",
-    monCommerce:"https://mon-commerce.digiylyfe.com/",
-    tarifs:"https://tarifs.digiylyfe.com/",
-    espacePro:"https://pro-espace.digiylyfe.com/",
-    inscriptionPro:"https://commencer-a-payer.digiylyfe.com/",
-    marketPro:"https://pro-market.digiylyfe.com/",
-    caissePro:"https://commerce-pro.digiylyfe.com/",
-    driverPro:"https://pro-driver.digiylyfe.com/",
-    jobsPro:"https://pro-job.digiylyfe.com/",
-    locPro:"https://pro-loc.digiylyfe.com/",
-    buildPro:"https://pro-build.digiylyfe.com/",
-    resaTablePro:"https://pro-resa-resto.digiylyfe.com/",
-    explorePro:"https://pro-explore.digiylyfe.com/",
-    payPro:"https://pro-pay.digiylyfe.com/pin.html?redirect=cockpit"
+    market:"https://market.digiylyfe.com/",driver:"https://driver-client.digiylyfe.com/",
+    galerieChauffeurs:"https://beauville.github.io/galerie-chauffeurs/",explore:"https://explore.digiylyfe.com/",
+    loc:"https://loc.digiylyfe.com/",resaTable:"https://resa-table-resto.digiylyfe.com/",
+    jobs:"https://jobs.digiylyfe.com/",pay:"https://pay.digiylyfe.com/",
+    vasChezDigiy:"https://vas-chez-digiy.digiylyfe.com/",ndimbalLoc:"https://ndimbal-loc.digiylyfe.com/",
+    ndimbalMap:"https://ndimbal-map.digiylyfe.com/",ndimbalAnnonces:"https://ndimbal-annonces.digiylyfe.com/",
+    audio:"https://digiy-audio.digiylyfe.com/",assistantIA:"https://knowledge.digiylyfe.com/widget/",
+    build:"https://build.digiylyfe.com/",monCommerce:"https://mon-commerce.digiylyfe.com/",
+    tarifs:"https://tarifs.digiylyfe.com/",espacePro:"https://pro-espace.digiylyfe.com/",
+    inscriptionPro:"https://commencer-a-payer.digiylyfe.com/",marketPro:"https://pro-market.digiylyfe.com/",
+    caissePro:"https://commerce-pro.digiylyfe.com/",driverPro:"https://pro-driver.digiylyfe.com/",
+    jobsPro:"https://pro-job.digiylyfe.com/",locPro:"https://pro-loc.digiylyfe.com/",
+    buildPro:"https://pro-build.digiylyfe.com/",resaTablePro:"https://pro-resa-resto.digiylyfe.com/",
+    explorePro:"https://pro-explore.digiylyfe.com/",payPro:"https://pro-pay.digiylyfe.com/pin.html?redirect=cockpit"
   };
 
   const PUB=[
-    {key:"explore",          name:"Découvrir le territoire",  icon:"🗺️", desc:"Spots, lieux, ambiances — entre dans la région",        status:"LIVE", loco:true},
-    {key:"driver",           name:"Trouver un chauffeur",     icon:"🚗", desc:"Un trajet maintenant, direct sur le terrain",            status:"LIVE"},
-    {key:"galerieChauffeurs",name:"Nos chauffeurs",           icon:"👑", desc:"Style, présence, savoir-être — la mobilité qui élève",   status:"LIVE"},
-    {key:"loc",              name:"Trouver où dormir",        icon:"🏠", desc:"Direct chez le propriétaire, sans intermédiaire",        status:"LIVE"},
-    {key:"resaTable",        name:"Réserver",                 icon:"📅", desc:"Un rendez-vous, un créneau, un service — en 2 clics",   status:"LIVE"},
-    {key:"build",            name:"Trouver un artisan",       icon:"🏗️", desc:"Plombier, maçon, électricien — le savoir-faire terrain", status:"BETA"},
-    {key:"monCommerce",      name:"Mon commerce",             icon:"👜", desc:"Boutiques mode, sacs, chaussures — élégant et direct",   status:"LIVE"},
-    {key:"market",           name:"Les boutiques",            icon:"🛍️", desc:"Acheter, vendre — le marché local connecté",             status:"LIVE"},
-    {key:"jobs",             name:"Trouver du travail",       icon:"💼", desc:"Les opportunités du terrain, visibles et directes",      status:"LIVE"},
-    {key:"ndimbalAnnonces",  name:"Publier une annonce",      icon:"📢", desc:"Se faire voir, vendre, diffuser",                        status:"LIVE"},
-    {key:"pay",              name:"Mon argent",               icon:"💳", desc:"Paiement direct, simple, sans friction",                 status:"LIVE"},
-    {key:"vasChezDigiy",     name:"Venir chez DIGIY",         icon:"📍", desc:"La porte terrain pour s'orienter",                       status:"LIVE"},
-    {key:"ndimbalLoc",       name:"Locations",                icon:"🏡", desc:"Logements directs, sans détour",                         status:"LIVE"},
-    {key:"ndimbalMap",       name:"La carte",                 icon:"🗺️", desc:"Voir les annonces autour de toi",                        status:"LIVE"},
-    {key:"audio",            name:"Écouter",                  icon:"🎵", desc:"Les contenus DIGIY en audio",                            status:"LIVE"},
-    {key:"assistantIA",      name:"Poser une question",       icon:"🧠", desc:"L'assistant répond — direct, clair, terrain",            status:"LIVE"}
+    {key:"explore",name:"Découvrir le territoire",icon:"🗺️",desc:"Spots, lieux, ambiances — entre dans la région",status:"LIVE",loco:true},
+    {key:"driver",name:"Trouver un chauffeur",icon:"🚗",desc:"Un trajet maintenant, direct sur le terrain",status:"LIVE"},
+    {key:"galerieChauffeurs",name:"Nos chauffeurs",icon:"👑",desc:"Style, présence, savoir-être — la mobilité qui élève",status:"LIVE"},
+    {key:"loc",name:"Trouver où dormir",icon:"🏠",desc:"Direct chez le propriétaire, sans intermédiaire",status:"LIVE"},
+    {key:"resaTable",name:"Réserver",icon:"📅",desc:"Un rendez-vous, un créneau, un service — en 2 clics",status:"LIVE"},
+    {key:"build",name:"Trouver un artisan",icon:"🏗️",desc:"Plombier, maçon, électricien — le savoir-faire terrain",status:"BETA"},
+    {key:"monCommerce",name:"Mon commerce",icon:"👜",desc:"Boutiques mode, sacs, chaussures — élégant et direct",status:"LIVE"},
+    {key:"market",name:"Les boutiques",icon:"🛍️",desc:"Acheter, vendre — le marché local connecté",status:"LIVE"},
+    {key:"jobs",name:"Trouver du travail",icon:"💼",desc:"Les opportunités du terrain, visibles et directes",status:"LIVE"},
+    {key:"ndimbalAnnonces",name:"Publier une annonce",icon:"📢",desc:"Se faire voir, vendre, diffuser",status:"LIVE"},
+    {key:"pay",name:"Mon argent",icon:"💳",desc:"Paiement direct, simple, sans friction",status:"LIVE"},
+    {key:"vasChezDigiy",name:"Venir chez DIGIY",icon:"📍",desc:"La porte terrain pour s'orienter",status:"LIVE"},
+    {key:"ndimbalLoc",name:"Locations",icon:"🏡",desc:"Logements directs, sans détour",status:"LIVE"},
+    {key:"ndimbalMap",name:"La carte",icon:"🗺️",desc:"Voir les annonces autour de toi",status:"LIVE"},
+    {key:"audio",name:"Écouter",icon:"🎵",desc:"Les contenus DIGIY en audio",status:"LIVE"},
+    {key:"assistantIA",name:"Poser une question",icon:"🧠",desc:"L'assistant répond — direct, clair, terrain",status:"LIVE"}
   ];
 
   const PRO=[
-    {key:"espacePro",     name:"Mon activité",          icon:"🏢", desc:"Tout commence ici — espace central, propre et direct",    status:"LIVE", loco:true},
-    {key:"inscriptionPro",name:"Rejoindre DIGIY",       icon:"✍️", desc:"Créer mon compte pro — simple, sans paperasse",           status:"LIVE"},
-    {key:"marketPro",     name:"Je vends — MARKET",     icon:"🛍️", desc:"Ma boutique en ligne, mes produits, mes ventes directes", status:"LIVE", loco:true},
-    {key:"caissePro",     name:"Mon commerce — CAISSE", icon:"💰", desc:"Encaisser, suivre mes ventes, garder la main",            status:"LIVE"},
-    {key:"locPro",        name:"Je loue — LOC",         icon:"🏠", desc:"Mes logements, mes disponibilités, mes clients",          status:"LIVE"},
-    {key:"resaTablePro",  name:"Je réserve — RÉSA",     icon:"📅", desc:"Mes créneaux, mes rendez-vous, mon planning",            status:"LIVE"},
-    {key:"driverPro",     name:"Je conduis — DRIVER",   icon:"🚗", desc:"Mes courses, mes zones, mon activité chauffeur",          status:"LIVE"},
-    {key:"jobsPro",       name:"Je recrute — JOBS",     icon:"💼", desc:"Publier une offre, suivre les candidatures",              status:"LIVE"},
-    {key:"buildPro",      name:"Mes services — MULTI",  icon:"🏗️", desc:"Mes chantiers, mes propositions, mon activité terrain",   status:"BETA"},
-    {key:"explorePro",    name:"Me faire connaître — EXPLORE", icon:"🗺️", desc:"Poser mon lieu sur le territoire DIGIY",           status:"LIVE"},
-    {key:"payPro",        name:"Mon argent — PAY",      icon:"💳", desc:"Voir mes paiements — en un coup d'œil",                  status:"LIVE"}
+    {key:"espacePro",name:"Mon activité",icon:"🏢",desc:"Tout commence ici — espace central, propre et direct",status:"LIVE",loco:true},
+    {key:"inscriptionPro",name:"Rejoindre DIGIY",icon:"✍️",desc:"Créer mon compte pro — simple, sans paperasse",status:"LIVE"},
+    {key:"marketPro",name:"Je vends — MARKET",icon:"🛍️",desc:"Ma boutique en ligne, mes produits, mes ventes directes",status:"LIVE",loco:true},
+    {key:"caissePro",name:"Mon commerce — CAISSE",icon:"💰",desc:"Encaisser, suivre mes ventes, garder la main",status:"LIVE"},
+    {key:"locPro",name:"Je loue — LOC",icon:"🏠",desc:"Mes logements, mes disponibilités, mes clients",status:"LIVE"},
+    {key:"resaTablePro",name:"Je réserve — RÉSA",icon:"📅",desc:"Mes créneaux, mes rendez-vous, mon planning",status:"LIVE"},
+    {key:"driverPro",name:"Je conduis — DRIVER",icon:"🚗",desc:"Mes courses, mes zones, mon activité chauffeur",status:"LIVE"},
+    {key:"jobsPro",name:"Je recrute — JOBS",icon:"💼",desc:"Publier une offre, suivre les candidatures",status:"LIVE"},
+    {key:"buildPro",name:"Mes services — MULTI",icon:"🏗️",desc:"Mes chantiers, mes propositions, mon activité terrain",status:"BETA"},
+    {key:"explorePro",name:"Me faire connaître — EXPLORE",icon:"🗺️",desc:"Poser mon lieu sur le territoire DIGIY",status:"LIVE"},
+    {key:"payPro",name:"Mon argent — PAY",icon:"💳",desc:"Voir mes paiements — en un coup d'œil",status:"LIVE"}
   ];
 
   const COPY={
@@ -1239,74 +917,33 @@
 
   function openExt(url){window.open(wr(url),"_blank","noopener,noreferrer");}
 
-  /* OPTIM : un seul objet pour menu desktop + drawer mobile */
-  const LINKS_MAP={
-    explore:L.explore,driver:L.driver,chauffeurs:L.galerieChauffeurs,
-    loc:L.loc,resatable:L.resaTable,build:L.build,
-    "mon-commerce":L.monCommerce,market:L.market,jobs:L.jobs,tarifs:L.tarifs,
-    "ndimbal-annonces":L.ndimbalAnnonces,pay:L.pay,vaschezmoi:L.vasChezDigiy,
-    "ndimbal-loc":L.ndimbalLoc,"ndimbal-map":L.ndimbalMap,audio:L.audio,ia:L.assistantIA,
-    "espace-pro":L.espacePro,"inscription-pro":L.inscriptionPro,
-    "market-pro":L.marketPro,"caisse-pro":L.caissePro,"loc-pro":L.locPro,
-    "resatable-pro":L.resaTablePro,"driver-pro":L.driverPro,"jobs-pro":L.jobsPro,
-    "build-pro":L.buildPro,"explore-pro":L.explorePro,"pay-pro":L.payPro
-  };
-  ["mn-","dm-"].forEach(prefix=>{
-    Object.entries(LINKS_MAP).forEach(([key,url])=>{
-      const el=$(prefix+key);if(!el)return;
-      el.href=wr(url);el.target="_blank";el.rel="noopener noreferrer";
-    });
-  });
-
-  /* DRAWER */
-  window.addEventListener("DOMContentLoaded",()=>{
-    const toggleBtn=$("menuToggleBtn"),icon=$("menuToggleIcon"),label=$("menuToggleLabel"),drawer=$("navDrawer"),closeBtn=$("drawerCloseBtn");
-    if(!toggleBtn||!drawer)return;
-    function openDrawer(){drawer.classList.add("open");toggleBtn.classList.add("open");toggleBtn.setAttribute("aria-expanded","true");icon.textContent="✕";label.textContent="FERMER";document.body.style.overflow="hidden";}
-    function closeDrawer(){drawer.classList.remove("open");toggleBtn.classList.remove("open");toggleBtn.setAttribute("aria-expanded","false");icon.textContent="☰";label.textContent="MENU";document.body.style.overflow="";}
-    toggleBtn.addEventListener("click",()=>drawer.classList.contains("open")?closeDrawer():openDrawer());
-    if(closeBtn)closeBtn.addEventListener("click",closeDrawer);
-    drawer.addEventListener("click",e=>{if(e.target===drawer)closeDrawer();});
-    drawer.querySelectorAll(".drawerLink[id^='dm-']").forEach(el=>el.addEventListener("click",closeDrawer));
-  });
-
-  /* FLOAT */
-  const espBtn=$("espace-pro-btn");if(espBtn)espBtn.addEventListener("click",()=>openExt(L.espacePro));
-  const expBtn=$("explore-float-btn");if(expBtn)expBtn.addEventListener("click",()=>openExt(L.explore));
-
-  /* NDIMBAL */
   const nd=$("digiy-ndimbal"),qrM=$("qrModal");
   const showNd=()=>{nd.classList.remove("hidden");nd.setAttribute("aria-hidden","false");};
   const hideNd=()=>{nd.classList.add("hidden");nd.setAttribute("aria-hidden","true");};
   const showQr=()=>{qrM.classList.remove("hidden");qrM.setAttribute("aria-hidden","false");};
   const hideQr=()=>{qrM.classList.add("hidden");qrM.setAttribute("aria-hidden","true");};
-  const helpBtn=$("digiy-help-btn");if(helpBtn)helpBtn.addEventListener("click",showNd);
   const closeBtn=$("digiyCloseBtn");if(closeBtn)closeBtn.addEventListener("click",hideNd);
   if(nd)nd.addEventListener("click",e=>{if(e.target===nd){hideNd();return;}const b=e.target.closest("[data-action]");if(!b)return;hideNd();const a=b.getAttribute("data-action");if(a==="sell")openExt(L.ndimbalAnnonces);else if(a==="job")openExt(L.jobs);else if(a==="share")window.digiyShareSite&&window.digiyShareSite();else if(a==="audio")window.digiyStartAudio&&window.digiyStartAudio();else if(a==="install")triggerInstall();else if(a==="qr")showQr();});
   const qrClose=$("qrClose");if(qrClose)qrClose.addEventListener("click",hideQr);
   if(qrM)qrM.addEventListener("click",e=>{if(e.target===qrM)hideQr();});
 
-  /* INIT */
   const firstFav=favMods()[0];if(firstFav){curKey=firstFav.key;curKind=firstFav.kind;}
   renderAll();
   bindRailHint(pubRail,$("publicHint"));bindRailHint(proRail,$("proHint"));
   bindArrows("publicRail","publicLeft","publicRight");
   bindArrows("proRail","proLeft","proRight");
 
-  /* SHARE */
   const SHARE_URL="https://digiylyfe.com/",SHARE_TEXT="DIGIYLYFE : trouve un chauffeur, un logement, un artisan, une boutique. Contact direct, 0% commission.",SUGGEST_TEXT="Bonjour DIGIY, je veux suggérer un pro du quartier. Nom : ... Ville/quartier : ... Téléphone/WhatsApp : ... Type d'activité : ...";
   window.digiyShareSite=function(){try{if(navigator.share){navigator.share({title:"DIGIYLYFE",text:SHARE_TEXT,url:SHARE_URL}).catch(function(){});return;}}catch(e){}try{navigator.clipboard&&navigator.clipboard.writeText(SHARE_URL);}catch(e){}window.open("https://wa.me/?text="+encodeURIComponent(SHARE_TEXT+" "+SHARE_URL),"_blank","noopener");};
   window.digiySuggestPro=function(){window.open("https://wa.me/221771342889?text="+encodeURIComponent(SUGGEST_TEXT),"_blank","noopener");};
 
-  /* PWA */
   let deferredPrompt=null;
-  const installBtns=[$("install-app-btn")].filter(Boolean),installModal=$("installModal"),installNowBtn=$("installNowBtn"),installCloseBtn=$("installCloseBtn");
+  const installBtns=[].filter(Boolean),installModal=$("installModal"),installNowBtn=$("installNowBtn"),installCloseBtn=$("installCloseBtn");
   const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent||""),isStandalone=()=>window.matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
   function syncInstall(){installBtns.forEach(b=>b.style.display=isStandalone()?"none":"inline-flex");}
-  function showInstallModal(){if(!installModal)return;if(deferredPrompt){$("installTitle").textContent="📲 Installer DIGIYLYFE";$("installText").innerHTML="<b>Prêt à poser DIGIYLYFE sur ton écran ?</b><br>Appuie ci-dessous pour lancer l'installation.";}else if(isIOS()){$("installTitle").textContent="📲 Installer sur iPhone / iPad";$("installText").innerHTML="<b>Ouvre DIGIYLYFE dans Safari</b><br>1. Appuie sur <b>Partager</b><br>2. Choisis <b>Sur l'écran d'accueil</b><br>3. Valide avec <b>Ajouter</b>";}else{$("installTitle").textContent="📲 Installer DIGIYLYFE";$("installText").innerHTML="<b>Ouvre le menu de ton navigateur</b> puis <b>Installer l'application</b>.";}installModal.classList.remove("hidden");installModal.setAttribute("aria-hidden","false");}
+  function showInstallModal(){if(!installModal)return;if(deferredPrompt){$("installTitle").textContent="📲 Installer DIGIYLYFE";$("installText").innerHTML="<b>Prêt à poser DIGIYLYFE sur ton écran ?</b><br>Appuie ci-dessous pour lancer l'installation.";}else if(isIOS()){$("installTitle").textContent="📲 Installer sur iPhone / iPad";$("installText").innerHTML="<b>Ouvre DIGIYLYFE dans Safari</b><br>1. Appuie sur <b>Partager</b><br>2. Choisis <b>Sur l'écran d'accueil</b><br>3. Valide avec <b>Ajouter</b>";}else{$("installTitle").textContent="📲 Installer DIGIYLYFE";$("installText").innerHTML="<b>Ouvre le menu de ton navigateur</b> puis <b>Installer l'application</b>";}installModal.classList.remove("hidden");installModal.setAttribute("aria-hidden","false");}
   function hideInstallModal(){if(installModal){installModal.classList.add("hidden");installModal.setAttribute("aria-hidden","true");}}
   async function triggerInstall(){if(isStandalone()){syncInstall();hideInstallModal();return;}if(deferredPrompt){hideInstallModal();try{deferredPrompt.prompt();await deferredPrompt.userChoice;}catch(e){}deferredPrompt=null;syncInstall();return;}showInstallModal();}
-  installBtns.forEach(b=>b.addEventListener("click",triggerInstall));
   if(installNowBtn)installNowBtn.addEventListener("click",async()=>{if(deferredPrompt)await triggerInstall();else hideInstallModal();});
   if(installCloseBtn)installCloseBtn.addEventListener("click",hideInstallModal);
   if(installModal)installModal.addEventListener("click",e=>{if(e.target===installModal)hideInstallModal();});
@@ -1315,63 +952,9 @@
   syncInstall();
 
   if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
-
-  /* FAB CAMEMBERT */
-  window.addEventListener("DOMContentLoaded",function(){
-    var fab     = document.getElementById("digiy-fab");
-    var fabItems= document.getElementById("fab-items");
-    var overlay = document.getElementById("fab-overlay");
-    if(!fab||!fabItems||!overlay)return;
-    var fabOpen = false;
-
-    var ARC=[
-      {item:0,label:1, ix:0,   iy:-108, lx:-72, ly:-108, delay:50},
-      {item:2,label:3, ix:-54, iy:-93,  lx:-126,ly:-93,  delay:90},
-      {item:4,label:5, ix:-93, iy:-54,  lx:-165,ly:-54,  delay:130},
-      {item:6,label:7, ix:-108,iy:0,    lx:-180,ly:0,    delay:170}
-    ];
-    var children=fabItems.children;
-
-    function openFab(){
-      fabOpen=true;
-      fab.classList.add("open");fab.setAttribute("aria-expanded","true");
-      overlay.classList.add("open");
-      ARC.forEach(function(a){
-        setTimeout(function(){
-          var it=children[a.item],lb=children[a.label];
-          if(it){it.style.transform="translate(-50%,-50%) translate("+a.ix+"px,"+a.iy+"px) scale(1)";it.style.opacity="1";it.style.pointerEvents="all";}
-          if(lb){lb.style.transform="translate(-50%,-50%) translate("+a.lx+"px,"+a.ly+"px) scale(1)";lb.style.opacity="1";}
-        },a.delay);
-      });
-    }
-    function closeFab(){
-      fabOpen=false;
-      fab.classList.remove("open");fab.setAttribute("aria-expanded","false");
-      overlay.classList.remove("open");
-      Array.from(children).forEach(function(el){
-        el.style.transform="translate(-50%,-50%) scale(0)";
-        el.style.opacity="0";
-        el.style.pointerEvents="none";
-      });
-    }
-    window.digiyCloseFab=closeFab;
-
-    fab.addEventListener("click",function(){fabOpen?closeFab():openFab();});
-    overlay.addEventListener("click",closeFab);
-    fabItems.querySelectorAll(".fab-item").forEach(function(item){
-      item.addEventListener("click",closeFab);
-    });
-    document.getElementById("fab-plus")?.addEventListener("click",function(e){
-      e.preventDefault();
-      var nd=document.getElementById("digiy-ndimbal");
-      if(nd){nd.classList.remove("hidden");nd.setAttribute("aria-hidden","false");}
-    });
-    window.addEventListener("scroll",function(){if(fabOpen)closeFab();},{passive:true});
-  });
 })();
 </script>
 
-  <!-- BOTTOM NAV MOBILE SIMPLE -->
   <nav id="digiyBottomNav" aria-label="Navigation rapide DIGIYLYFE">
     <div class="digiyBottomNavInner">
       <a class="active" href="#public"><strong>🔎</strong><span>Trouver</span></a>
@@ -1381,144 +964,7 @@
     </div>
   </nav>
 
-
-  <!-- MENU DESKTOP SIMPLE -->
   <a id="digiyDesktopMenu" href="./menu.html" aria-label="Ouvrir le menu DIGIY">☰ Menu DIGIY</a>
-
-
-  <!-- DIGIY AUDIO PATCH FINAL -->
-  <div id="digiyAudioToast" aria-live="polite">🎧 Audio DIGIY</div>
-  <div id="digiyAudioBarWrap" aria-hidden="true">
-    <div id="digiyAudioBar"></div>
-  </div>
-
-  <script>
-  (function(){
-    const AUDIO_TEXT =
-      "Bienvenue sur DIGIYLYFE. Ici, le territoire devient vivant. Tu peux trouver un chauffeur, un logement, une boutique, un artisan, un service ou un lieu à découvrir. DIGIYLYFE complète WhatsApp. Le client contacte directement le professionnel. Le paiement reste direct. La commission reste à zéro. EXPLORE ouvre la route. Les autres modules donnent les outils pour agir. DIGIYLYFE n'est pas un scroll sans fin. C'est une gare. Tu arrives, tu choisis ta voie, puis tu avances.";
-
-    const toast = document.getElementById("digiyAudioToast");
-    const barWrap = document.getElementById("digiyAudioBarWrap");
-    const bar = document.getElementById("digiyAudioBar");
-
-    let playing = false;
-    let utterance = null;
-    let timer = null;
-
-    function showToast(text){
-      if(!toast) return;
-      toast.textContent = text;
-      toast.classList.add("show");
-      clearTimeout(showToast._t);
-      showToast._t = setTimeout(() => toast.classList.remove("show"), 2200);
-    }
-
-    function getVoice(){
-      const synth = window.speechSynthesis;
-      const voices = synth.getVoices ? synth.getVoices() : [];
-      return voices.find(v => /^fr/i.test(v.lang || "") && /audrey|amelie|hortense|julie|thomas|paul|french/i.test(v.name || ""))
-          || voices.find(v => /^fr/i.test(v.lang || ""))
-          || null;
-    }
-
-    function setButtonLabels(isPlaying){
-      document.querySelectorAll('button[onclick*="digiyStartAudio"], [data-action="audio"]').forEach(btn => {
-        if(btn.tagName === "BUTTON"){
-          const original = btn.getAttribute("data-audio-original") || btn.textContent.trim();
-          if(!btn.getAttribute("data-audio-original")) btn.setAttribute("data-audio-original", original);
-          btn.textContent = isPlaying ? "⏹️ Stop audio" : original;
-        }
-      });
-    }
-
-    function stopAudio(){
-      try{ window.speechSynthesis && window.speechSynthesis.cancel(); }catch(_){}
-      clearInterval(timer);
-      timer = null;
-      playing = false;
-      utterance = null;
-      if(barWrap) barWrap.style.opacity = "0";
-      if(bar) bar.style.width = "0%";
-      setButtonLabels(false);
-    }
-
-    function startAudio(){
-      if(!("speechSynthesis" in window)){
-        showToast("Audio indisponible sur ce navigateur.");
-        return;
-      }
-
-      if(playing){
-        stopAudio();
-        showToast("Audio arrêté.");
-        return;
-      }
-
-      const synth = window.speechSynthesis;
-      try{ synth.cancel(); }catch(_){}
-
-      utterance = new SpeechSynthesisUtterance(AUDIO_TEXT);
-      utterance.lang = "fr-FR";
-      utterance.rate = 0.88;
-      utterance.pitch = 1.05;
-      utterance.volume = 1;
-
-      const voice = getVoice();
-      if(voice) utterance.voice = voice;
-
-      playing = true;
-      setButtonLabels(true);
-      showToast("🎧 Lecture DIGIY lancée");
-
-      if(barWrap) barWrap.style.opacity = "1";
-      if(bar) bar.style.width = "0%";
-
-      let progress = 0;
-      const duration = Math.max(12000, AUDIO_TEXT.split(/\s+/).length * 470);
-
-      clearInterval(timer);
-      timer = setInterval(() => {
-        progress += 250;
-        if(bar) bar.style.width = Math.min(96, (progress / duration) * 100) + "%";
-      }, 250);
-
-      utterance.onend = function(){
-        if(bar) bar.style.width = "100%";
-        setTimeout(stopAudio, 280);
-      };
-
-      utterance.onerror = function(){
-        stopAudio();
-        showToast("Audio interrompu.");
-      };
-
-      synth.speak(utterance);
-    }
-
-    window.digiyStartAudio = startAudio;
-    window.digiyStopAudio = stopAudio;
-
-    if("speechSynthesis" in window && typeof window.speechSynthesis.onvoiceschanged !== "undefined"){
-      window.speechSynthesis.onvoiceschanged = getVoice;
-    }
-
-    window.addEventListener("beforeunload", stopAudio);
-  })();
-  </script>
-  <!-- /DIGIY AUDIO PATCH FINAL -->
-
-  <script>
-  (function(){
-    document.addEventListener("click", function(e){
-      const audioAction = e.target.closest && e.target.closest('[data-action="audio"]');
-      if(audioAction && window.digiyStartAudio){
-        e.preventDefault();
-        window.digiyStartAudio();
-      }
-    });
-  })();
-  </script>
-
 
 </body>
 </html>
