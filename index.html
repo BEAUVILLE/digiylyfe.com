@@ -748,7 +748,121 @@
 (function(){
   "use strict";
   const HOME="https://digiylyfe.com/",FAVORITES_KEY="digiylyfe_favorites_v1",FAVORITES_MAX=3;
-  function wr(url){try{const u=new URL(url,location.href);u.searchParams.set("return",HOME);return u.toString();}catch(e){return url;}}
+  function cleanDigits(v){
+    return String(v || "").replace(/[^\d]/g, "");
+  }
+
+  function cleanSlug(v){
+    return String(v || "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "");
+  }
+
+  function readParam(name){
+    try{
+      return new URL(location.href).searchParams.get(name) || "";
+    }catch(e){
+      return "";
+    }
+  }
+
+  function readStorage(keys){
+    for(const key of keys){
+      try{
+        const v = localStorage.getItem(key) || sessionStorage.getItem(key) || "";
+        if(v) return v;
+      }catch(e){}
+    }
+    return "";
+  }
+
+  function currentPhone(){
+    return cleanDigits(
+      readParam("phone") ||
+      readParam("tel") ||
+      readStorage([
+        "digiy_phone",
+        "DIGIY_HUB_PHONE",
+        "DIGIY_PRO_PHONE",
+        "digiy_pay_phone",
+        "DIGIY_PAY_HUB_PHONE"
+      ])
+    );
+  }
+
+  function currentSlug(){
+    return cleanSlug(
+      readParam("slug") ||
+      readStorage([
+        "digiy_slug",
+        "DIGIY_PRO_SLUG",
+        "DIGIY_SLUG",
+        "digiy_pay_slug",
+        "digiy_last_slug"
+      ])
+    );
+  }
+
+  const PRO_SLUG_PREFIX={
+    espacePro:"",
+    tarifs:"",
+    inscriptionPro:"",
+    marketPro:"market-",
+    caissePro:"pos-",
+    locPro:"loc-",
+    resaTablePro:"resa-",
+    driverPro:"driver-",
+    jobsPro:"jobs-",
+    buildPro:"build-",
+    explorePro:"explore-",
+    payPro:"pay-"
+  };
+
+  function slugFitsProKey(slug,key){
+    const s = cleanSlug(slug);
+    const prefix = PRO_SLUG_PREFIX[key] || "";
+    if(!s || !prefix) return false;
+    return s === prefix.replace(/-$/,"") || s.startsWith(prefix);
+  }
+
+  function wr(url){
+    try{
+      const u = new URL(url,location.href);
+      u.searchParams.set("return",HOME);
+      return u.toString();
+    }catch(e){
+      return url;
+    }
+  }
+
+  function smartHref(item,kind){
+    const raw = L[item.key] || HOME;
+    let url = wr(raw);
+
+    if(kind !== "pro") return url;
+
+    try{
+      const u = new URL(url, location.href);
+      const phone = currentPhone();
+      const slug = currentSlug();
+
+      if(phone && !u.searchParams.get("phone")){
+        u.searchParams.set("phone", phone);
+      }
+
+      if(slug && slugFitsProKey(slug, item.key) && !u.searchParams.get("slug")){
+        u.searchParams.set("slug", slug);
+      }
+
+      return u.toString();
+    }catch(e){
+      return url;
+    }
+  }
 
   const L={
     market:"https://market.digiylyfe.com/",driver:"https://driver-client.digiylyfe.com/",
@@ -764,7 +878,7 @@
     caissePro:"https://commerce-pro.digiylyfe.com/",driverPro:"https://pro-driver.digiylyfe.com/",
     jobsPro:"https://pro-job.digiylyfe.com/",locPro:"https://pro-loc.digiylyfe.com/",
     buildPro:"https://pro-build.digiylyfe.com/",resaTablePro:"https://pro-resa-resto.digiylyfe.com/",
-    explorePro:"https://pro-explore.digiylyfe.com/",payPro:"https://pay.digiylyfe.com/admin.html"
+    explorePro:"https://pro-explore.digiylyfe.com/",payPro:"https://pro-pay.digiylyfe.com/"
   };
 
   const PUB=[
@@ -829,7 +943,7 @@
     jobsPro:"Je recrute — JOBS. Tu publies l'offre, tu reçois les candidatures, tu choisis. Direct.",
     buildPro:"Mes services — MULTI-SERVICE. Tes chantiers, tes propositions, ton activité terrain.",
     explorePro:"Me faire connaître — EXPLORE PRO. Pose ton lieu sur le territoire DIGIY. Tu deviens visible.",
-    payPro:"Mon argent — PAY. Ton argent qui rentre — visible, clair, sans attendre."
+    payPro:"Mon argent — PAY PRO. Ouvre ton espace financier : ce qui entre, ce qui sort, ce qui reste, et les notes rapides qui nourrissent ta lecture."
   };
 
   let curKey="explore",curKind="public";
@@ -856,7 +970,7 @@
     favorites.unshift(id);saveFavs();renderAll();
   }
   function cardHTML(item,kind){
-    const href=wr(L[item.key]||HOME),active=item.key===curKey&&kind===curKind,fav=isFav(kind,item.key),kindLabel=kind==="public"?"POUR TOUS":"PRO";
+    const href=smartHref(item,kind),active=item.key===curKey&&kind===curKind,fav=isFav(kind,item.key),kindLabel=kind==="public"?"POUR TOUS":"PRO";
     return`<div class="moduleSlot">
       <button class="favToggle${fav?" active":""}" type="button" data-fav-kind="${kind}" data-fav-key="${item.key}">${fav?"⭐":"☆"}</button>
       <a class="moduleBtn ${kind==="public"?"publicCard":"proCard"}${active?" active":""}${item.loco?" loco":""}" href="${href}" target="_blank" rel="noopener noreferrer" data-kind="${kind}" data-key="${item.key}">
@@ -893,7 +1007,7 @@
     bindCards(favRail);
   }
   function updateFocus(){
-    const item=getMod(curKey,curKind),href=wr(L[item.key]||HOME);
+    const item=getMod(curKey,curKind),href=smartHref(item,curKind);
     focusIcon.textContent=item.icon;
     focusLabel.textContent=item.name;
     focusHint.textContent=item.desc;
