@@ -424,7 +424,7 @@
           <span class="signalChip gold">0% commission</span>
           <span class="signalChip green">Paiement direct</span>
           <span class="signalChip soft">Territoire vivant</span>
-          <span class="signalChip soft">LOGICIELS métier</span>
+          <span class="signalChip soft">Logiciels métier simples</span>
         </div>
         <a class="headerMenuBtn" href="./menu.html" aria-label="Ouvrir le menu DIGIY">☰ Menu</a>
       </header>
@@ -440,7 +440,7 @@
           </h1>
           <p class="lead">
             <strong>Le complément de WhatsApp pour les pros du terrain.</strong>
-            DIGIYLYFE ouvre au web, donne une présence digitale, des outils métier simples et zéro commission.
+            DIGIYLYFE ouvre au web, donne une présence digitale, des logiciels métier simples — caisse, planning, fiche, notes — et zéro commission.
             Un chauffeur, un logement, une réservation, un artisan, une boutique : le public trouve une vraie personne, au bon moment, sans détour.
           </p>
           <div class="cta">
@@ -449,6 +449,7 @@
             <button class="btnx btnx-gold" type="button" onclick="window.digiyShareSite&&window.digiyShareSite()">📤 Faire circuler</button>
             <button class="btnx btnx-secondary" type="button" onclick="window.digiySuggestPro&&window.digiySuggestPro()">🤝 Suggérer un pro</button>
             <a class="btnx btnx-secondary" href="#pro">🏢 Entrer côté activité</a>
+            <a class="btnx btnx-gold" href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">📦 Nos tarifs</a>
           </div>
           <a class="heroLink" href="https://digiylyfe.net/" target="_blank" rel="noopener noreferrer">digiylyfe.net — la revue qui raconte la vision</a>
           <div class="payPromise" style="max-width:820px;margin:18px auto 0;padding:18px;border-radius:22px;border:1px solid rgba(246,196,83,.30);background:linear-gradient(180deg,rgba(246,196,83,.10),rgba(255,255,255,.04));box-shadow:0 14px 34px rgba(0,0,0,.22);">
@@ -501,7 +502,7 @@
             <div class="dt-flag">🇫🇷</div>
             <div class="dt-country">France</div>
             <p class="dt-desc">Petits pros, artisans, commerces, locations, services locaux : présence simple, lien client direct, sans usine à gaz.</p>
-            <a class="dt-link" href="https://digiy-hub.pages.dev/" target="_blank" rel="noopener">⚙️ Équiper mon activité</a>
+            <a class="dt-link" href="https://pro-espace.digiylyfe.com/" target="_blank" rel="noopener">🏢 Ouvrir mon espace pro</a>
           </div>
         </div>
         <div class="dt-clip">
@@ -763,7 +764,7 @@
     caissePro:"https://commerce-pro.digiylyfe.com/",driverPro:"https://pro-driver.digiylyfe.com/",
     jobsPro:"https://pro-job.digiylyfe.com/",locPro:"https://pro-loc.digiylyfe.com/",
     buildPro:"https://pro-build.digiylyfe.com/",resaTablePro:"https://pro-resa-resto.digiylyfe.com/",
-    explorePro:"https://pro-explore.digiylyfe.com/",payPro:"https://pro-pay.digiylyfe.com/pin.html?redirect=cockpit"
+    explorePro:"https://pro-explore.digiylyfe.com/",payPro:"https://pay.digiylyfe.com/admin.html"
   };
 
   const PUB=[
@@ -771,7 +772,7 @@
     {key:"driver",name:"Trouver un chauffeur",icon:"🚗",desc:"Un trajet maintenant, direct sur le terrain",status:"LIVE"},
     {key:"galerieChauffeurs",name:"Nos chauffeurs",icon:"👑",desc:"Style, présence, savoir-être — la mobilité qui élève",status:"LIVE"},
     {key:"loc",name:"Trouver où dormir",icon:"🏠",desc:"Direct chez le propriétaire, sans intermédiaire",status:"LIVE"},
-    {key:"resaTable",name:"Réserver",icon:"📅",desc:"Un rendez-vous, un créneau, un service — en 2 clics",status:"LIVE"},
+    {key:"resaTable",name:"Réserver",icon:"📅",desc:"RESA ouvre une réservation autonome : le client choisit un créneau, le pro garde son planning clair.",status:"LIVE"},
     {key:"build",name:"Trouver un artisan",icon:"🏗️",desc:"Plombier, maçon, électricien — le savoir-faire terrain",status:"BETA"},
     {key:"monCommerce",name:"Mon commerce",icon:"👜",desc:"Boutiques mode, sacs, chaussures — élégant et direct",status:"LIVE"},
     {key:"market",name:"Les boutiques",icon:"🛍️",desc:"Acheter, vendre — le marché local connecté",status:"LIVE"},
@@ -782,11 +783,12 @@
     {key:"ndimbalLoc",name:"Locations",icon:"🏡",desc:"Logements directs, sans détour",status:"LIVE"},
     {key:"ndimbalMap",name:"La carte",icon:"🗺️",desc:"Voir les annonces autour de toi",status:"LIVE"},
     {key:"audio",name:"Écouter",icon:"🎵",desc:"Les contenus DIGIY en audio",status:"LIVE"},
-    {key:"assistantIA",name:"Poser une question",icon:"🧠",desc:"L'assistant répond — direct, clair, terrain",status:"LIVE"}
+    {key:"assistantIA",name:"Mon assistant DIGIY",icon:"♾️",desc:"Une aide simple pour avancer sans se perdre",status:"LIVE"}
   ];
 
   const PRO=[
     {key:"espacePro",name:"Mon activité",icon:"🏢",desc:"Tout commence ici — espace central, propre et direct",status:"LIVE",loco:true},
+    {key:"tarifs",name:"Nos tarifs",icon:"📦",desc:"Voir les codes, les prix et choisir la bonne porte DIGIY.",status:"LIVE"},
     {key:"inscriptionPro",name:"Rejoindre DIGIY",icon:"✍️",desc:"Créer mon compte pro — simple, sans paperasse",status:"LIVE"},
     {key:"marketPro",name:"Je vends — MARKET",icon:"🛍️",desc:"Ma boutique en ligne, mes produits, mes ventes directes",status:"LIVE",loco:true},
     {key:"caissePro",name:"Mon commerce — CAISSE",icon:"💰",desc:"Encaisser, suivre mes ventes, garder la main",status:"LIVE"},
@@ -804,7 +806,7 @@
     driver:"Tu dois aller quelque part. Un chauffeur du terrain prend ta course — direct, sans détour, sans application intermédiaire.",
     galerieChauffeurs:"Les chauffeurs DIGIY ne conduisent pas seulement. Ils représentent. Chaque profil, c'est un visage, un style, un niveau de service.",
     loc:"Tu cherches où dormir. Tu es mis directement en contact avec le propriétaire — pas d'agence, pas de commission.",
-    resaTable:"Tu as besoin d'un créneau. Chez le médecin, le coiffeur, le mécanicien, le restaurateur. Deux clics. C'est bloqué.",
+    resaTable:"RESA sert à réserver sans courir derrière les messages. Le client choisit un créneau, le pro voit son planning, chacun avance proprement.",
     build:"Tu cherches quelqu'un pour construire, réparer, installer. Le bon artisan est là — tu vois son profil, tu le contactes directement.",
     monCommerce:"La boutique du quartier mérite mieux qu'un carnet papier. Mode, sacs, chaussures — le commerce local à son niveau.",
     market:"Tu veux acheter ou vendre. Le marché local, connecté et visible — sans plateforme étrangère qui prend sa part.",
@@ -815,8 +817,9 @@
     ndimbalLoc:"Des locations directes, sans détour. Le complément logement pour qui cherche vite.",
     ndimbalMap:"La carte. Tu vois ce qui existe autour de toi — annonces, services, lieux — d'un seul regard.",
     audio:"Tu préfères écouter que lire. Les contenus DIGIY passent en audio — la vision, les articles, les mises à jour.",
-    assistantIA:"Tu as une question. Pose-la. L'assistant connaît le terrain DIGIY et répond directement.",
+    assistantIA:"Mon assistant DIGIY t'aide à comprendre la bonne porte, poser une question et avancer sans jargon.",
     espacePro:"Tout commence ici. Ton espace professionnel — propre, direct, sans menu inutile. Tu arrives, tu vois, tu agis.",
+    tarifs:"Nos tarifs DIGIY : les codes simples, les prix lisibles, et le bon chemin pour choisir sans se perdre.",
     inscriptionPro:"Tu veux travailler avec DIGIY. Tu crées ton compte — simplement, clairement. En quelques minutes, tu es dedans.",
     marketPro:"Je vends — MARKET. Tes produits sont visibles, tes ventes se font, ta présence commerciale existe.",
     caissePro:"Mon commerce — CAISSE. Nouveau client — tu encaisses. Fin de journée — tu vois ce qui est rentré.",
@@ -896,7 +899,7 @@
     focusHint.textContent=item.desc;
     focusKind.textContent=curKind==="public"?"POUR TOUS":"PRO";
     focusKind.className=`focusBadge ${curKind}`;
-    focusBadge.textContent=item.loco?(curKind==="public"?"🗺️ Porte d'entrée":"👑 Locomotive pro"):(curKind==="public"?"🌍 Porte publique":"🧰 Outil métier");
+    focusBadge.textContent=item.loco?(curKind==="public"?"🗺️ Porte d'entrée":"👑 Locomotive pro"):(item.key==="tarifs"?"📦 Prix & codes":(curKind==="public"?"🌍 Porte publique":"🧰 Logiciel métier simple"));
     focusText.textContent=COPY[item.key]||item.desc;
     focusOpenBtn.href=href;
   }
