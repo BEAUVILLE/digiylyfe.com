@@ -118,6 +118,45 @@
     #intro-bonheur .mini strong{color:#f6c453;}
     @media(max-width:640px){#intro-bonheur{margin:12px 12px 0;border-radius:24px;}#intro-bonheur .wrap{padding:26px 16px 24px;}#intro-bonheur .cta{flex-direction:column;}#intro-bonheur .btnx{width:100%;}}
 
+
+    .moduleCountRow{
+      max-width:820px;
+      margin:18px auto 0;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .moduleCountChip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:50px;
+      padding:13px 18px;
+      border-radius:999px;
+      border:1px solid rgba(246,196,83,.42);
+      background:rgba(246,196,83,.13);
+      color:#fff3cf;
+      font-family:var(--fontA);
+      font-size:16px;
+      font-weight:1000;
+      line-height:1.25;
+      box-shadow:0 10px 24px rgba(0,0,0,.16);
+    }
+    .moduleCountChip.green{
+      border-color:rgba(0,166,81,.44);
+      background:rgba(0,166,81,.16);
+      color:#dfffe9;
+    }
+    @media(max-width:640px){
+      .moduleCountRow{gap:8px}
+      .moduleCountChip{
+        width:100%;
+        font-size:15px;
+      }
+    }
+
     /* ESPRIT */
     #esprit-digiylyfe{margin:16px 18px 0;border:1px solid rgba(246,196,83,.34);border-radius:28px;background:radial-gradient(720px 260px at 12% 0%,rgba(246,196,83,.16),transparent 62%),radial-gradient(640px 260px at 88% 20%,rgba(0,166,81,.16),transparent 62%),linear-gradient(135deg,rgba(246,196,83,.09),rgba(0,166,81,.08));box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.06);overflow:hidden;}
     #esprit-digiylyfe .espritInner{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;padding:20px 22px;}
@@ -233,6 +272,39 @@
     .pill.beta{border-color:rgba(245,158,11,.35);color:rgba(245,158,11,.95)}
     .pill.public{border-color:rgba(246,196,83,.35);color:rgba(246,196,83,.96)}
     .pill.pro{border-color:rgba(0,166,81,.34);color:rgba(110,255,161,.98)}
+
+
+    .appCountInline{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-left:8px;
+      padding:6px 11px;
+      border-radius:999px;
+      border:1px solid rgba(246,196,83,.40);
+      background:rgba(246,196,83,.12);
+      color:#fff3cf;
+      font-size:.58em;
+      font-weight:1000;
+      letter-spacing:.02em;
+      vertical-align:middle;
+      white-space:nowrap;
+    }
+    .appCountInline.pro{
+      border-color:rgba(0,166,81,.42);
+      background:rgba(0,166,81,.15);
+      color:#dfffe9;
+    }
+    @media(max-width:640px){
+      .appCountInline{
+        margin-left:0;
+        margin-top:8px;
+        font-size:15px;
+        padding:7px 12px;
+        display:flex;
+        width:max-content;
+      }
+    }
 
     /* RAILS */
     .railWrap{position:relative;padding:14px;}
@@ -425,6 +497,8 @@
           <span class="signalChip green">Paiement direct</span>
           <span class="signalChip soft">Territoire vivant</span>
           <span class="signalChip soft">Logiciels métier simples</span>
+          <span class="signalChip gold">16 portes</span>
+          <span class="signalChip green">12 outils pro</span>
         </div>
         <a class="headerMenuBtn" href="./menu.html" aria-label="Ouvrir le menu DIGIY">☰ Menu</a>
       </header>
@@ -443,6 +517,7 @@
             DIGIYLYFE ouvre au web, donne une présence digitale, des logiciels métier simples — caisse, planning, fiche, notes — et zéro commission.
             Un chauffeur, un logement, une réservation, un artisan, une boutique : le public trouve une vraie personne, au bon moment, sans détour.
           </p>
+
           <div class="cta">
             <a class="btnx btnx-primary" href="#public">🗺️ Trouver maintenant</a>
             <button class="btnx btnx-secondary" type="button" onclick="window.digiyStartAudio&&window.digiyStartAudio()">🎧 Écouter la vision</button>
@@ -546,36 +621,6 @@
         <div class="circ-line">Sans clients, pas d'activité. Sans circulation, pas de clients. DIGIY avance quand le site tourne dans les mains du peuple.</div>
       </section>
 
-      <!-- ══ QUICK DOORS — PATCH : 3 portes ══ -->
-      <div id="quick-business-doors" aria-label="Accès directs DIGIYLYFE">
-        <div class="doors-head">
-          <div>
-            <div class="doors-title">Trois portes directes en plus</div>
-            <div class="doors-sub">Sénégal, France et l'univers chauffeur — trois portes directes pour aller droit au but.</div>
-          </div>
-        </div>
-        <div class="doors-grid">
-          <a class="doorCard" href="https://mon-commerce.digiylyfe.com/?return=https%3A%2F%2Fdigiylyfe.com%2F" target="_blank" rel="noopener noreferrer">
-            <span class="doorIcon">👜</span>
-            <div class="doorName">Mon commerce</div>
-            <div class="doorText">Entrer directement dans la vitrine commerce DIGIYLYFE.</div>
-            <div class="doorHint">↗ Ouvrir maintenant</div>
-          </a>
-          <a class="doorCard" href="https://driver.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
-            <span class="doorIcon">🚗</span>
-            <div class="doorName">Driver</div>
-            <div class="doorText">Entrer directement dans l'univers chauffeur DIGIYLYFE.</div>
-            <div class="doorHint">↗ Ouvrir maintenant</div>
-          </a>
-          <a class="doorCard" href="https://france.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
-            <span class="doorIcon">🇫🇷</span>
-            <div class="doorName">France · Périgord · Sarlat</div>
-            <div class="doorText">Artisans, commerces, locations, services locaux — lien direct client, 0% commission.</div>
-            <div class="doorHint">↗ Ouvrir maintenant</div>
-          </a>
-        </div>
-      </div>
-
       <main class="main">
 
         <section class="section" id="favoritesSection">
@@ -598,8 +643,8 @@
         <section class="section" id="public">
           <div class="sectionHead">
             <div>
-              <h2>Ce que tu peux faire ici</h2>
-              <div class="sectionSub">Découvrir · Bouger · Dormir · Réserver · Construire · Acheter — dans cet ordre.</div>
+              <h2>Ce que tu peux faire ici <span class="appCountInline">16 APPs</span></h2>
+              
             </div>
             <div class="legend">
               <span class="pill public">POUR TOUS</span>
@@ -608,7 +653,7 @@
           </div>
           <div class="railWrap">
             <button class="railArrow left" id="publicLeft" type="button">&#x2039;</button>
-            <div class="railHint" id="publicHint">👉 GLISSE POUR VOIR LES AUTRES PORTES</div>
+            <div class="railHint" id="publicHint">👉 GLISSE : 16 PORTES</div>
             <div class="moduleRail" id="publicRail"></div>
             <button class="railArrow right" id="publicRight" type="button">&#x203A;</button>
           </div>
@@ -617,8 +662,8 @@
         <section class="section" id="pro">
           <div class="sectionHead">
             <div>
-              <h2>Mon activité professionnelle</h2>
-              <div class="sectionSub">Ton espace d'abord. Tes outils ensuite. Toujours dans le bon ordre.</div>
+              <h2>Mon activité professionnelle <span class="appCountInline pro">12 APPs</span></h2>
+              
             </div>
             <div class="legend">
               <span class="pill pro">PROS</span>
@@ -627,7 +672,7 @@
           </div>
           <div class="railWrap">
             <button class="railArrow left" id="proLeft" type="button">&#x2039;</button>
-            <div class="railHint" id="proHint">👉 GLISSE POUR VOIR TES AUTRES OUTILS</div>
+            <div class="railHint" id="proHint">👉 GLISSE : 12 OUTILS</div>
             <div class="moduleRail" id="proRail"></div>
             <button class="railArrow right" id="proRight" type="button">&#x203A;</button>
           </div>
@@ -894,7 +939,7 @@
     {key:"ndimbalAnnonces",name:"Publier une annonce",icon:"📢",desc:"Se faire voir, vendre, diffuser",status:"LIVE"},
     {key:"pay",name:"Mon argent",icon:"💳",desc:"Paiement direct, simple, sans friction",status:"LIVE"},
     {key:"vasChezDigiy",name:"Venir chez DIGIY",icon:"📍",desc:"La porte terrain pour s'orienter",status:"LIVE"},
-    {key:"ndimbalLoc",name:"Locations",icon:"🏡",desc:"Logements directs, sans détour",status:"LIVE"},
+    {key:"ndimbalLoc",name:"LOC SOLIDAIRE",icon:"🤝",desc:"Geste NDIMBAL proposé librement par certains pros DIGIY LOC",status:"LIVE"},
     {key:"ndimbalMap",name:"La carte",icon:"🗺️",desc:"Voir les annonces autour de toi",status:"LIVE"},
     {key:"audio",name:"Écouter",icon:"🎵",desc:"Les contenus DIGIY en audio",status:"LIVE"},
     {key:"assistantIA",name:"Mon assistant DIGIY",icon:"♾️",desc:"Une aide simple pour avancer sans se perdre",status:"LIVE"}
@@ -928,7 +973,7 @@
     ndimbalAnnonces:"Tu veux te faire voir ou passer un message. Publie une annonce, diffuse, touche les gens du coin directement.",
     pay:"Ton argent. Tes mouvements. Clair, lisible, direct. Sans jargon, sans attente.",
     vasChezDigiy:"Tu es dans la région et tu veux savoir où trouver DIGIY en physique. La porte terrain pour s'orienter.",
-    ndimbalLoc:"Des locations directes, sans détour. Le complément logement pour qui cherche vite.",
+    ndimbalLoc:"LOC SOLIDAIRE explique l’esprit NDIMBAL dans DIGIY LOC : certains propriétaires peuvent proposer librement un geste d’accueil, une aide courte, une souplesse ou une hospitalité volontaire. Ce n’est pas une promesse automatique, pas une collecte, et DIGIY ne garde pas l’argent.",
     ndimbalMap:"La carte. Tu vois ce qui existe autour de toi — annonces, services, lieux — d'un seul regard.",
     audio:"Tu préfères écouter que lire. Les contenus DIGIY passent en audio — la vision, les articles, les mises à jour.",
     assistantIA:"Mon assistant DIGIY t'aide à comprendre la bonne porte, poser une question et avancer sans jargon.",
@@ -1017,7 +1062,12 @@
     focusText.textContent=COPY[item.key]||item.desc;
     focusOpenBtn.href=href;
   }
-  function renderAll(){renderFavs();renderRail(pubRail,PUB,"public");renderRail(proRail,PRO,"pro");updateFocus();}
+  function renderAll(){
+    renderFavs();
+    renderRail(pubRail,PUB,"public");
+    renderRail(proRail,PRO,"pro");
+    updateFocus();
+  }
 
   function bindRailHint(rail,hint){
     const upd=()=>{const max=rail.scrollWidth-rail.clientWidth;hint.style.display=(max>8&&innerWidth<=640&&rail.scrollLeft<=12)?"block":"none";};
