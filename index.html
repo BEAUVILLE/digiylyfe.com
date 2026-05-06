@@ -125,7 +125,7 @@
 
 
 
-    /* CLIP OFFICIEL — bloc vidéo visible */
+    /* ARTICLES DU SITE — bloc articles visible */
     #clip-officiel{margin:16px 18px 0;padding:20px;border-radius:28px;border:1px solid rgba(246,196,83,.34);background:radial-gradient(820px 320px at 12% 0%,rgba(246,196,83,.16),transparent 60%),radial-gradient(680px 260px at 88% 18%,rgba(0,166,81,.16),transparent 62%),linear-gradient(180deg,rgba(10,48,34,.86),rgba(8,28,20,.80));box-shadow:0 18px 60px rgba(0,0,0,.30),0 0 0 1px rgba(246,196,83,.06);overflow:hidden;scroll-margin-top:110px;}
     #clip-officiel .clip-kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;border:1px solid rgba(246,196,83,.36);background:rgba(246,196,83,.11);color:#fff3cf;font-family:var(--fontA);font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;}
     #clip-officiel .clip-title{margin:12px 0 0;font-family:var(--fontA);font-size:clamp(26px,4vw,44px);font-weight:900;line-height:1.02;letter-spacing:-.04em;color:#fff;}
@@ -555,6 +555,137 @@
     #digiyDesktopMenu{position:fixed;right:16px;bottom:18px;z-index:1200;min-height:54px;padding:0 18px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid rgba(246,196,83,.38);background:radial-gradient(260px 90px at 18% 0%,rgba(255,255,255,.18),transparent 62%),linear-gradient(135deg,rgba(246,196,83,.18),rgba(0,0,0,.64));color:#fff3cf;font-family:var(--fontA);font-size:14px;font-weight:900;text-decoration:none;box-shadow:0 14px 36px rgba(0,0,0,.36);backdrop-filter:blur(12px);}
     #digiyDesktopMenu:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.58);}
 
+    #digiyDesktopMenu{cursor:pointer;}
+    button.headerMenuBtn,
+    button#digiyDesktopMenu{
+      appearance:none;
+      -webkit-appearance:none;
+      border-style:solid;
+    }
+
+    /* VRAI MENU FLOTTANT — évite le faux clic qui remonte seulement en haut */
+    #quickMenuOverlay{
+      position:fixed;
+      inset:0;
+      z-index:2400;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      padding:18px 14px calc(18px + env(safe-area-inset-bottom,0px));
+      background:rgba(0,0,0,.62);
+      backdrop-filter:blur(8px);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .22s ease;
+    }
+    #quickMenuOverlay.open{
+      opacity:1;
+      pointer-events:auto;
+    }
+    .quickMenuSheet{
+      width:min(100%,760px);
+      max-height:min(84vh,720px);
+      overflow:auto;
+      border-radius:28px;
+      border:1px solid rgba(246,196,83,.28);
+      background:radial-gradient(720px 260px at 50% 0%,rgba(246,196,83,.14),transparent 62%),linear-gradient(180deg,#0a2a1c 0%,#06140f 100%);
+      box-shadow:0 28px 80px rgba(0,0,0,.62),0 0 0 5px rgba(246,196,83,.06);
+      transform:translateY(20px) scale(.98);
+      transition:transform .24s cubic-bezier(.32,.72,0,1);
+    }
+    #quickMenuOverlay.open .quickMenuSheet{
+      transform:translateY(0) scale(1);
+    }
+    .quickMenuHandle{
+      width:44px;
+      height:4px;
+      border-radius:999px;
+      background:rgba(255,255,255,.22);
+      margin:12px auto 0;
+    }
+    .quickMenuHeader{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 18px 10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .quickMenuTitle{
+      font-family:var(--fontA);
+      font-size:20px;
+      font-weight:1000;
+      color:#fff;
+      line-height:1.1;
+    }
+    .quickMenuSub{
+      margin-top:4px;
+      color:rgba(248,250,252,.70);
+      font-size:13px;
+      line-height:1.45;
+      font-weight:800;
+    }
+    .quickMenuClose{
+      width:38px;
+      height:38px;
+      flex:0 0 auto;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      font-size:18px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .quickMenuGrid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:9px;
+      padding:14px 16px 18px;
+    }
+    .quickMenuGrid a{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-height:54px;
+      padding:12px 13px;
+      border-radius:17px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.055);
+      color:#fff;
+      font-family:var(--fontA);
+      font-size:14px;
+      font-weight:900;
+      text-decoration:none;
+      box-shadow:0 8px 20px rgba(0,0,0,.16);
+    }
+    .quickMenuGrid a:hover{
+      border-color:rgba(246,196,83,.40);
+      background:rgba(255,255,255,.10);
+      transform:translateY(-1px);
+    }
+    .quickMenuGrid a.gold{
+      color:#fff3cf;
+      border-color:rgba(246,196,83,.30);
+      background:rgba(246,196,83,.10);
+    }
+    .quickMenuGrid a.green{
+      color:#dfffe9;
+      border-color:rgba(0,166,81,.30);
+      background:rgba(0,166,81,.12);
+    }
+    .quickMenuGrid a.star{
+      color:#fff3cf;
+      border-color:rgba(246,196,83,.36);
+      background:linear-gradient(135deg,rgba(246,196,83,.18),rgba(255,255,255,.055));
+    }
+    @media(max-width:560px){
+      .quickMenuGrid{grid-template-columns:1fr;padding:12px 12px 16px;}
+      .quickMenuSheet{border-radius:26px 26px 0 0;max-height:86vh;}
+      .quickMenuHeader{padding:15px 14px 10px;}
+      .quickMenuGrid a{min-height:52px;}
+    }
+
     /* BOTTOM NAV MOBILE */
     #digiyBottomNav{display:none;}
     @media(max-width:640px){
@@ -609,7 +740,7 @@
           <span class="signalChip gold">16 portes</span>
           <span class="signalChip green">12 outils pro</span>
         </div>
-        <a class="headerMenuBtn" href="#landing-menu" aria-label="Ouvrir les portes DIGIY">☰ Portes</a>
+        <button class="headerMenuBtn" type="button" onclick="openQuickMenu()" aria-label="Ouvrir les portes DIGIY">☰ Portes</button>
       </header>
 
       <nav class="landingNav" id="landing-menu" aria-label="Portes rapides DIGIYLYFE">
@@ -617,7 +748,7 @@
         <a class="star" href="#favoritesSection">⭐ Mes favoris</a>
         <a class="gold" href="#esprit-digiylyfe">🎧 Esprit</a>
         <a href="#deux-terrains">🌍 Deux terrains</a>
-        <a class="gold" href="#clip-officiel">🎬 Clip</a>
+        <a class="gold" href="#clip-officiel">📖 Articles</a>
         <a href="#vision-article">🧭 Vision</a>
         <a href="#digiy-circulation">📣 Faire circuler</a>
         <a class="green" href="#departements">🧭 Départements</a>
@@ -725,31 +856,31 @@
           </article>
         </div>
         <div class="dt-clip">
-          <div class="dt-clip-text">🎬 Le clip officiel DIGIYLYFE<span>De Saly à Sarlat — territoire vivant · 0% commission · paiement direct</span></div>
-          <a class="dt-clip-btn" href="#clip-officiel">▶️ Voir le clip ici</a>
+          <div class="dt-clip-text">📖 Les articles du site DIGIYLYFE<span>Articles, vision et revue DIGIYLYFE · 0% commission · paiement direct</span></div>
+          <a class="dt-clip-btn" href="https://digiylyfe.net/">▶️ Articles du site ici</a>
         </div>
       </section>
 
-      <section id="clip-officiel" aria-label="Clip officiel DIGIYLYFE">
-        <div class="clip-kicker">🎬 CLIP OFFICIEL DIGIYLYFE</div>
+      <section id="clip-officiel" aria-label="Articles du site DIGIYLYFE">
+        <div class="clip-kicker">📖 ARTICLES DU SITE DIGIYLYFE</div>
         <h2 class="clip-title">De Saly à Sarlat — <span>territoire vivant.</span></h2>
-        <p class="clip-text">Ici, la vidéo doit être visible tout de suite : une image forte, un bouton lecture, et le message clair — <strong>0% commission, paiement direct, relation chez le pro.</strong></p>
+        <p class="clip-text">Ici, les articles doit être visible tout de suite : une image forte, un bouton lecture, et le message clair — <strong>0% commission, paiement direct, relation chez le pro.</strong></p>
         <div class="clip-layout">
-          <div class="clip-frame" id="digiyOfficialClipFrame" data-video-url="">
-            <a class="clip-poster" href="https://digiylyfe.net/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le clip officiel DIGIYLYFE">
-              <img src="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png" alt="Clip officiel DIGIYLYFE — territoire vivant" loading="lazy" decoding="async"/>
+          <div class="clip-frame" id="digiyArticlesFrame" data-video-url="">
+            <a class="clip-poster" href="https://digiylyfe.net/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le articles du site DIGIYLYFE">
+              <img src="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png" alt="Articles du site DIGIYLYFE — territoire vivant" loading="lazy" decoding="async"/>
               <span class="clip-play">▶</span>
-              <span class="clip-caption"><strong>Voir le clip officiel DIGIYLYFE</strong><span>Le terrain garde la main · 0% commission · paiement direct.</span></span>
+              <span class="clip-caption"><strong>Articles du site officiel DIGIYLYFE</strong><span>Le terrain garde la main · 0% commission · paiement direct.</span></span>
             </a>
           </div>
           <aside class="clip-side">
-            <div class="clip-side-title">Une vidéo, pas juste un lien.</div>
-            <div class="clip-side-text">Le visiteur doit sentir l’âme avant de descendre dans les applications. Ce bloc sert de scène propre pour le clip officiel.</div>
+            <div class="clip-side-title">Une articles, pas juste un lien.</div>
+            <div class="clip-side-text">Le visiteur doit sentir l’âme avant de descendre dans les applications. Ce bloc sert de scène propre pour le articles du site.</div>
             <div class="clip-actions">
-              <a class="clip-btn main" href="https://digiylyfe.net/" target="_blank" rel="noopener noreferrer">▶️ Ouvrir la vidéo</a>
+              <a class="clip-btn main" href="https://digiylyfe.net/" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer">📖 Ouvrir les articles</a>
               <a class="clip-btn" href="https://esprit-digiylyfe.digiylyfe.com/" target="_blank" rel="noopener noreferrer">🎧 Écouter l’esprit</a>
             </div>
-            <div class="clip-note">Quand tu me donnes le lien direct du fichier vidéo MP4, YouTube ou TikTok, je remplace ce bloc par un lecteur intégré qui joue directement sur la page.</div>
+            <div class="clip-note">Quand tu me donnes le lien direct du fichier articles MP4, YouTube ou TikTok, je remplace ce bloc par un lecteur intégré qui joue directement sur la page.</div>
           </aside>
         </div>
       </section>
@@ -763,7 +894,7 @@
           <p class="bridge-p">Le monde va vers des écosystèmes. La vraie question : <strong>qui possède la relation avec le client ?</strong> DIGIYLYFE choisit : 0% commission, paiement direct, QR terrain, outils métier et relation chez le pro.</p>
           <p class="bridge-p"><strong>✨ Uber : super-app de plateforme.</strong> DIGIYLYFE : super-écosystème local.</p>
           <div class="bridge-links">
-            <a class="bridge-mini" href="https://digiylyfe.net/" target="_blank" rel="noopener noreferrer">📖 Lire l'article →</a>
+            <a class="bridge-mini" href="https://digiylyfe.net/" target="_blank" rel="noopener noreferrer">📖 Lire sur le site de nos articles →</a>
             <a class="bridge-mini" href="https://esprit-digiylyfe.digiylyfe.com/" target="_blank" rel="noopener noreferrer">🎧 Lire et écouter la vision →</a>
             <a class="bridge-mini" href="#esprit-digiylyfe">🎧 Écouter l'esprit DIGIYLYFE →</a>
           </div>
@@ -875,7 +1006,7 @@
             </div>
             <div class="focusText" id="focusText">La première chose à faire, c'est regarder. Les spots, les lieux, les ambiances — la Petite Côte vivante s'ouvre devant toi avant même que le besoin soit formulé.</div>
             <div class="focusActions">
-              <a class="btn primary" id="focusOpenBtn" href="#" target="_blank" rel="noopener">↗ Ouvrir</a>
+              <a class="btn primary" id="focusOpenBtn" href="https://digiylyfe.net/" target="_blank" rel="noopener">↗ Ouvrir</a>
               <a class="btn outline" href="https://digiylyfe.com/">← Retour DIGIYLYFE</a>
             </div>
             <footer class="footer">
@@ -1307,9 +1438,58 @@
   window.addEventListener("appinstalled",()=>{deferredPrompt=null;hideInstallModal();syncInstall();});
   syncInstall();
 
+
+  window.openQuickMenu=function(){
+    const overlay=document.getElementById("quickMenuOverlay");
+    if(!overlay)return;
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  };
+  window.closeQuickMenu=function(){
+    const overlay=document.getElementById("quickMenuOverlay");
+    if(!overlay)return;
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+  };
+  window.quickMenuBackdrop=function(event){
+    if(event && event.target && event.target.id==="quickMenuOverlay") closeQuickMenu();
+  };
+  document.addEventListener("keydown",function(event){
+    if(event.key==="Escape") closeQuickMenu();
+  });
+
   if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 })();
 </script>
+
+
+  <div id="quickMenuOverlay" aria-hidden="true" onclick="quickMenuBackdrop(event)">
+    <div class="quickMenuSheet" role="dialog" aria-modal="true" aria-label="Portes rapides DIGIYLYFE">
+      <div class="quickMenuHandle" aria-hidden="true"></div>
+      <div class="quickMenuHeader">
+        <div>
+          <div class="quickMenuTitle">☰ Portes DIGIYLYFE</div>
+          <div class="quickMenuSub">Choisis une porte sans remonter toute la page.</div>
+        </div>
+        <button class="quickMenuClose" type="button" onclick="closeQuickMenu()" aria-label="Fermer le menu">×</button>
+      </div>
+      <div class="quickMenuGrid">
+        <a href="#intro-bonheur" onclick="closeQuickMenu()">🏠 Accueil</a>
+        <a class="star" href="#favoritesSection" onclick="closeQuickMenu()">⭐ Mes favoris</a>
+        <a class="gold" href="#esprit-digiylyfe" onclick="closeQuickMenu()">🎧 Esprit DIGIY</a>
+        <a href="#deux-terrains" onclick="closeQuickMenu()">🌍 Deux terrains</a>
+        <a class="gold" href="https://digiylyfe.net/" target="_blank" rel="noopener noreferrer" onclick="closeQuickMenu()">📖 Articles du site</a>
+        <a href="#vision-article" onclick="closeQuickMenu()">🧭 Vision</a>
+        <a href="#digiy-circulation" onclick="closeQuickMenu()">📣 Faire circuler</a>
+        <a class="green" href="#departements" onclick="closeQuickMenu()">🧭 Départements</a>
+        <a class="green" href="#toutes-apps" onclick="closeQuickMenu()">🌍 Toutes les apps</a>
+        <a href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer" onclick="closeQuickMenu()">📦 Tarifs</a>
+        <a href="https://pro-espace.digiylyfe.com/" target="_blank" rel="noopener noreferrer" onclick="closeQuickMenu()">🏢 Espace pro</a>
+      </div>
+    </div>
+  </div>
 
   <nav id="digiyBottomNav" aria-label="Navigation rapide DIGIYLYFE">
     <div class="digiyBottomNavInner">
@@ -1317,11 +1497,11 @@
       <a href="#favoritesSection"><strong>⭐</strong><span>Favoris</span></a>
       <a href="#esprit-digiylyfe"><strong>🎧</strong><span>Esprit</span></a>
       <a href="#pro"><strong>🏢</strong><span>Pro</span></a>
-      <a href="#landing-menu"><strong>☰</strong><span>Portes</span></a>
+      <a href="#" onclick="openQuickMenu();return false;"><strong>☰</strong><span>Portes</span></a>
     </div>
   </nav>
 
-  <a id="digiyDesktopMenu" href="#landing-menu" aria-label="Ouvrir les portes DIGIY">☰ Portes DIGIY</a>
+  <button id="digiyDesktopMenu" type="button" onclick="openQuickMenu()" aria-label="Ouvrir les portes DIGIY">☰ Portes DIGIY</button>
 
 </body>
 </html>
