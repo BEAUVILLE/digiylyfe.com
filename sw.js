@@ -1,4 +1,4 @@
-const CACHE_NAME = "digiylyfe-com-v8";
+const CACHE_NAME = "digiylyfe-com-v14";
 
 const ASSETS = [
   "./",
