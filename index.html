@@ -400,12 +400,9 @@
     .deptIcon{font-size:30px;line-height:1;margin-bottom:10px;}
     .deptName{font-family:var(--fontA);font-size:18px;font-weight:900;color:#fff;line-height:1.15;}
     .deptText{margin-top:6px;font-size:13px;line-height:1.50;color:rgba(248,250,252,.78);font-weight:800;min-height:58px;}
-    .deptActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;}
-    .deptBtn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;border:1px solid rgba(246,196,83,.46);background:linear-gradient(180deg,rgba(246,196,83,.20),rgba(246,196,83,.09));color:#fff3cf;font-family:var(--fontA);font-size:15px;font-weight:1000;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;box-shadow:0 10px 24px rgba(0,0,0,.22),0 0 0 3px rgba(246,196,83,.055);}
-    .deptBtn:hover{transform:translateY(-1px);border-color:rgba(246,196,83,.72);background:linear-gradient(180deg,rgba(246,196,83,.28),rgba(246,196,83,.13));}
-    .deptBtn.pro{border-color:rgba(0,166,81,.58);background:linear-gradient(180deg,rgba(0,166,81,.25),rgba(0,166,81,.11));color:#dfffe9;box-shadow:0 10px 24px rgba(0,0,0,.22),0 0 0 3px rgba(0,166,81,.06);}
-    .deptBtn.pro:hover{border-color:rgba(0,166,81,.86);background:linear-gradient(180deg,rgba(0,166,81,.34),rgba(0,166,81,.16));}
-    @media(max-width:640px){.deptActions{gap:9px;margin-top:16px}.deptBtn{min-height:52px;padding:0 18px;font-size:16px;font-weight:1000;flex:1 1 auto;min-width:118px}.deptCard .deptBtn{box-shadow:0 12px 28px rgba(0,0,0,.24)}}
+    .deptActions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px;}
+    .deptBtn{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 10px;border-radius:999px;border:1px solid rgba(246,196,83,.30);background:rgba(246,196,83,.09);color:#fff3cf;font-family:var(--fontA);font-size:11px;font-weight:900;text-decoration:none;}
+    .deptBtn.pro{border-color:rgba(0,166,81,.34);background:rgba(0,166,81,.12);color:#dfffe9;}
     .appPackIntro{margin:0 0 16px;padding:20px;border-radius:24px;border:1px solid rgba(246,196,83,.28);background:radial-gradient(640px 260px at 12% 0%,rgba(246,196,83,.12),transparent 62%),linear-gradient(135deg,rgba(246,196,83,.06),rgba(0,166,81,.08));box-shadow:var(--shadow);}
     .appPackIntro h2{margin:0;font-family:var(--fontA);font-size:clamp(26px,4vw,44px);line-height:1.04;letter-spacing:-.04em;color:#fff;font-weight:900;}
     .appPackIntro h2 span{color:var(--gold);}
@@ -547,8 +544,8 @@
     #signature-digiy{margin-top:18px;border-color:rgba(246,196,83,.34);background:radial-gradient(780px 320px at 50% 0%,rgba(246,196,83,.14),transparent 62%),radial-gradient(720px 360px at 50% 82%,rgba(0,166,81,.14),transparent 66%),linear-gradient(180deg,rgba(10,48,34,.86),rgba(5,18,13,.88));box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.07);}
     #signature-digiy .showcaseInner{padding:20px 18px 22px;}
     #signature-digiy .showcaseTitle{justify-content:center;text-align:center;color:#fff3cf;letter-spacing:.12em;}
-    #signature-digiy .signatureIntro{max-width:760px;margin:0 auto 18px;text-align:center;color:#fff3cf;font-size:clamp(18px,2.3vw,26px);line-height:1.45;font-weight:1000;font-family:var(--fontA);letter-spacing:.01em;}
-    #signature-digiy .signatureIntro strong{display:block;color:var(--gold);font-size:clamp(24px,3.8vw,42px);line-height:1.04;margin-bottom:8px;}
+    #signature-digiy .signatureIntro{max-width:760px;margin:0 auto 16px;text-align:center;color:#dbe8e0;font-size:15px;line-height:1.7;font-weight:800;}
+    #signature-digiy .signatureIntro strong{color:#fff3cf;}
     #signature-digiy .showcaseImgWrap{max-width:760px;height:auto;background:#071710;border-radius:28px;border-color:rgba(246,196,83,.42);box-shadow:0 0 0 6px rgba(246,196,83,.055),0 22px 58px rgba(0,0,0,.48),0 0 34px rgba(246,196,83,.12);}
     #signature-digiy .showcaseImgWrap img{width:100%;height:auto;object-fit:contain;display:block;}
     #signature-digiy .showcaseCta{justify-content:center;max-width:760px;text-align:center;gap:12px;}
@@ -1008,13 +1005,13 @@
 </div>
 </div>
 <div class="departmentGrid">
-<article class="deptCard"><div class="deptIcon">🚗</div><div class="deptName">Me déplacer</div><div class="deptText">Trouver un chauffeur ou entrer côté chauffeur.</div><div class="deptActions"><a class="deptBtn" href="https://driver-client.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-driver.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">🏠</div><div class="deptName">Dormir / louer</div><div class="deptText">Voir les logements et gérer ses disponibilités.</div><div class="deptActions"><a class="deptBtn" href="https://loc.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-loc.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">📅</div><div class="deptName">Réserver</div><div class="deptText">Choisir un créneau, garder un planning clair.</div><div class="deptActions"><a class="deptBtn" href="https://resa-table-resto.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-resa-resto.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">🛍️</div><div class="deptName">Acheter / vendre</div><div class="deptText">Commerce, boutique, produits, caisse et marché local.</div><div class="deptActions"><a class="deptBtn" href="https://market.digiylyfe.com/" rel="noopener" target="_blank">Boutiques</a><a class="deptBtn" href="https://mon-commerce.digiylyfe.com/" rel="noopener" target="_blank">Commerce</a><a class="deptBtn pro" href="https://pro-market.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">🏗️</div><div class="deptName">Services terrain</div><div class="deptText">Artisans, multi-services, travaux, dépannage, chantier.</div><div class="deptActions"><a class="deptBtn" href="https://build.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-build.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">💼</div><div class="deptName">Travail</div><div class="deptText">Missions, opportunités, candidats, recrutement.</div><div class="deptActions"><a class="deptBtn" href="https://jobs.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-job.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">💳</div><div class="deptName">Mon argent</div><div class="deptText">Paiement direct, notes rapides, entrées, sorties, reste.</div><div class="deptActions"><a class="deptBtn" href="https://pay.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-pay.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
+<article class="deptCard"><div class="deptIcon">🚗</div><div class="deptName">Me déplacer</div><div class="deptText">Trouver un chauffeur ou entrer côté chauffeur.</div><div class="deptActions"><a class="deptBtn" href="https://driver-client.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
+<article class="deptCard"><div class="deptIcon">🏠</div><div class="deptName">Dormir / louer</div><div class="deptText">Voir les logements et gérer ses disponibilités.</div><div class="deptActions"><a class="deptBtn" href="https://loc.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
+<article class="deptCard"><div class="deptIcon">📅</div><div class="deptName">Réserver</div><div class="deptText">Choisir un créneau, garder un planning clair.</div><div class="deptActions"><a class="deptBtn" href="https://resa-table-resto.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
+<article class="deptCard"><div class="deptIcon">🛍️</div><div class="deptName">Acheter / vendre</div><div class="deptText">Commerce, boutique, produits, caisse et marché local.</div><div class="deptActions"><a class="deptBtn" href="https://market.digiylyfe.com/" rel="noopener" target="_blank">Boutiques</a><a class="deptBtn" href="https://mon-commerce.digiylyfe.com/" rel="noopener" target="_blank">Commerce</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
+<article class="deptCard"><div class="deptIcon">🏗️</div><div class="deptName">Services terrain</div><div class="deptText">Artisans, multi-services, travaux, dépannage, chantier.</div><div class="deptActions"><a class="deptBtn" href="https://build.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
+<article class="deptCard"><div class="deptIcon">💼</div><div class="deptName">Travail</div><div class="deptText">Missions, opportunités, candidats, recrutement.</div><div class="deptActions"><a class="deptBtn" href="https://jobs.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
+<article class="deptCard"><div class="deptIcon">💳</div><div class="deptName">Mon argent</div><div class="deptText">Paiement direct, notes rapides, entrées, sorties, reste.</div><div class="deptActions"><a class="deptBtn" href="https://pay.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
 <article class="deptCard"><div class="deptIcon">🗺️</div><div class="deptName">Découvrir / écouter</div><div class="deptText">Territoire, revue, audio, assistant maison DIGIY.</div><div class="deptActions"><a class="deptBtn" href="https://explore.digiylyfe.com/" rel="noopener" target="_blank">Explore</a><a class="deptBtn" href="https://digiy-audio.digiylyfe.com/" rel="noopener" target="_blank">Audio</a><a class="deptBtn" href="https://knowledge.digiylyfe.com/widget/" rel="noopener" target="_blank">Assistant</a></div></article>
 </div>
 </section><section aria-label="L'esprit avant l'outil" id="esprit-digiylyfe">
@@ -1132,6 +1129,10 @@
 </aside>
 </div>
 <div class="showcaseCta">
+<div class="showcaseDesc">
+<span class="signatureLine">Chaque lumière du terrain mérite d'être vue.</span>
+                DIGIYLYFE complète WhatsApp avec une présence digitale simple, humaine et directe. Une Supa Apps locale : simple devant, puissante derrière.
+              </div>
 <div class="signatureActions">
 <a class="signatureBtn" href="https://esprit-digiylyfe.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🎧 Écouter l'esprit DIGIYLYFE</a>
 <a class="signatureBtn" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🧭 Ouvrir le HUB</a>
@@ -1194,9 +1195,14 @@
   }
 
   function smartHref(item,kind){
+    /* Façade publique : les cartes PRO de la vitrine ne doivent pas envoyer
+       directement dans les modules. Sur un téléphone sans session, le guard peut
+       croire que l’accès n’est pas encore actif et renvoyer vers l’activation.
+       Donc : aperçu PRO public → Espace pro. L’activation reste séparée. */
+    if(kind === "pro" && !["espacePro","tarifs","inscriptionPro"].includes(item.key)){
+      return wr(L.espacePro || HOME);
+    }
     const raw = L[item.key] || HOME;
-    /* Façade publique : aucun identifiant sensible n’est ajouté aux liens PRO.
-       Les abonnés passent par l’Espace Pro, puis le coffre PIN/session prend le relais. */
     return wr(raw);
   }
 
@@ -1239,7 +1245,7 @@
   const PRO=[
     {key:"espacePro",name:"Mon activité",icon:"🏢",desc:"Tout commence ici — espace central, propre et direct",status:"LIVE",loco:true},
     {key:"tarifs",name:"Nos tarifs",icon:"📦",desc:"Voir les codes, les prix et choisir la bonne porte DIGIY.",status:"LIVE"},
-    {key:"inscriptionPro",name:"Rejoindre DIGIY",icon:"✍️",desc:"Créer mon compte pro — simple, sans paperasse",status:"LIVE"},
+    {key:"inscriptionPro",name:"Activer mon module",icon:"✍️",desc:"Pour un nouvel accès ou un renouvellement — pas pour ouvrir un module déjà actif",status:"LIVE"},
     {key:"marketPro",name:"Je vends — MARKET",icon:"🛍️",desc:"Ma boutique en ligne, mes produits, mes ventes directes",status:"LIVE",loco:true},
     {key:"caissePro",name:"Mon commerce — CAISSE",icon:"💰",desc:"Encaisser, suivre mes ventes, garder la main",status:"LIVE"},
     {key:"locPro",name:"Je loue — LOC",icon:"🏠",desc:"Mes logements, mes disponibilités, mes clients",status:"LIVE"},
@@ -1270,7 +1276,7 @@
     assistantIA:"Mon assistant DIGIY t'aide à comprendre la bonne porte, poser une question et avancer sans jargon.",
     espacePro:"Tout commence ici. Ton espace professionnel — propre, direct, sans menu inutile. Tu arrives, tu vois, tu agis.",
     tarifs:"Nos tarifs DIGIY : les codes simples, les prix lisibles, et le bon chemin pour choisir sans se perdre.",
-    inscriptionPro:"Tu veux travailler avec DIGIY. Tu crées ton compte — simplement, clairement. En quelques minutes, tu es dedans.",
+    inscriptionPro:"Cette porte sert à activer ou renouveler un accès. Si tu es déjà abonné, passe par Espace pro pour ouvrir tes modules sans repayer.",
     marketPro:"Je vends — MARKET. Tes produits sont visibles, tes ventes se font, ta présence commerciale existe.",
     caissePro:"Mon commerce — CAISSE. Nouveau client — tu encaisses. Fin de journée — tu vois ce qui est rentré.",
     locPro:"Je loue — LOC. Tes logements sont là, tes disponibilités sont visibles, tes clients trouvent directement.",
