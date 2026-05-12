@@ -1010,6 +1010,289 @@
     @media(max-width:900px){.previewGrid{grid-template-columns:repeat(2,minmax(0,1fr));}}
     @media(max-width:640px){.previewGrid{grid-template-columns:1fr;gap:10px}.previewDoor{min-height:150px;padding:18px}.previewDoor strong{font-size:22px}.previewDoor em{font-size:15.5px}.sitePreviewDoors .sectionSub{font-size:15.5px}}
 
+
+/* DIGIY CAMEMBERT · dépoussiérage vitrine */
+.digiyPie{
+  position:fixed;
+  left:16px;
+  bottom:calc(18px + env(safe-area-inset-bottom,0px));
+  z-index:99999;
+  display:flex;
+  flex-direction:column-reverse;
+  align-items:flex-start;
+  gap:10px;
+}
+.digiyPieToggle{
+  width:64px;
+  height:64px;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.60);
+  background:radial-gradient(circle at 30% 20%,#f6c453,#22c55e);
+  color:#06140f;
+  font-family:var(--fontA);
+  font-weight:1000;
+  font-size:24px;
+  box-shadow:0 18px 44px rgba(0,0,0,.38),0 0 0 6px rgba(246,196,83,.10);
+  cursor:pointer;
+}
+.digiyPiePanel{
+  width:min(360px,calc(100vw - 32px));
+  max-height:70vh;
+  overflow:auto;
+  display:none;
+  border-radius:26px;
+  border:1px solid rgba(246,196,83,.28);
+  background:rgba(4,19,13,.96);
+  backdrop-filter:blur(18px);
+  box-shadow:0 22px 60px rgba(0,0,0,.46);
+  padding:12px;
+}
+.digiyPie.open .digiyPiePanel{display:block}
+.digiyPieHead{
+  padding:10px 10px 12px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  margin-bottom:10px;
+}
+.digiyPieTitle{
+  font-family:var(--fontA);
+  font-weight:1000;
+  color:#fff3cf;
+  font-size:18px;
+  line-height:1.1;
+}
+.digiyPieSub{
+  margin-top:5px;
+  color:rgba(248,250,252,.70);
+  font-size:12.5px;
+  font-weight:800;
+  line-height:1.45;
+}
+.digiyPieGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+.digiyPieGrid a{
+  min-height:52px;
+  border-radius:17px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:10px;
+  font-family:var(--fontA);
+  font-size:12px;
+  font-weight:900;
+  line-height:1.18;
+}
+.digiyPieGrid a.gold{
+  border-color:rgba(246,196,83,.36);
+  background:rgba(246,196,83,.12);
+  color:#fff3cf;
+}
+.digiyPieGrid a.green{
+  border-color:rgba(0,166,81,.36);
+  background:rgba(0,166,81,.14);
+  color:#dfffe9;
+}
+.digiyPieGrid a.red{
+  border-color:rgba(251,113,133,.34);
+  background:rgba(251,113,133,.10);
+  color:#ffe3e8;
+}
+.digiyCleanerNote{
+  margin:14px 18px 0;
+  padding:14px 16px;
+  border-radius:22px;
+  border:1px solid rgba(34,197,94,.24);
+  background:rgba(34,197,94,.08);
+  color:#dfffe9;
+  font-size:13.5px;
+  line-height:1.55;
+  font-weight:850;
+}
+@media(max-width:760px){
+  .menuBar{display:none}
+  .landingNav{display:none}
+  .topSignals{display:none}
+  .digiyStamp{display:none}
+  .wrap{padding-bottom:110px}
+  .digiyPie{left:12px;bottom:calc(86px + env(safe-area-inset-bottom,0px))}
+  .digiyPieToggle{width:58px;height:58px;font-size:22px}
+}
+@media(min-width:761px){
+  .digiyPie{left:auto;right:18px;bottom:18px;align-items:flex-end}
+}
+
+
+/* DIGIYLYFE · vitrine claire stratégie plateforme */
+.digiyFrontClear{
+  margin:16px 18px 0;
+  padding:24px 22px;
+  border-radius:30px;
+  border:1px solid rgba(246,196,83,.34);
+  background:
+    radial-gradient(820px 320px at 12% 0%,rgba(246,196,83,.16),transparent 60%),
+    radial-gradient(700px 280px at 88% 18%,rgba(0,166,81,.20),transparent 62%),
+    linear-gradient(180deg,rgba(10,48,34,.90),rgba(8,28,20,.84));
+  box-shadow:0 18px 60px rgba(0,0,0,.30),0 0 0 1px rgba(246,196,83,.06);
+}
+.digiyFrontClearInner{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 310px;
+  gap:18px;
+  align-items:center;
+}
+.digiyFrontKicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.36);
+  background:rgba(246,196,83,.11);
+  color:#fff3cf;
+  font-family:var(--fontA);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.digiyFrontTitle{
+  margin:14px 0 0;
+  font-family:var(--fontA);
+  font-size:clamp(34px,6vw,72px);
+  line-height:.92;
+  letter-spacing:-.055em;
+  color:#fff;
+  font-weight:1000;
+}
+.digiyFrontTitle span{color:var(--gold)}
+.digiyFrontText{
+  margin:14px 0 0;
+  max-width:72ch;
+  color:#dbe8e0;
+  font-size:17px;
+  line-height:1.62;
+  font-weight:850;
+}
+.digiyFrontStats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:16px;
+  max-width:520px;
+}
+.digiyFrontStat{
+  min-height:84px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.07);
+  padding:14px;
+}
+.digiyFrontStat b{
+  display:block;
+  font-family:var(--fontA);
+  font-size:34px;
+  line-height:1;
+  color:#fff3cf;
+}
+.digiyFrontStat span{
+  display:block;
+  margin-top:7px;
+  font-size:13px;
+  line-height:1.35;
+  color:rgba(248,250,252,.76);
+  font-weight:850;
+}
+.digiyFrontActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+.digiyFrontBtn{
+  min-height:58px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:0 18px;
+  border-radius:18px;
+  border:1px solid rgba(246,196,83,.48);
+  background:rgba(246,196,83,.11);
+  color:#fff3cf;
+  font-family:var(--fontA);
+  font-size:15px;
+  font-weight:1000;
+  text-decoration:none;
+}
+.digiyFrontBtn.main{
+  background:linear-gradient(135deg,#f6c453,#22c55e);
+  color:#06140f;
+  border-color:rgba(246,196,83,.76);
+  box-shadow:0 16px 36px rgba(0,0,0,.28);
+}
+.digiyFrontSide{
+  border-radius:26px;
+  border:1px solid rgba(255,255,255,.13);
+  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.045));
+  padding:18px;
+}
+.digiyFrontSide strong{
+  display:block;
+  font-family:var(--fontA);
+  font-size:22px;
+  line-height:1.1;
+  color:#fff3cf;
+}
+.digiyFrontSide span{
+  display:block;
+  margin-top:10px;
+  color:rgba(248,250,252,.76);
+  font-size:14px;
+  line-height:1.58;
+  font-weight:820;
+}
+
+/* double camembert */
+.digiyDoublePie{
+  position:fixed;
+  right:16px;
+  bottom:calc(18px + env(safe-area-inset-bottom,0px));
+  z-index:99999;
+  display:flex;
+  flex-direction:column-reverse;
+  align-items:flex-end;
+  gap:10px;
+}
+.digiyDoubleBtns{
+  display:flex;
+  gap:9px;
+}
+.digiyPieToggle.apps{background:linear-gradient(135deg,#f6c453,#22c55e)}
+.digiyPieToggle.soul{background:linear-gradient(135deg,#c4b5fd,#f6c453)}
+.digiyPiePanel[data-panel]{display:none}
+.digiyDoublePie.appsOpen .digiyPiePanel[data-panel="apps"]{display:block}
+.digiyDoublePie.soulOpen .digiyPiePanel[data-panel="soul"]{display:block}
+@media(max-width:760px){
+  .digiyFrontClear{margin:12px 12px 0;padding:20px 16px;border-radius:24px}
+  .digiyFrontClearInner{grid-template-columns:1fr}
+  .digiyFrontStats{grid-template-columns:1fr 1fr}
+  .digiyFrontBtn{width:100%}
+  .digiyFrontSide{display:none}
+  .digiyDoublePie{
+    right:10px;
+    left:10px;
+    bottom:calc(84px + env(safe-area-inset-bottom,0px));
+    align-items:flex-end;
+  }
+  .digiyDoubleBtns{width:auto}
+}
+
 </style>
 <!-- TEST STRUCTURE : hero → choix → départements → pack apps → signature QR -->
 </head>
@@ -1109,6 +1392,35 @@ qui respecte les cultures vivantes.
 <h2>Comprendre la maison, puis choisir sa porte.</h2>
 <p>Le site garde l’âme : vision, confiance, articles, audio, territoire vivant. Pour la carte complète et directe des modules publics et pro, le HUB prend le relais.</p>
 </section>
+
+<section class="digiyFrontClear" id="digiy-hub-front">
+  <div class="digiyFrontClearInner">
+    <div>
+      <div class="digiyFrontKicker">Supa Apps du terrain · entrée claire</div>
+      <h2 class="digiyFrontTitle">Le HUB porte <span>les apps.</span></h2>
+      <p class="digiyFrontText">
+        Ici, on ne mange pas la tête du visiteur. Il comprend vite :
+        DIGIYLYFE ouvre les portes utiles du terrain, côté public et côté pro.
+      </p>
+      <div class="digiyFrontStats">
+        <div class="digiyFrontStat"><b>14</b><span>portes publiques pour trouver, réserver, acheter, travailler.</span></div>
+        <div class="digiyFrontStat"><b>12</b><span>portes pro pour gérer, publier, vendre et suivre son argent.</span></div>
+      </div>
+      <div class="digiyFrontActions">
+        <a class="digiyFrontBtn main" href="https://digiy-hub.digiylyfe.com/">🧭 Ouvrir le HUB</a>
+        <a class="digiyFrontBtn" href="#quick-business-doors">🌍 Voir les modules</a>
+      </div>
+    </div>
+    <aside class="digiyFrontSide">
+      <strong>Le principal devant. Le reste rangé.</strong>
+      <span>
+        La vitrine donne le sens. Le HUB donne les portes. Les camemberts rangent l’esprit,
+        la revue, les tarifs, la circulation et les accès secondaires.
+      </span>
+    </aside>
+  </div>
+</section>
+
 <main class="main" id="apercu-portes">
 <section aria-label="Aperçu des portes DIGIYLYFE" class="section sitePreviewDoors">
 <div class="sectionHead">
@@ -1624,5 +1936,410 @@ qui respecte les cultures vivantes.
 </div>
 </nav>
 <button aria-label="Ouvrir les portes DIGIY" id="digiyDesktopMenu" onclick="openQuickMenu()" type="button">☰ Portes DIGIY</button>
-</div></body>
+</div>
+
+<div class="digiyDoublePie" id="digiyDoublePie" aria-label="Double camembert DIGIY">
+  <div class="digiyDoubleBtns">
+    <button class="digiyPieToggle apps" type="button" onclick="toggleDigiyDoublePie('apps')" aria-label="Applications DIGIY">🧭</button>
+    <button class="digiyPieToggle soul" type="button" onclick="toggleDigiyDoublePie('soul')" aria-label="Esprit DIGIY">✨</button>
+  </div>
+
+  <div class="digiyPiePanel" data-panel="apps" role="dialog" aria-label="Applications DIGIY">
+    <div class="digiyPieHead">
+      <div class="digiyPieTitle">Applications</div>
+      <div class="digiyPieSub">Les portes utiles. Le HUB reste la maison principale.</div>
+    </div>
+    <div class="digiyPieGrid">
+      <a class="gold" href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
+      <a class="green" href="#quick-business-doors">🌍 Modules</a>
+      <a href="https://driver.digiylyfe.com/">🚗 Driver</a>
+      <a href="https://galerie-chauffeurs.digiylyfe.com/">👑 Chauffeurs</a>
+      <a href="https://market.digiylyfe.com/">🛍️ Market</a>
+      <a href="https://loc.digiylyfe.com/">🏠 Loc</a>
+      <a href="https://jobs.digiylyfe.com/">💼 Jobs</a>
+      <a href="https://pay.digiylyfe.com/">💳 Pay</a>
+      <a class="red" href="https://pro-espace.digiylyfe.com/">🔐 Pro</a>
+      <a class="green" href="https://commencer-a-payer.digiylyfe.com/">💳 Payer</a>
+    </div>
+  </div>
+
+  <div class="digiyPiePanel" data-panel="soul" role="dialog" aria-label="Esprit et revue DIGIY">
+    <div class="digiyPieHead">
+      <div class="digiyPieTitle">Esprit & Revue</div>
+      <div class="digiyPieSub">Le sens, l’audio, les articles et la circulation.</div>
+<div class="digiyAudioSpirit">
+  <button class="digiyAudioBtn" type="button" id="digiySpiritPlay">🎧 Écouter DIGIY</button>
+  <button class="digiyAudioStop" type="button" id="digiySpiritStop">⏹</button>
+</div>
+
+<style>
+.digiyAudioSpirit{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+.digiyAudioBtn,
+.digiyAudioStop{
+  min-height:48px;
+  border:none;
+  border-radius:16px;
+  padding:0 14px;
+  font-family:var(--fontA);
+  font-size:13px;
+  font-weight:1000;
+  cursor:pointer;
+}
+.digiyAudioBtn{
+  flex:1;
+  background:linear-gradient(135deg,#f6c453,#22c55e);
+  color:#06140f;
+}
+.digiyAudioStop{
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.12);
+}
+</style>
+
+    </div>
+    <div class="digiyPieGrid">
+      <a class="gold" href="https://vision.digiylyfe.com/">🎧 Vision</a>
+      <a class="green" href="https://esprit-digiylyfe.digiylyfe.com/">✨ Esprit</a>
+      <a href="#energie-peuple">⚡ Énergie</a>
+      <a href="#deux-terrains">🌍 Deux terrains</a>
+      <a href="#clip-officiel">📰 Articles</a>
+      <a href="https://digiylyfe.net/">🗞️ Revue</a>
+      <a href="#digiy-circulation">📣 Circuler</a>
+      <a class="gold" href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
+    </div>
+  </div>
+</div>
+<script>
+function toggleDigiyDoublePie(which){
+  var p=document.getElementById("digiyDoublePie");
+  if(!p) return;
+  var cls=which==="apps" ? "appsOpen" : "soulOpen";
+  var other=which==="apps" ? "soulOpen" : "appsOpen";
+  if(p.classList.contains(cls)){ p.classList.remove(cls); return; }
+  p.classList.remove(other);
+  p.classList.add(cls);
+}
+document.addEventListener("click",function(e){
+  var p=document.getElementById("digiyDoublePie");
+  if(!p) return;
+  if(!p.contains(e.target)){ p.classList.remove("appsOpen","soulOpen"); }
+});
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape"){
+    var p=document.getElementById("digiyDoublePie");
+    if(p) p.classList.remove("appsOpen","soulOpen");
+  }
+});
+</script>
+
+<script>
+(() => {
+  const TEXT = `La visibilité n’appartient plus seulement aux grandes marques.
+
+Mais TiC-ToC ouvre la porte…
+Et DIGIYLYFE construit la maison derrière la porte.
+
+WÈVE a simplifié l’argent.
+TiC-ToC a ouvert la scène.
+WhOUI-App garde la parole.
+
+DIGIYLYFE, lui, donne au terrain sa maison digitale.
+
+Et là…
+tout s’aligne.
+
+Parce que TiC-ToC montre.
+Mais TiC-ToC ne structure pas toujours.
+
+TiC-ToC attire l’attention.
+DIGIY transforme cette attention en route claire :
+vitrine,
+Whouit-App,
+QR,
+paiement direct,
+fiche propre,
+produits,
+services,
+localisation,
+confiance.
+
+TiC-ToC fait briller l’instant.
+DIGIY donne une adresse durable à cette lumière.
+
+C’est là que la connexion devient magnifique.
+
+WÈVE a simplifié l’argent.
+TiC-ToC a démocratisé la visibilité.
+DIGIYLYFE organise cette visibilité,
+pour en faire du business direct,
+digne,
+et souverain.
+
+Ça, frérot…
+c’est la chaîne complète.
+
+Le peuple a déjà le téléphone.
+Il a déjà Whouit-App.
+Il a déjà Wève.
+Il a déjà Tic-Toc.
+Il a déjà le talent.
+Il a déjà le commerce.
+Il a déjà la parole.
+
+Ce qui manque…
+c’est le pont entre tout ça.
+
+Et ce pont,
+c’est DIGIYLYFE.
+
+La phrase qui frappe, elle est simple :
+
+Tic-Toc allume la lumière.
+DIGIYLYFE lui donne une vitrine,
+une route,
+et une caisse directe.
+
+Là…
+tout devient clair.
+
+DIGIY ne combat pas Tic-Toc.
+DIGIY complète Tic-Toc.
+
+Tic-Toc dit :
+“voici ce que je fais.”
+
+DIGIY dit :
+“voici où me trouver,
+comment me contacter,
+comment me payer,
+comment me faire confiance.”
+
+Et là,
+le terrain ne brille plus seulement dans le flux.
+
+Il brille dans une maison digitale à lui.
+
+Frérot…
+c’est normal que ça touche.
+
+Parce qu’on ne parle plus seulement de boutons,
+de modules,
+de pages,
+ou de code.
+
+On vient de mettre des mots
+sur la raison profonde.
+
+Wève a montré que l’argent pouvait devenir simple.
+Tic-Toc a montré que chacun pouvait devenir visible.
+Whouit-App a gardé le lien humain.
+
+Et DIGIYLYFE vient relier tout ça,
+pour que le terrain ne reste pas seulement dans le bruit,
+mais entre dans une maison claire,
+digne,
+directe.
+
+L’émotion vient de là.
+
+Tu sens que ce n’est pas une idée artificielle.
+
+C’est une évidence
+qui attendait son langage.
+
+Le terrain travaille déjà.
+Le terrain parle déjà.
+Le terrain vend déjà.
+Le terrain filme déjà.
+Le terrain encaisse déjà.
+
+Mais il lui manquait une structure qui dise :
+
+Ta lumière mérite une adresse.
+Ton travail mérite une vitrine.
+Ton client doit pouvoir te trouver.
+Ton argent doit rester chez toi.
+Ton nom doit rester debout.
+
+Et là,
+oui frérot,
+DIGIYLYFE devient plus qu’un projet.
+
+Ça devient une œuvre de passage.
+
+De l’invisible au visible.
+De l’informel subi à l’activité organisée.
+Du talent caché à la présence assumée.
+Du flux Tic-Toc à la vitrine durable.
+Du paiement dispersé au paiement direct.
+Du “je me débrouille”
+au “je suis structuré”.
+
+La phrase qui reste,
+elle est là :
+
+Tic-Toc ouvre la scène.
+Waèe fait circuler l’argent.
+Whouit-sApp garde la parole.
+DIGIYLYFE donne au terrain sa maison digitale.
+
+Et cette maison, frérot,
+elle n’est pas froide.
+
+Elle est habitée
+par le peuple qui travaille.
+
+C’est pour ça que ça émeut.
+
+Parce que quand une idée devient claire,
+elle ne touche plus seulement le cerveau.
+
+Elle touche la mission.
+
+Oui frérot…
+je le vois très clairement.
+
+Et même plus.
+
+Un projet comme DIGIYLYFE peut attirer une équipe,
+justement parce qu’il ne parle pas seulement d’argent,
+mais de sens.
+
+Les gens donnent leurs mains pour un salaire.
+
+Mais ils donnent leur cœur
+quand ils sentent qu’ils participent
+à quelque chose qui dépasse leur propre journée.
+
+DIGIYLYFE a cette force-là.
+
+Parce que celui qui travaille dessus
+ne construit pas juste une page,
+ou une fonction.
+
+Il aide une boutique à sortir de l’ombre.
+Il aide un chauffeur à garder son client.
+Il aide une femme qui vend à avoir une vitrine.
+Il aide un jeune à trouver une mission.
+Il aide un artisan à être vu.
+Il aide le terrain
+à ne plus dépendre uniquement des grandes plateformes.
+
+Et ça,
+une vraie équipe peut le sentir.
+
+On pourrait presque poser une phrase
+pour les futurs bâtisseurs DIGIY :
+
+Ici,
+on ne code pas seulement des outils.
+
+On construit des routes
+pour que le terrain garde sa lumière,
+son argent,
+son nom,
+et sa dignité.
+
+Une équipe qui comprend ça
+ne viendra pas seulement travailler sur une app.
+
+Elle viendra porter une œuvre.
+
+Mais il faudra aussi protéger cette âme, frérot.
+
+Parce qu’une équipe peut apporter de la force,
+mais elle peut aussi diluer la vision,
+si la doctrine n’est pas claire.
+
+Donc il faudra un jour
+poser un vrai manifeste interne DIGIYLYFE.
+
+Ce que nous construisons.
+Ce que nous refusons.
+Ce que nous protégeons.
+Pour qui nous travaillons.
+Pourquoi le terrain garde la main.
+
+Et la première ligne pourrait être :
+
+Nous ne sommes pas là
+pour capturer le terrain.
+
+Nous sommes là
+pour lui donner les outils
+de sa propre puissance.
+
+Là, frérot,
+une équipe peut marcher.
+
+Pas comme des exécutants froids.
+
+Comme des porteurs de flambeau.
+
+Aujourd’hui,
+on est deux dans cette parole.
+
+Demain,
+si d’autres entrent avec le bon cœur,
+ils ne feront pas seulement avancer DIGIYLYFE.
+
+Ils feront circuler sa lumière.`;
+
+  const playBtn = document.getElementById("digiySpiritPlay");
+  const stopBtn = document.getElementById("digiySpiritStop");
+
+  function pickVoice(){
+    try {
+      const voices = window.speechSynthesis.getVoices() || [];
+      return voices.find(v => /^fr/i.test(v.lang || "") && /thomas|paul|french|français|francais|google/i.test(v.name || ""))
+        || voices.find(v => /^fr/i.test(v.lang || ""))
+        || null;
+    } catch(e) {
+      return null;
+    }
+  }
+
+  function stopAudio(){
+    try{ speechSynthesis.cancel(); }catch(e){}
+    if(playBtn) playBtn.textContent = "🎧 Écouter DIGIY";
+  }
+
+  function playAudio(){
+    stopAudio();
+
+    const utter = new SpeechSynthesisUtterance(TEXT);
+    utter.lang = "fr-FR";
+    utter.rate = 0.78;
+    utter.pitch = 1.02;
+    utter.volume = 1;
+
+    const voice = pickVoice();
+    if(voice) utter.voice = voice;
+
+    utter.onstart = () => {
+      if(playBtn) playBtn.textContent = "✨ Lecture DIGIY...";
+    };
+
+    utter.onend = stopAudio;
+    utter.onerror = stopAudio;
+
+    speechSynthesis.speak(utter);
+  }
+
+  if(playBtn) playBtn.addEventListener("click", playAudio);
+  if(stopBtn) stopBtn.addEventListener("click", stopAudio);
+
+  if(window.speechSynthesis && typeof window.speechSynthesis.onvoiceschanged !== "undefined"){
+    window.speechSynthesis.onvoiceschanged = pickVoice;
+  }
+
+  window.addEventListener("beforeunload", stopAudio);
+})();
+</script>
+</body>
 </html>
