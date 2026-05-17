@@ -1997,16 +1997,41 @@
 
   function speakManifesto(){
     if(!("speechSynthesis" in window)){alert("Lecture audio non disponible.");return;}
+
+    /* Mobile/iPhone : la voix doit être déclenchée directement par le clic.
+       Si on attend 1 ou 2 secondes après le clic, la musique joue,
+       mais speechSynthesis peut être bloqué silencieusement. */
     speechSynthesis.cancel();
     startMusic();
-    /* Délai léger — laisser le gong résonner avant la voix */
-    setTimeout(function(){
-      var u=new SpeechSynthesisUtterance(MANIFESTE);
-      u.lang="fr-FR"; u.rate=0.78; u.pitch=1.00;
-      var v=getFrenchVoice(); if(v) u.voice=v;
-      u.onend=stopMusic; u.onerror=stopMusic;
-      speechSynthesis.speak(u);
-    }, 1800);
+
+    var u=new SpeechSynthesisUtterance(MANIFESTE);
+    u.lang="fr-FR";
+    u.rate=0.78;
+    u.pitch=1.00;
+
+    var v=getFrenchVoice();
+    if(v) u.voice=v;
+
+    u.onstart=function(){
+      try{ speechSynthesis.resume(); }catch(e){}
+    };
+    u.onend=stopMusic;
+    u.onerror=function(){
+      /* Sur certains mobiles, une première voix peut rater si les voix ne sont pas prêtes.
+         On retente une seule fois sans délai long. */
+      try{
+        var u2=new SpeechSynthesisUtterance(MANIFESTE);
+        u2.lang="fr-FR"; u2.rate=0.78; u2.pitch=1.00;
+        var v2=getFrenchVoice(); if(v2) u2.voice=v2;
+        u2.onend=stopMusic;
+        u2.onerror=stopMusic;
+        speechSynthesis.speak(u2);
+        speechSynthesis.resume();
+      }catch(e){ stopMusic(); }
+    };
+
+    speechSynthesis.speak(u);
+    try{ speechSynthesis.resume(); }catch(e){}
   }
 
   function stopManifesto(){
@@ -2023,7 +2048,11 @@
 
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",bind);
   else bind();
-  if("speechSynthesis" in window) speechSynthesis.onvoiceschanged=function(){getFrenchVoice();};
+  if("speechSynthesis" in window){
+    /* Réveille la liste des voix tôt, utile sur mobile */
+    try{ speechSynthesis.getVoices(); }catch(e){}
+    speechSynthesis.onvoiceschanged=function(){getFrenchVoice();};
+  }
 })();
 </script>
 
@@ -3244,6 +3273,10 @@ Ils feront circuler sa lumière.`;
 <!-- DIGIYLYFE INDEX — mise en valeur PRO ajoutée proprement — 20260513 -->
 </body>
 </html>
+
+
+
+
 
 
 
