@@ -1672,18 +1672,18 @@
 <body class="landing-test">
 <div class="bg"></div>
 <div class="app">
-
+<!-- DIGIYLYFE — Lecteur manifeste d'ouverture -->
 <div class="digiy-opening-manifesto" aria-label="Manifeste DIGIYLYFE">
   <div class="digiy-opening-inner">
     <p>Je clique.</p>
     <p>Je parle.</p>
-    <p>J’existe.</p>
+    <p>J'existe.</p>
     <p>Je suis visible.</p>
     <p>Je suis reconnu.</p>
-    <p>J’avance.</p>
+    <p>J'avance.</p>
 
     <div class="digiy-opening-signature">
-      <strong>L’assistant maison DIGIY exécute.</strong><br>
+      <strong>L'assistant maison DIGIY exécute.</strong><br>
       Le pro VALIDE.
     </div>
 
@@ -1702,87 +1702,331 @@
 
 <style>
 .digiy-opening-manifesto{
-  margin:18px 18px 0;
-  padding:28px 22px;
-  border-radius:28px;
+  margin:18px 18px 0;padding:28px 22px;border-radius:28px;
   border:1px solid rgba(246,196,83,.34);
   background:
     radial-gradient(760px 320px at 12% 0%,rgba(246,196,83,.16),transparent 60%),
     radial-gradient(620px 260px at 88% 20%,rgba(0,166,81,.16),transparent 62%),
     linear-gradient(180deg,rgba(10,48,34,.90),rgba(8,28,20,.84));
-  box-shadow:0 18px 60px rgba(0,0,0,.30);
-  text-align:center;
+  box-shadow:0 18px 60px rgba(0,0,0,.30);text-align:center;
 }
-.digiy-opening-inner{
-  max-width:760px;
-  margin:0 auto;
-}
+.digiy-opening-inner{max-width:760px;margin:0 auto}
 .digiy-opening-manifesto p{
-  margin:0;
-  font-family:"Outfit",system-ui,sans-serif;
-  font-size:clamp(28px,5vw,54px);
-  line-height:1.02;
-  font-weight:900;
-  color:#fff;
-  letter-spacing:-.04em;
+  margin:0;font-family:"Outfit",system-ui,sans-serif;
+  font-size:clamp(28px,5vw,54px);line-height:1.02;font-weight:900;
+  color:#fff;letter-spacing:-.04em;
 }
 .digiy-opening-signature{
-  margin-top:22px;
-  color:#fff3cf;
-  font-family:"Outfit",system-ui,sans-serif;
-  font-size:clamp(18px,2vw,24px);
-  line-height:1.5;
-  font-weight:800;
+  margin-top:22px;color:#fff3cf;font-family:"Outfit",system-ui,sans-serif;
+  font-size:clamp(18px,2vw,24px);line-height:1.5;font-weight:800;
 }
-.digiy-opening-signature strong{
-  color:#f6c453;
-}
+.digiy-opening-signature strong{color:#f6c453}
 .digiy-opening-brand{
-  margin-top:18px;
-  font-family:"Outfit",system-ui,sans-serif;
-  font-size:clamp(26px,4vw,42px);
-  font-weight:1000;
-  letter-spacing:.06em;
-  color:#f6c453;
+  margin-top:18px;font-family:"Outfit",system-ui,sans-serif;
+  font-size:clamp(26px,4vw,42px);font-weight:1000;letter-spacing:.06em;color:#f6c453;
 }
-@media(max-width:640px){
-  .digiy-opening-manifesto{
-    margin:14px 12px 0;
-    padding:22px 16px;
-    border-radius:24px;
-  }
-}
-
-.digiy-opening-audio{
-  margin-top:20px;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-}
+.digiy-opening-audio{margin-top:20px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
 .digiy-opening-audio button{
-  min-height:52px;
-  padding:0 18px;
-  border-radius:999px;
+  min-height:52px;padding:0 18px;border-radius:999px;
   border:1px solid rgba(246,196,83,.48);
   background:linear-gradient(135deg,#f6c453,#22c55e);
-  color:#06140f;
-  font-family:"Outfit",system-ui,sans-serif;
-  font-size:15px;
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:0 12px 28px rgba(0,0,0,.26);
+  color:#06140f;font-family:"Outfit",system-ui,sans-serif;
+  font-size:15px;font-weight:900;cursor:pointer;box-shadow:0 12px 28px rgba(0,0,0,.26);
 }
-.digiy-opening-audio #digiyOpeningStop{
-  background:rgba(255,255,255,.12);
-  color:#fff3cf;
-}
+.digiy-opening-audio #digiyOpeningStop{background:rgba(255,255,255,.12);color:#fff3cf;}
 @media(max-width:640px){
-  .digiy-opening-audio button{
-    width:100%;
-  }
+  .digiy-opening-manifesto{margin:14px 12px 0;padding:22px 16px;border-radius:24px}
+  .digiy-opening-audio button{width:100%}
 }
 </style>
+
+<script>
+(function(){
+  "use strict";
+
+  var MANIFESTE = [
+    "Je clique.","Je parle.","J'existe.","Je suis visible.",
+    "Je suis reconnu.","J'avance.",
+    "L'assistant maison DIGIY exécute.","Le pro valide.","DIGIYLYFE."
+  ].join(" ");
+
+  /* ══════════════════════════════════════════
+     MOTEUR AUDIO — RITUEL D'OUVERTURE DIGIYLYFE
+     Profondeur · Espace · Cérémonie · Présence
+  ══════════════════════════════════════════ */
+  var ctx=null, out=null, loopId=null, playing=false, nodes=[];
+
+  /* Tempo lent et solennel — 62 BPM */
+  var BEAT = 60/62;       /* 0.968s */
+  var LOOP = BEAT * 8;    /* 7.742s */
+
+  function boot(){
+    if(ctx) return true;
+    try{
+      var AC=window.AudioContext||window.webkitAudioContext;
+      if(!AC) return false;
+      ctx=new AC();
+      var comp=ctx.createDynamicsCompressor();
+      comp.threshold.value=-16; comp.knee.value=12;
+      comp.ratio.value=3.5; comp.attack.value=0.008; comp.release.value=0.30;
+      comp.connect(ctx.destination);
+      out=ctx.createGain(); out.gain.value=0.0001;
+      out.connect(comp); nodes.push(comp);
+      return true;
+    }catch(e){return false;}
+  }
+
+  /* ─── Sine tenu, enveloppe douce (âme du pad) ─── */
+  function pad(freq, t, dur, vol, det){
+    if(!ctx||!out) return;
+    var o=ctx.createOscillator(), g=ctx.createGain();
+    o.type="sine"; o.frequency.value=freq;
+    if(det) o.detune.value=det;
+    /* Montée lente — présence progressive */
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.linearRampToValueAtTime(vol, t+dur*0.22);
+    g.gain.setValueAtTime(vol, t+dur*0.72);
+    g.gain.linearRampToValueAtTime(0.0001, t+dur);
+    o.connect(g); g.connect(out);
+    o.start(t); o.stop(t+dur+0.02);
+    nodes.push(o,g);
+  }
+
+  /* ─── Triangle doux (mélodie) ─── */
+  function tri(freq, t, dur, vol){
+    if(!ctx||!out) return;
+    var o=ctx.createOscillator(), g=ctx.createGain();
+    o.type="triangle"; o.frequency.value=freq;
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.linearRampToValueAtTime(vol, t+0.08);
+    g.gain.setValueAtTime(vol, t+dur*0.68);
+    g.gain.linearRampToValueAtTime(0.0001, t+dur);
+    o.connect(g); g.connect(out);
+    o.start(t); o.stop(t+dur+0.02);
+    nodes.push(o,g);
+  }
+
+  /* ─── GONG D'OUVERTURE — frappé une seule fois au départ ───
+     Son métallique inharmonique : plusieurs partiels accordés */
+  function strikeGong(t){
+    if(!ctx||!out) return;
+    /* Partiels d'un gong : fondamentale + 2.76 + 5.4 + 8.93 (inharmonique) */
+    var fund=110; /* A2 — grave, solennel */
+    [[1,0.55],[2.76,0.35],[5.4,0.18],[8.93,0.10]].forEach(function(p){
+      var o=ctx.createOscillator(), g=ctx.createGain();
+      o.type="sine"; o.frequency.value=fund*p[0];
+      g.gain.setValueAtTime(p[1], t);
+      /* Déclin long exponentiel — résonance du gong */
+      g.gain.exponentialRampToValueAtTime(0.0001, t+8.0);
+      o.connect(g); g.connect(out);
+      o.start(t); o.stop(t+8.5);
+      nodes.push(o,g);
+    });
+    /* Bruit d'impact court — frappe physique */
+    try{
+      var len=Math.ceil(ctx.sampleRate*0.08);
+      var buf=ctx.createBuffer(1,len,ctx.sampleRate);
+      var d=buf.getChannelData(0);
+      for(var i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,1.8);
+      var s=ctx.createBufferSource(), f=ctx.createBiquadFilter(), g2=ctx.createGain();
+      s.buffer=buf; f.type="bandpass"; f.frequency.value=800; f.Q.value=1.5;
+      g2.gain.setValueAtTime(0.30,t); g2.gain.exponentialRampToValueAtTime(0.0001,t+0.10);
+      s.connect(f); f.connect(g2); g2.connect(out);
+      s.start(t); s.stop(t+0.12);
+      nodes.push(s,f,g2);
+    }catch(e){}
+  }
+
+  /* ─── BASSE DRONE — fondamentale tenue, respiration lente ─── */
+  function drone(freq, t, dur, vol){
+    if(!ctx||!out) return;
+    /* Fondamentale */
+    pad(freq,   t, dur, vol,     0);
+    /* Octave basse sub */
+    pad(freq/2, t, dur, vol*0.6, 0);
+    /* Légère modulation de fréquence — souffle, vie */
+    try{
+      var lfo=ctx.createOscillator(), lfoG=ctx.createGain();
+      var o=ctx.createOscillator(), g=ctx.createGain();
+      lfo.type="sine"; lfo.frequency.value=0.18; /* très lent */
+      lfoG.gain.value=1.8; /* déviation ±1.8 Hz — imperceptible, vivant */
+      lfo.connect(lfoG); lfoG.connect(o.frequency);
+      o.type="sine"; o.frequency.value=freq*1.502; /* quinte parfaite */
+      g.gain.setValueAtTime(0.0001,t);
+      g.gain.linearRampToValueAtTime(vol*0.40, t+dur*0.30);
+      g.gain.linearRampToValueAtTime(0.0001, t+dur);
+      o.connect(g); g.connect(out);
+      lfo.start(t); o.start(t);
+      lfo.stop(t+dur+0.1); o.stop(t+dur+0.1);
+      nodes.push(lfo,lfoG,o,g);
+    }catch(e){}
+  }
+
+  /* ══════════════════════════════════════════
+     ARRANGEMENT — RITUEL D'OUVERTURE
+
+     Structure :
+     - Drone sub grave continu (fondation)
+     - Accord Ré majeur en sine, 4 octaves (espace)
+     - Mélodie pentatonique lente (présence)
+     - Shimmer haute fréquence très doux (lumière)
+     - Aucune percussion — le silence fait partie du rituel
+     - Respiration : les notes ne se touchent pas toutes
+  ══════════════════════════════════════════ */
+  function renderLoop(t0){
+
+    /* ── DRONE GRAVE — D1 A1 — fondation du rituel ── */
+    drone(36.71, t0, LOOP, 0.22); /* D1 */
+
+    /* ── PAD ACCORD Ré MAJ — 4 octaves de chaleur ──
+       D2 A2 D3 F#3 A3 D4 F#4 A4
+       Chaque note en sine pur x3 (direct + chorus ±7 cents)
+       Volume 0.18 — présence sans agression */
+    var CHORD=[
+      [73.42, 0.18],   /* D2 */
+      [110.00,0.14],   /* A2 */
+      [146.83,0.20],   /* D3 */
+      [185.00,0.16],   /* F#3 */
+      [220.00,0.18],   /* A3 */
+      [293.66,0.20],   /* D4 */
+      [369.99,0.14],   /* F#4 */
+      [440.00,0.12],   /* A4 */
+    ];
+    CHORD.forEach(function(c){
+      pad(c[0], t0, LOOP,       c[1],   0);
+      pad(c[0], t0, LOOP, c[1]*0.4,  +7); /* chorus léger */
+      pad(c[0], t0, LOOP, c[1]*0.4,  -7);
+    });
+
+    /* ── MÉLODIE LENTE — pentatonique Ré, triangle doux ──
+       Espacement large entre les notes — le silence respire */
+    var mel=[
+      {f:293.66, t:0},
+      {f:369.99, t:BEAT*1.5},
+      {f:440.00, t:BEAT*3},
+      {f:523.25, t:BEAT*4},
+      {f:587.33, t:BEAT*5},
+      {f:523.25, t:BEAT*5.75},
+      {f:440.00, t:BEAT*6.25},
+      {f:293.66, t:BEAT*7.25},
+    ];
+    mel.forEach(function(n){
+      tri(n.f, t0+n.t, BEAT*1.10, 0.20);
+    });
+
+    /* ── CONTRE-MÉLODIE — octave basse, très douce ── */
+    var cmel=[
+      {f:146.83, t:BEAT*0.75},
+      {f:185.00, t:BEAT*2.25},
+      {f:220.00, t:BEAT*3.75},
+      {f:146.83, t:BEAT*6.0},
+    ];
+    cmel.forEach(function(n){
+      tri(n.f, t0+n.t, BEAT*1.60, 0.12);
+    });
+
+    /* ── SHIMMER DORÉ — harmoniques hautes, très discrètes ──
+       A5 D6 A6 — lumière sur le rituel */
+    [[880,0.05],[1174.66,0.04],[1760,0.025]].forEach(function(s,i){
+      pad(s[0], t0+i*BEAT*1.5, LOOP-(i*BEAT*1.5), s[1], 0);
+    });
+
+    /* ── BATTEMENT DE QUINTE — A tenu contre D ──
+       Crée un léger mouvement harmonique naturel */
+    pad(220.00, t0+BEAT*2, BEAT*5, 0.10, +3);
+    pad(293.66, t0+BEAT*2, BEAT*5, 0.10, -3);
+
+  }
+
+  /* ─── Fade in très lent — entrée dans l'univers ─── */
+  function fadeIn(){
+    if(!ctx||!out) return;
+    var n=ctx.currentTime;
+    out.gain.cancelScheduledValues(n);
+    out.gain.setValueAtTime(0.0001,n);
+    /* 2.5s pour entrer — le rituel commence doucement */
+    out.gain.linearRampToValueAtTime(0.78, n+2.5);
+  }
+  function fadeOut(){
+    if(!ctx||!out) return;
+    var n=ctx.currentTime;
+    out.gain.cancelScheduledValues(n);
+    out.gain.setValueAtTime(out.gain.value||0.78,n);
+    out.gain.linearRampToValueAtTime(0.0001, n+2.0); /* sortie lente aussi */
+  }
+
+  function startMusic(){
+    if(!boot()) return;
+    if(ctx.state==="suspended") ctx.resume();
+    playing=true;
+    var t0=ctx.currentTime+0.15;
+    /* Gong d'ouverture — une seule frappe au démarrage */
+    strikeGong(t0);
+    /* Deux boucles pré-rendues */
+    renderLoop(t0+0.5);
+    renderLoop(t0+0.5+LOOP);
+    fadeIn();
+    var next=t0+0.5+LOOP*2;
+    loopId=setInterval(function(){
+      if(!ctx||!playing) return;
+      renderLoop(next); next+=LOOP;
+    },(LOOP-0.10)*1000);
+  }
+
+  function stopMusic(){
+    playing=false;
+    if(loopId){clearInterval(loopId);loopId=null;}
+    fadeOut();
+    setTimeout(function(){
+      nodes.forEach(function(n){
+        try{if(n.stop)n.stop(0);}catch(e){}
+        try{n.disconnect();}catch(e){}
+      });
+      nodes=[];
+      try{if(ctx)ctx.close();}catch(e){}
+      ctx=null; out=null;
+    },2200);
+  }
+
+  /* ─── Voix ─── */
+  function getFrenchVoice(){
+    if(!window.speechSynthesis) return null;
+    var v=speechSynthesis.getVoices();
+    return v.find(function(x){return /^fr/i.test(x.lang);})||v[0]||null;
+  }
+
+  function speakManifesto(){
+    if(!("speechSynthesis" in window)){alert("Lecture audio non disponible.");return;}
+    speechSynthesis.cancel();
+    startMusic();
+    /* Délai léger — laisser le gong résonner avant la voix */
+    setTimeout(function(){
+      var u=new SpeechSynthesisUtterance(MANIFESTE);
+      u.lang="fr-FR"; u.rate=0.78; u.pitch=1.00;
+      var v=getFrenchVoice(); if(v) u.voice=v;
+      u.onend=stopMusic; u.onerror=stopMusic;
+      speechSynthesis.speak(u);
+    }, 1800);
+  }
+
+  function stopManifesto(){
+    if("speechSynthesis" in window) speechSynthesis.cancel();
+    stopMusic();
+  }
+
+  function bind(){
+    var p=document.getElementById("digiyOpeningPlay");
+    var s=document.getElementById("digiyOpeningStop");
+    if(p) p.addEventListener("click",speakManifesto);
+    if(s) s.addEventListener("click",stopManifesto);
+  }
+
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",bind);
+  else bind();
+  if("speechSynthesis" in window) speechSynthesis.onvoiceschanged=function(){getFrenchVoice();};
+})();
+</script>
+
 
 <div class="wrap">
 <div class="shell">
@@ -2998,65 +3242,14 @@ Ils feront circuler sa lumière.`;
 </script>
 
 <!-- DIGIYLYFE INDEX — mise en valeur PRO ajoutée proprement — 20260513 -->
-
-<script>
-(function(){
-  "use strict";
-
-  const MANIFESTE_DIGIY = [
-    "Je clique.",
-    "Je parle.",
-    "J’existe.",
-    "Je suis visible.",
-    "Je suis reconnu.",
-    "J’avance.",
-    "L’assistant maison DIGIY exécute.",
-    "Le pro valide.",
-    "DIGIYLYFE."
-  ].join(" ");
-
-  function getFrenchVoice(){
-    const voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
-    return voices.find(v => /^fr/i.test(v.lang)) || voices[0] || null;
-  }
-
-  function speakManifesto(){
-    if(!("speechSynthesis" in window)){
-      alert("Lecture audio non disponible sur ce navigateur.");
-      return;
-    }
-    speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(MANIFESTE_DIGIY);
-    utterance.lang = "fr-FR";
-    utterance.rate = 0.82;
-    utterance.pitch = 1.02;
-    const voice = getFrenchVoice();
-    if(voice) utterance.voice = voice;
-    speechSynthesis.speak(utterance);
-  }
-
-  function stopManifesto(){
-    if("speechSynthesis" in window) speechSynthesis.cancel();
-  }
-
-  function bind(){
-    const play = document.getElementById("digiyOpeningPlay");
-    const stop = document.getElementById("digiyOpeningStop");
-    if(play) play.addEventListener("click", speakManifesto);
-    if(stop) stop.addEventListener("click", stopManifesto);
-  }
-
-  if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", bind);
-  else bind();
-
-  if("speechSynthesis" in window){
-    speechSynthesis.onvoiceschanged = function(){ getFrenchVoice(); };
-  }
-})();
-</script>
-
 </body>
 </html>
+
+
+
+
+
+
 
 
 
