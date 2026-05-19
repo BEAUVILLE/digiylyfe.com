@@ -10,6 +10,7 @@
 <meta content="DIGIYLYFE — JB Beauville" name="author"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://digiylyfe.com/" rel="canonical"/>
+<link rel="preload" as="image" href="https://digiylyfe.net/wp-content/uploads/2026/05/metier-pro-1.png"/>
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="DIGIYLYFE" name="apple-mobile-web-app-title"/>
@@ -390,6 +391,155 @@
         font-size:15px;
       }
     }
+
+
+    /* SCEAU MÉTIERS PRO — logo officiel des portes pro */
+    #sceau-metiers-pro{
+      margin:16px 18px 0;
+      padding:18px 20px;
+      border-radius:28px;
+      border:1px solid rgba(246,196,83,.34);
+      background:
+        radial-gradient(720px 260px at 12% 0%,rgba(246,196,83,.16),transparent 60%),
+        radial-gradient(620px 240px at 90% 20%,rgba(0,166,81,.16),transparent 62%),
+        linear-gradient(135deg,rgba(246,196,83,.08),rgba(0,166,81,.07));
+      box-shadow:0 16px 42px rgba(0,0,0,.22),0 0 0 1px rgba(246,196,83,.05);
+      scroll-margin-top:110px;
+    }
+
+    #sceau-metiers-pro .metier-pro-card{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    #sceau-metiers-pro .metier-pro-visual{
+      width:108px;
+      height:108px;
+      flex:0 0 auto;
+      border-radius:28px;
+      border:1px solid rgba(246,196,83,.38);
+      background:rgba(255,255,255,.92);
+      padding:8px;
+      box-shadow:0 16px 38px rgba(0,0,0,.28),0 0 0 5px rgba(246,196,83,.06);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+    }
+
+    #sceau-metiers-pro .metier-pro-visual img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    #sceau-metiers-pro .metier-pro-copy{
+      flex:1 1 420px;
+      min-width:min(100%,320px);
+    }
+
+    #sceau-metiers-pro .metier-pro-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid rgba(246,196,83,.36);
+      background:rgba(246,196,83,.11);
+      color:#fff3cf;
+      font-family:var(--fontA);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    #sceau-metiers-pro h2{
+      margin:11px 0 0;
+      font-family:var(--fontA);
+      font-size:clamp(25px,3.8vw,42px);
+      line-height:1.02;
+      letter-spacing:-.04em;
+      color:#fff;
+      font-weight:900;
+    }
+
+    #sceau-metiers-pro h2 span{color:var(--gold);}
+
+    #sceau-metiers-pro p{
+      margin:10px 0 0;
+      max-width:74ch;
+      color:#dbe8e0;
+      font-size:14.5px;
+      line-height:1.68;
+      font-weight:800;
+    }
+
+    #sceau-metiers-pro p strong{color:#fff3cf;}
+
+    #sceau-metiers-pro .metier-pro-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    #sceau-metiers-pro .metier-pro-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:46px;
+      padding:0 14px;
+      border-radius:14px;
+      border:1px solid rgba(246,196,83,.38);
+      background:rgba(246,196,83,.10);
+      color:#fff3cf;
+      font-family:var(--fontA);
+      font-size:13px;
+      font-weight:900;
+      text-decoration:none;
+      transition:transform .15s,border-color .15s,background .15s;
+    }
+
+    #sceau-metiers-pro .metier-pro-btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(246,196,83,.62);
+      background:rgba(246,196,83,.16);
+    }
+
+    #sceau-metiers-pro .metier-pro-btn.main{
+      border-color:rgba(246,196,83,.78);
+      background:linear-gradient(135deg,#f6c453,#22c55e);
+      color:#06140f;
+      box-shadow:0 12px 28px rgba(0,0,0,.28);
+    }
+
+    @media(max-width:640px){
+      #sceau-metiers-pro{
+        margin:14px 12px 0;
+        padding:16px;
+        border-radius:24px;
+      }
+      #sceau-metiers-pro .metier-pro-card{
+        align-items:center;
+        text-align:center;
+        justify-content:center;
+      }
+      #sceau-metiers-pro .metier-pro-visual{
+        width:94px;
+        height:94px;
+        border-radius:24px;
+      }
+      #sceau-metiers-pro .metier-pro-actions,
+      #sceau-metiers-pro .metier-pro-btn{
+        width:100%;
+      }
+    }
+
 
     /* ESPRIT */
     #esprit-digiylyfe{margin:16px 18px 0;border:1px solid rgba(246,196,83,.34);border-radius:28px;background:radial-gradient(720px 260px at 12% 0%,rgba(246,196,83,.16),transparent 62%),radial-gradient(640px 260px at 88% 20%,rgba(0,166,81,.16),transparent 62%),linear-gradient(135deg,rgba(246,196,83,.09),rgba(0,166,81,.08));box-shadow:var(--shadow),0 0 0 1px rgba(246,196,83,.06);overflow:hidden;}
@@ -2126,7 +2276,7 @@
   </div>
 </section>
 
-<nav aria-label="Navigation DIGIYLYFE" class="landingNav" id="landing-menu"><a href="#intro-bonheur">🏠 Accueil</a><a class="star" href="#energie-peuple">🎶 Énergie du peuple</a><a class="green" href="#apercu-portes">🌍 Aperçu</a><a class="green" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🧭 HUB</a><a class="gold" href="#mise-en-valeur-pro">✨ Mise en valeur</a><a class="gold" href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank">📦 Tarifs</a><a class="green" href="https://pro-espace.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🏢 Espace pro</a><a class="gold" href="#esprit-digiylyfe">🎧 Esprit</a><a class="gold" href="#clip-officiel">📖 Articles</a><a href="#vision-article">🧭 Vision</a><a href="#digiy-circulation">📣 Faire circuler</a></nav>
+<nav aria-label="Navigation DIGIYLYFE" class="landingNav" id="landing-menu"><a href="#intro-bonheur">🏠 Accueil</a><a class="star" href="#energie-peuple">🎶 Énergie du peuple</a><a class="green" href="#apercu-portes">🌍 Aperçu</a><a class="green" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🧭 HUB</a><a class="gold" href="#mise-en-valeur-pro">✨ Mise en valeur</a><a class="gold" href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank">📦 Tarifs</a><a class="green" href="https://pro-espace.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🏢 Espace pro</a><a class="gold" href="#esprit-digiylyfe">🎧 Esprit</a><a class="gold" href="#clip-officiel">📖 Articles</a><a href="#vision-article">🧭 Vision</a><a href="#digiy-circulation">📣 Faire circuler</a><a class="star" href="#sceau-metiers-pro">🪪 Métiers pro</a></nav>
 <section id="intro-bonheur">
 <div class="wrap">
 <div class="eyebrow"><span class="dot"></span> DIGIYLYFE — TERRITOIRE VIVANT</div><div class="supaBadge">🚀 LA SUPA APPS DU TERRAIN</div>
@@ -2176,6 +2326,31 @@
 <p class="mini"><strong>Supa Apps du terrain</strong> · 0% commission · paiement direct · contact utile · territoire vivant · L'Afrique enracinée, connectée au monde ∞</p>
 </div>
 </section>
+
+
+<section aria-label="Sceau officiel métiers pro DIGIYLYFE" id="sceau-metiers-pro">
+  <div class="metier-pro-card">
+    <div class="metier-pro-visual">
+      <img src="https://digiylyfe.net/wp-content/uploads/2026/05/metier-pro-1.png" alt="DIGIYLYFE — Métiers pro" loading="eager" decoding="async"/>
+    </div>
+
+    <div class="metier-pro-copy">
+      <div class="metier-pro-kicker">🪪 SCEAU MÉTIERS PRO · BY DIGIYLYFE</div>
+      <h2>Chaque métier garde <span>sa lumière.</span></h2>
+      <p>
+        Ce logo devient le repère des portes pro : chauffeurs, logements, boutiques,
+        services, missions, réservations et métiers du terrain.
+        <strong>Un même symbole, plusieurs métiers, une relation directe.</strong>
+      </p>
+      <div class="metier-pro-actions">
+        <a class="metier-pro-btn main" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🧭 Ouvrir les portes</a>
+        <a class="metier-pro-btn" href="#mise-en-valeur-pro">✨ Options fiche pro</a>
+        <a class="metier-pro-btn" href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank">📦 Voir les tarifs</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <section aria-label="Énergie du peuple Sénégal connecté au monde" id="energie-peuple">
 <div class="energy-inner">
@@ -3273,6 +3448,33 @@ Ils feront circuler sa lumière.`;
 <!-- DIGIYLYFE INDEX — mise en valeur PRO ajoutée proprement — 20260513 -->
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
