@@ -1428,6 +1428,171 @@
 .digiyPiePanel[data-panel]{display:none}
 .digiyDoublePie.appsOpen .digiyPiePanel[data-panel="apps"]{display:block}
 .digiyDoublePie.soulOpen .digiyPiePanel[data-panel="soul"]{display:block}
+.digiyPieFavorites{
+  margin:0 0 10px;
+  padding:10px;
+  border-radius:21px;
+  border:1px solid rgba(246,196,83,.30);
+  background:radial-gradient(420px 160px at 10% 0%,rgba(246,196,83,.14),transparent 62%),rgba(255,255,255,.055);
+  box-shadow:0 12px 28px rgba(0,0,0,.20);
+}
+.digiyPieFavTop{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:0;
+  font-family:var(--fontA);
+  cursor:pointer;
+  text-align:left;
+}
+.digiyPieFavTop strong{
+  display:block;
+  color:#fff3cf;
+  font-size:15px;
+  font-weight:1000;
+  line-height:1.12;
+}
+.digiyPieFavTop small{
+  display:block;
+  margin-top:3px;
+  color:rgba(248,250,252,.70);
+  font-size:11px;
+  font-weight:850;
+  line-height:1.25;
+}
+.digiyPieFavCount{
+  flex:0 0 auto;
+  min-width:48px;
+  min-height:32px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(246,196,83,.42);
+  background:rgba(246,196,83,.12);
+  color:#fff3cf;
+  font-size:12px;
+  font-style:normal;
+  font-weight:1000;
+}
+.digiyPieFavList{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:7px;
+  margin-top:10px;
+}
+.digiyPieFavList a{
+  min-height:48px;
+  border-radius:16px;
+  border:1px solid rgba(246,196,83,.30);
+  background:rgba(246,196,83,.10);
+  color:#fff3cf;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:8px;
+  font-family:var(--fontA);
+  font-size:12px;
+  font-weight:1000;
+  line-height:1.12;
+  text-decoration:none;
+}
+.digiyPieFavEmpty{
+  margin-top:10px;
+  padding:10px 11px;
+  border-radius:16px;
+  border:1px dashed rgba(246,196,83,.28);
+  background:rgba(246,196,83,.06);
+  color:#fff0c8;
+  font-size:12px;
+  line-height:1.45;
+  font-weight:850;
+}
+.digiyPieFavChooser{
+  display:none;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid rgba(255,255,255,.10);
+}
+.digiyPieFavChooser.open{display:block;}
+.digiyPieFavTools{
+  display:flex;
+  gap:7px;
+  margin-bottom:8px;
+}
+.digiyPieFavTool{
+  flex:1;
+  min-height:36px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  font-family:var(--fontA);
+  font-size:11px;
+  font-weight:1000;
+  cursor:pointer;
+}
+.digiyPieFavTool.gold{
+  border-color:rgba(246,196,83,.36);
+  background:rgba(246,196,83,.12);
+  color:#fff3cf;
+}
+.digiyPieFavChoices{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:7px;
+  max-height:250px;
+  overflow:auto;
+  padding-right:2px;
+}
+.digiyPieFavChoice{
+  min-height:44px;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:7px;
+  padding:8px 9px;
+  font-family:var(--fontA);
+  font-size:11.5px;
+  font-weight:1000;
+  line-height:1.12;
+  cursor:pointer;
+  text-align:left;
+}
+.digiyPieFavChoice.active{
+  border-color:rgba(246,196,83,.52);
+  background:rgba(246,196,83,.14);
+  color:#fff3cf;
+}
+.digiyPieFavChoice .favStar{width:18px;flex:0 0 auto;text-align:center;color:#f6c453;}
+.digiyPieFavChoice .favKind{
+  display:block;
+  margin-top:2px;
+  color:rgba(248,250,252,.56);
+  font-size:9px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.digiyPieFavHint{
+  margin-top:8px;
+  color:rgba(248,250,252,.66);
+  font-size:11px;
+  line-height:1.35;
+  font-weight:800;
+}
+@media(max-width:420px){
+  .digiyPieFavList,.digiyPieFavChoices{grid-template-columns:1fr;}
+}
 @media(max-width:760px){
   .digiyFrontClear{margin:12px 12px 0;padding:20px 16px;border-radius:24px}
   .digiyFrontClearInner{grid-template-columns:1fr}
@@ -2730,7 +2895,7 @@ qui respecte les cultures vivantes.
 <script>
 (function(){
   "use strict";
-  const HOME="https://digiylyfe.com/",FAVORITES_KEY="digiylyfe_favorites_v1",FAVORITES_MAX=3;
+  const HOME="https://digiylyfe.com/",FAVORITES_KEY="digiylyfe_favorites_v1",FAVORITES_MAX=4;
   function wr(url){
     try{
       const u = new URL(url,location.href);
@@ -2855,7 +3020,7 @@ qui respecte les cultures vivantes.
   function toggleFav(kind,key){
     const id=favId(kind,key),idx=favorites.indexOf(id);
     if(idx>=0){favorites.splice(idx,1);saveFavs();renderAll();return;}
-    if(favorites.length>=FAVORITES_MAX){alert("Maximum 3 favoris.");return;}
+    if(favorites.length>=FAVORITES_MAX){alert("Maximum 4 favoris.");return;}
     favorites.unshift(id);saveFavs();renderAll();
   }
   function cardHTML(item,kind){
@@ -3026,6 +3191,20 @@ qui respecte les cultures vivantes.
       <div class="digiyPieTitle">Applications</div>
       <div class="digiyPieSub">Les portes utiles. Le HUB reste la maison principale.</div>
     </div>
+
+    <div class="digiyPieFavorites" id="digiyPieFavorites" aria-label="Mes modules favoris DIGIYLYFE">
+      <button class="digiyPieFavTop" id="digiyPieFavToggle" type="button" aria-expanded="false">
+        <span>
+          <strong>⭐ Mes 4 favoris</strong>
+          <small>Choisis tes portes rapides. DIGIY garde ça sur ce téléphone.</small>
+        </span>
+        <em class="digiyPieFavCount" id="digiyPieFavCount">0/4</em>
+      </button>
+      <div class="digiyPieFavList" id="digiyPieFavList"></div>
+      <div class="digiyPieFavEmpty" id="digiyPieFavEmpty">Aucun favori posé. Appuie ici, choisis jusqu’à 4 modules, et le terrain respire.</div>
+      <div class="digiyPieFavChooser" id="digiyPieFavChooser" aria-label="Choisir les modules favoris"></div>
+    </div>
+
     <div class="digiyPieGrid">
       <a class="gold" href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
       <a class="green" href="#quick-business-doors">🌍 Modules</a>
@@ -3113,6 +3292,122 @@ document.addEventListener("keydown",function(e){
     if(p) p.classList.remove("appsOpen","soulOpen");
   }
 });
+</script>
+
+<script>
+(function(){
+  "use strict";
+  const FAVORITES_KEY="digiylyfe_favorites_v1";
+  const FAVORITES_MAX=4;
+  const HOME="https://digiylyfe.com/";
+  const MODULES=[
+    {id:"public:hub",kind:"public",icon:"🧭",name:"HUB",href:"https://digiy-hub.digiylyfe.com/"},
+    {id:"public:explore",kind:"public",icon:"🗺️",name:"Explore",href:"https://explore.digiylyfe.com/"},
+    {id:"public:driver",kind:"public",icon:"🚗",name:"Driver",href:"https://driver-client.digiylyfe.com/"},
+    {id:"public:galerieChauffeurs",kind:"public",icon:"👑",name:"Chauffeurs",href:"https://driver-client.digiylyfe.com/"},
+    {id:"public:loc",kind:"public",icon:"🏠",name:"Loc",href:"https://loc.digiylyfe.com/"},
+    {id:"public:resaTable",kind:"public",icon:"📅",name:"Réserver",href:"https://resa-table-resto.digiylyfe.com/"},
+    {id:"public:build",kind:"public",icon:"🏗️",name:"Artisan",href:"https://build.digiylyfe.com/"},
+    {id:"public:monCommerce",kind:"public",icon:"👜",name:"Commerce",href:"https://mon-commerce.digiylyfe.com/"},
+    {id:"public:market",kind:"public",icon:"🛍️",name:"Market",href:"https://market.digiylyfe.com/"},
+    {id:"public:jobs",kind:"public",icon:"💼",name:"Jobs",href:"https://jobs.digiylyfe.com/"},
+    {id:"public:pay",kind:"public",icon:"💳",name:"Pay",href:"https://pay.digiylyfe.com/"},
+    {id:"public:audio",kind:"public",icon:"🎵",name:"Audio",href:"https://digiy-audio.digiylyfe.com/"},
+    {id:"pro:espacePro",kind:"pro",icon:"🏢",name:"Espace pro",href:"https://pro-espace.digiylyfe.com/"},
+    {id:"pro:tarifs",kind:"pro",icon:"📦",name:"Tarifs",href:"https://tarifs.digiylyfe.com/"},
+    {id:"pro:inscriptionPro",kind:"pro",icon:"✍️",name:"Activer",href:"https://commencer-a-payer.digiylyfe.com/"},
+    {id:"pro:marketPro",kind:"pro",icon:"🛍️",name:"Pro Market",href:"https://pro-market.digiylyfe.com/"},
+    {id:"pro:caissePro",kind:"pro",icon:"💰",name:"Caisse",href:"https://commerce-pro.digiylyfe.com/"},
+    {id:"pro:locPro",kind:"pro",icon:"🏠",name:"Pro Loc",href:"https://pro-loc.digiylyfe.com/"},
+    {id:"pro:resaTablePro",kind:"pro",icon:"📅",name:"Pro Résa",href:"https://pro-resa-resto.digiylyfe.com/"},
+    {id:"pro:driverPro",kind:"pro",icon:"🚗",name:"Pro Driver",href:"https://pro-driver.digiylyfe.com/"},
+    {id:"pro:jobsPro",kind:"pro",icon:"💼",name:"Pro Jobs",href:"https://pro-job.digiylyfe.com/"},
+    {id:"pro:buildPro",kind:"pro",icon:"🏗️",name:"Services",href:"https://pro-build.digiylyfe.com/"},
+    {id:"pro:explorePro",kind:"pro",icon:"🗺️",name:"Pro Explore",href:"https://pro-explore.digiylyfe.com/"},
+    {id:"pro:payPro",kind:"pro",icon:"💳",name:"Pro Pay",href:"https://pro-pay.digiylyfe.com/"}
+  ];
+  const byId=id=>MODULES.find(m=>m.id===id)||null;
+  const $=id=>document.getElementById(id);
+  function wrapReturn(url){
+    try{
+      const u=new URL(url,location.href);
+      u.searchParams.set("return",HOME);
+      return u.toString();
+    }catch(e){return url;}
+  }
+  function loadFavs(){
+    try{
+      const raw=JSON.parse(localStorage.getItem(FAVORITES_KEY)||"[]");
+      const seen=new Set();
+      return Array.isArray(raw)?raw.filter(id=>typeof id==="string"&&byId(id)&&!seen.has(id)&&(seen.add(id),true)).slice(0,FAVORITES_MAX):[];
+    }catch(e){return[];}
+  }
+  function saveFavs(favs){
+    try{localStorage.setItem(FAVORITES_KEY,JSON.stringify(favs.slice(0,FAVORITES_MAX)));}catch(e){}
+  }
+  function render(){
+    const list=$("digiyPieFavList"),empty=$("digiyPieFavEmpty"),count=$("digiyPieFavCount"),chooser=$("digiyPieFavChooser"),toggle=$("digiyPieFavToggle");
+    if(!list||!empty||!count||!chooser||!toggle) return;
+    const favs=loadFavs();
+    count.textContent=favs.length+"/"+FAVORITES_MAX;
+    if(favs.length){
+      empty.style.display="none";
+      list.innerHTML=favs.map(id=>{
+        const m=byId(id);
+        return `<a href="${wrapReturn(m.href)}" target="_blank" rel="noopener noreferrer">${m.icon} ${m.name}</a>`;
+      }).join("");
+    }else{
+      list.innerHTML="";
+      empty.style.display="block";
+    }
+    chooser.innerHTML=`
+      <div class="digiyPieFavTools">
+        <button class="digiyPieFavTool gold" type="button" data-fav-close>Valider</button>
+        <button class="digiyPieFavTool" type="button" data-fav-clear>Vider</button>
+      </div>
+      <div class="digiyPieFavChoices">
+        ${MODULES.map(m=>{
+          const active=favs.includes(m.id);
+          return `<button class="digiyPieFavChoice${active?" active":""}" type="button" data-fav-id="${m.id}">
+            <span class="favStar">${active?"⭐":"☆"}</span>
+            <span>${m.icon} ${m.name}<span class="favKind">${m.kind==="pro"?"pro":"public"}</span></span>
+          </button>`;
+        }).join("")}
+      </div>
+      <div class="digiyPieFavHint">Astuce terrain : 4 favoris maximum pour éviter le menu fleuve. Le pro clique vite, le client trouve vite.</div>`;
+    chooser.querySelectorAll("[data-fav-id]").forEach(btn=>{
+      btn.addEventListener("click",function(){
+        const id=this.getAttribute("data-fav-id");
+        let next=loadFavs();
+        const idx=next.indexOf(id);
+        if(idx>=0){next.splice(idx,1);}else{
+          if(next.length>=FAVORITES_MAX){alert("Maximum 4 favoris.");return;}
+          next.push(id);
+        }
+        saveFavs(next);
+        render();
+      });
+    });
+    const clear=chooser.querySelector("[data-fav-clear]");
+    if(clear) clear.addEventListener("click",function(){saveFavs([]);render();});
+    const close=chooser.querySelector("[data-fav-close]");
+    if(close) close.addEventListener("click",function(){chooser.classList.remove("open");toggle.setAttribute("aria-expanded","false");});
+  }
+  function boot(){
+    const toggle=$("digiyPieFavToggle"),chooser=$("digiyPieFavChooser"),empty=$("digiyPieFavEmpty");
+    if(!toggle||!chooser) return;
+    toggle.addEventListener("click",function(){
+      const open=!chooser.classList.contains("open");
+      chooser.classList.toggle("open",open);
+      toggle.setAttribute("aria-expanded",open?"true":"false");
+    });
+    if(empty){
+      empty.addEventListener("click",function(){chooser.classList.add("open");toggle.setAttribute("aria-expanded","true");});
+    }
+    render();
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot); else boot();
+})();
 </script>
 
 <script>
@@ -3448,6 +3743,60 @@ Ils feront circuler sa lumière.`;
 <!-- DIGIYLYFE INDEX — mise en valeur PRO ajoutée proprement — 20260513 -->
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
