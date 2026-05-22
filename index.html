@@ -378,6 +378,74 @@ h1 .w.gold{color:var(--gold)}
   }
 }
 
+
+/* ══ ESPRIT — lecteur avec diapos synchronisées ══ */
+.soulSlides{
+  margin-top:12px;
+  border-radius:18px;
+  border:1px solid rgba(196,181,253,.28);
+  background:
+    radial-gradient(300px 130px at 12% 0%,rgba(196,181,253,.16),transparent 62%),
+    radial-gradient(260px 120px at 88% 0%,rgba(246,196,83,.13),transparent 64%),
+    rgba(255,255,255,.055);
+  padding:12px;
+  min-height:128px;
+  overflow:hidden;
+}
+.soulSlideKicker{
+  display:inline-flex;
+  min-height:26px;
+  align-items:center;
+  padding:0 9px;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.30);
+  background:rgba(246,196,83,.10);
+  color:#fff3cf;
+  font-family:var(--fontA);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.soulSlideTitle{
+  margin-top:9px;
+  font-family:var(--fontA);
+  font-size:18px;
+  line-height:1.08;
+  font-weight:1000;
+  letter-spacing:-.03em;
+  color:#fff;
+}
+.soulSlideBody{
+  margin-top:7px;
+  color:rgba(248,250,252,.78);
+  font-size:12.5px;
+  line-height:1.45;
+  font-weight:850;
+}
+.soulSlideBar{
+  margin-top:11px;
+  height:5px;
+  border-radius:999px;
+  background:rgba(255,255,255,.10);
+  overflow:hidden;
+}
+.soulSlideProgress{
+  height:100%;
+  width:0%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#f6c453,#22c55e);
+  transition:width .35s ease;
+}
+.soulSlides.playing .soulSlideTitle,
+.soulSlides.playing .soulSlideBody{
+  animation:soulFade .75s ease both;
+}
+@keyframes soulFade{
+  from{opacity:.28;transform:translateY(5px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
 /* ══ RESPONSIVE ══ */
 @media(max-width:980px){
   .heroCard{grid-template-columns:1fr}
@@ -577,6 +645,12 @@ h1 .w.gold{color:var(--gold)}
         <button class="soulPlay" id="soulPlay">🎧 Écouter DIGIY</button>
         <button class="soulStop" id="soulStop">⏹</button>
       </div>
+      <div class="soulSlides" id="soulSlides" aria-live="polite">
+        <div class="soulSlideKicker" id="soulSlideKicker">ESPRIT DIGIY</div>
+        <div class="soulSlideTitle" id="soulSlideTitle">DIGIYLYFE n’est pas une plateforme</div>
+        <div class="soulSlideBody" id="soulSlideBody">C’est le terrain qui reprend son interface.</div>
+        <div class="soulSlideBar" aria-hidden="true"><div class="soulSlideProgress" id="soulSlideProgress"></div></div>
+      </div>
     </div>
     <div class="pieSect"><h4>Écouter · Lire · Comprendre</h4>
       <div class="pieGrid">
@@ -775,7 +849,176 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&pie)pie.classList.r
 /* ══ TEXTES AUDIO CACHÉS ══ */
 const MANIFESTE_TEXT="Je clique. Je parle. J'existe. Je suis visible. Je suis reconnu. J'avance. L'assistant maison DIGIY exécute. Le pro valide. DIGIYLYFE.";
 const HERO_TEXT="DIGIYLYFE, c'est la Supa Apps du terrain. Le complément de WhatsApp — caisse, planning, fiche, notes — et zéro commission. Un chauffeur, un logement, une réservation, un artisan : le public trouve une vraie personne, au bon moment, sans détour.";
-const SOUL_TEXT="La visibilité n'appartient plus seulement aux grandes marques. Tic Toc ouvre la porte. Et DIGIYLYFE construit la maison derrière la porte. Wouève a simplifié l'argent. Tic Toc a ouvert la scène. WhatsApp garde la parole. DIGIYLYFE donne au terrain sa maison digitale. Le peuple a déjà le téléphone. Il a déjà WhatsApp, Wouève, Tic Toc, le talent. Ce qui manque, c'est le pont entre tout ça. Et ce pont, c'est DIGIYLYFE. Tic Toc ouvre la scène. Wouève fait circuler l'argent. WhatsApp garde la parole. DIGIYLYFE donne au terrain sa maison digitale. Ce n'est pas juste une app. C'est une œuvre de passage.";
+const SOUL_TEXT="DIGIYLYFE n’est pas une plateforme. C’est le terrain qui reprend son interface.
+Il arrive un moment où un projet cesse d’être seulement un assemblage d’outils.
+
+Au départ, on peut croire que DIGIYLYFE est une application, un site, une vitrine, une marketplace, un logiciel de caisse, un système de réservation ou un espace professionnel.
+
+Mais plus on avance, plus une vérité apparaît.
+
+DIGIYLYFE ne rentre pas dans les cases existantes, parce que les cases existantes ont souvent été créées par ceux qui capturent le terrain.
+
+On dit “plateforme”, mais les plateformes classiques gardent le client chez elles.
+On dit “marketplace”, mais beaucoup de marketplaces prennent la place du commerçant.
+On dit “application”, mais une application seule ne suffit pas à porter l’économie réelle.
+On dit “outil digital”, mais DIGIYLYFE porte quelque chose de plus profond qu’un simple outil.
+
+DIGIYLYFE pose une autre voie.
+
+Une infrastructure digitale de terrain
+DIGIYLYFE est une infrastructure digitale pensée pour les professionnels réels : les boutiques, les chauffeurs, les artisans, les locations, les commerces, les services, les lieux, les talents et les acteurs locaux.
+
+Ceux qui travaillent avant les algorithmes.
+Ceux qui vendent avant les campagnes publicitaires.
+Ceux qui connaissent les clients par le prénom.
+Ceux qui font vivre les quartiers, les routes, les marchés, les plages, les villages et les villes.
+
+Le numérique ne doit pas venir effacer cette force.
+Il doit l’organiser, l’éclairer et la protéger.
+
+C’est là que DIGIYLYFE prend sa place.
+
+DIGIYLYFE n’est pas une plateforme au-dessus du terrain.
+C’est une interface donnée au terrain pour qu’il reste maître de sa route.
+
+Connecter sans confisquer
+Les grandes plateformes ont souvent construit leur puissance sur une logique simple : garder le client, garder la donnée, garder le paiement, garder la relation.
+
+Le professionnel travaille.
+La plateforme encaisse.
+Le client reste enfermé dans l’application.
+Et peu à peu, celui qui fait le métier perd la main sur son propre business.
+
+DIGIYLYFE refuse cette logique.
+
+Avec DIGIYLYFE, le professionnel garde son nom.
+Il garde son contact.
+Il garde son client.
+Il garde son paiement.
+Il garde sa dignité.
+
+Le QR ne détourne pas le client.
+Il l’amène vers le professionnel.
+
+La vitrine ne remplace pas la boutique.
+Elle l’ouvre au monde.
+
+Le paiement ne passe pas par une caisse centrale.
+Il reste direct.
+
+L’outil métier ne transforme pas le commerçant en dépendant.
+Il lui donne de la clarté.
+
+Voilà la doctrine :
+
+DIGIYLYFE connecte sans confisquer.
+
+La Supa Apps du terrain
+DIGIYLYFE peut être présenté comme une Supa Apps africaine distribuée.
+
+Mais cette expression ne veut pas dire une grosse application qui avale tout.
+
+Elle veut dire un ensemble de portes simples, chacune pensée pour un besoin réel :
+
+DIGIY MARKET pour montrer et vendre.
+DIGIY PAY pour orienter vers le paiement direct.
+DIGIY DRIVER pour donner une présence aux chauffeurs.
+DIGIY LOC pour ouvrir les locations.
+DIGIY JOBS pour relier les missions et les talents.
+DIGIY EXPLORE pour rendre visibles les lieux.
+DIGIY STORE PRO et MON COMMERCE pour aider les petites activités à mieux gérer.
+DIGIY LANGUE pour parler au peuple dans ses langues et ses réalités.
+
+Chaque module est une porte.
+Chaque porte mène au terrain.
+Chaque route respecte celui qui travaille.
+
+C’est cela, la différence.
+
+Le terrain n’a pas besoin d’être remplacé
+L’Afrique n’a pas besoin d’un numérique qui copie froidement les modèles venus d’ailleurs.
+
+Elle a besoin d’outils adaptés à son rythme, à ses usages, à ses langues, à ses commerces, à ses familles, à ses réalités.
+
+Ici, beaucoup de business passent déjà par WhatsApp, par la confiance, par la parole, par le quartier, par la recommandation, par le téléphone, par la proximité.
+
+DIGIYLYFE ne vient pas casser cela.
+
+DIGIYLYFE vient compléter cette force.
+
+Il donne une adresse.
+Une vitrine.
+Un QR.
+Une page claire.
+Un lien direct.
+Un outil simple.
+Une présence durable.
+
+Il ne dit pas au terrain :
+“Viens travailler dans ma maison.”
+
+Il dit :
+“Voici les outils pour que ta maison soit visible.”
+
+Une nouvelle catégorie
+Il faut donc oser le dire clairement.
+
+DIGIYLYFE n’est pas seulement une app.
+DIGIYLYFE n’est pas seulement une marketplace.
+DIGIYLYFE n’est pas seulement une plateforme.
+
+DIGIYLYFE est une infrastructure digitale de souveraineté locale.
+
+Une couche numérique au service de l’économie réelle.
+Un pont entre le commerce traditionnel et les usages modernes.
+Une route entre le quartier et le web.
+Une protection contre les modèles qui aspirent tout.
+Une manière de dire que le progrès peut servir le peuple sans lui retirer son pouvoir.
+
+Le numérique ne doit pas avaler le terrain
+Le monde avance vite.
+
+L’intelligence artificielle, les agents autonomes, les paiements mobiles, les puces spécialisées, la photonique, le quantique, les grandes plateformes : tout accélère.
+
+Mais au milieu de cette accélération, une question reste essentielle :
+
+qui garde la main ?
+
+Si la technologie avance mais que le terrain perd son autonomie, alors ce n’est pas un progrès complet.
+
+Si le commerce devient digital mais que le commerçant perd son client, ce n’est pas une libération.
+
+Si le paiement devient moderne mais que l’argent passe par des intermédiaires qui imposent leurs règles, ce n’est pas une souveraineté.
+
+DIGIYLYFE répond autrement.
+
+Le numérique ne doit pas avaler le terrain.
+Il doit l’élever.
+
+La phrase fondatrice
+DIGIYLYFE donne au terrain la puissance du numérique, sans lui prendre son âme.
+
+C’est peut-être cela, au fond, la vraie définition.
+
+Pas une plateforme froide.
+Pas un empire d’intermédiation.
+Pas une prison brillante avec de beaux boutons.
+
+Mais une route.
+
+Une route simple.
+Une route directe.
+Une route africaine.
+Une route où le professionnel garde sa place, son argent, son client et sa dignité.
+
+DIGIYLYFE, c’est le terrain qui reprend son interface.
+
+Extrait court pour l’introduction du site
+DIGIYLYFE ne se classe pas comme une simple application ou une marketplace classique. C’est une infrastructure digitale de terrain : une Supa Apps africaine distribuée qui connecte les professionnels, les clients, les paiements, les vitrines et les services locaux sans confisquer la relation. Le terrain garde la main.
+
+Phrase forte à mettre en avant
+DIGIYLYFE n’est pas une plateforme qui prend la place du terrain.
+C’est une infrastructure qui donne au terrain les outils pour garder sa place.";
 
 const pickV=()=>{try{const v=speechSynthesis.getVoices();return v.find(x=>/^fr/i.test(x.lang))||null;}catch{return null;}};
 function speak(text, onEnd){
@@ -800,10 +1043,56 @@ hPlay?.addEventListener("click",()=>{
 });
 hStop?.addEventListener("click",()=>{stopAll();hPlay.textContent="🎧";});
 
+/* Diapos Esprit */
+const SOUL_SLIDES=[{"title": "DIGIYLYFE n’est pas une plateforme", "body": "C’est le terrain qui reprend son interface."}, {"title": "Une infrastructure digitale de terrain", "body": "Boutiques, chauffeurs, artisans, locations, services, lieux et talents locaux."}, {"title": "Connecter sans confisquer", "body": "Le pro garde son nom, son contact, son client, son paiement et sa dignité."}, {"title": "La Supa Apps du terrain", "body": "Chaque module est une porte. Chaque porte mène au terrain."}, {"title": "Le terrain n’a pas besoin d’être remplacé", "body": "DIGIYLYFE complète WhatsApp, la parole, le quartier, la confiance et la proximité."}, {"title": "Une nouvelle catégorie", "body": "Une infrastructure digitale de souveraineté locale au service de l’économie réelle."}, {"title": "Le numérique ne doit pas avaler le terrain", "body": "La technologie doit élever le terrain, pas lui retirer son autonomie."}, {"title": "La phrase fondatrice", "body": "DIGIYLYFE donne au terrain la puissance du numérique, sans lui prendre son âme."}, {"title": "Le terrain garde la main", "body": "Une route simple, directe, africaine, digne et utile."}];
+let soulSlideTimer=null, soulSlideIndex=0;
+const soulSlideBox=document.getElementById("soulSlides");
+const soulSlideKicker=document.getElementById("soulSlideKicker");
+const soulSlideTitle=document.getElementById("soulSlideTitle");
+const soulSlideBody=document.getElementById("soulSlideBody");
+const soulSlideProgress=document.getElementById("soulSlideProgress");
+
+function renderSoulSlide(i){
+  if(!SOUL_SLIDES.length)return;
+  const slide=SOUL_SLIDES[i % SOUL_SLIDES.length];
+  if(soulSlideKicker)soulSlideKicker.textContent=`ESPRIT DIGIY · ${(i % SOUL_SLIDES.length)+1}/${SOUL_SLIDES.length}`;
+  if(soulSlideTitle)soulSlideTitle.textContent=slide.title;
+  if(soulSlideBody)soulSlideBody.textContent=slide.body;
+  if(soulSlideProgress)soulSlideProgress.style.width=(((i % SOUL_SLIDES.length)+1)/SOUL_SLIDES.length*100)+"%";
+}
+
+function startSoulSlides(){
+  stopSoulSlides(false);
+  soulSlideIndex=0;
+  renderSoulSlide(soulSlideIndex);
+  soulSlideBox?.classList.add("playing");
+  soulSlideTimer=setInterval(()=>{
+    soulSlideIndex=(soulSlideIndex+1)%SOUL_SLIDES.length;
+    renderSoulSlide(soulSlideIndex);
+  },7200);
+}
+
+function stopSoulSlides(reset){
+  if(soulSlideTimer)clearInterval(soulSlideTimer);
+  soulSlideTimer=null;
+  soulSlideBox?.classList.remove("playing");
+  if(reset){soulSlideIndex=0;renderSoulSlide(0);}
+}
+
+renderSoulSlide(0);
+
 /* Soul */
 const sPlay=document.getElementById("soulPlay"), sStop=document.getElementById("soulStop");
-sPlay?.addEventListener("click",()=>{sPlay.textContent="✨ En cours...";speak(SOUL_TEXT,()=>{sPlay.textContent="🎧 Écouter DIGIY";});});
-sStop?.addEventListener("click",()=>{stopAll();sPlay.textContent="🎧 Écouter DIGIY";});
+sPlay?.addEventListener("click",()=>{
+  sPlay.textContent="✨ En cours...";
+  startSoulSlides();
+  speak(SOUL_TEXT,()=>{sPlay.textContent="🎧 Écouter DIGIY";stopSoulSlides(false);});
+});
+sStop?.addEventListener("click",()=>{
+  stopAll();
+  stopSoulSlides(true);
+  sPlay.textContent="🎧 Écouter DIGIY";
+});
 
 if(window.speechSynthesis)speechSynthesis.onvoiceschanged=pickV;
 window.addEventListener("beforeunload",stopAll);
