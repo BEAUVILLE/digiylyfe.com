@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>DIGIYLYFE — Audio d'abord</title>
+<title>DIGIYLYFE — La Supa-Apps du terrain</title>
 <meta name="theme-color" content="#00853f"/>
-<meta name="description" content="DIGIYLYFE — Supa-Apps du terrain. Écouter, choisir, cliquer. 0% commission, paiement direct."/>
+<meta name="description" content="DIGIYLYFE — La Supa-Apps du terrain : 15 portes publiques, 9 portes pro, 0% commission, paiement direct au professionnel."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
-<meta property="og:title" content="DIGIYLYFE — Audio d'abord"/>
-<meta property="og:description" content="Les gens écoutent, puis cliquent. DIGIYLYFE ouvre les portes du terrain."/>
+<meta property="og:url" content="https://digiylyfe.com/"/>
+<meta property="og:title" content="DIGIYLYFE — La Supa-Apps du terrain"/>
+<meta property="og:description" content="Trouver, réserver, vendre, travailler et payer direct. 0% commission."/>
 <meta property="og:image" content="https://digiylyfe.net/wp-content/uploads/2026/03/digiylyfe_logo_qr.jpeg"/>
+<meta property="og:locale" content="fr_SN"/>
 <link href="./icon-192.png" rel="icon" sizes="192x192"/>
 <link href="./icon-192.png" rel="apple-touch-icon"/>
 <link href="./manifest.json" rel="manifest"/>
@@ -20,284 +22,793 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --ink:#f8fafc;--soft:rgba(248,250,252,.72);--muted:rgba(248,250,252,.52);
-  --gold:#f6c453;--green:#00a651;--deep:#00853f;--line:rgba(255,255,255,.13);
-  --fontA:"Outfit",system-ui,-apple-system,sans-serif;--fontB:"Manrope",system-ui,-apple-system,sans-serif;
+  --ink:#f8fafc;--soft:rgba(248,250,252,.76);--muted:rgba(248,250,252,.56);
+  --line:rgba(255,255,255,.13);
+  --gold:#f6c453;--green:#00a651;--deep:#00853f;
+  --shadow:0 18px 60px rgba(0,0,0,.35);
+  --fontA:"Outfit",system-ui,sans-serif;
+  --fontB:"Manrope",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;min-height:100vh;color:var(--ink);font-family:var(--fontB);
+body{margin:0;min-height:100vh;color:var(--ink);font-family:var(--fontB);
   background:radial-gradient(900px 520px at 8% -10%,rgba(0,166,81,.35),transparent 62%),
-             radial-gradient(720px 400px at 92% 0%,rgba(246,196,83,.18),transparent 58%),
-             linear-gradient(180deg,#075f32 0%,#062a1d 30%,#04130d 100%);
-  overflow-x:hidden;
-}
+    radial-gradient(720px 400px at 92% 0%,rgba(246,196,83,.18),transparent 58%),
+    linear-gradient(180deg,#075f32 0%,#062a1d 28%,#04130d 100%);
+  overflow-x:hidden;}
 a{color:inherit;text-decoration:none}
-button{font:inherit}
-.bg{position:fixed;inset:0;pointer-events:none;background:radial-gradient(720px 280px at 18% 82%,rgba(246,196,83,.10),transparent 70%),radial-gradient(720px 340px at 86% 68%,rgba(0,166,81,.18),transparent 70%)}
-.page{position:relative;z-index:1;width:min(1180px,100%);margin:auto;padding:14px 14px 104px}
-.shell{overflow:hidden;border:1px solid var(--line);border-radius:30px;background:linear-gradient(180deg,rgba(5,42,27,.84),rgba(3,18,12,.97));box-shadow:0 18px 60px rgba(0,0,0,.35)}
+button{font:inherit;cursor:pointer}
+.bg{position:fixed;inset:0;pointer-events:none;opacity:.68;
+  background:radial-gradient(720px 280px at 18% 82%,rgba(246,196,83,.10),transparent 70%),
+  radial-gradient(720px 340px at 86% 68%,rgba(0,166,81,.18),transparent 70%)}
+.page{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto;padding:14px 14px 106px}
+.shell{overflow:hidden;border:1px solid var(--line);border-radius:30px;
+  background:linear-gradient(180deg,rgba(5,42,27,.84),rgba(3,18,12,.97));box-shadow:var(--shadow)}
 .shell::before{content:"";display:block;height:4px;background:linear-gradient(90deg,var(--green),var(--deep),var(--gold))}
-.top{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(3,18,12,.84);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.09)}
-.brand{display:flex;align-items:center;gap:12px;min-width:0}
-.logo{width:50px;height:50px;border-radius:16px;overflow:hidden;flex:0 0 auto;border:1px solid rgba(246,196,83,.38);box-shadow:0 8px 24px rgba(0,0,0,.28)}
-.logo img{width:100%;height:100%;object-fit:cover;display:block}
-.brand strong{display:block;font-family:var(--fontA);font-size:20px;font-weight:900;letter-spacing:.06em}
-.brand span{display:block;margin-top:3px;color:var(--soft);font-size:12.5px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:330px}
-.topnav{margin-left:auto;display:flex;gap:8px}
-.topnav a,.topnav button{min-height:42px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.075);color:#fff;padding:0 13px;font-family:var(--fontA);font-size:12px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
-.topnav .gold{border-color:rgba(246,196,83,.42);background:rgba(246,196,83,.12);color:#fff3cf}
-.hero{padding:18px}
-.heroCard{min-height:420px;border-radius:34px;border:1px solid rgba(246,196,83,.34);background:radial-gradient(760px 300px at 12% 0%,rgba(246,196,83,.18),transparent 60%),radial-gradient(680px 280px at 88% 12%,rgba(34,197,94,.16),transparent 64%),linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.045));box-shadow:0 18px 50px rgba(0,0,0,.28);display:grid;place-items:center;padding:26px;text-align:center}
-.audioBadge{display:inline-flex;align-items:center;gap:8px;min-height:36px;border-radius:999px;border:1px solid rgba(246,196,83,.38);background:rgba(246,196,83,.10);color:#fff3cf;padding:0 12px;font-family:var(--fontA);font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
-h1{margin:18px 0 0;font-family:var(--fontA);font-size:clamp(46px,8vw,96px);line-height:.88;letter-spacing:-.06em;font-weight:900}
-h1 span{color:var(--gold)}
-.audioHint{margin:14px auto 0;max-width:44ch;color:var(--soft);font-size:clamp(15px,2vw,19px);line-height:1.55;font-weight:900}
-.audioActions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:24px}
-.audioActions button,.audioActions a{min-height:62px;border-radius:18px;border:1px solid rgba(246,196,83,.44);background:rgba(246,196,83,.12);color:#fff3cf;padding:0 20px;font-family:var(--fontA);font-size:16px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer}
-.audioActions .main{border-color:rgba(246,196,83,.82);background:linear-gradient(135deg,#f6c453,#22c55e);color:#06140f;box-shadow:0 16px 36px rgba(0,0,0,.34);font-size:18px}
-.audioPulse{width:140px;height:140px;margin:22px auto 0;border-radius:999px;border:1px solid rgba(246,196,83,.44);background:radial-gradient(circle,rgba(246,196,83,.26),rgba(34,197,94,.16) 42%,rgba(255,255,255,.04));display:grid;place-items:center;font-size:54px;box-shadow:0 0 0 8px rgba(246,196,83,.05),0 18px 46px rgba(0,0,0,.30)}
-.audioPulse.playing{animation:pulse 1.25s infinite ease-in-out}
-@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 8px rgba(246,196,83,.05),0 18px 46px rgba(0,0,0,.30)}50%{transform:scale(1.04);box-shadow:0 0 0 18px rgba(246,196,83,.02),0 20px 58px rgba(0,0,0,.38)}
-.navStrip{position:sticky;top:75px;z-index:35;display:flex;gap:8px;overflow-x:auto;padding:10px 14px;background:rgba(4,19,13,.80);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);scrollbar-width:none}
-.navStrip::-webkit-scrollbar{display:none}
-.navStrip a,.navStrip button{flex:0 0 auto;min-height:38px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);display:inline-flex;align-items:center;justify-content:center;padding:0 12px;font-family:var(--fontA);font-size:12px;font-weight:900;white-space:nowrap;color:#fff;cursor:pointer}
-.navStrip .gold{border-color:rgba(246,196,83,.44);background:rgba(246,196,83,.12);color:#fff3cf}
-.navStrip .green{border-color:rgba(0,166,81,.44);background:rgba(0,166,81,.14);color:#dfffe9}
-.section{margin:14px 18px 0;border-radius:26px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.045);overflow:hidden;box-shadow:0 14px 36px rgba(0,0,0,.20);scroll-margin-top:128px}
-.sectionHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
-.sectionHead h2{margin:0;font-family:var(--fontA);font-size:clamp(24px,3.4vw,38px);line-height:1;font-weight:900;letter-spacing:-.04em}
-.sectionHead small{font-size:12px;letter-spacing:0;margin-left:8px;padding:5px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:var(--soft)}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:14px}
-.favGrid{grid-template-columns:repeat(4,minmax(0,1fr))}
-.tile,.fav{position:relative;min-height:126px;border-radius:22px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.095),rgba(255,255,255,.045));box-shadow:0 10px 26px rgba(0,0,0,.18);padding:15px;display:flex;flex-direction:column;justify-content:center;gap:8px;transition:transform .15s,border-color .15s}
-.tile:hover,.fav:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.36)}
-.tile.pro{border-color:rgba(0,166,81,.24);background:linear-gradient(180deg,rgba(0,166,81,.13),rgba(255,255,255,.045))}
-.fav{border-color:rgba(246,196,83,.30);background:radial-gradient(260px 120px at 20% 0%,rgba(246,196,83,.15),transparent 62%),linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.045))}
-.tile b,.fav b{font-size:34px;line-height:1}
-.tile span,.fav span{font-family:var(--fontA);font-size:18px;font-weight:900;line-height:1.1;color:#fff}
-.tile em{position:absolute;right:12px;bottom:12px;width:34px;height:34px;border-radius:999px;border:1px solid rgba(246,196,83,.32);background:rgba(246,196,83,.10);color:#fff3cf;display:grid;place-items:center;font-family:var(--fontA);font-style:normal;font-weight:900}
-.actions{margin:14px 18px 18px;border-radius:26px;border:1px solid rgba(246,196,83,.22);background:radial-gradient(620px 260px at 10% 0%,rgba(246,196,83,.11),transparent 60%),rgba(255,255,255,.05);padding:16px}
-.actionGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-.actionGrid a{min-height:74px;border-radius:18px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-family:var(--fontA);font-weight:900;line-height:1.2}
-.actionGrid .gold{border-color:rgba(246,196,83,.42);background:rgba(246,196,83,.12);color:#fff3cf}
-.actionGrid .green{border-color:rgba(0,166,81,.42);background:rgba(0,166,81,.13);color:#dfffe9}
-.footer{padding:18px;border-top:1px solid rgba(255,255,255,.08);color:var(--soft);font-size:13px;font-weight:900;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.footer strong{font-family:var(--fontA);color:#fff3cf}
-.camOverlay{position:fixed;inset:0;z-index:999;display:none;background:rgba(0,0,0,.62);backdrop-filter:blur(8px);padding:14px;align-items:flex-end}
-.camOverlay.open{display:flex}
-.cam{width:min(620px,100%);margin:0 auto;border-radius:30px 30px 20px 20px;border:1px solid rgba(246,196,83,.28);background:radial-gradient(560px 230px at 20% 0%,rgba(246,196,83,.15),transparent 60%),linear-gradient(180deg,#082116,#04130d);box-shadow:0 24px 80px rgba(0,0,0,.46);padding:16px}
-.handle{width:58px;height:5px;border-radius:999px;background:rgba(255,255,255,.24);margin:0 auto 12px}
-.camHead{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid rgba(255,255,255,.09);padding-bottom:12px}
-.camHead strong{font-family:var(--fontA);font-size:24px;font-weight:900}
-.close{width:42px;height:42px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#fff;font-size:22px;cursor:pointer}
-.camGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding-top:13px}
-.camGrid a{min-height:62px;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.065);display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;font-family:var(--fontA);font-size:13px;font-weight:900}
-.bottom{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:rgba(3,18,12,.86);backdrop-filter:blur(18px);border-top:1px solid rgba(255,255,255,.10)}
-.bottomInner{width:min(560px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
-.bottom a,.bottom button{min-height:56px;border:1px solid rgba(255,255,255,.08);background:transparent;color:rgba(248,250,252,.80);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-family:var(--fontA);font-weight:900;font-size:10.5px}
-.bottom strong{font-size:22px;line-height:1}
-.bottom .active{background:linear-gradient(135deg,var(--gold),#22c55e);color:#06140f;border-color:rgba(246,196,83,.55)}
-@media(max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.favGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.actionGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
-@media(max-width:700px){
-  .page{padding:0 0 94px}.shell{border-radius:0;border-left:0;border-right:0}
-  .brand span{max-width:150px}.topnav a{display:none}.hero{padding:12px}.heroCard{min-height:390px;padding:18px;border-radius:26px}
-  .audioActions button,.audioActions a{width:100%}.navStrip{top:75px;padding:8px 10px}
-  .section{margin:12px 12px 0;border-radius:22px}.grid,.favGrid{grid-template-columns:1fr;padding:10px}
-  .actions{margin:12px;padding:12px}.camGrid{grid-template-columns:1fr}
+
+/* ══ MANIFESTE AUDIO ══ */
+.manifeste{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin:16px;padding:18px 20px;border-radius:26px;
+  border:1px solid rgba(246,196,83,.28);
+  background:radial-gradient(600px 200px at 8% 0%,rgba(246,196,83,.13),transparent 60%),
+    linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.03));
+  box-shadow:0 12px 32px rgba(0,0,0,.20);
 }
-@media(min-width:701px){.bottom{display:none}
+.manifeste-lines{display:flex;gap:10px;flex-wrap:wrap;flex:1;min-width:0}
+.manifeste-lines span{
+  font-family:var(--fontA);font-size:clamp(13px,2vw,17px);font-weight:900;
+  color:#fff;letter-spacing:-.02em;white-space:nowrap;
+}
+.manifeste-lines span.sep{color:rgba(246,196,83,.40);font-weight:700}
+.manifeste-lines .brand{color:var(--gold);letter-spacing:.04em}
+.manifeste-btns{display:flex;gap:8px;flex:0 0 auto}
+.mBtn{min-height:44px;border-radius:999px;padding:0 16px;
+  font-family:var(--fontA);font-size:13px;font-weight:900;
+  border:1px solid rgba(246,196,83,.48);
+  background:linear-gradient(135deg,#f6c453,#22c55e);color:#06140f;
+  box-shadow:0 8px 20px rgba(0,0,0,.22);}
+.mBtnStop{background:rgba(255,255,255,.10);color:#fff3cf;
+  border-color:rgba(255,255,255,.20);}
+
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:12px;
+  padding:12px 14px;background:rgba(3,18,12,.82);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.09);}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:50px;height:50px;border-radius:16px;overflow:hidden;flex:0 0 auto;
+  border:1px solid rgba(246,196,83,.38);box-shadow:0 8px 24px rgba(0,0,0,.28)}
+.logo img{width:100%;height:100%;display:block;object-fit:cover}
+.brand strong{display:block;font-family:var(--fontA);font-size:20px;font-weight:900;letter-spacing:.06em;line-height:1}
+.brand span{display:block;margin-top:4px;font-size:12px;font-weight:800;color:var(--soft);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
+.topActions{margin-left:auto;display:flex;gap:8px;align-items:center}
+.topBtn{min-height:42px;border-radius:999px;border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.075);color:#fff;display:inline-flex;align-items:center;
+  gap:7px;padding:0 13px;font-family:var(--fontA);font-size:12px;font-weight:900;text-decoration:none;}
+.topBtn.gold{border-color:rgba(246,196,83,.42);background:rgba(246,196,83,.12);color:#fff3cf}
+.topBtn.green{border-color:rgba(0,166,81,.44);background:rgba(0,166,81,.14);color:#dfffe9}
+.menuBtn{min-height:42px;border-radius:999px;border:1px solid rgba(246,196,83,.48);
+  background:linear-gradient(135deg,rgba(246,196,83,.18),rgba(0,166,81,.14));
+  color:#fff3cf;display:inline-flex;align-items:center;gap:7px;padding:0 14px;
+  font-family:var(--fontA);font-size:12px;font-weight:900;}
+
+/* NAV STRIP */
+.navStrip{position:sticky;top:75px;z-index:25;display:flex;gap:8px;overflow-x:auto;
+  padding:10px 14px;background:rgba(4,19,13,.80);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);scrollbar-width:none}
+.navStrip::-webkit-scrollbar{display:none}
+.navStrip a{flex:0 0 auto;min-height:38px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);
+  display:inline-flex;align-items:center;padding:0 12px;
+  font-family:var(--fontA);font-size:12px;font-weight:900;white-space:nowrap}
+.navStrip a.gold{border-color:rgba(246,196,83,.44);background:rgba(246,196,83,.12);color:#fff3cf}
+.navStrip a.green{border-color:rgba(0,166,81,.44);background:rgba(0,166,81,.14);color:#dfffe9}
+
+/* ══ HERO ══ */
+.hero{padding:18px}
+.heroCard{
+  border-radius:30px;border:1px solid rgba(246,196,83,.28);
+  background:radial-gradient(820px 360px at 8% 0%,rgba(246,196,83,.15),transparent 56%),
+    radial-gradient(680px 300px at 96% 0%,rgba(34,197,94,.13),transparent 58%),
+    linear-gradient(180deg,rgba(10,48,34,.88),rgba(6,20,14,.94));
+  padding:28px 24px;display:grid;
+  grid-template-columns:minmax(0,1fr) 300px;
+  gap:22px;align-items:center;box-shadow:0 20px 50px rgba(0,0,0,.28);
+}
+.heroLeft{}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:9px 14px;
+  border:1px solid rgba(255,255,255,.12);border-radius:999px;
+  background:rgba(255,255,255,.04);color:var(--gold);
+  font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-family:var(--fontA);}
+.dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 5px rgba(34,197,94,.12)}
+.supaBadge{display:inline-flex;align-items:center;gap:8px;margin-top:14px;
+  padding:9px 14px;border-radius:999px;border:1px solid rgba(246,196,83,.44);
+  background:linear-gradient(135deg,rgba(246,196,83,.14),rgba(0,166,81,.11));
+  color:#fff3cf;font-family:var(--fontA);font-size:12px;font-weight:1000;
+  letter-spacing:.10em;text-transform:uppercase;}
+h1{margin:18px 0 0;font-family:var(--fontA);
+  font-size:clamp(36px,5.8vw,72px);
+  line-height:.90;letter-spacing:-.055em;font-weight:900;color:#fff;}
+h1 .w{display:block}
+h1 .w.gold{color:var(--gold)}
+.heroSig{display:block;margin-top:10px;font-family:var(--fontA);
+  font-size:clamp(17px,2.6vw,32px);line-height:1;letter-spacing:-.02em;
+  font-weight:900;color:var(--gold);}
+
+/* LECTEUR HERO */
+.heroReader{
+  display:flex;align-items:center;gap:10px;margin-top:20px;
+  padding:12px 16px;border-radius:18px;
+  border:1px solid rgba(246,196,83,.26);
+  background:rgba(246,196,83,.07);
+}
+.heroReaderPlay{
+  min-height:44px;min-width:44px;border-radius:999px;
+  border:1px solid rgba(246,196,83,.50);
+  background:linear-gradient(135deg,rgba(246,196,83,.90),rgba(34,197,94,.85));
+  color:#06140f;font-size:20px;display:grid;place-items:center;flex:0 0 auto;
+}
+.heroReaderStop{
+  min-height:36px;min-width:36px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);
+  color:#fff;font-size:15px;display:grid;place-items:center;flex:0 0 auto;
+}
+.heroReaderLabel{
+  font-family:var(--fontA);font-size:12.5px;font-weight:900;color:#fff3cf;
+  line-height:1.35;flex:1;min-width:0;
+}
+.heroReaderLabel small{display:block;margin-top:3px;color:var(--muted);font-size:11px;font-weight:800;}
+
+/* HEROBOX favoris */
+.heroBox{border-radius:24px;border:1px solid rgba(255,255,255,.13);
+  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.045));
+  padding:16px;display:flex;flex-direction:column;gap:9px;}
+.heroBoxTitle{font-family:var(--fontA);font-size:11px;font-weight:900;
+  letter-spacing:.09em;text-transform:uppercase;color:rgba(246,196,83,.72);margin-bottom:2px;}
+.favLink{min-height:54px;border-radius:16px;
+  border:1px solid rgba(246,196,83,.28);background:rgba(246,196,83,.08);
+  color:#fff3cf;display:flex;align-items:center;gap:10px;padding:0 14px;
+  font-family:var(--fontA);font-size:14px;font-weight:900;
+  transition:border-color .14s,background .14s;text-decoration:none;}
+.favLink:hover{border-color:rgba(246,196,83,.55);background:rgba(246,196,83,.14)}
+.favLink.main{border-color:rgba(246,196,83,.72);
+  background:linear-gradient(135deg,#f6c453,#22c55e);color:#06140f;
+  box-shadow:0 10px 24px rgba(0,0,0,.26);}
+.favLink.def{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:var(--soft)}
+.favLinkIcon{font-size:21px;flex:0 0 auto;line-height:1}
+.favHint{font-size:11px;color:rgba(246,196,83,.55);font-weight:800;
+  text-align:center;padding:2px;font-family:var(--fontA);line-height:1.4}
+
+/* ══ SECTIONS ══ */
+.section{margin:14px 16px 0;border-radius:26px;border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.045);overflow:hidden;
+  box-shadow:0 14px 36px rgba(0,0,0,.20);scroll-margin-top:130px}
+.sectionHead{display:flex;align-items:flex-end;justify-content:space-between;
+  gap:12px;padding:16px;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
+.sectionTitle{margin:0;font-family:var(--fontA);font-weight:900;
+  font-size:clamp(22px,3.2vw,36px);line-height:1.04;letter-spacing:-.04em}
+.sectionTitle small{font-size:12px;letter-spacing:0;display:inline-flex;vertical-align:middle;
+  margin-left:8px;padding:5px 9px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:var(--soft)}
+.sectionSub{margin-top:6px;color:var(--soft);font-weight:800;font-size:13px;line-height:1.45}
+.sectionLinks{display:flex;gap:7px;flex-wrap:wrap}
+.sectionLinks a{min-height:34px;border-radius:999px;padding:0 11px;
+  border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);
+  font-family:var(--fontA);font-size:11px;font-weight:900;
+  display:inline-flex;align-items:center;white-space:nowrap}
+.sectionLinks a.gold{border-color:rgba(246,196,83,.38);background:rgba(246,196,83,.10);color:#fff3cf}
+.sectionLinks a.green{border-color:rgba(0,166,81,.38);background:rgba(0,166,81,.12);color:#dfffe9}
+
+/* ══ CONTENEUR MODULES — GRILLE DESKTOP / RAIL MOBILE ══ */
+.modWrap{position:relative;overflow:hidden}
+
+/* DESKTOP : grille 3 colonnes */
+.modGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:14px}
+
+/* MOBILE : rail horizontal scrollable */
+.modRail{display:none;gap:12px;padding:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.modRail::-webkit-scrollbar{display:none}
+
+/* TILE */
+.tileSlot{position:relative}
+.tile{display:flex;flex-direction:column;gap:8px;min-height:150px;
+  border-radius:22px;border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(180deg,rgba(255,255,255,.095),rgba(255,255,255,.045));
+  box-shadow:0 10px 26px rgba(0,0,0,.18);padding:16px;
+  transition:transform .15s,border-color .15s;
+  text-decoration:none;color:var(--ink);}
+.tile:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.38)}
+.tile.pro{border-color:rgba(0,166,81,.22);
+  background:linear-gradient(180deg,rgba(0,166,81,.13),rgba(255,255,255,.045))}
+.tile.fav{border-color:rgba(246,196,83,.52)!important;
+  box-shadow:0 10px 28px rgba(246,196,83,.12)!important}
+.tileTop{display:flex;align-items:flex-start;gap:10px}
+.tileIcon{font-size:30px;line-height:1;flex:0 0 auto}
+.tileBody{display:flex;flex-direction:column;min-width:0;flex:1}
+.tileBody strong{font-family:var(--fontA);font-size:15px;font-weight:900;line-height:1.15;color:#fff}
+.tileBody small{margin-top:6px;font-size:12.5px;line-height:1.40;color:var(--soft);font-weight:800}
+.tileFoot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:8px}
+.tileTag{border-radius:999px;border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.07);padding:4px 8px;
+  color:#fff3cf;font-family:var(--fontA);font-size:10px;font-weight:900;font-style:normal;letter-spacing:.03em}
+.tileArrow{width:30px;height:30px;border-radius:999px;
+  border:1px solid rgba(246,196,83,.32);background:rgba(246,196,83,.10);
+  color:#fff3cf;display:grid;place-items:center;font-weight:900;font-size:14px;flex:0 0 auto}
+/* ☆ FAV BTN */
+.favBtn{position:absolute;top:10px;right:10px;z-index:4;width:34px;height:34px;
+  border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(4,19,13,.86);
+  color:#fff3cf;display:grid;place-items:center;font-size:16px;
+  backdrop-filter:blur(8px);transition:border-color .14s,background .14s}
+.favBtn:hover{border-color:rgba(246,196,83,.50);background:rgba(246,196,83,.12)}
+.favBtn.on{border-color:rgba(246,196,83,.55);background:rgba(246,196,83,.14);color:#ffe080}
+
+/* FOOTER */
+.footer{padding:18px;border-top:1px solid rgba(255,255,255,.08);
+  color:var(--soft);font-weight:800;font-size:13px;
+  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.footer strong{font-family:var(--fontA);color:#fff3cf}
+
+/* DOUBLE CAMEMBERT */
+.dblPie{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));
+  z-index:80;display:flex;flex-direction:column-reverse;align-items:flex-end;gap:9px}
+.pieBtns{display:flex;gap:8px}
+.pieBtn{width:62px;height:62px;border-radius:999px;font-size:24px;font-weight:1000;
+  box-shadow:0 16px 40px rgba(0,0,0,.38),0 0 0 5px rgba(246,196,83,.08);
+  border:1px solid rgba(246,196,83,.56);}
+.pieBtn.apps{background:linear-gradient(135deg,#f6c453,#22c55e);color:#06140f}
+.pieBtn.soul{background:linear-gradient(135deg,#c4b5fd,#f6c453);color:#06140f}
+.piePanel{width:min(380px,calc(100vw - 24px));max-height:72vh;overflow-y:auto;
+  display:none;border-radius:26px;border:1px solid rgba(246,196,83,.26);
+  background:rgba(4,19,13,.96);backdrop-filter:blur(18px);
+  box-shadow:0 22px 60px rgba(0,0,0,.46);padding:12px}
+.dblPie.appsOpen .piePanel[data-p="apps"]{display:block}
+.dblPie.soulOpen .piePanel[data-p="soul"]{display:block}
+.pieHead{padding:10px 10px 12px;border-bottom:1px solid rgba(255,255,255,.10);margin-bottom:10px}
+.pieHead strong{display:block;font-family:var(--fontA);font-weight:1000;color:#fff3cf;font-size:18px;line-height:1.1}
+.pieHead span{display:block;margin-top:5px;color:var(--muted);font-size:12px;font-weight:800;line-height:1.4}
+.pieGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pieGrid a{min-height:52px;border-radius:16px;border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.07);color:#fff;display:flex;align-items:center;
+  justify-content:center;text-align:center;padding:10px;font-family:var(--fontA);
+  font-size:12px;font-weight:900;line-height:1.18;text-decoration:none}
+.pieGrid a.gold{border-color:rgba(246,196,83,.36);background:rgba(246,196,83,.12);color:#fff3cf}
+.pieGrid a.green{border-color:rgba(0,166,81,.36);background:rgba(0,166,81,.14);color:#dfffe9}
+.pieGrid a.soul{border-color:rgba(196,181,253,.34);background:rgba(196,181,253,.10);color:#ede9fe}
+.pieSect{margin-top:11px;padding-top:11px;border-top:1px solid rgba(255,255,255,.09)}
+.pieSect h4{margin:0 0 8px;font-family:var(--fontA);font-size:10px;font-weight:900;
+  letter-spacing:.09em;text-transform:uppercase;color:rgba(246,196,83,.65)}
+.soulAudio{display:flex;gap:8px;margin-top:10px}
+.soulPlay{flex:1;min-height:46px;border:none;border-radius:14px;
+  background:linear-gradient(135deg,#f6c453,#22c55e);color:#06140f;
+  font-family:var(--fontA);font-size:13px;font-weight:1000;}
+.soulStop{min-height:46px;padding:0 12px;border:1px solid rgba(255,255,255,.14);
+  border-radius:14px;background:rgba(255,255,255,.07);color:#fff;
+  font-family:var(--fontA);font-size:13px;font-weight:900;}
+
+/* BOTTOM NAV */
+.bottomNav{position:fixed;left:0;right:0;bottom:0;z-index:60;
+  padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+  background:rgba(3,18,12,.90);backdrop-filter:blur(18px);
+  border-top:1px solid rgba(255,255,255,.10)}
+.bottomInner{width:min(560px,100%);margin:0 auto;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.bottomInner a,.bottomInner button{min-height:56px;border:1px solid rgba(255,255,255,.08);
+  background:transparent;color:rgba(248,250,252,.78);border-radius:15px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;font-family:var(--fontA);font-weight:900;font-size:10.5px;text-decoration:none;}
+.bottomInner strong{font-size:22px;line-height:1}
+.bottomInner .active{background:linear-gradient(135deg,var(--gold),#22c55e);
+  color:#06140f;border-color:rgba(246,196,83,.55)}
+
+
+/* ══ FAVORIS HAUT DE PAGE — clic rapide anti-scroll ══ */
+.topFavToggle{
+  border-color:rgba(246,196,83,.52)!important;
+  background:linear-gradient(135deg,rgba(246,196,83,.22),rgba(0,166,81,.14))!important;
+  color:#fff3cf!important;
+}
+.topFavBar{
+  position:sticky;
+  top:123px;
+  z-index:24;
+  display:none;
+  padding:10px 14px;
+  border-bottom:1px solid rgba(246,196,83,.16);
+  background:rgba(4,19,13,.88);
+  backdrop-filter:blur(14px);
+}
+.topFavBar.open{display:block}
+.topFavInner{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  width:min(920px,100%);
+  margin:0 auto;
+}
+.topFavLink{
+  min-height:54px;
+  border-radius:17px;
+  border:1px solid rgba(246,196,83,.30);
+  background:
+    radial-gradient(180px 80px at 18% 0%,rgba(246,196,83,.15),transparent 62%),
+    rgba(255,255,255,.07);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:8px 11px;
+  font-family:var(--fontA);
+  font-weight:900;
+  line-height:1.12;
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+}
+.topFavLink:hover{
+  border-color:rgba(246,196,83,.56);
+  background:rgba(246,196,83,.12);
+}
+.topFavLink b{
+  font-size:22px;
+  line-height:1;
+  flex:0 0 auto;
+}
+.topFavLink span{
+  font-size:12.5px;
+  min-width:0;
+}
+.topFavLink.main{
+  border-color:rgba(246,196,83,.72);
+  background:linear-gradient(135deg,#f6c453,#22c55e);
+  color:#06140f;
+}
+@media(max-width:700px){
+  .topFavBar{top:109px;padding:8px 10px}
+  .topFavInner{
+    display:flex;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .topFavInner::-webkit-scrollbar{display:none}
+  .topFavLink{
+    flex:0 0 auto;
+    width:168px;
+    min-height:52px;
+  }
+}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:980px){
+  .heroCard{grid-template-columns:1fr}
+  .modGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .page{padding:0 0 94px}
+  .shell{border-radius:0;border-left:0;border-right:0}
+  .topbar{padding:10px 11px}
+  .brand span{max-width:160px;font-size:11px}
+  .topBtn{display:none}
+  .navStrip{top:71px;padding:8px 10px}
+  .manifeste{margin:12px;padding:14px 16px;gap:10px}
+  .manifeste-lines span{font-size:13px}
+  .hero{padding:12px}
+  .heroCard{padding:18px;border-radius:24px}
+  .section{margin:12px 12px 0;border-radius:22px}
+  .sectionHead{align-items:flex-start;flex-direction:column;padding:14px}
+  /* RAIL MOBILE */
+  .modGrid{display:none}
+  .modRail{display:flex}
+  .tileSlot{flex:0 0 auto;width:240px;scroll-snap-align:start}
+  .tile{min-height:160px;width:100%}
+  .dblPie{right:10px;bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+}
+@media(min-width:701px){.bottomNav{display:none}}
 </style>
 </head>
 <body>
 <div class="bg" aria-hidden="true"></div>
-<div class="page">
-  <div class="shell">
-    <header class="top">
-      <a class="brand" href="https://digiylyfe.com/" aria-label="DIGIYLYFE">
-        <span class="logo"><img src="https://digiylyfe.net/wp-content/uploads/2026/03/digiylyfe_logo_qr.jpeg" alt="Logo DIGIYLYFE"/></span>
-        <span><strong>DIGIYLYFE</strong><span>Écoute. Clique. Avance.</span></span>
-      </a>
-      <nav class="topnav" aria-label="Actions">
-        <a href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
-        <a class="gold" href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
-        <button type="button" data-open>☰</button>
-      </nav>
-    </header>
 
+<div class="page">
+<div class="shell">
+
+  <!-- ══ MANIFESTE AUDIO ══ -->
+  <div class="manifeste" aria-label="Manifeste DIGIYLYFE">
+    <div class="manifeste-lines">
+      <span>Je clique.</span><span class="sep">·</span>
+      <span>Je parle.</span><span class="sep">·</span>
+      <span>J'existe.</span><span class="sep">·</span>
+      <span>Je suis visible.</span><span class="sep">·</span>
+      <span>Je suis reconnu.</span><span class="sep">·</span>
+      <span>J'avance.</span><span class="sep">·</span>
+      <span class="brand">DIGIYLYFE</span>
+    </div>
+    <div class="manifeste-btns">
+      <button class="mBtn" id="mPlay">🎧 Écouter</button>
+      <button class="mBtn mBtnStop" id="mStop">⏹</button>
+    </div>
+  </div>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <a class="brand" href="https://digiylyfe.com/">
+      <span class="logo"><img src="https://digiylyfe.net/wp-content/uploads/2026/03/digiylyfe_logo_qr.jpeg" alt="Logo DIGIYLYFE" loading="eager"/></span>
+      <span><strong>DIGIYLYFE</strong><span>La Supa-Apps du terrain</span></span>
+    </a>
+    <nav class="topActions">
+      <a class="topBtn green" href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
+      <a class="topBtn gold" href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
+      <button class="menuBtn" id="openSoul">✨ Esprit</button>
+    </nav>
+  </header>
+
+  <!-- NAV STRIP -->
+  <nav class="navStrip">
+    <button class="topFavToggle" id="topFavToggle" type="button">⭐ Favoris</button>
+    <a class="green" href="#public">🌍 15 publics</a>
+    <a class="green" href="#pro">🏢 10 pro</a>
+    <a class="gold" href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
+    <a class="gold" href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
+    <a href="https://commencer-a-payer.digiylyfe.com/">💳 Payer</a>
+    <a href="https://pro-espace.digiylyfe.com/">🔐 Espace pro</a>
+    <a href="https://reseau-digiy.digiylyfe.com/">📣 Réseau</a>
+  </nav>
+
+  
+  <!-- FAVORIS HAUT DE PAGE — apparaissent au clic -->
+  <div class="topFavBar" id="topFavBar" aria-hidden="true">
+    <div class="topFavInner" id="topFavInner"></div>
+  </div>
+
+<main>
+
+    <!-- ══ HERO ══ -->
     <section class="hero" id="haut">
       <div class="heroCard">
-        <div>
-          <span class="audioBadge">Audio d’abord</span>
-          <h1>Écoute<br><span>DIGIY.</span></h1>
-          <div class="audioPulse" id="pulse" aria-hidden="true">🎧</div>
-          <p class="audioHint">La page parle. Tu écoutes. Puis tu cliques.</p>
-          <div class="audioActions">
-            <button class="main" type="button" id="playBtn">🎧 Écouter DIGIY</button>
-            <button type="button" id="stopBtn">⏹ Stop</button>
-            <a href="#favoris">⚡ Accès rapide</a>
+
+        <!-- GAUCHE -->
+        <div class="heroLeft">
+          <div class="eyebrow"><span class="dot"></span> DIGIYLYFE — TERRITOIRE VIVANT</div>
+          <div class="supaBadge">🚀 LA SUPA APPS DU TERRAIN</div>
+          <h1>
+            <span class="w">LE BONHEUR</span>
+            <span class="w gold">BUSINESS</span>
+            <span class="w gold">EST LÀ ICI.</span>
+          </h1>
+          <span class="heroSig">BY DIGIYLYFE</span>
+
+          <!-- LECTEUR TEXTE CACHÉ -->
+          <div class="heroReader">
+            <button class="heroReaderPlay" id="heroPlay" aria-label="Écouter la description DIGIYLYFE">🎧</button>
+            <div class="heroReaderLabel">
+              Écouter DIGIYLYFE
+              <small>La Supa Apps du terrain, en une phrase.</small>
+            </div>
+            <button class="heroReaderStop" id="heroStop" aria-label="Arrêter">⏹</button>
           </div>
+        </div>
+
+        <!-- DROITE : 4 favoris -->
+        <div class="heroBox">
+          <div class="heroBoxTitle">⭐ Mes 4 accès rapides</div>
+          <div id="heroFavSlots"></div>
+          <div class="favHint" id="favHint"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══ MODULES PUBLICS ══ -->
+    <section class="section" id="public">
+      <div class="sectionHead">
+        <div>
+          <h2 class="sectionTitle">🌍 Portes publiques <small>15</small></h2>
+          <div class="sectionSub">Trouver, réserver, acheter, écouter — ☆ pour épingler en accès rapide.</div>
+        </div>
+        <div class="sectionLinks">
+          <a class="gold" href="https://digiy-hub.digiylyfe.com/">🧭 HUB complet</a>
+        </div>
+      </div>
+      <div class="modWrap">
+        <!-- DESKTOP grid -->
+        <div class="modGrid" id="pubGrid">
+          <!-- tiles injectées JS -->
+        </div>
+        <!-- MOBILE rail -->
+        <div class="modRail" id="pubRail">
+          <!-- tiles injectées JS -->
         </div>
       </div>
     </section>
 
-    <nav class="navStrip" aria-label="Navigation">
-      <a class="green" href="#favoris">⭐ 4 favoris</a>
-      <a class="green" href="#public">🌍 15 publics</a>
-      <a class="green" href="#pro">🏢 9 pro</a>
-      <a class="gold" href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
-      <a class="gold" href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
-      <button type="button" data-open>☰ Menu</button>
-    </nav>
-
-    <main>
-      <section class="section" id="favoris">
-        <div class="sectionHead"><h2>⭐ Favoris <small>4</small></h2></div>
-        <div class="grid favGrid"><a class="fav" href="https://driver-client.digiylyfe.com/"><b>🚗</b><span>Chauffeur</span></a>
-<a class="fav" href="https://loc.digiylyfe.com/"><b>🏠</b><span>Dormir</span></a>
-<a class="fav" href="#pro"><b>🏢</b><span>Pro</span></a>
-<a class="fav" href="https://tarifs.digiylyfe.com/"><b>📦</b><span>Tarifs</span></a></div>
-      </section>
-
-      <section class="section" id="public">
-        <div class="sectionHead"><h2>🌍 Public <small>15</small></h2></div>
-        <div class="grid"><a class="tile public" href="https://explore.digiylyfe.com/"><b>🗺️</b><span>Découvrir</span><em>↗</em></a>
-<a class="tile public" href="https://driver-client.digiylyfe.com/"><b>🚗</b><span>Chauffeur</span><em>↗</em></a>
-<a class="tile public" href="https://driver-client.digiylyfe.com/"><b>👑</b><span>Nos chauffeurs</span><em>↗</em></a>
-<a class="tile public" href="https://loc.digiylyfe.com/"><b>🏠</b><span>Dormir</span><em>↗</em></a>
-<a class="tile public" href="https://resa-table-resto.digiylyfe.com/"><b>📅</b><span>Réserver</span><em>↗</em></a>
-<a class="tile public" href="https://build.digiylyfe.com/"><b>🏗️</b><span>Artisan</span><em>↗</em></a>
-<a class="tile public" href="https://mon-commerce.digiylyfe.com/"><b>👜</b><span>Commerce</span><em>↗</em></a>
-<a class="tile public" href="https://market.digiylyfe.com/"><b>🛍️</b><span>Boutiques</span><em>↗</em></a>
-<a class="tile public" href="https://jobs.digiylyfe.com/"><b>💼</b><span>Travail</span><em>↗</em></a>
-<a class="tile public" href="https://reseau-digiy.digiylyfe.com/"><b>📣</b><span>Réseau DIGIY</span><em>↗</em></a>
-<a class="tile public" href="https://pay.digiylyfe.com/"><b>💳</b><span>Argent</span><em>↗</em></a>
-<a class="tile public" href="https://vas-chez-digiy.digiylyfe.com/"><b>📍</b><span>Venir</span><em>↗</em></a>
-<a class="tile public" href="https://ndimbal-loc.digiylyfe.com/"><b>🤝</b><span>LOC solidaire</span><em>↗</em></a>
-<a class="tile public" href="https://ndimbal-map.digiylyfe.com/"><b>🧭</b><span>Carte</span><em>↗</em></a>
-<a class="tile public" href="https://digiy-audio.digiylyfe.com/"><b>🎧</b><span>Audio</span><em>↗</em></a></div>
-      </section>
-
-      <section class="section" id="pro">
-        <div class="sectionHead"><h2>🏢 Pro <small>9</small></h2></div>
-        <div class="grid"><a class="tile pro" href="https://pro-market.digiylyfe.com/pin.html"><b>🛍️</b><span>Je vends</span><em>↗</em></a>
-<a class="tile pro" href="https://commerce-pro.digiylyfe.com/pin.html"><b>💰</b><span>Commerce</span><em>↗</em></a>
-<a class="tile pro" href="https://pro-loc.digiylyfe.com/pin.html"><b>🏠</b><span>Je loue</span><em>↗</em></a>
-<a class="tile pro" href="https://pro-resa-resto.digiylyfe.com/pin.html"><b>📅</b><span>Je réserve</span><em>↗</em></a>
-<a class="tile pro" href="https://pro-driver.digiylyfe.com/pin.html"><b>🚗</b><span>Je conduis</span><em>↗</em></a>
-<a class="tile pro" href="https://pro-job.digiylyfe.com/pin.html"><b>💼</b><span>Je recrute</span><em>↗</em></a>
-<a class="tile pro" href="https://pro-build.digiylyfe.com/pin.html"><b>🏗️</b><span>Services</span><em>↗</em></a>
-<a class="tile pro" href="https://pro-explore.digiylyfe.com/pin.html?v=explore-pin-boost-20260522"><b>🗺️</b><span>Me faire connaître</span><em>↗</em></a>
-<a class="tile pro" href="https://pro-pay.digiylyfe.com/pin.html?redirect=hub"><b>💳</b><span>Mon argent</span><em>↗</em></a></div>
-      </section>
-
-      <section class="actions">
-        <div class="actionGrid">
-          <a href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
-          <a class="gold" href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
-          <a class="green" href="https://commencer-a-payer.digiylyfe.com/">💳 Payer</a>
-          <a href="https://pro-espace.digiylyfe.com/">🔐 Espace pro</a>
-          <a href="https://digiylyfe.net/">📰 Revue</a>
+    <!-- ══ MODULES PRO ══ -->
+    <section class="section" id="pro">
+      <div class="sectionHead">
+        <div>
+          <h2 class="sectionTitle">🏢 Modules pro <small>10</small></h2>
+          <div class="sectionSub">10 portes pro : PIN métier + RÉSEAU qualifié — abonnement fixe, 0% commission.</div>
         </div>
-      </section>
-    </main>
+        <div class="sectionLinks">
+          <a class="gold" href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
+          <a class="green" href="https://pro-espace.digiylyfe.com/">🔐 Espace pro</a>
+        </div>
+      </div>
+      <div class="modWrap">
+        <div class="modGrid" id="proGrid"></div>
+        <div class="modRail" id="proRail"></div>
+      </div>
+    </section>
 
-    <footer class="footer">
-      <div><strong>DIGIYLYFE ∞</strong></div>
-      <div>Audio · favoris · pavés.</div>
-    </footer>
-  </div>
+  </main>
+
+  <footer class="footer">
+    <div><strong>DIGIYLYFE ∞</strong> · Le terrain garde la main.</div>
+    <div>0% commission · paiement direct · L'Afrique enracinée, connectée au monde</div>
+  </footer>
+
+</div>
 </div>
 
-<div class="camOverlay" id="camOverlay" aria-hidden="true">
-  <div class="cam" role="dialog" aria-modal="true" aria-label="Menu DIGIY">
-    <div class="handle" aria-hidden="true"></div>
-    <div class="camHead">
-      <strong>☰ DIGIY</strong>
-      <button class="close" type="button" data-close aria-label="Fermer">×</button>
+<!-- DOUBLE CAMEMBERT -->
+<div class="dblPie" id="dblPie">
+  <div class="pieBtns">
+    <button class="pieBtn apps" id="openApps">🧭</button>
+    <button class="pieBtn soul" id="openSoulPie">✨</button>
+  </div>
+  <div class="piePanel" data-p="apps">
+    <div class="pieHead"><strong>Applications</strong><span>Portes rapides. HUB = la maison complète.</span></div>
+    <div class="pieGrid">
+      <a class="gold" href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
+      <a class="green" href="https://reseau-digiy.digiylyfe.com/">📣 Réseau</a>
+      <a href="https://driver-client.digiylyfe.com/">🚗 Driver</a>
+      <a href="https://market.digiylyfe.com/">🛍️ Market</a>
+      <a href="https://loc.digiylyfe.com/">🏠 Loc</a>
+      <a href="https://jobs.digiylyfe.com/">💼 Jobs</a>
+      <a href="https://pay.digiylyfe.com/">💳 Pay</a>
+      <a href="https://build.digiylyfe.com/">🏗️ Build</a>
+      <a class="green" href="https://pro-espace.digiylyfe.com/">🔐 Pro</a>
+      <a class="gold" href="https://commencer-a-payer.digiylyfe.com/">✍️ Activer</a>
     </div>
-    <div class="camGrid"><a href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
-<a href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
-<a href="https://commencer-a-payer.digiylyfe.com/">💳 Payer</a>
-<a href="https://pro-espace.digiylyfe.com/">🔐 Espace pro</a>
-<a href="https://esprit-digiylyfe.digiylyfe.com/">🦅 Esprit</a>
-<a href="https://digiylyfe.net/">📰 Revue</a>
-<a href="https://reseau-digiy.digiylyfe.com/">📣 Réseau</a>
-<a href="https://knowledge.digiylyfe.com/widget/">♾️ Assistant</a></div>
+  </div>
+  <div class="piePanel" data-p="soul">
+    <div class="pieHead">
+      <strong>Esprit & Vision</strong><span>La raison profonde. Le sens. La route.</span>
+      <div class="soulAudio">
+        <button class="soulPlay" id="soulPlay">🎧 Écouter DIGIY</button>
+        <button class="soulStop" id="soulStop">⏹</button>
+      </div>
+    </div>
+    <div class="pieSect"><h4>Écouter · Lire · Comprendre</h4>
+      <div class="pieGrid">
+        <a class="soul" href="https://vision.digiylyfe.com/">🎧 Vision</a>
+        <a class="soul" href="https://esprit-digiylyfe.digiylyfe.com/">✨ Esprit</a>
+        <a href="https://digiylyfe.net/">📖 Revue</a>
+        <a href="https://digiy-audio.digiylyfe.com/">🎵 Audio</a>
+      </div>
+    </div>
+    <div class="pieSect"><h4>Réseau · Mise en valeur</h4>
+      <div class="pieGrid">
+        <a class="green" href="https://reseau-digiy.digiylyfe.com/">📣 Réseau DIGIY</a>
+        <a class="gold" href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
+        <a href="https://reseau-digiy.digiylyfe.com/paiement.html">💳 Wave</a>
+        <a href="https://wa.me/221771342889">📲 Contact</a>
+      </div>
+    </div>
+    <div class="pieSect"><h4>Territoire · Énergie</h4>
+      <div class="pieGrid">
+        <a class="green" href="https://explore.digiylyfe.com/">🇸🇳 Sénégal</a>
+        <a class="gold" href="https://pro-espace.digiylyfe.com/">🇫🇷 France</a>
+        <a href="https://youtu.be/wT7THh-RZoQ">🎶 Énergie</a>
+        <a href="https://digiylyfe.net/">🧭 Articles</a>
+      </div>
+    </div>
+    <div class="pieSect">
+      <div class="pieGrid" style="grid-template-columns:1fr">
+        <a class="soul" style="font-size:11px;line-height:1.5;min-height:auto;padding:12px;text-align:left;justify-content:flex-start" href="https://digiylyfe.net/">🌍 TikTok ouvre la scène · Wave fait circuler l'argent · DIGIYLYFE donne au terrain sa maison digitale.</a>
+      </div>
+    </div>
   </div>
 </div>
 
-<nav class="bottom" aria-label="Navigation mobile">
+<!-- BOTTOM NAV -->
+<nav class="bottomNav">
   <div class="bottomInner">
-    <a class="active" href="#haut"><strong>🎧</strong><span>Audio</span></a>
-    <a href="#favoris"><strong>⭐</strong><span>Favoris</span></a>
-    <a href="#public"><strong>🌍</strong><span>Public</span></a>
+    <a class="active" href="#public"><strong>🌍</strong><span>Public</span></a>
     <a href="#pro"><strong>🏢</strong><span>Pro</span></a>
-    <button type="button" data-open><strong>☰</strong><span>Menu</span></button>
+    <a href="https://digiy-hub.digiylyfe.com/"><strong>🧭</strong><span>HUB</span></a>
+    <a href="https://tarifs.digiylyfe.com/"><strong>📦</strong><span>Tarifs</span></a>
+    <button id="openSoulMobile"><strong>✨</strong><span>Esprit</span></button>
   </div>
 </nav>
 
 <script>
 (function(){
-  "use strict";
-  const text = "DIGIYLYFE. Je clique. Je parle. J'existe. Je suis visible. Je suis reconnu. J'avance.\nL'assistant maison DIGIY exécute. Le pro valide.\nIci, le terrain garde la main. Zéro commission. Paiement direct. Contact direct.\nChoisis une porte publique pour trouver, réserver, acheter ou découvrir.\nChoisis une porte pro pour gérer ton activité avec ton code.\nDIGIYLYFE, la Supa-Apps du terrain.";
-  const pulse = document.getElementById("pulse");
-  const overlay = document.getElementById("camOverlay");
+"use strict";
 
-  function chooseVoice(){
-    try{
-      const voices = speechSynthesis.getVoices() || [];
-      return voices.find(v => /fr/i.test(v.lang || "") && /male|homme|thomas|daniel/i.test(v.name || "")) ||
-             voices.find(v => /fr/i.test(v.lang || "")) ||
-             voices[0] ||
-             null;
-    }catch(_){ return null; }
+/* ══ DONNÉES MODULES ══ */
+const PUB=[
+  {id:"explore", icon:"🗺️", name:"Découvrir le territoire", desc:"Spots, lieux, ambiances — entrer dans la région.", tag:"PUBLIC", href:"https://explore.digiylyfe.com/"},
+  {id:"driver",  icon:"🚗", name:"Trouver un chauffeur",   desc:"Un trajet maintenant, contact direct.",           tag:"PUBLIC", href:"https://driver-client.digiylyfe.com/"},
+  {id:"galerie", icon:"👑", name:"Nos chauffeurs",          desc:"Style, présence, savoir-être — mobilité qui élève.", tag:"PUBLIC", href:"https://driver-client.digiylyfe.com/"},
+  {id:"loc",     icon:"🏠", name:"Trouver où dormir",       desc:"Direct chez le propriétaire, sans intermédiaire.", tag:"PUBLIC", href:"https://loc.digiylyfe.com/"},
+  {id:"resa",    icon:"📅", name:"Réserver",                desc:"Créneau simple, planning clair pour le pro.",      tag:"PUBLIC", href:"https://resa-table-resto.digiylyfe.com/"},
+  {id:"build",   icon:"🏗️", name:"Trouver un artisan",      desc:"Plombier, maçon, électricien — savoir-faire terrain.", tag:"PUBLIC", href:"https://build.digiylyfe.com/"},
+  {id:"commerce",icon:"👜", name:"Mon commerce",            desc:"Mode, sacs, chaussures — le commerce local connecté.", tag:"PUBLIC", href:"https://mon-commerce.digiylyfe.com/"},
+  {id:"market",  icon:"🛍️", name:"Les boutiques",           desc:"Acheter, vendre — le marché local visible.",      tag:"PUBLIC", href:"https://market.digiylyfe.com/"},
+  {id:"jobs",    icon:"💼", name:"Trouver du travail",      desc:"Emplois, missions, contrats — opportunités directes.", tag:"PUBLIC", href:"https://jobs.digiylyfe.com/"},
+  {id:"reseau",  icon:"📣", name:"RÉSEAU DIGIY",            desc:"COM AU CLIC : annonce datée, fiche partageable.", tag:"PUBLIC", href:"https://reseau-digiy.digiylyfe.com/"},
+  {id:"pay",     icon:"💳", name:"Mon argent",              desc:"Paiement direct, simple, sans friction.",          tag:"PUBLIC", href:"https://pay.digiylyfe.com/"},
+  {id:"vachez",  icon:"📍", name:"Venir chez DIGIY",        desc:"La porte terrain pour s'orienter en physique.",   tag:"PUBLIC", href:"https://vas-chez-digiy.digiylyfe.com/"},
+  {id:"ndimbal", icon:"🤝", name:"LOC Solidaire",           desc:"Geste NDIMBAL proposé librement par certains pros.", tag:"PUBLIC", href:"https://ndimbal-loc.digiylyfe.com/"},
+  {id:"audio",   icon:"🎵", name:"Écouter",                 desc:"Contenus DIGIY en audio — vision, articles.",     tag:"PUBLIC", href:"https://digiy-audio.digiylyfe.com/"},
+  {id:"assist",  icon:"♾️", name:"Mon assistant DIGIY",     desc:"Aide simple pour avancer sans se perdre.",        tag:"PUBLIC", href:"https://knowledge.digiylyfe.com/widget/"}
+];
+const PRO=[
+  {id:"promarket", icon:"🛍️", name:"Je vends — MARKET",   desc:"Ma boutique, mes produits, mes ventes directes.",     tag:"PRO", href:"https://pro-market.digiylyfe.com/pin.html"},
+  {id:"caisse",    icon:"💰", name:"Mon commerce — CAISSE",desc:"Encaisser, suivre mes ventes, garder la main.",       tag:"PRO", href:"https://commerce-pro.digiylyfe.com/pin.html"},
+  {id:"proloc",    icon:"🏠", name:"Je loue — LOC",        desc:"Mes logements, disponibilités, clients directs.",     tag:"PRO", href:"https://pro-loc.digiylyfe.com/pin.html"},
+  {id:"proresa",   icon:"📅", name:"Je réserve — RÉSA",    desc:"Mes créneaux bloqués, mon planning clair.",           tag:"PRO", href:"https://pro-resa-resto.digiylyfe.com/pin.html"},
+  {id:"prodriver", icon:"🚗", name:"Je conduis — DRIVER",  desc:"Mes zones, mes tarifs, ma présence chauffeur.",       tag:"PRO", href:"https://pro-driver.digiylyfe.com/pin.html"},
+  {id:"projobs",   icon:"💼", name:"Je recrute — JOBS",    desc:"Publier une offre, recevoir les candidatures.",       tag:"PRO", href:"https://pro-job.digiylyfe.com/pin.html"},
+  {id:"probuild",  icon:"🏗️", name:"Mes services",        desc:"Services, chantiers, demandes — le pro valide.",      tag:"PRO", href:"https://pro-build.digiylyfe.com/pin.html"},
+  {id:"proexplore",icon:"🗺️", name:"Me faire connaître",  desc:"Lieu, visibilité, territoire — être trouvé.",         tag:"PRO", href:"https://pro-explore.digiylyfe.com/pin.html?v=explore-pin-boost-20260522"},
+  {id:"propay",    icon:"💳", name:"Mon argent — PAY",     desc:"Entrées, sorties, reste, notes rapides.",             tag:"PRO", href:"https://pro-pay.digiylyfe.com/pin.html?redirect=hub"},
+  {id:"proreseau", icon:"📣", name:"Publier — RÉSEAU",    desc:"Annonce, fiche, lien partageable — COM AU CLIC.",       tag:"PRO", href:"https://reseau-digiy.digiylyfe.com/inscription.html"}
+];
+
+/* ══ FAVORIS ══ */
+const FAV_KEY="digiylyfe_fav_v2", MAX=4;
+const DEFAULTS=[
+  {id:"hub",    icon:"🧭", name:"HUB DIGIY",  href:"https://digiy-hub.digiylyfe.com/"},
+  {id:"tarifs", icon:"📦", name:"Tarifs",      href:"https://tarifs.digiylyfe.com/"},
+  {id:"pro",    icon:"🔐", name:"Espace pro",  href:"https://pro-espace.digiylyfe.com/"},
+  {id:"activ",  icon:"✍️", name:"Activer",     href:"https://commencer-a-payer.digiylyfe.com/"}
+];
+const loadF=()=>{try{return JSON.parse(localStorage.getItem(FAV_KEY)||"[]");}catch{return[];}};
+const saveF=a=>{try{localStorage.setItem(FAV_KEY,JSON.stringify(a.slice(0,MAX)));}catch{}};
+
+function renderHero(){
+  const s=document.getElementById("heroFavSlots"), h=document.getElementById("favHint");
+  const favs=loadF(), items=favs.length?favs:DEFAULTS, isDef=!favs.length;
+
+  if(s){
+    s.innerHTML=items.map((f,i)=>
+      `<a class="favLink${i===0&&!isDef?" main":isDef?" def":""}" href="${f.href}">
+        <span class="favLinkIcon">${f.icon}</span>${f.name}
+      </a>`).join("");
   }
 
-  function play(){
-    try{
-      if(!("speechSynthesis" in window)) return;
-      speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = "fr-FR";
-      u.rate = 0.86;
-      u.pitch = 1.03;
-      const v = chooseVoice();
-      if(v) u.voice = v;
-      u.onstart = () => pulse?.classList.add("playing");
-      u.onend = () => pulse?.classList.remove("playing");
-      u.onerror = () => pulse?.classList.remove("playing");
-      speechSynthesis.speak(u);
-    }catch(_){}
-  }
+  if(h) h.textContent=isDef
+    ?"☆ Appuie sur ☆ sur une tile pour personnaliser."
+    :`${favs.length}/4 — reclique ⭐ pour retirer.`;
 
-  function stop(){
-    try{
-      if("speechSynthesis" in window) speechSynthesis.cancel();
-      pulse?.classList.remove("playing");
-    }catch(_){}
-  }
+  renderTopFavs(items,isDef);
+}
 
-  function openMenu(){
-    overlay?.classList.add("open");
-    overlay?.setAttribute("aria-hidden","false");
-    document.body.style.overflow = "hidden";
-  }
+function renderTopFavs(items,isDef){
+  const top=document.getElementById("topFavInner");
+  if(!top)return;
+  top.innerHTML=items.map((f,i)=>
+    `<a class="topFavLink${i===0&&!isDef?" main":""}" href="${f.href}">
+      <b>${f.icon}</b><span>${f.name}</span>
+    </a>`).join("");
+}
 
-  function closeMenu(){
-    overlay?.classList.remove("open");
-    overlay?.setAttribute("aria-hidden","true");
-    document.body.style.overflow = "";
-  }
+function tileHTML(m, isPro){
+  const favs=loadF(), on=favs.some(f=>f.id===m.id);
+  return`<div class="tileSlot">
+    <button class="favBtn${on?" on":""}" data-id="${m.id}" data-icon="${m.icon}" data-name="${m.name}" data-href="${m.href}">${on?"⭐":"☆"}</button>
+    <a class="tile${isPro?" pro":""}${on?" fav":""}" href="${m.href}">
+      <div class="tileTop">
+        <span class="tileIcon">${m.icon}</span>
+        <div class="tileBody">
+          <strong>${m.name}</strong>
+          <small>${m.desc}</small>
+        </div>
+      </div>
+      <div class="tileFoot">
+        <em class="tileTag">${m.tag} · DIGIY</em>
+        <span class="tileArrow">↗</span>
+      </div>
+    </a>
+  </div>`;
+}
 
-  document.getElementById("playBtn")?.addEventListener("click", play);
-  document.getElementById("stopBtn")?.addEventListener("click", stop);
-  document.querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", openMenu));
-  document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", closeMenu));
-  overlay?.addEventListener("click", e => { if(e.target === overlay) closeMenu(); });
-  document.addEventListener("keydown", e => { if(e.key === "Escape") closeMenu(); });
-  document.addEventListener("visibilitychange", () => { if(document.hidden) stop(); });
+function renderTiles(){
+  const pubGrid=document.getElementById("pubGrid"),
+        pubRail=document.getElementById("pubRail"),
+        proGrid=document.getElementById("proGrid"),
+        proRail=document.getElementById("proRail");
+  const pubHTML=PUB.map(m=>tileHTML(m,false)).join("");
+  const proHTML=PRO.map(m=>tileHTML(m,true)).join("");
+  if(pubGrid) pubGrid.innerHTML=pubHTML;
+  if(pubRail) pubRail.innerHTML=pubHTML;
+  if(proGrid) proGrid.innerHTML=proHTML;
+  if(proRail) proRail.innerHTML=proHTML;
+  bindFavBtns();
+}
+
+function bindFavBtns(){
+  document.querySelectorAll(".favBtn").forEach(btn=>{
+    btn.addEventListener("click",function(e){
+      e.preventDefault();e.stopPropagation();
+      let favs=loadF();
+      const id=btn.dataset.id, idx=favs.findIndex(f=>f.id===id);
+      if(idx>=0){favs.splice(idx,1);}
+      else{
+        if(favs.length>=MAX){alert("Maximum 4 favoris. Retire d'abord un ⭐.");return;}
+        favs.push({id,icon:btn.dataset.icon,name:btn.dataset.name,href:btn.dataset.href});
+      }
+      saveF(favs);renderTiles();renderHero();
+
+const topFavBar=document.getElementById("topFavBar");
+const topFavToggle=document.getElementById("topFavToggle");
+topFavToggle?.addEventListener("click",()=>{
+  if(!topFavBar)return;
+  topFavBar.classList.toggle("open");
+  topFavBar.setAttribute("aria-hidden",topFavBar.classList.contains("open")?"false":"true");
+});
+    });
+  });
+}
+
+renderTiles();renderHero();
+
+/* ══ DOUBLE CAMEMBERT ══ */
+const pie=document.getElementById("dblPie");
+const togglePie=w=>{
+  if(!pie)return;
+  const c=w==="apps"?"appsOpen":"soulOpen",o=w==="apps"?"soulOpen":"appsOpen";
+  if(pie.classList.contains(c)){pie.classList.remove(c);return;}
+  pie.classList.remove(o);pie.classList.add(c);
+};
+document.getElementById("openApps")?.addEventListener("click",()=>togglePie("apps"));
+document.getElementById("openSoulPie")?.addEventListener("click",()=>togglePie("soul"));
+document.getElementById("openSoul")?.addEventListener("click",()=>togglePie("soul"));
+document.getElementById("openSoulMobile")?.addEventListener("click",()=>togglePie("soul"));
+document.addEventListener("click",e=>{
+  if(pie&&!pie.contains(e.target)&&!e.target.closest("#openSoul")&&!e.target.closest("#openSoulMobile"))
+    pie.classList.remove("appsOpen","soulOpen");
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&pie)pie.classList.remove("appsOpen","soulOpen");});
+
+/* ══ TEXTES AUDIO CACHÉS ══ */
+const MANIFESTE_TEXT="Je clique. Je parle. J'existe. Je suis visible. Je suis reconnu. J'avance. L'assistant maison DIGIY exécute. Le pro valide. DIGIYLYFE.";
+const HERO_TEXT="DIGIYLYFE, c'est la Supa Apps du terrain. Le complément de WhatsApp — caisse, planning, fiche, notes — et zéro commission. Un chauffeur, un logement, une réservation, un artisan : le public trouve une vraie personne, au bon moment, sans détour.";
+const SOUL_TEXT="La visibilité n'appartient plus seulement aux grandes marques. TikTok ouvre la porte. Et DIGIYLYFE construit la maison derrière la porte. Wave a simplifié l'argent. TikTok a ouvert la scène. WhatsApp garde la parole. DIGIYLYFE donne au terrain sa maison digitale. Le peuple a déjà le téléphone. Il a déjà WhatsApp, Wave, TikTok, le talent. Ce qui manque, c'est le pont entre tout ça. Et ce pont, c'est DIGIYLYFE. TikTok ouvre la scène. Wave fait circuler l'argent. WhatsApp garde la parole. DIGIYLYFE donne au terrain sa maison digitale. Ce n'est pas juste une app. C'est une œuvre de passage.";
+
+const pickV=()=>{try{const v=speechSynthesis.getVoices();return v.find(x=>/^fr/i.test(x.lang))||null;}catch{return null;}};
+function speak(text, onEnd){
+  try{speechSynthesis.cancel();}catch{}
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="fr-FR";u.rate=0.82;u.pitch=1.0;
+  const v=pickV();if(v)u.voice=v;
+  u.onend=onEnd||null;u.onerror=onEnd||null;
+  speechSynthesis.speak(u);
+}
+function stopAll(){try{speechSynthesis.cancel();}catch{}}
+
+/* Manifeste */
+document.getElementById("mPlay")?.addEventListener("click",()=>speak(MANIFESTE_TEXT));
+document.getElementById("mStop")?.addEventListener("click",stopAll);
+
+/* Hero reader */
+const hPlay=document.getElementById("heroPlay"), hStop=document.getElementById("heroStop");
+hPlay?.addEventListener("click",()=>{
+  hPlay.textContent="✨";
+  speak(HERO_TEXT,()=>{hPlay.textContent="🎧";});
+});
+hStop?.addEventListener("click",()=>{stopAll();hPlay.textContent="🎧";});
+
+/* Soul */
+const sPlay=document.getElementById("soulPlay"), sStop=document.getElementById("soulStop");
+sPlay?.addEventListener("click",()=>{sPlay.textContent="✨ En cours...";speak(SOUL_TEXT,()=>{sPlay.textContent="🎧 Écouter DIGIY";});});
+sStop?.addEventListener("click",()=>{stopAll();sPlay.textContent="🎧 Écouter DIGIY";});
+
+if(window.speechSynthesis)speechSynthesis.onvoiceschanged=pickV;
+window.addEventListener("beforeunload",stopAll);
+
+if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 })();
 </script>
 </body>
