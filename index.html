@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>DIGIYLYFE — La Supa-Apps du terrain</title>
 <meta name="theme-color" content="#00853f"/>
-<meta name="description" content="DIGIYLYFE — La Supa-Apps du terrain : 15 portes publiques, 9 portes pro, 0% commission, paiement direct au professionnel."/>
+<meta name="description" content="DIGIYLYFE — La Supa-Apps du terrain : 15 portes publiques, 10 portes pro, 0% commission, paiement direct au professionnel."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
@@ -98,10 +98,10 @@ button{font:inherit;cursor:pointer}
   padding:10px 14px;background:rgba(4,19,13,.80);backdrop-filter:blur(14px);
   border-bottom:1px solid rgba(255,255,255,.08);scrollbar-width:none}
 .navStrip::-webkit-scrollbar{display:none}
-.navStrip a{flex:0 0 auto;min-height:38px;border-radius:999px;
+.navStrip a,.navStrip button{flex:0 0 auto;min-height:38px;border-radius:999px;
   border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);
   display:inline-flex;align-items:center;padding:0 12px;
-  font-family:var(--fontA);font-size:12px;font-weight:900;white-space:nowrap}
+  font-family:var(--fontA);font-size:12px;font-weight:900;white-space:nowrap;color:#fff}
 .navStrip a.gold{border-color:rgba(246,196,83,.44);background:rgba(246,196,83,.12);color:#fff3cf}
 .navStrip a.green{border-color:rgba(0,166,81,.44);background:rgba(0,166,81,.14);color:#dfffe9}
 
@@ -702,8 +702,8 @@ h1 .w.gold{color:var(--gold)}
 /* ══ DONNÉES MODULES ══ */
 const PUB=[
   {id:"explore", icon:"🗺️", name:"Découvrir le territoire", desc:"Spots, lieux, ambiances — entrer dans la région.", tag:"PUBLIC", href:"https://explore.digiylyfe.com/"},
-  {id:"driver",  icon:"🚗", name:"Trouver un chauffeur",   desc:"Un trajet maintenant, contact direct.",           tag:"PUBLIC", href:"https://driver-client.digiylyfe.com/"},
-  {id:"galerie", icon:"👑", name:"Nos chauffeurs",          desc:"Style, présence, savoir-être — mobilité qui élève.", tag:"PUBLIC", href:"https://driver-client.digiylyfe.com/"},
+  {id:"driver",  icon:"🚗", name:"Trouver un chauffeur",   desc:"Voir les profils chauffeurs et contacter direct.", tag:"PUBLIC", href:"https://galerie-chauffeurs.digiylyfe.com/"},
+  {id:"galerie", icon:"👑", name:"Nos chauffeurs",          desc:"Style, présence, savoir-être — mobilité qui élève.", tag:"PUBLIC", href:"https://galerie-chauffeurs.digiylyfe.com/"},
   {id:"loc",     icon:"🏠", name:"Trouver où dormir",       desc:"Direct chez le propriétaire, sans intermédiaire.", tag:"PUBLIC", href:"https://loc.digiylyfe.com/"},
   {id:"resa",    icon:"📅", name:"Réserver",                desc:"Créneau simple, planning clair pour le pro.",      tag:"PUBLIC", href:"https://resa-table-resto.digiylyfe.com/"},
   {id:"build",   icon:"🏗️", name:"Trouver un artisan",      desc:"Plombier, maçon, électricien — savoir-faire terrain.", tag:"PUBLIC", href:"https://build.digiylyfe.com/"},
@@ -815,18 +815,21 @@ function bindFavBtns(){
       }
       saveF(favs);renderTiles();renderHero();
 
-const topFavBar=document.getElementById("topFavBar");
-const topFavToggle=document.getElementById("topFavToggle");
-topFavToggle?.addEventListener("click",()=>{
-  if(!topFavBar)return;
-  topFavBar.classList.toggle("open");
-  topFavBar.setAttribute("aria-hidden",topFavBar.classList.contains("open")?"false":"true");
-});
     });
   });
 }
 
 renderTiles();renderHero();
+
+const topFavBar=document.getElementById("topFavBar");
+const topFavToggle=document.getElementById("topFavToggle");
+topFavToggle?.addEventListener("click",e=>{
+  e.preventDefault();
+  e.stopPropagation();
+  if(!topFavBar)return;
+  topFavBar.classList.toggle("open");
+  topFavBar.setAttribute("aria-hidden",topFavBar.classList.contains("open")?"false":"true");
+});
 
 /* ══ DOUBLE CAMEMBERT ══ */
 const pie=document.getElementById("dblPie");
@@ -933,6 +936,7 @@ if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serv
 </script>
 </body>
 </html>
+
 
 
 
