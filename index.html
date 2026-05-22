@@ -2133,467 +2133,167 @@
 
 </style>
 <!-- TEST STRUCTURE : hero → choix → départements → pack apps → signature QR -->
-</head>
-<body class="landing-test">
-<div class="bg"></div>
-<div class="app">
-<!-- DIGIYLYFE — Lecteur manifeste d'ouverture -->
-<div class="digiy-opening-manifesto" aria-label="Manifeste DIGIYLYFE">
-  <div class="digiy-opening-inner">
-    <p>Je clique.</p>
-    <p>Je parle.</p>
-    <p>J'existe.</p>
-    <p>Je suis visible.</p>
-    <p>Je suis reconnu.</p>
-    <p>J'avance.</p>
-
-    <div class="digiy-opening-signature">
-      <strong>L'assistant maison DIGIY exécute.</strong><br>
-      Le pro VALIDE.
-    </div>
-
-    <div class="digiy-opening-brand">DIGIYLYFE</div>
-
-    <div class="digiy-opening-audio">
-      <button type="button" id="digiyOpeningPlay" aria-label="Écouter le manifeste DIGIYLYFE">
-        🎧 Écouter DIGIY
-      </button>
-      <button type="button" id="digiyOpeningStop" aria-label="Arrêter la lecture DIGIYLYFE">
-        ⏹ Stop
-      </button>
-    </div>
-  </div>
-</div>
 
 <style>
-.digiy-opening-manifesto{
-  margin:18px 18px 0;padding:28px 22px;border-radius:28px;
+/* DIGIY — version aérée : héros original + 4 favoris + pavés + camembert */
+.digiyLightNav{position:sticky;top:0;z-index:80;display:flex;gap:8px;overflow-x:auto;padding:10px 14px;background:rgba(4,19,13,.84);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.09);scrollbar-width:none}
+.digiyLightNav::-webkit-scrollbar{display:none}
+.digiyLightNav a,.digiyLightNav button{flex:0 0 auto;min-height:38px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.075);color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:0 12px;font-family:var(--fontA,system-ui);font-size:12px;font-weight:900;white-space:nowrap;cursor:pointer}
+.digiyLightNav .gold{border-color:rgba(246,196,83,.42);background:rgba(246,196,83,.12);color:#fff3cf}
+.digiyLightNav .green{border-color:rgba(0,166,81,.42);background:rgba(0,166,81,.14);color:#dfffe9}
+.digiySection{margin:16px 18px 0;border:1px solid rgba(255,255,255,.10);border-radius:26px;background:rgba(255,255,255,.045);box-shadow:0 14px 36px rgba(0,0,0,.20);overflow:hidden;scroll-margin-top:90px}
+.digiySectionHead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.digiySectionTitle{margin:0;font-family:var(--fontA,system-ui);font-weight:900;font-size:clamp(24px,3.4vw,38px);line-height:1.04;letter-spacing:-.04em;color:#fff}
+.digiySectionTitle small{font-size:12px;letter-spacing:0;display:inline-flex;vertical-align:middle;margin-left:8px;padding:5px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:rgba(248,250,252,.74)}
+.digiySectionSub{margin-top:6px;color:rgba(248,250,252,.76);font-weight:800;font-size:13.5px;line-height:1.45}
+.favGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px}
+.favTile{min-height:116px;border-radius:22px;border:1px solid rgba(246,196,83,.28);background:radial-gradient(260px 120px at 20% 0%,rgba(246,196,83,.16),transparent 62%),linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.045));display:flex;flex-direction:column;justify-content:center;gap:7px;padding:15px;box-shadow:0 10px 26px rgba(0,0,0,.18);transition:transform .15s,border-color .15s}
+.favTile:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.56)}
+.favTile span{font-size:30px;line-height:1}
+.favTile strong{font-family:var(--fontA,system-ui);font-size:17px;font-weight:900;color:#fff;line-height:1.1}
+.favTile small{color:rgba(248,250,252,.72);font-size:12.5px;line-height:1.35;font-weight:800}
+.digiyGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:14px}
+.digiyTile{position:relative;min-height:148px;border-radius:22px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.095),rgba(255,255,255,.045));box-shadow:0 10px 26px rgba(0,0,0,.18);padding:14px;display:flex;gap:12px;align-items:flex-start;transition:transform .15s,border-color .15s,background .15s}
+.digiyTile:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.36);background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.055))}
+.digiyTile.pro{border-color:rgba(0,166,81,.22);background:linear-gradient(180deg,rgba(0,166,81,.13),rgba(255,255,255,.045))}
+.digiyTileIcon{font-size:34px;line-height:1;flex:0 0 auto}
+.digiyTileText{display:flex;flex-direction:column;min-width:0;padding-right:28px}
+.digiyTileText strong{font-family:var(--fontA,system-ui);font-size:18px;font-weight:900;line-height:1.12;color:#fff}
+.digiyTileText small{margin-top:7px;font-size:13.2px;line-height:1.42;color:rgba(248,250,252,.76);font-weight:800}
+.digiyTileText em{width:max-content;max-width:100%;margin-top:12px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);padding:5px 8px;color:#fff3cf;font-family:var(--fontA,system-ui);font-size:10px;font-weight:900;font-style:normal;letter-spacing:.04em}
+.digiyTileArrow{position:absolute;right:12px;bottom:12px;width:34px;height:34px;border-radius:999px;border:1px solid rgba(246,196,83,.32);background:rgba(246,196,83,.10);color:#fff3cf;display:grid;place-items:center;font-family:var(--fontA,system-ui);font-weight:900}
+.quickActions{margin:16px 18px 18px;border-radius:26px;border:1px solid rgba(246,196,83,.22);background:radial-gradient(620px 260px at 10% 0%,rgba(246,196,83,.11),transparent 60%),rgba(255,255,255,.05);padding:16px}
+.quickActionsGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.quickActionsGrid a{min-height:76px;border-radius:18px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-family:var(--fontA,system-ui);font-weight:900;line-height:1.25}
+.quickActionsGrid a.gold{border-color:rgba(246,196,83,.42);background:rgba(246,196,83,.12);color:#fff3cf}
+.quickActionsGrid a.green{border-color:rgba(0,166,81,.42);background:rgba(0,166,81,.13);color:#dfffe9}
+.digiySimpleFooter{padding:18px;margin-top:8px;border-top:1px solid rgba(255,255,255,.08);color:rgba(248,250,252,.74);font-weight:800;font-size:13px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.digiySimpleFooter strong{font-family:var(--fontA,system-ui);color:#fff3cf}
+.camembertOverlay{position:fixed;inset:0;z-index:999;display:none;background:rgba(0,0,0,.62);backdrop-filter:blur(8px);padding:14px;align-items:flex-end}
+.camembertOverlay.open{display:flex}
+.camembertPanel{width:min(620px,100%);margin:0 auto;border-radius:30px 30px 20px 20px;border:1px solid rgba(246,196,83,.28);background:radial-gradient(560px 230px at 20% 0%,rgba(246,196,83,.15),transparent 60%),linear-gradient(180deg,#082116,#04130d);box-shadow:0 24px 80px rgba(0,0,0,.46);padding:16px}
+.camHandle{width:58px;height:5px;border-radius:999px;background:rgba(255,255,255,.24);margin:0 auto 12px}
+.camHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:1px solid rgba(255,255,255,.09);padding-bottom:12px}
+.camHead strong{display:block;font-family:var(--fontA,system-ui);font-size:24px;font-weight:900;color:#fff}
+.camHead span{display:block;margin-top:5px;color:rgba(248,250,252,.76);font-size:13px;font-weight:800;line-height:1.45}
+.camClose{width:42px;height:42px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#fff;font-size:22px;cursor:pointer}
+.camGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;padding-top:13px}
+.camGrid a{min-height:62px;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.065);display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;font-family:var(--fontA,system-ui);font-size:13px;font-weight:900;line-height:1.25}
+@media(max-width:980px){.favGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.digiyGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.quickActionsGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:700px){.digiyLightNav{top:0;padding:8px 10px}.digiySection{margin:12px 12px 0;border-radius:22px}.digiySectionHead{align-items:flex-start;flex-direction:column;padding:14px}.favGrid,.digiyGrid{grid-template-columns:1fr;padding:10px}.digiyTile{min-height:128px}.quickActions{margin:12px;padding:12px}.camGrid{grid-template-columns:1fr}
+
+.digiyMantra{
+  margin:16px 18px 0;
+  border-radius:26px;
   border:1px solid rgba(246,196,83,.34);
   background:
-    radial-gradient(760px 320px at 12% 0%,rgba(246,196,83,.16),transparent 60%),
-    radial-gradient(620px 260px at 88% 20%,rgba(0,166,81,.16),transparent 62%),
-    linear-gradient(180deg,rgba(10,48,34,.90),rgba(8,28,20,.84));
-  box-shadow:0 18px 60px rgba(0,0,0,.30);text-align:center;
+    radial-gradient(560px 220px at 12% 0%,rgba(246,196,83,.16),transparent 62%),
+    radial-gradient(520px 220px at 88% 12%,rgba(0,166,81,.16),transparent 62%),
+    linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.035));
+  box-shadow:0 14px 38px rgba(0,0,0,.24);
+  padding:18px;
 }
-.digiy-opening-inner{max-width:760px;margin:0 auto}
-.digiy-opening-manifesto p{
-  margin:0;font-family:"Outfit",system-ui,sans-serif;
-  font-size:clamp(28px,5vw,54px);line-height:1.02;font-weight:900;
-  color:#fff;letter-spacing:-.04em;
+.digiyMantraInner{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:16px;
+  align-items:center;
 }
-.digiy-opening-signature{
-  margin-top:22px;color:#fff3cf;font-family:"Outfit",system-ui,sans-serif;
-  font-size:clamp(18px,2vw,24px);line-height:1.5;font-weight:800;
+.digiyMantraWords{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
 }
-.digiy-opening-signature strong{color:#f6c453}
-.digiy-opening-brand{
-  margin-top:18px;font-family:"Outfit",system-ui,sans-serif;
-  font-size:clamp(26px,4vw,42px);font-weight:1000;letter-spacing:.06em;color:#f6c453;
+.digiyMantraWords span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:36px;
+  padding:0 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  font-family:var(--fontA,system-ui);
+  font-size:13px;
+  font-weight:900;
 }
-.digiy-opening-audio{margin-top:20px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-.digiy-opening-audio button{
-  min-height:52px;padding:0 18px;border-radius:999px;
-  border:1px solid rgba(246,196,83,.48);
+.digiyMantraWords span.gold{
+  border-color:rgba(246,196,83,.44);
+  background:rgba(246,196,83,.12);
+  color:#fff3cf;
+}
+.digiyMantraClaim{
+  margin-top:12px;
+  color:rgba(248,250,252,.82);
+  font-size:15px;
+  line-height:1.55;
+  font-weight:900;
+}
+.digiyMantraClaim strong{
+  color:#fff3cf;
+  font-family:var(--fontA,system-ui);
+  letter-spacing:.02em;
+}
+.digiyMantraBrand{
+  margin-top:8px;
+  font-family:var(--fontA,system-ui);
+  font-size:20px;
+  font-weight:1000;
+  letter-spacing:.08em;
+  color:#f6c453;
+}
+.digiyMantraAudio{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.digiyMantraAudio button{
+  min-height:48px;
+  border-radius:16px;
+  border:1px solid rgba(246,196,83,.42);
+  background:rgba(246,196,83,.12);
+  color:#fff3cf;
+  padding:0 14px;
+  font-family:var(--fontA,system-ui);
+  font-size:13px;
+  font-weight:900;
+  cursor:pointer;
+}
+.digiyMantraAudio button.main{
+  border-color:rgba(246,196,83,.76);
   background:linear-gradient(135deg,#f6c453,#22c55e);
-  color:#06140f;font-family:"Outfit",system-ui,sans-serif;
-  font-size:15px;font-weight:900;cursor:pointer;box-shadow:0 12px 28px rgba(0,0,0,.26);
+  color:#06140f;
+  box-shadow:0 12px 26px rgba(0,0,0,.28);
 }
-.digiy-opening-audio #digiyOpeningStop{background:rgba(255,255,255,.12);color:#fff3cf;}
-@media(max-width:640px){
-  .digiy-opening-manifesto{margin:14px 12px 0;padding:22px 16px;border-radius:24px}
-  .digiy-opening-audio button{width:100%}
+@media(max-width:700px){
+  .digiyMantra{margin:12px 12px 0;padding:15px;border-radius:22px}
+  .digiyMantraInner{grid-template-columns:1fr}
+  .digiyMantraAudio{justify-content:stretch}
+  .digiyMantraAudio button{flex:1 1 140px}
 }
+
 </style>
 
-<script>
-/* DIGIY FIX 20260522 — index digiylyfe.com PRO direct PIN */
-(function(){
-  "use strict";
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="app">
+  <div class="wrap">
+    <div class="shell">
 
-  var MANIFESTE = [
-    "Je clique.","Je parle.","J'existe.","Je suis visible.",
-    "Je suis reconnu.","J'avance.",
-    "L'assistant maison DIGIY exécute.","Le pro valide.","DIGIYLYFE."
-  ].join(" ");
+      <nav class="digiyLightNav" aria-label="Navigation DIGIYLYFE">
+        <a class="green" href="#favoris">⭐ 4 favoris</a>
+        <a class="green" href="#public">🌍 15 publics</a>
+        <a class="green" href="#pro">🏢 9 pro</a>
+        <a class="gold" href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
+        <a class="gold" href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
+        <a href="https://commencer-a-payer.digiylyfe.com/">💳 Payer</a>
+        <button type="button" data-open-camembert>☰ Camembert</button>
+      </nav>
 
-  /* ══════════════════════════════════════════
-     MOTEUR AUDIO — RITUEL D'OUVERTURE DIGIYLYFE
-     Profondeur · Espace · Cérémonie · Présence
-  ══════════════════════════════════════════ */
-  var ctx=null, out=null, loopId=null, playing=false, nodes=[];
-
-  /* Tempo lent et solennel — 62 BPM */
-  var BEAT = 60/62;       /* 0.968s */
-  var LOOP = BEAT * 8;    /* 7.742s */
-
-  function boot(){
-    if(ctx) return true;
-    try{
-      var AC=window.AudioContext||window.webkitAudioContext;
-      if(!AC) return false;
-      ctx=new AC();
-      var comp=ctx.createDynamicsCompressor();
-      comp.threshold.value=-16; comp.knee.value=12;
-      comp.ratio.value=3.5; comp.attack.value=0.008; comp.release.value=0.30;
-      comp.connect(ctx.destination);
-      out=ctx.createGain(); out.gain.value=0.0001;
-      out.connect(comp); nodes.push(comp);
-      return true;
-    }catch(e){return false;}
-  }
-
-  /* ─── Sine tenu, enveloppe douce (âme du pad) ─── */
-  function pad(freq, t, dur, vol, det){
-    if(!ctx||!out) return;
-    var o=ctx.createOscillator(), g=ctx.createGain();
-    o.type="sine"; o.frequency.value=freq;
-    if(det) o.detune.value=det;
-    /* Montée lente — présence progressive */
-    g.gain.setValueAtTime(0.0001,t);
-    g.gain.linearRampToValueAtTime(vol, t+dur*0.22);
-    g.gain.setValueAtTime(vol, t+dur*0.72);
-    g.gain.linearRampToValueAtTime(0.0001, t+dur);
-    o.connect(g); g.connect(out);
-    o.start(t); o.stop(t+dur+0.02);
-    nodes.push(o,g);
-  }
-
-  /* ─── Triangle doux (mélodie) ─── */
-  function tri(freq, t, dur, vol){
-    if(!ctx||!out) return;
-    var o=ctx.createOscillator(), g=ctx.createGain();
-    o.type="triangle"; o.frequency.value=freq;
-    g.gain.setValueAtTime(0.0001,t);
-    g.gain.linearRampToValueAtTime(vol, t+0.08);
-    g.gain.setValueAtTime(vol, t+dur*0.68);
-    g.gain.linearRampToValueAtTime(0.0001, t+dur);
-    o.connect(g); g.connect(out);
-    o.start(t); o.stop(t+dur+0.02);
-    nodes.push(o,g);
-  }
-
-  /* ─── GONG D'OUVERTURE — frappé une seule fois au départ ───
-     Son métallique inharmonique : plusieurs partiels accordés */
-  function strikeGong(t){
-    if(!ctx||!out) return;
-    /* Partiels d'un gong : fondamentale + 2.76 + 5.4 + 8.93 (inharmonique) */
-    var fund=110; /* A2 — grave, solennel */
-    [[1,0.55],[2.76,0.35],[5.4,0.18],[8.93,0.10]].forEach(function(p){
-      var o=ctx.createOscillator(), g=ctx.createGain();
-      o.type="sine"; o.frequency.value=fund*p[0];
-      g.gain.setValueAtTime(p[1], t);
-      /* Déclin long exponentiel — résonance du gong */
-      g.gain.exponentialRampToValueAtTime(0.0001, t+8.0);
-      o.connect(g); g.connect(out);
-      o.start(t); o.stop(t+8.5);
-      nodes.push(o,g);
-    });
-    /* Bruit d'impact court — frappe physique */
-    try{
-      var len=Math.ceil(ctx.sampleRate*0.08);
-      var buf=ctx.createBuffer(1,len,ctx.sampleRate);
-      var d=buf.getChannelData(0);
-      for(var i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,1.8);
-      var s=ctx.createBufferSource(), f=ctx.createBiquadFilter(), g2=ctx.createGain();
-      s.buffer=buf; f.type="bandpass"; f.frequency.value=800; f.Q.value=1.5;
-      g2.gain.setValueAtTime(0.30,t); g2.gain.exponentialRampToValueAtTime(0.0001,t+0.10);
-      s.connect(f); f.connect(g2); g2.connect(out);
-      s.start(t); s.stop(t+0.12);
-      nodes.push(s,f,g2);
-    }catch(e){}
-  }
-
-  /* ─── BASSE DRONE — fondamentale tenue, respiration lente ─── */
-  function drone(freq, t, dur, vol){
-    if(!ctx||!out) return;
-    /* Fondamentale */
-    pad(freq,   t, dur, vol,     0);
-    /* Octave basse sub */
-    pad(freq/2, t, dur, vol*0.6, 0);
-    /* Légère modulation de fréquence — souffle, vie */
-    try{
-      var lfo=ctx.createOscillator(), lfoG=ctx.createGain();
-      var o=ctx.createOscillator(), g=ctx.createGain();
-      lfo.type="sine"; lfo.frequency.value=0.18; /* très lent */
-      lfoG.gain.value=1.8; /* déviation ±1.8 Hz — imperceptible, vivant */
-      lfo.connect(lfoG); lfoG.connect(o.frequency);
-      o.type="sine"; o.frequency.value=freq*1.502; /* quinte parfaite */
-      g.gain.setValueAtTime(0.0001,t);
-      g.gain.linearRampToValueAtTime(vol*0.40, t+dur*0.30);
-      g.gain.linearRampToValueAtTime(0.0001, t+dur);
-      o.connect(g); g.connect(out);
-      lfo.start(t); o.start(t);
-      lfo.stop(t+dur+0.1); o.stop(t+dur+0.1);
-      nodes.push(lfo,lfoG,o,g);
-    }catch(e){}
-  }
-
-  /* ══════════════════════════════════════════
-     ARRANGEMENT — RITUEL D'OUVERTURE
-
-     Structure :
-     - Drone sub grave continu (fondation)
-     - Accord Ré majeur en sine, 4 octaves (espace)
-     - Mélodie pentatonique lente (présence)
-     - Shimmer haute fréquence très doux (lumière)
-     - Aucune percussion — le silence fait partie du rituel
-     - Respiration : les notes ne se touchent pas toutes
-  ══════════════════════════════════════════ */
-  function renderLoop(t0){
-
-    /* ── DRONE GRAVE — D1 A1 — fondation du rituel ── */
-    drone(36.71, t0, LOOP, 0.22); /* D1 */
-
-    /* ── PAD ACCORD Ré MAJ — 4 octaves de chaleur ──
-       D2 A2 D3 F#3 A3 D4 F#4 A4
-       Chaque note en sine pur x3 (direct + chorus ±7 cents)
-       Volume 0.18 — présence sans agression */
-    var CHORD=[
-      [73.42, 0.18],   /* D2 */
-      [110.00,0.14],   /* A2 */
-      [146.83,0.20],   /* D3 */
-      [185.00,0.16],   /* F#3 */
-      [220.00,0.18],   /* A3 */
-      [293.66,0.20],   /* D4 */
-      [369.99,0.14],   /* F#4 */
-      [440.00,0.12],   /* A4 */
-    ];
-    CHORD.forEach(function(c){
-      pad(c[0], t0, LOOP,       c[1],   0);
-      pad(c[0], t0, LOOP, c[1]*0.4,  +7); /* chorus léger */
-      pad(c[0], t0, LOOP, c[1]*0.4,  -7);
-    });
-
-    /* ── MÉLODIE LENTE — pentatonique Ré, triangle doux ──
-       Espacement large entre les notes — le silence respire */
-    var mel=[
-      {f:293.66, t:0},
-      {f:369.99, t:BEAT*1.5},
-      {f:440.00, t:BEAT*3},
-      {f:523.25, t:BEAT*4},
-      {f:587.33, t:BEAT*5},
-      {f:523.25, t:BEAT*5.75},
-      {f:440.00, t:BEAT*6.25},
-      {f:293.66, t:BEAT*7.25},
-    ];
-    mel.forEach(function(n){
-      tri(n.f, t0+n.t, BEAT*1.10, 0.20);
-    });
-
-    /* ── CONTRE-MÉLODIE — octave basse, très douce ── */
-    var cmel=[
-      {f:146.83, t:BEAT*0.75},
-      {f:185.00, t:BEAT*2.25},
-      {f:220.00, t:BEAT*3.75},
-      {f:146.83, t:BEAT*6.0},
-    ];
-    cmel.forEach(function(n){
-      tri(n.f, t0+n.t, BEAT*1.60, 0.12);
-    });
-
-    /* ── SHIMMER DORÉ — harmoniques hautes, très discrètes ──
-       A5 D6 A6 — lumière sur le rituel */
-    [[880,0.05],[1174.66,0.04],[1760,0.025]].forEach(function(s,i){
-      pad(s[0], t0+i*BEAT*1.5, LOOP-(i*BEAT*1.5), s[1], 0);
-    });
-
-    /* ── BATTEMENT DE QUINTE — A tenu contre D ──
-       Crée un léger mouvement harmonique naturel */
-    pad(220.00, t0+BEAT*2, BEAT*5, 0.10, +3);
-    pad(293.66, t0+BEAT*2, BEAT*5, 0.10, -3);
-
-  }
-
-  /* ─── Fade in très lent — entrée dans l'univers ─── */
-  function fadeIn(){
-    if(!ctx||!out) return;
-    var n=ctx.currentTime;
-    out.gain.cancelScheduledValues(n);
-    out.gain.setValueAtTime(0.0001,n);
-    /* 2.5s pour entrer — le rituel commence doucement */
-    out.gain.linearRampToValueAtTime(0.78, n+2.5);
-  }
-  function fadeOut(){
-    if(!ctx||!out) return;
-    var n=ctx.currentTime;
-    out.gain.cancelScheduledValues(n);
-    out.gain.setValueAtTime(out.gain.value||0.78,n);
-    out.gain.linearRampToValueAtTime(0.0001, n+2.0); /* sortie lente aussi */
-  }
-
-  function startMusic(){
-    if(!boot()) return;
-    if(ctx.state==="suspended") ctx.resume();
-    playing=true;
-    var t0=ctx.currentTime+0.15;
-    /* Gong d'ouverture — une seule frappe au démarrage */
-    strikeGong(t0);
-    /* Deux boucles pré-rendues */
-    renderLoop(t0+0.5);
-    renderLoop(t0+0.5+LOOP);
-    fadeIn();
-    var next=t0+0.5+LOOP*2;
-    loopId=setInterval(function(){
-      if(!ctx||!playing) return;
-      renderLoop(next); next+=LOOP;
-    },(LOOP-0.10)*1000);
-  }
-
-  function stopMusic(){
-    playing=false;
-    if(loopId){clearInterval(loopId);loopId=null;}
-    fadeOut();
-    setTimeout(function(){
-      nodes.forEach(function(n){
-        try{if(n.stop)n.stop(0);}catch(e){}
-        try{n.disconnect();}catch(e){}
-      });
-      nodes=[];
-      try{if(ctx)ctx.close();}catch(e){}
-      ctx=null; out=null;
-    },2200);
-  }
-
-  /* ─── Voix ─── */
-  function getFrenchVoice(){
-    if(!window.speechSynthesis) return null;
-    var v=speechSynthesis.getVoices();
-    return v.find(function(x){return /^fr/i.test(x.lang);})||v[0]||null;
-  }
-
-  function speakManifesto(){
-    if(!("speechSynthesis" in window)){alert("Lecture audio non disponible.");return;}
-
-    /* Mobile/iPhone : la voix doit être déclenchée directement par le clic.
-       Si on attend 1 ou 2 secondes après le clic, la musique joue,
-       mais speechSynthesis peut être bloqué silencieusement. */
-    speechSynthesis.cancel();
-    startMusic();
-
-    var u=new SpeechSynthesisUtterance(MANIFESTE);
-    u.lang="fr-FR";
-    u.rate=0.78;
-    u.pitch=1.00;
-
-    var v=getFrenchVoice();
-    if(v) u.voice=v;
-
-    u.onstart=function(){
-      try{ speechSynthesis.resume(); }catch(e){}
-    };
-    u.onend=stopMusic;
-    u.onerror=function(){
-      /* Sur certains mobiles, une première voix peut rater si les voix ne sont pas prêtes.
-         On retente une seule fois sans délai long. */
-      try{
-        var u2=new SpeechSynthesisUtterance(MANIFESTE);
-        u2.lang="fr-FR"; u2.rate=0.78; u2.pitch=1.00;
-        var v2=getFrenchVoice(); if(v2) u2.voice=v2;
-        u2.onend=stopMusic;
-        u2.onerror=stopMusic;
-        speechSynthesis.speak(u2);
-        speechSynthesis.resume();
-      }catch(e){ stopMusic(); }
-    };
-
-    speechSynthesis.speak(u);
-    try{ speechSynthesis.resume(); }catch(e){}
-  }
-
-  function stopManifesto(){
-    if("speechSynthesis" in window) speechSynthesis.cancel();
-    stopMusic();
-  }
-
-  function bind(){
-    var p=document.getElementById("digiyOpeningPlay");
-    var s=document.getElementById("digiyOpeningStop");
-    if(p) p.addEventListener("click",speakManifesto);
-    if(s) s.addEventListener("click",stopManifesto);
-  }
-
-  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",bind);
-  else bind();
-  if("speechSynthesis" in window){
-    /* Réveille la liste des voix tôt, utile sur mobile */
-    try{ speechSynthesis.getVoices(); }catch(e){}
-    speechSynthesis.onvoiceschanged=function(){getFrenchVoice();};
-  }
-})();
-</script>
-
-
-<div class="wrap">
-<div class="shell">
-<header class="topbar">
-<a class="brand" href="https://digiylyfe.com/" id="homeBrand">
-<div class="logo"><img alt="Logo DIGIYLYFE" loading="eager" src="https://digiylyfe.net/wp-content/uploads/2026/03/digiylyfe_logo_qr.jpeg"/></div>
-<div class="brandText">
-<div class="title">DIGIYLYFE</div>
-<div class="subtitle">Trouver, contacter, avancer sans détour</div>
-<div class="byline">BY DIGIYLYFE</div>
-</div>
-</a>
-<div class="digiyStamp site" aria-label="Vous êtes sur le site public DIGIYLYFE">
-<span>🌍 SITE DIGIYLYFE</span>
-<small>Porte d’entrée publique</small>
-</div>
-<div aria-label="Forces DIGIYLYFE" class="topSignals">
-<span class="signalChip gold">0% commission</span>
-<span class="signalChip green">Paiement direct</span>
-<span class="signalChip soft">Territoire vivant</span>
-<span class="signalChip soft">Logiciels métier simples</span>
-<span class="signalChip gold">Vision</span>
-<span class="signalChip green">HUB clair</span>
-</div>
-<button aria-label="Ouvrir les portes DIGIY" class="headerMenuBtn" onclick="openQuickMenu()" type="button">☰ Portes</button>
-</header>
-
-<section class="digiyHumanDoors" id="va-chez-digiy">
-  <div class="digiyHumanIntro">
-    <p class="digiyHumanKicker">DIGIYLYFE · terrain d’abord</p>
-    <h2>Des solutions pensées pour la vraie vie.</h2>
-    <p>
-      Chez DIGIY, on ne commence pas par la technique.
-      On commence par ce que les gens disent tous les jours.
-    </p>
-  </div>
-
-  <div class="digiyHumanGrid">
-    <a class="digiyHumanCard" href="https://driver.digiylyfe.com/">
-      <span>🚕</span>
-      <strong>Tu cherches un chauffeur ?</strong>
-      <small>Va chez DIGIY.DRIVER</small>
-    </a>
-
-    <a class="digiyHumanCard" href="https://loc.digiylyfe.com/">
-      <span>🏠</span>
-      <strong>Tu veux louer ?</strong>
-      <small>Va chez DIGIY.LOC</small>
-    </a>
-
-    <a class="digiyHumanCard" href="https://market.digiylyfe.com/">
-      <span>🛍️</span>
-      <strong>Tu veux vendre ?</strong>
-      <small>Va chez DIGIY.MARKET · DIGIY BOUTIQUE</small>
-    </a>
-
-    <a class="digiyHumanCard" href="https://resa-table-resto.digiylyfe.com/">
-      <span>📅</span>
-      <strong>Tu veux réserver ?</strong>
-      <small>Va chez DIGIY.RESA</small>
-    </a>
-
-    <a class="digiyHumanCard" href="https://jobs.digiylyfe.com/">
-      <span>💼</span>
-      <strong>Tu veux montrer ton travail ?</strong>
-      <small>Va chez DIGIY.JOBS</small>
-    </a>
-  </div>
-</section>
-
-<nav aria-label="Navigation DIGIYLYFE" class="landingNav" id="landing-menu"><a href="#intro-bonheur">🏠 Accueil</a><a class="star" href="#energie-peuple">🎶 Énergie du peuple</a><a class="green" href="#apercu-portes">🌍 Aperçu</a><a class="green" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🧭 HUB</a><a class="green" href="https://reseau-digiy.digiylyfe.com/" rel="noopener noreferrer" target="_blank">📣 RÉSEAU DIGIY</a><a class="gold" href="#mise-en-valeur-pro">✨ Mise en valeur</a><a class="gold" href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank">📦 Tarifs</a><a class="green" href="https://pro-espace.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🏢 Espace pro</a><a class="gold" href="#esprit-digiylyfe">🎧 Esprit</a><a class="gold" href="#clip-officiel">📖 Articles</a><a href="#vision-article">🧭 Vision</a><a href="#digiy-circulation">📣 Faire circuler</a><a class="star" href="#sceau-metiers-pro">🪪 Métiers pro</a></nav>
-<section id="intro-bonheur">
+      <section id="intro-bonheur">
 <div class="wrap">
 <div class="eyebrow"><span class="dot"></span> DIGIYLYFE — TERRITOIRE VIVANT</div><div class="supaBadge">🚀 LA SUPA APPS DU TERRAIN</div>
 <h1>
@@ -2643,1287 +2343,404 @@
 </div>
 </section>
 
+      <section class="digiyMantra" id="mantra-digiy" aria-label="Signature DIGIYLYFE">
+        <div class="digiyMantraInner">
+          <div>
+            <div class="digiyMantraWords" aria-label="Mantra terrain DIGIY">
+              <span>Je clique.</span>
+              <span>Je parle.</span>
+              <span>J’existe.</span>
+              <span>Je suis visible.</span>
+              <span>Je suis reconnu.</span>
+              <span class="gold">J’avance.</span>
+            </div>
+            <div class="digiyMantraClaim">
+              L’assistant maison DIGIY exécute.<br>
+              Le pro <strong>VALIDE.</strong>
+            </div>
+            <div class="digiyMantraBrand">DIGIYLYFE</div>
+          </div>
+          <div class="digiyMantraAudio">
+            <button class="main" type="button" data-digiy-mantra-play>🎧 Écouter DIGIY</button>
+            <button type="button" data-digiy-mantra-stop>⏹ Stop</button>
+          </div>
+        </div>
+      </section>
 
-<section aria-label="Sceau officiel métiers pro DIGIYLYFE" id="sceau-metiers-pro">
-  <div class="metier-pro-card">
-    <div class="metier-pro-visual">
-      <img src="https://digiylyfe.net/wp-content/uploads/2026/05/metier-pro-1.png" alt="DIGIYLYFE — Métiers pro" loading="eager" decoding="async"/>
-    </div>
 
-    <div class="metier-pro-copy">
-      <div class="metier-pro-kicker">🪪 SCEAU MÉTIERS PRO · BY DIGIYLYFE</div>
-      <h2>Chaque métier garde <span>sa lumière.</span></h2>
-      <p>
-        Ce logo devient le repère des portes pro : chauffeurs, logements, boutiques,
-        services, missions, réservations et métiers du terrain.
-        <strong>Un même symbole, plusieurs métiers, une relation directe.</strong>
-      </p>
-      <div class="metier-pro-actions">
-        <a class="metier-pro-btn main" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🧭 Ouvrir les portes</a>
-        <a class="metier-pro-btn" href="#mise-en-valeur-pro">✨ Options fiche pro</a>
-        <a class="metier-pro-btn" href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank">📦 Voir les tarifs</a>
-      </div>
-    </div>
-  </div>
-</section>
+      <section class="digiySection" id="favoris">
+        <div class="digiySectionHead">
+          <div>
+            <h2 class="digiySectionTitle">⭐ 4 favoris rapides <small>anti-scroll</small></h2>
+            <div class="digiySectionSub">Juste après le héros : les portes qui font agir tout de suite.</div>
+          </div>
+        </div>
+        <div class="favGrid">
+          
+    <a class="favTile" href="https://driver-client.digiylyfe.com/" aria-label="Trouver un chauffeur">
+      <span>🚗</span>
+      <strong>Trouver un chauffeur</strong>
+      <small>Course rapide, contact direct.</small>
+    </a>
+    <a class="favTile" href="https://loc.digiylyfe.com/" aria-label="Trouver où dormir">
+      <span>🏠</span>
+      <strong>Trouver où dormir</strong>
+      <small>Logements visibles, propriétaire direct.</small>
+    </a>
+    <a class="favTile" href="#pro" aria-label="Côté pro">
+      <span>🏢</span>
+      <strong>Côté pro</strong>
+      <small>Entrer directement dans les portes métier.</small>
+    </a>
+    <a class="favTile" href="https://tarifs.digiylyfe.com/" aria-label="Tarifs / payer">
+      <span>📦</span>
+      <strong>Tarifs / payer</strong>
+      <small>Voir les offres et activer un accès.</small>
+    </a>
+        </div>
+      </section>
 
-
-<section aria-label="Énergie du peuple Sénégal connecté au monde" id="energie-peuple">
-<div class="energy-inner">
-<div>
-<div class="energy-kicker">🎶 ÉNERGIE DU PEUPLE · SÉNÉGAL CONNECTÉ AU MONDE</div>
-<h2>Des racines locales. <span>Une vibration mondiale.</span></h2>
-<p>
-DIGIYLYFE avance avec cette force : le Sénégal, l’Afrique, les quartiers,
-les boutiques, les chauffeurs, les artisans, les familles, les jeunes,
-les anciens — tout un terrain qui mérite d’être visible, organisé et respecté.
-</p>
-<p>
-Ici, le digital ne vient pas effacer la culture.
-Il vient l’amplifier. Il donne au peuple une présence moderne,
-sans couper la voix, le lien, la confiance et la dignité.
-</p>
-<div class="energy-actions">
-<a class="energy-btn main" href="https://youtu.be/wT7THh-RZoQ?si=o5Z20Ip6CH78uND6" rel="noopener noreferrer" target="_blank">🎶 Ressentir l’énergie</a>
-<a class="energy-btn" href="https://digiylyfe.net/" rel="noopener noreferrer" target="_blank">📖 Lire la revue DIGIY</a>
-<a class="energy-btn" href="#apercu-portes">🌍 Voir les portes du terrain</a>
-</div>
-</div>
-<aside class="energy-card">
-<strong>Le terrain garde son âme.</strong>
-<span>
-DIGIYLYFE connecte le local au monde : contact direct, paiement direct,
-QR terrain, outils simples, 0% commission, et une présence digitale
-qui respecte les cultures vivantes.
-</span>
-</aside>
-</div>
-</section>
-
-<section class="pratiqueFirst" id="digiy-pratique-first">
-<div class="pf-kicker">🌍 Vitrine DIGIYLYFE</div>
-<h2>Comprendre la maison, puis choisir sa porte.</h2>
-<p>Le site garde l’âme : vision, confiance, articles, audio, territoire vivant. Pour la carte complète et directe des modules publics et pro, le HUB prend le relais.</p>
-</section>
-
-<section class="digiyFrontClear" id="digiy-hub-front">
-  <div class="digiyFrontClearInner">
-    <div>
-      <div class="digiyFrontKicker">Supa Apps du terrain · entrée claire</div>
-      <h2 class="digiyFrontTitle">Le HUB porte <span>les apps.</span></h2>
-      <p class="digiyFrontText">
-        Ici, on ne mange pas la tête du visiteur. Il comprend vite :
-        DIGIYLYFE ouvre les portes utiles du terrain, côté public et côté pro.
-      </p>
-      <div class="digiyFrontStats">
-        <div class="digiyFrontStat"><b>14</b><span>portes publiques pour trouver, réserver, acheter, travailler.</span></div>
-        <div class="digiyFrontStat"><b>12</b><span>portes pro pour gérer, publier, vendre et suivre son argent.</span></div>
-      </div>
-      <div class="digiyFrontActions">
-        <a class="digiyFrontBtn main" href="https://digiy-hub.digiylyfe.com/">🧭 Ouvrir le HUB</a>
-        <a class="digiyFrontBtn" href="#quick-business-doors">🌍 Voir les modules</a>
-      </div>
-    </div>
-    <aside class="digiyFrontSide">
-      <strong>Le principal devant. Le reste rangé.</strong>
-      <span>
-        La vitrine donne le sens. Le HUB donne les portes. Les camemberts rangent l’esprit,
-        la revue, les tarifs, la circulation et les accès secondaires.
+      <section class="digiySection" id="public">
+        <div class="digiySectionHead">
+          <div>
+            <h2 class="digiySectionTitle">🌍 Portes publiques <small>15</small></h2>
+            <div class="digiySectionSub">Le public choisit vite : trouver, réserver, acheter, écouter, se repérer.</div>
+          </div>
+        </div>
+        <div class="digiyGrid">
+          
+    <a class="digiyTile public" href="https://explore.digiylyfe.com/" aria-label="Ouvrir Découvrir le territoire">
+      <span class="digiyTileIcon">🗺️</span>
+      <span class="digiyTileText">
+        <strong>Découvrir le territoire</strong>
+        <small>Spots, lieux, ambiances : entrer dans la région.</small>
+        <em>PUBLIC · DIGIY</em>
       </span>
-    </aside>
-  </div>
-</section>
-
-
-<section aria-label="Options de mise en valeur professionnelle DIGIYLYFE" id="mise-en-valeur-pro">
-  <div class="value-kicker">✨ MISE EN VALEUR PRO · SIMPLE, PREMIUM, EXTRA</div>
-  <h2>L’abonnement ouvre la porte. <span>La mise en valeur éclaire la vitrine.</span></h2>
-  <p class="value-lead">
-    DIGIYLYFE reste transparent : la visibilité simple est incluse dans l’abonnement.
-    Mais comme dans une pâtisserie, certains gâteaux demandent plus de travail, plus de finition et plus de temps.
-    Dans le digital, c’est pareil : <strong>la présence est incluse, la mise en page et la réalisation complète sont des prestations.</strong>
-  </p>
-
-  <div class="valueProGrid" aria-label="Niveaux de fiche DIGIYLYFE">
-    <article class="valueProCard simple">
-      <div class="valueProIcon">🌱</div>
-      <div class="valueProTitle">Fiche Simple</div>
-      <div class="valueProPrice">Incluse dans l’abonnement</div>
-      <div class="valueProText">
-        Pour être visible rapidement dans la galerie DIGIY avec les informations essentielles et le contact direct.
-      </div>
-      <div class="valueProList">
-        <span>✅ Présence dans la galerie</span>
-        <span>✅ Photo principale</span>
-        <span>✅ Prix, zone, capacité ou service</span>
-        <span>✅ WhatsApp direct</span>
-      </div>
-    </article>
-
-    <article class="valueProCard premium">
-      <div class="valueProIcon">✨</div>
-      <div class="valueProTitle">Fiche Premium</div>
-      <div class="valueProPrice">Intervention de mise en page</div>
-      <div class="valueProText">
-        Pour mieux présenter l’activité, ranger les informations, améliorer les textes, les photos et les boutons.
-      </div>
-      <div class="valueProList">
-        <span>✅ Mise en page plus claire</span>
-        <span>✅ Textes nettoyés</span>
-        <span>✅ Photos mieux organisées</span>
-        <span>✅ Parcours WhatsApp plus propre</span>
-      </div>
-    </article>
-
-    <article class="valueProCard extra">
-      <div class="valueProIcon">👑</div>
-      <div class="valueProTitle">Fiche Extra</div>
-      <div class="valueProPrice">Réalisation complète</div>
-      <div class="valueProText">
-        Une vraie vitrine partenaire : plus belle, plus rassurante, partageable, prête à circuler par WhatsApp et QR.
-      </div>
-      <div class="valueProList">
-        <span>✅ Page dédiée complète</span>
-        <span>✅ QR cliquable</span>
-        <span>✅ Partage WhatsApp</span>
-        <span>✅ Storytelling et bloc confiance</span>
-      </div>
-    </article>
-  </div>
-
-  <div class="valueProDoctrine">
-    <strong>Phrase simple :</strong>
-    l’abonnement te rend visible. Le Premium éclaire ta fiche.
-    L’Extra construit une vraie vitrine partenaire.
-    DIGIY ne prend pas de commission sur tes ventes, mais le travail de création, de mise en page et de finition se respecte.
-  </div>
-
-  <div class="valueProActions">
-    <a
-      class="valueProAction green"
-      href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20comprendre%20les%20options%20de%20mise%20en%20valeur%20%3A%20Simple%2C%20Premium%20ou%20Extra."
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      📲 Demander les options
+      <span class="digiyTileArrow">↗</span>
     </a>
-    <a class="valueProAction gold" href="https://tarifs.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
-      📦 Voir les tarifs DIGIY
+    <a class="digiyTile public" href="https://driver-client.digiylyfe.com/" aria-label="Ouvrir Trouver un chauffeur">
+      <span class="digiyTileIcon">🚗</span>
+      <span class="digiyTileText">
+        <strong>Trouver un chauffeur</strong>
+        <small>Un trajet maintenant, contact direct.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
     </a>
-    <a class="valueProAction green" href="https://reseau-digiy.digiylyfe.com/" target="_blank" rel="noopener noreferrer">
-      📣 Ouvrir RÉSEAU DIGIY — COM AU CLIC
+    <a class="digiyTile public" href="https://driver-client.digiylyfe.com/" aria-label="Ouvrir Nos chauffeurs">
+      <span class="digiyTileIcon">👑</span>
+      <span class="digiyTileText">
+        <strong>Nos chauffeurs</strong>
+        <small>Profils chauffeurs, style et présence terrain.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
     </a>
-  </div>
-</section>
+    <a class="digiyTile public" href="https://loc.digiylyfe.com/" aria-label="Ouvrir Trouver où dormir">
+      <span class="digiyTileIcon">🏠</span>
+      <span class="digiyTileText">
+        <strong>Trouver où dormir</strong>
+        <small>Logements visibles, propriétaire direct.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile public" href="https://resa-table-resto.digiylyfe.com/" aria-label="Ouvrir Réserver">
+      <span class="digiyTileIcon">📅</span>
+      <span class="digiyTileText">
+        <strong>Réserver</strong>
+        <small>Choisir un moment sans tourner en rond.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile public" href="https://build.digiylyfe.com/" aria-label="Ouvrir Trouver un artisan">
+      <span class="digiyTileIcon">🏗️</span>
+      <span class="digiyTileText">
+        <strong>Trouver un artisan</strong>
+        <small>Travaux, dépannage, services terrain.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile public" href="https://mon-commerce.digiylyfe.com/" aria-label="Ouvrir Mon commerce">
+      <span class="digiyTileIcon">👜</span>
+      <span class="digiyTileText">
+        <strong>Mon commerce</strong>
+        <small>Boutiques, vitrines, contact simple.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile public" href="https://market.digiylyfe.com/" aria-label="Ouvrir Les boutiques">
+      <span class="digiyTileIcon">🛍️</span>
+      <span class="digiyTileText">
+        <strong>Les boutiques</strong>
+        <small>Acheter, vendre, regarder le marché local.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile public" href="https://jobs.digiylyfe.com/" aria-label="Ouvrir Trouver du travail">
+      <span class="digiyTileIcon">💼</span>
+      <span class="digiyTileText">
+        <strong>Trouver du travail</strong>
+        <small>Missions et opportunités du terrain.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile public" href="https://reseau-digiy.digiylyfe.com/" aria-label="Ouvrir RÉSEAU DIGIY">
+      <span class="digiyTileIcon">📣</span>
+      <span class="digiyTileText">
+        <strong>RÉSEAU DIGIY</strong>
+        <small>COM AU CLIC : annonce, fiche, lien partageable.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile public" href="https://pay.digiylyfe.com/" aria-label="Ouvrir Mon argent">
+      <span class="digiyTileIcon">💳</span>
+      <span class="digiyTileText">
+        <strong>Mon argent</strong>
+        <small>Paiement direct, trace claire, zéro détour.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile public" href="https://vas-chez-digiy.digiylyfe.com/" aria-label="Ouvrir Venir chez DIGIY">
+      <span class="digiyTileIcon">📍</span>
+      <span class="digiyTileText">
+        <strong>Venir chez DIGIY</strong>
+        <small>S’orienter vers le terrain DIGIY.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile public" href="https://ndimbal-loc.digiylyfe.com/" aria-label="Ouvrir LOC solidaire">
+      <span class="digiyTileIcon">🤝</span>
+      <span class="digiyTileText">
+        <strong>LOC solidaire</strong>
+        <small>Geste NDIMBAL proposé par certains pros LOC.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile public" href="https://ndimbal-map.digiylyfe.com/" aria-label="Ouvrir La carte">
+      <span class="digiyTileIcon">🧭</span>
+      <span class="digiyTileText">
+        <strong>La carte</strong>
+        <small>Voir ce qui existe autour de soi.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile public" href="https://digiy-audio.digiylyfe.com/" aria-label="Ouvrir Écouter">
+      <span class="digiyTileIcon">🎧</span>
+      <span class="digiyTileText">
+        <strong>Écouter</strong>
+        <small>Les messages DIGIY en audio.</small>
+        <em>PUBLIC · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+        </div>
+      </section>
 
+      <section class="digiySection" id="pro">
+        <div class="digiySectionHead">
+          <div>
+            <h2 class="digiySectionTitle">🏢 Portes pro <small>9</small></h2>
+            <div class="digiySectionSub">Le pro ouvre directement sa porte métier par PIN. L’Espace PRO reste le coffre central séparé.</div>
+          </div>
+        </div>
+        <div class="digiyGrid">
+          
+    <a class="digiyTile pro" href="https://pro-market.digiylyfe.com/pin.html" aria-label="Ouvrir Je vends">
+      <span class="digiyTileIcon">🛍️</span>
+      <span class="digiyTileText">
+        <strong>Je vends</strong>
+        <small>Produits, boutique et ventes directes.</small>
+        <em>PRO · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile pro" href="https://commerce-pro.digiylyfe.com/pin.html" aria-label="Ouvrir Mon commerce">
+      <span class="digiyTileIcon">💰</span>
+      <span class="digiyTileText">
+        <strong>Mon commerce</strong>
+        <small>Encaisser et suivre les ventes.</small>
+        <em>PRO · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile pro" href="https://pro-loc.digiylyfe.com/pin.html" aria-label="Ouvrir Je loue">
+      <span class="digiyTileIcon">🏠</span>
+      <span class="digiyTileText">
+        <strong>Je loue</strong>
+        <small>Logements, disponibilités, clients.</small>
+        <em>PRO · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile pro" href="https://pro-resa-resto.digiylyfe.com/pin.html" aria-label="Ouvrir Je réserve">
+      <span class="digiyTileIcon">📅</span>
+      <span class="digiyTileText">
+        <strong>Je réserve</strong>
+        <small>Créneaux, planning, réservations.</small>
+        <em>PRO · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile pro" href="https://pro-driver.digiylyfe.com/pin.html" aria-label="Ouvrir Je conduis">
+      <span class="digiyTileIcon">🚗</span>
+      <span class="digiyTileText">
+        <strong>Je conduis</strong>
+        <small>Courses, tarifs, profil chauffeur.</small>
+        <em>PRO · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile pro" href="https://pro-job.digiylyfe.com/pin.html" aria-label="Ouvrir Je recrute">
+      <span class="digiyTileIcon">💼</span>
+      <span class="digiyTileText">
+        <strong>Je recrute</strong>
+        <small>Offres, candidats, suivi.</small>
+        <em>PRO · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile pro" href="https://pro-build.digiylyfe.com/pin.html" aria-label="Ouvrir Mes services">
+      <span class="digiyTileIcon">🏗️</span>
+      <span class="digiyTileText">
+        <strong>Mes services</strong>
+        <small>Services, chantiers, demandes.</small>
+        <em>PRO · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile pro" href="https://pro-explore.digiylyfe.com/pin.html?v=explore-pin-boost-20260522" aria-label="Ouvrir Me faire connaître">
+      <span class="digiyTileIcon">🗺️</span>
+      <span class="digiyTileText">
+        <strong>Me faire connaître</strong>
+        <small>Lieu, visibilité, territoire.</small>
+        <em>PRO · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+    <a class="digiyTile pro" href="https://pro-pay.digiylyfe.com/pin.html?redirect=hub" aria-label="Ouvrir Mon argent">
+      <span class="digiyTileIcon">💳</span>
+      <span class="digiyTileText">
+        <strong>Mon argent</strong>
+        <small>Entrées, sorties, reste, notes rapides.</small>
+        <em>PRO · DIGIY</em>
+      </span>
+      <span class="digiyTileArrow">↗</span>
+    </a>
+        </div>
+      </section>
 
-<main class="main" id="apercu-portes">
-<section aria-label="Aperçu des portes DIGIYLYFE" class="section sitePreviewDoors">
-<div class="sectionHead">
-<div>
-<h2>Quelques portes pour comprendre <span class="appCountInline">l’étendue</span></h2>
-<div class="sectionSub">Ici, on montre le sens sans transformer la vitrine en tableau de bord. Toutes les portes détaillées restent dans le HUB.</div>
-</div>
-<div class="legend">
-<a class="pill live" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🧭 Ouvrir le HUB</a>
-<a class="pill public" href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank">📦 Tarifs</a>
-</div>
-</div>
-<div class="previewGrid">
-<a class="previewDoor" href="https://driver-client.digiylyfe.com/" rel="noopener noreferrer" target="_blank"><span>🚗</span><strong>Trouver un chauffeur</strong><em>Trajet direct, contact terrain.</em></a>
-<a class="previewDoor" href="https://loc.digiylyfe.com/" rel="noopener noreferrer" target="_blank"><span>🏠</span><strong>Trouver où dormir</strong><em>Logement direct, propriétaire visible.</em></a>
-<a class="previewDoor" href="https://resa-table-resto.digiylyfe.com/" rel="noopener noreferrer" target="_blank"><span>📅</span><strong>Réserver simplement</strong><em>Un créneau clair, moins d’allers-retours.</em></a>
-<a class="previewDoor" href="https://market.digiylyfe.com/" rel="noopener noreferrer" target="_blank"><span>🛍️</span><strong>Voir les boutiques</strong><em>Le commerce local plus visible.</em></a>
-<a class="previewDoor" href="https://reseau-digiy.digiylyfe.com/" rel="noopener noreferrer" target="_blank"><span>📣</span><strong>Faire circuler une offre</strong><em>COM AU CLIC : fiche, lien, annonce datée.</em></a>
-<a class="previewDoor" href="https://build.digiylyfe.com/" rel="noopener noreferrer" target="_blank"><span>🏗️</span><strong>Trouver un artisan</strong><em>Services et savoir-faire terrain.</em></a>
-<a class="previewDoor mainDoor" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank"><span>🧭</span><strong>Toutes les portes</strong><em>Public + pro, sans détour.</em></a>
-</div>
-</section>
-<footer class="footer">
-<div class="footLine">
-<span class="footBrand">DIGIYLYFE ∞</span>
-<span class="sep">·</span><span>0% commission</span>
-<span class="sep">·</span><span>paiement direct</span>
-<span class="sep">·</span><span>territoire vivant</span>
-<span class="sep">·</span><span>économie locale en mouvement</span>
-</div>
-</footer>
-</main>
-<section class="showcaseSection" id="visuels">
-<div class="showcaseInner">
-<div class="showcaseTitle">DIGIYLYFE · L'AFRIQUE CONNECTÉE · EXPLORE &amp; TERRITOIRE</div>
-<div class="showcaseImgWrap">
-<img alt="DIGIYLYFE — territoire vivant, Petite Côte Sénégal" height="1024" loading="lazy" onerror="this.onerror=null;this.src='https://digiylyfe.net/wp-content/uploads/2026/03/digiy_services_avec_logo.webp'" src="https://digiylyfe.com/wp-content/uploads/2025/09/Image-6.jpeg" width="1536"/>
-</div>
-<div class="showcaseCta">
-<div class="showcaseDesc">Zéro commission · 100% indépendance · Paiement direct au professionnel · L'Afrique enracinée, connectée au monde ∞</div>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
-<a class="btn outline" href="#pro">🧰 Mon activité pro</a>
-<a class="btn ghost" href="https://digiylyfe.net/" rel="noopener" target="_blank">📖 Notre revue</a>
-</div>
-</div>
-</div>
-</section>
-</main><section aria-label="Départements DIGIYLYFE" class="departmentSection" id="departements">
-<div class="departmentHead">
-<div>
-<h2 class="departmentTitle">Choisir par <span>département.</span></h2>
-<div class="departmentSub">Le public ne cherche pas une structure. Il cherche un geste : se déplacer, dormir, réserver, acheter, vendre, travailler, suivre son argent. Ici, chaque porte parle humain.</div>
-</div>
-</div>
-<div class="departmentGrid">
-<article class="deptCard"><div class="deptIcon">🚗</div><div class="deptName">Me déplacer</div><div class="deptText">Trouver un chauffeur ou entrer côté chauffeur.</div><div class="deptActions"><a class="deptBtn" href="https://driver-client.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">🏠</div><div class="deptName">Dormir / louer</div><div class="deptText">Voir les logements et gérer ses disponibilités.</div><div class="deptActions"><a class="deptBtn" href="https://loc.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">📅</div><div class="deptName">Réserver</div><div class="deptText">Choisir un créneau, garder un planning clair.</div><div class="deptActions"><a class="deptBtn" href="https://resa-table-resto.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">🛍️</div><div class="deptName">Acheter / vendre</div><div class="deptText">Commerce, boutique, produits, caisse et marché local.</div><div class="deptActions"><a class="deptBtn" href="https://market.digiylyfe.com/" rel="noopener" target="_blank">Boutiques</a><a class="deptBtn" href="https://mon-commerce.digiylyfe.com/" rel="noopener" target="_blank">Commerce</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">🏗️</div><div class="deptName">Services terrain</div><div class="deptText">Artisans, multi-services, travaux, dépannage, chantier.</div><div class="deptActions"><a class="deptBtn" href="https://build.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">💼</div><div class="deptName">Travail</div><div class="deptText">Missions, opportunités, candidats, recrutement.</div><div class="deptActions"><a class="deptBtn" href="https://jobs.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">💳</div><div class="deptName">Mon argent</div><div class="deptText">Paiement direct, notes rapides, entrées, sorties, reste.</div><div class="deptActions"><a class="deptBtn" href="https://pay.digiylyfe.com/" rel="noopener" target="_blank">Public</a><a class="deptBtn pro" href="https://pro-espace.digiylyfe.com/" rel="noopener" target="_blank">Pro</a></div></article>
-<article class="deptCard"><div class="deptIcon">📣</div><div class="deptName">Faire circuler</div><div class="deptText">COM AU CLIC : annonce datée, fiche pro, lien partageable, preuve Wave.</div><div class="deptActions"><a class="deptBtn" href="https://reseau-digiy.digiylyfe.com/" rel="noopener" target="_blank">Réseau</a><a class="deptBtn pro" href="https://reseau-digiy.digiylyfe.com/paiement.html" rel="noopener" target="_blank">Wave</a></div></article>
-<article class="deptCard"><div class="deptIcon">🗺️</div><div class="deptName">Découvrir / écouter</div><div class="deptText">Territoire, revue, audio, assistant maison DIGIY.</div><div class="deptActions"><a class="deptBtn" href="https://explore.digiylyfe.com/" rel="noopener" target="_blank">Explore</a><a class="deptBtn" href="https://digiy-audio.digiylyfe.com/" rel="noopener" target="_blank">Audio</a><a class="deptBtn" href="https://knowledge.digiylyfe.com/widget/" rel="noopener" target="_blank">Assistant</a></div></article>
-</div>
-</section><section aria-label="L'esprit avant l'outil" id="esprit-digiylyfe">
-<div class="espritInner">
-<div>
-<div class="espritKicker">🎧 L'ESPRIT AVANT L'OUTIL</div>
-<h2 class="espritTitle">Écouter &amp; comprendre <span>l'esprit DIGIYLYFE</span></h2>
-<p class="espritText">Avant les boutons, il y a une vision : <strong>le terrain garde la main.</strong> Une affiche, une voix, une promesse. DIGIYLYFE complète WhatsApp, donne une présence digitale simple et laisse la relation chez le professionnel.</p>
-</div>
-<a class="espritBtn" href="https://esprit-digiylyfe.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🎧 Écouter &amp; comprendre l'esprit DIGIYLYFE →</a>
-</div>
-</section><section aria-label="Une même mission deux terrains" id="deux-terrains">
-<div class="dt-kicker">🌍 UNE MÊME MISSION · DEUX TERRAINS</div>
-<h2 class="dt-title">DIGIYLYFE reste <span>une seule maison.</span></h2>
-<p class="dt-intro">Le message s'adapte au territoire, mais la promesse ne change pas : <strong>rendre les activités locales visibles, organisées et payées directement.</strong></p>
-<div class="dt-grid">
-<article class="dt-card sn">
-<div class="dt-flag">🇸🇳</div>
-<div class="dt-country">Sénégal / Afrique</div>
-<div class="dt-desc">WhatsApp, Wave, QR, contact direct, économie locale, pros du terrain et souveraineté numérique enracinée.</div>
-<a class="dt-link" href="#departements">👉 Voir les portes utiles</a>
-</article>
-<article class="dt-card fr">
-<div class="dt-flag">🇫🇷</div>
-<div class="dt-country">France</div>
-<div class="dt-desc">Petits pros, artisans, commerces, locations, services locaux : présence simple, lien client direct, sans usine à gaz.</div>
-<a class="dt-link" href="https://pro-espace.digiylyfe.com/" rel="noopener noreferrer" target="_blank">⚙️ Équiper mon activité</a>
-</article>
-</div>
-<div class="dt-clip">
-<div class="dt-clip-text">📖 Les articles du site DIGIYLYFE<span>Articles, vision et revue DIGIYLYFE · 0% commission · paiement direct</span></div>
-<a class="dt-clip-btn" href="https://digiylyfe.net/">▶️ Articles du site ici</a>
-</div>
-</section><section aria-label="Articles du site DIGIYLYFE" id="clip-officiel">
-<div class="clip-kicker">📖 ARTICLES DU SITE DIGIYLYFE</div>
-<h2 class="clip-title">De Saly à Sarlat — <span>territoire vivant.</span></h2>
-<p class="clip-text">Ici, les articles doivent être visibles tout de suite : une image forte, un bouton lecture, et le message clair — <strong>0% commission, paiement direct, relation chez le pro.</strong></p>
-<div class="clip-layout">
-<div class="clip-frame" data-video-url="" id="digiyArticlesFrame">
-<a aria-label="Ouvrir les articles du site DIGIYLYFE" class="clip-poster" href="https://digiylyfe.net/" rel="noopener noreferrer" target="_blank">
-<img alt="Articles du site DIGIYLYFE — territoire vivant" decoding="async" loading="lazy" src="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png"/>
-<span class="clip-play">▶</span>
-<span class="clip-caption"><strong>Articles du site officiel DIGIYLYFE</strong><span>Le terrain garde la main · 0% commission · paiement direct.</span></span>
-</a>
-</div>
-<aside class="clip-side">
-<div class="clip-side-title">Des articles, pas juste un lien.</div>
-<div class="clip-side-text">Le visiteur doit sentir l’âme avant de descendre dans les applications. Ce bloc sert de scène propre pour les articles du site.</div>
-<div class="clip-actions">
-<a class="clip-btn main" href="https://digiylyfe.net/" rel="noopener noreferrer" target="_blank">📖 Ouvrir les articles</a>
-<a class="clip-btn" href="https://esprit-digiylyfe.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🎧 Écouter l’esprit</a>
-</div>
-<div class="clip-note">Quand tu me donnes le lien direct d’un article audio, MP4, YouTube ou TikTok, je remplace ce bloc par un lecteur intégré qui joue directement sur la page.</div>
-</aside>
-</div>
-</section><section aria-label="Article vision DIGIYLYFE" id="vision-article">
-<a aria-label="Lire la revue DIGIYLYFE" class="bridge-visual" href="https://digiylyfe.net/" rel="noopener noreferrer" target="_blank">
-<img alt="DIGIYLYFE — super écosystème local" decoding="async" loading="lazy" src="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png"/>
-</a>
-<div class="bridge-copy">
-<h2 class="bridge-title">🧭 Uber veut garder le client dans son application. <span>DIGIY veut l'amener chez le professionnel.</span></h2>
-<p class="bridge-p">Le monde va vers des écosystèmes. La vraie question : <strong>qui possède la relation avec le client ?</strong> DIGIYLYFE choisit : 0% commission, paiement direct, QR terrain, outils métier et relation chez le pro.</p>
-<p class="bridge-p"><strong>✨ Uber : super-app de plateforme.</strong> DIGIYLYFE : super-écosystème local.</p>
-<div class="bridge-links">
-<a class="bridge-mini" href="https://digiylyfe.net/" rel="noopener noreferrer" target="_blank">📖 Lire les articles du site →</a>
-<a class="bridge-mini" href="https://vision.digiylyfe.com/?v=20260507-metier-pro" rel="noopener noreferrer" target="_blank">🎧 Lire et écouter la vision →</a>
-<a class="bridge-mini" href="#esprit-digiylyfe">🎧 Écouter l'esprit DIGIYLYFE →</a>
-</div>
-</div>
-</section><section aria-label="Fais circuler DIGIY" id="digiy-circulation">
-<div class="circ-kicker">📣 LECTURE + ÉCOUTE + TERRAIN</div>
-<h2 class="circ-title">Fais circuler DIGIY. <span>Fais vivre les pros.</span></h2>
-<p class="circ-text">La base, c'est la clientèle : les gens qui cherchent, appellent, réservent, achètent. DIGIYLYFE avance avec les pros, mais il vit grâce aux clients qui les font travailler.</p>
-<div class="circ-grid">
-<article class="circ-card"><strong>1. Utilise le site</strong><span>Trouve un chauffeur, un logement, un artisan, une boutique ou un service autour de toi.</span></article>
-<article class="circ-card"><strong>2. Partage DIGIY</strong><span>Envoie le lien à quelqu'un qui cherche ou à quelqu'un qui travaille.</span></article>
-<article class="circ-card"><strong>3. Recommande un pro</strong><span>Tu connais quelqu'un de sérieux ? Envoie son contact, le terrain le révélera.</span></article>
-</div>
-<div class="circ-actions">
-<button class="btn primary" onclick="window.digiyShareSite&amp;&amp;window.digiyShareSite()" type="button">📤 Partager DIGIY</button>
-<button class="btn outline" onclick="window.digiySuggestPro&amp;&amp;window.digiySuggestPro()" type="button">🤝 Recommander un pro</button>
-<a class="btn ghost" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🧭 Ouvrir toutes les portes</a>
-<a class="btn outline" href="https://reseau-digiy.digiylyfe.com/" rel="noopener noreferrer" target="_blank">📣 RÉSEAU DIGIY — COM AU CLIC</a>
-</div>
-<div class="circ-line">Le terrain ne demande pas du bruit. Il demande une route claire, un lien fiable, et quelqu'un qui répond.</div>
-</section><section aria-label="RÉSEAU DIGIY — COM AU CLIC" id="reseau-digiy-vitrine">
-  <div class="reseau-inner">
-    <div>
-      <div class="reseau-kicker">📣 NOUVELLE PORTE · COM AU CLIC</div>
-      <h2>RÉSEAU DIGIY <span>fait circuler les offres.</span></h2>
-      <p><strong>La fiche est la maison du pro.</strong> RÉSEAU DIGIY allume le projecteur : une annonce datée, un lien cliquable, une offre partageable par famille, clients, groupes WhatsApp et réseau humain.</p>
-      <div class="reseau-mini-grid">
-        <div class="reseau-mini">7 jours · 3 500 FCFA</div>
-        <div class="reseau-mini">15 jours · 6 500 FCFA</div>
-        <div class="reseau-mini">30 jours · 12 000 FCFA</div>
-      </div>
-      <div class="reseau-actions">
-        <a class="reseau-btn main" href="https://reseau-digiy.digiylyfe.com/" rel="noopener noreferrer" target="_blank">📣 Ouvrir RÉSEAU DIGIY</a>
-        <a class="reseau-btn" href="https://reseau-digiy.digiylyfe.com/paiement.html" rel="noopener noreferrer" target="_blank">💳 Payer par Wave</a>
-        <a class="reseau-btn" href="https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20faire%20circuler%20une%20offre%20avec%20R%C3%89SEAU%20DIGIY%20-%20COM%20AU%20CLIC." rel="noopener noreferrer" target="_blank">📲 Demander l’activation</a>
-      </div>
+      <section class="quickActions" aria-label="Actions utiles DIGIY">
+        <div class="quickActionsGrid">
+          <a href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
+          <a class="gold" href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
+          <a class="green" href="https://commencer-a-payer.digiylyfe.com/">💳 Commencer à payer</a>
+          <a href="https://pro-espace.digiylyfe.com/">🔐 Espace pro</a>
+          <a href="https://digiylyfe.net/">📰 Revue</a>
+        </div>
+      </section>
+
+      <footer class="digiySimpleFooter">
+        <div><strong>DIGIYLYFE ∞</strong> · Le héros garde l’âme, les favoris donnent l’action.</div>
+        <div>4 favoris · 15 publics · 9 pro · camembert.</div>
+      </footer>
     </div>
-    <aside class="reseau-card">
-      <strong>Instantané à publier, posé dans la durée.</strong>
-      <span>Pas un post perdu en 30 secondes. Une offre visible 7, 15 ou 30 jours, reliée à une fiche pro, avec preuve Wave par WhatsApp ou SMS.</span>
-    </aside>
   </div>
-</section><section aria-label="Choisir sa porte DIGIYLYFE" class="landingGate">
-<div class="landingGateInner">
-<div class="landingGateMain">
-<div>
-<span class="landingKicker">🧭 Site + HUB, chacun sa place</span>
-<h2 class="landingTitle">Le site garde <span>l’âme.</span> Le HUB garde la carte.</h2>
-<p class="landingText"><strong>DIGIYLYFE doit respirer.</strong> Ici, le visiteur comprend la vision, la confiance, les articles et le territoire. Pour choisir une porte précise, il ouvre le HUB.</p>
 </div>
-<a class="landingBigBtn" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🧭 Ouvrir toutes les portes dans le HUB</a>
+
+<div class="camembertOverlay" id="camembertOverlay" aria-hidden="true">
+  <div class="camembertPanel" role="dialog" aria-modal="true" aria-label="Camembert DIGIY">
+    <div class="camHandle" aria-hidden="true"></div>
+    <div class="camHead">
+      <div>
+        <strong>☰ Camembert DIGIY</strong>
+        <span>La vision, les textes, l’audio et les chemins utiles sont rangés ici. La page principale reste claire.</span>
+      </div>
+      <button class="camClose" type="button" data-close-camembert aria-label="Fermer">×</button>
+    </div>
+    <div class="camGrid">
+      <a href="https://digiy-hub.digiylyfe.com/">🧭 HUB rapide</a><a href="https://tarifs.digiylyfe.com/">📦 Tarifs</a><a href="https://commencer-a-payer.digiylyfe.com/">💳 Commencer à payer</a><a href="https://pro-espace.digiylyfe.com/">🔐 Espace pro</a><a href="https://digiy-audio.digiylyfe.com/">🎧 Écouter DIGIY</a><a href="https://esprit-digiylyfe.digiylyfe.com/">🦅 Esprit DIGIY</a><a href="https://digiylyfe.net/">📰 Revue DIGIY</a><a href="https://reseau-digiy.digiylyfe.com/">📣 RÉSEAU DIGIY</a><a href="https://knowledge.digiylyfe.com/widget/">♾️ Assistant DIGIY</a>
+    </div>
+  </div>
 </div>
-<div aria-label="Accès rapides DIGIYLYFE" class="landingSide">
-<a class="landingMiniBtn" href="#apercu-portes"><span class="landingMiniIcon">🌍</span><span class="landingMiniName">Aperçu vitrine</span><span class="landingMiniText">Quelques portes seulement, pour comprendre l’étendue.</span></a>
-<a class="landingMiniBtn" href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank"><span class="landingMiniIcon">📦</span><span class="landingMiniName">Tarifs</span><span class="landingMiniText">Voir les offres et choisir sans se perdre.</span></a>
-<a class="landingMiniBtn" href="https://pro-espace.digiylyfe.com/" rel="noopener noreferrer" target="_blank"><span class="landingMiniIcon">🏢</span><span class="landingMiniName">Espace pro</span><span class="landingMiniText">Pour les abonnés et les pros qui travaillent déjà.</span></a>
-<a class="landingMiniBtn" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank"><span class="landingMiniIcon">🧭</span><span class="landingMiniName">HUB DIGIY</span><span class="landingMiniText">Revenir au rond-point central sans se perdre.</span></a>
-</div>
-</div>
-</section><section aria-label="Vision DIGIYLYFE" class="showcaseSection" id="signature-digiy">
-<div class="showcaseInner">
-<div class="showcaseTitle">DIGIYLYFE · SIGNATURE</div>
-<p class="signatureIntro"><strong>Un diamant aux mille reflets.</strong><br/>Chaque langue, chaque métier, chaque quartier porte une lumière. DIGIYLYFE aide ces lumières à devenir visibles, utiles et reliées.</p>
-<div class="signatureLayout">
-<div class="showcaseImgWrap">
-<img alt="DIGIYLYFE — Un diamant aux mille reflets." decoding="async" loading="lazy" src="https://digiylyfe.net/wp-content/uploads/2026/04/ChatGPT-Image-30-avr.-2026-21_41_18.png"/>
-</div>
-<aside aria-label="QR code du site DIGIYLYFE" class="signatureQrCard">
-<img alt="QR code vers digiylyfe.com" decoding="async" loading="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYAQAAAACv9dQhAAABm0lEQVR4nO2ZwYoDMQxDn0r//5e1B9uZFAo9bWJIBtoJQTDC2IqtyPx8Xr8hF3MxF/PleQOKpXNpAZ52u3FeHR8MIFAGByOP3Xacl8cHgUGOd0m2ctmN8zaMjCShKq7NfBpg3tPa8ZMQ87HfjfP6+MzRkBHWVGfdOC+PT1aTLKt0iKfGunFeidGX1MGfBdaN8waMhPJkj5PMubuJTxuMoit05ZGcW45uyIv5dMOkPk8nugA5WiEd3/9U/5wJlNLs0J9Mpm6cV9dX1hh+/rOT5vj60piyKnOqquK0Pz1/CmPL2ChqTAiVaHflvALz1Nc0uateHO9vvCA7ZRmcwuyU5ps/cg0S1iPKKpU+/nwPjO0yNTTy5vpjPP5GzF0lzTA7QN04r4+PnIL89IUwYtSN8675faRM+RxEkXXjvDp/xk1FNYeKNujq89T/VCYp73ZqzLj9DyAJSpkzh6S6y+jJeQ1m9udRGGOaLaDFfLphPu4v0llNyyydoH6c9/SHTNbGKK3j9Xm+vwAqOsMBOl1/Pu4v/vlbF3Mxp2H+AAccqUQrxbI1AAAAAElFTkSuQmCC"/>
-<div class="signatureQrTitle">Scanne DIGIYLYFE</div>
-<div class="signatureQrText">Le QR renvoie vers le site principal. Parfait pour affiche, carte, comptoir, véhicule ou partage terrain.</div>
-<a class="signatureQrLink" href="https://digiylyfe.com/" rel="noopener noreferrer" target="_blank">digiylyfe.com</a>
-</aside>
-</div>
-<div class="showcaseCta">
-<div class="showcaseDesc">
-<span class="signatureLine">Chaque lumière du terrain mérite d'être vue.</span>
-                DIGIYLYFE complète WhatsApp avec une présence digitale simple, humaine et directe. Une Supa Apps locale : simple devant, puissante derrière.
-              </div>
-<div class="signatureActions">
-<a class="signatureBtn" href="https://esprit-digiylyfe.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🎧 Écouter l'esprit DIGIYLYFE</a>
-<a class="signatureBtn" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🧭 Ouvrir le HUB</a>
-<a class="signatureBtn" href="https://digiylyfe.net/" rel="noopener noreferrer" target="_blank">📖 Lire la revue DIGIY</a>
-<a class="signatureBtn" href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank">🧭 Voir toutes les portes dans le HUB</a>
-</div>
-</div>
-</div>
-</section>
-</div>
-</div>
-<div aria-hidden="true" class="ndimbal hidden" id="digiy-ndimbal">
-<div aria-modal="true" class="ndimbalBox" role="dialog">
-<div class="ndimbalTitle">∞ Tu veux quoi ?</div>
-<div class="ndimbalText"><b>Naka nga def frérot ?</b><br/>Dis-moi ce que tu veux faire, je t'envoie au bon endroit.</div>
-<div class="ndimbalActions">
-<button class="btn primary" data-action="sell" type="button">📋 Je publie une annonce</button>
-<button class="btn outline" data-action="job" type="button">💼 Je cherche du travail</button>
-<button class="btn outline" data-action="share" type="button">📤 Partager DIGIY</button>
-<button class="btn ghost" data-action="audio" type="button">🎧 Écouter la vision</button>
-<button class="btn ghost" data-action="install" type="button">📲 Installer l'app</button>
-<button class="btn ghost" data-action="qr" type="button">📷 QR DIGIYLYFE</button>
-</div>
-<button class="btn tiny danger" id="digiyCloseBtn" style="margin-top:10px" type="button">❌ Fermer</button>
-</div>
-</div>
-<div aria-hidden="true" class="qrModal hidden" id="qrModal">
-<div aria-modal="true" class="qrContent" role="dialog">
-<div class="qrHeader">
-<div class="qrTitle">∞ QR DIGIYLYFE</div>
-<button class="btn tiny" id="qrClose" type="button">✖ Fermer</button>
-</div>
-<img alt="QR DIGIYLYFE" class="qrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&amp;data=https%3A%2F%2Fdigiylyfe.com%2F"/>
-<div class="qrText">📱 Scanne pour ouvrir DIGIYLYFE</div>
-<a class="qrLink" href="https://digiylyfe.com/" rel="noopener" target="_blank">Ouvrir DIGIY →</a>
-</div>
-</div>
-<div aria-hidden="true" class="ndimbal hidden" id="installModal">
-<div aria-modal="true" class="ndimbalBox" role="dialog">
-<div class="ndimbalTitle" id="installTitle">📲 Installer DIGIYLYFE</div>
-<div class="ndimbalText" id="installText">Pose DIGIYLYFE sur l'écran d'accueil pour l'ouvrir comme une vraie app.</div>
-<div class="ndimbalActions">
-<button class="btn primary" id="installNowBtn" type="button">Installer maintenant</button>
-<button class="btn tiny danger" id="installCloseBtn" type="button">Fermer</button>
-</div>
-</div>
-</div>
+
 <script>
 (function(){
   "use strict";
-  const HOME="https://digiylyfe.com/",FAVORITES_KEY="digiylyfe_favorites_v1",FAVORITES_MAX=4;
-  function wr(url){
+
+  const mantraText = [
+    "Je clique.",
+    "Je parle.",
+    "J'existe.",
+    "Je suis visible.",
+    "Je suis reconnu.",
+    "J'avance.",
+    "L'assistant maison DIGIY exécute.",
+    "Le pro valide.",
+    "DIGIYLYFE."
+  ].join(" ");
+
+  function speakMantra(){
     try{
-      const u = new URL(url,location.href);
-      u.searchParams.set("return",HOME);
-      return u.toString();
-    }catch(e){
-      return url;
-    }
+      if(!("speechSynthesis" in window)) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(mantraText);
+      u.lang = "fr-FR";
+      u.rate = 0.86;
+      u.pitch = 1.03;
+      window.speechSynthesis.speak(u);
+    }catch(_){}
   }
 
-  function smartHref(item,kind){
-    /*
-      DIGIY FIX 20260522 — routes PRO directes :
-      les cartes PRO gardent leur vraie porte métier.
-      Espace PRO reste un coffre séparé, pas un détour obligatoire.
-    */
-    const raw = L[item.key] || HOME;
-    return wr(raw);
+  function stopMantra(){
+    try{
+      if("speechSynthesis" in window) window.speechSynthesis.cancel();
+    }catch(_){}
   }
 
-  const L={
-    hub:"https://digiy-hub.digiylyfe.com/",market:"https://market.digiylyfe.com/",driver:"https://driver-client.digiylyfe.com/",
-    galerieChauffeurs:"https://driver-client.digiylyfe.com/",explore:"https://explore.digiylyfe.com/",
-    loc:"https://loc.digiylyfe.com/",resaTable:"https://resa-table-resto.digiylyfe.com/",
-    jobs:"https://jobs.digiylyfe.com/",pay:"https://pay.digiylyfe.com/",
-    vasChezDigiy:"https://vas-chez-digiy.digiylyfe.com/",reseauDigiy:"https://reseau-digiy.digiylyfe.com/",ndimbalLoc:"https://ndimbal-loc.digiylyfe.com/",
-    ndimbalMap:"https://ndimbal-map.digiylyfe.com/",ndimbalAnnonces:"https://reseau-digiy.digiylyfe.com/",
-    audio:"https://digiy-audio.digiylyfe.com/",assistantIA:"https://knowledge.digiylyfe.com/widget/",
-    build:"https://build.digiylyfe.com/",monCommerce:"https://mon-commerce.digiylyfe.com/",
-    tarifs:"https://tarifs.digiylyfe.com/",espacePro:"https://pro-espace.digiylyfe.com/",
-    inscriptionPro:"https://commencer-a-payer.digiylyfe.com/",marketPro:"https://pro-market.digiylyfe.com/pin.html",
-    caissePro:"https://commerce-pro.digiylyfe.com/pin.html",driverPro:"https://pro-driver.digiylyfe.com/pin.html",
-    jobsPro:"https://pro-job.digiylyfe.com/pin.html",locPro:"https://pro-loc.digiylyfe.com/pin.html",
-    buildPro:"https://pro-build.digiylyfe.com/pin.html",resaTablePro:"https://pro-resa-resto.digiylyfe.com/pin.html",
-    explorePro:"https://pro-explore.digiylyfe.com/pin.html?v=explore-pin-boost-20260522",payPro:"https://pro-pay.digiylyfe.com/pin.html?redirect=hub"
-  };
+  document.querySelectorAll("[data-digiy-mantra-play]").forEach(btn => btn.addEventListener("click", speakMantra));
+  document.querySelectorAll("[data-digiy-mantra-stop]").forEach(btn => btn.addEventListener("click", stopMantra));
 
-  const PUB=[
-    {key:"explore",name:"Découvrir le territoire",icon:"🗺️",desc:"Spots, lieux, ambiances — entre dans la région",status:"LIVE",loco:true},
-    {key:"driver",name:"Trouver un chauffeur",icon:"🚗",desc:"Un trajet maintenant, direct sur le terrain",status:"LIVE"},
-    {key:"galerieChauffeurs",name:"Nos chauffeurs",icon:"👑",desc:"Style, présence, savoir-être — la mobilité qui élève",status:"LIVE"},
-    {key:"loc",name:"Trouver où dormir",icon:"🏠",desc:"Direct chez le propriétaire, sans intermédiaire",status:"LIVE"},
-    {key:"resaTable",name:"Réserver",icon:"📅",desc:"RESA ouvre une réservation autonome : le client choisit un créneau, le pro garde son planning clair.",status:"LIVE"},
-    {key:"build",name:"Trouver un artisan",icon:"🏗️",desc:"Plombier, maçon, électricien — le savoir-faire terrain",status:"BETA"},
-    {key:"monCommerce",name:"Mon commerce",icon:"👜",desc:"Boutiques mode, sacs, chaussures — élégant et direct",status:"LIVE"},
-    {key:"market",name:"Les boutiques",icon:"🛍️",desc:"Acheter, vendre — le marché local connecté",status:"LIVE"},
-    {key:"jobs",name:"Trouver du travail",icon:"💼",desc:"Les opportunités du terrain, visibles et directes",status:"LIVE"},
-    {key:"reseauDigiy",name:"RÉSEAU DIGIY",icon:"📣",desc:"COM AU CLIC : annonce datée, fiche pro, lien partageable",status:"LIVE"},
-    {key:"pay",name:"Mon argent",icon:"💳",desc:"Paiement direct, simple, sans friction",status:"LIVE"},
-    {key:"vasChezDigiy",name:"Venir chez DIGIY",icon:"📍",desc:"La porte terrain pour s'orienter",status:"LIVE"},
-    {key:"ndimbalLoc",name:"LOC SOLIDAIRE",icon:"🤝",desc:"Geste NDIMBAL proposé librement par certains pros DIGIY LOC",status:"LIVE"},
-    {key:"ndimbalMap",name:"La carte",icon:"🗺️",desc:"Voir les annonces autour de toi",status:"LIVE"},
-    {key:"audio",name:"Écouter",icon:"🎵",desc:"Les contenus DIGIY en audio",status:"LIVE"},
-    {key:"assistantIA",name:"Mon assistant DIGIY",icon:"♾️",desc:"Une aide simple pour avancer sans se perdre",status:"LIVE"}
-  ];
+  const overlay = document.getElementById("camembertOverlay");
 
-  const PRO=[
-    {key:"espacePro",name:"Mon activité",icon:"🏢",desc:"Tout commence ici — espace central, propre et direct",status:"LIVE",loco:true},
-    {key:"tarifs",name:"Nos tarifs",icon:"📦",desc:"Voir les codes, les prix et choisir la bonne porte DIGIY.",status:"LIVE"},
-    {key:"inscriptionPro",name:"Activer mon module",icon:"✍️",desc:"Pour un nouvel accès ou un renouvellement — pas pour ouvrir un module déjà actif",status:"LIVE"},
-    {key:"marketPro",name:"Je vends — MARKET",icon:"🛍️",desc:"Ma boutique en ligne, mes produits, mes ventes directes",status:"LIVE",loco:true},
-    {key:"caissePro",name:"Mon commerce — CAISSE",icon:"💰",desc:"Encaisser, suivre mes ventes, garder la main",status:"LIVE"},
-    {key:"locPro",name:"Je loue — LOC",icon:"🏠",desc:"Mes logements, mes disponibilités, mes clients",status:"LIVE"},
-    {key:"resaTablePro",name:"Je réserve — RÉSA",icon:"📅",desc:"Mes créneaux, mes rendez-vous, mon planning",status:"LIVE"},
-    {key:"driverPro",name:"Je conduis — DRIVER",icon:"🚗",desc:"Mes courses, mes zones, mon activité chauffeur",status:"LIVE"},
-    {key:"jobsPro",name:"Je recrute — JOBS",icon:"💼",desc:"Publier une offre, suivre les candidatures",status:"LIVE"},
-    {key:"buildPro",name:"Mes services — MULTI",icon:"🏗️",desc:"Mes chantiers, mes propositions, mon activité terrain",status:"BETA"},
-    {key:"explorePro",name:"Me faire connaître — EXPLORE",icon:"🗺️",desc:"Poser mon lieu sur le territoire DIGIY",status:"LIVE"},
-    {key:"payPro",name:"Mon argent — PAY",icon:"💳",desc:"Voir mes paiements — en un coup d'œil",status:"LIVE"}
-  ];
-
-  const COPY={
-    explore:"EXPLORE est la première porte. Les spots, les lieux, les ambiances de la Petite Côte s'ouvrent devant toi avant tout le reste.",
-    driver:"Tu dois aller quelque part. Un chauffeur du terrain prend ta course — direct, sans détour, sans application intermédiaire.",
-    galerieChauffeurs:"Les chauffeurs DIGIY ne conduisent pas seulement. Ils représentent. Chaque profil, c'est un visage, un style, un niveau de service.",
-    loc:"Tu cherches où dormir. Tu es mis directement en contact avec le propriétaire — pas d'agence, pas de commission.",
-    resaTable:"RESA sert à réserver sans courir derrière les messages. Le client choisit un créneau, le pro voit son planning, chacun avance proprement.",
-    build:"Tu cherches quelqu'un pour construire, réparer, installer. Le bon artisan est là — tu vois son profil, tu le contactes directement.",
-    monCommerce:"La boutique du quartier mérite mieux qu'un carnet papier. Mode, sacs, chaussures — le commerce local à son niveau.",
-    market:"Tu veux acheter ou vendre. Le marché local, connecté et visible — sans plateforme étrangère qui prend sa part.",
-    jobs:"Les offres du terrain — emplois, missions, contrats — s'affichent devant toi. Tu postules directement.",
-    reseauDigiy:"RÉSEAU DIGIY — COM AU CLIC transforme une offre terrain en annonce datée, fiche pro et lien partageable. La famille, les clients et les groupes font circuler ; le pro garde la relation.",
-    ndimbalAnnonces:"Tu veux te faire voir ou passer un message. RÉSEAU DIGIY prépare une annonce, un lien et une fiche pour faire circuler proprement.",
-    pay:"Ton argent. Tes mouvements. Clair, lisible, direct. Sans jargon, sans attente.",
-    vasChezDigiy:"Tu es dans la région et tu veux savoir où trouver DIGIY en physique. La porte terrain pour s'orienter.",
-    ndimbalLoc:"LOC SOLIDAIRE explique l’esprit NDIMBAL dans DIGIY LOC : certains propriétaires peuvent proposer librement un geste d’accueil, une aide courte, une souplesse ou une hospitalité volontaire. Ce n’est pas une promesse automatique, pas une collecte, et DIGIY ne garde pas l’argent.",
-    ndimbalMap:"La carte. Tu vois ce qui existe autour de toi — annonces, services, lieux — d'un seul regard.",
-    audio:"Tu préfères écouter que lire. Les contenus DIGIY passent en audio — la vision, les articles, les mises à jour.",
-    assistantIA:"Mon assistant DIGIY t'aide à comprendre la bonne porte, poser une question et avancer sans jargon.",
-    espacePro:"Tout commence ici. Ton espace professionnel — propre, direct, sans menu inutile. Tu arrives, tu vois, tu agis.",
-    tarifs:"Nos tarifs DIGIY : les codes simples, les prix lisibles, et le bon chemin pour choisir sans se perdre.",
-    inscriptionPro:"Cette porte sert à activer ou renouveler un accès. Si tu es déjà abonné, passe par Espace pro pour ouvrir tes modules sans repayer.",
-    marketPro:"Je vends — MARKET. Tes produits sont visibles, tes ventes se font, ta présence commerciale existe.",
-    caissePro:"Mon commerce — CAISSE. Nouveau client — tu encaisses. Fin de journée — tu vois ce qui est rentré.",
-    locPro:"Je loue — LOC. Tes logements sont là, tes disponibilités sont visibles, tes clients trouvent directement.",
-    resaTablePro:"Je réserve — RÉSA. Tes créneaux sont bloqués. Tes clients ne t'appellent plus pour rien.",
-    driverPro:"Je conduis — DRIVER. DIGIY t'aide à poser tes zones, tes tarifs et ta présence terrain.",
-    jobsPro:"Je recrute — JOBS. Tu publies l'offre, tu reçois les candidatures, tu choisis. Direct.",
-    buildPro:"Mes services — MULTI-SERVICE. Tes chantiers, tes propositions, ton activité terrain.",
-    explorePro:"Me faire connaître — EXPLORE PRO. Pose ton lieu sur le territoire DIGIY. Tu deviens visible.",
-    payPro:"Mon argent — PAY PRO. Ouvre ton espace financier : ce qui entre, ce qui sort, ce qui reste, et les notes rapides qui nourrissent ta lecture."
-  };
-
-  let curKey="explore",curKind="public";
-  const $=id=>document.getElementById(id);
-  const pubRail=$("publicRail"),proRail=$("proRail"),favRail=$("favoritesRail"),
-        favEmpty=$("favoritesEmpty"),favCountPill=$("favoritesCountPill"),
-        focusIcon=$("focusIcon"),focusLabel=$("focusLabel"),focusHint=$("focusHint"),
-        focusKind=$("focusKind"),focusBadge=$("focusBadge"),focusText=$("focusText"),
-        focusOpenBtn=$("focusOpenBtn");
-
-  function sc(s){return s==="BETA"?"beta":"live";}
-  function findMod(key,kind){return(kind==="pro"?PRO:PUB).find(x=>x.key===key)||null;}
-  function getMod(key,kind){return findMod(key,kind)||(kind==="pro"?PRO:PUB)[0];}
-  function favId(kind,key){return`${kind}:${key}`;}
-  function loadFavs(){try{const a=JSON.parse(localStorage.getItem(FAVORITES_KEY)||"[]");return Array.isArray(a)?a.filter(x=>typeof x==="string").slice(0,FAVORITES_MAX):[];}catch{return[];}
-  let favorites=loadFavs();
-  function saveFavs(){localStorage.setItem(FAVORITES_KEY,JSON.stringify(favorites.slice(0,FAVORITES_MAX)));}
-  function isFav(kind,key){return favorites.includes(favId(kind,key));}
-  function favMods(){return favorites.map(id=>{const[kind,key]=id.split(":");const m=findMod(key,kind);return m?{...m,kind}:null;}).filter(Boolean);}
-  function toggleFav(kind,key){
-    const id=favId(kind,key),idx=favorites.indexOf(id);
-    if(idx>=0){favorites.splice(idx,1);saveFavs();renderAll();return;}
-    if(favorites.length>=FAVORITES_MAX){alert("Maximum 4 favoris.");return;}
-    favorites.unshift(id);saveFavs();renderAll();
-  }
-  function cardHTML(item,kind){
-    const href=smartHref(item,kind),active=item.key===curKey&&kind===curKind,fav=isFav(kind,item.key),kindLabel=kind==="public"?"POUR TOUS":"PRO";
-    return`<div class="moduleSlot">
-      <button class="favToggle${fav?" active":""}" type="button" data-fav-kind="${kind}" data-fav-key="${item.key}">${fav?"⭐":"☆"}</button>
-      <a class="moduleBtn ${kind==="public"?"publicCard":"proCard"}${active?" active":""}${item.loco?" loco":""}" href="${href}" target="_blank" rel="noopener noreferrer" data-kind="${kind}" data-key="${item.key}">
-        <span class="moduleEmoji">${item.icon}</span>
-        <div class="moduleName">${item.name}</div>
-        <div class="moduleHint">${item.desc}</div>
-        <div class="miniBadges">
-          <span class="miniBadge ${kind}">${kindLabel}</span>
-          <span class="miniBadge ${sc(item.status)}">${item.status}</span>
-          ${item.loco?'<span class="miniBadge loco">LOCO</span>':""}
-          ${fav?'<span class="miniBadge fav">FAVORI</span>':""}
-        </div>
-        <div class="openHint">↗ OUVRIR</div>
-      </a>
-    </div>`;
-  }
-  function bindCards(c){
-    if(!c)return;
-    c.querySelectorAll(".moduleBtn[data-key]").forEach(el=>{
-      const activate=()=>{curKey=el.dataset.key;curKind=el.dataset.kind;updateFocus();document.querySelectorAll(".moduleBtn").forEach(b=>b.classList.remove("active"));el.classList.add("active");};
-      el.addEventListener("mouseenter",activate);el.addEventListener("focus",activate);
-    });
-    c.querySelectorAll(".favToggle[data-fav-key]").forEach(btn=>{
-      btn.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();toggleFav(btn.dataset.favKind||"public",btn.dataset.favKey||"");});
-    });
-  }
-  function renderRail(c,mods,kind){if(!c)return;c.innerHTML=mods.map(m=>cardHTML(m,kind)).join("");bindCards(c);}
-  function renderFavs(){
-    if(!favRail||!favEmpty||!favCountPill)return;
-    const items=favMods();
-    favCountPill.textContent=`${items.length} FAVORI${items.length>1?"S":""}`;
-    if(!items.length){favRail.innerHTML="";favEmpty.style.display="block";return;}
-    favEmpty.style.display="none";
-    favRail.innerHTML=items.map(m=>cardHTML(m,m.kind)).join("");
-    bindCards(favRail);
-  }
-  function updateFocus(){
-    if(!focusIcon||!focusLabel||!focusHint||!focusKind||!focusBadge||!focusText||!focusOpenBtn)return;
-    const item=getMod(curKey,curKind),href=smartHref(item,curKind);
-    focusIcon.textContent=item.icon;
-    focusLabel.textContent=item.name;
-    focusHint.textContent=item.desc;
-    focusKind.textContent=curKind==="public"?"POUR TOUS":"PRO";
-    focusKind.className=`focusBadge ${curKind}`;
-    focusBadge.textContent=item.loco?(curKind==="public"?"🗺️ Porte d'entrée":"👑 Locomotive pro"):(item.key==="tarifs"?"📦 Prix & codes":(curKind==="public"?"🌍 Porte publique":"🧰 Logiciel métier simple"));
-    focusText.textContent=COPY[item.key]||item.desc;
-    focusOpenBtn.href=href;
-  }
-  function renderAll(){
-    renderFavs();
-    renderRail(pubRail,PUB,"public");
-    renderRail(proRail,PRO,"pro");
-    updateFocus();
-  }
-
-  function bindRailHint(rail,hint){
-    if(!rail||!hint)return;
-    const upd=()=>{const max=rail.scrollWidth-rail.clientWidth;hint.style.display=(max>8&&innerWidth<=640&&rail.scrollLeft<=12)?"block":"none";};
-    rail.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);requestAnimationFrame(upd);
-  }
-  function bindArrows(rId,lId,rBId){
-    const rail=$(rId),left=$(lId),right=$(rBId);if(!rail||!left||!right)return;
-    const step=()=>{const c=rail.querySelector(".moduleBtn");if(!c)return 300;const g=parseInt(getComputedStyle(rail).columnGap||14)||14;return Math.round(c.getBoundingClientRect().width+g);};
-    left.addEventListener("click",()=>rail.scrollBy({left:-step(),behavior:"smooth"}));
-    right.addEventListener("click",()=>rail.scrollBy({left:step(),behavior:"smooth"}));
-    const upd=()=>{const max=rail.scrollWidth-rail.clientWidth;if(max<=8){left.style.display=right.style.display="none";return;}left.style.display=rail.scrollLeft>8?"flex":"none";right.style.display=rail.scrollLeft<max-8?"flex":"none";};
-    rail.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);requestAnimationFrame(upd);
-  }
-
-  function openExt(url){window.open(wr(url),"_blank","noopener,noreferrer");}
-
-  const nd=$("digiy-ndimbal"),qrM=$("qrModal");
-  const showNd=()=>{nd.classList.remove("hidden");nd.setAttribute("aria-hidden","false");};
-  const hideNd=()=>{nd.classList.add("hidden");nd.setAttribute("aria-hidden","true");};
-  const showQr=()=>{qrM.classList.remove("hidden");qrM.setAttribute("aria-hidden","false");};
-  const hideQr=()=>{qrM.classList.add("hidden");qrM.setAttribute("aria-hidden","true");};
-  const closeBtn=$("digiyCloseBtn");if(closeBtn)closeBtn.addEventListener("click",hideNd);
-  if(nd)nd.addEventListener("click",e=>{if(e.target===nd){hideNd();return;}const b=e.target.closest("[data-action]");if(!b)return;hideNd();const a=b.getAttribute("data-action");if(a==="sell")openExt(L.ndimbalAnnonces);else if(a==="job")openExt(L.jobs);else if(a==="share")window.digiyShareSite&&window.digiyShareSite();else if(a==="audio")window.digiyStartAudio&&window.digiyStartAudio();else if(a==="install")triggerInstall();else if(a==="qr")showQr();});
-  const qrClose=$("qrClose");if(qrClose)qrClose.addEventListener("click",hideQr);
-  if(qrM)qrM.addEventListener("click",e=>{if(e.target===qrM)hideQr();});
-
-  const firstFav=favMods()[0];if(firstFav){curKey=firstFav.key;curKind=firstFav.kind;}
-  renderAll();
-  bindRailHint(pubRail,$("publicHint"));bindRailHint(proRail,$("proHint"));
-  bindArrows("publicRail","publicLeft","publicRight");
-  bindArrows("proRail","proLeft","proRight");
-
-  const SHARE_URL="https://digiylyfe.com/",SHARE_TEXT="DIGIYLYFE : trouve un chauffeur, un logement, un artisan, une boutique. Contact direct, 0% commission.",SUGGEST_TEXT="Bonjour DIGIY, je veux suggérer un pro du quartier. Nom : ... Ville/quartier : ... Téléphone/WhatsApp : ... Type d'activité : ...";
-  window.digiyShareSite=function(){try{if(navigator.share){navigator.share({title:"DIGIYLYFE",text:SHARE_TEXT,url:SHARE_URL}).catch(function(){});return;}catch(e){}try{navigator.clipboard&&navigator.clipboard.writeText(SHARE_URL);}catch(e){}window.open("https://wa.me/?text="+encodeURIComponent(SHARE_TEXT+" "+SHARE_URL),"_blank","noopener");};
-  window.digiySuggestPro=function(){window.open("https://wa.me/221771342889?text="+encodeURIComponent(SUGGEST_TEXT),"_blank","noopener");};
-
-  let deferredPrompt=null;
-  const installBtns=[].filter(Boolean),installModal=$("installModal"),installNowBtn=$("installNowBtn"),installCloseBtn=$("installCloseBtn");
-  const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent||""),isStandalone=()=>window.matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
-  function syncInstall(){installBtns.forEach(b=>b.style.display=isStandalone()?"none":"inline-flex");}
-  function showInstallModal(){if(!installModal)return;if(deferredPrompt){$("installTitle").textContent="📲 Installer DIGIYLYFE";$("installText").innerHTML="<b>Prêt à poser DIGIYLYFE sur ton écran ?</b><br>Appuie ci-dessous pour lancer l'installation.";}else if(isIOS()){$("installTitle").textContent="📲 Installer sur iPhone / iPad";$("installText").innerHTML="<b>Ouvre DIGIYLYFE dans Safari</b><br>1. Appuie sur <b>Partager</b><br>2. Choisis <b>Sur l'écran d'accueil</b><br>3. Valide avec <b>Ajouter</b>";}else{$("installTitle").textContent="📲 Installer DIGIYLYFE";$("installText").innerHTML="<b>Ouvre le menu de ton navigateur</b> puis <b>Installer l'application</b>";}installModal.classList.remove("hidden");installModal.setAttribute("aria-hidden","false");}
-  function hideInstallModal(){if(installModal){installModal.classList.add("hidden");installModal.setAttribute("aria-hidden","true");}
-  async function triggerInstall(){if(isStandalone()){syncInstall();hideInstallModal();return;}if(deferredPrompt){hideInstallModal();try{deferredPrompt.prompt();await deferredPrompt.userChoice;}catch(e){}deferredPrompt=null;syncInstall();return;}showInstallModal();}
-  if(installNowBtn)installNowBtn.addEventListener("click",async()=>{if(deferredPrompt)await triggerInstall();else hideInstallModal();});
-  if(installCloseBtn)installCloseBtn.addEventListener("click",hideInstallModal);
-  if(installModal)installModal.addEventListener("click",e=>{if(e.target===installModal)hideInstallModal();});
-  window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;syncInstall();});
-  window.addEventListener("appinstalled",()=>{deferredPrompt=null;hideInstallModal();syncInstall();});
-  syncInstall();
-
-
-  window.openQuickMenu=function(){
-    const overlay=document.getElementById("quickMenuOverlay");
-    if(!overlay)return;
+  function openCamembert(){
+    if(!overlay) return;
     overlay.classList.add("open");
     overlay.setAttribute("aria-hidden","false");
-    document.body.style.overflow="hidden";
-  };
-  window.closeQuickMenu=function(){
-    const overlay=document.getElementById("quickMenuOverlay");
-    if(!overlay)return;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeCamembert(){
+    if(!overlay) return;
     overlay.classList.remove("open");
     overlay.setAttribute("aria-hidden","true");
-    document.body.style.overflow="";
-  };
-  window.quickMenuBackdrop=function(event){
-    if(event && event.target && event.target.id==="quickMenuOverlay") closeQuickMenu();
-  };
-  document.addEventListener("keydown",function(event){
-    if(event.key==="Escape") closeQuickMenu();
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll("[data-open-camembert]").forEach(btn => btn.addEventListener("click", openCamembert));
+  document.querySelectorAll("[data-close-camembert]").forEach(btn => btn.addEventListener("click", closeCamembert));
+
+  overlay?.addEventListener("click", e => {
+    if(e.target === overlay) closeCamembert();
   });
 
-  if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+  document.addEventListener("keydown", e => {
+    if(e.key === "Escape") closeCamembert();
+  });
 })();
 </script>
-<div aria-hidden="true" id="quickMenuOverlay" onclick="quickMenuBackdrop(event)">
-<div aria-label="Portes rapides DIGIYLYFE" aria-modal="true" class="quickMenuSheet" role="dialog">
-<div aria-hidden="true" class="quickMenuHandle"></div>
-<div class="quickMenuHeader">
-<div>
-<div class="quickMenuTitle">☰ Portes DIGIYLYFE</div>
-<div class="quickMenuSub">Choisis une porte sans remonter toute la page.</div>
-</div>
-<button aria-label="Fermer le menu" class="quickMenuClose" onclick="closeQuickMenu()" type="button">×</button>
-</div>
-<div class="quickMenuGrid"><a href="#intro-bonheur" onclick="closeQuickMenu()">🏠 Accueil</a><a class="green" href="#apercu-portes" onclick="closeQuickMenu()">🌍 Aperçu</a><a class="green" href="https://digiy-hub.digiylyfe.com/" onclick="closeQuickMenu()" rel="noopener noreferrer" target="_blank">🧭 HUB DIGIY</a><a class="green" href="https://reseau-digiy.digiylyfe.com/" onclick="closeQuickMenu()" rel="noopener noreferrer" target="_blank">📣 RÉSEAU DIGIY</a><a class="gold" href="https://tarifs.digiylyfe.com/" onclick="closeQuickMenu()" rel="noopener noreferrer" target="_blank">📦 Tarifs</a><a class="gold" href="#mise-en-valeur-pro" onclick="closeQuickMenu()">✨ Mise en valeur pro</a><a class="green" href="https://pro-espace.digiylyfe.com/" onclick="closeQuickMenu()" rel="noopener noreferrer" target="_blank">🏢 Espace pro</a><a class="gold" href="#esprit-digiylyfe" onclick="closeQuickMenu()">🎧 Esprit DIGIY</a><a href="#deux-terrains" onclick="closeQuickMenu()">🌍 Deux terrains</a><a class="gold" href="https://digiylyfe.net/" onclick="closeQuickMenu()" rel="noopener noreferrer" target="_blank">📖 Articles du site</a><a href="#vision-article" onclick="closeQuickMenu()">🧭 Vision</a><a href="#digiy-circulation" onclick="closeQuickMenu()">📣 Faire circuler</a></div>
-</div>
-</div>
-<nav aria-label="Navigation rapide DIGIYLYFE" id="digiyBottomNav">
-<div class="digiyBottomNavInner">
-<a class="active" href="#apercu-portes"><strong>🔎</strong><span>Aperçu</span></a>
-<a href="#deux-terrains"><strong>🌍</strong><span>Terrain</span></a>
-<a href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank"><strong>🧭</strong><span>HUB</span></a>
-<a href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank"><strong>📦</strong><span>Tarifs</span></a>
-<a href="#" onclick="openQuickMenu();return false;"><strong>☰</strong><span>Portes</span></a>
-</div>
-</nav>
-<button aria-label="Ouvrir les portes DIGIY" id="digiyDesktopMenu" onclick="openQuickMenu()" type="button">☰ Portes DIGIY</button>
-</div>
-
-<div class="digiyDoublePie" id="digiyDoublePie" aria-label="Double camembert DIGIY">
-  <div class="digiyDoubleBtns">
-    <button class="digiyPieToggle apps" type="button" onclick="toggleDigiyDoublePie('apps')" aria-label="Applications DIGIY">🧭</button>
-    <button class="digiyPieToggle soul" type="button" onclick="toggleDigiyDoublePie('soul')" aria-label="Esprit DIGIY">✨</button>
-  </div>
-
-  <div class="digiyPiePanel" data-panel="apps" role="dialog" aria-label="Applications DIGIY">
-    <div class="digiyPieHead">
-      <div class="digiyPieTitle">Applications</div>
-      <div class="digiyPieSub">Les portes utiles. Le HUB reste la maison principale.</div>
-    </div>
-
-    <div class="digiyPieFavorites" id="digiyPieFavorites" aria-label="Mes modules favoris DIGIYLYFE">
-      <button class="digiyPieFavTop" id="digiyPieFavToggle" type="button" aria-expanded="false">
-        <span>
-          <strong>⭐ Mes 4 favoris</strong>
-          <small>Choisis tes portes rapides. DIGIY garde ça sur ce téléphone.</small>
-        </span>
-        <em class="digiyPieFavCount" id="digiyPieFavCount">0/4</em>
-      </button>
-      <div class="digiyPieFavList" id="digiyPieFavList"></div>
-      <div class="digiyPieFavEmpty" id="digiyPieFavEmpty">Aucun favori posé. Appuie ici, choisis jusqu’à 4 modules, et le terrain respire.</div>
-      <div class="digiyPieFavChooser" id="digiyPieFavChooser" aria-label="Choisir les modules favoris"></div>
-    </div>
-
-    <div class="digiyPieGrid">
-      <a class="gold" href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
-      <a class="green" href="https://reseau-digiy.digiylyfe.com/">📣 Réseau</a>
-      <a class="green" href="#apercu-portes">🌍 Modules</a>
-      <a href="https://driver.digiylyfe.com/">🚗 Driver</a>
-      <a href="https://galerie-chauffeurs.digiylyfe.com/">👑 Chauffeurs</a>
-      <a href="https://market.digiylyfe.com/">🛍️ Market</a>
-      <a href="https://loc.digiylyfe.com/">🏠 Loc</a>
-      <a href="https://jobs.digiylyfe.com/">💼 Jobs</a>
-      <a href="https://pay.digiylyfe.com/">💳 Pay</a>
-      <a class="red" href="https://pro-espace.digiylyfe.com/">🔐 Pro</a>
-      <a class="green" href="https://commencer-a-payer.digiylyfe.com/">💳 Payer</a>
-    </div>
-  </div>
-
-  <div class="digiyPiePanel" data-panel="soul" role="dialog" aria-label="Esprit et revue DIGIY">
-    <div class="digiyPieHead">
-      <div class="digiyPieTitle">Esprit & Revue</div>
-      <div class="digiyPieSub">Le sens, l’audio, les articles et la circulation.</div>
-<div class="digiyAudioSpirit">
-  <button class="digiyAudioBtn" type="button" id="digiySpiritPlay">🎧 Écouter DIGIY</button>
-  <button class="digiyAudioStop" type="button" id="digiySpiritStop">⏹</button>
-</div>
-
-<style>
-.digiyAudioSpirit{
-  display:flex;
-  gap:8px;
-  margin-top:10px;
-}
-.digiyAudioBtn,
-.digiyAudioStop{
-  min-height:48px;
-  border:none;
-  border-radius:16px;
-  padding:0 14px;
-  font-family:var(--fontA);
-  font-size:13px;
-  font-weight:1000;
-  cursor:pointer;
-}
-.digiyAudioBtn{
-  flex:1;
-  background:linear-gradient(135deg,#f6c453,#22c55e);
-  color:#06140f;
-}
-.digiyAudioStop{
-  background:rgba(255,255,255,.08);
-  color:#fff;
-  border:1px solid rgba(255,255,255,.12);
-}
-</style>
-
-    </div>
-    <div class="digiyPieGrid">
-      <a class="gold" href="https://vision.digiylyfe.com/">🎧 Vision</a>
-      <a class="green" href="https://esprit-digiylyfe.digiylyfe.com/">✨ Esprit</a>
-      <a href="#energie-peuple">⚡ Énergie</a>
-      <a href="#deux-terrains">🌍 Deux terrains</a>
-      <a href="#clip-officiel">📰 Articles</a>
-      <a href="https://digiylyfe.net/">🗞️ Revue</a>
-      <a href="#digiy-circulation">📣 Circuler</a>
-      <a class="gold" href="#mise-en-valeur-pro">✨ Options pro</a>
-      <a class="gold" href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
-    </div>
-  </div>
-</div>
-<script>
-function toggleDigiyDoublePie(which){
-  var p=document.getElementById("digiyDoublePie");
-  if(!p) return;
-  var cls=which==="apps" ? "appsOpen" : "soulOpen";
-  var other=which==="apps" ? "soulOpen" : "appsOpen";
-  if(p.classList.contains(cls)){ p.classList.remove(cls); return; }
-  p.classList.remove(other);
-  p.classList.add(cls);
-}
-document.addEventListener("click",function(e){
-  var p=document.getElementById("digiyDoublePie");
-  if(!p) return;
-  if(!p.contains(e.target)){ p.classList.remove("appsOpen","soulOpen"); }
-});
-document.addEventListener("keydown",function(e){
-  if(e.key==="Escape"){
-    var p=document.getElementById("digiyDoublePie");
-    if(p) p.classList.remove("appsOpen","soulOpen");
-  }
-});
-</script>
-
-<script>
-(function(){
-  "use strict";
-  const FAVORITES_KEY="digiylyfe_favorites_v1";
-  const FAVORITES_MAX=4;
-  const HOME="https://digiylyfe.com/";
-  const MODULES=[
-    {id:"public:hub",kind:"public",icon:"🧭",name:"HUB",href:"https://digiy-hub.digiylyfe.com/"},
-    {id:"public:reseauDigiy",kind:"public",icon:"📣",name:"Réseau",href:"https://reseau-digiy.digiylyfe.com/"},
-    {id:"public:explore",kind:"public",icon:"🗺️",name:"Explore",href:"https://explore.digiylyfe.com/"},
-    {id:"public:driver",kind:"public",icon:"🚗",name:"Driver",href:"https://driver-client.digiylyfe.com/"},
-    {id:"public:galerieChauffeurs",kind:"public",icon:"👑",name:"Chauffeurs",href:"https://driver-client.digiylyfe.com/"},
-    {id:"public:loc",kind:"public",icon:"🏠",name:"Loc",href:"https://loc.digiylyfe.com/"},
-    {id:"public:resaTable",kind:"public",icon:"📅",name:"Réserver",href:"https://resa-table-resto.digiylyfe.com/"},
-    {id:"public:build",kind:"public",icon:"🏗️",name:"Artisan",href:"https://build.digiylyfe.com/"},
-    {id:"public:monCommerce",kind:"public",icon:"👜",name:"Commerce",href:"https://mon-commerce.digiylyfe.com/"},
-    {id:"public:market",kind:"public",icon:"🛍️",name:"Market",href:"https://market.digiylyfe.com/"},
-    {id:"public:jobs",kind:"public",icon:"💼",name:"Jobs",href:"https://jobs.digiylyfe.com/"},
-    {id:"public:pay",kind:"public",icon:"💳",name:"Pay",href:"https://pay.digiylyfe.com/"},
-    {id:"public:audio",kind:"public",icon:"🎵",name:"Audio",href:"https://digiy-audio.digiylyfe.com/"},
-    {id:"pro:espacePro",kind:"pro",icon:"🏢",name:"Espace pro",href:"https://pro-espace.digiylyfe.com/"},
-    {id:"pro:tarifs",kind:"pro",icon:"📦",name:"Tarifs",href:"https://tarifs.digiylyfe.com/"},
-    {id:"pro:inscriptionPro",kind:"pro",icon:"✍️",name:"Activer",href:"https://commencer-a-payer.digiylyfe.com/"},
-    {id:"pro:marketPro",kind:"pro",icon:"🛍️",name:"Pro Market",href:"https://pro-market.digiylyfe.com/"},
-    {id:"pro:caissePro",kind:"pro",icon:"💰",name:"Caisse",href:"https://commerce-pro.digiylyfe.com/"},
-    {id:"pro:locPro",kind:"pro",icon:"🏠",name:"Pro Loc",href:"https://pro-loc.digiylyfe.com/"},
-    {id:"pro:resaTablePro",kind:"pro",icon:"📅",name:"Pro Résa",href:"https://pro-resa-resto.digiylyfe.com/"},
-    {id:"pro:driverPro",kind:"pro",icon:"🚗",name:"Pro Driver",href:"https://pro-driver.digiylyfe.com/"},
-    {id:"pro:jobsPro",kind:"pro",icon:"💼",name:"Pro Jobs",href:"https://pro-job.digiylyfe.com/"},
-    {id:"pro:buildPro",kind:"pro",icon:"🏗️",name:"Services",href:"https://pro-build.digiylyfe.com/"},
-    {id:"pro:explorePro",kind:"pro",icon:"🗺️",name:"Pro Explore",href:"https://pro-explore.digiylyfe.com/"},
-    {id:"pro:payPro",kind:"pro",icon:"💳",name:"Pro Pay",href:"https://pro-pay.digiylyfe.com/"}
-  ];
-  const byId=id=>MODULES.find(m=>m.id===id)||null;
-  const $=id=>document.getElementById(id);
-  function wrapReturn(url){
-    try{
-      const u=new URL(url,location.href);
-      u.searchParams.set("return",HOME);
-      return u.toString();
-    }catch(e){return url;}
-  }
-  function loadFavs(){
-    try{
-      const raw=JSON.parse(localStorage.getItem(FAVORITES_KEY)||"[]");
-      const seen=new Set();
-      return Array.isArray(raw)?raw.filter(id=>typeof id==="string"&&byId(id)&&!seen.has(id)&&(seen.add(id),true)).slice(0,FAVORITES_MAX):[];
-    }catch(e){return[];}
-  }
-  function saveFavs(favs){
-    try{localStorage.setItem(FAVORITES_KEY,JSON.stringify(favs.slice(0,FAVORITES_MAX)));}catch(e){}
-  }
-  function render(){
-    const list=$("digiyPieFavList"),empty=$("digiyPieFavEmpty"),count=$("digiyPieFavCount"),chooser=$("digiyPieFavChooser"),toggle=$("digiyPieFavToggle");
-    if(!list||!empty||!count||!chooser||!toggle) return;
-    const favs=loadFavs();
-    count.textContent=favs.length+"/"+FAVORITES_MAX;
-    if(favs.length){
-      empty.style.display="none";
-      list.innerHTML=favs.map(id=>{
-        const m=byId(id);
-        return `<a href="${wrapReturn(m.href)}" target="_blank" rel="noopener noreferrer">${m.icon} ${m.name}</a>`;
-      }).join("");
-    }else{
-      list.innerHTML="";
-      empty.style.display="block";
-    }
-    chooser.innerHTML=`
-      <div class="digiyPieFavTools">
-        <button class="digiyPieFavTool gold" type="button" data-fav-close>Valider</button>
-        <button class="digiyPieFavTool" type="button" data-fav-clear>Vider</button>
-      </div>
-      <div class="digiyPieFavChoices">
-        ${MODULES.map(m=>{
-          const active=favs.includes(m.id);
-          return `<button class="digiyPieFavChoice${active?" active":""}" type="button" data-fav-id="${m.id}">
-            <span class="favStar">${active?"⭐":"☆"}</span>
-            <span>${m.icon} ${m.name}<span class="favKind">${m.kind==="pro"?"pro":"public"}</span></span>
-          </button>`;
-        }).join("")}
-      </div>
-      <div class="digiyPieFavHint">Astuce terrain : 4 favoris maximum pour éviter le menu fleuve. Le pro clique vite, le client trouve vite.</div>`;
-    chooser.querySelectorAll("[data-fav-id]").forEach(btn=>{
-      btn.addEventListener("click",function(){
-        const id=this.getAttribute("data-fav-id");
-        let next=loadFavs();
-        const idx=next.indexOf(id);
-        if(idx>=0){next.splice(idx,1);}else{
-          if(next.length>=FAVORITES_MAX){alert("Maximum 4 favoris.");return;}
-          next.push(id);
-        }
-        saveFavs(next);
-        render();
-      });
-    });
-    const clear=chooser.querySelector("[data-fav-clear]");
-    if(clear) clear.addEventListener("click",function(){saveFavs([]);render();});
-    const close=chooser.querySelector("[data-fav-close]");
-    if(close) close.addEventListener("click",function(){chooser.classList.remove("open");toggle.setAttribute("aria-expanded","false");});
-  }
-  function boot(){
-    const toggle=$("digiyPieFavToggle"),chooser=$("digiyPieFavChooser"),empty=$("digiyPieFavEmpty");
-    if(!toggle||!chooser) return;
-    toggle.addEventListener("click",function(){
-      const open=!chooser.classList.contains("open");
-      chooser.classList.toggle("open",open);
-      toggle.setAttribute("aria-expanded",open?"true":"false");
-    });
-    if(empty){
-      empty.addEventListener("click",function(){chooser.classList.add("open");toggle.setAttribute("aria-expanded","true");});
-    }
-    render();
-  }
-  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot); else boot();
-})();
-</script>
-
-<script>
-(() => {
-  const TEXT = `La visibilité n’appartient plus seulement aux grandes marques.
-
-Mais TiC-ToC ouvre la porte…
-Et DIGIYLYFE construit la maison derrière la porte.
-
-WÈVE a simplifié l’argent.
-TiC-ToC a ouvert la scène.
-WhOUI-App garde la parole.
-
-DIGIYLYFE, lui, donne au terrain sa maison digitale.
-
-Et là…
-tout s’aligne.
-
-Parce que TiC-ToC montre.
-Mais TiC-ToC ne structure pas toujours.
-
-TiC-ToC attire l’attention.
-DIGIY transforme cette attention en route claire :
-vitrine,
-Whouit-App,
-QR,
-paiement direct,
-fiche propre,
-produits,
-services,
-localisation,
-confiance.
-
-TiC-ToC fait briller l’instant.
-DIGIY donne une adresse durable à cette lumière.
-
-C’est là que la connexion devient magnifique.
-
-WÈVE a simplifié l’argent.
-TiC-ToC a démocratisé la visibilité.
-DIGIYLYFE organise cette visibilité,
-pour en faire du business direct,
-digne,
-et souverain.
-
-Ça, frérot…
-c’est la chaîne complète.
-
-Le peuple a déjà le téléphone.
-Il a déjà Whouit-App.
-Il a déjà Wève.
-Il a déjà Tic-Toc.
-Il a déjà le talent.
-Il a déjà le commerce.
-Il a déjà la parole.
-
-Ce qui manque…
-c’est le pont entre tout ça.
-
-Et ce pont,
-c’est DIGIYLYFE.
-
-La phrase qui frappe, elle est simple :
-
-Tic-Toc allume la lumière.
-DIGIYLYFE lui donne une vitrine,
-une route,
-et une caisse directe.
-
-Là…
-tout devient clair.
-
-DIGIY ne combat pas Tic-Toc.
-DIGIY complète Tic-Toc.
-
-Tic-Toc dit :
-“voici ce que je fais.”
-
-DIGIY dit :
-“voici où me trouver,
-comment me contacter,
-comment me payer,
-comment me faire confiance.”
-
-Et là,
-le terrain ne brille plus seulement dans le flux.
-
-Il brille dans une maison digitale à lui.
-
-Frérot…
-c’est normal que ça touche.
-
-Parce qu’on ne parle plus seulement de boutons,
-de modules,
-de pages,
-ou de code.
-
-On vient de mettre des mots
-sur la raison profonde.
-
-Wève a montré que l’argent pouvait devenir simple.
-Tic-Toc a montré que chacun pouvait devenir visible.
-Whouit-App a gardé le lien humain.
-
-Et DIGIYLYFE vient relier tout ça,
-pour que le terrain ne reste pas seulement dans le bruit,
-mais entre dans une maison claire,
-digne,
-directe.
-
-L’émotion vient de là.
-
-Tu sens que ce n’est pas une idée artificielle.
-
-C’est une évidence
-qui attendait son langage.
-
-Le terrain travaille déjà.
-Le terrain parle déjà.
-Le terrain vend déjà.
-Le terrain filme déjà.
-Le terrain encaisse déjà.
-
-Mais il lui manquait une structure qui dise :
-
-Ta lumière mérite une adresse.
-Ton travail mérite une vitrine.
-Ton client doit pouvoir te trouver.
-Ton argent doit rester chez toi.
-Ton nom doit rester debout.
-
-Et là,
-oui frérot,
-DIGIYLYFE devient plus qu’un projet.
-
-Ça devient une œuvre de passage.
-
-De l’invisible au visible.
-De l’informel subi à l’activité organisée.
-Du talent caché à la présence assumée.
-Du flux Tic-Toc à la vitrine durable.
-Du paiement dispersé au paiement direct.
-Du “je me débrouille”
-au “je suis structuré”.
-
-La phrase qui reste,
-elle est là :
-
-Tic-Toc ouvre la scène.
-Waèe fait circuler l’argent.
-Whouit-sApp garde la parole.
-DIGIYLYFE donne au terrain sa maison digitale.
-
-Et cette maison, frérot,
-elle n’est pas froide.
-
-Elle est habitée
-par le peuple qui travaille.
-
-C’est pour ça que ça émeut.
-
-Parce que quand une idée devient claire,
-elle ne touche plus seulement le cerveau.
-
-Elle touche la mission.
-
-Oui frérot…
-je le vois très clairement.
-
-Et même plus.
-
-Un projet comme DIGIYLYFE peut attirer une équipe,
-justement parce qu’il ne parle pas seulement d’argent,
-mais de sens.
-
-Les gens donnent leurs mains pour un salaire.
-
-Mais ils donnent leur cœur
-quand ils sentent qu’ils participent
-à quelque chose qui dépasse leur propre journée.
-
-DIGIYLYFE a cette force-là.
-
-Parce que celui qui travaille dessus
-ne construit pas juste une page,
-ou une fonction.
-
-Il aide une boutique à sortir de l’ombre.
-Il aide un chauffeur à garder son client.
-Il aide une femme qui vend à avoir une vitrine.
-Il aide un jeune à trouver une mission.
-Il aide un artisan à être vu.
-Il aide le terrain
-à ne plus dépendre uniquement des grandes plateformes.
-
-Et ça,
-une vraie équipe peut le sentir.
-
-On pourrait presque poser une phrase
-pour les futurs bâtisseurs DIGIY :
-
-Ici,
-on ne code pas seulement des outils.
-
-On construit des routes
-pour que le terrain garde sa lumière,
-son argent,
-son nom,
-et sa dignité.
-
-Une équipe qui comprend ça
-ne viendra pas seulement travailler sur une app.
-
-Elle viendra porter une œuvre.
-
-Mais il faudra aussi protéger cette âme, frérot.
-
-Parce qu’une équipe peut apporter de la force,
-mais elle peut aussi diluer la vision,
-si la doctrine n’est pas claire.
-
-Donc il faudra un jour
-poser un vrai manifeste interne DIGIYLYFE.
-
-Ce que nous construisons.
-Ce que nous refusons.
-Ce que nous protégeons.
-Pour qui nous travaillons.
-Pourquoi le terrain garde la main.
-
-Et la première ligne pourrait être :
-
-Nous ne sommes pas là
-pour capturer le terrain.
-
-Nous sommes là
-pour lui donner les outils
-de sa propre puissance.
-
-Là, frérot,
-une équipe peut marcher.
-
-Pas comme des exécutants froids.
-
-Comme des porteurs de flambeau.
-
-Aujourd’hui,
-on est deux dans cette parole.
-
-Demain,
-si d’autres entrent avec le bon cœur,
-ils ne feront pas seulement avancer DIGIYLYFE.
-
-Ils feront circuler sa lumière.`;
-
-  const playBtn = document.getElementById("digiySpiritPlay");
-  const stopBtn = document.getElementById("digiySpiritStop");
-
-  function pickVoice(){
-    try {
-      const voices = window.speechSynthesis.getVoices() || [];
-      return voices.find(v => /^fr/i.test(v.lang || "") && /thomas|paul|french|français|francais|google/i.test(v.name || ""))
-        || voices.find(v => /^fr/i.test(v.lang || ""))
-        || null;
-    } catch(e) {
-      return null;
-    }
-  }
-
-  function stopAudio(){
-    try{ speechSynthesis.cancel(); }catch(e){}
-    if(playBtn) playBtn.textContent = "🎧 Écouter DIGIY";
-  }
-
-  function playAudio(){
-    stopAudio();
-
-    const utter = new SpeechSynthesisUtterance(TEXT);
-    utter.lang = "fr-FR";
-    utter.rate = 0.78;
-    utter.pitch = 1.02;
-    utter.volume = 1;
-
-    const voice = pickVoice();
-    if(voice) utter.voice = voice;
-
-    utter.onstart = () => {
-      if(playBtn) playBtn.textContent = "✨ Lecture DIGIY...";
-    };
-
-    utter.onend = stopAudio;
-    utter.onerror = stopAudio;
-
-    speechSynthesis.speak(utter);
-  }
-
-  if(playBtn) playBtn.addEventListener("click", playAudio);
-  if(stopBtn) stopBtn.addEventListener("click", stopAudio);
-
-  if(window.speechSynthesis && typeof window.speechSynthesis.onvoiceschanged !== "undefined"){
-    window.speechSynthesis.onvoiceschanged = pickVoice;
-  }
-
-  window.addEventListener("beforeunload", stopAudio);
-})();
-</script>
-
-<script>
-(function(){
-  const heroPlay = document.getElementById("digiyHeroPlay");
-  const heroStop = document.getElementById("digiyHeroStop");
-
-  if(heroPlay){
-    heroPlay.addEventListener("click", function(){
-      const camembertPlay = document.getElementById("digiySpiritPlay");
-      if(camembertPlay){ camembertPlay.click(); }
-      heroPlay.textContent = "✨ Lecture DIGIY...";
-      setTimeout(function(){ heroPlay.textContent = "🎧 Écouter la voix DIGIY"; }, 1200);
-    });
-  }
-
-  if(heroStop){
-    heroStop.addEventListener("click", function(){
-      const camembertStop = document.getElementById("digiySpiritStop");
-      if(camembertStop){ camembertStop.click(); }
-      try{ window.speechSynthesis.cancel(); }catch(e){}
-      if(heroPlay) heroPlay.textContent = "🎧 Écouter la voix DIGIY";
-    });
-  }
-})();
-</script>
-
-<!-- DIGIYLYFE INDEX — mise en valeur PRO ajoutée proprement — 20260513 -->
 </body>
 </html>
-
 
 
 
