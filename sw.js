@@ -1,59 +1,28 @@
-const CACHE_NAME = "digiylyfe-com-v18";
+const DIGIY_SW_VERSION = "digiylyfe-no-stale-index-20260522-2";
 
-const ASSETS = [
-  "./",
-  "./index.html",
-  "./manifest.json",
-  "./icon-192.png",
-  "./icon-512.png"
-];
-
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(ASSETS))
-      .then(() => self.skipWaiting())
-  );
+self.addEventListener("install", event => {
+  self.skipWaiting();
 });
 
-self.addEventListener("activate", (event) => {
+self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys()
-      .then((keys) =>
-        Promise.all(
-          keys.map((key) => {
-            if (key !== CACHE_NAME) return caches.delete(key);
-            return null;
-          })
-        )
-      )
+      .then(keys => Promise.all(keys.map(key => caches.delete(key))))
       .then(() => self.clients.claim())
   );
 });
 
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
+self.addEventListener("fetch", event => {
+  const req = event.request;
 
-  const url = new URL(event.request.url);
-
-  if (url.origin !== self.location.origin) return;
-
-  if (url.pathname === "/" || url.pathname === "/index.html") {
+  if (req.mode === "navigate") {
     event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          return response;
-        })
-        .catch(() => caches.match("./index.html"))
+      fetch(req, { cache: "no-store" }).catch(() => fetch(req))
     );
     return;
   }
 
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      return cached || fetch(event.request);
-    })
+    fetch(req).catch(() => caches.match(req))
   );
 });
