@@ -1,0 +1,44 @@
+name: Patch vitrine DRIVER public link
+
+on:
+  push:
+    paths:
+      - .github/workflows/patch-vitrine-driver-link.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace DRIVER public link
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          old = '{id:"driver",  icon:"🚗", name:"Trouver un chauffeur",   desc:"Voir les profils chauffeurs et contacter direct.", tag:"PUBLIC", href:"https://galerie-chauffeurs.digiylyfe.com/"}'
+          new = '{id:"driver",  icon:"🚗", name:"Trouver un chauffeur",   desc:"Commander une course et contacter direct.", tag:"PUBLIC", href:"https://driver-client.digiylyfe.com/"}'
+          if old not in s:
+              s2 = s.replace('id:"driver",  icon:"🚗", name:"Trouver un chauffeur",   desc:"Voir les profils chauffeurs et contacter direct.", tag:"PUBLIC", href:"https://galerie-chauffeurs.digiylyfe.com/"', 'id:"driver",  icon:"🚗", name:"Trouver un chauffeur",   desc:"Commander une course et contacter direct.", tag:"PUBLIC", href:"https://driver-client.digiylyfe.com/"')
+          else:
+              s2 = s.replace(old, new)
+          if s2 == s:
+              print('No replacement made; index may already be patched or wording changed.')
+          else:
+              p.write_text(s2, encoding='utf-8')
+              print('DRIVER public link patched.')
+          wf = Path('.github/workflows/patch-vitrine-driver-link.yml')
+          if wf.exists():
+              wf.unlink()
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "DIGIY Auto Patch"
+          git config user.email "actions@github.com"
+          git add index.html .github/workflows/patch-vitrine-driver-link.yml
+          git commit -m "Update vitrine DRIVER public link" || echo "Nothing to commit"
+          git push
