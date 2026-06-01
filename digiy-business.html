@@ -242,6 +242,17 @@ h1 span{color:var(--gold);display:block}
   .contactActions{display:grid}
   .cta{width:100%}
 }
+
+.readerBox{margin:18px 18px 0;padding:16px;border-radius:24px;border:1px solid rgba(246,196,83,.30);background:radial-gradient(420px 150px at 10% 0%,rgba(246,196,83,.15),transparent 62%),rgba(255,255,255,.06)}
+.readerHead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.readerTitle{font-family:var(--fontA);font-size:clamp(22px,4vw,34px);font-weight:1000;line-height:1;color:#fff3cf;letter-spacing:-.04em}
+.readerSub{margin-top:8px;color:var(--soft);font-size:14px;line-height:1.45;font-weight:850}
+.readerActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.readerBtn{min-height:50px;border-radius:16px;border:1px solid rgba(246,196,83,.42);padding:0 16px;background:linear-gradient(135deg,#f6c453,#22c55e);color:#06140f;font-family:var(--fontA);font-size:14px;font-weight:1000;display:inline-flex;align-items:center;justify-content:center;text-align:center;box-shadow:0 10px 24px rgba(0,0,0,.24);cursor:pointer}
+.readerBtn.stop{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.16);box-shadow:none}
+.readerStatus{margin-top:10px;color:#fff3cf;font-size:12.5px;line-height:1.45;font-weight:900}
+@media(max-width:560px){.readerBox{margin:12px 12px 0;padding:15px;border-radius:22px}.readerActions{display:grid}.readerBtn{width:100%}}
+
 </style>
 </head>
 <body>
@@ -269,8 +280,22 @@ h1 span{color:var(--gold);display:block}
 
         <div class="mantra">
           <p>Wave a mis l’argent dans la main.</p>
-          <p>DIGIY met  le business dans la main. </p>
+          <p>DIGIY met le business dans la main.</p>
         </div>
+      </section>
+
+      <section class="readerBox" aria-label="Lecteur DIGIY BUSINESS">
+        <div class="readerHead">
+          <div>
+            <div class="readerTitle">🎧 Écouter l’offre DIGIY BUSINESS</div>
+            <div class="readerSub">Le texte reste visible. L’audio explique les tarifs pour les personnes qui préfèrent écouter.</div>
+          </div>
+        </div>
+        <div class="readerActions">
+          <button class="readerBtn" id="businessRead" type="button">🎧 Écouter les tarifs</button>
+          <button class="readerBtn stop" id="businessStop" type="button">⏹ Stop</button>
+        </div>
+        <div class="readerStatus" id="businessStatus">Prêt à lire DIGIY BUSINESS.</div>
       </section>
 
       <section class="section">
@@ -342,5 +367,41 @@ h1 span{color:var(--gold);display:block}
     </footer>
   </div>
 </div>
+
+<script>
+(function(){
+  const readBtn = document.getElementById('businessRead');
+  const stopBtn = document.getElementById('businessStop');
+  const status = document.getElementById('businessStatus');
+  const AUDIO_TEXT = `Bienvenue dans DIGIY BUSINESS. Wave a mis l’argent dans la main. DIGIY met le business dans la main. DIGIY BUSINESS se fait sur rendez-vous, avec deux séances par semaine, de soixante à quatre-vingt-dix minutes. Voici les tarifs. Atelier Déclic, quinze mille francs C F A. Pour comprendre téléphone, Q R, Ouatsap, Ouève, fiche et réseau. Business Terrain, soixante-quinze mille francs C F A. Pour repartir avec une fiche propre, un Q R, un message client, une première visibilité et une lecture simple de paie. Pro équipé, cent cinquante mille francs C F A. Pour un accompagnement plus complet, avec présence, logique paie, mise en route métier et réseau. DIGIY BUSINESS aide le terrain à devenir visible, joignable, payable et organisé.`;
+
+  function start(){
+    if(!('speechSynthesis' in window)){
+      status.textContent = 'Le lecteur vocal n’est pas disponible sur ce navigateur.';
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(AUDIO_TEXT);
+    u.lang = 'fr-FR';
+    u.rate = 0.94;
+    u.pitch = 1;
+    u.onstart = () => status.textContent = 'Lecture en cours…';
+    u.onend = () => status.textContent = 'Lecture terminée.';
+    u.onerror = () => status.textContent = 'Lecture interrompue. Tu peux relancer.';
+    window.speechSynthesis.speak(u);
+  }
+
+  function stop(){
+    if('speechSynthesis' in window) window.speechSynthesis.cancel();
+    status.textContent = 'Lecture arrêtée.';
+  }
+
+  if(readBtn) readBtn.addEventListener('click', start);
+  if(stopBtn) stopBtn.addEventListener('click', stop);
+  window.addEventListener('beforeunload', stop);
+})();
+</script>
+
 </body>
 </html>
+
