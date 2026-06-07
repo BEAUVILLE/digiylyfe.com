@@ -9,6 +9,7 @@
 <meta name="digiy-build" content="vitrine-hero-voix-menus-flottants-bonjour-ecoute-20260607"/>
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
+<meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -306,6 +307,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 }
 .examples{
   display:none;
+  scroll-margin-top:14px;
   margin-top:12px;
   border:2px solid rgba(227,27,35,.86);
   background:
@@ -837,7 +839,23 @@ $("#clearBtn").addEventListener("click",()=>{
   status.textContent="VOIX · CLIC · CONTACT DIRECT";
   q.focus();
 });
-$("#examplesBtn").addEventListener("click",()=>examples.classList.toggle("open"));
+function scrollToExamples(){
+  window.requestAnimationFrame(()=>{
+    setTimeout(()=>{
+      const y=examples.getBoundingClientRect().top+window.pageYOffset-12;
+      window.scrollTo({top:Math.max(0,y),behavior:"smooth"});
+    },70);
+  });
+}
+$("#examplesBtn").addEventListener("click",()=>{
+  examples.classList.toggle("open");
+  if(examples.classList.contains("open")){
+    status.textContent="EXEMPLES OUVERTS";
+    scrollToExamples();
+  }else{
+    status.textContent=q.value.trim()?"FICHES REMONTÉES":"VOIX · CLIC · CONTACT DIRECT";
+  }
+});
 document.querySelectorAll(".ex").forEach(btn=>btn.addEventListener("click",()=>{
   q.value=btn.dataset.q||btn.textContent.trim();
   examples.classList.remove("open");
@@ -930,6 +948,7 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
 
 
 
