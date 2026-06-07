@@ -603,61 +603,65 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .overlay.open{opacity:1;pointer-events:auto}
 
 .qrBox{
-  margin-top:4px;
+  margin-top:6px;
   display:grid;
-  gap:12px;
+  gap:14px;
   justify-items:center;
   text-align:center;
 }
 .qrCard{
-  width:min(100%,360px);
-  border-radius:26px;
-  border:1px solid rgba(246,196,83,.30);
-  background:rgba(255,255,255,.06);
-  padding:14px;
-  box-shadow:0 18px 44px rgba(0,0,0,.22);
+  width:min(100%,410px);
+  border-radius:30px;
+  border:1px solid rgba(246,196,83,.46);
+  background:
+    radial-gradient(280px 160px at 50% 0%,rgba(246,196,83,.20),transparent 68%),
+    radial-gradient(260px 160px at 10% 100%,rgba(0,166,81,.16),transparent 66%),
+    rgba(255,255,255,.075);
+  padding:18px;
+  box-shadow:0 22px 54px rgba(0,0,0,.32),inset 0 0 0 1px rgba(255,255,255,.06);
 }
 .qrCard img{
-  width:min(100%,260px);
+  width:min(100%,290px);
   aspect-ratio:1/1;
   display:block;
   margin:0 auto;
   background:#fff;
-  border-radius:18px;
-  padding:10px;
-  box-shadow:0 12px 28px rgba(0,0,0,.22);
+  border-radius:22px;
+  padding:12px;
+  box-shadow:0 16px 36px rgba(0,0,0,.28);
 }
 .qrCard strong{
   display:block;
-  margin-top:12px;
+  margin-top:14px;
   color:#fff3cf;
-  font-size:18px;
+  font-size:clamp(22px,5.8vw,30px);
+  line-height:1.06;
   font-weight:1000;
-  letter-spacing:-.02em;
+  letter-spacing:-.045em;
 }
 .qrCard span{
   display:block;
-  margin-top:7px;
-  color:var(--soft);
-  font-size:13px;
-  line-height:1.4;
-  font-weight:850;
+  margin-top:8px;
+  color:rgba(255,250,240,.78);
+  font-size:clamp(14px,3.8vw,17px);
+  line-height:1.38;
+  font-weight:900;
 }
 .qrUrl{
   width:100%;
-  min-height:48px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.07);
-  color:#fff;
+  min-height:54px;
+  border-radius:18px;
+  border:1px solid rgba(246,196,83,.26);
+  background:rgba(255,255,255,.08);
+  color:#fff3cf;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:10px 12px;
-  font-size:12px;
+  padding:11px 12px;
+  font-size:clamp(13px,3.5vw,16px);
   line-height:1.35;
-  font-weight:900;
+  font-weight:1000;
   word-break:break-all;
 }
 .qrActions{
@@ -667,17 +671,17 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   width:100%;
 }
 .qrActions button,.qrActions a{
-  min-height:50px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.07);
+  min-height:54px;
+  border-radius:17px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.075);
   color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
   padding:0 10px;
-  font-size:12px;
+  font-size:13px;
   font-weight:1000;
 }
 .qrActions .primary{
@@ -689,25 +693,46 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 
 /* ══ QR PARTAGEABLE — QR PROPRE SANS LOGO MÉLANGÉ ══ */
 .qrVisual{
-  width:min(100%,270px);
+  width:min(100%,300px);
   margin:0 auto;
-  border-radius:22px;
+  border-radius:24px;
 }
 .qrVisual img#qrImage{
   width:100%;
   aspect-ratio:1/1;
   display:block;
   background:#fff;
-  border-radius:20px;
-  padding:12px;
-  box-shadow:0 12px 28px rgba(0,0,0,.22);
+  border-radius:22px;
+  padding:14px;
+  box-shadow:0 16px 36px rgba(0,0,0,.28);
 }
 .qrCleanNote{
-  margin-top:10px;
-  color:var(--soft);
-  font-size:13px;
-  line-height:1.4;
-  font-weight:850;
+  margin-top:12px;
+  color:rgba(255,250,240,.82);
+  font-size:clamp(15px,4vw,18px);
+  line-height:1.42;
+  font-weight:950;
+}
+.qrManifest{
+  width:100%;
+  border-radius:22px;
+  border:1px solid rgba(246,196,83,.34);
+  background:
+    radial-gradient(220px 110px at 8% 0%,rgba(246,196,83,.16),transparent 66%),
+    rgba(255,255,255,.07);
+  color:#fffaf0;
+  padding:15px 14px;
+  font-size:clamp(16px,4.3vw,20px);
+  line-height:1.38;
+  font-weight:1000;
+  text-align:center;
+}
+.qrManifest strong{
+  color:#fff3cf;
+}
+.qrManifest .line{
+  display:block;
+  margin-top:4px;
 }
 
 
@@ -719,29 +744,30 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   gap:10px;
 }
 .shareLinkMain{
-  min-height:62px;
-  border-radius:20px;
-  border:1px solid rgba(246,196,83,.62);
+  min-height:68px;
+  border-radius:22px;
+  border:1px solid rgba(246,196,83,.72);
   background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
   color:#06140f;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:0 16px;
-  font-size:15px;
+  padding:0 18px;
+  font-size:clamp(17px,4.5vw,22px);
+  line-height:1.12;
   font-weight:1000;
-  box-shadow:0 12px 30px rgba(246,196,83,.18);
+  box-shadow:0 16px 38px rgba(246,196,83,.22);
 }
 .shareNote{
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.07);
-  color:var(--soft);
-  padding:12px;
-  font-size:13px;
-  line-height:1.38;
-  font-weight:850;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.075);
+  color:rgba(255,250,240,.78);
+  padding:14px;
+  font-size:clamp(14px,3.8vw,17px);
+  line-height:1.42;
+  font-weight:900;
 }
 .shareNote strong{color:#fff3cf}
 .quickBtn.link{
@@ -872,6 +898,23 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
     font-size:24px;
   }
 }
+
+@media(max-width:430px){
+  .qrCard{
+    padding:15px;
+  }
+  .qrVisual{
+    width:min(100%,280px);
+  }
+  .qrActions{
+    grid-template-columns:1fr;
+  }
+  .qrActions button,.qrActions a{
+    min-height:54px;
+    font-size:14px;
+  }
+}
+
 </style>
 <!-- PWA DIGIYLYFE -->
 <link rel="manifest" href="/manifest.json"/>
@@ -1004,20 +1047,20 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   </div>
 </section>
 
-<section class="sheet" id="sheetQr" aria-label="Lien cliquable et Q R partageable DIGIYLYFE">
+<section class="sheet" id="sheetQr" aria-label="Le QR partageable DIGIYLYFE">
   <div class="sheetCard">
-    <div class="sheetHead"><strong>🔗 Lien cliquable + QR</strong><button class="closeSheet" type="button">×</button></div>
+    <div class="sheetHead"><strong>🔗 Le QR partageable</strong><button class="closeSheet" type="button">×</button></div>
     <div class="sheetText">
-      <strong>En message, le lien cliquable passe devant.</strong><br/>
-      Le QR sert surtout pour les affiches, cartes, boutiques, véhicules et écrans. Pour WhatsApp ou SMS, on partage le lien direct.
+      <strong>Une porte simple qui circule.</strong><br/>
+      Le lien se clique. Le Q R se scanne. La présence DIGIYLYFE se partage sur téléphone, affiche, carte, boutique, véhicule, story et écran.
     </div>
     <div class="qrBox">
       <div class="sharePriority">
-        <a class="shareLinkMain" id="directShareLink" href="https://digiylyfe.com/" target="_blank" rel="noopener">🔗 OUVRIR LE LIEN CLIQUABLE</a>
-        <div class="shareNote"><strong>Partage fluide :</strong> envoie ce lien dans WhatsApp, SMS, bio, story ou publication. Le destinataire clique directement, sans devoir scanner l’image.</div>
+        <a class="shareLinkMain" id="directShareLink" href="https://digiylyfe.com/" target="_blank" rel="noopener">🔗 OUVRIR DIGIYLYFE</a>
+        <div class="shareNote"><strong>Partage fluide :</strong> le lien passe vite dans WhatsApp, SMS, bio, story ou publication. Le Q R reste la porte forte pour le terrain réel.</div>
       </div>
       <div class="sendFromSite" aria-label="Envoyer DIGIYLYFE depuis le site">
-        <button class="sendMainBtn" id="sendSiteBtn" type="button">📤 ENVOYER DEPUIS LE SITE</button>
+        <button class="sendMainBtn" id="sendSiteBtn" type="button">📤 PARTAGER DIGIYLYFE</button>
         <div class="sendChannels">
           <a class="whats" id="sendWaBtn" href="#" target="_blank" rel="noopener">WhatsApp</a>
           <a class="sms" id="sendSmsBtn" href="#">SMS</a>
@@ -1028,8 +1071,17 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
         <div class="qrVisual">
           <img id="qrImage" alt="Q R partageable DIGIYLYFE" loading="lazy"/>
         </div>
-        <strong>DIGIYLYFE · QR propre</strong>
-        <div class="qrCleanNote">QR sans logo mélangé pour garder un scan propre. Pour envoyer depuis le téléphone ou le Mac, utilise surtout le lien cliquable.</div>
+        <strong>Le QR partageable</strong>
+        <div class="qrCleanNote">Une porte claire vers DIGIYLYFE. Le public scanne, clique, découvre, contacte. Le professionnel garde la main.</div>
+        <div class="qrManifest">
+          <strong>DIGIYLYFE donne des bras numériques aux professionnels du terrain.</strong>
+          <span class="line">La voix ouvre.</span>
+          <span class="line">Le clic simplifie.</span>
+          <span class="line">La fiche montre.</span>
+          <span class="line">Le QR partageable fait circuler.</span>
+          <span class="line">Le paiement reste direct.</span>
+          <span class="line">Le pro décide.</span>
+        </div>
       </div>
       <div class="qrUrl" id="qrUrl">https://digiylyfe.com/</div>
       <div class="qrActions">
@@ -1124,7 +1176,7 @@ if(qrUrl) qrUrl.textContent=DIGIY_URL;
 if(openQrBtn) openQrBtn.href=DIGIY_URL;
 if(directShareLink) directShareLink.href=DIGIY_URL;
 if(waQrBtn) waQrBtn.href="https://wa.me/?text="+encodeURIComponent("DIGIYLYFE · "+DIGIY_URL);
-const DIGIY_SHARE_TEXT="DIGIYLYFE est une porte simple vers l’économie réelle du terrain : on parle, on clique, les bonnes fiches remontent, le contact reste direct.";
+const DIGIY_SHARE_TEXT="DIGIYLYFE donne des bras numériques aux professionnels du terrain. La voix ouvre. Le clic simplifie. La fiche montre. Le QR partageable fait circuler. Le paiement reste direct. Le pro décide.";
 const sendWaBtn=$("#sendWaBtn"), sendSmsBtn=$("#sendSmsBtn"), sendMailBtn=$("#sendMailBtn");
 if(sendWaBtn) sendWaBtn.href="https://wa.me/?text="+encodeURIComponent(DIGIY_SHARE_TEXT+"\n"+DIGIY_URL);
 if(sendSmsBtn) sendSmsBtn.href="sms:?&body="+encodeURIComponent(DIGIY_SHARE_TEXT+"\n"+DIGIY_URL);
@@ -1365,6 +1417,11 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
