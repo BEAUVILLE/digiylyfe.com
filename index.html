@@ -6,8 +6,9 @@
 <title>DIGIYLYFE — La porte vocale du terrain</title>
 <meta name="theme-color" content="#06140f"/>
 <meta name="description" content="DIGIYLYFE organise l’économie réelle du terrain : voix publique, fiches métiers, contact direct, paiement direct, 0% commission, relation professionnelle protégée."/>
-<meta name="digiy-build" content="vitrine-hero-voix-menus-flottants-20260607"/>
+<meta name="digiy-build" content="vitrine-hero-voix-menus-flottants-bonjour-ecoute-20260607"/>
 <meta name="robots" content="index,follow"/>
+<meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -174,6 +175,24 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   line-height:.9;
   letter-spacing:-.055em;
 }
+.earLang{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:12px;
+  min-height:34px;
+  padding:0 13px;
+  border-radius:999px;
+  border:1px solid rgba(6,20,15,.18);
+  background:rgba(255,255,255,.42);
+  color:#06140f;
+  font-family:var(--fontA);
+  font-size:clamp(13px,3.8vw,18px);
+  font-weight:1000;
+  letter-spacing:.035em;
+  text-transform:uppercase;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);
+}
 .field{
   display:grid;
   grid-template-columns:1fr;
@@ -226,10 +245,52 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
   box-shadow:0 14px 34px rgba(246,196,83,.18);
 }
-.examplesBtn{background:rgba(246,196,83,.13);color:#fff3cf!important;border-color:rgba(246,196,83,.32)!important}
+.examplesBtn{
+  grid-column:1/-1;
+  min-height:66px!important;
+  background:
+    radial-gradient(220px 90px at 12% 0%,rgba(255,255,255,.22),transparent 62%),
+    linear-gradient(135deg,#ffefe8,#e31b23 58%,#7f1016)!important;
+  color:#fff!important;
+  border-color:rgba(255,220,210,.72)!important;
+  font-size:clamp(18px,4.8vw,24px)!important;
+  letter-spacing:.035em;
+  box-shadow:0 16px 38px rgba(227,27,35,.30),0 0 0 5px rgba(227,27,35,.10);
+  text-transform:uppercase;
+}
 .clearBtn{background:rgba(227,27,35,.14);color:#ffe4e4!important;border-color:rgba(227,27,35,.32)!important}
 .audioBtn{background:rgba(255,255,255,.075);color:#fff!important}
 .goBtn{background:rgba(0,166,81,.18);color:#dfffe9!important;border-color:rgba(0,166,81,.36)!important}
+
+.helloReader{
+  display:grid;
+  grid-template-columns:1fr 58px;
+  gap:8px;
+  margin:8px 0 0;
+}
+.helloReader button{
+  min-height:52px;
+  border-radius:18px;
+  border:1px solid rgba(246,196,83,.30);
+  background:rgba(255,255,255,.075);
+  color:#fff3cf;
+  font-size:13px;
+  font-weight:1000;
+  letter-spacing:.025em;
+  line-height:1.12;
+}
+.helloReader .helloPlay{
+  background:linear-gradient(135deg,rgba(255,241,189,.95),rgba(246,196,83,.95),rgba(34,197,94,.86));
+  color:#06140f;
+  border-color:rgba(246,196,83,.64);
+  box-shadow:0 12px 30px rgba(246,196,83,.13);
+}
+.helloReader .helloStop{
+  background:rgba(227,27,35,.13);
+  color:#ffe4e4;
+  border-color:rgba(227,27,35,.28);
+}
+
 .status{
   min-height:36px;
   margin:10px auto 0;
@@ -246,32 +307,54 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .examples{
   display:none;
   margin-top:12px;
-  border:1px solid rgba(246,196,83,.24);
-  background:rgba(3,18,12,.72);
-  border-radius:24px;
-  padding:10px;
-  max-height:248px;
+  border:2px solid rgba(227,27,35,.86);
+  background:
+    radial-gradient(280px 120px at 12% 0%,rgba(255,255,255,.18),transparent 64%),
+    linear-gradient(180deg,rgba(127,16,22,.96),rgba(52,8,11,.96));
+  border-radius:26px;
+  padding:12px;
+  max-height:320px;
   overflow:auto;
+  box-shadow:0 18px 44px rgba(227,27,35,.28),inset 0 0 0 1px rgba(255,255,255,.08);
 }
-.examples.open{display:grid;gap:8px}
+.examples::before{
+  content:"AIDE POUR PARLER À DIGIY";
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  margin-bottom:2px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.24);
+  background:rgba(255,255,255,.13);
+  color:#fff;
+  font-size:clamp(15px,4vw,19px);
+  font-weight:1000;
+  letter-spacing:.08em;
+  text-align:center;
+}
+.examples.open{display:grid;gap:10px}
 .ex{
   width:100%;
-  border:1px solid rgba(255,255,255,.11);
-  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.12);
   color:#fff;
-  border-radius:18px;
-  min-height:56px;
+  border-radius:20px;
+  min-height:64px;
   text-align:left;
-  padding:10px 12px;
-  font-weight:950;
-  line-height:1.20;
+  padding:12px 14px;
+  font-size:clamp(15px,4vw,18px);
+  font-weight:1000;
+  line-height:1.18;
+  box-shadow:0 9px 22px rgba(0,0,0,.18);
 }
+.ex:active{transform:scale(.99)}
 .ex small{
   display:block;
-  margin-top:4px;
-  color:rgba(255,250,240,.62);
-  font-size:12px;
-  font-weight:850;
+  margin-top:5px;
+  color:rgba(255,242,191,.88);
+  font-size:clamp(12px,3.4vw,14px);
+  font-weight:900;
 }
 .results{
   margin-top:12px;
@@ -504,6 +587,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
         <span>
           <span class="earIcon">👂</span>
           <span class="earText">J’ÉCOUTE</span>
+          <span class="earLang">Wolof / Français</span>
         </span>
       </div>
 
@@ -513,7 +597,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 
         <div class="actionGrid">
           <button class="listen" id="listenBtn" type="button">👂 PARLER ICI</button>
-          <button class="examplesBtn" id="examplesBtn" type="button">📋 EXEMPLES</button>
+          <button class="examplesBtn" id="examplesBtn" type="button">📋 EXEMPLES POUR PARLER</button>
           <button class="clearBtn" id="clearBtn" type="button">🧹 EFFACER</button>
           <button class="goBtn" id="goBtn" type="button">🔎 VOIR</button>
           <button class="audioBtn" id="audioBtn" type="button">🎧 ÉCOUTER</button>
@@ -521,7 +605,16 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 
         <div class="status" id="status">VOIX · CLIC · CONTACT DIRECT</div>
 
-        <div class="examples" id="examples" aria-label="Exemples bilingues français wolof">
+        <div class="helloReader" aria-label="Lecteur de présentation DIGIYLYFE">
+          <button class="helloPlay" id="helloBtn" type="button" aria-label="Écouter la présentation DIGIYLYFE">🎧 ÉCOUTE · BONJOUR DIGIYLYFE</button>
+          <button class="helloStop" id="stopAudioBtn" type="button" aria-label="Arrêter l’audio">■</button>
+        </div>
+
+        <p class="sr-only" id="helloText">
+          Bonjour et bienvenue sur DIGIYLYFE. Ici, le public parle ou clique, et les bonnes portes remontent directement. DIGIYLYFE n’est pas là pour remplacer les professionnels. Nous sommes les bras numériques des pros : nous aidons à montrer, organiser, orienter, partager, encaisser directement et protéger la relation. Le client garde un contact simple. Le professionnel garde son nom, son argent, son client et sa décision. Merci pour ta visite, et bienvenue dans l’économie réelle du terrain mise en architecture numérique.
+        </p>
+
+        <div class="examples" id="examples" aria-label="Aide rouge avec exemples bilingues français wolof pour parler à DIGIY">
           <button class="ex" type="button" data-q="Je cherche un chauffeur pour AIBD demain matin">🚗 Je cherche un chauffeur pour AIBD<small>Wolof : Maa ngi seet chauffeur bu ma yóbbu AIBD</small></button>
           <button class="ex" type="button" data-q="Je veux une idée de sortie à Saly ce week-end">🗺️ Je veux une idée de sortie à Saly<small>Wolof : Dama bëgg xam fu ma mëna génn ci Saly</small></button>
           <button class="ex" type="button" data-q="Je cherche une chambre à Saly pour ce week-end">🏠 Je cherche une chambre à Saly<small>Wolof : Maa ngi seet chambre ci Saly</small></button>
@@ -540,7 +633,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
       <div class="sr-only" id="hiddenDoctrine">
         DIGIYLYFE n’est pas un outil dans l’économie. DIGIYLYFE est l’économie réelle du terrain mise en architecture numérique.
         Le public parle ou clique. Les fiches remontent. Le contact reste direct. Le professionnel garde son client, son argent, son nom et sa relation.
-        La toile relie. DIGIY organise. Le pro garde la main.
+        La toile relie. DIGIY organise. Le pro garde la main. Ici, pas besoin d'IA lourde pour commencer : les fichiers connectés se passent le relais, la voix oriente, les fiches remontent, puis l’humain choisit.
       </div>
     </section>
   </main>
@@ -817,8 +910,16 @@ function speak(text){
   u.onend=()=>{status.textContent="VOIX · CLIC · CONTACT DIRECT";};
   speechSynthesis.speak(u);
 }
+$("#helloBtn").addEventListener("click",()=>{
+  const t="Bonjour, et bienvenue sur Diji i laïfe. Ici, le public parle, ou clique, et les bonnes portes remontent directement. Diji i laïfe n’est pas là pour remplacer les professionnels. Nous sommes les bras numériques des pros. Nous aidons à montrer, organiser, orienter, partager, encaisser directement, et protéger la relation. Le client garde un contact simple. Le professionnel garde son nom, son argent, son client, et sa décision. Merci pour ta visite. Bienvenue dans l’économie réelle du terrain, mise en architecture numérique.";
+  speak(t);
+});
+$("#stopAudioBtn").addEventListener("click",()=>{
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  status.textContent="VOIX · CLIC · CONTACT DIRECT";
+});
 $("#audioBtn").addEventListener("click",()=>{
-  const t="Diji i laïfe écoute le besoin du public. Le client parle ou clique. Les fiches remontent. Le contact reste direct. Le professionnel garde son client, son argent, son nom et sa relation. La toile relie. Diji i organise. Le pro garde la main.";
+  const t="Diji i laïfe écoute le besoin du public. Le client parle, ou clique. Les fiches remontent. Le contact reste direct. Le professionnel garde son client, son argent, son nom, et sa relation. La toile relie. Diji i organise. Le pro garde la main.";
   speak(t);
 });
 if(window.speechSynthesis) speechSynthesis.onvoiceschanged=pickVoice;
@@ -829,6 +930,7 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
 
 
 
