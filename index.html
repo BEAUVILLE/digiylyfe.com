@@ -915,6 +915,30 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   }
 }
 
+
+.returnVoiceBtn{
+  width:100%;
+  min-height:62px;
+  border-radius:20px;
+  border:1px solid rgba(246,196,83,.56);
+  background:
+    radial-gradient(220px 90px at 12% 0%,rgba(255,255,255,.20),transparent 62%),
+    linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 16px;
+  font-size:clamp(16px,4.4vw,21px);
+  line-height:1.12;
+  font-weight:1000;
+  box-shadow:0 14px 34px rgba(246,196,83,.18);
+}
+.returnVoiceBtn:active{
+  transform:scale(.99);
+}
+
 </style>
 <!-- PWA DIGIYLYFE -->
 <link rel="manifest" href="/manifest.json"/>
@@ -1082,6 +1106,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
           <span class="line">Le paiement reste direct.</span>
           <span class="line">Le pro décide.</span>
         </div>
+        <button class="returnVoiceBtn" id="returnVoiceFromQr" type="button">👂 REVENIR À LA VOIX</button>
       </div>
       <div class="qrUrl" id="qrUrl">https://digiylyfe.com/</div>
       <div class="qrActions">
@@ -1386,6 +1411,16 @@ $("#shareQrBtn")?.addEventListener("click", async()=>{
 });
 
 
+
+$("#returnVoiceFromQr")?.addEventListener("click", ()=>{
+  closeSheets();
+  status.textContent="VOIX · CLIC · CONTACT DIRECT";
+  window.requestAnimationFrame(()=>{
+    q.focus();
+    try{ q.scrollIntoView({behavior:"smooth",block:"center"}); }catch(e){}
+  });
+});
+
 $("#sendSiteBtn")?.addEventListener("click", async()=>{
   try{
     if(navigator.share){
@@ -1417,6 +1452,11 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
