@@ -421,33 +421,46 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .floatingDock{
   position:fixed;
   left:0;right:0;bottom:0;z-index:60;
-  padding:8px 10px calc(8px + env(safe-area-inset-bottom));
-  background:rgba(3,18,12,.90);
-  border-top:1px solid rgba(255,255,255,.10);
+  padding:10px 10px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(3,18,12,.94);
+  border-top:1px solid rgba(255,255,255,.12);
   backdrop-filter:blur(18px);
 }
 .dockInner{
-  width:min(680px,100%);
+  width:min(760px,100%);
   margin:auto;
   display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:6px;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:8px;
 }
 .dockBtn{
-  min-height:58px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.055);
-  color:rgba(255,250,240,.82);
+  min-height:72px;
+  padding:7px 4px 8px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.07);
+  color:#fff7e8;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:2px;
-  font-size:10px;
+  gap:4px;
+  font-size:12px;
+  line-height:1.15;
   font-weight:1000;
+  text-align:center;
 }
-.dockBtn b{font-size:23px;line-height:1}
+.dockBtn b{
+  font-size:26px;
+  line-height:1;
+}
+.dockBtn span{
+  display:block;
+  max-width:100%;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
 .dockBtn.primary{
   background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
   color:#06140f;
@@ -772,7 +785,14 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   .ear{border-radius:38px}
   .earIcon{font-size:64px}
   .actionGrid{gap:7px}
-  .dockBtn{font-size:9px}
+  .dockInner{gap:6px}
+  .dockBtn{
+    min-height:68px;
+    font-size:11px;
+  }
+  .dockBtn b{
+    font-size:24px;
+  }
 }
 </style>
 <!-- PWA DIGIYLYFE -->
@@ -1267,4 +1287,6 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
 
