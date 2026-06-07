@@ -10,6 +10,7 @@
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
+<meta name="digiy-vitrine-final" content="digiylyfe-com-voir-rondpoint-exemples-publics-complets-20260607"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -315,7 +316,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
     linear-gradient(180deg,rgba(127,16,22,.96),rgba(52,8,11,.96));
   border-radius:26px;
   padding:12px;
-  max-height:320px;
+  max-height:min(360px,52svh);
   overflow:auto;
   box-shadow:0 18px 44px rgba(227,27,35,.28),inset 0 0 0 1px rgba(255,255,255,.08);
 }
@@ -351,6 +352,9 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   box-shadow:0 9px 22px rgba(0,0,0,.18);
 }
 .ex:active{transform:scale(.99)}
+.ex span{
+  display:block;
+}
 .ex small{
   display:block;
   margin-top:5px;
@@ -613,18 +617,26 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
         </div>
 
         <p class="sr-only" id="helloText">
-          Bonjour et bienvenue sur DIGIYLYFE. Ici, le public parle ou clique, et les bonnes portes remontent directement. DIGIYLYFE n’est pas là pour remplacer les professionnels. Nous sommes les bras numériques des pros : nous aidons à montrer, organiser, orienter, partager, encaisser directement et protéger la relation. Le client garde un contact simple. Le professionnel garde son nom, son argent, son client et sa décision. Merci pour ta visite, et bienvenue dans l’économie réelle du terrain mise en architecture numérique.
+          Bonjour et bienvenue sur DIGIYLYFE. Ici, le public parle ou clique, appuie sur VOIR, et les bonnes portes remontent directement. La Voix du Business est le grand rond-point DIGIY, l’Arc de Triomphe multi-directionnel du terrain. DIGIYLYFE n’est pas là pour remplacer les professionnels. Nous sommes les bras numériques des pros : nous aidons à montrer, organiser, orienter, partager, encaisser directement et protéger la relation. Le client garde un contact simple. Le professionnel garde son nom, son argent, son client et sa décision. Merci pour ta visite, et bienvenue dans l’économie réelle du terrain mise en architecture numérique.
         </p>
 
         <div class="examples" id="examples" aria-label="Aide rouge avec exemples bilingues français wolof pour parler à DIGIY">
-          <button class="ex" type="button" data-q="Je cherche un chauffeur pour AIBD demain matin">🚗 Je cherche un chauffeur pour AIBD<small>Wolof : Maa ngi seet chauffeur bu ma yóbbu AIBD</small></button>
-          <button class="ex" type="button" data-q="Je veux une idée de sortie à Saly ce week-end">🗺️ Je veux une idée de sortie à Saly<small>Wolof : Dama bëgg xam fu ma mëna génn ci Saly</small></button>
-          <button class="ex" type="button" data-q="Je cherche une chambre à Saly pour ce week-end">🏠 Je cherche une chambre à Saly<small>Wolof : Maa ngi seet chambre ci Saly</small></button>
-          <button class="ex" type="button" data-q="Je veux réserver une table ce soir">🍽️ Je veux réserver une table ce soir<small>Wolof : Dama bëgg réserver table tey ci guddi</small></button>
-          <button class="ex" type="button" data-q="J’ai une fuite dans la salle de bain">🏗️ J’ai une fuite dans la salle de bain<small>Wolof : Ndox mi dafa daw ci salle de bain</small></button>
-          <button class="ex" type="button" data-q="Je cherche un produit dans une boutique">🛍️ Je cherche un produit dans une boutique<small>Wolof : Maa ngi seet produit ci boutique</small></button>
-          <button class="ex" type="button" data-q="Je cherche un travail ou une mission">💼 Je cherche un travail ou une mission<small>Wolof : Maa ngi seet liggéey walla mission</small></button>
-          <button class="ex" type="button" data-q="Je veux publier une annonce dans le réseau">📣 Je veux publier une annonce<small>Wolof : Dama bëgg yégle sama annonce ci réseau bi</small></button>
+          <button class="ex" type="button" data-q="Je veux voir les portes publiques DIGIY"><span>👂 La Voix du Business</span><small>Wolof : Dama bëgg gis bunt yi DIGIY di ubbi</small></button>
+          <button class="ex" type="button" data-q="Je veux une idée de sortie à Saly ce week-end"><span>🗺️ Découvrir / EXPLORE</span><small>Wolof : Dama bëgg xam fu ma mëna génn ci Saly</small></button>
+          <button class="ex" type="button" data-q="Je cherche un chauffeur pour AIBD demain matin"><span>🚗 Chauffeur / DRIVER</span><small>Wolof : Maa ngi seet chauffeur bu ma yóbbu AIBD</small></button>
+          <button class="ex" type="button" data-q="Je veux voir la galerie des chauffeurs disponibles"><span>👑 Nos chauffeurs</span><small>Wolof : Dama bëgg gis chauffeurs yi féex</small></button>
+          <button class="ex" type="button" data-q="Je cherche une chambre à Saly pour ce week-end"><span>🏠 Logement / LOC</span><small>Wolof : Maa ngi seet chambre ci Saly</small></button>
+          <button class="ex" type="button" data-q="Je veux réserver une table ce soir"><span>🍽️ Réserver / RESA</span><small>Wolof : Dama bëgg réserver table tey ci guddi</small></button>
+          <button class="ex" type="button" data-q="J’ai une fuite dans la salle de bain et je cherche un artisan"><span>🏗️ Artisan / BUILD</span><small>Wolof : Ndox mi dafa daw, dama seet artisan</small></button>
+          <button class="ex" type="button" data-q="Je veux voir un commerce local"><span>👜 Commerce</span><small>Wolof : Dama bëgg gis commerce bu nekk fii</small></button>
+          <button class="ex" type="button" data-q="Je cherche un produit dans une boutique"><span>🛍️ Market</span><small>Wolof : Maa ngi seet produit ci boutique</small></button>
+          <button class="ex" type="button" data-q="Je cherche un travail ou une mission"><span>💼 Jobs</span><small>Wolof : Maa ngi seet liggéey walla mission</small></button>
+          <button class="ex" type="button" data-q="Je veux publier une annonce dans le réseau"><span>📣 RÉSEAU</span><small>Wolof : Dama bëgg yégle sama annonce ci réseau bi</small></button>
+          <button class="ex" type="button" data-q="Je veux envoyer une preuve Wave ou parler paiement"><span>💳 PAY</span><small>Wolof : Dama bëgg yónnee preuve Wave walla wax ci paiement</small></button>
+          <button class="ex" type="button" data-q="Je veux venir chez DIGIY"><span>📍 Venir chez DIGIY</span><small>Wolof : Dama bëgg ñëw ci DIGIY</small></button>
+          <button class="ex" type="button" data-q="Je veux soutenir un logement solidaire NDIMBAL"><span>🤝 LOC Solidaire</span><small>Wolof : Dama bëgg dimbali ci logement solidaire</small></button>
+          <button class="ex" type="button" data-q="Je veux écouter la vision DIGIY en audio"><span>🎵 Audio / Vision</span><small>Wolof : Dama bëgg dégg vision DIGIY ci audio</small></button>
+          <button class="ex" type="button" data-q="J’ai besoin d’aide pour m’orienter dans DIGIY"><span>♾️ Assistant</span><small>Wolof : Dama bëgg ndimbal ngir xam fan laa jëm</small></button>
         </div>
 
         <div class="results" id="results" aria-live="polite">
@@ -793,25 +805,38 @@ function normalize(s){
 function pickCards(txt){
   const s=normalize(txt);
   const out=[];
-  function add(id){const found=PUB.find(x=>x.id===id); if(found && !out.some(x=>x.id===id)) out.push(found);}
+  function add(id){
+    const found=PUB.find(x=>x.id===id);
+    if(found && !out.some(x=>x.id===id)) out.push(found);
+  }
+
   if(!s.trim()){
     add("voix");add("driver");add("loc");add("market");
     return out;
   }
+
+  if(/voix|j ecoute|parler|demande|porte|portes|voir|multi direction|multidirection|rond point|arc de triomphe/.test(s)) add("voix");
   if(/chauff|taxi|driver|course|trajet|aibd|aeroport|condui|voiture|transport/.test(s)) add("driver");
-  if(/sortie|visite|decouvr|explore|peche|idee|loisir|plage|saly|petite cote|tour/.test(s)) add("explore");
-  if(/resto|restaurant|table|manger|diner|dejeuner|reserver|reservation|creneau/.test(s)) add("resa");
-  if(/chambre|villa|logement|dormir|location|maison|appartement|hotel|week/.test(s)) add("loc");
-  if(/fuite|artisan|plomb|macon|electric|chantier|repar|service|build|solaire/.test(s)) add("build");
-  if(/produit|boutique|acheter|achat|market|sac|chauss|mode|commerce|vendre/.test(s)){add("market");add("commerce");}
-  if(/emploi|travail|mission|job|recrut|candidat|cv/.test(s)) add("jobs");
-  if(/payer|paiement|wave|orange money|preuve|argent|cash|pay/.test(s)) add("pay");
-  if(/annonce|publier|visibilite|reseau|fiche|qr|presence/.test(s)) add("reseau");
-  if(/audio|ecouter|vision|article|revue/.test(s)) add("audio");
+  if(/galerie|chauffeurs disponibles|nos chauffeurs|visage|chauffeur/.test(s)) add("galerie");
+  if(/sortie|visite|decouvr|explore|peche|idee|loisir|plage|saly|petite cote|tour|genn/.test(s)) add("explore");
+  if(/resto|restaurant|table|manger|diner|dejeuner|reserver|reservation|creneau|repas/.test(s)) add("resa");
+  if(/chambre|villa|logement|dormir|location|maison|appartement|hotel|week|nuit/.test(s)) add("loc");
+  if(/fuite|artisan|plomb|macon|electric|chantier|repar|service|build|solaire|travaux/.test(s)) add("build");
+  if(/commerce local|mon commerce|commerce|commercant|boutique locale/.test(s)) add("commerce");
+  if(/produit|boutique|acheter|achat|market|sac|chauss|mode|article|vendre/.test(s)) add("market");
+  if(/emploi|travail|mission|job|recrut|candidat|cv|liggeey|liggéey/.test(s)) add("jobs");
+  if(/payer|paiement|wave|orange money|preuve|argent|cash|pay|recu|reçu/.test(s)) add("pay");
+  if(/annonce|publier|visibilite|reseau|réseau|fiche|qr|presence|présence/.test(s)) add("reseau");
+  if(/venir chez digiy|vas chez digiy|chez digiy|orientation terrain|ñew|new ci digiy/.test(s)) add("vachez");
+  if(/ndimbal|solidaire|dimbali|soutenir|geste libre/.test(s)) add("ndimbal");
+  if(/audio|ecouter|écouter|vision|article|revue|degg|dégg/.test(s)) add("audio");
+  if(/assistant|aide|orienter|orientation|sans se perdre|ndimbal/.test(s)) add("assist");
+
   if(out.length===0){add("voix");add("reseau");add("assist");}
   return out.slice(0,6);
 }
-function renderResults(txt){
+
+function renderResults(txt, shouldScroll=false){
   const list=pickCards(txt);
   if(!list.length){
     cards.innerHTML=`<div class="nores">DIGIY peut préparer le message et orienter la demande.</div>`;
@@ -825,9 +850,10 @@ function renderResults(txt){
   }
   results.classList.add("open");
   status.textContent=txt && txt.trim() ? "FICHES REMONTÉES" : "PORTES RAPIDES";
+  if(shouldScroll) scrollToResults();
 }
 function runSearch(){
-  renderResults(q.value);
+  renderResults(q.value, true);
 }
 $("#goBtn").addEventListener("click",runSearch);
 q.addEventListener("input",()=>{ if(q.value.trim().length>2) renderResults(q.value); });
@@ -847,6 +873,14 @@ function scrollToExamples(){
     },70);
   });
 }
+function scrollToResults(){
+  window.requestAnimationFrame(()=>{
+    setTimeout(()=>{
+      const y=results.getBoundingClientRect().top+window.pageYOffset-12;
+      window.scrollTo({top:Math.max(0,y),behavior:"smooth"});
+    },90);
+  });
+}
 $("#examplesBtn").addEventListener("click",()=>{
   examples.classList.toggle("open");
   if(examples.classList.contains("open")){
@@ -859,7 +893,7 @@ $("#examplesBtn").addEventListener("click",()=>{
 document.querySelectorAll(".ex").forEach(btn=>btn.addEventListener("click",()=>{
   q.value=btn.dataset.q||btn.textContent.trim();
   examples.classList.remove("open");
-  renderResults(q.value);
+  renderResults(q.value, true);
 }));
 
 const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
@@ -880,7 +914,7 @@ function setupRecognition(){
   r.onend=()=>{
     listening=false;
     $("#listenBtn").textContent="👂 PARLER ICI";
-    if(q.value.trim()) renderResults(q.value);
+    if(q.value.trim()) renderResults(q.value, true);
   };
   r.onresult=(event)=>{
     let finalText="", interim="";
@@ -929,7 +963,7 @@ function speak(text){
   speechSynthesis.speak(u);
 }
 $("#helloBtn").addEventListener("click",()=>{
-  const t="Bonjour, et bienvenue sur Diji i laïfe. Ici, le public parle, ou clique, et les bonnes portes remontent directement. Diji i laïfe n’est pas là pour remplacer les professionnels. Nous sommes les bras numériques des pros. Nous aidons à montrer, organiser, orienter, partager, encaisser directement, et protéger la relation. Le client garde un contact simple. Le professionnel garde son nom, son argent, son client, et sa décision. Merci pour ta visite. Bienvenue dans l’économie réelle du terrain, mise en architecture numérique.";
+  const t="Bonjour, et bienvenue sur Diji i laïfe. Ici, le public parle, ou clique, appuie sur Voir, et les bonnes portes remontent directement. La Voix du Business est le grand rond-point Diji i, l’Arc de Triomphe multi-directionnel du terrain. Diji i laïfe n’est pas là pour remplacer les professionnels. Nous sommes les bras numériques des pros. Nous aidons à montrer, organiser, orienter, partager, encaisser directement, et protéger la relation. Le client garde un contact simple. Le professionnel garde son nom, son argent, son client, et sa décision. Merci pour ta visite. Bienvenue dans l’économie réelle du terrain, mise en architecture numérique.";
   speak(t);
 });
 $("#stopAudioBtn").addEventListener("click",()=>{
@@ -937,7 +971,7 @@ $("#stopAudioBtn").addEventListener("click",()=>{
   status.textContent="VOIX · CLIC · CONTACT DIRECT";
 });
 $("#audioBtn").addEventListener("click",()=>{
-  const t="Diji i laïfe écoute le besoin du public. Le client parle, ou clique. Les fiches remontent. Le contact reste direct. Le professionnel garde son client, son argent, son nom, et sa relation. La toile relie. Diji i organise. Le pro garde la main.";
+  const t="Pour une entrée multi-direction, appuie sur Voir. Ensuite, La Voix du Business devient le grand rond-point Diji i, l’Arc de Triomphe multi-directionnel du terrain. Tu peux parler, ou cliquer sur les exemples. Les fichiers connectés se passent le relais. La demande est comprise, les portes utiles remontent, et tu ouvres la fiche ou le contact direct. Diji i organise. Le pro garde la main.";
   speak(t);
 });
 if(window.speechSynthesis) speechSynthesis.onvoiceschanged=pickVoice;
@@ -948,6 +982,7 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
 
 
 
