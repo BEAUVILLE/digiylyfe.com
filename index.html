@@ -10,7 +10,7 @@
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
-<meta name="digiy-action-preparee" content="v1-8-fr-wolof-message-rassurance-20260609"/>
+<meta name="digiy-action-preparee" content="v1-9-wolof-detection-bilingue-20260609"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -1075,7 +1075,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
         <span>
           <span class="earIcon">👂</span>
           <span class="earText">J’ÉCOUTE</span>
-          <span class="earLang">Wolof / Français</span>
+          <span class="earLang">🇸🇳 Wolof · 🇫🇷 Français</span>
         </span>
       </div>
 
@@ -1102,7 +1102,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
           Bonjour et bienvenue sur DIGIYLYFE. Ici, le public parle ou clique, et les bonnes portes remontent directement. DIGIYLYFE n’est pas là pour remplacer les professionnels. Nous sommes les bras numériques des pros : nous aidons à montrer, organiser, orienter, partager, encaisser directement et protéger la relation. Le client garde un contact simple. Le professionnel garde son nom, son argent, son client et sa décision. Merci pour ta visite, et bienvenue dans l’économie réelle du terrain mise en architecture numérique.
         </p>
 
-        <div class="examples" id="examples" aria-label="Aide rouge avec exemples bilingues français wolof pour parler à DIGIY">
+        <div class="examples" id="examples" aria-label="Aide rouge avec exemples bilingues français et wolof pour parler à DIGIY — Wolof compris directement">
           <button class="ex" type="button" data-q="Je cherche un chauffeur pour AIBD demain matin">🚗 Je cherche un chauffeur pour AIBD<small>Wolof : Maa ngi seet chauffeur bu ma yóbbu AIBD</small></button>
           <button class="ex" type="button" data-q="Je veux une idée de sortie à Saly ce week-end">🗺️ Je veux une idée de sortie à Saly<small>Wolof : Dama bëgg xam fu ma mëna génn ci Saly</small></button>
           <button class="ex" type="button" data-q="Je cherche une chambre à Saly pour ce week-end">🏠 Je cherche une chambre à Saly<small>Wolof : Maa ngi seet chambre ci Saly</small></button>
@@ -1113,6 +1113,10 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
           <button class="ex" type="button" data-q="Je cherche un travail ou une mission">💼 FR : Je cherche un travail ou une mission<small>Wolof : Maa ngi seet liggéey walla mission</small></button>
           <button class="ex" type="button" data-q="Je cherche une mission courte NDIMBAL Express à Saly">⚡ FR : Je cherche une mission courte NDIMBAL Express<small>Wolof : Maa ngi seet mission bu gàtt ci NDIMBAL Express</small></button>
           <button class="ex" type="button" data-q="Je veux publier une annonce dans le réseau">📣 Je veux publier une annonce<small>Wolof : Dama bëgg yégle sama annonce ci réseau bi</small></button>
+          <button class="ex" type="button" data-q="maa ngi seet chauffeur ci Saly tey">🚗 Wolof : Maa ngi seet chauffeur ci Saly<small>FR : Je cherche un chauffeur à Saly aujourd'hui</small></button>
+          <button class="ex" type="button" data-q="dama bëgg seet kër wala néeg ci Mbour">🏠 Wolof : Dama bëgg seet kër ci Mbour<small>FR : Je cherche un logement à Mbour</small></button>
+          <button class="ex" type="button" data-q="maa ngi seet liggey walla mission ci Saly">💼 Wolof : Maa ngi seet liggey ci Saly<small>FR : Je cherche du travail ou une mission</small></button>
+          <button class="ex" type="button" data-q="dama bëgg jend ceeb diwlin nen ci boutik">🛒 Wolof : Dama bëgg jend ceeb diwlin nen<small>FR : Je veux acheter riz, huile, œufs</small></button>
         </div>
 
         <div class="results" id="results" aria-live="polite">
@@ -1366,8 +1370,32 @@ function normalize(s){
     .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
     .replace(/[’']/g," ");
 }
+
+// ── V1.9 : détection langue + bridge Wolof→FR ──────────────────────────────
+const WOLOF_MARKERS=/\b(maa|dama|bëgg|ngi|seet|waajal|xam|yobbu|dimbali|topp|liggey|jend|nanu|def|nanga|tey|bii|rekk|xaalis|jaay|ndimbal|bind|ame|nekk|wone|kër|bayi|dugg|gis|wax|toog|xaar|ceeb|nen|farin|diwlin|sali|mbuur)\b/i;
+function detectLang(txt){
+  return WOLOF_MARKERS.test(txt||"") ? "wo" : "fr";
+}
+const WOLOF_TO_FR={
+  "ceeb":"riz","diwlin":"huile","nen":"oeuf","farin":"farine",
+  "chauffeur":"chauffeur","yobbu":"transport","taxu":"taxi",
+  "ker":"maison","neeg":"chambre",
+  "liggey":"travail","ndimbal":"ndimbal",
+  "xaalis":"argent","fay":"payer","wone":"paiement",
+  "bind":"réserver","jend":"acheter","jaay":"vendre","boutik":"boutique",
+  "sali":"saly","mbuur":"mbour"
+};
+function wolofToFr(txt){
+  let out=(txt||"").toLowerCase();
+  Object.entries(WOLOF_TO_FR).forEach(([wo,fr])=>{
+    out=out.replace(new RegExp("\\b"+wo+"\\b","gi"),fr);
+  });
+  return out;
+}
 function pickCards(txt){
-  const s=normalize(txt);
+  const lang=detectLang(txt);
+  const raw=lang==="wo" ? wolofToFr(txt)+" "+txt : txt;
+  const s=normalize(raw);
   const out=[];
   function add(id){const found=PUB.find(x=>x.id===id); if(found && !out.some(x=>x.id===id)) out.push(found);}
   if(!s.trim()){
@@ -1404,10 +1432,10 @@ const preparedAction=$("#preparedAction"),
       preparedEdit=$("#preparedEdit");
 
 function detectZone(s){
-  const zones=["saly","mbour","dakar","thiès","thies","touba","aibd","petite cote","sarlat","arcachon"];
+  const zones=["saly","sally","mbour","dakar","thiès","thies","touba","aibd","petite cote","sarlat","arcachon"];
   const found=zones.find(z=>s.includes(z));
   if(!found) return "À préciser";
-  return found.replace("thies","Thiès").replace("thiès","Thiès").replace("saly","Saly").replace("mbour","Mbour").replace("dakar","Dakar").replace("touba","Touba").replace("aibd","AIBD").replace("petite cote","Petite Côte").replace("sarlat","Sarlat").replace("arcachon","Arcachon");
+  return found.replace("thies","Thiès").replace("thiès","Thiès").replace("sally","Saly").replace("saly","Saly").replace("mbour","Mbour").replace("dakar","Dakar").replace("touba","Touba").replace("aibd","AIBD").replace("petite cote","Petite Côte").replace("sarlat","Sarlat").replace("arcachon","Arcachon");
 }
 function detectWhen(s){
   if(/aujourd|today|maintenant|urgent|urgence|ce soir|ce matin/.test(s)) return "Aujourd’hui / urgent";
@@ -1426,7 +1454,8 @@ function detectGroceryItems(txt){
     "riz","huile","lait","oeuf","œuf","oeufs","œufs","eau","légumes","legumes","salade","farine","pain","sucre","sel","savon","lessive",
     "couches","couches bébé","couche bébé","pâtes","pates","tomates","oignons","pommes de terre",
     "poulet","poisson","viande","farine","beurre","yaourt","fromage","jus","café","cafe","thé","the",
-    "bananes","pommes","oranges","carottes"
+    "bananes","pommes","oranges","carottes","citron","citrons","saucisson","jambon","miel","confiture",
+    "chips","biscuits","chocolat","crème","creme","mayonnaise","ketchup","moutarde"
   ];
   const found=[];
   known.forEach(item=>{
@@ -1465,13 +1494,16 @@ function wolofLineForNeed(need, zone){
   if(need==="Paiement / argent") return `Wolof : Maa bëgg wone walla topp sama xaalis${lieu}.`;
   return `Wolof : Maa bëgg DIGIYLYFE dimbali ma${lieu}.`;
 }
-function withWolofReassurance(msg, need, zone){
+function withWolofReassurance(msg, need, zone, lang){
   const wolof = wolofLineForNeed(need, zone);
+  if(lang==="wo") return `${wolof}\n\n${msg}`;
   return `${msg}\n\n${wolof}`;
 }
 
 function analyzeIntent(txt,list){
-  const s=normalize(txt);
+  const lang=detectLang(txt);
+  const rawFr=lang==="wo" ? wolofToFr(txt)+" "+txt : txt;
+  const s=normalize(rawFr);
   const first=list && list[0] ? list[0] : PUB.find(x=>x.id==="voix");
   let need="Demande générale", action="Ouvrir la bonne porte", target=first;
 
@@ -1528,12 +1560,12 @@ function analyzeIntent(txt,list){
     const items=detectGroceryItems(clean);
     const list=formatGroceryList(items);
     msg = clean
-      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Liste de courses préparée. Zone : ${zone}. Moment : ${when}.${precision} Produits : ${list}. Demande originale : ${clean}`, need, zone)
-      : withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Je souhaite préparer une liste de courses.`, need, zone);
+      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Liste de courses préparée. Zone : ${zone}. Moment : ${when}.${precision} Produits : ${list}. Demande originale : ${clean}`, need, zone, lang)
+      : withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Je souhaite préparer une liste de courses.`, need, zone, lang);
   }else{
     msg = clean
-      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Demande préparée. Besoin : ${need}. Zone : ${zone}. Moment : ${when}.${precision} Ma demande : ${clean}`, need, zone)
-      : withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Je souhaite être orienté vers la bonne porte.`, need, zone);
+      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Demande préparée. Besoin : ${need}. Zone : ${zone}. Moment : ${when}.${precision} Ma demande : ${clean}`, need, zone, lang)
+      : withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Je souhaite être orienté vers la bonne porte.`, need, zone, lang);
   }
 
   return {need, zone, when, door:target.name, href:target.href, action, msg};
@@ -1579,7 +1611,8 @@ function renderResults(txt){
   }
   results.classList.add("open");
   renderPreparedAction(txt,list);
-  status.textContent=txt && txt.trim() ? "ACTION PRÉPARÉE" : "PORTES RAPIDES";
+  const detectedLang=detectLang(txt);
+  status.textContent=txt && txt.trim() ? (detectedLang==="wo" ? "WOLOF DÉTECTÉ · ACTION PRÉPARÉE" : "ACTION PRÉPARÉE") : "PORTES RAPIDES";
 }
 function runSearch(){
   renderResults(q.value);
@@ -1765,6 +1798,21 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
