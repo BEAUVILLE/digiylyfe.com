@@ -10,7 +10,7 @@
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
-<meta name="digiy-action-preparee" content="v1-1-demande-prete-pas-simple-page-20260609"/>
+<meta name="digiy-action-preparee" content="v1-2-priorite-metier-urgence-modificateur-20260609"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -1378,7 +1378,9 @@ function pickCards(txt){
   if(/chambre|villa|logement|dormir|location|maison|appartement|hotel|week/.test(s)) add("loc");
   if(/fuite|artisan|plomb|macon|electric|chantier|repar|service|build|solaire/.test(s)) add("build");
   if(/produit|boutique|acheter|achat|market|sac|chauss|mode|commerce|vendre/.test(s)){add("market");add("commerce");}
-  if(/ndimbal|mission courte|mission urgent|urgence|livraison|document|coup de main|aide rapide|petit boulot|express/.test(s)) add("ndimbalExpress");
+  // Priorité métier : une urgence ne choisit pas NDIMBAL toute seule.
+  if(/fuite|artisan|plomb|plomberie|macon|maçon|electric|électric|chantier|repar|répar|service|build|solaire|toiture|peinture|menuis/.test(s)) add("build");
+  if(/ndimbal|mission courte|livraison|document|coup de main|aide rapide|petit boulot|express/.test(s)) add("ndimbalExpress");
   if(/emploi|travail|mission|job|recrut|candidat|cv/.test(s)) add("jobs");
   if(/payer|paiement|wave|orange money|preuve|argent|cash|pay/.test(s)) add("pay");
   if(/annonce|publier|visibilite|reseau|fiche|qr|presence/.test(s)) add("reseau");
@@ -1415,26 +1417,28 @@ function analyzeIntent(txt,list){
   const first=list && list[0] ? list[0] : PUB.find(x=>x.id==="voix");
   let need="Demande générale", action="Ouvrir la bonne porte", target=first;
 
-  if(/ndimbal|mission courte|mission urgent|urgence|livraison|document|coup de main|aide rapide|petit boulot|express/.test(s)){
-    target=PUB.find(x=>x.id==="ndimbalExpress")||first;
-    need="Mission courte / aide rapide";
-    action="Voir ou déposer une mission NDIMBAL Express";
-  }else if(/chauff|taxi|driver|course|trajet|aibd|aeroport|transport/.test(s)){
-    target=PUB.find(x=>x.id==="driver")||first;
-    need="Chauffeur / trajet";
-    action="Voir les chauffeurs ou préparer une demande de course";
-  }else if(/chambre|villa|logement|dormir|location|maison|appartement|hotel|week/.test(s)){
-    target=PUB.find(x=>x.id==="loc")||first;
-    need="Logement / location";
-    action="Voir les logements disponibles";
-  }else if(/resto|restaurant|table|manger|diner|dejeuner|reserver|reservation|creneau/.test(s)){
-    target=PUB.find(x=>x.id==="resa")||first;
-    need="Réservation / table";
-    action="Préparer une réservation";
-  }else if(/fuite|artisan|plomb|macon|electric|chantier|repar|service|build|solaire/.test(s)){
+  // Priorité métier : "urgent/urgence" est un modificateur de temps, pas une porte.
+  // Donc une fuite urgente reste BUILD/Artisan, elle ne devient pas NDIMBAL.
+  if(/fuite|artisan|plomb|plomberie|macon|maçon|electric|électric|chantier|repar|répar|service|build|solaire|toiture|peinture|menuis/.test(s)){
     target=PUB.find(x=>x.id==="build")||first;
     need="Artisan / intervention";
     action="Préparer une demande de service";
+  }else if(/ndimbal|mission courte|livraison|document|coup de main|aide rapide|petit boulot|express/.test(s)){
+    target=PUB.find(x=>x.id==="ndimbalExpress")||first;
+    need="Mission courte / aide rapide";
+    action="Voir ou déposer une mission NDIMBAL Express";
+  }else if(/chauff|taxi|driver|course|trajet|aibd|aeroport|aéroport|transport/.test(s)){
+    target=PUB.find(x=>x.id==="driver")||first;
+    need="Chauffeur / trajet";
+    action="Voir les chauffeurs ou préparer une demande de course";
+  }else if(/chambre|villa|logement|dormir|location|maison|appartement|hotel|hôtel|week/.test(s)){
+    target=PUB.find(x=>x.id==="loc")||first;
+    need="Logement / location";
+    action="Voir les logements disponibles";
+  }else if(/resto|restaurant|table|manger|diner|dîner|dejeuner|déjeuner|reserver|réserver|reservation|réservation|creneau|créneau/.test(s)){
+    target=PUB.find(x=>x.id==="resa")||first;
+    need="Réservation / table";
+    action="Préparer une réservation";
   }else if(/produit|boutique|acheter|achat|market|sac|chauss|mode|commerce|vendre/.test(s)){
     target=PUB.find(x=>x.id==="market")||first;
     need="Produit / boutique";
@@ -1689,6 +1693,20 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
