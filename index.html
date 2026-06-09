@@ -10,6 +10,7 @@
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
+<meta name="digiy-ndimbal-express" content="public-pro-main-voice-20260609"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -1002,6 +1003,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
           <button class="ex" type="button" data-q="J’ai une fuite dans la salle de bain">🏗️ J’ai une fuite dans la salle de bain<small>Wolof : Ndox mi dafa daw ci salle de bain</small></button>
           <button class="ex" type="button" data-q="Je cherche un produit dans une boutique">🛍️ Je cherche un produit dans une boutique<small>Wolof : Maa ngi seet produit ci boutique</small></button>
           <button class="ex" type="button" data-q="Je cherche un travail ou une mission">💼 Je cherche un travail ou une mission<small>Wolof : Maa ngi seet liggéey walla mission</small></button>
+          <button class="ex" type="button" data-q="Je cherche une mission courte NDIMBAL Express à Saly">⚡ Je cherche une mission courte NDIMBAL Express<small>Wolof : Maa ngi seet mission bu gàtt ci NDIMBAL Express</small></button>
           <button class="ex" type="button" data-q="Je veux publier une annonce dans le réseau">📣 Je veux publier une annonce<small>Wolof : Dama bëgg yégle sama annonce ci réseau bi</small></button>
         </div>
 
@@ -1133,6 +1135,7 @@ const PUB=[
   {id:"commerce",icon:"👜",name:"Commerce",desc:"Commerce local visible.",tag:"PUBLIC",href:"https://mon-commerce.digiylyfe.com/"},
   {id:"market",icon:"🛍️",name:"Market",desc:"Produits, boutiques, annonces.",tag:"PUBLIC",href:"https://market.digiylyfe.com/"},
   {id:"jobs",icon:"💼",name:"Jobs",desc:"Offres, missions, travail.",tag:"PUBLIC",href:"https://jobs.digiylyfe.com/"},
+  {id:"ndimbalExpress",icon:"⚡",name:"NDIMBAL Express",desc:"Missions courtes validées, contact direct.",tag:"PUBLIC",href:"https://ndimbal-express.digiylyfe.com/"},
   {id:"reseau",icon:"📣",name:"RÉSEAU",desc:"Annonce et présence qualifiée.",tag:"PUBLIC",href:"https://reseau-digiy.digiylyfe.com/"},
   {id:"pay",icon:"💳",name:"PAY",desc:"Paiement direct, preuve, argent.",tag:"PUBLIC",href:"https://pay.digiylyfe.com/"},
   {id:"vachez",icon:"📍",name:"Venir chez DIGIY",desc:"Orientation terrain.",tag:"PUBLIC",href:"https://vas-chez-digiy.digiylyfe.com/"},
@@ -1148,6 +1151,7 @@ const PRO=[
   {id:"proresa",icon:"📅",name:"Je réserve — RÉSA",desc:"Créneaux, planning, réservations.",tag:"PRO",href:"https://pro-resa-resto.digiylyfe.com/hub.html"},
   {id:"prodriver",icon:"🚗",name:"Je conduis — DRIVER",desc:"Zones, tarifs, présence chauffeur.",tag:"PRO",href:"https://pro-driver.digiylyfe.com/hub.html"},
   {id:"projobs",icon:"💼",name:"Je recrute — JOBS",desc:"Offres et candidatures.",tag:"PRO",href:"https://pro-job.digiylyfe.com/hub.html"},
+  {id:"proNdimbalExpress",icon:"⚡",name:"NDIMBAL Express — Dépôt",desc:"Déposer une mission courte via PIN. Validation DIGIY séparée.",tag:"PRO",href:"https://ndimbal-annonces-pro.digiylyfe.com/"},
   {id:"probuild",icon:"🏗️",name:"Mes services",desc:"Services, chantiers, demandes.",tag:"PRO",href:"https://pro-build.digiylyfe.com/hub.html"},
   {id:"proexplore",icon:"🗺️",name:"Me faire connaître",desc:"Lieu, territoire, visibilité.",tag:"PRO",href:"https://pro-explore.digiylyfe.com/hub.html"},
   {id:"propay",icon:"💳",name:"Mon argent — PAY",desc:"Entrées, sorties, température.",tag:"PRO",href:"https://pro-pay.digiylyfe.com/hub.html"},
@@ -1159,6 +1163,8 @@ const MAIN=[
   {icon:"📦",name:"Tarifs",desc:"Activer un module",href:"https://commencer-a-payer.digiylyfe.com/"},
   {icon:"🔗",name:"Lien DIGIYLYFE",desc:"Cliquable + QR partageable",href:"https://digiylyfe.com/"},
   {icon:"🔐",name:"Espace pro",desc:"Entrée protégée",href:"https://pro-espace.digiylyfe.com/"},
+  {icon:"⚡",name:"NDIMBAL Express",desc:"Missions courtes autour de toi",href:"https://ndimbal-express.digiylyfe.com/"},
+  {icon:"🔐",name:"Déposer une mission",desc:"PIN puis formulaire NDIMBAL",href:"https://ndimbal-annonces-pro.digiylyfe.com/"},
   {icon:"📣",name:"RÉSEAU DIGIY",desc:"Présence qualifiée",href:"https://reseau-digiy.digiylyfe.com/"},
   {icon:"💳",name:"Paiement RÉSEAU",desc:"Preuve et validation",href:"https://reseau-digiy.digiylyfe.com/paiement.html"},
   {icon:"📲",name:"WhatsApp DIGIY",desc:"Contact direct",href:"https://wa.me/221771342889"},
@@ -1247,6 +1253,7 @@ function pickCards(txt){
   if(/chambre|villa|logement|dormir|location|maison|appartement|hotel|week/.test(s)) add("loc");
   if(/fuite|artisan|plomb|macon|electric|chantier|repar|service|build|solaire/.test(s)) add("build");
   if(/produit|boutique|acheter|achat|market|sac|chauss|mode|commerce|vendre/.test(s)){add("market");add("commerce");}
+  if(/ndimbal|mission courte|mission urgent|urgence|livraison|document|coup de main|aide rapide|petit boulot|express/.test(s)) add("ndimbalExpress");
   if(/emploi|travail|mission|job|recrut|candidat|cv/.test(s)) add("jobs");
   if(/payer|paiement|wave|orange money|preuve|argent|cash|pay/.test(s)) add("pay");
   if(/annonce|publier|visibilite|reseau|fiche|qr|presence/.test(s)) add("reseau");
@@ -1452,6 +1459,20 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
