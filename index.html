@@ -10,7 +10,7 @@
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
-<meta name="digiy-ndimbal-express" content="public-pro-main-voice-20260609"/>
+<meta name="digiy-action-preparee" content="v1-intention-apercu-confirmation-20260609"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -940,6 +940,113 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   transform:scale(.99);
 }
 
+/* ══ ACTION PRÉPARÉE V1 — INTENTION → APERÇU → CONFIRMATION ══ */
+.preparedAction{
+  display:none;
+  margin-top:12px;
+  border:1px solid rgba(246,196,83,.44);
+  border-radius:26px;
+  background:
+    radial-gradient(340px 150px at 8% 0%,rgba(246,196,83,.18),transparent 66%),
+    radial-gradient(260px 150px at 100% 0%,rgba(0,166,81,.16),transparent 66%),
+    rgba(255,255,255,.075);
+  box-shadow:0 16px 38px rgba(0,0,0,.22),inset 0 0 0 1px rgba(255,255,255,.055);
+  padding:14px;
+}
+.preparedAction.open{display:grid;gap:12px}
+.preparedKicker{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  min-height:30px;
+  padding:0 10px;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.36);
+  background:rgba(246,196,83,.12);
+  color:#fff3cf;
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.preparedTitle{
+  margin:0;
+  color:#fff;
+  font-size:clamp(22px,5.8vw,31px);
+  line-height:1.02;
+  font-weight:1000;
+  letter-spacing:-.045em;
+}
+.preparedGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.preparedMini{
+  min-height:74px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.075);
+  padding:11px;
+}
+.preparedMini b{
+  display:block;
+  color:#fff3cf;
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.preparedMini span{
+  display:block;
+  margin-top:5px;
+  color:rgba(255,250,240,.86);
+  font-size:15px;
+  line-height:1.25;
+  font-weight:950;
+}
+.preparedMessage{
+  border-radius:20px;
+  border:1px solid rgba(0,166,81,.28);
+  background:rgba(0,166,81,.10);
+  padding:12px;
+  color:#eafff0;
+  font-size:14px;
+  line-height:1.38;
+  font-weight:900;
+}
+.preparedMessage strong{
+  display:block;
+  margin-bottom:6px;
+  color:#fff3cf;
+  font-size:12px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.preparedActions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.preparedActions button,.preparedActions a{
+  min-height:54px;
+  border-radius:17px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 10px;
+  font-size:13px;
+  font-weight:1000;
+}
+.preparedActions .primary{
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;
+  border-color:rgba(246,196,83,.62);
+  box-shadow:0 12px 28px rgba(246,196,83,.16);
+}
+.preparedActions .wa{background:rgba(0,166,81,.16);border-color:rgba(0,166,81,.34);color:#dfffe9}
+.preparedActions .edit{background:rgba(255,255,255,.08);color:#fff3cf;border-color:rgba(246,196,83,.28)}
+@media(max-width:520px){
+  .preparedGrid{grid-template-columns:1fr}
+  .preparedActions{grid-template-columns:1fr}
+}
+
 </style>
 <!-- PWA DIGIYLYFE -->
 <link rel="manifest" href="/manifest.json"/>
@@ -977,7 +1084,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
         <textarea id="q" rows="2" placeholder="PARLER ICI" autocomplete="off" inputmode="text"></textarea>
 
         <div class="actionGrid">
-          <button class="listen" id="listenBtn" type="button">👂 PARLER ICI</button>
+          <button class="listen" id="listenBtn" type="button">👂 ÉCOUTE DIGIY</button>
           <button class="examplesBtn" id="examplesBtn" type="button">📋 EXEMPLES POUR PARLER</button>
           <button class="clearBtn" id="clearBtn" type="button">🧹 EFFACER</button>
           <button class="goBtn" id="goBtn" type="button">🔎 VOIR</button>
@@ -1010,6 +1117,24 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
         <div class="results" id="results" aria-live="polite">
           <div class="resultRail" id="cards"></div>
         </div>
+
+        <div class="preparedAction" id="preparedAction" aria-live="polite">
+          <div class="preparedKicker">🧠 ACTION PRÉPARÉE</div>
+          <h3 class="preparedTitle" id="preparedTitle">DIGIY prépare.</h3>
+          <div class="preparedGrid" aria-label="Ce que DIGIY a compris">
+            <div class="preparedMini"><b>Besoin</b><span id="preparedNeed">—</span></div>
+            <div class="preparedMini"><b>Zone</b><span id="preparedZone">—</span></div>
+            <div class="preparedMini"><b>Moment</b><span id="preparedWhen">—</span></div>
+            <div class="preparedMini"><b>Porte</b><span id="preparedDoor">—</span></div>
+          </div>
+          <div class="preparedMessage" id="preparedMessage"><strong>Message prêt</strong><span>—</span></div>
+          <div class="preparedActions">
+            <a class="primary" id="preparedContinue" href="#" rel="noopener">✅ Continuer</a>
+            <button class="edit" id="preparedEdit" type="button">✏️ Modifier</button>
+            <a class="wa" id="preparedWhatsapp" href="#" target="_blank" rel="noopener">📲 WhatsApp</a>
+          </div>
+        </div>
+
       </div>
 
       <div class="sr-only" id="hiddenDoctrine">
@@ -1261,6 +1386,102 @@ function pickCards(txt){
   if(out.length===0){add("voix");add("reseau");add("assist");}
   return out.slice(0,6);
 }
+
+const preparedAction=$("#preparedAction"),
+      preparedTitle=$("#preparedTitle"),
+      preparedNeed=$("#preparedNeed"),
+      preparedZone=$("#preparedZone"),
+      preparedWhen=$("#preparedWhen"),
+      preparedDoor=$("#preparedDoor"),
+      preparedMessage=$("#preparedMessage span"),
+      preparedContinue=$("#preparedContinue"),
+      preparedWhatsapp=$("#preparedWhatsapp"),
+      preparedEdit=$("#preparedEdit");
+
+function detectZone(s){
+  const zones=["saly","mbour","dakar","thiès","thies","touba","aibd","petite cote","sarlat","arcachon"];
+  const found=zones.find(z=>s.includes(z));
+  if(!found) return "À préciser";
+  return found.replace("thies","Thiès").replace("thiès","Thiès").replace("saly","Saly").replace("mbour","Mbour").replace("dakar","Dakar").replace("touba","Touba").replace("aibd","AIBD").replace("petite cote","Petite Côte").replace("sarlat","Sarlat").replace("arcachon","Arcachon");
+}
+function detectWhen(s){
+  if(/aujourd|today|maintenant|urgent|urgence|ce soir|ce matin/.test(s)) return "Aujourd’hui / urgent";
+  if(/demain/.test(s)) return "Demain";
+  if(/week|samedi|dimanche/.test(s)) return "Ce week-end";
+  return "À préciser";
+}
+function analyzeIntent(txt,list){
+  const s=normalize(txt);
+  const first=list && list[0] ? list[0] : PUB.find(x=>x.id==="voix");
+  let need="Demande générale", action="Ouvrir la bonne porte", target=first;
+
+  if(/ndimbal|mission courte|mission urgent|urgence|livraison|document|coup de main|aide rapide|petit boulot|express/.test(s)){
+    target=PUB.find(x=>x.id==="ndimbalExpress")||first;
+    need="Mission courte / aide rapide";
+    action="Voir ou déposer une mission NDIMBAL Express";
+  }else if(/chauff|taxi|driver|course|trajet|aibd|aeroport|transport/.test(s)){
+    target=PUB.find(x=>x.id==="driver")||first;
+    need="Chauffeur / trajet";
+    action="Voir les chauffeurs ou préparer une demande de course";
+  }else if(/chambre|villa|logement|dormir|location|maison|appartement|hotel|week/.test(s)){
+    target=PUB.find(x=>x.id==="loc")||first;
+    need="Logement / location";
+    action="Voir les logements disponibles";
+  }else if(/resto|restaurant|table|manger|diner|dejeuner|reserver|reservation|creneau/.test(s)){
+    target=PUB.find(x=>x.id==="resa")||first;
+    need="Réservation / table";
+    action="Préparer une réservation";
+  }else if(/fuite|artisan|plomb|macon|electric|chantier|repar|service|build|solaire/.test(s)){
+    target=PUB.find(x=>x.id==="build")||first;
+    need="Artisan / intervention";
+    action="Préparer une demande de service";
+  }else if(/produit|boutique|acheter|achat|market|sac|chauss|mode|commerce|vendre/.test(s)){
+    target=PUB.find(x=>x.id==="market")||first;
+    need="Produit / boutique";
+    action="Voir les boutiques ou préparer une demande";
+  }else if(/emploi|travail|mission|job|recrut|candidat|cv/.test(s)){
+    target=PUB.find(x=>x.id==="jobs")||first;
+    need="Travail / mission";
+    action="Voir les offres ou missions";
+  }else if(/payer|paiement|wave|orange money|preuve|argent|cash|pay/.test(s)){
+    target=PUB.find(x=>x.id==="pay")||first;
+    need="Paiement / argent";
+    action="Ouvrir PAY";
+  }
+
+  const zone=detectZone(s);
+  const when=detectWhen(s);
+  const clean=(txt||"").trim();
+  const msg=clean
+    ? `Bonjour, je viens depuis DIGIYLYFE. ${action}. Besoin : ${need}. Zone : ${zone}. Moment : ${when}. Ma demande : ${clean}`
+    : `Bonjour, je viens depuis DIGIYLYFE. Je souhaite être orienté vers la bonne porte.`;
+
+  return {need, zone, when, door:target.name, href:target.href, action, msg};
+}
+function renderPreparedAction(txt,list){
+  if(!txt || !txt.trim()){
+    if(preparedAction) preparedAction.classList.remove("open");
+    return;
+  }
+  const a=analyzeIntent(txt,list);
+  preparedTitle.textContent="DIGIY a compris : "+a.action;
+  preparedNeed.textContent=a.need;
+  preparedZone.textContent=a.zone;
+  preparedWhen.textContent=a.when;
+  preparedDoor.textContent=a.door;
+  preparedMessage.textContent=a.msg;
+  preparedContinue.href=a.href;
+  preparedWhatsapp.href="https://wa.me/221771342889?text="+encodeURIComponent(a.msg);
+  preparedAction.classList.add("open");
+}
+if(preparedEdit){
+  preparedEdit.addEventListener("click",()=>{
+    status.textContent="MODIFIE LA DEMANDE";
+    q.focus();
+    try{ q.scrollIntoView({behavior:"smooth",block:"center"}); }catch(e){}
+  });
+}
+
 function renderResults(txt){
   const list=pickCards(txt);
   if(!list.length){
@@ -1274,7 +1495,8 @@ function renderResults(txt){
     </article>`).join("");
   }
   results.classList.add("open");
-  status.textContent=txt && txt.trim() ? "FICHES REMONTÉES" : "PORTES RAPIDES";
+  renderPreparedAction(txt,list);
+  status.textContent=txt && txt.trim() ? "ACTION PRÉPARÉE" : "PORTES RAPIDES";
 }
 function runSearch(){
   renderResults(q.value);
@@ -1285,6 +1507,7 @@ $("#clearBtn").addEventListener("click",()=>{
   q.value="";
   cards.innerHTML="";
   results.classList.remove("open");
+  if(preparedAction) preparedAction.classList.remove("open");
   examples.classList.remove("open");
   status.textContent="VOIX · CLIC · CONTACT DIRECT";
   q.focus();
@@ -1323,13 +1546,13 @@ function setupRecognition(){
   r.onstart=()=>{listening=true;status.textContent="J’ÉCOUTE…";$("#listenBtn").textContent="👂 J’ÉCOUTE…";};
   r.onerror=()=>{
     listening=false;
-    $("#listenBtn").textContent="👂 PARLER ICI";
+    $("#listenBtn").textContent="👂 ÉCOUTE DIGIY";
     status.textContent="MICRO BLOQUÉ · UTILISE LE CLAVIER";
     q.focus();
   };
   r.onend=()=>{
     listening=false;
-    $("#listenBtn").textContent="👂 PARLER ICI";
+    $("#listenBtn").textContent="👂 ÉCOUTE DIGIY";
     if(q.value.trim()) renderResults(q.value);
   };
   r.onresult=(event)=>{
@@ -1459,6 +1682,20 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
