@@ -10,7 +10,7 @@
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
-<meta name="digiy-action-preparee" content="v1-2-priorite-metier-urgence-modificateur-20260609"/>
+<meta name="digiy-action-preparee" content="v1-4-liste-de-courses-pilote-20260609"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -1109,6 +1109,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
           <button class="ex" type="button" data-q="Je veux réserver une table ce soir">🍽️ Je veux réserver une table ce soir<small>Wolof : Dama bëgg réserver table tey ci guddi</small></button>
           <button class="ex" type="button" data-q="J’ai une fuite dans la salle de bain">🏗️ J’ai une fuite dans la salle de bain<small>Wolof : Ndox mi dafa daw ci salle de bain</small></button>
           <button class="ex" type="button" data-q="Je cherche un produit dans une boutique">🛍️ Je cherche un produit dans une boutique<small>Wolof : Maa ngi seet produit ci boutique</small></button>
+          <button class="ex" type="button" data-q="Je veux préparer une liste de courses pour la semaine à Saly : riz, huile, lait, œufs, eau, légumes">🛒 Je prépare une liste de courses<small>Wolof : Maa bëgg waajal sama liste courses</small></button>
           <button class="ex" type="button" data-q="Je cherche un travail ou une mission">💼 Je cherche un travail ou une mission<small>Wolof : Maa ngi seet liggéey walla mission</small></button>
           <button class="ex" type="button" data-q="Je cherche une mission courte NDIMBAL Express à Saly">⚡ Je cherche une mission courte NDIMBAL Express<small>Wolof : Maa ngi seet mission bu gàtt ci NDIMBAL Express</small></button>
           <button class="ex" type="button" data-q="Je veux publier une annonce dans le réseau">📣 Je veux publier une annonce<small>Wolof : Dama bëgg yégle sama annonce ci réseau bi</small></button>
@@ -1284,6 +1285,7 @@ const PRO=[
 ];
 
 const MAIN=[
+  {icon:"🛒",name:"Liste de courses DIGIY",desc:"Préparer une demande claire pour courses",href:"#voice"},
   {icon:"🧭",name:"HUB DIGIY",desc:"Maison complète",href:"https://digiy-hub.digiylyfe.com/"},
   {icon:"📦",name:"Tarifs",desc:"Activer un module",href:"https://commencer-a-payer.digiylyfe.com/"},
   {icon:"🔗",name:"Lien DIGIYLYFE",desc:"Cliquable + QR partageable",href:"https://digiylyfe.com/"},
@@ -1381,6 +1383,7 @@ function pickCards(txt){
   // Priorité métier : une urgence ne choisit pas NDIMBAL toute seule.
   if(/fuite|artisan|plomb|plomberie|macon|maçon|electric|électric|chantier|repar|répar|service|build|solaire|toiture|peinture|menuis/.test(s)) add("build");
   if(/ndimbal|mission courte|livraison|document|coup de main|aide rapide|petit boulot|express/.test(s)) add("ndimbalExpress");
+  if(/liste de course|liste de courses|faire mes courses|courses pour|courses semaine|supermarch|super marché|auchan|carrefour|épicerie|epicerie|riz|huile|lait|œufs|oeufs|eau|légumes|legumes|couches|lessive/.test(s)) add("market");
   if(/emploi|travail|mission|job|recrut|candidat|cv/.test(s)) add("jobs");
   if(/payer|paiement|wave|orange money|preuve|argent|cash|pay/.test(s)) add("pay");
   if(/annonce|publier|visibilite|reseau|fiche|qr|presence/.test(s)) add("reseau");
@@ -1412,6 +1415,41 @@ function detectWhen(s){
   if(/week|samedi|dimanche/.test(s)) return "Ce week-end";
   return "À préciser";
 }
+
+function detectGroceryItems(txt){
+  const raw=(txt||"").toLowerCase();
+  const cleaned=raw
+    .replace(/écoute digiy|ecoute digiy|diji i|digiy/gi,"")
+    .replace(/je veux|j'aimerais|jaimerais|préparer|preparer|une liste de courses|liste de course|courses|pour la semaine|à saly|a saly|aujourd'hui|demain|ce weekend|ce week-end/gi," ");
+  const known=[
+    "riz","huile","lait","oeufs","œufs","eau","légumes","legumes","pain","sucre","sel","savon","lessive",
+    "couches","couches bébé","couche bébé","pâtes","pates","tomates","oignons","pommes de terre",
+    "poulet","poisson","viande","farine","beurre","yaourt","fromage","jus","café","cafe","thé","the",
+    "bananes","pommes","oranges","carottes"
+  ];
+  const found=[];
+  known.forEach(item=>{
+    const rx=new RegExp("(^|[^a-zà-ÿ])"+item.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"([^a-zà-ÿ]|$)","i");
+    if(rx.test(raw)){
+      const label=item.replace("oeufs","œufs").replace("legumes","légumes").replace("pates","pâtes").replace("cafe","café").replace("the","thé");
+      if(!found.includes(label)) found.push(label);
+    }
+  });
+  // Si l'utilisateur a dicté après deux-points ou virgules, on récupère aussi cette matière brute.
+  const afterColon=(txt||"").split(":").slice(1).join(":").trim();
+  if(afterColon){
+    afterColon.split(/,|;|\bet\b/gi).map(x=>x.trim()).filter(Boolean).forEach(x=>{
+      const clean=x.replace(/[.!?]+$/,"").trim();
+      if(clean && clean.length<42 && !found.some(y=>y.toLowerCase()===clean.toLowerCase())) found.push(clean);
+    });
+  }
+  return found.slice(0,14);
+}
+function formatGroceryList(items){
+  if(!items || !items.length) return "Produits à préciser";
+  return items.map((x,i)=>`${i+1}. ${x}`).join(" · ");
+}
+
 function analyzeIntent(txt,list){
   const s=normalize(txt);
   const first=list && list[0] ? list[0] : PUB.find(x=>x.id==="voix");
@@ -1439,6 +1477,10 @@ function analyzeIntent(txt,list){
     target=PUB.find(x=>x.id==="resa")||first;
     need="Réservation / table";
     action="Préparer une réservation";
+  }else if(/liste de course|liste de courses|faire mes courses|courses pour|courses semaine|supermarch|super marché|auchan|carrefour|épicerie|epicerie|riz|huile|lait|œufs|oeufs|eau|légumes|legumes|couches|lessive/.test(s)){
+    target={id:"courses",name:"Liste de courses DIGIY",href:"https://digiylyfe.com/"};
+    need="Liste de courses";
+    action="Préparer une liste de courses";
   }else if(/produit|boutique|acheter|achat|market|sac|chauss|mode|commerce|vendre/.test(s)){
     target=PUB.find(x=>x.id==="market")||first;
     need="Produit / boutique";
@@ -1460,9 +1502,18 @@ function analyzeIntent(txt,list){
   if(zone==="À préciser") missing.push("zone");
   if(when==="À préciser") missing.push("moment");
   const precision = missing.length ? ` Infos à préciser : ${missing.join(" et ")}.` : "";
-  const msg=clean
-    ? `Bonjour, je viens depuis DIGIYLYFE. Demande préparée. Besoin : ${need}. Zone : ${zone}. Moment : ${when}.${precision} Ma demande : ${clean}`
-    : `Bonjour, je viens depuis DIGIYLYFE. Je souhaite être orienté vers la bonne porte.`;
+  let msg="";
+  if(need==="Liste de courses"){
+    const items=detectGroceryItems(clean);
+    const list=formatGroceryList(items);
+    msg = clean
+      ? `Bonjour, je viens depuis DIGIYLYFE. Liste de courses préparée. Zone : ${zone}. Moment : ${when}.${precision} Produits : ${list}. Demande originale : ${clean}`
+      : `Bonjour, je viens depuis DIGIYLYFE. Je souhaite préparer une liste de courses.`;
+  }else{
+    msg = clean
+      ? `Bonjour, je viens depuis DIGIYLYFE. Demande préparée. Besoin : ${need}. Zone : ${zone}. Moment : ${when}.${precision} Ma demande : ${clean}`
+      : `Bonjour, je viens depuis DIGIYLYFE. Je souhaite être orienté vers la bonne porte.`;
+  }
 
   return {need, zone, when, door:target.name, href:target.href, action, msg};
 }
@@ -1693,6 +1744,20 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
