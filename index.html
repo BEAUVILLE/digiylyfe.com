@@ -10,7 +10,7 @@
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
-<meta name="digiy-action-preparee" content="v1-intention-apercu-confirmation-20260609"/>
+<meta name="digiy-action-preparee" content="v1-1-demande-prete-pas-simple-page-20260609"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -1129,9 +1129,9 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
           </div>
           <div class="preparedMessage" id="preparedMessage"><strong>Message prêt</strong><span>—</span></div>
           <div class="preparedActions">
-            <a class="primary" id="preparedContinue" href="#" rel="noopener">✅ Continuer</a>
+            <a class="primary" id="preparedContinue" href="#" rel="noopener">📲 Envoyer la demande</a>
             <button class="edit" id="preparedEdit" type="button">✏️ Modifier</button>
-            <a class="wa" id="preparedWhatsapp" href="#" target="_blank" rel="noopener">📲 WhatsApp</a>
+            <a class="wa" id="preparedWhatsapp" href="#" target="_blank" rel="noopener">🔎 Voir la porte</a>
           </div>
         </div>
 
@@ -1452,8 +1452,12 @@ function analyzeIntent(txt,list){
   const zone=detectZone(s);
   const when=detectWhen(s);
   const clean=(txt||"").trim();
+  const missing=[];
+  if(zone==="À préciser") missing.push("zone");
+  if(when==="À préciser") missing.push("moment");
+  const precision = missing.length ? ` Infos à préciser : ${missing.join(" et ")}.` : "";
   const msg=clean
-    ? `Bonjour, je viens depuis DIGIYLYFE. ${action}. Besoin : ${need}. Zone : ${zone}. Moment : ${when}. Ma demande : ${clean}`
+    ? `Bonjour, je viens depuis DIGIYLYFE. Demande préparée. Besoin : ${need}. Zone : ${zone}. Moment : ${when}.${precision} Ma demande : ${clean}`
     : `Bonjour, je viens depuis DIGIYLYFE. Je souhaite être orienté vers la bonne porte.`;
 
   return {need, zone, when, door:target.name, href:target.href, action, msg};
@@ -1464,14 +1468,17 @@ function renderPreparedAction(txt,list){
     return;
   }
   const a=analyzeIntent(txt,list);
-  preparedTitle.textContent="DIGIY a compris : "+a.action;
+  preparedTitle.textContent="DIGIY a préparé une demande : "+a.need;
   preparedNeed.textContent=a.need;
   preparedZone.textContent=a.zone;
   preparedWhen.textContent=a.when;
   preparedDoor.textContent=a.door;
   preparedMessage.textContent=a.msg;
-  preparedContinue.href=a.href;
-  preparedWhatsapp.href="https://wa.me/221771342889?text="+encodeURIComponent(a.msg);
+  // V1.1 : le bouton principal ne doit pas seulement ouvrir la page du module.
+  // Il envoie d'abord la demande préparée. La porte du module reste disponible en second choix.
+  preparedContinue.href="https://wa.me/221771342889?text="+encodeURIComponent(a.msg);
+  preparedWhatsapp.href=a.href;
+  preparedWhatsapp.target="_self";
   preparedAction.classList.add("open");
 }
 if(preparedEdit){
@@ -1682,6 +1689,20 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
