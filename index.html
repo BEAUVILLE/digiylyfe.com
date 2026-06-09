@@ -10,7 +10,7 @@
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
-<meta name="digiy-action-preparee" content="v2-0-moteur-boost-intent-router-20260609"/>
+<meta name="digiy-action-preparee" content="v2-2-note-depense-fix-20260609"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -1372,39 +1372,21 @@ function normalize(s){
 }
 
 // ── V1.9 : détection langue + bridge Wolof→FR ──────────────────────────────
-const WOLOF_MARKERS=/\b(maa|dama|bëgg|ngi|seet|waajal|xam|yobbu|dimbali|topp|liggey|liggéey|jend|nanu|def|nanga|tey|bii|rekk|xaalis|jaay|ndimbal|bind|ame|nekk|wone|kër|ker|bayi|dugg|gis|wax|toog|xaar|ceeb|nen|farin|diwlin|sali|mbuur|neeg|néeg|taxu|fay|boutik|galerie|gàtt|nguir|ak|ci|bu|bi)\b/i;
+const WOLOF_MARKERS=/\b(maa|dama|b\u00ebgg|ngi|seet|waajal|xam|yobbu|dimbali|topp|liggey|ligg\u00e9ey|jend|nanu|def|nanga|tey|bii|rekk|xaalis|jaay|ndimbal|bind|ame|nekk|wone|k\u00ebr|ker|bayi|dugg|gis|wax|toog|xaar|ceeb|nen|farin|diwlin|sali|mbuur|neeg|n\u00e9eg|taxu|fay|boutik|j\u00ebn|jen|yapp)\b/i;
 function detectLang(txt){
   return WOLOF_MARKERS.test(txt||"") ? "wo" : "fr";
 }
 const WOLOF_TO_FR={
-  // Alimentation
   "ceeb":"riz","diwlin":"huile","nen":"oeuf","farin":"farine",
   "jën":"poisson","jen":"poisson","yapp":"viande","mburu":"pain",
-  "suukër":"sucre","sukër":"sucre","suker":"sucre",
-  "xorom":"sel","añ":"eau","an":"eau",
-  "pomm":"pomme","kàlóŋ":"orange",
-  // Transport & terrain
   "chauffeur":"chauffeur","yobbu":"transport","taxu":"taxi",
-  "dem":"aller","deme":"aller","jëm":"aller",
-  "reer":"rentrer","aibd":"aibd",
-  // Logement
-  "kër":"maison","ker":"maison","néeg":"chambre","neeg":"chambre",
-  "villa":"villa","mbedd":"quartier",
-  // Travail
+  "kër":"maison","ker":"maison","néeg":"chambre","neeg":"chambre","mbedd":"quartier",
   "liggey":"travail","liggéey":"travail","ndimbal":"ndimbal",
-  "mission":"mission","gàtt":"court","nguir":"pour",
-  // Argent
+  "gàtt":"court","nguir":"pour","dem":"aller","jëm":"aller",
   "xaalis":"argent","fay":"payer","wone":"paiement","waññi":"retirer",
-  // Commerce & marché
   "bind":"réserver","jend":"acheter","jaay":"vendre","boutik":"boutique",
-  "marché":"marché","néeg likk":"boutique",
-  // Lieux Petite Côte
-  "sali":"saly","mbuur":"mbour","ngaparou":"ngaparou","pointe sarene":"pointe sarene",
-  "toubab dialaw":"toubab dialaw","joal":"joal","nianing":"nianing",
-  // Métiers artisan
-  "bâtiment":"bâtiment","plomberie":"plomberie",
-  // Émotions / intention
-  "bëgg":"vouloir","seet":"chercher","xam":"savoir","def":"faire","dimbali":"aider"
+  "sali":"saly","mbuur":"mbour","ngaparou":"ngaparou","joal":"joal","nianing":"nianing",
+  "bëgg":"vouloir","seet":"chercher","def":"faire","dimbali":"aider"
 };
 function wolofToFr(txt){
   let out=(txt||"").toLowerCase();
@@ -1421,67 +1403,46 @@ function pickCards(txt){
   const out=[];
   const scores={};
   function add(id,pts){
-    pts=pts||1;
-    scores[id]=(scores[id]||0)+pts;
+    pts=pts||1; scores[id]=(scores[id]||0)+pts;
     const found=PUB.find(x=>x.id===id);
     if(found && !out.some(x=>x.id===id)) out.push(found);
   }
-
-  if(!s.trim()){
-    add("voix");add("driver");add("loc");add("market");
-    return out;
-  }
-
-  // ── Courses / alimentation ────────────────────────────────────────────
-  if(/liste de course|liste de courses|besoin de course|faire la course|faire mes courses|mes courses|courses pour|course pour|courses semaine|course semaine|pour la semaine|supermarch|super march|auchan|carrefour|epiceire|epicerie/.test(s)) add("market",3);
-  if(/\briz\b|huile|lait|œuf|oeuf|eau\b|légumes|legumes|salade|farine|beurre|fromage|jambon|saucisson|couches|lessive|sucre|sel\b|pain\b|poisson|viande|yaourt|café|cafe|thé\b/.test(s)) add("market",2);
-
-  // ── Transport / chauffeur ─────────────────────────────────────────────
-  if(/chauff|taxi|driver|trajet|aibd|aeroport|aéroport|transport/.test(s)) add("driver",3);
-  if(/course\b(?!.*(riz|huile|lait|œuf|oeuf|farine|beurre|salade|légumes|legumes|semaine|supermarch|epicerie))/.test(s)) add("driver",2);
-  if(/véhicule|voiture|moto|conduire|aller à|aller au|amener/.test(s)) add("driver",1);
-
-  // ── Logement / location ───────────────────────────────────────────────
-  if(/chambre|villa|logement|dormir|location|maison|appartement|hotel|hôtel|hébergement/.test(s)) add("loc",3);
-  if(/nuit|nuits|week.?end|séjour|sejour/.test(s)) add("loc",2);
-
-  // ── Artisan / chantier ────────────────────────────────────────────────
-  if(/fuite|plomb|plomberie|macon|maçon|electric|électric|chantier|réparation|reparation|réparer|reparer|dépannage|depannage|build|solaire|toiture|peinture|menuis|carrelage|soudure|climatisation|clim/.test(s)) add("build",3);
-  if(/artisan|technicien|interventi|bricolage|travaux/.test(s)) add("build",2);
-
-  // ── Réservation / table ───────────────────────────────────────────────
-  if(/resto|restaurant|table|manger|diner|dîner|dejeuner|déjeuner|réserver|reserver|reservation|réservation|creneau|créneau/.test(s)) add("resa",3);
-
-  // ── Emploi / travail ──────────────────────────────────────────────────
-  if(/emploi|travail|mission|job\b|recrut|candidat|cv\b|offre/.test(s)) add("jobs",3);
-
-  // ── NDIMBAL Express ───────────────────────────────────────────────────
-  if(/ndimbal|mission courte|livraison|document|coup de main|aide rapide|petit boulot|express/.test(s)) add("ndimbalExpress",3);
-
-  // ── Market / boutique / commerce ─────────────────────────────────────
-  if(/produit|boutique|acheter|achat|market\b|sac\b|chauss|mode\b|commerce/.test(s)){ add("market",2);add("commerce",1); }
-  if(/vendre|vente|annonce|publier/.test(s)){ add("market",1);add("reseau",2); }
-
-  // ── Exploration / sortie ──────────────────────────────────────────────
-  if(/sortie|visite|decouvr|explore|peche|pêche|loisir|plage|saly|petite cote|tour|tourisme|balade/.test(s)) add("explore",2);
-
-  // ── Réseau / présence ─────────────────────────────────────────────────
-  if(/annonce|publier|visibilite|reseau|fiche|qr|presence|profil/.test(s)) add("reseau",2);
-
-  // ── PAY / argent (dictée info, pas navigation) ────────────────────────
-  // On remonte la carte PAY comme info, jamais comme commande de navigation.
-  if(/payer|paiement|wave|orange money|preuve|argent|cash/.test(s)) add("pay",1);
-
-  // ── Audio / contenu ───────────────────────────────────────────────────
-  if(/audio|ecouter|écouter|vision|article|revue|podcast/.test(s)) add("audio",1);
-
-  // ── Fallback intelligent ──────────────────────────────────────────────
-  if(out.length===0){
-    if(lang==="wo") add("voix");
-    add("reseau");add("assist");
-  }
-
-  // Trier par score décroissant, retourner max 6
+  if(!s.trim()){add("voix");add("driver");add("loc");add("market");return out;}
+  // Note comptable : "depense", "frais", "gasoil", "facture", "ticket"
+  // Ne remonte pas la card PAY — c'est une dictée terrain, pas un accès paiement
+  const isPayNote=/depense|frais|gasoil|carburant|essence|facture|recu|journal|comptabi|ticket/.test(s);
+  // Courses
+  if(/liste de course|faire mes courses|mes courses|supermarch|auchan|carrefour|epicerie/.test(s)) add("market",3);
+  if(/riz|huile|lait|oeuf|eau|legumes|farine|beurre|fromage|sucre|sel|pain|poisson|viande|yaourt/.test(s)) add("market",2);
+  // Transport
+  if(/chauff|taxi|driver|trajet|aibd|aeroport|transport/.test(s)) add("driver",3);
+  if(/course(?!.*(riz|huile|lait|oeuf|farine|beurre|salade|legumes|semaine|supermarch|epicerie))/.test(s)) add("driver",2);
+  if(/vehicule|voiture|moto|amener/.test(s)) add("driver",1);
+  // Logement
+  if(/chambre|villa|logement|dormir|location|maison|appartement|hotel/.test(s)) add("loc",3);
+  if(/nuit|week.?end|sejour/.test(s)) add("loc",2);
+  // Artisan
+  if(/fuite|plomb|macon|electric|chantier|reparation|depannage|build|solaire|toiture|peinture|menuis|carrelage|clim/.test(s)) add("build",3);
+  if(/artisan|technicien|travaux/.test(s)) add("build",2);
+  // Résa
+  if(/resto|restaurant|table|manger|diner|dejeuner|reserver|reservation|creneau/.test(s)) add("resa",3);
+  // Emploi
+  if(/emploi|travail|mission|job|recrut|candidat|cv/.test(s)) add("jobs",3);
+  // NDIMBAL
+  if(/ndimbal|mission courte|livraison|coup de main|aide rapide|petit boulot|express/.test(s)) add("ndimbalExpress",3);
+  // Market
+  if(/produit|boutique|acheter|achat|market|sac|chauss|commerce/.test(s)){add("market",2);add("commerce",1);}
+  if(/vendre|vente|annonce|publier/.test(s)){add("market",1);add("reseau",2);}
+  // Exploration
+  if(/sortie|visite|decouvr|explore|peche|loisir|plage|saly|petite cote|tour|balade/.test(s)) add("explore",2);
+  // Réseau
+  if(/annonce|publier|visibilite|reseau|fiche|qr|presence|profil/.test(s)) add("reseau",2);
+  // PAY : SEULEMENT intention paiement explicite — jamais pour une note comptable
+  if(!isPayNote && /payer|paiement|wave|orange money|preuve|argent|cash|xaalis|fay/.test(s)) add("pay",2);
+  // Audio
+  if(/audio|ecouter|vision|article|revue|podcast/.test(s)) add("audio",1);
+  // Fallback
+  if(out.length===0){if(lang==="wo") add("voix");add("reseau");add("assist");}
   out.sort((a,b)=>(scores[b.id]||0)-(scores[a.id]||0));
   return out.slice(0,6);
 }
@@ -1501,29 +1462,25 @@ function detectZone(s){
   const MAP={
     "saly":"Saly","sally":"Saly","sali":"Saly",
     "mbour":"Mbour","mbuur":"Mbour",
-    "ngaparou":"Ngaparou","nga parou":"Ngaparou",
-    "pointe sarene":"Pointe Sarène","pointe sarène":"Pointe Sarène",
-    "nianing":"Nianing","joal":"Joal",
-    "toubab dialaw":"Toubab Dialaw",
+    "ngaparou":"Ngaparou","pointe sarene":"Pointe Sarène",
+    "nianing":"Nianing","joal":"Joal","toubab dialaw":"Toubab Dialaw",
     "petite cote":"Petite Côte","petite côte":"Petite Côte",
-    "dakar":"Dakar","plateau":"Dakar Plateau","almadies":"Almadies",
-    "thiès":"Thiès","thies":"Thiès","tivaouane":"Tivaouane",
+    "dakar":"Dakar","almadies":"Almadiès","plateau":"Dakar Plateau",
+    "thies":"Thiès","thiès":"Thiès","tivaouane":"Tivaouane",
     "touba":"Touba","kaolack":"Kaolack",
-    "aibd":"AIBD","aéroport":"AIBD","aeroport":"AIBD",
-    "sarlat":"Sarlat","dordogne":"Dordogne","périgueux":"Périgueux","perigueux":"Périgueux",
+    "aibd":"AIBD","aeroport":"AIBD",
+    "sarlat":"Sarlat","dordogne":"Dordogne","perigueux":"Périgueux",
     "arcachon":"Arcachon","bordeaux":"Bordeaux"
   };
-  for(const [key,val] of Object.entries(MAP)){
-    if(s.includes(key)) return val;
-  }
+  for(const [key,val] of Object.entries(MAP)){if(s.includes(key)) return val;}
   return "À préciser";
 }
 function detectWhen(s){
-  if(/aujourd|today|maintenant|urgent|urgence|ce soir|ce matin|tout de suite|asap|des que|des maintenant|\btey\b/.test(s)) return "Aujourd’hui / urgent";
+  if(/aujourd|today|maintenant|urgent|urgence|ce soir|ce matin|tout de suite|asap|des que|tey/.test(s)) return "Aujourd’hui / urgent";
   if(/demain/.test(s)) return "Demain";
   if(/cette semaine|pour la semaine|dans la semaine|en semaine/.test(s)) return "Cette semaine";
   if(/ce week.?end|samedi|dimanche|vendredi soir/.test(s)) return "Ce week-end";
-  if(/mois|prochain|dans (quelques|les prochains)/.test(s)) return "Prochainement";
+  if(/mois|prochain|dans quelques/.test(s)) return "Prochainement";
   return "À préciser";
 }
 
@@ -1574,6 +1531,7 @@ function wolofLineForNeed(need, zone){
   if(need==="Travail / mission") return `Wolof : Maa ngi seet liggéey walla mission${lieu}.`;
   if(need==="Mission courte / aide rapide") return `Wolof : Maa ngi seet walla dépose mission bu gàtt${lieu}.`;
   if(need==="Paiement / argent") return `Wolof : Maa bëgg wone walla topp sama xaalis${lieu}.`;
+  if(need==="Note de depense") return `Wolof : Maa ngi bind sama depense ci DIGIYLYFE${lieu}.`;
   return `Wolof : Maa bëgg DIGIYLYFE dimbali ma${lieu}.`;
 }
 function withWolofReassurance(msg, need, zone, lang){
@@ -1592,11 +1550,20 @@ function analyzeIntent(txt,list){
   // Priorité métier :
   // 1) Courses d'abord : "préparer" contient "répar" après normalisation, donc on évite la confusion avec réparation.
   // 2) Urgent/urgence reste un moment/priorité, pas une porte.
-  if(/liste de course|liste de courses|besoin de course|faire la course|faire mes courses|mes courses|courses pour|course pour|courses semaine|course semaine|pour la semaine|supermarch|super marché|auchan|carrefour|épicerie|epicerie|riz|huile|lait|œuf|oeuf|œufs|oeufs|eau|légumes|legumes|salade|farine|beurre|fromage|jambon|saucisson|couches|lessive/.test(s)){
+  // NOTE DE DEPENSE — PRIORITE ABSOLUE avant tous les autres modules
+  // "depense 7500 gasoil", "frais chantier", "facture client", "ticket essence"
+  // → note terrain, jamais une navigation PAY, jamais "Demande générale"
+  // normalize() a déjà stripé les accents : "dépense" → "depense"
+  const isPayNote=/depense|frais|gasoil|carburant|essence|facture|recu|\bticket\b|journal|comptabi/.test(s);
+  if(isPayNote){
+    need="Note de depense";
+    action="Retranscrire et enregistrer";
+    target={id:"note",name:"Note terrain",href:"#voice"};
+  } else if(/liste de course|liste de courses|besoin de course|faire la course|faire mes courses|mes courses|courses pour|course pour|courses semaine|course semaine|pour la semaine|supermarch|super march|auchan|carrefour|epicerie|riz|huile|lait|oeuf|eau|legumes|salade|farine|beurre|fromage|jambon|saucisson|couches|lessive/.test(s)){
     target={id:"courses",name:"Liste de courses DIGIY",href:"https://digiylyfe.com/"};
     need="Liste de courses";
     action="Préparer une liste de courses";
-  }else if(/fuite|artisan|plomb|plomberie|macon|maçon|electric|électric|chantier|réparation|reparation|réparer|reparer|dépannage|depannage|service|build|solaire|toiture|peinture|menuis/.test(s)){
+  }else if(/fuite|artisan|plomb|plomberie|macon|electric|chantier|reparation|depannage|build|solaire|toiture|peinture|menuis/.test(s)){
     target=PUB.find(x=>x.id==="build")||first;
     need="Artisan / intervention";
     action="Préparer une demande de service";
@@ -1624,10 +1591,11 @@ function analyzeIntent(txt,list){
     target=PUB.find(x=>x.id==="jobs")||first;
     need="Travail / mission";
     action="Voir les offres ou missions";
-  }else if(/payer|paiement|wave|orange money|preuve|argent|cash|pay/.test(s)){
+  }else if(/payer|paiement|wave|orange money|preuve|argent|cash|xaalis/.test(s)){
+    // isPayNote déjà géré plus haut — ici on est sûr que c'est une vraie demande paiement
     target=PUB.find(x=>x.id==="pay")||first;
     need="Paiement / argent";
-    action="Ouvrir PAY";
+    action="Voir PAY";
   }
 
   const zone=detectZone(s);
@@ -1636,38 +1604,24 @@ function analyzeIntent(txt,list){
   const missing=[];
   if(zone==="À préciser") missing.push("zone");
   if(when==="À préciser") missing.push("moment");
-  const precision = missing.length ? ` → Merci de préciser : ${missing.join(" et ")}.` : "";
-
-  // Indicateur de confiance : plus on a de signaux, plus on est sûr
-  const confidence = (zone!=="À préciser"?1:0)+(when!=="À préciser"?1:0)+(clean.length>20?1:0);
-  const confLabel = confidence>=2 ? "✅ Demande claire" : confidence===1 ? "⚠️ Demande partielle" : "❓ Demande à préciser";
-
+  const precision = missing.length ? " → Merci de préciser : "+missing.join(" et ")+"." : "";
+  const confidence=(zone!=="À préciser"?1:0)+(when!=="À préciser"?1:0)+(clean.length>20?1:0);
+  const confLabel=confidence>=2?"✅ Demande claire":confidence===1?"⚠️ Demande partielle":"❓ Demande à préciser";
   let msg="";
-  if(need==="Liste de courses"){
+  if(need==="Note de depense"){
+    msg=clean
+      ? withWolofReassurance("Bonjour, je viens depuis DIGIYLYFE.\n\nNote terrain\nZone : "+zone+"\nMoment : "+when+precision+"\n\nNote : "+clean,need,zone,lang)
+      : withWolofReassurance("Bonjour, je viens depuis DIGIYLYFE. Note terrain \u00e0 enregistrer.",need,zone,lang);
+  } else if(need==="Liste de courses"){
     const cleanForItems=lang==="wo" ? wolofToFr(clean)+" "+clean : clean;
     const items=detectGroceryItems(cleanForItems);
     const list=formatGroceryList(items);
     msg = clean
-      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE.
-
-${confLabel}
-Besoin : ${need}
-Zone : ${zone}
-Moment : ${when}${precision}
-Produits : ${list}
-
-Demande originale : ${clean}`, need, zone, lang)
+      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Liste de courses préparée. Zone : ${zone}. Moment : ${when}.${precision} Produits : ${list}. Demande originale : ${clean}`, need, zone, lang)
       : withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Je souhaite préparer une liste de courses.`, need, zone, lang);
   }else{
     msg = clean
-      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE.
-
-${confLabel}
-Besoin : ${need}
-Zone : ${zone}
-Moment : ${when}${precision}
-
-Demande : ${clean}`, need, zone, lang)
+      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Demande préparée. Besoin : ${need}. Zone : ${zone}. Moment : ${when}.${precision} Ma demande : ${clean}`, need, zone, lang)
       : withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Je souhaite être orienté vers la bonne porte.`, need, zone, lang);
   }
 
@@ -1717,11 +1671,12 @@ function renderResults(txt){
   const detectedLang=detectLang(txt);
   if(txt && txt.trim()){
     const lang2=detectLang(txt);
-    const hasZone=normalize(txt) && detectZone(normalize(txt))!=="À préciser";
-    const hasWhen=normalize(txt) && detectWhen(normalize(txt))!=="À préciser";
-    let statusMsg = lang2==="wo" ? "WOLOF DÉTECTÉ · " : "";
-    statusMsg += hasZone&&hasWhen ? "ACTION COMPLÈTE ✅" : hasZone||hasWhen ? "ACTION PRÉPARÉE · PRÉCISE LA DEMANDE" : "ACTION PRÉPARÉE";
-    status.textContent=statusMsg;
+    const sz=normalize(txt);
+    const hasZone=detectZone(sz)!=="À préciser";
+    const hasWhen=detectWhen(sz)!=="À préciser";
+    let sm=lang2==="wo"?"WOLOF DÉTECTÉ · ":"";
+    sm+=hasZone&&hasWhen?"ACTION COMPLÈTE ✅":hasZone||hasWhen?"ACTION PRÉPARÉE · PRÉCISE LA DEMANDE":"ACTION PRÉPARÉE";
+    status.textContent=sm;
   } else {
     status.textContent="PORTES RAPIDES";
   }
@@ -1773,63 +1728,39 @@ let pendingVoiceTimer=null;
 function voiceCommandIntent(txt){
   const s=normalize(txt||"").trim();
   if(!s) return null;
-
-  // ── DIGIY INTENT ROUTER v2.0 — garde obligatoire ─────────────────────
-  // Par défaut, la voix reste en dictée métier.
-  // La navigation requiert une commande explicite en début de phrase.
-  // "prépare une note pour la fiche pay client" → dictée, jamais PAY.
+  // Navigation seulement sur ordre explicite en debut de phrase
   const hasNavPrefix=
     /^(digiy\s+)?(ouvre|ouvrir|va\s+sur|retour|retourne|ferme|accueil|menu|qr|pro|esprit|vision|manifeste)\b/.test(s)||
     /^digiy\s+(pay|paiement|argent|wave)\b/.test(s);
   if(!hasNavPrefix) return null;
-  // ─────────────────────────────────────────────────────────────────────
-
-  // Confirme / annule : ces mots sont gérés par handleVoiceRouter, pas ici.
   if(/^(confirme|valide|oui|ok|go|vas\s*y|annule|stop|non)$/.test(s)) return null;
-
-  // ── PAY : destination explicite uniquement ────────────────────────────
-  // Accepté : "digiy ouvre pay", "ouvre pay", "va sur paiement", "digiy pay"
-  // Refusé  : "note de chantier argent client", "fiche pay mbour"
-  const isPayCommand=
+  // PAY : destination explicite seulement
+  const isPayCmd=
     /^(digiy\s+)?(ouvre|ouvrir|va\s+sur)\s+(pay|paiement|argent|wave)\b/.test(s)||
     /^digiy\s+(pay|paiement|argent|wave)\b/.test(s);
-  if(isPayCommand){
-    const target=PUB.find(x=>x.id==="pay")||PRO.find(x=>x.id==="propay");
-    return target?{kind:"nav",label:"PAY",href:target.href,sensitive:true}:null;
+  if(isPayCmd){
+    const t=PUB.find(x=>x.id==="pay")||PRO.find(x=>x.id==="propay");
+    return t?{kind:"nav",label:"PAY",href:t.href,sensitive:true}:null;
   }
-  // ─────────────────────────────────────────────────────────────────────
-
-  // ── Sheets (panneaux internes) ────────────────────────────────────────
-  if(/public|client|clients|fiche|fiches|porte|portes/.test(s))
-    return {kind:"sheet",label:"Portes publiques",sheet:"public",sensitive:false};
-  if(/\bpro\b|professionnel|abonne|abonnes|espace\s*pro/.test(s))
-    return {kind:"sheet",label:"Modules pro",sheet:"pro",sensitive:false};
-  if(/\bmenu\b/.test(s))
-    return {kind:"sheet",label:"Menu",sheet:"menu",sensitive:false};
-  if(/esprit|vision|manifeste|aigle/.test(s))
-    return {kind:"sheet",label:"Esprit DIGIY",sheet:"essence",sensitive:false};
-  if(/\bqr\b|q\s+r|partage|partager|envoyer|envoie/.test(s))
-    return {kind:"sheet",label:"QR partageable",sheet:"qr",sensitive:false};
-
-  // ── Retour voix ───────────────────────────────────────────────────────
-  if(/accueil|retour|reviens|voix|ecoute/.test(s))
-    return {kind:"voice",label:"Voix",sensitive:false};
-
-  // ── Navigation modules ────────────────────────────────────────────────
+  if(/public|client|fiche|porte/.test(s)) return {kind:"sheet",label:"Portes publiques",sheet:"public",sensitive:false};
+  if(/\bpro\b|professionnel|abonne|espace\s*pro/.test(s)) return {kind:"sheet",label:"Modules pro",sheet:"pro",sensitive:false};
+  if(/\bmenu\b/.test(s)) return {kind:"sheet",label:"Menu",sheet:"menu",sensitive:false};
+  if(/esprit|vision|manifeste|aigle/.test(s)) return {kind:"sheet",label:"Esprit DIGIY",sheet:"essence",sensitive:false};
+  if(/\bqr\b|q\s+r|partage|envoyer|envoie/.test(s)) return {kind:"sheet",label:"QR partageable",sheet:"qr",sensitive:false};
+  if(/accueil|retour|reviens|voix|ecoute/.test(s)) return {kind:"voice",label:"Voix",sensitive:false};
   let target=null;
   if(/hub|maison/.test(s))                                               target=MAIN.find(x=>/hub/i.test(x.name));
   else if(/tarif|prix|activation/.test(s))                               target=MAIN.find(x=>/tarifs/i.test(x.name));
   else if(/chauffeur|driver|taxi|aibd|aeroport/.test(s))                 target=PUB.find(x=>x.id==="driver");
-  else if(/artisan|build|chantier|plomb|macon|maçon|electric|solaire/.test(s)) target=PUB.find(x=>x.id==="build");
-  else if(/logement|location|chambre|villa|loc\b/.test(s))               target=PUB.find(x=>x.id==="loc");
-  else if(/resto|table|reservation|resa|réserve|reserve/.test(s))        target=PUB.find(x=>x.id==="resa");
+  else if(/artisan|build|chantier|plomb|macon|electric|solaire/.test(s)) target=PUB.find(x=>x.id==="build");
+  else if(/logement|location|chambre|villa|\bloc\b/.test(s))           target=PUB.find(x=>x.id==="loc");
+  else if(/resto|table|reservation|resa|reserve/.test(s))                target=PUB.find(x=>x.id==="resa");
   else if(/market|boutique|produit|commerce/.test(s))                    target=PUB.find(x=>x.id==="market")||PUB.find(x=>x.id==="commerce");
-  else if(/\bjob\b|emploi|travail|mission/.test(s))                      target=PUB.find(x=>x.id==="jobs");
+  else if(/\bjob\b|emploi|travail|mission/.test(s))                    target=PUB.find(x=>x.id==="jobs");
   else if(/ndimbal|express/.test(s))                                     target=PUB.find(x=>x.id==="ndimbalExpress");
-  else if(/reseau|réseau|annonce/.test(s))                               target=PUB.find(x=>x.id==="reseau");
+  else if(/reseau|annonce/.test(s))                                      target=PUB.find(x=>x.id==="reseau");
   else if(/explore|sortie|decouvr|territoire/.test(s))                   target=PUB.find(x=>x.id==="explore");
   else if(/audio|ecouter|vision|revue/.test(s))                          target=PUB.find(x=>x.id==="audio");
-
   if(target) return {kind:"nav",label:target.name,href:target.href,sensitive:false};
   return null;
 }
@@ -2090,6 +2021,294 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
