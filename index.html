@@ -1379,16 +1379,17 @@ function detectLang(txt){
 const WOLOF_TO_FR={
   "ceeb":"riz","diwlin":"huile","nen":"oeuf","farin":"farine",
   "chauffeur":"chauffeur","yobbu":"transport","taxu":"taxi",
-  "ker":"maison","neeg":"chambre",
-  "liggey":"travail","ndimbal":"ndimbal",
+  "kër":"maison","ker":"maison","néeg":"chambre","neeg":"chambre",
+  "liggey":"travail","liggéey":"travail","ndimbal":"ndimbal",
   "xaalis":"argent","fay":"payer","wone":"paiement",
   "bind":"réserver","jend":"acheter","jaay":"vendre","boutik":"boutique",
-  "sali":"saly","mbuur":"mbour"
+  "sali":"saly","mbuur":"mbour","bëgg":"vouloir"
 };
 function wolofToFr(txt){
   let out=(txt||"").toLowerCase();
   Object.entries(WOLOF_TO_FR).forEach(([wo,fr])=>{
-    out=out.replace(new RegExp("\\b"+wo+"\\b","gi"),fr);
+    const escaped=wo.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+    out=out.replace(new RegExp("(^|[\\s,;:!?])"+escaped+"([\\s,;:!?]|$)","gi"),"$1"+fr+"$2");
   });
   return out;
 }
@@ -1557,7 +1558,8 @@ function analyzeIntent(txt,list){
   const precision = missing.length ? ` Infos à préciser : ${missing.join(" et ")}.` : "";
   let msg="";
   if(need==="Liste de courses"){
-    const items=detectGroceryItems(clean);
+    const cleanForItems=lang==="wo" ? wolofToFr(clean)+" "+clean : clean;
+    const items=detectGroceryItems(cleanForItems);
     const list=formatGroceryList(items);
     msg = clean
       ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Liste de courses préparée. Zone : ${zone}. Moment : ${when}.${precision} Produits : ${list}. Demande originale : ${clean}`, need, zone, lang)
@@ -1798,6 +1800,21 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
