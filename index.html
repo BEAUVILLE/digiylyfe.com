@@ -10,7 +10,7 @@
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
-<meta name="digiy-action-preparee" content="v1-9-wolof-detection-bilingue-20260609"/>
+<meta name="digiy-action-preparee" content="v2-0-moteur-boost-intent-router-20260609"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -1372,18 +1372,39 @@ function normalize(s){
 }
 
 // ── V1.9 : détection langue + bridge Wolof→FR ──────────────────────────────
-const WOLOF_MARKERS=/\b(maa|dama|bëgg|ngi|seet|waajal|xam|yobbu|dimbali|topp|liggey|jend|nanu|def|nanga|tey|bii|rekk|xaalis|jaay|ndimbal|bind|ame|nekk|wone|kër|bayi|dugg|gis|wax|toog|xaar|ceeb|nen|farin|diwlin|sali|mbuur)\b/i;
+const WOLOF_MARKERS=/\b(maa|dama|bëgg|ngi|seet|waajal|xam|yobbu|dimbali|topp|liggey|liggéey|jend|nanu|def|nanga|tey|bii|rekk|xaalis|jaay|ndimbal|bind|ame|nekk|wone|kër|ker|bayi|dugg|gis|wax|toog|xaar|ceeb|nen|farin|diwlin|sali|mbuur|neeg|néeg|taxu|fay|boutik|galerie|gàtt|nguir|ak|ci|bu|bi)\b/i;
 function detectLang(txt){
   return WOLOF_MARKERS.test(txt||"") ? "wo" : "fr";
 }
 const WOLOF_TO_FR={
+  // Alimentation
   "ceeb":"riz","diwlin":"huile","nen":"oeuf","farin":"farine",
+  "jën":"poisson","jen":"poisson","yapp":"viande","mburu":"pain",
+  "suukër":"sucre","sukër":"sucre","suker":"sucre",
+  "xorom":"sel","añ":"eau","an":"eau",
+  "pomm":"pomme","kàlóŋ":"orange",
+  // Transport & terrain
   "chauffeur":"chauffeur","yobbu":"transport","taxu":"taxi",
+  "dem":"aller","deme":"aller","jëm":"aller",
+  "reer":"rentrer","aibd":"aibd",
+  // Logement
   "kër":"maison","ker":"maison","néeg":"chambre","neeg":"chambre",
+  "villa":"villa","mbedd":"quartier",
+  // Travail
   "liggey":"travail","liggéey":"travail","ndimbal":"ndimbal",
-  "xaalis":"argent","fay":"payer","wone":"paiement",
+  "mission":"mission","gàtt":"court","nguir":"pour",
+  // Argent
+  "xaalis":"argent","fay":"payer","wone":"paiement","waññi":"retirer",
+  // Commerce & marché
   "bind":"réserver","jend":"acheter","jaay":"vendre","boutik":"boutique",
-  "sali":"saly","mbuur":"mbour","bëgg":"vouloir"
+  "marché":"marché","néeg likk":"boutique",
+  // Lieux Petite Côte
+  "sali":"saly","mbuur":"mbour","ngaparou":"ngaparou","pointe sarene":"pointe sarene",
+  "toubab dialaw":"toubab dialaw","joal":"joal","nianing":"nianing",
+  // Métiers artisan
+  "bâtiment":"bâtiment","plomberie":"plomberie",
+  // Émotions / intention
+  "bëgg":"vouloir","seet":"chercher","xam":"savoir","def":"faire","dimbali":"aider"
 };
 function wolofToFr(txt){
   let out=(txt||"").toLowerCase();
@@ -1398,26 +1419,70 @@ function pickCards(txt){
   const raw=lang==="wo" ? wolofToFr(txt)+" "+txt : txt;
   const s=normalize(raw);
   const out=[];
-  function add(id){const found=PUB.find(x=>x.id===id); if(found && !out.some(x=>x.id===id)) out.push(found);}
+  const scores={};
+  function add(id,pts){
+    pts=pts||1;
+    scores[id]=(scores[id]||0)+pts;
+    const found=PUB.find(x=>x.id===id);
+    if(found && !out.some(x=>x.id===id)) out.push(found);
+  }
+
   if(!s.trim()){
     add("voix");add("driver");add("loc");add("market");
     return out;
   }
-  if(/liste de course|liste de courses|besoin de course|faire la course|faire mes courses|mes courses|courses pour|course pour|courses semaine|course semaine|pour la semaine|supermarch|super marché|auchan|carrefour|épicerie|epicerie|riz|huile|lait|œuf|oeuf|œufs|oeufs|eau|légumes|legumes|salade|farine|beurre|fromage|jambon|saucisson|couches|lessive/.test(s)) add("market");
-  if(/chauff|taxi|driver|trajet|aibd|aeroport|condui|voiture|transport|(\bcourse\b(?!.*(riz|huile|lait|œuf|oeuf|farine|beurre|salade|légumes|legumes|semaine|supermarch|épicerie|epicerie)))/.test(s)) add("driver");
-  if(/sortie|visite|decouvr|explore|peche|idee|loisir|plage|saly|petite cote|tour/.test(s)) add("explore");
-  if(/resto|restaurant|table|manger|diner|dejeuner|reserver|reservation|creneau/.test(s)) add("resa");
-  if(/chambre|villa|logement|dormir|location|maison|appartement|hotel|week/.test(s)) add("loc");
-  if(/fuite|artisan|plomb|plomberie|macon|maçon|electric|électric|chantier|réparation|reparation|réparer|reparer|dépannage|depannage|service|build|solaire/.test(s)) add("build");
-  if(/produit|boutique|acheter|achat|market|sac|chauss|mode|commerce|vendre/.test(s)){add("market");add("commerce");}
-  // Priorité métier : une urgence ne choisit pas NDIMBAL toute seule.
-  if(/fuite|artisan|plomb|plomberie|macon|maçon|electric|électric|chantier|réparation|reparation|réparer|reparer|dépannage|depannage|service|build|solaire|toiture|peinture|menuis/.test(s)) add("build");
-  if(/ndimbal|mission courte|livraison|document|coup de main|aide rapide|petit boulot|express/.test(s)) add("ndimbalExpress");
-  if(/emploi|travail|mission|job|recrut|candidat|cv/.test(s)) add("jobs");
-  if(/payer|paiement|wave|orange money|preuve|argent|cash|pay/.test(s)) add("pay");
-  if(/annonce|publier|visibilite|reseau|fiche|qr|presence/.test(s)) add("reseau");
-  if(/audio|ecouter|vision|article|revue/.test(s)) add("audio");
-  if(out.length===0){add("voix");add("reseau");add("assist");}
+
+  // ── Courses / alimentation ────────────────────────────────────────────
+  if(/liste de course|liste de courses|besoin de course|faire la course|faire mes courses|mes courses|courses pour|course pour|courses semaine|course semaine|pour la semaine|supermarch|super march|auchan|carrefour|epiceire|epicerie/.test(s)) add("market",3);
+  if(/\briz\b|huile|lait|œuf|oeuf|eau\b|légumes|legumes|salade|farine|beurre|fromage|jambon|saucisson|couches|lessive|sucre|sel\b|pain\b|poisson|viande|yaourt|café|cafe|thé\b/.test(s)) add("market",2);
+
+  // ── Transport / chauffeur ─────────────────────────────────────────────
+  if(/chauff|taxi|driver|trajet|aibd|aeroport|aéroport|transport/.test(s)) add("driver",3);
+  if(/course\b(?!.*(riz|huile|lait|œuf|oeuf|farine|beurre|salade|légumes|legumes|semaine|supermarch|epicerie))/.test(s)) add("driver",2);
+  if(/véhicule|voiture|moto|conduire|aller à|aller au|amener/.test(s)) add("driver",1);
+
+  // ── Logement / location ───────────────────────────────────────────────
+  if(/chambre|villa|logement|dormir|location|maison|appartement|hotel|hôtel|hébergement/.test(s)) add("loc",3);
+  if(/nuit|nuits|week.?end|séjour|sejour/.test(s)) add("loc",2);
+
+  // ── Artisan / chantier ────────────────────────────────────────────────
+  if(/fuite|plomb|plomberie|macon|maçon|electric|électric|chantier|réparation|reparation|réparer|reparer|dépannage|depannage|build|solaire|toiture|peinture|menuis|carrelage|soudure|climatisation|clim/.test(s)) add("build",3);
+  if(/artisan|technicien|interventi|bricolage|travaux/.test(s)) add("build",2);
+
+  // ── Réservation / table ───────────────────────────────────────────────
+  if(/resto|restaurant|table|manger|diner|dîner|dejeuner|déjeuner|réserver|reserver|reservation|réservation|creneau|créneau/.test(s)) add("resa",3);
+
+  // ── Emploi / travail ──────────────────────────────────────────────────
+  if(/emploi|travail|mission|job\b|recrut|candidat|cv\b|offre/.test(s)) add("jobs",3);
+
+  // ── NDIMBAL Express ───────────────────────────────────────────────────
+  if(/ndimbal|mission courte|livraison|document|coup de main|aide rapide|petit boulot|express/.test(s)) add("ndimbalExpress",3);
+
+  // ── Market / boutique / commerce ─────────────────────────────────────
+  if(/produit|boutique|acheter|achat|market\b|sac\b|chauss|mode\b|commerce/.test(s)){ add("market",2);add("commerce",1); }
+  if(/vendre|vente|annonce|publier/.test(s)){ add("market",1);add("reseau",2); }
+
+  // ── Exploration / sortie ──────────────────────────────────────────────
+  if(/sortie|visite|decouvr|explore|peche|pêche|loisir|plage|saly|petite cote|tour|tourisme|balade/.test(s)) add("explore",2);
+
+  // ── Réseau / présence ─────────────────────────────────────────────────
+  if(/annonce|publier|visibilite|reseau|fiche|qr|presence|profil/.test(s)) add("reseau",2);
+
+  // ── PAY / argent (dictée info, pas navigation) ────────────────────────
+  // On remonte la carte PAY comme info, jamais comme commande de navigation.
+  if(/payer|paiement|wave|orange money|preuve|argent|cash/.test(s)) add("pay",1);
+
+  // ── Audio / contenu ───────────────────────────────────────────────────
+  if(/audio|ecouter|écouter|vision|article|revue|podcast/.test(s)) add("audio",1);
+
+  // ── Fallback intelligent ──────────────────────────────────────────────
+  if(out.length===0){
+    if(lang==="wo") add("voix");
+    add("reseau");add("assist");
+  }
+
+  // Trier par score décroissant, retourner max 6
+  out.sort((a,b)=>(scores[b.id]||0)-(scores[a.id]||0));
   return out.slice(0,6);
 }
 
@@ -1433,16 +1498,32 @@ const preparedAction=$("#preparedAction"),
       preparedEdit=$("#preparedEdit");
 
 function detectZone(s){
-  const zones=["saly","sally","mbour","dakar","thiès","thies","touba","aibd","petite cote","sarlat","arcachon"];
-  const found=zones.find(z=>s.includes(z));
-  if(!found) return "À préciser";
-  return found.replace("thies","Thiès").replace("thiès","Thiès").replace("sally","Saly").replace("saly","Saly").replace("mbour","Mbour").replace("dakar","Dakar").replace("touba","Touba").replace("aibd","AIBD").replace("petite cote","Petite Côte").replace("sarlat","Sarlat").replace("arcachon","Arcachon");
+  const MAP={
+    "saly":"Saly","sally":"Saly","sali":"Saly",
+    "mbour":"Mbour","mbuur":"Mbour",
+    "ngaparou":"Ngaparou","nga parou":"Ngaparou",
+    "pointe sarene":"Pointe Sarène","pointe sarène":"Pointe Sarène",
+    "nianing":"Nianing","joal":"Joal",
+    "toubab dialaw":"Toubab Dialaw",
+    "petite cote":"Petite Côte","petite côte":"Petite Côte",
+    "dakar":"Dakar","plateau":"Dakar Plateau","almadies":"Almadies",
+    "thiès":"Thiès","thies":"Thiès","tivaouane":"Tivaouane",
+    "touba":"Touba","kaolack":"Kaolack",
+    "aibd":"AIBD","aéroport":"AIBD","aeroport":"AIBD",
+    "sarlat":"Sarlat","dordogne":"Dordogne","périgueux":"Périgueux","perigueux":"Périgueux",
+    "arcachon":"Arcachon","bordeaux":"Bordeaux"
+  };
+  for(const [key,val] of Object.entries(MAP)){
+    if(s.includes(key)) return val;
+  }
+  return "À préciser";
 }
 function detectWhen(s){
-  if(/aujourd|today|maintenant|urgent|urgence|ce soir|ce matin/.test(s)) return "Aujourd’hui / urgent";
+  if(/aujourd|today|maintenant|urgent|urgence|ce soir|ce matin|tout de suite|asap|des que|des maintenant|\btey\b/.test(s)) return "Aujourd’hui / urgent";
   if(/demain/.test(s)) return "Demain";
-  if(/semaine|pour la semaine/.test(s)) return "Cette semaine";
-  if(/week|samedi|dimanche/.test(s)) return "Ce week-end";
+  if(/cette semaine|pour la semaine|dans la semaine|en semaine/.test(s)) return "Cette semaine";
+  if(/ce week.?end|samedi|dimanche|vendredi soir/.test(s)) return "Ce week-end";
+  if(/mois|prochain|dans (quelques|les prochains)/.test(s)) return "Prochainement";
   return "À préciser";
 }
 
@@ -1555,22 +1636,42 @@ function analyzeIntent(txt,list){
   const missing=[];
   if(zone==="À préciser") missing.push("zone");
   if(when==="À préciser") missing.push("moment");
-  const precision = missing.length ? ` Infos à préciser : ${missing.join(" et ")}.` : "";
+  const precision = missing.length ? ` → Merci de préciser : ${missing.join(" et ")}.` : "";
+
+  // Indicateur de confiance : plus on a de signaux, plus on est sûr
+  const confidence = (zone!=="À préciser"?1:0)+(when!=="À préciser"?1:0)+(clean.length>20?1:0);
+  const confLabel = confidence>=2 ? "✅ Demande claire" : confidence===1 ? "⚠️ Demande partielle" : "❓ Demande à préciser";
+
   let msg="";
   if(need==="Liste de courses"){
     const cleanForItems=lang==="wo" ? wolofToFr(clean)+" "+clean : clean;
     const items=detectGroceryItems(cleanForItems);
     const list=formatGroceryList(items);
     msg = clean
-      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Liste de courses préparée. Zone : ${zone}. Moment : ${when}.${precision} Produits : ${list}. Demande originale : ${clean}`, need, zone, lang)
+      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE.
+
+${confLabel}
+Besoin : ${need}
+Zone : ${zone}
+Moment : ${when}${precision}
+Produits : ${list}
+
+Demande originale : ${clean}`, need, zone, lang)
       : withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Je souhaite préparer une liste de courses.`, need, zone, lang);
   }else{
     msg = clean
-      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Demande préparée. Besoin : ${need}. Zone : ${zone}. Moment : ${when}.${precision} Ma demande : ${clean}`, need, zone, lang)
+      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE.
+
+${confLabel}
+Besoin : ${need}
+Zone : ${zone}
+Moment : ${when}${precision}
+
+Demande : ${clean}`, need, zone, lang)
       : withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Je souhaite être orienté vers la bonne porte.`, need, zone, lang);
   }
 
-  return {need, zone, when, door:target.name, href:target.href, action, msg};
+  return {need, zone, when, door:target.name, href:target.href, action, msg, confidence:confLabel};
 }
 function renderPreparedAction(txt,list){
   if(!txt || !txt.trim()){
@@ -1578,7 +1679,7 @@ function renderPreparedAction(txt,list){
     return;
   }
   const a=analyzeIntent(txt,list);
-  preparedTitle.textContent="DIGIY a préparé une demande : "+a.need;
+  preparedTitle.textContent=(a.confidence?" "+a.confidence+" · ":"")+a.need;
   preparedNeed.textContent=a.need;
   preparedZone.textContent=a.zone;
   preparedWhen.textContent=a.when;
@@ -1614,7 +1715,16 @@ function renderResults(txt){
   results.classList.add("open");
   renderPreparedAction(txt,list);
   const detectedLang=detectLang(txt);
-  status.textContent=txt && txt.trim() ? (detectedLang==="wo" ? "WOLOF DÉTECTÉ · ACTION PRÉPARÉE" : "ACTION PRÉPARÉE") : "PORTES RAPIDES";
+  if(txt && txt.trim()){
+    const lang2=detectLang(txt);
+    const hasZone=normalize(txt) && detectZone(normalize(txt))!=="À préciser";
+    const hasWhen=normalize(txt) && detectWhen(normalize(txt))!=="À préciser";
+    let statusMsg = lang2==="wo" ? "WOLOF DÉTECTÉ · " : "";
+    statusMsg += hasZone&&hasWhen ? "ACTION COMPLÈTE ✅" : hasZone||hasWhen ? "ACTION PRÉPARÉE · PRÉCISE LA DEMANDE" : "ACTION PRÉPARÉE";
+    status.textContent=statusMsg;
+  } else {
+    status.textContent="PORTES RAPIDES";
+  }
 }
 function runSearch(){
   renderResults(q.value);
@@ -1655,6 +1765,175 @@ document.querySelectorAll(".ex").forEach(btn=>btn.addEventListener("click",()=>{
 
 const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
 let rec=null, listening=false;
+
+/* ══ DIGIY VOICE INTENT ROUTER — dictée par défaut, commande seulement si ordre clair ══ */
+let pendingVoiceCommand=null;
+let pendingVoiceTimer=null;
+
+function voiceCommandIntent(txt){
+  const s=normalize(txt||"").trim();
+  if(!s) return null;
+
+  // ── DIGIY INTENT ROUTER v2.0 — garde obligatoire ─────────────────────
+  // Par défaut, la voix reste en dictée métier.
+  // La navigation requiert une commande explicite en début de phrase.
+  // "prépare une note pour la fiche pay client" → dictée, jamais PAY.
+  const hasNavPrefix=
+    /^(digiy\s+)?(ouvre|ouvrir|va\s+sur|retour|retourne|ferme|accueil|menu|qr|pro|esprit|vision|manifeste)\b/.test(s)||
+    /^digiy\s+(pay|paiement|argent|wave)\b/.test(s);
+  if(!hasNavPrefix) return null;
+  // ─────────────────────────────────────────────────────────────────────
+
+  // Confirme / annule : ces mots sont gérés par handleVoiceRouter, pas ici.
+  if(/^(confirme|valide|oui|ok|go|vas\s*y|annule|stop|non)$/.test(s)) return null;
+
+  // ── PAY : destination explicite uniquement ────────────────────────────
+  // Accepté : "digiy ouvre pay", "ouvre pay", "va sur paiement", "digiy pay"
+  // Refusé  : "note de chantier argent client", "fiche pay mbour"
+  const isPayCommand=
+    /^(digiy\s+)?(ouvre|ouvrir|va\s+sur)\s+(pay|paiement|argent|wave)\b/.test(s)||
+    /^digiy\s+(pay|paiement|argent|wave)\b/.test(s);
+  if(isPayCommand){
+    const target=PUB.find(x=>x.id==="pay")||PRO.find(x=>x.id==="propay");
+    return target?{kind:"nav",label:"PAY",href:target.href,sensitive:true}:null;
+  }
+  // ─────────────────────────────────────────────────────────────────────
+
+  // ── Sheets (panneaux internes) ────────────────────────────────────────
+  if(/public|client|clients|fiche|fiches|porte|portes/.test(s))
+    return {kind:"sheet",label:"Portes publiques",sheet:"public",sensitive:false};
+  if(/\bpro\b|professionnel|abonne|abonnes|espace\s*pro/.test(s))
+    return {kind:"sheet",label:"Modules pro",sheet:"pro",sensitive:false};
+  if(/\bmenu\b/.test(s))
+    return {kind:"sheet",label:"Menu",sheet:"menu",sensitive:false};
+  if(/esprit|vision|manifeste|aigle/.test(s))
+    return {kind:"sheet",label:"Esprit DIGIY",sheet:"essence",sensitive:false};
+  if(/\bqr\b|q\s+r|partage|partager|envoyer|envoie/.test(s))
+    return {kind:"sheet",label:"QR partageable",sheet:"qr",sensitive:false};
+
+  // ── Retour voix ───────────────────────────────────────────────────────
+  if(/accueil|retour|reviens|voix|ecoute/.test(s))
+    return {kind:"voice",label:"Voix",sensitive:false};
+
+  // ── Navigation modules ────────────────────────────────────────────────
+  let target=null;
+  if(/hub|maison/.test(s))                                               target=MAIN.find(x=>/hub/i.test(x.name));
+  else if(/tarif|prix|activation/.test(s))                               target=MAIN.find(x=>/tarifs/i.test(x.name));
+  else if(/chauffeur|driver|taxi|aibd|aeroport/.test(s))                 target=PUB.find(x=>x.id==="driver");
+  else if(/artisan|build|chantier|plomb|macon|maçon|electric|solaire/.test(s)) target=PUB.find(x=>x.id==="build");
+  else if(/logement|location|chambre|villa|loc\b/.test(s))               target=PUB.find(x=>x.id==="loc");
+  else if(/resto|table|reservation|resa|réserve|reserve/.test(s))        target=PUB.find(x=>x.id==="resa");
+  else if(/market|boutique|produit|commerce/.test(s))                    target=PUB.find(x=>x.id==="market")||PUB.find(x=>x.id==="commerce");
+  else if(/\bjob\b|emploi|travail|mission/.test(s))                      target=PUB.find(x=>x.id==="jobs");
+  else if(/ndimbal|express/.test(s))                                     target=PUB.find(x=>x.id==="ndimbalExpress");
+  else if(/reseau|réseau|annonce/.test(s))                               target=PUB.find(x=>x.id==="reseau");
+  else if(/explore|sortie|decouvr|territoire/.test(s))                   target=PUB.find(x=>x.id==="explore");
+  else if(/audio|ecouter|vision|revue/.test(s))                          target=PUB.find(x=>x.id==="audio");
+
+  if(target) return {kind:"nav",label:target.name,href:target.href,sensitive:false};
+  return null;
+}
+
+function clearPendingVoiceCommand(msg){
+  pendingVoiceCommand=null;
+  clearTimeout(pendingVoiceTimer);
+  pendingVoiceTimer=null;
+  if(msg) status.textContent=msg;
+}
+
+function askVoiceCommandConfirm(intent){
+  pendingVoiceCommand=intent;
+  clearTimeout(pendingVoiceTimer);
+
+  const msg=intent.sensitive
+    ? "COMMANDE SENSIBLE : "+intent.label+" · DIS CONFIRME POUR OUVRIR"
+    : "COMMANDE VOCALE : "+intent.label+" · DIS CONFIRME";
+
+  status.textContent=msg;
+  if(preparedAction){
+    preparedTitle.textContent="Commande vocale détectée : "+intent.label;
+    preparedNeed.textContent="Navigation";
+    preparedZone.textContent="—";
+    preparedWhen.textContent="Maintenant";
+    preparedDoor.textContent=intent.label;
+    preparedMessage.textContent=intent.sensitive
+      ? "DIGIY a reconnu une porte sensible. Le pro doit confirmer avant ouverture."
+      : "DIGIY a reconnu une commande claire. Confirme pour ouvrir, ou dis annule.";
+    preparedContinue.removeAttribute("target");
+    preparedContinue.href="#";
+    preparedContinue.textContent="✅ Confirmer";
+    preparedWhatsapp.href="#";
+    preparedWhatsapp.textContent="↩️ Annuler";
+    preparedAction.classList.add("open");
+  }
+
+  pendingVoiceTimer=setTimeout(()=>{
+    clearPendingVoiceCommand("COMMANDE EXPIRÉE · LA DICTÉE RESTE ACTIVE");
+  },9000);
+}
+
+function executeVoiceCommand(intent){
+  clearPendingVoiceCommand();
+  closeSheets();
+
+  if(intent.kind==="sheet"){
+    openSheet(intent.sheet);
+    status.textContent="OUVERT : "+intent.label;
+    return true;
+  }
+  if(intent.kind==="voice"){
+    status.textContent="RETOUR À LA VOIX";
+    q.focus();
+    try{q.scrollIntoView({behavior:"smooth",block:"center"});}catch(e){}
+    return true;
+  }
+  if(intent.kind==="nav" && intent.href){
+    status.textContent="OUVERTURE : "+intent.label;
+    window.location.href=intent.href;
+    return true;
+  }
+  return false;
+}
+
+function handleVoiceRouter(txt,isFinal){
+  const s=normalize(txt).trim();
+  if(!s) return false;
+
+  if(pendingVoiceCommand){
+    if(/^(annule|annuler|stop|non|retour)$/.test(s)){
+      clearPendingVoiceCommand("COMMANDE ANNULÉE · DICTÉE ACTIVE");
+      return true;
+    }
+    if(/^(confirme|valide|oui|ok|go|vas y)$/.test(s)){
+      return executeVoiceCommand(pendingVoiceCommand);
+    }
+  }
+
+  if(!isFinal) return false;
+
+  const intent=voiceCommandIntent(txt);
+  if(!intent) return false;
+
+  askVoiceCommandConfirm(intent);
+  return true;
+}
+
+if(preparedContinue){
+  preparedContinue.addEventListener("click",e=>{
+    if(!pendingVoiceCommand) return;
+    e.preventDefault();
+    executeVoiceCommand(pendingVoiceCommand);
+  });
+}
+if(preparedWhatsapp){
+  preparedWhatsapp.addEventListener("click",e=>{
+    if(!pendingVoiceCommand) return;
+    e.preventDefault();
+    clearPendingVoiceCommand("COMMANDE ANNULÉE · DICTÉE ACTIVE");
+    if(preparedAction) preparedAction.classList.remove("open");
+  });
+}
+
 function setupRecognition(){
   if(!SpeechRecognition) return null;
   const r=new SpeechRecognition();
@@ -1680,8 +1959,19 @@ function setupRecognition(){
       if(event.results[i].isFinal) finalText+=t;
       else interim+=t;
     }
-    q.value=(finalText||interim||q.value).trim();
-    if(q.value.length>2) renderResults(q.value);
+
+    const heard=(finalText||interim||"").trim();
+    const isFinal=!!finalText.trim();
+    if(!heard) return;
+
+    // Le routeur vocal passe avant la dictée, mais seulement pour les ordres clairs.
+    if(handleVoiceRouter(heard,isFinal)) return;
+
+    // Par défaut : la voix reste une dictée métier normale.
+    if(!pendingVoiceCommand){
+      q.value=heard;
+      if(q.value.length>2) renderResults(q.value);
+    }
   };
   return r;
 }
@@ -1800,6 +2090,294 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
