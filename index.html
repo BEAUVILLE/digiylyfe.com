@@ -10,7 +10,7 @@
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
-<meta name="digiy-action-preparee" content="v1-6-course-singulier-courses-produits-20260609"/>
+<meta name="digiy-action-preparee" content="v1-8-fr-wolof-message-rassurance-20260609"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -1108,10 +1108,10 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
           <button class="ex" type="button" data-q="Je cherche une chambre à Saly pour ce week-end">🏠 Je cherche une chambre à Saly<small>Wolof : Maa ngi seet chambre ci Saly</small></button>
           <button class="ex" type="button" data-q="Je veux réserver une table ce soir">🍽️ Je veux réserver une table ce soir<small>Wolof : Dama bëgg réserver table tey ci guddi</small></button>
           <button class="ex" type="button" data-q="J’ai une fuite dans la salle de bain">🏗️ J’ai une fuite dans la salle de bain<small>Wolof : Ndox mi dafa daw ci salle de bain</small></button>
-          <button class="ex" type="button" data-q="Je cherche un produit dans une boutique">🛍️ Je cherche un produit dans une boutique<small>Wolof : Maa ngi seet produit ci boutique</small></button>
-          <button class="ex" type="button" data-q="Je veux préparer une liste de courses pour la semaine à Saly : riz, huile, lait, œufs, eau, légumes">🛒 Je prépare une liste de courses<small>Wolof : Maa bëgg waajal sama liste courses</small></button>
-          <button class="ex" type="button" data-q="Je cherche un travail ou une mission">💼 Je cherche un travail ou une mission<small>Wolof : Maa ngi seet liggéey walla mission</small></button>
-          <button class="ex" type="button" data-q="Je cherche une mission courte NDIMBAL Express à Saly">⚡ Je cherche une mission courte NDIMBAL Express<small>Wolof : Maa ngi seet mission bu gàtt ci NDIMBAL Express</small></button>
+          <button class="ex" type="button" data-q="Je cherche un produit dans une boutique">🛍️ FR : Je cherche un produit dans une boutique<small>Wolof : Maa bëgg seet produit ci boutique</small></button>
+          <button class="ex" type="button" data-q="Je veux préparer une liste de courses pour la semaine à Saly : riz, huile, lait, œufs, eau, légumes">🛒 FR : Je prépare une liste de courses<small>Wolof : Maa bëgg waajal sama liste courses</small></button>
+          <button class="ex" type="button" data-q="Je cherche un travail ou une mission">💼 FR : Je cherche un travail ou une mission<small>Wolof : Maa ngi seet liggéey walla mission</small></button>
+          <button class="ex" type="button" data-q="Je cherche une mission courte NDIMBAL Express à Saly">⚡ FR : Je cherche une mission courte NDIMBAL Express<small>Wolof : Maa ngi seet mission bu gàtt ci NDIMBAL Express</small></button>
           <button class="ex" type="button" data-q="Je veux publier une annonce dans le réseau">📣 Je veux publier une annonce<small>Wolof : Dama bëgg yégle sama annonce ci réseau bi</small></button>
         </div>
 
@@ -1374,7 +1374,7 @@ function pickCards(txt){
     add("voix");add("driver");add("loc");add("market");
     return out;
   }
-  if(/liste de course|liste de courses|besoin de course|faire la course|faire mes courses|mes courses|courses pour|course pour|courses semaine|course semaine|pour la semaine|supermarch|super marché|auchan|carrefour|épicerie|epicerie|riz|huile|lait|œuf|oeuf|œufs|oeufs|eau|légumes|legumes|salade|farine|beurre|couches|lessive/.test(s)) add("market");
+  if(/liste de course|liste de courses|besoin de course|faire la course|faire mes courses|mes courses|courses pour|course pour|courses semaine|course semaine|pour la semaine|supermarch|super marché|auchan|carrefour|épicerie|epicerie|riz|huile|lait|œuf|oeuf|œufs|oeufs|eau|légumes|legumes|salade|farine|beurre|fromage|jambon|saucisson|couches|lessive/.test(s)) add("market");
   if(/chauff|taxi|driver|trajet|aibd|aeroport|condui|voiture|transport|(\bcourse\b(?!.*(riz|huile|lait|œuf|oeuf|farine|beurre|salade|légumes|legumes|semaine|supermarch|épicerie|epicerie)))/.test(s)) add("driver");
   if(/sortie|visite|decouvr|explore|peche|idee|loisir|plage|saly|petite cote|tour/.test(s)) add("explore");
   if(/resto|restaurant|table|manger|diner|dejeuner|reserver|reservation|creneau/.test(s)) add("resa");
@@ -1451,6 +1451,25 @@ function formatGroceryList(items){
   return items.map((x,i)=>`${i+1}. ${x}`).join(" · ");
 }
 
+
+function wolofLineForNeed(need, zone){
+  const lieu = zone && zone !== "À préciser" ? ` ci ${zone}` : " ak DIGIYLYFE";
+  if(need==="Liste de courses") return `Wolof : Maa bëgg waajal sama liste courses${lieu}.`;
+  if(need==="Chauffeur / trajet") return `Wolof : Maa bëgg am chauffeur${lieu}.`;
+  if(need==="Logement / location") return `Wolof : Maa bëgg seet kër wala néeg${lieu}.`;
+  if(need==="Réservation / table") return `Wolof : Maa bëgg bind réservation${lieu}.`;
+  if(need==="Artisan / intervention") return `Wolof : Maa bëgg am artisan bu man dimbali${lieu}.`;
+  if(need==="Produit / boutique") return `Wolof : Maa bëgg jënd walla seet produit${lieu}.`;
+  if(need==="Travail / mission") return `Wolof : Maa ngi seet liggéey walla mission${lieu}.`;
+  if(need==="Mission courte / aide rapide") return `Wolof : Maa ngi seet walla dépose mission bu gàtt${lieu}.`;
+  if(need==="Paiement / argent") return `Wolof : Maa bëgg wone walla topp sama xaalis${lieu}.`;
+  return `Wolof : Maa bëgg DIGIYLYFE dimbali ma${lieu}.`;
+}
+function withWolofReassurance(msg, need, zone){
+  const wolof = wolofLineForNeed(need, zone);
+  return `${msg}\n\n${wolof}`;
+}
+
 function analyzeIntent(txt,list){
   const s=normalize(txt);
   const first=list && list[0] ? list[0] : PUB.find(x=>x.id==="voix");
@@ -1459,7 +1478,7 @@ function analyzeIntent(txt,list){
   // Priorité métier :
   // 1) Courses d'abord : "préparer" contient "répar" après normalisation, donc on évite la confusion avec réparation.
   // 2) Urgent/urgence reste un moment/priorité, pas une porte.
-  if(/liste de course|liste de courses|besoin de course|faire la course|faire mes courses|mes courses|courses pour|course pour|courses semaine|course semaine|pour la semaine|supermarch|super marché|auchan|carrefour|épicerie|epicerie|riz|huile|lait|œuf|oeuf|œufs|oeufs|eau|légumes|legumes|salade|farine|beurre|couches|lessive/.test(s)){
+  if(/liste de course|liste de courses|besoin de course|faire la course|faire mes courses|mes courses|courses pour|course pour|courses semaine|course semaine|pour la semaine|supermarch|super marché|auchan|carrefour|épicerie|epicerie|riz|huile|lait|œuf|oeuf|œufs|oeufs|eau|légumes|legumes|salade|farine|beurre|fromage|jambon|saucisson|couches|lessive/.test(s)){
     target={id:"courses",name:"Liste de courses DIGIY",href:"https://digiylyfe.com/"};
     need="Liste de courses";
     action="Préparer une liste de courses";
@@ -1509,12 +1528,12 @@ function analyzeIntent(txt,list){
     const items=detectGroceryItems(clean);
     const list=formatGroceryList(items);
     msg = clean
-      ? `Bonjour, je viens depuis DIGIYLYFE. Liste de courses préparée. Zone : ${zone}. Moment : ${when}.${precision} Produits : ${list}. Demande originale : ${clean}`
-      : `Bonjour, je viens depuis DIGIYLYFE. Je souhaite préparer une liste de courses.`;
+      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Liste de courses préparée. Zone : ${zone}. Moment : ${when}.${precision} Produits : ${list}. Demande originale : ${clean}`, need, zone)
+      : withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Je souhaite préparer une liste de courses.`, need, zone);
   }else{
     msg = clean
-      ? `Bonjour, je viens depuis DIGIYLYFE. Demande préparée. Besoin : ${need}. Zone : ${zone}. Moment : ${when}.${precision} Ma demande : ${clean}`
-      : `Bonjour, je viens depuis DIGIYLYFE. Je souhaite être orienté vers la bonne porte.`;
+      ? withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Demande préparée. Besoin : ${need}. Zone : ${zone}. Moment : ${when}.${precision} Ma demande : ${clean}`, need, zone)
+      : withWolofReassurance(`Bonjour, je viens depuis DIGIYLYFE. Je souhaite être orienté vers la bonne porte.`, need, zone);
   }
 
   return {need, zone, when, door:target.name, href:target.href, action, msg};
@@ -1746,6 +1765,20 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
