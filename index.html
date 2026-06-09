@@ -10,7 +10,7 @@
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
-<meta name="digiy-action-preparee" content="v2-2-note-terrain-date-clean-20260609"/>
+<meta name="digiy-action-preparee" content="v2-3-pay-choice-public-pro-20260609"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -1800,8 +1800,15 @@ function voiceCommandIntent(txt){
     /^(digiy\s+)?(ouvre|ouvrir|va\s+sur)\s+(pay|paiement|argent|wave)\b/.test(s)||
     /^digiy\s+(pay|paiement|argent|wave)\b/.test(s);
   if(isPayCommand){
-    const target=PUB.find(x=>x.id==="pay")||PRO.find(x=>x.id==="propay");
-    return target?{kind:"nav",label:"PAY",href:target.href,sensitive:true}:null;
+    const pubPay=PUB.find(x=>x.id==="pay");
+    const proPay=PRO.find(x=>x.id==="propay");
+    return {
+      kind:"payChoice",
+      label:"PAY",
+      publicHref:pubPay ? pubPay.href : "https://pay.digiylyfe.com/",
+      proHref:proPay ? proPay.href : "https://pro-pay.digiylyfe.com/hub.html",
+      sensitive:true
+    };
   }
 
   // Sheets
@@ -1853,9 +1860,11 @@ function askVoiceCommandConfirm(intent){
     preparedZone.textContent="—";
     preparedWhen.textContent="Maintenant";
     preparedDoor.textContent=intent.label;
-    preparedMessage.textContent=intent.sensitive
-      ? "DIGIY a reconnu une porte sensible. Le pro doit confirmer avant ouverture."
-      : "DIGIY a reconnu une commande claire. Confirme pour ouvrir, ou dis annule.";
+    preparedMessage.textContent=intent.kind==="payChoice"
+      ? "DIGIY a reconnu PAY. Après confirmation, choisis PAY public ou PAY pro. Pas d'ouverture automatique."
+      : (intent.sensitive
+        ? "DIGIY a reconnu une porte sensible. Le pro doit confirmer avant ouverture."
+        : "DIGIY a reconnu une commande claire. Confirme pour ouvrir, ou dis annule.");
     preparedContinue.removeAttribute("target");
     preparedContinue.href="#";
     preparedContinue.textContent="✅ Confirmer";
@@ -1869,9 +1878,34 @@ function askVoiceCommandConfirm(intent){
   },9000);
 }
 
+function showPayChoice(intent){
+  closeSheets();
+  if(preparedAction){
+    preparedTitle.textContent="Choisir la porte PAY";
+    preparedNeed.textContent="Paiement / argent";
+    preparedZone.textContent="—";
+    preparedWhen.textContent="Maintenant";
+    preparedDoor.textContent="PAY public ou PAY pro";
+    preparedMessage.textContent="PAY public sert au paiement visible côté client. PAY pro sert au cockpit du professionnel : entrées, sorties, température, notes terrain. Le pro choisit la bonne porte.";
+    preparedContinue.removeAttribute("target");
+    preparedContinue.href=intent.publicHref || "https://pay.digiylyfe.com/";
+    preparedContinue.textContent="💳 PAY public";
+    preparedWhatsapp.removeAttribute("target");
+    preparedWhatsapp.href=intent.proHref || "https://pro-pay.digiylyfe.com/hub.html";
+    preparedWhatsapp.textContent="🏢 PAY pro";
+    preparedAction.classList.add("open");
+  }
+  status.textContent="PAY : CHOISIS PUBLIC OU PRO";
+  return true;
+}
+
 function executeVoiceCommand(intent){
   clearPendingVoiceCommand();
   closeSheets();
+
+  if(intent.kind==="payChoice"){
+    return showPayChoice(intent);
+  }
 
   if(intent.kind==="sheet"){
     openSheet(intent.sheet);
@@ -2087,6 +2121,293 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
