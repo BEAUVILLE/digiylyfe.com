@@ -10,7 +10,7 @@
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
-<meta name="digiy-action-preparee" content="v1-4-liste-de-courses-pilote-20260609"/>
+<meta name="digiy-action-preparee" content="v1-6-course-singulier-courses-produits-20260609"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -1374,16 +1374,16 @@ function pickCards(txt){
     add("voix");add("driver");add("loc");add("market");
     return out;
   }
-  if(/chauff|taxi|driver|course|trajet|aibd|aeroport|condui|voiture|transport/.test(s)) add("driver");
+  if(/liste de course|liste de courses|besoin de course|faire la course|faire mes courses|mes courses|courses pour|course pour|courses semaine|course semaine|pour la semaine|supermarch|super marché|auchan|carrefour|épicerie|epicerie|riz|huile|lait|œuf|oeuf|œufs|oeufs|eau|légumes|legumes|salade|farine|beurre|couches|lessive/.test(s)) add("market");
+  if(/chauff|taxi|driver|trajet|aibd|aeroport|condui|voiture|transport|(\bcourse\b(?!.*(riz|huile|lait|œuf|oeuf|farine|beurre|salade|légumes|legumes|semaine|supermarch|épicerie|epicerie)))/.test(s)) add("driver");
   if(/sortie|visite|decouvr|explore|peche|idee|loisir|plage|saly|petite cote|tour/.test(s)) add("explore");
   if(/resto|restaurant|table|manger|diner|dejeuner|reserver|reservation|creneau/.test(s)) add("resa");
   if(/chambre|villa|logement|dormir|location|maison|appartement|hotel|week/.test(s)) add("loc");
-  if(/fuite|artisan|plomb|macon|electric|chantier|repar|service|build|solaire/.test(s)) add("build");
+  if(/fuite|artisan|plomb|plomberie|macon|maçon|electric|électric|chantier|réparation|reparation|réparer|reparer|dépannage|depannage|service|build|solaire/.test(s)) add("build");
   if(/produit|boutique|acheter|achat|market|sac|chauss|mode|commerce|vendre/.test(s)){add("market");add("commerce");}
   // Priorité métier : une urgence ne choisit pas NDIMBAL toute seule.
-  if(/fuite|artisan|plomb|plomberie|macon|maçon|electric|électric|chantier|repar|répar|service|build|solaire|toiture|peinture|menuis/.test(s)) add("build");
+  if(/fuite|artisan|plomb|plomberie|macon|maçon|electric|électric|chantier|réparation|reparation|réparer|reparer|dépannage|depannage|service|build|solaire|toiture|peinture|menuis/.test(s)) add("build");
   if(/ndimbal|mission courte|livraison|document|coup de main|aide rapide|petit boulot|express/.test(s)) add("ndimbalExpress");
-  if(/liste de course|liste de courses|faire mes courses|courses pour|courses semaine|supermarch|super marché|auchan|carrefour|épicerie|epicerie|riz|huile|lait|œufs|oeufs|eau|légumes|legumes|couches|lessive/.test(s)) add("market");
   if(/emploi|travail|mission|job|recrut|candidat|cv/.test(s)) add("jobs");
   if(/payer|paiement|wave|orange money|preuve|argent|cash|pay/.test(s)) add("pay");
   if(/annonce|publier|visibilite|reseau|fiche|qr|presence/.test(s)) add("reseau");
@@ -1412,6 +1412,7 @@ function detectZone(s){
 function detectWhen(s){
   if(/aujourd|today|maintenant|urgent|urgence|ce soir|ce matin/.test(s)) return "Aujourd’hui / urgent";
   if(/demain/.test(s)) return "Demain";
+  if(/semaine|pour la semaine/.test(s)) return "Cette semaine";
   if(/week|samedi|dimanche/.test(s)) return "Ce week-end";
   return "À préciser";
 }
@@ -1420,9 +1421,9 @@ function detectGroceryItems(txt){
   const raw=(txt||"").toLowerCase();
   const cleaned=raw
     .replace(/écoute digiy|ecoute digiy|diji i|digiy/gi,"")
-    .replace(/je veux|j'aimerais|jaimerais|préparer|preparer|une liste de courses|liste de course|courses|pour la semaine|à saly|a saly|aujourd'hui|demain|ce weekend|ce week-end/gi," ");
+    .replace(/je veux|j'aimerais|jaimerais|besoin de course|faire la course|préparer|preparer|une liste de courses|liste de course|courses|course|pour la semaine|à saly|a saly|aujourd'hui|demain|ce weekend|ce week-end/gi," ");
   const known=[
-    "riz","huile","lait","oeufs","œufs","eau","légumes","legumes","pain","sucre","sel","savon","lessive",
+    "riz","huile","lait","oeuf","œuf","oeufs","œufs","eau","légumes","legumes","salade","farine","pain","sucre","sel","savon","lessive",
     "couches","couches bébé","couche bébé","pâtes","pates","tomates","oignons","pommes de terre",
     "poulet","poisson","viande","farine","beurre","yaourt","fromage","jus","café","cafe","thé","the",
     "bananes","pommes","oranges","carottes"
@@ -1431,7 +1432,7 @@ function detectGroceryItems(txt){
   known.forEach(item=>{
     const rx=new RegExp("(^|[^a-zà-ÿ])"+item.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"([^a-zà-ÿ]|$)","i");
     if(rx.test(raw)){
-      const label=item.replace("oeufs","œufs").replace("legumes","légumes").replace("pates","pâtes").replace("cafe","café").replace("the","thé");
+      const label=item.replace("oeufs","œufs").replace("oeuf","œuf").replace("legumes","légumes").replace("pates","pâtes").replace("cafe","café").replace("the","thé");
       if(!found.includes(label)) found.push(label);
     }
   });
@@ -1455,9 +1456,14 @@ function analyzeIntent(txt,list){
   const first=list && list[0] ? list[0] : PUB.find(x=>x.id==="voix");
   let need="Demande générale", action="Ouvrir la bonne porte", target=first;
 
-  // Priorité métier : "urgent/urgence" est un modificateur de temps, pas une porte.
-  // Donc une fuite urgente reste BUILD/Artisan, elle ne devient pas NDIMBAL.
-  if(/fuite|artisan|plomb|plomberie|macon|maçon|electric|électric|chantier|repar|répar|service|build|solaire|toiture|peinture|menuis/.test(s)){
+  // Priorité métier :
+  // 1) Courses d'abord : "préparer" contient "répar" après normalisation, donc on évite la confusion avec réparation.
+  // 2) Urgent/urgence reste un moment/priorité, pas une porte.
+  if(/liste de course|liste de courses|besoin de course|faire la course|faire mes courses|mes courses|courses pour|course pour|courses semaine|course semaine|pour la semaine|supermarch|super marché|auchan|carrefour|épicerie|epicerie|riz|huile|lait|œuf|oeuf|œufs|oeufs|eau|légumes|legumes|salade|farine|beurre|couches|lessive/.test(s)){
+    target={id:"courses",name:"Liste de courses DIGIY",href:"https://digiylyfe.com/"};
+    need="Liste de courses";
+    action="Préparer une liste de courses";
+  }else if(/fuite|artisan|plomb|plomberie|macon|maçon|electric|électric|chantier|réparation|reparation|réparer|reparer|dépannage|depannage|service|build|solaire|toiture|peinture|menuis/.test(s)){
     target=PUB.find(x=>x.id==="build")||first;
     need="Artisan / intervention";
     action="Préparer une demande de service";
@@ -1465,7 +1471,7 @@ function analyzeIntent(txt,list){
     target=PUB.find(x=>x.id==="ndimbalExpress")||first;
     need="Mission courte / aide rapide";
     action="Voir ou déposer une mission NDIMBAL Express";
-  }else if(/chauff|taxi|driver|course|trajet|aibd|aeroport|aéroport|transport/.test(s)){
+  }else if(/chauff|taxi|driver|trajet|aibd|aeroport|aéroport|transport|(\bcourse\b(?!.*(riz|huile|lait|œuf|oeuf|farine|beurre|salade|légumes|legumes|semaine|supermarch|épicerie|epicerie)))/.test(s)){
     target=PUB.find(x=>x.id==="driver")||first;
     need="Chauffeur / trajet";
     action="Voir les chauffeurs ou préparer une demande de course";
@@ -1477,10 +1483,6 @@ function analyzeIntent(txt,list){
     target=PUB.find(x=>x.id==="resa")||first;
     need="Réservation / table";
     action="Préparer une réservation";
-  }else if(/liste de course|liste de courses|faire mes courses|courses pour|courses semaine|supermarch|super marché|auchan|carrefour|épicerie|epicerie|riz|huile|lait|œufs|oeufs|eau|légumes|legumes|couches|lessive/.test(s)){
-    target={id:"courses",name:"Liste de courses DIGIY",href:"https://digiylyfe.com/"};
-    need="Liste de courses";
-    action="Préparer une liste de courses";
   }else if(/produit|boutique|acheter|achat|market|sac|chauss|mode|commerce|vendre/.test(s)){
     target=PUB.find(x=>x.id==="market")||first;
     need="Produit / boutique";
@@ -1744,6 +1746,21 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
