@@ -3,19 +3,21 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>DIGIYLYFE — La porte vocale du terrain</title>
+<title>DIGIYLYFE — Le Club Entreprise du Terrain</title>
 <meta name="theme-color" content="#06140f"/>
-<meta name="description" content="DIGIYLYFE organise l’économie réelle du terrain : voix publique, fiches métiers, contact direct, paiement direct, 0% commission, relation professionnelle protégée."/>
-<meta name="digiy-build" content="vitrine-pwa-head-qr-sans-logo-20260607"/>
+<meta name="description" content="DIGIYLYFE, le Club Entreprise du Terrain : la voix est la porte d’entrée. Le public parle ou clique, DIGIY oriente, les fiches remontent, et le professionnel garde son client, son argent et sa décision."/>
+<meta name="digiy-build" content="vitrine-club-entreprise-voix-porte-entree-20260612"/>
 <meta name="robots" content="index,follow"/>
 <meta name="digiy-exemples-guide" content="cadre-exemples-rouge-plus-gros-20260607"/>
 <meta name="digiy-exemples-scroll" content="clic-exemples-remonte-zone-aide-20260607"/>
 <meta name="digiy-action-preparee" content="v2-3-pay-choice-public-pro-20260609"/>
+<meta name="digiy-signature" content="DIGIYLYFE — Le Club Entreprise du Terrain"/>
+<meta name="digiy-voice-entry" content="La voix est la porte d’entrée DIGIYLYFE"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
-<meta property="og:title" content="DIGIYLYFE — La porte vocale du terrain"/>
-<meta property="og:description" content="Le public parle ou clique. DIGIY fait remonter les portes utiles. Le professionnel garde son client, son argent et sa relation."/>
+<meta property="og:title" content="DIGIYLYFE — Le Club Entreprise du Terrain"/>
+<meta property="og:description" content="La voix est la porte d’entrée du Club Entreprise du Terrain : le public parle ou clique, DIGIY oriente, et le professionnel garde son client, son argent et sa relation."/>
 <meta property="og:image" content="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg"/>
 <meta property="og:locale" content="fr_SN"/>
 <link href="./icon-192.png" rel="icon" sizes="192x192"/>
@@ -107,6 +109,61 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   font-size:10px;
   letter-spacing:.08em;
   font-weight:900;
+  text-transform:uppercase;
+}
+.clubBadge{
+  width:min(100%,650px);
+  margin:0 auto 14px;
+  border:1px solid rgba(246,196,83,.50);
+  border-radius:26px;
+  background:
+    radial-gradient(360px 120px at 12% 0%,rgba(246,196,83,.24),transparent 66%),
+    radial-gradient(300px 120px at 88% 0%,rgba(0,166,81,.20),transparent 66%),
+    rgba(255,255,255,.085);
+  box-shadow:0 16px 40px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.06);
+  padding:13px 14px 14px;
+  text-align:center;
+}
+.clubBadge strong{
+  display:block;
+  color:#fffaf0;
+  font-size:clamp(21px,5.6vw,34px);
+  line-height:.98;
+  font-weight:1000;
+  letter-spacing:.08em;
+}
+.clubBadge span{
+  display:block;
+  margin-top:7px;
+  color:#fff3cf;
+  font-size:clamp(15px,4.2vw,22px);
+  line-height:1.08;
+  font-weight:1000;
+  letter-spacing:.045em;
+  text-transform:uppercase;
+}
+.clubBadge small{
+  display:block;
+  margin-top:8px;
+  color:rgba(255,250,240,.78);
+  font-size:clamp(12px,3.4vw,16px);
+  line-height:1.36;
+  font-weight:950;
+}
+.voiceEntry{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:34px;
+  margin-top:10px;
+  padding:0 13px;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.38);
+  background:rgba(246,196,83,.12);
+  color:#fff3cf;
+  font-size:clamp(12px,3.3vw,15px);
+  font-weight:1000;
+  letter-spacing:.035em;
   text-transform:uppercase;
 }
 .roundBtn{
@@ -1065,7 +1122,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
     <a class="logo" href="https://digiylyfe.com/" aria-label="Accueil DIGIYLYFE">
       <img src="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg" alt="DIGIYLYFE" loading="eager"/>
     </a>
-    <div class="brand">DIGIYLYFE<small>La porte du terrain</small></div>
+    <div class="brand">DIGIYLYFE<small>Club Entreprise du Terrain</small></div>
     <button class="roundBtn" type="button" data-open="menu" aria-label="Ouvrir les menus">☰</button>
   </header>
 
@@ -1077,6 +1134,13 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
           <span class="earText">J’ÉCOUTE</span>
           <span class="earLang">🇸🇳 Wolof · 🇫🇷 Français</span>
         </span>
+      </div>
+
+      <div class="clubBadge" aria-label="Signature DIGIYLYFE — Le Club Entreprise du Terrain">
+        <strong>DIGIYLYFE</strong>
+        <span>Le Club Entreprise du Terrain</span>
+        <small>La voix est la porte d’entrée : le public parle, DIGIY oriente, les bonnes portes remontent, le pro garde la main.</small>
+        <em class="voiceEntry">👂 La voix ouvre tout</em>
       </div>
 
       <div class="field">
@@ -1091,7 +1155,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
           <button class="audioBtn" id="audioBtn" type="button">🎧 ÉCOUTER</button>
         </div>
 
-        <div class="status" id="status">VOIX · CLIC · CONTACT DIRECT</div>
+        <div class="status" id="status">LA VOIX OUVRE · CLUB ENTREPRISE · CONTACT DIRECT</div>
 
         <div class="helloReader" aria-label="Lecteur de présentation DIGIYLYFE">
           <button class="helloPlay" id="helloBtn" type="button" aria-label="Écouter la présentation DIGIYLYFE">🎧 ÉCOUTE · BONJOUR DIGIYLYFE</button>
@@ -1099,7 +1163,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
         </div>
 
         <p class="sr-only" id="helloText">
-          Bonjour et bienvenue sur DIGIYLYFE. Ici, le public parle ou clique, et les bonnes portes remontent directement. DIGIYLYFE n’est pas là pour remplacer les professionnels. Nous sommes les bras numériques des pros : nous aidons à montrer, organiser, orienter, partager, encaisser directement et protéger la relation. Le client garde un contact simple. Le professionnel garde son nom, son argent, son client et sa décision. Merci pour ta visite, et bienvenue dans l’économie réelle du terrain mise en architecture numérique.
+          Bonjour et bienvenue sur DIGIYLYFE, le Club Entreprise du Terrain. Ici, la voix est la porte d’entrée : le public parle ou clique, DIGIY écoute, oriente, et les bonnes portes remontent directement. DIGIYLYFE rassemble les professionnels, les commerces, les artisans, les chauffeurs, les lieux, les services et les partenaires dans une même architecture digitale enracinée dans le réel. DIGIYLYFE n’est pas là pour remplacer les professionnels. Nous sommes les bras numériques des pros : nous aidons à montrer, organiser, orienter, partager, encaisser directement et protéger la relation. Le client garde un contact simple. Le professionnel garde son nom, son argent, son client et sa décision. Merci pour ta visite, et bienvenue dans l’économie réelle du terrain mise en architecture numérique.
         </p>
 
         <div class="examples" id="examples" aria-label="Aide rouge avec exemples bilingues français et wolof pour parler à DIGIY — Wolof compris directement">
@@ -1143,9 +1207,10 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
       </div>
 
       <div class="sr-only" id="hiddenDoctrine">
-        DIGIYLYFE n’est pas un outil dans l’économie. DIGIYLYFE est l’économie réelle du terrain mise en architecture numérique.
-        Le public parle ou clique. Les fiches remontent. Le contact reste direct. Le professionnel garde son client, son argent, son nom et sa relation.
-        La toile relie. DIGIY organise. Le pro garde la main. Ici, pas besoin d'IA lourde pour commencer : les fichiers connectés se passent le relais, la voix oriente, les fiches remontent, puis l’humain choisit.
+        DIGIYLYFE, le Club Entreprise du Terrain, n’est pas un outil isolé dans l’économie. DIGIYLYFE est l’économie réelle du terrain mise en architecture numérique.
+        La voix est l’ouverture et la porte d’entrée : le public parle ou clique, les fiches remontent, le contact reste direct.
+        Le professionnel garde son client, son argent, son nom et sa relation.
+        La toile relie. DIGIY écoute, organise et oriente. Le pro garde la main. Ici, pas besoin d'IA lourde pour commencer : les fichiers connectés se passent le relais, la voix ouvre, les fiches remontent, puis l’humain choisit.
       </div>
     </section>
   </main>
@@ -1188,9 +1253,9 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   <div class="sheetCard">
     <div class="sheetHead"><strong>🦅 Esprit DIGIY</strong><button class="closeSheet" type="button">×</button></div>
     <div class="sheetText">
-      <strong>Une vitrine épurée.</strong><br/>
-      La voix ouvre tout. Les menus flottants gardent la profondeur sans écraser le téléphone.
-      Le public cherche, DIGIY oriente, le professionnel garde la main.
+      <strong>DIGIYLYFE — Le Club Entreprise du Terrain.</strong><br/>
+      La voix est l’ouverture, la porte d’entrée. Les menus flottants gardent la profondeur sans écraser le téléphone.
+      Le public parle, DIGIY oriente, le professionnel garde la main.
     </div>
     <div class="linkGrid" id="essenceLinks"></div>
   </div>
@@ -1205,10 +1270,10 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 
 <section class="sheet" id="sheetQr" aria-label="Le QR partageable DIGIYLYFE">
   <div class="sheetCard">
-    <div class="sheetHead"><strong>🔗 Le QR partageable</strong><button class="closeSheet" type="button">×</button></div>
+    <div class="sheetHead"><strong>🔗 QR · Club Entreprise</strong><button class="closeSheet" type="button">×</button></div>
     <div class="sheetText">
-      <strong>Une porte simple qui circule.</strong><br/>
-      Le lien se clique. Le Q R se scanne. La présence DIGIYLYFE se partage sur téléphone, affiche, carte, boutique, véhicule, story et écran.
+      <strong>DIGIYLYFE — Le Club Entreprise du Terrain.</strong><br/>
+      La voix est la porte d’entrée. Le lien se clique. Le Q R se scanne. La présence DIGIYLYFE se partage sur téléphone, affiche, carte, boutique, véhicule, story et écran.
     </div>
     <div class="qrBox">
       <div class="sharePriority">
@@ -1228,10 +1293,10 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
           <img id="qrImage" alt="Q R partageable DIGIYLYFE" loading="lazy"/>
         </div>
         <strong>Le QR partageable</strong>
-        <div class="qrCleanNote">Une porte claire vers DIGIYLYFE. Le public scanne, clique, découvre, contacte. Le professionnel garde la main.</div>
+        <div class="qrCleanNote">Une porte claire vers DIGIYLYFE. Le public scanne, clique, parle, découvre, contacte. La voix ouvre, le professionnel garde la main.</div>
         <div class="qrManifest">
-          <strong>DIGIYLYFE donne des bras numériques aux professionnels du terrain.</strong>
-          <span class="line">La voix ouvre.</span>
+          <strong>DIGIYLYFE — Le Club Entreprise du Terrain.</strong>
+          <span class="line">La voix est la porte d’entrée.</span>
           <span class="line">Le clic simplifie.</span>
           <span class="line">La fiche montre.</span>
           <span class="line">Le QR partageable fait circuler.</span>
@@ -1338,7 +1403,7 @@ if(qrUrl) qrUrl.textContent=DIGIY_URL;
 if(openQrBtn) openQrBtn.href=DIGIY_URL;
 if(directShareLink) directShareLink.href=DIGIY_URL;
 if(waQrBtn) waQrBtn.href="https://wa.me/?text="+encodeURIComponent("DIGIYLYFE · "+DIGIY_URL);
-const DIGIY_SHARE_TEXT="DIGIYLYFE donne des bras numériques aux professionnels du terrain. La voix ouvre. Le clic simplifie. La fiche montre. Le QR partageable fait circuler. Le paiement reste direct. Le pro décide.";
+const DIGIY_SHARE_TEXT="DIGIYLYFE — Le Club Entreprise du Terrain. La voix est la porte d’entrée. Le clic simplifie. La fiche montre. Le QR partageable fait circuler. Le paiement reste direct. Le pro décide.";
 const sendWaBtn=$("#sendWaBtn"), sendSmsBtn=$("#sendSmsBtn"), sendMailBtn=$("#sendMailBtn");
 if(sendWaBtn) sendWaBtn.href="https://wa.me/?text="+encodeURIComponent(DIGIY_SHARE_TEXT+"\n"+DIGIY_URL);
 if(sendSmsBtn) sendSmsBtn.href="sms:?&body="+encodeURIComponent(DIGIY_SHARE_TEXT+"\n"+DIGIY_URL);
@@ -1745,7 +1810,7 @@ $("#clearBtn").addEventListener("click",()=>{
   results.classList.remove("open");
   if(preparedAction) preparedAction.classList.remove("open");
   examples.classList.remove("open");
-  status.textContent="VOIX · CLIC · CONTACT DIRECT";
+  status.textContent="LA VOIX OUVRE · CLUB ENTREPRISE · CONTACT DIRECT";
   q.focus();
 });
 function scrollToExamples(){
@@ -1762,7 +1827,7 @@ $("#examplesBtn").addEventListener("click",()=>{
     status.textContent="EXEMPLES OUVERTS";
     scrollToExamples();
   }else{
-    status.textContent=q.value.trim()?"FICHES REMONTÉES":"VOIX · CLIC · CONTACT DIRECT";
+    status.textContent=q.value.trim()?"FICHES REMONTÉES":"LA VOIX OUVRE · CLUB ENTREPRISE · CONTACT DIRECT";
   }
 });
 document.querySelectorAll(".ex").forEach(btn=>btn.addEventListener("click",()=>{
@@ -2037,19 +2102,19 @@ function speak(text){
   u.pitch=.92;
   const v=pickVoice(); if(v) u.voice=v;
   status.textContent="AUDIO EN COURS";
-  u.onend=()=>{status.textContent="VOIX · CLIC · CONTACT DIRECT";};
+  u.onend=()=>{status.textContent="LA VOIX OUVRE · CLUB ENTREPRISE · CONTACT DIRECT";};
   speechSynthesis.speak(u);
 }
 $("#helloBtn").addEventListener("click",()=>{
-  const t="Bonjour, et bienvenue sur Diji i laïfe. Ici, le public parle, ou clique, et les bonnes portes remontent directement. Diji i laïfe n’est pas là pour remplacer les professionnels. Nous sommes les bras numériques des pros. Nous aidons à montrer, organiser, orienter, partager, encaisser directement, et protéger la relation. Le client garde un contact simple. Le professionnel garde son nom, son argent, son client, et sa décision. Pour envoyer DIGIY depuis le site, ouvre le bouton envoyer : le téléphone propose WhatsApp, SMS, AirDrop ou les applications de partage. Le Q R reste la porte pour une affiche, une carte, une boutique, un véhicule ou un écran. Merci pour ta visite. Bienvenue dans l’économie réelle du terrain, mise en architecture numérique.";
+  const t="Bonjour, et bienvenue sur Diji i laïfe, le Club Entreprise du Terrain. Ici, la voix est l’ouverture, la porte d’entrée. Le public parle, ou clique. Diji i écoute, oriente, et les bonnes portes remontent directement. Diji i laïfe rassemble les professionnels, les commerces, les artisans, les chauffeurs, les lieux, les services et les partenaires dans une même maison digitale enracinée dans le réel. Diji i laïfe n’est pas là pour remplacer les professionnels. Nous sommes les bras numériques des pros. Nous aidons à montrer, organiser, orienter, partager, encaisser directement, et protéger la relation. Le client garde un contact simple. Le professionnel garde son nom, son argent, son client, et sa décision. Pour envoyer DIGIY depuis le site, ouvre le bouton envoyer : le téléphone propose WhatsApp, S M S, AirDrop ou les applications de partage. Le Q R reste la porte pour une affiche, une carte, une boutique, un véhicule ou un écran. Merci pour ta visite. Bienvenue dans l’économie réelle du terrain, mise en architecture numérique.";
   speak(t);
 });
 $("#stopAudioBtn").addEventListener("click",()=>{
   if(window.speechSynthesis) speechSynthesis.cancel();
-  status.textContent="VOIX · CLIC · CONTACT DIRECT";
+  status.textContent="LA VOIX OUVRE · CLUB ENTREPRISE · CONTACT DIRECT";
 });
 $("#audioBtn").addEventListener("click",()=>{
-  const t="Diji i laïfe écoute le besoin du public. Le client parle, ou clique. Les fiches remontent. Le contact reste direct. Le professionnel garde son client, son argent, son nom, et sa relation. La toile relie. Diji i organise. Le pro garde la main.";
+  const t="Diji i laïfe, le Club Entreprise du Terrain. La voix est la porte d’entrée. Le client parle, ou clique. Les fiches remontent. Le contact reste direct. Les professionnels, les commerces, les services et les partenaires avancent dans une même architecture. Le professionnel garde son client, son argent, son nom, et sa relation. La toile relie. Diji i écoute, organise, et le pro garde la main.";
   speak(t);
 });
 if(window.speechSynthesis) speechSynthesis.onvoiceschanged=pickVoice;
@@ -2070,7 +2135,7 @@ $("#copyQrBtn")?.addEventListener("click", async()=>{
 $("#shareQrBtn")?.addEventListener("click", async()=>{
   try{
     if(navigator.share){
-      await navigator.share({title:"DIGIYLYFE", text:"DIGIYLYFE est une porte simple vers l’économie réelle du terrain.", url:DIGIY_URL});
+      await navigator.share({title:"DIGIYLYFE", text:"DIGIYLYFE — Le Club Entreprise du Terrain. La voix est la porte d’entrée vers l’économie réelle du terrain.", url:DIGIY_URL});
       status.textContent="DIGIY PARTAGÉ";
     }else{
       window.open("https://wa.me/?text="+encodeURIComponent("DIGIYLYFE · "+DIGIY_URL),"_blank","noopener");
@@ -2083,7 +2148,7 @@ $("#shareQrBtn")?.addEventListener("click", async()=>{
 
 $("#returnVoiceFromQr")?.addEventListener("click", ()=>{
   closeSheets();
-  status.textContent="VOIX · CLIC · CONTACT DIRECT";
+  status.textContent="LA VOIX OUVRE · CLUB ENTREPRISE · CONTACT DIRECT";
   window.requestAnimationFrame(()=>{
     q.focus();
     try{ q.scrollIntoView({behavior:"smooth",block:"center"}); }catch(e){}
@@ -2121,6 +2186,1445 @@ results.classList.remove("open");
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
