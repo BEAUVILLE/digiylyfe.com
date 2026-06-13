@@ -2,11 +2,54 @@
    Objectif :
    - Ne jamais servir un ancien index.html bloqué en cache
    - Garder localStorage intact : favoris, sessions, préférences restent côté navigateur
+   - Corriger les anciens chemins PRO /pin.html vers les racines V2 mono-fichier
    - Nettoyer les anciens caches Service Worker
 */
 
-const DIGIY_SW_VERSION = "digiylyfe-vitrine-no-stale-index-20260523-1";
+const DIGIY_SW_VERSION = "digiylyfe-vitrine-pro-v2-routes-root-20260613-1";
 const DIGIY_CACHE_PREFIX = "digiylyfe-";
+
+const PRO_ROUTES = [
+  ["https://pro-explore.digiylyfe.com/pin.html", "https://pro-explore.digiylyfe.com/"],
+  ["https://pro-driver.digiylyfe.com/pin.html", "https://pro-driver.digiylyfe.com/"],
+  ["https://pro-market.digiylyfe.com/pin.html", "https://pro-market.digiylyfe.com/"],
+  ["https://pro-build.digiylyfe.com/pin.html", "https://pro-build.digiylyfe.com/"],
+  ["https://pro-loc.digiylyfe.com/pin.html", "https://pro-loc.digiylyfe.com/"]
+];
+
+function patchProRoutes(html) {
+  let out = String(html || "");
+
+  PRO_ROUTES.forEach(([oldUrl, newUrl]) => {
+    out = out
+      .replaceAll(oldUrl + "?v=hub-pro-explore-20260613", newUrl)
+      .replaceAll(oldUrl + "?v=explore-pin-boost-20260613", newUrl)
+      .replaceAll(oldUrl + "?v=hub-pro-driver-20260613", newUrl)
+      .replaceAll(oldUrl + "?v=driver-pin-boost-20260613", newUrl)
+      .replaceAll(oldUrl + "?v=hub-pro-market-20260613", newUrl)
+      .replaceAll(oldUrl + "?v=market-pin-boost-20260613", newUrl)
+      .replaceAll(oldUrl + "?v=hub-pro-build-20260613", newUrl)
+      .replaceAll(oldUrl + "?v=build-pin-boost-20260613", newUrl)
+      .replaceAll(oldUrl + "?v=hub-pro-loc-20260613", newUrl)
+      .replaceAll(oldUrl + "?v=loc-pin-boost-20260613", newUrl)
+      .replaceAll(oldUrl, newUrl);
+  });
+
+  return out;
+}
+
+function htmlResponse(body, originalResponse) {
+  const headers = new Headers(originalResponse.headers);
+  headers.set("Content-Type", "text/html; charset=utf-8");
+  headers.set("Cache-Control", "no-store");
+  headers.set("x-digiy-pro-routes", "v2-root-20260613");
+
+  return new Response(body, {
+    status: originalResponse.status,
+    statusText: originalResponse.statusText,
+    headers
+  });
+}
 
 self.addEventListener("install", (event) => {
   // Le nouveau service worker prend la main immédiatement.
@@ -49,11 +92,18 @@ self.addEventListener("fetch", (event) => {
   }
 
   // Pages HTML : toujours réseau d’abord, jamais ancien index en cache.
+  // En plus : correction des anciennes routes PRO /pin.html vers racine V2.
   if (isHtmlRequest(request)) {
     event.respondWith(
       fetch(request, {
         cache: "no-store",
         credentials: "same-origin"
+      }).then(async (response) => {
+        const contentType = response.headers.get("content-type") || "";
+        if (!contentType.includes("text/html")) return response;
+
+        const patched = patchProRoutes(await response.clone().text());
+        return htmlResponse(patched, response);
       }).catch(() => {
         return new Response(
           `<!doctype html>
