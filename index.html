@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#06140f"/>
 <meta name="description" content="DIGIYLYFE — le Club des Métiers du Terrain. Les bras numériques des pros : voix, fiches, QR, partage, contact direct, paiement direct, 0% commission."/>
 <meta name="robots" content="index,follow"/>
-<meta name="digiy-build" content="vitrine-pro-action-club-bras-numeriques-20260614"/>
+<meta name="digiy-build" content="vitrine-pro-action-club-mobile-clean-20260614"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
@@ -61,7 +61,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   width:min(100%,980px);
   margin:0 auto;
   min-height:100svh;
-  padding:calc(env(safe-area-inset-top) + 10px) 12px calc(env(safe-area-inset-bottom) + 124px);
+  padding:calc(env(safe-area-inset-top) + 10px) 12px calc(env(safe-area-inset-bottom) + 22px);
   position:relative;
   z-index:1;
 }
@@ -228,24 +228,12 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 }
 .frameBox{
   background:#06140f;
-  min-height:calc(100svh - 275px);
-  height:min(720px,calc(100svh - 250px));
+  min-height:560px;
+  height:min(780px,calc(100svh - 210px));
   position:relative;
 }
 .frameBox iframe{
   width:100%;height:100%;display:block;border:0;background:#06140f;
-}
-.frameFallback{
-  position:absolute;inset:auto 12px 12px;
-  border:1px solid rgba(246,196,83,.32);
-  border-radius:20px;
-  background:rgba(3,18,13,.88);
-  color:#fff3cf;
-  padding:12px;
-  font-size:12px;
-  line-height:1.35;
-  font-weight:900;
-  pointer-events:none;
 }
 .directDoors{
   display:grid;
@@ -265,13 +253,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .doorCard i{font-style:normal;font-size:28px;line-height:1}
 .doorCard strong{font-size:13px;line-height:1.12;font-weight:1000;color:#fff}
 .doorCard small{font-size:10.5px;line-height:1.15;font-weight:850;color:rgba(255,250,240,.68)}
-.floatingDock{
-  position:fixed;left:0;right:0;bottom:0;z-index:60;
-  padding:10px 8px calc(10px + env(safe-area-inset-bottom));
-  background:rgba(3,18,12,.94);
-  border-top:1px solid rgba(255,255,255,.12);
-  backdrop-filter:blur(18px);
-}
+.floatingDock{display:none!important}
 .dockInner{width:min(780px,100%);margin:auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
 .dockBtn{
   min-height:74px;padding:8px 4px 9px;border-radius:18px;
@@ -281,7 +263,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 }
 .dockBtn b{font-size:29px;line-height:1}.dockBtn span{display:block;max-width:100%;white-space:normal;text-align:center}
 .dockBtn.primary{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;border-color:rgba(246,196,83,.64);box-shadow:0 0 0 4px rgba(246,196,83,.09)}
-.floatQuick{position:fixed;right:12px;bottom:calc(108px + env(safe-area-inset-bottom));z-index:55;display:flex;flex-direction:column;gap:8px}
+.floatQuick{display:none!important}
 .quickBtn{
   width:56px;height:56px;border-radius:999px;display:grid;place-items:center;
   border:1px solid rgba(246,196,83,.42);background:rgba(3,18,12,.84);backdrop-filter:blur(14px);
@@ -293,12 +275,12 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .sheetCard{width:min(880px,100%);margin:auto;max-height:84svh;overflow:auto;border-radius:32px 32px 24px 24px;border:1px solid rgba(246,196,83,.36);background:rgba(4,19,13,.985);backdrop-filter:blur(20px);box-shadow:0 -22px 70px rgba(0,0,0,.55);padding:16px}
 .sheetHead{display:grid;grid-template-columns:1fr 56px;align-items:center;gap:12px;padding:8px 4px 15px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:14px}
 .sheetHead strong{font-size:clamp(26px,6.4vw,36px);line-height:1.06;font-weight:1000;letter-spacing:-.045em;color:#fff3cf}.closeSheet{width:56px;height:56px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;font-size:25px;font-weight:1000}
-.linkGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.linkItem{min-height:92px;border-radius:23px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.078);display:grid;grid-template-columns:58px 1fr;align-items:center;gap:13px;padding:15px}.linkItem:hover{border-color:rgba(246,196,83,.42);background:rgba(246,196,83,.105)}.linkItem i{font-style:normal;font-size:37px;text-align:center;line-height:1}.linkItem strong{display:block;font-size:clamp(18px,4.7vw,23px);line-height:1.08;font-weight:1000;color:#fff;letter-spacing:-.028em}.linkItem small{display:block;margin-top:7px;color:rgba(255,250,240,.74);font-size:clamp(14px,3.8vw,17px);line-height:1.25;font-weight:900}.sheetText{color:rgba(255,250,240,.80);font-size:clamp(17px,4.5vw,21px);line-height:1.48;font-weight:900;padding:4px 4px 18px}.sheetText strong{color:#fff3cf;font-size:clamp(19px,5vw,24px)}
+.linkGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.linkItem{min-height:92px;border-radius:23px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.078);display:grid;grid-template-columns:58px 1fr;align-items:center;gap:13px;padding:15px}.linkItem:hover{border-color:rgba(246,196,83,.42);background:rgba(246,196,83,.105)}.linkButton{font:inherit;color:inherit;text-align:left;cursor:pointer}.linkItem i{font-style:normal;font-size:37px;text-align:center;line-height:1}.linkItem strong{display:block;font-size:clamp(18px,4.7vw,23px);line-height:1.08;font-weight:1000;color:#fff;letter-spacing:-.028em}.linkItem small{display:block;margin-top:7px;color:rgba(255,250,240,.74);font-size:clamp(14px,3.8vw,17px);line-height:1.25;font-weight:900}.sheetText{color:rgba(255,250,240,.80);font-size:clamp(17px,4.5vw,21px);line-height:1.48;font-weight:900;padding:4px 4px 18px}.sheetText strong{color:#fff3cf;font-size:clamp(19px,5vw,24px)}
 .shareBox{display:grid;gap:10px}.shareMain{min-height:68px;border-radius:22px;border:1px solid rgba(246,196,83,.72);background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 18px;font-size:clamp(17px,4.5vw,22px);line-height:1.12;font-weight:1000;box-shadow:0 16px 38px rgba(246,196,83,.22)}.shareChannels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.shareChannels a,.shareChannels button{min-height:52px;border-radius:17px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.075);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 10px;font-size:13px;font-weight:1000}.shareNote{border-radius:20px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.075);color:rgba(255,250,240,.80);padding:14px;font-size:clamp(14px,3.8vw,17px);line-height:1.42;font-weight:900}.shareNote strong{color:#fff3cf}
-.toast{position:fixed;left:12px;right:12px;bottom:calc(100px + env(safe-area-inset-bottom));z-index:120;max-width:680px;margin:auto;border:1px solid rgba(246,196,83,.50);background:rgba(3,18,13,.96);color:#fff3cf;border-radius:18px;padding:12px 14px;font-weight:1000;text-align:center;box-shadow:0 18px 44px rgba(0,0,0,.35);opacity:0;transform:translateY(12px);pointer-events:none;transition:.18s ease}.toast.open{opacity:1;transform:translateY(0)}
-@media(min-width:720px){.app{padding-bottom:132px}.frameBox{height:min(780px,calc(100svh - 230px))}.linkGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:640px){.clubSpiritTop{grid-template-columns:1fr;text-align:center}.clubMark{margin:auto}.doctrineGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.proActionHead{grid-template-columns:1fr}.proActionOpen{width:100%}.directDoors{grid-template-columns:repeat(2,minmax(0,1fr))}.frameBox{height:calc(100svh - 328px);min-height:440px}.linkGrid{grid-template-columns:1fr}.linkItem{min-height:88px;grid-template-columns:56px 1fr;padding:14px}.linkItem i{font-size:36px}}
-@media(max-width:430px){.brand{font-size:18px}.dockInner{gap:6px}.dockBtn{min-height:72px;padding:7px 3px 8px;border-radius:17px;font-size:12px;line-height:1.08}.dockBtn b{font-size:27px}.frameFallback{display:none}}
+.toast{position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:120;max-width:680px;margin:auto;border:1px solid rgba(246,196,83,.50);background:rgba(3,18,13,.96);color:#fff3cf;border-radius:18px;padding:12px 14px;font-weight:1000;text-align:center;box-shadow:0 18px 44px rgba(0,0,0,.35);opacity:0;transform:translateY(12px);pointer-events:none;transition:.18s ease}.toast.open{opacity:1;transform:translateY(0)}
+@media(min-width:720px){.app{padding-bottom:42px}.frameBox{height:min(820px,calc(100svh - 190px))}.linkGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){.clubSpiritTop{grid-template-columns:1fr;text-align:center}.clubMark{margin:auto}.doctrineGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.proActionHead{grid-template-columns:1fr}.proActionOpen{width:100%}.directDoors{grid-template-columns:repeat(2,minmax(0,1fr))}.frameBox{height:calc(100svh - 230px);min-height:560px}.linkGrid{grid-template-columns:1fr}.linkItem{min-height:88px;grid-template-columns:56px 1fr;padding:14px}.linkItem i{font-size:36px}}
+@media(max-width:430px){.brand{font-size:18px}.dockInner{gap:6px}.dockBtn{min-height:72px;padding:7px 3px 8px;border-radius:17px;font-size:12px;line-height:1.08}.dockBtn b{font-size:27px}}
 @media(max-width:340px){.dockInner{gap:4px}.dockBtn{font-size:11px}.dockBtn b{font-size:24px}.top{grid-template-columns:50px 1fr 50px}.logo,.roundBtn{width:50px;height:50px;min-width:50px;min-height:50px}}
 </style>
 </head>
@@ -343,13 +325,12 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
     <div class="proActionHead">
       <div>
         <h1>Parler ici. Voir les bonnes fiches.</h1>
-        <p>Le moteur Pro Action devient la porte d’entrée du Club : on parle, les métiers remontent, les fiches s’ouvrent, le professionnel reste maître de sa relation.</p>
+        <p>Le moteur Pro Action reste la porte d’entrée du Club : on parle, les fiches remontent, l’écran reste libre et le professionnel garde la main.</p>
       </div>
       <a class="proActionOpen" href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener noreferrer">↗️ Ouvrir grand</a>
     </div>
     <div class="frameBox">
       <iframe title="DIGIYLYFE — Pro Action" src="https://pro-action-digiy.digiylyfe.com/" allow="microphone; autoplay; clipboard-write; speaker-selection" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      <div class="frameFallback">Si le navigateur bloque la voix dans l’encadré, touche “Ouvrir grand”. Le moteur reste la porte principale.</div>
     </div>
   </main>
 
@@ -359,23 +340,6 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
     <a class="doorCard" href="https://commencer-a-payer.digiylyfe.com/"><i>📦</i><strong>Activer</strong><small>module pro</small></a>
     <a class="doorCard" href="https://pro-espace.digiylyfe.com/"><i>🔐</i><strong>Espace pro</strong><small>protégé</small></a>
   </nav>
-</div>
-
-<div class="floatQuick" aria-label="Accès rapides flottants">
-  <a class="quickBtn gold" href="https://commencer-a-payer.digiylyfe.com/" aria-label="Tarifs et activation">📦</a>
-  <a class="quickBtn" href="https://digiy-hub.digiylyfe.com/" aria-label="HUB DIGIY">🧭</a>
-  <a class="quickBtn" href="https://pro-espace.digiylyfe.com/" aria-label="Espace pro">🔐</a>
-  <button class="quickBtn link" type="button" data-open="share" aria-label="Partager DIGIYLYFE">📤</button>
-</div>
-
-<div class="floatingDock" aria-label="Menus flottants DIGIYLYFE">
-  <div class="dockInner">
-    <button class="dockBtn primary" type="button" id="dockVoice"><b>👂</b><span>Voix</span></button>
-    <button class="dockBtn" type="button" data-open="public"><b>🌍</b><span>Public</span></button>
-    <button class="dockBtn" type="button" data-open="pro"><b>🏢</b><span>Pro</span></button>
-    <button class="dockBtn" type="button" data-open="essence"><b>🦅</b><span>Esprit</span></button>
-    <button class="dockBtn" type="button" data-open="menu"><b>☰</b><span>Menu</span></button>
-  </div>
 </div>
 
 <div class="overlay" id="overlay" aria-hidden="true"></div>
@@ -463,6 +427,10 @@ const PRO=[
 ];
 
 const MAIN=[
+  {icon:"🌍",name:"Portes publiques",desc:"Explorer les fiches et services",open:"public"},
+  {icon:"🏢",name:"Modules pro",desc:"Entrées métiers protégées",open:"pro"},
+  {icon:"🦅",name:"Esprit DIGIY",desc:"Club et bras numériques",open:"essence"},
+  {icon:"📤",name:"Partager",desc:"WhatsApp, SMS, email",open:"share"},
   {icon:"👂",name:"La Voix",desc:"Accueil moteur",href:"https://pro-action-digiy.digiylyfe.com/"},
   {icon:"🧭",name:"HUB DIGIY",desc:"Rond-point central",href:"https://digiy-hub.digiylyfe.com/"},
   {icon:"📦",name:"Tarifs / activation",desc:"Choisir, payer, démarrer",href:"https://commencer-a-payer.digiylyfe.com/"},
@@ -483,9 +451,11 @@ const ESSENCE=[
 const $=sel=>document.querySelector(sel);
 
 function itemTpl(x){
-  return `<a class="linkItem" href="${x.href}" rel="noopener noreferrer">
-    <i>${x.icon}</i><span><strong>${x.name}</strong><small>${x.desc||""}</small></span>
-  </a>`;
+  const inside=`<i>${x.icon}</i><span><strong>${x.name}</strong><small>${x.desc||""}</small></span>`;
+  if(x.open){
+    return `<button class="linkItem linkButton" type="button" data-open="${x.open}">${inside}</button>`;
+  }
+  return `<a class="linkItem" href="${x.href}" rel="noopener noreferrer">${inside}</a>`;
 }
 
 function fill(id, rows){
@@ -576,6 +546,7 @@ if("serviceWorker" in navigator){
 </script>
 </body>
 </html>
+
 
 
 
