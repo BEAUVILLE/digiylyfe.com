@@ -4,19 +4,23 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>DIGIYLYFE — La Voix du Business</title>
+
 <meta name="theme-color" content="#06140f"/>
-<meta name="description" content="DIGIYLYFE — le Club des Métiers du Terrain. Les bras numériques des pros : voix, fiches, QR, partage, contact direct, paiement direct, 0% commission."/>
+<meta name="description" content="DIGIYLYFE — le Club des Métiers du Terrain. Le public parle, les fiches remontent, le professionnel garde son client, son argent et sa décision."/>
 <meta name="robots" content="index,follow"/>
-<meta name="digiy-build" content="vitrine-pro-action-club-mobile-clean-20260614"/>
+<meta name="digiy-build" content="vitrine-pro-action-accueil-direct-20260615"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
+
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://digiylyfe.com/"/>
 <meta property="og:title" content="DIGIYLYFE — La Voix du Business"/>
-<meta property="og:description" content="DIGIYLYFE — le Club des Métiers du Terrain. Les bras numériques des pros du réel."/>
+<meta property="og:description" content="Je clique. Je parle. J’existe. Je suis visible. Je suis reconnu. J’avance."/>
 <meta property="og:image" content="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg"/>
 <meta property="og:locale" content="fr_SN"/>
+
 <link href="./icon-192.png" rel="icon" sizes="192x192"/>
 <link href="./icon-192.png" rel="apple-touch-icon"/>
+
 <style>
 :root{
   --bg:#03120d;
@@ -49,14 +53,20 @@ body{
   overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
-button,input,textarea{font:inherit}
-button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+
 .bgGrid{
-  position:fixed;inset:0;pointer-events:none;opacity:.35;
-  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.35;
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
   background-size:54px 54px;
   mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 82%);
 }
+
 .app{
   width:min(100%,980px);
   margin:0 auto;
@@ -65,6 +75,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   position:relative;
   z-index:1;
 }
+
 .top{
   min-height:66px;
   display:grid;
@@ -73,122 +84,118 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   align-items:center;
 }
 .logo{
-  width:56px;height:56px;border-radius:20px;overflow:hidden;
+  width:56px;
+  height:56px;
+  border-radius:20px;
+  overflow:hidden;
   border:1px solid var(--lineGold);
   box-shadow:0 12px 32px rgba(0,0,0,.30);
   background:rgba(255,255,255,.08);
 }
-.logo img{width:100%;height:100%;object-fit:cover;display:block}
-.brand{text-align:center;font-weight:1000;letter-spacing:.10em;font-size:clamp(18px,5vw,26px)}
-.brand small{display:block;margin-top:3px;color:var(--soft);font-size:10px;letter-spacing:.08em;font-weight:900;text-transform:uppercase}
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.brand{
+  text-align:center;
+  font-weight:1000;
+  letter-spacing:.10em;
+  font-size:clamp(18px,5vw,26px);
+}
+.brand small{
+  display:block;
+  margin-top:3px;
+  color:var(--soft);
+  font-size:10px;
+  letter-spacing:.08em;
+  font-weight:900;
+  text-transform:uppercase;
+}
 .roundBtn{
   border:1px solid var(--lineGold);
   background:linear-gradient(135deg,rgba(246,196,83,.16),rgba(0,166,81,.12));
-  color:#fff3cf;border-radius:999px;min-height:56px;min-width:56px;
-  display:grid;place-items:center;font-weight:1000;font-size:22px;
+  color:#fff3cf;
+  border-radius:999px;
+  min-height:56px;
+  min-width:56px;
+  display:grid;
+  place-items:center;
+  font-weight:1000;
+  font-size:22px;
   box-shadow:0 12px 30px rgba(0,0,0,.24);
 }
+
 .clubBadge{
   width:min(100%,760px);
   margin:4px auto 12px;
   border:1px solid rgba(246,196,83,.50);
   border-radius:28px;
-  background:radial-gradient(400px 130px at 12% 0%,rgba(246,196,83,.24),transparent 66%),radial-gradient(360px 130px at 88% 0%,rgba(0,166,81,.20),transparent 66%),rgba(255,255,255,.085);
+  background:
+    radial-gradient(400px 130px at 12% 0%,rgba(246,196,83,.24),transparent 66%),
+    radial-gradient(360px 130px at 88% 0%,rgba(0,166,81,.20),transparent 66%),
+    rgba(255,255,255,.085);
   box-shadow:0 16px 40px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.06);
   padding:14px;
   text-align:center;
 }
-.clubBadge strong{display:block;color:#fffaf0;font-size:clamp(24px,6.2vw,42px);line-height:.98;font-weight:1000;letter-spacing:.06em}
-.clubBadge span{display:block;margin-top:7px;color:#fff3cf;font-size:clamp(16px,4.4vw,24px);line-height:1.10;font-weight:1000;letter-spacing:.035em;text-transform:uppercase}
-.clubBadge small{display:block;margin-top:8px;color:rgba(255,250,240,.80);font-size:clamp(13px,3.5vw,17px);line-height:1.36;font-weight:950}
+.clubBadge strong{
+  display:block;
+  color:#fffaf0;
+  font-size:clamp(24px,6.2vw,42px);
+  line-height:.98;
+  font-weight:1000;
+  letter-spacing:.06em;
+}
+.clubBadge span{
+  display:block;
+  margin-top:7px;
+  color:#fff3cf;
+  font-size:clamp(16px,4.4vw,24px);
+  line-height:1.10;
+  font-weight:1000;
+  letter-spacing:.035em;
+  text-transform:uppercase;
+}
+.clubBadge small{
+  display:block;
+  margin-top:8px;
+  color:rgba(255,250,240,.80);
+  font-size:clamp(13px,3.5vw,17px);
+  line-height:1.36;
+  font-weight:950;
+}
 .mantra{
   margin:10px auto 0;
-  display:flex;flex-wrap:wrap;gap:7px;justify-content:center;
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  justify-content:center;
 }
 .mantra b{
-  display:inline-flex;align-items:center;justify-content:center;
-  min-height:30px;padding:0 10px;border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:30px;
+  padding:0 10px;
+  border-radius:999px;
   border:1px solid rgba(246,196,83,.30);
   background:rgba(246,196,83,.10);
-  color:#fff3cf;font-size:12px;font-weight:1000;letter-spacing:.025em;
-}
-.clubSpirit{
-  margin:12px auto 0;
-  width:min(100%,840px);
-  border:1px solid rgba(246,196,83,.38);
-  border-radius:28px;
-  background:
-    radial-gradient(520px 180px at 8% 0%,rgba(246,196,83,.18),transparent 66%),
-    radial-gradient(520px 180px at 92% 0%,rgba(0,166,81,.20),transparent 66%),
-    rgba(3,18,13,.58);
-  box-shadow:0 18px 44px rgba(0,0,0,.24), inset 0 0 0 1px rgba(255,255,255,.05);
-  padding:14px;
-}
-.clubSpiritTop{
-  display:grid;
-  grid-template-columns:72px 1fr;
-  gap:13px;
-  align-items:center;
-}
-.clubMark{
-  width:72px;height:72px;border-radius:24px;
-  display:grid;place-items:center;
-  border:1px solid rgba(246,196,83,.50);
-  background:linear-gradient(135deg,rgba(255,241,189,.20),rgba(0,166,81,.16));
-  box-shadow:0 12px 32px rgba(0,0,0,.24);
-  font-size:36px;
-}
-.clubSpirit h2{
-  margin:0;
   color:#fff3cf;
-  font-size:clamp(22px,5.7vw,34px);
-  line-height:1.02;
+  font-size:12px;
   font-weight:1000;
-  letter-spacing:-.04em;
+  letter-spacing:.025em;
 }
-.clubSpirit p{
-  margin:7px 0 0;
-  color:rgba(255,250,240,.82);
-  font-size:clamp(14px,3.8vw,18px);
-  line-height:1.42;
-  font-weight:900;
-}
-.doctrineGrid{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:8px;
-  margin-top:12px;
-}
-.doctrinePill{
-  min-height:76px;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,.13);
-  background:rgba(255,255,255,.07);
-  padding:10px;
-  display:flex;flex-direction:column;justify-content:center;gap:5px;
-  text-align:center;
-}
-.doctrinePill strong{font-size:13px;line-height:1.10;font-weight:1000;color:#fff}
-.doctrinePill small{font-size:11px;line-height:1.20;font-weight:850;color:rgba(255,250,240,.70)}
-.clubOath{
-  margin-top:11px;
-  border-radius:22px;
-  border:1px solid rgba(246,196,83,.26);
-  background:rgba(246,196,83,.09);
-  padding:12px;
-  color:#fff8df;
-  font-size:clamp(14px,3.8vw,18px);
-  line-height:1.38;
-  font-weight:950;
-  text-align:center;
-}
-.clubOath b{color:#fff3cf}
 
 .proActionWrap{
   margin-top:12px;
   border:1px solid rgba(246,196,83,.45);
   border-radius:32px;
-  background:radial-gradient(520px 240px at 12% 0%,rgba(246,196,83,.20),transparent 64%),radial-gradient(420px 240px at 92% 0%,rgba(0,166,81,.22),transparent 62%),linear-gradient(180deg,rgba(255,255,255,.105),rgba(255,255,255,.045));
+  background:
+    radial-gradient(520px 240px at 12% 0%,rgba(246,196,83,.20),transparent 64%),
+    radial-gradient(420px 240px at 92% 0%,rgba(0,166,81,.22),transparent 62%),
+    linear-gradient(180deg,rgba(255,255,255,.105),rgba(255,255,255,.045));
   box-shadow:var(--shadow),inset 0 0 0 1px rgba(255,255,255,.06);
   overflow:hidden;
 }
@@ -220,9 +227,13 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   border:1px solid rgba(246,196,83,.66);
   background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
   color:#06140f;
-  display:flex;align-items:center;justify-content:center;text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
   padding:0 13px;
-  font-size:13px;font-weight:1000;
+  font-size:13px;
+  font-weight:1000;
   box-shadow:0 14px 34px rgba(246,196,83,.18);
   white-space:nowrap;
 }
@@ -233,11 +244,16 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   position:relative;
 }
 .frameBox iframe{
-  width:100%;height:100%;display:block;border:0;background:#06140f;
+  width:100%;
+  height:100%;
+  display:block;
+  border:0;
+  background:#06140f;
 }
+
 .directDoors{
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:repeat(5,minmax(0,1fr));
   gap:9px;
   margin:12px 0 0;
 }
@@ -246,307 +262,406 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
   border-radius:22px;
   border:1px solid rgba(255,255,255,.13);
   background:rgba(255,255,255,.075);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
-  text-align:center;padding:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  text-align:center;
+  padding:10px;
   box-shadow:0 12px 30px rgba(0,0,0,.16);
 }
-.doorCard i{font-style:normal;font-size:28px;line-height:1}
-.doorCard strong{font-size:13px;line-height:1.12;font-weight:1000;color:#fff}
-.doorCard small{font-size:10.5px;line-height:1.15;font-weight:850;color:rgba(255,250,240,.68)}
-.floatingDock{display:none!important}
-.dockInner{width:min(780px,100%);margin:auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
-.dockBtn{
-  min-height:74px;padding:8px 4px 9px;border-radius:18px;
-  border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.075);color:#fff7e8;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
-  font-size:13px;line-height:1.12;font-weight:1000;text-align:center;
+.doorCard i{
+  font-style:normal;
+  font-size:28px;
+  line-height:1;
 }
-.dockBtn b{font-size:29px;line-height:1}.dockBtn span{display:block;max-width:100%;white-space:normal;text-align:center}
-.dockBtn.primary{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;border-color:rgba(246,196,83,.64);box-shadow:0 0 0 4px rgba(246,196,83,.09)}
-.floatQuick{display:none!important}
-.quickBtn{
-  width:56px;height:56px;border-radius:999px;display:grid;place-items:center;
-  border:1px solid rgba(246,196,83,.42);background:rgba(3,18,12,.84);backdrop-filter:blur(14px);
-  color:#fff3cf;font-size:24px;box-shadow:0 16px 42px rgba(0,0,0,.30);
+.doorCard strong{
+  font-size:13px;
+  line-height:1.12;
+  font-weight:1000;
+  color:#fff;
 }
-.quickBtn.gold{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f}.quickBtn.link{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f}
-.overlay{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.46);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .2s ease}.overlay.open{opacity:1;pointer-events:auto}
-.sheet{position:fixed;inset:auto 0 0 0;z-index:90;transform:translateY(104%);transition:transform .22s ease;padding:10px 10px calc(12px + env(safe-area-inset-bottom));pointer-events:none}.sheet.open{transform:translateY(0);pointer-events:auto}
-.sheetCard{width:min(880px,100%);margin:auto;max-height:84svh;overflow:auto;border-radius:32px 32px 24px 24px;border:1px solid rgba(246,196,83,.36);background:rgba(4,19,13,.985);backdrop-filter:blur(20px);box-shadow:0 -22px 70px rgba(0,0,0,.55);padding:16px}
-.sheetHead{display:grid;grid-template-columns:1fr 56px;align-items:center;gap:12px;padding:8px 4px 15px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:14px}
-.sheetHead strong{font-size:clamp(26px,6.4vw,36px);line-height:1.06;font-weight:1000;letter-spacing:-.045em;color:#fff3cf}.closeSheet{width:56px;height:56px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;font-size:25px;font-weight:1000}
-.linkGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.linkItem{min-height:92px;border-radius:23px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.078);display:grid;grid-template-columns:58px 1fr;align-items:center;gap:13px;padding:15px}.linkItem:hover{border-color:rgba(246,196,83,.42);background:rgba(246,196,83,.105)}.linkButton{font:inherit;color:inherit;text-align:left;cursor:pointer}.linkItem i{font-style:normal;font-size:37px;text-align:center;line-height:1}.linkItem strong{display:block;font-size:clamp(18px,4.7vw,23px);line-height:1.08;font-weight:1000;color:#fff;letter-spacing:-.028em}.linkItem small{display:block;margin-top:7px;color:rgba(255,250,240,.74);font-size:clamp(14px,3.8vw,17px);line-height:1.25;font-weight:900}.sheetText{color:rgba(255,250,240,.80);font-size:clamp(17px,4.5vw,21px);line-height:1.48;font-weight:900;padding:4px 4px 18px}.sheetText strong{color:#fff3cf;font-size:clamp(19px,5vw,24px)}
-.shareBox{display:grid;gap:10px}.shareMain{min-height:68px;border-radius:22px;border:1px solid rgba(246,196,83,.72);background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 18px;font-size:clamp(17px,4.5vw,22px);line-height:1.12;font-weight:1000;box-shadow:0 16px 38px rgba(246,196,83,.22)}.shareChannels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.shareChannels a,.shareChannels button{min-height:52px;border-radius:17px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.075);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 10px;font-size:13px;font-weight:1000}.shareNote{border-radius:20px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.075);color:rgba(255,250,240,.80);padding:14px;font-size:clamp(14px,3.8vw,17px);line-height:1.42;font-weight:900}.shareNote strong{color:#fff3cf}
-.toast{position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:120;max-width:680px;margin:auto;border:1px solid rgba(246,196,83,.50);background:rgba(3,18,13,.96);color:#fff3cf;border-radius:18px;padding:12px 14px;font-weight:1000;text-align:center;box-shadow:0 18px 44px rgba(0,0,0,.35);opacity:0;transform:translateY(12px);pointer-events:none;transition:.18s ease}.toast.open{opacity:1;transform:translateY(0)}
-@media(min-width:720px){.app{padding-bottom:42px}.frameBox{height:min(820px,calc(100svh - 190px))}.linkGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:640px){.clubSpiritTop{grid-template-columns:1fr;text-align:center}.clubMark{margin:auto}.doctrineGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.proActionHead{grid-template-columns:1fr}.proActionOpen{width:100%}.directDoors{grid-template-columns:repeat(2,minmax(0,1fr))}.frameBox{height:calc(100svh - 230px);min-height:560px}.linkGrid{grid-template-columns:1fr}.linkItem{min-height:88px;grid-template-columns:56px 1fr;padding:14px}.linkItem i{font-size:36px}}
-@media(max-width:430px){.brand{font-size:18px}.dockInner{gap:6px}.dockBtn{min-height:72px;padding:7px 3px 8px;border-radius:17px;font-size:12px;line-height:1.08}.dockBtn b{font-size:27px}}
-@media(max-width:340px){.dockInner{gap:4px}.dockBtn{font-size:11px}.dockBtn b{font-size:24px}.top{grid-template-columns:50px 1fr 50px}.logo,.roundBtn{width:50px;height:50px;min-width:50px;min-height:50px}}
+.doorCard small{
+  font-size:10.5px;
+  line-height:1.15;
+  font-weight:850;
+  color:rgba(255,250,240,.68);
+}
+
+.moduleGrid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:9px;
+  margin-top:12px;
+}
+.moduleCard{
+  min-height:86px;
+  border-radius:22px;
+  border:1px solid rgba(246,196,83,.18);
+  background:rgba(3,18,13,.44);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  text-align:center;
+  padding:10px;
+}
+.moduleCard i{
+  font-style:normal;
+  font-size:28px;
+}
+.moduleCard strong{
+  font-size:13px;
+  font-weight:1000;
+}
+.moduleCard small{
+  font-size:10.5px;
+  color:rgba(255,250,240,.68);
+  font-weight:850;
+}
+
+.footer{
+  margin:18px auto 0;
+  text-align:center;
+  color:rgba(255,250,240,.66);
+  font-size:12px;
+  font-weight:850;
+  line-height:1.45;
+}
+.footer a{
+  color:#fff3cf;
+  font-weight:1000;
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:80;
+  background:rgba(0,0,0,.46);
+  backdrop-filter:blur(2px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease;
+}
+.overlay.open{
+  opacity:1;
+  pointer-events:auto;
+}
+.sheet{
+  position:fixed;
+  inset:auto 0 0 0;
+  z-index:90;
+  transform:translateY(104%);
+  transition:transform .22s ease;
+  padding:10px 10px calc(12px + env(safe-area-inset-bottom));
+  pointer-events:none;
+}
+.sheet.open{
+  transform:translateY(0);
+  pointer-events:auto;
+}
+.sheetCard{
+  width:min(880px,100%);
+  margin:auto;
+  max-height:84svh;
+  overflow:auto;
+  border-radius:32px 32px 24px 24px;
+  border:1px solid rgba(246,196,83,.36);
+  background:rgba(4,19,13,.985);
+  backdrop-filter:blur(20px);
+  box-shadow:0 -22px 70px rgba(0,0,0,.55);
+  padding:16px;
+}
+.sheetHead{
+  display:grid;
+  grid-template-columns:1fr 56px;
+  align-items:center;
+  gap:12px;
+  padding:8px 4px 15px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.sheetHead h2{
+  margin:0;
+  font-size:24px;
+  font-weight:1000;
+}
+.closeBtn{
+  width:56px;
+  height:56px;
+  border-radius:20px;
+  border:1px solid rgba(246,196,83,.35);
+  background:rgba(255,255,255,.08);
+  color:#fff3cf;
+  font-size:30px;
+  font-weight:900;
+}
+.menuGrid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin-top:14px;
+}
+.menuGrid a{
+  min-height:62px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.075);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:10px;
+  font-size:14px;
+  line-height:1.18;
+  font-weight:1000;
+}
+.menuGrid a.gold{
+  background:linear-gradient(135deg,#fff1bd,#f6c453);
+  color:#06140f;
+}
+.menuGrid a.green{
+  background:linear-gradient(135deg,#d8ffe6,#7ee6a7);
+  color:#06140f;
+}
+.menuGrid a.red{
+  background:linear-gradient(135deg,#ffe0dc,#ff9b92);
+  color:#230403;
+}
+
+@media(max-width:760px){
+  .app{
+    padding-left:10px;
+    padding-right:10px;
+  }
+  .proActionHead{
+    grid-template-columns:1fr;
+  }
+  .proActionOpen{
+    width:100%;
+  }
+  .frameBox{
+    min-height:620px;
+    height:calc(100svh - 185px);
+  }
+  .directDoors{
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:6px;
+  }
+  .doorCard{
+    min-height:70px;
+    border-radius:18px;
+    padding:7px 4px;
+  }
+  .doorCard i{
+    font-size:24px;
+  }
+  .doorCard strong{
+    font-size:10.5px;
+  }
+  .doorCard small{
+    display:none;
+  }
+  .moduleGrid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:6px;
+  }
+  .moduleCard{
+    min-height:70px;
+    border-radius:18px;
+    padding:7px 4px;
+  }
+  .moduleCard i{
+    font-size:24px;
+  }
+  .moduleCard strong{
+    font-size:10.5px;
+  }
+  .moduleCard small{
+    display:none;
+  }
+  .menuGrid{
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
+
 <body>
 <div class="bgGrid" aria-hidden="true"></div>
-<div class="app">
-  <header class="top" id="haut">
-    <a class="logo" href="https://digiylyfe.com/" aria-label="Accueil DIGIYLYFE">
-      <img src="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg" alt="DIGIYLYFE"/>
+
+<main class="app" id="haut">
+  <header class="top" aria-label="En-tête DIGIYLYFE">
+    <a class="logo" href="https://digiylyfe.com/" aria-label="DIGIYLYFE accueil">
+      <img src="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg" alt="Logo DIGIYLYFE">
     </a>
-    <div class="brand">DIGIYLYFE<small>Le Club des Métiers du Terrain</small></div>
-    <button class="roundBtn" type="button" data-open="menu" aria-label="Ouvrir le menu">☰</button>
+
+    <div class="brand">
+      DIGIYLYFE
+      <small>Le Club Entreprises du Terrain</small>
+    </div>
+
+    <button class="roundBtn" type="button" onclick="openMenu()" aria-label="Ouvrir le menu">☰</button>
   </header>
 
-  <section class="clubBadge" aria-label="Signature DIGIYLYFE">
-    <strong>LA VOIX DU BUSINESS</strong>
-    <span>Club des Métiers du Terrain · Bras numériques des pros.</span>
-    <small>La voix ouvre la voie. Les fiches montrent le savoir-faire. Le QR partage. Le contact et le paiement restent directs.</small>
-    <div class="mantra" aria-label="Mantra DIGIYLYFE">
-      <b>Je clique.</b><b>Je parle.</b><b>J’existe.</b><b>Je suis visible.</b><b>Je suis reconnu.</b><b>J’avance.</b>
+  <section class="clubBadge" aria-label="Message DIGIYLYFE">
+    <strong>La Voix du Business</strong>
+    <span>Le public parle. Les fiches remontent.</span>
+    <small>Les bras numériques des pros du terrain : QR, contact direct, paiement direct, 0% commission.</small>
+
+    <div class="mantra" aria-label="Doctrine DIGIYLYFE">
+      <b>Je clique.</b>
+      <b>Je parle.</b>
+      <b>J’existe.</b>
+      <b>Je suis visible.</b>
+      <b>Je suis reconnu.</b>
+      <b>J’avance.</b>
     </div>
   </section>
 
-  <section class="clubSpirit" aria-label="Esprit Club DIGIYLYFE">
-    <div class="clubSpiritTop">
-      <div class="clubMark" aria-hidden="true">🤝</div>
-      <div>
-        <h2>DIGIY, les bras numériques du terrain.</h2>
-        <p>DIGIYLYFE n’est pas une appli froide perdue dans la foule. C’est un club vivant : artisans, chauffeurs, commerçants, hébergeurs, restaurateurs, créateurs, services et métiers locaux avancent sous une même bannière.</p>
-      </div>
-    </div>
-    <div class="doctrineGrid" aria-label="Doctrine DIGIYLYFE">
-      <div class="doctrinePill"><strong>Le pro garde son nom</strong><small>sa fiche, son identité, sa dignité</small></div>
-      <div class="doctrinePill"><strong>Le client reste direct</strong><small>appel, WhatsApp, SMS, QR</small></div>
-      <div class="doctrinePill"><strong>0% commission</strong><small>l’argent va au professionnel</small></div>
-      <div class="doctrinePill"><strong>La voix oriente</strong><small>l’humain valide, le terrain décide</small></div>
-    </div>
-    <div class="clubOath"><b>Notre force :</b> unir les métiers du terrain, rendre visibles les pros, organiser le business simple, et protéger la relation directe.</div>
-  </section>
-
-  <main class="proActionWrap" id="voix" aria-label="Moteur Pro Action DIGIY en vitrine">
+  <section class="proActionWrap" aria-label="Moteur Pro Action DIGIY">
     <div class="proActionHead">
       <div>
-        <h1>Parler ici. Voir les bonnes fiches.</h1>
-        <p>Le moteur Pro Action reste la porte d’entrée du Club : on parle, les fiches remontent, l’écran reste libre et le professionnel garde la main.</p>
+        <h1>Parle ici.<br>DIGIY ouvre la bonne porte.</h1>
+        <p>Demande un chauffeur, un logement, un artisan, un produit, une mission ou un paiement. Les fiches business remontent directement.</p>
       </div>
-      <a class="proActionOpen" href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener noreferrer">↗️ Ouvrir grand</a>
+      <a class="proActionOpen" href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener">
+        🎙️ Ouvrir en grand
+      </a>
     </div>
+
     <div class="frameBox">
-      <iframe title="DIGIYLYFE — Pro Action" src="https://pro-action-digiy.digiylyfe.com/" allow="microphone; autoplay; clipboard-write; speaker-selection" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <iframe
+        src="https://pro-action-digiy.digiylyfe.com/"
+        title="La Voix du Business DIGIYLYFE"
+        loading="eager"
+        allow="microphone; clipboard-write; autoplay"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
-  </main>
+  </section>
 
   <nav class="directDoors" aria-label="Accès directs DIGIYLYFE">
-    <a class="doorCard" href="https://pro-action-digiy.digiylyfe.com/"><i>👂</i><strong>Voix</strong><small>bras numériques</small></a>
-    <a class="doorCard" href="https://digiy-hub.digiylyfe.com/"><i>🧭</i><strong>HUB</strong><small>toutes portes</small></a>
-    <a class="doorCard" href="https://commencer-a-payer.digiylyfe.com/"><i>📦</i><strong>Activer</strong><small>module pro</small></a>
-    <a class="doorCard" href="https://pro-espace.digiylyfe.com/"><i>🔐</i><strong>Espace pro</strong><small>protégé</small></a>
+    <a class="doorCard" href="https://pro-action-digiy.digiylyfe.com/">
+      <i>🎙️</i><strong>Voix</strong><small>Parler</small>
+    </a>
+    <a class="doorCard" href="https://commencer-a-payer.digiylyfe.com/">
+      <i>✍️</i><strong>Activer</strong><small>Module pro</small>
+    </a>
+    <a class="doorCard" href="https://pro-espace.digiylyfe.com/">
+      <i>🔐</i><strong>Pro</strong><small>Espace protégé</small>
+    </a>
+    <a class="doorCard" href="https://tarifs.digiylyfe.com/">
+      <i>📦</i><strong>Tarifs</strong><small>Offres</small>
+    </a>
+    <a class="doorCard" href="https://digiylyfe.net/">
+      <i>📰</i><strong>Revue</strong><small>DIGIYLYFE</small>
+    </a>
   </nav>
+
+  <section class="moduleGrid" aria-label="Portes métiers DIGIYLYFE">
+    <a class="moduleCard" href="https://driver.digiylyfe.com/">
+      <i>🚗</i><strong>DRIVER</strong><small>Chauffeurs</small>
+    </a>
+    <a class="moduleCard" href="https://loc.digiylyfe.com/">
+      <i>🏠</i><strong>LOC</strong><small>Logements</small>
+    </a>
+    <a class="moduleCard" href="https://build.digiylyfe.com/">
+      <i>🏗️</i><strong>BUILD</strong><small>Artisans</small>
+    </a>
+    <a class="moduleCard" href="https://market.digiylyfe.com/">
+      <i>🛍️</i><strong>MARKET</strong><small>Produits</small>
+    </a>
+    <a class="moduleCard" href="https://jobs.digiylyfe.com/">
+      <i>💼</i><strong>JOBS</strong><small>Missions</small>
+    </a>
+    <a class="moduleCard" href="https://resa.digiylyfe.com/">
+      <i>📅</i><strong>RESA</strong><small>Réserver</small>
+    </a>
+    <a class="moduleCard" href="https://explore.digiylyfe.com/">
+      <i>🗺️</i><strong>EXPLORE</strong><small>Découvrir</small>
+    </a>
+    <a class="moduleCard" href="https://pay.digiylyfe.com/">
+      <i>💳</i><strong>PAY</strong><small>Paiement direct</small>
+    </a>
+  </section>
+
+  <footer class="footer">
+    <strong>DIGIYLYFE ∞</strong><br>
+    La Voix du Business, la Voie du Terrain.<br>
+    <a href="#haut">Remonter</a> ·
+    <a href="https://pro-action-digiy.digiylyfe.com/">La Voix</a> ·
+    <a href="https://commencer-a-payer.digiylyfe.com/">Activer mon module</a>
+  </footer>
+</main>
+
+<div class="overlay" id="menuOverlay" onclick="backdropClose(event)" aria-hidden="true"></div>
+
+<div class="sheet" id="menuSheet" aria-hidden="true">
+  <div class="sheetCard" role="dialog" aria-modal="true" aria-label="Menu DIGIYLYFE">
+    <div class="sheetHead">
+      <h2>☰ Portes DIGIYLYFE</h2>
+      <button class="closeBtn" type="button" onclick="closeMenu()" aria-label="Fermer">×</button>
+    </div>
+
+    <nav class="menuGrid" aria-label="Menu principal DIGIYLYFE">
+      <a class="gold" href="https://pro-action-digiy.digiylyfe.com/">🎙️ La Voix du Business</a>
+      <a class="green" href="https://commencer-a-payer.digiylyfe.com/">✍️ Activer mon module</a>
+      <a class="red" href="https://pro-espace.digiylyfe.com/">🔐 Espace pro</a>
+      <a href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
+      <a href="https://driver.digiylyfe.com/">🚗 DRIVER</a>
+      <a href="https://loc.digiylyfe.com/">🏠 LOC</a>
+      <a href="https://build.digiylyfe.com/">🏗️ BUILD</a>
+      <a href="https://market.digiylyfe.com/">🛍️ MARKET</a>
+      <a href="https://jobs.digiylyfe.com/">💼 JOBS</a>
+      <a href="https://resa.digiylyfe.com/">📅 RESA</a>
+      <a href="https://explore.digiylyfe.com/">🗺️ EXPLORE</a>
+      <a href="https://pay.digiylyfe.com/">💳 PAY</a>
+      <a href="https://digiylyfe.net/">📰 Revue DIGIYLYFE</a>
+      <a href="https://digiylyfe.com/">🌍 Accueil</a>
+    </nav>
+  </div>
 </div>
-
-<div class="overlay" id="overlay" aria-hidden="true"></div>
-
-<section class="sheet" id="sheetPublic" aria-label="Portes publiques DIGIYLYFE">
-  <div class="sheetCard">
-    <div class="sheetHead"><strong>🌍 Portes publiques</strong><button class="closeSheet" type="button" aria-label="Fermer">×</button></div>
-    <div class="linkGrid" id="publicLinks"></div>
-  </div>
-</section>
-
-<section class="sheet" id="sheetPro" aria-label="Modules professionnels DIGIYLYFE">
-  <div class="sheetCard">
-    <div class="sheetHead"><strong>🏢 Modules pro</strong><button class="closeSheet" type="button" aria-label="Fermer">×</button></div>
-    <div class="linkGrid" id="proLinks"></div>
-  </div>
-</section>
-
-<section class="sheet" id="sheetEssence" aria-label="Esprit DIGIYLYFE">
-  <div class="sheetCard">
-    <div class="sheetHead"><strong>🦅 Esprit DIGIY</strong><button class="closeSheet" type="button" aria-label="Fermer">×</button></div>
-    <div class="sheetText">
-      <strong>DIGIYLYFE — Le Club des Métiers du Terrain.</strong><br/>
-      DIGIY, ce sont les bras numériques des pros du réel : la voix pour demander, la fiche pour être visible, le QR pour partager, PAY pour tracer, les portes métiers pour organiser. Ici, on ne remplace pas le professionnel. On lui donne des bras, du rythme, de la visibilité et une route propre. Le public trouve. Le pro garde son nom, son client, son argent et sa décision.
-    </div>
-    <div class="linkGrid" id="essenceLinks"></div>
-  </div>
-</section>
-
-<section class="sheet" id="sheetMenu" aria-label="Menu principal DIGIYLYFE">
-  <div class="sheetCard">
-    <div class="sheetHead"><strong>☰ Menu DIGIYLYFE</strong><button class="closeSheet" type="button" aria-label="Fermer">×</button></div>
-    <div class="linkGrid" id="mainLinks"></div>
-  </div>
-</section>
-
-<section class="sheet" id="sheetShare" aria-label="Partager DIGIYLYFE">
-  <div class="sheetCard">
-    <div class="sheetHead"><strong>📤 Partager DIGIYLYFE</strong><button class="closeSheet" type="button" aria-label="Fermer">×</button></div>
-    <div class="shareBox">
-      <a class="shareMain" id="directShareLink" href="https://digiylyfe.com/">🔗 Ouvrir / copier le lien DIGIYLYFE</a>
-      <div class="shareChannels">
-        <a id="sendWaBtn" href="#">WhatsApp</a>
-        <a id="sendSmsBtn" href="#">SMS</a>
-        <a id="sendMailBtn" href="#">Email</a>
-      </div>
-      <button class="shareMain" type="button" id="copyBtn">📋 Copier le message</button>
-      <div class="shareNote"><strong>Message terrain :</strong><br/>DIGIYLYFE — le Club des Métiers du Terrain. DIGIY, les bras numériques des pros : voix, fiches, QR, contact direct, paiement direct, 0% commission. Le terrain garde la main.</div>
-    </div>
-  </div>
-</section>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function(){
-"use strict";
+  "use strict";
 
-const DIGIY_URL="https://digiylyfe.com/";
-const SHARE_TEXT="DIGIYLYFE — Le Club des Métiers du Terrain. DIGIY, les bras numériques des pros : voix, fiches, QR, contact direct, paiement direct, 0% commission. Le terrain garde la main.";
+  const overlay = document.getElementById("menuOverlay");
+  const sheet = document.getElementById("menuSheet");
 
-const PUB=[
-  {id:"voix",icon:"👂",name:"La Voix du Business",desc:"Parler, cliquer, voir les fiches.",href:"https://pro-action-digiy.digiylyfe.com/"},
-  {id:"explore",icon:"🗺️",name:"Découvrir",desc:"Sorties, lieux, territoire.",href:"https://explore.digiylyfe.com/"},
-  {id:"driver",icon:"🚗",name:"Chauffeur",desc:"Course, AIBD, trajet direct.",href:"https://driver-client.digiylyfe.com/"},
-  {id:"loc",icon:"🏠",name:"Logement",desc:"Location, disponibilité, contact.",href:"https://loc.digiylyfe.com/"},
-  {id:"resa",icon:"📅",name:"Réserver",desc:"Table, service, créneau.",href:"https://resa-table-resto.digiylyfe.com/"},
-  {id:"build",icon:"🏗️",name:"Artisans",desc:"Plombier, maçon, électricité.",href:"https://build.digiylyfe.com/"},
-  {id:"market",icon:"🛍️",name:"Market",desc:"Produits, boutiques, offres.",href:"https://market.digiylyfe.com/"},
-  {id:"jobs",icon:"💼",name:"Jobs",desc:"Missions, candidats, opportunités.",href:"https://jobs.digiylyfe.com/"},
-  {id:"pay",icon:"💳",name:"PAY",desc:"Paiement direct au pro.",href:"https://pay.digiylyfe.com/"}
-];
+  window.openMenu = function(){
+    overlay.classList.add("open");
+    sheet.classList.add("open");
+    overlay.setAttribute("aria-hidden","false");
+    sheet.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+  };
 
-const PRO=[
-  {id:"actionpro",icon:"🎙️",name:"ACTION DIGIY",desc:"Oreille pro protégée.",href:"https://pro-action-digiy.digiylyfe.com/pin.html"},
-  {id:"commerce",icon:"🛒",name:"Mon commerce",desc:"Caisse, produits, ventes.",href:"https://commerce-pro.digiylyfe.com/hub.html"},
-  {id:"driverpro",icon:"🚗",name:"Je conduis",desc:"Trajets, tarifs, clients.",href:"https://pro-driver.digiylyfe.com/hub.html"},
-  {id:"locpro",icon:"🏠",name:"Je loue",desc:"Planning, logements, réservations.",href:"https://pro-loc.digiylyfe.com/hub.html"},
-  {id:"resapro",icon:"📅",name:"Je réserve",desc:"Services, tables, créneaux.",href:"https://pro-resa-resto.digiylyfe.com/hub.html"},
-  {id:"buildpro",icon:"🏗️",name:"Je propose mes services",desc:"Fiche artisan, demandes, QR.",href:"https://pro-build.digiylyfe.com/hub.html"},
-  {id:"marketpro",icon:"🛍️",name:"Je vends",desc:"Boutique, produits, stock.",href:"https://pro-market.digiylyfe.com/hub.html"},
-  {id:"jobspro",icon:"💼",name:"Je cherche du travail",desc:"Missions, bureau, candidats.",href:"https://pro-job.digiylyfe.com/hub.html"},
-  {id:"explorepro",icon:"🧭",name:"Je fais découvrir",desc:"Lieux, fiches, visibilité.",href:"https://pro-explore.digiylyfe.com/hub.html"},
-  {id:"paypro",icon:"💳",name:"Mon argent",desc:"PAY, traces, conseiller.",href:"https://pro-pay.digiylyfe.com/hub.html"}
-];
+  window.closeMenu = function(){
+    overlay.classList.remove("open");
+    sheet.classList.remove("open");
+    overlay.setAttribute("aria-hidden","true");
+    sheet.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+  };
 
-const MAIN=[
-  {icon:"🌍",name:"Portes publiques",desc:"Explorer les fiches et services",open:"public"},
-  {icon:"🏢",name:"Modules pro",desc:"Entrées métiers protégées",open:"pro"},
-  {icon:"🦅",name:"Esprit DIGIY",desc:"Club et bras numériques",open:"essence"},
-  {icon:"📤",name:"Partager",desc:"WhatsApp, SMS, email",open:"share"},
-  {icon:"👂",name:"La Voix",desc:"Accueil moteur",href:"https://pro-action-digiy.digiylyfe.com/"},
-  {icon:"🧭",name:"HUB DIGIY",desc:"Rond-point central",href:"https://digiy-hub.digiylyfe.com/"},
-  {icon:"📦",name:"Tarifs / activation",desc:"Choisir, payer, démarrer",href:"https://commencer-a-payer.digiylyfe.com/"},
-  {icon:"🔐",name:"Espace pro",desc:"Entrée protégée",href:"https://pro-espace.digiylyfe.com/"},
-  {icon:"📣",name:"Réseau",desc:"Visibilité terrain",href:"https://reseau-digiy.digiylyfe.com/"},
-  {icon:"📖",name:"Revue",desc:"Articles et vision",href:"https://digiylyfe.net/"}
-];
+  window.backdropClose = function(e){
+    if(e.target === overlay) closeMenu();
+  };
 
-const ESSENCE=[
-  {icon:"🔥",name:"Manifeste",desc:"Club, dignité, terrain",href:"https://fierte-puissance-independance.digiylyfe.com/"},
-  {icon:"🎧",name:"Vision",desc:"Écouter l’esprit",href:"https://vision.digiylyfe.com/"},
-  {icon:"✨",name:"Esprit",desc:"Bras numériques",href:"https://esprit-digiylyfe.digiylyfe.com/"},
-  {icon:"🎵",name:"Audio",desc:"Contenus audio",href:"https://digiy-audio.digiylyfe.com/"},
-  {icon:"♾️",name:"Infini",desc:"Œuvre longue",href:"https://digiylyfe.net/"},
-  {icon:"🇸🇳",name:"Sénégal",desc:"Terrain vivant",href:"https://explore.digiylyfe.com/"}
-];
-
-const $=sel=>document.querySelector(sel);
-
-function itemTpl(x){
-  const inside=`<i>${x.icon}</i><span><strong>${x.name}</strong><small>${x.desc||""}</small></span>`;
-  if(x.open){
-    return `<button class="linkItem linkButton" type="button" data-open="${x.open}">${inside}</button>`;
-  }
-  return `<a class="linkItem" href="${x.href}" rel="noopener noreferrer">${inside}</a>`;
-}
-
-function fill(id, rows){
-  const node=$(id);
-  if(node) node.innerHTML=rows.map(itemTpl).join("");
-}
-fill("#publicLinks", PUB);
-fill("#proLinks", PRO);
-fill("#mainLinks", MAIN);
-fill("#essenceLinks", ESSENCE);
-
-const sendWaBtn=$("#sendWaBtn"), sendSmsBtn=$("#sendSmsBtn"), sendMailBtn=$("#sendMailBtn"), directShareLink=$("#directShareLink");
-if(directShareLink) directShareLink.href=DIGIY_URL;
-if(sendWaBtn) sendWaBtn.href="https://wa.me/?text="+encodeURIComponent(SHARE_TEXT+"\n"+DIGIY_URL);
-if(sendSmsBtn) sendSmsBtn.href="sms:?&body="+encodeURIComponent(SHARE_TEXT+"\n"+DIGIY_URL);
-if(sendMailBtn) sendMailBtn.href="mailto:?subject="+encodeURIComponent("DIGIYLYFE")+"&body="+encodeURIComponent(SHARE_TEXT+"\n"+DIGIY_URL);
-
-const overlay=$("#overlay");
-const sheets={
-  public:$("#sheetPublic"),
-  pro:$("#sheetPro"),
-  essence:$("#sheetEssence"),
-  menu:$("#sheetMenu"),
-  share:$("#sheetShare")
-};
-
-function closeSheets(){
-  Object.values(sheets).forEach(s=>s&&s.classList.remove("open"));
-  overlay&&overlay.classList.remove("open");
-  document.body.style.overflow="";
-}
-function openSheet(name){
-  closeSheets();
-  if(sheets[name]){
-    sheets[name].classList.add("open");
-    overlay&&overlay.classList.add("open");
-    document.body.style.overflow="hidden";
-  }
-}
-
-document.addEventListener("click", function(ev){
-  const opener=ev.target.closest("[data-open]");
-  if(opener){ openSheet(opener.getAttribute("data-open")); return; }
-  if(ev.target.closest(".closeSheet") || ev.target===overlay){ closeSheets(); }
-});
-
-document.addEventListener("keydown", function(ev){
-  if(ev.key==="Escape") closeSheets();
-});
-
-const dockVoice=$("#dockVoice");
-if(dockVoice){
-  dockVoice.addEventListener("click", function(){
-    closeSheets();
-    const target=$("#voix");
-    if(target) target.scrollIntoView({behavior:"smooth",block:"start"});
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape") closeMenu();
   });
-}
 
-function toast(msg){
-  const t=$("#toast");
-  if(!t) return;
-  t.textContent=msg;
-  t.classList.add("open");
-  clearTimeout(toast._timer);
-  toast._timer=setTimeout(()=>t.classList.remove("open"),2200);
-}
-
-const copyBtn=$("#copyBtn");
-if(copyBtn){
-  copyBtn.addEventListener("click", async function(){
-    const text=SHARE_TEXT+"\n"+DIGIY_URL;
-    try{
-      await navigator.clipboard.writeText(text);
-      toast("Message copié. Prêt à envoyer, frérot.");
-    }catch(_){
-      toast("Copie non autorisée par le navigateur. Utilise WhatsApp, SMS ou Email.");
-    }
+  document.querySelectorAll(".menuGrid a").forEach(function(a){
+    a.addEventListener("click", closeMenu);
   });
-}
-
-if("serviceWorker" in navigator){
-  window.addEventListener("load", function(){
-    navigator.serviceWorker.register("/sw.js").catch(function(){});
-  });
-}
 })();
 </script>
 </body>
 </html>
-
 
 
 
