@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#06140f"/>
 <meta name="description" content="DIGIYLYFE — le Club des Métiers du Terrain. Le public parle, les fiches remontent, le professionnel garde son client, son argent et sa décision."/>
 <meta name="robots" content="index,follow"/>
-<meta name="digiy-build" content="vitrine-pro-action-modules-publics-qr-hub-retour-site-qr-cliquable-scan-click-20260616"/>
+<meta name="digiy-build" content="vitrine-pro-action-modules-publics-qr-hub-retour-site-qr-cliquable-partage-20260616"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 
 <meta property="og:type" content="website"/>
@@ -253,7 +253,7 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 
 .directDoors{
   display:grid;
-  grid-template-columns:repeat(6,minmax(0,1fr));
+  grid-template-columns:repeat(7,minmax(0,1fr));
   gap:9px;
   margin:12px 0 0;
 }
@@ -387,6 +387,113 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .qrActions a.returnSite{
   background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
   color:#06140f;
+}
+
+
+.qrHint{
+  display:block;
+  padding:11px 10px 12px;
+  background:#fff;
+  color:#06140f;
+  border-top:1px solid rgba(3,18,13,.14);
+  font-size:clamp(15px,4.2vw,20px);
+  line-height:1.15;
+  font-weight:1000;
+  text-align:center;
+  letter-spacing:.01em;
+}
+.sharePanel{
+  display:none;
+  margin:14px 0 0;
+  border:1px solid rgba(246,196,83,.42);
+  border-radius:30px;
+  background:
+    radial-gradient(420px 180px at 16% 0%,rgba(246,196,83,.20),transparent 64%),
+    radial-gradient(360px 180px at 86% 10%,rgba(0,166,81,.18),transparent 62%),
+    rgba(255,255,255,.075);
+  box-shadow:0 18px 48px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.05);
+  padding:14px;
+}
+.sharePanel:target{
+  display:block;
+}
+.shareCard{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:13px;
+  text-align:center;
+}
+.shareCard h2{
+  margin:0;
+  font-size:clamp(23px,5.6vw,36px);
+  line-height:1.02;
+  font-weight:1000;
+  letter-spacing:-.04em;
+}
+.shareCard p{
+  margin:0;
+  color:rgba(255,250,240,.78);
+  font-size:14px;
+  line-height:1.38;
+  font-weight:900;
+}
+.shareLine{
+  border:1px solid rgba(246,196,83,.24);
+  border-radius:22px;
+  background:rgba(0,0,0,.16);
+  padding:12px;
+  color:#fff3cf;
+  font-size:13px;
+  line-height:1.38;
+  font-weight:900;
+}
+.shareActions{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+}
+.shareActions a,
+.shareActions button{
+  min-height:52px;
+  border-radius:20px;
+  border:1px solid rgba(246,196,83,.36);
+  background:rgba(255,255,255,.08);
+  color:#fff3cf;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:10px;
+  font-size:13px;
+  line-height:1.15;
+  font-weight:1000;
+}
+.shareActions .sharePrimary{
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;
+}
+.copyToast{
+  position:fixed;
+  left:50%;
+  bottom:calc(18px + env(safe-area-inset-bottom));
+  transform:translate(-50%,20px);
+  z-index:120;
+  opacity:0;
+  pointer-events:none;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.42);
+  background:rgba(4,19,13,.96);
+  color:#fff3cf;
+  box-shadow:0 18px 44px rgba(0,0,0,.38);
+  padding:12px 16px;
+  font-size:13px;
+  line-height:1.1;
+  font-weight:1000;
+  transition:opacity .18s ease,transform .18s ease;
+}
+.copyToast.show{
+  opacity:1;
+  transform:translate(-50%,0);
 }
 
 .moduleGrid{
@@ -582,6 +689,9 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
   .qrActions a{
     flex:1 1 150px;
   }
+  .shareActions{
+    grid-template-columns:1fr;
+  }
   .moduleGrid{
     grid-template-columns:repeat(4,minmax(0,1fr));
     gap:6px;
@@ -665,6 +775,9 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
     <a class="doorCard" href="#modules-publics">
       <i>🌍</i><strong>Modules</strong><small>Public</small>
     </a>
+    <a class="doorCard" href="#partager-digiy">
+      <i>📤</i><strong>Partager</strong><small>WhatsApp</small>
+    </a>
     <a class="doorCard" href="#qr-digiy">
       <i>▣</i><strong>QR</strong><small>Retour site</small>
     </a>
@@ -695,6 +808,25 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
           <a class="returnSite" href="https://digiylyfe.com/">↩ Retour site DIGIYLYFE</a>
           <a href="#haut">Fermer QR</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="sharePanel" id="partager-digiy" aria-label="Partager DIGIYLYFE">
+    <div class="shareCard">
+      <h2>📤 Partager DIGIYLYFE</h2>
+      <p>Un geste simple : envoyer le lien, ouvrir WhatsApp, copier, ou montrer le QR. Le terrain partage, le réseau grandit.</p>
+      <div class="shareLine" id="shareTextPreview">
+        DIGIYLYFE — Le Club Entreprises du Terrain. Modules publics, QR, HUB, contact direct, paiement direct, 0% commission. https://digiylyfe.com/
+      </div>
+      <div class="shareActions" aria-label="Actions de partage DIGIYLYFE">
+        <button class="sharePrimary" type="button" onclick="shareDigiy()">📱 Partager maintenant</button>
+        <a class="sharePrimary" href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20Le%20Club%20Entreprises%20du%20Terrain.%20Modules%20publics%2C%20QR%2C%20HUB%2C%20contact%20direct%2C%20paiement%20direct%2C%200%25%20commission.%20https%3A%2F%2Fdigiylyfe.com%2F" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <button type="button" onclick="copyDigiyLink()">📋 Copier le lien</button>
+        <a href="sms:?&body=DIGIYLYFE%20%E2%80%94%20Le%20Club%20Entreprises%20du%20Terrain.%20https%3A%2F%2Fdigiylyfe.com%2F">✉️ SMS</a>
+        <a href="#qr-digiy">▣ Voir le QR</a>
+        <a href="#haut">↩ Retour site</a>
       </div>
     </div>
   </section>
@@ -736,6 +868,7 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
     La Voix du Business, la Voie du Terrain.<br>
     <a href="#haut">Remonter</a> ·
     <a href="#modules-publics">Modules publics</a> ·
+    <a href="#partager-digiy">Partager</a> ·
     <a href="https://digiy-hub.digiylyfe.com/">HUB</a> ·
     <a href="#qr-digiy">QR</a> ·
     <a href="https://commencer-a-payer.digiylyfe.com/">Activer mon module</a>
@@ -753,6 +886,7 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 
     <nav class="menuGrid" aria-label="Menu principal DIGIYLYFE">
       <a class="gold" href="#modules-publics">🌍 Modules publics</a>
+      <a class="green" href="#partager-digiy">📤 Partager DIGIYLYFE</a>
       <a class="green" href="https://digiy-hub.digiylyfe.com/">🧭 DIGIY HUB</a>
       <a class="red" href="#qr-digiy">▣ QR DIGIY · retour site</a>
       <a href="https://commencer-a-payer.digiylyfe.com/">✍️ Activer mon module</a>
@@ -773,12 +907,69 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
   </div>
 </div>
 
+<div class="copyToast" id="copyToast" role="status" aria-live="polite">Lien DIGIYLYFE copié ✅</div>
+
 <script>
 (function(){
   "use strict";
 
   const overlay = document.getElementById("menuOverlay");
   const sheet = document.getElementById("menuSheet");
+
+  const DIGIY_SHARE_URL = "https://digiylyfe.com/";
+  const DIGIY_SHARE_TITLE = "DIGIYLYFE — Le Club Entreprises du Terrain";
+  const DIGIY_SHARE_TEXT = "DIGIYLYFE — Le Club Entreprises du Terrain. Modules publics, QR, HUB, contact direct, paiement direct, 0% commission.";
+
+  function showCopyToast(message){
+    const toast = document.getElementById("copyToast");
+    if(!toast) return;
+    toast.textContent = message || "Lien DIGIYLYFE copié ✅";
+    toast.classList.add("show");
+    clearTimeout(window.__digiyToastTimer);
+    window.__digiyToastTimer = setTimeout(function(){
+      toast.classList.remove("show");
+    }, 1900);
+  }
+
+  window.copyDigiyLink = async function(){
+    try{
+      if(navigator.clipboard && window.isSecureContext){
+        await navigator.clipboard.writeText(DIGIY_SHARE_URL);
+      }else{
+        const ta = document.createElement("textarea");
+        ta.value = DIGIY_SHARE_URL;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+      showCopyToast("Lien DIGIYLYFE copié ✅");
+    }catch(err){
+      showCopyToast("Copie impossible · lien : digiylyfe.com");
+    }
+  };
+
+  window.shareDigiy = async function(){
+    const sharePayload = {
+      title: DIGIY_SHARE_TITLE,
+      text: DIGIY_SHARE_TEXT,
+      url: DIGIY_SHARE_URL
+    };
+    try{
+      if(navigator.share){
+        await navigator.share(sharePayload);
+        return;
+      }
+      await window.copyDigiyLink();
+    }catch(err){
+      if(err && err.name === "AbortError") return;
+      await window.copyDigiyLink();
+    }
+  };
+
 
   window.openMenu = function(){
     overlay.classList.add("open");
