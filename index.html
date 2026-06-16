@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#06140f"/>
 <meta name="description" content="DIGIYLYFE — le Club des Métiers du Terrain. Le public parle, les fiches remontent, le professionnel garde son client, son argent et sa décision."/>
 <meta name="robots" content="index,follow"/>
-<meta name="digiy-build" content="vitrine-pro-action-modules-publics-qr-hub-20260616"/>
+<meta name="digiy-build" content="vitrine-pro-action-modules-publics-qr-hub-retour-site-qr-grand-20260616"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 
 <meta property="og:type" content="website"/>
@@ -311,6 +311,84 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
   text-align:right;
 }
 
+
+.qrPanel{
+  display:none;
+  margin:14px 0 0;
+  border:1px solid rgba(246,196,83,.42);
+  border-radius:30px;
+  background:
+    radial-gradient(420px 180px at 16% 0%,rgba(246,196,83,.18),transparent 64%),
+    radial-gradient(360px 180px at 86% 10%,rgba(0,166,81,.16),transparent 62%),
+    rgba(255,255,255,.07);
+  box-shadow:0 18px 48px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.05);
+  padding:14px;
+}
+.qrPanel:target{
+  display:block;
+}
+.qrCard{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  align-items:center;
+  justify-items:center;
+  text-align:center;
+}
+.qrImageLink{
+  width:min(92vw,520px);
+  max-width:100%;
+  display:block;
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid rgba(246,196,83,.48);
+  background:#fff;
+  box-shadow:0 18px 44px rgba(0,0,0,.30);
+}
+.qrImageLink img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block;
+}
+.qrCopy h2{
+  margin:0;
+  font-size:clamp(22px,5.4vw,34px);
+  line-height:1.02;
+  font-weight:1000;
+  letter-spacing:-.04em;
+}
+.qrCopy p{
+  margin:8px 0 0;
+  color:rgba(255,250,240,.76);
+  font-size:14px;
+  line-height:1.36;
+  font-weight:900;
+}
+.qrActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.qrActions a{
+  min-height:46px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 14px;
+  border:1px solid rgba(246,196,83,.38);
+  background:rgba(255,255,255,.08);
+  color:#fff3cf;
+  font-size:13px;
+  font-weight:1000;
+}
+.qrActions a.returnSite{
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;
+}
+
 .moduleGrid{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
@@ -493,6 +571,17 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
   .sectionTitle small{
     text-align:left;
   }
+
+  .qrCard{
+    grid-template-columns:1fr;
+  }
+  .qrImageLink{
+    width:min(92vw,430px);
+    margin:0 auto;
+  }
+  .qrActions a{
+    flex:1 1 150px;
+  }
   .moduleGrid{
     grid-template-columns:repeat(4,minmax(0,1fr));
     gap:6px;
@@ -576,8 +665,8 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
     <a class="doorCard" href="#modules-publics">
       <i>🌍</i><strong>Modules</strong><small>Public</small>
     </a>
-    <a class="doorCard" href="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg" target="_blank" rel="noopener">
-      <i>▣</i><strong>QR</strong><small>DIGIY</small>
+    <a class="doorCard" href="#qr-digiy">
+      <i>▣</i><strong>QR</strong><small>Retour site</small>
     </a>
     <a class="doorCard" href="https://digiy-hub.digiylyfe.com/">
       <i>🧭</i><strong>HUB</strong><small>Rond-point</small>
@@ -592,6 +681,22 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
       <i>📦</i><strong>Tarifs</strong><small>Offres</small>
     </a>
   </nav>
+
+  <section class="qrPanel" id="qr-digiy" aria-label="QR DIGIYLYFE avec retour site">
+    <div class="qrCard">
+      <div class="qrImageLink" aria-label="QR DIGIYLYFE existant">
+        <img src="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg" alt="QR DIGIYLYFE">
+      </div>
+      <div class="qrCopy">
+        <h2>▣ QR DIGIYLYFE</h2>
+        <p>QR existant conservé. On ajoute seulement la route de retour vers la maison DIGIYLYFE.</p>
+        <div class="qrActions" aria-label="Actions QR DIGIYLYFE">
+          <a class="returnSite" href="https://digiylyfe.com/">↩ Retour site DIGIYLYFE</a>
+          <a href="#haut">Fermer QR</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <div class="sectionTitle" id="modules-publics">
     <h2>🌍 Modules publics</h2>
@@ -631,7 +736,7 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
     <a href="#haut">Remonter</a> ·
     <a href="#modules-publics">Modules publics</a> ·
     <a href="https://digiy-hub.digiylyfe.com/">HUB</a> ·
-    <a href="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg" target="_blank" rel="noopener">QR</a> ·
+    <a href="#qr-digiy">QR</a> ·
     <a href="https://commencer-a-payer.digiylyfe.com/">Activer mon module</a>
   </footer>
 </main>
@@ -648,7 +753,7 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
     <nav class="menuGrid" aria-label="Menu principal DIGIYLYFE">
       <a class="gold" href="#modules-publics">🌍 Modules publics</a>
       <a class="green" href="https://digiy-hub.digiylyfe.com/">🧭 DIGIY HUB</a>
-      <a class="red" href="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg" target="_blank" rel="noopener">▣ QR DIGIY</a>
+      <a class="red" href="#qr-digiy">▣ QR DIGIY · retour site</a>
       <a href="https://commencer-a-payer.digiylyfe.com/">✍️ Activer mon module</a>
       <a href="https://pro-espace.digiylyfe.com/">🔐 Espace pro</a>
       <a href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
@@ -705,6 +810,7 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 </script>
 </body>
 </html>
+
 
 
 
