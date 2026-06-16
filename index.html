@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#06140f"/>
 <meta name="description" content="DIGIYLYFE — le Club des Métiers du Terrain. Le public parle, les fiches remontent, le professionnel garde son client, son argent et sa décision."/>
 <meta name="robots" content="index,follow"/>
-<meta name="digiy-build" content="vitrine-pro-action-accueil-direct-20260615"/>
+<meta name="digiy-build" content="vitrine-pro-action-modules-publics-qr-hub-20260616"/>
 <link rel="canonical" href="https://digiylyfe.com/"/>
 
 <meta property="og:type" content="website"/>
@@ -253,7 +253,7 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 
 .directDoors{
   display:grid;
-  grid-template-columns:repeat(5,minmax(0,1fr));
+  grid-template-columns:repeat(6,minmax(0,1fr));
   gap:9px;
   margin:12px 0 0;
 }
@@ -287,6 +287,28 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
   line-height:1.15;
   font-weight:850;
   color:rgba(255,250,240,.68);
+}
+
+.sectionTitle{
+  margin:18px 4px 8px;
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:10px;
+}
+.sectionTitle h2{
+  margin:0;
+  font-size:clamp(19px,5vw,28px);
+  line-height:1.05;
+  font-weight:1000;
+  letter-spacing:-.035em;
+}
+.sectionTitle small{
+  color:rgba(255,250,240,.68);
+  font-size:12px;
+  line-height:1.25;
+  font-weight:900;
+  text-align:right;
 }
 
 .moduleGrid{
@@ -446,7 +468,7 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
     height:calc(100svh - 185px);
   }
   .directDoors{
-    grid-template-columns:repeat(5,minmax(0,1fr));
+    grid-template-columns:repeat(3,minmax(0,1fr));
     gap:6px;
   }
   .doorCard{
@@ -462,6 +484,14 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
   }
   .doorCard small{
     display:none;
+  }
+  .sectionTitle{
+    align-items:flex-start;
+    flex-direction:column;
+    margin-top:16px;
+  }
+  .sectionTitle small{
+    text-align:left;
   }
   .moduleGrid{
     grid-template-columns:repeat(4,minmax(0,1fr));
@@ -526,8 +556,8 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
         <h1>Parle ici.<br>DIGIY ouvre la bonne porte.</h1>
         <p>Demande un chauffeur, un logement, un artisan, un produit, une mission ou un paiement. Les fiches business remontent directement.</p>
       </div>
-      <a class="proActionOpen" href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener">
-        🎙️ Ouvrir en grand
+      <a class="proActionOpen" href="#modules-publics">
+        🌍 Voir les modules publics
       </a>
     </div>
 
@@ -543,8 +573,14 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
   </section>
 
   <nav class="directDoors" aria-label="Accès directs DIGIYLYFE">
-    <a class="doorCard" href="https://pro-action-digiy.digiylyfe.com/">
-      <i>🎙️</i><strong>Voix</strong><small>Parler</small>
+    <a class="doorCard" href="#modules-publics">
+      <i>🌍</i><strong>Modules</strong><small>Public</small>
+    </a>
+    <a class="doorCard" href="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg" target="_blank" rel="noopener">
+      <i>▣</i><strong>QR</strong><small>DIGIY</small>
+    </a>
+    <a class="doorCard" href="https://digiy-hub.digiylyfe.com/">
+      <i>🧭</i><strong>HUB</strong><small>Rond-point</small>
     </a>
     <a class="doorCard" href="https://commencer-a-payer.digiylyfe.com/">
       <i>✍️</i><strong>Activer</strong><small>Module pro</small>
@@ -555,12 +591,14 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
     <a class="doorCard" href="https://tarifs.digiylyfe.com/">
       <i>📦</i><strong>Tarifs</strong><small>Offres</small>
     </a>
-    <a class="doorCard" href="https://digiylyfe.net/">
-      <i>📰</i><strong>Revue</strong><small>DIGIYLYFE</small>
-    </a>
   </nav>
 
-  <section class="moduleGrid" aria-label="Portes métiers DIGIYLYFE">
+  <div class="sectionTitle" id="modules-publics">
+    <h2>🌍 Modules publics</h2>
+    <small>Les portes ouvertes du terrain : voir, contacter, réserver, postuler, payer direct.</small>
+  </div>
+
+  <section class="moduleGrid" aria-label="Modules publics DIGIYLYFE">
     <a class="moduleCard" href="https://driver.digiylyfe.com/">
       <i>🚗</i><strong>DRIVER</strong><small>Chauffeurs</small>
     </a>
@@ -591,7 +629,9 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
     <strong>DIGIYLYFE ∞</strong><br>
     La Voix du Business, la Voie du Terrain.<br>
     <a href="#haut">Remonter</a> ·
-    <a href="https://pro-action-digiy.digiylyfe.com/">La Voix</a> ·
+    <a href="#modules-publics">Modules publics</a> ·
+    <a href="https://digiy-hub.digiylyfe.com/">HUB</a> ·
+    <a href="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg" target="_blank" rel="noopener">QR</a> ·
     <a href="https://commencer-a-payer.digiylyfe.com/">Activer mon module</a>
   </footer>
 </main>
@@ -606,9 +646,11 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
     </div>
 
     <nav class="menuGrid" aria-label="Menu principal DIGIYLYFE">
-      <a class="gold" href="https://pro-action-digiy.digiylyfe.com/">🎙️ La Voix du Business</a>
-      <a class="green" href="https://commencer-a-payer.digiylyfe.com/">✍️ Activer mon module</a>
-      <a class="red" href="https://pro-espace.digiylyfe.com/">🔐 Espace pro</a>
+      <a class="gold" href="#modules-publics">🌍 Modules publics</a>
+      <a class="green" href="https://digiy-hub.digiylyfe.com/">🧭 DIGIY HUB</a>
+      <a class="red" href="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg" target="_blank" rel="noopener">▣ QR DIGIY</a>
+      <a href="https://commencer-a-payer.digiylyfe.com/">✍️ Activer mon module</a>
+      <a href="https://pro-espace.digiylyfe.com/">🔐 Espace pro</a>
       <a href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
       <a href="https://driver.digiylyfe.com/">🚗 DRIVER</a>
       <a href="https://loc.digiylyfe.com/">🏠 LOC</a>
@@ -618,6 +660,7 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
       <a href="https://resa.digiylyfe.com/">📅 RESA</a>
       <a href="https://explore.digiylyfe.com/">🗺️ EXPLORE</a>
       <a href="https://pay.digiylyfe.com/">💳 PAY</a>
+      <a href="https://pro-action-digiy.digiylyfe.com/">🎙️ Moteur Pro Action</a>
       <a href="https://digiylyfe.net/">📰 Revue DIGIYLYFE</a>
       <a href="https://digiylyfe.com/">🌍 Accueil</a>
     </nav>
@@ -662,6 +705,7 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 </script>
 </body>
 </html>
+
 
 
 
