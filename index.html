@@ -200,32 +200,16 @@ button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
   overflow:hidden;
 }
 .proActionHead{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:10px;
-  align-items:center;
-  padding:14px 14px 12px;
+  display:block;
+  padding:12px;
   border-bottom:1px solid rgba(255,255,255,.12);
-}
-.proActionHead h1{
-  margin:0;
-  font-size:clamp(22px,5.7vw,38px);
-  line-height:1.02;
-  letter-spacing:-.055em;
-  font-weight:1000;
-}
-.proActionHead p{
-  margin:6px 0 0;
-  color:rgba(255,250,240,.78);
-  font-size:clamp(13px,3.5vw,16px);
-  line-height:1.38;
-  font-weight:900;
 }
 .voiceActions{
   display:grid;
-  grid-template-columns:1fr;
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:8px;
-  min-width:210px;
+  width:100%;
+  min-width:0;
 }
 .proActionOpen,
 .voiceActionBtn,
@@ -369,12 +353,13 @@ body.voiceIsFull{
   background:#03120d;
 }
 .proActionWrap.voiceFull .proActionHead{
-  grid-template-columns:1fr auto;
+  display:block;
   padding:calc(env(safe-area-inset-top) + 10px) 10px 10px;
   background:rgba(3,18,13,.96);
 }
 .proActionWrap.voiceFull .voiceActions{
   grid-template-columns:auto auto;
+  justify-content:end;
   min-width:unset;
 }
 .proActionWrap.voiceFull .voiceActionBtn.secondary,
@@ -784,10 +769,12 @@ body.voiceIsFull{
     padding-right:10px;
   }
   .proActionHead{
-    grid-template-columns:1fr;
+    display:block;
+    padding:10px;
   }
   .voiceActions{
     min-width:unset;
+    grid-template-columns:1fr;
   }
   .proActionOpen,
   .voiceActionBtn,
@@ -804,10 +791,11 @@ body.voiceIsFull{
     grid-template-columns:1fr;
   }
   .proActionWrap.voiceFull .proActionHead{
-    grid-template-columns:1fr;
+    display:block;
   }
   .proActionWrap.voiceFull .voiceActions{
     grid-template-columns:1fr 1fr;
+    justify-content:stretch;
   }
   .directDoors{
     grid-template-columns:repeat(3,minmax(0,1fr));
@@ -908,11 +896,6 @@ body.voiceIsFull{
 
   <section class="proActionWrap" id="voix-digiy" aria-label="Moteur Pro Action DIGIY">
     <div class="proActionHead">
-      <div>
-        <h1>Parle ici.<br>DIGIY ouvre la bonne porte.</h1>
-        <p>La voix est posée en vitrine. Elle ne charge pas en gros carré noir : tu lances quand tu présentes, puis tu peux la mettre en pleine page.</p>
-      </div>
-
       <div class="voiceActions" aria-label="Actions voix DIGIYLYFE">
         <button class="voiceActionBtn" type="button" onclick="loadVoice()">🎙️ Lancer la voix</button>
         <button class="voiceActionBtn secondary" type="button" onclick="expandVoice()">⛶ Pleine page</button>
@@ -926,7 +909,6 @@ body.voiceIsFull{
         <div class="voiceWelcomeCard">
           <div class="voiceIcon">🎙️</div>
           <h2>La Voix DIGIYLYFE</h2>
-          <p>Pour l’usage terrain : un clic, la voix s’ouvre ici. Besoin de confort visuel ? Passe en pleine page.</p>
           <div class="voiceWelcomeActions">
             <button type="button" onclick="loadVoice()">🎧 Ouvrir dans la vitrine</button>
             <button class="softBtn" type="button" onclick="expandVoice()">⛶ Ouvrir en pleine page</button>
@@ -1212,7 +1194,7 @@ body.voiceIsFull{
 })();
 </script>
 </body>
-</html>l>
+</html>
 
 
 
