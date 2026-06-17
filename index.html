@@ -1,675 +1,1216 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Club des Métiers du Terrain · DIGIYLYFE</title>
-  <meta name="description" content="Club des Métiers du Terrain — une porte simple pour parler, chercher un métier, partager un QR et rejoindre l'écosystème DIGIYLYFE." />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>DIGIYLYFE — La Voix du Business</title>
 
-  <style>
-    :root{
-      --bg:#080604;
-      --panel:#14100a;
-      --panel2:#1e170d;
-      --gold:#f5c542;
-      --gold2:#ffe08a;
-      --text:#fff8e7;
-      --muted:#c9b98d;
-      --line:rgba(245,197,66,.28);
-      --danger:#ff5a5a;
-      --ok:#72ffb0;
-      --shadow:0 18px 60px rgba(0,0,0,.42);
-      --radius:24px;
-    }
+<meta name="theme-color" content="#06140f"/>
+<meta name="description" content="DIGIYLYFE — le Club des Métiers du Terrain. Le public parle, les fiches remontent, le professionnel garde son client, son argent et sa décision."/>
+<meta name="robots" content="index,follow"/>
+<meta name="digiy-build" content="vitrine-pro-action-club-metiers-modules-publics-qr-hub-retour-site-qr-cliquable-partage-voix-vitrine-plein-ecran-20260617"/>
+<link rel="canonical" href="https://digiylyfe.com/"/>
 
-    *{box-sizing:border-box}
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://digiylyfe.com/"/>
+<meta property="og:title" content="DIGIYLYFE — La Voix du Business"/>
+<meta property="og:description" content="Je clique. Je parle. J’existe. Je suis visible. Je suis reconnu. J’avance."/>
+<meta property="og:image" content="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg"/>
+<meta property="og:locale" content="fr_SN"/>
 
-    html,body{
-      margin:0;
-      min-height:100%;
-      background:
-        radial-gradient(circle at top, rgba(245,197,66,.18), transparent 32%),
-        linear-gradient(180deg,#0b0703 0%, #060504 55%, #000 100%);
-      color:var(--text);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    }
+<link href="./icon-192.png" rel="icon" sizes="192x192"/>
+<link href="./icon-192.png" rel="apple-touch-icon"/>
 
-    body{
-      padding:18px;
-    }
+<style>
+:root{
+  --bg:#03120d;
+  --ink:#fffaf0;
+  --soft:rgba(255,250,240,.76);
+  --muted:rgba(255,250,240,.58);
+  --green:#00a651;
+  --deep:#00853f;
+  --gold:#f6c453;
+  --gold2:#fff1bd;
+  --red:#e31b23;
+  --card:rgba(255,255,255,.078);
+  --line:rgba(255,255,255,.14);
+  --lineGold:rgba(246,196,83,.36);
+  --shadow:0 24px 70px rgba(0,0,0,.42);
+  --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100svh;
+  color:var(--ink);
+  font-family:var(--font);
+  background:
+    radial-gradient(900px 460px at 12% -8%,rgba(0,166,81,.34),transparent 62%),
+    radial-gradient(680px 360px at 92% 0%,rgba(246,196,83,.18),transparent 58%),
+    radial-gradient(680px 360px at 50% 108%,rgba(227,27,35,.12),transparent 64%),
+    linear-gradient(180deg,#075f32 0%,#062a1d 34%,#03120d 100%);
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
 
-    .wrap{
-      max-width:980px;
-      margin:0 auto;
-    }
+.bgGrid{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.35;
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:54px 54px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 82%);
+}
 
-    .hero{
-      border:1px solid var(--line);
-      border-radius:32px;
-      background:
-        linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015)),
-        rgba(12,9,5,.88);
-      box-shadow:var(--shadow);
-      padding:28px;
-      overflow:hidden;
-      position:relative;
-    }
+.app{
+  width:min(100%,980px);
+  margin:0 auto;
+  min-height:100svh;
+  padding:calc(env(safe-area-inset-top) + 10px) 12px calc(env(safe-area-inset-bottom) + 22px);
+  position:relative;
+  z-index:1;
+}
 
-    .hero:before{
-      content:"";
-      position:absolute;
-      inset:-80px -90px auto auto;
-      width:260px;
-      height:260px;
-      background:radial-gradient(circle,rgba(245,197,66,.24),transparent 68%);
-      pointer-events:none;
-    }
+.top{
+  min-height:66px;
+  display:grid;
+  grid-template-columns:56px 1fr 56px;
+  gap:10px;
+  align-items:center;
+}
+.logo{
+  width:56px;
+  height:56px;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid var(--lineGold);
+  box-shadow:0 12px 32px rgba(0,0,0,.30);
+  background:rgba(255,255,255,.08);
+}
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.brand{
+  text-align:center;
+  font-weight:1000;
+  letter-spacing:.10em;
+  font-size:clamp(18px,5vw,26px);
+}
+.brand small{
+  display:block;
+  margin-top:3px;
+  color:var(--soft);
+  font-size:10px;
+  letter-spacing:.08em;
+  font-weight:900;
+  text-transform:uppercase;
+}
+.roundBtn{
+  border:1px solid var(--lineGold);
+  background:linear-gradient(135deg,rgba(246,196,83,.16),rgba(0,166,81,.12));
+  color:#fff3cf;
+  border-radius:999px;
+  min-height:56px;
+  min-width:56px;
+  display:grid;
+  place-items:center;
+  font-weight:1000;
+  font-size:22px;
+  box-shadow:0 12px 30px rgba(0,0,0,.24);
+}
 
-    .top{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:16px;
-      position:relative;
-      z-index:1;
-    }
+.clubBadge{
+  width:min(100%,760px);
+  margin:4px auto 12px;
+  border:1px solid rgba(246,196,83,.50);
+  border-radius:28px;
+  background:
+    radial-gradient(400px 130px at 12% 0%,rgba(246,196,83,.24),transparent 66%),
+    radial-gradient(360px 130px at 88% 0%,rgba(0,166,81,.20),transparent 66%),
+    rgba(255,255,255,.085);
+  box-shadow:0 16px 40px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.06);
+  padding:14px;
+  text-align:center;
+}
+.clubBadge strong{
+  display:block;
+  color:#fffaf0;
+  font-size:clamp(24px,6.2vw,42px);
+  line-height:.98;
+  font-weight:1000;
+  letter-spacing:.06em;
+}
+.clubBadge span{
+  display:block;
+  margin-top:7px;
+  color:#fff3cf;
+  font-size:clamp(16px,4.4vw,24px);
+  line-height:1.10;
+  font-weight:1000;
+  letter-spacing:.035em;
+  text-transform:uppercase;
+}
+.clubBadge small{
+  display:block;
+  margin-top:8px;
+  color:rgba(255,250,240,.80);
+  font-size:clamp(13px,3.5vw,17px);
+  line-height:1.36;
+  font-weight:950;
+}
+.mantra{
+  margin:10px auto 0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  justify-content:center;
+}
+.mantra b{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:30px;
+  padding:0 10px;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.30);
+  background:rgba(246,196,83,.10);
+  color:#fff3cf;
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:.025em;
+}
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:13px;
-    }
+.proActionWrap{
+  margin-top:12px;
+  border:1px solid rgba(246,196,83,.45);
+  border-radius:32px;
+  background:
+    radial-gradient(520px 240px at 12% 0%,rgba(246,196,83,.20),transparent 64%),
+    radial-gradient(420px 240px at 92% 0%,rgba(0,166,81,.22),transparent 62%),
+    linear-gradient(180deg,rgba(255,255,255,.105),rgba(255,255,255,.045));
+  box-shadow:var(--shadow),inset 0 0 0 1px rgba(255,255,255,.06);
+  overflow:hidden;
+}
+.proActionHead{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  align-items:center;
+  padding:14px 14px 12px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.proActionHead h1{
+  margin:0;
+  font-size:clamp(22px,5.7vw,38px);
+  line-height:1.02;
+  letter-spacing:-.055em;
+  font-weight:1000;
+}
+.proActionHead p{
+  margin:6px 0 0;
+  color:rgba(255,250,240,.78);
+  font-size:clamp(13px,3.5vw,16px);
+  line-height:1.38;
+  font-weight:900;
+}
+.voiceActions{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+  min-width:210px;
+}
+.proActionOpen,
+.voiceActionBtn,
+.voiceDirect{
+  min-height:52px;
+  border-radius:18px;
+  border:1px solid rgba(246,196,83,.66);
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 13px;
+  font-size:13px;
+  font-weight:1000;
+  box-shadow:0 14px 34px rgba(246,196,83,.18);
+  white-space:nowrap;
+}
+.voiceActionBtn{
+  width:100%;
+}
+.voiceActionBtn.secondary,
+.voiceDirect{
+  background:rgba(255,255,255,.085);
+  color:#fff3cf;
+  box-shadow:none;
+}
+.voiceCloseFull{
+  display:none;
+  min-height:52px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(227,27,35,.18);
+  color:#fff3cf;
+  font-size:14px;
+  font-weight:1000;
+}
+.voiceFrameBox{
+  min-height:430px;
+  height:min(640px,calc(100svh - 260px));
+  position:relative;
+  background:
+    radial-gradient(360px 220px at 16% 0%,rgba(246,196,83,.16),transparent 64%),
+    radial-gradient(420px 260px at 88% 100%,rgba(0,166,81,.20),transparent 66%),
+    rgba(3,18,13,.72);
+}
+.voiceWelcome{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  text-align:center;
+}
+.voiceWelcomeCard{
+  width:min(100%,620px);
+  border:1px solid rgba(246,196,83,.35);
+  border-radius:30px;
+  background:rgba(255,255,255,.075);
+  box-shadow:0 18px 46px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.05);
+  padding:22px;
+}
+.voiceWelcomeCard .voiceIcon{
+  width:82px;
+  height:82px;
+  margin:0 auto 12px;
+  border-radius:28px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(246,196,83,.45);
+  background:linear-gradient(135deg,rgba(246,196,83,.24),rgba(0,166,81,.20));
+  font-size:42px;
+}
+.voiceWelcomeCard h2{
+  margin:0;
+  font-size:clamp(25px,6.5vw,46px);
+  line-height:.98;
+  letter-spacing:-.055em;
+  font-weight:1000;
+}
+.voiceWelcomeCard p{
+  margin:10px auto 0;
+  max-width:520px;
+  color:rgba(255,250,240,.78);
+  font-size:clamp(14px,3.8vw,18px);
+  line-height:1.38;
+  font-weight:900;
+}
+.voiceWelcomeActions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:16px;
+}
+.voiceWelcomeActions button,
+.voiceWelcomeActions a{
+  min-height:58px;
+  border-radius:20px;
+  border:1px solid rgba(246,196,83,.42);
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:10px;
+  font-size:14px;
+  line-height:1.14;
+  font-weight:1000;
+}
+.voiceWelcomeActions .softBtn{
+  background:rgba(255,255,255,.085);
+  color:#fff3cf;
+}
+.voiceFrameBox iframe{
+  width:100%;
+  height:100%;
+  display:none;
+  border:0;
+  background:transparent;
+}
+.voiceFrameBox.loaded .voiceWelcome{
+  display:none;
+}
+.voiceFrameBox.loaded iframe{
+  display:block;
+}
+body.voiceIsFull{
+  overflow:hidden;
+}
+.proActionWrap.voiceFull{
+  position:fixed;
+  inset:0;
+  z-index:220;
+  margin:0;
+  border-radius:0;
+  border:0;
+  display:flex;
+  flex-direction:column;
+  background:#03120d;
+}
+.proActionWrap.voiceFull .proActionHead{
+  grid-template-columns:1fr auto;
+  padding:calc(env(safe-area-inset-top) + 10px) 10px 10px;
+  background:rgba(3,18,13,.96);
+}
+.proActionWrap.voiceFull .voiceActions{
+  grid-template-columns:auto auto;
+  min-width:unset;
+}
+.proActionWrap.voiceFull .voiceActionBtn.secondary,
+.proActionWrap.voiceFull .voiceDirect{
+  display:none;
+}
+.proActionWrap.voiceFull .voiceCloseFull{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.proActionWrap.voiceFull .voiceFrameBox{
+  flex:1;
+  height:auto;
+  min-height:0;
+  border-radius:0;
+}
+.directDoors{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:9px;
+  margin:12px 0 0;
+}
+.doorCard{
+  min-height:82px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.075);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  text-align:center;
+  padding:10px;
+  box-shadow:0 12px 30px rgba(0,0,0,.16);
+}
+.doorCard i{
+  font-style:normal;
+  font-size:28px;
+  line-height:1;
+}
+.doorCard strong{
+  font-size:13px;
+  line-height:1.12;
+  font-weight:1000;
+  color:#fff;
+}
+.doorCard small{
+  font-size:10.5px;
+  line-height:1.15;
+  font-weight:850;
+  color:rgba(255,250,240,.68);
+}
 
-    .logo{
-      width:56px;
-      height:56px;
-      border-radius:18px;
-      border:1px solid var(--line);
-      background:#000;
-      object-fit:cover;
-      box-shadow:0 10px 30px rgba(0,0,0,.35);
-    }
+.sectionTitle{
+  margin:18px 4px 8px;
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:10px;
+}
+.sectionTitle h2{
+  margin:0;
+  font-size:clamp(19px,5vw,28px);
+  line-height:1.05;
+  font-weight:1000;
+  letter-spacing:-.035em;
+}
+.sectionTitle small{
+  color:rgba(255,250,240,.68);
+  font-size:12px;
+  line-height:1.25;
+  font-weight:900;
+  text-align:right;
+}
 
-    .brand small{
-      display:block;
-      color:var(--muted);
-      font-weight:800;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:11px;
-    }
 
-    .brand strong{
-      display:block;
-      font-size:19px;
-      line-height:1.1;
-    }
+.qrPanel{
+  display:none;
+  margin:14px 0 0;
+  border:1px solid rgba(246,196,83,.42);
+  border-radius:30px;
+  background:
+    radial-gradient(420px 180px at 16% 0%,rgba(246,196,83,.18),transparent 64%),
+    radial-gradient(360px 180px at 86% 10%,rgba(0,166,81,.16),transparent 62%),
+    rgba(255,255,255,.07);
+  box-shadow:0 18px 48px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.05);
+  padding:14px;
+}
+.qrPanel:target{
+  display:block;
+}
+.qrCard{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  align-items:center;
+  justify-items:center;
+  text-align:center;
+}
+.qrImageLink{
+  width:min(92vw,520px);
+  max-width:100%;
+  display:block;
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid rgba(246,196,83,.48);
+  background:#fff;
+  box-shadow:0 18px 44px rgba(0,0,0,.30);
+}
+.qrImageLink img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block;
+}
+.qrCopy h2{
+  margin:0;
+  font-size:clamp(22px,5.4vw,34px);
+  line-height:1.02;
+  font-weight:1000;
+  letter-spacing:-.04em;
+}
+.qrCopy p{
+  margin:8px 0 0;
+  color:rgba(255,250,240,.76);
+  font-size:14px;
+  line-height:1.36;
+  font-weight:900;
+}
+.qrActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.qrActions a{
+  min-height:46px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 14px;
+  border:1px solid rgba(246,196,83,.38);
+  background:rgba(255,255,255,.08);
+  color:#fff3cf;
+  font-size:13px;
+  font-weight:1000;
+}
+.qrActions a.returnSite{
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;
+}
 
-    .badge{
-      border:1px solid var(--line);
-      color:var(--gold2);
-      background:rgba(245,197,66,.09);
-      padding:10px 13px;
-      border-radius:999px;
-      font-size:13px;
-      font-weight:800;
-      white-space:nowrap;
-    }
 
-    h1{
-      margin:28px 0 10px;
-      font-size:clamp(34px,7vw,72px);
-      line-height:.95;
-      letter-spacing:-.05em;
-      max-width:850px;
-      position:relative;
-      z-index:1;
-    }
+.qrHint{
+  display:block;
+  padding:11px 10px 12px;
+  background:#fff;
+  color:#06140f;
+  border-top:1px solid rgba(3,18,13,.14);
+  font-size:clamp(15px,4.2vw,20px);
+  line-height:1.15;
+  font-weight:1000;
+  text-align:center;
+  letter-spacing:.01em;
+}
+.sharePanel{
+  display:none;
+  margin:14px 0 0;
+  border:1px solid rgba(246,196,83,.42);
+  border-radius:30px;
+  background:
+    radial-gradient(420px 180px at 16% 0%,rgba(246,196,83,.20),transparent 64%),
+    radial-gradient(360px 180px at 86% 10%,rgba(0,166,81,.18),transparent 62%),
+    rgba(255,255,255,.075);
+  box-shadow:0 18px 48px rgba(0,0,0,.24),inset 0 0 0 1px rgba(255,255,255,.05);
+  padding:14px;
+}
+.sharePanel:target{
+  display:block;
+}
+.shareCard{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:13px;
+  text-align:center;
+}
+.shareCard h2{
+  margin:0;
+  font-size:clamp(23px,5.6vw,36px);
+  line-height:1.02;
+  font-weight:1000;
+  letter-spacing:-.04em;
+}
+.shareCard p{
+  margin:0;
+  color:rgba(255,250,240,.78);
+  font-size:14px;
+  line-height:1.38;
+  font-weight:900;
+}
+.shareLine{
+  border:1px solid rgba(246,196,83,.24);
+  border-radius:22px;
+  background:rgba(0,0,0,.16);
+  padding:12px;
+  color:#fff3cf;
+  font-size:13px;
+  line-height:1.38;
+  font-weight:900;
+}
+.shareActions{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+}
+.shareActions a,
+.shareActions button{
+  min-height:52px;
+  border-radius:20px;
+  border:1px solid rgba(246,196,83,.36);
+  background:rgba(255,255,255,.08);
+  color:#fff3cf;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:10px;
+  font-size:13px;
+  line-height:1.15;
+  font-weight:1000;
+}
+.shareActions .sharePrimary{
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;
+}
+.copyToast{
+  position:fixed;
+  left:50%;
+  bottom:calc(18px + env(safe-area-inset-bottom));
+  transform:translate(-50%,20px);
+  z-index:120;
+  opacity:0;
+  pointer-events:none;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.42);
+  background:rgba(4,19,13,.96);
+  color:#fff3cf;
+  box-shadow:0 18px 44px rgba(0,0,0,.38);
+  padding:12px 16px;
+  font-size:13px;
+  line-height:1.1;
+  font-weight:1000;
+  transition:opacity .18s ease,transform .18s ease;
+}
+.copyToast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
 
-    .lead{
-      color:#eadba7;
-      font-size:clamp(17px,2.4vw,22px);
-      line-height:1.45;
-      max-width:780px;
-      margin:0 0 22px;
-      position:relative;
-      z-index:1;
-    }
+.moduleGrid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:9px;
+  margin-top:12px;
+}
+.moduleCard{
+  min-height:86px;
+  border-radius:22px;
+  border:1px solid rgba(246,196,83,.18);
+  background:rgba(3,18,13,.44);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  text-align:center;
+  padding:10px;
+}
+.moduleCard i{
+  font-style:normal;
+  font-size:28px;
+}
+.moduleCard strong{
+  font-size:13px;
+  font-weight:1000;
+}
+.moduleCard small{
+  font-size:10.5px;
+  color:rgba(255,250,240,.68);
+  font-weight:850;
+}
 
-    .voiceBox{
-      margin-top:22px;
-      border:1px solid var(--line);
-      border-radius:28px;
-      background:linear-gradient(180deg,rgba(245,197,66,.12),rgba(255,255,255,.03));
-      padding:18px;
-      position:relative;
-      z-index:1;
-    }
+.footer{
+  margin:18px auto 0;
+  text-align:center;
+  color:rgba(255,250,240,.66);
+  font-size:12px;
+  font-weight:850;
+  line-height:1.45;
+}
+.footer a{
+  color:#fff3cf;
+  font-weight:1000;
+}
 
-    .voiceLabel{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:12px;
-      color:var(--gold2);
-      font-weight:900;
-      letter-spacing:.02em;
-    }
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:80;
+  background:rgba(0,0,0,.46);
+  backdrop-filter:blur(2px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease;
+}
+.overlay.open{
+  opacity:1;
+  pointer-events:auto;
+}
+.sheet{
+  position:fixed;
+  inset:auto 0 0 0;
+  z-index:90;
+  transform:translateY(104%);
+  transition:transform .22s ease;
+  padding:10px 10px calc(12px + env(safe-area-inset-bottom));
+  pointer-events:none;
+}
+.sheet.open{
+  transform:translateY(0);
+  pointer-events:auto;
+}
+.sheetCard{
+  width:min(880px,100%);
+  margin:auto;
+  max-height:84svh;
+  overflow:auto;
+  border-radius:32px 32px 24px 24px;
+  border:1px solid rgba(246,196,83,.36);
+  background:rgba(4,19,13,.985);
+  backdrop-filter:blur(20px);
+  box-shadow:0 -22px 70px rgba(0,0,0,.55);
+  padding:16px;
+}
+.sheetHead{
+  display:grid;
+  grid-template-columns:1fr 56px;
+  align-items:center;
+  gap:12px;
+  padding:8px 4px 15px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.sheetHead h2{
+  margin:0;
+  font-size:24px;
+  font-weight:1000;
+}
+.closeBtn{
+  width:56px;
+  height:56px;
+  border-radius:20px;
+  border:1px solid rgba(246,196,83,.35);
+  background:rgba(255,255,255,.08);
+  color:#fff3cf;
+  font-size:30px;
+  font-weight:900;
+}
+.menuGrid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin-top:14px;
+}
+.menuGrid a{
+  min-height:62px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.075);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:10px;
+  font-size:14px;
+  line-height:1.18;
+  font-weight:1000;
+}
+.menuGrid a.gold{
+  background:linear-gradient(135deg,#fff1bd,#f6c453);
+  color:#06140f;
+}
+.menuGrid a.green{
+  background:linear-gradient(135deg,#d8ffe6,#7ee6a7);
+  color:#06140f;
+}
+.menuGrid a.red{
+  background:linear-gradient(135deg,#ffe0dc,#ff9b92);
+  color:#230403;
+}
 
-    .voiceLabel span{
-      color:var(--muted);
-      font-size:13px;
-      font-weight:700;
-    }
+@media(max-width:760px){
+  .app{
+    padding-left:10px;
+    padding-right:10px;
+  }
+  .proActionHead{
+    grid-template-columns:1fr;
+  }
+  .voiceActions{
+    min-width:unset;
+  }
+  .proActionOpen,
+  .voiceActionBtn,
+  .voiceDirect{
+    width:100%;
+    min-height:58px;
+    font-size:14px;
+  }
+  .voiceFrameBox{
+    min-height:430px;
+    height:calc(100svh - 285px);
+  }
+  .voiceWelcomeActions{
+    grid-template-columns:1fr;
+  }
+  .proActionWrap.voiceFull .proActionHead{
+    grid-template-columns:1fr;
+  }
+  .proActionWrap.voiceFull .voiceActions{
+    grid-template-columns:1fr 1fr;
+  }
+  .directDoors{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:6px;
+  }
+  .doorCard{
+    min-height:70px;
+    border-radius:18px;
+    padding:7px 4px;
+  }
+  .doorCard i{
+    font-size:24px;
+  }
+  .doorCard strong{
+    font-size:10.5px;
+  }
+  .doorCard small{
+    display:none;
+  }
+  .sectionTitle{
+    align-items:flex-start;
+    flex-direction:column;
+    margin-top:16px;
+  }
+  .sectionTitle small{
+    text-align:left;
+  }
 
-    .voiceRow{
-      display:grid;
-      grid-template-columns:1fr auto auto;
-      gap:10px;
-      align-items:stretch;
-    }
-
-    input{
-      width:100%;
-      border:1px solid rgba(255,255,255,.13);
-      border-radius:20px;
-      background:rgba(0,0,0,.42);
-      color:white;
-      padding:18px 18px;
-      font-size:18px;
-      outline:none;
-      min-height:62px;
-    }
-
-    input:focus{
-      border-color:rgba(245,197,66,.75);
-      box-shadow:0 0 0 4px rgba(245,197,66,.12);
-    }
-
-    button,a.btn{
-      border:0;
-      border-radius:20px;
-      padding:16px 18px;
-      font-weight:950;
-      cursor:pointer;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      min-height:62px;
-      color:#140d02;
-      background:linear-gradient(180deg,var(--gold2),var(--gold));
-      box-shadow:0 12px 24px rgba(245,197,66,.14);
-      font-size:16px;
-    }
-
-    button.secondary,a.secondary{
-      color:var(--text);
-      background:rgba(255,255,255,.07);
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:none;
-    }
-
-    .result{
-      margin-top:14px;
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.1);
-      background:rgba(0,0,0,.25);
-      padding:15px;
-      color:#f5e7b5;
-      line-height:1.45;
-      display:none;
-    }
-
-    .result.show{display:block}
-
-    .cards{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-    }
-
-    .card{
-      border:1px solid rgba(255,255,255,.1);
-      background:rgba(255,255,255,.045);
-      border-radius:22px;
-      padding:17px;
-      min-height:142px;
-    }
-
-    .card b{
-      display:block;
-      font-size:18px;
-      margin-bottom:7px;
-    }
-
-    .card p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.35;
-      font-size:14px;
-    }
-
-    .actions{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:10px;
-    }
-
-    .footer{
-      text-align:center;
-      margin:20px 0 4px;
-      color:rgba(255,248,231,.58);
-      font-size:13px;
-    }
-
-    .mini{
-      margin-top:16px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .chip{
-      border:1px solid rgba(245,197,66,.25);
-      background:rgba(245,197,66,.08);
-      color:#f5e3a6;
-      border-radius:999px;
-      padding:8px 11px;
-      font-size:13px;
-      font-weight:800;
-    }
-
-    @media(max-width:760px){
-      body{
-        padding:10px;
-      }
-
-      .hero{
-        padding:18px;
-        border-radius:26px;
-      }
-
-      .top{
-        align-items:flex-start;
-      }
-
-      .badge{
-        display:none;
-      }
-
-      .logo{
-        width:52px;
-        height:52px;
-        border-radius:16px;
-      }
-
-      h1{
-        margin-top:24px;
-        font-size:44px;
-      }
-
-      .lead{
-        font-size:18px;
-      }
-
-      .voiceBox{
-        margin-top:20px;
-        padding:18px;
-        border-radius:26px;
-        background:linear-gradient(180deg,rgba(245,197,66,.17),rgba(255,255,255,.045));
-      }
-
-      .voiceLabel{
-        display:block;
-        font-size:20px;
-        margin-bottom:14px;
-      }
-
-      .voiceLabel span{
-        display:block;
-        margin-top:5px;
-        font-size:14px;
-      }
-
-      .voiceRow{
-        grid-template-columns:1fr;
-        gap:12px;
-      }
-
-      input{
-        min-height:86px;
-        font-size:22px;
-        border-radius:24px;
-        padding:22px 18px;
-      }
-
-      button,a.btn{
-        width:100%;
-        min-height:76px;
-        font-size:21px;
-        border-radius:24px;
-      }
-
-      #micBtn{
-        min-height:88px;
-        font-size:28px;
-      }
-
-      #goBtn{
-        min-height:84px;
-        font-size:24px;
-      }
-
-      .result{
-        font-size:17px;
-        border-radius:22px;
-        padding:17px;
-      }
-
-      .cards{
-        grid-template-columns:1fr;
-      }
-
-      .card{
-        min-height:auto;
-      }
-
-      .actions{
-        grid-template-columns:1fr;
-      }
-
-      .mini{
-        gap:7px;
-      }
-
-      .chip{
-        font-size:12px;
-      }
-    }
-  </style>
+  .qrCard{
+    grid-template-columns:1fr;
+  }
+  .qrImageLink{
+    width:min(92vw,430px);
+    margin:0 auto;
+  }
+  .qrActions a{
+    flex:1 1 150px;
+  }
+  .shareActions{
+    grid-template-columns:1fr;
+  }
+  .moduleGrid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:6px;
+  }
+  .moduleCard{
+    min-height:70px;
+    border-radius:18px;
+    padding:7px 4px;
+  }
+  .moduleCard i{
+    font-size:24px;
+  }
+  .moduleCard strong{
+    font-size:10.5px;
+  }
+  .moduleCard small{
+    display:none;
+  }
+  .menuGrid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
-  <main class="wrap">
-    <section class="hero">
-      <div class="top">
-        <div class="brand">
-          <img class="logo" src="https://digiylyfe.net/wp-content/uploads/2026/06/ChatGPT-Image-16-juin-2026-23_15_19.png" alt="DIGIYLYFE">
-          <div>
-            <small>DIGIYLYFE</small>
-            <strong>Club des Métiers</strong>
+<div class="bgGrid" aria-hidden="true"></div>
+
+<main class="app" id="haut">
+  <header class="top" aria-label="En-tête DIGIYLYFE">
+    <a class="logo" href="https://digiylyfe.com/" aria-label="DIGIYLYFE accueil">
+      <img src="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg" alt="Logo DIGIYLYFE">
+    </a>
+
+    <div class="brand">
+      DIGIYLYFE
+      <small>Le Club Entreprises du Terrain</small>
+    </div>
+
+    <button class="roundBtn" type="button" onclick="openMenu()" aria-label="Ouvrir le menu">☰</button>
+  </header>
+
+  <section class="clubBadge" aria-label="Message DIGIYLYFE">
+    <strong>La Voix du Business</strong>
+    <span>Le public parle. Les fiches remontent.</span>
+    <small>Les bras numériques des pros du terrain : QR, contact direct, paiement direct, 0% commission.</small>
+
+    <div class="mantra" aria-label="Doctrine DIGIYLYFE">
+      <b>Je clique.</b>
+      <b>Je parle.</b>
+      <b>J’existe.</b>
+      <b>Je suis visible.</b>
+      <b>Je suis reconnu.</b>
+      <b>J’avance.</b>
+    </div>
+  </section>
+
+  <section class="proActionWrap" id="voix-digiy" aria-label="Moteur Pro Action DIGIY">
+    <div class="proActionHead">
+      <div>
+        <h1>Parle ici.<br>DIGIY ouvre la bonne porte.</h1>
+        <p>La voix est posée en vitrine. Elle ne charge pas en gros carré noir : tu lances quand tu présentes, puis tu peux la mettre en pleine page.</p>
+      </div>
+
+      <div class="voiceActions" aria-label="Actions voix DIGIYLYFE">
+        <button class="voiceActionBtn" type="button" onclick="loadVoice()">🎙️ Lancer la voix</button>
+        <button class="voiceActionBtn secondary" type="button" onclick="expandVoice()">⛶ Pleine page</button>
+        <a class="voiceDirect" href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener">↗ Ouvrir direct</a>
+        <button class="voiceCloseFull" type="button" onclick="closeVoiceFull()">× Fermer</button>
+      </div>
+    </div>
+
+    <div class="voiceFrameBox" id="voiceFrameBox">
+      <div class="voiceWelcome">
+        <div class="voiceWelcomeCard">
+          <div class="voiceIcon">🎙️</div>
+          <h2>La Voix DIGIYLYFE</h2>
+          <p>Pour la démo terrain : un clic, la voix s’ouvre ici. Besoin de confort visuel ? Passe en pleine page.</p>
+          <div class="voiceWelcomeActions">
+            <button type="button" onclick="loadVoice()">🎧 Ouvrir dans la vitrine</button>
+            <button class="softBtn" type="button" onclick="expandVoice()">⛶ Ouvrir en pleine page</button>
           </div>
         </div>
-        <div class="badge">QR · Voix · Terrain</div>
       </div>
-
-      <h1>Le Club des Métiers du Terrain.</h1>
-
-      <p class="lead">
-        Ici, le client parle simplement : chauffeur, maçon, plombier, commerce, logement,
-        service, mission. DIGIYLYFE oriente vers la bonne porte. Simple, visible, partageable.
-      </p>
-
-      <div class="voiceBox">
-        <div class="voiceLabel">
-          🎧 Parler ici ou écrire le besoin
-          <span>Version téléphone agrandie pour démonstration terrain</span>
-        </div>
-
-        <div class="voiceRow">
-          <input id="needInput" placeholder="Ex : je cherche un maçon à Saly" autocomplete="off" />
-          <button id="micBtn" type="button">🎙️</button>
-          <button id="goBtn" type="button">GO</button>
-        </div>
-
-        <div id="result" class="result"></div>
-
-        <div class="mini">
-          <span class="chip">🚗 Chauffeur</span>
-          <span class="chip">🏗️ Artisans</span>
-          <span class="chip">🏠 Location</span>
-          <span class="chip">🛍️ Market</span>
-          <span class="chip">💼 Jobs</span>
-          <span class="chip">💳 Pay</span>
-          <span class="chip">📍 Explore</span>
-          <span class="chip">🤝 Réseau</span>
-        </div>
-      </div>
-
-      <div class="cards">
-        <div class="card">
-          <b>👂 Je parle</b>
-          <p>Le besoin est compris en langage simple, sans formulaire compliqué.</p>
-        </div>
-
-        <div class="card">
-          <b>🧭 DIGIY oriente</b>
-          <p>La bonne porte métier remonte : artisan, chauffeur, job, commerce, lieu, logement.</p>
-        </div>
-
-        <div class="card">
-          <b>📲 Je partage</b>
-          <p>QR, lien, WhatsApp ou SMS : le terrain peut transmettre vite et propre.</p>
-        </div>
-      </div>
-
-      <div class="actions">
-        <a class="btn" href="https://digiylyfe.com/">🌍 Accueil DIGIY</a>
-        <a class="btn secondary" href="https://reseau-digiy.digiylyfe.com/">🤝 Réseau</a>
-        <button class="secondary" type="button" onclick="sharePage()">📤 Partager</button>
-        <button class="secondary" type="button" onclick="copyLink()">🔗 Copier lien</button>
-      </div>
-    </section>
-
-    <div class="footer">
-      DIGIYLYFE — La voix du business, la voie du terrain.
     </div>
-  </main>
+  </section>
 
-  <script>
-    const input = document.getElementById("needInput");
-    const result = document.getElementById("result");
-    const goBtn = document.getElementById("goBtn");
-    const micBtn = document.getElementById("micBtn");
+  <nav class="directDoors" aria-label="Accès directs DIGIYLYFE">
+    <a class="doorCard" href="#voix-digiy" onclick="setTimeout(loadVoice,160)">
+      <i>🎙️</i><strong>Voix</strong><small>Vitrine</small>
+    </a>
+    <a class="doorCard" href="https://club-metiers.digiylyfe.com/">
+      <i>🧰</i><strong>Club</strong><small>Métiers</small>
+    </a>
+    <a class="doorCard" href="#modules-publics">
+      <i>🌍</i><strong>Modules</strong><small>Public</small>
+    </a>
+    <a class="doorCard" href="#partager-digiy">
+      <i>📤</i><strong>Partager</strong><small>WhatsApp</small>
+    </a>
+    <a class="doorCard" href="#qr-digiy">
+      <i>▣</i><strong>QR</strong><small>Retour site</small>
+    </a>
+    <a class="doorCard" href="https://digiy-hub.digiylyfe.com/">
+      <i>🧭</i><strong>HUB</strong><small>Rond-point</small>
+    </a>
+    <a class="doorCard" href="https://commencer-a-payer.digiylyfe.com/">
+      <i>✍️</i><strong>Activer</strong><small>Module pro</small>
+    </a>
+    <a class="doorCard" href="https://pro-espace.digiylyfe.com/">
+      <i>🔐</i><strong>Pro</strong><small>Espace protégé</small>
+    </a>
+    <a class="doorCard" href="https://tarifs.digiylyfe.com/">
+      <i>📦</i><strong>Tarifs</strong><small>Offres</small>
+    </a>
+  </nav>
 
-    const routes = [
-      {
-        keys:["chauffeur","taxi","driver","aibd","dakar","course","voiture","trajet"],
-        icon:"🚗",
-        title:"DRIVER",
-        text:"Demande chauffeur détectée. Ouvre la porte DRIVER ou partage le besoin à un chauffeur du réseau.",
-        url:"https://digiy-driver-part-bapt.digiylyfe.com/"
-      },
-      {
-        keys:["maçon","macon","plombier","électricien","electricien","artisan","chantier","travaux","soudeur","menuisier","carreleur"],
-        icon:"🏗️",
-        title:"BUILD",
-        text:"Demande artisan détectée. Le Club des Métiers peut orienter vers les pros terrain.",
-        url:"https://build.digiylyfe.com/"
-      },
-      {
-        keys:["travail","job","mission","emploi","recrute","cherche du travail","ouvrier"],
-        icon:"💼",
-        title:"JOBS",
-        text:"Demande travail ou mission détectée. Ouvre la porte DIGIY JOBS.",
-        url:"https://pro-job.digiylyfe.com/"
-      },
-      {
-        keys:["logement","maison","appartement","villa","chambre","location","louer"],
-        icon:"🏠",
-        title:"LOC",
-        text:"Demande logement détectée. Ouvre la porte location.",
-        url:"https://part-chez-baptiste.digiylyfe.com/"
-      },
-      {
-        keys:["boutique","commerce","caisse","stock","vente","vendre","produit","market"],
-        icon:"🛍️",
-        title:"MARKET / POS",
-        text:"Demande commerce ou produit détectée. Ouvre la porte boutique ou caisse.",
-        url:"https://digiylyfe.com/"
-      },
-      {
-        keys:["rendez-vous","rdv","réserver","reservation","réservation","table","planning"],
-        icon:"📅",
-        title:"RESA",
-        text:"Demande réservation détectée. Ouvre la porte rendez-vous.",
-        url:"https://resa-table-resto.digiylyfe.com/fiche.html?slug=digiylyfe"
-      },
-      {
-        keys:["visiter","découvrir","decouvrir","lieu","sortir","pêche","peche","tourisme","explore"],
-        icon:"📍",
-        title:"EXPLORE",
-        text:"Demande lieu ou découverte détectée. Ouvre la porte EXPLORE.",
-        url:"https://digiylyfe.com/"
-      },
-      {
-        keys:["payer","paiement","wave","argent","facture","reçu","recu"],
-        icon:"💳",
-        title:"PAY",
-        text:"Demande paiement ou argent détectée. Le pro garde la main, DIGIY prépare la route.",
-        url:"https://digiylyfe.com/"
-      }
-    ];
+  <section class="qrPanel" id="qr-digiy" aria-label="QR DIGIYLYFE avec retour site">
+    <div class="qrCard">
+      <a class="qrImageLink" href="https://digiylyfe.com/" aria-label="QR DIGIYLYFE cliquable — retour site">
+        <img src="https://digiylyfe.net/wp-content/uploads/2026/03/cropped-digiylyfe_logo_qr.jpeg" alt="QR DIGIYLYFE — cliquer pour revenir au site">
+        <span class="qrHint">Je scanne ou je clique sur le QR</span>
+      </a>
+      <div class="qrCopy">
+        <h2>▣ QR DIGIYLYFE</h2>
+        <p>QR existant conservé. On peut le scanner ou cliquer dessus : il ramène vers la maison DIGIYLYFE.</p>
+        <div class="qrActions" aria-label="Actions QR DIGIYLYFE">
+          <a class="returnSite" href="https://digiylyfe.com/">↩ Retour site DIGIYLYFE</a>
+          <a href="#haut">Fermer QR</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    function normalize(str){
-      return (str || "")
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g,"")
-        .trim();
-    }
 
-    function findRoute(text){
-      const clean = normalize(text);
-      for(const route of routes){
-        if(route.keys.some(k => clean.includes(normalize(k)))){
-          return route;
-        }
-      }
-      return null;
-    }
+  <section class="sharePanel" id="partager-digiy" aria-label="Partager DIGIYLYFE">
+    <div class="shareCard">
+      <h2>📤 Partager DIGIYLYFE</h2>
+      <p>Un geste simple : envoyer le lien, ouvrir WhatsApp, copier, ou montrer le QR. Le terrain partage, le réseau grandit.</p>
+      <div class="shareLine" id="shareTextPreview">
+        DIGIYLYFE — Le Club Entreprises du Terrain. Club des Métiers, modules publics, QR, HUB, contact direct, paiement direct, 0% commission. https://digiylyfe.com/
+      </div>
+      <div class="shareActions" aria-label="Actions de partage DIGIYLYFE">
+        <button class="sharePrimary" type="button" onclick="shareDigiy()">📱 Partager maintenant</button>
+        <a class="sharePrimary" href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20Le%20Club%20Entreprises%20du%20Terrain.%20Club%20des%20M%C3%A9tiers%2C%20modules%20publics%2C%20QR%2C%20HUB%2C%20contact%20direct%2C%20paiement%20direct%2C%200%25%20commission.%20https%3A%2F%2Fdigiylyfe.com%2F" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <button type="button" onclick="copyDigiyLink()">📋 Copier le lien</button>
+        <a href="sms:?&body=DIGIYLYFE%20%E2%80%94%20Le%20Club%20Entreprises%20du%20Terrain.%20https%3A%2F%2Fdigiylyfe.com%2F">✉️ SMS</a>
+        <a href="https://club-metiers.digiylyfe.com/">🧰 Club des Métiers</a>
+        <a href="#qr-digiy">▣ Voir le QR</a>
+        <a href="#haut">↩ Retour site</a>
+      </div>
+    </div>
+  </section>
 
-    function speak(text){
-      try{
-        if(!("speechSynthesis" in window)) return;
-        window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance(text);
-        u.lang = "fr-FR";
-        u.rate = 0.86;
-        u.pitch = 0.92;
-        window.speechSynthesis.speak(u);
-      }catch(e){}
-    }
+  <div class="sectionTitle" id="modules-publics">
+    <h2>🌍 Modules publics</h2>
+    <small>Les portes ouvertes du terrain : voir, contacter, réserver, postuler, payer direct.</small>
+  </div>
 
-    function handleGo(){
-      const text = input.value.trim();
-      if(!text){
-        result.className = "result show";
-        result.innerHTML = "👂 Écris ou dicte un besoin simple : <b>chauffeur AIBD</b>, <b>maçon à Saly</b>, <b>je cherche du travail</b>.";
-        speak("Écris ou dicte un besoin simple. Chauffeur, artisan, travail, logement ou commerce.");
-        return;
-      }
+  <section class="moduleGrid" aria-label="Modules publics DIGIYLYFE">
+    <a class="moduleCard" href="https://driver.digiylyfe.com/">
+      <i>🚗</i><strong>DRIVER</strong><small>Chauffeurs</small>
+    </a>
+    <a class="moduleCard" href="https://loc.digiylyfe.com/">
+      <i>🏠</i><strong>LOC</strong><small>Logements</small>
+    </a>
+    <a class="moduleCard" href="https://build.digiylyfe.com/">
+      <i>🏗️</i><strong>BUILD</strong><small>Artisans</small>
+    </a>
+    <a class="moduleCard" href="https://market.digiylyfe.com/">
+      <i>🛍️</i><strong>MARKET</strong><small>Produits</small>
+    </a>
+    <a class="moduleCard" href="https://jobs.digiylyfe.com/">
+      <i>💼</i><strong>JOBS</strong><small>Missions</small>
+    </a>
+    <a class="moduleCard" href="https://resa.digiylyfe.com/">
+      <i>📅</i><strong>RESA</strong><small>Réserver</small>
+    </a>
+    <a class="moduleCard" href="https://explore.digiylyfe.com/">
+      <i>🗺️</i><strong>EXPLORE</strong><small>Découvrir</small>
+    </a>
+    <a class="moduleCard" href="https://pay.digiylyfe.com/">
+      <i>💳</i><strong>PAY</strong><small>Paiement direct</small>
+    </a>
+  </section>
 
-      const route = findRoute(text);
+  <footer class="footer">
+    <strong>DIGIYLYFE ∞</strong><br>
+    La Voix du Business, la Voie du Terrain.<br>
+    <a href="#haut">Remonter</a> ·
+    <a href="#voix-digiy">Voix</a> ·
+    <a href="https://club-metiers.digiylyfe.com/">Club des Métiers</a> ·
+    <a href="#modules-publics">Modules publics</a> ·
+    <a href="#partager-digiy">Partager</a> ·
+    <a href="https://digiy-hub.digiylyfe.com/">HUB</a> ·
+    <a href="#qr-digiy">QR</a> ·
+    <a href="https://commencer-a-payer.digiylyfe.com/">Activer mon module</a>
+  </footer>
+</main>
 
-      if(route){
-        result.className = "result show";
-        result.innerHTML = `
-          <b>${route.icon} ${route.title}</b><br>
-          ${route.text}<br><br>
-          <a class="btn" style="min-height:54px;padding:12px 15px;border-radius:17px;" href="${route.url}">
-            Ouvrir ${route.title}
-          </a>
-        `;
-        speak(`${route.title}. ${route.text}`);
+<div class="overlay" id="menuOverlay" onclick="backdropClose(event)" aria-hidden="true"></div>
+
+<div class="sheet" id="menuSheet" aria-hidden="true">
+  <div class="sheetCard" role="dialog" aria-modal="true" aria-label="Menu DIGIYLYFE">
+    <div class="sheetHead">
+      <h2>☰ Portes DIGIYLYFE</h2>
+      <button class="closeBtn" type="button" onclick="closeMenu()" aria-label="Fermer">×</button>
+    </div>
+
+    <nav class="menuGrid" aria-label="Menu principal DIGIYLYFE">
+      <a class="gold" href="#modules-publics">🌍 Modules publics</a>
+      <a class="green" href="https://club-metiers.digiylyfe.com/">🧰 Club des Métiers</a>
+      <a class="green" href="#partager-digiy">📤 Partager DIGIYLYFE</a>
+      <a class="green" href="https://digiy-hub.digiylyfe.com/">🧭 DIGIY HUB</a>
+      <a class="red" href="#qr-digiy">▣ QR DIGIY · retour site</a>
+      <a href="https://commencer-a-payer.digiylyfe.com/">✍️ Activer mon module</a>
+      <a href="https://pro-espace.digiylyfe.com/">🔐 Espace pro</a>
+      <a href="https://tarifs.digiylyfe.com/">📦 Tarifs</a>
+      <a href="https://driver.digiylyfe.com/">🚗 DRIVER</a>
+      <a href="https://loc.digiylyfe.com/">🏠 LOC</a>
+      <a href="https://build.digiylyfe.com/">🏗️ BUILD</a>
+      <a href="https://market.digiylyfe.com/">🛍️ MARKET</a>
+      <a href="https://jobs.digiylyfe.com/">💼 JOBS</a>
+      <a href="https://resa.digiylyfe.com/">📅 RESA</a>
+      <a href="https://explore.digiylyfe.com/">🗺️ EXPLORE</a>
+      <a href="https://pay.digiylyfe.com/">💳 PAY</a>
+      <a class="gold" href="#voix-digiy">🎙️ Voix en vitrine</a>
+      <a href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener">↗ Voix lien direct</a>
+      <a href="https://digiylyfe.net/">📰 Revue DIGIYLYFE</a>
+      <a href="https://digiylyfe.com/">🌍 Accueil</a>
+    </nav>
+  </div>
+</div>
+
+<div class="copyToast" id="copyToast" role="status" aria-live="polite">Lien DIGIYLYFE copié ✅</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const overlay = document.getElementById("menuOverlay");
+  const sheet = document.getElementById("menuSheet");
+
+  const DIGIY_SHARE_URL = "https://digiylyfe.com/";
+  const DIGIY_SHARE_TITLE = "DIGIYLYFE — Le Club Entreprises du Terrain";
+  const DIGIY_SHARE_TEXT = "DIGIYLYFE — Le Club Entreprises du Terrain. Club des Métiers, modules publics, QR, HUB, contact direct, paiement direct, 0% commission.";
+
+  function showCopyToast(message){
+    const toast = document.getElementById("copyToast");
+    if(!toast) return;
+    toast.textContent = message || "Lien DIGIYLYFE copié ✅";
+    toast.classList.add("show");
+    clearTimeout(window.__digiyToastTimer);
+    window.__digiyToastTimer = setTimeout(function(){
+      toast.classList.remove("show");
+    }, 1900);
+  }
+
+  window.copyDigiyLink = async function(){
+    try{
+      if(navigator.clipboard && window.isSecureContext){
+        await navigator.clipboard.writeText(DIGIY_SHARE_URL);
       }else{
-        result.className = "result show";
-        result.innerHTML = `
-          <b>🧭 Demande reçue.</b><br>
-          DIGIYLYFE peut orienter ce besoin vers le Club des Métiers du Terrain.
-          Pour aller vite : précise le métier et la zone. Exemple : <b>plombier à Saly</b>.
-        `;
-        speak("Demande reçue. Précise le métier et la zone pour ouvrir la bonne porte.");
+        const ta = document.createElement("textarea");
+        ta.value = DIGIY_SHARE_URL;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
       }
+      showCopyToast("Lien DIGIYLYFE copié ✅");
+    }catch(err){
+      showCopyToast("Copie impossible · lien : digiylyfe.com");
     }
+  };
 
-    function startMic(){
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-      if(!SpeechRecognition){
-        result.className = "result show";
-        result.innerHTML = "🎙️ Micro non disponible sur ce navigateur. Écris directement le besoin dans la grande zone.";
-        speak("Micro non disponible sur ce navigateur. Écris directement le besoin.");
-        return;
-      }
-
-      const rec = new SpeechRecognition();
-      rec.lang = "fr-FR";
-      rec.interimResults = false;
-      rec.maxAlternatives = 1;
-
-      micBtn.textContent = "🎧";
-      result.className = "result show";
-      result.innerHTML = "🎧 J’écoute… parle simplement.";
-
-      rec.onresult = function(event){
-        const said = event.results[0][0].transcript;
-        input.value = said;
-        micBtn.textContent = "🎙️";
-        handleGo();
-      };
-
-      rec.onerror = function(){
-        micBtn.textContent = "🎙️";
-        result.className = "result show";
-        result.innerHTML = "🎙️ Je n’ai pas bien entendu. Tu peux écrire le besoin directement.";
-      };
-
-      rec.onend = function(){
-        micBtn.textContent = "🎙️";
-      };
-
-      rec.start();
-    }
-
-    async function sharePage(){
-      const data = {
-        title:"Club des Métiers du Terrain · DIGIYLYFE",
-        text:"Voici la porte Club des Métiers du Terrain par DIGIYLYFE.",
-        url:window.location.href
-      };
-
+  window.shareDigiy = async function(){
+    const sharePayload = {
+      title: DIGIY_SHARE_TITLE,
+      text: DIGIY_SHARE_TEXT,
+      url: DIGIY_SHARE_URL
+    };
+    try{
       if(navigator.share){
-        try{ await navigator.share(data); }catch(e){}
-      }else{
-        copyLink();
+        await navigator.share(sharePayload);
+        return;
       }
+      await window.copyDigiyLink();
+    }catch(err){
+      if(err && err.name === "AbortError") return;
+      await window.copyDigiyLink();
     }
+  };
 
-    async function copyLink(){
-      try{
-        await navigator.clipboard.writeText(window.location.href);
-        result.className = "result show";
-        result.innerHTML = "✅ Lien copié. Tu peux le coller dans WhatsApp, SMS ou sur une affiche QR.";
-        speak("Lien copié.");
-      }catch(e){
-        result.className = "result show";
-        result.innerHTML = "🔗 Copie ce lien : " + window.location.href;
-      }
+
+  const DIGIY_VOICE_URL = "https://pro-action-digiy.digiylyfe.com/";
+
+  window.loadVoice = function(){
+    const box = document.getElementById("voiceFrameBox");
+    if(!box) return;
+    if(!box.querySelector("iframe")){
+      const frame = document.createElement("iframe");
+      frame.src = DIGIY_VOICE_URL;
+      frame.title = "La Voix du Business DIGIYLYFE";
+      frame.loading = "eager";
+      frame.allow = "microphone; clipboard-write; autoplay";
+      frame.referrerPolicy = "no-referrer-when-downgrade";
+      box.appendChild(frame);
     }
+    box.classList.add("loaded");
+    box.scrollIntoView({behavior:"smooth",block:"start"});
+  };
 
-    goBtn.addEventListener("click", handleGo);
-    micBtn.addEventListener("click", startMic);
+  window.expandVoice = function(){
+    window.loadVoice();
+    const wrap = document.getElementById("voix-digiy");
+    if(!wrap) return;
+    wrap.classList.add("voiceFull");
+    document.body.classList.add("voiceIsFull");
+  };
 
-    input.addEventListener("keydown", function(e){
-      if(e.key === "Enter") handleGo();
-    });
-  </script>
+  window.closeVoiceFull = function(){
+    const wrap = document.getElementById("voix-digiy");
+    if(wrap) wrap.classList.remove("voiceFull");
+    document.body.classList.remove("voiceIsFull");
+  };
+
+  window.openMenu = function(){
+    overlay.classList.add("open");
+    sheet.classList.add("open");
+    overlay.setAttribute("aria-hidden","false");
+    sheet.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+  };
+
+  window.closeMenu = function(){
+    overlay.classList.remove("open");
+    sheet.classList.remove("open");
+    overlay.setAttribute("aria-hidden","true");
+    sheet.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+  };
+
+  window.backdropClose = function(e){
+    if(e.target === overlay) closeMenu();
+  };
+
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+      closeMenu();
+      closeVoiceFull();
+    }
+  });
+
+  document.querySelectorAll(".menuGrid a").forEach(function(a){
+    a.addEventListener("click", closeMenu);
+  });
+})();
+</script>
 </body>
 </html>
 
