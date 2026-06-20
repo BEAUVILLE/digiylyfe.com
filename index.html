@@ -19,6 +19,30 @@
 <style>
 :root{--bg:#03120d;--ink:#fffaf0;--soft:rgba(255,250,240,.78);--gold:#f6c453;--green:#00a651;--line:rgba(255,255,255,.14);--card:rgba(255,255,255,.08);--font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100svh;color:var(--ink);font-family:var(--font);background:radial-gradient(900px 460px at 10% -5%,rgba(0,166,81,.35),transparent 62%),radial-gradient(720px 360px at 90% 0,rgba(246,196,83,.2),transparent 58%),linear-gradient(180deg,#075f32 0,#062a1d 35%,#03120d 100%)}body.lock{overflow:hidden}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}.app{width:min(100%,980px);margin:auto;padding:14px 12px 28px}.top{display:grid;grid-template-columns:58px 1fr 58px;gap:12px;align-items:center}.logo{width:58px;height:58px;border-radius:20px;border:1px solid rgba(246,196,83,.45);overflow:hidden;background:#fff}.logo img{width:100%;height:100%;object-fit:cover;display:block}.brand{text-align:center}.brand strong{display:block;font-size:clamp(24px,7vw,44px);line-height:.95;font-weight:1000;letter-spacing:.06em}.brand small{display:block;margin-top:5px;color:var(--soft);font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.menuBtn{width:58px;height:58px;border-radius:999px;border:1px solid rgba(246,196,83,.55);background:linear-gradient(135deg,rgba(246,196,83,.18),rgba(0,166,81,.15));color:#fff3cf;display:grid;place-items:center;font-size:25px;font-weight:1000;box-shadow:0 12px 30px rgba(0,0,0,.24)}.hero{margin-top:14px;border:1px solid rgba(246,196,83,.42);border-radius:32px;background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.045));box-shadow:0 24px 70px rgba(0,0,0,.36);padding:20px;text-align:center}.hero h1{margin:0;font-size:clamp(34px,9vw,72px);line-height:.92;letter-spacing:-.055em}.hero p{margin:12px auto 0;max-width:720px;color:var(--soft);font-size:clamp(15px,4vw,20px);line-height:1.42;font-weight:850}.signatureSeal{margin:14px auto 0;max-width:760px;border:1px solid rgba(246,196,83,.42);border-radius:24px;background:linear-gradient(135deg,rgba(246,196,83,.16),rgba(0,166,81,.12));padding:12px 14px;box-shadow:0 14px 38px rgba(0,0,0,.22)}.signatureSeal small{display:block;color:#fff3cf;font-size:12px;font-weight:1000;letter-spacing:.08em;text-transform:uppercase}.signatureSeal strong{display:block;margin-top:4px;color:#fffaf0;font-size:clamp(18px,4.8vw,28px);line-height:1.08;font-weight:1000;letter-spacing:-.035em}.signatureSeal span{display:block;margin-top:5px;color:rgba(255,250,240,.78);font-size:13px;font-weight:900;line-height:1.35}.mantra{margin:14px auto 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.mantra b{padding:8px 11px;border:1px solid rgba(246,196,83,.3);background:rgba(246,196,83,.1);border-radius:999px;color:#fff3cf;font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.card{min-height:82px;border-radius:22px;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px}.card i{font-style:normal;font-size:28px}.card strong{font-size:14px;font-weight:1000}.card small{font-size:11px;color:var(--soft);font-weight:850}.gold{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e)!important;color:#06140f!important;border-color:rgba(246,196,83,.75)!important}.section{margin-top:16px;border:1px solid rgba(246,196,83,.28);border-radius:28px;background:rgba(255,255,255,.06);padding:16px}.section h2{margin:0 0 8px;font-size:clamp(23px,6vw,36px);line-height:1;font-weight:1000}.section p{margin:0;color:var(--soft);font-size:15px;line-height:1.42;font-weight:850}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.actions a{min-height:48px;padding:0 14px;border-radius:999px;border:1px solid rgba(246,196,83,.35);background:rgba(255,255,255,.08);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:1000}.voiceBox{margin-top:14px;border:1px solid rgba(246,196,83,.42);border-radius:30px;background:rgba(3,18,13,.58);overflow:hidden}.voiceHead{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;border-bottom:1px solid var(--line)}.voiceHead a{min-height:54px;border-radius:18px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:1000}.voiceFrame{height:min(620px,72svh);background:#03120d}.voiceFrame iframe{width:100%;height:100%;border:0;display:block}.voiceNote{padding:10px 12px;border-top:1px solid var(--line);color:rgba(255,250,240,.72);font-size:12px;font-weight:850;line-height:1.35;text-align:center}.voiceNote a{color:#fff3cf;font-weight:1000}.footer{text-align:center;margin:18px 0 0;color:rgba(255,250,240,.66);font-size:12px;font-weight:850;line-height:1.45}.footer a{color:#fff3cf;font-weight:1000}.overlay{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.48);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:.18s}.overlay.open{opacity:1;pointer-events:auto}.sheet{position:fixed;left:0;right:0;bottom:0;z-index:90;transform:translateY(105%);transition:.22s;padding:10px 10px calc(12px + env(safe-area-inset-bottom))}.sheet.open{transform:translateY(0)}.sheetCard{width:min(900px,100%);margin:auto;max-height:84svh;overflow:auto;border-radius:32px 32px 24px 24px;border:1px solid rgba(246,196,83,.38);background:rgba(4,19,13,.98);box-shadow:0 -22px 70px rgba(0,0,0,.55);padding:16px}.sheetHead{display:grid;grid-template-columns:1fr 56px;gap:10px;align-items:center;padding:8px 4px 14px;border-bottom:1px solid var(--line)}.sheetHead h2{margin:0;font-size:24px;line-height:1;font-weight:1000}.closeBtn{width:56px;height:56px;border-radius:20px;border:1px solid rgba(246,196,83,.35);background:rgba(255,255,255,.08);color:#fff3cf;font-size:30px}.menuGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:14px}.menuGrid a{min-height:62px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.075);display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;font-size:14px;line-height:1.18;font-weight:1000}@media(max-width:680px){.grid{grid-template-columns:repeat(3,1fr);gap:7px}.card{min-height:74px;border-radius:18px}.card i{font-size:23px}.card strong{font-size:11px}.card small{display:none}.voiceHead{grid-template-columns:1fr}.app{padding-left:10px;padding-right:10px}.menuGrid{grid-template-columns:1fr}.top{grid-template-columns:54px 1fr 54px}.logo,.menuBtn{width:54px;height:54px}}
 
+.langBar{
+  margin:12px auto 0;
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.langBtn{
+  min-height:42px;
+  padding:0 14px;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.45);
+  background:rgba(255,255,255,.08);
+  color:#fff3cf;
+  font-weight:1000;
+  letter-spacing:.03em;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+.langBtn.active{
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;
+  border-color:rgba(246,196,83,.75);
+}
+
 /* === DIGIYLYFE · Lecteur flottant QR direct === */
 .readerFab{
   position:fixed;
@@ -139,38 +163,42 @@
 <main class="app" id="haut">
 <header class="top">
 <a class="logo" href="https://digiylyfe.com/" aria-label="Accueil DIGIYLYFE"><img src="./icon-192.png" alt="DIGIYLYFE"></a>
-<div class="brand"><strong>DIGIYLYFE</strong><small>Le Club Entreprises du Terrain</small></div>
+<div class="brand"><strong>DIGIYLYFE</strong><small data-i18n="brandTag">Le Club Entreprises du Terrain</small></div>
 <button class="menuBtn" type="button" onclick="openMenu()" aria-label="Ouvrir les portes">☰</button>
 </header>
-<section class="hero">
-<h1>La Voix du Business</h1>
-<p>Le public parle. Les fiches remontent. Le professionnel garde son client, son argent et sa décision.</p>
-<div class="signatureSeal" aria-label="Signature DIGIYLYFE">
-  <small>QR direct · Contact direct · Paiement direct · 0% commission</small>
-  <strong>La valeur de votre business reste dans votre main.</strong>
-  <span>Une route directe entre le client et le professionnel local.</span>
+<div class="langBar" aria-label="Choisir la langue">
+  <button class="langBtn active" type="button" data-lang="fr" onclick="digiySetLang('fr')">🇫🇷 FR</button>
+  <button class="langBtn" type="button" data-lang="en" onclick="digiySetLang('en')">🇬🇧 EN</button>
 </div>
-<div class="mantra"><b>Je clique.</b><b>Je parle.</b><b>J’existe.</b><b>Je suis visible.</b><b>Je suis reconnu.</b><b>J’avance.</b></div>
+<section class="hero">
+<h1 data-i18n="heroTitle">La Voix du Business</h1>
+<p data-i18n="heroLead">Le public parle. Les fiches remontent. Le professionnel garde son client, son argent et sa décision.</p>
+<div class="signatureSeal" aria-label="Signature DIGIYLYFE">
+  <small data-i18n="sealSmall">QR direct · Contact direct · Paiement direct · 0% commission</small>
+  <strong data-i18n="sealStrong">La valeur de votre business reste dans votre main.</strong>
+  <span data-i18n="sealSpan">Une route directe entre le client et le professionnel local.</span>
+</div>
+<div class="mantra"><b data-i18n="m1">Je clique.</b><b data-i18n="m2">Je parle.</b><b data-i18n="m3">J’existe.</b><b data-i18n="m4">Je suis visible.</b><b data-i18n="m5">Je suis reconnu.</b><b data-i18n="m6">J’avance.</b></div>
 </section>
 <nav class="grid" aria-label="Accès directs DIGIYLYFE">
-<a class="card gold" href="./qr.html"><i>▣</i><strong>QR</strong><small>Page scannable</small></a>
-<a class="card gold" href="#tourisme"><i>🏨</i><strong>LOC +</strong><small>Tourisme</small></a>
-<a class="card" href="#voix"><i>🎙️</i><strong>Voix</strong><small>Vitrine</small></a>
-<a class="card" href="#modules"><i>🌍</i><strong>Modules</strong><small>Publics</small></a>
-<a class="card" href="https://club-metiers.digiylyfe.com/"><i>🧰</i><strong>Club</strong><small>Métiers</small></a>
-<a class="card" href="https://digiy-hub.digiylyfe.com/"><i>🧭</i><strong>HUB</strong><small>Rond-point</small></a>
-<a class="card" href="#partager"><i>📤</i><strong>Partager</strong><small>Terrain</small></a>
-<a class="card" href="https://commencer-a-payer.digiylyfe.com/"><i>✍️</i><strong>Activer</strong><small>Module</small></a>
-<a class="card" href="https://pro-espace.digiylyfe.com/"><i>🔐</i><strong>Pro</strong><small>Espace</small></a>
-<a class="card" href="https://tarifs.digiylyfe.com/"><i>📦</i><strong>Tarifs</strong><small>Offres</small></a>
+<a class="card gold" href="./qr.html"><i>▣</i><strong>QR</strong><small data-i18n="cardQrSmall">Page scannable</small></a>
+<a class="card gold" href="#tourisme"><i>🏨</i><strong>LOC +</strong><small data-i18n="cardTourismSmall">Tourisme</small></a>
+<a class="card" href="#voix"><i>🎙️</i><strong data-i18n="cardVoice">Voix</strong><small data-i18n="cardVoiceSmall">Vitrine</small></a>
+<a class="card" href="#modules"><i>🌍</i><strong data-i18n="cardModules">Modules</strong><small data-i18n="cardModulesSmall">Publics</small></a>
+<a class="card" href="https://club-metiers.digiylyfe.com/"><i>🧰</i><strong>Club</strong><small data-i18n="cardClubSmall">Métiers</small></a>
+<a class="card" href="https://digiy-hub.digiylyfe.com/"><i>🧭</i><strong>HUB</strong><small data-i18n="cardHubSmall">Rond-point</small></a>
+<a class="card" href="#partager"><i>📤</i><strong data-i18n="cardShare">Partager</strong><small data-i18n="cardShareSmall">Terrain</small></a>
+<a class="card" href="https://commencer-a-payer.digiylyfe.com/"><i>✍️</i><strong data-i18n="cardActivate">Activer</strong><small data-i18n="cardActivateSmall">Module</small></a>
+<a class="card" href="https://pro-espace.digiylyfe.com/"><i>🔐</i><strong>Pro</strong><small data-i18n="cardProSmall">Espace</small></a>
+<a class="card" href="https://tarifs.digiylyfe.com/"><i>📦</i><strong data-i18n="cardPrices">Tarifs</strong><small data-i18n="cardPricesSmall">Offres</small></a>
 </nav>
-<section class="section" id="qr"><h2>▣ QR DIGIYLYFE</h2><p>L’image du QR est sur la page propre <strong>digiylyfe.com/qr.html</strong>. Ici, on ouvre le QR au lieu de charger un gros fichier dans l’index.</p><div class="actions"><a class="gold" href="./qr.html">📱 Ouvrir le QR scannable</a><a href="https://digiylyfe.com/">↩ Retour site</a></div></section>
-<section class="section" id="partager"><h2>📤 Partager DIGIYLYFE</h2><p>DIGIYLYFE — Le Club Entreprises du Terrain. Club des Métiers, modules publics, QR, HUB, contact direct, paiement direct, 0% commission.</p><div class="actions"><a class="gold" href="https://digiylyfe.com/">🔗 Ouvrir le lien</a><a href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20Le%20Club%20Entreprises%20du%20Terrain.%20https%3A%2F%2Fdigiylyfe.com%2F" target="_blank" rel="noopener">💬 WhatsApp</a><a href="sms:?&body=DIGIYLYFE%20%E2%80%94%20Le%20Club%20Entreprises%20du%20Terrain.%20https%3A%2F%2Fdigiylyfe.com%2F">✉️ SMS</a><a href="./qr.html">▣ QR</a></div></section>
-<section class="section" id="tourisme"><h2>🏨 LOC · Hôtels · Tourisme</h2><p><strong>DIGIYLYFE remonte les pros par secteur.</strong> Hôtel à Saly, villa Petite Côte, appartement à Mbour, chambre d’hôtes, résidence ou site touristique : le client trouve les fiches locales, contacte, réserve et paie directement le pro.</p><div class="actions"><a class="gold" href="https://loc.digiylyfe.com/">🏠 Ouvrir LOC</a><a href="https://resa-table-resto.digiylyfe.com/">📅 Réserver</a><a href="https://explore.digiylyfe.com/">🗺️ Sites touristiques</a><a href="https://wa.me/?text=DIGIYLYFE%20LOC%20%2F%20Tourisme%20%3A%20QR%2C%20fiche%2C%20r%C3%A9servation%2C%20paiement%20direct%2C%200%25%20commission.%20https%3A%2F%2Fdigiylyfe.com%2F%23tourisme" target="_blank" rel="noopener">💬 Partager</a></div></section>
+<section class="section" id="qr"><h2 data-i18n="qrTitle">▣ QR DIGIYLYFE</h2><p data-i18n-html="qrText">L’image du QR est sur la page propre <strong>digiylyfe.com/qr.html</strong>. Ici, on ouvre le QR au lieu de charger un gros fichier dans l’index.</p><div class="actions"><a class="gold" href="./qr.html" data-i18n="qrOpen">📱 Ouvrir le QR scannable</a><a href="https://digiylyfe.com/" data-i18n="backSite">↩ Retour site</a></div></section>
+<section class="section" id="partager"><h2 data-i18n="shareTitle">📤 <span data-i18n="menuShare">Partager DIGIYLYFE</span></h2><p data-i18n="shareText">DIGIYLYFE — Le Club Entreprises du Terrain. Club des Métiers, modules publics, QR, HUB, contact direct, paiement direct, 0% commission.</p><div class="actions"><a class="gold" href="https://digiylyfe.com/" data-i18n="openLink">🔗 Ouvrir le lien</a><a href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20Le%20Club%20Entreprises%20du%20Terrain.%20https%3A%2F%2Fdigiylyfe.com%2F" target="_blank" rel="noopener">💬 WhatsApp</a><a href="sms:?&body=DIGIYLYFE%20%E2%80%94%20Le%20Club%20Entreprises%20du%20Terrain.%20https%3A%2F%2Fdigiylyfe.com%2F">✉️ SMS</a><a href="./qr.html">▣ QR</a></div></section>
+<section class="section" id="tourisme"><h2 data-i18n="tourismTitle">🏨 LOC · Hôtels · Tourisme</h2><p data-i18n-html="tourismText"><strong>DIGIYLYFE remonte les pros par secteur.</strong> Hôtel à Saly, villa Petite Côte, appartement à Mbour, chambre d’hôtes, résidence ou site touristique : le client trouve les fiches locales, contacte, réserve et paie directement le pro.</p><div class="actions"><a class="gold" href="https://loc.digiylyfe.com/" data-i18n="openLoc">🏠 Ouvrir LOC</a><a href="https://resa-table-resto.digiylyfe.com/" data-i18n="book">📅 Réserver</a><a href="https://explore.digiylyfe.com/" data-i18n="touristSites">🗺️ Sites touristiques</a><a href="https://wa.me/?text=DIGIYLYFE%20LOC%20%2F%20Tourisme%20%3A%20QR%2C%20fiche%2C%20r%C3%A9servation%2C%20paiement%20direct%2C%200%25%20commission.%20https%3A%2F%2Fdigiylyfe.com%2F%23tourisme" target="_blank" rel="noopener" data-i18n="shareBtn">💬 Partager</a></div></section>
 <section class="voiceBox" id="voix" aria-label="Voix DIGIYLYFE">
   <div class="voiceHead">
-    <a class="gold" href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener">🎙️ Ouvrir la voix en grand</a>
-    <a href="#haut">↩ Retour haut</a>
+    <a class="gold" href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener" data-i18n="voiceOpenLarge">🎙️ Ouvrir la voix en grand</a>
+    <a href="#haut" data-i18n="backTop">↩ Retour haut</a>
   </div>
   <div class="voiceFrame">
     <iframe
@@ -182,22 +210,22 @@
       allowfullscreen>
     </iframe>
   </div>
-  <div class="voiceNote">Si le navigateur bloque encore le micro dans la vitrine, utilisez <a href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener">la voix en grand</a>. Le bouton grand reste le secours propre sur mobile.</div>
+  <div class="voiceNote" data-i18n-html="voiceNote">Si le navigateur bloque encore le micro dans la vitrine, utilisez <a href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener">la voix en grand</a>. Le bouton grand reste le secours propre sur mobile.</div>
 </section>
-<section class="section" id="modules"><h2>🌍 Modules publics</h2><p>Les portes ouvertes du terrain : voir, contacter, réserver, postuler, payer direct.</p><div class="grid"><a class="card" href="https://driver.digiylyfe.com/"><i>🚗</i><strong>DRIVER</strong><small>Chauffeurs</small></a><a class="card" href="https://loc.digiylyfe.com/"><i>🏠</i><strong>LOC</strong><small>Logements</small></a><a class="card" href="https://build.digiylyfe.com/"><i>🏗️</i><strong>BUILD</strong><small>Artisans</small></a><a class="card" href="https://market.digiylyfe.com/"><i>🛍️</i><strong>MARKET</strong><small>Produits</small></a><a class="card" href="https://jobs.digiylyfe.com/"><i>💼</i><strong>JOBS</strong><small>Missions</small></a><a class="card" href="https://resa-table-resto.digiylyfe.com/"><i>📅</i><strong>RESA</strong><small>Réserver</small></a><a class="card" href="https://explore.digiylyfe.com/"><i>🗺️</i><strong>EXPLORE</strong><small>Lieux</small></a><a class="card" href="https://pay.digiylyfe.com/"><i>💳</i><strong>PAY</strong><small>Paiement</small></a><a class="card gold" href="./qr.html"><i>▣</i><strong>QR</strong><small>Scannable</small></a></div></section>
-<footer class="footer"><strong>DIGIYLYFE ∞</strong><br>La Voix du Business, la Voie du Terrain.<br><a href="./qr.html">QR scannable</a> · <a href="#tourisme">LOC/Tourisme</a> · <a href="#modules">Modules publics</a> · <a href="https://commencer-a-payer.digiylyfe.com/">Activer mon module</a></footer>
+<section class="section" id="modules"><h2 data-i18n="modulesTitle">🌍 Modules publics</h2><p data-i18n="modulesText">Les portes ouvertes du terrain : voir, contacter, réserver, postuler, payer direct.</p><div class="grid"><a class="card" href="https://driver.digiylyfe.com/"><i>🚗</i><strong>DRIVER</strong><small data-i18n="modDriverSmall">Chauffeurs</small></a><a class="card" href="https://loc.digiylyfe.com/"><i>🏠</i><strong>LOC</strong><small data-i18n="modLocSmall">Logements</small></a><a class="card" href="https://build.digiylyfe.com/"><i>🏗️</i><strong>BUILD</strong><small data-i18n="modBuildSmall">Artisans</small></a><a class="card" href="https://market.digiylyfe.com/"><i>🛍️</i><strong>MARKET</strong><small data-i18n="modMarketSmall">Produits</small></a><a class="card" href="https://jobs.digiylyfe.com/"><i>💼</i><strong>JOBS</strong><small data-i18n="modJobsSmall">Missions</small></a><a class="card" href="https://resa-table-resto.digiylyfe.com/"><i>📅</i><strong>RESA</strong><small data-i18n="modResaSmall">Réserver</small></a><a class="card" href="https://explore.digiylyfe.com/"><i>🗺️</i><strong>EXPLORE</strong><small data-i18n="modExploreSmall">Lieux</small></a><a class="card" href="https://pay.digiylyfe.com/"><i>💳</i><strong>PAY</strong><small data-i18n="modPaySmall">Paiement</small></a><a class="card gold" href="./qr.html"><i>▣</i><strong>QR</strong><small data-i18n="modQrSmall">Scannable</small></a></div></section>
+<footer class="footer"><strong>DIGIYLYFE ∞</strong><br><span data-i18n="footerLine">La Voix du Business, la Voie du Terrain.</span><br><a href="./qr.html" data-i18n="footerQr">QR scannable</a> · <a href="#tourisme">LOC/Tourisme</a> · <a href="#modules" data-i18n="footerModules">Modules publics</a> · <a href="https://commencer-a-payer.digiylyfe.com/" data-i18n="footerActivate">Activer mon module</a></footer>
 </main>
 
 <button class="readerFab" id="readerFab" type="button" onclick="digiyToggleReader(true)" aria-label="Écouter le message DIGIYLYFE">
-  <span>🎧</span><span>Écouter DIGIY</span>
+  <span>🎧</span><span data-i18n="listenDigiy">Écouter DIGIY</span>
 </button>
 
 <div class="readerPanel" id="readerPanel" aria-hidden="true">
   <div class="readerTop">
-    <strong>Le QR direct du pro</strong>
+    <strong data-i18n="readerTitle">Le QR direct du pro</strong>
     <button class="readerClose" type="button" onclick="digiyCloseReader()" aria-label="Fermer le lecteur">×</button>
   </div>
-  <p class="readerText" id="readerText">
+  <p class="readerText" id="readerText" data-i18n-html="readerText">
     <b>Votre QR ouvre votre vitrine pro.</b><br>
     Photos, vidéos, téléphone, WhatsApp, Wave, planning et réservations.<br><br>
     Hôtels, logements, chauffeurs, réservations, métiers et sites touristiques peuvent remonter par secteur : Saly, Mbour, Petite Côte, Dakar ou AIBD.<br><br>
@@ -208,15 +236,15 @@
     Un petit abonnement mensuel pour maîtriser votre visibilité, vos contacts, vos réservations et vos encaissements.
   </p>
   <div class="readerControls" aria-label="Contrôles du lecteur DIGIYLYFE">
-    <button class="readerPlay" type="button" onclick="digiySpeakReader()">▶ Lire</button>
-    <button type="button" onclick="digiyPauseResumeReader()">⏸ Pause</button>
-    <button type="button" onclick="digiyStopReader()">■ Stop</button>
+    <button class="readerPlay" type="button" onclick="digiySpeakReader()" data-i18n="readBtn">▶ Lire</button>
+    <button type="button" onclick="digiyPauseResumeReader()" data-i18n="pauseBtn">⏸ Pause</button>
+    <button type="button" onclick="digiyStopReader()" data-i18n="stopBtn">■ Stop</button>
   </div>
-  <p class="readerNote">Lecture vocale du navigateur. Sur iPhone/Android, lance la lecture après un appui.</p>
+  <p class="readerNote" data-i18n="readerNote">Lecture vocale du navigateur. Sur iPhone/Android, lance la lecture après un appui.</p>
 </div>
 
 <div class="overlay" id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
-<div class="sheet" id="sheet" aria-hidden="true"><div class="sheetCard"><div class="sheetHead"><h2>☰ Portes DIGIYLYFE</h2><button class="closeBtn" type="button" onclick="closeMenu()" aria-label="Fermer">×</button></div><nav class="menuGrid" aria-label="Menu principal DIGIYLYFE"><a class="gold" href="./qr.html">▣ QR DIGIY · page scannable</a><a class="gold" href="#tourisme">🏨 LOC/Tourisme · moteur secteur</a><a class="gold" href="https://club-metiers.digiylyfe.com/">🧰 Club des Métiers</a><a href="#partager">📤 Partager DIGIYLYFE</a><a href="https://digiy-hub.digiylyfe.com/">🧭 DIGIY HUB</a><a href="https://commencer-a-payer.digiylyfe.com/">✍️ Activer mon module</a><a href="https://pro-espace.digiylyfe.com/">🔐 Espace pro</a><a href="https://tarifs.digiylyfe.com/">📦 Tarifs</a><a href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener">🎙️ Voix en grand</a><a href="https://driver.digiylyfe.com/">🚗 DRIVER</a><a href="https://loc.digiylyfe.com/">🏠 LOC</a><a href="https://build.digiylyfe.com/">🏗️ BUILD</a><a href="https://market.digiylyfe.com/">🛍️ MARKET</a><a href="https://jobs.digiylyfe.com/">💼 JOBS</a><a href="https://resa-table-resto.digiylyfe.com/">📅 RESA</a><a href="https://explore.digiylyfe.com/">🗺️ EXPLORE</a><a href="https://pay.digiylyfe.com/">💳 PAY</a><a href="https://digiylyfe.net/">📰 Revue DIGIYLYFE</a><a href="https://digiylyfe.com/">🌍 Accueil</a></nav></div></div>
+<div class="sheet" id="sheet" aria-hidden="true"><div class="sheetCard"><div class="sheetHead"><h2 data-i18n="menuTitle">☰ Portes DIGIYLYFE</h2><button class="closeBtn" type="button" onclick="closeMenu()" aria-label="Fermer">×</button></div><nav class="menuGrid" aria-label="Menu principal DIGIYLYFE"><a class="gold" href="./qr.html">▣ QR DIGIY · <span data-i18n="menuQr">page scannable</span></a><a class="gold" href="#tourisme">🏨 LOC/Tourisme · <span data-i18n="menuTourism">moteur secteur</span></a><a class="gold" href="https://club-metiers.digiylyfe.com/">🧰 <span data-i18n="menuClub">Club des Métiers</span></a><a href="#partager">📤 <span data-i18n="menuShare">Partager DIGIYLYFE</span></a><a href="https://digiy-hub.digiylyfe.com/">🧭 DIGIY HUB</a><a href="https://commencer-a-payer.digiylyfe.com/">✍️ <span data-i18n="menuActivate">Activer mon module</span></a><a href="https://pro-espace.digiylyfe.com/">🔐 <span data-i18n="menuPro">Espace pro</span></a><a href="https://tarifs.digiylyfe.com/">📦 <span data-i18n="menuPrices">Tarifs</span></a><a href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener">🎙️ <span data-i18n="menuVoiceLarge">Voix en grand</span></a><a href="https://driver.digiylyfe.com/">🚗 DRIVER</a><a href="https://loc.digiylyfe.com/">🏠 LOC</a><a href="https://build.digiylyfe.com/">🏗️ BUILD</a><a href="https://market.digiylyfe.com/">🛍️ MARKET</a><a href="https://jobs.digiylyfe.com/">💼 JOBS</a><a href="https://resa-table-resto.digiylyfe.com/">📅 RESA</a><a href="https://explore.digiylyfe.com/">🗺️ EXPLORE</a><a href="https://pay.digiylyfe.com/">💳 PAY</a><a href="https://digiylyfe.net/">📰 <span data-i18n="menuReview">Revue DIGIYLYFE</span></a><a href="https://digiylyfe.com/">🌍 <span data-i18n="menuHome">Accueil</span></a></nav></div></div>
 <script>
 function openMenu(){document.getElementById('overlay').classList.add('open');document.getElementById('sheet').classList.add('open');document.body.classList.add('lock')}
 function closeMenu(){document.getElementById('overlay').classList.remove('open');document.getElementById('sheet').classList.remove('open');document.body.classList.remove('lock')}
@@ -291,8 +319,134 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
 })();
 </script>
 
+
+<script>
+(function(){
+  var DIGIY_I18N={
+    fr:{
+      htmlLang:"fr",
+      pageTitle:"DIGIYLYFE — La Voix du Business",
+      metaDescription:"DIGIYLYFE — QR direct, contact direct, paiement direct, 0% commission. La valeur de votre business reste dans votre main.",
+      brandTag:"Le Club Entreprises du Terrain",
+      heroTitle:"La Voix du Business",
+      heroLead:"Le public parle. Les fiches remontent. Le professionnel garde son client, son argent et sa décision.",
+      sealSmall:"QR direct · Contact direct · Paiement direct · 0% commission",
+      sealStrong:"La valeur de votre business reste dans votre main.",
+      sealSpan:"Une route directe entre le client et le professionnel local.",
+      m1:"Je clique.",m2:"Je parle.",m3:"J’existe.",m4:"Je suis visible.",m5:"Je suis reconnu.",m6:"J’avance.",
+      cardQrSmall:"Page scannable",cardTourismSmall:"Tourisme",cardVoice:"Voix",cardVoiceSmall:"Vitrine",cardModules:"Modules",cardModulesSmall:"Publics",cardClubSmall:"Métiers",cardHubSmall:"Rond-point",cardShare:"Partager",cardShareSmall:"Terrain",cardActivate:"Activer",cardActivateSmall:"Module",cardProSmall:"Espace",cardPrices:"Tarifs",cardPricesSmall:"Offres",
+      qrTitle:"▣ QR DIGIYLYFE",
+      qrText:"L’image du QR est sur la page propre <strong>digiylyfe.com/qr.html</strong>. Ici, on ouvre le QR au lieu de charger un gros fichier dans l’index.",
+      qrOpen:"📱 Ouvrir le QR scannable",backSite:"↩ Retour site",
+      shareTitle:"📤 Partager DIGIYLYFE",
+      shareText:"DIGIYLYFE — Le Club Entreprises du Terrain. Club des Métiers, modules publics, QR, HUB, contact direct, paiement direct, 0% commission.",
+      openLink:"🔗 Ouvrir le lien",
+      tourismTitle:"🏨 LOC · Hôtels · Tourisme",
+      tourismText:"<strong>DIGIYLYFE remonte les pros par secteur.</strong> Hôtel à Saly, villa Petite Côte, appartement à Mbour, chambre d’hôtes, résidence ou site touristique : le client trouve les fiches locales, contacte, réserve et paie directement le pro.",
+      openLoc:"🏠 Ouvrir LOC",book:"📅 Réserver",touristSites:"🗺️ Sites touristiques",shareBtn:"💬 Partager",
+      voiceOpenLarge:"🎙️ Ouvrir la voix en grand",backTop:"↩ Retour haut",
+      voiceNote:"Si le navigateur bloque encore le micro dans la vitrine, utilisez <a href=\"https://pro-action-digiy.digiylyfe.com/\" target=\"_blank\" rel=\"noopener\">la voix en grand</a>. Le bouton grand reste le secours propre sur mobile.",
+      modulesTitle:"🌍 Modules publics",
+      modulesText:"Les portes ouvertes du terrain : voir, contacter, réserver, postuler, payer direct.",
+      modDriverSmall:"Chauffeurs",modLocSmall:"Logements",modBuildSmall:"Artisans",modMarketSmall:"Produits",modJobsSmall:"Missions",modResaSmall:"Réserver",modExploreSmall:"Lieux",modPaySmall:"Paiement",modQrSmall:"Scannable",
+      footerLine:"La Voix du Business, la Voie du Terrain.",footerQr:"QR scannable",footerModules:"Modules publics",footerActivate:"Activer mon module",
+      listenDigiy:"Écouter DIGIY",
+      readerTitle:"Le QR direct du pro",
+      readerText:"<b>Votre QR ouvre votre vitrine pro.</b><br>Photos, vidéos, téléphone, WhatsApp, Wave, planning et réservations.<br><br>Hôtels, logements, chauffeurs, réservations, métiers et sites touristiques peuvent remonter par secteur : Saly, Mbour, Petite Côte, Dakar ou AIBD.<br><br>Votre activité devient partageable en un clic pour trouver de nouveaux clients et fidéliser les anciens.<br><br>Le client vous contacte, réserve et vous paie directement.<br>Pas d’intermédiaire. <b>0% commission.</b><br><br><b>La valeur de votre business reste dans votre main.</b><br>Un petit abonnement mensuel pour maîtriser votre visibilité, vos contacts, vos réservations et vos encaissements.",
+      readBtn:"▶ Lire",pauseBtn:"⏸ Pause",stopBtn:"■ Stop",readerNote:"Lecture vocale du navigateur. Sur iPhone/Android, lance la lecture après un appui.",
+      menuTitle:"☰ Portes DIGIYLYFE",menuQr:"page scannable",menuTourism:"moteur secteur",menuClub:"Club des Métiers",menuShare:"Partager DIGIYLYFE",menuActivate:"Activer mon module",menuPro:"Espace pro",menuPrices:"Tarifs",menuVoiceLarge:"Voix en grand",menuReview:"Revue DIGIYLYFE",menuHome:"Accueil",
+      shareWhatsapp:"DIGIYLYFE — Le Club Entreprises du Terrain. https://digiylyfe.com/",
+      shareTourism:"DIGIYLYFE LOC / Tourisme : QR, fiche, réservation, paiement direct, 0% commission. https://digiylyfe.com/#tourisme"
+    },
+    en:{
+      htmlLang:"en",
+      pageTitle:"DIGIYLYFE — The Voice of Business",
+      metaDescription:"DIGIYLYFE — Direct QR, direct contact, direct payment, 0% commission. The value of your business stays in your hands.",
+      brandTag:"The Ground Business Club",
+      heroTitle:"The Voice of Business",
+      heroLead:"The public speaks. Local profiles appear. The professional keeps the client, the money and the decision.",
+      sealSmall:"Direct QR · Direct contact · Direct payment · 0% commission",
+      sealStrong:"The value of your business stays in your hands.",
+      sealSpan:"A direct road between the client and the local professional.",
+      m1:"I click.",m2:"I speak.",m3:"I exist.",m4:"I am visible.",m5:"I am recognized.",m6:"I move forward.",
+      cardQrSmall:"Scannable page",cardTourismSmall:"Tourism",cardVoice:"Voice",cardVoiceSmall:"Showcase",cardModules:"Modules",cardModulesSmall:"Public",cardClubSmall:"Trades",cardHubSmall:"Crossroads",cardShare:"Share",cardShareSmall:"Field",cardActivate:"Activate",cardActivateSmall:"Module",cardProSmall:"Space",cardPrices:"Pricing",cardPricesSmall:"Offers",
+      qrTitle:"▣ DIGIYLYFE QR",
+      qrText:"The QR image is on the clean page <strong>digiylyfe.com/qr.html</strong>. Here, the QR opens without loading a heavy file inside the homepage.",
+      qrOpen:"📱 Open the scannable QR",backSite:"↩ Back to site",
+      shareTitle:"📤 Share DIGIYLYFE",
+      shareText:"DIGIYLYFE — The Ground Business Club. Trades Club, public modules, QR, HUB, direct contact, direct payment, 0% commission.",
+      openLink:"🔗 Open the link",
+      tourismTitle:"🏨 LOC · Hotels · Tourism",
+      tourismText:"<strong>DIGIYLYFE brings up professionals by sector.</strong> Hotel in Saly, villa on the Petite Côte, apartment in Mbour, guest house, residence or tourist site: the client finds local profiles, contacts, books and pays the professional directly.",
+      openLoc:"🏠 Open LOC",book:"📅 Book",touristSites:"🗺️ Tourist sites",shareBtn:"💬 Share",
+      voiceOpenLarge:"🎙️ Open the voice full screen",backTop:"↩ Back to top",
+      voiceNote:"If the browser still blocks the microphone inside the homepage, use <a href=\"https://pro-action-digiy.digiylyfe.com/\" target=\"_blank\" rel=\"noopener\">the full voice page</a>. The large button remains the clean backup on mobile.",
+      modulesTitle:"🌍 Public modules",
+      modulesText:"Open doors for the field: view, contact, book, apply, pay direct.",
+      modDriverSmall:"Drivers",modLocSmall:"Housing",modBuildSmall:"Trades",modMarketSmall:"Products",modJobsSmall:"Missions",modResaSmall:"Booking",modExploreSmall:"Places",modPaySmall:"Payment",modQrSmall:"Scannable",
+      footerLine:"The Voice of Business, the Road of the Field.",footerQr:"Scannable QR",footerModules:"Public modules",footerActivate:"Activate my module",
+      listenDigiy:"Listen DIGIY",
+      readerTitle:"The pro’s direct QR",
+      readerText:"<b>Your QR opens your pro showcase.</b><br>Photos, videos, phone, WhatsApp, Wave, planning and bookings.<br><br>Hotels, housing, drivers, bookings, trades and tourist sites can appear by sector: Saly, Mbour, Petite Côte, Dakar or AIBD.<br><br>Your activity becomes shareable in one click to find new clients and keep the old ones close.<br><br>The client contacts you, books and pays you directly.<br>No middleman. <b>0% commission.</b><br><br><b>The value of your business stays in your hands.</b><br>A small monthly subscription to control your visibility, contacts, bookings and payments.",
+      readBtn:"▶ Read",pauseBtn:"⏸ Pause",stopBtn:"■ Stop",readerNote:"Browser voice reading. On iPhone/Android, start the reading after one tap.",
+      menuTitle:"☰ DIGIYLYFE Doors",menuQr:"scannable page",menuTourism:"sector engine",menuClub:"Trades Club",menuShare:"Share DIGIYLYFE",menuActivate:"Activate my module",menuPro:"Pro space",menuPrices:"Pricing",menuVoiceLarge:"Full voice",menuReview:"DIGIYLYFE Review",menuHome:"Home",
+      shareWhatsapp:"DIGIYLYFE — The Ground Business Club. https://digiylyfe.com/",
+      shareTourism:"DIGIYLYFE LOC / Tourism: QR, profile, booking, direct payment, 0% commission. https://digiylyfe.com/#tourisme"
+    }
+  };
+  function enc(v){return encodeURIComponent(v);}
+  function updateShareLinks(lang){
+    var t=DIGIY_I18N[lang]||DIGIY_I18N.fr;
+    document.querySelectorAll('a[href^="https://wa.me/?text="]').forEach(function(a){
+      var isTourism=(a.getAttribute('href')||'').indexOf('%23tourisme')>-1;
+      a.href="https://wa.me/?text="+enc(isTourism?t.shareTourism:t.shareWhatsapp);
+    });
+    document.querySelectorAll('a[href^="sms:?&body="]').forEach(function(a){
+      a.href="sms:?&body="+enc(t.shareWhatsapp);
+    });
+  }
+  window.digiySetLang=function(lang){
+    var t=DIGIY_I18N[lang]||DIGIY_I18N.fr;
+    if('speechSynthesis' in window) speechSynthesis.cancel();
+    document.documentElement.lang=t.htmlLang||lang;
+    document.title=t.pageTitle;
+    var desc=document.querySelector('meta[name="description"]');
+    if(desc)desc.setAttribute('content',t.metaDescription);
+    var ogTitle=document.querySelector('meta[property="og:title"]');
+    if(ogTitle)ogTitle.setAttribute('content',t.pageTitle);
+    var ogDesc=document.querySelector('meta[property="og:description"]');
+    if(ogDesc)ogDesc.setAttribute('content',t.metaDescription);
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k=el.getAttribute('data-i18n');
+      if(t[k]!==undefined) el.textContent=t[k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      var k=el.getAttribute('data-i18n-html');
+      if(t[k]!==undefined) el.innerHTML=t[k];
+    });
+    document.querySelectorAll('.langBtn').forEach(function(btn){
+      var active=btn.getAttribute('data-lang')===lang;
+      btn.classList.toggle('active',active);
+      btn.setAttribute('aria-pressed',active?'true':'false');
+    });
+    updateShareLinks(lang);
+    try{localStorage.setItem('digiy_lang',lang)}catch(e){}
+  };
+  var saved='fr';
+  try{saved=localStorage.getItem('digiy_lang')||'fr'}catch(e){}
+  if(!DIGIY_I18N[saved]) saved='fr';
+  window.digiySetLang(saved);
+})();
+</script>
+
 </body>
 </html>
+
+
+
+
+
+>
 
 
 
