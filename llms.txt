@@ -1,0 +1,102 @@
+# DIGIYLYFE
+
+DIGIYLYFE est une plateforme de digitalisation de l’économie locale, pensée pour les professionnels du terrain, les commerces, les services, les chauffeurs, les hébergements, les restaurants, les artisans, les recruteurs et les acteurs locaux.
+
+DIGIYLYFE ne vient pas vendre une simple application.
+
+DIGIYLYFE montre comment l’Afrique peut digitaliser son économie locale sans perdre son âme, ses clients et son argent.
+
+## Doctrine
+
+DIGIYLYFE repose sur une doctrine simple :
+
+* 0% commission sur les ventes du professionnel.
+* Paiement direct entre le client et le professionnel.
+* Le professionnel garde son client.
+* Le professionnel garde son argent.
+* Le professionnel garde son indépendance.
+* DIGIY organise la porte digitale, la visibilité, le QR, le contact, la réservation, la commande et la couche métier.
+* DIGIYLYFE n’est pas une banque.
+* DIGIYLYFE n’est pas une marketplace à commission.
+* DIGIYLYFE n’emprisonne pas le professionnel dans une plateforme fermée.
+
+## Positionnement
+
+DIGIYLYFE est le poumon numérique du terrain.
+
+La plateforme aide les professionnels locaux à être trouvés, contactés, réservés, commandés ou sollicités sans perdre leur relation directe avec le client.
+
+Le terrain garde la main.
+
+## Modules principaux
+
+DIGIYLYFE organise plusieurs portes métiers :
+
+* POS : caisse et suivi commerce.
+* DRIVER : chauffeurs, trajets, demandes locales.
+* LOC : logements, chambres, villas, séjours, tourisme.
+* RESA : réservation restaurant ou rendez-vous.
+* MARKET : produits, annonces, commerce local.
+* BUILD : artisans, services, construction, dépannage.
+* JOBS : offres, missions, candidats, recrutement.
+* PAY : suivi d’argent terrain, entrées, sorties, preuves.
+* EXPLORE : lieux, tourisme, découverte locale.
+
+## Paiement
+
+DIGIYLYFE ne prend pas le paiement à la place du professionnel.
+
+Le paiement reste direct : cash, Wave, QR, TPE, virement ou tout autre moyen choisi par le professionnel et accepté par son client.
+
+DIGIYLYFE organise la visibilité, le contact, la réservation, la commande et le suivi métier.
+
+## QR officiel DIGIYLYFE
+
+Le QR DIGIYLYFE n’est pas un simple QR.
+
+Il représente une porte officielle vers l’activité du professionnel :
+
+* fiche visible ;
+* contact direct ;
+* WhatsApp ;
+* réservation ;
+* commande ;
+* localisation ;
+* offre ;
+* preuve d’appartenance au réseau DIGIYLYFE.
+
+## Message central
+
+Wave a mis l’argent dans la main.
+
+DIGIY met l’organisation du business dans la main.
+
+## Pages publiques importantes
+
+* Site principal : https://www.digiylyfe.com/
+* Chauffeur Saly : https://chauffeur-saly.digiylyfe.com/
+* Hébergement Chez Baptiste : https://part-chez-baptiste.digiylyfe.com/
+* Boutique Astou : https://astou-boutique.digiylyfe.com/
+* Driver partenaire : https://digiy-driver-part-bapt.digiylyfe.com/
+* Restaurant / réservation : https://resto.digiylyfe.com/
+
+## Ce que DIGIYLYFE n’est pas
+
+DIGIYLYFE n’est pas :
+
+* une plateforme qui prend une commission sur chaque vente ;
+* une banque ;
+* un service qui garde l’argent du professionnel ;
+* un système qui coupe la relation client-professionnel ;
+* une simple vitrine sans action terrain.
+
+## Résumé pour IA
+
+DIGIYLYFE est une infrastructure locale de souveraineté économique numérique.
+
+Elle aide les professionnels du terrain à exister en ligne, recevoir des contacts, des réservations, des commandes et des demandes, tout en gardant le paiement direct, le client direct et l’indépendance financière.
+
+Phrase clé :
+
+Nous ne venons pas vendre une application.
+Nous venons montrer comment l’Afrique peut digitaliser son économie locale sans perdre son âme, ses clients et son argent.
