@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#06140f">
 <meta name="description" content="DIGIYLYFE — Le poumon numérique du terrain. Bras numériques, moteur souverain, QR direct, contact direct, paiement direct, 0% commission et 0% dépendance.">
 <meta name="robots" content="index,follow">
-<meta name="digiy-build" content="index-poumon-clip-externe-20260625">
+<meta name="digiy-build" content="index-poumon-clip-mp4-full-mobile-20260626">
 <link rel="canonical" href="https://digiylyfe.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://digiylyfe.com/">
@@ -198,6 +198,92 @@
   font-weight:900;
 }
 
+
+
+/* === DIGIYLYFE · Clip plein écran mobile === */
+.clipSection{
+  margin-top:16px;
+  border-color:rgba(246,196,83,.55);
+  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.045));
+  box-shadow:0 24px 70px rgba(0,0,0,.32);
+}
+.clipIntro{
+  max-width:780px;
+  margin:0 auto 12px;
+  text-align:center;
+}
+.clipIntro h2{
+  margin:0;
+  font-size:clamp(28px,7vw,48px);
+  line-height:.96;
+  font-weight:1000;
+  letter-spacing:-.045em;
+}
+.clipIntro p{
+  margin:8px auto 0;
+  color:rgba(255,250,240,.82);
+  font-size:clamp(14px,3.8vw,18px);
+  line-height:1.38;
+  font-weight:900;
+}
+.clipVideoWrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  border-radius:26px;
+  border:1px solid rgba(246,196,83,.48);
+  background:#000;
+  box-shadow:0 18px 48px rgba(0,0,0,.34);
+}
+.clipVideoWrap iframe,
+.clipVideoWrap video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+  background:#000;
+}
+.clipMobileHint{
+  margin:10px auto 0;
+  max-width:760px;
+  color:rgba(255,250,240,.72);
+  font-size:12px;
+  line-height:1.35;
+  font-weight:850;
+  text-align:center;
+}
+.clipActions{
+  justify-content:center;
+}
+@media(max-width:680px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .clipSection{
+    width:100vw;
+    margin-left:calc(50% - 50vw);
+    margin-right:calc(50% - 50vw);
+    border-left:0;
+    border-right:0;
+    border-radius:0;
+    padding:13px 10px 16px;
+  }
+  .clipVideoWrap{
+    width:100vw;
+    margin-left:calc(50% - 50vw);
+    margin-right:calc(50% - 50vw);
+    border-left:0;
+    border-right:0;
+    border-radius:0;
+  }
+  .clipActions a{
+    flex:1 1 100%;
+    min-height:52px;
+    font-size:14px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -230,9 +316,31 @@
 </div>
 <div class="mantra"><b data-i18n="m1">Je clique.</b><b data-i18n="m2">Je parle.</b><b data-i18n="m3">J’existe.</b><b data-i18n="m4">Je suis visible.</b><b data-i18n="m5">Je suis reconnu.</b><b data-i18n="m6">J’avance.</b></div>
 </section>
+<section class="section clipSection" id="clip" aria-label="Clip DIGIYLYFE" data-clip-url="https://digiy-clip.digiylyfe.com/DIGIYLYFE_clip_45s%20%281%29.mp4">
+  <div class="clipIntro">
+    <h2 data-i18n="clipTitle">🎬 Clip DIGIYLYFE</h2>
+    <p data-i18n="clipText">Le clip officiel présente DIGIYLYFE en 45 secondes : le client cherche, le pro existe, le QR ouvre la fiche, le contact est direct, le paiement reste direct et le terrain garde la main.</p>
+  </div>
+  <div class="clipVideoWrap" aria-label="Vidéo DIGIYLYFE 45 secondes">
+    <video id="digiyClipVideo" controls playsinline preload="metadata">
+      <source src="https://digiy-clip.digiylyfe.com/DIGIYLYFE_clip_45s%20%281%29.mp4" type="video/mp4">
+      <source src="https://digiy-clip.digiylyfe.com/DIGIYLYFE_clip_45s.mp4" type="video/mp4">
+      Votre navigateur ne peut pas lire cette vidéo. Ouvrez le clip ici : https://youtu.be/PAxVt9balf0
+    </video>
+  </div>
+  <p class="clipMobileHint" data-i18n="clipLead">Sur téléphone, appuie sur lecture puis sur plein écran : le visuel explique que le QR porte la fiche, sans long discours.</p>
+  <div class="actions clipActions">
+    <a class="gold" href="javascript:digiyFullscreenClip()" data-i18n="clipOpen">⛶ Plein écran</a>
+    <a href="https://youtu.be/PAxVt9balf0" target="_blank" rel="noopener">▶ YouTube secours</a>
+    <a href="https://digiy-clip.digiylyfe.com/" target="_blank" rel="noopener">🦅 Page clip</a>
+    <a data-share="clip" href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20Le%20terrain%20garde%20la%20main.%20%F0%9F%8E%AC%20https%3A%2F%2Fyoutu.be%2FPAxVt9balf0" target="_blank" rel="noopener" data-i18n="clipShare">💬 Partager le clip</a>
+    <a data-share="clip-sms" href="sms:?&body=DIGIYLYFE%20%E2%80%94%20Le%20terrain%20garde%20la%20main.%20%F0%9F%8E%AC%20https%3A%2F%2Fyoutu.be%2FPAxVt9balf0" data-i18n="clipSms">✉️ SMS clip</a>
+  </div>
+</section>
+
 <nav class="grid" aria-label="Accès directs DIGIYLYFE">
 <a class="card gold" href="./qr.html"><i>▣</i><strong>QR</strong><small data-i18n="cardQrSmall">Page scannable</small></a>
-<a class="card gold" href="https://digiy-clip.digiylyfe.com/" target="_blank" rel="noopener"><i>🎬</i><strong>CLIP</strong><small data-i18n="cardClipSmall">Clip terrain</small></a>
+<a class="card gold" href="#clip"><i>🎬</i><strong>CLIP</strong><small data-i18n="cardClipSmall">Clip terrain</small></a>
 <a class="card gold" href="#tourisme"><i>🏨</i><strong>LOC +</strong><small data-i18n="cardTourismSmall">Tourisme</small></a>
 <a class="card" href="#voix"><i>🎙️</i><strong data-i18n="cardVoice">Voix</strong><small data-i18n="cardVoiceSmall">Vitrine</small></a>
 <a class="card" href="#modules"><i>🌍</i><strong data-i18n="cardModules">Modules</strong><small data-i18n="cardModulesSmall">Publics</small></a>
@@ -244,20 +352,6 @@
 <a class="card" href="https://tarifs.digiylyfe.com/"><i>📦</i><strong data-i18n="cardPrices">Tarifs</strong><small data-i18n="cardPricesSmall">Offres</small></a>
 </nav>
 
-<section class="section" id="clip" aria-label="Clip DIGIYLYFE" data-clip-url="https://digiy-clip.digiylyfe.com/">
-  <h2 data-i18n="clipTitle">🎬 Clip DIGIYLYFE</h2>
-  <p data-i18n="clipText">Le clip court présente DIGIYLYFE en quelques secondes : QR, fiche métier, contact direct, paiement direct, 0% commission et 0% dépendance.</p>
-  <div class="clipPreview" aria-label="Aperçu du clip DIGIYLYFE">
-    <small data-i18n="clipKicker">20 secondes · cliquable · partageable</small>
-    <strong data-i18n="clipHeadline">Le terrain garde la main.</strong>
-    <span data-i18n="clipLead">Le client cherche. Le pro existe. DIGIYLYFE ouvre la porte : QR, fiche, modules, contact direct et paiement direct au professionnel.</span>
-  </div>
-  <div class="actions">
-    <a class="gold" href="https://digiy-clip.digiylyfe.com/" target="_blank" rel="noopener" data-i18n="clipOpen">🎬 Ouvrir le clip</a>
-    <a data-share="clip" href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20Le%20terrain%20garde%20la%20main.%20%F0%9F%8E%AC%20https%3A%2F%2Fdigiy-clip.digiylyfe.com%2F" target="_blank" rel="noopener" data-i18n="clipShare">💬 Partager le clip</a>
-    <a data-share="clip-sms" href="sms:?&body=DIGIYLYFE%20%E2%80%94%20Le%20terrain%20garde%20la%20main.%20%F0%9F%8E%AC%20https%3A%2F%2Fdigiy-clip.digiylyfe.com%2F" data-i18n="clipSms">✉️ SMS clip</a>
-  </div>
-</section>
 <section class="section" id="qr"><h2 data-i18n="qrTitle">▣ QR DIGIYLYFE</h2><p data-i18n-html="qrText">L’image du QR est sur la page propre <strong>digiylyfe.com/qr.html</strong>. Ici, on ouvre le QR au lieu de charger un gros fichier dans l’index.</p><div class="actions"><a class="gold" href="./qr.html" data-i18n="qrOpen">📱 Ouvrir le QR scannable</a><a href="https://digiylyfe.com/" data-i18n="backSite">↩ Retour site</a></div></section>
 <section class="section" id="partager"><h2 data-i18n="shareTitle">📤 <span data-i18n="menuShare">Partager DIGIYLYFE</span></h2><p data-i18n="shareText">DIGIYLYFE — Le Club Entreprises du Terrain. Club des Métiers, modules publics, QR, HUB, contact direct, paiement direct, 0% commission.</p><div class="actions"><a class="gold" href="https://digiylyfe.com/" data-i18n="openLink">🔗 Ouvrir le lien</a><a href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20Le%20Club%20Entreprises%20du%20Terrain.%20https%3A%2F%2Fdigiylyfe.com%2F" target="_blank" rel="noopener">💬 WhatsApp</a><a href="sms:?&body=DIGIYLYFE%20%E2%80%94%20Le%20Club%20Entreprises%20du%20Terrain.%20https%3A%2F%2Fdigiylyfe.com%2F">✉️ SMS</a><a href="./qr.html">▣ QR</a></div></section>
 <section class="section" id="tourisme"><h2 data-i18n="tourismTitle">🏨 LOC · Hôtels · Tourisme</h2><p data-i18n-html="tourismText"><strong>DIGIYLYFE remonte les pros par secteur.</strong> Hôtel à Saly, villa Petite Côte, appartement à Mbour, chambre d’hôtes, résidence ou site touristique : le client trouve les fiches locales, contacte, réserve et paie directement le pro.</p><div class="actions"><a class="gold" href="https://loc.digiylyfe.com/" data-i18n="openLoc">🏠 Ouvrir LOC</a><a href="https://resa-table-resto.digiylyfe.com/" data-i18n="book">📅 Réserver</a><a href="https://explore.digiylyfe.com/" data-i18n="touristSites">🗺️ Sites touristiques</a><a href="https://wa.me/?text=DIGIYLYFE%20LOC%20%2F%20Tourisme%20%3A%20QR%2C%20fiche%2C%20r%C3%A9servation%2C%20paiement%20direct%2C%200%25%20commission.%20https%3A%2F%2Fdigiylyfe.com%2F%23tourisme" target="_blank" rel="noopener" data-i18n="shareBtn">💬 Partager</a></div></section>
@@ -313,6 +407,18 @@
 
 <div class="overlay" id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
 <div class="sheet" id="sheet" aria-hidden="true"><div class="sheetCard"><div class="sheetHead"><h2 data-i18n="menuTitle">☰ Portes DIGIYLYFE</h2><button class="closeBtn" type="button" onclick="closeMenu()" aria-label="Fermer">×</button></div><nav class="menuGrid" aria-label="Menu principal DIGIYLYFE"><a class="gold" href="./qr.html">▣ QR DIGIY · <span data-i18n="menuQr">page scannable</span></a><a class="gold" href="https://digiy-clip.digiylyfe.com/" target="_blank" rel="noopener">🎬 CLIP DIGIY · <span data-i18n="menuClip">clip terrain</span></a><a class="gold" href="#tourisme">🏨 LOC/Tourisme · <span data-i18n="menuTourism">moteur secteur</span></a><a class="gold" href="https://club-metiers.digiylyfe.com/">🧰 <span data-i18n="menuClub">Club des Métiers</span></a><a href="#partager">📤 <span data-i18n="menuShare">Partager DIGIYLYFE</span></a><a href="https://digiy-hub.digiylyfe.com/">🧭 DIGIY HUB</a><a href="https://commencer-a-payer.digiylyfe.com/">✍️ <span data-i18n="menuActivate">Activer mon module</span></a><a href="https://pro-espace.digiylyfe.com/">🔐 <span data-i18n="menuPro">Espace pro</span></a><a href="https://tarifs.digiylyfe.com/">📦 <span data-i18n="menuPrices">Tarifs</span></a><a href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener">🎙️ <span data-i18n="menuVoiceLarge">Voix en grand</span></a><a href="https://driver.digiylyfe.com/">🚗 DRIVER</a><a href="https://loc.digiylyfe.com/">🏠 LOC</a><a href="https://build.digiylyfe.com/">🏗️ BUILD</a><a href="https://market.digiylyfe.com/">🛍️ MARKET</a><a href="https://jobs.digiylyfe.com/">💼 JOBS</a><a href="https://resa-table-resto.digiylyfe.com/">📅 RESA</a><a href="https://explore.digiylyfe.com/">🗺️ EXPLORE</a><a href="https://pay.digiylyfe.com/">💳 PAY</a><a href="https://digiylyfe.net/">📰 <span data-i18n="menuReview">Revue DIGIYLYFE</span></a><a href="https://digiylyfe.com/">🌍 <span data-i18n="menuHome">Accueil</span></a></nav></div></div>
+
+<script>
+function digiyFullscreenClip(){
+  var v=document.getElementById('digiyClipVideo');
+  if(!v)return;
+  try{v.play && v.play();}catch(e){}
+  if(v.requestFullscreen){v.requestFullscreen();}
+  else if(v.webkitEnterFullscreen){v.webkitEnterFullscreen();}
+  else if(v.webkitRequestFullscreen){v.webkitRequestFullscreen();}
+}
+</script>
+
 <script>
 function openMenu(){document.getElementById('overlay').classList.add('open');document.getElementById('sheet').classList.add('open');document.body.classList.add('lock')}
 function closeMenu(){document.getElementById('overlay').classList.remove('open');document.getElementById('sheet').classList.remove('open');document.body.classList.remove('lock')}
@@ -412,11 +518,11 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
       m1:"Je clique.",m2:"Je parle.",m3:"J’existe.",m4:"Je suis visible.",m5:"Je suis reconnu.",m6:"J’avance.",
       cardQrSmall:"Page scannable",cardClipSmall:"Clip terrain",cardTourismSmall:"Tourisme",cardVoice:"Voix",cardVoiceSmall:"Vitrine",cardModules:"Modules",cardModulesSmall:"Publics",cardClubSmall:"Métiers",cardHubSmall:"Rond-point",cardShare:"Partager",cardShareSmall:"Terrain",cardActivate:"Activer",cardActivateSmall:"Module",cardProSmall:"Espace",cardPrices:"Tarifs",cardPricesSmall:"Offres",
       clipTitle:"🎬 Clip DIGIYLYFE",
-      clipText:"Le clip court présente DIGIYLYFE en quelques secondes : QR, fiche métier, contact direct, paiement direct, 0% commission et 0% dépendance.",
-      clipKicker:"20 secondes · cliquable · partageable",
+      clipText:"Le clip officiel présente DIGIYLYFE en 45 secondes : le client cherche, le pro existe, le QR ouvre la fiche, le contact est direct, le paiement reste direct et le terrain garde la main.",
+      clipKicker:"45 secondes · cliquable · partageable",
       clipHeadline:"Le terrain garde la main.",
-      clipLead:"Le client cherche. Le pro existe. DIGIYLYFE ouvre la porte : QR, fiche, modules, contact direct et paiement direct au professionnel.",
-      clipOpen:"🎬 Ouvrir le clip",
+      clipLead:"Sur téléphone, appuie sur lecture puis sur l’icône plein écran : le visuel explique que le QR porte la fiche, sans long discours.",
+      clipOpen:"⛶ Plein écran",
       clipShare:"💬 Partager le clip",
       clipSms:"✉️ SMS clip",
       qrTitle:"▣ QR DIGIYLYFE",
@@ -441,7 +547,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
       menuTitle:"☰ Portes DIGIYLYFE",menuQr:"page scannable",menuClip:"clip terrain",menuTourism:"moteur secteur",menuClub:"Club des Métiers",menuShare:"Partager DIGIYLYFE",menuActivate:"Activer mon module",menuPro:"Espace pro",menuPrices:"Tarifs",menuVoiceLarge:"Voix en grand",menuReview:"Revue DIGIYLYFE",menuHome:"Accueil",
       shareWhatsapp:"DIGIYLYFE — Le Club Entreprises du Terrain. https://digiylyfe.com/",
       shareTourism:"DIGIYLYFE LOC / Tourisme : QR, fiche, réservation, paiement direct, 0% commission, 0% dépendance. https://digiylyfe.com/#tourisme",
-      shareClip:"DIGIYLYFE — Le terrain garde la main. 🎬 https://digiy-clip.digiylyfe.com/"
+      shareClip:"DIGIYLYFE — Le terrain garde la main. 🎬 https://youtu.be/PAxVt9balf0"
     },
     en:{
       htmlLang:"en",
@@ -461,11 +567,11 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
       m1:"I click.",m2:"I speak.",m3:"I exist.",m4:"I am visible.",m5:"I am recognized.",m6:"I move forward.",
       cardQrSmall:"Scannable page",cardClipSmall:"Field clip",cardTourismSmall:"Tourism",cardVoice:"Voice",cardVoiceSmall:"Showcase",cardModules:"Modules",cardModulesSmall:"Public",cardClubSmall:"Trades",cardHubSmall:"Crossroads",cardShare:"Share",cardShareSmall:"Field",cardActivate:"Activate",cardActivateSmall:"Module",cardProSmall:"Space",cardPrices:"Pricing",cardPricesSmall:"Offers",
       clipTitle:"🎬 DIGIYLYFE Clip",
-      clipText:"The short clip presents DIGIYLYFE in a few seconds: QR, trade profile, direct contact, direct payment, 0% commission and 0% dependence.",
-      clipKicker:"20 seconds · clickable · shareable",
+      clipText:"The official clip presents DIGIYLYFE in 45 seconds: the client searches, the professional exists, the QR opens the profile, contact is direct, payment remains direct and the field keeps control.",
+      clipKicker:"45 seconds · clickable · shareable",
       clipHeadline:"The field keeps control.",
-      clipLead:"The client searches. The professional exists. DIGIYLYFE opens the door: QR, profile, modules, direct contact and direct payment to the professional.",
-      clipOpen:"🎬 Open the clip",
+      clipLead:"On mobile, press play then the fullscreen icon: the visual explains that the QR carries the profile, without a long speech.",
+      clipOpen:"⛶ Full screen",
       clipShare:"💬 Share the clip",
       clipSms:"✉️ SMS clip",
       qrTitle:"▣ DIGIYLYFE QR",
@@ -490,7 +596,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
       menuTitle:"☰ DIGIYLYFE Doors",menuQr:"scannable page",menuClip:"field clip",menuTourism:"sector engine",menuClub:"Trades Club",menuShare:"Share DIGIYLYFE",menuActivate:"Activate my module",menuPro:"Pro space",menuPrices:"Pricing",menuVoiceLarge:"Full voice",menuReview:"DIGIYLYFE Review",menuHome:"Home",
       shareWhatsapp:"DIGIYLYFE — The Ground Business Club. https://digiylyfe.com/",
       shareTourism:"DIGIYLYFE LOC / Tourism: QR, profile, booking, direct payment, 0% commission, 0% dependence. https://digiylyfe.com/#tourisme",
-      shareClip:"DIGIYLYFE — The field keeps control. 🎬 https://digiy-clip.digiylyfe.com/"
+      shareClip:"DIGIYLYFE — The field keeps control. 🎬 https://youtu.be/PAxVt9balf0"
     }
   };
   function enc(v){return encodeURIComponent(v);}
@@ -547,6 +653,114 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
 
 </body>
 </html>
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
 
 
 
