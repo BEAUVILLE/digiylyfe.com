@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#06140f">
 <meta name="description" content="DIGIYLYFE — Le poumon numérique du terrain. Bras numériques, moteur souverain, QR direct, contact direct, paiement direct, 0% commission et 0% dépendance.">
 <meta name="robots" content="index,follow">
-<meta name="digiy-build" content="index-poumon-clip-mp4-full-mobile-20260626">
+<meta name="digiy-build" content="index-poumon-clip-mp4-zoom-mobile-20260626">
 <link rel="canonical" href="https://digiylyfe.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://digiylyfe.com/">
@@ -267,15 +267,48 @@
     border-left:0;
     border-right:0;
     border-radius:0;
-    padding:13px 10px 16px;
+    padding:10px 0 14px;
+  }
+  .clipIntro{
+    padding:0 12px;
+    margin-bottom:8px;
+  }
+  .clipIntro h2{
+    font-size:clamp(27px,8vw,38px);
+  }
+  .clipIntro p{
+    font-size:13px;
+    line-height:1.28;
   }
   .clipVideoWrap{
     width:100vw;
+    height:min(72svh,640px);
+    min-height:430px;
+    aspect-ratio:auto;
     margin-left:calc(50% - 50vw);
     margin-right:calc(50% - 50vw);
     border-left:0;
     border-right:0;
     border-radius:0;
+  }
+  .clipVideoWrap video{
+    object-fit:cover;
+    object-position:center center;
+  }
+  .clipVideoWrap.isFullFrame{
+    height:auto;
+    min-height:0;
+    aspect-ratio:16/9;
+  }
+  .clipVideoWrap.isFullFrame video{
+    object-fit:contain;
+  }
+  .clipMobileHint{
+    padding:0 12px;
+    font-size:12px;
+  }
+  .clipActions{
+    padding:0 10px;
   }
   .clipActions a{
     flex:1 1 100%;
@@ -321,16 +354,17 @@
     <h2 data-i18n="clipTitle">🎬 Clip DIGIYLYFE</h2>
     <p data-i18n="clipText">Le clip officiel présente DIGIYLYFE en 45 secondes : le client cherche, le pro existe, le QR ouvre la fiche, le contact est direct, le paiement reste direct et le terrain garde la main.</p>
   </div>
-  <div class="clipVideoWrap" aria-label="Vidéo DIGIYLYFE 45 secondes">
+  <div class="clipVideoWrap" id="digiyClipWrap" aria-label="Vidéo DIGIYLYFE 45 secondes">
     <video id="digiyClipVideo" controls playsinline preload="metadata">
       <source src="https://digiy-clip.digiylyfe.com/DIGIYLYFE_clip_45s%20%281%29.mp4" type="video/mp4">
       <source src="https://digiy-clip.digiylyfe.com/DIGIYLYFE_clip_45s.mp4" type="video/mp4">
       Votre navigateur ne peut pas lire cette vidéo. Ouvrez le clip ici : https://youtu.be/PAxVt9balf0
     </video>
   </div>
-  <p class="clipMobileHint" data-i18n="clipLead">Sur téléphone, appuie sur lecture puis sur plein écran : le visuel explique que le QR porte la fiche, sans long discours.</p>
+  <p class="clipMobileHint" data-i18n="clipLead">Sur téléphone, le clip est affiché en zoom pour mieux lire. Appuie sur “Vue complète” pour revoir tout le cadre 16:9.</p>
   <div class="actions clipActions">
     <a class="gold" href="javascript:digiyFullscreenClip()" data-i18n="clipOpen">⛶ Plein écran</a>
+    <a href="javascript:digiyToggleClipFrame()" id="clipFrameBtn">↔ Vue complète</a>
     <a href="https://youtu.be/PAxVt9balf0" target="_blank" rel="noopener">▶ YouTube secours</a>
     <a href="https://digiy-clip.digiylyfe.com/" target="_blank" rel="noopener">🦅 Page clip</a>
     <a data-share="clip" href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20Le%20terrain%20garde%20la%20main.%20%F0%9F%8E%AC%20https%3A%2F%2Fyoutu.be%2FPAxVt9balf0" target="_blank" rel="noopener" data-i18n="clipShare">💬 Partager le clip</a>
@@ -416,6 +450,13 @@ function digiyFullscreenClip(){
   if(v.requestFullscreen){v.requestFullscreen();}
   else if(v.webkitEnterFullscreen){v.webkitEnterFullscreen();}
   else if(v.webkitRequestFullscreen){v.webkitRequestFullscreen();}
+}
+function digiyToggleClipFrame(){
+  var w=document.getElementById('digiyClipWrap');
+  var b=document.getElementById('clipFrameBtn');
+  if(!w)return;
+  var full=w.classList.toggle('isFullFrame');
+  if(b)b.textContent=full?'🔎 Zoom mobile':'↔ Vue complète';
 }
 </script>
 
@@ -521,7 +562,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
       clipText:"Le clip officiel présente DIGIYLYFE en 45 secondes : le client cherche, le pro existe, le QR ouvre la fiche, le contact est direct, le paiement reste direct et le terrain garde la main.",
       clipKicker:"45 secondes · cliquable · partageable",
       clipHeadline:"Le terrain garde la main.",
-      clipLead:"Sur téléphone, appuie sur lecture puis sur l’icône plein écran : le visuel explique que le QR porte la fiche, sans long discours.",
+      clipLead:"Sur téléphone, le clip est affiché en zoom pour mieux lire. Appuie sur “Vue complète” pour revoir tout le cadre 16:9.",
       clipOpen:"⛶ Plein écran",
       clipShare:"💬 Partager le clip",
       clipSms:"✉️ SMS clip",
@@ -653,6 +694,114 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
 
 </body>
 </html>
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
+
+
+
+
+
+>
+
+
+
+
+
+
 
 
 
