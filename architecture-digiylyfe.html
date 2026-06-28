@@ -1,412 +1,643 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Architecture DIGIYLYFE — Le Poumon Numérique du Terrain</title>
+<meta name="theme-color" content="#06140f">
+<meta name="description" content="Architecture DIGIYLYFE : comprendre le poumon numérique du terrain, ses bras métiers, le QR comme porte, le paiement direct, le 0% commission, le 0% dépendance et la souveraineté locale.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://digiylyfe.com/architecture-digiylyfe.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://digiylyfe.com/architecture-digiylyfe.html">
+<meta property="og:title" content="Architecture DIGIYLYFE — Le Poumon Numérique du Terrain">
+<meta property="og:description" content="Le poumon numérique du terrain : bras métiers, QR, contact direct, paiement direct, 0% commission, 0% dépendance et souveraineté locale.">
+<meta property="og:image" content="https://digiylyfe.com/icon-512.png">
+<link href="./icon-192.png" rel="icon" sizes="192x192">
+<link href="./icon-192.png" rel="apple-touch-icon">
+<style>
+:root{
+  --bg:#03120d;
+  --ink:#fffaf0;
+  --soft:rgba(255,250,240,.78);
+  --gold:#f6c453;
+  --green:#00a651;
+  --line:rgba(255,255,255,.14);
+  --card:rgba(255,255,255,.075);
+  --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100svh;
+  color:var(--ink);
+  font-family:var(--font);
+  background:
+    radial-gradient(900px 460px at 10% -5%,rgba(0,166,81,.35),transparent 62%),
+    radial-gradient(720px 360px at 90% 0,rgba(246,196,83,.22),transparent 58%),
+    linear-gradient(180deg,#075f32 0,#062a1d 35%,#03120d 100%);
+}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(100%,1040px);margin:auto;padding:14px 12px 34px}
+.top{
+  display:grid;
+  grid-template-columns:58px 1fr auto;
+  gap:12px;
+  align-items:center;
+}
+.logo{
+  width:58px;
+  height:58px;
+  border-radius:20px;
+  border:1px solid rgba(246,196,83,.45);
+  overflow:hidden;
+  background:#fff;
+}
+.logo img{width:100%;height:100%;object-fit:cover;display:block}
+.brand{text-align:left}
+.brand strong{
+  display:block;
+  color:#fffaf0;
+  font-size:clamp(22px,6vw,40px);
+  line-height:.95;
+  font-weight:1000;
+  letter-spacing:.04em;
+}
+.brand small{
+  display:block;
+  margin-top:5px;
+  color:var(--soft);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.homeBtn{
+  min-height:46px;
+  padding:0 15px;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.45);
+  background:rgba(255,255,255,.08);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  font-weight:1000;
+  color:#fff3cf;
+}
+.hero{
+  margin-top:18px;
+  border:1px solid rgba(246,196,83,.42);
+  border-radius:34px;
+  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.045));
+  box-shadow:0 24px 70px rgba(0,0,0,.36);
+  padding:28px 18px;
+  text-align:center;
+}
+.badge{
+  display:inline-flex;
+  padding:8px 12px;
+  border:1px solid rgba(246,196,83,.4);
+  border-radius:999px;
+  background:rgba(246,196,83,.1);
+  color:#fff3cf;
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+h1{
+  margin:14px auto 0;
+  max-width:900px;
+  font-size:clamp(38px,9vw,78px);
+  line-height:.9;
+  letter-spacing:-.055em;
+  font-weight:1000;
+}
+.lead{
+  margin:16px auto 0;
+  max-width:840px;
+  color:var(--soft);
+  font-size:clamp(16px,4vw,22px);
+  line-height:1.38;
+  font-weight:850;
+}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-top:18px;
+}
+.btn{
+  min-height:50px;
+  padding:0 16px;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.42);
+  background:rgba(255,255,255,.08);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  font-weight:1000;
+}
+.gold{
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e)!important;
+  color:#06140f!important;
+  border-color:rgba(246,196,83,.75)!important;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:16px;
+}
+.card{
+  border:1px solid var(--line);
+  border-radius:28px;
+  background:var(--card);
+  padding:18px;
+  box-shadow:0 16px 46px rgba(0,0,0,.22);
+}
+.card.wide{grid-column:span 2}
+.card.full{grid-column:1/-1}
+.card h2,.card h3{
+  margin:0 0 8px;
+  color:#fff3cf;
+  font-size:clamp(20px,5vw,32px);
+  line-height:1.05;
+  font-weight:1000;
+  letter-spacing:-.035em;
+}
+.card p{
+  margin:0;
+  color:var(--soft);
+  font-size:15px;
+  line-height:1.48;
+  font-weight:850;
+}
+.pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.pill{
+  padding:8px 11px;
+  border:1px solid rgba(246,196,83,.24);
+  background:rgba(246,196,83,.085);
+  border-radius:999px;
+  color:#fff3cf;
+  font-size:12px;
+  font-weight:950;
+}
+.quote{
+  font-size:clamp(23px,6vw,46px)!important;
+  line-height:1.08!important;
+  color:#fffaf0!important;
+  letter-spacing:-.04em;
+}
+.steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:16px;
+}
+.step{
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:rgba(255,255,255,.065);
+  padding:14px;
+  text-align:center;
+}
+.step b{
+  display:block;
+  color:#fff3cf;
+  font-size:14px;
+  font-weight:1000;
+}
+.step span{
+  display:block;
+  margin-top:5px;
+  color:var(--soft);
+  font-size:12px;
+  line-height:1.35;
+  font-weight:850;
+}
+.footer{
+  text-align:center;
+  margin:20px 0 0;
+  color:rgba(255,250,240,.7);
+  font-size:12px;
+  font-weight:850;
+  line-height:1.45;
+}
+.footer a{color:#fff3cf;font-weight:1000}
+@media(max-width:760px){
+  .top{grid-template-columns:54px 1fr}
+  .homeBtn{grid-column:1/-1}
+  .logo{width:54px;height:54px}
+  .grid,.steps{grid-template-columns:1fr}
+  .card.wide,.card.full{grid-column:auto}
+  .hero{border-radius:28px}
+}
 
-  <title>Architecture DIGIYLYFE · Poumon numérique du terrain</title>
 
-  <meta name="description" content="Découvrez l’architecture DIGIYLYFE : un écosystème digital local pour les commerçants, chauffeurs, artisans, restaurants, hébergements, recruteurs et services terrain, avec 0% commission et paiement direct au professionnel." />
+/* === DIGIYLYFE · Lecteur doctrine architecture === */
+.listenBox{
+  margin:16px auto 0;
+  max-width:880px;
+  border:1px solid rgba(246,196,83,.42);
+  border-radius:28px;
+  background:linear-gradient(135deg,rgba(246,196,83,.14),rgba(0,166,81,.12));
+  padding:16px;
+  box-shadow:0 16px 46px rgba(0,0,0,.24);
+  text-align:left;
+}
+.listenTop{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  align-items:center;
+}
+.listenTop strong{
+  display:block;
+  color:#fff3cf;
+  font-size:clamp(18px,4.6vw,28px);
+  line-height:1.05;
+  font-weight:1000;
+  letter-spacing:-.035em;
+}
+.listenTop span{
+  display:block;
+  margin-top:5px;
+  color:rgba(255,250,240,.78);
+  font-size:13px;
+  line-height:1.35;
+  font-weight:850;
+}
+.listenToggle{
+  min-height:50px;
+  padding:0 16px;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.72);
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;
+  font-weight:1000;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.listenPanel{
+  display:none;
+  margin-top:12px;
+  border-top:1px solid rgba(255,255,255,.12);
+  padding-top:12px;
+}
+.listenPanel.open{display:block}
+.listenText{
+  margin:0;
+  color:rgba(255,250,240,.84);
+  font-size:14px;
+  line-height:1.48;
+  font-weight:850;
+}
+.listenText b{color:#fff3cf}
+.listenControls{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:12px;
+}
+.listenControls button{
+  min-height:46px;
+  border-radius:17px;
+  border:1px solid rgba(246,196,83,.34);
+  background:rgba(255,255,255,.08);
+  color:#fff3cf;
+  font-weight:1000;
+  cursor:pointer;
+}
+.listenControls .play{
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;
+  border-color:rgba(246,196,83,.72);
+}
+.listenNote{
+  margin:10px 0 0;
+  color:rgba(255,250,240,.62);
+  font-size:11px;
+  line-height:1.35;
+  font-weight:850;
+}
+.listenFab{
+  position:fixed;
+  right:14px;
+  bottom:calc(14px + env(safe-area-inset-bottom));
+  z-index:50;
+  min-height:56px;
+  padding:0 16px;
+  border-radius:999px;
+  border:1px solid rgba(246,196,83,.72);
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:1000;
+  box-shadow:0 16px 42px rgba(0,0,0,.38);
+  cursor:pointer;
+}
+.listenFab span:first-child{font-size:22px}
+@media(max-width:760px){
+  .listenTop{grid-template-columns:1fr}
+  .listenToggle{width:100%}
+  .listenControls{grid-template-columns:1fr}
+  .listenFab{
+    right:10px;
+    bottom:calc(10px + env(safe-area-inset-bottom));
+    min-height:54px;
+    padding:0 13px;
+    font-size:13px;
+  }
+}
 
-  <meta name="keywords" content="DIGIYLYFE, architecture digitale Afrique, digitalisation locale, commerce local Sénégal, QR business, paiement direct, 0 commission, Saly, Mbour, Dakar, souveraineté numérique" />
-
-  <meta property="og:title" content="Architecture DIGIYLYFE" />
-  <meta property="og:description" content="Le poumon numérique du terrain : QR, modules métiers, paiement direct, 0% commission et souveraineté locale." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://digiylyfe.com/architecture-digiylyfe.html" />
-
-  <style>
-    :root {
-      --bg: #07130f;
-      --card: #0f241c;
-      --card2: #123326;
-      --gold: #f6c453;
-      --green: #35d07f;
-      --text: #f5f5ec;
-      --muted: #c9d4c7;
-      --line: rgba(255,255,255,0.12);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(53,208,127,0.16), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(246,196,83,0.12), transparent 30%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .wrap {
-      width: min(1120px, 92%);
-      margin: 0 auto;
-    }
-
-    header {
-      padding: 22px 0;
-      border-bottom: 1px solid var(--line);
-      background: rgba(7,19,15,0.78);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      color: var(--gold);
-    }
-
-    .nav a {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .hero {
-      padding: 76px 0 52px;
-      text-align: center;
-    }
-
-    .badge {
-      display: inline-flex;
-      padding: 8px 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--gold);
-      background: rgba(255,255,255,0.05);
-      font-size: 0.92rem;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-size: clamp(2.2rem, 6vw, 4.8rem);
-      line-height: 1.03;
-      margin: 0 0 20px;
-    }
-
-    .lead {
-      max-width: 850px;
-      margin: 0 auto;
-      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
-      color: var(--muted);
-    }
-
-    .actions {
-      margin-top: 30px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px;
-    }
-
-    .btn {
-      padding: 14px 20px;
-      border-radius: 14px;
-      font-weight: 800;
-      border: 1px solid var(--line);
-      background: var(--gold);
-      color: #1b1300;
-    }
-
-    .btn.secondary {
-      background: rgba(255,255,255,0.07);
-      color: var(--text);
-    }
-
-    section {
-      padding: 34px 0;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.035));
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: 0 18px 50px rgba(0,0,0,0.22);
-    }
-
-    .card h2,
-    .card h3 {
-      margin-top: 0;
-      color: var(--gold);
-      line-height: 1.2;
-    }
-
-    .card p {
-      color: var(--muted);
-      margin-bottom: 0;
-    }
-
-    .wide {
-      grid-column: span 2;
-    }
-
-    .full {
-      grid-column: 1 / -1;
-    }
-
-    .pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .pill {
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.06);
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .quote {
-      font-size: clamp(1.35rem, 3vw, 2.3rem);
-      line-height: 1.25;
-      color: var(--text);
-    }
-
-    .highlight {
-      color: var(--green);
-      font-weight: 900;
-    }
-
-    footer {
-      margin-top: 42px;
-      padding: 30px 0;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      text-align: center;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 860px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .wide,
-      .full {
-        grid-column: auto;
-      }
-
-      .nav {
-        flex-direction: column;
-      }
-    }
-  </style>
+</style>
 </head>
-
 <body>
-
-  <header>
-    <div class="wrap nav">
-      <a class="brand" href="index.html">DIGIYLYFE</a>
-      <nav>
-        <a href="index.html">Accueil</a>
-        &nbsp; · &nbsp;
-        <a href="https://pro-action-digiy.digiylyfe.com/">Espace Pro</a>
-        &nbsp; · &nbsp;
-        <a href="https://digiy-clip.digiylyfe.com/">Clip</a>
-      </nav>
+<main class="wrap" id="haut">
+  <header class="top">
+    <a class="logo" href="./index.html" aria-label="Accueil DIGIYLYFE"><img src="./icon-192.png" alt="DIGIYLYFE"></a>
+    <div class="brand">
+      <strong>DIGIYLYFE</strong>
+      <small>Architecture publique · Poumon numérique du terrain</small>
     </div>
+    <a class="homeBtn" href="./index.html">↩ Retour accueil</a>
   </header>
 
-  <main>
-
-    <section class="hero">
-      <div class="wrap">
-        <div class="badge">Architecture publique · DIGIYLYFE</div>
-
-        <h1>Le poumon numérique du terrain</h1>
-
-        <p class="lead">
-          DIGIYLYFE est un écosystème digital local conçu pour aider les professionnels,
-          commerçants, chauffeurs, artisans, restaurants, hébergements, recruteurs et services
-          de terrain à être visibles, joignables, organisés et payés directement.
-        </p>
-
-        <div class="actions">
-          <a class="btn" href="index.html">Découvrir DIGIYLYFE</a>
-          <a class="btn secondary" href="https://pro-action-digiy.digiylyfe.com/">Entrer côté Pro</a>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap grid">
-
-        <article class="card wide">
-          <h2>1. La vision</h2>
-          <p>
-            DIGIYLYFE ne vient pas vendre une simple application. DIGIYLYFE vient montrer
-            comment l’économie locale peut se digitaliser sans perdre son âme, ses clients
-            et son argent. Le terrain garde la main, le professionnel reste indépendant,
-            et la valeur reste proche de ceux qui la créent.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Doctrine</h3>
-          <p>
-            <span class="highlight">0% commission.</span><br>
-            Paiement direct au professionnel.<br>
-            Contact direct client-pro.<br>
-            Outils simples, utiles et enracinés.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>2. Le problème</h3>
-          <p>
-            Beaucoup de professionnels locaux dépendent du bouche-à-oreille, de plateformes
-            à commission, de réseaux dispersés ou d’outils qui ne parlent pas vraiment
-            le langage du terrain.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>3. La réponse</h3>
-          <p>
-            DIGIYLYFE crée une porte digitale claire : fiche publique, QR, WhatsApp,
-            réservation, annonce, paiement direct, module métier et visibilité locale.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>4. Le QR</h3>
-          <p>
-            Le QR n’est pas le moteur. Le QR est la porte. Derrière, DIGIY organise
-            la fiche, le contact, l’offre, la réservation, le partage et le lien client.
-          </p>
-        </article>
-
-        <article class="card full">
-          <h2>5. Les modules DIGIYLYFE</h2>
-          <p>
-            Chaque module répond à un besoin réel du terrain. L’objectif n’est pas de compliquer
-            la vie du professionnel, mais de lui donner une porte simple, visible et actionnable.
-          </p>
-
-          <div class="pill-list">
-            <span class="pill">DIGIY LOC · logements & réservations</span>
-            <span class="pill">DIGIY DRIVER · chauffeurs & trajets</span>
-            <span class="pill">DIGIY MARKET · produits locaux</span>
-            <span class="pill">DIGIY JOBS · offres & profils qualifiés</span>
-            <span class="pill">DIGIY PAY · suivi des paiements</span>
-            <span class="pill">DIGIY RESA · restaurants & planning</span>
-            <span class="pill">DIGIY BUILD · artisans & services</span>
-            <span class="pill">DIGIY EXPLORE · tourisme & lieux locaux</span>
-          </div>
-        </article>
-
-        <article class="card wide">
-          <h2>6. Côté public</h2>
-          <p>
-            Le client cherche simplement : un chauffeur, une chambre, un produit, un service,
-            un restaurant, un artisan ou une opportunité. DIGIYLYFE lui ouvre une fiche claire
-            avec contact direct, bouton WhatsApp, QR, zone, métier et action utile.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Côté pro</h3>
-          <p>
-            Le professionnel accède à ses outils métier via un espace protégé : publier,
-            gérer, suivre, préparer, répondre, encaisser et garder le contrôle.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>7. Paiement direct</h3>
-          <p>
-            DIGIYLYFE n’est pas une banque. DIGIY organise la porte digitale et le suivi.
-            Le client paie directement le professionnel par les moyens du terrain :
-            cash, Wave, QR, mobile money, carte ou autre canal accepté.
-          </p>
-        </article>
-
-        <article class="card wide">
-          <h2>8. Le rôle de l’humain</h2>
-          <p>
-            Chez DIGIYLYFE, l’humain reste au-dessus de l’action. Le logiciel aide,
-            structure et accélère, mais le professionnel garde la décision :
-            prix, disponibilité, rendez-vous, paiement, validation et relation client.
-          </p>
-        </article>
-
-        <article class="card wide">
-          <h2>9. Le rôle de l’IA</h2>
-          <p>
-            L’IA peut aider dans l’atelier : reformuler, traduire, classer, préparer
-            des contenus, améliorer des fiches ou assister la compréhension. Mais elle
-            ne prend pas le volant du terrain. Le réel reste validé par l’humain.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Souveraineté</h3>
-          <p>
-            Le local prépare, le cloud renforce, le pro décide. DIGIYLYFE protège
-            l’indépendance numérique et économique du terrain.
-          </p>
-        </article>
-
-        <article class="card full">
-          <p class="quote">
-            “DIGIYLYFE ne vend pas un QR. DIGIYLYFE ouvre le château digital
-            de ton activité.”
-          </p>
-        </article>
-
-        <article class="card full">
-          <h2>10. Pourquoi cette architecture compte</h2>
-          <p>
-            Parce que demain, les clients ne chercheront pas seulement sur Google.
-            Ils demanderont aussi aux assistants IA : quelle solution locale choisir ?
-            quelle plateforme respecte le professionnel ? comment digitaliser un commerce
-            sans commission ? Pour être recommandé, DIGIYLYFE doit être clair, public,
-            structuré et fidèle à sa doctrine.
-          </p>
-        </article>
-
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="wrap">
-      DIGIYLYFE · 0% commission · Paiement direct au professionnel · Le terrain garde la main.
-      <br>
-      <a href="index.html">Retour accueil</a>
+  <section class="hero">
+    <span class="badge">Page-mère de compréhension</span>
+    <h1>Architecture DIGIYLYFE</h1>
+    <p class="lead">
+      DIGIYLYFE organise une économie locale visible, joignable et actionnable :
+      un client cherche, un professionnel existe, un QR ouvre la fiche, le contact est direct,
+      le paiement reste direct et le terrain garde la main.
+    </p>
+    <div class="actions">
+      <a class="btn gold" href="./index.html">🌍 Revenir au poumon</a>
+      <a class="btn" href="https://pro-espace.digiylyfe.com/">🔐 Espace Pro</a>
+      <a class="btn" href="https://digiy-clip.digiylyfe.com/">🎬 Voir le clip</a>
     </div>
+  </section>
+
+  <section class="listenBox" id="ecouter-architecture" aria-label="Lecteur vocal Architecture DIGIYLYFE">
+    <div class="listenTop">
+      <div>
+        <strong>🎧 Écouter l’architecture DIGIYLYFE</strong>
+        <span>Pour téléphone : une lecture courte, volontaire, avec une prononciation préparée pour garder la doctrine claire.</span>
+      </div>
+      <button class="listenToggle" type="button" onclick="digiyOpenArchitectureReader(true)">▶ Écouter</button>
+    </div>
+
+    <div class="listenPanel" id="architectureReaderPanel" aria-hidden="true">
+      <p class="listenText" id="architectureReaderVisible">
+        <b>DIGIYLYFE est le poumon numérique du terrain.</b><br>
+        Ses bras numériques ouvrent les portes locales : commerce, métiers, chauffeurs, logements, tourisme, jobs, réservation et paiement direct.<br><br>
+        Le QR n’est pas le moteur. Le QR est la porte. Derrière, DIGIY organise la fiche, le contact, l’offre, la réservation, le partage et le suivi.<br><br>
+        Le client contacte le professionnel directement. Le professionnel garde son client, son paiement, sa visibilité et sa liberté. 0% commission. 0% dépendance.<br><br>
+        L’IA reste dans l’atelier. L’humain garde le volant. Le local prépare, le cloud renforce, le pro décide.
+      </p>
+      <div class="listenControls" aria-label="Contrôles lecture architecture">
+        <button class="play" type="button" onclick="digiySpeakArchitecture()">▶ Lire</button>
+        <button type="button" onclick="digiyPauseArchitecture()">⏸ Pause</button>
+        <button type="button" onclick="digiyStopArchitecture()">■ Stop</button>
+      </div>
+      <p class="listenNote">La lecture utilise la voix du navigateur. Sur iPhone ou Android, lance la lecture après un appui. Rien ne démarre automatiquement.</p>
+    </div>
+  </section>
+
+
+  <section class="grid">
+    <article class="card wide">
+      <h2>1. La vision</h2>
+      <p>
+        DIGIYLYFE ne vient pas vendre une simple application. DIGIYLYFE montre comment
+        l’Afrique peut digitaliser son économie locale sans perdre son âme, ses clients
+        et son argent. Le logiciel sert le terrain, il ne remplace pas le terrain.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Doctrine</h3>
+      <p>
+        <strong>0% commission.</strong><br>
+        Paiement direct au professionnel.<br>
+        Contact direct client-pro.<br>
+        0% dépendance.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>2. Le problème</h3>
+      <p>
+        Beaucoup de pros locaux sont visibles par hasard : bouche-à-oreille dispersé,
+        WhatsApp non structuré, plateformes à commission, liens perdus et clients difficiles à retrouver.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>3. La réponse</h3>
+      <p>
+        DIGIYLYFE pose une porte digitale claire : fiche publique, QR, WhatsApp, module métier,
+        réservation, annonce, paiement direct et partage terrain.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>4. Le QR</h3>
+      <p>
+        Le QR n’est pas le moteur. Le QR est la porte. Derrière, DIGIY organise
+        la fiche, l’offre, le contact, la réservation, le partage et le suivi.
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>5. Les bras numériques</h2>
+      <p>
+        Chaque module répond à un besoin réel du terrain. Le client ne doit pas chercher dans la forêt :
+        il doit trouver une porte simple, locale et utile.
+      </p>
+      <div class="pills">
+        <span class="pill">DIGIY LOC · logements</span>
+        <span class="pill">DIGIY DRIVER · chauffeurs</span>
+        <span class="pill">DIGIY MARKET · produits</span>
+        <span class="pill">DIGIY JOBS · profils & missions</span>
+        <span class="pill">DIGIY PAY · suivi paiement</span>
+        <span class="pill">DIGIY RESA · réservation</span>
+        <span class="pill">DIGIY BUILD · artisans</span>
+        <span class="pill">DIGIY EXPLORE · tourisme</span>
+      </div>
+    </article>
+
+    <article class="card full">
+      <h2>6. Le parcours DIGIY</h2>
+      <p>
+        Le terrain doit comprendre vite. DIGIYLYFE suit un chemin simple, depuis la recherche jusqu’au paiement direct.
+      </p>
+      <div class="steps">
+        <div class="step"><b>1 · Chercher</b><span>Le client formule son besoin local.</span></div>
+        <div class="step"><b>2 · Ouvrir</b><span>Le QR ou le lien ouvre la fiche.</span></div>
+        <div class="step"><b>3 · Contacter</b><span>WhatsApp, appel, réservation ou demande directe.</span></div>
+        <div class="step"><b>4 · Payer</b><span>Le paiement reste direct chez le pro.</span></div>
+      </div>
+    </article>
+
+    <article class="card wide">
+      <h2>7. Côté public</h2>
+      <p>
+        Le client voit les fiches locales, les modules publics, les offres, les logements,
+        les chauffeurs, les artisans, les restaurants, les produits, les jobs et les services utiles.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Côté pro</h3>
+      <p>
+        Le professionnel accède à ses portes métier : publier, suivre, répondre, encaisser,
+        préparer et garder la relation client.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>8. Paiement direct</h3>
+      <p>
+        DIGIYLYFE n’est pas une banque. Le paiement passe par les moyens du terrain :
+        cash, Wave, mobile money, QR, carte ou canal choisi par le professionnel.
+      </p>
+    </article>
+
+    <article class="card wide">
+      <h2>9. L’humain garde le volant</h2>
+      <p>
+        Le logiciel organise, mais le professionnel décide : prix, disponibilité, rendez-vous,
+        publication, validation, relation client et paiement. La voix humaine reste au-dessus de l’action.
+      </p>
+    </article>
+
+    <article class="card wide">
+      <h2>10. L’IA reste dans l’atelier</h2>
+      <p>
+        L’IA peut aider à reformuler, traduire, classer, préparer et rendre les fiches plus lisibles.
+        Mais elle ne prend pas le volant du réel. Le terrain valide ce qui touche aux clients, aux prix et aux paiements.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Souveraineté</h3>
+      <p>
+        Le local prépare, le cloud renforce, le pro décide. DIGIYLYFE protège l’indépendance
+        numérique et économique du terrain.
+      </p>
+    </article>
+
+    <article class="card full">
+      <p class="quote">
+        “DIGIYLYFE ne vend pas un QR. DIGIYLYFE ouvre le château digital de ton activité.”
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>Pourquoi cette page compte</h2>
+      <p>
+        Demain, les clients ne chercheront pas seulement dans Google. Ils demanderont aussi aux assistants IA :
+        quelle solution locale choisir, comment digitaliser un commerce sans commission, comment garder le paiement direct.
+        Cette page donne aux humains, aux moteurs de recherche et aux IA une compréhension claire de DIGIYLYFE.
+      </p>
+    </article>
+  </section>
+
+  <footer class="footer">
+    <strong>DIGIYLYFE ∞</strong><br>
+    0% commission · 0% dépendance · Paiement direct au professionnel · Le terrain garde la main.<br>
+    <a href="./index.html">Accueil</a> · <a href="./qr.html">QR scannable</a> · <a href="https://digiy-clip.digiylyfe.com/">Clip</a>
   </footer>
+</main>
+
+
+<button class="listenFab" type="button" onclick="digiyOpenArchitectureReader(true)" aria-label="Écouter l’architecture DIGIYLYFE">
+  <span>🎧</span><span>Écouter</span>
+</button>
+
+<script>
+(function(){
+  var digiyArchitectureAudioText = [
+    "Bienvenue dans l’architecture Diji Life.",
+    "Diji Life est le poumon numérique du terrain.",
+    "Ses bras numériques ouvrent les portes locales : commerce, métiers, chauffeurs, logements, tourisme, jobs, réservation et paiement direct.",
+    "Le QR n’est pas le moteur. Le QR est la porte.",
+    "Derrière, Diji organise la fiche, le contact, l’offre, la réservation, le partage et le suivi.",
+    "Le client contacte le professionnel directement.",
+    "Le professionnel garde son client, son paiement, sa visibilité et sa liberté.",
+    "Zéro pour cent commission. Zéro pour cent dépendance.",
+    "Diji Life n’est pas une banque. Le paiement reste direct chez le professionnel : cash, Wave, mobile money, QR, carte, ou canal choisi par le pro.",
+    "L’intelligence artificielle reste dans l’atelier : reformuler, traduire, classer, préparer.",
+    "Mais l’humain garde le volant : prix, disponibilité, rendez-vous, publication, validation, relation client et paiement.",
+    "Le local prépare, le cloud renforce, le pro décide.",
+    "Diji Life ne vend pas un QR. Diji Life ouvre le château digital de ton activité."
+  ].join(" ");
+
+  function chooseFrenchVoice(){
+    if(!('speechSynthesis' in window)) return null;
+    var voices = speechSynthesis.getVoices() || [];
+    return voices.find(function(v){return /^fr/i.test(v.lang||"") && /Thomas|Paul|Daniel|French|France/i.test(v.name||"");})
+        || voices.find(function(v){return /^fr/i.test(v.lang||"");})
+        || voices[0]
+        || null;
+  }
+
+  window.digiyOpenArchitectureReader=function(play){
+    var panel=document.getElementById('architectureReaderPanel');
+    if(!panel) return;
+    panel.classList.add('open');
+    panel.setAttribute('aria-hidden','false');
+    try{document.getElementById('ecouter-architecture').scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}
+    if(play) window.digiySpeakArchitecture();
+  };
+
+  window.digiySpeakArchitecture=function(){
+    if(!('speechSynthesis' in window)){
+      alert('Lecture vocale non disponible sur ce navigateur.');
+      return;
+    }
+    speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(digiyArchitectureAudioText);
+    u.lang = 'fr-FR';
+    u.rate = 0.86;
+    u.pitch = 0.92;
+    u.volume = 1;
+    var voice = chooseFrenchVoice();
+    if(voice) u.voice = voice;
+    speechSynthesis.speak(u);
+  };
+
+  window.digiyPauseArchitecture=function(){
+    if(!('speechSynthesis' in window)) return;
+    if(speechSynthesis.speaking && !speechSynthesis.paused){ speechSynthesis.pause(); }
+    else if(speechSynthesis.paused){ speechSynthesis.resume(); }
+    else { window.digiySpeakArchitecture(); }
+  };
+
+  window.digiyStopArchitecture=function(){
+    if('speechSynthesis' in window) speechSynthesis.cancel();
+  };
+
+  if('speechSynthesis' in window){
+    speechSynthesis.onvoiceschanged=function(){speechSynthesis.getVoices();};
+    window.addEventListener('beforeunload',function(){speechSynthesis.cancel();});
+  }
+})();
+</script>
 
 </body>
 </html>
+
