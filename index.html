@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#06140f">
 <meta name="description" content="DIGIYLYFE est unique : visibilité mondiale pour les professionnels locaux, QR direct, contact direct, paiement direct, abonnement accessible et terrain qui garde la main.">
 <meta name="robots" content="index,follow">
-<meta name="digiy-build" content="index-vitrine-mondiale-unique-fr-en-20260703">
+<meta name="digiy-build" content="index-vitrine-mondiale-unique-clip-index-fr-en-20260703">
 <link rel="canonical" href="https://digiylyfe.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://digiylyfe.com/">
@@ -391,6 +391,40 @@
   font-weight:1000;
 }
 
+
+/* === DIGIYLYFE · Index clip intégré === */
+.clipIndexWrap{
+  position:relative;
+  width:100%;
+  height:min(680px,78svh);
+  overflow:hidden;
+  border-radius:26px;
+  border:1px solid rgba(246,196,83,.48);
+  background:#03120d;
+  box-shadow:0 18px 48px rgba(0,0,0,.34);
+}
+.clipIndexWrap iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+  background:#03120d;
+}
+@media(max-width:680px){
+  .clipIndexWrap{
+    width:100vw;
+    height:min(78svh,690px);
+    min-height:520px;
+    margin-left:calc(50% - 50vw);
+    margin-right:calc(50% - 50vw);
+    border-left:0;
+    border-right:0;
+    border-radius:0;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -459,21 +493,25 @@
 </div>
 
 </section>
-<section class="section clipSection" id="clip" aria-label="Clip DIGIYLYFE" data-clip-url="https://digiy-clip.digiylyfe.com/digiylyfe_monde_60s_affiche_SON.mp4">
+<section class="section clipSection" id="clip" aria-label="Clip DIGIYLYFE" data-clip-url="https://digiy-clip.digiylyfe.com/">
   <div class="clipIntro">
     <h2 data-i18n="clipTitle">🎬 Clip DIGIYLYFE</h2>
-    <p data-i18n="clipText">Le clip officiel présente DIGIYLYFE en 1 minute : le client cherche, le pro existe, le QR ouvre la fiche, le contact est direct, le paiement reste direct et le terrain garde la main.</p>
+    <p data-i18n="clipText">Le clip officiel est maintenant posé comme une vraie porte intégrée : le client regarde, comprend, clique, partage et peut ouvrir la page complète du clip.</p>
   </div>
-  <div class="clipVideoWrap" id="digiyClipWrap" aria-label="Vidéo DIGIYLYFE 1 minute">
-    <video id="digiyClipVideo" controls playsinline preload="metadata">
-      <source src="https://digiy-clip.digiylyfe.com/digiylyfe_monde_60s_affiche_SON.mp4" type="video/mp4">
-      Votre navigateur ne peut pas lire cette vidéo. Ouvrez le clip ici : https://digiy-clip.digiylyfe.com/
-    </video>
+  <div class="clipIndexWrap" id="digiyClipIndexWrap" aria-label="Index du clip DIGIYLYFE intégré">
+    <iframe
+      title="Index du clip DIGIYLYFE"
+      src="https://digiy-clip.digiylyfe.com/"
+      loading="eager"
+      allow="autoplay; fullscreen; clipboard-read; clipboard-write"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
   </div>
-  <p class="clipMobileHint" data-i18n="clipLead">Sur téléphone, le clip est affiché en zoom pour mieux lire. Appuie sur “Vue complète” pour revoir tout le cadre 16:9.</p>
+  <p class="clipMobileHint" data-i18n="clipLead">Le clip est intégré depuis son index officiel. Si le navigateur bloque l’audio ou l’affichage, ouvre le clip en pleine page avec le bouton ci-dessous.</p>
   <div class="actions clipActions">
-    <a class="gold" href="javascript:digiyFullscreenClip()" data-i18n="clipOpen">⛶ Plein écran</a>
-    <a href="https://digiy-clip.digiylyfe.com/" target="_blank" rel="noopener">▶ Ouvrir le clip</a>
+    <a class="gold" href="https://digiy-clip.digiylyfe.com/" target="_blank" rel="noopener" data-i18n="clipOpen">⛶ Ouvrir le clip en grand</a>
+    <a href="https://digiy-clip.digiylyfe.com/digiylyfe_monde_60s_affiche_SON.mp4" target="_blank" rel="noopener">▶ MP4 direct</a>
     <a data-share="clip" href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20Le%20terrain%20garde%20la%20main.%20%F0%9F%8E%AC%20https%3A%2F%2Fdigiy-clip.digiylyfe.com%2F" target="_blank" rel="noopener" data-i18n="clipShare">💬 Partager le clip</a>
     <a data-share="clip-sms" href="sms:?&body=DIGIYLYFE%20%E2%80%94%20Le%20terrain%20garde%20la%20main.%20%F0%9F%8E%AC%20https%3A%2F%2Fdigiy-clip.digiylyfe.com%2F" data-i18n="clipSms">✉️ SMS clip</a>
   </div>
@@ -679,11 +717,11 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
       langPillAf:"🌍 Langues africaines",
       cardQrSmall:"Page scannable",cardClipSmall:"Clip terrain",cardArchitecture:"ARCHI",cardArchitectureSmall:"Architecture",cardIntlSmall:"Monde entier",cardLang:"LANGUES",cardLangSmall:"Monde lisible",cardTourismSmall:"Tourisme",cardVoice:"Voix",cardVoiceSmall:"Vitrine",cardModules:"Modules",cardModulesSmall:"Publics",cardClubSmall:"Métiers",cardHubSmall:"Rond-point",cardShare:"Partager",cardShareSmall:"Terrain",cardActivate:"Activer",cardActivateSmall:"Module",cardProSmall:"Espace",cardPrices:"Tarifs",cardPricesSmall:"Offres",
       clipTitle:"🎬 Clip DIGIYLYFE",
-      clipText:"Le clip officiel présente DIGIYLYFE en 1 minute : le client cherche, le pro existe, le QR ouvre la fiche, le contact est direct, le paiement reste direct et le terrain garde la main.",
+      clipText:"Le clip officiel est maintenant posé comme une vraie porte intégrée : le client regarde, comprend, clique, partage et peut ouvrir la page complète du clip.",
       clipKicker:"1 minute · cliquable · partageable",
       clipHeadline:"Le terrain garde la main.",
-      clipLead:"Sur téléphone, le clip est affiché en zoom pour mieux lire. Appuie sur “Vue complète” pour revoir tout le cadre 16:9.",
-      clipOpen:"⛶ Plein écran",
+      clipLead:"Le clip est intégré depuis son index officiel. Si le navigateur bloque l’audio ou l’affichage, ouvre le clip en pleine page avec le bouton ci-dessous.",
+      clipOpen:"⛶ Ouvrir le clip en grand",
       clipShare:"💬 Partager le clip",
       clipSms:"✉️ SMS clip",
       qrTitle:"▣ QR DIGIYLYFE",
@@ -750,7 +788,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
       clipKicker:"1 minute · clickable · shareable",
       clipHeadline:"The field keeps control.",
       clipLead:"On mobile, press play then the fullscreen icon: the visual explains that the QR carries the profile, without a long speech.",
-      clipOpen:"⛶ Full screen",
+      clipOpen:"⛶ Open full clip",
       clipShare:"💬 Share the clip",
       clipSms:"✉️ SMS clip",
       qrTitle:"▣ DIGIYLYFE QR",
@@ -835,6 +873,259 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
