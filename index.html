@@ -547,7 +547,7 @@
     <iframe
       title="Index du clip DIGIYLYFE"
       src="https://digiy-clip.digiylyfe.com/"
-      loading="eager"
+      loading="lazy"
       allow="autoplay; fullscreen; clipboard-read; clipboard-write"
       referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen>
@@ -640,17 +640,6 @@
 
 <div class="overlay" id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
 <div class="sheet" id="sheet" aria-hidden="true"><div class="sheetCard"><div class="sheetHead"><h2 data-i18n="menuTitle">☰ Portes DIGIYLYFE</h2><button class="closeBtn" type="button" onclick="closeMenu()" aria-label="Fermer">×</button></div><nav class="menuGrid" aria-label="Menu principal DIGIYLYFE"><a class="gold" href="./qr.html">▣ QR DIGIY · <span data-i18n="menuQr">page scannable</span></a><a class="gold" href="./qr-module-digiylyfe.html">▣ QR MODULE · <span data-i18n="menuQrModule">porte pro</span></a><a class="gold" href="./ciblage-pros-digiylyfe.html">🎯 CIBLAGE PROS · <span data-i18n="menuCiblagePros">boutiques · LOC · services</span></a><a class="gold" href="https://digiy-clip.digiylyfe.com/" target="_blank" rel="noopener">🎬 CLIP DIGIY · <span data-i18n="menuClip">clip terrain</span></a><a class="gold" href="https://beauville.github.io/solution-digiylyfe/" target="_blank" rel="noopener">💡 SOLUTION DIGIYLYFE · <span data-i18n="menuSolution">oasis terrain</span></a><a class="gold" href="./architecture-digiylyfe.html">🏛️ <span data-i18n="menuArchitecture">Architecture DIGIYLYFE</span></a><a class="gold" href="#tourisme">🏨 LOC/Tourisme · <span data-i18n="menuTourism">moteur secteur</span></a><a class="gold" href="https://club-metiers.digiylyfe.com/">🧰 <span data-i18n="menuClub">Club des Métiers</span></a><a href="#partager">📤 <span data-i18n="menuShare">Partager DIGIYLYFE</span></a><a href="https://digiy-hub.digiylyfe.com/">🧭 DIGIY HUB</a><a href="https://tarifs.digiylyfe.com/">✍️ <span data-i18n="menuActivate">Activer mon module</span></a><a href="https://pro-espace.digiylyfe.com/">🔐 <span data-i18n="menuPro">Espace pro</span></a><a href="https://tarifs.digiylyfe.com/">📦 <span data-i18n="menuPrices">Tarifs</span></a><a href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener">🎙️ <span data-i18n="menuVoiceLarge">Voix en grand</span></a><a href="https://driver.digiylyfe.com/">🚗 DRIVER</a><a href="https://loc.digiylyfe.com/">🏠 LOC</a><a href="https://build.digiylyfe.com/">🏗️ BUILD</a><a href="https://market.digiylyfe.com/">🛍️ MARKET</a><a href="https://jobs.digiylyfe.com/">💼 JOBS</a><a href="https://resa-table-resto.digiylyfe.com/">📅 RESA</a><a href="https://explore.digiylyfe.com/">🗺️ EXPLORE</a><a href="https://pay.digiylyfe.com/">💳 PAY</a><a href="https://digiylyfe.net/">📰 <span data-i18n="menuReview">Revue DIGIYLYFE</span></a><a href="https://digiylyfe.com/">🌍 <span data-i18n="menuHome">Accueil</span></a></nav></div></div>
-
-<script>
-function digiyFullscreenClip(){
-  var v=document.getElementById('digiyClipVideo');
-  if(!v)return;
-  try{v.play && v.play();}catch(e){}
-  if(v.requestFullscreen){v.requestFullscreen();}
-  else if(v.webkitEnterFullscreen){v.webkitEnterFullscreen();}
-  else if(v.webkitRequestFullscreen){v.webkitRequestFullscreen();}
-}
-</script>
 
 <script>
 function openMenu(){document.getElementById('overlay').classList.add('open');document.getElementById('sheet').classList.add('open');document.body.classList.add('lock')}
@@ -841,10 +830,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
       solutionSmall:"New doorway · Digital oasis",solutionTitle:"DIGIYLYFE SOLUTION: the field source.",solutionLead:"In the digital desert, the solution exists: make renters, sellers, drivers, builders and local services visible without taking control away from the professional.",solutionOpen:"💡 Open the Solution doorway",solutionClip:"🎬 Watch the oasis clip",
       cardQrSmall:"Scannable page",cardQrModuleSmall:"Pro doorway",cardCiblagePros:"PRO TARGETS",cardCiblageProsSmall:"Shops · Stays · Services",cardClipSmall:"Field clip",cardSolution:"SOLUTION",cardSolutionSmall:"Field oasis",cardArchitecture:"ARCH",cardArchitectureSmall:"Architecture",cardIntlSmall:"Whole world",cardLang:"LANGUAGES",cardLangSmall:"World-readable",cardTourismSmall:"Tourism",cardVoice:"Voice",cardVoiceSmall:"Showcase",cardModules:"Modules",cardModulesSmall:"Public",cardClubSmall:"Trades",cardHubSmall:"Crossroads",cardShare:"Share",cardShareSmall:"Field",cardActivate:"Activate",cardActivateSmall:"Module",cardProSmall:"Space",cardPrices:"Pricing",cardPricesSmall:"Offers",
       clipTitle:"🎬 DIGIYLYFE Clip",
-      clipText:"The official clip presents DIGIYLYFE in 1 minute: the client searches, the professional exists, the QR opens the profile, contact is direct, payment remains direct and the field keeps control.",
+      clipText:"The official clip is now set as a real integrated doorway: the client watches, understands, clicks, shares and can open the full clip page.",
       clipKicker:"1 minute · clickable · shareable",
       clipHeadline:"The field keeps control.",
-      clipLead:"On mobile, press play then the fullscreen icon: the visual explains that the QR carries the profile, without a long speech.",
+      clipLead:"The clip is embedded from its official index. If the browser blocks the audio or the display, open the clip full page with the button below.",
       clipOpen:"⛶ Open full clip",
       clipShare:"💬 Share the clip",
       clipSms:"✉️ SMS clip",
@@ -930,6 +919,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
 
 </body>
 </html>
+
 
 
 
