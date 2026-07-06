@@ -15,12 +15,13 @@
   html,body{height:100%;overflow:hidden;}
   body{
     font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
-    background:#FFFFFF;
+    background:radial-gradient(circle at 50% 38%, #237247 0%, #1A5C38 55%, #0F3A22 100%);
     transition:background .6s ease;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     user-select:none;-webkit-user-select:none;
   }
   body.sombre{background:#0D0F0E;}
+  body.clair{background:#FFFFFF;}
   #scene{
     width:100%;
     flex:1;
@@ -44,16 +45,18 @@
     filter:drop-shadow(0 2px 2px rgba(0,0,0,.18));
   }
   body.sombre .nom{filter:drop-shadow(0 0 14px rgba(196,154,34,.35));}
+  body:not(.clair) .nom{filter:drop-shadow(0 0 16px rgba(196,154,34,.4));}
   .devise{
     margin-top:6px;
     font-size:clamp(11px,2.6vw,14px);
     letter-spacing:.28em;
     text-transform:uppercase;
-    color:var(--vert);
+    color:#F5E6B8;
     font-weight:600;
     transition:color .6s ease;
   }
   body.sombre .devise{color:#7FBF9B;}
+  body.clair .devise{color:var(--vert);}
   .btn-fond{
     position:absolute;top:16px;right:16px;
     background:transparent;
@@ -70,7 +73,7 @@
   .indice{
     position:absolute;bottom:12px;left:0;right:0;
     text-align:center;font-size:11px;letter-spacing:.15em;
-    color:rgba(120,120,120,.55);text-transform:uppercase;
+    color:rgba(245,230,184,.5);text-transform:uppercase;
     pointer-events:none;
   }
 </style>
@@ -222,13 +225,21 @@
   redim();
   animer();
 
-  // ---- Toggle fond ----
+  // ---- Cycle de fond : Vert terrain -> Sombre -> Clair ----
   const btn = document.getElementById('btnFond');
+  const fonds = [
+    {cls:'',       label:'Fond sombre', env:1.4,  lum:1.0},   // vert terrain (defaut)
+    {cls:'sombre', label:'Fond clair',  env:1.55, lum:1.15},
+    {cls:'clair',  label:'Fond vert',   env:1.25, lum:0.9}
+  ];
+  let iFond = 0;
   btn.addEventListener('click', ()=>{
-    const sombre = document.body.classList.toggle('sombre');
-    btn.textContent = sombre ? 'Fond clair' : 'Fond sombre';
-    matOr.envMapIntensity = sombre ? 1.55 : 1.25;
-    lumK.intensity = sombre ? 1.15 : 0.9;
+    iFond = (iFond + 1) % fonds.length;
+    document.body.classList.remove('sombre','clair');
+    if(fonds[iFond].cls) document.body.classList.add(fonds[iFond].cls);
+    btn.textContent = fonds[iFond].label;
+    matOr.envMapIntensity = fonds[iFond].env;
+    lumK.intensity = fonds[iFond].lum;
   });
 })();
 </script>
