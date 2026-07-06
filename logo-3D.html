@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIGIYLYFE — Logo 3D</title>
+<style>
+  :root{
+    --or:#C49A22;
+    --or-clair:#E8C55A;
+    --or-fonce:#8A6A12;
+    --vert:#1A5C38;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;overflow:hidden;}
+  body{
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    background:#FFFFFF;
+    transition:background .6s ease;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    user-select:none;-webkit-user-select:none;
+  }
+  body.sombre{background:#0D0F0E;}
+  #scene{
+    width:100%;
+    flex:1;
+    min-height:0;
+    cursor:grab;
+    touch-action:none;
+  }
+  #scene:active{cursor:grabbing;}
+  .marque{
+    text-align:center;
+    padding:0 20px 34px;
+    pointer-events:none;
+  }
+  .nom{
+    font-size:clamp(34px,9vw,64px);
+    font-weight:800;
+    letter-spacing:.14em;
+    background:linear-gradient(180deg,var(--or-clair) 0%,var(--or) 45%,var(--or-fonce) 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    filter:drop-shadow(0 2px 2px rgba(0,0,0,.18));
+  }
+  body.sombre .nom{filter:drop-shadow(0 0 14px rgba(196,154,34,.35));}
+  .devise{
+    margin-top:6px;
+    font-size:clamp(11px,2.6vw,14px);
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--vert);
+    font-weight:600;
+    transition:color .6s ease;
+  }
+  body.sombre .devise{color:#7FBF9B;}
+  .btn-fond{
+    position:absolute;top:16px;right:16px;
+    background:transparent;
+    border:1.5px solid var(--or);
+    color:var(--or);
+    border-radius:999px;
+    padding:8px 18px;
+    font-size:13px;font-weight:600;letter-spacing:.05em;
+    cursor:pointer;
+    transition:all .25s ease;
+    z-index:10;
+  }
+  .btn-fond:hover{background:var(--or);color:#fff;}
+  .indice{
+    position:absolute;bottom:12px;left:0;right:0;
+    text-align:center;font-size:11px;letter-spacing:.15em;
+    color:rgba(120,120,120,.55);text-transform:uppercase;
+    pointer-events:none;
+  }
+</style>
+</head>
+<body>
+<button class="btn-fond" id="btnFond">Fond sombre</button>
+<div id="scene"></div>
+<div class="marque">
+  <div class="nom">DIGIYLYFE</div>
+  <div class="devise">De Saly à Sarlat · pierre par pierre</div>
+</div>
+<div class="indice">Glisse pour faire tourner</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const conteneur = document.getElementById('scene');
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+  camera.position.set(0, 0, 9);
+
+  const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  conteneur.appendChild(renderer.domElement);
+
+  // ---- Environnement doré procédural (reflets métal) ----
+  function creerEnv(){
+    const c = document.createElement('canvas');
+    c.width = 512; c.height = 256;
+    const g = c.getContext('2d');
+    const grad = g.createLinearGradient(0,0,0,256);
+    grad.addColorStop(0.0,'#FFFDF5');
+    grad.addColorStop(0.35,'#F5E6B8');
+    grad.addColorStop(0.55,'#C49A22');
+    grad.addColorStop(0.8,'#5C4408');
+    grad.addColorStop(1.0,'#1C1405');
+    g.fillStyle = grad;
+    g.fillRect(0,0,512,256);
+    // bandes lumineuses verticales pour des reflets vivants
+    for(let i=0;i<7;i++){
+      const x = 40 + i*68;
+      const bg = g.createLinearGradient(x,0,x+26,0);
+      bg.addColorStop(0,'rgba(255,255,255,0)');
+      bg.addColorStop(0.5,'rgba(255,252,235,0.85)');
+      bg.addColorStop(1,'rgba(255,255,255,0)');
+      g.fillStyle = bg;
+      g.fillRect(x,0,26,180);
+    }
+    const tex = new THREE.CanvasTexture(c);
+    tex.mapping = THREE.EquirectangularReflectionMapping;
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    pmrem.compileEquirectangularShader();
+    const env = pmrem.fromEquirectangular(tex).texture;
+    tex.dispose(); pmrem.dispose();
+    return env;
+  }
+  const envMap = creerEnv();
+  scene.environment = envMap;
+
+  // ---- Courbe infini (lemniscate) ----
+  class Lemniscate extends THREE.Curve{
+    getPoint(t){
+      const a = 2.6;
+      const u = t * Math.PI * 2;
+      const d = 1 + Math.sin(u)*Math.sin(u);
+      const x = (a * Math.cos(u)) / d;
+      const y = (a * Math.sin(u) * Math.cos(u)) / d;
+      // léger relief en z : les deux brins se croisent vraiment en 3D
+      const z = 0.28 * Math.sin(2*u);
+      return new THREE.Vector3(x, y, z);
+    }
+  }
+  const courbe = new Lemniscate();
+  const geo = new THREE.TubeGeometry(courbe, 420, 0.34, 48, true);
+
+  const matOr = new THREE.MeshStandardMaterial({
+    color: 0xC49A22,
+    metalness: 1.0,
+    roughness: 0.22,
+    envMapIntensity: 1.25
+  });
+
+  const infini = new THREE.Mesh(geo, matOr);
+  const groupe = new THREE.Group();
+  groupe.add(infini);
+  scene.add(groupe);
+
+  // ---- Lumières d'appoint ----
+  const lumK = new THREE.DirectionalLight(0xFFF6DC, 0.9);
+  lumK.position.set(4, 6, 6);
+  scene.add(lumK);
+  const lumR = new THREE.DirectionalLight(0xC49A22, 0.35);
+  lumR.position.set(-5, -3, 4);
+  scene.add(lumR);
+  scene.add(new THREE.AmbientLight(0xFFFFFF, 0.25));
+
+  // ---- Interaction : glisser pour tourner ----
+  let enTrain = false, dernierX = 0, dernierY = 0;
+  let vitX = 0, vitY = 0;
+
+  function debut(x,y){ enTrain = true; dernierX = x; dernierY = y; }
+  function bouge(x,y){
+    if(!enTrain) return;
+    const dx = x - dernierX, dy = y - dernierY;
+    groupe.rotation.y += dx * 0.008;
+    groupe.rotation.x += dy * 0.008;
+    vitX = dx * 0.008; vitY = dy * 0.008;
+    dernierX = x; dernierY = y;
+  }
+  function fin(){ enTrain = false; }
+
+  conteneur.addEventListener('pointerdown', e=>{ conteneur.setPointerCapture(e.pointerId); debut(e.clientX,e.clientY); });
+  conteneur.addEventListener('pointermove', e=>bouge(e.clientX,e.clientY));
+  conteneur.addEventListener('pointerup', fin);
+  conteneur.addEventListener('pointercancel', fin);
+
+  // ---- Boucle ----
+  const horloge = new THREE.Clock();
+  const reduireMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animer(){
+    requestAnimationFrame(animer);
+    const t = horloge.getElapsedTime();
+    if(!enTrain){
+      // inertie puis rotation ambiante douce
+      groupe.rotation.y += vitX; groupe.rotation.x += vitY;
+      vitX *= 0.94; vitY *= 0.94;
+      if(!reduireMotion){
+        groupe.rotation.y += 0.004;
+        groupe.rotation.x = THREE.MathUtils.lerp(groupe.rotation.x, Math.sin(t*0.4)*0.12, 0.02);
+        groupe.position.y = Math.sin(t*0.8)*0.06;
+      }
+    }
+    renderer.render(scene, camera);
+  }
+
+  // ---- Redimension ----
+  function redim(){
+    const w = conteneur.clientWidth, h = conteneur.clientHeight;
+    camera.aspect = w/h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w,h);
+  }
+  window.addEventListener('resize', redim);
+  redim();
+  animer();
+
+  // ---- Toggle fond ----
+  const btn = document.getElementById('btnFond');
+  btn.addEventListener('click', ()=>{
+    const sombre = document.body.classList.toggle('sombre');
+    btn.textContent = sombre ? 'Fond clair' : 'Fond sombre';
+    matOr.envMapIntensity = sombre ? 1.55 : 1.25;
+    lumK.intensity = sombre ? 1.15 : 0.9;
+  });
+})();
+</script>
+</body>
+</html>
