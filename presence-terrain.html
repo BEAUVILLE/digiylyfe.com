@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Le Pack Présence Terrain — DIGIYLYFE</title>
+    <meta name="theme-color" content="#06140f">
+    <meta name="description" content="Pack Présence Terrain DIGIYLYFE : fiche commerciale moderne, QR code, WhatsApp direct, photos, horaires, offres et paiement direct. 0% commission DIGIY.">
+    <meta name="digiy-build" content="presence-terrain-public-clean-20260707">
+    <style>
+        :root {
+            --bg: #03120d;
+            --ink: #fffaf0;
+            --soft: rgba(255, 250, 240, .78);
+            --gold: #f6c453;
+            --gold-clair: #fff1bd;
+            --primary: #00a651; /* Le vert terrain historique */
+            --line: rgba(255, 255, 255, .14);
+            --card: rgba(255, 255, 255, .07);
+            --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: 
+                radial-gradient(900px 460px at 10% -5%, rgba(0, 166, 81, .25), transparent 62%),
+                linear-gradient(180deg, #075f32 0%, #062a1d 35%, #03120d 100%);
+            color: var(--ink);
+            font-family: var(--font);
+            min-height: 100svh;
+            line-height: 1.45;
+            padding: 0 12px 40px;
+        }
+
+        .app {
+            width: min(100%, 620px);
+            margin: auto;
+            padding-top: 20px;
+        }
+
+        /* En-tête simplifié */
+        .header-simple {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .logo-back {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: 1px solid rgba(246, 196, 83, .45);
+            background: #fff;
+            display: grid;
+            place-items: center;
+        }
+        .logo-back img {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        .header-simple span {
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: .05em;
+            color: var(--gold-clair);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 20px;
+            border: 1px solid rgba(246, 196, 83, .25);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, .05);
+            padding: 22px 18px;
+            box-shadow: 0 18px 48px rgba(0,0,0,.25);
+        }
+
+        /* Hero */
+        .hero {
+            border-color: rgba(246, 196, 83, .42);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02));
+            text-align: center;
+            padding: 30px 16px;
+        }
+        .hero small {
+            display: block;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 1000;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .hero h1 {
+            font-size: clamp(26px, 7vw, 42px);
+            line-height: 1.05;
+            font-weight: 1000;
+            letter-spacing: -.04em;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            color: var(--soft);
+            font-size: clamp(14px, 4vw, 17px);
+            font-weight: 850;
+            margin-bottom: 20px;
+        }
+
+        /* Boutons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 54px;
+            padding: 0 24px;
+            background: linear-gradient(135deg, var(--gold-clair), var(--gold), var(--primary));
+            color: #06140f;
+            border: 1px solid rgba(246, 196, 83, .75);
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: 1000;
+            text-decoration: none;
+            box-shadow: 0 12px 30px rgba(0,0,0,.3);
+            transition: transform .15s ease;
+        }
+        .btn:active {
+            transform: scale(.98);
+        }
+
+        /* Titrages standard */
+        h2 {
+            font-size: clamp(20px, 5.5vw, 28px);
+            line-height: 1.1;
+            font-weight: 1000;
+            letter-spacing: -.03em;
+            margin-bottom: 12px;
+        }
+        .section-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 1000;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+        .lead-text {
+            color: var(--soft);
+            font-size: 14px;
+            font-weight: 850;
+            margin-bottom: 16px;
+        }
+
+        /* Listes d'items (Problèmes / Solutions / Métiers) */
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .item-card {
+            border: 1px solid var(--line);
+            background: var(--card);
+            border-radius: 20px;
+            padding: 14px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .item-card i {
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+        }
+        .item-card-content strong {
+            display: block;
+            font-size: 15px;
+            font-weight: 1000;
+            color: #fffaf0;
+            margin-bottom: 3px;
+        }
+        .item-card-content p {
+            color: var(--soft);
+            font-size: 13px;
+            font-weight: 900;
+            line-height: 1.35;
+        }
+
+        /* Tableau Comparatif */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 15px;
+            border-radius: 16px;
+            border: 1px solid var(--line);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12.5px;
+            text-align: left;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid var(--line);
+            vertical-align: top;
+        }
+        th {
+            background: rgba(255, 255, 255, .08);
+            color: var(--gold-clair);
+            font-weight: 1000;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .row-highlight {
+            background: rgba(0, 166, 81, .15);
+            font-weight: 900;
+        }
+        .row-highlight td {
+            color: #fffaf0;
+            border-bottom: 1px solid rgba(0, 166, 81, .3);
+        }
+
+        /* Section Spéciale 0% Commission */
+        .focus-box {
+            border: 2px dashed var(--primary);
+            background: linear-gradient(135deg, rgba(0, 166, 81, .12), rgba(246, 196, 83, .05));
+            text-align: center;
+        }
+        .focus-box .price-line {
+            font-size: clamp(22px, 6vw, 32px);
+            font-weight: 1000;
+            color: var(--ink);
+            margin: 10px 0;
+            letter-spacing: -.02em;
+        }
+
+        /* Ligne de confiance */
+        .trust-note {
+            margin-top: 12px;
+            color: rgba(255, 250, 240, .66);
+            font-size: 12px;
+            font-weight: 850;
+            text-align: center;
+        }
+        .trust-note strong {
+            color: var(--gold-clair);
+        }
+
+        /* Pied de page commercial */
+        .conclusion-box {
+            background: linear-gradient(180deg, #075f32 0%, #03120d 100%);
+            border-color: var(--primary);
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .conclusion-box h2 {
+            color: var(--gold-clair);
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 250, 240, .5);
+            font-weight: 850;
+            margin-top: 20px;
+        }
+        .footer-note a {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<main class="app">
+
+    <!-- En-tête simplifié pour retour à l'index principal -->
+    <header class="header-simple">
+        <a class="logo-back" href="./index.html" aria-label="Retour accueil DIGIYLYFE">
+            <img src="./icon-192.png" alt="DIGIYLYFE">
+        </a>
+        <span>← Retour à la place centrale</span>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero">
+        <small>Le Pack Présence Terrain</small>
+        <h1>Les réseaux font passer les gens.<br><span style="color: var(--gold);">DIGIY leur donne une vraie porte pour entrer.</span></h1>
+        <p>Rendez votre activité visible, partageable et connectée directement avec vos clients. Sans site compliqué. Sans dépendre uniquement des algorithmes. Sans commission DIGIY.</p>
+        <a href="./inscription.html?offre=presence-terrain" class="btn">Demander ma fiche DIGIY</a>
+        <p class="trust-note"><strong>Première porte terrain :</strong> fiche propre, QR, WhatsApp direct, paiement direct.</p>
+    </section>
+
+    <!-- 2. LE PROBLÈME TERRAIN -->
+    <section>
+        <span class="section-tag">Le constat</span>
+        <h2>Pourquoi le digital actuel fatigue le terrain ?</h2>
+        <p class="lead-text">Vouloir être visible sur internet est devenu un parcours de combattant pour les professionnels locaux :</p>
+        
+        <div class="item-list">
+            <div class="item-card">
+                <i>🛑</i>
+                <div class="item-card-content">
+                    <strong>La dépendance aux algorithmes</strong>
+                    <p>Sur les réseaux, un jour votre publication est vue, le lendemain elle disparaît. Vous passez votre temps à chercher de la visibilité, alors que le besoin réel est de transformer cette attention en contact client.</p>
+                </div>
+            </div>
+            <div class="item-card">
+                <i>💸</i>
+                <div class="item-card-content">
+                    <strong>Le poids des commissions</strong>
+                    <p>Certaines plateformes s’interposent entre vous et vos clients, avec leurs règles, leurs frais et parfois des commissions qui réduisent votre marge.</p>
+                </div>
+            </div>
+            <div class="item-card">
+                <i>⏳</i>
+                <div class="item-card-content">
+                    <strong>La dépendance au webmaster</strong>
+                    <p>Avec un site classique, vous pouvez dépendre de quelqu’un d’autre pour changer un prix, une photo, un horaire ou une offre.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. LA SOLUTION : PACK PRÉSENCE TERRAIN -->
+    <section style="border-color: rgba(0, 166, 81, .45);">
+        <span class="section-tag" style="color: var(--primary);">La solution direct terrain</span>
+        <h2>Votre porte commerciale autonome</h2>
+        <p class="lead-text">Le Pack Présence Terrain regroupe l'essentiel pour exister proprement sur mobile sans aucune couche technique inutile :</p>
+
+        <div class="item-list">
+            <div class="item-card">
+                <i>📱</i>
+                <div class="item-card-content">
+                    <strong>Fiche DIGIY & Lien unique</strong>
+                    <p>Une vitrine épurée, ultra-rapide sur mobile, qui présente vos photos, vos horaires et vos offres au bon endroit.</p>
+                </div>
+            </div>
+            <div class="item-card">
+                <i>▣</i>
+                <div class="item-card-content">
+                    <strong>Votre QR Code Physique</strong>
+                    <p>À coller partout (vitrine, véhicule, cartes, affiches) pour envoyer instantanément les passants sur votre fiche.</p>
+                </div>
+            </div>
+            <div class="item-card">
+                <i>💬</i>
+                <div class="item-card-content">
+                    <strong>Bouton WhatsApp Direct</strong>
+                    <p>Pas de tunnel de commande complexe. Le client clique, arrive directement sur votre WhatsApp pour commander ou réserver.</p>
+                </div>
+            </div>
+            <div class="item-card">
+                <i>💰</i>
+                <div class="item-card-content">
+                    <strong>Paiement direct au professionnel</strong>
+                    <p>Vous choisissez vos encaissements : Wave, Orange Money, Mobile Money, espèces ou autre moyen adapté au terrain. L’argent va directement chez vous.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. TABLEAU COMPARATIF -->
+    <section>
+        <span class="section-tag">Comparatif</span>
+        <h2>Un site classique vous rend visible. DIGIY vous rend acteur.</h2>
+        
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Solution</th>
+                        <th>Dépendance</th>
+                        <th>Client</th>
+                        <th>Paiement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Réseaux</strong></td>
+                        <td>Algorithme</td>
+                        <td>Se perd dans le fil</td>
+                        <td>Non structuré</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Site classique</strong></td>
+                        <td>Webmaster</td>
+                        <td>Action limitée</td>
+                        <td>Gestion complexe</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Plateformes</strong></td>
+                        <td>Commissions</td>
+                        <td>Reste dans l’app</td>
+                        <td>Commission possible</td>
+                    </tr>
+                    <tr class="row-highlight">
+                        <td>DIGIYLYFE</td>
+                        <td>Autonomie du pro</td>
+                        <td>Arrive en direct</td>
+                        <td>Direct, 0% commission</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 5. MÉTIERS CONCERNÉS -->
+    <section>
+        <span class="section-tag">Sur le terrain</span>
+        <h2>Créé pour les professionnels du quotidien</h2>
+        
+        <div class="item-list">
+            <div class="item-card">
+                <i>🏪</i>
+                <div class="item-card-content">
+                    <strong>Boutiques & Commerces</strong>
+                    <p>Montrez vos arrivages, partagez votre fiche et encaissez sans laisser de pourcentages.</p>
+                </div>
+            </div>
+            <div class="item-card">
+                <i>🛠️</i>
+                <div class="item-card-content">
+                    <strong>Artisans & Services</strong>
+                    <p>Affichez vos plus belles réalisations et recevez des demandes de devis claires.</p>
+                </div>
+            </div>
+            <div class="item-card">
+                <i>🚖</i>
+                <div class="item-card-content">
+                    <strong>Chauffeurs & Taxis</strong>
+                    <p>Votre QR code est posé dans le véhicule. Le client vous enregistre et vous rappelle directement.</p>
+                </div>
+            </div>
+            <div class="item-card">
+                <i>🍲</i>
+                <div class="item-card-content">
+                    <strong>Restaurants & Maquis</strong>
+                    <p>Présentez le menu du jour, vos horaires et prenez les réservations sans intermédiaire.</p>
+                </div>
+            </div>
+            <div class="item-card">
+                <i>🏡</i>
+                <div class="item-card-content">
+                    <strong>Hébergements & Locations</strong>
+                    <p>Exposez vos chambres ou villas et traitez en direct avec vos voyageurs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 0% COMMISSION SECTION -->
+    <section class="focus-box">
+        <span class="section-tag" style="color: var(--gold);">Le deal est clair</span>
+        <h2>0% commission DIGIY. Paiement direct.</h2>
+        <p class="lead-text" style="margin-bottom: 5px;">DIGIYLYFE ne prend pas de commission sur vos ventes. Le client traite directement avec vous.</p>
+        <div class="price-line">Le client vous voit. <br>Il vous contacte. <br>Il vous paie en direct.</div>
+        <p style="font-size: 13px; font-weight: 900; color: var(--gold-clair);">Notre rôle est clair : ouvrir une porte digitale propre entre le terrain et ses clients.</p>
+    </section>
+
+    <!-- 7. CONCLUSION & CTA FINAL -->
+    <section class="conclusion-box">
+        <h2>On ne vous dépossède pas.<br>On vous donne les clés.</h2>
+        <p class="lead-text" style="margin-top: 10px; margin-bottom: 25px; opacity: 0.9;">Gardez votre contact, votre client, votre paiement et votre liberté d’agir au quotidien.</p>
+        <a href="./inscription.html?offre=presence-terrain" class="btn">Lancer mon Pack Présence Terrain</a>
+    </section>
+
+    <div class="footer-note">
+        © 2026 DIGIYLYFE · Autonomie · Contact direct · 0% commission DIGIY. · <a href="./index.html">Place Centrale</a>
+    </div>
+
+</main>
+
+</body>
+</html>
