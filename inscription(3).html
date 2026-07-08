@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Demande de Fiche DIGIY — DIGIYLYFE</title>
+    <meta name="theme-color" content="#06140f">
+    <meta name="description" content="Rejoignez DIGIYLYFE : demandez votre Pack Présence Terrain. Fiche, QR code, WhatsApp direct, SMS de secours et paiement direct sans intermédiaire.">
+    <meta name="robots" content="index,follow">
+    <meta name="digiy-build" content="inscription-public-direct-whatsapp-sms-numero-commercial-20260708">
+    <link rel="canonical" href="https://digiylyfe.com/inscription.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digiylyfe.com/inscription.html">
+    <meta property="og:title" content="Demande de Fiche DIGIY — DIGIYLYFE">
+    <meta property="og:description" content="Demandez votre Pack Présence Terrain : fiche DIGIY, QR code, WhatsApp direct, SMS de secours et paiement direct sans commission DIGIY.">
+    <meta property="og:image" content="https://digiylyfe.com/icon-512.png">
+    <link href="./icon-192.png" rel="icon" sizes="192x192">
+    <link href="./icon-192.png" rel="apple-touch-icon">
+    <style>
+        :root {
+            --bg: #03120d;
+            --ink: #fffaf0;
+            --soft: rgba(255, 250, 240, .78);
+            --gold: #f6c453;
+            --gold-clair: #fff1bd;
+            --primary: #00a651; /* Le vert terrain historique */
+            --line: rgba(255, 255, 255, .14);
+            --card: rgba(255, 255, 255, .07);
+            --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: 
+                radial-gradient(900px 460px at 10% -5%, rgba(0, 166, 81, .25), transparent 62%),
+                linear-gradient(180deg, #075f32 0%, #062a1d 35%, #03120d 100%);
+            color: var(--ink);
+            font-family: var(--font);
+            min-height: 100svh;
+            line-height: 1.45;
+            padding: 0 12px 40px;
+        }
+
+        .app {
+            width: min(100%, 560px);
+            margin: auto;
+            padding-top: 20px;
+        }
+
+        /* En-tête simplifié */
+        .header-simple {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .logo-back {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: 1px solid rgba(246, 196, 83, .45);
+            background: #fff;
+            display: grid;
+            place-items: center;
+        }
+        .logo-back img {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        .header-simple span {
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: .05em;
+            color: var(--gold-clair);
+        }
+
+        /* Cadre principal */
+        section {
+            margin-bottom: 20px;
+            border: 1px solid rgba(246, 196, 83, .25);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, .05);
+            padding: 24px 20px;
+            box-shadow: 0 18px 48px rgba(0,0,0,.25);
+        }
+
+        /* Hero */
+        .hero-box {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px 5px;
+        }
+        .hero-box small {
+            display: block;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 1000;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .hero-box h1 {
+            font-size: clamp(24px, 6.5vw, 36px);
+            line-height: 1.1;
+            font-weight: 1000;
+            letter-spacing: -.03em;
+            margin-bottom: 12px;
+        }
+        .hero-box p {
+            color: var(--soft);
+            font-size: 14.5px;
+            font-weight: 850;
+        }
+
+        /* Formulaire */
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 1000;
+            color: var(--gold-clair);
+            margin-bottom: 6px;
+            letter-spacing: .02em;
+        }
+        input, select, textarea {
+            width: 100%;
+            min-height: 50px;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            color: var(--ink);
+            font-family: var(--font);
+            font-size: 15px;
+            font-weight: 850;
+            outline: none;
+            transition: border-color .15s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--gold);
+        }
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23f6c453'><path d='M6 9L1 4h10z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        /* Option bloquée en lecture seule */
+        .readonly-box {
+            background: rgba(255, 255, 255, .08);
+            border-color: rgba(0, 166, 81, .3);
+            color: rgba(255, 250, 240, .9);
+        }
+
+        /* Bouton de soumission */
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 56px;
+            margin-top: 10px;
+            background: linear-gradient(135deg, var(--gold-clair), var(--gold), var(--primary));
+            color: #06140f;
+            border: 1px solid rgba(246, 196, 83, .75);
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: 1000;
+            text-decoration: none;
+            box-shadow: 0 12px 30px rgba(0,0,0,.3);
+            cursor: pointer;
+            transition: transform .15s ease;
+        }
+        .btn-submit:active {
+            transform: scale(.98);
+        }
+        .btn-sms {
+            margin-top: 10px;
+            background: rgba(255, 255, 255, .08);
+            color: var(--gold-clair);
+            border-color: rgba(246, 196, 83, .35);
+            box-shadow: none;
+        }
+        .send-help {
+            margin-top: 9px;
+            text-align: center;
+            color: rgba(255, 250, 240, .62);
+            font-size: 12px;
+            font-weight: 850;
+            line-height: 1.35;
+        }
+
+        /* Note de confiance */
+        .trust-box {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12.5px;
+            color: var(--soft);
+            font-weight: 850;
+            line-height: 1.4;
+        }
+        .trust-box strong {
+            color: var(--gold-clair);
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 250, 240, .5);
+            font-weight: 850;
+            margin-top: 25px;
+        }
+        .footer-note a {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<main class="app">
+
+    <!-- En-tête de retour -->
+    <header class="header-simple">
+        <a class="logo-back" href="./presence-terrain.html" aria-label="Retour à l'offre">
+            <img src="./icon-192.png" alt="DIGIYLYFE">
+        </a>
+        <span>← Retour à la Présence Terrain</span>
+    </header>
+
+    <!-- HERO COURT -->
+    <div class="hero-box">
+        <small>Action directe</small>
+        <h1>Demandez votre fiche DIGIY</h1>
+        <p>Remplissez ce court formulaire. Les informations seront pré-organisées pour générer votre message d'envoi par WhatsApp ou par SMS si WhatsApp bloque.</p>
+    </div>
+
+    <!-- FORMULAIRE DE CONVERSION -->
+    <section>
+        <form id="digiyRegisterForm" onsubmit="sendToWhatsApp(event)">
+            
+            <div class="form-group">
+                <label for="activity_name">Nom de l'activité *</label>
+                <input type="text" id="activity_name" required placeholder="Ex: Restaurant Chez Marie, Chauffeur Diallo...">
+            </div>
+
+            <div class="form-group">
+                <label for="job_type">Type de métier *</label>
+                <select id="job_type" required>
+                    <option value="" disabled selected>Sélectionnez votre secteur</option>
+                    <option value="Boutique / Commerce">🛍️ Boutique &amp; Commerce</option>
+                    <option value="Artisanat / Chantier">🛠️ Artisan &amp; Chantier</option>
+                    <option value="Chauffeur / Transport">🚖 Chauffeur &amp; Transport</option>
+                    <option value="Restaurant / Maquis">🍲 Restaurant &amp; Maquis</option>
+                    <option value="Hébergement / Location">🏡 Hébergement &amp; Location</option>
+                    <option value="Service local">💼 Service local</option>
+                    <option value="Autre activité">⭐ Autre</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="zone">Ville / Zone d'activité *</label>
+                <input type="text" id="zone" required placeholder="Ex: Saly, Dakar, Mbour, Sarlat...">
+            </div>
+
+            <div class="form-group">
+                <label for="manager_name">Nom du responsable *</label>
+                <input type="text" id="manager_name" required placeholder="Votre prénom et nom">
+            </div>
+
+            <div class="form-group">
+                <label for="whatsapp_num">Numéro WhatsApp de l'activité *</label>
+                <input type="tel" id="whatsapp_num" required placeholder="Ex: +221 7X XXX XX XX">
+            </div>
+
+            <div class="form-group">
+                <label for="offer_chosen">Offre souhaitée</label>
+                <input type="text" id="offer_chosen" class="readonly-box" value="Pack Présence Terrain (Fiche + QR + WhatsApp)" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="pay_method">Moyen de paiement préféré pour vos clients *</label>
+                <select id="pay_method" required>
+                    <option value="" disabled selected>Comment vos clients vous paient-ils ?</option>
+                    <option value="Wave">Wave</option>
+                    <option value="Orange Money">Orange Money</option>
+                    <option value="Espèces">Espèces de la main à la main</option>
+                    <option value="Plusieurs moyens adaptés au terrain">Plusieurs solutions de terrain</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message_free">Message libre ou demandes particulières (Optionnel)</label>
+                <textarea id="message_free" placeholder="Horaires spécifiques, lien vers vos photos actuelles ou questions..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">📱 Envoyer ma demande via WhatsApp</button>
+            <button type="button" class="btn-submit btn-sms" onclick="sendToSMS()">✉️ Envoyer ma demande par SMS</button>
+            <div class="send-help">WhatsApp reste le canal principal. Le SMS sert de secours si WhatsApp bug ou ne s’ouvre pas.</div>
+        </form>
+
+        <div class="trust-box">
+            <strong>0% commission DIGIY.</strong> Le client traite, contacte et vous paie directement. La valeur de votre business reste entièrement dans votre main.
+        </div>
+    </section>
+
+    <div class="footer-note">
+        © 2026 DIGIYLYFE · <a href="./index.html">Place Centrale</a>
+    </div>
+
+</main>
+
+<script>
+const DIGIY_PHONE = "221771342889"; // Format international sans +, sans espaces
+const DIGIY_PHONE_SMS = "+221771342889"; // Format confortable pour SMS
+
+function getValue(id) {
+    return document.getElementById(id).value.trim();
+}
+
+function buildDigiyMessage() {
+    const activity = getValue('activity_name');
+    const job = getValue('job_type');
+    const zone = getValue('zone');
+    const manager = getValue('manager_name');
+    const whatsapp = getValue('whatsapp_num');
+    const offer = getValue('offer_chosen');
+    const payment = getValue('pay_method');
+    const msgFree = getValue('message_free');
+
+    let text = `🔥 NOUVELLE DEMANDE DIGIYLYFE
+`;
+    text += `----------------------------------------
+`;
+    text += `🏢 Activité : ${activity}
+`;
+    text += `💼 Métier : ${job}
+`;
+    text += `📍 Zone : ${zone}
+`;
+    text += `👤 Responsable : ${manager}
+`;
+    text += `💬 WhatsApp Pro : ${whatsapp}
+`;
+    text += `📦 Offre : ${offer}
+`;
+    text += `💰 Paiement préféré : ${payment}
+`;
+
+    if (msgFree !== "") {
+        text += `✉️ Message libre : ${msgFree}
+`;
+    }
+
+    text += `----------------------------------------
+`;
+    text += `Le terrain garde la main. J’attends ma porte d’entrée DIGIY !`;
+    return text;
+}
+
+function formIsReady() {
+    const form = document.getElementById('digiyRegisterForm');
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return false;
+    }
+    return true;
+}
+
+function sendToWhatsApp(event) {
+    if (event) event.preventDefault();
+    if (!formIsReady()) return;
+    const url = "https://wa.me/" + DIGIY_PHONE + "?text=" + encodeURIComponent(buildDigiyMessage());
+    window.location.href = url;
+}
+
+function sendToSMS() {
+    if (!formIsReady()) return;
+    const url = "sms:" + DIGIY_PHONE_SMS + "?&body=" + encodeURIComponent(buildDigiyMessage());
+    window.location.href = url;
+}
+</script>
+
+<noscript>
+  <p style="max-width:560px;margin:20px auto;color:#fffaf0;text-align:center;font-family:system-ui;font-weight:800;">
+    JavaScript est nécessaire pour préparer automatiquement le message WhatsApp. Vous pouvez aussi contacter DIGIYLYFE directement par WhatsApp.
+  </p>
+</noscript>
+</body>
+</html>
