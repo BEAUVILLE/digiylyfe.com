@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#06140f">
     <meta name="description" content="Rejoignez DIGIYLYFE : demandez votre Pack Présence Terrain. Fiche, QR code, WhatsApp direct, SMS de secours et paiement direct sans intermédiaire.">
     <meta name="robots" content="index,follow">
-    <meta name="digiy-build" content="inscription-public-direct-whatsapp-sms-numero-commercial-20260708">
+    <meta name="digiy-build" content="inscription-public-direct-whatsapp-sms-texte-compatible-20260708">
     <link rel="canonical" href="https://digiylyfe.com/inscription.html">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://digiylyfe.com/inscription.html">
@@ -343,33 +343,24 @@ function buildDigiyMessage() {
     const payment = getValue('pay_method');
     const msgFree = getValue('message_free');
 
-    let text = `🔥 NOUVELLE DEMANDE DIGIYLYFE
-`;
-    text += `----------------------------------------
-`;
-    text += `🏢 Activité : ${activity}
-`;
-    text += `💼 Métier : ${job}
-`;
-    text += `📍 Zone : ${zone}
-`;
-    text += `👤 Responsable : ${manager}
-`;
-    text += `💬 WhatsApp Pro : ${whatsapp}
-`;
-    text += `📦 Offre : ${offer}
-`;
-    text += `💰 Paiement préféré : ${payment}
-`;
+    // Message volontairement sans emoji dans le corps envoyé.
+    // Objectif : éviter les caractères cassés sur certains téléphones, SMS ou anciennes versions WhatsApp.
+    let text = `NOUVELLE DEMANDE DIGIYLYFE\n`;
+    text += `----------------------------------------\n`;
+    text += `Activite : ${activity}\n`;
+    text += `Metier : ${job}\n`;
+    text += `Zone : ${zone}\n`;
+    text += `Responsable : ${manager}\n`;
+    text += `WhatsApp Pro : ${whatsapp}\n`;
+    text += `Offre : ${offer}\n`;
+    text += `Paiement prefere : ${payment}\n`;
 
     if (msgFree !== "") {
-        text += `✉️ Message libre : ${msgFree}
-`;
+        text += `Message libre : ${msgFree}\n`;
     }
 
-    text += `----------------------------------------
-`;
-    text += `Le terrain garde la main. J’attends ma porte d’entrée DIGIY !`;
+    text += `----------------------------------------\n`;
+    text += `Le terrain garde la main. J'attends ma porte d'entree DIGIY !`;
     return text;
 }
 
