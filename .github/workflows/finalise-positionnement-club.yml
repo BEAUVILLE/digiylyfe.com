@@ -1,0 +1,40 @@
+name: Finalise positionnement Club
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/finalise-positionnement-club.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalise:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aligner les derniers textes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          replacements={
+            "<strong data-i18n=\"capStrong\">DIGIYLYFE n'est pas un journal. DIGIYLYFE est la place centrale du business local.</strong>": "<strong data-i18n=\"capStrong\">Rassembler crée la force.</strong>",
+            "pageTitle:\"DIGIYLYFE — Le Club digital des Métiers et des Entreprises\"": "pageTitle:\"DIGIYLYFE — Le Club digital des Métiers et des Entreprises de la Petite Côte\"",
+            "metaDescription:\"DIGIYLYFE est la place centrale du business local : clients et professionnels choisissent leur porte. Chauffeurs, logements, boutiques, artisans, jobs, réservations, paiement direct. QR direct, contact direct, Pack Présence Terrain, inscription directe, abonnement accessible, le terrain garde la main.\"": "metaDescription:\"DIGIYLYFE est le Club digital des Métiers et des Entreprises de la Petite Côte. Vitrines, QR officiels, contacts et paiements directs, 0% commission. Chaque activité garde son identité, le Club rassemble les forces du terrain.\"",
+            "capStrong:\"DIGIYLYFE n'est pas un journal. DIGIYLYFE est la place centrale du business local.\"": "capStrong:\"Rassembler crée la force.\"",
+            "capStrong:\"DIGIYLYFE is not a newspaper. DIGIYLYFE is the central square of local business.\"": "capStrong:\"Together, the field becomes stronger.\""
+          }
+          for old,new in replacements.items():
+              s=s.replace(old,new)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Finalise le positionnement Club DIGIYLYFE"
+          git push
