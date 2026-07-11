@@ -1,0 +1,1304 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#061b14" />
+  <meta name="digiy-version" content="entreprise-inscription-cat-paiement-wave-sendwave-20260711" />
+  <title>Inscription ENTREPRISE PRO — Présence professionnelle France · Sénégal</title>
+
+  <style>
+    :root {
+      --bg: #061b14;
+      --card: #0b2a1f;
+      --line: rgba(255,255,255,.16);
+      --text: #eafff1;
+      --muted: rgba(234,255,241,.76);
+      --gold: #facc15;
+      --orange: #f97316;
+      --green: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(250,204,21,.12), transparent 34%),
+        radial-gradient(circle at right, rgba(249,115,22,.12), transparent 32%),
+        linear-gradient(145deg, #061b14, #0a2b1f);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 850;
+      padding-bottom: 96px;
+    }
+
+    .app {
+      max-width: 1060px;
+      margin: auto;
+      padding: 14px;
+    }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin: -14px -14px 14px;
+      padding: 12px 14px;
+      background: rgba(6,27,20,.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-weight: 1000;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn,
+    button,
+    .nav a {
+      min-height: 48px;
+      border-radius: 15px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.07);
+      color: #fff;
+      padding: 0 14px;
+      font: inherit;
+      font-weight: 1000;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .gold {
+      background: linear-gradient(135deg, var(--orange), var(--gold)) !important;
+      color: #061b14 !important;
+      border: 0 !important;
+    }
+
+    .green {
+      background: linear-gradient(135deg, var(--green), var(--gold)) !important;
+      color: #061b14 !important;
+      border: 0 !important;
+    }
+
+    .clear {
+      background: rgba(250,204,21,.12) !important;
+      color: #fff8dc !important;
+    }
+
+    .hero,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(11,42,31,.96), rgba(6,35,25,.96));
+      box-shadow: 0 18px 52px rgba(0,0,0,.38);
+    }
+
+    .hero {
+      padding: 18px;
+      margin-bottom: 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 6vw, 56px);
+      line-height: 1.02;
+      margin: 0;
+      font-weight: 1000;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.62;
+      font-weight: 850;
+    }
+
+    .pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(250,204,21,.09);
+      color: #fff3b2;
+      font-size: 13px;
+      font-weight: 1000;
+    }
+
+    .gold-emphasis {
+      border: 1px solid rgba(250,204,21,.62) !important;
+      background: linear-gradient(135deg, rgba(250,204,21,.24), rgba(249,115,22,.16)) !important;
+      color: #fff8dc !important;
+      box-shadow: 0 12px 28px rgba(250,204,21,.12);
+    }
+
+    .sendwaveGold {
+      margin-top: 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(250,204,21,.70);
+      background: linear-gradient(135deg, rgba(250,204,21,.26), rgba(249,115,22,.18));
+      color: #fff8dc;
+      padding: 12px;
+      font-weight: 1000;
+      line-height: 1.42;
+      box-shadow: 0 12px 28px rgba(250,204,21,.12);
+    }
+
+    .doctrine-card {
+      margin: 0 0 14px;
+      padding: 16px;
+      border: 2px solid rgba(250,204,21,.55);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top right, rgba(250,204,21,.18), transparent 34%),
+        linear-gradient(145deg, rgba(11,42,31,.96), rgba(6,35,25,.96));
+      box-shadow: 0 18px 52px rgba(0,0,0,.34);
+    }
+
+    .doctrine-card .tag {
+      display: inline-flex;
+      width: max-content;
+      max-width: 100%;
+      border-radius: 999px;
+      border: 1px solid rgba(250,204,21,.58);
+      background: rgba(250,204,21,.14);
+      color: #fff3b2;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 1000;
+      letter-spacing: .02em;
+    }
+
+    .doctrine-card h2 {
+      margin: 10px 0 8px;
+      color: #fff8dc;
+      font-size: clamp(26px, 4.4vw, 44px);
+      line-height: 1.03;
+      font-weight: 1000;
+      letter-spacing: -.04em;
+    }
+
+    .doctrine-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .doctrine-list span {
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.07);
+      border-radius: 16px;
+      padding: 11px;
+      color: #bbf7d0;
+      font-size: 14px;
+      line-height: 1.35;
+      font-weight: 1000;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 14px;
+    }
+
+    .card {
+      padding: 16px;
+    }
+
+    .section {
+      margin: 16px 0 10px;
+      padding: 12px;
+      border: 1px solid rgba(250,204,21,.40);
+      background: rgba(250,204,21,.12);
+      border-radius: 16px;
+      font-weight: 1000;
+      color: #fff3b2;
+    }
+
+    .prices {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .option {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.07);
+      padding: 13px;
+      display: grid;
+      gap: 7px;
+      text-align: left;
+      color: #fff;
+      min-height: 125px;
+    }
+
+    .option.active {
+      border-color: #facc15;
+      background: rgba(250,204,21,.18);
+    }
+
+    .code {
+      display: inline-flex;
+      width: max-content;
+      min-width: 54px;
+      height: 38px;
+      border-radius: 12px;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--orange), var(--gold));
+      color: #061b14;
+      font-weight: 1000;
+    }
+
+    .code.extra {
+      background: linear-gradient(135deg, var(--green), var(--gold));
+      color: #061b14;
+    }
+
+    .amount {
+      color: #fff3b2;
+      font-weight: 1000;
+    }
+
+    .summary {
+      position: sticky;
+      top: 82px;
+    }
+
+    .selected,
+    .totals,
+    .dateBox,
+    .payment,
+    .noteBox {
+      margin-top: 12px;
+      border: 1px solid rgba(250,204,21,.40);
+      border-radius: 18px;
+      background: rgba(250,204,21,.10);
+      padding: 12px;
+    }
+
+    .payment {
+      background: linear-gradient(145deg, rgba(250,204,21,.14), rgba(34,197,94,.10));
+      border-color: rgba(250,204,21,.55);
+    }
+
+    .waveHero {
+      margin-top: 12px;
+      padding: 18px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #facc15, #f59e0b);
+      color: #061b14;
+      border: 1px solid rgba(250,204,21,.75);
+      box-shadow: 0 14px 32px rgba(0,0,0,.28);
+    }
+
+    .waveHero small {
+      display: block;
+      font-size: 13px;
+      font-weight: 1000;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .88;
+      margin-bottom: 7px;
+    }
+
+    .waveHero strong {
+      display: block;
+      font-size: clamp(24px, 5.6vw, 38px);
+      line-height: 1.12;
+      font-weight: 1000;
+      letter-spacing: -.035em;
+    }
+
+    .paymentTitle {
+      font-size: 20px;
+      color: #fff3b2;
+      font-weight: 1000;
+      margin-bottom: 8px;
+    }
+
+    .payLine {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,.13);
+    }
+
+    .payLine:last-child {
+      border-bottom: 0;
+    }
+
+    .payLine span {
+      color: var(--muted);
+    }
+
+    .proof {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 14px;
+      background: rgba(6,27,20,.70);
+      border: 1px dashed rgba(250,204,21,.45);
+      color: #fff8dc;
+      line-height: 1.45;
+      font-weight: 950;
+    }
+
+    .noteBox label {
+      display: block;
+      margin-bottom: 8px;
+      color: #fff3b2;
+      font-weight: 1000;
+    }
+
+    .noteBox textarea {
+      width: 100%;
+      min-height: 118px;
+      resize: vertical;
+      border: 1px solid rgba(250,204,21,.45);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(6,27,20,.78);
+      color: #fff;
+      font: inherit;
+      font-size: 16px;
+      line-height: 1.45;
+      outline: none;
+    }
+
+    .noteBox textarea::placeholder {
+      color: rgba(255,255,255,.58);
+    }
+
+    .identityBox {
+      margin-top: 12px;
+      border: 1px solid rgba(250,204,21,.40);
+      border-radius: 18px;
+      background: rgba(34,197,94,.08);
+      padding: 12px;
+    }
+
+    .identityBox h3 {
+      margin: 0 0 8px;
+      color: #fff3b2;
+      font-size: 20px;
+      line-height: 1.1;
+      font-weight: 1000;
+    }
+
+    .identityBox p {
+      margin: 0 0 12px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--muted);
+      font-weight: 850;
+    }
+
+    .identityGrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .identityField label {
+      display: block;
+      margin: 0 0 6px;
+      color: #fff3b2;
+      font-size: 13px;
+      font-weight: 1000;
+    }
+
+    .identityField input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid rgba(250,204,21,.45);
+      border-radius: 15px;
+      padding: 0 12px;
+      background: rgba(6,27,20,.78);
+      color: #fff;
+      font: inherit;
+      font-size: 16px;
+      font-weight: 900;
+      outline: none;
+    }
+
+    .identityField input::placeholder {
+      color: rgba(255,255,255,.52);
+    }
+
+    .identityField input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(250,204,21,.13);
+    }
+
+    .identityMiniActions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .identityMiniActions button {
+      min-height: 42px;
+      font-size: 13px;
+    }
+
+    .line {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+      padding: 8px 0;
+    }
+
+    .line.final {
+      font-size: 24px;
+      color: #fff3b2;
+      border-bottom: 0;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .benefits {
+      line-height: 1.55;
+    }
+
+    .floating {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 50;
+      border-radius: 18px;
+      min-height: 60px;
+    }
+
+
+    .countryBox {
+      margin-top: 12px;
+      border: 1px solid rgba(250,204,21,.44);
+      border-radius: 18px;
+      background: rgba(250,204,21,.10);
+      padding: 12px;
+    }
+
+    .countryBox h3 {
+      margin: 0 0 8px;
+      color: #fff3b2;
+      font-size: 20px;
+      line-height: 1.1;
+      font-weight: 1000;
+    }
+
+    .countryChoice {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .countryBtn {
+      min-height: 52px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.07);
+      color: #fff;
+      font-weight: 1000;
+      cursor: pointer;
+    }
+
+    .countryBtn.active {
+      border-color: rgba(250,204,21,.80);
+      background: linear-gradient(135deg, var(--orange), var(--gold));
+      color: #061b14;
+    }
+
+    .countryNote {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.42;
+      font-weight: 900;
+    }
+
+    .priceNote {
+      display:block;
+      color: rgba(234,255,241,.72);
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      .hero,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        position: relative;
+      }
+
+      .prices {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        width: 100%;
+      }
+
+      .nav a {
+        flex: 1;
+      }
+
+      .payLine,
+      .line {
+        display: grid;
+        gap: 3px;
+      }
+
+      .identityGrid,
+      .countryChoice,
+      .doctrine-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <header class="top">
+      <a class="brand" href="./index.html">🏢 DIGIY ENTREPRISE PRO · Petite Côte · France · Sénégal</a>
+
+      <nav class="nav">
+        <a href="./index.html">← Entreprises</a>
+        <a href="https://digiy-hub.digiylyfe.com/">🧭 HUB</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>Entreprises de la Petite Côte.</h1>
+        <p>
+          DIGIY ouvre une porte professionnelle aux hôtels, résidences, écoles, agences,
+          cabinets, sociétés de services, entreprises BTP, maintenance, transport et PME locales.
+          La demande initiale ne coûte rien tant qu’aucune présence PRO n’est activée :
+          cette page sert à choisir et payer une présence Entreprise claire, sans commission sur vos ventes ou prestations.
+        </p>
+
+        <div class="pills">
+          <span class="pill">Demande gratuite / sans engagement</span>
+          <span class="pill">0% commission</span>
+          <span class="pill">Contact direct</span>
+          <span class="pill">Devis / contact direct</span>
+          <span class="pill gold-emphasis">🇫🇷 France → Sendwave Sénégal</span>
+          <span class="pill">Bouton Effacer</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="waveHero">
+          <small>Paiement Wave / Sendwave</small>
+          <strong>JB BEAUVILLE · Wave Sénégal · +221 77 134 28 89</strong>
+        </div>
+
+        <div class="sendwaveGold">🇫🇷 France / diaspora : paiement possible par Sendwave vers Wave Sénégal, sur demande.</div>
+
+        <p>
+          Choix cumulables, date dans le message, sous-total, total, WhatsApp ou SMS. Sénégal : Wave direct. France : Sendwave vers le Wave Sénégal de JB BEAUVILLE. Après paiement, envoie la preuve sur WhatsApp.
+        </p>
+      </div>
+    </section>
+
+    <section class="doctrine-card" aria-label="Doctrine économique ENTREPRISE">
+      <span class="tag">DEMANDE GRATUITE · ACTIVATION ENTREPRISE PAYANTE · 0% COMMISSION</span>
+      <h2>Tu gardes tes clients. Tu gardes tes paiements. DIGIY construit ta présence.</h2>
+      <p>
+        DIGIYLYFE ne prélève rien sur les ventes ou prestations de ton entreprise.
+        La gratuité concerne la demande initiale / orientation, pas l’activation de la présence PRO.
+        Tu choisis seulement ce que tu veux activer : carte de visite digitale, QR officiel,
+        vitrine professionnelle, visibilité locale, BOOST ou RÉSEAU.
+      </p>
+      <div class="doctrine-list">
+        <span>✅ Demande / orientation gratuite</span>
+        <span>🏢 Présence entreprise claire</span>
+        <span>🤝 Paiement direct au pro</span>
+        <span class="gold-emphasis">🇫🇷 France : Sendwave possible</span>
+      </div>
+    </section>
+
+    <main class="grid">
+      <section class="card">
+        <h2>Tarifs ENTREPRISE</h2>
+        <p>Clique un ou plusieurs choix. Si tu te trompes, efface.</p>
+
+        <div class="section">🏢 Activation présence ENTREPRISE</div>
+        <div class="prices" id="baseOptions"></div>
+
+        <div class="section">✨ BOOST visibilité</div>
+        <div class="prices" id="boostOptions"></div>
+
+        <div class="section">📣 RÉSEAU abonné / FIRST non-abonné</div>
+        <div class="prices" id="reseauOptions"></div>
+      </section>
+
+      <aside class="card summary" id="summary">
+        <h2>Ce que ma présence ENTREPRISE m’apporte</h2>
+
+        <div class="countryBox" id="countryBox">
+          <h3>🌍 Grille pays</h3>
+          <div class="countryChoice" aria-label="Choisir le pays du professionnel">
+            <button class="countryBtn active" type="button" data-country="senegal">🇸🇳 Sénégal · Wave direct</button>
+            <button class="countryBtn gold-emphasis" type="button" data-country="france">🇫🇷 France · Sendwave vers Wave Sénégal</button>
+          </div>
+          <div class="countryNote" id="countryNote">
+            Les tarifs ne sont pas une conversion au taux de change. Ils sont adaptés au pays, au marché et au mode de règlement.
+          </div>
+        </div>
+
+
+        <div class="selected" id="selectedBox">
+          <strong>Aucun choix sélectionné</strong><br />
+          Rien n’est précoché.
+        </div>
+
+        <div class="identityBox" id="identityBox">
+          <h3>Infos pro pour le paiement</h3>
+          <p>
+            Ces infos servent seulement à identifier ta demande dans le message WhatsApp / SMS.
+            La carte et la vitrine complètes se construisent ensuite avec DIGIY.
+          </p>
+
+          <div class="identityGrid">
+            <div class="identityField">
+              <label for="proName">Nom / responsable</label>
+              <input id="proName" type="text" autocomplete="name" placeholder="Ex : Mamadou Diop" />
+            </div>
+
+            <div class="identityField">
+              <label for="proPhone">Téléphone / WhatsApp</label>
+              <input id="proPhone" type="tel" autocomplete="tel" placeholder="Ex : +221 77 000 00 00" />
+            </div>
+
+            <div class="identityField">
+              <label for="proZone">Zone / ville</label>
+              <input id="proZone" type="text" autocomplete="address-level2" placeholder="Ex : Saly, Mbour, Dakar" />
+            </div>
+
+            <div class="identityField">
+              <label for="proActivity">Secteur / activité</label>
+              <input id="proActivity" type="text" autocomplete="organization-title" placeholder="Ex : hôtel, école, agence, BTP" />
+            </div>
+          </div>
+
+          <div class="identityMiniActions">
+            <button class="clear" id="btnClearIdentity" type="button">🧹 Effacer mes infos</button>
+          </div>
+        </div>
+
+        <div id="choiceList"></div>
+
+        <div class="totals">
+          <div class="line">
+            <span>Sous-total</span>
+            <strong id="subtotalText">0 FCFA</strong>
+          </div>
+
+          <div class="line">
+            <span>Ajustement / remise</span>
+            <strong id="adjustText">0 FCFA</strong>
+          </div>
+
+          <div class="line final">
+            <span>Total</span>
+            <strong id="totalText">0 FCFA</strong>
+          </div>
+        </div>
+
+        <div class="payment">
+          <div class="paymentTitle">💳 Paiement Wave / Sendwave</div>
+
+          <div class="waveHero">
+            <small>Nom et numéro de paiement</small>
+            <strong>Wave : JB BEAUVILLE · +221 77 134 28 89</strong>
+          </div>
+
+          <div class="payLine">
+            <span>Montant à payer</span>
+            <strong id="payTotal">0 FCFA</strong>
+          </div>
+
+          <div class="proof">
+            Après paiement, envoie la capture ou la preuve par WhatsApp. Sénégal : Wave direct. France / diaspora : Sendwave vers Wave Sénégal sur demande. DIGIY vérifie puis accompagne l’ouverture de la carte, du QR et de la vitrine Entreprise.
+          </div>
+        </div>
+
+        <div class="noteBox">
+          <label for="paymentNote">📝 Note / preuve paiement</label>
+          <textarea
+            id="paymentNote"
+            placeholder="Ex : Paiement Wave envoyé pour ENTREPRISE C2 — 29 900 FCFA — au nom de Mamadou Diop — tél +221 77 000 00 00."
+          ></textarea>
+        </div>
+
+        <div class="dateBox" id="dateBox">Date de demande : —</div>
+
+        <ul class="benefits" id="benefits"></ul>
+
+        <div class="actions">
+          <a class="btn green" id="btnWa">💬 WhatsApp</a>
+          <button class="btn" id="btnSms" type="button">📱 SMS</button>
+          <button class="btn clear" id="btnClear" type="button">🧹 Effacer</button>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="btnCopyWave" type="button">📋 Copier Wave</button>
+          <a class="btn gold" id="btnProof">📸 Envoyer preuve</a>
+          <a class="btn gold" href="https://digiy-hub.digiylyfe.com/">🧭 HUB DIGIY</a>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <button class="gold floating" id="btnFloating" type="button">📱 Voir total</button>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const TEL = "221771342889";
+      const WAVE_LABEL = "Wave Sénégal : JB BEAUVILLE · +221 77 134 28 89";
+
+      const IDENTITY_KEY = "digiy_entreprise_payment_identity_v1";
+      const COUNTRY_KEY = "digiy_entreprise_country_v1";
+
+      const PLANS = [
+        {
+          code: "C1",
+          cat: "base",
+          name: "Entreprise Essentiel",
+          fcfa: 19900,
+          eur: 29,
+          desc: "Carte de visite digitale, QR, vitrine simple et contact direct.",
+          bonus: ["Carte entreprise visible", "QR et lien partageable", "WhatsApp direct"]
+        },
+        {
+          code: "C2",
+          cat: "base",
+          name: "Entreprise Pro",
+          fcfa: 29900,
+          eur: 49,
+          desc: "Services, galerie, localisation, demande de devis et présence renforcée.",
+          bonus: ["Services détaillés", "Photos / réalisations", "Devis direct", "Localisation"]
+        },
+        {
+          code: "C3",
+          cat: "base",
+          name: "Entreprise Équipe",
+          fcfa: 45000,
+          eur: 69,
+          desc: "Présence renforcée pour équipes, plusieurs services ou plusieurs activités.",
+          bonus: ["Équipe / services", "Vitrine renforcée", "Parcours client", "Accompagnement prioritaire"]
+        },
+        {
+          code: "E1",
+          cat: "boost",
+          name: "Boost Local",
+          fcfa: 5000,
+          eur: null,
+          desc: "Petit projecteur local.",
+          bonus: ["Boost local"]
+        },
+        {
+          code: "E2",
+          cat: "boost",
+          name: "Boost Standard",
+          fcfa: 10000,
+          eur: null,
+          desc: "Mise en avant renforcée.",
+          bonus: ["Visibilité renforcée"]
+        },
+        {
+          code: "E3",
+          cat: "boost",
+          name: "Boost Premium",
+          fcfa: 20000,
+          eur: null,
+          desc: "Visibilité maximale.",
+          bonus: ["Priorité visibilité"]
+        },
+        {
+          code: "R7",
+          cat: "reseau",
+          name: "RÉSEAU abonné — 7 jours",
+          fcfa: 15000,
+          eur: 28,
+          desc: "Pour entreprise déjà abonnée DIGIY.",
+          bonus: ["Réservé abonnés", "Visibilité 7 jours"]
+        },
+        {
+          code: "R15",
+          cat: "reseau",
+          name: "RÉSEAU abonné — 15 jours",
+          fcfa: 25000,
+          eur: 45,
+          desc: "Pour entreprise déjà abonnée DIGIY.",
+          bonus: ["Réservé abonnés", "Visibilité 15 jours"]
+        },
+        {
+          code: "R30",
+          cat: "reseau",
+          name: "RÉSEAU abonné — 1 mois",
+          fcfa: 45000,
+          eur: 75,
+          desc: "Pour entreprise déjà abonnée DIGIY.",
+          bonus: ["Réservé abonnés", "Visibilité 1 mois"]
+        },
+        {
+          code: "FIRST",
+          cat: "reseau",
+          name: "Mise en classe FIRST — non-abonné",
+          fcfa: 150000,
+          eur: 260,
+          desc: "Qualification, carte, vitrine, QR, lien, messages prêts et visibilité qualifiée.",
+          bonus: ["Réservé non-abonnés", "Vitrine premium", "QR et lien", "Visibilité qualifiée"]
+        }
+      ];
+
+      const COMMON = [
+        "Carte de visite digitale",
+        "QR et lien partageable",
+        "Vitrine professionnelle",
+        "Contact et paiement directs",
+        "Validation humaine",
+        "0% commission",
+        "Moteur logiciel séparé après diagnostic"
+      ];
+
+      let selected = new Set();
+      let country = "senegal";
+
+      const $ = (id) => document.getElementById(id);
+      const summary = $("summary");
+
+      function safeParse(raw) {
+        try {
+          return JSON.parse(raw || "{}");
+        } catch (_) {
+          return {};
+        }
+      }
+
+      function initialCountry() {
+        try {
+          const params = new URLSearchParams(location.search);
+          const p = String(params.get("pays") || params.get("country") || "").toLowerCase();
+          if (p === "fr" || p === "france") return "france";
+          if (p === "sn" || p === "senegal" || p === "sénégal") return "senegal";
+          const saved = localStorage.getItem(COUNTRY_KEY);
+          return saved === "france" ? "france" : "senegal";
+        } catch (_) {
+          return "senegal";
+        }
+      }
+
+      function setCountry(next) {
+        country = next === "france" ? "france" : "senegal";
+        try { localStorage.setItem(COUNTRY_KEY, country); } catch (_) {}
+
+        document.querySelectorAll("[data-country]").forEach((button) => {
+          button.classList.toggle("active", button.dataset.country === country);
+        });
+
+        const note = $("countryNote");
+        if (note) {
+          note.textContent = country === "france"
+            ? "France : règlement par Sendwave vers le Wave Sénégal de JB BEAUVILLE. Les tarifs France sont une grille pays, pas une conversion au taux de change. ENTREPRISE France : C1 29 €, C2 49 €, C3 69 €. Les BOOST France restent sur demande si aucun montant EUR n’est indiqué."
+            : "Sénégal : règlement Wave direct. Les tarifs sont en FCFA et restent une grille terrain locale.";
+        }
+
+        update(false);
+      }
+
+      function bindCountry() {
+        document.querySelectorAll("[data-country]").forEach((button) => {
+          button.addEventListener("click", () => setCountry(button.dataset.country));
+        });
+      }
+
+      function identityFields() {
+        return {
+          nom: $("proName"),
+          telephone: $("proPhone"),
+          zone: $("proZone"),
+          activite: $("proActivity")
+        };
+      }
+
+      function loadIdentity() {
+        const saved = safeParse(localStorage.getItem(IDENTITY_KEY));
+        const fields = identityFields();
+
+        Object.keys(fields).forEach((key) => {
+          if (fields[key] && saved[key] && !fields[key].value) {
+            fields[key].value = saved[key];
+          }
+        });
+      }
+
+      function saveIdentity() {
+        const fields = identityFields();
+        const data = {};
+
+        Object.keys(fields).forEach((key) => {
+          data[key] = (fields[key]?.value || "").trim();
+        });
+
+        localStorage.setItem(IDENTITY_KEY, JSON.stringify(data));
+      }
+
+      function clearIdentity() {
+        localStorage.removeItem(IDENTITY_KEY);
+        const fields = identityFields();
+
+        Object.keys(fields).forEach((key) => {
+          if (fields[key]) fields[key].value = "";
+        });
+
+        update(false);
+      }
+
+      function identityText() {
+        const fields = identityFields();
+
+        return [
+          "Nom / responsable : " + ((fields.nom?.value || "").trim() || "à compléter"),
+          "Téléphone / WhatsApp : " + ((fields.telephone?.value || "").trim() || "à compléter"),
+          "Zone / ville : " + ((fields.zone?.value || "").trim() || "à compléter"),
+          "Secteur / activité : " + ((fields.activite?.value || "").trim() || "à compléter")
+        ].join("\n");
+      }
+
+      function bindIdentity() {
+        const fields = identityFields();
+
+        Object.keys(fields).forEach((key) => {
+          if (!fields[key]) return;
+          fields[key].addEventListener("input", () => {
+            saveIdentity();
+            update(false);
+          });
+        });
+
+        if ($("btnClearIdentity")) {
+          $("btnClearIdentity").onclick = clearIdentity;
+        }
+      }
+
+      function money(n) {
+        return new Intl.NumberFormat("fr-FR").format(n) + " FCFA";
+      }
+
+      function euro(n) {
+        return new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(n) + " €";
+      }
+
+      function priceKnown(plan) {
+        return country === "senegal" || typeof plan.eur === "number";
+      }
+
+      function priceText(plan) {
+        if (country === "france") {
+          return typeof plan.eur === "number" ? euro(plan.eur) : "Tarif France à valider";
+        }
+        return money(plan.fcfa);
+      }
+
+      function priceNote(plan) {
+        if (country === "france") {
+          return typeof plan.eur === "number"
+            ? "Tarif France adapté · pas une conversion"
+            : "Montant EUR à confirmer avant paiement";
+        }
+        return "Tarif Sénégal · Wave direct";
+      }
+
+      function total(items) {
+        if (country === "france") {
+          if (items.some((plan) => typeof plan.eur !== "number")) return null;
+          return items.reduce((sum, plan) => sum + plan.eur, 0);
+        }
+        return items.reduce((sum, plan) => sum + plan.fcfa, 0);
+      }
+
+      function totalText(items) {
+        const value = total(items);
+        if (value === null) return "À confirmer";
+        return country === "france" ? euro(value) : money(value);
+      }
+
+      function paymentLabel() {
+        return country === "france"
+          ? "Sendwave France → " + WAVE_LABEL
+          : "Wave direct → " + WAVE_LABEL;
+      }
+
+      function date() {
+        return new Date().toLocaleString("fr-FR", {
+          dateStyle: "full",
+          timeStyle: "short"
+        });
+      }
+
+      function chosen() {
+        return PLANS.filter((p) => selected.has(p.code));
+      }
+
+      function noteText() {
+        const note = ($("paymentNote")?.value || "").trim();
+        return note || "Non renseignée.";
+      }
+
+      function render() {
+        ["base", "boost", "reseau"].forEach((cat) => {
+          const targetId =
+            cat === "base"
+              ? "baseOptions"
+              : cat === "boost"
+                ? "boostOptions"
+                : "reseauOptions";
+
+          $(targetId).innerHTML = PLANS
+            .filter((p) => p.cat === cat)
+            .map((p) => `
+              <button class="option ${selected.has(p.code) ? "active" : ""}" data-code="${p.code}" type="button">
+                <span class="code ${cat !== "base" ? "extra" : ""}">${p.code}</span>
+                <b>${p.name}</b>
+                <span class="amount">${priceText(p)}</span>
+                <span class="priceNote">${priceNote(p)}</span>
+                <span>${p.desc}</span>
+              </button>
+            `)
+            .join("");
+        });
+
+        document.querySelectorAll(".option").forEach((button) => {
+          button.onclick = () => {
+            selected.has(button.dataset.code)
+              ? selected.delete(button.dataset.code)
+              : selected.add(button.dataset.code);
+
+            update(true);
+          };
+        });
+      }
+
+      function msg() {
+        const items = chosen();
+        const lines =
+          items.map((p) => `- ${p.code} · ${p.name} · ${priceText(p)}${priceKnown(p) ? "" : " · à valider avant paiement"}`).join("\n") ||
+          "Aucun choix sélectionné";
+
+        return `Bonjour JB, je veux activer ma présence DIGIY ENTREPRISE.
+
+Date de demande : ${date()}
+Pays / grille : ${country === "france" ? "France · tarif adapté" : "Sénégal · tarif terrain"}
+Demande initiale : gratuite / sans engagement avant activation PRO
+
+Infos pro :
+${identityText()}
+
+Choix :
+${lines}
+
+Sous-total : ${totalText(items)}
+Ajustement / remise : 0
+Total : ${totalText(items)}
+
+Règlement : ${paymentLabel()}
+Rappel : les tarifs pays ne sont pas une conversion au taux de change.
+
+Note / preuve :
+${noteText()}
+
+Après paiement, je vous envoie la preuve ici.
+
+Canal souhaité : WhatsApp ou SMS.`;
+      }
+
+      function proofMsg() {
+        const items = chosen();
+        const lines =
+          items.map((p) => `- ${p.code} · ${p.name} · ${priceText(p)}${priceKnown(p) ? "" : " · à valider"}`).join("\n") ||
+          "Aucun choix sélectionné";
+
+        return `Bonjour JB, voici la preuve de paiement pour DIGIY ENTREPRISE.
+
+Date de demande : ${date()}
+Pays / grille : ${country === "france" ? "France" : "Sénégal"}
+Demande initiale : gratuite / sans engagement avant activation PRO
+
+Règlement : ${paymentLabel()}
+Montant : ${totalText(items)}
+
+Choix :
+${lines}
+
+Note / preuve :
+${noteText()}
+
+Je joins la capture / preuve de paiement à ce message.`;
+      }
+
+      function update(scroll) {
+        render();
+
+        const items = chosen();
+
+        $("selectedBox").innerHTML = items.length
+          ? `<strong>${items.length} choix sélectionné${items.length > 1 ? "s" : ""}</strong><br>Ajoute ou retire en recliquant.`
+          : "<strong>Aucun choix sélectionné</strong><br>Rien n’est précoché.";
+
+        $("choiceList").innerHTML = items.length
+          ? items.map((p) => `
+              <div class="line">
+                <span>${p.code} · ${p.name}</span>
+                <b>${priceText(p)}</b>
+              </div>
+            `).join("")
+          : `
+              <div class="line">
+                <span>Aucun choix</span>
+                <b>${country === "france" ? "0 €" : "0 FCFA"}</b>
+              </div>
+            `;
+
+        $("subtotalText").textContent = totalText(items);
+        if ($("adjustText")) $("adjustText").textContent = country === "france" ? "0 €" : "0 FCFA";
+        $("totalText").textContent = totalText(items);
+        $("payTotal").textContent = totalText(items);
+        $("dateBox").textContent = "Date de demande : " + date();
+
+        const paymentTitle = document.querySelector(".paymentTitle");
+        if (paymentTitle) {
+          paymentTitle.textContent = country === "france"
+            ? "💳 Paiement Sendwave vers Wave Sénégal"
+            : "💳 Paiement Wave direct";
+        }
+
+        $("benefits").innerHTML = (
+          items.length
+            ? [...COMMON, ...items.flatMap((p) => p.bonus)]
+            : []
+        )
+          .slice(0, 22)
+          .map((x) => `<li>✅ ${x}</li>`)
+          .join("");
+
+        $("btnWa").href = "https://wa.me/" + TEL + "?text=" + encodeURIComponent(msg());
+        $("btnProof").href = "https://wa.me/" + TEL + "?text=" + encodeURIComponent(proofMsg());
+
+        if (scroll && matchMedia("(max-width:850px)").matches) {
+          summary.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      $("btnSms").onclick = () => {
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(msg()).then(() => {
+          $("btnSms").textContent = "✅ Message SMS copié";
+          setTimeout(() => ($("btnSms").textContent = "📱 SMS"), 1600);
+        });
+      };
+
+      $("btnCopyWave").onclick = () => {
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(WAVE_LABEL).then(() => {
+          $("btnCopyWave").textContent = "✅ Wave copié";
+          setTimeout(() => ($("btnCopyWave").textContent = "📋 Copier Wave"), 1600);
+        });
+      };
+
+      $("btnClear").onclick = () => {
+        selected.clear();
+        update(true);
+      };
+
+      $("btnFloating").onclick = () => {
+        summary.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      $("paymentNote").addEventListener("input", () => update(false));
+
+      country = initialCountry();
+      loadIdentity();
+      bindIdentity();
+      bindCountry();
+      setCountry(country);
+      update(false);
+    })();
+  </script>
+
+  <script
+    src="https://digiy-accueil.digiylyfe.com/assets/js/digiy-welcome-floating.js"
+    data-module="ENTREPRISE"
+    defer>
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
