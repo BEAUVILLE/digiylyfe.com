@@ -1,0 +1,44 @@
+name: Renforcer le CAT Entreprise
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/patch-cat-entreprise-index.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Remplacer les boutons par un CAT unique
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          changes=[
+            ('<a class="gold" href="./tarif-entreprise-petite-cote.html" data-i18n="enterpriseCta1">💰 Voir le tarif · 19 900 FCFA / mois</a>','<a class="gold" href="./tarif-entreprise-petite-cote.html#choisir" data-i18n="enterpriseCta1">💳 Choisir mon offre et payer</a>'),
+            ('    <a href="./tarif-entreprise-petite-cote.html#engagement" data-i18n="enterpriseCta2">✅ Comprendre et valider l’abonnement</a>\n',''),
+            ('enterpriseCta1:"💰 Voir le tarif · 19 900 FCFA / mois",enterpriseCta2:"✅ Comprendre et valider l’abonnement",enterpriseCta3:"🧭 Voir les modules disponibles",','enterpriseCta1:"💳 Choisir mon offre et payer",enterpriseCta2:"",enterpriseCta3:"🧭 Voir les modules disponibles",'),
+            ('enterpriseCta1:"💰 View pricing · 19,900 FCFA / month",enterpriseCta2:"✅ Understand and confirm the subscription",enterpriseCta3:"🧭 View available modules",','enterpriseCta1:"💳 Choose my offer and pay",enterpriseCta2:"",enterpriseCta3:"🧭 View available modules",')
+          ]
+          for old,new in changes:
+            if old not in s:
+              raise SystemExit('Ancre introuvable: '+old[:100])
+            s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
+      - name: Vérifier et pousser
+        run: |
+          grep -q 'Choisir mon offre et payer' index.html
+          ! grep -q 'Comprendre et valider l’abonnement' index.html
+          git config user.name "DIGIYLYFE Builder"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html
+          git commit -m "Transforme la porte Entreprise en CAT paiement direct"
+          git push origin main
