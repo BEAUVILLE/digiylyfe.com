@@ -1,6 +1,7 @@
 name: Recâbler le tunnel tarif entreprise
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - agent/tunnel-tarif-entreprise
