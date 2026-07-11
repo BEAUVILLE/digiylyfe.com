@@ -1,0 +1,52 @@
+name: Relier le tarif à l'inscription entreprise
+
+on:
+  push:
+    branches:
+      - agent/tunnel-tarif-entreprise
+    paths:
+      - .github/workflows/patch-tarif-vers-inscription-entreprise.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/tunnel-tarif-entreprise
+          fetch-depth: 0
+
+      - name: Clarifier le socle et relier l'inscription dédiée
+        shell: python
+        run: |
+          from pathlib import Path
+          path=Path('tarif-entreprise-petite-cote.html')
+          source=path.read_text(encoding='utf-8')
+          changes=[
+            ('<article class="item"><i>🧭</i><strong data-i18n="i6t">Connexion aux modules</strong><span data-i18n="i6s">JOBS, RESA, PAY, LOC, MARKET ou BUILD selon le besoin réel.</span></article>',
+             '<article class="item"><i>🧭</i><strong data-i18n="i6t">Moteur logiciel en option</strong><span data-i18n="i6s">Diagnostic puis tarif séparé avant d’activer JOBS, RESA, PAY, LOC, MARKET ou BUILD.</span></article>'),
+            ("i6t:'Connexion aux modules',i6s:'JOBS, RESA, PAY, LOC, MARKET ou BUILD selon le besoin réel.'",
+             "i6t:'Moteur logiciel en option',i6s:'Diagnostic puis tarif séparé avant d’activer JOBS, RESA, PAY, LOC, MARKET ou BUILD.'"),
+            ("i6t:'Module connection',i6s:'JOBS, RESA, PAY, LOC, MARKET or BUILD according to the real need.'",
+             "i6t:'Optional software engine',i6s:'Diagnosis and separate pricing before activating JOBS, RESA, PAY, LOC, MARKET or BUILD.'"),
+            ("window.location.href='./inscription.html?offre=entreprise-petite-cote&tarif=19900&periode=mensuel&engagement=valide'",
+             "window.location.href='./inscription-entreprise-petite-cote.html'")
+          ]
+          for old,new in changes:
+            if old not in source:
+              raise SystemExit('Ancre introuvable: '+old[:100])
+            source=source.replace(old,new,1)
+          path.write_text(source,encoding='utf-8')
+
+      - name: Vérifier et enregistrer
+        run: |
+          grep -q 'Moteur logiciel en option' tarif-entreprise-petite-cote.html
+          grep -q 'inscription-entreprise-petite-cote.html' tarif-entreprise-petite-cote.html
+          git config user.name "DIGIYLYFE Builder"
+          git config user.email "actions@users.noreply.github.com"
+          git add tarif-entreprise-petite-cote.html
+          git commit -m "Relie le tarif à l'inscription entreprise dédiée"
+          git push origin HEAD:agent/tunnel-tarif-entreprise
