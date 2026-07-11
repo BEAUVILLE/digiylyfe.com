@@ -1,0 +1,74 @@
+name: Positionnement Club DIGIYLYFE
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/positionnement-club.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Positionner DIGIYLYFE comme Club digital
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          replacements = [
+            ('<title>DIGIYLYFE — La place centrale du business local</title>', '<title>DIGIYLYFE — Le Club digital des Métiers et des Entreprises de la Petite Côte</title>'),
+            ('<meta name="description" content="DIGIYLYFE est la place centrale du business local : clients et professionnels choisissent leur porte. Chauffeurs, logements, boutiques, artisans, jobs, réservations, paiement direct. QR direct, contact direct, Pack Présence Terrain, inscription directe, abonnement accessible, le terrain garde la main.">', '<meta name="description" content="DIGIYLYFE est le Club digital des Métiers et des Entreprises de la Petite Côte. Vitrines, QR officiels, contacts et paiements directs, 0% commission. Chaque activité garde son identité, le Club rassemble les forces du terrain.">'),
+            ('<meta name="digiy-build" content="index-entreprise-clip-cat-direct-20260711">', '<meta name="digiy-build" content="index-club-metiers-entreprises-petite-cote-20260711">'),
+            ('<meta property="og:title" content="DIGIYLYFE — La place centrale du business local">', '<meta property="og:title" content="DIGIYLYFE — Le Club digital des Métiers et des Entreprises de la Petite Côte">'),
+            ('<meta property="og:description" content="Clients et professionnels choisissent leur porte : chauffeurs, logements, boutiques, artisans, jobs, réservations, paiement direct. QR direct, contact direct, Pack Présence Terrain, inscription directe, le terrain garde la main.">', '<meta property="og:description" content="Rassembler crée la force : vitrines, QR officiels, contacts et paiements directs pour les métiers et les entreprises de la Petite Côte. 0% commission DIGIY.">'),
+            ('De Saly au monde · Business local', 'Club digital · Métiers & Entreprises'),
+            ('La ville digitale du terrain', 'Petite Côte · Métiers · Entreprises'),
+            ('La place centrale du business local', 'Le Club digital des Métiers et des Entreprises'),
+            ("Chaque bouton vous emmène dans le bon quartier. Vous n'êtes pas perdu : vous choisissez votre porte.", "DIGIYLYFE rassemble les forces du terrain de la Petite Côte : chaque activité garde son identité, gagne en visibilité et ouvre une route directe vers ses clients."),
+            ("DIGIYLYFE n'est pas un journal. DIGIYLYFE est le Club digital des Métiers et des Entreprises.", 'Rassembler crée la force.'),
+            ('QR direct · Contact direct · Paiement direct · Abonnement accessible · Le terrain garde la main.', 'Un même Club. Des métiers différents. Des portes directes. La valeur reste dans les mains du terrain.'),
+            ('Carte réseau officielle DIGIYLYFE.COM : scannable, partageable, imprimable. Une seule porte vers la ville digitale du terrain.', 'Carte réseau officielle du Club DIGIYLYFE : scannable, partageable et imprimable. Une identité commune, puis une porte directe pour chaque métier.'),
+            ('Nouvelle porte · Entreprises déjà initiées', 'Le Club se rassemble · La force du terrain'),
+            ('🏢 Entreprises de la Petite Côte', '🏢 Métiers & Entreprises de la Petite Côte'),
+            ('Votre entreprise est déjà active. DIGIYLYFE organise et renforce sa présence numérique locale : une vitrine claire, une carte professionnelle avec QR et une route directe vers vos clients.', 'Artisans, boutiques, hôtels, écoles, agences, cabinets, BTP, transport et services : chacun garde sa porte professionnelle, tous gagnent la force d’un réseau local visible.'),
+            ('Visible, identifiable et joignable en un scan.', 'Se rassembler sans perdre son indépendance.'),
+            ('Pour les hôtels, résidences, écoles, agences, cabinets, sociétés de services, ateliers, entreprises BTP, maintenance, transport et PME locales.', 'Chaque membre garde ses clients, ses paiements et son identité. DIGIYLYFE apporte la vitrine, le QR et la circulation entre les portes.'),
+            ('Ce n’est pas un nouveau gros module. C’est une porte claire qui rassemble la vitrine, le QR, le contact direct et, selon le besoin, JOBS, RESA, PAY, LOC, MARKET ou BUILD.', 'DIGIYLYFE ne mélange pas les métiers et ne prend pas leur place. Le Club les rend visibles ensemble, puis chaque client entre directement par la bonne porte.'),
+            ('DIGIYLYFE — De Saly au monde. Le Club digital des Métiers et des Entreprises : QR, contact direct, paiement direct, abonnement accessible.', 'DIGIYLYFE — Le Club digital des Métiers et des Entreprises de la Petite Côte. Une identité commune, des portes directes, 0% commission.'),
+            ('Entreprises Petite Côte', 'Club Métiers & Entreprises'),
+            ('pageTitle:"DIGIYLYFE — The central square of local business"', 'pageTitle:"DIGIYLYFE — The digital Club for Petite Côte Trades and Businesses"'),
+            ('metaDescription:"DIGIYLYFE is the central square of local business: clients and professionals choose their door. Drivers, housing, shops, trades, jobs, bookings, direct payment. Direct QR, direct contact, Field Presence Pack, direct registration, affordable subscription, the field keeps control."', 'metaDescription:"DIGIYLYFE is the digital Club for Petite Côte trades and businesses. Showcases, official QR codes, direct contacts and direct payments, with 0% DIGIY commission. Each business keeps its identity while the Club gathers the strength of the field."'),
+            ('From Saly to the world · Local business', 'Digital Club · Trades & Businesses'),
+            ('The digital city of the field', 'Petite Côte · Trades · Businesses'),
+            ('The central square of local business', 'The digital Club for Trades and Businesses'),
+            ('Every button takes you to the right district. You are never lost: you choose your door.', 'DIGIYLYFE brings together the strengths of the Petite Côte field: every business keeps its identity, gains visibility and opens a direct road to its clients.'),
+            ('DIGIYLYFE is not a newspaper. DIGIYLYFE is the digital Club for Trades and Businesses.', 'Together, the field becomes stronger.'),
+            ('Direct QR · Direct contact · Direct payment · Affordable subscription · The field keeps control.', 'One Club. Different trades. Direct doorways. The value stays in the hands of the field.'),
+            ('Official DIGIYLYFE.COM network card: scannable, shareable and printable. One single doorway to the digital city of the field.', 'Official DIGIYLYFE Club network card: scannable, shareable and printable. One common identity, then a direct doorway for every trade.'),
+            ('New doorway · Digitally ready businesses', 'The Club comes together · Strength of the field'),
+            ('🏢 Petite Côte businesses', '🏢 Petite Côte Trades & Businesses'),
+            ('Your company is already active. DIGIYLYFE organizes and strengthens its local digital presence: a clear showcase, a professional QR business card and a direct road to your clients.', 'Tradespeople, shops, hotels, schools, agencies, firms, construction, transport and services: everyone keeps a professional doorway and all gain the strength of a visible local network.'),
+            ('Visible, identifiable and reachable in one scan.', 'Come together without losing independence.'),
+            ('For hotels, residences, schools, agencies, firms, service companies, workshops, construction, maintenance, transport and local SMEs.', 'Every member keeps its clients, payments and identity. DIGIYLYFE provides the showcase, QR and circulation between the doorways.'),
+            ('This is not another large module. It is a clear doorway combining the showcase, QR, direct contact and, when needed, JOBS, RESA, PAY, LOC, MARKET or BUILD.', 'DIGIYLYFE does not mix trades or take their place. The Club makes them visible together, then each client enters directly through the right doorway.'),
+            ('Petite Côte businesses', 'Trades & Businesses Club'),
+            ('DIGIYLYFE — From Saly to the world. The digital Club for Trades and Businesses: QR, direct contact, direct payment, affordable subscription.', 'DIGIYLYFE — The digital Club for Petite Côte Trades and Businesses. One shared identity, direct doorways and 0% commission.'),
+          ]
+          for old, new in replacements:
+              s = s.replace(old, new)
+          s = s.replace('shareWhatsapp:"DIGIYLYFE — Le Club digital des Métiers et des Entreprises. De Saly au monde. QR direct, contact direct, paiement direct au pro, abonnement accessible. https://digiylyfe.com/"', 'shareWhatsapp:"DIGIYLYFE — Le Club digital des Métiers et des Entreprises de la Petite Côte. Rassembler crée la force. QR direct, contact direct, paiement direct, 0% commission. https://digiylyfe.com/"')
+          s = s.replace('shareWhatsapp:"DIGIYLYFE — The digital Club for Trades and Businesses. From Saly to the world. Direct QR, direct contact, direct payment to the pro, affordable subscription. https://digiylyfe.com/"', 'shareWhatsapp:"DIGIYLYFE — The digital Club for Petite Côte Trades and Businesses. Together, the field becomes stronger. Direct QR, direct contact, direct payment and 0% commission. https://digiylyfe.com/"')
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Positionne DIGIYLYFE comme Club Métiers et Entreprises"
+          git push
