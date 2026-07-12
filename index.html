@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#06140f">
 <meta name="description" content="DIGIYLYFE est le Club digital des Métiers et des Entreprises de la Petite Côte. Vitrines, QR officiels, contacts et paiements directs, 0% commission. Chaque activité garde son identité, le Club rassemble les forces du terrain.">
 <meta name="robots" content="index,follow">
-<meta name="digiy-build" content="index-club-metiers-entreprises-petite-cote-20260711">
+<meta name="digiy-build" content="index-club-metiers-entreprises-carnet-pro-20260712">
 <link rel="canonical" href="https://digiylyfe.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://digiylyfe.com/">
@@ -28,7 +28,7 @@
   --card:rgba(255,255,255,.07);
   --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   /* Couleurs de quartier */
-  --q-pay:#22c55e;      /* vert Wave · argent direct */
+  --q-carnet:#22c55e;      /* vert activité · carnet professionnel */
   --q-qr:#f6c453;       /* or · visibilité */
   --q-driver:#3b82f6;   /* bleu route · mobilité */
   --q-market:#f97316;   /* orange commerce */
@@ -319,7 +319,7 @@ button{font:inherit;cursor:pointer}
 .quartier strong{font-size:15px;font-weight:1000;letter-spacing:-.01em;color:#fffaf0}
 .quartier small{color:rgba(255,250,240,.75);font-size:12px;font-weight:900;line-height:1.3}
 .quartier b{margin-top:4px;align-self:flex-start;padding:3px 9px;border-radius:999px;font-size:10.5px;font-weight:1000;letter-spacing:.05em;text-transform:uppercase;color:#06140f;background:var(--q)}
-.qPay{--q:var(--q-pay);--q-border:rgba(34,197,94,.48);--q-tint:rgba(34,197,94,.15)}
+.qCarnet{--q:var(--q-carnet);--q-border:rgba(34,197,94,.48);--q-tint:rgba(34,197,94,.15)}
 .qQr{--q:var(--q-qr);--q-border:rgba(246,196,83,.52);--q-tint:rgba(246,196,83,.16)}
 .qDriver{--q:var(--q-driver);--q-border:rgba(59,130,246,.48);--q-tint:rgba(59,130,246,.16)}
 .qMarket{--q:var(--q-market);--q-border:rgba(249,115,22,.48);--q-tint:rgba(249,115,22,.15)}
@@ -554,10 +554,10 @@ button{font:inherit;cursor:pointer}
       <small data-i18n="qResaSmall">Réserver une table, un rendez-vous, un créneau</small>
       <b data-i18n="qResaTag">Réservation</b>
     </a>
-    <a class="quartier qPay" href="https://pay.digiylyfe.com/">
-      <i>💳</i><strong>PAY</strong>
-      <small data-i18n="qPaySmall">Paiement direct au pro · Wave · zéro commission</small>
-      <b data-i18n="qPayTag">Argent direct</b>
+    <a class="quartier qCarnet" href="https://digiy-carnet-pro.digiylyfe.com/">
+      <i>📒</i><strong>CARNET PRO</strong>
+      <small data-i18n="qCarnetSmall">Encaissements · dépenses · réserves · preuves</small>
+      <b data-i18n="qCarnetTag">Activité claire</b>
     </a>
     <a class="quartier qExplore" href="https://explore.digiylyfe.com/">
       <i>🗺️</i><strong>EXPLORE</strong>
@@ -702,7 +702,7 @@ button{font:inherit;cursor:pointer}
       <a href="https://build.digiylyfe.com/">🏗️ BUILD · <span data-i18n="menuBuild">artisans</span></a>
       <a href="https://jobs.digiylyfe.com/">💼 JOBS · <span data-i18n="menuJobs">missions</span></a>
       <a href="https://resa-table-resto.digiylyfe.com/">📅 RESA · <span data-i18n="menuResa">réserver</span></a>
-      <a href="https://pay.digiylyfe.com/">💳 PAY · <span data-i18n="menuPay">paiement direct</span></a>
+      <a href="https://digiy-carnet-pro.digiylyfe.com/">📒 CARNET PRO · <span data-i18n="menuCarnet">carnet d’activité</span></a>
       <a href="https://explore.digiylyfe.com/">🗺️ EXPLORE · <span data-i18n="menuExplore">lieux</span></a>
 
       <span class="menuLabel" data-i18n="menuLabelPro">🔥 Côté pro · activer & piloter</span>
@@ -712,6 +712,7 @@ button{font:inherit;cursor:pointer}
       <a class="gold" href="https://tarifs.digiylyfe.com/">✍️ <span data-i18n="menuActivate">Activer mon module</span></a>
       <a class="gold" href="https://tarifs.digiylyfe.com/">📦 <span data-i18n="menuPrices">Tarifs</span></a>
       <a href="https://pro-espace.digiylyfe.com/">🔐 <span data-i18n="menuPro">Espace pro</span></a>
+      <a href="https://pro-carnet.digiylyfe.com/pin.html">📒 <span data-i18n="menuProCarnet">PRO CARNET · accès sécurisé</span></a>
       <a href="./ciblage-pros-digiylyfe.html">🎯 <span data-i18n="menuCiblagePros">Ciblage pros · boutiques · LOC · services</span></a>
       <a href="./qr-module-digiylyfe.html">▣ <span data-i18n="menuQrModule">QR Module · porte pro</span></a>
       <a href="https://club-metiers.digiylyfe.com/">🧰 <span data-i18n="menuClub">Club des Métiers</span></a>
@@ -794,7 +795,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       qBuildSmall:"Artisans · chantiers · services terrain",qBuildTag:"Chantier",
       qJobsSmall:"Missions · talents locaux · candidatures directes",qJobsTag:"Recrutement",
       qResaSmall:"Réserver une table, un rendez-vous, un créneau",qResaTag:"Réservation",
-      qPaySmall:"Paiement direct au pro · Wave · zéro commission",qPayTag:"Argent direct",
+      qCarnetSmall:"Encaissements · dépenses · réserves · preuves",qCarnetTag:"Activité claire",
       qExploreSmall:"Lieux · sites touristiques · découvertes locales",qExploreTag:"Lieux",
       qQrSmall:"La page scannable qui ouvre chaque porte",qQrTag:"Visibilité",
       qHubSmall:"La mairie centrale : toutes les grandes portes",qHubTag:"Mairie",
@@ -821,9 +822,9 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       footerQr:"QR scannable",footerQrModule:"QR Module",footerPresence:"Pack Présence Terrain",footerInscription:"Inscription",footerCiblagePros:"Ciblage Pros",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"Solution DIGIYLYFE",footerQuartiers:"Quartiers",footerActivate:"Activer mon module",
       menuTitle:"☰ Menu complet",
       menuLabelClient:"🔎 Côté client · les quartiers",
-      menuDriver:"chauffeurs",menuLoc:"logements & tourisme",menuMarket:"boutiques",menuBuild:"artisans",menuJobs:"missions",menuResa:"réserver",menuPay:"paiement direct",menuExplore:"lieux",
+      menuDriver:"chauffeurs",menuLoc:"logements & tourisme",menuMarket:"boutiques",menuBuild:"artisans",menuJobs:"missions",menuResa:"réserver",menuCarnet:"carnet d’activité",menuExplore:"lieux",
       menuLabelPro:"🔥 Côté pro · activer & piloter",
-      menuPresence:"Pack Présence Terrain",menuInscription:"Inscription DIGIY",menuActivate:"Activer mon module",menuPrices:"Tarifs",menuPro:"Espace pro",menuCiblagePros:"Ciblage pros · boutiques · LOC · services",menuQrModule:"QR Module · porte pro",menuClub:"Club des Métiers",
+      menuPresence:"Pack Présence Terrain",menuInscription:"Inscription DIGIY",menuActivate:"Activer mon module",menuPrices:"Tarifs",menuPro:"Espace pro",menuProCarnet:"PRO CARNET · accès sécurisé",menuCiblagePros:"Ciblage pros · boutiques · LOC · services",menuQrModule:"QR Module · porte pro",menuClub:"Club des Métiers",
       menuLabelComprendre:"🏛️ Comprendre · la cathédrale",
       menuClip:"Clip terrain",menuSolution:"Solution DIGIYLYFE",menuCarnets:"Carnets DIGIYLYFE",menuArchitecture:"Architecture DIGIYLYFE",menuReview:"Revue DIGIYLYFE",
       menuLabelOutils:"🧭 La mairie & la poste",
@@ -882,7 +883,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       qBuildSmall:"Tradespeople · worksites · field services",qBuildTag:"Worksite",
       qJobsSmall:"Missions · local talents · direct applications",qJobsTag:"Recruiting",
       qResaSmall:"Book a table, an appointment, a time slot",qResaTag:"Booking",
-      qPaySmall:"Direct payment to the pro · Wave · zero commission",qPayTag:"Direct money",
+      qCarnetSmall:"Income · expenses · reserves · evidence",qCarnetTag:"Clear activity",
       qExploreSmall:"Places · tourist sites · local discoveries",qExploreTag:"Places",
       qQrSmall:"The scannable page that opens every door",qQrTag:"Visibility",
       qHubSmall:"The central town hall: all the main doors",qHubTag:"Town hall",
@@ -909,9 +910,9 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       footerQr:"Scannable QR",footerQrModule:"QR Module",footerPresence:"Field Presence Pack",footerInscription:"Registration",footerCiblagePros:"Pro Targets",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"DIGIYLYFE Solution",footerQuartiers:"Districts",footerActivate:"Activate my module",
       menuTitle:"☰ Full menu",
       menuLabelClient:"🔎 Client side · the districts",
-      menuDriver:"drivers",menuLoc:"housing & tourism",menuMarket:"shops",menuBuild:"trades",menuJobs:"missions",menuResa:"book",menuPay:"direct payment",menuExplore:"places",
+      menuDriver:"drivers",menuLoc:"housing & tourism",menuMarket:"shops",menuBuild:"trades",menuJobs:"missions",menuResa:"book",menuCarnet:"business notebook",menuExplore:"places",
       menuLabelPro:"🔥 Pro side · activate & manage",
-      menuPresence:"Field Presence Pack",menuInscription:"DIGIY Registration",menuActivate:"Activate my module",menuPrices:"Pricing",menuPro:"Pro space",menuCiblagePros:"Pro targets · shops · stays · services",menuQrModule:"QR Module · pro doorway",menuClub:"Trades Club",
+      menuPresence:"Field Presence Pack",menuInscription:"DIGIY Registration",menuActivate:"Activate my module",menuPrices:"Pricing",menuPro:"Pro space",menuProCarnet:"PRO CARNET · secure access",menuCiblagePros:"Pro targets · shops · stays · services",menuQrModule:"QR Module · pro doorway",menuClub:"Trades Club",
       menuLabelComprendre:"🏛️ Understand · the cathedral",
       menuClip:"Field clip",menuSolution:"DIGIYLYFE Solution",menuCarnets:"DIGIYLYFE Notebooks",menuArchitecture:"DIGIYLYFE Architecture",menuReview:"DIGIYLYFE Review",
       menuLabelOutils:"🧭 Town hall & post office",
@@ -948,3 +949,4 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
 </script>
 </body>
 </html>
+
