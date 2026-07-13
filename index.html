@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="fr">
 <head>
@@ -348,6 +347,9 @@ button{font:inherit;cursor:pointer}
 .viteCard i{font-style:normal;font-size:26px;line-height:1}
 .viteCard strong{font-size:14.5px;font-weight:1000;line-height:1.15}
 .viteCard small{color:rgba(255,250,240,.72);font-size:12px;font-weight:900;line-height:1.3}
+.viteCard.livre{border:1px solid rgba(246,196,83,.75);background:linear-gradient(150deg,rgba(246,196,83,.20),rgba(34,197,94,.08));box-shadow:0 12px 34px rgba(246,196,83,.14)}
+.viteCard.livre strong{color:#f6c453}
+.viteCard.livre small{color:rgba(255,243,207,.85)}
 @media(max-width:680px){.viteGrid{grid-template-columns:1fr}}
 
 /* ── Signature terrain ── */
@@ -635,6 +637,10 @@ button{font:inherit;cursor:pointer}
   <h2 data-i18n="profondTitle">🏛️ Je veux comprendre profond</h2>
   <p data-i18n="profondLead">La cathédrale de la ville : la doctrine, les carnets, l'architecture. Le clip attire l'œil. Le QR ouvre la porte. Le texte installe la vérité.</p>
   <nav class="viteGrid" aria-label="Portes de compréhension profonde">
+    <a class="viteCard livre" href="https://livre.digiylyfe.com/" target="_blank" rel="noopener">
+      <i>📖</i><strong data-i18n="profondLivreTitle">Le Livre</strong>
+      <small data-i18n="profondLivreSmall">Pierre par pierre — notre histoire et notre manifeste, à lire ou à écouter.</small>
+    </a>
     <a class="viteCard" href="https://carnets.digiylyfe.com/" target="_blank" rel="noopener">
       <i>📚</i><strong data-i18n="profondCarnetsTitle">Carnets DIGIYLYFE</strong>
       <small data-i18n="profondCarnetsSmall">La bibliothèque publique : peu de pages, des pages fortes.</small>
@@ -811,6 +817,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       clipShare:"💬 Partager le clip",clipSms:"✉️ SMS clip",
       profondTitle:"🏛️ Je veux comprendre profond",
       profondLead:"La cathédrale de la ville : la doctrine, les carnets, l'architecture. Le clip attire l'œil. Le QR ouvre la porte. Le texte installe la vérité.",
+      profondLivreTitle:"Le Livre",profondLivreSmall:"Pierre par pierre — notre histoire et notre manifeste, à lire ou à écouter.",
       profondCarnetsTitle:"Carnets DIGIYLYFE",profondCarnetsSmall:"La bibliothèque publique : peu de pages, des pages fortes.",
       profondDoctrineTitle:"La doctrine",profondDoctrineSmall:"0% commission · contact direct · le terrain garde la main.",
       profondArchiTitle:"L'architecture",profondArchiSmall:"La page-mère : la vitrine, le HUB, les bras métiers, le QR comme porte.",
@@ -899,6 +906,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       clipShare:"💬 Share the clip",clipSms:"✉️ SMS clip",
       profondTitle:"🏛️ I want to understand deeply",
       profondLead:"The cathedral of the city: the doctrine, the notebooks, the architecture. The clip catches the eye. The QR opens the door. The text sets the truth.",
+      profondLivreTitle:"The Book",profondLivreSmall:"Stone by stone — our story and our manifesto, to read or to listen to.",
       profondCarnetsTitle:"DIGIYLYFE Notebooks",profondCarnetsSmall:"The public library: few pages, strong pages.",
       profondDoctrineTitle:"The doctrine",profondDoctrineSmall:"0% commission · direct contact · the field keeps control.",
       profondArchiTitle:"The architecture",profondArchiSmall:"The mother page: the showcase, the HUB, the business arms, the QR as a door.",
@@ -951,3 +959,4 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
 </script>
 </body>
 </html>
+
