@@ -7,15 +7,15 @@
 <meta name="theme-color" content="#06140f">
 <meta name="description" content="DIGIYLYFE est le Club digital des Métiers et des Entreprises de la Petite Côte. Vitrines, QR officiels, contacts et paiements directs, 0% commission. Chaque activité garde son identité, le Club rassemble les forces du terrain.">
 <meta name="robots" content="index,follow">
-<meta name="digiy-build" content="index-club-metiers-entreprises-carnet-pro-20260712">
+<meta name="digiy-build" content="index-final-digiylyfe-20260713">
 <link rel="canonical" href="https://digiylyfe.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://digiylyfe.com/">
 <meta property="og:title" content="DIGIYLYFE — Le Club digital des Métiers et des Entreprises de la Petite Côte">
 <meta property="og:description" content="Rassembler crée la force : vitrines, QR officiels, contacts et paiements directs pour les métiers et les entreprises de la Petite Côte. 0% commission DIGIY.">
-<meta property="og:image" content="https://digiylyfe.com/icon-512.png">
-<link href="./icon-192.png" rel="icon" sizes="192x192">
-<link href="./icon-192.png" rel="apple-touch-icon">
+<meta property="og:image" content="https://digiylyfe.com/icon-512.png?v=20260713">
+<link href="./icon-192.png?v=20260713" rel="icon" sizes="192x192">
+<link href="./icon-192.png?v=20260713" rel="apple-touch-icon">
 <style>
 :root{
   --bg:#03120d;
@@ -187,6 +187,51 @@ button{font:inherit;cursor:pointer}
 .favoriteTip{margin-top:12px;border:1px dashed rgba(246,196,83,.45);border-radius:18px;padding:12px;background:rgba(246,196,83,.08);color:rgba(255,250,240,.84);font-size:13px;font-weight:900;line-height:1.42}
 .favoriteTip strong{color:#fff3cf}
 @media(max-width:680px){.proGateGrid{grid-template-columns:1fr}}
+
+/* ── Porte commerciale claire · version finale ── */
+.commercialDoor{
+  position:relative;overflow:hidden;margin-top:14px;padding:22px 18px;
+  border:1px solid rgba(246,196,83,.70);border-radius:30px;
+  background:radial-gradient(560px 260px at 0 0,rgba(246,196,83,.19),transparent 64%),linear-gradient(145deg,#0a4029,#061b13 72%);
+  box-shadow:0 24px 64px rgba(0,0,0,.34)
+}
+.commercialDoorGrid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:22px;align-items:center}
+.commercialKicker{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid rgba(246,196,83,.50);background:rgba(246,196,83,.10);color:#fff3cf;font-size:11px;font-weight:1000;letter-spacing:.09em;text-transform:uppercase}
+.commercialDoor h2{margin:12px 0 8px;font-size:clamp(30px,6.3vw,52px);line-height:.98;letter-spacing:-.045em;font-weight:1000}
+.commercialLead{margin:0;color:rgba(255,250,240,.84);font-size:clamp(14px,3.5vw,18px);line-height:1.45;font-weight:850}
+.commercialList{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:15px 0 0;padding:0;list-style:none}
+.commercialList li{padding:10px;border:1px solid rgba(255,255,255,.13);border-radius:15px;background:rgba(255,255,255,.055);font-size:13px;font-weight:950;line-height:1.25}
+.commercialOffer{padding:18px;border:1px solid rgba(246,196,83,.42);border-radius:24px;background:rgba(255,255,255,.07);text-align:center}
+.commercialOffer small{display:block;color:var(--soft);font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.08em}
+.commercialPrice{display:block;margin-top:5px;color:#fff3cf;font-size:clamp(30px,6vw,44px);line-height:1;font-weight:1000;letter-spacing:-.04em}
+.commercialDelay{display:block;margin-top:8px;color:rgba(255,250,240,.78);font-size:12px;font-weight:900}
+.commercialActions{display:grid;gap:8px;margin-top:14px}
+.commercialActions a{min-height:48px;border-radius:999px;border:1px solid rgba(246,196,83,.55);display:flex;align-items:center;justify-content:center;padding:10px 14px;text-align:center;font-size:13px;font-weight:1000}
+.commercialActions .primary{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f}
+.commercialActions .secondary{background:rgba(255,255,255,.07);color:#fff3cf}
+.commercialOffersLink{display:inline-block;margin-top:11px;color:#fff3cf;text-decoration:underline;text-underline-offset:3px;font-size:13px;font-weight:1000}
+.commercialTrust{margin:14px 0 0;text-align:center;color:rgba(255,250,240,.82);font-size:12.5px;line-height:1.4;font-weight:950}
+
+/* ── Trois preuves terrain ── */
+.terrainProofs{border-color:rgba(246,196,83,.48);background:linear-gradient(155deg,rgba(10,55,36,.94),rgba(4,20,14,.95))}
+.terrainProofsHead{text-align:center;max-width:720px;margin:0 auto 15px}
+.terrainProofsHead h2{margin:0;font-size:clamp(27px,6vw,44px);line-height:1;font-weight:1000;letter-spacing:-.04em}
+.terrainProofsHead p{margin:9px 0 0;color:var(--soft);font-size:14px;line-height:1.45;font-weight:850}
+.terrainProofGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.terrainProofCard{display:flex;flex-direction:column;min-height:260px;padding:16px;border:1px solid rgba(255,255,255,.14);border-radius:23px;background:rgba(255,255,255,.065);box-shadow:0 15px 35px rgba(0,0,0,.22)}
+.terrainProofIcon{font-size:34px;line-height:1}
+.terrainProofStatus{align-self:flex-start;margin-top:12px;padding:6px 9px;border-radius:999px;border:1px solid rgba(246,196,83,.40);background:rgba(246,196,83,.10);color:#fff3cf;font-size:10px;font-weight:1000;letter-spacing:.06em;text-transform:uppercase}
+.terrainProofCard h3{margin:11px 0 5px;font-size:20px;line-height:1.05;font-weight:1000}
+.terrainProofCard p{margin:0;color:rgba(255,250,240,.78);font-size:13px;line-height:1.42;font-weight:850}
+.terrainProofMeta{display:block;margin-top:9px;color:#bdf7d2;font-size:12px;font-weight:950}
+.terrainProofCard a{margin-top:auto;min-height:46px;padding:10px 13px;border-radius:999px;border:1px solid rgba(246,196,83,.52);background:rgba(246,196,83,.10);color:#fff3cf;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;font-weight:1000}
+@media(max-width:760px){
+  .commercialDoorGrid,.terrainProofGrid{grid-template-columns:1fr}
+  .commercialDoor{padding:18px 14px;border-radius:25px}
+  .commercialList{grid-template-columns:1fr 1fr}
+  .terrainProofCard{min-height:0}
+}
+@media(max-width:390px){.commercialList{grid-template-columns:1fr}}
 
 
 /* ── Porte Club Métiers & Entreprises ── */
@@ -393,7 +438,7 @@ button{font:inherit;cursor:pointer}
 <main class="app" id="haut">
 
 <header class="top">
-<a class="logo" href="https://digiylyfe.com/" aria-label="Accueil DIGIYLYFE"><img src="./icon-192.png" alt="DIGIYLYFE"></a>
+<a class="logo" href="https://digiylyfe.com/" aria-label="Accueil DIGIYLYFE"><img src="./icon-192.png?v=20260713" alt="DIGIYLYFE"></a>
 <div class="brand"><strong>DIGIYLYFE</strong><small data-i18n="brandTag">Club digital · Métiers & Entreprises</small></div>
 <button class="menuBtn" type="button" onclick="openMenu()" aria-label="Ouvrir le menu complet">☰</button>
 </header>
@@ -405,7 +450,7 @@ button{font:inherit;cursor:pointer}
 
 <!-- ═══ La place centrale ═══ -->
 <section class="hero" aria-label="La place centrale DIGIYLYFE">
-  <small data-i18n="heroSmall">Petite Côte · Métiers · Entreprises</small>
+  <small data-i18n="heroSmall">Ancré sur la Petite Côte · Ouvert au monde</small>
   <h1 data-i18n="heroTitle">Le Club digital des Métiers et des Entreprises</h1>
   <p data-i18n="heroLead">DIGIYLYFE rassemble les forces du terrain de la Petite Côte : chaque activité garde son identité, gagne en visibilité et ouvre une route directe vers ses clients.</p>
   <div class="capSeal" aria-label="Phrase de cap DIGIYLYFE">
@@ -420,31 +465,59 @@ button{font:inherit;cursor:pointer}
       <span data-i18n="doorClientText">Trouver un pro, un logement, un chauffeur, une boutique, un artisan ou un service — et le contacter directement.</span>
       <em data-i18n="doorClientCta">Entrer dans les quartiers →</em>
     </a>
-    <a class="door doorPro" href="#pro-portes">
+    <a class="door doorPro" href="#offre-professionnelle">
       <i>🔥</i>
       <strong data-i18n="doorProTitle">Je suis professionnel</strong>
-      <span data-i18n="doorProText">Nouveau pro : découvrez le Pack Présence Terrain. Déjà abonné : votre porte est côté HUB.</span>
+      <span data-i18n="doorProText">Nouveau pro : comprenez l’offre, voyez un exemple, puis inscrivez-vous. Déjà abonné : votre porte est côté HUB.</span>
       <span class="proHubNote" data-i18n="doorProHub">Astuce abonnés : ouvrez votre module et mettez-le en favori pour revenir sans scroller.</span>
-      <em data-i18n="doorProCta">Voir les portes pro →</em>
+      <em data-i18n="doorProCta">Voir l’offre et m’inscrire →</em>
     </a>
   </nav>
 
-  <figure class="heroNetworkCard" aria-label="Carte réseau officielle DIGIYLYFE">
-    <a class="heroNetworkImage" href="./qr.png" target="_blank" rel="noopener" aria-label="Ouvrir la carte QR officielle DIGIYLYFE">
-      <img src="./qr.png" alt="Carte QR officielle DIGIYLYFE.COM — Le Club Entreprises du Terrain" loading="eager">
-    </a>
-    <figcaption class="heroNetworkCaption" data-i18n="heroQrCaption">
-      Carte réseau officielle du Club DIGIYLYFE : scannable, partageable et imprimable. Une identité commune, puis une porte directe pour chaque métier.
-    </figcaption>
-    <div class="heroNetworkActions" aria-label="Actions carte QR DIGIYLYFE">
-      <a class="gold" href="./qr.png" target="_blank" rel="noopener" data-i18n="heroQrOpen">🖼️ Ouvrir la carte</a>
-      <a href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20La%20place%20centrale%20du%20business%20local.%20QR%20direct%2C%20contact%20direct%2C%20paiement%20direct.%20https%3A%2F%2Fdigiylyfe.com%2F" target="_blank" rel="noopener" data-i18n="heroQrShare">💬 Partager</a>
-      <a href="./qr.png" download="qr-digiylyfe.png" data-i18n="heroQrDownload">⬇️ Télécharger</a>
-    </div>
-  </figure>
-
-
 </section>
+
+<!-- ═══ Porte commerciale claire · version finale ═══ -->
+<section class="commercialDoor" id="offre-professionnelle" aria-label="Première présence professionnelle DIGIYLYFE">
+  <div class="commercialDoorGrid">
+    <div>
+      <span class="commercialKicker" data-i18n="commercialKicker">Votre première porte DIGIY</span>
+      <h2 data-i18n="commercialTitle">Une fiche professionnelle. Un QR. Vos clients en direct.</h2>
+      <p class="commercialLead" data-i18n="commercialLead">DIGIYLYFE rend votre activité visible et partageable sur téléphone. Le client découvre vos services, vous contacte sur WhatsApp et vous paie directement.</p>
+      <ul class="commercialList" aria-label="Livrables de la présence DIGIY">
+        <li data-i18n="commercialItem1">✓ Fiche professionnelle mobile</li>
+        <li data-i18n="commercialItem2">✓ Lien et QR partageables</li>
+        <li data-i18n="commercialItem3">✓ WhatsApp direct</li>
+        <li data-i18n="commercialItem4">✓ Services, photos et coordonnées</li>
+      </ul>
+    </div>
+    <div class="commercialOffer">
+      <small data-i18n="commercialFrom">À partir de</small>
+      <strong class="commercialPrice" data-i18n="commercialPrice">19 900 FCFA / mois</strong>
+      <span class="commercialDelay" data-i18n="commercialDelay">Délai de préparation confirmé après inscription</span>
+      <div class="commercialActions">
+        <a class="primary" href="./inscription.html" data-i18n="commercialSignup">Je m’inscris</a>
+        <a class="secondary" href="https://astou-boutique.digiylyfe.com/" target="_blank" rel="noopener" data-i18n="commercialExample">Voir un exemple réel</a>
+      </div>
+      <a class="commercialOffersLink" href="./tarif-entreprise-petite-cote.html#choisir" data-i18n="commercialOffers">Voir les offres et choisir →</a>
+    </div>
+  </div>
+  <p class="commercialTrust" data-i18n="commercialTrust">0% commission DIGIY · Votre client reste votre client · Paiement direct au professionnel · Le terrain garde la main.</p>
+</section>
+
+<!-- ═══ Carte réseau officielle · après l’offre professionnelle ═══ -->
+<figure class="heroNetworkCard" aria-label="Carte réseau officielle DIGIYLYFE">
+  <a class="heroNetworkImage" href="./qr.png?v=20260713" target="_blank" rel="noopener" aria-label="Ouvrir la carte QR officielle DIGIYLYFE">
+    <img src="./qr.png?v=20260713" alt="Carte QR officielle DIGIYLYFE.COM — Le Club Entreprises du Terrain" loading="eager">
+  </a>
+  <figcaption class="heroNetworkCaption" data-i18n="heroQrCaption">
+    Carte réseau officielle du Club DIGIYLYFE : scannable, partageable et imprimable. Une identité commune, puis une porte directe pour chaque métier.
+  </figcaption>
+  <div class="heroNetworkActions" aria-label="Actions carte QR DIGIYLYFE">
+    <a class="gold" href="./qr.png?v=20260713" target="_blank" rel="noopener" data-i18n="heroQrOpen">🖼️ Ouvrir la carte</a>
+    <a href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20La%20place%20centrale%20du%20business%20local.%20QR%20direct%2C%20contact%20direct%2C%20paiement%20direct.%20https%3A%2F%2Fdigiylyfe.com%2F" target="_blank" rel="noopener" data-i18n="heroQrShare">💬 Partager</a>
+    <a href="./qr.png?v=20260713" download="qr-digiylyfe.png" data-i18n="heroQrDownload">⬇️ Télécharger</a>
+  </div>
+</figure>
 
 
 
@@ -457,7 +530,7 @@ button{font:inherit;cursor:pointer}
       <i>▣</i>
       <strong data-i18n="proGateNewTitle">Nouveau professionnel</strong>
       <span data-i18n="proGateNewText">Découvrez le Pack Présence Terrain : fiche propre, QR officiel, WhatsApp direct et paiement direct.</span>
-      <em data-i18n="proGateNewCta">Découvrir le Pack Présence Terrain →</em>
+      <em data-i18n="proGateNewCta">Comprendre l’offre →</em>
     </a>
     <a class="proGateCard proGateHub" href="https://digiy-hub.digiylyfe.com/">
       <i>🧭</i>
@@ -503,7 +576,7 @@ button{font:inherit;cursor:pointer}
   <div class="enterpriseClip" aria-label="Clip Entreprise Petite Côte">
     <div class="enterpriseClipFrame">
       <video controls playsinline preload="metadata" aria-label="Clip DIGIYLYFE Entreprise Petite Côte">
-        <source src="./DIGIYLYFE_Entreprise_Petite_Cote_45s_THE_MEGE_QR_TARIF_CHOISIR_FINAL_V2.mp4" type="video/mp4">
+        <source src="./DIGIYLYFE_Entreprise_Petite_Cote_45s_THE_MEGE_QR_TARIF_CHOISIR_FINAL_V2.mp4?v=20260713" type="video/mp4">
         Votre navigateur ne permet pas de lire cette vidéo.
       </video>
     </div>
@@ -511,7 +584,7 @@ button{font:inherit;cursor:pointer}
       <span class="enterpriseClipTag" data-i18n="enterpriseClipTag">Clip officiel · 45 secondes</span>
       <h3 data-i18n="enterpriseClipTitle">Voyez la solution avant de choisir.</h3>
       <p data-i18n="enterpriseClipText">Carte de visite digitale, QR officiel, vitrine, prix clair, paiement Wave ou Sendwave et preuve WhatsApp : le parcours complet est visible dans le clip.</p>
-      <a class="enterpriseClipOpen" href="./DIGIYLYFE_Entreprise_Petite_Cote_45s_THE_MEGE_QR_TARIF_CHOISIR_FINAL_V2.mp4" target="_blank" rel="noopener" data-i18n="enterpriseClipOpen">🎬 Ouvrir la vidéo en grand</a>
+      <a class="enterpriseClipOpen" href="./DIGIYLYFE_Entreprise_Petite_Cote_45s_THE_MEGE_QR_TARIF_CHOISIR_FINAL_V2.mp4?v=20260713" target="_blank" rel="noopener" data-i18n="enterpriseClipOpen">🎬 Ouvrir la vidéo en grand</a>
     </div>
   </div>
 
@@ -527,7 +600,7 @@ button{font:inherit;cursor:pointer}
   <h2 data-i18n="quartiersTitle">🏙️ Les quartiers de la ville</h2>
   <p data-i18n="quartiersLead">Chaque module a sa couleur et son métier. Voir, contacter, réserver, postuler, payer direct.</p>
   <nav class="quartierGrid" aria-label="Modules publics par quartier">
-    <a class="quartier qDriver" href="https://driver.digiylyfe.com/">
+    <a class="quartier qDriver" href="https://driver-client.digiylyfe.com/">
       <i>🚗</i><strong>DRIVER</strong>
       <small data-i18n="qDriverSmall">Chauffeurs · AIBD · Saly · Dakar · Sarlat</small>
       <b data-i18n="qDriverTag">Mobilité</b>
@@ -554,7 +627,7 @@ button{font:inherit;cursor:pointer}
     </a>
     <a class="quartier qResa" href="https://resa-table-resto.digiylyfe.com/">
       <i>📅</i><strong>RESA</strong>
-      <small data-i18n="qResaSmall">Réserver une table, un rendez-vous, un créneau</small>
+      <small data-i18n="qResaSmall">Rendez-vous et réservations · le pro confirme</small>
       <b data-i18n="qResaTag">Réservation</b>
     </a>
     <a class="quartier qCarnet" href="https://digiy-carnet-pro.digiylyfe.com/">
@@ -582,22 +655,31 @@ button{font:inherit;cursor:pointer}
 
 <!-- ═══ Preuve terrain · Astou Boutique ═══ -->
 <section class="astou-proof" id="preuve-astou-boutique" aria-label="Preuve terrain DIGIY MARKET">
-<style>
-.astou-proof{width:100%;padding:28px 16px}.astou-card{max-width:980px;margin:auto;display:grid;grid-template-columns:.85fr 1.15fr;overflow:hidden;border-radius:30px;border:1px solid rgba(246,196,83,.38);background:linear-gradient(145deg,#fff,#fff8e8);box-shadow:0 22px 55px rgba(0,0,0,.24)}
-.astou-visual{min-height:300px;display:grid;place-items:center;align-content:center;gap:12px;padding:28px;text-align:center;color:#fff;background:radial-gradient(circle at 72% 18%,rgba(246,196,83,.38),transparent 28%),linear-gradient(145deg,#7c2d5a,#3d1740 68%,#0d5d3b)}
-.astou-icon{display:grid;place-items:center;width:150px;height:150px;border-radius:36px;background:linear-gradient(145deg,#fff0b5,#e6b94c);box-shadow:0 22px 42px rgba(0,0,0,.28);font-size:70px}.astou-visual strong{font-size:1.25rem;font-weight:1000;letter-spacing:.05em}.astou-visual span{color:rgba(255,255,255,.82);font-size:.9rem}
-.astou-content{padding:34px;color:#17201b}.astou-badge{display:inline-flex;padding:8px 13px;border-radius:999px;background:rgba(124,45,90,.10);border:1px solid rgba(124,45,90,.22);color:#7c2d5a;font-size:.86rem;font-weight:1000}.astou-title{margin:14px 0 10px;font-size:clamp(2.15rem,5vw,3.5rem);line-height:.94;letter-spacing:-.055em}.astou-lead{margin:0;color:#5f6b64;line-height:1.65;font-size:1.04rem}
-.astou-points{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:20px 0}.astou-point{padding:13px;border-radius:17px;background:#fff;border:1px solid rgba(17,24,39,.10);font-size:.86rem;font-weight:950;text-align:center}.astou-actions{display:flex;flex-wrap:wrap;gap:10px}.astou-btn{min-height:50px;padding:13px 17px;border-radius:16px;border:0;display:inline-flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;font-weight:1000;cursor:pointer}.astou-btn.market{background:#7c2d5a;color:#fff}.astou-btn.wa{background:#16a34a;color:#fff}.astou-btn.share{background:#fff;color:#17201b;border:1px solid rgba(17,24,39,.12)}.astou-note{margin:14px 0 0;color:#6b756f;font-size:.9rem}.astou-feedback{min-height:20px;margin-top:8px;color:#16834c;font-weight:900;font-size:.88rem}
-@media(max-width:760px){.astou-card{grid-template-columns:1fr}.astou-visual{min-height:210px}.astou-icon{width:120px;height:120px;font-size:56px}.astou-content{padding:25px 20px}.astou-points{grid-template-columns:1fr}.astou-btn{width:100%}}
-</style>
-<article class="astou-card">
-<div class="astou-visual"><div class="astou-icon">🛍️</div><strong>ASTOU BOUTIQUE</strong><span>Maison · plage · élégance</span></div>
-<div class="astou-content"><span class="astou-badge">PREUVE TERRAIN · DIGIY MARKET</span><h2 class="astou-title">Une boutique locale qui circule.</h2><p class="astou-lead">Astou présente ses produits dans une vraie vitrine digitale. Le client regarde, partage et contacte directement la boutique sur WhatsApp.</p>
-<div class="astou-points"><div class="astou-point">🛍️ Produits visibles</div><div class="astou-point">💬 Contact direct</div><div class="astou-point">0% commission</div></div>
-<div class="astou-actions"><a class="astou-btn market" href="https://astou-boutique.digiylyfe.com/" target="_blank" rel="noopener">🔗 Voir la boutique</a><a class="astou-btn wa" href="https://wa.me/221778765785?text=Bonjour%20Astou%20Boutique%2C%20je%20viens%20de%20votre%20vitrine%20DIGIYLYFE." target="_blank" rel="noopener">💬 WhatsApp direct</a><button class="astou-btn share" type="button" onclick="shareAstouBoutique()">📲 Partager</button></div>
-<p class="astou-note">Astou Boutique · Saly · contact direct · paiement direct à la boutique.</p><div class="astou-feedback" id="astouShareFeedback" aria-live="polite"></div></div>
-</article>
-<script>function shareAstouBoutique(){const url="https://astou-boutique.digiylyfe.com/";const text="Astou Boutique · Maison, plage & élégance · Vitrine DIGIY MARKET · contact direct · 0% commission. "+url;const feedback=document.getElementById("astouShareFeedback");if(navigator.share){navigator.share({title:"Astou Boutique · DIGIY MARKET",text:text,url:url}).catch(function(){});return}if(navigator.clipboard){navigator.clipboard.writeText(text).then(function(){if(feedback)feedback.textContent="Lien copié. Prêt à partager."}).catch(function(){if(feedback)feedback.textContent="Ouvre la boutique puis partage son lien."});return}window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank","noopener")}</script>
+<style>.astou-proof{width:100%;padding:28px 16px}</style>
+<div class="terrainProofsHead">
+  <h2 data-i18n="proofTitle">Des professionnels déjà sur le terrain</h2>
+  <p data-i18n="proofLead">Boutique, artisan et hébergement : trois activités réelles montrent comment une porte DIGIY rend le contact plus direct.</p>
+</div>
+<div class="terrainProofGrid">
+  <article class="terrainProofCard">
+    <span class="terrainProofIcon">🛍️</span><span class="terrainProofStatus" data-i18n="proofAstouStatus">Preuve terrain · MARKET</span>
+    <h3>Astou Boutique</h3><p data-i18n="proofAstouText">Maison, plage et élégance : les produits sont visibles et la boutique reste joignable directement.</p>
+    <span class="terrainProofMeta" data-i18n="proofAstouMeta">Saly · Boutique locale · Contact direct</span>
+    <a href="https://astou-boutique.digiylyfe.com/" target="_blank" rel="noopener" data-i18n="proofOpen">Voir sa fiche</a>
+  </article>
+  <article class="terrainProofCard">
+    <span class="terrainProofIcon">🔧</span><span class="terrainProofStatus" data-i18n="proofBabacarStatus">Fiche invitée terrain · BUILD</span>
+    <h3>Babacar Plombier Pro</h3><p data-i18n="proofBabacarText">Une fiche publique présente son métier, sa zone et ses services avant le contact WhatsApp.</p>
+    <span class="terrainProofMeta" data-i18n="proofBabacarMeta">Saly · Plomberie · Contact direct</span>
+    <a href="https://babacar-plombier-pro.digiylyfe.com/" target="_blank" rel="noopener" data-i18n="proofOpen">Voir sa fiche</a>
+  </article>
+  <article class="terrainProofCard">
+    <span class="terrainProofIcon">🏠</span><span class="terrainProofStatus" data-i18n="proofBaptisteStatus">Exemple réel · LOC</span>
+    <h3>Chez Baptiste</h3><p data-i18n="proofBaptisteText">Une vitrine d’hébergement permet de voir le lieu puis de contacter directement le propriétaire.</p>
+    <span class="terrainProofMeta" data-i18n="proofBaptisteMeta">Saly · Hébergement · Paiement direct</span>
+    <a href="https://part-chez-baptiste.digiylyfe.com/" target="_blank" rel="noopener" data-i18n="proofOpen">Voir sa fiche</a>
+  </article>
+</div>
 </section>
 
 <!-- ═══ Comprendre vite ═══ -->
@@ -619,7 +701,7 @@ button{font:inherit;cursor:pointer}
     </a>
     <a class="viteCard" href="./inscription.html">
       <i>📝</i><strong data-i18n="viteInscriptionTitle">Inscription DIGIY</strong>
-      <small data-i18n="viteInscriptionSmall">Demander sa fiche : formulaire simple, WhatsApp ou SMS de secours.</small>
+      <small data-i18n="viteInscriptionSmall">Je m’inscris directement. WhatsApp ou SMS restent disponibles en cas de besoin.</small>
     </a>
     <a class="viteCard" href="https://part-chez-baptiste.digiylyfe.com/" target="_blank" rel="noopener">
       <i>👁️</i><strong data-i18n="viteExempleTitle">Une fiche en vrai</strong>
@@ -690,7 +772,7 @@ button{font:inherit;cursor:pointer}
   <a href="https://carnets.digiylyfe.com/" target="_blank" rel="noopener">Carnets DIGIYLYFE</a> ·
   <a href="https://livre.digiylyfe.com/" target="_blank" rel="noopener" data-i18n="footerLivre">📖 Le Livre</a> ·
   <a href="#quartiers" data-i18n="footerQuartiers">Quartiers</a> ·
-  <a href="https://tarifs.digiylyfe.com/" data-i18n="footerActivate">Activer mon module</a>
+  <a href="./tarif-entreprise-petite-cote.html#choisir" data-i18n="footerActivate">Voir les offres</a>
 </footer>
 </main>
 
@@ -704,7 +786,7 @@ button{font:inherit;cursor:pointer}
     </div>
     <nav class="menuGrid" aria-label="Toutes les portes DIGIYLYFE">
       <span class="menuLabel" data-i18n="menuLabelClient">🔎 Côté client · les quartiers</span>
-      <a href="https://driver.digiylyfe.com/">🚗 DRIVER · <span data-i18n="menuDriver">chauffeurs</span></a>
+      <a href="https://driver-client.digiylyfe.com/">🚗 DRIVER · <span data-i18n="menuDriver">chauffeurs</span></a>
       <a href="https://loc.digiylyfe.com/">🏠 LOC · <span data-i18n="menuLoc">logements & tourisme</span></a>
       <a href="https://market.digiylyfe.com/">🛍️ MARKET · <span data-i18n="menuMarket">boutiques</span></a>
       <a href="https://build.digiylyfe.com/">🏗️ BUILD · <span data-i18n="menuBuild">artisans</span></a>
@@ -717,8 +799,7 @@ button{font:inherit;cursor:pointer}
       <a class="gold" href="./presence-terrain.html">▣ <span data-i18n="menuPresence">Pack Présence Terrain</span></a>
       <a class="gold" href="#entreprises-petite-cote">🏢 <span data-i18n="menuEntreprise">Club Métiers & Entreprises</span></a>
       <a class="gold" href="./inscription.html">📝 <span data-i18n="menuInscription">Inscription DIGIY</span></a>
-      <a class="gold" href="https://tarifs.digiylyfe.com/">✍️ <span data-i18n="menuActivate">Activer mon module</span></a>
-      <a class="gold" href="https://tarifs.digiylyfe.com/">📦 <span data-i18n="menuPrices">Tarifs</span></a>
+      <a class="gold" href="./tarif-entreprise-petite-cote.html#choisir">📦 <span data-i18n="menuPrices">Voir les offres</span></a>
       <a href="https://pro-espace.digiylyfe.com/">🔐 <span data-i18n="menuPro">Espace pro</span></a>
       <a href="https://pro-carnet.digiylyfe.com/pin.html">📒 <span data-i18n="menuProCarnet">PRO CARNET · accès sécurisé</span></a>
       <a href="./ciblage-pros-digiylyfe.html">🎯 <span data-i18n="menuCiblagePros">Ciblage pros · boutiques · LOC · services</span></a>
@@ -757,7 +838,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       pageTitle:"DIGIYLYFE — Le Club digital des Métiers et des Entreprises de la Petite Côte",
       metaDescription:"DIGIYLYFE est le Club digital des Métiers et des Entreprises de la Petite Côte. Vitrines, QR officiels, contacts et paiements directs, 0% commission. Chaque activité garde son identité, le Club rassemble les forces du terrain.",
       brandTag:"Club digital · Métiers & Entreprises",
-      heroSmall:"Petite Côte · Métiers · Entreprises",
+      heroSmall:"Ancré sur la Petite Côte · Ouvert au monde",
       heroTitle:"Le Club digital des Métiers et des Entreprises",
       heroLead:"DIGIYLYFE rassemble les forces du terrain de la Petite Côte : chaque activité garde son identité, gagne en visibilité et ouvre une route directe vers ses clients.",
       capStrong:"Rassembler crée la force.",
@@ -770,14 +851,20 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       doorClientText:"Trouver un pro, un logement, un chauffeur, une boutique, un artisan ou un service — et le contacter directement.",
       doorClientCta:"Entrer dans les quartiers →",
       doorProTitle:"Je suis professionnel",
-      doorProText:"Nouveau pro : découvrez le Pack Présence Terrain. Déjà abonné : votre porte est côté HUB.",
+      doorProText:"Nouveau pro : comprenez l’offre, voyez un exemple, puis inscrivez-vous. Déjà abonné : votre porte est côté HUB.",
       doorProHub:"Astuce abonnés : ouvrez votre module et mettez-le en favori pour revenir sans scroller.",
-      doorProCta:"Voir les portes pro →",
+      doorProCta:"Voir l’offre et m’inscrire →",
+      commercialKicker:"Votre première porte DIGIY",
+      commercialTitle:"Une fiche professionnelle. Un QR. Vos clients en direct.",
+      commercialLead:"DIGIYLYFE rend votre activité visible et partageable sur téléphone. Le client découvre vos services, vous contacte sur WhatsApp et vous paie directement.",
+      commercialItem1:"✓ Fiche professionnelle mobile",commercialItem2:"✓ Lien et QR partageables",commercialItem3:"✓ WhatsApp direct",commercialItem4:"✓ Services, photos et coordonnées",
+      commercialFrom:"À partir de",commercialPrice:"19 900 FCFA / mois",commercialDelay:"Délai de préparation confirmé après inscription",commercialSignup:"Je m’inscris",commercialExample:"Voir un exemple réel",commercialOffers:"Voir les offres et choisir →",
+      commercialTrust:"0% commission DIGIY · Votre client reste votre client · Paiement direct au professionnel · Le terrain garde la main.",
       proGateTitle:"🔥 Portes professionnelles",
       proGateLead:"Deux chemins simples : créer sa première présence ou revenir directement à son module abonné.",
       proGateNewTitle:"Nouveau professionnel",
       proGateNewText:"Découvrez le Pack Présence Terrain : fiche propre, QR officiel, WhatsApp direct et paiement direct.",
-      proGateNewCta:"Découvrir le Pack Présence Terrain →",
+      proGateNewCta:"Comprendre l’offre →",
       proGateHubTitle:"Déjà abonné DIGIYLYFE",
       proGateHubText:"Votre porte est côté HUB : ouvrez votre module métier, puis placez-le en favori sur votre téléphone.",
       proGateHubCta:"Ouvrir le HUB →",
@@ -793,7 +880,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       enterpriseCard4Title:"Accompagnement terrain",enterpriseCard4Text:"Nous aidons à choisir quoi montrer, quoi protéger et comment partager.",
       enterpriseSector1:"Hôtels & résidences",enterpriseSector2:"Agences immobilières",enterpriseSector3:"Écoles & centres",enterpriseSector4:"Cabinets & agences",enterpriseSector5:"BTP · maintenance · climatisation",enterpriseSector6:"Transport & services",
       enterpriseNote:"DIGIYLYFE ne mélange pas les métiers et ne prend pas leur place. Le Club les rend visibles ensemble, puis chaque client entre directement par la bonne porte.",
-      enterpriseClipTag:"Clip officiel · 45 secondes",enterpriseClipTitle:"Voyez la solution avant de choisir.",enterpriseClipText:"Carte de visite digitale, QR officiel, vitrine, prix clair, paiement Wave ou Sendwave et preuve WhatsApp : le parcours complet est visible dans le clip.",enterpriseClipOpen:"🎬 Ouvrir la vidéo en grand",enterpriseCta1:"💳 Choisir mon offre et payer",enterpriseCta2:"",enterpriseCta3:"🧭 Voir les modules disponibles",
+      enterpriseClipTag:"Clip officiel · 45 secondes",enterpriseClipTitle:"Voyez la solution avant de choisir.",enterpriseClipText:"Carte de visite digitale, QR officiel, vitrine, prix clair, paiement Wave ou Sendwave et preuve WhatsApp : le parcours complet est visible dans le clip.",enterpriseClipOpen:"🎬 Ouvrir la vidéo en grand",enterpriseCta1:"💳 Choisir mon offre et payer",enterpriseCta3:"🧭 Voir les modules disponibles",
       menuEntreprise:"Club Métiers & Entreprises",footerEntreprise:"Club Métiers & Entreprises",
       quartiersTitle:"🏙️ Les quartiers de la ville",
       quartiersLead:"Chaque module a sa couleur et son métier. Voir, contacter, réserver, postuler, payer direct.",
@@ -802,7 +889,11 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       qMarketSmall:"Boutiques · produits locaux · commandes directes",qMarketTag:"Commerce",
       qBuildSmall:"Artisans · chantiers · services terrain",qBuildTag:"Chantier",
       qJobsSmall:"Missions · talents locaux · candidatures directes",qJobsTag:"Recrutement",
-      qResaSmall:"Réserver une table, un rendez-vous, un créneau",qResaTag:"Réservation",
+      qResaSmall:"Rendez-vous et réservations · le pro confirme",qResaTag:"Réservation",
+      proofTitle:"Des professionnels déjà sur le terrain",proofLead:"Boutique, artisan et hébergement : trois activités réelles montrent comment une porte DIGIY rend le contact plus direct.",
+      proofAstouStatus:"Preuve terrain · MARKET",proofAstouText:"Maison, plage et élégance : les produits sont visibles et la boutique reste joignable directement.",proofAstouMeta:"Saly · Boutique locale · Contact direct",
+      proofBabacarStatus:"Fiche invitée terrain · BUILD",proofBabacarText:"Une fiche publique présente son métier, sa zone et ses services avant le contact WhatsApp.",proofBabacarMeta:"Saly · Plomberie · Contact direct",
+      proofBaptisteStatus:"Exemple réel · LOC",proofBaptisteText:"Une vitrine d’hébergement permet de voir le lieu puis de contacter directement le propriétaire.",proofBaptisteMeta:"Saly · Hébergement · Paiement direct",proofOpen:"Voir sa fiche",
       qCarnetSmall:"Encaissements · dépenses · réserves · preuves",qCarnetTag:"Activité claire",
       qExploreSmall:"Lieux · sites touristiques · découvertes locales",qExploreTag:"Lieux",
       qQrSmall:"La page scannable qui ouvre chaque porte",qQrTag:"Visibilité",
@@ -812,7 +903,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       viteClipTitle:"Le clip DIGIYLYFE",viteClipSmall:"1 minute · cliquable · partageable. Le terrain garde la main.",
       viteSolutionTitle:"La Solution DIGIYLYFE",viteSolutionSmall:"Dans le désert numérique, la solution existe : l'oasis du terrain.",
       vitePresenceTitle:"Pack Présence Terrain",vitePresenceSmall:"La première porte commerciale : fiche, QR, WhatsApp direct, paiement direct.",
-      viteInscriptionTitle:"Inscription DIGIY",viteInscriptionSmall:"Demander sa fiche : formulaire simple, WhatsApp ou SMS de secours.",
+      viteInscriptionTitle:"Inscription DIGIY",viteInscriptionSmall:"Je m’inscris directement. WhatsApp ou SMS restent disponibles en cas de besoin.",
       viteExempleTitle:"Une fiche en vrai",viteExempleSmall:"Un exemple réel : photos, contact, réservation, paiement direct.",
       clipShare:"💬 Partager le clip",clipSms:"✉️ SMS clip",
       profondTitle:"🏛️ Je veux comprendre profond",
@@ -828,12 +919,12 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       shareTitle:"📤 Partager DIGIYLYFE",
       shareText:"DIGIYLYFE — Le Club digital des Métiers et des Entreprises de la Petite Côte. Une identité commune, des portes directes, 0% commission.",
       footerLine:"La Voix du Business, la Voie du Terrain.",
-      footerQr:"QR scannable",footerQrModule:"QR Module",footerPresence:"Pack Présence Terrain",footerInscription:"Inscription",footerCiblagePros:"Ciblage Pros",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"Solution DIGIYLYFE",footerLivre:"📖 Le Livre — à lire ou à écouter",footerQuartiers:"Quartiers",footerActivate:"Activer mon module",
+      footerQr:"QR scannable",footerQrModule:"QR Module",footerPresence:"Pack Présence Terrain",footerInscription:"Inscription",footerCiblagePros:"Ciblage Pros",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"Solution DIGIYLYFE",footerLivre:"📖 Le Livre — à lire ou à écouter",footerQuartiers:"Quartiers",footerActivate:"Voir les offres",
       menuTitle:"☰ Menu complet",
       menuLabelClient:"🔎 Côté client · les quartiers",
       menuDriver:"chauffeurs",menuLoc:"logements & tourisme",menuMarket:"boutiques",menuBuild:"artisans",menuJobs:"missions",menuResa:"réserver",menuCarnet:"carnet d’activité",menuExplore:"lieux",
       menuLabelPro:"🔥 Côté pro · activer & piloter",
-      menuPresence:"Pack Présence Terrain",menuInscription:"Inscription DIGIY",menuActivate:"Activer mon module",menuPrices:"Tarifs",menuPro:"Espace pro",menuProCarnet:"PRO CARNET · accès sécurisé",menuCiblagePros:"Ciblage pros · boutiques · LOC · services",menuQrModule:"QR Module · porte pro",menuClub:"Club des Métiers",
+      menuPresence:"Pack Présence Terrain",menuInscription:"Inscription DIGIY",menuPrices:"Voir les offres",menuPro:"Espace pro",menuProCarnet:"PRO CARNET · accès sécurisé",menuCiblagePros:"Ciblage pros · boutiques · LOC · services",menuQrModule:"QR Module · porte pro",menuClub:"Club des Métiers",
       menuLabelComprendre:"🏛️ Comprendre · la cathédrale",
       menuClip:"Clip terrain",menuSolution:"Solution DIGIYLYFE",menuCarnets:"Carnets DIGIYLYFE",menuArchitecture:"Architecture DIGIYLYFE",menuReview:"Revue DIGIYLYFE",
       menuLabelOutils:"🧭 La mairie & la poste",
@@ -846,7 +937,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       pageTitle:"DIGIYLYFE — The digital Club for Petite Côte Trades and Businesses",
       metaDescription:"DIGIYLYFE is the digital Club for Petite Côte trades and businesses. Showcases, official QR codes, direct contacts and direct payments, with 0% DIGIY commission. Each business keeps its identity while the Club gathers the strength of the field.",
       brandTag:"Digital Club · Trades & Businesses",
-      heroSmall:"Petite Côte · Trades · Businesses",
+      heroSmall:"Rooted on the Petite Côte · Open to the world",
       heroTitle:"The digital Club for Trades and Businesses",
       heroLead:"DIGIYLYFE brings together the strengths of the Petite Côte field: every business keeps its identity, gains visibility and opens a direct road to its clients.",
       capStrong:"Together, the field becomes stronger.",
@@ -859,14 +950,20 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       doorClientText:"Find a professional, housing, a driver, a shop, a tradesperson or a service — and contact them directly.",
       doorClientCta:"Enter the districts →",
       doorProTitle:"I am a professional",
-      doorProText:"New pro: discover the Field Presence Pack. Already subscribed: your doorway is through the HUB.",
+      doorProText:"New pro: understand the offer, see a real example, then register. Already subscribed: your doorway is through the HUB.",
       doorProHub:"Subscriber tip: open your module and add it to favorites to return without scrolling.",
-      doorProCta:"View pro doorways →",
+      doorProCta:"View the offer and register →",
+      commercialKicker:"Your first DIGIY doorway",
+      commercialTitle:"A professional profile. A QR. Your clients direct.",
+      commercialLead:"DIGIYLYFE makes your business visible and shareable on mobile. Clients discover your services, contact you on WhatsApp and pay you directly.",
+      commercialItem1:"✓ Mobile professional profile",commercialItem2:"✓ Shareable link and QR",commercialItem3:"✓ Direct WhatsApp",commercialItem4:"✓ Services, photos and contact details",
+      commercialFrom:"Starting from",commercialPrice:"19,900 FCFA / month",commercialDelay:"Preparation time confirmed after registration",commercialSignup:"I register",commercialExample:"See a real example",commercialOffers:"View offers and choose →",
+      commercialTrust:"0% DIGIY commission · Your client remains your client · Direct payment to the professional · The field keeps control.",
       proGateTitle:"🔥 Professional doorways",
       proGateLead:"Two simple paths: create your first presence or return directly to your subscriber module.",
       proGateNewTitle:"New professional",
       proGateNewText:"Discover the Field Presence Pack: clean profile, official QR, direct WhatsApp and direct payment.",
-      proGateNewCta:"Discover the Field Presence Pack →",
+      proGateNewCta:"Understand the offer →",
       proGateHubTitle:"Already a DIGIYLYFE subscriber",
       proGateHubText:"Your doorway is through the HUB: open your business module, then add it to favorites on your phone.",
       proGateHubCta:"Open the HUB →",
@@ -882,7 +979,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       enterpriseCard4Title:"Field support",enterpriseCard4Text:"We help choose what to show, what to protect and how to share it.",
       enterpriseSector1:"Hotels & residences",enterpriseSector2:"Real-estate agencies",enterpriseSector3:"Schools & training",enterpriseSector4:"Firms & agencies",enterpriseSector5:"Construction · maintenance · air conditioning",enterpriseSector6:"Transport & services",
       enterpriseNote:"DIGIYLYFE does not mix trades or take their place. The Club makes them visible together, then each client enters directly through the right doorway.",
-      enterpriseClipTag:"Official clip · 45 seconds",enterpriseClipTitle:"See the solution before choosing.",enterpriseClipText:"Digital business card, official QR, showcase, clear pricing, Wave or Sendwave payment and WhatsApp proof: the full journey is shown in the clip.",enterpriseClipOpen:"🎬 Open the video full size",enterpriseCta1:"💳 Choose my offer and pay",enterpriseCta2:"",enterpriseCta3:"🧭 View available modules",
+      enterpriseClipTag:"Official clip · 45 seconds",enterpriseClipTitle:"See the solution before choosing.",enterpriseClipText:"Digital business card, official QR, showcase, clear pricing, Wave or Sendwave payment and WhatsApp proof: the full journey is shown in the clip.",enterpriseClipOpen:"🎬 Open the video full size",enterpriseCta1:"💳 Choose my offer and pay",enterpriseCta3:"🧭 View available modules",
       menuEntreprise:"Trades & Businesses Club",footerEntreprise:"Trades & Businesses Club",
       quartiersTitle:"🏙️ The districts of the city",
       quartiersLead:"Each module has its color and its trade. View, contact, book, apply, pay direct.",
@@ -891,7 +988,11 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       qMarketSmall:"Shops · local products · direct orders",qMarketTag:"Commerce",
       qBuildSmall:"Tradespeople · worksites · field services",qBuildTag:"Worksite",
       qJobsSmall:"Missions · local talents · direct applications",qJobsTag:"Recruiting",
-      qResaSmall:"Book a table, an appointment, a time slot",qResaTag:"Booking",
+      qResaSmall:"Appointments and bookings · the pro confirms",qResaTag:"Booking",
+      proofTitle:"Professionals already on the field",proofLead:"Shop, tradesperson and accommodation: three real activities show how a DIGIY doorway makes contact more direct.",
+      proofAstouStatus:"Field proof · MARKET",proofAstouText:"Home, beach and elegance: products are visible and the shop remains directly reachable.",proofAstouMeta:"Saly · Local shop · Direct contact",
+      proofBabacarStatus:"Guest field profile · BUILD",proofBabacarText:"A public profile presents his trade, area and services before WhatsApp contact.",proofBabacarMeta:"Saly · Plumbing · Direct contact",
+      proofBaptisteStatus:"Real example · LOC",proofBaptisteText:"An accommodation showcase lets visitors see the place and then contact the owner directly.",proofBaptisteMeta:"Saly · Accommodation · Direct payment",proofOpen:"View profile",
       qCarnetSmall:"Income · expenses · reserves · evidence",qCarnetTag:"Clear activity",
       qExploreSmall:"Places · tourist sites · local discoveries",qExploreTag:"Places",
       qQrSmall:"The scannable page that opens every door",qQrTag:"Visibility",
@@ -901,7 +1002,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       viteClipTitle:"The DIGIYLYFE clip",viteClipSmall:"1 minute · clickable · shareable. The field keeps control.",
       viteSolutionTitle:"The DIGIYLYFE Solution",viteSolutionSmall:"In the digital desert, the solution exists: the field oasis.",
       vitePresenceTitle:"Field Presence Pack",vitePresenceSmall:"The first commercial door: profile, QR, direct WhatsApp, direct payment.",
-      viteInscriptionTitle:"DIGIY Registration",viteInscriptionSmall:"Request your profile: simple form, WhatsApp or SMS backup.",
+      viteInscriptionTitle:"DIGIY Registration",viteInscriptionSmall:"Register directly. WhatsApp or SMS remain available if help is needed.",
       viteExempleTitle:"A real profile",viteExempleSmall:"A real example: photos, contact, booking, direct payment.",
       clipShare:"💬 Share the clip",clipSms:"✉️ SMS clip",
       profondTitle:"🏛️ I want to understand deeply",
@@ -917,12 +1018,12 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       shareTitle:"📤 Share DIGIYLYFE",
       shareText:"DIGIYLYFE — The digital Club for Petite Côte Trades and Businesses. One shared identity, direct doorways and 0% commission.",
       footerLine:"The Voice of Business, the Road of the Field.",
-      footerQr:"Scannable QR",footerQrModule:"QR Module",footerPresence:"Field Presence Pack",footerInscription:"Registration",footerCiblagePros:"Pro Targets",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"DIGIYLYFE Solution",footerLivre:"📖 The Book — read or listen",footerQuartiers:"Districts",footerActivate:"Activate my module",
+      footerQr:"Scannable QR",footerQrModule:"QR Module",footerPresence:"Field Presence Pack",footerInscription:"Registration",footerCiblagePros:"Pro Targets",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"DIGIYLYFE Solution",footerLivre:"📖 The Book — read or listen",footerQuartiers:"Districts",footerActivate:"View offers",
       menuTitle:"☰ Full menu",
       menuLabelClient:"🔎 Client side · the districts",
       menuDriver:"drivers",menuLoc:"housing & tourism",menuMarket:"shops",menuBuild:"trades",menuJobs:"missions",menuResa:"book",menuCarnet:"business notebook",menuExplore:"places",
       menuLabelPro:"🔥 Pro side · activate & manage",
-      menuPresence:"Field Presence Pack",menuInscription:"DIGIY Registration",menuActivate:"Activate my module",menuPrices:"Pricing",menuPro:"Pro space",menuProCarnet:"PRO CARNET · secure access",menuCiblagePros:"Pro targets · shops · stays · services",menuQrModule:"QR Module · pro doorway",menuClub:"Trades Club",
+      menuPresence:"Field Presence Pack",menuInscription:"DIGIY Registration",menuPrices:"View offers",menuPro:"Pro space",menuProCarnet:"PRO CARNET · secure access",menuCiblagePros:"Pro targets · shops · stays · services",menuQrModule:"QR Module · pro doorway",menuClub:"Trades Club",
       menuLabelComprendre:"🏛️ Understand · the cathedral",
       menuClip:"Field clip",menuSolution:"DIGIYLYFE Solution",menuCarnets:"DIGIYLYFE Notebooks",menuArchitecture:"DIGIYLYFE Architecture",menuReview:"DIGIYLYFE Review",
       menuLabelOutils:"🧭 Town hall & post office",
