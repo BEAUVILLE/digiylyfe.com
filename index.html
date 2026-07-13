@@ -459,11 +459,11 @@ button{font:inherit;cursor:pointer}
   </div>
   <!-- Les deux grandes portes -->
   <nav class="doors" aria-label="Les deux grandes entrées">
-    <a class="door doorClient" href="#quartiers">
+    <a class="door doorClient" href="./recherche.html">
       <i>🔎</i>
       <strong data-i18n="doorClientTitle">Je suis client</strong>
       <span data-i18n="doorClientText">Trouver un pro, un logement, un chauffeur, une boutique, un artisan ou un service — et le contacter directement.</span>
-      <em data-i18n="doorClientCta">Entrer dans les quartiers →</em>
+      <em data-i18n="doorClientCta">Trouver un professionnel →</em>
     </a>
     <a class="door doorPro" href="#offre-professionnelle">
       <i>🔥</i>
@@ -760,6 +760,7 @@ button{font:inherit;cursor:pointer}
 <footer class="footer">
   <strong>DIGIYLYFE ∞</strong><br>
   <span data-i18n="footerLine">La Voix du Business, la Voie du Terrain.</span><br>
+  <a href="./recherche.html" data-i18n="footerSearch">Recherche</a> ·
   <a href="./qr.html" data-i18n="footerQr">QR scannable</a> ·
   <a href="./qr-module-digiylyfe.html" data-i18n="footerQrModule">QR Module</a> ·
   <a href="./presence-terrain.html" data-i18n="footerPresence">Pack Présence Terrain</a> ·
@@ -786,6 +787,7 @@ button{font:inherit;cursor:pointer}
     </div>
     <nav class="menuGrid" aria-label="Toutes les portes DIGIYLYFE">
       <span class="menuLabel" data-i18n="menuLabelClient">🔎 Côté client · les quartiers</span>
+      <a class="gold" href="./recherche.html">🔎 <span data-i18n="menuSearch">Trouver un professionnel</span></a>
       <a href="https://driver-client.digiylyfe.com/">🚗 DRIVER · <span data-i18n="menuDriver">chauffeurs</span></a>
       <a href="https://loc.digiylyfe.com/">🏠 LOC · <span data-i18n="menuLoc">logements & tourisme</span></a>
       <a href="https://market.digiylyfe.com/">🛍️ MARKET · <span data-i18n="menuMarket">boutiques</span></a>
@@ -849,7 +851,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       heroQrDownload:"⬇️ Télécharger",
       doorClientTitle:"Je suis client",
       doorClientText:"Trouver un pro, un logement, un chauffeur, une boutique, un artisan ou un service — et le contacter directement.",
-      doorClientCta:"Entrer dans les quartiers →",
+      doorClientCta:"Trouver un professionnel →",
       doorProTitle:"Je suis professionnel",
       doorProText:"Nouveau pro : comprenez l’offre, voyez un exemple, puis inscrivez-vous. Déjà abonné : votre porte est côté HUB.",
       doorProHub:"Astuce abonnés : ouvrez votre module et mettez-le en favori pour revenir sans scroller.",
@@ -919,9 +921,9 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       shareTitle:"📤 Partager DIGIYLYFE",
       shareText:"DIGIYLYFE — Le Club digital des Métiers et des Entreprises de la Petite Côte. Une identité commune, des portes directes, 0% commission.",
       footerLine:"La Voix du Business, la Voie du Terrain.",
-      footerQr:"QR scannable",footerQrModule:"QR Module",footerPresence:"Pack Présence Terrain",footerInscription:"Inscription",footerCiblagePros:"Ciblage Pros",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"Solution DIGIYLYFE",footerLivre:"📖 Le Livre — à lire ou à écouter",footerQuartiers:"Quartiers",footerActivate:"Voir les offres",
+      footerSearch:"Recherche",footerQr:"QR scannable",footerQrModule:"QR Module",footerPresence:"Pack Présence Terrain",footerInscription:"Inscription",footerCiblagePros:"Ciblage Pros",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"Solution DIGIYLYFE",footerLivre:"📖 Le Livre — à lire ou à écouter",footerQuartiers:"Quartiers",footerActivate:"Voir les offres",
       menuTitle:"☰ Menu complet",
-      menuLabelClient:"🔎 Côté client · les quartiers",
+      menuLabelClient:"🔎 Côté client · les quartiers",menuSearch:"Trouver un professionnel",
       menuDriver:"chauffeurs",menuLoc:"logements & tourisme",menuMarket:"boutiques",menuBuild:"artisans",menuJobs:"missions",menuResa:"réserver",menuCarnet:"carnet d’activité",menuExplore:"lieux",
       menuLabelPro:"🔥 Côté pro · activer & piloter",
       menuPresence:"Pack Présence Terrain",menuInscription:"Inscription DIGIY",menuPrices:"Voir les offres",menuPro:"Espace pro",menuProCarnet:"PRO CARNET · accès sécurisé",menuCiblagePros:"Ciblage pros · boutiques · LOC · services",menuQrModule:"QR Module · porte pro",menuClub:"Club des Métiers",
@@ -948,7 +950,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       heroQrDownload:"⬇️ Download",
       doorClientTitle:"I am a client",
       doorClientText:"Find a professional, housing, a driver, a shop, a tradesperson or a service — and contact them directly.",
-      doorClientCta:"Enter the districts →",
+      doorClientCta:"Find a professional →",
       doorProTitle:"I am a professional",
       doorProText:"New pro: understand the offer, see a real example, then register. Already subscribed: your doorway is through the HUB.",
       doorProHub:"Subscriber tip: open your module and add it to favorites to return without scrolling.",
@@ -1018,9 +1020,9 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       shareTitle:"📤 Share DIGIYLYFE",
       shareText:"DIGIYLYFE — The digital Club for Petite Côte Trades and Businesses. One shared identity, direct doorways and 0% commission.",
       footerLine:"The Voice of Business, the Road of the Field.",
-      footerQr:"Scannable QR",footerQrModule:"QR Module",footerPresence:"Field Presence Pack",footerInscription:"Registration",footerCiblagePros:"Pro Targets",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"DIGIYLYFE Solution",footerLivre:"📖 The Book — read or listen",footerQuartiers:"Districts",footerActivate:"View offers",
+      footerSearch:"Search",footerQr:"Scannable QR",footerQrModule:"QR Module",footerPresence:"Field Presence Pack",footerInscription:"Registration",footerCiblagePros:"Pro Targets",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"DIGIYLYFE Solution",footerLivre:"📖 The Book — read or listen",footerQuartiers:"Districts",footerActivate:"View offers",
       menuTitle:"☰ Full menu",
-      menuLabelClient:"🔎 Client side · the districts",
+      menuLabelClient:"🔎 Client side · the districts",menuSearch:"Find a professional",
       menuDriver:"drivers",menuLoc:"housing & tourism",menuMarket:"shops",menuBuild:"trades",menuJobs:"missions",menuResa:"book",menuCarnet:"business notebook",menuExplore:"places",
       menuLabelPro:"🔥 Pro side · activate & manage",
       menuPresence:"Field Presence Pack",menuInscription:"DIGIY Registration",menuPrices:"View offers",menuPro:"Pro space",menuProCarnet:"PRO CARNET · secure access",menuCiblagePros:"Pro targets · shops · stays · services",menuQrModule:"QR Module · pro doorway",menuClub:"Trades Club",
@@ -1060,4 +1062,5 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
 </script>
 </body>
 </html>
+
 
