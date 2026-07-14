@@ -1,7 +1,7 @@
 (function(){
   "use strict";
 
-  const MARKER="recherche-stricte-v6-20260714";
+  const MARKER="recherche-stricte-v7-lamine-20260714";
   const form=document.getElementById("searchForm");
   const queryInput=document.getElementById("query");
   const cityInput=document.getElementById("city");
@@ -49,6 +49,24 @@
     }
   };
 
+  const LAMINE={
+    name:"Lamine",
+    trade:"Chauffeur privé · Transferts AIBD · Petite Côte",
+    city:"Saly · Mbour · Thiès",
+    phone:"221784413680",
+    profile:"https://partenaire-lamine.digiylyfe.com/",
+    image:"https://partenaire-lamine.digiylyfe.com/carte-visite.png?v=20260714-v7",
+    description:"Chauffeur privé vérifié pour transferts AIBD, courses locales, trajets vers Dakar, circuits Petite Côte et mise à disposition sur réservation.",
+    services:["Transfert AIBD","Course locale","Sur réservation","Trajet Dakar","Circuit Petite Côte"]
+  };
+
+  const escapeHtml=value=>String(value??"")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
   function queryKind(value){
     const q=norm(value);
     if(/(^| )chauffeur( |$)|(^| )driver( |$)|(^| )vtc( |$)|(^| )taxi( |$)/.test(q)) return "chauffeur";
@@ -57,6 +75,32 @@
     if(/(^| )electricien( |$)|(^| )electricite( |$)/.test(q)) return "electricien";
     if(/(^| )solaire( |$)|(^| )photovoltaique( |$)/.test(q)) return "solaire";
     return "";
+  }
+
+  function lamineCardHtml(){
+    const message=encodeURIComponent("Bonjour Lamine, je vous contacte depuis la recherche DIGIYLYFE.");
+    return `<article class="card" data-digiy-driver-official="lamine">
+      <span class="moduleBadge">DRIVER</span>
+      <div class="cardTop">
+        <div class="avatar"><img src="${escapeHtml(LAMINE.image)}" alt="Carte de visite officielle de Lamine" loading="eager"></div>
+        <div>
+          <div class="titleRow"><h3>${escapeHtml(LAMINE.name)}</h3><span class="verified">Vérifié</span></div>
+          <p class="meta">${escapeHtml(LAMINE.trade)}</p>
+          <div class="location">📍 ${escapeHtml(LAMINE.city)}</div>
+        </div>
+      </div>
+      <p class="description">${escapeHtml(LAMINE.description)}</p>
+      <div class="services">${LAMINE.services.map(service=>`<span class="service">${escapeHtml(service)}</span>`).join("")}</div>
+      <div class="actions">
+        <a class="btn btnPrimary" href="${escapeHtml(LAMINE.profile)}" target="_blank" rel="noopener noreferrer">Voir la fiche officielle</a>
+        <a class="btn btnWhatsapp" href="https://wa.me/${LAMINE.phone}?text=${message}" target="_blank" rel="noopener noreferrer">WhatsApp direct</a>
+      </div>
+    </article>`;
+  }
+
+  function ensureLamine(){
+    if(results.querySelector('[data-digiy-driver-official="lamine"]')) return;
+    results.insertAdjacentHTML("afterbegin",lamineCardHtml());
   }
 
   function cardData(card){
@@ -71,13 +115,10 @@
   function matchesRule(card,rule){
     const data=cardData(card);
     if(rule.module&&data.module!==norm(rule.module)) return false;
-
     const hasPositive=rule.positive.some(term=>data.primary.includes(norm(term)));
     if(!hasPositive) return false;
-
     const forbiddenInPrimary=rule.forbidden.some(term=>data.primary.includes(norm(term)));
     if(forbiddenInPrimary) return false;
-
     return true;
   }
 
@@ -85,7 +126,7 @@
     if(visible>0){
       results.hidden=false;
       if(statusBox) statusBox.hidden=true;
-      if(countBox) countBox.textContent=visible+" resultat"+(visible>1?"s":"");
+      if(countBox) countBox.textContent=visible+" résultat"+(visible>1?"s":"");
       return;
     }
 
@@ -94,13 +135,14 @@
       statusBox.hidden=false;
       statusBox.className="state";
       statusBox.textContent=kind
-        ? "Aucun professionnel "+kind+" correctement classe n est encore disponible. Aucun autre metier ne sera affiche a sa place."
-        : "Aucun professionnel ne correspond a cette recherche.";
+        ? "Aucun professionnel "+kind+" correctement classé n'est encore disponible. Aucun autre métier ne sera affiché à sa place."
+        : "Aucun professionnel ne correspond à cette recherche.";
     }
-    if(countBox) countBox.textContent="0 resultat";
+    if(countBox) countBox.textContent="0 résultat";
   }
 
   function applyStrictFilter(){
+    ensureLamine();
     const kind=queryKind(queryInput.value);
     const cards=Array.from(results.querySelectorAll("article.card"));
 
@@ -140,9 +182,18 @@
     if(kind) moduleInput.value=RULES[kind].module;
   });
 
-  const observer=new MutationObserver(()=>queueMicrotask(applyStrictFilter));
+  let applying=false;
+  const observer=new MutationObserver(()=>{
+    if(applying) return;
+    applying=true;
+    queueMicrotask(()=>{
+      applyStrictFilter();
+      applying=false;
+    });
+  });
   observer.observe(results,{childList:true,subtree:true});
 
   form.addEventListener("submit",()=>setTimeout(applyStrictFilter,0));
   window.addEventListener("load",()=>setTimeout(applyStrictFilter,0));
+  setTimeout(applyStrictFilter,0);
 })();
