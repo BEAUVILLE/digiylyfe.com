@@ -4,424 +4,225 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0b3d2e">
+  <meta name="robots" content="index,follow">
+  <meta name="digiy-search" content="recherche-client-build-v2-20260714">
+  <link rel="canonical" href="https://digiylyfe.com/recherche.html">
   <title>Recherche DIGIYLYFE — Trouver un professionnel</title>
-  <meta name="description" content="Trouvez un professionnel, un service ou un produit et contactez-le directement via sa vitrine DIGIY ou WhatsApp.">
+  <meta name="description" content="Trouvez un professionnel, un artisan, un chauffeur, un logement, une boutique ou un service et contactez-le directement via sa vitrine DIGIYLYFE.">
   <style>
     :root{
-      --bg:#f5f1e6;
-      --card:#ffffff;
-      --ink:#15221d;
-      --muted:#617068;
-      --green:#0b3d2e;
-      --green-2:#146b4b;
-      --gold:#d5a62e;
-      --gold-soft:#f4e5b8;
-      --line:#dfe5df;
-      --danger:#8f2f2f;
-      --shadow:0 16px 44px rgba(18,44,34,.10);
-      --radius:22px;
+      --bg:#f5f1e6;--card:#fff;--ink:#15221d;--muted:#617068;
+      --green:#0b3d2e;--green2:#146b4b;--gold:#d5a62e;--goldsoft:#f4e5b8;
+      --line:#dfe5df;--danger:#8f2f2f;--shadow:0 16px 44px rgba(18,44,34,.10);
+      --radius:22px;--font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:
-        radial-gradient(circle at top right,rgba(213,166,46,.20),transparent 32rem),
-        linear-gradient(180deg,#fbf8ef 0%,var(--bg) 100%);
-      color:var(--ink);
-      min-height:100vh;
-    }
-    a{color:inherit}
-    button,input,select{font:inherit}
-    .shell{width:min(1120px,calc(100% - 28px));margin:0 auto}
-    header{padding:26px 0 14px}
-    .brand{
-      display:flex;align-items:center;justify-content:space-between;gap:18px
-    }
-    .brand-mark{display:flex;align-items:center;gap:12px;text-decoration:none}
-    .logo{
-      width:48px;height:48px;border-radius:16px;
-      display:grid;place-items:center;
-      background:linear-gradient(135deg,var(--green),var(--green-2));
-      color:white;font-weight:900;letter-spacing:.04em;
-      box-shadow:var(--shadow)
-    }
-    .brand strong{display:block;font-size:1.05rem}
-    .brand small{display:block;color:var(--muted);margin-top:2px}
-    .home{
-      text-decoration:none;font-weight:800;color:var(--green);
-      border:1px solid rgba(11,61,46,.20);padding:10px 14px;border-radius:999px;background:#fff
-    }
-    main{padding:16px 0 54px}
-    .hero{
-      background:linear-gradient(135deg,var(--green) 0%,#115c42 66%,#174c3d 100%);
-      color:white;border-radius:32px;padding:clamp(25px,5vw,54px);
-      box-shadow:var(--shadow);position:relative;overflow:hidden
-    }
-    .hero:after{
-      content:"";position:absolute;width:270px;height:270px;border-radius:50%;
-      right:-85px;top:-105px;background:rgba(213,166,46,.18)
-    }
-    .eyebrow{
-      display:inline-flex;align-items:center;gap:8px;
-      color:#fff4c9;background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.16);
-      border-radius:999px;padding:8px 12px;font-size:.82rem;font-weight:800
-    }
-    h1{font-size:clamp(2rem,6vw,4.3rem);line-height:.98;margin:20px 0 16px;max-width:760px}
-    .hero p{max-width:720px;margin:0;color:#e7f2ed;font-size:clamp(1rem,2vw,1.17rem);line-height:1.65}
-    .search-panel{
-      margin-top:-24px;position:relative;z-index:3;
-      background:var(--card);border:1px solid rgba(11,61,46,.10);
-      border-radius:28px;padding:20px;box-shadow:var(--shadow)
-    }
-    .grid{
-      display:grid;grid-template-columns:minmax(0,1.6fr) minmax(170px,.75fr) minmax(170px,.75fr) auto;
-      gap:12px;align-items:end
-    }
-    label{display:block;font-size:.82rem;font-weight:900;color:var(--green);margin:0 0 7px}
-    input,select{
-      width:100%;min-height:51px;border:1px solid var(--line);
-      border-radius:15px;padding:0 14px;background:#fff;color:var(--ink);outline:none
-    }
-    input:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(213,166,46,.15)}
-    .submit{
-      min-height:51px;border:0;border-radius:15px;padding:0 22px;
-      background:var(--gold);color:#1d241f;font-weight:950;cursor:pointer
-    }
-    .submit:hover{filter:brightness(.97)}
-    .submit:disabled{opacity:.6;cursor:wait}
-    .examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-    .chip{
-      border:1px solid var(--line);background:#f9fbf9;color:var(--green);
-      padding:8px 11px;border-radius:999px;cursor:pointer;font-size:.84rem;font-weight:800
-    }
-    .section-head{
-      display:flex;align-items:end;justify-content:space-between;gap:15px;
-      padding:34px 2px 15px
-    }
-    .section-head h2{margin:0;font-size:clamp(1.4rem,3vw,2.1rem)}
-    .count{color:var(--muted);font-weight:800}
-    .state{
-      background:#fff;border:1px dashed #b9c6be;border-radius:20px;padding:25px;
-      text-align:center;color:var(--muted)
-    }
-    .state.error{color:var(--danger);border-color:#ddb6b6;background:#fff8f8}
-    .results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
-    .card{
-      background:var(--card);border:1px solid rgba(11,61,46,.11);
-      border-radius:var(--radius);padding:21px;box-shadow:0 10px 30px rgba(20,48,37,.07);
-      display:flex;flex-direction:column;gap:15px
-    }
-    .card-top{display:flex;gap:14px;align-items:flex-start}
-    .avatar{
-      width:68px;height:68px;border-radius:19px;flex:0 0 68px;
-      background:linear-gradient(135deg,var(--gold-soft),#fff);
-      border:1px solid #ebd89f;overflow:hidden;display:grid;place-items:center;
-      color:var(--green);font-weight:1000;font-size:1.25rem
-    }
-    .avatar img{width:100%;height:100%;object-fit:cover}
-    .title-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-    .card h3{margin:0;font-size:1.28rem}
-    .verified{
-      background:#e7f5ed;color:#11603f;border-radius:999px;
-      padding:5px 8px;font-size:.72rem;font-weight:950
-    }
-    .meta{margin:7px 0 0;color:var(--muted);line-height:1.45}
-    .location{font-size:.9rem;color:var(--green);font-weight:850;margin-top:6px}
-    .description{margin:0;line-height:1.6;color:#3d4d45}
-    .services{display:flex;flex-wrap:wrap;gap:7px}
-    .service{
-      font-size:.79rem;font-weight:800;color:#395449;background:#f1f6f3;
-      border:1px solid #dbe8e0;padding:7px 9px;border-radius:999px
-    }
-    .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
-    .btn{
-      min-height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;
-      text-decoration:none;font-weight:950;text-align:center;padding:9px 12px
-    }
-    .btn-primary{background:var(--green);color:#fff}
-    .btn-whatsapp{background:#e7f7ed;color:#11613e;border:1px solid #bee4cc}
-    .direct-note{
-      margin:26px 0 0;background:var(--gold-soft);border:1px solid #e5cf8c;
-      color:#514219;border-radius:18px;padding:16px 18px;line-height:1.55;font-weight:700
-    }
-    footer{padding:5px 0 34px;text-align:center;color:var(--muted);font-size:.88rem}
-    @media(max-width:850px){
-      .grid{grid-template-columns:1fr 1fr}
-      .query-field{grid-column:1/-1}
-      .submit{width:100%}
-    }
-    @media(max-width:680px){
-      .shell{width:min(100% - 18px,1120px)}
-      header{padding-top:15px}
-      .brand small{display:none}
-      .home{font-size:.84rem}
-      .hero{border-radius:24px;padding:27px 20px 50px}
-      .search-panel{padding:15px;border-radius:22px}
-      .grid{grid-template-columns:1fr}
-      .query-field{grid-column:auto}
-      .results{grid-template-columns:1fr}
-      .section-head{align-items:flex-start;flex-direction:column}
-    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;font-family:var(--font);color:var(--ink);background:radial-gradient(circle at top right,rgba(213,166,46,.20),transparent 32rem),linear-gradient(180deg,#fbf8ef 0%,var(--bg) 100%)}
+    a{color:inherit;text-decoration:none}button,input,select{font:inherit}.shell{width:min(1120px,calc(100% - 28px));margin:0 auto}
+    header{padding:22px 0 12px}.brand{display:flex;align-items:center;justify-content:space-between;gap:14px}.brandMark{display:flex;align-items:center;gap:12px}.logo{width:50px;height:50px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;font-weight:1000;box-shadow:var(--shadow)}
+    .brand strong{display:block;font-size:1.08rem}.brand small{display:block;color:var(--muted);margin-top:2px}.home{font-weight:900;color:var(--green);border:1px solid rgba(11,61,46,.20);padding:10px 14px;border-radius:999px;background:#fff}
+    main{padding:12px 0 56px}.hero{position:relative;overflow:hidden;color:#fff;border-radius:32px;padding:clamp(24px,5vw,52px);background:linear-gradient(135deg,var(--green),#115c42 66%,#174c3d);box-shadow:var(--shadow)}
+    .hero:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-90px;top:-110px;background:rgba(213,166,46,.18)}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:#fff4c9;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:8px 12px;font-size:.82rem;font-weight:900}
+    h1{position:relative;z-index:1;font-size:clamp(2rem,6vw,4.2rem);line-height:.98;margin:18px 0 14px;max-width:790px}.hero p{position:relative;z-index:1;max-width:760px;margin:0;color:#e7f2ed;font-size:clamp(1rem,2vw,1.16rem);line-height:1.65;font-weight:650}
+    .searchPanel{margin-top:-24px;position:relative;z-index:3;background:var(--card);border:1px solid rgba(11,61,46,.10);border-radius:28px;padding:20px;box-shadow:var(--shadow)}
+    .formGrid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(160px,.75fr) minmax(170px,.75fr) auto;gap:10px}.field{display:grid;gap:7px}.field label{font-size:.78rem;font-weight:900;color:var(--green)}
+    input,select{width:100%;min-height:52px;border:1px solid var(--line);border-radius:15px;background:#fff;padding:0 14px;color:var(--ink);outline:none}input:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(213,166,46,.12)}
+    .searchBtn{align-self:end;min-height:52px;border:0;border-radius:15px;padding:0 20px;background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;font-weight:1000;cursor:pointer}.searchBtn:disabled{opacity:.65;cursor:wait}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.chip{border:1px solid rgba(11,61,46,.16);background:#f7faf8;color:var(--green);border-radius:999px;padding:8px 12px;font-size:.82rem;font-weight:900;cursor:pointer}
+    .headRow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:28px 0 12px}.headRow h2{margin:0;font-size:clamp(1.45rem,4vw,2.2rem)}.count{color:var(--muted);font-weight:900;font-size:.9rem}
+    .state{border:1px dashed rgba(11,61,46,.25);border-radius:20px;padding:18px;background:rgba(255,255,255,.62);color:var(--muted);font-weight:800;line-height:1.55}.state.error{border-color:rgba(143,47,47,.28);color:var(--danger)}
+    .results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:17px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:13px}.cardTop{display:flex;gap:13px;align-items:flex-start}.avatar{width:82px;height:82px;border-radius:20px;overflow:hidden;display:grid;place-items:center;flex:0 0 auto;background:linear-gradient(135deg,var(--goldsoft),#fff);border:1px solid rgba(213,166,46,.28);color:var(--green);font-size:1.35rem;font-weight:1000}.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .titleRow{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap}.titleRow h3{margin:0;font-size:1.22rem;line-height:1.12}.verified{font-size:.7rem;font-weight:1000;color:#0d6b49;background:#ddf7e9;border:1px solid #bce9d1;border-radius:999px;padding:4px 7px}.meta{margin:6px 0 0;color:var(--green);font-weight:900;line-height:1.35}.location{margin-top:5px;color:var(--muted);font-size:.86rem;font-weight:800}.description{margin:0;color:#405047;line-height:1.55;font-weight:650}
+    .services{display:flex;gap:7px;flex-wrap:wrap}.service{font-size:.76rem;font-weight:900;border-radius:999px;padding:6px 9px;background:#f4f7f5;border:1px solid var(--line);color:#425249}.moduleBadge{align-self:flex-start;font-size:.72rem;font-weight:1000;border-radius:999px;padding:6px 9px;background:var(--goldsoft);color:#684f0b;border:1px solid rgba(213,166,46,.28)}
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}.btn{min-height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px 11px;font-size:.86rem;font-weight:1000}.btnPrimary{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff}.btnWhatsapp{background:#e4f8ec;color:#075d37;border:1px solid #bfe8d0}
+    .note{margin-top:24px;border:1px solid rgba(213,166,46,.32);background:rgba(244,229,184,.48);border-radius:20px;padding:15px;color:#5e4a14;line-height:1.55;font-weight:800}.note strong{color:var(--green)}
+    footer{text-align:center;padding:28px 0 10px;color:var(--muted);font-size:.83rem;font-weight:800}
+    @media(max-width:850px){.formGrid{grid-template-columns:1fr 1fr}.searchBtn{width:100%}.results{grid-template-columns:1fr}}
+    @media(max-width:560px){.formGrid{grid-template-columns:1fr}.brand small{display:none}.home{padding:9px 11px}.searchPanel{padding:15px;border-radius:22px}.actions{grid-template-columns:1fr}.avatar{width:72px;height:72px}}
   </style>
 </head>
 <body>
-  <header class="shell">
-    <div class="brand">
-      <a class="brand-mark" href="https://digiylyfe.com/" aria-label="Accueil DIGIYLYFE">
-        <span class="logo">D</span>
-        <span>
-          <strong>DIGIYLYFE</strong>
-          <small>Ancré sur la Petite Côte · Ouvert au monde</small>
-        </span>
-      </a>
-      <a class="home" href="https://digiylyfe.com/">Accueil</a>
+<header class="shell">
+  <div class="brand">
+    <a class="brandMark" href="https://digiylyfe.com/" aria-label="Accueil DIGIYLYFE"><span class="logo">D</span><span><strong>DIGIYLYFE</strong><small>Recherche client · contact direct</small></span></a>
+    <a class="home" href="https://digiylyfe.com/">← Accueil</a>
+  </div>
+</header>
+<main class="shell">
+  <section class="hero">
+    <span class="eyebrow">🔎 Moteur client DIGIYLYFE</span>
+    <h1>Trouvez la bonne porte métier.</h1>
+    <p>Recherchez un artisan, un chauffeur, un logement, une boutique ou un service. La fiche officielle s’ouvre, puis le client contacte directement le professionnel.</p>
+  </section>
+
+  <section class="searchPanel" aria-label="Recherche de professionnels">
+    <form id="searchForm" class="formGrid">
+      <div class="field"><label for="query">Métier, nom ou service</label><input id="query" type="search" placeholder="Ex. électricien, maçon, chauffeur…" autocomplete="off"></div>
+      <div class="field"><label for="city">Ville ou zone</label><input id="city" type="search" placeholder="Ex. Saly"></div>
+      <div class="field"><label for="module">Module</label><select id="module"><option value="">Tous les modules</option><option value="BUILD">BUILD · Artisans</option><option value="DRIVER">DRIVER · Chauffeurs</option><option value="LOC">LOC · Logements</option><option value="MARKET">MARKET · Boutiques</option><option value="JOBS">JOBS · Missions</option><option value="RESA">RESA · Réservations</option><option value="EXPLORE">EXPLORE · Lieux</option></select></div>
+      <button class="searchBtn" id="submitBtn" type="submit">Rechercher</button>
+    </form>
+    <div class="chips" aria-label="Recherches rapides">
+      <button class="chip" type="button" data-query="" data-city="" data-module="">Tout voir</button>
+      <button class="chip" type="button" data-query="électricien" data-city="Saly" data-module="BUILD">⚡ Électricien</button>
+      <button class="chip" type="button" data-query="maçon" data-city="" data-module="BUILD">🏗️ Maçon</button>
+      <button class="chip" type="button" data-query="plombier" data-city="" data-module="BUILD">🔧 Plombier</button>
+      <button class="chip" type="button" data-query="chauffeur" data-city="" data-module="DRIVER">🚗 Chauffeur</button>
+      <button class="chip" type="button" data-query="" data-city="Saly" data-module="">📍 Saly</button>
     </div>
-  </header>
+  </section>
 
-  <main class="shell">
-    <section class="hero">
-      <span class="eyebrow">Recherche directe · 0 % commission DIGIY</span>
-      <h1>Trouvez la bonne porte, sans détour.</h1>
-      <p>
-        Cherchez un produit, un service ou un métier. DIGIY vous oriente vers la vitrine officielle
-        et le WhatsApp direct du professionnel.
-      </p>
-    </section>
+  <div class="headRow"><h2>Résultats</h2><span class="count" id="count"></span></div>
+  <div class="state" id="status">Chargement du réseau DIGIYLYFE…</div>
+  <section class="results" id="results" hidden aria-live="polite"></section>
 
-    <section class="search-panel" aria-label="Recherche de professionnels">
-      <form id="searchForm">
-        <div class="grid">
-          <div class="query-field">
-            <label for="query">Que cherchez-vous ?</label>
-            <input id="query" name="query" type="search" placeholder="Serviettes, QR, rendez-vous, plombier…" autocomplete="off">
-          </div>
-          <div>
-            <label for="city">Ville ou zone</label>
-            <input id="city" name="city" type="text" placeholder="Saly, Mbour…">
-          </div>
-          <div>
-            <label for="module">Porte métier</label>
-            <select id="module" name="module">
-              <option value="">Toutes les portes</option>
-              <option value="MARKET">MARKET</option>
-              <option value="RESA">RESA</option>
-              <option value="DRIVER">DRIVER</option>
-              <option value="LOC">LOC</option>
-              <option value="BUILD">BUILD</option>
-              <option value="JOBS">JOBS</option>
-              <option value="CARNET">CARNET</option>
-              <option value="EXPLORE">EXPLORE</option>
-            </select>
-          </div>
-          <button id="submitBtn" class="submit" type="submit">Rechercher</button>
-        </div>
-      </form>
+  <div class="note"><strong>Règle DIGIY :</strong> une seule fiche officielle par professionnel, un lien direct, un QR et un contact qui restent dans la main du terrain.</div>
+  <footer>DIGIYLYFE · Recherche client · Contact direct · Paiement direct · 0% commission</footer>
+</main>
 
-      <div class="examples" aria-label="Exemples de recherches">
-        <button class="chip" type="button" data-query="serviettes" data-city="Saly" data-module="MARKET">Serviettes à Saly</button>
-        <button class="chip" type="button" data-query="draps" data-city="Saly" data-module="MARKET">Draps</button>
-        <button class="chip" type="button" data-query="QR" data-city="" data-module="">QR professionnel</button>
-        <button class="chip" type="button" data-query="rendez-vous" data-city="" data-module="RESA">Rendez-vous</button>
-        <button class="chip" type="button" data-query="vitrine mobile" data-city="" data-module="">Vitrine mobile</button>
-      </div>
-    </section>
+<script>
+(function(){
+  "use strict";
 
-    <section aria-live="polite">
-      <div class="section-head">
-        <h2>Résultats</h2>
-        <div id="count" class="count"></div>
-      </div>
-      <div id="status" class="state">Les professionnels actifs vont apparaître ici.</div>
-      <div id="results" class="results" hidden></div>
+  const SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA";
 
-      <div class="direct-note">
-        DIGIY organise la découverte. Le contact, l’accord et le paiement restent directs entre le client et le professionnel.
-      </div>
-    </section>
-  </main>
-
-  <footer class="shell">
-    DIGIYLYFE — Le terrain garde la main.
-  </footer>
-
-  <script>
-    "use strict";
-
-    const SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA";
-
-    const form = document.getElementById("searchForm");
-    const queryInput = document.getElementById("query");
-    const cityInput = document.getElementById("city");
-    const moduleInput = document.getElementById("module");
-    const submitBtn = document.getElementById("submitBtn");
-    const statusBox = document.getElementById("status");
-    const resultsBox = document.getElementById("results");
-    const countBox = document.getElementById("count");
-
-    function escapeHtml(value) {
-      return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+  const STATIC_BUILD = [
+    {
+      slug:"partenaires-kourant", nom_public:"Kourant Électricien", metier:"Électricien · installation · rénovation · dépannage",
+      ville:"Saly", quartier:"Petite Côte", whatsapp:"221772084781", telephone:"+221772084781",
+      photo_url:"https://kourant.digiylyfe.com/carte-visite.png", url_fiche:"https://kourant.digiylyfe.com/",
+      description_courte:"Installation électrique neuve, rénovation, mise aux normes, tableaux, prises, éclairage, recherche de panne et dépannage.",
+      module:"BUILD", verifie:true, services:[{nom:"Installation"},{nom:"Dépannage"},{nom:"Rénovation"}]
+    },
+    {
+      slug:"partenaires-mbaye", nom_public:"Mbaye Diouf", metier:"Entrepreneur maçon · villas · piscines · rénovation",
+      ville:"Saly / Mbour / Thiès", quartier:"Petite Côte", whatsapp:"221776427113", telephone:"+221776427113",
+      photo_url:"https://mbaye-macon.digiylyfe.com/carte-visite.png", url_fiche:"https://mbaye-macon.digiylyfe.com/",
+      description_courte:"Construction de villas, piscines béton, rénovation, extensions et finitions haut de gamme.",
+      module:"BUILD", verifie:true, services:[{nom:"Construction"},{nom:"Villa"},{nom:"Piscine"}]
     }
+  ];
 
-    function whatsappNumber(value) {
-      return String(value ?? "").replace(/\D/g, "");
-    }
+  const form=document.getElementById("searchForm"), queryInput=document.getElementById("query"), cityInput=document.getElementById("city"), moduleInput=document.getElementById("module"), submitBtn=document.getElementById("submitBtn"), statusBox=document.getElementById("status"), resultsBox=document.getElementById("results"), countBox=document.getElementById("count");
+  let cachedPros=[];
 
-    function initials(name) {
-      return String(name || "DIGIY")
-        .split(/\s+/)
-        .filter(Boolean)
-        .slice(0, 2)
-        .map(part => part[0]?.toUpperCase() || "")
-        .join("");
-    }
+  const norm=value=>String(value||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+  const escapeHtml=value=>String(value??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
+  const digits=value=>String(value||"").replace(/\D/g,"");
+  const initials=name=>String(name||"DIGIY").split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]?.toUpperCase()||"").join("");
 
-    function renderAvatar(pro) {
-      const image = pro.photo_url || pro.logo_url;
-      if (image) {
-        return `<div class="avatar"><img src="${escapeHtml(image)}" alt="" loading="lazy" onerror="this.parentElement.textContent='${escapeHtml(initials(pro.nom_public))}'"></div>`;
-      }
-      return `<div class="avatar">${escapeHtml(initials(pro.nom_public))}</div>`;
-    }
+  function headers(){return {"Content-Type":"application/json","apikey":SUPABASE_ANON_KEY,"Authorization":"Bearer "+SUPABASE_ANON_KEY};}
 
-    function renderServices(services) {
-      if (!Array.isArray(services) || services.length === 0) return "";
-      return `
-        <div class="services">
-          ${services
-            .filter(service => service && service.disponible !== false)
-            .slice(0, 8)
-            .map(service => `<span class="service">${escapeHtml(service.nom)}</span>`)
-            .join("")}
-        </div>
-      `;
-    }
+  function mapBuild(row){
+    const slug=row.slug||row.slug_key||"";
+    return {
+      slug,
+      nom_public:row.display_name||row.nom_public||row.name||"Professionnel BUILD",
+      metier:row.trade||row.metier||"Artisan DIGIY BUILD",
+      ville:row.city||row.ville||"",
+      quartier:row.region||row.quartier||"",
+      whatsapp:row.whatsapp||row.phone||row.telephone||"",
+      telephone:row.phone||row.telephone||row.whatsapp||"",
+      photo_url:row.photo_url||row.card_image_url||row.logo_url||"",
+      url_fiche:row.profile_url||row.url_fiche||(slug?"https://build.digiylyfe.com/fiche.html?slug="+encodeURIComponent(slug):"https://build.digiylyfe.com/"),
+      description_courte:row.bio||row.description_courte||"",
+      module:"BUILD",
+      verifie:Boolean(row.is_verified||row.verifie||row.badge),
+      services:Array.isArray(row.services)?row.services:[]
+    };
+  }
 
-    function buildWhatsappLink(pro) {
-      const number = whatsappNumber(pro.whatsapp || pro.telephone);
-      const message = encodeURIComponent(
-        `Bonjour ${pro.nom_public || ""}, je vous contacte depuis votre fiche DIGIYLYFE.`
-      );
-      return number ? `https://wa.me/${number}?text=${message}` : "";
-    }
+  function mapCentral(row){
+    return {
+      ...row,
+      module:String(row.module||row.module_code||row.categorie||"").toUpperCase(),
+      nom_public:row.nom_public||row.display_name||row.name||"Professionnel DIGIY",
+      metier:row.metier||row.trade||"Professionnel DIGIY",
+      ville:row.ville||row.city||"",
+      quartier:row.quartier||row.region||"",
+      url_fiche:row.url_fiche||row.profile_url||"#",
+      description_courte:row.description_courte||row.bio||""
+    };
+  }
 
-    function renderCard(pro) {
-      const whatsapp = buildWhatsappLink(pro);
-      const location = [pro.quartier, pro.ville].filter(Boolean).join(" · ");
-      const fiche = pro.url_fiche || "#";
+  async function loadCentral(){
+    try{
+      const response=await fetch(SUPABASE_URL+"/rest/v1/rpc/digiy_rechercher_pros",{method:"POST",headers:headers(),body:JSON.stringify({p_recherche:null,p_ville:null,p_module:null,p_limite:100,p_offset:0})});
+      const payload=await response.json();
+      if(!response.ok||!Array.isArray(payload)) return [];
+      return payload.map(mapCentral);
+    }catch(_){return [];}
+  }
 
-      return `
-        <article class="card">
-          <div class="card-top">
-            ${renderAvatar(pro)}
-            <div>
-              <div class="title-row">
-                <h3>${escapeHtml(pro.nom_public)}</h3>
-                ${pro.verifie ? '<span class="verified">Vérifié</span>' : ""}
-              </div>
-              <p class="meta">${escapeHtml(pro.metier || "Professionnel DIGIY")}</p>
-              ${location ? `<div class="location">${escapeHtml(location)}</div>` : ""}
-            </div>
-          </div>
+  async function loadBuild(){
+    try{
+      const url=SUPABASE_URL+"/rest/v1/digiy_build_public_profiles?select=*";
+      const response=await fetch(url,{headers:headers()});
+      const payload=await response.json();
+      if(!response.ok||!Array.isArray(payload)) return [];
+      return payload.filter(row=>row.is_published!==false&&row.is_active!==false).map(mapBuild);
+    }catch(_){return [];}
+  }
 
-          ${pro.description_courte ? `<p class="description">${escapeHtml(pro.description_courte)}</p>` : ""}
-          ${renderServices(pro.services)}
-
-          <div class="actions">
-            <a class="btn btn-primary" href="${escapeHtml(fiche)}" target="_blank" rel="noopener noreferrer">
-              Voir la vitrine
-            </a>
-            ${whatsapp
-              ? `<a class="btn btn-whatsapp" href="${escapeHtml(whatsapp)}" target="_blank" rel="noopener noreferrer">WhatsApp direct</a>`
-              : `<span class="btn btn-whatsapp" aria-disabled="true">Contact indisponible</span>`
-            }
-          </div>
-        </article>
-      `;
-    }
-
-    async function searchPros({ query = "", city = "", module = "" } = {}) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Recherche…";
-      resultsBox.hidden = true;
-      statusBox.hidden = false;
-      statusBox.className = "state";
-      statusBox.textContent = "Recherche dans le réseau DIGIYLYFE…";
-      countBox.textContent = "";
-
-      try {
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/digiy_rechercher_pros`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": SUPABASE_ANON_KEY,
-            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
-          },
-          body: JSON.stringify({
-            p_recherche: query.trim() || null,
-            p_ville: city.trim() || null,
-            p_module: module || null,
-            p_limite: 30,
-            p_offset: 0
-          })
-        });
-
-        const payload = await response.json();
-
-        if (!response.ok) {
-          throw new Error(payload?.message || "La recherche n’a pas pu être chargée.");
-        }
-
-        if (!Array.isArray(payload) || payload.length === 0) {
-          statusBox.textContent = "Aucun professionnel ne correspond encore à cette recherche. Essayez un autre mot ou retirez le filtre de ville.";
-          return;
-        }
-
-        resultsBox.innerHTML = payload.map(renderCard).join("");
-        resultsBox.hidden = false;
-        statusBox.hidden = true;
-        countBox.textContent = `${payload.length} résultat${payload.length > 1 ? "s" : ""}`;
-      } catch (error) {
-        console.error(error);
-        statusBox.className = "state error";
-        statusBox.textContent = "La recherche est momentanément indisponible. Les vitrines directes restent accessibles depuis digiylyfe.com.";
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Rechercher";
-      }
-    }
-
-    form.addEventListener("submit", event => {
-      event.preventDefault();
-      searchPros({
-        query: queryInput.value,
-        city: cityInput.value,
-        module: moduleInput.value
-      });
+  function dedupe(rows){
+    const out=[],seen=new Set();
+    rows.forEach(pro=>{
+      const phone=digits(pro.whatsapp||pro.telephone);
+      const url=norm(pro.url_fiche).replace(/\/$/,"");
+      const slug=norm(pro.slug);
+      const key=phone?"tel:"+phone:(url&&url!=="#"?"url:"+url:(slug?"slug:"+slug:"nom:"+norm(pro.nom_public)+"|"+norm(pro.metier)));
+      if(seen.has(key)) return;
+      seen.add(key);out.push(pro);
     });
+    return out;
+  }
 
-    document.querySelectorAll(".chip").forEach(button => {
-      button.addEventListener("click", () => {
-        queryInput.value = button.dataset.query || "";
-        cityInput.value = button.dataset.city || "";
-        moduleInput.value = button.dataset.module || "";
-        searchPros({
-          query: queryInput.value,
-          city: cityInput.value,
-          module: moduleInput.value
-        });
-      });
-    });
+  function searchable(pro){
+    const services=Array.isArray(pro.services)?pro.services.map(s=>s?.nom||s).join(" "):"";
+    return norm([pro.nom_public,pro.metier,pro.ville,pro.quartier,pro.description_courte,pro.module,services].join(" "));
+  }
 
-    searchPros();
-  </script>
+  function filterPros(rows,{query="",city="",module=""}={}){
+    const q=norm(query),c=norm(city),m=norm(module);
+    return rows.filter(pro=>(!q||searchable(pro).includes(q))&&(!c||norm([pro.ville,pro.quartier].join(" ")).includes(c))&&(!m||norm(pro.module)===m));
+  }
+
+  function renderAvatar(pro){
+    const image=pro.photo_url||pro.logo_url;
+    if(image) return `<div class="avatar"><img src="${escapeHtml(image)}" alt="Carte ou photo de ${escapeHtml(pro.nom_public)}" loading="lazy" onerror="this.parentElement.textContent='${escapeHtml(initials(pro.nom_public))}'"></div>`;
+    return `<div class="avatar">${escapeHtml(initials(pro.nom_public))}</div>`;
+  }
+
+  function renderServices(services){
+    if(!Array.isArray(services)||!services.length) return "";
+    return `<div class="services">${services.filter(Boolean).slice(0,6).map(s=>`<span class="service">${escapeHtml(s?.nom||s)}</span>`).join("")}</div>`;
+  }
+
+  function renderCard(pro){
+    const number=digits(pro.whatsapp||pro.telephone), message=encodeURIComponent(`Bonjour ${pro.nom_public||""}, je vous contacte depuis la recherche DIGIYLYFE.`), wa=number?`https://wa.me/${number}?text=${message}`:"", location=[pro.quartier,pro.ville].filter(Boolean).join(" · "), fiche=pro.url_fiche&&pro.url_fiche!=="#"?pro.url_fiche:"https://digiylyfe.com/";
+    return `<article class="card"><span class="moduleBadge">${escapeHtml(pro.module||"DIGIY")}</span><div class="cardTop">${renderAvatar(pro)}<div><div class="titleRow"><h3>${escapeHtml(pro.nom_public)}</h3>${pro.verifie?'<span class="verified">Vérifié</span>':""}</div><p class="meta">${escapeHtml(pro.metier||"Professionnel DIGIY")}</p>${location?`<div class="location">📍 ${escapeHtml(location)}</div>`:""}</div></div>${pro.description_courte?`<p class="description">${escapeHtml(pro.description_courte)}</p>`:""}${renderServices(pro.services)}<div class="actions"><a class="btn btnPrimary" href="${escapeHtml(fiche)}" target="_blank" rel="noopener noreferrer">Voir la vitrine</a>${wa?`<a class="btn btnWhatsapp" href="${escapeHtml(wa)}" target="_blank" rel="noopener noreferrer">WhatsApp direct</a>`:'<span class="btn btnWhatsapp" aria-disabled="true">Contact indisponible</span>'}</div></article>`;
+  }
+
+  function show(rows){
+    if(!rows.length){resultsBox.hidden=true;statusBox.hidden=false;statusBox.className="state";statusBox.textContent="Aucun professionnel ne correspond encore à cette recherche. Essayez un autre mot ou retirez un filtre.";countBox.textContent="0 résultat";return;}
+    resultsBox.innerHTML=rows.map(renderCard).join("");resultsBox.hidden=false;statusBox.hidden=true;countBox.textContent=rows.length+" résultat"+(rows.length>1?"s":"");
+  }
+
+  async function initialise(){
+    submitBtn.disabled=true;submitBtn.textContent="Chargement…";statusBox.textContent="Connexion au réseau DIGIYLYFE…";
+    const [build,central]=await Promise.all([loadBuild(),loadCentral()]);
+    cachedPros=dedupe([...build,...STATIC_BUILD,...central]);
+    submitBtn.disabled=false;submitBtn.textContent="Rechercher";
+    show(cachedPros);
+  }
+
+  function runSearch(){show(filterPros(cachedPros,{query:queryInput.value,city:cityInput.value,module:moduleInput.value}));}
+  form.addEventListener("submit",event=>{event.preventDefault();runSearch();});
+  document.querySelectorAll(".chip").forEach(button=>button.addEventListener("click",()=>{queryInput.value=button.dataset.query||"";cityInput.value=button.dataset.city||"";moduleInput.value=button.dataset.module||"";runSearch();}));
+  initialise();
+})();
+</script>
 </body>
 </html>
