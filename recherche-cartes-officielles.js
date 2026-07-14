@@ -1,7 +1,7 @@
 (function(){
   "use strict";
 
-  const MARKER="recherche-stricte-v7-lamine-20260714";
+  const MARKER="recherche-stricte-v8-lamine-babacar-20260714";
   const form=document.getElementById("searchForm");
   const queryInput=document.getElementById("query");
   const cityInput=document.getElementById("city");
@@ -21,6 +21,13 @@
     .replace(/[^a-z0-9]+/g," ")
     .trim();
 
+  const escapeHtml=value=>String(value??"")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
   const RULES={
     chauffeur:{
       module:"DRIVER",
@@ -34,7 +41,7 @@
     },
     plombier:{
       module:"BUILD",
-      positive:["plombier","plomberie","sanitaire","recherche de fuite","robinetterie"],
+      positive:["plombier","plomberie","sanitaire","recherche de fuite","robinetterie","tuyauterie","wc","lavabo","douche"],
       forbidden:["chauffeur","driver","vtc","taxi"]
     },
     electricien:{
@@ -55,17 +62,20 @@
     city:"Saly · Mbour · Thiès",
     phone:"221784413680",
     profile:"https://partenaire-lamine.digiylyfe.com/",
-    image:"https://partenaire-lamine.digiylyfe.com/carte-visite.png?v=20260714-v7",
+    image:"https://partenaire-lamine.digiylyfe.com/carte-visite.png?v=20260714-v8",
     description:"Chauffeur privé vérifié pour transferts AIBD, courses locales, trajets vers Dakar, circuits Petite Côte et mise à disposition sur réservation.",
     services:["Transfert AIBD","Course locale","Sur réservation","Trajet Dakar","Circuit Petite Côte"]
   };
 
-  const escapeHtml=value=>String(value??"")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+  const BABACAR={
+    name:"Babacar Plombier Pro",
+    trade:"Plombier professionnel · Dépannage · Installation sanitaire",
+    city:"Saly · Petite Côte",
+    phone:"221776125124",
+    profile:"https://babacar-plombier-pro.digiylyfe.com/",
+    description:"Fuite, robinet, WC, lavabo, douche, tuyauterie, installation sanitaire et petits travaux. Contact direct selon disponibilité.",
+    services:["Dépannage fuite","Robinet et lavabo","WC et chasse d’eau","Douche et sanitaire","Tuyauterie","Petits travaux"]
+  };
 
   function queryKind(value){
     const q=norm(value);
@@ -77,30 +87,47 @@
     return "";
   }
 
-  function lamineCardHtml(){
-    const message=encodeURIComponent("Bonjour Lamine, je vous contacte depuis la recherche DIGIYLYFE.");
-    return `<article class="card" data-digiy-driver-official="lamine">
-      <span class="moduleBadge">DRIVER</span>
+  function officialCardHtml(profile,type){
+    const message=encodeURIComponent("Bonjour "+profile.name+", je vous contacte depuis la recherche DIGIYLYFE.");
+    const avatar=profile.image
+      ? `<div class="avatar"><img src="${escapeHtml(profile.image)}" alt="Carte de visite officielle de ${escapeHtml(profile.name)}" loading="eager"></div>`
+      : `<div class="avatar">BP</div>`;
+
+    return `<article class="card" data-digiy-official="${escapeHtml(type)}">
+      <span class="moduleBadge">${type==="lamine"?"DRIVER":"BUILD"}</span>
       <div class="cardTop">
-        <div class="avatar"><img src="${escapeHtml(LAMINE.image)}" alt="Carte de visite officielle de Lamine" loading="eager"></div>
+        ${avatar}
         <div>
-          <div class="titleRow"><h3>${escapeHtml(LAMINE.name)}</h3><span class="verified">Vérifié</span></div>
-          <p class="meta">${escapeHtml(LAMINE.trade)}</p>
-          <div class="location">📍 ${escapeHtml(LAMINE.city)}</div>
+          <div class="titleRow"><h3>${escapeHtml(profile.name)}</h3><span class="verified">Vérifié</span></div>
+          <p class="meta">${escapeHtml(profile.trade)}</p>
+          <div class="location">📍 ${escapeHtml(profile.city)}</div>
         </div>
       </div>
-      <p class="description">${escapeHtml(LAMINE.description)}</p>
-      <div class="services">${LAMINE.services.map(service=>`<span class="service">${escapeHtml(service)}</span>`).join("")}</div>
+      <p class="description">${escapeHtml(profile.description)}</p>
+      <div class="services">${profile.services.map(service=>`<span class="service">${escapeHtml(service)}</span>`).join("")}</div>
       <div class="actions">
-        <a class="btn btnPrimary" href="${escapeHtml(LAMINE.profile)}" target="_blank" rel="noopener noreferrer">Voir la fiche officielle</a>
-        <a class="btn btnWhatsapp" href="https://wa.me/${LAMINE.phone}?text=${message}" target="_blank" rel="noopener noreferrer">WhatsApp direct</a>
+        <a class="btn btnPrimary" href="${escapeHtml(profile.profile)}" target="_blank" rel="noopener noreferrer">Voir la fiche officielle</a>
+        <a class="btn btnWhatsapp" href="https://wa.me/${profile.phone}?text=${message}" target="_blank" rel="noopener noreferrer">WhatsApp direct</a>
       </div>
     </article>`;
   }
 
-  function ensureLamine(){
-    if(results.querySelector('[data-digiy-driver-official="lamine"]')) return;
-    results.insertAdjacentHTML("afterbegin",lamineCardHtml());
+  function ensureOfficialProfiles(){
+    if(!results.querySelector('[data-digiy-official="lamine"]')){
+      results.insertAdjacentHTML("afterbegin",officialCardHtml(LAMINE,"lamine"));
+    }
+
+    const existingBabacar=Array.from(results.querySelectorAll("article.card")).some(card=>{
+      const text=norm(card.textContent);
+      const href=card.querySelector('.btnWhatsapp')?.getAttribute('href')||"";
+      return text.includes("babacar plombier")||href.includes("221776125124");
+    });
+
+    if(!existingBabacar){
+      const lamineCard=results.querySelector('[data-digiy-official="lamine"]');
+      if(lamineCard) lamineCard.insertAdjacentHTML("afterend",officialCardHtml(BABACAR,"babacar"));
+      else results.insertAdjacentHTML("afterbegin",officialCardHtml(BABACAR,"babacar"));
+    }
   }
 
   function cardData(card){
@@ -142,7 +169,7 @@
   }
 
   function applyStrictFilter(){
-    ensureLamine();
+    ensureOfficialProfiles();
     const kind=queryKind(queryInput.value);
     const cards=Array.from(results.querySelectorAll("article.card"));
 
