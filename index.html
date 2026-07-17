@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#06140f">
 <meta name="description" content="DIGIYLYFE est le Club digital des Métiers et des Entreprises de la Petite Côte. Vitrines, QR officiels, contacts et paiements directs, 0% commission. Chaque activité garde son identité, le Club rassemble les forces du terrain.">
 <meta name="robots" content="index,follow">
-<meta name="digiy-build" content="index-final-digiylyfe-20260713">
+<meta name="digiy-build" content="index-partenaire-pilote-20260717">
 <link rel="canonical" href="https://digiylyfe.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://digiylyfe.com/">
@@ -187,6 +187,39 @@ button{font:inherit;cursor:pointer}
 .favoriteTip{margin-top:12px;border:1px dashed rgba(246,196,83,.45);border-radius:18px;padding:12px;background:rgba(246,196,83,.08);color:rgba(255,250,240,.84);font-size:13px;font-weight:900;line-height:1.42}
 .favoriteTip strong{color:#fff3cf}
 @media(max-width:680px){.proGateGrid{grid-template-columns:1fr}}
+
+
+/* ── Programme partenaire pilote · 30 jours offerts ── */
+.pilotDoor{
+  position:relative;overflow:hidden;margin-top:14px;padding:22px 18px;
+  border:1px solid rgba(34,197,94,.66);border-radius:30px;
+  background:
+    radial-gradient(620px 280px at 0 0,rgba(34,197,94,.24),transparent 64%),
+    radial-gradient(420px 220px at 100% 100%,rgba(246,196,83,.17),transparent 62%),
+    linear-gradient(145deg,#0c4d31,#061b13 72%);
+  box-shadow:0 24px 64px rgba(0,0,0,.34)
+}
+.pilotDoorGrid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr);gap:22px;align-items:center}
+.pilotKicker{display:inline-flex;align-items:center;padding:7px 11px;border-radius:999px;border:1px solid rgba(246,196,83,.54);background:rgba(246,196,83,.11);color:#fff3cf;font-size:11px;font-weight:1000;letter-spacing:.09em;text-transform:uppercase}
+.pilotDoor h2{margin:12px 0 8px;font-size:clamp(30px,6.3vw,52px);line-height:.98;letter-spacing:-.045em;font-weight:1000}
+.pilotLead{margin:0;color:rgba(255,250,240,.86);font-size:clamp(14px,3.5vw,18px);line-height:1.46;font-weight:850}
+.pilotList{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:15px 0 0;padding:0;list-style:none}
+.pilotList li{padding:10px;border:1px solid rgba(255,255,255,.13);border-radius:15px;background:rgba(255,255,255,.055);font-size:13px;font-weight:950;line-height:1.3}
+.pilotOffer{padding:18px;border:1px solid rgba(246,196,83,.46);border-radius:24px;background:rgba(255,255,255,.075);text-align:center}
+.pilotOffer small{display:block;color:var(--soft);font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.08em}
+.pilotNumber{display:block;margin-top:6px;color:#d9ffe7;font-size:clamp(31px,6vw,45px);line-height:1;font-weight:1000;letter-spacing:-.045em}
+.pilotDelay{display:block;margin-top:9px;color:rgba(255,250,240,.79);font-size:12px;line-height:1.42;font-weight:900}
+.pilotActions{display:grid;gap:8px;margin-top:14px}
+.pilotActions a{min-height:50px;border-radius:999px;border:1px solid rgba(246,196,83,.55);display:flex;align-items:center;justify-content:center;padding:10px 14px;text-align:center;font-size:13px;font-weight:1000}
+.pilotActions .primary{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f}
+.pilotActions .secondary{background:rgba(255,255,255,.07);color:#fff3cf}
+.pilotTrust{margin:14px 0 0;text-align:center;color:rgba(255,250,240,.82);font-size:12.5px;line-height:1.45;font-weight:950}
+@media(max-width:760px){
+  .pilotDoorGrid{grid-template-columns:1fr}
+  .pilotDoor{padding:18px 14px;border-radius:25px}
+  .pilotList{grid-template-columns:1fr 1fr}
+}
+@media(max-width:390px){.pilotList{grid-template-columns:1fr}}
 
 /* ── Porte commerciale claire · version finale ── */
 .commercialDoor{
@@ -465,7 +498,7 @@ button{font:inherit;cursor:pointer}
       <span data-i18n="doorClientText">Trouver un pro, un logement, un chauffeur, une boutique, un artisan ou un service — et le contacter directement.</span>
       <em data-i18n="doorClientCta">Trouver un professionnel →</em>
     </a>
-    <a class="door doorPro" href="#offre-professionnelle">
+    <a class="door doorPro" href="#partenaire-pilote">
       <i>🔥</i>
       <strong data-i18n="doorProTitle">Je suis professionnel</strong>
       <span data-i18n="doorProText">Nouveau pro : comprenez l’offre, voyez un exemple, puis inscrivez-vous. Déjà abonné : votre porte est côté HUB.</span>
@@ -474,6 +507,34 @@ button{font:inherit;cursor:pointer}
     </a>
   </nav>
 
+</section>
+
+
+<!-- ═══ Programme partenaire pilote · 30 jours offerts ═══ -->
+<section class="pilotDoor" id="partenaire-pilote" aria-label="Programme partenaire pilote DIGIYLYFE">
+  <div class="pilotDoorGrid">
+    <div>
+      <span class="pilotKicker" data-i18n="pilotKicker">Programme de lancement · Tous les modules</span>
+      <h2 data-i18n="pilotTitle">Testez votre présence DIGIYLYFE pendant 30 jours.</h2>
+      <p class="pilotLead" data-i18n="pilotLead">Les professionnels spontanés peuvent demander une fiche personnalisée, une carte digitale et leur QR personnel. La demande reste directe par SMS, sans base externe et sans publication automatique.</p>
+      <ul class="pilotList" aria-label="Contenu du programme pilote">
+        <li data-i18n="pilotItem1">✓ Fiche professionnelle personnalisée</li>
+        <li data-i18n="pilotItem2">✓ Carte de visite digitale</li>
+        <li data-i18n="pilotItem3">✓ QR personnel vers la fiche</li>
+        <li data-i18n="pilotItem4">✓ Contact direct · 0% commission</li>
+      </ul>
+    </div>
+    <div class="pilotOffer">
+      <small data-i18n="pilotLimit">Programme limité à</small>
+      <strong class="pilotNumber" data-i18n="pilotNumber">50 activations pilotes</strong>
+      <span class="pilotDelay" data-i18n="pilotDelay">Les 30 jours commencent uniquement lorsque la fiche est réellement activée.</span>
+      <div class="pilotActions">
+        <a class="primary" href="https://partenaire-pilote.digiylyfe.com/" data-i18n="pilotCta">Demander ma place pilote</a>
+        <a class="secondary" href="#offre-professionnelle" data-i18n="pilotNormalOffer">Voir l’offre normale</a>
+      </div>
+    </div>
+  </div>
+  <p class="pilotTrust" data-i18n="pilotTrust">Partenaire pilote ne signifie pas propriétaire : aucune part sociale, aucun droit de propriété et aucun pouvoir de décision dans DIGIYLYFE.</p>
 </section>
 
 <!-- ═══ Porte commerciale claire · version finale ═══ -->
@@ -764,6 +825,7 @@ button{font:inherit;cursor:pointer}
   <a href="./qr.html" data-i18n="footerQr">QR scannable</a> ·
   <a href="./qr-module-digiylyfe.html" data-i18n="footerQrModule">QR Module</a> ·
   <a href="./presence-terrain.html" data-i18n="footerPresence">Pack Présence Terrain</a> ·
+  <a href="https://partenaire-pilote.digiylyfe.com/" data-i18n="footerPilot">Programme pilote 30 jours</a> ·
   <a href="#entreprises-petite-cote" data-i18n="footerEntreprise">Club Métiers & Entreprises</a> ·
   <a href="./inscription.html" data-i18n="footerInscription">Inscription</a> ·
   <a href="./ciblage-pros-digiylyfe.html" data-i18n="footerCiblagePros">Ciblage Pros</a> ·
@@ -798,6 +860,7 @@ button{font:inherit;cursor:pointer}
       <a href="https://explore.digiylyfe.com/">🗺️ EXPLORE · <span data-i18n="menuExplore">lieux</span></a>
 
       <span class="menuLabel" data-i18n="menuLabelPro">🔥 Côté pro · activer & piloter</span>
+      <a class="gold" href="https://partenaire-pilote.digiylyfe.com/">🧪 <span data-i18n="menuPilot">Programme pilote · 30 jours offerts</span></a>
       <a class="gold" href="./presence-terrain.html">▣ <span data-i18n="menuPresence">Pack Présence Terrain</span></a>
       <a class="gold" href="#entreprises-petite-cote">🏢 <span data-i18n="menuEntreprise">Club Métiers & Entreprises</span></a>
       <a class="gold" href="./inscription.html">📝 <span data-i18n="menuInscription">Inscription DIGIY</span></a>
@@ -853,9 +916,22 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       doorClientText:"Trouver un pro, un logement, un chauffeur, une boutique, un artisan ou un service — et le contacter directement.",
       doorClientCta:"Trouver un professionnel →",
       doorProTitle:"Je suis professionnel",
-      doorProText:"Nouveau pro : comprenez l’offre, voyez un exemple, puis inscrivez-vous. Déjà abonné : votre porte est côté HUB.",
+      doorProText:"Nouveau pro : testez votre présence DIGIYLYFE pendant 30 jours. Déjà abonné : votre porte est côté HUB.",
       doorProHub:"Astuce abonnés : ouvrez votre module et mettez-le en favori pour revenir sans scroller.",
-      doorProCta:"Voir l’offre et m’inscrire →",
+      doorProCta:"Tester 30 jours gratuitement →",
+      pilotKicker:"Programme de lancement · Tous les modules",
+      pilotTitle:"Testez votre présence DIGIYLYFE pendant 30 jours.",
+      pilotLead:"Les professionnels spontanés peuvent demander une fiche personnalisée, une carte digitale et leur QR personnel. La demande reste directe par SMS, sans base externe et sans publication automatique.",
+      pilotItem1:"✓ Fiche professionnelle personnalisée",
+      pilotItem2:"✓ Carte de visite digitale",
+      pilotItem3:"✓ QR personnel vers la fiche",
+      pilotItem4:"✓ Contact direct · 0% commission",
+      pilotLimit:"Programme limité à",
+      pilotNumber:"50 activations pilotes",
+      pilotDelay:"Les 30 jours commencent uniquement lorsque la fiche est réellement activée.",
+      pilotCta:"Demander ma place pilote",
+      pilotNormalOffer:"Voir l’offre normale",
+      pilotTrust:"Partenaire pilote ne signifie pas propriétaire : aucune part sociale, aucun droit de propriété et aucun pouvoir de décision dans DIGIYLYFE.",
       commercialKicker:"Votre première porte DIGIY",
       commercialTitle:"Une fiche professionnelle. Un QR. Vos clients en direct.",
       commercialLead:"DIGIYLYFE rend votre activité visible et partageable sur téléphone. Le client découvre vos services, vous contacte sur WhatsApp et vous paie directement.",
@@ -921,11 +997,12 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       shareTitle:"📤 Partager DIGIYLYFE",
       shareText:"DIGIYLYFE — Le Club digital des Métiers et des Entreprises de la Petite Côte. Une identité commune, des portes directes, 0% commission.",
       footerLine:"La Voix du Business, la Voie du Terrain.",
-      footerSearch:"Recherche",footerQr:"QR scannable",footerQrModule:"QR Module",footerPresence:"Pack Présence Terrain",footerInscription:"Inscription",footerCiblagePros:"Ciblage Pros",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"Solution DIGIYLYFE",footerLivre:"📖 Le Livre — à lire ou à écouter",footerQuartiers:"Quartiers",footerActivate:"Voir les offres",
+      footerSearch:"Recherche",footerQr:"QR scannable",footerQrModule:"QR Module",footerPresence:"Pack Présence Terrain",footerPilot:"Programme pilote 30 jours",footerInscription:"Inscription",footerCiblagePros:"Ciblage Pros",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"Solution DIGIYLYFE",footerLivre:"📖 Le Livre — à lire ou à écouter",footerQuartiers:"Quartiers",footerActivate:"Voir les offres",
       menuTitle:"☰ Menu complet",
       menuLabelClient:"🔎 Côté client · les quartiers",menuSearch:"Trouver un professionnel",
       menuDriver:"chauffeurs",menuLoc:"logements & tourisme",menuMarket:"boutiques",menuBuild:"artisans",menuJobs:"missions",menuResa:"réserver",menuCarnet:"carnet d’activité",menuExplore:"lieux",
       menuLabelPro:"🔥 Côté pro · activer & piloter",
+      menuPilot:"Programme pilote · 30 jours offerts",
       menuPresence:"Pack Présence Terrain",menuInscription:"Inscription DIGIY",menuPrices:"Voir les offres",menuPro:"Espace pro",menuProCarnet:"PRO CARNET · accès sécurisé",menuCiblagePros:"Ciblage pros · boutiques · LOC · services",menuQrModule:"QR Module · porte pro",menuClub:"Club des Métiers",
       menuLabelComprendre:"🏛️ Comprendre · la cathédrale",
       menuClip:"Clip terrain",menuSolution:"Solution DIGIYLYFE",menuCarnets:"Carnets DIGIYLYFE",menuArchitecture:"Architecture DIGIYLYFE",menuReview:"Revue DIGIYLYFE",
@@ -952,9 +1029,22 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       doorClientText:"Find a professional, housing, a driver, a shop, a tradesperson or a service — and contact them directly.",
       doorClientCta:"Find a professional →",
       doorProTitle:"I am a professional",
-      doorProText:"New pro: understand the offer, see a real example, then register. Already subscribed: your doorway is through the HUB.",
+      doorProText:"New professional: test your DIGIYLYFE presence for 30 days. Already subscribed: your doorway is through the HUB.",
       doorProHub:"Subscriber tip: open your module and add it to favorites to return without scrolling.",
-      doorProCta:"View the offer and register →",
+      doorProCta:"Try 30 days free →",
+      pilotKicker:"Launch programme · All modules",
+      pilotTitle:"Test your DIGIYLYFE presence for 30 days.",
+      pilotLead:"Professionals can request a personalised profile, a digital card and a personal QR. The request is sent directly by SMS, without an external database and without automatic publication.",
+      pilotItem1:"✓ Personalised professional profile",
+      pilotItem2:"✓ Digital business card",
+      pilotItem3:"✓ Personal QR to the profile",
+      pilotItem4:"✓ Direct contact · 0% commission",
+      pilotLimit:"Programme limited to",
+      pilotNumber:"50 pilot activations",
+      pilotDelay:"The 30 days begin only when the profile is actually activated.",
+      pilotCta:"Request my pilot place",
+      pilotNormalOffer:"View the regular offer",
+      pilotTrust:"Pilot partner does not mean owner: no shares, no ownership rights and no decision-making power in DIGIYLYFE.",
       commercialKicker:"Your first DIGIY doorway",
       commercialTitle:"A professional profile. A QR. Your clients direct.",
       commercialLead:"DIGIYLYFE makes your business visible and shareable on mobile. Clients discover your services, contact you on WhatsApp and pay you directly.",
@@ -1020,11 +1110,12 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       shareTitle:"📤 Share DIGIYLYFE",
       shareText:"DIGIYLYFE — The digital Club for Petite Côte Trades and Businesses. One shared identity, direct doorways and 0% commission.",
       footerLine:"The Voice of Business, the Road of the Field.",
-      footerSearch:"Search",footerQr:"Scannable QR",footerQrModule:"QR Module",footerPresence:"Field Presence Pack",footerInscription:"Registration",footerCiblagePros:"Pro Targets",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"DIGIYLYFE Solution",footerLivre:"📖 The Book — read or listen",footerQuartiers:"Districts",footerActivate:"View offers",
+      footerSearch:"Search",footerQr:"Scannable QR",footerQrModule:"QR Module",footerPresence:"Field Presence Pack",footerPilot:"30-day pilot programme",footerInscription:"Registration",footerCiblagePros:"Pro Targets",footerArchitecture:"Architecture",footerClip:"Clip",footerSolution:"DIGIYLYFE Solution",footerLivre:"📖 The Book — read or listen",footerQuartiers:"Districts",footerActivate:"View offers",
       menuTitle:"☰ Full menu",
       menuLabelClient:"🔎 Client side · the districts",menuSearch:"Find a professional",
       menuDriver:"drivers",menuLoc:"housing & tourism",menuMarket:"shops",menuBuild:"trades",menuJobs:"missions",menuResa:"book",menuCarnet:"business notebook",menuExplore:"places",
       menuLabelPro:"🔥 Pro side · activate & manage",
+      menuPilot:"Pilot programme · 30 days free",
       menuPresence:"Field Presence Pack",menuInscription:"DIGIY Registration",menuPrices:"View offers",menuPro:"Pro space",menuProCarnet:"PRO CARNET · secure access",menuCiblagePros:"Pro targets · shops · stays · services",menuQrModule:"QR Module · pro doorway",menuClub:"Trades Club",
       menuLabelComprendre:"🏛️ Understand · the cathedral",
       menuClip:"Field clip",menuSolution:"DIGIYLYFE Solution",menuCarnets:"DIGIYLYFE Notebooks",menuArchitecture:"DIGIYLYFE Architecture",menuReview:"DIGIYLYFE Review",
@@ -1062,5 +1153,8 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
 </script>
 </body>
 </html>
+
+
+
 
 
