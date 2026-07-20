@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#06140f">
 <meta name="description" content="DIGIYLYFE est le Club digital des Métiers et des Entreprises de la Petite Côte. Vitrines, QR officiels, contacts et paiements directs, 0% commission. Chaque activité garde son identité, le Club rassemble les forces du terrain.">
 <meta name="robots" content="index,follow">
-<meta name="digiy-build" content="index-commercial-bcheikh-video-fixe-20260720">
+<meta name="digiy-build" content="index-commercial-bcheikh-prix-carte-fin-20260720">
 <link rel="canonical" href="https://digiylyfe.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://digiylyfe.com/">
@@ -256,6 +256,8 @@ button{font:inherit;cursor:pointer}
 .enterpriseClipTag{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid rgba(246,196,83,.44);background:rgba(246,196,83,.12);color:#fff3cf;font-size:11px;font-weight:1000;letter-spacing:.08em;text-transform:uppercase}
 .enterpriseClipCopy h3{margin:11px 0 7px;color:#fffaf0;font-size:clamp(23px,5vw,36px);line-height:1.02;letter-spacing:-.04em;font-weight:1000}
 .enterpriseClipCopy p{margin:0;color:rgba(255,250,240,.80);font-size:13.5px;line-height:1.5;font-weight:900}
+.enterpriseClipPrices{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.enterpriseClipPrices span{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 12px;border-radius:14px;border:1px solid rgba(246,196,83,.48);background:rgba(246,196,83,.13);color:#fff3cf;font-size:12.5px;font-weight:1000}
 .enterpriseClipActions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .enterpriseClipActions .enterpriseClipOpen{margin-top:0}
 .enterpriseClipOpen{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 14px;border-radius:999px;border:1px solid rgba(246,196,83,.38);background:rgba(255,255,255,.08);color:#fff3cf;font-size:12.5px;font-weight:1000}
@@ -515,8 +517,8 @@ button{font:inherit;cursor:pointer}
   <!-- ═══ BLOC VIDÉO BCHEIKH (corrigé) ═══ -->
   <div class="enterpriseClip" aria-label="Exemple terrain · BCHEIKH">
     <div class="enterpriseClipFrame">
-      <video controls playsinline preload="metadata" aria-label="Vidéo vitrine BCHEIKH">
-        <source src="https://bcheikh.digiylyfe.com/video.mp4?v=20260720" type="video/mp4">
+      <video controls playsinline preload="metadata" poster="./carte-visite-bcheikh-prix.png" aria-label="Vidéo vitrine BCHEIKH — la carte de visite avec les prix reste affichée à la fin">
+        <source src="./BCHEIKH_TIKTOK_CARTE_PRIX_FIN_FIXE_9x16.mp4?v=20260720" type="video/mp4">
         Votre navigateur ne permet pas de lire cette vidéo.
       </video>
     </div>
@@ -524,8 +526,13 @@ button{font:inherit;cursor:pointer}
       <span class="enterpriseClipTag" data-i18n="enterpriseClipTag">Exemple terrain · BCHEIKH</span>
       <h3 data-i18n="enterpriseClipTitle">Un commerce réel, une vitrine réelle</h3>
       <p data-i18n="enterpriseClipText">Découvrez comment BCHEIKH présente ses vêtements, ses prix et ses contacts directement depuis sa vitrine DIGIYLYFE. Le client voit l’offre, contacte le vendeur et paie directement. DIGIYLYFE ne prend aucune commission.</p>
+      <div class="enterpriseClipPrices" aria-label="Prix BCHEIKH">
+        <span data-i18n="enterprisePrice1">1 pièce · 7 000 FCFA</span>
+        <span data-i18n="enterprisePrice2">3 pièces · 20 000 FCFA</span>
+        <span data-i18n="enterprisePrice3">3 caleçons · 7 000 FCFA</span>
+      </div>
       <div class="enterpriseClipActions">
-        <a class="enterpriseClipOpen" data-i18n="enterpriseClipOpen" href="https://bcheikh.digiylyfe.com/video.mp4?v=20260720" target="_blank" rel="noopener">🎬 Voir la vidéo de BCHEIKH</a>
+        <a class="enterpriseClipOpen" data-i18n="enterpriseClipOpen" href="./BCHEIKH_TIKTOK_CARTE_PRIX_FIN_FIXE_9x16.mp4?v=20260720" target="_blank" rel="noopener">🎬 Voir la vidéo de BCHEIKH</a>
         <a class="enterpriseClipOpen" data-i18n="enterpriseClipVitrine" href="https://bcheikh.digiylyfe.com/" target="_blank" rel="noopener">👕 Ouvrir la vitrine BCHEIKH</a>
       </div>
     </div>
@@ -820,6 +827,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       enterpriseClipTag:"Exemple terrain · BCHEIKH",
       enterpriseClipTitle:"Un commerce réel, une vitrine réelle",
       enterpriseClipText:"Découvrez comment BCHEIKH présente ses vêtements, ses prix et ses contacts directement depuis sa vitrine DIGIYLYFE. Le client voit l’offre, contacte le vendeur et paie directement. DIGIYLYFE ne prend aucune commission.",
+      enterprisePrice1:"1 pièce · 7 000 FCFA",enterprisePrice2:"3 pièces · 20 000 FCFA",enterprisePrice3:"3 caleçons · 7 000 FCFA",
       enterpriseClipOpen:"🎬 Voir la vidéo de BCHEIKH",
       enterpriseClipVitrine:"👕 Ouvrir la vitrine BCHEIKH",
       enterpriseCta1:"💳 Choisir mon offre et payer",enterpriseCta3:"🧭 Voir les modules disponibles",
@@ -941,6 +949,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       enterpriseClipTag:"Field example · BCHEIKH",
       enterpriseClipTitle:"A real business, a real showcase",
       enterpriseClipText:"Discover how BCHEIKH presents his clothes, prices and contacts directly from his DIGIYLYFE showcase. The client sees the offer, contacts the seller and pays directly. DIGIYLYFE takes no commission.",
+      enterprisePrice1:"1 piece · 7,000 FCFA",enterprisePrice2:"3 pieces · 20,000 FCFA",enterprisePrice3:"3 boxers · 7,000 FCFA",
       enterpriseClipOpen:"🎬 Watch BCHEIKH's video",
       enterpriseClipVitrine:"👕 Open BCHEIKH's showcase",
       enterpriseCta1:"💳 Choose my offer and pay",enterpriseCta3:"🧭 View available modules",
@@ -1022,6 +1031,5 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
 </script>
 </body>
 </html>
-
 
 
