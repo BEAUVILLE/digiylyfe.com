@@ -8,11 +8,11 @@
 <meta content="#06140f" name="theme-color"/>
 <meta content="DIGIYLYFE ouvre 50 activations pilotes avec 30 jours offerts, sans paiement demandé. Une fiche professionnelle, une carte digitale et un QR direct pour remplir le réseau avec des professionnels réels." name="description"/>
 <meta content="index,follow" name="robots"/>
-<meta content="index-hero-50-pilotes-hub-gare-centrale-20260720" name="digiy-build"/>
+<meta content="index-hero-50-pilotes-hub-gare-centrale-20260721" name="digiy-build"/>
 <script>
 /* Nettoyage unique d'un ancien cache PWA qui pourrait afficher une page hors connexion obsolète. */
 (function(){
-  var BUILD='digiylyfe-bcheikh-anticache-20260720-v2';
+  var BUILD='digiylyfe-pilote-anticache-20260721-v1';
   if(!('serviceWorker' in navigator)) return;
   window.addEventListener('load', async function(){
     try{
@@ -26,7 +26,7 @@
       localStorage.setItem('digiy-cache-cleanup',BUILD);
       if(navigator.serviceWorker.controller && !sessionStorage.getItem(BUILD)){
         sessionStorage.setItem(BUILD,'1');
-        location.replace(location.pathname+'?v=20260720-bcheikh');
+        location.replace(location.pathname+'?v=20260721-pilote');
       }
     }catch(error){
       console.warn('DIGIY cache cleanup:',error);
@@ -280,7 +280,7 @@ button{font:inherit;cursor:pointer}
 .terrainProofCard a{margin-top:auto;min-height:46px;padding:10px 13px;border-radius:999px;border:1px solid rgba(246,196,83,.52);background:rgba(246,196,83,.10);color:#fff3cf;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;font-weight:1000}
 @media(max-width:760px){.terrainProofGrid{grid-template-columns:1fr}.terrainProofCard{min-height:0}}
 
-/* ── Programme pilote (essai gratuit) ── */
+/* ── Activation pilote · 30 jours offerts ── */
 .pilotDoor{
   position:relative;overflow:hidden;margin-top:14px;padding:22px 18px;
   border:1px solid rgba(34,197,94,.66);border-radius:30px;
@@ -427,11 +427,11 @@ button{font:inherit;cursor:pointer}
 <header class="top">
 <a aria-label="Accueil DIGIYLYFE" class="logo" href="https://digiylyfe.com/"><img alt="DIGIYLYFE" src="./icon-192.png?v=20260713"/></a>
 <div class="brand"><strong>DIGIYLYFE</strong><small data-i18n="brandTag">Club digital · Métiers &amp; Entreprises</small></div>
-<button aria-controls="sheet" aria-expanded="false" aria-label="Ouvrir le menu complet" class="menuBtn" id="menuTrigger" onclick="openMenu()" type="button">☰</button>
+<button aria-controls="sheet" aria-expanded="false" aria-label="Ouvrir le menu complet" class="menuBtn" data-i18n-aria-label="menuOpenLabel" id="menuTrigger" onclick="openMenu()" type="button">☰</button>
 </header>
-<div aria-label="Choisir la langue" class="langBar">
-<button class="langBtn active" data-lang="fr" onclick="digiySetLang('fr')" type="button">🇫🇷 FR</button>
-<button class="langBtn" data-lang="en" onclick="digiySetLang('en')" type="button">🇬🇧 EN</button>
+<div aria-label="Choisir la langue" class="langBar" data-i18n-aria-label="languageChooserLabel">
+<button aria-pressed="true" class="langBtn active" data-lang="fr" onclick="digiySetLang('fr')" type="button">🇫🇷 FR</button>
+<button aria-pressed="false" class="langBtn" data-lang="en" onclick="digiySetLang('en')" type="button">🇬🇧 EN</button>
 </div>
 <!-- ═══ HERO LOCOMOTIVE : 50 ACTIVATIONS PILOTES · LE FRIGO D’ABORD ═══ -->
 <section aria-label="50 activations pilotes DIGIYLYFE — 30 jours offerts" class="hero" id="partenaire-pilote">
@@ -443,7 +443,7 @@ button{font:inherit;cursor:pointer}
 <span class="heroPilotKicker" data-i18n="heroPilotKicker">Le frigo d’abord · 50 places pilotes</span>
 <h1 data-i18n="heroPilotTitle">50 activations pilotes. 30 jours offerts.</h1>
 <p class="heroPilotLead" data-i18n="heroPilotLead">Aucun paiement demandé. Le professionnel scanne ou clique, arrive directement sur la demande et peut entrer dans le réseau pilote. La locomotive est claire : remplir le terrain avec des activités réelles.</p>
-<div aria-label="Conditions principales du programme pilote" class="heroPilotFacts">
+<div aria-label="Conditions principales de l’activation pilote · 30 jours offerts" class="heroPilotFacts" data-i18n-aria-label="heroPilotFactsLabel">
 <span data-i18n="heroPilotFact1">✓ 30 jours offerts</span>
 <span data-i18n="heroPilotFact2">✓ Aucun paiement demandé</span>
 <span data-i18n="heroPilotFact3">✓ Contact direct · 0% commission</span>
@@ -483,7 +483,34 @@ button{font:inherit;cursor:pointer}
 <a class="hubStationMain" data-i18n="hubMainCta" href="https://digiy-hub.digiylyfe.com/">🧭 OUVRIR LE HUB — GARE CENTRALE DIGIYLYFE</a>
 <p class="hubStationNote" data-i18n="hubNote">Client ou professionnel : une même gare, puis la bonne direction.</p>
 </section>
-<!-- ═══ Offre commerciale principale (payante) — après la locomotive pilote ═══ -->
+<!-- ═══ Preuves terrain : Astou, Babacar, Baptiste ═══ -->
+<section aria-label="Des professionnels déjà sur le terrain" class="terrainProofs" id="preuve-astou-boutique">
+<div class="terrainProofsHead">
+<h2 data-i18n="proofTitle">Des professionnels déjà sur le terrain</h2>
+<p data-i18n="proofLead">Boutique, artisan et hébergement : trois activités réelles montrent comment une vitrine DIGIY rend le contact plus direct.</p>
+</div>
+<div class="terrainProofGrid">
+<article class="terrainProofCard">
+<span class="terrainProofIcon">🛍️</span><span class="terrainProofStatus" data-i18n="proofAstouStatus">Preuve terrain · MARKET</span>
+<h3>Astou Boutique</h3><p data-i18n="proofAstouText">Maison, plage et élégance : les produits sont visibles et la boutique reste joignable directement.</p>
+<span class="terrainProofMeta" data-i18n="proofAstouMeta">Saly · Boutique locale · Contact direct</span>
+<a data-i18n="proofOpen" href="https://astou-boutique.digiylyfe.com/" rel="noopener noreferrer" target="_blank">Voir sa fiche</a>
+</article>
+<article class="terrainProofCard">
+<span class="terrainProofIcon">🔧</span><span class="terrainProofStatus" data-i18n="proofBabacarStatus">Fiche invitée terrain · BUILD</span>
+<h3>Babacar Plombier Pro</h3><p data-i18n="proofBabacarText">Une fiche publique présente son métier, sa zone et ses services avant le contact WhatsApp.</p>
+<span class="terrainProofMeta" data-i18n="proofBabacarMeta">Saly · Plomberie · Contact direct</span>
+<a data-i18n="proofOpen" href="https://babacar-plombier-pro.digiylyfe.com/" rel="noopener noreferrer" target="_blank">Voir sa fiche</a>
+</article>
+<article class="terrainProofCard">
+<span class="terrainProofIcon">🏠</span><span class="terrainProofStatus" data-i18n="proofBaptisteStatus">Exemple réel · LOC</span>
+<h3>Chez Baptiste</h3><p data-i18n="proofBaptisteText">Une vitrine d’hébergement permet de voir le lieu puis de contacter directement le propriétaire.</p>
+<span class="terrainProofMeta" data-i18n="proofBaptisteMeta">Saly · Hébergement · Paiement direct</span>
+<a data-i18n="proofOpen" href="https://part-chez-baptiste.digiylyfe.com/" rel="noopener noreferrer" target="_blank">Voir sa fiche</a>
+</article>
+</div>
+</section>
+<!-- ═══ Offre commerciale principale (payante) — après les preuves terrain ═══ -->
 <section aria-label="Votre vitrine professionnelle DIGIYLYFE" class="commercialDoor" id="offre-professionnelle">
 <div class="commercialDoorGrid">
 <div>
@@ -512,7 +539,7 @@ button{font:inherit;cursor:pointer}
 <!-- ═══ Carte réseau officielle (QR DIGIYLYFE) ═══ -->
 <figure aria-label="Carte réseau officielle DIGIYLYFE" class="heroNetworkCard">
 <a aria-label="Ouvrir la carte QR officielle DIGIYLYFE" class="heroNetworkImage" href="./qr.png?v=20260713" rel="noopener noreferrer" target="_blank">
-<img alt="Carte QR officielle DIGIYLYFE.COM — Le Club Entreprises du Terrain" loading="eager" src="./qr.png?v=20260713"/>
+<img alt="Carte QR officielle DIGIYLYFE.COM — Le Club Entreprises du Terrain" loading="lazy" src="./qr.png?v=20260713"/>
 </a>
 <figcaption class="heroNetworkCaption" data-i18n="heroQrCaption">
     Carte réseau officielle du Club DIGIYLYFE : scannable, partageable et imprimable. Une identité commune, puis une porte directe pour chaque métier.
@@ -523,33 +550,6 @@ button{font:inherit;cursor:pointer}
 <a data-i18n="heroQrDownload" download="qr-digiylyfe.png" href="./qr.png?v=20260713">⬇️ Télécharger</a>
 </div>
 </figure>
-<!-- ═══ Preuves terrain : Astou, Babacar, Baptiste ═══ -->
-<section aria-label="Des professionnels déjà sur le terrain" class="terrainProofs" id="preuve-astou-boutique">
-<div class="terrainProofsHead">
-<h2 data-i18n="proofTitle">Des professionnels déjà sur le terrain</h2>
-<p data-i18n="proofLead">Boutique, artisan et hébergement : trois activités réelles montrent comment une vitrine DIGIY rend le contact plus direct.</p>
-</div>
-<div class="terrainProofGrid">
-<article class="terrainProofCard">
-<span class="terrainProofIcon">🛍️</span><span class="terrainProofStatus" data-i18n="proofAstouStatus">Preuve terrain · MARKET</span>
-<h3>Astou Boutique</h3><p data-i18n="proofAstouText">Maison, plage et élégance : les produits sont visibles et la boutique reste joignable directement.</p>
-<span class="terrainProofMeta" data-i18n="proofAstouMeta">Saly · Boutique locale · Contact direct</span>
-<a data-i18n="proofOpen" href="https://astou-boutique.digiylyfe.com/" rel="noopener noreferrer" target="_blank">Voir sa fiche</a>
-</article>
-<article class="terrainProofCard">
-<span class="terrainProofIcon">🔧</span><span class="terrainProofStatus" data-i18n="proofBabacarStatus">Fiche invitée terrain · BUILD</span>
-<h3>Babacar Plombier Pro</h3><p data-i18n="proofBabacarText">Une fiche publique présente son métier, sa zone et ses services avant le contact WhatsApp.</p>
-<span class="terrainProofMeta" data-i18n="proofBabacarMeta">Saly · Plomberie · Contact direct</span>
-<a data-i18n="proofOpen" href="https://babacar-plombier-pro.digiylyfe.com/" rel="noopener noreferrer" target="_blank">Voir sa fiche</a>
-</article>
-<article class="terrainProofCard">
-<span class="terrainProofIcon">🏠</span><span class="terrainProofStatus" data-i18n="proofBaptisteStatus">Exemple réel · LOC</span>
-<h3>Chez Baptiste</h3><p data-i18n="proofBaptisteText">Une vitrine d’hébergement permet de voir le lieu puis de contacter directement le propriétaire.</p>
-<span class="terrainProofMeta" data-i18n="proofBaptisteMeta">Saly · Hébergement · Paiement direct</span>
-<a data-i18n="proofOpen" href="https://part-chez-baptiste.digiylyfe.com/" rel="noopener noreferrer" target="_blank">Voir sa fiche</a>
-</article>
-</div>
-</section>
 <!-- ═══ Portes professionnelles ═══ -->
 <section aria-label="Portes professionnelles DIGIYLYFE" class="section" id="pro-portes">
 <h2 data-i18n="proGateTitle">🔥 Portes professionnelles</h2>
@@ -774,13 +774,13 @@ button{font:inherit;cursor:pointer}
 </main>
 <!-- ═══ Menu complet ═══ -->
 <div aria-hidden="true" class="overlay" id="overlay" onclick="closeMenu()"></div>
-<div aria-hidden="true" aria-label="Menu complet DIGIYLYFE" aria-modal="true" class="sheet" id="sheet" role="dialog">
+<div aria-hidden="true" aria-label="Menu complet DIGIYLYFE" aria-modal="true" class="sheet" data-i18n-aria-label="menuDialogLabel" id="sheet" inert role="dialog">
 <div class="sheetCard">
 <div class="sheetHead">
 <h2 data-i18n="menuTitle">☰ Menu complet</h2>
-<button aria-label="Fermer" class="closeBtn" onclick="closeMenu()" type="button">×</button>
+<button aria-label="Fermer le menu" class="closeBtn" data-i18n-aria-label="menuCloseLabel" onclick="closeMenu()" type="button">×</button>
 </div>
-<nav aria-label="Toutes les portes DIGIYLYFE" class="menuGrid">
+<nav aria-label="Toutes les portes DIGIYLYFE" class="menuGrid" data-i18n-aria-label="menuNavLabel">
 <span class="menuLabel" data-i18n="menuLabelClient">🔎 Côté client · les quartiers</span>
 <a class="gold" href="./recherche.html">🔎 <span data-i18n="menuSearch">Trouver un professionnel</span></a>
 <a href="https://driver-client.digiylyfe.com/">🚗 DRIVER · <span data-i18n="menuDriver">chauffeurs</span></a>
@@ -823,8 +823,11 @@ var digiyMenuTrigger=null;
 function openMenu(){
   var overlay=document.getElementById('overlay');
   var sheet=document.getElementById('sheet');
+  var app=document.querySelector('.app');
   var trigger=document.getElementById('menuTrigger');
   digiyMenuTrigger=document.activeElement;
+  sheet.removeAttribute('inert');
+  if(app)app.setAttribute('inert','');
   overlay.classList.add('open');
   sheet.classList.add('open');
   overlay.setAttribute('aria-hidden','false');
@@ -837,16 +840,29 @@ function openMenu(){
 function closeMenu(){
   var overlay=document.getElementById('overlay');
   var sheet=document.getElementById('sheet');
+  var app=document.querySelector('.app');
   var trigger=document.getElementById('menuTrigger');
+  if(!sheet.classList.contains('open'))return;
   overlay.classList.remove('open');
   sheet.classList.remove('open');
   overlay.setAttribute('aria-hidden','true');
   sheet.setAttribute('aria-hidden','true');
+  sheet.setAttribute('inert','');
+  if(app)app.removeAttribute('inert');
   if(trigger)trigger.setAttribute('aria-expanded','false');
   document.body.classList.remove('lock');
   if(digiyMenuTrigger&&typeof digiyMenuTrigger.focus==='function')digiyMenuTrigger.focus();
 }
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()});
+document.addEventListener('keydown',function(e){
+  var sheet=document.getElementById('sheet');
+  if(e.key==='Escape'&&sheet.classList.contains('open')){e.preventDefault();closeMenu();return;}
+  if(e.key!=='Tab'||!sheet.classList.contains('open'))return;
+  var focusable=Array.from(sheet.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter(function(el){return !el.hasAttribute('hidden')&&el.getClientRects().length;});
+  if(!focusable.length)return;
+  var first=focusable[0],last=focusable[focusable.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+});
 document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener('click',closeMenu)});
 </script>
 <script>
@@ -909,6 +925,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       pageTitle:"DIGIYLYFE — 50 activations pilotes · 30 jours offerts",
       metaDescription:"DIGIYLYFE ouvre 50 activations pilotes avec 30 jours offerts, sans paiement demandé. Une fiche professionnelle, une carte digitale et un QR direct pour remplir le réseau avec des professionnels réels.",
       brandTag:"Club digital · Métiers & Entreprises",
+      languageChooserLabel:"Choisir la langue",menuOpenLabel:"Ouvrir le menu complet",menuDialogLabel:"Menu complet DIGIYLYFE",menuCloseLabel:"Fermer le menu",menuNavLabel:"Toutes les portes DIGIYLYFE",heroPilotFactsLabel:"Conditions principales de l’activation pilote · 30 jours offerts",
       heroPilotKicker:"Le frigo d’abord · 50 places pilotes",
       heroPilotTitle:"50 activations pilotes. 30 jours offerts.",
       heroPilotLead:"Aucun paiement demandé. Le professionnel scanne ou clique, arrive directement sur la demande et peut entrer dans le réseau pilote. La locomotive est claire : remplir le terrain avec des activités réelles.",
@@ -964,17 +981,17 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       proofAstouStatus:"Preuve terrain · MARKET",proofAstouText:"Maison, plage et élégance : les produits sont visibles et la boutique reste joignable directement.",proofAstouMeta:"Saly · Boutique locale · Contact direct",
       proofBabacarStatus:"Fiche invitée terrain · BUILD",proofBabacarText:"Une fiche publique présente son métier, sa zone et ses services avant le contact WhatsApp.",proofBabacarMeta:"Saly · Plomberie · Contact direct",
       proofBaptisteStatus:"Exemple réel · LOC",proofBaptisteText:"Une vitrine d’hébergement permet de voir le lieu puis de contacter directement le propriétaire.",proofBaptisteMeta:"Saly · Hébergement · Paiement direct",proofOpen:"Voir sa fiche",
-      pilotKicker:"Programme partenaire pilote · 30 jours offerts",
-      pilotTitle:"Testez votre présence DIGIYLYFE pendant 30 jours.",
+      pilotKicker:"Activation pilote · 30 jours offerts",
+      pilotTitle:"Activez votre présence DIGIYLYFE pendant 30 jours offerts.",
       pilotLead:"Vous n’êtes pas encore prêt à souscrire ? Demandez une fiche personnalisée, une carte digitale et votre QR personnel. La demande reste directe par SMS, sans mise en ligne automatique.",
       pilotItem1:"✓ Fiche professionnelle personnalisée",
       pilotItem2:"✓ Carte de visite digitale",
       pilotItem3:"✓ QR personnel vers la fiche",
       pilotItem4:"✓ Contact direct · 0% commission",
       pilotLimit:"Places disponibles",
-      pilotNumber:"50 essais pilotes",
+      pilotNumber:"50 activations pilotes",
       pilotDelay:"Les 30 jours commencent uniquement lorsque la fiche est activée.",
-      pilotCta:"🔥 Demander mon essai gratuit",
+      pilotCta:"🔥 Demander mon activation pilote",
       pilotNormalOffer:"← Voir l’offre normale (19 900 FCFA)",
       pilotTrust:"Partenaire pilote ne signifie pas propriétaire : aucune part sociale, aucun droit de propriété et aucun pouvoir de décision dans DIGIYLYFE.",
       proGateTitle:"🔥 Portes professionnelles",
@@ -1058,6 +1075,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       pageTitle:"DIGIYLYFE — 50 pilot activations · 30 days free",
       metaDescription:"DIGIYLYFE opens 50 pilot activations with 30 days free and no payment requested. A professional profile, digital card and direct QR to fill the network with real businesses.",
       brandTag:"Digital Club · Trades & Businesses",
+      languageChooserLabel:"Choose language",menuOpenLabel:"Open the full menu",menuDialogLabel:"Full DIGIYLYFE menu",menuCloseLabel:"Close the menu",menuNavLabel:"All DIGIYLYFE doorways",heroPilotFactsLabel:"Main terms of the pilot activation · 30 days free",
       heroPilotKicker:"Fill the network first · 50 pilot spots",
       heroPilotTitle:"50 pilot activations. 30 days free.",
       heroPilotLead:"No payment requested. Professionals scan or click, land directly on the request page and can enter the pilot network. The locomotive is clear: fill the field with real businesses.",
@@ -1113,17 +1131,17 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       proofAstouStatus:"Field proof · MARKET",proofAstouText:"Home, beach and elegance: products are visible and the shop remains directly reachable.",proofAstouMeta:"Saly · Local shop · Direct contact",
       proofBabacarStatus:"Guest field profile · BUILD",proofBabacarText:"A public profile presents his trade, area and services before WhatsApp contact.",proofBabacarMeta:"Saly · Plumbing · Direct contact",
       proofBaptisteStatus:"Real example · LOC",proofBaptisteText:"An accommodation showcase lets visitors see the place and then contact the owner directly.",proofBaptisteMeta:"Saly · Accommodation · Direct payment",proofOpen:"View profile",
-      pilotKicker:"Pilot Partner Program · 30 days free",
-      pilotTitle:"Test your DIGIYLYFE presence for 30 days.",
+      pilotKicker:"Pilot activation · 30 days free",
+      pilotTitle:"Activate your DIGIYLYFE presence for 30 days free.",
       pilotLead:"Not ready to subscribe yet? Request a personalised profile, a digital card and your personal QR. The request is sent directly by SMS, with no automatic publishing.",
       pilotItem1:"✓ Personalised professional profile",
       pilotItem2:"✓ Digital business card",
       pilotItem3:"✓ Personal QR to the profile",
       pilotItem4:"✓ Direct contact · 0% commission",
       pilotLimit:"Spots available",
-      pilotNumber:"50 pilot trials",
+      pilotNumber:"50 pilot activations",
       pilotDelay:"The 30 days begin only when the profile is activated.",
-      pilotCta:"🔥 Request my free trial",
+      pilotCta:"🔥 Request my pilot activation",
       pilotNormalOffer:"← View regular offer (19,900 FCFA)",
       pilotTrust:"Pilot partner does not mean owner: no shares, ownership rights, or decision-making power in DIGIYLYFE.",
       proGateTitle:"🔥 Professional doorways",
@@ -1221,7 +1239,8 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
     document.title=t.pageTitle;
     var d=document.querySelector('meta[name="description"]');if(d)d.setAttribute('content',t.metaDescription);
     document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(t[k]!=null)el.textContent=t[k]});
-    document.querySelectorAll('.langBtn').forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-lang')===lang)});
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(function(el){var k=el.getAttribute('data-i18n-aria-label');if(t[k]!=null)el.setAttribute('aria-label',t[k])});
+    document.querySelectorAll('.langBtn').forEach(function(btn){var active=btn.getAttribute('data-lang')===lang;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));});
     try{localStorage.setItem('digiy-lang',lang)}catch(e){}
     updateShareLinks(lang);
   };
@@ -1231,6 +1250,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
 </script>
 </body>
 </html>
+
 
 
 
