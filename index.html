@@ -8,11 +8,11 @@
 <meta content="#06140f" name="theme-color"/>
 <meta content="DIGIYLYFE ouvre 50 activations pilotes avec 30 jours offerts, sans paiement demandé. Une fiche professionnelle, une carte digitale et un QR direct pour remplir le réseau avec des professionnels réels." name="description"/>
 <meta content="index,follow" name="robots"/>
-<meta content="index-hero-50-pilotes-hub-gare-centrale-20260721" name="digiy-build"/>
+<meta content="index-hero-hub-preuves-offre-20260721-work-final" name="digiy-build"/>
 <script>
 /* Nettoyage unique d'un ancien cache PWA qui pourrait afficher une page hors connexion obsolète. */
 (function(){
-  var BUILD='digiylyfe-pilote-anticache-20260721-v1';
+  var BUILD='digiylyfe-pilote-anticache-20260721-v3';
   if(!('serviceWorker' in navigator)) return;
   window.addEventListener('load', async function(){
     try{
@@ -425,32 +425,32 @@ button{font:inherit;cursor:pointer}
 <body>
 <main class="app" id="haut">
 <header class="top">
-<a aria-label="Accueil DIGIYLYFE" class="logo" href="https://digiylyfe.com/"><img alt="DIGIYLYFE" src="./icon-192.png?v=20260713"/></a>
+<a aria-label="Accueil DIGIYLYFE" data-i18n-aria-label="ariaHome" class="logo" href="https://digiylyfe.com/"><img alt="DIGIYLYFE" src="./icon-192.png?v=20260713"/></a>
 <div class="brand"><strong>DIGIYLYFE</strong><small data-i18n="brandTag">Club digital · Métiers &amp; Entreprises</small></div>
-<button aria-controls="sheet" aria-expanded="false" aria-label="Ouvrir le menu complet" class="menuBtn" data-i18n-aria-label="menuOpenLabel" id="menuTrigger" onclick="openMenu()" type="button">☰</button>
+<button aria-controls="sheet" aria-expanded="false" aria-label="Ouvrir le menu complet" data-i18n-aria-label="ariaMenuOpen" class="menuBtn" id="menuTrigger" onclick="openMenu()" type="button">☰</button>
 </header>
-<div aria-label="Choisir la langue" class="langBar" data-i18n-aria-label="languageChooserLabel">
+<div aria-label="Choisir la langue" data-i18n-aria-label="ariaChooseLanguage" class="langBar">
 <button aria-pressed="true" class="langBtn active" data-lang="fr" onclick="digiySetLang('fr')" type="button">🇫🇷 FR</button>
 <button aria-pressed="false" class="langBtn" data-lang="en" onclick="digiySetLang('en')" type="button">🇬🇧 EN</button>
 </div>
 <!-- ═══ HERO LOCOMOTIVE : 50 ACTIVATIONS PILOTES · LE FRIGO D’ABORD ═══ -->
-<section aria-label="50 activations pilotes DIGIYLYFE — 30 jours offerts" class="hero" id="partenaire-pilote">
+<section aria-label="50 activations pilotes DIGIYLYFE — 30 jours offerts" data-i18n-aria-label="ariaPilotHero" class="hero" id="partenaire-pilote">
 <div class="heroPilotGrid">
-<a aria-label="Ouvrir la page de demande d’activation pilote DIGIYLYFE" class="heroPilotMedia" href="https://partenaire-pilote.digiylyfe.com/">
+<a aria-label="Ouvrir la page de demande d’activation pilote DIGIYLYFE" data-i18n-aria-label="ariaPilotRequest" class="heroPilotMedia" href="https://partenaire-pilote.digiylyfe.com/">
 <img alt="DIGIYLYFE — 50 activations pilotes, 30 jours offerts, aucun paiement demandé, QR vers la demande d’activation" decoding="async" fetchpriority="high" height="1672" id="heroPilotPoster" loading="eager" src="./poster-pilote.webp?v=20260721" width="941"/>
 </a>
 <div class="heroPilotCopy">
 <span class="heroPilotKicker" data-i18n="heroPilotKicker">Le frigo d’abord · 50 places pilotes</span>
 <h1 data-i18n="heroPilotTitle">50 activations pilotes. 30 jours offerts.</h1>
 <p class="heroPilotLead" data-i18n="heroPilotLead">Aucun paiement demandé. Le professionnel scanne ou clique, arrive directement sur la demande et peut entrer dans le réseau pilote. La locomotive est claire : remplir le terrain avec des activités réelles.</p>
-<div aria-label="Conditions principales de l’activation pilote · 30 jours offerts" class="heroPilotFacts" data-i18n-aria-label="heroPilotFactsLabel">
+<div aria-label="Conditions principales de l’activation pilote" data-i18n-aria-label="ariaPilotConditions" class="heroPilotFacts">
 <span data-i18n="heroPilotFact1">✓ 30 jours offerts</span>
 <span data-i18n="heroPilotFact2">✓ Aucun paiement demandé</span>
 <span data-i18n="heroPilotFact3">✓ Contact direct · 0% commission</span>
 </div>
 <div class="heroPilotActions">
 <a class="primary" data-i18n="heroPilotCta" href="https://partenaire-pilote.digiylyfe.com/">🔥 Demander mon activation pilote</a>
-<button class="share" data-i18n="heroPilotShare" id="heroPilotShare" type="button">📤 Partager l’offre</button>
+<button aria-live="polite" class="share" data-i18n="heroPilotShare" id="heroPilotShare" type="button">📤 Partager l’offre</button>
 <a class="download" data-i18n="heroPilotDownload" download="DIGIYLYFE-ACTIVATION-PILOTE-30-JOURS-OFFERTS.webp" href="./poster-pilote.webp?v=20260721" id="heroPilotDownload">⬇️ Télécharger l’affiche</a>
 </div><p class="heroPilotStart" data-i18n="heroPilotStart">Nouveau professionnel ? Commencez ici avec l’activation pilote.</p>
 <p class="heroPilotTrust" data-i18n="heroPilotTrust">Les 30 jours commencent à l’activation réelle de la fiche. Aucune reconduction automatique et aucune facturation sans accord.</p>
@@ -458,7 +458,7 @@ button{font:inherit;cursor:pointer}
 </div>
 </section>
 <!-- ═══ HUB DIGIYLYFE · GARE CENTRALE CLIENTS & PROFESSIONNELS ═══ -->
-<section aria-label="HUB DIGIYLYFE — gare centrale des clients et des professionnels" class="hubStation" id="hub-central">
+<section aria-label="HUB DIGIYLYFE — gare centrale des clients et des professionnels" data-i18n-aria-label="ariaHub" class="hubStation" id="hub-central">
 <div class="hubStationHead">
 <span class="hubStationKicker" data-i18n="hubKicker">Pièce maîtresse · Porte commune</span>
 <div aria-hidden="true" class="hubStationIcon">🧭</div>
@@ -466,7 +466,7 @@ button{font:inherit;cursor:pointer}
 <strong class="hubStationClaim" data-i18n="hubClaim">La gare centrale du client et du professionnel.</strong>
 <p class="hubStationLead" data-i18n="hubLead">Une seule entrée pour chercher, découvrir, rejoindre DIGIYLYFE ou retrouver ses outils. Le HUB distribue chacun vers la bonne porte du terrain.</p>
 </div>
-<div aria-label="Les deux grandes voies du HUB DIGIYLYFE" class="hubStationTracks">
+<div aria-label="Les deux grandes voies du HUB DIGIYLYFE" data-i18n-aria-label="ariaHubTracks" class="hubStationTracks">
 <a class="hubTrack hubTrackClient" href="https://digiy-hub.digiylyfe.com/">
 <span class="hubTrackLabel" data-i18n="hubClientLabel">🔎 Voie client</span>
 <strong data-i18n="hubClientTitle">Je cherche une activité ou un service.</strong>
@@ -484,7 +484,7 @@ button{font:inherit;cursor:pointer}
 <p class="hubStationNote" data-i18n="hubNote">Client ou professionnel : une même gare, puis la bonne direction.</p>
 </section>
 <!-- ═══ Preuves terrain : Astou, Babacar, Baptiste ═══ -->
-<section aria-label="Des professionnels déjà sur le terrain" class="terrainProofs" id="preuve-astou-boutique">
+<section aria-label="Des professionnels déjà sur le terrain" data-i18n-aria-label="ariaProofs" class="terrainProofs" id="preuve-astou-boutique">
 <div class="terrainProofsHead">
 <h2 data-i18n="proofTitle">Des professionnels déjà sur le terrain</h2>
 <p data-i18n="proofLead">Boutique, artisan et hébergement : trois activités réelles montrent comment une vitrine DIGIY rend le contact plus direct.</p>
@@ -510,14 +510,14 @@ button{font:inherit;cursor:pointer}
 </article>
 </div>
 </section>
-<!-- ═══ Offre commerciale principale (payante) — après les preuves terrain ═══ -->
-<section aria-label="Votre vitrine professionnelle DIGIYLYFE" class="commercialDoor" id="offre-professionnelle">
+<!-- ═══ Offre commerciale principale (payante) — après la locomotive pilote ═══ -->
+<section aria-label="Votre vitrine professionnelle DIGIYLYFE" data-i18n-aria-label="ariaCommercial" class="commercialDoor" id="offre-professionnelle">
 <div class="commercialDoorGrid">
 <div>
 <span class="commercialKicker" data-i18n="commercialKicker">Votre vitrine professionnelle</span>
 <h2 data-i18n="commercialTitle">Une fiche. Un QR. Vos clients en direct.</h2>
 <p class="commercialLead" data-i18n="commercialLead">DIGIYLYFE rend votre activité visible et partageable sur téléphone. Le client découvre vos services, vous contacte sur WhatsApp et vous paie directement. 0% commission.</p>
-<ul aria-label="Livrables de la présence DIGIY" class="commercialList">
+<ul aria-label="Livrables de la présence DIGIY" data-i18n-aria-label="ariaCommercialDeliverables" class="commercialList">
 <li data-i18n="commercialItem1">✓ Vitrine mobile avec photos et coordonnées</li>
 <li data-i18n="commercialItem2">✓ Lien et QR officiels partageables</li>
 <li data-i18n="commercialItem3">✓ Contact WhatsApp direct</li>
@@ -537,21 +537,21 @@ button{font:inherit;cursor:pointer}
 <a class="commercialOffersLink" data-i18n="commercialOffers" href="./tarif-entreprise-petite-cote.html#choisir">Comparer les formules →</a>
 </section>
 <!-- ═══ Carte réseau officielle (QR DIGIYLYFE) ═══ -->
-<figure aria-label="Carte réseau officielle DIGIYLYFE" class="heroNetworkCard">
-<a aria-label="Ouvrir la carte QR officielle DIGIYLYFE" class="heroNetworkImage" href="./qr.png?v=20260713" rel="noopener noreferrer" target="_blank">
-<img alt="Carte QR officielle DIGIYLYFE.COM — Le Club Entreprises du Terrain" loading="lazy" src="./qr.png?v=20260713"/>
+<figure aria-label="Carte réseau officielle DIGIYLYFE" data-i18n-aria-label="ariaNetworkCard" class="heroNetworkCard">
+<a aria-label="Ouvrir la carte QR officielle DIGIYLYFE" data-i18n-aria-label="ariaNetworkCardOpen" class="heroNetworkImage" href="./qr.png?v=20260713" rel="noopener noreferrer" target="_blank">
+<img alt="Carte QR officielle DIGIYLYFE.COM — Le Club Entreprises du Terrain" decoding="async" loading="lazy" src="./qr.png?v=20260713"/>
 </a>
 <figcaption class="heroNetworkCaption" data-i18n="heroQrCaption">
     Carte réseau officielle du Club DIGIYLYFE : scannable, partageable et imprimable. Une identité commune, puis une porte directe pour chaque métier.
   </figcaption>
-<div aria-label="Actions carte QR DIGIYLYFE" class="heroNetworkActions">
+<div aria-label="Actions carte QR DIGIYLYFE" data-i18n-aria-label="ariaNetworkCardActions" class="heroNetworkActions">
 <a class="gold" data-i18n="heroQrOpen" href="./qr.png?v=20260713" rel="noopener noreferrer" target="_blank">🖼️ Ouvrir la carte</a>
 <a data-i18n="heroQrShare" href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20La%20place%20centrale%20du%20business%20local.%20QR%20direct%2C%20contact%20direct%2C%20paiement%20direct.%20https%3A%2F%2Fdigiylyfe.com%2F" rel="noopener noreferrer" target="_blank">💬 Partager</a>
 <a data-i18n="heroQrDownload" download="qr-digiylyfe.png" href="./qr.png?v=20260713">⬇️ Télécharger</a>
 </div>
 </figure>
 <!-- ═══ Portes professionnelles ═══ -->
-<section aria-label="Portes professionnelles DIGIYLYFE" class="section" id="pro-portes">
+<section aria-label="Portes professionnelles DIGIYLYFE" data-i18n-aria-label="ariaProDoors" class="section" id="pro-portes">
 <h2 data-i18n="proGateTitle">🔥 Portes professionnelles</h2>
 <p data-i18n="proGateLead">Deux chemins simples : créer sa première vitrine ou revenir directement à son espace abonné.</p>
 <div class="proGateGrid">
@@ -573,7 +573,7 @@ button{font:inherit;cursor:pointer}
   </div>
 </section>
 <!-- ═══ Entreprises de la Petite Côte ═══ -->
-<section aria-label="Présence numérique des entreprises de la Petite Côte" class="section enterpriseSection" id="entreprises-petite-cote">
+<section aria-label="Présence numérique des entreprises de la Petite Côte" data-i18n-aria-label="ariaEnterprise" class="section enterpriseSection" id="entreprises-petite-cote">
 <span class="enterpriseKicker" data-i18n="enterpriseKicker">Le Club se rassemble · La force du terrain</span>
 <h2 class="enterpriseTitle" data-i18n="enterpriseTitle">🏢 Métiers &amp; Entreprises de la Petite Côte</h2>
 <p class="enterpriseLead" data-i18n="enterpriseLead">Artisans, boutiques, hôtels, écoles, agences, cabinets, BTP, transport et services : chacun garde sa vitrine professionnelle, tous gagnent la force d’un réseau local visible.</p>
@@ -581,13 +581,13 @@ button{font:inherit;cursor:pointer}
 <strong data-i18n="enterprisePromiseStrong">Se rassembler sans perdre son indépendance.</strong>
 <span data-i18n="enterprisePromiseText">Chaque membre garde ses clients, ses paiements et son identité. DIGIYLYFE apporte la vitrine, le QR et la circulation entre les portes.</span>
 </div>
-<div aria-label="Bénéfices de la présence entreprise" class="enterpriseGrid">
+<div aria-label="Bénéfices de la présence entreprise" data-i18n-aria-label="ariaEnterpriseBenefits" class="enterpriseGrid">
 <article class="enterpriseCard"><i>🌐</i><strong data-i18n="enterpriseCard1Title">Vitrine professionnelle</strong><span data-i18n="enterpriseCard1Text">Services, réalisations, horaires, localisation et image cohérente sur téléphone.</span></article>
 <article class="enterpriseCard"><i>▣</i><strong data-i18n="enterpriseCard2Title">Carte &amp; QR officiel</strong><span data-i18n="enterpriseCard2Text">Une carte partageable, imprimable et scannable lors des rendez-vous.</span></article>
 <article class="enterpriseCard"><i>📩</i><strong data-i18n="enterpriseCard3Title">Contact &amp; devis directs</strong><span data-i18n="enterpriseCard3Text">WhatsApp, téléphone, demande de devis ou réservation sans détour.</span></article>
 <article class="enterpriseCard"><i>🤝</i><strong data-i18n="enterpriseCard4Title">Accompagnement terrain</strong><span data-i18n="enterpriseCard4Text">Nous aidons à choisir quoi montrer, quoi protéger et comment partager.</span></article>
 </div>
-<div aria-label="Secteurs entreprises Petite Côte" class="enterpriseSectors">
+<div aria-label="Secteurs entreprises Petite Côte" data-i18n-aria-label="ariaEnterpriseSectors" class="enterpriseSectors">
 <span data-i18n="enterpriseSector1">Hôtels &amp; résidences</span>
 <span data-i18n="enterpriseSector2">Agences immobilières</span>
 <span data-i18n="enterpriseSector3">Écoles &amp; centres</span>
@@ -597,9 +597,9 @@ button{font:inherit;cursor:pointer}
 </div>
 <p class="enterpriseNote" data-i18n="enterpriseNote">DIGIYLYFE ne mélange pas les métiers et ne prend pas leur place. Le Club les rend visibles ensemble, puis chaque client entre directement par la bonne porte.</p>
 <!-- ═══ BLOC VIDÉO BCHEIKH (corrigé) ═══ -->
-<div aria-label="Exemple terrain · BCHEIKH" class="enterpriseClip">
+<div aria-label="Exemple terrain · BCHEIKH" data-i18n-aria-label="ariaBcheikhExample" class="enterpriseClip">
 <div class="enterpriseClipFrame">
-<video aria-label="Vidéo vitrine BCHEIKH — la carte de visite avec les prix reste affichée à la fin" controls="" playsinline="" poster="./carte-visite-bcheikh-prix.png" preload="metadata">
+<video aria-label="Vidéo vitrine BCHEIKH — la carte de visite avec les prix reste affichée à la fin" data-i18n-aria-label="ariaBcheikhVideo" controls="" playsinline="" poster="./carte-visite-bcheikh-prix.png" preload="metadata">
 <source src="./BCHEIKH_TIKTOK_CARTE_PRIX_FIN_FIXE_9x16.mp4?v=20260720" type="video/mp4"/>
         Votre navigateur ne permet pas de lire cette vidéo.
       </video>
@@ -608,7 +608,7 @@ button{font:inherit;cursor:pointer}
 <span class="enterpriseClipTag" data-i18n="enterpriseClipTag">Exemple terrain · BCHEIKH</span>
 <h3 data-i18n="enterpriseClipTitle">Un commerce réel, une vitrine réelle</h3>
 <p data-i18n="enterpriseClipText">Découvrez comment BCHEIKH présente ses vêtements, ses prix et ses contacts directement depuis sa vitrine DIGIYLYFE. Le client voit l’offre, contacte le vendeur et paie directement. DIGIYLYFE ne prend aucune commission.</p>
-<div aria-label="Prix BCHEIKH" class="enterpriseClipPrices">
+<div aria-label="Prix BCHEIKH" data-i18n-aria-label="ariaBcheikhPrices" class="enterpriseClipPrices">
 <span data-i18n="enterprisePrice1">1 pièce · 7 000 FCFA</span>
 <span data-i18n="enterprisePrice2">3 pièces · 20 000 FCFA</span>
 <span data-i18n="enterprisePrice3">3 caleçons · 7 000 FCFA</span>
@@ -625,10 +625,10 @@ button{font:inherit;cursor:pointer}
 </div>
 </section>
 <!-- ═══ Les quartiers de la ville ═══ -->
-<section aria-label="Les quartiers DIGIYLYFE" class="section" id="quartiers">
+<section aria-label="Les quartiers DIGIYLYFE" data-i18n-aria-label="ariaDistricts" class="section" id="quartiers">
 <h2 data-i18n="quartiersTitle">🏙️ Les quartiers de la ville</h2>
 <p data-i18n="quartiersLead">Chaque module a sa couleur et son métier. Voir, contacter, réserver, postuler, payer direct.</p>
-<nav aria-label="Modules publics par quartier" class="quartierGrid">
+<nav aria-label="Modules publics par quartier" data-i18n-aria-label="ariaDistrictModules" class="quartierGrid">
 <a class="quartier qDriver" href="https://driver-client.digiylyfe.com/">
 <i>🚗</i><strong>DRIVER</strong>
 <small data-i18n="qDriverSmall">Chauffeurs · AIBD · Saly · Dakar · Sarlat</small>
@@ -682,10 +682,10 @@ button{font:inherit;cursor:pointer}
 </nav>
 </section>
 <!-- ═══ Comprendre vite ═══ -->
-<section aria-label="Comprendre vite" class="section" id="comprendre-vite">
+<section aria-label="Comprendre vite" data-i18n-aria-label="ariaUnderstandFast" class="section" id="comprendre-vite">
 <h2 data-i18n="viteTitle">🎬 Je veux comprendre vite</h2>
 <p data-i18n="viteLead">Une minute suffit : le clip, la solution, un exemple réel.</p>
-<nav aria-label="Portes de compréhension rapide" class="viteGrid">
+<nav aria-label="Portes de compréhension rapide" data-i18n-aria-label="ariaUnderstandFastDoors" class="viteGrid">
 <a class="viteCard" href="https://digiy-clip.digiylyfe.com/" rel="noopener noreferrer" target="_blank">
 <i>🎬</i><strong data-i18n="viteClipTitle">Le clip DIGIYLYFE</strong>
 <small data-i18n="viteClipSmall">1 minute · cliquable · partageable. Le terrain garde la main.</small>
@@ -713,10 +713,10 @@ button{font:inherit;cursor:pointer}
 </div>
 </section>
 <!-- ═══ Comprendre profond · la cathédrale ═══ -->
-<section aria-label="Comprendre profond" class="section cathedrale" id="comprendre-profond">
+<section aria-label="Comprendre profond" data-i18n-aria-label="ariaUnderstandDeep" class="section cathedrale" id="comprendre-profond">
 <h2 data-i18n="profondTitle">🏛️ Je veux comprendre profond</h2>
 <p data-i18n="profondLead">La cathédrale de la ville : la doctrine, les carnets, l'architecture. Le clip attire l'œil. Le QR ouvre la porte. Le texte installe la vérité.</p>
-<nav aria-label="Portes de compréhension profonde" class="viteGrid">
+<nav aria-label="Portes de compréhension profonde" data-i18n-aria-label="ariaUnderstandDeepDoors" class="viteGrid">
 <a class="viteCard livre" href="https://livre.digiylyfe.com/" rel="noopener noreferrer" target="_blank">
 <i>📖</i><strong data-i18n="profondLivreTitle">Le Livre</strong>
 <small data-i18n="profondLivreSmall">Pierre par pierre — notre histoire et notre manifeste, à lire ou à écouter.</small>
@@ -736,14 +736,14 @@ button{font:inherit;cursor:pointer}
 </nav>
 </section>
 <!-- ═══ Signature terrain ═══ -->
-<div aria-label="Signature DIGIYLYFE" class="signatureSeal">
+<div aria-label="Signature DIGIYLYFE" data-i18n-aria-label="ariaSignature" class="signatureSeal">
 <small data-i18n="sealSmall">QR direct · Contact direct · Paiement direct · Abonnement accessible</small>
 <strong data-i18n="sealStrong">La valeur de votre business reste dans votre main.</strong>
 <span data-i18n="sealSpan">Un abonnement mensuel simple. Le client contacte, réserve ou commande directement. Le terrain garde la main.</span>
 </div>
 <div class="mantra"><b data-i18n="m1">Je clique.</b><b data-i18n="m2">Je parle.</b><b data-i18n="m3">J'existe.</b><b data-i18n="m4">Je suis visible.</b><b data-i18n="m5">Je suis reconnu.</b><b data-i18n="m6">J'avance.</b></div>
 <!-- ═══ Partager ═══ -->
-<section aria-label="Partager DIGIYLYFE" class="section" id="partager">
+<section aria-label="Partager DIGIYLYFE" data-i18n-aria-label="ariaShare" class="section" id="partager">
 <h2 data-i18n="shareTitle">📤 Partager DIGIYLYFE</h2>
 <p data-i18n="shareText">DIGIYLYFE — Le Club digital des Métiers et des Entreprises de la Petite Côte. Une identité commune, des portes directes, 0% commission.</p>
 <div class="actions">
@@ -774,13 +774,13 @@ button{font:inherit;cursor:pointer}
 </main>
 <!-- ═══ Menu complet ═══ -->
 <div aria-hidden="true" class="overlay" id="overlay" onclick="closeMenu()"></div>
-<div aria-hidden="true" aria-label="Menu complet DIGIYLYFE" aria-modal="true" class="sheet" data-i18n-aria-label="menuDialogLabel" id="sheet" inert role="dialog">
+<div aria-hidden="true" aria-label="Menu complet DIGIYLYFE" data-i18n-aria-label="ariaFullMenu" aria-modal="true" class="sheet" id="sheet" inert role="dialog">
 <div class="sheetCard">
 <div class="sheetHead">
 <h2 data-i18n="menuTitle">☰ Menu complet</h2>
-<button aria-label="Fermer le menu" class="closeBtn" data-i18n-aria-label="menuCloseLabel" onclick="closeMenu()" type="button">×</button>
+<button aria-label="Fermer" data-i18n-aria-label="ariaClose" class="closeBtn" onclick="closeMenu()" type="button">×</button>
 </div>
-<nav aria-label="Toutes les portes DIGIYLYFE" class="menuGrid" data-i18n-aria-label="menuNavLabel">
+<nav aria-label="Toutes les portes DIGIYLYFE" data-i18n-aria-label="ariaAllDoors" class="menuGrid">
 <span class="menuLabel" data-i18n="menuLabelClient">🔎 Côté client · les quartiers</span>
 <a class="gold" href="./recherche.html">🔎 <span data-i18n="menuSearch">Trouver un professionnel</span></a>
 <a href="https://driver-client.digiylyfe.com/">🚗 DRIVER · <span data-i18n="menuDriver">chauffeurs</span></a>
@@ -820,11 +820,19 @@ button{font:inherit;cursor:pointer}
 </div>
 <script>
 var digiyMenuTrigger=null;
+function digiyMenuFocusable(){
+  var sheet=document.getElementById('sheet');
+  if(!sheet)return [];
+  return Array.prototype.slice.call(sheet.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter(function(el){
+    return !el.hasAttribute('hidden')&&el.getAttribute('aria-hidden')!=='true';
+  });
+}
 function openMenu(){
   var overlay=document.getElementById('overlay');
   var sheet=document.getElementById('sheet');
   var app=document.querySelector('.app');
   var trigger=document.getElementById('menuTrigger');
+  if(!overlay||!sheet)return;
   digiyMenuTrigger=document.activeElement;
   sheet.removeAttribute('inert');
   if(app)app.setAttribute('inert','');
@@ -834,15 +842,15 @@ function openMenu(){
   sheet.setAttribute('aria-hidden','false');
   if(trigger)trigger.setAttribute('aria-expanded','true');
   document.body.classList.add('lock');
-  var closeButton=sheet.querySelector('.closeBtn');
-  if(closeButton)closeButton.focus();
+  var focusable=digiyMenuFocusable();
+  if(focusable.length)focusable[0].focus();
 }
 function closeMenu(){
   var overlay=document.getElementById('overlay');
   var sheet=document.getElementById('sheet');
   var app=document.querySelector('.app');
   var trigger=document.getElementById('menuTrigger');
-  if(!sheet.classList.contains('open'))return;
+  if(!overlay||!sheet||!sheet.classList.contains('open'))return;
   overlay.classList.remove('open');
   sheet.classList.remove('open');
   overlay.setAttribute('aria-hidden','true');
@@ -852,16 +860,19 @@ function closeMenu(){
   if(trigger)trigger.setAttribute('aria-expanded','false');
   document.body.classList.remove('lock');
   if(digiyMenuTrigger&&typeof digiyMenuTrigger.focus==='function')digiyMenuTrigger.focus();
+  digiyMenuTrigger=null;
 }
 document.addEventListener('keydown',function(e){
   var sheet=document.getElementById('sheet');
-  if(e.key==='Escape'&&sheet.classList.contains('open')){e.preventDefault();closeMenu();return;}
-  if(e.key!=='Tab'||!sheet.classList.contains('open'))return;
-  var focusable=Array.from(sheet.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter(function(el){return !el.hasAttribute('hidden')&&el.getClientRects().length;});
-  if(!focusable.length)return;
+  if(!sheet||!sheet.classList.contains('open'))return;
+  if(e.key==='Escape'){e.preventDefault();closeMenu();return;}
+  if(e.key!=='Tab')return;
+  var focusable=digiyMenuFocusable();
+  if(!focusable.length){e.preventDefault();return;}
   var first=focusable[0],last=focusable[focusable.length-1];
   if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
   else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  else if(!sheet.contains(document.activeElement)){e.preventDefault();first.focus();}
 });
 document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener('click',closeMenu)});
 </script>
@@ -877,7 +888,13 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
 
   share.addEventListener('click',async function(){
     var original=share.textContent;
-    share.textContent='Préparation…';
+    var english=document.documentElement.lang==='en';
+    var preparing=english?'Preparing…':'Préparation…';
+    var shareTitle=english?'DIGIYLYFE — 50 pilot activations':'DIGIYLYFE — 50 activations pilotes';
+    var shareText=english?'30 days free. No payment requested. Request your DIGIYLYFE pilot activation.':'30 jours offerts. Aucun paiement demandé. Demandez votre activation pilote DIGIYLYFE.';
+    var copied=english?'Link copied':'Lien copié';
+    var promptText=english?'Copy the DIGIYLYFE link:':'Copiez le lien DIGIYLYFE :';
+    share.textContent=preparing;
     try{
       if(poster&&navigator.share&&navigator.canShare){
         var response=await fetch(poster.currentSrc||poster.src);
@@ -885,8 +902,8 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
         var file=new File([blob],'DIGIYLYFE-ACTIVATION-PILOTE-30-JOURS-OFFERTS.webp',{type:'image/webp'});
         if(navigator.canShare({files:[file]})){
           await navigator.share({
-            title:'DIGIYLYFE — 50 activations pilotes',
-            text:'30 jours offerts. Aucun paiement demandé. Demandez votre activation pilote DIGIYLYFE.',
+            title:shareTitle,
+            text:shareText,
             url:pageUrl,
             files:[file]
           });
@@ -896,21 +913,21 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       }
       if(navigator.share){
         await navigator.share({
-          title:'DIGIYLYFE — 50 activations pilotes',
-          text:'30 jours offerts. Aucun paiement demandé. Demandez votre activation pilote DIGIYLYFE.',
+          title:shareTitle,
+          text:shareText,
           url:pageUrl
         });
       }else if(navigator.clipboard){
         await navigator.clipboard.writeText(pageUrl);
-        share.textContent='Lien copié';
+        share.textContent=copied;
         setTimeout(function(){share.textContent=original},1800);
         return;
       }else{
-        window.prompt('Copiez le lien DIGIYLYFE :',pageUrl);
+        window.prompt(promptText,pageUrl);
       }
     }catch(error){
       if(error&&error.name!=='AbortError'){
-        try{await navigator.clipboard.writeText(pageUrl);share.textContent='Lien copié';setTimeout(function(){share.textContent=original},1800);return}catch(_){window.prompt('Copiez le lien DIGIYLYFE :',pageUrl)}
+        try{await navigator.clipboard.writeText(pageUrl);share.textContent=copied;setTimeout(function(){share.textContent=original},1800);return}catch(_){window.prompt(promptText,pageUrl)}
       }
     }
     share.textContent=original;
@@ -925,7 +942,6 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       pageTitle:"DIGIYLYFE — 50 activations pilotes · 30 jours offerts",
       metaDescription:"DIGIYLYFE ouvre 50 activations pilotes avec 30 jours offerts, sans paiement demandé. Une fiche professionnelle, une carte digitale et un QR direct pour remplir le réseau avec des professionnels réels.",
       brandTag:"Club digital · Métiers & Entreprises",
-      languageChooserLabel:"Choisir la langue",menuOpenLabel:"Ouvrir le menu complet",menuDialogLabel:"Menu complet DIGIYLYFE",menuCloseLabel:"Fermer le menu",menuNavLabel:"Toutes les portes DIGIYLYFE",heroPilotFactsLabel:"Conditions principales de l’activation pilote · 30 jours offerts",
       heroPilotKicker:"Le frigo d’abord · 50 places pilotes",
       heroPilotTitle:"50 activations pilotes. 30 jours offerts.",
       heroPilotLead:"Aucun paiement demandé. Le professionnel scanne ou clique, arrive directement sur la demande et peut entrer dans le réseau pilote. La locomotive est claire : remplir le terrain avec des activités réelles.",
@@ -951,8 +967,6 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       hubProCta:"Entrer dans la gare centrale →",
       hubMainCta:"🧭 OUVRIR LE HUB — GARE CENTRALE DIGIYLYFE",
       hubNote:"Client ou professionnel : une même gare, puis la bonne direction.",
-      heroPilotClient:"🔎 Je cherche un professionnel",
-      heroPilotHub:"🧭 Déjà abonné : ouvrir le HUB",
       heroSmall:"Ancré sur la Petite Côte · Ouvert au monde",
       heroTitle:"Le Club digital des Métiers et des Entreprises",
       heroLead:"DIGIYLYFE rassemble les forces du terrain de la Petite Côte : chaque activité garde son identité, gagne en visibilité et ouvre une route directe vers ses clients.",
@@ -981,19 +995,6 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       proofAstouStatus:"Preuve terrain · MARKET",proofAstouText:"Maison, plage et élégance : les produits sont visibles et la boutique reste joignable directement.",proofAstouMeta:"Saly · Boutique locale · Contact direct",
       proofBabacarStatus:"Fiche invitée terrain · BUILD",proofBabacarText:"Une fiche publique présente son métier, sa zone et ses services avant le contact WhatsApp.",proofBabacarMeta:"Saly · Plomberie · Contact direct",
       proofBaptisteStatus:"Exemple réel · LOC",proofBaptisteText:"Une vitrine d’hébergement permet de voir le lieu puis de contacter directement le propriétaire.",proofBaptisteMeta:"Saly · Hébergement · Paiement direct",proofOpen:"Voir sa fiche",
-      pilotKicker:"Activation pilote · 30 jours offerts",
-      pilotTitle:"Activez votre présence DIGIYLYFE pendant 30 jours offerts.",
-      pilotLead:"Vous n’êtes pas encore prêt à souscrire ? Demandez une fiche personnalisée, une carte digitale et votre QR personnel. La demande reste directe par SMS, sans mise en ligne automatique.",
-      pilotItem1:"✓ Fiche professionnelle personnalisée",
-      pilotItem2:"✓ Carte de visite digitale",
-      pilotItem3:"✓ QR personnel vers la fiche",
-      pilotItem4:"✓ Contact direct · 0% commission",
-      pilotLimit:"Places disponibles",
-      pilotNumber:"50 activations pilotes",
-      pilotDelay:"Les 30 jours commencent uniquement lorsque la fiche est activée.",
-      pilotCta:"🔥 Demander mon activation pilote",
-      pilotNormalOffer:"← Voir l’offre normale (19 900 FCFA)",
-      pilotTrust:"Partenaire pilote ne signifie pas propriétaire : aucune part sociale, aucun droit de propriété et aucun pouvoir de décision dans DIGIYLYFE.",
       proGateTitle:"🔥 Portes professionnelles",
       proGateLead:"Deux chemins simples : créer sa première vitrine ou revenir directement à son espace abonné.",
       proGateNewTitle:"Nouveau professionnel",
@@ -1075,7 +1076,6 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       pageTitle:"DIGIYLYFE — 50 pilot activations · 30 days free",
       metaDescription:"DIGIYLYFE opens 50 pilot activations with 30 days free and no payment requested. A professional profile, digital card and direct QR to fill the network with real businesses.",
       brandTag:"Digital Club · Trades & Businesses",
-      languageChooserLabel:"Choose language",menuOpenLabel:"Open the full menu",menuDialogLabel:"Full DIGIYLYFE menu",menuCloseLabel:"Close the menu",menuNavLabel:"All DIGIYLYFE doorways",heroPilotFactsLabel:"Main terms of the pilot activation · 30 days free",
       heroPilotKicker:"Fill the network first · 50 pilot spots",
       heroPilotTitle:"50 pilot activations. 30 days free.",
       heroPilotLead:"No payment requested. Professionals scan or click, land directly on the request page and can enter the pilot network. The locomotive is clear: fill the field with real businesses.",
@@ -1101,8 +1101,6 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       hubProCta:"Enter the central station →",
       hubMainCta:"🧭 OPEN THE HUB — DIGIYLYFE CENTRAL STATION",
       hubNote:"Client or professional: one station, then the right direction.",
-      heroPilotClient:"🔎 I am looking for a professional",
-      heroPilotHub:"🧭 Already subscribed: open the HUB",
       heroSmall:"Rooted on the Petite Côte · Open to the world",
       heroTitle:"The digital Club for Trades and Businesses",
       heroLead:"DIGIYLYFE brings together the strengths of the Petite Côte field: every business keeps its identity, gains visibility and opens a direct road to its clients.",
@@ -1131,19 +1129,6 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       proofAstouStatus:"Field proof · MARKET",proofAstouText:"Home, beach and elegance: products are visible and the shop remains directly reachable.",proofAstouMeta:"Saly · Local shop · Direct contact",
       proofBabacarStatus:"Guest field profile · BUILD",proofBabacarText:"A public profile presents his trade, area and services before WhatsApp contact.",proofBabacarMeta:"Saly · Plumbing · Direct contact",
       proofBaptisteStatus:"Real example · LOC",proofBaptisteText:"An accommodation showcase lets visitors see the place and then contact the owner directly.",proofBaptisteMeta:"Saly · Accommodation · Direct payment",proofOpen:"View profile",
-      pilotKicker:"Pilot activation · 30 days free",
-      pilotTitle:"Activate your DIGIYLYFE presence for 30 days free.",
-      pilotLead:"Not ready to subscribe yet? Request a personalised profile, a digital card and your personal QR. The request is sent directly by SMS, with no automatic publishing.",
-      pilotItem1:"✓ Personalised professional profile",
-      pilotItem2:"✓ Digital business card",
-      pilotItem3:"✓ Personal QR to the profile",
-      pilotItem4:"✓ Direct contact · 0% commission",
-      pilotLimit:"Spots available",
-      pilotNumber:"50 pilot activations",
-      pilotDelay:"The 30 days begin only when the profile is activated.",
-      pilotCta:"🔥 Request my pilot activation",
-      pilotNormalOffer:"← View regular offer (19,900 FCFA)",
-      pilotTrust:"Pilot partner does not mean owner: no shares, ownership rights, or decision-making power in DIGIYLYFE.",
       proGateTitle:"🔥 Professional doorways",
       proGateLead:"Two simple paths: create your first showcase or return directly to your subscriber space.",
       proGateNewTitle:"New professional",
@@ -1221,6 +1206,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       shareClip:"DIGIYLYFE — The field keeps control. 🎬 https://digiy-clip.digiylyfe.com/"
     }
   };
+  var DIGIY_ARIA={"fr":{"ariaHome":"Accueil DIGIYLYFE","ariaMenuOpen":"Ouvrir le menu complet","ariaChooseLanguage":"Choisir la langue","ariaPilotHero":"50 activations pilotes DIGIYLYFE — 30 jours offerts","ariaPilotRequest":"Ouvrir la page de demande d’activation pilote DIGIYLYFE","ariaPilotConditions":"Conditions principales de l’activation pilote","ariaHub":"HUB DIGIYLYFE — gare centrale des clients et des professionnels","ariaHubTracks":"Les deux grandes voies du HUB DIGIYLYFE","ariaCommercial":"Votre vitrine professionnelle DIGIYLYFE","ariaCommercialDeliverables":"Livrables de la présence DIGIY","ariaNetworkCard":"Carte réseau officielle DIGIYLYFE","ariaNetworkCardOpen":"Ouvrir la carte QR officielle DIGIYLYFE","ariaNetworkCardActions":"Actions carte QR DIGIYLYFE","ariaProofs":"Des professionnels déjà sur le terrain","ariaProDoors":"Portes professionnelles DIGIYLYFE","ariaEnterprise":"Présence numérique des entreprises de la Petite Côte","ariaEnterpriseBenefits":"Bénéfices de la présence entreprise","ariaEnterpriseSectors":"Secteurs entreprises Petite Côte","ariaBcheikhExample":"Exemple terrain · BCHEIKH","ariaBcheikhVideo":"Vidéo vitrine BCHEIKH — la carte de visite avec les prix reste affichée à la fin","ariaBcheikhPrices":"Prix BCHEIKH","ariaDistricts":"Les quartiers DIGIYLYFE","ariaDistrictModules":"Modules publics par quartier","ariaUnderstandFast":"Comprendre vite","ariaUnderstandFastDoors":"Portes de compréhension rapide","ariaUnderstandDeep":"Comprendre profond","ariaUnderstandDeepDoors":"Portes de compréhension profonde","ariaSignature":"Signature DIGIYLYFE","ariaShare":"Partager DIGIYLYFE","ariaFullMenu":"Menu complet DIGIYLYFE","ariaClose":"Fermer","ariaAllDoors":"Toutes les portes DIGIYLYFE"},"en":{"ariaHome":"DIGIYLYFE home","ariaMenuOpen":"Open full menu","ariaChooseLanguage":"Choose language","ariaPilotHero":"50 DIGIYLYFE pilot activations — 30 days included","ariaPilotRequest":"Open the DIGIYLYFE pilot activation request page","ariaPilotConditions":"Main pilot activation conditions","ariaHub":"DIGIYLYFE HUB — central station for clients and professionals","ariaHubTracks":"The two main routes of the DIGIYLYFE HUB","ariaCommercial":"Your DIGIYLYFE professional showcase","ariaCommercialDeliverables":"DIGIY presence deliverables","ariaNetworkCard":"Official DIGIYLYFE network card","ariaNetworkCardOpen":"Open the official DIGIYLYFE QR card","ariaNetworkCardActions":"DIGIYLYFE QR card actions","ariaProofs":"Professionals already active in the field","ariaProDoors":"DIGIYLYFE professional doorways","ariaEnterprise":"Digital presence for Petite Côte businesses","ariaEnterpriseBenefits":"Business presence benefits","ariaEnterpriseSectors":"Petite Côte business sectors","ariaBcheikhExample":"Field example · BCHEIKH","ariaBcheikhVideo":"BCHEIKH showcase video — the business card with prices remains visible at the end","ariaBcheikhPrices":"BCHEIKH prices","ariaDistricts":"DIGIYLYFE districts","ariaDistrictModules":"Public modules by district","ariaUnderstandFast":"Understand quickly","ariaUnderstandFastDoors":"Quick understanding doorways","ariaUnderstandDeep":"Understand deeply","ariaUnderstandDeepDoors":"Deep understanding doorways","ariaSignature":"DIGIYLYFE signature","ariaShare":"Share DIGIYLYFE","ariaFullMenu":"Full DIGIYLYFE menu","ariaClose":"Close","ariaAllDoors":"All DIGIYLYFE doorways"}};
   function enc(v){return encodeURIComponent(v);}
   function updateShareLinks(lang){
     var t=DIGIY_I18N[lang]||DIGIY_I18N.fr;
@@ -1239,8 +1225,9 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
     document.title=t.pageTitle;
     var d=document.querySelector('meta[name="description"]');if(d)d.setAttribute('content',t.metaDescription);
     document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(t[k]!=null)el.textContent=t[k]});
-    document.querySelectorAll('[data-i18n-aria-label]').forEach(function(el){var k=el.getAttribute('data-i18n-aria-label');if(t[k]!=null)el.setAttribute('aria-label',t[k])});
-    document.querySelectorAll('.langBtn').forEach(function(btn){var active=btn.getAttribute('data-lang')===lang;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));});
+    var aria=DIGIY_ARIA[lang]||DIGIY_ARIA.fr;
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(function(el){var k=el.getAttribute('data-i18n-aria-label');if(aria[k]!=null)el.setAttribute('aria-label',aria[k])});
+    document.querySelectorAll('.langBtn').forEach(function(btn){var active=btn.getAttribute('data-lang')===lang;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',active?'true':'false')});
     try{localStorage.setItem('digiy-lang',lang)}catch(e){}
     updateShareLinks(lang);
   };
@@ -1250,6 +1237,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
 </script>
 </body>
 </html>
+
 
 
 
