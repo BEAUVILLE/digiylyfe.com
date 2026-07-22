@@ -8,7 +8,7 @@
 <meta content="#06140f" name="theme-color"/>
 <meta content="DIGIYLYFE ouvre 50 activations pilotes avec 30 jours offerts, sans paiement demandé. Une fiche professionnelle, une carte digitale et un QR direct pour remplir le réseau avec des professionnels réels." name="description"/>
 <meta content="index,follow" name="robots"/>
-<meta content="index-hero-hub-preuves-offre-20260721-work-final" name="digiy-build"/>
+<meta content="index-navigation-permanente-hub-20260722-v1" name="digiy-build"/>
 <script>
 /* Nettoyage unique d'un ancien cache PWA qui pourrait afficher une page hors connexion obsolète. */
 (function(){
@@ -406,6 +406,57 @@ button{font:inherit;cursor:pointer}
 .footer{text-align:center;margin:18px 0 0;color:rgba(255,250,240,.66);font-size:12px;font-weight:850;line-height:1.45}
 .footer a{color:#fff3cf;font-weight:1000}
 
+
+/* ── Navigation permanente : repère accessible pendant tout le défilement ── */
+section[id],figure[id]{scroll-margin-top:18px}
+.digiyDock{
+  position:fixed;right:18px;top:50%;z-index:70;transform:translateY(-50%);
+  width:82px;padding:8px;display:grid;gap:8px;
+  border:1px solid rgba(246,196,83,.48);border-radius:25px;
+  background:rgba(4,19,13,.92);box-shadow:0 20px 55px rgba(0,0,0,.42);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)
+}
+.digiyDock a,.digiyDock button{
+  min-width:0;min-height:63px;padding:7px 4px;border-radius:17px;
+  border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.065);
+  color:#fffaf0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;text-align:center;text-decoration:none;font:inherit;cursor:pointer;
+  transition:transform .14s ease,background .14s ease,border-color .14s ease
+}
+.digiyDock a:hover,.digiyDock button:hover,.digiyDock a:focus-visible,.digiyDock button:focus-visible{
+  transform:translateY(-1px);border-color:rgba(246,196,83,.68);background:rgba(246,196,83,.13);
+  outline:none
+}
+.digiyDock a.active{
+  border-color:rgba(34,197,94,.72);
+  background:linear-gradient(145deg,rgba(34,197,94,.28),rgba(246,196,83,.15));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)
+}
+.digiyDockMenu{
+  border-color:rgba(246,196,83,.66)!important;
+  background:linear-gradient(145deg,rgba(246,196,83,.22),rgba(34,197,94,.16))!important
+}
+.digiyDockIcon{font-size:21px;line-height:1}
+.digiyDock small{display:block;color:inherit;font-size:9.5px;line-height:1.05;font-weight:1000;letter-spacing:.015em}
+@media(max-width:1160px) and (min-width:761px){
+  .digiyDock{right:9px;width:72px}
+}
+@media(max-width:760px){
+  .app{padding-bottom:calc(108px + env(safe-area-inset-bottom))}
+  .digiyDock{
+    left:8px;right:8px;top:auto;bottom:calc(8px + env(safe-area-inset-bottom));
+    width:auto;transform:none;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;
+    padding:6px;border-radius:22px
+  }
+  .digiyDock a,.digiyDock button{min-height:57px;padding:5px 2px;border-radius:15px}
+  .digiyDockIcon{font-size:19px}
+  .digiyDock small{font-size:9px}
+}
+@media(max-width:360px){
+  .digiyDock small{font-size:8.2px}
+  .digiyDockIcon{font-size:18px}
+}
+
 .overlay{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.48);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:.18s}
 .overlay.open{opacity:1;pointer-events:auto}
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:90;transform:translateY(105%);transition:.22s;padding:10px 10px calc(12px + env(safe-area-inset-bottom))}
@@ -772,6 +823,14 @@ button{font:inherit;cursor:pointer}
   <a data-i18n="footerActivate" href="./tarif-entreprise-petite-cote.html#choisir">Voir les offres</a>
 </footer>
 </main>
+<!-- ═══ Navigation permanente : repère central toujours accessible ═══ -->
+<nav aria-label="Navigation permanente DIGIYLYFE" class="digiyDock" id="digiyDock">
+<a class="active" data-dock-target="haut" href="#haut"><span aria-hidden="true" class="digiyDockIcon">⌂</span><small data-i18n="dockHome">Accueil</small></a>
+<a data-dock-target="hub-central" href="#hub-central"><span aria-hidden="true" class="digiyDockIcon">🧭</span><small data-i18n="dockHub">HUB</small></a>
+<button aria-controls="sheet" aria-label="Ouvrir toutes les portes DIGIYLYFE" class="digiyDockMenu" onclick="openMenu()" type="button"><span aria-hidden="true" class="digiyDockIcon">☰</span><small data-i18n="dockMenu">Tout</small></button>
+<a data-dock-target="partenaire-pilote" href="#partenaire-pilote"><span aria-hidden="true" class="digiyDockIcon">🔥</span><small data-i18n="dockPilot">Pilote</small></a>
+<a data-dock-target="offre-professionnelle" href="#offre-professionnelle"><span aria-hidden="true" class="digiyDockIcon">▣</span><small data-i18n="dockOffer">Offre</small></a>
+</nav>
 <!-- ═══ Menu complet ═══ -->
 <div aria-hidden="true" class="overlay" id="overlay" onclick="closeMenu()"></div>
 <div aria-hidden="true" aria-label="Menu complet DIGIYLYFE" data-i18n-aria-label="ariaFullMenu" aria-modal="true" class="sheet" id="sheet" inert role="dialog">
@@ -875,6 +934,37 @@ document.addEventListener('keydown',function(e){
   else if(!sheet.contains(document.activeElement)){e.preventDefault();first.focus();}
 });
 document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener('click',closeMenu)});
+
+document.querySelectorAll('.digiyDock a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(){
+    document.querySelectorAll('.digiyDock a[data-dock-target]').forEach(function(link){link.classList.remove('active')});
+    a.classList.add('active');
+  });
+});
+(function(){
+  var links=Array.prototype.slice.call(document.querySelectorAll('.digiyDock a[data-dock-target]'));
+  var ticking=false;
+  function refreshDock(){
+    ticking=false;
+    var marker=window.scrollY+(window.innerHeight*.34);
+    var current='haut';
+    links.forEach(function(link){
+      var id=link.getAttribute('data-dock-target');
+      var target=document.getElementById(id);
+      if(target&&target.offsetTop<=marker)current=id;
+    });
+    links.forEach(function(link){link.classList.toggle('active',link.getAttribute('data-dock-target')===current)});
+  }
+  function requestRefresh(){
+    if(ticking)return;
+    ticking=true;
+    window.requestAnimationFrame(refreshDock);
+  }
+  window.addEventListener('scroll',requestRefresh,{passive:true});
+  window.addEventListener('resize',requestRefresh);
+  window.addEventListener('hashchange',requestRefresh);
+  refreshDock();
+})();
 </script>
 <script>
 (function(){
@@ -1068,6 +1158,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       menuClip:"Clip terrain",menuSolution:"Solution DIGIYLYFE",menuCarnets:"Carnets DIGIYLYFE",menuArchitecture:"Architecture DIGIYLYFE",menuReview:"Revue DIGIYLYFE",
       menuLabelOutils:"🧭 Gare centrale & outils",menuHubCentral:"HUB · Gare centrale clients & pros",
       menuQr:"QR scannable",menuVoiceLarge:"La voix en grand",menuShare:"Partager DIGIYLYFE",menuHome:"Accueil",
+      dockHome:"Accueil",dockHub:"HUB",dockMenu:"Tout",dockPilot:"Pilote",dockOffer:"Offre",
       shareWhatsapp:"DIGIYLYFE — Le Club digital des Métiers et des Entreprises de la Petite Côte. Rassembler crée la force. QR direct, contact direct, paiement direct, 0% commission. https://digiylyfe.com/",
       shareClip:"DIGIYLYFE — Le terrain garde la main. 🎬 https://digiy-clip.digiylyfe.com/"
     },
@@ -1202,6 +1293,7 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
       menuClip:"Field clip",menuSolution:"DIGIYLYFE Solution",menuCarnets:"DIGIYLYFE Notebooks",menuArchitecture:"DIGIYLYFE Architecture",menuReview:"DIGIYLYFE Review",
       menuLabelOutils:"🧭 Central station & tools",menuHubCentral:"HUB · Central station for clients & pros",
       menuQr:"Scannable QR",menuVoiceLarge:"Full voice",menuShare:"Share DIGIYLYFE",menuHome:"Home",
+      dockHome:"Home",dockHub:"HUB",dockMenu:"All",dockPilot:"Pilot",dockOffer:"Offer",
       shareWhatsapp:"DIGIYLYFE — The digital Club for Petite Côte Trades and Businesses. Together, the field becomes stronger. Direct QR, direct contact, direct payment and 0% commission. https://digiylyfe.com/",
       shareClip:"DIGIYLYFE — The field keeps control. 🎬 https://digiy-clip.digiylyfe.com/"
     }
@@ -1237,6 +1329,15 @@ document.querySelectorAll('.menuGrid a').forEach(function(a){a.addEventListener(
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
 
 
 
