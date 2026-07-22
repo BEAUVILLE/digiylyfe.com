@@ -1,0 +1,75 @@
+name: Install global DIGIY navigation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "digiy-navigation-globale.js"
+      - ".github/workflows/install-global-navigation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install-navigation:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install the shared navigation loader
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          targets = [
+              "presence-terrain.html",
+              "recherche.html",
+              "menu.html",
+              "tarif-entreprise-petite-cote.html",
+              "architecture-digiylyfe.html",
+              "notre-methode.html",
+              "le-terrain-garde-la-main.html",
+          ]
+          marker = '<script src="./digiy-navigation-globale.js?v=20260722"></script>'
+
+          if not Path("digiy-navigation-globale.js").exists():
+              raise SystemExit("Shared navigation file is not present yet; nothing to install.")
+
+          changed = []
+          for name in targets:
+              path = Path(name)
+              if not path.exists():
+                  print(f"SKIP missing: {name}")
+                  continue
+              text = path.read_text(encoding="utf-8")
+              if "digiy-navigation-globale.js" in text:
+                  print(f"OK already installed: {name}")
+                  continue
+              if "</body>" in text:
+                  head, tail = text.rsplit("</body>", 1)
+                  text = head.rstrip() + "\n" + marker + "\n</body>" + tail
+              else:
+                  text = text.rstrip() + "\n" + marker + "\n"
+              path.write_text(text, encoding="utf-8")
+              changed.append(name)
+              print(f"INSTALLED: {name}")
+
+          print("Changed files:", ", ".join(changed) if changed else "none")
+          PY
+
+      - name: Commit installed loaders
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No page needed an update."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add presence-terrain.html recherche.html menu.html tarif-entreprise-petite-cote.html architecture-digiylyfe.html notre-methode.html le-terrain-garde-la-main.html
+          git commit -m "Install global DIGIY navigation [skip ci]"
+          git push
