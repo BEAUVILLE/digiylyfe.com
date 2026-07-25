@@ -1,17 +1,17 @@
 name: Add Aly Kane door to homepage
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/aly-trigger.txt'
+  issue_comment:
+    types: [created]
   workflow_dispatch:
 
 permissions:
   contents: write
+  pull-requests: read
 
 jobs:
   add-door:
+    if: github.event_name == 'workflow_dispatch' || (github.event.issue.pull_request && contains(github.event.comment.body, '/deploy-aly-home'))
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
