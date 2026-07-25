@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<title>DIGIYLYFE — HUB, ACTION PRO et 50 invitations pilotes</title>
+<meta content="DIGIYLYFE réunit les métiers et services du terrain : ACTION PRO, 50 invitations pilotes, puis cotisation Présence Pro à 19 900 FCFA par mois si le professionnel choisit de continuer." name="description"/>
+<meta content="index,follow" name="robots"/>
+<meta content="#06140f" name="theme-color"/>
+<meta content="index-hub-production-aly-kane-20260725" name="digiy-build"/>
+<link href="https://digiylyfe.com/" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://digiylyfe.com/" property="og:url"/>
+<meta content="DIGIYLYFE — Le HUB des métiers et services du terrain" property="og:title"/>
+<meta content="Dites ce que vous cherchez. ACTION PRO et les modules DIGIYLYFE vous ouvrent directement la bonne porte." property="og:description"/>
+<meta content="fr_FR" property="og:locale"/>
+<meta content="en_US" property="og:locale:alternate"/>
+<meta content="https://digiylyfe.com/og-hub-1200x630.png?v=20260723" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="HUB DIGIYLYFE — métiers directs, 50 invitations pilotes et cotisation Présence Pro à 19 900 FCFA par mois" property="og:image:alt"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="DIGIYLYFE — Le HUB des métiers et services du terrain" name="twitter:title"/>
+<meta content="Un seul HUB, plusieurs métiers directs. 50 invitations pilotes, puis cotisation Présence Pro à 19 900 FCFA par mois si le professionnel choisit de continuer." name="twitter:description"/>
+<meta content="https://digiylyfe.com/og-hub-1200x630.png?v=20260723" name="twitter:image"/>
+<link href="./icon-192.png?v=20260713" rel="icon" sizes="192x192"/>
+<link href="./icon-192.png?v=20260713" rel="apple-touch-icon"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://digiylyfe.com/#organization",
+      "name": "DIGIYLYFE",
+      "url": "https://digiylyfe.com/",
+      "logo": "https://digiylyfe.com/icon-512.png",
+      "description": "Écosystème digital de métiers, services et entreprises du terrain avec contact direct, paiement direct et 0% de commission DIGIYLYFE."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://digiylyfe.com/#website",
+      "url": "https://digiylyfe.com/",
+      "name": "HUB DIGIYLYFE",
+      "publisher": {"@id": "https://digiylyfe.com/#organization"},
+      "inLanguage": ["fr", "en"]
+    },
+    {
+      "@type": "Offer",
+      "@id": "https://digiylyfe.com/#presence-pro-offer",
+      "name": "Cotisation Présence Pro DIGIYLYFE",
+      "url": "https://tarifs.digiylyfe.com/",
+      "price": "19900",
+      "priceCurrency": "XOF",
+      "description": "Fiche professionnelle, carte digitale et QR direct pour 19 900 FCFA par mois, uniquement si le professionnel choisit de continuer après les 30 jours offerts.",
+      "seller": {"@id": "https://digiylyfe.com/#organization"}
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://digiylyfe.com/#modules",
+      "name": "Modules métier DIGIYLYFE",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"ACTION PRO","url":"https://pro-action-digiy.digiylyfe.com/"},
+        {"@type":"ListItem","position":2,"name":"DRIVER","url":"https://driver-client.digiylyfe.com/"},
+        {"@type":"ListItem","position":3,"name":"LOC","url":"https://loc.digiylyfe.com/"},
+        {"@type":"ListItem","position":4,"name":"RESA","url":"https://resa-table-resto.digiylyfe.com/"},
+        {"@type":"ListItem","position":5,"name":"MARKET","url":"https://market.digiylyfe.com/"},
+        {"@type":"ListItem","position":6,"name":"BUILD","url":"https://build.digiylyfe.com/"},
+        {"@type":"ListItem","position":7,"name":"JOBS","url":"https://jobs.digiylyfe.com/"},
+        {"@type":"ListItem","position":8,"name":"EXPLORE","url":"https://explore.digiylyfe.com/"},
+        {"@type":"ListItem","position":9,"name":"CARNET PRO","url":"https://digiy-carnet-pro.digiylyfe.com/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+:root{
+  --bg:#03120d;
+  --deep:#061a12;
+  --panel:#0a2b1e;
+  --ink:#fffaf0;
+  --soft:rgba(255,250,240,.76);
+  --gold:#f6c453;
+  --gold-soft:#fff1bd;
+  --green:#22c55e;
+  --teal:#2dd4bf;
+  --line:rgba(255,255,255,.14);
+  --card:rgba(255,255,255,.065);
+  --shadow:0 24px 65px rgba(0,0,0,.34);
+  --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100svh;color:var(--ink);font-family:var(--font);
+  background:
+    radial-gradient(880px 430px at 10% -5%,rgba(0,166,81,.32),transparent 62%),
+    radial-gradient(720px 360px at 95% 0,rgba(246,196,83,.18),transparent 60%),
+    linear-gradient(180deg,#075f32 0,#062a1d 32%,#03120d 100%);
+}
+body.lock{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid rgba(246,196,83,.72);outline-offset:3px}
+.app{width:min(100%,1060px);margin:auto;padding:12px 12px calc(105px + env(safe-area-inset-bottom))}
+
+/* En-tête léger */
+.topbar{
+  position:sticky;top:0;z-index:45;display:grid;grid-template-columns:54px 1fr auto;gap:10px;align-items:center;
+  padding:8px 0;background:linear-gradient(180deg,rgba(3,18,13,.96),rgba(3,18,13,.78),transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)
+}
+.logo{width:54px;height:54px;border-radius:18px;overflow:hidden;border:1px solid rgba(246,196,83,.48);background:#fff;box-shadow:0 10px 25px rgba(0,0,0,.25)}
+.logo img{width:100%;height:100%;object-fit:cover;display:block}
+.brand{min-width:0}
+.brand strong{display:block;font-size:clamp(21px,5.5vw,35px);line-height:.95;font-weight:1000;letter-spacing:.055em}
+.brand small{display:block;margin-top:5px;color:var(--soft);font-size:10.5px;line-height:1.1;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+.topActions{display:flex;align-items:center;gap:6px}
+.langBtn,.menuBtn{height:46px;border-radius:999px;border:1px solid rgba(246,196,83,.38);background:rgba(255,255,255,.075);font-weight:1000;cursor:pointer}
+.langBtn{min-width:44px;padding:0 10px;font-size:11px}
+.langBtn.active{background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;border-color:rgba(246,196,83,.78)}
+.menuBtn{width:46px;font-size:21px;color:#fff3cf}
+
+/* HUB : contenu prioritaire */
+.hub{
+  position:relative;overflow:hidden;margin-top:6px;padding:24px 20px 20px;border:2px solid rgba(246,196,83,.78);border-radius:32px;
+  background:
+    radial-gradient(720px 320px at 50% -12%,rgba(246,196,83,.25),transparent 65%),
+    radial-gradient(520px 270px at 0 100%,rgba(45,212,191,.16),transparent 65%),
+    linear-gradient(145deg,#0c432d,#051b13 72%);
+  box-shadow:var(--shadow)
+}
+.hub::before,.hub::after{content:"";position:absolute;top:0;bottom:0;width:4px;background:repeating-linear-gradient(180deg,rgba(246,196,83,.85) 0 13px,transparent 13px 24px);opacity:.45}
+.hub::before{left:12px}.hub::after{right:12px}
+.hubHead{position:relative;z-index:1;text-align:center;max-width:850px;margin:auto}
+.kicker{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;border:1px solid rgba(246,196,83,.52);background:rgba(246,196,83,.11);color:#fff3cf;font-size:10.5px;font-weight:1000;letter-spacing:.1em;text-transform:uppercase}
+.hub h1{margin:12px 0 0;font-size:clamp(37px,8vw,70px);line-height:.91;letter-spacing:-.055em;font-weight:1000}
+.hubLead{margin:12px auto 0;max-width:760px;color:rgba(255,250,240,.84);font-size:clamp(14px,3.5vw,19px);line-height:1.45;font-weight:880}
+
+/* ACTION PRO / LA VOIX : porte maîtresse */
+.voiceDoor{
+  position:relative;z-index:1;margin-top:18px;padding:18px;border-radius:28px;border:1px solid rgba(246,196,83,.72);
+  background:
+    radial-gradient(520px 230px at 100% 0,rgba(246,196,83,.25),transparent 64%),
+    linear-gradient(145deg,rgba(15,92,56,.95),rgba(5,29,20,.98));
+  box-shadow:0 18px 46px rgba(0,0,0,.30);display:grid;grid-template-columns:82px 1fr auto;gap:15px;align-items:center;
+  transition:transform .16s ease,border-color .16s ease
+}
+.voiceDoor:hover{transform:translateY(-2px);border-color:rgba(255,241,189,.95)}
+.voiceIcon{width:82px;height:82px;border-radius:26px;display:grid;place-items:center;font-size:42px;border:1px solid rgba(246,196,83,.58);background:linear-gradient(145deg,rgba(246,196,83,.24),rgba(34,197,94,.17));box-shadow:0 14px 32px rgba(0,0,0,.26)}
+.voiceCopy{min-width:0}
+.voiceTag{display:block;color:#fff3cf;font-size:10.5px;font-weight:1000;letter-spacing:.1em;text-transform:uppercase}
+.voiceCopy strong{display:block;margin-top:5px;font-size:clamp(25px,5vw,40px);line-height:.98;font-weight:1000;letter-spacing:-.04em}
+.voiceCopy p{margin:8px 0 0;color:rgba(255,250,240,.80);font-size:13.5px;line-height:1.42;font-weight:880}
+.voiceExamples{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.voiceExamples span{padding:6px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.065);font-size:10.5px;font-weight:950;color:#eafff3}
+.voiceCta{min-width:150px;flex-direction:column;gap:4px;min-height:54px;padding:10px 16px;border-radius:999px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;font-size:13px;line-height:1.18;font-weight:1000;box-shadow:0 14px 34px rgba(0,0,0,.28)}
+
+
+
+
+
+
+/* Aly Kane — La Voix du Terrain */
+.alyDoor{
+  position:relative;z-index:1;margin-top:12px;padding:16px;border-radius:26px;
+  border:2px solid rgba(246,196,83,.82);
+  background:
+    radial-gradient(500px 230px at 100% 0,rgba(246,196,83,.30),transparent 64%),
+    radial-gradient(420px 220px at 0 100%,rgba(45,212,191,.18),transparent 66%),
+    linear-gradient(145deg,#102f26,#061a13 72%);
+  box-shadow:0 18px 46px rgba(0,0,0,.30);
+  display:grid;grid-template-columns:82px minmax(0,1fr) auto;gap:15px;align-items:center;
+  transition:transform .16s ease,border-color .16s ease
+}
+.alyDoor:hover{transform:translateY(-2px);border-color:#fff1bd}
+.alyAvatar{
+  width:82px;height:82px;border-radius:26px;display:grid;place-items:center;font-size:38px;
+  border:1px solid rgba(255,241,189,.76);
+  background:linear-gradient(145deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;box-shadow:0 14px 34px rgba(0,0,0,.30)
+}
+.alyCopy{min-width:0}
+.alyCopy small{display:block;color:#fff3cf;font-size:10.5px;font-weight:1000;letter-spacing:.10em;text-transform:uppercase}
+.alyCopy strong{display:block;margin-top:5px;font-size:clamp(25px,5vw,40px);line-height:.98;font-weight:1000;letter-spacing:-.04em}
+.alyCopy span{display:block;margin-top:8px;color:rgba(255,250,240,.82);font-size:13px;line-height:1.42;font-weight:880}
+.alyCopy b{display:block;margin-top:9px;color:#fff3cf;font-size:10.5px;line-height:1.2;font-weight:1000;text-transform:uppercase;letter-spacing:.05em}
+.alyCta{
+  min-width:168px;min-height:54px;padding:10px 16px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;
+  font-size:13px;line-height:1.18;font-weight:1000;box-shadow:0 14px 34px rgba(0,0,0,.28)
+}
+@media(max-width:820px){
+  .alyDoor{grid-template-columns:66px 1fr}.alyAvatar{width:66px;height:66px;border-radius:22px;font-size:31px}
+  .alyCta{grid-column:1/-1;width:100%}
+}
+@media(max-width:620px){
+  .alyDoor{padding:14px 12px;border-radius:23px;gap:10px}.alyCopy span{font-size:12px}
+}
+
+/* Cotisation claire : la page oriente et assume le prix de continuité */
+.membershipStrip{
+  position:relative;z-index:1;margin-top:11px;padding:13px 14px;border-radius:22px;
+  border:1px solid rgba(34,197,94,.62);
+  background:linear-gradient(145deg,rgba(34,197,94,.18),rgba(246,196,83,.11),rgba(255,255,255,.045));
+  display:grid;grid-template-columns:50px minmax(0,1fr) auto;gap:12px;align-items:center;
+  box-shadow:0 14px 34px rgba(0,0,0,.24);transition:transform .15s ease,border-color .15s ease
+}
+.membershipStrip:hover{transform:translateY(-2px);border-color:rgba(255,241,189,.88)}
+.membershipIcon{width:50px;height:50px;border-radius:17px;display:grid;place-items:center;font-size:25px;background:rgba(34,197,94,.17);border:1px solid rgba(34,197,94,.44)}
+.membershipCopy{min-width:0}.membershipCopy small{display:block;color:#bdf7d2;font-size:9.5px;font-weight:1000;letter-spacing:.09em;text-transform:uppercase}
+.membershipCopy strong{display:block;margin-top:4px;color:#fffaf0;font-size:clamp(15px,3.5vw,21px);line-height:1.08;font-weight:1000}
+.membershipCopy span{display:block;margin-top:5px;color:rgba(255,250,240,.75);font-size:11px;line-height:1.35;font-weight:900}
+.membershipPrice{text-align:right;color:#fff3cf;font-size:clamp(22px,4.7vw,31px);line-height:.92;font-weight:1000;white-space:nowrap}
+.membershipPrice small{display:block;margin-top:5px;color:rgba(255,250,240,.72);font-size:9.5px;line-height:1.1;font-weight:950;text-transform:uppercase;letter-spacing:.05em}
+.membershipPrice b{display:block;margin-top:7px;color:#bdf7d2;font-size:10px;line-height:1.1;font-weight:1000;text-decoration:underline;text-underline-offset:3px}
+.sensitiveHint{display:inline-flex;margin-top:6px;padding:4px 8px;border-radius:999px;border:1px solid rgba(45,212,191,.32);background:rgba(45,212,191,.08);color:#dffdf3;font-size:9px;font-weight:1000;letter-spacing:.04em;text-transform:uppercase}
+.noscriptDoors{margin-top:14px;padding:15px;border-radius:22px;border:1px solid rgba(246,196,83,.42);background:#0a2b1e}
+.noscriptDoors h2{margin:0;font-size:20px}.noscriptDoors p{color:rgba(255,250,240,.76);font-weight:850}.noscriptDoors nav{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.noscriptDoors a{padding:11px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);font-weight:950}
+.hubViewerFallback{position:absolute;left:50%;bottom:14px;z-index:3;transform:translateX(-50%) translateY(18px);width:min(620px,calc(100% - 20px));padding:10px 12px;border-radius:16px;border:1px solid rgba(246,196,83,.62);background:rgba(4,19,13,.95);box-shadow:0 14px 38px rgba(0,0,0,.42);display:flex;align-items:center;justify-content:center;gap:9px;text-align:center;color:#fffaf0;font-size:11px;line-height:1.3;font-weight:900;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease}
+.hubViewerFallback.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.hubViewerFallback a{padding:8px 10px;border-radius:999px;border:1px solid rgba(246,196,83,.62);background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;white-space:nowrap;font-weight:1000}
+@media(max-width:620px){.membershipStrip{grid-template-columns:44px 1fr;gap:9px}.membershipIcon{width:44px;height:44px}.membershipPrice{grid-column:1/-1;text-align:center;padding-top:8px;border-top:1px solid rgba(255,255,255,.12)}.noscriptDoors nav{grid-template-columns:1fr}.hubViewerFallback{display:grid;grid-template-columns:1fr}.hubViewerFallback a{width:100%}}
+
+/* Les 50 invitations : la porte qui remplit le frigo */
+.pilotFridge{
+  position:relative;z-index:1;margin-top:12px;padding:15px;border-radius:25px;
+  border:2px solid rgba(246,196,83,.82);
+  background:
+    radial-gradient(460px 210px at 100% 0,rgba(246,196,83,.28),transparent 64%),
+    linear-gradient(145deg,rgba(82,54,7,.94),rgba(8,54,34,.98));
+  box-shadow:0 18px 46px rgba(0,0,0,.30);
+  display:grid;grid-template-columns:88px 1fr auto;gap:14px;align-items:center;
+  transition:transform .16s ease,border-color .16s ease
+}
+.pilotFridge:hover{transform:translateY(-2px);border-color:#fff1bd}
+.pilotNumber{
+  width:88px;height:88px;border-radius:27px;display:grid;place-items:center;
+  border:1px solid rgba(255,241,189,.78);background:linear-gradient(145deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;font-size:42px;line-height:1;font-weight:1000;box-shadow:0 14px 34px rgba(0,0,0,.30)
+}
+.pilotCopy{min-width:0}.pilotTag{display:block;color:#fff3cf;font-size:10.5px;font-weight:1000;letter-spacing:.1em;text-transform:uppercase}
+.pilotCopy strong{display:block;margin-top:5px;font-size:clamp(23px,4.8vw,37px);line-height:.98;font-weight:1000;letter-spacing:-.035em}
+.pilotCopy p{margin:8px 0 0;color:rgba(255,250,240,.82);font-size:12.8px;line-height:1.4;font-weight:900}
+.pilotCta{min-width:180px;min-height:54px;padding:10px 16px;border-radius:999px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;font-size:12.5px;line-height:1.18;font-weight:1000;box-shadow:0 14px 34px rgba(0,0,0,.28)}
+.returnRule{position:relative;z-index:1;margin:9px auto 0;padding:9px 12px;border-radius:15px;border:1px dashed rgba(45,212,191,.42);background:rgba(45,212,191,.075);color:#dffdf3;text-align:center;font-size:10.8px;line-height:1.35;font-weight:900}
+
+.modulesHead{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:end;gap:10px;margin-top:19px}
+.modulesHead h2{margin:0;font-size:clamp(21px,4.8vw,31px);line-height:1;font-weight:1000;letter-spacing:-.035em}
+.modulesHead button{border:0;background:transparent;color:#fff3cf;font-size:12px;font-weight:1000;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.moduleGrid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:11px}
+.moduleCard{
+  --accent:var(--gold);min-height:124px;padding:13px 12px;border-radius:21px;border:1px solid color-mix(in srgb,var(--accent) 48%,transparent);
+  background:linear-gradient(150deg,color-mix(in srgb,var(--accent) 16%,transparent),rgba(255,255,255,.045));
+  display:flex;flex-direction:column;gap:5px;box-shadow:0 12px 28px rgba(0,0,0,.20);transition:transform .15s ease,border-color .15s ease
+}
+.moduleCard:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 78%,transparent)}
+.moduleCard i{font-style:normal;font-size:27px;line-height:1}
+.moduleCard strong{font-size:15px;line-height:1.05;font-weight:1000;color:#fffaf0}
+.moduleCard small{color:rgba(255,250,240,.73);font-size:11.5px;line-height:1.3;font-weight:880}
+.moduleCard b{margin-top:auto;color:color-mix(in srgb,var(--accent) 70%,#fff);font-size:10.5px;line-height:1.1;font-weight:1000;text-transform:uppercase;letter-spacing:.04em}
+.driver{--accent:#3b82f6}.loc{--accent:#2dd4bf}.resa{--accent:#f26d6d}.market{--accent:#f97316}.build{--accent:#b88955}.jobs{--accent:#a78bfa}.explore{--accent:#84cc16}.carnet{--accent:#22c55e}
+
+/* Voie professionnelle compacte */
+.proRail{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr .8fr;gap:9px;margin-top:12px}
+.proCard{min-height:74px;padding:12px 14px;border-radius:20px;border:1px solid rgba(246,196,83,.35);background:rgba(255,255,255,.065);display:flex;align-items:center;gap:11px}
+.proCard.gold{background:linear-gradient(135deg,rgba(246,196,83,.22),rgba(34,197,94,.15));border-color:rgba(246,196,83,.62)}
+.proCard i{font-style:normal;font-size:27px}
+.proCard strong{display:block;font-size:14px;line-height:1.12;font-weight:1000}
+.proCard small{display:block;margin-top:4px;color:var(--soft);font-size:10.8px;line-height:1.25;font-weight:880}
+
+/* Preuves, sans rallonger la page */
+.proofs{margin-top:14px;padding:16px;border-radius:26px;border:1px solid rgba(246,196,83,.36);background:rgba(255,255,255,.055)}
+.proofsHead{display:flex;align-items:end;justify-content:space-between;gap:12px}
+.proofs h2{margin:0;font-size:clamp(22px,5vw,34px);line-height:1;font-weight:1000}
+.proofsHead p{margin:0;color:var(--soft);font-size:12px;line-height:1.3;font-weight:880;text-align:right}
+.proofGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.proofCard{min-height:128px;padding:13px;border-radius:19px;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;gap:5px}
+.proofCard i{font-style:normal;font-size:25px}.proofCard strong{font-size:15px;font-weight:1000}.proofCard small{color:var(--soft);font-size:11.5px;line-height:1.32;font-weight:880}.proofCard b{margin-top:auto;color:#fff3cf;font-size:11px;font-weight:1000}
+
+/* Territoires DIGIYLYFE : portes locales vivantes */
+.territories{margin-top:14px;padding:16px;border-radius:28px;border:2px solid rgba(246,196,83,.62);background:radial-gradient(520px 220px at 100% 0,rgba(246,196,83,.24),transparent 65%),linear-gradient(145deg,#133b29,#071b13);box-shadow:0 18px 46px rgba(0,0,0,.28)}
+.territoriesHead{display:flex;align-items:end;justify-content:space-between;gap:14px}
+.territoriesHead h2{margin:0;font-size:clamp(23px,5vw,36px);line-height:1;font-weight:1000}
+.territoriesHead p{margin:0;max-width:380px;color:var(--soft);font-size:12px;line-height:1.35;font-weight:900;text-align:right}
+.territoryDoor{position:relative;overflow:hidden;margin-top:13px;min-height:190px;padding:20px;border-radius:24px;border:2px solid rgba(255,241,189,.78);display:grid;grid-template-columns:90px 1fr auto;gap:16px;align-items:center;background:linear-gradient(120deg,rgba(4,19,13,.35),rgba(4,19,13,.91)),url('https://digiylyfe.net/wp-content/uploads/2026/07/1D087BF5-6D9F-462D-91A5-6420FC1A20BD_1_105_c.jpeg') center/cover;box-shadow:0 18px 45px rgba(0,0,0,.34);transition:transform .16s ease,border-color .16s ease}
+.territoryDoor.salyDoor{background:radial-gradient(420px 210px at 100% 0,rgba(246,196,83,.30),transparent 64%),radial-gradient(420px 230px at 0 100%,rgba(45,212,191,.24),transparent 65%),linear-gradient(135deg,#0d5a38,#06321f 62%,#041811)}
+.territoryDoor:hover{transform:translateY(-3px);border-color:#fff1bd}
+.territorySeal{width:90px;height:90px;border-radius:28px;display:grid;place-items:center;border:1px solid rgba(255,241,189,.85);background:linear-gradient(145deg,#fff1bd,#f6c453,#22c55e);color:#06140f;font-size:42px;box-shadow:0 14px 34px rgba(0,0,0,.34)}
+.territoryCopy small{display:block;color:#fff3cf;font-size:10.5px;font-weight:1000;letter-spacing:.11em;text-transform:uppercase}.territoryCopy strong{display:block;margin-top:5px;font-size:clamp(29px,6vw,48px);line-height:.95;font-weight:1000;letter-spacing:-.045em}.territoryCopy span{display:block;margin-top:8px;color:#fffaf0;font-size:clamp(13px,3vw,17px);line-height:1.35;font-weight:900}.territoryCopy b{display:inline-block;margin-top:10px;padding:6px 10px;border-radius:999px;background:rgba(246,196,83,.16);border:1px solid rgba(246,196,83,.45);color:#fff3cf;font-size:10px;font-weight:1000;text-transform:uppercase;letter-spacing:.06em}
+.territoryCta{min-width:180px;padding:14px 18px;border-radius:999px;background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;text-align:center;font-size:13px;line-height:1.18;font-weight:1000;box-shadow:0 14px 34px rgba(0,0,0,.28)}
+.territoryChoices{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:11px}
+.territoryChoice{min-height:126px;padding:16px;border-radius:21px;border:1px solid rgba(255,241,189,.5);display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center;background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.035));box-shadow:0 12px 30px rgba(0,0,0,.2);transition:transform .16s ease,border-color .16s ease,background .16s ease}
+.territoryChoice:hover{transform:translateY(-2px);border-color:#fff1bd;background:linear-gradient(145deg,rgba(246,196,83,.18),rgba(34,197,94,.09))}
+.territoryChoiceIcon{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;background:rgba(246,196,83,.15);border:1px solid rgba(246,196,83,.45);font-size:26px}
+.territoryChoice strong{display:block;color:#fff;font-size:17px;line-height:1.05;font-weight:1000}
+.territoryChoice small{display:block;margin-top:5px;color:var(--soft);font-size:11px;line-height:1.35;font-weight:850}
+.territoryChoice b{display:block;margin-top:7px;color:#fff3cf;font-size:10px;line-height:1.25;font-weight:1000;text-transform:uppercase;letter-spacing:.05em}
+@media(max-width:720px){.territoriesHead{display:block}.territoriesHead p{margin-top:7px;text-align:left}.territoryDoor{grid-template-columns:72px 1fr;min-height:220px;padding:16px 14px}.territorySeal{width:72px;height:72px;border-radius:23px;font-size:34px}.territoryCta{grid-column:1/-1;width:100%}.territoryCopy strong{font-size:34px}.territoryChoices{grid-template-columns:1fr}.territoryChoice{min-height:112px}}
+
+.promise{margin-top:12px;padding:14px;border-radius:22px;border:1px solid rgba(34,197,94,.42);background:linear-gradient(145deg,rgba(34,197,94,.14),rgba(246,196,83,.08));text-align:center}
+.promise strong{display:block;font-size:clamp(18px,4.5vw,27px);line-height:1.05;font-weight:1000}
+.promise span{display:block;margin-top:6px;color:var(--soft);font-size:12.5px;line-height:1.4;font-weight:900}
+.footer{margin:15px 0 0;text-align:center;color:rgba(255,250,240,.65);font-size:11px;line-height:1.45;font-weight:850}
+.footer a{color:#fff3cf;font-weight:1000}
+
+/* Dock permanent */
+.dock{position:fixed;left:50%;bottom:calc(8px + env(safe-area-inset-bottom));z-index:70;transform:translateX(-50%);width:min(650px,calc(100% - 16px));display:grid;grid-template-columns:repeat(5,1fr);gap:5px;padding:6px;border:1px solid rgba(246,196,83,.46);border-radius:22px;background:rgba(4,19,13,.94);box-shadow:0 18px 55px rgba(0,0,0,.48);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.dock a,.dock button{min-height:58px;padding:5px 3px;border-radius:15px;border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.06);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;font:inherit;cursor:pointer}
+.dock .homeDock{border-color:rgba(45,212,191,.55);background:linear-gradient(145deg,rgba(45,212,191,.18),rgba(34,197,94,.13))}
+.dock .voiceDock{border-color:rgba(246,196,83,.64);background:linear-gradient(145deg,rgba(246,196,83,.20),rgba(34,197,94,.15))}
+.dock .pilotDock{border-color:rgba(246,196,83,.78);background:linear-gradient(145deg,rgba(246,196,83,.28),rgba(34,197,94,.16))}
+.dock i{font-style:normal;font-size:19px;line-height:1}.dock small{font-size:8.8px;line-height:1.05;font-weight:1000}
+
+/* Cartouche complète */
+.overlay{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.52);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .18s ease}
+.overlay.open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:90;transform:translateY(105%);transition:transform .22s ease;padding:10px 10px calc(10px + env(safe-area-inset-bottom))}
+.sheet.open{transform:translateY(0)}
+.sheetCard{width:min(920px,100%);max-height:88svh;margin:auto;overflow:auto;padding:15px;border-radius:30px 30px 22px 22px;border:1px solid rgba(246,196,83,.42);background:rgba(4,19,13,.985);box-shadow:0 -24px 72px rgba(0,0,0,.58)}
+.sheetHead{position:sticky;top:-15px;z-index:2;display:grid;grid-template-columns:1fr 52px;gap:10px;align-items:center;padding:12px 3px 13px;border-bottom:1px solid var(--line);background:rgba(4,19,13,.985)}
+.sheetHead h2{margin:0;font-size:24px;line-height:1;font-weight:1000}.closeBtn{width:52px;height:52px;border-radius:18px;border:1px solid rgba(246,196,83,.35);background:rgba(255,255,255,.075);font-size:28px;cursor:pointer}
+.menuSection{margin-top:15px}.menuLabel{display:block;margin:0 2px 7px;color:#fff3cf;font-size:10.5px;font-weight:1000;letter-spacing:.1em;text-transform:uppercase}
+.menuGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.menuGrid a{min-height:58px;padding:10px 12px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.065);display:flex;align-items:center;gap:9px;font-size:12.5px;line-height:1.22;font-weight:950}
+.menuGrid a.gold{background:linear-gradient(135deg,rgba(246,196,83,.24),rgba(34,197,94,.16));border-color:rgba(246,196,83,.55)}
+.menuGrid a.voiceMenu{grid-column:1/-1;min-height:68px;font-size:14px;border-color:rgba(246,196,83,.75);background:linear-gradient(135deg,rgba(15,92,56,.95),rgba(246,196,83,.18))}
+.menuNote{margin:14px 0 2px;padding:12px;border-radius:17px;border:1px dashed rgba(246,196,83,.38);background:rgba(246,196,83,.07);color:var(--soft);font-size:11.5px;line-height:1.4;font-weight:880}
+
+@media(max-width:820px){
+  .voiceDoor{grid-template-columns:66px 1fr}.voiceIcon{width:66px;height:66px;border-radius:22px;font-size:34px}.voiceCta{grid-column:1/-1;width:100%}
+  .pilotFridge{grid-template-columns:70px 1fr}.pilotNumber{width:70px;height:70px;border-radius:22px;font-size:34px}.pilotCta{grid-column:1/-1;width:100%}
+  .moduleGrid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:620px){
+  .app{padding-left:9px;padding-right:9px}.topbar{grid-template-columns:50px 1fr auto}.logo{width:50px;height:50px}.brand small{font-size:9px}.langBtn{min-width:40px;padding:0 7px}.menuBtn{width:43px}
+  .hub{padding:20px 12px 15px;border-radius:27px}.hub::before{left:6px}.hub::after{right:6px}
+  .voiceDoor{padding:14px 12px;border-radius:23px;gap:10px}.voiceCopy p{font-size:12.5px}.voiceExamples span{font-size:9.5px}
+  .pilotFridge{padding:13px 11px;border-radius:22px;gap:10px}.pilotCopy p{font-size:11.8px}.returnRule{font-size:10px}
+  .moduleCard{min-height:105px;padding:11px;border-radius:18px}.moduleCard i{font-size:24px}.moduleCard strong{font-size:13.5px}.moduleCard small{font-size:10.5px}
+  .proRail{grid-template-columns:1fr}.proofsHead{display:block}.proofsHead p{margin-top:6px;text-align:left}.proofGrid{grid-template-columns:1fr}.proofCard{min-height:0}
+  .menuGrid{grid-template-columns:1fr}.menuGrid a.voiceMenu{grid-column:auto}
+}
+@media(max-width:370px){.brand strong{font-size:19px}.brand small{display:none}.langBtn{min-width:37px;padding:0 5px}.moduleCard small{display:none}.moduleCard{min-height:84px}.dock small{font-size:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.voiceDoor,.moduleCard,.overlay,.sheet{transition:none}}
+
+/* ── Cadre de navigation : aucun visiteur ne perd le HUB ── */
+.hubViewer{position:fixed;inset:0;z-index:120;background:#06140f;display:grid;grid-template-rows:auto 1fr;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,visibility .18s ease}
+.hubViewer.open{opacity:1;visibility:visible;pointer-events:auto}
+.hubViewerBar{position:relative;z-index:2;min-height:68px;padding:8px max(10px,env(safe-area-inset-left)) 8px max(10px,env(safe-area-inset-right));display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:9px;align-items:center;border-bottom:1px solid rgba(246,196,83,.45);background:linear-gradient(135deg,#092f21,#041811);box-shadow:0 8px 28px rgba(0,0,0,.38)}
+.hubViewerBack,.hubViewerDirect{min-height:48px;border-radius:999px;border:1px solid rgba(246,196,83,.62);display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:0 15px;font:inherit;font-size:12px;font-weight:1000;text-align:center;cursor:pointer}
+.hubViewerBack{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f}
+.hubViewerDirect{background:rgba(255,255,255,.075);color:#fff3cf;text-decoration:none}
+.hubViewerIdentity{min-width:0;text-align:center}
+.hubViewerIdentity small{display:block;color:#bdf7d2;font-size:9px;font-weight:1000;letter-spacing:.10em;text-transform:uppercase}
+.hubViewerIdentity strong{display:block;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fffaf0;font-size:clamp(13px,2.7vw,18px);font-weight:1000}
+.hubViewerStage{position:relative;min-height:0;background:#fff}
+.hubViewerFrame{display:block;width:100%;height:100%;border:0;background:#fff}
+.hubViewerLoading{position:absolute;inset:0;z-index:1;display:grid;place-items:center;padding:24px;background:linear-gradient(145deg,#0b3d29,#041811);color:#fffaf0;text-align:center;font-weight:1000}
+.hubViewerLoading span{display:block;margin-top:7px;color:rgba(255,250,240,.72);font-size:12px;line-height:1.4}
+.hubViewer.loaded .hubViewerLoading{display:none}
+@media(max-width:620px){
+  .hubViewerBar{min-height:62px;grid-template-columns:auto minmax(0,1fr) 44px;gap:6px;padding-top:calc(6px + env(safe-area-inset-top))}
+  .hubViewerBack{min-height:44px;padding:0 11px;font-size:11px}.hubViewerBack .wide{display:none}
+  .hubViewerDirect{width:44px;min-height:44px;padding:0;font-size:0}.hubViewerDirect::before{content:"↗";font-size:20px}
+  .hubViewerIdentity small{font-size:8px}.hubViewerIdentity strong{font-size:12px}
+}
+
+
+@media(min-width:981px){
+  .dock{
+    left:auto;
+    right:18px;
+    top:50%;
+    bottom:auto;
+    transform:translateY(-50%);
+    width:96px;
+    grid-template-columns:1fr;
+    gap:8px;
+    padding:8px;
+    border-radius:26px;
+    box-shadow:0 22px 60px rgba(0,0,0,.46);
+  }
+  .dock a,.dock button{
+    min-height:72px;
+    padding:8px 6px;
+    border-radius:18px;
+    gap:5px;
+  }
+  .dock i{
+    font-size:22px;
+  }
+  .dock small{
+    font-size:9.5px;
+    line-height:1.1;
+  }
+  .sheet{
+    padding-right:126px;
+  }
+}
+
+
+
+/* Carte DIGIYLYFE — miniature mobile centrée, contenue et sans débordement */
+#carte-digiy,
+#carte-digiy .digiyCardGrid,
+#carte-digiy .digiyCardFigure,
+#carte-digiy .digiyCardImageWrap {
+  min-width: 0;
+  max-width: 100%;
+}
+#carte-digiy .digiyCardFigure {
+  margin: 0;
+}
+#carte-digiy .digiyCardImageWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+#carte-digiy .digiyCardImage {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+@media (max-width: 620px) {
+  #carte-digiy .digiyCardImageWrap {
+    width: 100%;
+    margin-inline: auto;
+  }
+  #carte-digiy .digiyCardImage {
+    max-width: min(240px, 100%);
+    max-height: 45vh;
+    margin-inline: auto;
+    object-fit: contain;
+  }
+}
+
+</style>
+</head>
+<body>
+<main class="app" id="haut">
+<header class="topbar">
+<a aria-label="Accueil DIGIYLYFE" class="logo" href="#haut"><img alt="DIGIYLYFE" src="./icon-192.png?v=20260713"/></a>
+<div class="brand"><strong>DIGIYLYFE</strong><small data-i18n="brandTag">La Voix du Business · La Voie du Terrain</small></div>
+<div class="topActions">
+<button aria-pressed="true" class="langBtn active" data-lang="fr" onclick="setLang('fr')" type="button">FR</button>
+<button aria-pressed="false" class="langBtn" data-lang="en" onclick="setLang('en')" type="button">EN</button>
+<button aria-controls="sheet" aria-expanded="false" aria-label="Ouvrir le menu complet" class="menuBtn" id="menuTrigger" onclick="openMenu()" type="button">☰</button>
+</div>
+</header>
+<section aria-label="HUB central DIGIYLYFE" class="hub" id="modules">
+<div class="hubHead">
+<span class="kicker" data-i18n="hubKicker">HUB CENTRAL · MÉTIERS &amp; SERVICES</span>
+<h1 data-i18n="hubTitle">De quoi avez-vous besoin aujourd’hui ?</h1>
+<p class="hubLead" data-i18n="hubLead">Parlez, écrivez ou choisissez une case. DIGIYLYFE vous ouvre directement la bonne porte du terrain.</p>
+</div>
+<a aria-label="Ouvrir LA VOIX ACTION PRO — microphone, ouverture séparée" class="voiceDoor" data-hub-bypass="true" href="https://pro-action-digiy.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">
+<span aria-hidden="true" class="voiceIcon">🎙️</span>
+<span class="voiceCopy">
+<span class="voiceTag" data-i18n="voiceTag">PORTE MAÎTRESSE · LA VOIX AU-DESSUS DE L’ACTION</span>
+<strong data-i18n="voiceTitle">LA VOIX · ACTION PRO</strong>
+<p data-i18n="voiceText">Dites ou écrivez votre besoin. ACTION PRO vous dirige vers le bon métier et le bon professionnel.</p>
+<span aria-hidden="true" class="voiceExamples">
+<span data-i18n="voiceEx1">« chauffeur AIBD »</span><span data-i18n="voiceEx2">« plombier à Saly »</span><span data-i18n="voiceEx3">« logement à Mbour »</span><span data-i18n="voiceEx4">« boutique locale »</span>
+</span>
+</span>
+<span class="voiceCta"><span data-i18n="voiceCta">Parler ou rechercher →</span><span class="sensitiveHint" data-i18n="voiceSeparate">Micro · ouverture séparée</span></span>
+</a>
+
+<a aria-label="Découvrir Aly Kane — La Voix du Terrain" class="alyDoor" data-hub-allow="fullscreen" href="./clip-ali.html">
+  <span aria-hidden="true" class="alyAvatar">🎬</span>
+  <span class="alyCopy">
+    <small data-i18n="alyTag">PRÉSENTATION DIGIYLYFE · LA VOIX DU TERRAIN</small>
+    <strong data-i18n="alyTitle">ALY KANE</strong>
+    <span data-i18n="alyText">Il ouvre les portes du HUB, présente les territoires et relie sans prendre la place.</span>
+    <b data-i18n="alyAction">Voir le clip avec photos et lecteur →</b>
+  </span>
+  <span class="alyCta" data-i18n="alyCta">Découvrir Aly →</span>
+</a>
+
+<a aria-label="Ouvrir les 50 invitations pilotes DIGIYLYFE — 30 jours offerts" class="pilotFridge" data-hub-allow="fullscreen; clipboard-write" href="https://partenaire-pilote.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">
+<span aria-hidden="true" class="pilotNumber">50</span>
+<span class="pilotCopy">
+<span class="pilotTag" data-i18n="fridgeTag">LE FRIGO D’ABORD · PETITE CÔTE</span>
+<strong data-i18n="fridgeTitle">50 invitations pilotes · 30 jours offerts</strong>
+<p data-i18n="fridgeText">La porte pour accueillir les premiers professionnels réels. Aucun paiement demandé, aucune reconduction automatique.</p>
+</span>
+<span class="pilotCta" data-i18n="fridgeCta">Ouvrir la page des 50 invitations →</span>
+</a>
+
+<a aria-label="Voir la cotisation Présence Pro à 19 900 FCFA par mois" class="membershipStrip" data-hub-allow="fullscreen" href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank">
+  <span aria-hidden="true" class="membershipIcon">💳</span>
+  <span class="membershipCopy"><small data-i18n="membershipTag">APRÈS LES 30 JOURS OFFERTS</small><strong data-i18n="membershipTitle">Cotisation Présence Pro</strong><span data-i18n="membershipText">Fiche professionnelle + carte digitale + QR direct. Seulement si le professionnel choisit de continuer.</span></span>
+  <span class="membershipPrice">19 900 FCFA<small data-i18n="membershipPeriod">PAR MOIS</small><b data-i18n="membershipCta">Voir l’offre →</b></span>
+</a>
+<p class="returnRule" data-i18n="returnRule">↩ Les portes publiques restent dans le cadre DIGIYLYFE. LA VOIX et les accès PIN s’ouvrent séparément pour protéger le micro et la session.</p>
+<div class="modulesHead">
+<h2 data-i18n="modulesTitle">Choisir directement un module</h2>
+<button data-i18n="allDoors" onclick="openMenu()" type="button">Toutes les portes</button>
+</div>
+<nav aria-label="Modules DIGIYLYFE" class="moduleGrid">
+<a aria-label="Ouvrir DRIVER — chauffeurs et mobilité" class="moduleCard driver" data-hub-allow="geolocation; fullscreen" href="https://driver-client.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>🚗</i><strong>DRIVER</strong><small data-i18n="driverText">Chauffeurs et mobilité</small><b data-i18n="open">Ouvrir</b></a>
+<a aria-label="Ouvrir LOC — logements et tourisme" class="moduleCard loc" data-hub-allow="geolocation; fullscreen" href="https://loc.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>🏠</i><strong>LOC</strong><small data-i18n="locText">Logements et tourisme</small><b data-i18n="open">Ouvrir</b></a>
+<a aria-label="Ouvrir RESA — réservations directes" class="moduleCard resa" data-hub-allow="fullscreen" href="https://resa-table-resto.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>📅</i><strong>RESA</strong><small data-i18n="resaText">Réservations directes</small><b data-i18n="open">Ouvrir</b></a>
+<a aria-label="Ouvrir MARKET — boutiques et produits" class="moduleCard market" data-hub-allow="fullscreen; clipboard-write" href="https://market.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>🛍️</i><strong>MARKET</strong><small data-i18n="marketText">Boutiques et produits</small><b data-i18n="open">Ouvrir</b></a>
+<a aria-label="Ouvrir BUILD — artisans et chantiers" class="moduleCard build" data-hub-allow="geolocation; fullscreen" href="https://build.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>🏗️</i><strong>BUILD</strong><small data-i18n="buildText">Artisans et chantiers</small><b data-i18n="open">Ouvrir</b></a>
+<a aria-label="Ouvrir JOBS — emploi et missions" class="moduleCard jobs" data-hub-allow="geolocation; fullscreen" href="https://jobs.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>💼</i><strong>JOBS</strong><small data-i18n="jobsText">Emploi et missions</small><b data-i18n="open">Ouvrir</b></a>
+<a aria-label="Ouvrir EXPLORE — lieux et découvertes" class="moduleCard explore" data-hub-allow="geolocation; fullscreen" href="https://explore.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>🗺️</i><strong>EXPLORE</strong><small data-i18n="exploreText">Lieux et découvertes</small><b data-i18n="open">Ouvrir</b></a>
+<a aria-label="Ouvrir CARNET PRO — accès professionnel sécurisé" class="moduleCard carnet" data-hub-bypass="true" href="https://digiy-carnet-pro.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>📒</i><strong>CARNET PRO</strong><small data-i18n="carnetText">Suivre son activité</small><b data-i18n="open">Ouvrir</b></a>
+</nav>
+<div class="proRail" id="professionnels">
+<a class="proCard gold" href="https://partenaire-pilote.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>🔥</i><span><strong data-i18n="pilotTitle">50 invitations pilotes</strong><small data-i18n="pilotText">30 jours offerts · Puis Présence Pro à 19 900 FCFA/mois si vous continuez.</small></span></a>
+<a aria-label="Ouvrir l’espace professionnel sécurisé — PIN" class="proCard" data-hub-bypass="true" href="https://pro-espace.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>🔐</i><span><strong data-i18n="proTitle">Déjà membre ?</strong><small data-i18n="proText">Ouvrir mon espace professionnel sécurisé.</small></span></a>
+</div>
+</section>
+<section aria-label="Preuves terrain DIGIYLYFE" class="proofs" id="preuves">
+<div class="proofsHead"><h2 data-i18n="proofTitle">Le terrain est déjà visible</h2><p data-i18n="proofLead">Trois exemples réels. Un contact direct.</p></div>
+<div class="proofGrid">
+<a aria-label="Ouvrir la fiche Astou Boutique" class="proofCard" data-hub-allow="fullscreen" href="https://astou-boutique.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>🛍️</i><strong>Astou Boutique</strong><small data-i18n="astouText">Boutique locale · Saly · MARKET</small><b data-i18n="seeCard">Voir la fiche →</b></a>
+<a aria-label="Ouvrir la fiche Babacar Plombier Pro" class="proofCard" data-hub-allow="fullscreen" href="https://babacar-plombier-pro.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>🔧</i><strong>Babacar Plombier Pro</strong><small data-i18n="babacarText">Artisan · Saly · BUILD</small><b data-i18n="seeCard">Voir la fiche →</b></a>
+<a aria-label="Ouvrir la fiche Chez Baptiste" class="proofCard" data-hub-allow="fullscreen" href="https://part-chez-baptiste.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>🏠</i><strong>Chez Baptiste</strong><small data-i18n="baptisteText">Hébergement · Saly · LOC</small><b data-i18n="seeCard">Voir la fiche →</b></a>
+</div>
+</section>
+<section aria-label="Territoires DIGIYLYFE" class="territories" id="territoires">
+  <div class="territoriesHead"><h2 data-i18n="territoryTitle">Les territoires s’ouvrent</h2><p data-i18n="territoryLead">Une ville, ses adresses réelles, un accès direct au terrain.</p></div>
+  <a aria-label="Ouvrir la location Chez Baptiste à Saly" class="territoryDoor salyDoor" data-hub-allow="fullscreen" href="https://part-chez-baptiste.digiylyfe.com/">
+    <span aria-hidden="true" class="territorySeal">🌴</span>
+    <span class="territoryCopy"><small data-i18n="salyTag">SÉNÉGAL · PETITE CÔTE</small><strong>SALY</strong><span data-i18n="salyText">Première adresse locale : Chez Baptiste, location directe, photos et contact WhatsApp.</span><b data-i18n="salyProof">Première porte territoriale DIGIYLYFE au Sénégal</b></span>
+    <span class="territoryCta" data-i18n="salyCta">Voir la location →</span>
+  </a>
+
+  <a aria-label="Ouvrir la page territoriale SARLAT DIGIYLYFE" class="territoryDoor" data-hub-allow="fullscreen" href="https://digiylyfe.com/sarlat.html">
+    <span aria-hidden="true" class="territorySeal">🏰</span>
+    <span class="territoryCopy"><small data-i18n="sarlatTag">FRANCE · PÉRIGORD NOIR</small><strong>SARLAT</strong><span data-i18n="sarlatText">Deux portes locales : manger à Sarlat et dormir à Sarlat, avec contact direct.</span><b data-i18n="sarlatProof">Première porte territoriale DIGIYLYFE</b></span>
+    <span class="territoryCta" data-i18n="sarlatCta">Voir toute la vitrine →</span>
+  </a>
+  <div class="territoryChoices" aria-label="Les deux portes de SARLAT">
+    <a class="territoryChoice" data-hub-allow="fullscreen" href="https://digiylyfe.com/sarlat.html#manger">
+      <span aria-hidden="true" class="territoryChoiceIcon">🍽️</span>
+      <span><strong data-i18n="sarlatFoodTitle">MANGER À SARLAT</strong><small data-i18n="sarlatFoodText">L’Entre 2 & Le Malraux · cartes, photos et contact direct.</small><b data-i18n="sarlatFoodCta">Ouvrir la porte restaurants →</b></span>
+    </a>
+    <a class="territoryChoice" data-hub-allow="fullscreen" href="https://digiylyfe.com/sarlat.html#dormir">
+      <span aria-hidden="true" class="territoryChoiceIcon">🛏️</span>
+      <span><strong data-i18n="sarlatStayTitle">DORMIR À SARLAT</strong><small data-i18n="sarlatStayText">SARLAT CHEZ BAPTISTE · chambre privée et demande directe.</small><b data-i18n="sarlatStayCta">Ouvrir la porte hébergement →</b></span>
+    </a>
+  </div>
+</section>
+<section aria-label="Carte officielle DIGIYLYFE.COM" class="digiyCardShowcase" id="carte-digiy">
+  <div class="digiyCardHead">
+    <h2 data-i18n="digiyCardTitle">La carte officielle DIGIYLYFE.COM</h2>
+    <p data-i18n="digiyCardLead">Une carte simple, partageable et cliquable. Sur téléphone, touchez-la. En impression, le QR ouvre directement le site.</p>
+  </div>
+  <div class="digiyCardGrid">
+    <figure class="digiyCardFigure">
+      <a class="digiyCardImageWrap" href="https://digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="Ouvrir DIGIYLYFE.COM">
+        <img alt="Carte de visite officielle DIGIYLYFE.COM" class="digiyCardImage" src="./carte-visite-digiy.png"/>
+      </a>
+      <figcaption class="digiyCardCaption" data-i18n="digiyCardCaption">La carte ouvre DIGIYLYFE.COM et peut aussi être imprimée pour la vitrine.</figcaption>
+    </figure>
+    <div class="digiyCardCopy">
+      <span class="digiyCardTag" data-i18n="digiyCardTag">Carte digitale · partageable</span>
+      <strong data-i18n="digiyCardHeadline">Touchez, partagez, imprimez.</strong>
+      <span data-i18n="digiyCardText">Cette carte sert de passerelle rapide vers le HUB DIGIYLYFE : métiers, entreprises, territoires, ACTION PRO et portes directes. Elle peut être posée dans la vitrine, envoyée sur WhatsApp ou publiée comme visuel autonome.</span>
+      <div class="digiyCardBullets">
+        <b><i>🔗</i><span data-i18n="digiyCardBullet1">Cliquable sur téléphone</span></b>
+        <b><i>📤</i><span data-i18n="digiyCardBullet2">Partageable par lien ou image</span></b>
+        <b><i>🖨️</i><span data-i18n="digiyCardBullet3">Prête pour la vitrine ou l’impression</span></b>
+      </div>
+      <div class="digiyCardActions">
+        <a class="digiyCardBtn" data-i18n="digiyCardOpen" href="https://digiylyfe.com/" rel="noopener noreferrer" target="_blank">Ouvrir DIGIYLYFE.COM</a>
+        <a class="digiyCardBtn secondary" data-i18n="digiyCardDownload" download="" href="./carte-visite-digiy.png">Télécharger la carte</a>
+        <button class="digiyCardBtn ghost" data-i18n="digiyCardShare" onclick="shareDigiyCard()" type="button">Partager la carte</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section aria-label="Doctrine DIGIYLYFE" class="promise">
+<strong data-i18n="promiseTitle">0% commission · Contact direct · Paiement direct</strong>
+<span data-i18n="promiseText">Le premier contact peut venir d’ailleurs. La relation et la valeur restent au professionnel. Le terrain garde la main.</span>
+</section>
+
+<noscript>
+<section aria-label="Accès direct sans JavaScript" class="noscriptDoors">
+  <h2>Accès direct DIGIYLYFE</h2>
+  <p>JavaScript est désactivé. Les principales portes restent accessibles directement.</p>
+  <nav>
+    <a href="https://pro-action-digiy.digiylyfe.com/">🎙️ ACTION PRO</a>
+    <a href="https://partenaire-pilote.digiylyfe.com/">🔥 50 invitations pilotes</a>
+    <a href="https://driver-client.digiylyfe.com/">🚗 DRIVER</a>
+    <a href="https://loc.digiylyfe.com/">🏠 LOC</a>
+    <a href="https://market.digiylyfe.com/">🛍️ MARKET</a>
+    <a href="https://build.digiylyfe.com/">🏗️ BUILD</a>
+    <a href="https://pro-espace.digiylyfe.com/">🔐 Espace Pro</a>
+    <a href="https://tarifs.digiylyfe.com/">💳 Présence Pro · 19 900 FCFA/mois</a>
+    <a href="https://part-chez-baptiste.digiylyfe.com/">🌴 SALY · Chez Baptiste</a>
+    <a href="https://digiylyfe.com/sarlat.html">🏰 SARLAT · France</a>
+    <a href="./carte-visite-digiy.png">🪪 Carte officielle DIGIYLYFE.COM</a>
+  </nav>
+</section>
+</noscript>
+<footer class="footer">
+<strong>DIGIYLYFE ∞</strong> · <span data-i18n="footerTag">Le HUB des métiers, services et entreprises du terrain.</span><br/>
+<a href="./qr.html" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">QR</a> · <a data-i18n="footerPresence" href="./presence-terrain.html" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">Présence terrain</a> · <a data-i18n="footerOffers" href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">Offres</a> · <a data-i18n="footerBook" href="https://livre.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">Le Livre</a>
+</footer>
+</main>
+<nav aria-label="Navigation permanente DIGIYLYFE" class="dock">
+<a class="homeDock" href="#haut"><i>🏠</i><small data-i18n="dockHome">Accueil</small></a>
+<a aria-label="Ouvrir LA VOIX séparément" class="voiceDock" data-hub-bypass="true" href="https://pro-action-digiy.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>🎙️</i><small data-i18n="dockVoice">La Voix</small></a>
+<a class="pilotDock" href="https://partenaire-pilote.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE"><i>🔥</i><small data-i18n="dockPilot">50 invitations</small></a>
+<a aria-label="Ouvrir Espace Pro séparément — PIN" data-hub-bypass="true" href="https://pro-espace.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour protéger la session PIN"><i>🔐</i><small data-i18n="dockPro">Espace Pro</small></a>
+<button aria-controls="sheet" onclick="openMenu()" type="button"><i>☰</i><small data-i18n="dockMenu">Tout</small></button>
+</nav>
+<div aria-hidden="true" class="overlay" id="overlay" onclick="closeMenu()"></div>
+<div aria-hidden="true" aria-label="Menu complet DIGIYLYFE" aria-modal="true" class="sheet" id="sheet" inert="" role="dialog">
+<div class="sheetCard">
+<div class="sheetHead">
+<h2 data-i18n="menuTitle">☰ Toutes les portes</h2>
+<button aria-label="Fermer" class="closeBtn" onclick="closeMenu()" type="button">×</button>
+</div>
+<section class="menuSection">
+<span class="menuLabel" data-i18n="menuSearchLabel">PARLER · CHERCHER · TROUVER</span>
+<div class="menuGrid">
+<a class="gold" href="#haut">🏠 <span data-i18n="menuHome">Revenir au HUB central</span></a>
+<a aria-label="Ouvrir LA VOIX ACTION PRO séparément" class="voiceMenu" data-hub-bypass="true" href="https://pro-action-digiy.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🎙️ <span><strong>LA VOIX · ACTION PRO</strong><br/><small data-i18n="menuVoiceText">Dire ou écrire le besoin, puis ouvrir la bonne porte.</small></span></a>
+<a class="gold" href="./recherche.html" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🔎 <span data-i18n="menuSearch">Trouver un professionnel</span></a>
+<a href="https://digiy-hub.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🧭 <span data-i18n="menuHub">Explorer tous les services</span></a>
+</div>
+</section>
+<section class="menuSection">
+<span class="menuLabel" data-i18n="menuModulesLabel">MODULES MÉTIER</span>
+<div class="menuGrid">
+<a href="https://driver-client.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🚗 DRIVER</a><a href="https://loc.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🏠 LOC</a>
+<a href="https://resa-table-resto.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">📅 RESA</a><a href="https://market.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🛍️ MARKET</a>
+<a href="https://build.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🏗️ BUILD</a><a href="https://jobs.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">💼 JOBS</a>
+<a href="https://explore.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🗺️ EXPLORE</a><a aria-label="Ouvrir CARNET PRO séparément — accès sécurisé" data-hub-bypass="true" href="https://digiy-carnet-pro.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">📒 CARNET PRO</a>
+</div>
+</section>
+<section class="menuSection">
+<span class="menuLabel" data-i18n="menuProLabel">PROFESSIONNELS · REJOINDRE &amp; PILOTER</span>
+<div class="menuGrid">
+<a class="gold" href="https://partenaire-pilote.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🔥 <span data-i18n="menuPilot">50 invitations pilotes · 30 jours offerts</span></a>
+<a class="gold" href="./inscription.html" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">📝 <span data-i18n="menuSignup">Inscription DIGIYLYFE</span></a>
+<a href="./presence-terrain.html" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">▣ <span data-i18n="menuPresence">Pack Présence Terrain</span></a>
+<a href="https://tarifs.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">📊 <span data-i18n="menuOffers">Tarifs · Présence Pro 19 900 FCFA/mois</span></a>
+<a aria-label="Ouvrir Espace Pro séparément — PIN" data-hub-bypass="true" href="https://pro-espace.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour protéger la session PIN">🔐 <span data-i18n="menuProSpace">Espace professionnel</span></a>
+<a aria-label="Ouvrir PRO CARNET séparément — PIN" data-hub-bypass="true" href="https://pro-carnet.digiylyfe.com/pin.html" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">📒 <span data-i18n="menuSecureCarnet">PRO CARNET sécurisé</span></a>
+<a href="https://club-metiers.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🧰 <span data-i18n="menuClub">Club des Métiers</span></a>
+<a href="./ciblage-pros-digiylyfe.html" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🎯 <span data-i18n="menuTarget">Ciblage professionnels</span></a>
+</div>
+</section>
+<section class="menuSection">
+<span class="menuLabel" data-i18n="menuUnderstandLabel">COMPRENDRE · PARTAGER · APPROFONDIR</span>
+<div class="menuGrid">
+<a class="gold" href="https://part-chez-baptiste.digiylyfe.com/">🌴 <span data-i18n="menuSaly">SALY · Sénégal</span></a>
+<a class="gold" href="https://digiylyfe.com/sarlat.html">🏰 <span data-i18n="menuSarlat">SARLAT · France</span></a>
+<a href="https://digiy-clip.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🎬 <span data-i18n="menuClip">Clip terrain</span></a>
+<a href="https://beauville.github.io/solution-digiylyfe/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">💡 <span data-i18n="menuSolution">Solution DIGIYLYFE</span></a>
+<a href="https://carnets.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">📚 <span data-i18n="menuCarnets">Carnets DIGIYLYFE</span></a>
+<a href="https://livre.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">📖 <span data-i18n="menuBook">Le Livre</span></a>
+<a href="./architecture-digiylyfe.html" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🏛️ <span data-i18n="menuArchitecture">Architecture DIGIYLYFE</span></a>
+<a href="./qr.html" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">▣ <span data-i18n="menuQr">QR officiel</span></a>
+<a href="https://wa.me/?text=DIGIYLYFE%20%E2%80%94%20La%20Voix%20du%20Business%2C%20la%20Voie%20du%20Terrain.%20https%3A%2F%2Fdigiylyfe.com%2F" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">💬 <span data-i18n="menuShare">Partager DIGIYLYFE</span></a>
+<a href="https://digiylyfe.net/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">📰 <span data-i18n="menuReview">Revue DIGIYLYFE</span></a>
+</div>
+</section>
+<p class="menuNote" data-i18n="menuNote">La page d’accueil reste courte. Toute la profondeur de l’écosystème demeure disponible ici, sans perdre le visiteur dans un long défilement.</p>
+</div>
+</div>
+
+<div aria-hidden="true" aria-label="Porte DIGIYLYFE ouverte dans le HUB" aria-modal="true" class="hubViewer" id="hubViewer" inert="" role="dialog">
+  <div class="hubViewerBar">
+    <button class="hubViewerBack" id="hubViewerBack" type="button"><span>←</span><span class="wide" data-i18n="viewerBack">Retour au HUB</span></button>
+    <div class="hubViewerIdentity"><small>DIGIYLYFE · HUB CENTRAL</small><strong id="hubViewerTitle">Module DIGIYLYFE</strong></div>
+    <a class="hubViewerDirect" data-hub-bypass="true" data-i18n="viewerDirect" href="#" id="hubViewerDirect" rel="noopener noreferrer" target="_blank">Ouvrir seul ↗</a>
+  </div>
+  <div class="hubViewerStage">
+    <div class="hubViewerLoading" id="hubViewerLoading"><div>🧭 <span data-i18n="viewerLoading">Ouverture de la porte DIGIYLYFE…</span></div></div>
+    <iframe allow="fullscreen" class="hubViewerFrame" id="hubViewerFrame" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Contenu DIGIYLYFE"></iframe>
+    <div aria-live="polite" class="hubViewerFallback" id="hubViewerFallback"><span data-i18n="viewerFallback">Un souci d’affichage ? Cette porte peut s’ouvrir directement.</span><a data-hub-bypass="true" href="#" id="hubViewerFallbackLink" rel="noopener noreferrer" target="_blank"><span data-i18n="viewerFallbackCta">Ouvrir directement ↗</span></a></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var trigger=document.getElementById('menuTrigger');
+  var sheet=document.getElementById('sheet');
+  var overlay=document.getElementById('overlay');
+  var previousFocus=null;
+  var appRoot=document.querySelector('.app');
+  var dockRoot=document.querySelector('.dock');
+
+  window.openMenu=function(){
+    previousFocus=document.activeElement;
+    document.body.classList.add('lock');
+    overlay.classList.add('open');
+    sheet.classList.add('open');
+    overlay.setAttribute('aria-hidden','false');
+    sheet.setAttribute('aria-hidden','false');
+    sheet.removeAttribute('inert');
+    if(trigger)trigger.setAttribute('aria-expanded','true');
+    var close=sheet.querySelector('.closeBtn');
+    if(close)close.focus();
+  };
+
+  window.closeMenu=function(){
+    document.body.classList.remove('lock');
+    overlay.classList.remove('open');
+    sheet.classList.remove('open');
+    overlay.setAttribute('aria-hidden','true');
+    sheet.setAttribute('aria-hidden','true');
+    sheet.setAttribute('inert','');
+    if(trigger)trigger.setAttribute('aria-expanded','false');
+    if(previousFocus && typeof previousFocus.focus==='function')previousFocus.focus();
+  };
+
+  document.addEventListener('keydown',function(event){
+    if(event.key==='Escape' && hubViewerOpen){closeHubViewer(false);return;}
+    if(event.key==='Escape' && sheet.classList.contains('open'))closeMenu();
+    if(event.key!=='Tab' || !sheet.classList.contains('open'))return;
+    var focusable=Array.prototype.slice.call(sheet.querySelectorAll('a[href],button:not([disabled])'));
+    if(!focusable.length)return;
+    var first=focusable[0],last=focusable[focusable.length-1];
+    if(event.shiftKey && document.activeElement===first){event.preventDefault();last.focus();}
+    else if(!event.shiftKey && document.activeElement===last){event.preventDefault();first.focus();}
+  });
+
+  sheet.addEventListener('click',function(event){
+    if(event.target.closest('a'))closeMenu();
+  });
+
+  var I18N={
+    fr:{
+      metaTitle:'DIGIYLYFE — HUB, ACTION PRO et 50 invitations pilotes',
+      metaDescription:'DIGIYLYFE réunit les métiers et services du terrain : ACTION PRO, 50 invitations pilotes, puis cotisation Présence Pro à 19 900 FCFA par mois si le professionnel choisit de continuer.',
+      brandTag:'La Voix du Business · La Voie du Terrain',hubKicker:'HUB CENTRAL · MÉTIERS & SERVICES',hubTitle:'De quoi avez-vous besoin aujourd’hui ?',hubLead:'Parlez, écrivez ou choisissez une case. DIGIYLYFE vous ouvre directement la bonne porte du terrain.',
+      voiceTag:'PORTE MAÎTRESSE · LA VOIX AU-DESSUS DE L’ACTION',voiceTitle:'LA VOIX · ACTION PRO',voiceText:'Dites ou écrivez votre besoin. ACTION PRO vous dirige vers le bon métier et le bon professionnel.',voiceEx1:'« chauffeur AIBD »',voiceEx2:'« plombier à Saly »',voiceEx3:'« logement à Mbour »',voiceEx4:'« boutique locale »',voiceCta:'Parler ou rechercher →',voiceSeparate:'Micro · ouverture séparée',alyTag:'PRÉSENTATION DIGIYLYFE · LA VOIX DU TERRAIN',alyTitle:'ALY KANE',alyText:'Il ouvre les portes du HUB, présente les territoires et relie sans prendre la place.',alyAction:'Voir le clip avec photos et lecteur →',alyCta:'Découvrir Aly →',fridgeTag:'LE FRIGO D’ABORD · PETITE CÔTE',fridgeTitle:'50 invitations pilotes · 30 jours offerts',fridgeText:'La porte pour accueillir les premiers professionnels réels. Aucun paiement demandé, aucune reconduction automatique.',fridgeCta:'Ouvrir la page des 50 invitations →',membershipTag:'APRÈS LES 30 JOURS OFFERTS',membershipTitle:'Cotisation Présence Pro',membershipText:'Fiche professionnelle + carte digitale + QR direct. Seulement si le professionnel choisit de continuer.',membershipPeriod:'PAR MOIS',membershipCta:'Voir l’offre →',returnRule:'↩ Les portes publiques restent dans le cadre DIGIYLYFE. LA VOIX et les accès PIN s’ouvrent séparément pour protéger le micro et la session.',
+      modulesTitle:'Choisir directement un module',allDoors:'Toutes les portes',driverText:'Chauffeurs et mobilité',locText:'Logements et tourisme',resaText:'Réservations directes',marketText:'Boutiques et produits',buildText:'Artisans et chantiers',jobsText:'Emploi et missions',exploreText:'Lieux et découvertes',carnetText:'Suivre son activité',open:'Ouvrir',
+      pilotTitle:'50 invitations pilotes',pilotText:'30 jours offerts · Puis Présence Pro à 19 900 FCFA/mois si vous continuez.',proTitle:'Déjà membre ?',proText:'Ouvrir mon espace professionnel sécurisé.',
+      proofTitle:'Le terrain est déjà visible',proofLead:'Trois exemples réels. Un contact direct.',astouText:'Boutique locale · Saly · MARKET',babacarText:'Artisan · Saly · BUILD',baptisteText:'Hébergement · Saly · LOC',seeCard:'Voir la fiche →',
+      territoryTitle:'Les territoires s’ouvrent',territoryLead:'Une ville, ses adresses réelles, un accès direct au terrain.',salyTag:'SÉNÉGAL · PETITE CÔTE',salyText:'Première adresse locale : Chez Baptiste, location directe, photos et contact WhatsApp.',salyProof:'Première porte territoriale DIGIYLYFE au Sénégal',salyCta:'Voir la location →',sarlatTag:'FRANCE · PÉRIGORD NOIR',sarlatText:'Deux portes locales : manger à Sarlat et dormir à Sarlat, avec contact direct.',sarlatProof:'Première porte territoriale DIGIYLYFE',sarlatCta:'Voir toute la vitrine →',sarlatFoodTitle:'MANGER À SARLAT',sarlatFoodText:'L’Entre 2 & Le Malraux · cartes, photos et contact direct.',sarlatFoodCta:'Ouvrir la porte restaurants →',sarlatStayTitle:'DORMIR À SARLAT',sarlatStayText:'SARLAT CHEZ BAPTISTE · chambre privée et demande directe.',sarlatStayCta:'Ouvrir la porte hébergement →',digiyCardTitle:'La carte officielle DIGIYLYFE.COM',digiyCardLead:'Une carte simple, partageable et cliquable. Sur téléphone, touchez-la. En impression, le QR ouvre directement le site.',digiyCardCaption:'La carte ouvre DIGIYLYFE.COM et peut aussi être imprimée pour la vitrine.',digiyCardTag:'Carte digitale · partageable',digiyCardHeadline:'Touchez, partagez, imprimez.',digiyCardText:'Cette carte sert de passerelle rapide vers le HUB DIGIYLYFE : métiers, entreprises, territoires, ACTION PRO et portes directes. Elle peut être posée dans la vitrine, envoyée sur WhatsApp ou publiée comme visuel autonome.',digiyCardBullet1:'Cliquable sur téléphone',digiyCardBullet2:'Partageable par lien ou image',digiyCardBullet3:'Prête pour la vitrine ou l’impression',digiyCardOpen:'Ouvrir DIGIYLYFE.COM',digiyCardDownload:'Télécharger la carte',digiyCardShare:'Partager la carte',menuSaly:'SALY · Sénégal',menuSarlat:'SARLAT · France',
+      promiseTitle:'0% commission · Contact direct · Paiement direct',promiseText:'Le premier contact peut venir d’ailleurs. La relation et la valeur restent au professionnel. Le terrain garde la main.',footerTag:'Le HUB des métiers, services et entreprises du terrain.',footerPresence:'Présence terrain',footerOffers:'Offres',footerBook:'Le Livre',
+      dockHome:'Accueil',dockVoice:'La Voix',dockModules:'Modules',dockPilot:'50 invitations',dockPro:'Espace Pro',dockMenu:'Tout',menuTitle:'☰ Toutes les portes',menuHome:'Revenir au HUB central',menuSearchLabel:'PARLER · CHERCHER · TROUVER',menuVoiceText:'Dire ou écrire le besoin, puis ouvrir la bonne porte.',menuSearch:'Trouver un professionnel',menuHub:'Explorer tous les services',menuModulesLabel:'MODULES MÉTIER',menuProLabel:'PROFESSIONNELS · REJOINDRE & PILOTER',menuPilot:'50 invitations pilotes · 30 jours offerts',menuSignup:'Inscription DIGIYLYFE',menuPresence:'Pack Présence Terrain',menuOffers:'Tarifs · Présence Pro 19 900 FCFA/mois',menuProSpace:'Espace professionnel',menuSecureCarnet:'PRO CARNET sécurisé',menuClub:'Club des Métiers',menuTarget:'Ciblage professionnels',menuUnderstandLabel:'COMPRENDRE · PARTAGER · APPROFONDIR',menuClip:'Clip terrain',menuSolution:'Solution DIGIYLYFE',menuCarnets:'Carnets DIGIYLYFE',menuBook:'Le Livre',menuArchitecture:'Architecture DIGIYLYFE',menuQr:'QR officiel',menuShare:'Partager DIGIYLYFE',menuReview:'Revue DIGIYLYFE',menuNote:'La page d’accueil reste courte. Toute la profondeur de l’écosystème demeure disponible ici, sans perdre le visiteur dans un long défilement.',viewerBack:'Retour au HUB',viewerDirect:'Ouvrir seul ↗',viewerLoading:'Ouverture de la porte DIGIYLYFE…',viewerFallback:'Un souci d’affichage ? Cette porte peut s’ouvrir directement.',viewerFallbackCta:'Ouvrir directement ↗'
+    },
+    en:{
+      metaTitle:'DIGIYLYFE — HUB, ACTION PRO and 50 pilot invitations',
+      metaDescription:'DIGIYLYFE brings together local trades and services: ACTION PRO, 50 pilot invitations, then Professional Presence membership at 19,900 FCFA per month if the professional chooses to continue.',
+      brandTag:'The Voice of Business · The Path of the Field',hubKicker:'CENTRAL HUB · TRADES & SERVICES',hubTitle:'What do you need today?',hubLead:'Speak, type or choose a tile. DIGIYLYFE opens the right field doorway directly.',
+      voiceTag:'MASTER DOORWAY · VOICE ABOVE ACTION',voiceTitle:'THE VOICE · ACTION PRO',voiceText:'Say or type what you need. ACTION PRO guides you to the right trade and professional.',voiceEx1:'“AIBD driver”',voiceEx2:'“plumber in Saly”',voiceEx3:'“accommodation in Mbour”',voiceEx4:'“local shop”',voiceCta:'Speak or search →',voiceSeparate:'Microphone · opens separately',alyTag:'DIGIYLYFE PRESENTATION · THE VOICE OF THE FIELD',alyTitle:'ALY KANE',alyText:'He opens the HUB doors, presents territories and connects without taking anyone’s place.',alyAction:'View the photo clip with audio player →',alyCta:'Discover Aly →',fridgeTag:'THE FRIDGE FIRST · PETITE CÔTE',fridgeTitle:'50 pilot invitations · 30 days included',fridgeText:'The doorway for welcoming the first real professionals. No payment requested and no automatic renewal.',fridgeCta:'Open the 50 invitations page →',membershipTag:'AFTER THE 30 INCLUDED DAYS',membershipTitle:'Professional Presence membership',membershipText:'Professional profile + digital card + direct QR. Only if the professional chooses to continue.',membershipPeriod:'PER MONTH',membershipCta:'View the offer →',returnRule:'↩ Public doorways stay inside the DIGIYLYFE frame. THE VOICE and PIN access open separately to protect the microphone and session.',
+      modulesTitle:'Choose a module directly',allDoors:'All doorways',driverText:'Drivers and mobility',locText:'Accommodation and tourism',resaText:'Direct bookings',marketText:'Shops and products',buildText:'Tradespeople and works',jobsText:'Jobs and assignments',exploreText:'Places and discovery',carnetText:'Track your activity',open:'Open',
+      pilotTitle:'50 pilot invitations',pilotText:'30 days included · Then Professional Presence at 19,900 FCFA/month if you continue.',proTitle:'Already a member?',proText:'Open my secure professional space.',
+      proofTitle:'The field is already visible',proofLead:'Three real examples. One direct contact.',astouText:'Local shop · Saly · MARKET',babacarText:'Tradesman · Saly · BUILD',baptisteText:'Accommodation · Saly · LOC',seeCard:'View profile →',
+      territoryTitle:'Territories are opening',territoryLead:'One town, its real addresses and direct access to the field.',salyTag:'SENEGAL · PETITE CÔTE',salyText:'First local address: Chez Baptiste, direct accommodation, photos and WhatsApp contact.',salyProof:'First DIGIYLYFE territorial doorway in Senegal',salyCta:'View the accommodation →',sarlatTag:'FRANCE · BLACK PÉRIGORD',sarlatText:'Two local doors: eat in Sarlat and stay in Sarlat, with direct contact.',sarlatProof:'First DIGIYLYFE territorial doorway',sarlatCta:'View the full showcase →',sarlatFoodTitle:'EAT IN SARLAT',sarlatFoodText:'L’Entre 2 & Le Malraux · menus, photos and direct contact.',sarlatFoodCta:'Open the restaurant door →',sarlatStayTitle:'STAY IN SARLAT',sarlatStayText:'SARLAT CHEZ BAPTISTE · private room and direct request.',sarlatStayCta:'Open the accommodation door →',menuSaly:'SALY · Senegal',menuSarlat:'SARLAT · France',
+      promiseTitle:'0% commission · Direct contact · Direct payment',promiseText:'The first contact may come from elsewhere. The relationship and value stay with the professional. The field remains in control.',footerTag:'The HUB for local trades, services and businesses.',footerPresence:'Field presence',footerOffers:'Offers',footerBook:'The Book',
+      dockHome:'Home',dockVoice:'The Voice',dockModules:'Modules',dockPilot:'50 invitations',dockPro:'Pro Space',dockMenu:'All',menuTitle:'☰ All doorways',menuHome:'Return to the central HUB',menuSearchLabel:'SPEAK · SEARCH · FIND',menuVoiceText:'Say or type the need, then open the right doorway.',menuSearch:'Find a professional',menuHub:'Explore all services',menuModulesLabel:'TRADE MODULES',menuProLabel:'PROFESSIONALS · JOIN & OPERATE',menuPilot:'50 pilot invitations · 30 days included',menuSignup:'DIGIYLYFE registration',menuPresence:'Field Presence Pack',menuOffers:'Prices · Pro Presence 19,900 FCFA/month',menuProSpace:'Professional space',menuSecureCarnet:'Secure PRO CARNET',menuClub:'Trades Club',menuTarget:'Professional targeting',menuUnderstandLabel:'UNDERSTAND · SHARE · GO DEEPER',menuClip:'Field video',menuSolution:'DIGIYLYFE Solution',menuCarnets:'DIGIYLYFE Journals',menuBook:'The Book',menuArchitecture:'DIGIYLYFE Architecture',menuQr:'Official QR',menuShare:'Share DIGIYLYFE',menuReview:'DIGIYLYFE Review',menuNote:'The home page stays short. The full depth of the ecosystem remains available here, without losing visitors in a long scroll.',viewerBack:'Return to HUB',viewerDirect:'Open separately ↗',viewerLoading:'Opening the DIGIYLYFE doorway…',viewerFallback:'Display issue? This doorway can open directly.',viewerFallbackCta:'Open directly ↗'
+    }
+  };
+
+  window.setLang=function(lang){
+    if(!I18N[lang])lang='fr';
+    var text=I18N[lang];
+    document.documentElement.lang=lang;
+    document.title=text.metaTitle;
+    var meta=document.querySelector('meta[name="description"]');
+    if(meta)meta.setAttribute('content',text.metaDescription);
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key=el.getAttribute('data-i18n');
+      if(text[key]!=null)el.textContent=text[key];
+    });
+    document.querySelectorAll('.langBtn').forEach(function(btn){
+      var active=btn.getAttribute('data-lang')===lang;
+      btn.classList.toggle('active',active);
+      btn.setAttribute('aria-pressed',active?'true':'false');
+    });
+    try{localStorage.setItem('digiy-lang',lang);}catch(error){}
+  };
+
+
+  /* Navigation contenue dans le HUB : cadre plein écran + vrai bouton retour. */
+  var hubViewer=document.getElementById('hubViewer');
+  var hubViewerFrame=document.getElementById('hubViewerFrame');
+  var hubViewerBack=document.getElementById('hubViewerBack');
+  var hubViewerDirect=document.getElementById('hubViewerDirect');
+  var hubViewerTitle=document.getElementById('hubViewerTitle');
+  var hubViewerFallback=document.getElementById('hubViewerFallback');
+  var hubViewerFallbackLink=document.getElementById('hubViewerFallbackLink');
+  var hubViewerFallbackTimer=0;
+  var hubViewerOpen=false;
+  var hubViewerScrollY=0;
+
+  function isHubNavigable(anchor){
+    if(!anchor || anchor.hasAttribute('download') || anchor.dataset.hubBypass==='true')return false;
+    var raw=anchor.getAttribute('href')||'';
+    if(!raw || raw.charAt(0)==='#' || raw.indexOf('javascript:')===0 || raw.indexOf('mailto:')===0 || raw.indexOf('tel:')===0)return false;
+    try{
+      var url=new URL(raw,window.location.href);
+      if(url.protocol!=='http:' && url.protocol!=='https:')return false;
+      if(url.hostname==='wa.me' || url.hostname.endsWith('.wa.me'))return false;
+      var sameHome=url.origin===window.location.origin && (url.pathname==='/' || url.pathname===window.location.pathname) && !url.search && (!url.hash || url.hash==='#haut');
+      if(sameHome)return false;
+      return true;
+    }catch(error){return false;}
+  }
+
+  function viewerLabel(anchor){
+    var label=(anchor.getAttribute('aria-label')||anchor.innerText||anchor.textContent||'Module DIGIYLYFE').replace(/\s+/g,' ').trim();
+    return label.replace(/\s*[→↗]\s*$/,'').slice(0,90)||'Module DIGIYLYFE';
+  }
+
+  window.openInHub=function(url,title,fromHistory,permissions){
+    if(!hubViewer || !hubViewerFrame)return;
+    closeMenu();
+    hubViewerScrollY=window.scrollY||0;
+    hubViewerOpen=true;
+    hubViewer.classList.remove('loaded');
+    if(hubViewerFallback)hubViewerFallback.classList.remove('show');
+    clearTimeout(hubViewerFallbackTimer);
+    hubViewer.classList.add('open');
+    hubViewer.setAttribute('aria-hidden','false');
+    hubViewer.removeAttribute('inert');
+    if(appRoot){appRoot.setAttribute('inert','');appRoot.setAttribute('aria-hidden','true');}
+    if(dockRoot){dockRoot.setAttribute('inert','');dockRoot.setAttribute('aria-hidden','true');}
+    document.body.classList.add('lock');
+    hubViewerTitle.textContent=title||'Module DIGIYLYFE';
+    hubViewerDirect.href=url;
+    if(hubViewerFallbackLink)hubViewerFallbackLink.href=url;
+    hubViewerFrame.title=title||'Contenu DIGIYLYFE';
+    hubViewerFrame.setAttribute('allow',permissions||'fullscreen');
+    hubViewerFrame.src=url;
+    hubViewerFallbackTimer=setTimeout(function(){
+      if(hubViewerOpen && hubViewerFallback)hubViewerFallback.classList.add('show');
+    },5000);
+    if(!fromHistory){
+      history.pushState({digiyHubViewer:true,url:url,title:title,permissions:permissions||'fullscreen'},'',location.pathname+location.search+'#porte-digiy');
+    }
+    setTimeout(function(){hubViewerBack.focus();},30);
+  };
+
+  function closeHubViewer(fromHistory){
+    if(!hubViewerOpen)return;
+    hubViewerOpen=false;
+    hubViewer.classList.remove('open','loaded');
+    clearTimeout(hubViewerFallbackTimer);
+    if(hubViewerFallback)hubViewerFallback.classList.remove('show');
+    hubViewer.setAttribute('aria-hidden','true');
+    hubViewer.setAttribute('inert','');
+    if(appRoot){appRoot.removeAttribute('inert');appRoot.removeAttribute('aria-hidden');}
+    if(dockRoot){dockRoot.removeAttribute('inert');dockRoot.removeAttribute('aria-hidden');}
+    document.body.classList.remove('lock');
+    setTimeout(function(){hubViewerFrame.src='about:blank';},180);
+    requestAnimationFrame(function(){window.scrollTo(0,hubViewerScrollY);});
+    if(!fromHistory && history.state && history.state.digiyHubViewer){history.back();}
+  }
+
+  hubViewerFrame.addEventListener('load',function(){
+    if(hubViewerOpen)hubViewer.classList.add('loaded');
+  });
+  hubViewerBack.addEventListener('click',function(){closeHubViewer(false);});
+
+  document.addEventListener('click',function(event){
+    if(event.defaultPrevented || event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)return;
+    var anchor=event.target.closest('a[href]');
+    if(!isHubNavigable(anchor))return;
+    event.preventDefault();
+    openInHub(new URL(anchor.getAttribute('href'),window.location.href).href,viewerLabel(anchor),false,anchor.getAttribute('data-hub-allow')||'fullscreen');
+  });
+
+  window.addEventListener('popstate',function(event){
+    if(hubViewerOpen && !(event.state && event.state.digiyHubViewer)){closeHubViewer(true);return;}
+    if(!hubViewerOpen && event.state && event.state.digiyHubViewer){openInHub(event.state.url,event.state.title,true,event.state.permissions||'fullscreen');}
+  });
+
+  var saved='fr';
+  try{saved=localStorage.getItem('digiy-lang')||'fr';}catch(error){}
+  setLang(saved);
+})();
+
+function shareDigiyCard(){
+  const url = new URL('./carte-visite-digiy.png', window.location.href).href;
+  const data = {
+    title: 'DIGIYLYFE.COM',
+    text: 'Carte officielle DIGIYLYFE.COM',
+    url
+  };
+  if (navigator.share) {
+    navigator.share(data).catch(()=>{});
+    return;
+  }
+  window.open(url, '_blank', 'noopener');
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
