@@ -1,8 +1,8 @@
 name: Add Aly Kane door to homepage
 
 on:
-  issue_comment:
-    types: [created]
+  pull_request:
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   add-door:
-    if: github.event_name == 'workflow_dispatch' || (github.event.issue.pull_request && contains(github.event.comment.body, '/deploy-aly-home'))
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.pull_request.title, 'Aly Kane')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
