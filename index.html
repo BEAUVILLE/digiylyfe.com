@@ -8,7 +8,7 @@
 <meta content="DIGIYLYFE réunit les métiers et services du terrain : ACTION PRO, 50 invitations pilotes, puis cotisation Présence Pro à 19 900 FCFA par mois si le professionnel choisit de continuer." name="description"/>
 <meta content="index,follow" name="robots"/>
 <meta content="#06140f" name="theme-color"/>
-<meta content="index-hub-production-saly-sarlat-links-fixed-20260725" name="digiy-build"/>
+<meta content="index-hub-production-aly-kane-20260725" name="digiy-build"/>
 <link href="https://digiylyfe.com/" rel="canonical"/>
 <meta content="website" property="og:type"/>
 <meta content="https://digiylyfe.com/" property="og:url"/>
@@ -161,6 +161,46 @@ button,a{-webkit-tap-highlight-color:transparent}
 
 
 
+
+
+
+/* Aly Kane — La Voix du Terrain */
+.alyDoor{
+  position:relative;z-index:1;margin-top:12px;padding:16px;border-radius:26px;
+  border:2px solid rgba(246,196,83,.82);
+  background:
+    radial-gradient(500px 230px at 100% 0,rgba(246,196,83,.30),transparent 64%),
+    radial-gradient(420px 220px at 0 100%,rgba(45,212,191,.18),transparent 66%),
+    linear-gradient(145deg,#102f26,#061a13 72%);
+  box-shadow:0 18px 46px rgba(0,0,0,.30);
+  display:grid;grid-template-columns:82px minmax(0,1fr) auto;gap:15px;align-items:center;
+  transition:transform .16s ease,border-color .16s ease
+}
+.alyDoor:hover{transform:translateY(-2px);border-color:#fff1bd}
+.alyAvatar{
+  width:82px;height:82px;border-radius:26px;display:grid;place-items:center;font-size:38px;
+  border:1px solid rgba(255,241,189,.76);
+  background:linear-gradient(145deg,#fff1bd,#f6c453,#22c55e);
+  color:#06140f;box-shadow:0 14px 34px rgba(0,0,0,.30)
+}
+.alyCopy{min-width:0}
+.alyCopy small{display:block;color:#fff3cf;font-size:10.5px;font-weight:1000;letter-spacing:.10em;text-transform:uppercase}
+.alyCopy strong{display:block;margin-top:5px;font-size:clamp(25px,5vw,40px);line-height:.98;font-weight:1000;letter-spacing:-.04em}
+.alyCopy span{display:block;margin-top:8px;color:rgba(255,250,240,.82);font-size:13px;line-height:1.42;font-weight:880}
+.alyCopy b{display:block;margin-top:9px;color:#fff3cf;font-size:10.5px;line-height:1.2;font-weight:1000;text-transform:uppercase;letter-spacing:.05em}
+.alyCta{
+  min-width:168px;min-height:54px;padding:10px 16px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;
+  font-size:13px;line-height:1.18;font-weight:1000;box-shadow:0 14px 34px rgba(0,0,0,.28)
+}
+@media(max-width:820px){
+  .alyDoor{grid-template-columns:66px 1fr}.alyAvatar{width:66px;height:66px;border-radius:22px;font-size:31px}
+  .alyCta{grid-column:1/-1;width:100%}
+}
+@media(max-width:620px){
+  .alyDoor{padding:14px 12px;border-radius:23px;gap:10px}.alyCopy span{font-size:12px}
+}
 
 /* Cotisation claire : la page oriente et assume le prix de continuité */
 .membershipStrip{
@@ -433,6 +473,18 @@ button,a{-webkit-tap-highlight-color:transparent}
 </span>
 <span class="voiceCta"><span data-i18n="voiceCta">Parler ou rechercher →</span><span class="sensitiveHint" data-i18n="voiceSeparate">Micro · ouverture séparée</span></span>
 </a>
+
+<a aria-label="Découvrir Aly Kane — La Voix du Terrain" class="alyDoor" data-hub-allow="fullscreen" href="./clip-ali.html">
+  <span aria-hidden="true" class="alyAvatar">🎬</span>
+  <span class="alyCopy">
+    <small data-i18n="alyTag">PRÉSENTATION DIGIYLYFE · LA VOIX DU TERRAIN</small>
+    <strong data-i18n="alyTitle">ALY KANE</strong>
+    <span data-i18n="alyText">Il ouvre les portes du HUB, présente les territoires et relie sans prendre la place.</span>
+    <b data-i18n="alyAction">Voir le clip avec photos et lecteur →</b>
+  </span>
+  <span class="alyCta" data-i18n="alyCta">Découvrir Aly →</span>
+</a>
+
 <a aria-label="Ouvrir les 50 invitations pilotes DIGIYLYFE — 30 jours offerts" class="pilotFridge" data-hub-allow="fullscreen; clipboard-write" href="https://partenaire-pilote.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">
 <span aria-hidden="true" class="pilotNumber">50</span>
 <span class="pilotCopy">
@@ -689,7 +741,7 @@ button,a{-webkit-tap-highlight-color:transparent}
       metaTitle:'DIGIYLYFE — HUB, ACTION PRO et 50 invitations pilotes',
       metaDescription:'DIGIYLYFE réunit les métiers et services du terrain : ACTION PRO, 50 invitations pilotes, puis cotisation Présence Pro à 19 900 FCFA par mois si le professionnel choisit de continuer.',
       brandTag:'La Voix du Business · La Voie du Terrain',hubKicker:'HUB CENTRAL · MÉTIERS & SERVICES',hubTitle:'De quoi avez-vous besoin aujourd’hui ?',hubLead:'Parlez, écrivez ou choisissez une case. DIGIYLYFE vous ouvre directement la bonne porte du terrain.',
-      voiceTag:'PORTE MAÎTRESSE · LA VOIX AU-DESSUS DE L’ACTION',voiceTitle:'LA VOIX · ACTION PRO',voiceText:'Dites ou écrivez votre besoin. ACTION PRO vous dirige vers le bon métier et le bon professionnel.',voiceEx1:'« chauffeur AIBD »',voiceEx2:'« plombier à Saly »',voiceEx3:'« logement à Mbour »',voiceEx4:'« boutique locale »',voiceCta:'Parler ou rechercher →',voiceSeparate:'Micro · ouverture séparée',fridgeTag:'LE FRIGO D’ABORD · PETITE CÔTE',fridgeTitle:'50 invitations pilotes · 30 jours offerts',fridgeText:'La porte pour accueillir les premiers professionnels réels. Aucun paiement demandé, aucune reconduction automatique.',fridgeCta:'Ouvrir la page des 50 invitations →',membershipTag:'APRÈS LES 30 JOURS OFFERTS',membershipTitle:'Cotisation Présence Pro',membershipText:'Fiche professionnelle + carte digitale + QR direct. Seulement si le professionnel choisit de continuer.',membershipPeriod:'PAR MOIS',membershipCta:'Voir l’offre →',returnRule:'↩ Les portes publiques restent dans le cadre DIGIYLYFE. LA VOIX et les accès PIN s’ouvrent séparément pour protéger le micro et la session.',
+      voiceTag:'PORTE MAÎTRESSE · LA VOIX AU-DESSUS DE L’ACTION',voiceTitle:'LA VOIX · ACTION PRO',voiceText:'Dites ou écrivez votre besoin. ACTION PRO vous dirige vers le bon métier et le bon professionnel.',voiceEx1:'« chauffeur AIBD »',voiceEx2:'« plombier à Saly »',voiceEx3:'« logement à Mbour »',voiceEx4:'« boutique locale »',voiceCta:'Parler ou rechercher →',voiceSeparate:'Micro · ouverture séparée',alyTag:'PRÉSENTATION DIGIYLYFE · LA VOIX DU TERRAIN',alyTitle:'ALY KANE',alyText:'Il ouvre les portes du HUB, présente les territoires et relie sans prendre la place.',alyAction:'Voir le clip avec photos et lecteur →',alyCta:'Découvrir Aly →',fridgeTag:'LE FRIGO D’ABORD · PETITE CÔTE',fridgeTitle:'50 invitations pilotes · 30 jours offerts',fridgeText:'La porte pour accueillir les premiers professionnels réels. Aucun paiement demandé, aucune reconduction automatique.',fridgeCta:'Ouvrir la page des 50 invitations →',membershipTag:'APRÈS LES 30 JOURS OFFERTS',membershipTitle:'Cotisation Présence Pro',membershipText:'Fiche professionnelle + carte digitale + QR direct. Seulement si le professionnel choisit de continuer.',membershipPeriod:'PAR MOIS',membershipCta:'Voir l’offre →',returnRule:'↩ Les portes publiques restent dans le cadre DIGIYLYFE. LA VOIX et les accès PIN s’ouvrent séparément pour protéger le micro et la session.',
       modulesTitle:'Choisir directement un module',allDoors:'Toutes les portes',driverText:'Chauffeurs et mobilité',locText:'Logements et tourisme',resaText:'Réservations directes',marketText:'Boutiques et produits',buildText:'Artisans et chantiers',jobsText:'Emploi et missions',exploreText:'Lieux et découvertes',carnetText:'Suivre son activité',open:'Ouvrir',
       pilotTitle:'50 invitations pilotes',pilotText:'30 jours offerts · Puis Présence Pro à 19 900 FCFA/mois si vous continuez.',proTitle:'Déjà membre ?',proText:'Ouvrir mon espace professionnel sécurisé.',
       proofTitle:'Le terrain est déjà visible',proofLead:'Trois exemples réels. Un contact direct.',astouText:'Boutique locale · Saly · MARKET',babacarText:'Artisan · Saly · BUILD',baptisteText:'Hébergement · Saly · LOC',seeCard:'Voir la fiche →',
@@ -701,7 +753,7 @@ button,a{-webkit-tap-highlight-color:transparent}
       metaTitle:'DIGIYLYFE — HUB, ACTION PRO and 50 pilot invitations',
       metaDescription:'DIGIYLYFE brings together local trades and services: ACTION PRO, 50 pilot invitations, then Professional Presence membership at 19,900 FCFA per month if the professional chooses to continue.',
       brandTag:'The Voice of Business · The Path of the Field',hubKicker:'CENTRAL HUB · TRADES & SERVICES',hubTitle:'What do you need today?',hubLead:'Speak, type or choose a tile. DIGIYLYFE opens the right field doorway directly.',
-      voiceTag:'MASTER DOORWAY · VOICE ABOVE ACTION',voiceTitle:'THE VOICE · ACTION PRO',voiceText:'Say or type what you need. ACTION PRO guides you to the right trade and professional.',voiceEx1:'“AIBD driver”',voiceEx2:'“plumber in Saly”',voiceEx3:'“accommodation in Mbour”',voiceEx4:'“local shop”',voiceCta:'Speak or search →',voiceSeparate:'Microphone · opens separately',fridgeTag:'THE FRIDGE FIRST · PETITE CÔTE',fridgeTitle:'50 pilot invitations · 30 days included',fridgeText:'The doorway for welcoming the first real professionals. No payment requested and no automatic renewal.',fridgeCta:'Open the 50 invitations page →',membershipTag:'AFTER THE 30 INCLUDED DAYS',membershipTitle:'Professional Presence membership',membershipText:'Professional profile + digital card + direct QR. Only if the professional chooses to continue.',membershipPeriod:'PER MONTH',membershipCta:'View the offer →',returnRule:'↩ Public doorways stay inside the DIGIYLYFE frame. THE VOICE and PIN access open separately to protect the microphone and session.',
+      voiceTag:'MASTER DOORWAY · VOICE ABOVE ACTION',voiceTitle:'THE VOICE · ACTION PRO',voiceText:'Say or type what you need. ACTION PRO guides you to the right trade and professional.',voiceEx1:'“AIBD driver”',voiceEx2:'“plumber in Saly”',voiceEx3:'“accommodation in Mbour”',voiceEx4:'“local shop”',voiceCta:'Speak or search →',voiceSeparate:'Microphone · opens separately',alyTag:'DIGIYLYFE PRESENTATION · THE VOICE OF THE FIELD',alyTitle:'ALY KANE',alyText:'He opens the HUB doors, presents territories and connects without taking anyone’s place.',alyAction:'View the photo clip with audio player →',alyCta:'Discover Aly →',fridgeTag:'THE FRIDGE FIRST · PETITE CÔTE',fridgeTitle:'50 pilot invitations · 30 days included',fridgeText:'The doorway for welcoming the first real professionals. No payment requested and no automatic renewal.',fridgeCta:'Open the 50 invitations page →',membershipTag:'AFTER THE 30 INCLUDED DAYS',membershipTitle:'Professional Presence membership',membershipText:'Professional profile + digital card + direct QR. Only if the professional chooses to continue.',membershipPeriod:'PER MONTH',membershipCta:'View the offer →',returnRule:'↩ Public doorways stay inside the DIGIYLYFE frame. THE VOICE and PIN access open separately to protect the microphone and session.',
       modulesTitle:'Choose a module directly',allDoors:'All doorways',driverText:'Drivers and mobility',locText:'Accommodation and tourism',resaText:'Direct bookings',marketText:'Shops and products',buildText:'Tradespeople and works',jobsText:'Jobs and assignments',exploreText:'Places and discovery',carnetText:'Track your activity',open:'Open',
       pilotTitle:'50 pilot invitations',pilotText:'30 days included · Then Professional Presence at 19,900 FCFA/month if you continue.',proTitle:'Already a member?',proText:'Open my secure professional space.',
       proofTitle:'The field is already visible',proofLead:'Three real examples. One direct contact.',astouText:'Local shop · Saly · MARKET',babacarText:'Tradesman · Saly · BUILD',baptisteText:'Accommodation · Saly · LOC',seeCard:'View profile →',
