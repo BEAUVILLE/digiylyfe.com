@@ -1,1 +1,2 @@
 Déclenchement de la génération du fichier index complet avec Aly Kane.
+Déclenchement après activation du workflow pull_request.
