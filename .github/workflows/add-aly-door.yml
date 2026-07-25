@@ -1,6 +1,10 @@
 name: Add Aly Kane door to homepage
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/aly-trigger.txt'
   workflow_dispatch:
 
 permissions:
