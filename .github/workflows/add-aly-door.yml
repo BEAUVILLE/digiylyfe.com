@@ -1,22 +1,23 @@
 name: Add Aly Kane door to homepage
 
 on:
-  push:
+  pull_request:
     branches: [main]
     paths:
-      - '.github/aly-trigger.txt'
+      - '.github/aly-pr-trigger.txt'
 
 permissions:
   contents: write
 
 jobs:
   add-door:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
+      - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.head_ref }}
 
       - name: Add Aly Kane door without removing homepage content
         run: |
@@ -69,28 +70,29 @@ jobs:
               raise SystemExit('Point d’insertion principal introuvable : index.html laissé intact.')
           source = source.replace(needle, '</div>\n' + card + '\n<a aria-label="Ouvrir LA VOIX ACTION PRO', 1)
 
-          fr_old = "brandTag:'La Voix du Business · La Voie du Terrain',"
-          fr_new = "alyTag:'NOUVELLE VOIX · GUIDE DES TERRITOIRES',alyTitle:'ALY KANE · LA VOIX DU TERRAIN',alyText:'Découvrez en images le HUB, Saly, Sarlat et les portes DIGIYLYFE, avec lecture audio.',alyQuote:'« DIGIYLYFE ne collectionne pas les adresses. DIGIYLYFE ouvre les portes. »',alyCta:'Voir et écouter Aly Kane →',brandTag:'La Voix du Business · La Voie du Terrain',"
-          source = source.replace(fr_old, fr_new, 1)
-
-          en_old = "brandTag:'The Voice of Business · The Path of the Field',"
-          en_new = "alyTag:'NEW VOICE · TERRITORY GUIDE',alyTitle:'ALY KANE · THE VOICE OF THE FIELD',alyText:'Discover the HUB, Saly, Sarlat and the DIGIYLYFE doorways through images and audio narration.',alyQuote:'“DIGIYLYFE does not collect addresses. DIGIYLYFE opens doors.”',alyCta:'Watch and listen to Aly Kane →',brandTag:'The Voice of Business · The Path of the Field',"
-          source = source.replace(en_old, en_new, 1)
+          source = source.replace(
+              "brandTag:'La Voix du Business · La Voie du Terrain',",
+              "alyTag:'NOUVELLE VOIX · GUIDE DES TERRITOIRES',alyTitle:'ALY KANE · LA VOIX DU TERRAIN',alyText:'Découvrez en images le HUB, Saly, Sarlat et les portes DIGIYLYFE, avec lecture audio.',alyQuote:'« DIGIYLYFE ne collectionne pas les adresses. DIGIYLYFE ouvre les portes. »',alyCta:'Voir et écouter Aly Kane →',brandTag:'La Voix du Business · La Voie du Terrain',",
+              1
+          )
+          source = source.replace(
+              "brandTag:'The Voice of Business · The Path of the Field',",
+              "alyTag:'NEW VOICE · TERRITORY GUIDE',alyTitle:'ALY KANE · THE VOICE OF THE FIELD',alyText:'Discover the HUB, Saly, Sarlat and the DIGIYLYFE doorways through images and audio narration.',alyQuote:'“DIGIYLYFE does not collect addresses. DIGIYLYFE opens doors.”',alyCta:'Watch and listen to Aly Kane →',brandTag:'The Voice of Business · The Path of the Field',",
+              1
+          )
 
           old_menu = '<a href="https://digiy-clip.digiylyfe.com/" rel="noopener noreferrer" target="_blank" title="S’ouvre séparément pour conserver le HUB DIGIYLYFE">🎬 <span data-i18n="menuClip">Clip terrain</span></a>'
-          new_menu = '<a class="gold" data-hub-allow="fullscreen" href="./clip-ali.html">🦅 <span>Aly Kane · La Voix du Terrain</span></a>\n' + old_menu
-          source = source.replace(old_menu, new_menu, 1)
+          source = source.replace(old_menu, '<a class="gold" data-hub-allow="fullscreen" href="./clip-ali.html">🦅 <span>Aly Kane · La Voix du Terrain</span></a>\n' + old_menu, 1)
 
           old_nojs = '<a href="https://pro-action-digiy.digiylyfe.com/">🎙️ ACTION PRO</a>'
-          new_nojs = '<a href="./clip-ali.html">🦅 Aly Kane · La Voix du Terrain</a>\n    ' + old_nojs
-          source = source.replace(old_nojs, new_nojs, 1)
+          source = source.replace(old_nojs, '<a href="./clip-ali.html">🦅 Aly Kane · La Voix du Terrain</a>\n    ' + old_nojs, 1)
 
           source = source.replace('index-hub-production-saly-sarlat-links-fixed-20260725', 'index-hub-aly-kane-20260725', 1)
           path.write_text(source, encoding='utf-8')
           print(f'index.html mis à jour : {len(source.splitlines())} lignes')
           PY
 
-      - name: Commit homepage update
+      - name: Commit homepage update to PR branch
         run: |
           git config user.name "DIGIYLYFE Builder"
           git config user.email "actions@users.noreply.github.com"
@@ -99,5 +101,5 @@ jobs:
             echo "Aucun changement à pousser"
           else
             git commit -m "Add Aly Kane door to DIGIYLYFE homepage"
-            git push origin main
+            git push origin HEAD:${{ github.head_ref }}
           fi
