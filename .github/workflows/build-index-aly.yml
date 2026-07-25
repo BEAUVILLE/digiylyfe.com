@@ -1,20 +1,21 @@
 name: Build full index with Aly Kane
 
 on:
-  push:
+  pull_request:
     branches: [main]
-    paths:
-      - '.github/workflows/build-index-aly.yml'
 
 permissions:
   contents: write
 
 jobs:
   build:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout PR branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Generate complete index file
         run: |
@@ -91,7 +92,7 @@ jobs:
           print(f'{output_path}: {len(source.splitlines())} lignes, {output_path.stat().st_size} octets')
           PY
 
-      - name: Commit generated file
+      - name: Commit generated file to PR branch
         run: |
           git config user.name "DIGIYLYFE Builder"
           git config user.email "actions@users.noreply.github.com"
@@ -100,7 +101,5 @@ jobs:
             echo "Aucun changement"
           else
             git commit -m "Add complete DIGIYLYFE index with Aly Kane"
-            git push
+            git push origin HEAD:${{ github.head_ref }}
           fi
-
-# Trigger 2: workflow already present on main
