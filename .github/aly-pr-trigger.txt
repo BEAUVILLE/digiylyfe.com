@@ -1,0 +1,1 @@
+Ajout contrôlé de la porte Aly Kane sur la page d’accueil, sans supprimer les 924 lignes existantes.
