@@ -1,23 +1,21 @@
 name: Add Aly Kane door to homepage
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - '.github/aly-pr-trigger.txt'
+  issue_comment:
+    types: [created]
 
 permissions:
   contents: write
 
 jobs:
   add-door:
-    if: github.actor != 'github-actions[bot]'
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/add-aly')
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout PR branch
+      - name: Checkout Aly branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: add-aly-door-home
 
       - name: Add Aly Kane door without removing homepage content
         run: |
@@ -92,7 +90,7 @@ jobs:
           print(f'index.html mis à jour : {len(source.splitlines())} lignes')
           PY
 
-      - name: Commit homepage update to PR branch
+      - name: Commit homepage update to Aly branch
         run: |
           git config user.name "DIGIYLYFE Builder"
           git config user.email "actions@users.noreply.github.com"
@@ -101,5 +99,5 @@ jobs:
             echo "Aucun changement à pousser"
           else
             git commit -m "Add Aly Kane door to DIGIYLYFE homepage"
-            git push origin HEAD:${{ github.head_ref }}
+            git push origin HEAD:add-aly-door-home
           fi
