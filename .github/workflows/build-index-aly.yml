@@ -1,0 +1,137 @@
+name: Build downloadable Aly index
+
+on:
+  push:
+    branches:
+      - assistant/aly-index-file
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: assistant/aly-index-file
+
+      - name: Build index with Aly Kane
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          source = Path("index.html")
+          if not source.exists():
+              raise SystemExit("index.html introuvable")
+          if not Path("clip-ali.html").exists():
+              raise SystemExit("clip-ali.html introuvable")
+
+          text = source.read_text(encoding="utf-8")
+
+          text = re.sub(
+              r'<meta content="index-hub-production-[^"]+" name="digiy-build"/>',
+              '<meta content="index-hub-production-aly-kane-20260725" name="digiy-build"/>',
+              text,
+              count=1,
+          )
+
+          css = r'''
+
+          /* Aly Kane — La Voix du Terrain */
+          .alyDoor{
+            position:relative;z-index:1;margin-top:12px;padding:16px;border-radius:26px;
+            border:2px solid rgba(246,196,83,.82);
+            background:
+              radial-gradient(500px 230px at 100% 0,rgba(246,196,83,.30),transparent 64%),
+              radial-gradient(420px 220px at 0 100%,rgba(45,212,191,.18),transparent 66%),
+              linear-gradient(145deg,#102f26,#061a13 72%);
+            box-shadow:0 18px 46px rgba(0,0,0,.30);
+            display:grid;grid-template-columns:82px minmax(0,1fr) auto;gap:15px;align-items:center;
+            transition:transform .16s ease,border-color .16s ease
+          }
+          .alyDoor:hover{transform:translateY(-2px);border-color:#fff1bd}
+          .alyAvatar{
+            width:82px;height:82px;border-radius:26px;display:grid;place-items:center;font-size:38px;
+            border:1px solid rgba(255,241,189,.76);
+            background:linear-gradient(145deg,#fff1bd,#f6c453,#22c55e);
+            color:#06140f;box-shadow:0 14px 34px rgba(0,0,0,.30)
+          }
+          .alyCopy{min-width:0}
+          .alyCopy small{display:block;color:#fff3cf;font-size:10.5px;font-weight:1000;letter-spacing:.10em;text-transform:uppercase}
+          .alyCopy strong{display:block;margin-top:5px;font-size:clamp(25px,5vw,40px);line-height:.98;font-weight:1000;letter-spacing:-.04em}
+          .alyCopy span{display:block;margin-top:8px;color:rgba(255,250,240,.82);font-size:13px;line-height:1.42;font-weight:880}
+          .alyCopy b{display:block;margin-top:9px;color:#fff3cf;font-size:10.5px;line-height:1.2;font-weight:1000;text-transform:uppercase;letter-spacing:.05em}
+          .alyCta{
+            min-width:168px;min-height:54px;padding:10px 16px;border-radius:999px;
+            display:flex;align-items:center;justify-content:center;text-align:center;
+            background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;
+            font-size:13px;line-height:1.18;font-weight:1000;box-shadow:0 14px 34px rgba(0,0,0,.28)
+          }
+          @media(max-width:820px){
+            .alyDoor{grid-template-columns:66px 1fr}.alyAvatar{width:66px;height:66px;border-radius:22px;font-size:31px}
+            .alyCta{grid-column:1/-1;width:100%}
+          }
+          @media(max-width:620px){
+            .alyDoor{padding:14px 12px;border-radius:23px;gap:10px}.alyCopy span{font-size:12px}
+          }
+          '''
+
+          css_marker = "/* Cotisation claire : la page oriente et assume le prix de continuité */"
+          if ".alyDoor{" not in text:
+              if css_marker not in text:
+                  raise SystemExit("Point d'insertion CSS introuvable")
+              text = text.replace(css_marker, css + "\n" + css_marker, 1)
+
+          aly_html = r'''
+          <a aria-label="Découvrir Aly Kane — La Voix du Terrain" class="alyDoor" data-hub-allow="fullscreen" href="./clip-ali.html">
+            <span aria-hidden="true" class="alyAvatar">🎬</span>
+            <span class="alyCopy">
+              <small data-i18n="alyTag">PRÉSENTATION DIGIYLYFE · LA VOIX DU TERRAIN</small>
+              <strong data-i18n="alyTitle">ALY KANE</strong>
+              <span data-i18n="alyText">Il ouvre les portes du HUB, présente les territoires et relie sans prendre la place.</span>
+              <b data-i18n="alyAction">Voir le clip avec photos et lecteur →</b>
+            </span>
+            <span class="alyCta" data-i18n="alyCta">Découvrir Aly →</span>
+          </a>
+          '''
+
+          html_marker = '<a aria-label="Ouvrir les 50 invitations pilotes DIGIYLYFE — 30 jours offerts"'
+          if 'href="./clip-ali.html"' not in text:
+              if html_marker not in text:
+                  raise SystemExit("Point d'insertion HTML introuvable")
+              text = text.replace(html_marker, aly_html + "\n" + html_marker, 1)
+
+          fr_old = "voiceSeparate:'Micro · ouverture séparée',fridgeTag:"
+          fr_new = "voiceSeparate:'Micro · ouverture séparée',alyTag:'PRÉSENTATION DIGIYLYFE · LA VOIX DU TERRAIN',alyTitle:'ALY KANE',alyText:'Il ouvre les portes du HUB, présente les territoires et relie sans prendre la place.',alyAction:'Voir le clip avec photos et lecteur →',alyCta:'Découvrir Aly →',fridgeTag:"
+          en_old = "voiceSeparate:'Microphone · opens separately',fridgeTag:"
+          en_new = "voiceSeparate:'Microphone · opens separately',alyTag:'DIGIYLYFE PRESENTATION · THE VOICE OF THE FIELD',alyTitle:'ALY KANE',alyText:'He opens the HUB doors, presents territories and connects without taking anyone’s place.',alyAction:'View the photo clip with audio player →',alyCta:'Discover Aly →',fridgeTag:"
+
+          if "alyTag:'PRÉSENTATION" not in text:
+              if fr_old not in text or en_old not in text:
+                  raise SystemExit("Point d'insertion I18N introuvable")
+              text = text.replace(fr_old, fr_new, 1)
+              text = text.replace(en_old, en_new, 1)
+
+          if text.count('href="./clip-ali.html"') != 1:
+              raise SystemExit("Validation du lien Aly échouée")
+          if text.count('class="alyDoor"') != 1:
+              raise SystemExit("Validation de la porte Aly échouée")
+          if "clip-ali.html" not in text or "ALY KANE" not in text:
+              raise SystemExit("Validation finale Aly échouée")
+
+          Path("index-avec-aly.html").write_text(text, encoding="utf-8")
+
+          workflow = Path(".github/workflows/build-index-aly.yml")
+          if workflow.exists():
+              workflow.unlink()
+
+      - name: Commit generated file
+        run: |
+          git config user.name "DIGIYLYFE Builder"
+          git config user.email "actions@users.noreply.github.com"
+          git add index-avec-aly.html .github/workflows/build-index-aly.yml
+          git commit -m "Build index with Aly Kane [aly-built]"
+          git push origin HEAD:assistant/aly-index-file
