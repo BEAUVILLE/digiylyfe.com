@@ -1,11 +1,11 @@
 name: Poser la porte Aly Kane
 
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths:
-      - '.github/trigger-porte-aly.txt'
+      - '.github/trigger-porte-aly-pr.txt'
 
 permissions:
   contents: write
@@ -14,10 +14,10 @@ jobs:
   pose-porte:
     runs-on: ubuntu-latest
     steps:
-      - name: Récupérer la vitrine
+      - name: Récupérer la branche de travail
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Ajouter uniquement la porte Aly Kane
@@ -112,7 +112,7 @@ jobs:
           print('Porte Aly Kane posée. Lignes :', len(text.splitlines()))
           PY
 
-      - name: Publier la vitrine
+      - name: Publier sur la branche de travail
         shell: bash
         run: |
           git config user.name "DIGIYLYFE Builder"
@@ -122,5 +122,5 @@ jobs:
             echo "Aucun changement à publier"
           else
             git commit -m "Ajouter la porte Aly Kane sur la vitrine"
-            git push origin main
+            git push origin HEAD:${{ github.head_ref }}
           fi
