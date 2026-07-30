@@ -1,16 +1,15 @@
-# Déclenchement du correctif visible
 name: Patch visible language selector
 
 on:
-  push:
-    paths:
-      - '.github/workflows/patch-visible-language-selector.yml'
+  issues:
+    types: [opened]
 
 permissions:
   contents: write
 
 jobs:
   patch:
+    if: github.event.issue.title == 'DIGIY PATCH LANGUES'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -75,7 +74,6 @@ jobs:
               text = text.replace(canonical, alternates, 1)
 
           text = text.replace('"inLanguage": ["fr", "en"]', '"inLanguage": ["fr", "en", "es", "de", "it", "nl"]', 1)
-
           path.write_text(text, encoding='utf-8')
           PY
 
