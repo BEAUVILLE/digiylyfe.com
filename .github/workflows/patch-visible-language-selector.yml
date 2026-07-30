@@ -1,0 +1,89 @@
+name: Patch visible language selector
+
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-visible-language-selector.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add visible multilingual selector
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          old_css = ".topActions{display:flex;align-items:center;gap:6px}"
+          new_css = ".topActions{display:flex;align-items:center;gap:6px}\n.languageStrip{display:flex;align-items:center;gap:6px;overflow-x:auto;padding:0 2px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}\n.languageStrip::-webkit-scrollbar{display:none}"
+          if old_css not in text:
+              raise SystemExit('CSS marker not found')
+          text = text.replace(old_css, new_css, 1)
+
+          old_btn_css = ".langBtn{min-width:44px;padding:0 10px;font-size:11px}"
+          new_btn_css = ".langBtn{min-width:44px;padding:0 10px;font-size:11px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;flex:0 0 auto}"
+          if old_btn_css not in text:
+              raise SystemExit('Language button CSS marker not found')
+          text = text.replace(old_btn_css, new_btn_css, 1)
+
+          old_header = '''<div class="topActions">
+<button aria-pressed="true" class="langBtn active" data-lang="fr" onclick="setLang('fr')" type="button">FR</button>
+<button aria-pressed="false" class="langBtn" data-lang="en" onclick="setLang('en')" type="button">EN</button>
+<button aria-controls="sheet" aria-expanded="false" aria-label="Ouvrir le menu complet" class="menuBtn" id="menuTrigger" onclick="openMenu()" type="button">☰</button>
+</div>
+</header>'''
+          new_header = '''<div class="topActions">
+<button aria-controls="sheet" aria-expanded="false" aria-label="Ouvrir le menu complet" class="menuBtn" id="menuTrigger" onclick="openMenu()" type="button">☰</button>
+</div>
+</header>
+<nav aria-label="Choisir la langue" class="languageStrip">
+<button aria-pressed="true" class="langBtn active" data-lang="fr" onclick="setLang('fr')" type="button">FR</button>
+<button aria-pressed="false" class="langBtn" data-lang="en" onclick="setLang('en')" type="button">EN</button>
+<a aria-label="Español" class="langBtn" href="./es/" lang="es">ES</a>
+<a aria-label="Deutsch" class="langBtn" href="./de/" lang="de">DE</a>
+<a aria-label="Italiano" class="langBtn" href="./it/" lang="it">IT</a>
+<a aria-label="Nederlands" class="langBtn" href="./nl/" lang="nl">NL</a>
+</nav>'''
+          if old_header not in text:
+              raise SystemExit('Header marker not found')
+          text = text.replace(old_header, new_header, 1)
+
+          canonical = '<link href="https://digiylyfe.com/" rel="canonical"/>'
+          alternates = '''<link href="https://digiylyfe.com/" rel="canonical"/>
+<link href="https://digiylyfe.com/" hreflang="fr" rel="alternate"/>
+<link href="https://digiylyfe.com/en/" hreflang="en" rel="alternate"/>
+<link href="https://digiylyfe.com/es/" hreflang="es" rel="alternate"/>
+<link href="https://digiylyfe.com/de/" hreflang="de" rel="alternate"/>
+<link href="https://digiylyfe.com/it/" hreflang="it" rel="alternate"/>
+<link href="https://digiylyfe.com/nl/" hreflang="nl" rel="alternate"/>
+<link href="https://digiylyfe.com/" hreflang="x-default" rel="alternate"/>'''
+          if 'hreflang="es"' not in text:
+              if canonical not in text:
+                  raise SystemExit('Canonical marker not found')
+              text = text.replace(canonical, alternates, 1)
+
+          text = text.replace('"inLanguage": ["fr", "en"]', '"inLanguage": ["fr", "en", "es", "de", "it", "nl"]', 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit patch and remove one-time workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/patch-visible-language-selector.yml
+          git config user.name "DIGIYLYFE Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html .github/workflows/patch-visible-language-selector.yml
+          git commit -m "Affiche FR EN ES DE IT NL sur l’accueil"
+          git push
