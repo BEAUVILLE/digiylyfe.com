@@ -21,6 +21,7 @@
     'digiy-carnet-pro.digiylyfe.com',
     'partenaire-pilote.digiylyfe.com',
     'tarifs.digiylyfe.com',
+    'commencer-a-payer.digiylyfe.com',
     'inscription-pro.digiylyfe.com',
     'pro-espace.digiylyfe.com',
     'pro-driver.digiylyfe.com',
