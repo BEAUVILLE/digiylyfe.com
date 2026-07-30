@@ -1,3 +1,4 @@
+# Déclenchement du correctif visible
 name: Patch visible language selector
 
 on:
