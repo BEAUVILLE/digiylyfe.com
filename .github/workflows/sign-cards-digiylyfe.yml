@@ -1,0 +1,18 @@
+name: Signer les cartes DIGIYLYFE.COM
+
+on:
+  push:
+    paths:
+      - '**/*carte*'
+      - '**/*CARTE*'
+      - '**/*card*'
+      - '**/*CARD*'
+      - '.github/workflows/sign-cards-digiylyfe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sign-cards:
+    uses: BEAUVILLE/digiylyfe.com/.github/workflows/sign-cards-reusable.yml@23c34b7b20139e62f4d5c20dcce953622f88f198
