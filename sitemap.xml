@@ -1,57 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- DIGIYLYFE.COM -->
-  <url><loc>https://digiylyfe.com/</loc></url>
-  <url><loc>https://digiylyfe.com/en/</loc></url>
-  <url><loc>https://digiylyfe.com/es/</loc></url>
-  <url><loc>https://digiylyfe.com/de/</loc></url>
-  <url><loc>https://digiylyfe.com/it/</loc></url>
-  <url><loc>https://digiylyfe.com/nl/</loc></url>
-  <url><loc>https://digiylyfe.com/ar/</loc></url>
-  <url><loc>https://digiylyfe.com/menu.html</loc></url>
-  <url><loc>https://digiylyfe.com/recherche.html</loc></url>
-  <url><loc>https://digiylyfe.com/presence-terrain.html</loc></url>
-  <url><loc>https://digiylyfe.com/inscription.html</loc></url>
-  <url><loc>https://digiylyfe.com/inscription-entreprise.html</loc></url>
-  <url><loc>https://digiylyfe.com/architecture-digiylyfe.html</loc></url>
-  <url><loc>https://digiylyfe.com/notre-methode.html</loc></url>
-  <url><loc>https://digiylyfe.com/le-terrain-garde-la-main.html</loc></url>
-  <url><loc>https://digiylyfe.com/tarif-entreprise-petite-cote.html</loc></url>
-  <url><loc>https://digiylyfe.com/ciblage-pros-digiylyfe.html</loc></url>
-  <url><loc>https://digiylyfe.com/digiy-business.html</loc></url>
-  <url><loc>https://digiylyfe.com/sarlat.html</loc></url>
-  <url><loc>https://digiylyfe.com/aly-parle.html</loc></url>
-  <url><loc>https://digiylyfe.com/qr.html</loc></url>
-  <url><loc>https://digiylyfe.com/support-whatsapp.html</loc></url>
-
-  <!-- HUB ET OFFRES -->
-  <url><loc>https://digiy-hub.digiylyfe.com/</loc></url>
-  <url><loc>https://apps.digiylyfe.com/</loc></url>
-  <url><loc>https://tarifs.digiylyfe.com/</loc></url>
-  <url><loc>https://partenaire-pilote.digiylyfe.com/</loc></url>
-  <url><loc>https://pro-espace.digiylyfe.com/</loc></url>
-
-  <!-- MODULES PUBLICS -->
-  <url><loc>https://pro-action-digiy.digiylyfe.com/</loc></url>
-  <url><loc>https://driver-client.digiylyfe.com/</loc></url>
-  <url><loc>https://loc.digiylyfe.com/</loc></url>
-  <url><loc>https://resa-table-resto.digiylyfe.com/</loc></url>
-  <url><loc>https://market.digiylyfe.com/</loc></url>
-  <url><loc>https://bonne-affaire.digiylyfe.com/</loc></url>
-  <url><loc>https://build.digiylyfe.com/</loc></url>
-  <url><loc>https://jobs.digiylyfe.com/</loc></url>
-  <url><loc>https://explore.digiylyfe.com/</loc></url>
-  <url><loc>https://reseau-digiy.digiylyfe.com/</loc></url>
-  <url><loc>https://digiy-carnet-pro.digiylyfe.com/</loc></url>
-
-  <!-- PORTES PRO PUBLIQUES -->
-  <url><loc>https://pro-driver.digiylyfe.com/</loc></url>
-  <url><loc>https://pro-loc.digiylyfe.com/</loc></url>
-  <url><loc>https://pro-build.digiylyfe.com/</loc></url>
-  <url><loc>https://pro-market.digiylyfe.com/</loc></url>
-  <url><loc>https://pro-job.digiylyfe.com/</loc></url>
-  <url><loc>https://pro-resa-resto.digiylyfe.com/</loc></url>
-  <url><loc>https://pro-explore.digiylyfe.com/</loc></url>
-
+  <url><loc>https://digiylyfe.com/</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/en/</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/es/</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/de/</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/it/</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/nl/</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/ar/</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/recherche.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/presence-terrain.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/inscription.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/inscription-entreprise.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/menu.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/architecture-digiylyfe.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/notre-methode.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/le-terrain-garde-la-main.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/tarif-entreprise-petite-cote.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/sarlat.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/aly-parle.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/qr.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/qr-module-digiylyfe.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/ciblage-pros-digiylyfe.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/support-whatsapp.html</loc><lastmod>2026-08-05</lastmod></url>
 </urlset>
