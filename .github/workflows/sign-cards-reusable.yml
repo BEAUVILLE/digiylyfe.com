@@ -1,0 +1,80 @@
+name: Moteur central de signature DIGIYLYFE.COM
+
+on:
+  workflow_call:
+
+permissions:
+  contents: write
+
+jobs:
+  sign-cards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: python -m pip install --disable-pip-version-check pillow
+      - name: Ajouter la signature officielle
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont, PngImagePlugin
+          import hashlib, json, re
+          SIG='DIGIYLYFE.COM'; MAN=Path('.digiy-card-signatures.json'); R={'.png','.jpg','.jpeg','.webp'}
+          try: signed=json.loads(MAN.read_text(encoding='utf-8')) if MAN.exists() else {}
+          except Exception: signed={}
+          def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+          def card(p): return p.is_file() and '.git' not in p.parts and '.github' not in p.parts and ('carte' in p.name.lower() or 'card' in p.name.lower()) and p.suffix.lower() in (R|{'.svg'})
+          def font(n):
+              for f in ['/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf','/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf']:
+                  if Path(f).exists(): return ImageFont.truetype(f,n)
+              return ImageFont.load_default()
+          def raster(p):
+              with Image.open(p) as s: s.load(); b=s.convert('RGBA')
+              w,h=b.size; bh=max(72,int(h*.085)); y=h-bh; o=Image.new('RGBA',b.size,(0,0,0,0)); d=ImageDraw.Draw(o)
+              d.rectangle((0,y,w,h),fill=(3,24,18,228)); d.rectangle((0,y,w,y+max(3,int(h*.003))),fill=(244,201,93,255))
+              z=max(24,int(h*.032)); f=font(z)
+              while z>18 and d.textbbox((0,0),SIG,font=f)[2] > w*.84: z-=2; f=font(z)
+              box=d.textbbox((0,0),SIG,font=f); tw,th=box[2]-box[0],box[3]-box[1]
+              d.text(((w-tw)/2,y+(bh-th)/2-box[1]),SIG,font=f,fill=(255,232,168,255),stroke_width=max(1,z//24),stroke_fill=(0,0,0,180))
+              out=Image.alpha_composite(b,o); ext=p.suffix.lower()
+              if ext=='.png':
+                  meta=PngImagePlugin.PngInfo(); meta.add_text('DIGIY_SIGNATURE',SIG); out.save(p,'PNG',optimize=True,pnginfo=meta)
+              elif ext in {'.jpg','.jpeg'}: out.convert('RGB').save(p,'JPEG',quality=95,optimize=True)
+              else: out.save(p,'WEBP',quality=95,method=6)
+          def visible(t): return bool(re.search(r'>\s*(?:BY\s+)?DIGIYLYFE\.COM\s*<',t,re.I) or re.search(r'aria-label\s*=\s*["\'](?:BY\s+)?DIGIYLYFE\.COM["\']',t,re.I) or re.search(r'id\s*=\s*["\']digiylyfe-com-signature["\']',t,re.I))
+          def num(v,f):
+              m=re.search(r'-?\d+(?:\.\d+)?',v or ''); return float(m.group()) if m else f
+          def svg(p):
+              t=p.read_text(encoding='utf-8')
+              if visible(t): return
+              m=re.search(r'viewBox\s*=\s*["\']([^"\']+)["\']',t,re.I)
+              if m: x,y,w,h=[float(v) for v in re.split(r'[ ,]+',m.group(1).strip())[:4]]
+              else:
+                  wm=re.search(r'width\s*=\s*["\']([^"\']+)',t,re.I); hm=re.search(r'height\s*=\s*["\']([^"\']+)',t,re.I); x=y=0; w=num(wm.group(1) if wm else '',1080); h=num(hm.group(1) if hm else '',1920)
+              bh=max(54,h*.085); by=y+h-bh; fs=max(24,h*.032); cx=x+w/2; base=by+bh*.63
+              block=f'''\n<g id="digiylyfe-com-signature" aria-label="DIGIYLYFE.COM"><rect x="{x:g}" y="{by:g}" width="{w:g}" height="{bh:g}" fill="#031812" fill-opacity=".94"/><rect x="{x:g}" y="{by:g}" width="{w:g}" height="{max(3,h*.003):g}" fill="#f4c95d"/><text x="{cx:g}" y="{base:g}" text-anchor="middle" fill="#ffe8a8" font-family="Arial,Helvetica,sans-serif" font-size="{fs:g}" font-weight="900">DIGIYLYFE.COM</text></g>\n'''
+              pos=t.lower().rfind('</svg>')
+              if pos<0: raise ValueError(f'SVG invalide: {p}')
+              p.write_text(t[:pos]+block+t[pos:],encoding='utf-8')
+          changed=[]
+          for p in sorted(Path('.').rglob('*')):
+              if not card(p): continue
+              k=p.as_posix(); before=sha(p)
+              if signed.get(k)==before: continue
+              svg(p) if p.suffix.lower()=='.svg' else raster(p)
+              after=sha(p); signed[k]=after
+              if after!=before: changed.append(k)
+          MAN.write_text(json.dumps(signed,ensure_ascii=False,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          print('Cartes signees:',', '.join(changed) if changed else 'aucune modification visuelle')
+          PY
+      - name: Commit et push
+        shell: bash
+        run: |
+          [ -z "$(git status --porcelain)" ] && { echo "Aucune carte a signer."; exit 0; }
+          git config user.name "DIGIYLYFE Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add --all
+          git commit -m "Signer les cartes DIGIYLYFE.COM"
+          git push
