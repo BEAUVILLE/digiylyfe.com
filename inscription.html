@@ -1,396 +1,87 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Demande de Fiche DIGIY — DIGIYLYFE</title>
-    <meta name="theme-color" content="#06140f">
-    <meta name="description" content="Rejoignez DIGIYLYFE : demandez votre Pack Présence Terrain. Fiche, QR code, WhatsApp direct, SMS de secours et paiement direct sans intermédiaire.">
-    <meta name="robots" content="index,follow">
-    <meta name="digiy-build" content="inscription-public-direct-whatsapp-sms-texte-compatible-20260708">
-    <link rel="canonical" href="https://digiylyfe.com/inscription.html">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://digiylyfe.com/inscription.html">
-    <meta property="og:title" content="Demande de Fiche DIGIY — DIGIYLYFE">
-    <meta property="og:description" content="Demandez votre Pack Présence Terrain : fiche DIGIY, QR code, WhatsApp direct, SMS de secours et paiement direct sans commission DIGIY.">
-    <meta property="og:image" content="https://digiylyfe.com/icon-512.png">
-    <link href="./icon-192.png" rel="icon" sizes="192x192">
-    <link href="./icon-192.png" rel="apple-touch-icon">
-    <style>
-        :root {
-            --bg: #03120d;
-            --ink: #fffaf0;
-            --soft: rgba(255, 250, 240, .78);
-            --gold: #f6c453;
-            --gold-clair: #fff1bd;
-            --primary: #00a651; /* Le vert terrain historique */
-            --line: rgba(255, 255, 255, .14);
-            --card: rgba(255, 255, 255, .07);
-            --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background: 
-                radial-gradient(900px 460px at 10% -5%, rgba(0, 166, 81, .25), transparent 62%),
-                linear-gradient(180deg, #075f32 0%, #062a1d 35%, #03120d 100%);
-            color: var(--ink);
-            font-family: var(--font);
-            min-height: 100svh;
-            line-height: 1.45;
-            padding: 0 12px 40px;
-        }
-
-        .app {
-            width: min(100%, 560px);
-            margin: auto;
-            padding-top: 20px;
-        }
-
-        /* En-tête simplifié */
-        .header-simple {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-        .logo-back {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            border: 1px solid rgba(246, 196, 83, .45);
-            background: #fff;
-            display: grid;
-            place-items: center;
-        }
-        .logo-back img {
-            width: 100%;
-            height: 100%;
-            border-radius: 12px;
-            object-fit: cover;
-        }
-        .header-simple span {
-            font-size: 14px;
-            font-weight: 900;
-            letter-spacing: .05em;
-            color: var(--gold-clair);
-        }
-
-        /* Cadre principal */
-        section {
-            margin-bottom: 20px;
-            border: 1px solid rgba(246, 196, 83, .25);
-            border-radius: 28px;
-            background: rgba(255, 255, 255, .05);
-            padding: 24px 20px;
-            box-shadow: 0 18px 48px rgba(0,0,0,.25);
-        }
-
-        /* Hero */
-        .hero-box {
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 10px 5px;
-        }
-        .hero-box small {
-            display: block;
-            color: var(--gold);
-            font-size: 12px;
-            font-weight: 1000;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-        .hero-box h1 {
-            font-size: clamp(24px, 6.5vw, 36px);
-            line-height: 1.1;
-            font-weight: 1000;
-            letter-spacing: -.03em;
-            margin-bottom: 12px;
-        }
-        .hero-box p {
-            color: var(--soft);
-            font-size: 14.5px;
-            font-weight: 850;
-        }
-
-        /* Formulaire */
-        .form-group {
-            margin-bottom: 18px;
-        }
-        label {
-            display: block;
-            font-size: 13px;
-            font-weight: 1000;
-            color: var(--gold-clair);
-            margin-bottom: 6px;
-            letter-spacing: .02em;
-        }
-        input, select, textarea {
-            width: 100%;
-            min-height: 50px;
-            padding: 12px 16px;
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px solid var(--line);
-            border-radius: 14px;
-            color: var(--ink);
-            font-family: var(--font);
-            font-size: 15px;
-            font-weight: 850;
-            outline: none;
-            transition: border-color .15s ease;
-        }
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--gold);
-        }
-        textarea {
-            min-height: 90px;
-            resize: vertical;
-        }
-        select {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23f6c453'><path d='M6 9L1 4h10z'/></svg>");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-        }
-
-        /* Option bloquée en lecture seule */
-        .readonly-box {
-            background: rgba(255, 255, 255, .08);
-            border-color: rgba(0, 166, 81, .3);
-            color: rgba(255, 250, 240, .9);
-        }
-
-        /* Bouton de soumission */
-        .btn-submit {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            min-height: 56px;
-            margin-top: 10px;
-            background: linear-gradient(135deg, var(--gold-clair), var(--gold), var(--primary));
-            color: #06140f;
-            border: 1px solid rgba(246, 196, 83, .75);
-            border-radius: 999px;
-            font-size: 16px;
-            font-weight: 1000;
-            text-decoration: none;
-            box-shadow: 0 12px 30px rgba(0,0,0,.3);
-            cursor: pointer;
-            transition: transform .15s ease;
-        }
-        .btn-submit:active {
-            transform: scale(.98);
-        }
-        .btn-sms {
-            margin-top: 10px;
-            background: rgba(255, 255, 255, .08);
-            color: var(--gold-clair);
-            border-color: rgba(246, 196, 83, .35);
-            box-shadow: none;
-        }
-        .send-help {
-            margin-top: 9px;
-            text-align: center;
-            color: rgba(255, 250, 240, .62);
-            font-size: 12px;
-            font-weight: 850;
-            line-height: 1.35;
-        }
-
-        /* Note de confiance */
-        .trust-box {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 12.5px;
-            color: var(--soft);
-            font-weight: 850;
-            line-height: 1.4;
-        }
-        .trust-box strong {
-            color: var(--gold-clair);
-        }
-
-        .footer-note {
-            text-align: center;
-            font-size: 12px;
-            color: rgba(255, 250, 240, .5);
-            font-weight: 850;
-            margin-top: 25px;
-        }
-        .footer-note a {
-            color: var(--gold);
-            text-decoration: underline;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DIGIYLYFE — Inscription multilingue</title>
+<meta name="theme-color" content="#06140f">
+<meta name="robots" content="noindex,nofollow">
+<meta name="digiy-build" content="inscription-multilingue-controle-sans-push-20260810">
+<style>
+:root{--bg:#03120d;--ink:#fffaf0;--soft:rgba(255,250,240,.78);--gold:#f6c453;--gold2:#fff1bd;--green:#00a651;--line:rgba(255,255,255,.14);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+*{box-sizing:border-box}body{margin:0;min-height:100svh;background:radial-gradient(900px 460px at 10% -5%,rgba(0,166,81,.25),transparent 62%),linear-gradient(180deg,#075f32,#062a1d 35%,#03120d);color:var(--ink);padding:12px 12px 40px}.app{width:min(100%,620px);margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 14px}.brand{font-weight:1000;letter-spacing:.07em}.lang{display:flex;gap:5px;overflow-x:auto;padding:4px 0;scrollbar-width:none}.lang button{flex:0 0 auto;border:1px solid rgba(246,196,83,.4);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;min-width:42px;height:38px;font-weight:1000;cursor:pointer}.lang button.on{background:linear-gradient(135deg,var(--gold2),var(--gold),var(--green));color:#06140f}.back{display:inline-block;margin:4px 0 18px;color:var(--gold2);font-size:13px;font-weight:900}.hero{text-align:center;padding:7px 5px 18px}.hero small{display:block;color:var(--gold);font-weight:1000;letter-spacing:.12em;text-transform:uppercase}.hero h1{font-size:clamp(25px,6vw,38px);line-height:1.08;margin:8px 0 10px}.hero p{margin:0;color:var(--soft);line-height:1.5;font-weight:800}.card{border:1px solid rgba(246,196,83,.28);border-radius:28px;background:rgba(255,255,255,.055);padding:22px 18px;box-shadow:0 18px 48px rgba(0,0,0,.24)}.field{margin-bottom:17px}label{display:block;margin-bottom:6px;color:var(--gold2);font-size:13px;font-weight:1000}input,select,textarea{width:100%;min-height:50px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.34);color:#fff;font:inherit;font-weight:800;outline:none}textarea{min-height:92px;resize:vertical}select option{color:#111;background:white}.buttons{display:grid;gap:9px;margin-top:8px}.btn{min-height:55px;border-radius:999px;border:1px solid rgba(246,196,83,.55);font:inherit;font-size:15px;font-weight:1000;cursor:pointer}.main{background:linear-gradient(135deg,var(--gold2),var(--gold),var(--green));color:#06140f}.alt{background:rgba(255,255,255,.08);color:var(--gold2)}.help,.trust{margin-top:10px;text-align:center;color:var(--soft);font-size:12px;line-height:1.45;font-weight:800}.trust strong{color:var(--gold2)}footer{text-align:center;margin-top:22px;color:rgba(255,250,240,.55);font-size:12px}footer a{color:var(--gold)}
+html[dir="rtl"] body{text-align:right}html[dir="rtl"] .hero,html[dir="rtl"] .help,html[dir="rtl"] .trust,html[dir="rtl"] footer{text-align:center}
+</style>
 </head>
 <body>
-
 <main class="app">
-
-    <!-- En-tête de retour -->
-    <header class="header-simple">
-        <a class="logo-back" href="./presence-terrain.html" aria-label="Retour à l'offre">
-            <img src="./icon-192.png" alt="DIGIYLYFE">
-        </a>
-        <span>← Retour à la Présence Terrain</span>
-    </header>
-
-    <!-- HERO COURT -->
-    <div class="hero-box">
-        <small>Action directe</small>
-        <h1>Demandez votre fiche DIGIY</h1>
-        <p>Remplissez ce court formulaire. Les informations seront pré-organisées pour générer votre message d'envoi par WhatsApp ou par SMS si WhatsApp bloque.</p>
-    </div>
-
-    <!-- FORMULAIRE DE CONVERSION -->
-    <section>
-        <form id="digiyRegisterForm" onsubmit="sendToWhatsApp(event)">
-            
-            <div class="form-group">
-                <label for="activity_name">Nom de l'activité *</label>
-                <input type="text" id="activity_name" required placeholder="Ex: Restaurant Chez Marie, Chauffeur Diallo...">
-            </div>
-
-            <div class="form-group">
-                <label for="job_type">Type de métier *</label>
-                <select id="job_type" required>
-                    <option value="" disabled selected>Sélectionnez votre secteur</option>
-                    <option value="Boutique / Commerce">🛍️ Boutique &amp; Commerce</option>
-                    <option value="Artisanat / Chantier">🛠️ Artisan &amp; Chantier</option>
-                    <option value="Chauffeur / Transport">🚖 Chauffeur &amp; Transport</option>
-                    <option value="Restaurant / Maquis">🍲 Restaurant &amp; Maquis</option>
-                    <option value="Hébergement / Location">🏡 Hébergement &amp; Location</option>
-                    <option value="Service local">💼 Service local</option>
-                    <option value="Autre activité">⭐ Autre</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="zone">Ville / Zone d'activité *</label>
-                <input type="text" id="zone" required placeholder="Ex: Saly, Dakar, Mbour, Sarlat...">
-            </div>
-
-            <div class="form-group">
-                <label for="manager_name">Nom du responsable *</label>
-                <input type="text" id="manager_name" required placeholder="Votre prénom et nom">
-            </div>
-
-            <div class="form-group">
-                <label for="whatsapp_num">Numéro WhatsApp de l'activité *</label>
-                <input type="tel" id="whatsapp_num" required placeholder="Ex: +221 7X XXX XX XX">
-            </div>
-
-            <div class="form-group">
-                <label for="offer_chosen">Offre souhaitée</label>
-                <input type="text" id="offer_chosen" class="readonly-box" value="Pack Présence Terrain (Fiche + QR + WhatsApp)" readonly>
-            </div>
-
-            <div class="form-group">
-                <label for="pay_method">Moyen de paiement préféré pour vos clients *</label>
-                <select id="pay_method" required>
-                    <option value="" disabled selected>Comment vos clients vous paient-ils ?</option>
-                    <option value="Wave">Wave</option>
-                    <option value="Orange Money">Orange Money</option>
-                    <option value="Espèces">Espèces de la main à la main</option>
-                    <option value="Plusieurs moyens adaptés au terrain">Plusieurs solutions de terrain</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="message_free">Message libre ou demandes particulières (Optionnel)</label>
-                <textarea id="message_free" placeholder="Horaires spécifiques, lien vers vos photos actuelles ou questions..."></textarea>
-            </div>
-
-            <button type="submit" class="btn-submit">📱 Envoyer ma demande via WhatsApp</button>
-            <button type="button" class="btn-submit btn-sms" onclick="sendToSMS()">✉️ Envoyer ma demande par SMS</button>
-            <div class="send-help">WhatsApp reste le canal principal. Le SMS sert de secours si WhatsApp bug ou ne s’ouvre pas.</div>
-        </form>
-
-        <div class="trust-box">
-            <strong>0% commission DIGIY.</strong> Le client traite, contacte et vous paie directement. La valeur de votre business reste entièrement dans votre main.
-        </div>
-    </section>
-
-    <div class="footer-note">
-        © 2026 DIGIYLYFE · <a href="./index.html">Place Centrale</a>
-    </div>
-
+<div class="top"><div class="brand">DIGIYLYFE</div><nav class="lang" aria-label="Languages">
+<button data-l="fr">FR</button><button data-l="en">EN</button><button data-l="es">ES</button><button data-l="pt">PT</button><button data-l="it">IT</button><button data-l="de">DE</button><button data-l="nl">NL</button><button data-l="ar">AR</button>
+</nav></div>
+<a class="back" href="./presence-terrain.html" id="back"></a>
+<div class="hero"><small id="action"></small><h1 id="h1"></h1><p id="lead"></p></div>
+<section class="card">
+<form id="f">
+<div class="field"><label for="activity_name" id="l_activity"></label><input id="activity_name" required></div>
+<div class="field"><label for="job_type" id="l_job"></label><select id="job_type" required></select></div>
+<div class="field"><label for="zone" id="l_zone"></label><input id="zone" required></div>
+<div class="field"><label for="manager_name" id="l_manager"></label><input id="manager_name" required></div>
+<div class="field"><label for="whatsapp_num" id="l_wa"></label><input id="whatsapp_num" type="tel" inputmode="tel" required></div>
+<div class="field"><label for="offer_chosen" id="l_offer"></label><input id="offer_chosen" readonly></div>
+<div class="field"><label for="pay_method" id="l_pay"></label><select id="pay_method" required></select></div>
+<div class="field"><label for="message_free" id="l_free"></label><textarea id="message_free"></textarea></div>
+<div class="buttons"><button class="btn main" type="submit" id="sendwa"></button><button class="btn alt" type="button" id="sendsms"></button></div>
+<div class="help" id="help"></div>
+</form>
+<div class="trust"><strong id="trust1"></strong> <span id="trust2"></span></div>
+</section>
+<footer>© 2026 DIGIYLYFE · <a href="./index.html" id="place"></a></footer>
 </main>
-
 <script>
-const DIGIY_PHONE = "221771342889"; // Format international sans +, sans espaces
-const DIGIY_PHONE_SMS = "+221771342889"; // Format confortable pour SMS
-
-function getValue(id) {
-    return document.getElementById(id).value.trim();
+const T = {"fr": {"title": "Demande de Fiche DIGIY — DIGIYLYFE", "back": "← Retour à la Présence Terrain", "action": "Action directe", "h1": "Demandez votre fiche DIGIY", "lead": "Remplissez ce court formulaire. Votre demande sera préparée pour WhatsApp ou, en secours, par SMS.", "activity_name": "Nom de l'activité *", "activity_ph": "Ex. Restaurant Chez Marie, Chauffeur Diallo…", "job_type": "Type de métier *", "job_choose": "Sélectionnez votre secteur", "jobs": ["🛍️ Boutique & Commerce", "🛠️ Artisan & Chantier", "🚖 Chauffeur & Transport", "🍲 Restaurant & Restauration", "🏡 Hébergement & Location", "💼 Service local", "⭐ Autre"], "zone": "Ville / Zone d'activité *", "zone_ph": "Ex. Saly, Dakar, Sarlat, Málaga, Porto, Rome…", "manager": "Nom du responsable *", "manager_ph": "Votre prénom et nom", "wa": "Numéro WhatsApp de l'activité *", "wa_ph": "Ex. +221…, +33…, +34…, +351…, +39…", "offer": "Offre souhaitée", "offer_value": "Pack Présence Terrain (Fiche + QR + contact direct)", "pay": "Moyen de paiement préféré pour vos clients *", "pay_choose": "Comment vos clients vous paient-ils ?", "pays": ["Wave", "Orange Money", "Carte bancaire", "Virement bancaire", "Espèces", "Paiement mobile", "Plusieurs moyens adaptés au terrain"], "free": "Message libre ou demandes particulières (optionnel)", "free_ph": "Horaires, liens vers vos photos, informations utiles ou questions…", "sendwa": "📱 Envoyer ma demande via WhatsApp", "sendsms": "✉️ Envoyer ma demande par SMS", "help": "WhatsApp reste le canal principal. Le SMS sert de secours si WhatsApp ne s’ouvre pas.", "trust1": "0 % de commission DIGIY.", "trust2": "Le client vous contacte et vous paie directement. La relation reste au professionnel.", "place": "Place Centrale", "noscript": "JavaScript est nécessaire pour préparer automatiquement le message.", "msg_title": "NOUVELLE DEMANDE DIGIYLYFE", "m_activity": "Activité", "m_job": "Métier", "m_zone": "Zone", "m_manager": "Responsable", "m_wa": "WhatsApp Pro", "m_offer": "Offre", "m_pay": "Paiement préféré", "m_free": "Message libre", "m_end": "Le terrain garde la main. J'attends ma porte d'entrée DIGIY !"}, "en": {"title": "DIGIY Profile Request — DIGIYLYFE", "back": "← Back to Field Presence", "action": "Direct action", "h1": "Request your DIGIY profile", "lead": "Complete this short form. Your request will be prepared for WhatsApp or, as a backup, SMS.", "activity_name": "Business name *", "activity_ph": "E.g. Maria's Restaurant, Diallo Driver…", "job_type": "Business type *", "job_choose": "Choose your sector", "jobs": ["🛍️ Shop & Retail", "🛠️ Trades & Construction", "🚖 Driver & Transport", "🍲 Restaurant & Food", "🏡 Accommodation & Rental", "💼 Local service", "⭐ Other"], "zone": "City / Business area *", "zone_ph": "E.g. Saly, Dakar, Sarlat, Málaga, Porto, Rome…", "manager": "Manager name *", "manager_ph": "Your first and last name", "wa": "Business WhatsApp number *", "wa_ph": "E.g. +221…, +33…, +34…, +351…, +39…", "offer": "Requested offer", "offer_value": "Field Presence Pack (Profile + QR + direct contact)", "pay": "Preferred customer payment method *", "pay_choose": "How do your customers pay you?", "pays": ["Wave", "Orange Money", "Bank card", "Bank transfer", "Cash", "Mobile payment", "Several locally adapted methods"], "free": "Free message or special requests (optional)", "free_ph": "Opening hours, photo links, useful details or questions…", "sendwa": "📱 Send my request via WhatsApp", "sendsms": "✉️ Send my request by SMS", "help": "WhatsApp is the main channel. SMS is a backup if WhatsApp does not open.", "trust1": "0% DIGIY commission.", "trust2": "Customers contact and pay you directly. The relationship stays with the professional.", "place": "Central Hub", "noscript": "JavaScript is required to prepare the message automatically.", "msg_title": "NEW DIGIYLYFE REQUEST", "m_activity": "Business", "m_job": "Sector", "m_zone": "Area", "m_manager": "Manager", "m_wa": "Business WhatsApp", "m_offer": "Offer", "m_pay": "Preferred payment", "m_free": "Message", "m_end": "The field stays in control. I am waiting for my DIGIY doorway!"}, "es": {"title": "Solicitud de ficha DIGIY — DIGIYLYFE", "back": "← Volver a Presencia Profesional", "action": "Acción directa", "h1": "Solicita tu ficha DIGIY", "lead": "Completa este breve formulario. Tu solicitud se preparará para WhatsApp o, como alternativa, por SMS.", "activity_name": "Nombre del negocio *", "activity_ph": "Ej. Restaurante María, Conductor Diallo…", "job_type": "Tipo de actividad *", "job_choose": "Selecciona tu sector", "jobs": ["🛍️ Tienda & Comercio", "🛠️ Oficios & Obras", "🚖 Conductor & Transporte", "🍲 Restaurante & Restauración", "🏡 Alojamiento & Alquiler", "💼 Servicio local", "⭐ Otro"], "zone": "Ciudad / Zona de actividad *", "zone_ph": "Ej. Saly, Dakar, Sarlat, Málaga, Porto, Roma…", "manager": "Nombre del responsable *", "manager_ph": "Nombre y apellidos", "wa": "Número de WhatsApp del negocio *", "wa_ph": "Ej. +221…, +33…, +34…, +351…, +39…", "offer": "Oferta solicitada", "offer_value": "Pack Presencia Profesional (Ficha + QR + contacto directo)", "pay": "Método de pago preferido *", "pay_choose": "¿Cómo te pagan tus clientes?", "pays": ["Wave", "Orange Money", "Tarjeta bancaria", "Transferencia bancaria", "Efectivo", "Pago móvil", "Varios métodos adaptados al terreno"], "free": "Mensaje libre o solicitud especial (opcional)", "free_ph": "Horarios, enlaces de fotos, datos útiles o preguntas…", "sendwa": "📱 Enviar mi solicitud por WhatsApp", "sendsms": "✉️ Enviar mi solicitud por SMS", "help": "WhatsApp es el canal principal. El SMS sirve de respaldo si WhatsApp no se abre.", "trust1": "0 % de comisión DIGIY.", "trust2": "El cliente te contacta y te paga directamente. La relación permanece con el profesional.", "place": "Plaza Central", "noscript": "JavaScript es necesario para preparar automáticamente el mensaje.", "msg_title": "NUEVA SOLICITUD DIGIYLYFE", "m_activity": "Negocio", "m_job": "Sector", "m_zone": "Zona", "m_manager": "Responsable", "m_wa": "WhatsApp Pro", "m_offer": "Oferta", "m_pay": "Pago preferido", "m_free": "Mensaje", "m_end": "El terreno mantiene el control. ¡Espero mi puerta DIGIY!"}, "pt": {"title": "Pedido de ficha DIGIY — DIGIYLYFE", "back": "← Voltar à Presença Profissional", "action": "Ação direta", "h1": "Peça a sua ficha DIGIY", "lead": "Preencha este formulário curto. O seu pedido será preparado para WhatsApp ou, em alternativa, por SMS.", "activity_name": "Nome do negócio *", "activity_ph": "Ex. Restaurante Maria, Motorista Diallo…", "job_type": "Tipo de atividade *", "job_choose": "Selecione o seu setor", "jobs": ["🛍️ Loja & Comércio", "🛠️ Ofícios & Obras", "🚖 Motorista & Transporte", "🍲 Restaurante & Restauração", "🏡 Alojamento & Aluguer", "💼 Serviço local", "⭐ Outro"], "zone": "Cidade / Zona de atividade *", "zone_ph": "Ex. Saly, Dakar, Sarlat, Málaga, Porto, Roma…", "manager": "Nome do responsável *", "manager_ph": "Nome e apelido", "wa": "Número de WhatsApp do negócio *", "wa_ph": "Ex. +221…, +33…, +34…, +351…, +39…", "offer": "Oferta pretendida", "offer_value": "Pack Presença Profissional (Ficha + QR + contacto direto)", "pay": "Método de pagamento preferido *", "pay_choose": "Como é que os seus clientes pagam?", "pays": ["Wave", "Orange Money", "Cartão bancário", "Transferência bancária", "Dinheiro", "Pagamento móvel", "Vários métodos adaptados ao terreno"], "free": "Mensagem livre ou pedido especial (opcional)", "free_ph": "Horários, links de fotos, informações úteis ou perguntas…", "sendwa": "📱 Enviar o meu pedido por WhatsApp", "sendsms": "✉️ Enviar o meu pedido por SMS", "help": "O WhatsApp é o canal principal. O SMS serve de alternativa se o WhatsApp não abrir.", "trust1": "0% de comissão DIGIY.", "trust2": "O cliente contacta e paga diretamente ao profissional. A relação permanece consigo.", "place": "Praça Central", "noscript": "É necessário JavaScript para preparar automaticamente a mensagem.", "msg_title": "NOVO PEDIDO DIGIYLYFE", "m_activity": "Negócio", "m_job": "Setor", "m_zone": "Zona", "m_manager": "Responsável", "m_wa": "WhatsApp Pro", "m_offer": "Oferta", "m_pay": "Pagamento preferido", "m_free": "Mensagem", "m_end": "O terreno mantém o controlo. Aguardo a minha porta DIGIY!"}, "it": {"title": "Richiesta scheda DIGIY — DIGIYLYFE", "back": "← Torna alla Presenza Professionale", "action": "Azione diretta", "h1": "Richiedi la tua scheda DIGIY", "lead": "Compila questo breve modulo. La richiesta sarà preparata per WhatsApp o, come alternativa, via SMS.", "activity_name": "Nome dell'attività *", "activity_ph": "Es. Ristorante Maria, Autista Diallo…", "job_type": "Tipo di attività *", "job_choose": "Seleziona il settore", "jobs": ["🛍️ Negozio & Commercio", "🛠️ Artigiani & Lavori", "🚖 Autista & Trasporto", "🍲 Ristorante & Ristorazione", "🏡 Alloggio & Affitto", "💼 Servizio locale", "⭐ Altro"], "zone": "Città / Zona di attività *", "zone_ph": "Es. Saly, Dakar, Sarlat, Málaga, Porto, Roma…", "manager": "Nome del responsabile *", "manager_ph": "Nome e cognome", "wa": "Numero WhatsApp dell'attività *", "wa_ph": "Es. +221…, +33…, +34…, +351…, +39…", "offer": "Offerta richiesta", "offer_value": "Pacchetto Presenza Professionale (Scheda + QR + contatto diretto)", "pay": "Metodo di pagamento preferito *", "pay_choose": "Come pagano i tuoi clienti?", "pays": ["Wave", "Orange Money", "Carta bancaria", "Bonifico bancario", "Contanti", "Pagamento mobile", "Più metodi adatti al territorio"], "free": "Messaggio libero o richieste particolari (opzionale)", "free_ph": "Orari, link alle foto, informazioni utili o domande…", "sendwa": "📱 Invia la richiesta via WhatsApp", "sendsms": "✉️ Invia la richiesta via SMS", "help": "WhatsApp è il canale principale. L'SMS è un'alternativa se WhatsApp non si apre.", "trust1": "0% commissione DIGIY.", "trust2": "Il cliente ti contatta e ti paga direttamente. La relazione resta al professionista.", "place": "Piazza Centrale", "noscript": "JavaScript è necessario per preparare automaticamente il messaggio.", "msg_title": "NUOVA RICHIESTA DIGIYLYFE", "m_activity": "Attività", "m_job": "Settore", "m_zone": "Zona", "m_manager": "Responsabile", "m_wa": "WhatsApp Pro", "m_offer": "Offerta", "m_pay": "Pagamento preferito", "m_free": "Messaggio", "m_end": "Il territorio mantiene il controllo. Aspetto la mia porta DIGIY!"}, "de": {"title": "DIGIY-Profil anfragen — DIGIYLYFE", "back": "← Zurück zur Profi-Präsenz", "action": "Direkte Aktion", "h1": "DIGIY-Profil anfragen", "lead": "Füllen Sie dieses kurze Formular aus. Ihre Anfrage wird für WhatsApp oder ersatzweise SMS vorbereitet.", "activity_name": "Name des Unternehmens *", "activity_ph": "Z. B. Restaurant Maria, Fahrer Diallo…", "job_type": "Art der Tätigkeit *", "job_choose": "Branche auswählen", "jobs": ["🛍️ Geschäft & Handel", "🛠️ Handwerk & Bau", "🚖 Fahrer & Transport", "🍲 Restaurant & Gastronomie", "🏡 Unterkunft & Vermietung", "💼 Lokale Dienstleistung", "⭐ Sonstiges"], "zone": "Stadt / Tätigkeitsgebiet *", "zone_ph": "Z. B. Saly, Dakar, Sarlat, Málaga, Porto, Rom…", "manager": "Name der verantwortlichen Person *", "manager_ph": "Vor- und Nachname", "wa": "WhatsApp-Nummer des Unternehmens *", "wa_ph": "Z. B. +221…, +33…, +34…, +351…, +39…", "offer": "Gewünschtes Angebot", "offer_value": "Profi-Präsenz-Paket (Profil + QR + Direktkontakt)", "pay": "Bevorzugte Zahlungsmethode *", "pay_choose": "Wie bezahlen Ihre Kunden?", "pays": ["Wave", "Orange Money", "Bankkarte", "Banküberweisung", "Bargeld", "Mobile Zahlung", "Mehrere lokal passende Methoden"], "free": "Freie Nachricht oder besondere Wünsche (optional)", "free_ph": "Öffnungszeiten, Fotolinks, nützliche Angaben oder Fragen…", "sendwa": "📱 Anfrage per WhatsApp senden", "sendsms": "✉️ Anfrage per SMS senden", "help": "WhatsApp ist der Hauptkanal. SMS dient als Ersatz, falls WhatsApp nicht geöffnet wird.", "trust1": "0 % DIGIY-Provision.", "trust2": "Kunden kontaktieren und bezahlen Sie direkt. Die Beziehung bleibt beim Profi.", "place": "Zentrale", "noscript": "JavaScript ist erforderlich, um die Nachricht automatisch vorzubereiten.", "msg_title": "NEUE DIGIYLYFE-ANFRAGE", "m_activity": "Unternehmen", "m_job": "Branche", "m_zone": "Gebiet", "m_manager": "Verantwortlich", "m_wa": "WhatsApp Pro", "m_offer": "Angebot", "m_pay": "Bevorzugte Zahlung", "m_free": "Nachricht", "m_end": "Das lokale Geschäft behält die Kontrolle. Ich warte auf meine DIGIY-Tür!"}, "nl": {"title": "DIGIY-profiel aanvragen — DIGIYLYFE", "back": "← Terug naar Professionele Aanwezigheid", "action": "Directe actie", "h1": "Vraag uw DIGIY-profiel aan", "lead": "Vul dit korte formulier in. Uw aanvraag wordt klaargezet voor WhatsApp of, als reserve, via sms.", "activity_name": "Naam van de onderneming *", "activity_ph": "Bijv. Restaurant Maria, Chauffeur Diallo…", "job_type": "Type activiteit *", "job_choose": "Kies uw sector", "jobs": ["🛍️ Winkel & Handel", "🛠️ Vakmensen & Bouw", "🚖 Chauffeur & Transport", "🍲 Restaurant & Horeca", "🏡 Accommodatie & Verhuur", "💼 Lokale dienst", "⭐ Anders"], "zone": "Stad / Werkgebied *", "zone_ph": "Bijv. Saly, Dakar, Sarlat, Málaga, Porto, Rome…", "manager": "Naam verantwoordelijke *", "manager_ph": "Voor- en achternaam", "wa": "WhatsApp-nummer van de onderneming *", "wa_ph": "Bijv. +221…, +33…, +34…, +351…, +39…", "offer": "Gewenst aanbod", "offer_value": "Professionele Aanwezigheid (Profiel + QR + direct contact)", "pay": "Voorkeursbetaalmethode *", "pay_choose": "Hoe betalen uw klanten?", "pays": ["Wave", "Orange Money", "Bankkaart", "Bankoverschrijving", "Contant", "Mobiele betaling", "Meerdere lokaal passende methoden"], "free": "Vrij bericht of speciale wensen (optioneel)", "free_ph": "Openingstijden, fotolinks, nuttige info of vragen…", "sendwa": "📱 Aanvraag via WhatsApp verzenden", "sendsms": "✉️ Aanvraag via sms verzenden", "help": "WhatsApp is het hoofdkanaal. Sms is de reserve als WhatsApp niet opent.", "trust1": "0% DIGIY-commissie.", "trust2": "Klanten nemen rechtstreeks contact op en betalen u rechtstreeks. De relatie blijft bij de professional.", "place": "Centraal", "noscript": "JavaScript is nodig om het bericht automatisch klaar te zetten.", "msg_title": "NIEUWE DIGIYLYFE-AANVRAAG", "m_activity": "Onderneming", "m_job": "Sector", "m_zone": "Gebied", "m_manager": "Verantwoordelijke", "m_wa": "WhatsApp Pro", "m_offer": "Aanbod", "m_pay": "Voorkeursbetaling", "m_free": "Bericht", "m_end": "Het terrein houdt de controle. Ik wacht op mijn DIGIY-ingang!"}, "ar": {"title": "طلب بطاقة DIGIY — DIGIYLYFE", "back": "العودة إلى الحضور المهني →", "action": "إجراء مباشر", "h1": "اطلب بطاقتك المهنية DIGIY", "lead": "املأ هذا النموذج القصير. سيتم تجهيز طلبك للإرسال عبر واتساب أو عبر رسالة SMS كخيار احتياطي.", "activity_name": "اسم النشاط *", "activity_ph": "مثال: مطعم ماريا، سائق ديالو…", "job_type": "نوع النشاط *", "job_choose": "اختر القطاع", "jobs": ["🛍️ متجر وتجارة", "🛠️ حرف وأشغال", "🚖 سائق ونقل", "🍲 مطعم وخدمات طعام", "🏡 سكن وتأجير", "💼 خدمة محلية", "⭐ نشاط آخر"], "zone": "المدينة / منطقة النشاط *", "zone_ph": "مثال: سالي، داكار، سارلا، مالقة، بورتو، روما…", "manager": "اسم المسؤول *", "manager_ph": "الاسم الكامل", "wa": "رقم واتساب للنشاط *", "wa_ph": "مثال: +221…، +33…، +34…، +351…، +39…", "offer": "العرض المطلوب", "offer_value": "حزمة الحضور المهني (بطاقة + QR + تواصل مباشر)", "pay": "طريقة الدفع المفضلة *", "pay_choose": "كيف يدفع لك العملاء؟", "pays": ["Wave", "Orange Money", "بطاقة بنكية", "تحويل بنكي", "نقدًا", "دفع عبر الهاتف", "عدة وسائل مناسبة للسوق المحلي"], "free": "رسالة أو طلب خاص (اختياري)", "free_ph": "أوقات العمل، روابط الصور، معلومات مفيدة أو أسئلة…", "sendwa": "📱 إرسال طلبي عبر واتساب", "sendsms": "✉️ إرسال طلبي عبر SMS", "help": "واتساب هو القناة الرئيسية. تُستخدم SMS كخيار احتياطي إذا لم يفتح واتساب.", "trust1": "0% عمولة DIGIY.", "trust2": "يتواصل العميل معك ويدفع لك مباشرة. تبقى العلاقة مع المهني.", "place": "المركز الرئيسي", "noscript": "JavaScript ضروري لإعداد الرسالة تلقائيًا.", "msg_title": "طلب DIGIYLYFE جديد", "m_activity": "النشاط", "m_job": "القطاع", "m_zone": "المنطقة", "m_manager": "المسؤول", "m_wa": "واتساب المهني", "m_offer": "العرض", "m_pay": "الدفع المفضل", "m_free": "رسالة", "m_end": "يبقى الميدان هو صاحب القرار. أنتظر بوابتي DIGIY!"}};
+const DIGIY_PHONE="221771342889", DIGIY_PHONE_SMS="+221771342889";
+let lang="fr";
+const $=id=>document.getElementById(id);
+function safeLang(x){return T[x]?x:"fr"}
+function setLang(x){
+ lang=safeLang(x); const t=T[lang];
+ document.documentElement.lang=lang; document.documentElement.dir=(lang==="ar"?"rtl":"ltr");
+ document.title=t.title;
+ $("back").textContent=t.back;$("action").textContent=t.action;$("h1").textContent=t.h1;$("lead").textContent=t.lead;
+ $("l_activity").textContent=t.activity_name;$("activity_name").placeholder=t.activity_ph;
+ $("l_job").textContent=t.job_type;
+ const oldJob=$("job_type").value;$("job_type").innerHTML='<option value="">'+t.job_choose+'</option>'+t.jobs.map((x,i)=>'<option value="'+i+'">'+x+'</option>').join(""); if(oldJob) $("job_type").value=oldJob;
+ $("l_zone").textContent=t.zone;$("zone").placeholder=t.zone_ph;
+ $("l_manager").textContent=t.manager;$("manager_name").placeholder=t.manager_ph;
+ $("l_wa").textContent=t.wa;$("whatsapp_num").placeholder=t.wa_ph;
+ $("l_offer").textContent=t.offer;$("offer_chosen").value=t.offer_value;
+ $("l_pay").textContent=t.pay;
+ const oldPay=$("pay_method").value;$("pay_method").innerHTML='<option value="">'+t.pay_choose+'</option>'+t.pays.map((x,i)=>'<option value="'+i+'">'+x+'</option>').join(""); if(oldPay) $("pay_method").value=oldPay;
+ $("l_free").textContent=t.free;$("message_free").placeholder=t.free_ph;
+ $("sendwa").textContent=t.sendwa;$("sendsms").textContent=t.sendsms;$("help").textContent=t.help;$("trust1").textContent=t.trust1;$("trust2").textContent=t.trust2;$("place").textContent=t.place;
+ document.querySelectorAll("[data-l]").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
+ localStorage.setItem("digiy_lang",lang);
 }
-
-function buildDigiyMessage() {
-    const activity = getValue('activity_name');
-    const job = getValue('job_type');
-    const zone = getValue('zone');
-    const manager = getValue('manager_name');
-    const whatsapp = getValue('whatsapp_num');
-    const offer = getValue('offer_chosen');
-    const payment = getValue('pay_method');
-    const msgFree = getValue('message_free');
-
-    // Message volontairement sans emoji dans le corps envoyé.
-    // Objectif : éviter les caractères cassés sur certains téléphones, SMS ou anciennes versions WhatsApp.
-    let text = `NOUVELLE DEMANDE DIGIYLYFE\n`;
-    text += `----------------------------------------\n`;
-    text += `Activite : ${activity}\n`;
-    text += `Metier : ${job}\n`;
-    text += `Zone : ${zone}\n`;
-    text += `Responsable : ${manager}\n`;
-    text += `WhatsApp Pro : ${whatsapp}\n`;
-    text += `Offre : ${offer}\n`;
-    text += `Paiement prefere : ${payment}\n`;
-
-    if (msgFree !== "") {
-        text += `Message libre : ${msgFree}\n`;
-    }
-
-    text += `----------------------------------------\n`;
-    text += `Le terrain garde la main. J'attends ma porte d'entree DIGIY !`;
-    return text;
+function val(id){return $(id).value.trim()}
+function buildMessage(){
+ const t=T[lang], ji=parseInt(val("job_type")||"0",10), pi=parseInt(val("pay_method")||"0",10);
+ let s=t.msg_title+"\n----------------------------------------\n";
+ s+=t.m_activity+" : "+val("activity_name")+"\n";
+ s+=t.m_job+" : "+(T[lang].jobs[ji]||"")+"\n";
+ s+=t.m_zone+" : "+val("zone")+"\n";
+ s+=t.m_manager+" : "+val("manager_name")+"\n";
+ s+=t.m_wa+" : "+val("whatsapp_num")+"\n";
+ s+=t.m_offer+" : "+val("offer_chosen")+"\n";
+ s+=t.m_pay+" : "+(T[lang].pays[pi]||"")+"\n";
+ if(val("message_free")) s+=t.m_free+" : "+val("message_free")+"\n";
+ s+="----------------------------------------\n"+t.m_end; return s;
 }
-
-function formIsReady() {
-    const form = document.getElementById('digiyRegisterForm');
-    if (!form.checkValidity()) {
-        form.reportValidity();
-        return false;
-    }
-    return true;
-}
-
-function sendToWhatsApp(event) {
-    if (event) event.preventDefault();
-    if (!formIsReady()) return;
-    const url = "https://wa.me/" + DIGIY_PHONE + "?text=" + encodeURIComponent(buildDigiyMessage());
-    window.location.href = url;
-}
-
-function sendToSMS() {
-    if (!formIsReady()) return;
-    const url = "sms:" + DIGIY_PHONE_SMS + "?&body=" + encodeURIComponent(buildDigiyMessage());
-    window.location.href = url;
-}
+function ready(){if(!$("f").checkValidity()){$("f").reportValidity();return false}return true}
+$("f").addEventListener("submit",e=>{e.preventDefault();if(!ready())return;location.href="https://wa.me/"+DIGIY_PHONE+"?text="+encodeURIComponent(buildMessage())});
+$("sendsms").addEventListener("click",()=>{if(!ready())return;location.href="sms:"+DIGIY_PHONE_SMS+"?&body="+encodeURIComponent(buildMessage())});
+document.querySelectorAll("[data-l]").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.l)));
+const initial=safeLang(localStorage.getItem("digiy_lang")||(navigator.language||"fr").slice(0,2));setLang(initial);
 </script>
-
-<noscript>
-  <p style="max-width:560px;margin:20px auto;color:#fffaf0;text-align:center;font-family:system-ui;font-weight:800;">
-    JavaScript est nécessaire pour préparer automatiquement le message WhatsApp. Vous pouvez aussi contacter DIGIYLYFE directement par WhatsApp.
-  </p>
-</noscript>
+<noscript><p style="color:white;text-align:center;font-family:system-ui;font-weight:800">JavaScript required / JavaScript nécessaire.</p></noscript>
 </body>
 </html>
