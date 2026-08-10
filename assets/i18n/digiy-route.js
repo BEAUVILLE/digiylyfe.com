@@ -6,47 +6,33 @@
   if (!/^(fr|en|es|pt|de|it|nl|ar)$/.test(lang)) lang = 'fr';
   try { localStorage.setItem('digiy-lang', lang); localStorage.setItem('digiy_lang', lang); } catch (error) {}
 
+  function ensurePortugueseEntry() {
+    if (!document.head.querySelector('link[rel="alternate"][hreflang="pt"]')) {
+      var alt = document.createElement('link');
+      alt.rel = 'alternate'; alt.hreflang = 'pt'; alt.href = 'https://digiylyfe.com/pt/';
+      document.head.appendChild(alt);
+    }
+    var nav = document.querySelector('nav.lang, .lang[aria-label], nav[aria-label*="language" i], nav[aria-label*="langue" i]');
+    if (!nav || nav.querySelector('[lang="pt"], [data-lang="pt"], [data-l="pt"]')) return;
+    var pt = document.createElement('a');
+    pt.href = 'https://digiylyfe.com/pt/'; pt.lang = 'pt'; pt.textContent = 'PT';
+    var de = nav.querySelector('[lang="de"], [data-lang="de"], [data-l="de"]');
+    if (de) nav.insertBefore(pt, de); else nav.appendChild(pt);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ensurePortugueseEntry, {once:true});
+  else ensurePortugueseEntry();
+
   var equipped = new Set([
-    'pro-action-digiy.digiylyfe.com',
-    'digiy-hub.digiylyfe.com',
-    'driver-client.digiylyfe.com',
-    'loc.digiylyfe.com',
-    'resa-table-resto.digiylyfe.com',
-    'market.digiylyfe.com',
-    'build.digiylyfe.com',
-    'jobs.digiylyfe.com',
-    'explore.digiylyfe.com',
-    'resto.digiylyfe.com',
-    'reseau-digiy.digiylyfe.com',
-    'digiy-carnet-pro.digiylyfe.com',
-    'partenaire-pilote.digiylyfe.com',
-    'tarifs.digiylyfe.com',
-    'commencer-a-payer.digiylyfe.com',
-    'inscription-pro.digiylyfe.com',
-    'pro-espace.digiylyfe.com',
-    'pro-driver.digiylyfe.com',
-    'pro-loc.digiylyfe.com',
-    'pro-market.digiylyfe.com',
-    'pro-build.digiylyfe.com',
-    'pro-job.digiylyfe.com',
-    'pro-resa-resto.digiylyfe.com',
-    'pro-explore.digiylyfe.com',
-    'pro-resto.digiylyfe.com',
-    'pro-carnet.digiylyfe.com',
-    'pro-caisse.digiylyfe.com',
-    'resto-caisse.digiylyfe.com',
-    'mon-commerce.digiylyfe.com',
-    'mon-commerce-pro.digiylyfe.com',
-    'client-fret.digiylyfe.com',
-    'fret-client.digiylyfe.com',
-    'fret-chauffeur.digiylyfe.com',
-    'pro-client-fret.digiylyfe.com',
-    'pro-fret-client.digiylyfe.com',
-    'pro-fret-chauffeur.digiylyfe.com',
-    'ndimbal-map.digiylyfe.com',
-    'ndimbal-express.digiylyfe.com',
-    'bonne-affaire.digiylyfe.com',
-    'pro-qr-code.digiylyfe.com'
+    'pro-action-digiy.digiylyfe.com','digiy-hub.digiylyfe.com','driver-client.digiylyfe.com','loc.digiylyfe.com',
+    'resa-table-resto.digiylyfe.com','market.digiylyfe.com','build.digiylyfe.com','jobs.digiylyfe.com','explore.digiylyfe.com',
+    'resto.digiylyfe.com','reseau-digiy.digiylyfe.com','digiy-carnet-pro.digiylyfe.com','partenaire-pilote.digiylyfe.com',
+    'tarifs.digiylyfe.com','commencer-a-payer.digiylyfe.com','inscription-pro.digiylyfe.com','pro-espace.digiylyfe.com',
+    'pro-driver.digiylyfe.com','pro-loc.digiylyfe.com','pro-market.digiylyfe.com','pro-build.digiylyfe.com','pro-job.digiylyfe.com',
+    'pro-resa-resto.digiylyfe.com','pro-explore.digiylyfe.com','pro-resto.digiylyfe.com','pro-carnet.digiylyfe.com',
+    'pro-caisse.digiylyfe.com','resto-caisse.digiylyfe.com','mon-commerce.digiylyfe.com','mon-commerce-pro.digiylyfe.com',
+    'client-fret.digiylyfe.com','fret-client.digiylyfe.com','fret-chauffeur.digiylyfe.com','pro-client-fret.digiylyfe.com',
+    'pro-fret-client.digiylyfe.com','pro-fret-chauffeur.digiylyfe.com','ndimbal-map.digiylyfe.com','ndimbal-express.digiylyfe.com',
+    'bonne-affaire.digiylyfe.com','pro-qr-code.digiylyfe.com'
   ]);
 
   document.addEventListener('click', function (event) {
