@@ -86,7 +86,7 @@
   window.__DIGIY_CONVERSATION_BRIDGE_V1__=true;
 
   var COPY={
-    fr:{tag:'LE NOUVEAU WEB · CONVERSATION → TERRAIN',title:'La conversation ouvre la porte.',text:'connecte le terrain. Le professionnel garde la relation.',note:'DIGIYLYFE est indépendant des services cités ; aucune affiliation n’est revendiquée.'},
+    fr:{tag:'CONVERSATION → TERRAIN',title:'LE NOUVEAU WEB VOUS TEND LES BRAS',text:'La conversation ouvre la porte. DIGIYLYFE connecte le terrain. Le professionnel garde la relation.',note:'DIGIYLYFE est indépendant des services cités ; aucune affiliation n’est revendiquée.'},
     en:{tag:'THE NEW WEB · CONVERSATION → FIELD',title:'Conversation opens the door.',text:'connects the field. The professional keeps the relationship.',note:'DIGIYLYFE is independent from the services named above; no affiliation is claimed.'},
     es:{tag:'LA NUEVA WEB · CONVERSACIÓN → TERRENO',title:'La conversación abre la puerta.',text:'conecta el terreno. El profesional conserva la relación.',note:'DIGIYLYFE es independiente de los servicios citados; no se reivindica ninguna afiliación.'},
     de:{tag:'DAS NEUE WEB · GESPRÄCH → PRAXIS',title:'Das Gespräch öffnet die Tür.',text:'verbindet die Praxis. Der Profi behält die Kundenbeziehung.',note:'DIGIYLYFE ist von den genannten Diensten unabhängig; es wird keine Zugehörigkeit behauptet.'},
