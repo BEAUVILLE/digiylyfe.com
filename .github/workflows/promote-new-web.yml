@@ -1,0 +1,53 @@
+name: Promouvoir le manifeste nouveau Web
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/promote-new-web.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Poser le nouveau manifeste et forcer son chargement
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          js = Path('assets/js/digiy-fidelisation.js')
+          text = js.read_text(encoding='utf-8')
+          old = "fr:{tag:'LE NOUVEAU WEB · CONVERSATION → TERRAIN',title:'La conversation ouvre la porte.',text:'connecte le terrain. Le professionnel garde la relation.',note:'DIGIYLYFE est indépendant des services cités ; aucune affiliation n’est revendiquée.'}"
+          new = "fr:{tag:'CONVERSATION → TERRAIN',title:'LE NOUVEAU WEB VOUS TEND LES BRAS',text:'La conversation ouvre la porte. DIGIYLYFE connecte le terrain. Le professionnel garde la relation.',note:'DIGIYLYFE est indépendant des services cités ; aucune affiliation n’est revendiquée.'}"
+          if old not in text:
+              raise SystemExit('Bloc FR attendu introuvable dans digiy-fidelisation.js')
+          text = text.replace(old, new, 1)
+          js.write_text(text, encoding='utf-8')
+
+          index = Path('index.html')
+          html = index.read_text(encoding='utf-8')
+          oldv = './assets/js/digiy-fidelisation.js?v=20260810-conversation'
+          newv = './assets/js/digiy-fidelisation.js?v=20260810-nouveau-web'
+          if oldv not in html:
+              raise SystemExit('Version JS attendue introuvable dans index.html')
+          html = html.replace(oldv, newv, 1)
+          index.write_text(html, encoding='utf-8')
+          PY
+
+          rm -f .github/workflows/promote-new-web.yml
+
+      - name: Commit et push
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/js/digiy-fidelisation.js index.html .github/workflows/promote-new-web.yml
+          git commit -m "Mettre LE NOUVEAU WEB en tête du manifeste [skip ci]"
+          git push
