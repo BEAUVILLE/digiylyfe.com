@@ -1,0 +1,195 @@
+name: Restore DIGIYLYFE PWA install
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/restore-pwa-install-once.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  restore-pwa:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore lightweight PWA install
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          index = Path('index.html')
+          text = index.read_text(encoding='utf-8')
+
+          manifest_anchor = '<link href="./icon-192.png?v=20260713" rel="apple-touch-icon"/>'
+          manifest_block = '''<link href="./icon-192.png?v=20260713" rel="apple-touch-icon"/>
+          <link href="./manifest.json?v=20260810" rel="manifest"/>
+          <meta content="yes" name="mobile-web-app-capable"/>
+          <meta content="yes" name="apple-mobile-web-app-capable"/>
+          <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+          <meta content="DIGIY" name="apple-mobile-web-app-title"/>'''
+          if 'rel="manifest"' not in text:
+              if text.count(manifest_anchor) != 1:
+                  raise SystemExit('Manifest anchor not found exactly once')
+              text = text.replace(manifest_anchor, manifest_block, 1)
+
+          css_marker = '/* Installation PWA DIGIYLYFE — légère, sans cache ni réécriture de route */'
+          css_block = r'''
+
+          /* Installation PWA DIGIYLYFE — légère, sans cache ni réécriture de route */
+          .pwaInstall{
+            position:fixed;left:50%;bottom:calc(82px + env(safe-area-inset-bottom));z-index:76;transform:translateX(-50%);
+            width:min(520px,calc(100% - 18px));padding:7px;border:1px solid rgba(246,196,83,.72);border-radius:22px;
+            background:rgba(4,19,13,.97);box-shadow:0 18px 54px rgba(0,0,0,.48);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+            display:grid;grid-template-columns:minmax(0,1fr) 42px;gap:7px;align-items:center
+          }
+          .pwaInstall[hidden]{display:none!important}
+          .pwaInstallMain{min-height:58px;padding:8px 12px;border:0;border-radius:16px;background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;display:grid;grid-template-columns:38px 1fr;gap:9px;align-items:center;text-align:left;cursor:pointer}
+          .pwaInstallMain i{font-style:normal;font-size:27px;line-height:1}.pwaInstallMain strong{display:block;font-size:13px;line-height:1.08;font-weight:1000}.pwaInstallMain small{display:block;margin-top:4px;font-size:10.5px;line-height:1.25;font-weight:900;opacity:.82}
+          .pwaInstallClose{width:42px;height:42px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#fff3cf;font-size:22px;cursor:pointer}
+          @media(min-width:981px){.pwaInstall{left:auto;right:126px;bottom:18px;transform:none;width:min(430px,calc(100% - 160px))}}
+          '''
+          if css_marker not in text:
+              if text.count('</style>') != 1:
+                  raise SystemExit('Style closing tag not found exactly once')
+              text = text.replace('</style>', css_block + '\n</style>', 1)
+
+          install_html = '''<div class="pwaInstall" id="pwaInstall" hidden role="region" aria-label="Installer DIGIYLYFE">
+            <button class="pwaInstallMain" id="pwaInstallMain" type="button">
+              <i aria-hidden="true">📲</i>
+              <span><strong id="pwaInstallTitle">Installer DIGIYLYFE</strong><small id="pwaInstallText">Gardez le HUB directement sur votre téléphone.</small></span>
+            </button>
+            <button class="pwaInstallClose" id="pwaInstallClose" type="button" aria-label="Fermer">×</button>
+          </div>
+
+          '''
+          viewer_anchor = '<div aria-hidden="true" aria-label="Porte DIGIYLYFE ouverte dans le HUB"'
+          if 'id="pwaInstall"' not in text:
+              if text.count(viewer_anchor) != 1:
+                  raise SystemExit('HUB viewer anchor not found exactly once')
+              text = text.replace(viewer_anchor, install_html + viewer_anchor, 1)
+
+          pwa_script = r'''<script>
+          (function(){
+            'use strict';
+            var box=document.getElementById('pwaInstall');
+            var installBtn=document.getElementById('pwaInstallMain');
+            var closeBtn=document.getElementById('pwaInstallClose');
+            var title=document.getElementById('pwaInstallTitle');
+            var copy=document.getElementById('pwaInstallText');
+            var deferredPrompt=null;
+            var dismissed=false;
+            var isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+            var isStandalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
+
+            function isEnglish(){return (document.documentElement.lang||'fr').toLowerCase().indexOf('en')===0;}
+            function refreshCopy(mode){
+              if(!title || !copy)return;
+              var en=isEnglish();
+              title.textContent=en?'Install DIGIYLYFE':'Installer DIGIYLYFE';
+              if(mode==='ios'){
+                copy.textContent=en?'Safari: Share, then Add to Home Screen.':'Safari : Partager, puis « Sur l’écran d’accueil ».';
+              }else{
+                copy.textContent=en?'Keep the HUB directly on your phone.':'Gardez le HUB directement sur votre téléphone.';
+              }
+            }
+            window.refreshPwaInstallCopy=function(){refreshCopy(box && box.dataset.mode==='ios'?'ios':'native');};
+
+            function show(mode){
+              if(!box || dismissed || isStandalone)return;
+              box.dataset.mode=mode;
+              refreshCopy(mode);
+              box.hidden=false;
+            }
+            function hide(){if(box)box.hidden=true;}
+
+            window.addEventListener('beforeinstallprompt',function(event){
+              event.preventDefault();
+              deferredPrompt=event;
+              show('native');
+            });
+
+            if(installBtn){
+              installBtn.addEventListener('click',async function(){
+                if(deferredPrompt){
+                  deferredPrompt.prompt();
+                  try{await deferredPrompt.userChoice;}catch(error){}
+                  deferredPrompt=null;
+                  hide();
+                  return;
+                }
+                if(isIOS){show('ios');}
+              });
+            }
+
+            if(closeBtn){closeBtn.addEventListener('click',function(){dismissed=true;hide();});}
+            window.addEventListener('appinstalled',function(){deferredPrompt=null;hide();});
+            if(isIOS && !isStandalone){setTimeout(function(){show('ios');},1400);}
+
+            if('serviceWorker' in navigator){
+              window.addEventListener('load',function(){
+                navigator.serviceWorker.register('/sw.js',{scope:'/'}).catch(function(error){
+                  console.warn('DIGIYLYFE PWA: service worker non enregistré',error);
+                });
+              });
+            }
+
+            try{
+              new MutationObserver(function(){window.refreshPwaInstallCopy();}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+            }catch(error){}
+          })();
+          </script>
+          '''
+          script_anchor = '<script src="./assets/js/digiy-fidelisation.js?v=20260801-hero" defer></script>'
+          if 'beforeinstallprompt' not in text:
+              if text.count(script_anchor) != 1:
+                  raise SystemExit('Final script anchor not found exactly once')
+              text = text.replace(script_anchor, pwa_script + script_anchor, 1)
+
+          index.write_text(text, encoding='utf-8')
+
+          Path('sw.js').write_text('''/* DIGIYLYFE.COM — Service Worker PWA léger\n   Installation permanente, sans cache de page et sans réécriture de route.\n*/\n\nconst DIGIY_PWA_VERSION = 'digiylyfe-pwa-20260810';\n\nself.addEventListener('install', () => {\n  self.skipWaiting();\n});\n\nself.addEventListener('activate', (event) => {\n  event.waitUntil(self.clients.claim());\n});\n\nself.addEventListener('fetch', (event) => {\n  if (event.request.method !== 'GET' || event.request.mode !== 'navigate') return;\n  const url = new URL(event.request.url);\n  if (url.origin !== self.location.origin) return;\n  event.respondWith(fetch(event.request));\n});\n''', encoding='utf-8')
+
+          manifest = json.loads(Path('manifest.json').read_text(encoding='utf-8'))
+          required = ['id','name','short_name','start_url','scope','display','icons']
+          missing = [key for key in required if not manifest.get(key)]
+          if missing:
+              raise SystemExit('Manifest missing: ' + ', '.join(missing))
+          if len(manifest.get('icons', [])) < 2:
+              raise SystemExit('Manifest needs both install icons')
+
+          final = index.read_text(encoding='utf-8')
+          checks = {
+              'manifest linked': 'rel="manifest"' in final,
+              'install event': 'beforeinstallprompt' in final,
+              'service worker registration': "serviceWorker.register('/sw.js',{scope:'/'})" in final,
+              'install UI': 'id="pwaInstall"' in final,
+              'single body close': final.count('</body>') == 1,
+              'single style close': final.count('</style>') == 1,
+          }
+          failed = [name for name, ok in checks.items() if not ok]
+          if failed:
+              raise SystemExit('Validation failed: ' + ', '.join(failed))
+          print('PWA validation OK:', ', '.join(checks))
+          PY
+
+      - name: Commit restored PWA
+        shell: bash
+        run: |
+          git rm .github/workflows/restore-pwa-install-once.yml
+          if git diff --quiet; then
+            echo "No PWA change needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html sw.js .github/workflows/restore-pwa-install-once.yml
+          git commit -m "Restaurer l’installation PWA DIGIYLYFE [skip ci]"
+          git push
