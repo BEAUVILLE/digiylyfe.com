@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://digiylyfe.com/</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://digiylyfe.com/en/</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://digiylyfe.com/es/</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://digiylyfe.com/de/</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://digiylyfe.com/it/</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://digiylyfe.com/nl/</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://digiylyfe.com/ar/</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://digiylyfe.com/recherche.html</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://digiylyfe.com/presence-terrain.html</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://digiylyfe.com/inscription.html</loc><lastmod>2026-08-05</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://digiylyfe.com/</loc><lastmod>2026-08-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://digiylyfe.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://digiylyfe.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://digiylyfe.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://digiylyfe.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://digiylyfe.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://digiylyfe.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://digiylyfe.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://digiylyfe.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://digiylyfe.com/"/>
+  </url>
+  <url><loc>https://digiylyfe.com/en/</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://digiylyfe.com/es/</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://digiylyfe.com/pt/</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://digiylyfe.com/de/</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://digiylyfe.com/it/</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://digiylyfe.com/nl/</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://digiylyfe.com/ar/</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://digiylyfe.com/recherche.html</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://digiylyfe.com/presence-terrain.html</loc><lastmod>2026-08-10</lastmod></url>
+  <url><loc>https://digiylyfe.com/inscription.html</loc><lastmod>2026-08-10</lastmod></url>
   <url><loc>https://digiylyfe.com/inscription-entreprise.html</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://digiylyfe.com/menu.html</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://digiylyfe.com/architecture-digiylyfe.html</loc><lastmod>2026-08-05</lastmod></url>
@@ -17,7 +29,7 @@
   <url><loc>https://digiylyfe.com/le-terrain-garde-la-main.html</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://digiylyfe.com/tarif-entreprise-petite-cote.html</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://digiylyfe.com/sarlat.html</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://digiylyfe.com/aly-parle.html</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://digiylyfe.com/aly-parle.html</loc><lastmod>2026-08-10</lastmod></url>
   <url><loc>https://digiylyfe.com/qr.html</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://digiylyfe.com/qr-module-digiylyfe.html</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://digiylyfe.com/ciblage-pros-digiylyfe.html</loc><lastmod>2026-08-05</lastmod></url>

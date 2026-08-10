@@ -3,8 +3,8 @@
   'use strict';
   var script = document.currentScript;
   var lang = ((script && script.dataset.lang) || document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
-  if (!/^(fr|en|es|de|it|nl|ar)$/.test(lang)) lang = 'fr';
-  try { localStorage.setItem('digiy-lang', lang); } catch (error) {}
+  if (!/^(fr|en|es|pt|de|it|nl|ar)$/.test(lang)) lang = 'fr';
+  try { localStorage.setItem('digiy-lang', lang); localStorage.setItem('digiy_lang', lang); } catch (error) {}
 
   var equipped = new Set([
     'pro-action-digiy.digiylyfe.com',
