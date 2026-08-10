@@ -78,3 +78,60 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
+
+/* DIGIYLYFE — manifeste du Web conversationnel */
+(function(){
+  'use strict';
+  if(window.__DIGIY_CONVERSATION_BRIDGE_V1__)return;
+  window.__DIGIY_CONVERSATION_BRIDGE_V1__=true;
+
+  var COPY={
+    fr:{tag:'LE NOUVEAU WEB · CONVERSATION → TERRAIN',title:'La conversation ouvre la porte.',text:'connecte le terrain. Le professionnel garde la relation.',note:'DIGIYLYFE est indépendant des services cités ; aucune affiliation n’est revendiquée.'},
+    en:{tag:'THE NEW WEB · CONVERSATION → FIELD',title:'Conversation opens the door.',text:'connects the field. The professional keeps the relationship.',note:'DIGIYLYFE is independent from the services named above; no affiliation is claimed.'},
+    es:{tag:'LA NUEVA WEB · CONVERSACIÓN → TERRENO',title:'La conversación abre la puerta.',text:'conecta el terreno. El profesional conserva la relación.',note:'DIGIYLYFE es independiente de los servicios citados; no se reivindica ninguna afiliación.'},
+    de:{tag:'DAS NEUE WEB · GESPRÄCH → PRAXIS',title:'Das Gespräch öffnet die Tür.',text:'verbindet die Praxis. Der Profi behält die Kundenbeziehung.',note:'DIGIYLYFE ist von den genannten Diensten unabhängig; es wird keine Zugehörigkeit behauptet.'},
+    it:{tag:'IL NUOVO WEB · CONVERSAZIONE → TERRITORIO',title:'La conversazione apre la porta.',text:'connette il territorio. Il professionista mantiene la relazione.',note:'DIGIYLYFE è indipendente dai servizi citati; non rivendica alcuna affiliazione.'},
+    nl:{tag:'HET NIEUWE WEB · GESPREK → TERREIN',title:'Het gesprek opent de deur.',text:'verbindt het terrein. De professional behoudt de relatie.',note:'DIGIYLYFE is onafhankelijk van de genoemde diensten; er wordt geen affiliatie geclaimd.'},
+    ar:{tag:'الويب الجديد · المحادثة ← الميدان',title:'المحادثة تفتح الباب.',text:'يربط الميدان. ويبقى المهني صاحب العلاقة.',note:'DIGIYLYFE مستقل عن الخدمات المذكورة ولا يدّعي أي انتماء إليها.'}
+  };
+
+  function currentLang(){
+    var value=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
+    return COPY[value]?value:'fr';
+  }
+  function addBridgeStyle(){
+    if(document.getElementById('digiy-conversation-bridge-style'))return;
+    var style=document.createElement('style');
+    style.id='digiy-conversation-bridge-style';
+    style.textContent='.conversationBridge{position:relative;z-index:1;margin-top:11px;padding:15px 16px;border-radius:24px;border:1px solid rgba(45,212,191,.70);background:radial-gradient(520px 190px at 100% 0,rgba(45,212,191,.16),transparent 68%),linear-gradient(145deg,rgba(5,43,30,.96),rgba(4,23,17,.98));box-shadow:0 14px 34px rgba(0,0,0,.24);text-align:center}.conversationTag{display:block;color:#bdf7d2;font-size:10px;font-weight:1000;letter-spacing:.10em;text-transform:uppercase}.conversationBrands{margin-top:8px;color:#fff3cf;font-size:clamp(11px,2.8vw,14px);font-weight:1000;letter-spacing:.025em}.conversationBridge strong{display:block;margin-top:7px;font-size:clamp(22px,5vw,34px);line-height:1;font-weight:1000;letter-spacing:-.035em}.conversationBridge p{margin:8px 0 0;color:rgba(255,250,240,.92);font-size:clamp(13px,3.3vw,17px);line-height:1.35;font-weight:900}.conversationBridge p b{color:#f6c453}.conversationNote{display:block;margin-top:7px;color:rgba(255,250,240,.58);font-size:9.5px;line-height:1.3;font-style:normal;font-weight:800}';
+    document.head.appendChild(style);
+  }
+  function installBridge(){
+    if(document.getElementById('digiy-conversation-bridge'))return;
+    var voice=document.querySelector('.voiceDoor');
+    if(!voice)return;
+    var section=document.createElement('section');
+    section.id='digiy-conversation-bridge';
+    section.className='conversationBridge';
+    section.setAttribute('aria-label','Le nouveau Web conversationnel');
+    section.innerHTML='<small class="conversationTag" data-conv="tag"></small><div class="conversationBrands">ChatGPT · Gemini · Grok · DeepSeek · Claude</div><strong data-conv="title"></strong><p><b>DIGIYLYFE</b> <span data-conv="text"></span></p><em class="conversationNote" data-conv="note"></em>';
+    voice.insertAdjacentElement('afterend',section);
+  }
+  function renderBridge(){
+    var section=document.getElementById('digiy-conversation-bridge');
+    if(!section)return;
+    var l=currentLang(),data=COPY[l];
+    section.dir=l==='ar'?'rtl':'ltr';
+    Object.keys(data).forEach(function(key){
+      var node=section.querySelector('[data-conv="'+key+'"]');
+      if(node)node.textContent=data[key];
+    });
+  }
+  function initBridge(){
+    addBridgeStyle();
+    installBridge();
+    renderBridge();
+    new MutationObserver(renderBridge).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initBridge,{once:true});else initBridge();
+})();
