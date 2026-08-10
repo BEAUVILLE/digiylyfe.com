@@ -109,3 +109,5 @@ jobs:
           git diff --cached --check
           git commit -m "Poser le manifeste du Web conversationnel [skip ci]"
           git push origin main
+
+# second push trigger
