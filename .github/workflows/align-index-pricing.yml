@@ -32,7 +32,7 @@ jobs:
               if count != expected:
                   raise SystemExit(f'Remplacement attendu {expected}, trouve {count}: {old[:80]}')
               text = text.replace(old, new)
-          rep('Adhésion : 28 000 FCFA/mois.', 'Adhésion à partir de 19 900 FCFA/mois ; présence sectorielle renforcée à 28 000 FCFA/mois.')
+          rep('Adhésion : 28 000 FCFA/mois.', 'Adhésion à partir de 19 900 FCFA/mois ; présence sectorielle renforcée à 28 000 FCFA/mois.', 2)
           rep('index-adherent-28000-carte-digiy-v1-20260812', 'index-adherents-19900-28000-v2-20260812')
           old_offer = '      {\n        "@type":"Offer",\n        "@id":"https://digiylyfe.com/#adhesion-offer",\n        "name":"Adhésion DIGIYLYFE",\n        "url":"./tarifs-adherents.html",\n        "price":"28 000",\n        "priceCurrency":"XOF",\n        "description":"Carte de visite digitale avec QR, présence dans la vitrine DIGIYLYFE, contact direct et 8 langues.",\n        "seller":{"@id":"https://digiylyfe.com/#organization"}\n      }'
           new_offer = '      {\n        "@type":"AggregateOffer",\n        "@id":"https://digiylyfe.com/#adhesion-offer",\n        "name":"Adhésions DIGIYLYFE",\n        "url":"./tarifs-adherents-1.html",\n        "lowPrice":"19900",\n        "highPrice":"28000",\n        "priceCurrency":"XOF",\n        "offerCount":"2",\n        "description":"Deux niveaux d’adhésion selon l’activité : présence essentielle à 19 900 FCFA/mois et présence sectorielle renforcée à 28 000 FCFA/mois.",\n        "seller":{"@id":"https://digiylyfe.com/#organization"}\n      }'
