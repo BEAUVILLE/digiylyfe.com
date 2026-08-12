@@ -1,0 +1,30 @@
+name: Refresh vitrine favoris v2
+on:
+  push:
+    paths:
+      - '.github/workflows/refresh-vitrine-favoris-v2.yml'
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Actualiser le cache-buster favoris
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old='./assets/js/vitrine-top-favoris.js?v=20260812-vitrine-top-v1'
+          new='./assets/js/vitrine-top-favoris.js?v=20260812-vitrine-favoris-v2'
+          assert old in s, 'ancienne version introuvable'
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Commit
+        run: |
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add index.html
+          git commit -m 'Activer les favoris modules interactifs v2'
+          git push
