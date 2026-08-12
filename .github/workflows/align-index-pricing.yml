@@ -1,4 +1,4 @@
-name: Aligner index sur la nouvelle grille adhérents
+name: Aligner index sur la nouvelle grille adherents
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
   align-pricing:
     runs-on: ubuntu-latest
     steps:
-      - name: Récupérer le dépôt
+      - name: Recuperer le depot
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -24,188 +24,54 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import json, re
-
           path = Path('index.html')
           text = path.read_text(encoding='utf-8')
-
-          def replace_exact(old, new, expected=1):
+          def rep(old, new, expected=1):
               global text
               count = text.count(old)
               if count != expected:
-                  raise SystemExit(f'Remplacement attendu {expected} fois, trouvé {count}: {old[:90]}')
+                  raise SystemExit(f'Remplacement attendu {expected}, trouve {count}: {old[:80]}')
               text = text.replace(old, new)
-
-          replace_exact(
-              'Adhésion : 28 000 FCFA/mois.',
-              'Adhésion à partir de 19 900 FCFA/mois ; présence sectorielle renforcée à 28 000 FCFA/mois.'
-          )
-          replace_exact(
-              'index-adherent-28000-carte-digiy-v1-20260812',
-              'index-adherents-19900-28000-v2-20260812'
-          )
-          replace_exact(
-'''      {
-        "@type":"Offer",
-        "@id":"https://digiylyfe.com/#adhesion-offer",
-        "name":"Adhésion DIGIYLYFE",
-        "url":"./tarifs-adherents.html",
-        "price":"28 000",
-        "priceCurrency":"XOF",
-        "description":"Carte de visite digitale avec QR, présence dans la vitrine DIGIYLYFE, contact direct et 8 langues.",
-        "seller":{"@id":"https://digiylyfe.com/#organization"}
-      }''',
-'''      {
-        "@type":"AggregateOffer",
-        "@id":"https://digiylyfe.com/#adhesion-offer",
-        "name":"Adhésions DIGIYLYFE",
-        "url":"./tarifs-adherents-1.html",
-        "lowPrice":"19900",
-        "highPrice":"28000",
-        "priceCurrency":"XOF",
-        "offerCount":"2",
-        "description":"Deux niveaux d’adhésion selon l’activité : présence essentielle à 19 900 FCFA/mois et présence sectorielle renforcée à 28 000 FCFA/mois.",
-        "seller":{"@id":"https://digiylyfe.com/#organization"}
-      }'''
-          )
-          replace_exact(
-              '.ctaRow{display:grid;grid-template-columns:1.25fr .75fr;gap:9px;margin-top:14px}',
-              '.ctaRow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}'
-          )
-          replace_exact(
-              '<strong data-i18n="offerTitle">Adhésion DIGIYLYFE</strong>',
-              '<strong data-i18n="offerTitle">Adhésion DIGIYLYFE · à partir de</strong>'
-          )
-          replace_exact(
-              '<p data-i18n="offerText">Carte de visite digitale · QR · place dans la vitrine · WhatsApp · SMS · appel · 8 langues · contact direct.</p>',
-              '<p data-i18n="offerText">Carte digitale · QR · place dans la vitrine · WhatsApp · SMS · appel · 8 langues · contact direct. Deux niveaux selon l’activité.</p>'
-          )
-          replace_exact(
-              '<div class="price"><b>28 000 FCFA</b><span data-i18n="pricePeriod">PAR MOIS</span></div>',
-              '<div class="price"><b>19 900 FCFA</b><span data-i18n="pricePeriod">PAR MOIS</span></div>'
-          )
-          replace_exact(
-              '<a class="cta primary" href="./tarifs-adherents.html" target="_blank" rel="noopener noreferrer" data-i18n="signupCta">Devenir adhérent →</a>',
-              '<a class="cta primary" href="./tarifs-adherents-1.html" target="_blank" rel="noopener noreferrer" data-i18n="signupCta">ADHÉRENT 1 · 19 900 →</a>',
-              expected=2
-          )
-          replace_exact(
-              '<a class="cta secondary" href="./tarifs-adherents.html" target="_blank" rel="noopener noreferrer" data-i18n="tariffCta">Tarifs adhérents →</a>',
-              '<a class="cta secondary" href="./tarifs-adherents.html" target="_blank" rel="noopener noreferrer" data-i18n="tariffCta">ADHÉRENT 2 · 28 000 →</a>',
-              expected=2
-          )
-          replace_exact(
-              '<a href="./tarifs-adherents.html" target="_blank" rel="noopener noreferrer" data-i18n="footerSignup">Tarifs adhérents</a> ·',
-              '<a href="./tarifs-adherents-1.html" target="_blank" rel="noopener noreferrer" data-i18n="footerSignup">Adhérent 1 · 19 900</a> ·'
-          )
-          replace_exact(
-              '<a href="./tarifs-adherents.html" target="_blank" rel="noopener noreferrer" data-i18n="footerTariffs">Tarifs adhérents</a> ·',
-              '<a href="./tarifs-adherents.html" target="_blank" rel="noopener noreferrer" data-i18n="footerTariffs">Adhérent 2 · 28 000</a> ·'
-          )
-
-          m = re.search(r'    var TEXT=(\{.*\});\n\n    function setLang', text, re.S)
-          if not m:
-              raise SystemExit('Dictionnaire multilingue TEXT introuvable')
-          data = json.loads(m.group(1))
-
+          rep('Adhésion : 28 000 FCFA/mois.', 'Adhésion à partir de 19 900 FCFA/mois ; présence sectorielle renforcée à 28 000 FCFA/mois.')
+          rep('index-adherent-28000-carte-digiy-v1-20260812', 'index-adherents-19900-28000-v2-20260812')
+          old_offer = '      {\n        "@type":"Offer",\n        "@id":"https://digiylyfe.com/#adhesion-offer",\n        "name":"Adhésion DIGIYLYFE",\n        "url":"./tarifs-adherents.html",\n        "price":"28 000",\n        "priceCurrency":"XOF",\n        "description":"Carte de visite digitale avec QR, présence dans la vitrine DIGIYLYFE, contact direct et 8 langues.",\n        "seller":{"@id":"https://digiylyfe.com/#organization"}\n      }'
+          new_offer = '      {\n        "@type":"AggregateOffer",\n        "@id":"https://digiylyfe.com/#adhesion-offer",\n        "name":"Adhésions DIGIYLYFE",\n        "url":"./tarifs-adherents-1.html",\n        "lowPrice":"19900",\n        "highPrice":"28000",\n        "priceCurrency":"XOF",\n        "offerCount":"2",\n        "description":"Deux niveaux d’adhésion selon l’activité : présence essentielle à 19 900 FCFA/mois et présence sectorielle renforcée à 28 000 FCFA/mois.",\n        "seller":{"@id":"https://digiylyfe.com/#organization"}\n      }'
+          rep(old_offer, new_offer)
+          rep('.ctaRow{display:grid;grid-template-columns:1.25fr .75fr;gap:9px;margin-top:14px}', '.ctaRow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}')
+          rep('<strong data-i18n="offerTitle">Adhésion DIGIYLYFE</strong>', '<strong data-i18n="offerTitle">Adhésion DIGIYLYFE · à partir de</strong>')
+          rep('<p data-i18n="offerText">Carte de visite digitale · QR · place dans la vitrine · WhatsApp · SMS · appel · 8 langues · contact direct.</p>', '<p data-i18n="offerText">Carte digitale · QR · place dans la vitrine · WhatsApp · SMS · appel · 8 langues · contact direct. Deux niveaux selon l’activité.</p>')
+          rep('<div class="price"><b>28 000 FCFA</b><span data-i18n="pricePeriod">PAR MOIS</span></div>', '<div class="price"><b>19 900 FCFA</b><span data-i18n="pricePeriod">PAR MOIS</span></div>')
+          rep('<a class="cta primary" href="./tarifs-adherents.html" target="_blank" rel="noopener noreferrer" data-i18n="signupCta">Devenir adhérent →</a>', '<a class="cta primary" href="./tarifs-adherents-1.html" target="_blank" rel="noopener noreferrer" data-i18n="signupCta">ADHÉRENT 1 · 19 900 →</a>', 2)
+          rep('<a class="cta secondary" href="./tarifs-adherents.html" target="_blank" rel="noopener noreferrer" data-i18n="tariffCta">Tarifs adhérents →</a>', '<a class="cta secondary" href="./tarifs-adherents.html" target="_blank" rel="noopener noreferrer" data-i18n="tariffCta">ADHÉRENT 2 · 28 000 →</a>', 2)
+          rep('<a href="./tarifs-adherents.html" target="_blank" rel="noopener noreferrer" data-i18n="footerSignup">Tarifs adhérents</a> ·', '<a href="./tarifs-adherents-1.html" target="_blank" rel="noopener noreferrer" data-i18n="footerSignup">Adhérent 1 · 19 900</a> ·')
+          rep('<a href="./tarifs-adherents.html" target="_blank" rel="noopener noreferrer" data-i18n="footerTariffs">Tarifs adhérents</a> ·', '<a href="./tarifs-adherents.html" target="_blank" rel="noopener noreferrer" data-i18n="footerTariffs">Adhérent 2 · 28 000</a> ·')
+          match = re.search(r'    var TEXT=(\{.*\});\n\n    function setLang', text, re.S)
+          if not match:
+              raise SystemExit('Dictionnaire TEXT introuvable')
+          data = json.loads(match.group(1))
           updates = {
-            'fr': {
-              'metaDescription':'Rejoignez DIGIYLYFE comme adhérent : carte digitale avec QR, place dans la vitrine, contact direct, 8 langues, paiement direct et 0 % de commission. Adhésion à partir de 19 900 FCFA/mois ; présence sectorielle renforcée à 28 000 FCFA/mois.',
-              'offerTitle':'Adhésion DIGIYLYFE · à partir de',
-              'offerText':'Carte digitale · QR · place dans la vitrine · WhatsApp · SMS · appel · 8 langues · contact direct. Deux niveaux selon l’activité.',
-              'signupCta':'ADHÉRENT 1 · 19 900 →',
-              'tariffCta':'ADHÉRENT 2 · 28 000 →',
-              'footerSignup':'Adhérent 1 · 19 900',
-              'footerTariffs':'Adhérent 2 · 28 000'
-            },
-            'en': {
-              'metaDescription':'Join DIGIYLYFE as a member: digital card with QR, showcase placement, direct contact, 8 languages, direct payment and 0% commission. Membership from 19,900 FCFA/month; enhanced sector presence at 28,000 FCFA/month.',
-              'offerTitle':'DIGIYLYFE Membership · from',
-              'offerText':'Digital card · QR · showcase placement · WhatsApp · SMS · call · 8 languages · direct contact. Two levels depending on the activity.',
-              'signupCta':'MEMBER 1 · 19,900 →',
-              'tariffCta':'MEMBER 2 · 28,000 →',
-              'footerSignup':'Member 1 · 19,900',
-              'footerTariffs':'Member 2 · 28,000'
-            },
-            'es': {
-              'metaDescription':'Únase a DIGIYLYFE: tarjeta digital con QR, presencia en el escaparate, contacto directo, 8 idiomas, pago directo y 0 % de comisión. Adhesión desde 19 900 FCFA/mes; presencia sectorial reforzada a 28 000 FCFA/mes.',
-              'offerTitle':'Adhesión DIGIYLYFE · desde',
-              'offerText':'Tarjeta digital · QR · lugar en el escaparate · WhatsApp · SMS · llamada · 8 idiomas · contacto directo. Dos niveles según la actividad.',
-              'signupCta':'ADHESIÓN 1 · 19 900 →',
-              'tariffCta':'ADHESIÓN 2 · 28 000 →',
-              'footerSignup':'Adhesión 1 · 19 900',
-              'footerTariffs':'Adhesión 2 · 28 000'
-            },
-            'pt': {
-              'metaDescription':'Adira à DIGIYLYFE: cartão digital com QR, lugar na montra, contacto direto, 8 idiomas, pagamento direto e 0% de comissão. Adesão desde 19 900 FCFA/mês; presença setorial reforçada a 28 000 FCFA/mês.',
-              'offerTitle':'Adesão DIGIYLYFE · desde',
-              'offerText':'Cartão digital · QR · lugar na montra · WhatsApp · SMS · chamada · 8 idiomas · contacto direto. Dois níveis conforme a atividade.',
-              'signupCta':'ADESÃO 1 · 19 900 →',
-              'tariffCta':'ADESÃO 2 · 28 000 →',
-              'footerSignup':'Adesão 1 · 19 900',
-              'footerTariffs':'Adesão 2 · 28 000'
-            },
-            'it': {
-              'metaDescription':'Aderite a DIGIYLYFE: biglietto digitale con QR, posto nella vetrina, contatto diretto, 8 lingue, pagamento diretto e 0% commissioni. Adesione da 19 900 FCFA/mese; presenza settoriale rafforzata a 28 000 FCFA/mese.',
-              'offerTitle':'Adesione DIGIYLYFE · da',
-              'offerText':'Biglietto digitale · QR · posto nella vetrina · WhatsApp · SMS · chiamata · 8 lingue · contatto diretto. Due livelli secondo l’attività.',
-              'signupCta':'ADESIONE 1 · 19 900 →',
-              'tariffCta':'ADESIONE 2 · 28 000 →',
-              'footerSignup':'Adesione 1 · 19 900',
-              'footerTariffs':'Adesione 2 · 28 000'
-            },
-            'de': {
-              'metaDescription':'Werden Sie DIGIYLYFE-Mitglied: digitale Karte mit QR, Platz im Schaufenster, direkter Kontakt, 8 Sprachen, direkte Zahlung und 0 % Provision. Mitgliedschaft ab 19 900 FCFA/Monat; verstärkte Branchenpräsenz für 28 000 FCFA/Monat.',
-              'offerTitle':'DIGIYLYFE-Mitgliedschaft · ab',
-              'offerText':'Digitale Karte · QR · Platz im Schaufenster · WhatsApp · SMS · Anruf · 8 Sprachen · direkter Kontakt. Zwei Stufen je nach Tätigkeit.',
-              'signupCta':'MITGLIEDSCHAFT 1 · 19 900 →',
-              'tariffCta':'MITGLIEDSCHAFT 2 · 28 000 →',
-              'footerSignup':'Mitgliedschaft 1 · 19 900',
-              'footerTariffs':'Mitgliedschaft 2 · 28 000'
-            },
-            'nl': {
-              'metaDescription':'Word lid van DIGIYLYFE: digitale kaart met QR, plaats in de etalage, direct contact, 8 talen, directe betaling en 0% commissie. Lidmaatschap vanaf 19.900 FCFA/maand; versterkte sectorpresentie voor 28.000 FCFA/maand.',
-              'offerTitle':'DIGIYLYFE-lidmaatschap · vanaf',
-              'offerText':'Digitale kaart · QR · plaats in de etalage · WhatsApp · SMS · bellen · 8 talen · direct contact. Twee niveaus afhankelijk van de activiteit.',
-              'signupCta':'LIDMAATSCHAP 1 · 19.900 →',
-              'tariffCta':'LIDMAATSCHAP 2 · 28.000 →',
-              'footerSignup':'Lidmaatschap 1 · 19.900',
-              'footerTariffs':'Lidmaatschap 2 · 28.000'
-            },
-            'ar': {
-              'metaDescription':'انضم إلى DIGIYLYFE: بطاقة رقمية مع QR، مكان في الواجهة، تواصل مباشر، 8 لغات، دفع مباشر وعمولة 0٪. العضوية ابتداءً من 19,900 فرنك CFA شهريًا؛ حضور قطاعي معزز مقابل 28,000 فرنك CFA شهريًا.',
-              'offerTitle':'عضوية DIGIYLYFE · ابتداءً من',
-              'offerText':'بطاقة رقمية · QR · مكان في الواجهة · واتساب · SMS · اتصال · 8 لغات · تواصل مباشر. مستويان حسب النشاط.',
-              'signupCta':'العضوية 1 · 19,900 ←',
-              'tariffCta':'العضوية 2 · 28,000 ←',
-              'footerSignup':'العضوية 1 · 19,900',
-              'footerTariffs':'العضوية 2 · 28,000'
-            }
+              'fr': {'metaDescription':'Rejoignez DIGIYLYFE comme adhérent : carte digitale avec QR, place dans la vitrine, contact direct, 8 langues, paiement direct et 0 % de commission. Adhésion à partir de 19 900 FCFA/mois ; présence sectorielle renforcée à 28 000 FCFA/mois.','offerTitle':'Adhésion DIGIYLYFE · à partir de','offerText':'Carte digitale · QR · place dans la vitrine · WhatsApp · SMS · appel · 8 langues · contact direct. Deux niveaux selon l’activité.','signupCta':'ADHÉRENT 1 · 19 900 →','tariffCta':'ADHÉRENT 2 · 28 000 →','footerSignup':'Adhérent 1 · 19 900','footerTariffs':'Adhérent 2 · 28 000'},
+              'en': {'metaDescription':'Join DIGIYLYFE as a member: digital card with QR, showcase placement, direct contact, 8 languages, direct payment and 0% commission. Membership from 19,900 FCFA/month; enhanced sector presence at 28,000 FCFA/month.','offerTitle':'DIGIYLYFE Membership · from','offerText':'Digital card · QR · showcase placement · WhatsApp · SMS · call · 8 languages · direct contact. Two levels depending on the activity.','signupCta':'MEMBER 1 · 19,900 →','tariffCta':'MEMBER 2 · 28,000 →','footerSignup':'Member 1 · 19,900','footerTariffs':'Member 2 · 28,000'},
+              'es': {'metaDescription':'Únase a DIGIYLYFE: tarjeta digital con QR, presencia en el escaparate, contacto directo, 8 idiomas, pago directo y 0 % de comisión. Adhesión desde 19 900 FCFA/mes; presencia sectorial reforzada a 28 000 FCFA/mes.','offerTitle':'Adhesión DIGIYLYFE · desde','offerText':'Tarjeta digital · QR · lugar en el escaparate · WhatsApp · SMS · llamada · 8 idiomas · contacto directo. Dos niveles según la actividad.','signupCta':'ADHESIÓN 1 · 19 900 →','tariffCta':'ADHESIÓN 2 · 28 000 →','footerSignup':'Adhesión 1 · 19 900','footerTariffs':'Adhesión 2 · 28 000'},
+              'pt': {'metaDescription':'Adira à DIGIYLYFE: cartão digital com QR, lugar na montra, contacto direto, 8 idiomas, pagamento direto e 0% de comissão. Adesão desde 19 900 FCFA/mês; presença setorial reforçada a 28 000 FCFA/mês.','offerTitle':'Adesão DIGIYLYFE · desde','offerText':'Cartão digital · QR · lugar na montra · WhatsApp · SMS · chamada · 8 idiomas · contacto direto. Dois níveis conforme a atividade.','signupCta':'ADESÃO 1 · 19 900 →','tariffCta':'ADESÃO 2 · 28 000 →','footerSignup':'Adesão 1 · 19 900','footerTariffs':'Adesão 2 · 28 000'},
+              'it': {'metaDescription':'Aderite a DIGIYLYFE: biglietto digitale con QR, posto nella vetrina, contatto diretto, 8 lingue, pagamento diretto e 0% commissioni. Adesione da 19 900 FCFA/mese; presenza settoriale rafforzata a 28 000 FCFA/mese.','offerTitle':'Adesione DIGIYLYFE · da','offerText':'Biglietto digitale · QR · posto nella vetrina · WhatsApp · SMS · chiamata · 8 lingue · contatto diretto. Due livelli secondo l’attività.','signupCta':'ADESIONE 1 · 19 900 →','tariffCta':'ADESIONE 2 · 28 000 →','footerSignup':'Adesione 1 · 19 900','footerTariffs':'Adesione 2 · 28 000'},
+              'de': {'metaDescription':'Werden Sie DIGIYLYFE-Mitglied: digitale Karte mit QR, Platz im Schaufenster, direkter Kontakt, 8 Sprachen, direkte Zahlung und 0 % Provision. Mitgliedschaft ab 19 900 FCFA/Monat; verstärkte Branchenpräsenz für 28 000 FCFA/Monat.','offerTitle':'DIGIYLYFE-Mitgliedschaft · ab','offerText':'Digitale Karte · QR · Platz im Schaufenster · WhatsApp · SMS · Anruf · 8 Sprachen · direkter Kontakt. Zwei Stufen je nach Tätigkeit.','signupCta':'MITGLIEDSCHAFT 1 · 19 900 →','tariffCta':'MITGLIEDSCHAFT 2 · 28 000 →','footerSignup':'Mitgliedschaft 1 · 19 900','footerTariffs':'Mitgliedschaft 2 · 28 000'},
+              'nl': {'metaDescription':'Word lid van DIGIYLYFE: digitale kaart met QR, plaats in de etalage, direct contact, 8 talen, directe betaling en 0% commissie. Lidmaatschap vanaf 19.900 FCFA/maand; versterkte sectorpresentie voor 28.000 FCFA/maand.','offerTitle':'DIGIYLYFE-lidmaatschap · vanaf','offerText':'Digitale kaart · QR · plaats in de etalage · WhatsApp · SMS · bellen · 8 talen · direct contact. Twee niveaus afhankelijk van de activiteit.','signupCta':'LIDMAATSCHAP 1 · 19.900 →','tariffCta':'LIDMAATSCHAP 2 · 28.000 →','footerSignup':'Lidmaatschap 1 · 19.900','footerTariffs':'Lidmaatschap 2 · 28.000'},
+              'ar': {'metaDescription':'انضم إلى DIGIYLYFE: بطاقة رقمية مع QR، مكان في الواجهة، تواصل مباشر، 8 لغات، دفع مباشر وعمولة 0٪. العضوية ابتداءً من 19,900 فرنك CFA شهريًا؛ حضور قطاعي معزز مقابل 28,000 فرنك CFA شهريًا.','offerTitle':'عضوية DIGIYLYFE · ابتداءً من','offerText':'بطاقة رقمية · QR · مكان في الواجهة · واتساب · SMS · اتصال · 8 لغات · تواصل مباشر. مستويان حسب النشاط.','signupCta':'العضوية 1 · 19,900 ←','tariffCta':'العضوية 2 · 28,000 ←','footerSignup':'العضوية 1 · 19,900','footerTariffs':'العضوية 2 · 28,000'}
           }
-
           for lang, values in updates.items():
               if lang not in data:
                   raise SystemExit(f'Langue absente: {lang}')
               data[lang].update(values)
-
           packed = json.dumps(data, ensure_ascii=False, separators=(',', ':'))
-          text = text[:m.start(1)] + packed + text[m.end(1):]
-
-          required = [
-              '19 900 FCFA</b>',
-              'tarifs-adherents-1.html',
-              'ADHÉRENT 1 · 19 900',
-              'ADHÉRENT 2 · 28 000',
-              '"lowPrice":"19900"',
-              '"highPrice":"28000"'
-          ]
-          for needle in required:
+          text = text[:match.start(1)] + packed + text[match.end(1):]
+          for needle in ('19 900 FCFA</b>', 'tarifs-adherents-1.html', 'ADHÉRENT 1 · 19 900', 'ADHÉRENT 2 · 28 000', '"lowPrice":"19900"', '"highPrice":"28000"'):
               if needle not in text:
-                  raise SystemExit(f'Contrôle final manquant: {needle}')
-
+                  raise SystemExit(f'Controle final manquant: {needle}')
           path.write_text(text, encoding='utf-8')
           PY
 
-      - name: Contrôler et pousser
+      - name: Controler et pousser
         shell: bash
         run: |
           git config user.name "DIGIYLYFE Bot"
@@ -213,5 +79,5 @@ jobs:
           git rm .github/workflows/align-index-pricing.yml
           git add index.html
           git diff --cached --check
-          git commit -m "Aligner index sur adhésions 19 900 et 28 000"
+          git commit -m "Aligner index sur adhesions 19 900 et 28 000"
           git push
