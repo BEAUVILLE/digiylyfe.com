@@ -1,0 +1,97 @@
+name: Poser tarifs Europe 45 et 75 euros
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-euro-pricing.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  euro-pricing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recuperer le depot
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Poser les prix Europe
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, re
+
+          # INDEX
+          p = Path('index.html')
+          text = p.read_text(encoding='utf-8')
+          def rep(s, old, new, expected=1):
+              count = s.count(old)
+              if count != expected:
+                  raise SystemExit(f'index remplacement attendu {expected}, trouve {count}: {old[:90]}')
+              return s.replace(old, new)
+
+          text = rep(text, 'index-adherents-19900-28000-v2-20260812', 'index-adherents-19900-28000-eur-v3-20260812')
+          text = rep(text, '.price span{display:block;margin-top:5px;font-size:10px;font-weight:1000;text-transform:uppercase}', '.price em{display:block;margin-top:7px;font-style:normal;font-size:18px;line-height:1;font-weight:1000}.price span{display:block;margin-top:5px;font-size:10px;font-weight:1000;text-transform:uppercase}')
+          text = rep(text, '<div class="price"><b>19 900 FCFA</b><span data-i18n="pricePeriod">PAR MOIS</span></div>', '<div class="price"><b>19 900 FCFA</b><em data-i18n="euroPrice">45 € · EUROPE</em><span data-i18n="pricePeriod">PAR MOIS</span></div>')
+          text = rep(text, '>ADHÉRENT 1 · 19 900 →</a>', '>ADHÉRENT 1 · 19 900 / 45 € →</a>', 2)
+          text = rep(text, '>ADHÉRENT 2 · 28 000 →</a>', '>ADHÉRENT 2 · 28 000 / 75 € →</a>', 2)
+          text = rep(text, '>Adhérent 1 · 19 900</a> ·', '>Adhérent 1 · 19 900 / 45 €</a> ·')
+          text = rep(text, '>Adhérent 2 · 28 000</a> ·', '>Adhérent 2 · 28 000 / 75 €</a> ·')
+          text = rep(text, 'Adhésion à partir de 19 900 FCFA/mois ; présence sectorielle renforcée à 28 000 FCFA/mois.', 'Adhésion à partir de 19 900 FCFA/mois ; présence sectorielle renforcée à 28 000 FCFA/mois. Europe : 45 € / 75 € par mois.', 1)
+
+          m = re.search(r'    var TEXT=(\{.*\});\n\n    function setLang', text, re.S)
+          if not m:
+              raise SystemExit('Dictionnaire TEXT index introuvable')
+          data = json.loads(m.group(1))
+          for lang, d in data.items():
+              d['euroPrice'] = '45 € · أوروبا' if lang == 'ar' else '45 € · EUROPE'
+              d['signupCta'] = re.sub(r'19[ .,“,”,]?900', '19 900 / 45 €', d['signupCta'])
+              d['tariffCta'] = re.sub(r'28[ .,“,”,]?000', '28 000 / 75 €', d['tariffCta'])
+              d['footerSignup'] = re.sub(r'19[ .,“,”,]?900', '19 900 / 45 €', d['footerSignup'])
+              d['footerTariffs'] = re.sub(r'28[ .,“,”,]?000', '28 000 / 75 €', d['footerTariffs'])
+          packed = json.dumps(data, ensure_ascii=False, separators=(',', ':'))
+          text = text[:m.start(1)] + packed + text[m.end(1):]
+          for needle in ('45 € · EUROPE', '19 900 / 45 €', '28 000 / 75 €', 'index-adherents-19900-28000-eur-v3-20260812'):
+              if needle not in text:
+                  raise SystemExit(f'Controle index manquant: {needle}')
+          p.write_text(text, encoding='utf-8')
+
+          # ADHERENT 1
+          p = Path('tarifs-adherents-1.html')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace('<title>DIGIYLYFE — Adhérent 1 · 19 900 FCFA</title>', '<title>DIGIYLYFE — Adhérent 1 · 19 900 FCFA · 45 € Europe</title>')
+          text = text.replace('DIGIYLYFE · Adhérent 1 : 19 900 FCFA/mois.', 'DIGIYLYFE · Adhérent 1 : 19 900 FCFA/mois · Europe : 45 €/mois.')
+          text, n = re.subn(r'memberPrice:"[^"]*FCFA"', 'memberPrice:"19 900 FCFA · 45 €"', text)
+          if n != 8:
+              raise SystemExit(f'Adherent 1: 8 prix langues attendus, trouve {n}')
+          if text.count('19 900 FCFA · 45 €') != 8:
+              raise SystemExit('Controle Adherent 1 euros echoue')
+          p.write_text(text, encoding='utf-8')
+
+          # ADHERENT 2
+          p = Path('tarifs-adherents.html')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace('Tarifs adhérents DIGIYLYFE : adhésion 28 000 FCFA/mois,', 'Tarifs adhérents DIGIYLYFE : adhésion 28 000 FCFA/mois · Europe : 75 €/mois,')
+          text, n = re.subn(r'"memberPrice":"[^"]*FCFA"', '"memberPrice":"28 000 FCFA · 75 €"', text)
+          if n != 8:
+              raise SystemExit(f'Adherent 2: 8 prix langues attendus, trouve {n}')
+          if text.count('28 000 FCFA · 75 €') != 8:
+              raise SystemExit('Controle Adherent 2 euros echoue')
+          p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Controler et pousser
+        shell: bash
+        run: |
+          git config user.name "DIGIYLYFE Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/add-euro-pricing.yml
+          git add index.html tarifs-adherents-1.html tarifs-adherents.html
+          git diff --cached --check
+          git diff --cached --stat
+          git commit -m "Afficher tarifs Europe 45 et 75 euros"
+          git push
