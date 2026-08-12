@@ -19,6 +19,8 @@
     ar:{title:'⭐ مفضلاتي · 3 كحد أقصى',empty:'اضغط ⭐ على وحداتك المفضلة لتظهر هنا.',voice:'الصوت',doctrine:['أنقر.','أتحدث.','أنا موجود.','أنا ظاهر.','أنا معروف.','أتقدم.'],max:'الحد الأقصى 3 مفضلات.'}
   };
 
+  var EMPTY_SLOT={fr:'Choisir un favori',en:'Choose a favorite',es:'Elegir un favorito',pt:'Escolher um favorito',de:'Favorit wählen',it:'Scegli un preferito',nl:'Kies een favoriet',ar:'اختر مفضلة'};
+
   var MODULES=[];
   var favorites=[];
 
@@ -115,7 +117,7 @@
       .digiyTopFavoritesTitle{margin:0 0 8px;color:#fff3cf;font-size:12px;font-weight:1000;letter-spacing:.08em;text-align:center}\
       .digiyTopFavoritesGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}\
       .digiyTopFavorite{min-height:68px;padding:10px 9px;border:1px solid rgba(255,255,255,.16);border-radius:17px;background:rgba(255,255,255,.075);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;color:#fff;font-size:13px;line-height:1.08;font-weight:1000}\
-      .digiyTopFavorite .ico{font-size:23px;line-height:1}.digiyTopFavorite b{font-size:13px;line-height:1.08}.digiyTopFavorite.voiceFav{border-color:rgba(246,196,83,.68);background:linear-gradient(135deg,rgba(246,196,83,.24),rgba(34,197,94,.16));color:#fff3cf}.digiyTopFavorite.voiceFav b{font-size:15px}\
+      .digiyTopFavorite .ico{font-size:23px;line-height:1}.digiyTopFavorite b{font-size:13px;line-height:1.08}.digiyTopFavorite.voiceFav{border-color:rgba(246,196,83,.68);background:linear-gradient(135deg,rgba(246,196,83,.24),rgba(34,197,94,.16));color:#fff3cf}.digiyTopFavorite.voiceFav b{font-size:15px}.digiyTopFavorite.emptySlot{border-style:dashed;opacity:.74;background:rgba(255,255,255,.035)}\
       .digiyTopFavoritesEmpty{padding:13px 10px;border:1px dashed rgba(246,196,83,.30);border-radius:15px;color:rgba(255,250,240,.76);font-size:11px;line-height:1.35;font-weight:900;text-align:center}\
       .digiyFavStar{position:absolute;top:7px;right:7px;z-index:4;width:34px;height:34px;border-radius:999px;border:1px solid rgba(246,196,83,.46);background:rgba(3,18,13,.90);color:#fff3cf;display:grid;place-items:center;padding:0;font-size:19px;line-height:1;cursor:pointer;box-shadow:0 7px 18px rgba(0,0,0,.24)}\
       .digiyFavStar.active{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;border-color:#f6c453}.publicLeadDoor .digiyFavStar{top:8px;right:8px}\
@@ -156,13 +158,14 @@
     root.querySelector('.digiyTopFavoritesTitle').textContent=c.title;
     var grid=root.querySelector('.digiyTopFavoritesGrid');
     var valid=favorites.map(item).filter(Boolean);
-    if(!valid.length){grid.innerHTML='<div class="digiyTopFavoritesEmpty" style="grid-column:1/-1">'+c.empty+'</div>';}
-    else{
-      grid.innerHTML=valid.map(function(m){
-        var label=labelOf(m.card,m.key);
-        return '<a class="digiyTopFavorite'+(m.key==='voice'?' voiceFav':'')+'" href="'+m.href+'" target="_blank" rel="noopener noreferrer"><span class="ico">'+m.icon+'</span><b>'+label+'</b></a>';
-      }).join('');
+    var cells=valid.map(function(m){
+      var label=labelOf(m.card,m.key);
+      return '<a class="digiyTopFavorite'+(m.key==='voice'?' voiceFav':'')+'" href="'+m.href+'" target="_blank" rel="noopener noreferrer"><span class="ico">'+m.icon+'</span><b>'+label+'</b></a>';
+    });
+    for(var i=valid.length;i<MAX;i++){
+      cells.push('<div class="digiyTopFavorite emptySlot"><span class="ico">☆</span><b>'+EMPTY_SLOT[lang()]+'</b></div>');
     }
+    grid.innerHTML=cells.join('');
   }
 
   function renderStars(){
