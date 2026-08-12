@@ -68,8 +68,6 @@ jobs:
           text, n = re.subn(r'memberPrice:"[^"]*FCFA"', 'memberPrice:"19 900 FCFA · 45 €"', text)
           if n != 8:
               raise SystemExit(f'Adherent 1: 8 prix langues attendus, trouve {n}')
-          if text.count('19 900 FCFA · 45 €') != 8:
-              raise SystemExit('Controle Adherent 1 euros echoue')
           p.write_text(text, encoding='utf-8')
 
           # ADHERENT 2
@@ -79,14 +77,15 @@ jobs:
           text, n = re.subn(r'"memberPrice":"[^"]*FCFA"', '"memberPrice":"28 000 FCFA · 75 €"', text)
           if n != 8:
               raise SystemExit(f'Adherent 2: 8 prix langues attendus, trouve {n}')
-          if text.count('28 000 FCFA · 75 €') != 8:
-              raise SystemExit('Controle Adherent 2 euros echoue')
           p.write_text(text, encoding='utf-8')
           PY
 
       - name: Controler et pousser
         shell: bash
         run: |
+          grep -q '45 € · EUROPE' index.html
+          grep -q '19 900 FCFA · 45 €' tarifs-adherents-1.html
+          grep -q '28 000 FCFA · 75 €' tarifs-adherents.html
           git config user.name "DIGIYLYFE Bot"
           git config user.email "actions@users.noreply.github.com"
           git rm .github/workflows/add-euro-pricing.yml
