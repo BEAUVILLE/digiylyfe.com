@@ -1,0 +1,34 @@
+name: Hardcode vitrine signature
+on:
+  push:
+    paths:
+      - '.github/workflows/hardcode-vitrine-signature.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Poser la signature visible en dur
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          signature='''\n    <div id="digiyTopDoctrine" class="digiyTopDoctrine" aria-label="Signature DIGIYLYFE" style="margin:0 0 12px;padding:10px 11px;border:1px solid rgba(34,197,94,.34);border-radius:18px;background:rgba(255,255,255,.055);display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;text-align:center">\n      <span style="font-size:11px;font-weight:950;color:rgba(255,250,240,.88)">Je clique.</span><i style="font-style:normal;color:rgba(246,196,83,.62);font-weight:1000">·</i>\n      <span style="font-size:11px;font-weight:950;color:rgba(255,250,240,.88)">Je parle.</span><i style="font-style:normal;color:rgba(246,196,83,.62);font-weight:1000">·</i>\n      <span style="font-size:11px;font-weight:950;color:rgba(255,250,240,.88)">J’existe.</span><i style="font-style:normal;color:rgba(246,196,83,.62);font-weight:1000">·</i>\n      <span style="font-size:11px;font-weight:950;color:rgba(255,250,240,.88)">Je suis visible.</span><i style="font-style:normal;color:rgba(246,196,83,.62);font-weight:1000">·</i>\n      <span style="font-size:11px;font-weight:950;color:rgba(255,250,240,.88)">Je suis reconnu.</span><i style="font-style:normal;color:rgba(246,196,83,.62);font-weight:1000">·</i>\n      <span style="font-size:11px;font-weight:950;color:rgba(255,250,240,.88)">J’avance.</span><i style="font-style:normal;color:rgba(246,196,83,.62);font-weight:1000">·</i>\n      <strong style="color:#f6c453;font-size:12px;font-weight:1000;letter-spacing:.05em">DIGIYLYFE</strong>\n    </div>\n'''
+          marker='    <section class="hero" aria-label="Adhésion DIGIYLYFE">'
+          assert marker in s, 'HERO introuvable'
+          if 'id="digiyTopDoctrine"' not in s:
+              s=s.replace(marker,signature+'\n'+marker,1)
+          s=s.replace('./assets/js/vitrine-top-favoris.js?v=20260812-vitrine-favoris-v2','./assets/js/vitrine-top-favoris.js?v=20260812-vitrine-favoris-v3',1)
+          p.write_text(s)
+          PY
+      - name: Retirer le workflow temporaire et pousser
+        run: |
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git rm .github/workflows/hardcode-vitrine-signature.yml
+          git add index.html
+          git commit -m 'Poser la signature DIGIYLYFE en dur dans la vitrine'
+          git push
