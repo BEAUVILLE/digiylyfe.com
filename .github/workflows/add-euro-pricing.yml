@@ -41,7 +41,7 @@ jobs:
           text = rep(text, '>ADHÉRENT 2 · 28 000 →</a>', '>ADHÉRENT 2 · 28 000 / 75 € →</a>', 2)
           text = rep(text, '>Adhérent 1 · 19 900</a> ·', '>Adhérent 1 · 19 900 / 45 €</a> ·')
           text = rep(text, '>Adhérent 2 · 28 000</a> ·', '>Adhérent 2 · 28 000 / 75 €</a> ·')
-          text = rep(text, 'Adhésion à partir de 19 900 FCFA/mois ; présence sectorielle renforcée à 28 000 FCFA/mois.', 'Adhésion à partir de 19 900 FCFA/mois ; présence sectorielle renforcée à 28 000 FCFA/mois. Europe : 45 € / 75 € par mois.', 1)
+          text = rep(text, 'Adhésion à partir de 19 900 FCFA/mois ; présence sectorielle renforcée à 28 000 FCFA/mois.', 'Adhésion à partir de 19 900 FCFA/mois ; présence sectorielle renforcée à 28 000 FCFA/mois. Europe : 45 € / 75 € par mois.', 2)
 
           m = re.search(r'    var TEXT=(\{.*\});\n\n    function setLang', text, re.S)
           if not m:
@@ -49,10 +49,10 @@ jobs:
           data = json.loads(m.group(1))
           for lang, d in data.items():
               d['euroPrice'] = '45 € · أوروبا' if lang == 'ar' else '45 € · EUROPE'
-              d['signupCta'] = re.sub(r'19[ .,“,”,]?900', '19 900 / 45 €', d['signupCta'])
-              d['tariffCta'] = re.sub(r'28[ .,“,”,]?000', '28 000 / 75 €', d['tariffCta'])
-              d['footerSignup'] = re.sub(r'19[ .,“,”,]?900', '19 900 / 45 €', d['footerSignup'])
-              d['footerTariffs'] = re.sub(r'28[ .,“,”,]?000', '28 000 / 75 €', d['footerTariffs'])
+              d['signupCta'] = re.sub(r'19[ .,]?900', '19 900 / 45 €', d['signupCta'])
+              d['tariffCta'] = re.sub(r'28[ .,]?000', '28 000 / 75 €', d['tariffCta'])
+              d['footerSignup'] = re.sub(r'19[ .,]?900', '19 900 / 45 €', d['footerSignup'])
+              d['footerTariffs'] = re.sub(r'28[ .,]?000', '28 000 / 75 €', d['footerTariffs'])
           packed = json.dumps(data, ensure_ascii=False, separators=(',', ':'))
           text = text[:m.start(1)] + packed + text[m.end(1):]
           for needle in ('45 € · EUROPE', '19 900 / 45 €', '28 000 / 75 €', 'index-adherents-19900-28000-eur-v3-20260812'):
