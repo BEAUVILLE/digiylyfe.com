@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>DIGIYLYFE — Carte de visite interactive</title>
+  <meta name="description" content="Carte de visite interactive DIGIYLYFE : WhatsApp, appel, site, ajout aux contacts et partage direct.">
+  <meta name="theme-color" content="#06140f">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://digiylyfe.com/carte/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digiylyfe.com/carte/">
+  <meta property="og:title" content="DIGIYLYFE — Votre écosystème digital local">
+  <meta property="og:description" content="Local · Direct · 0 % commission · Sénégal | France">
+  <meta property="og:image" content="https://digiylyfe.com/carte-visite-digiy.png">
+  <meta property="og:image:alt" content="Carte de visite DIGIYLYFE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DIGIYLYFE — Votre écosystème digital local">
+  <meta name="twitter:description" content="Local · Direct · 0 % commission · Sénégal | France">
+  <meta name="twitter:image" content="https://digiylyfe.com/carte-visite-digiy.png">
+
+  <style>
+    :root{
+      --bg:#03120d;--deep:#061a12;--panel:#0b2b1e;--ink:#fffaf0;
+      --soft:rgba(255,250,240,.76);--gold:#f6c453;--green:#25D366;
+      --line:rgba(255,255,255,.14);--shadow:0 24px 65px rgba(0,0,0,.36);
+      --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;min-height:100svh;color:var(--ink);font-family:var(--font);
+      background:
+        radial-gradient(850px 420px at 10% -5%,rgba(0,166,81,.30),transparent 62%),
+        radial-gradient(700px 350px at 95% 0,rgba(246,196,83,.17),transparent 60%),
+        linear-gradient(180deg,#075f32 0,#062a1d 34%,#03120d 100%);
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    :focus-visible{outline:3px solid rgba(246,196,83,.78);outline-offset:3px}
+
+    .wrap{width:min(100%,560px);margin:auto;padding:12px 11px 34px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+    .home{
+      display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 12px;
+      border-radius:999px;border:1px solid rgba(246,196,83,.42);background:rgba(255,255,255,.07);
+      font-size:11px;font-weight:1000;color:#fff3cf
+    }
+    .langs{display:flex;gap:5px;overflow:auto;scrollbar-width:none}
+    .langs::-webkit-scrollbar{display:none}
+    .lang{
+      min-width:34px;height:34px;padding:0 7px;border-radius:999px;border:1px solid rgba(246,196,83,.30);
+      background:rgba(255,255,255,.06);font-size:9px;font-weight:1000;cursor:pointer
+    }
+    .lang.active{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f}
+
+    .card{
+      overflow:hidden;border-radius:30px;border:1px solid rgba(246,196,83,.62);
+      background:rgba(255,255,255,.055);box-shadow:var(--shadow)
+    }
+    .visual{display:block;background:#fff}
+    .visual img{display:block;width:100%;height:auto}
+
+    .body{padding:17px}
+    .eyebrow{color:#f6c453;font-size:10px;font-weight:1000;letter-spacing:.09em;text-transform:uppercase}
+    h1{margin:7px 0 0;font-size:clamp(29px,8vw,42px);line-height:.96;font-weight:1000;letter-spacing:-.04em}
+    .lead{margin:10px 0 0;color:var(--soft);font-size:13px;line-height:1.45;font-weight:850}
+    .doctrine{
+      margin-top:12px;padding:10px 12px;border-radius:17px;border:1px solid rgba(34,197,94,.40);
+      background:linear-gradient(145deg,rgba(34,197,94,.12),rgba(246,196,83,.08));
+      text-align:center;font-size:11px;line-height:1.4;font-weight:1000
+    }
+
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}
+    .action{
+      min-height:58px;padding:11px 12px;border-radius:19px;border:1px solid var(--line);
+      background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;
+      gap:8px;text-align:center;font-size:12px;line-height:1.15;font-weight:1000;cursor:pointer
+    }
+    .action.whatsapp{background:linear-gradient(135deg,#dcfce7,#25D366,#128C7E);color:#04120d;border-color:rgba(37,211,102,.82)}
+    .action.primary{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;border-color:rgba(246,196,83,.78)}
+    .action.wide{grid-column:1/-1}
+    .note{margin:13px 2px 0;color:rgba(255,250,240,.62);font-size:10.5px;line-height:1.4;text-align:center;font-weight:800}
+    .status{
+      display:none;margin-top:10px;padding:9px 11px;border-radius:14px;
+      background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.32);
+      font-size:10.5px;text-align:center;font-weight:900
+    }
+    .status.show{display:block}
+
+    @media(max-width:390px){.actions{grid-template-columns:1fr}.action.wide{grid-column:auto}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="top">
+      <a class="home" href="https://digiylyfe.com/">← <span data-i18n="back">DIGIYLYFE.COM</span></a>
+      <div class="langs" aria-label="Langues">
+        <button class="lang active" data-lang="fr">FR</button>
+        <button class="lang" data-lang="en">EN</button>
+        <button class="lang" data-lang="es">ES</button>
+        <button class="lang" data-lang="pt">PT</button>
+        <button class="lang" data-lang="it">IT</button>
+        <button class="lang" data-lang="de">DE</button>
+        <button class="lang" data-lang="nl">NL</button>
+        <button class="lang" data-lang="ar">AR</button>
+      </div>
+    </div>
+
+    <section class="card">
+      <a class="visual" href="https://digiylyfe.com/" aria-label="Ouvrir DIGIYLYFE.COM">
+        <img src="https://digiylyfe.com/carte-visite-digiy.png" alt="Carte officielle DIGIYLYFE">
+      </a>
+
+      <div class="body">
+        <div class="eyebrow" data-i18n="eyebrow">CARTE DE VISITE INTERACTIVE</div>
+        <h1>DIGIYLYFE</h1>
+        <p class="lead" data-i18n="lead">Votre écosystème digital local · Sénégal | France. Une carte vivante : vous cliquez, vous contactez, vous partagez.</p>
+
+        <div class="doctrine" data-i18n="doctrine">Local · Direct · 0 % de commission</div>
+
+        <div class="actions">
+          <a class="action whatsapp" href="https://wa.me/221771342889?text=Bonjour%20DIGIYLYFE" target="_blank" rel="noopener noreferrer">
+            💬 <span data-i18n="whatsapp">WhatsApp</span>
+          </a>
+
+          <a class="action" href="tel:+221771342889">
+            📞 <span data-i18n="call">Appeler</span>
+          </a>
+
+          <a class="action" href="https://digiylyfe.com/">
+            🌍 <span data-i18n="site">Ouvrir le site</span>
+          </a>
+
+          <a class="action" href="digiylyfe.vcf" download="DIGIYLYFE.vcf">
+            👤 <span data-i18n="contact">Ajouter aux contacts</span>
+          </a>
+
+          <button class="action primary wide" type="button" id="shareBtn">
+            📲 <span data-i18n="share">Partager cette carte</span>
+          </button>
+        </div>
+
+        <div class="status" id="status" role="status"></div>
+        <p class="note" data-i18n="note">Le lien partagé reste vivant : si DIGIYLYFE évolue, la carte reste à jour.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+  (function(){
+    'use strict';
+
+    var TEXT={
+      fr:{back:'DIGIYLYFE.COM',eyebrow:'CARTE DE VISITE INTERACTIVE',lead:'Votre écosystème digital local · Sénégal | France. Une carte vivante : vous cliquez, vous contactez, vous partagez.',doctrine:'Local · Direct · 0 % de commission',whatsapp:'WhatsApp',call:'Appeler',site:'Ouvrir le site',contact:'Ajouter aux contacts',share:'Partager cette carte',note:'Le lien partagé reste vivant : si DIGIYLYFE évolue, la carte reste à jour.',copied:'Lien de la carte copié.'},
+      en:{back:'DIGIYLYFE.COM',eyebrow:'INTERACTIVE BUSINESS CARD',lead:'Your local digital ecosystem · Senegal | France. A living card: tap, contact and share.',doctrine:'Local · Direct · 0% commission',whatsapp:'WhatsApp',call:'Call',site:'Open website',contact:'Add to contacts',share:'Share this card',note:'The shared link stays alive: when DIGIYLYFE evolves, the card stays up to date.',copied:'Card link copied.'},
+      es:{back:'DIGIYLYFE.COM',eyebrow:'TARJETA DE VISITA INTERACTIVA',lead:'Su ecosistema digital local · Senegal | Francia. Una tarjeta viva: pulse, contacte y comparta.',doctrine:'Local · Directo · 0 % comisión',whatsapp:'WhatsApp',call:'Llamar',site:'Abrir sitio',contact:'Añadir a contactos',share:'Compartir esta tarjeta',note:'El enlace compartido sigue vivo: si DIGIYLYFE evoluciona, la tarjeta permanece actualizada.',copied:'Enlace de la tarjeta copiado.'},
+      pt:{back:'DIGIYLYFE.COM',eyebrow:'CARTÃO DE VISITA INTERATIVO',lead:'O seu ecossistema digital local · Senegal | França. Um cartão vivo: toque, contacte e partilhe.',doctrine:'Local · Direto · 0% comissão',whatsapp:'WhatsApp',call:'Ligar',site:'Abrir site',contact:'Adicionar aos contactos',share:'Partilhar este cartão',note:'O link partilhado continua vivo: quando a DIGIYLYFE evolui, o cartão mantém-se atualizado.',copied:'Link do cartão copiado.'},
+      it:{back:'DIGIYLYFE.COM',eyebrow:'BIGLIETTO DA VISITA INTERATTIVO',lead:'Il vostro ecosistema digitale locale · Senegal | Francia. Un biglietto vivo: toccate, contattate e condividete.',doctrine:'Locale · Diretto · 0% commissioni',whatsapp:'WhatsApp',call:'Chiama',site:'Apri il sito',contact:'Aggiungi ai contatti',share:'Condividi questo biglietto',note:'Il link condiviso resta vivo: quando DIGIYLYFE evolve, il biglietto resta aggiornato.',copied:'Link del biglietto copiato.'},
+      de:{back:'DIGIYLYFE.COM',eyebrow:'INTERAKTIVE VISITENKARTE',lead:'Ihr lokales digitales Ökosystem · Senegal | Frankreich. Eine lebendige Karte: antippen, kontaktieren und teilen.',doctrine:'Lokal · Direkt · 0 % Provision',whatsapp:'WhatsApp',call:'Anrufen',site:'Website öffnen',contact:'Zu Kontakten hinzufügen',share:'Diese Karte teilen',note:'Der geteilte Link bleibt lebendig: Wenn DIGIYLYFE sich weiterentwickelt, bleibt die Karte aktuell.',copied:'Kartenlink kopiert.'},
+      nl:{back:'DIGIYLYFE.COM',eyebrow:'INTERACTIEF VISITEKAARTJE',lead:'Uw lokale digitale ecosysteem · Senegal | Frankrijk. Een levende kaart: tik, neem contact op en deel.',doctrine:'Lokaal · Direct · 0% commissie',whatsapp:'WhatsApp',call:'Bellen',site:'Website openen',contact:'Toevoegen aan contacten',share:'Deze kaart delen',note:'De gedeelde link blijft levend: wanneer DIGIYLYFE evolueert, blijft de kaart actueel.',copied:'Kaartlink gekopieerd.'},
+      ar:{back:'DIGIYLYFE.COM',eyebrow:'بطاقة زيارة تفاعلية',lead:'منظومتك الرقمية المحلية · السنغال | فرنسا. بطاقة حية: اضغط، تواصل وشارك.',doctrine:'محلي · مباشر · عمولة 0٪',whatsapp:'واتساب',call:'اتصال',site:'افتح الموقع',contact:'أضف إلى جهات الاتصال',share:'شارك هذه البطاقة',note:'يبقى الرابط المشترك حيًا: عندما تتطور DIGIYLYFE تبقى البطاقة محدثة.',copied:'تم نسخ رابط البطاقة.'}
+    };
+
+    function setLang(lang){
+      if(!TEXT[lang])lang='fr';
+      var t=TEXT[lang];
+      document.documentElement.lang=lang;
+      document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+      document.querySelectorAll('[data-i18n]').forEach(function(el){
+        var k=el.getAttribute('data-i18n');
+        if(Object.prototype.hasOwnProperty.call(t,k))el.textContent=t[k];
+      });
+      document.querySelectorAll('.lang').forEach(function(btn){
+        btn.classList.toggle('active',btn.getAttribute('data-lang')===lang);
+      });
+      try{localStorage.setItem('digiy-card-lang',lang);}catch(e){}
+    }
+
+    document.querySelectorAll('.lang').forEach(function(btn){
+      btn.addEventListener('click',function(){setLang(btn.getAttribute('data-lang'));});
+    });
+
+    var initial='fr';
+    try{
+      var p=new URLSearchParams(location.search);
+      var q=(p.get('lang')||'').toLowerCase();
+      var saved=(localStorage.getItem('digiy-card-lang')||'').toLowerCase();
+      if(TEXT[q])initial=q; else if(TEXT[saved])initial=saved;
+    }catch(e){}
+    setLang(initial);
+
+    var shareBtn=document.getElementById('shareBtn');
+    var status=document.getElementById('status');
+    var cardUrl='https://digiylyfe.com/carte/';
+
+    function showStatus(msg){
+      status.textContent=msg;
+      status.classList.add('show');
+      setTimeout(function(){status.classList.remove('show');},1800);
+    }
+
+    shareBtn.addEventListener('click',async function(){
+      var lang=document.documentElement.lang||'fr';
+      try{
+        if(navigator.share){
+          await navigator.share({
+            title:'DIGIYLYFE',
+            text:'DIGIYLYFE — Local · Direct · 0 % commission',
+            url:cardUrl
+          });
+          return;
+        }
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          await navigator.clipboard.writeText(cardUrl);
+          showStatus((TEXT[lang]||TEXT.fr).copied);
+          return;
+        }
+        window.location.href=cardUrl;
+      }catch(error){
+        if(error && error.name==='AbortError')return;
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
