@@ -134,9 +134,9 @@
             🌍 <span data-i18n="site">Ouvrir le site</span>
           </a>
 
-          <a class="action" href="digiylyfe.vcf" download="DIGIYLYFE.vcf">
+          <button class="action" type="button" id="contactBtn">
             👤 <span data-i18n="contact">Ajouter aux contacts</span>
-          </a>
+          </button>
 
           <button class="action primary wide" type="button" id="shareBtn">
             📲 <span data-i18n="share">Partager cette carte</span>
@@ -193,8 +193,34 @@
     setLang(initial);
 
     var shareBtn=document.getElementById('shareBtn');
+    var contactBtn=document.getElementById('contactBtn');
     var status=document.getElementById('status');
     var cardUrl='https://digiylyfe.com/carte/';
+
+    if(contactBtn){
+      contactBtn.addEventListener('click',function(){
+        var vcard=[
+          'BEGIN:VCARD',
+          'VERSION:3.0',
+          'FN:DIGIYLYFE',
+          'ORG:DIGIYLYFE',
+          'TEL;TYPE=CELL,VOICE:+221771342889',
+          'EMAIL:DIGIYLYFE@GMAIL.COM',
+          'URL:https://digiylyfe.com/',
+          'NOTE:Votre écosystème digital local - Sénégal | France. Local. Direct. 0 % commission.',
+          'END:VCARD'
+        ].join('\r\n');
+        var blob=new Blob([vcard],{type:'text/vcard;charset=utf-8'});
+        var url=URL.createObjectURL(blob);
+        var a=document.createElement('a');
+        a.href=url;
+        a.download='DIGIYLYFE.vcf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function(){URL.revokeObjectURL(url);},1000);
+      });
+    }
 
     function showStatus(msg){
       status.textContent=msg;
