@@ -65,27 +65,16 @@ function setLang(x){
 function val(id){return $(id).value.trim()}
 function buildMessage(){
  const t=T[lang], ji=parseInt(val("job_type")||"0",10), pi=parseInt(val("pay_method")||"0",10);
- let s=t.msg_title+"\
-----------------------------------------\
-";
- s+=t.m_activity+" : "+val("activity_name")+"\
-";
- s+=t.m_job+" : "+(T[lang].jobs[ji]||"")+"\
-";
- s+=t.m_zone+" : "+val("zone")+"\
-";
- s+=t.m_manager+" : "+val("manager_name")+"\
-";
- s+=t.m_wa+" : "+val("whatsapp_num")+"\
-";
- s+=t.m_offer+" : "+val("offer_chosen")+"\
-";
- s+=t.m_pay+" : "+(T[lang].pays[pi]||"")+"\
-";
- if(val("message_free")) s+=t.m_free+" : "+val("message_free")+"\
-";
- s+="----------------------------------------\
-"+t.m_end; return s;
+ let s=t.msg_title+"\n----------------------------------------\n";
+ s+=t.m_activity+" : "+val("activity_name")+"\n";
+ s+=t.m_job+" : "+(T[lang].jobs[ji]||"")+"\n";
+ s+=t.m_zone+" : "+val("zone")+"\n";
+ s+=t.m_manager+" : "+val("manager_name")+"\n";
+ s+=t.m_wa+" : "+val("whatsapp_num")+"\n";
+ s+=t.m_offer+" : "+val("offer_chosen")+"\n";
+ s+=t.m_pay+" : "+(T[lang].pays[pi]||"")+"\n";
+ if(val("message_free")) s+=t.m_free+" : "+val("message_free")+"\n";
+ s+="----------------------------------------\n"+t.m_end; return s;
 }
 function ready(){if(!$("f").checkValidity()){$("f").reportValidity();return false}return true}
 $("f").addEventListener("submit",e=>{e.preventDefault();if(!ready())return;location.href="https://wa.me/"+DIGIY_PHONE+"?text="+encodeURIComponent(buildMessage())});
