@@ -1,6 +1,7 @@
 /* DIGIYLYFE — Contact commercial global
  * Source unique : contact@digiylyfe.com
  * Rôle : afficher l'adresse professionnelle officielle sur les pages publiques.
+ * Navigation : le HUB reste à l'atelier ; son ancien lien générique de footer est retiré.
  */
 (function(){
   'use strict';
@@ -8,9 +9,16 @@
   var EMAIL='contact@digiylyfe.com';
   var MAILTO='mailto:'+EMAIL;
 
-  if(document.querySelector('a[href="'+MAILTO+'"]')) return;
+  function cleanLegacyHubFooter(){
+    document.querySelectorAll('footer a[data-i18n="footerHub"][href^="https://digiy-hub.digiylyfe.com/"]').forEach(function(a){
+      var prev=a.previousSibling;
+      if(prev && prev.nodeType===3) prev.textContent=prev.textContent.replace(/\s*·\s*$/,'');
+      a.remove();
+    });
+  }
 
   function install(){
+    cleanLegacyHubFooter();
     if(document.querySelector('a[href="'+MAILTO+'"]')) return;
 
     var link=document.createElement('a');
