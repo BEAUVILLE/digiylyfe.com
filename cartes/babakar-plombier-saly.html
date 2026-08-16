@@ -40,7 +40,7 @@
         return r.text();
       })
       .then(master => {
-        const cardBlock = "const CARD = " + JSON.stringify(CARD, null, 2).replace(/<\\/script/gi, "<\\\\/script") + ";";
+        const cardBlock = "const CARD = " + JSON.stringify(CARD, null, 2) + ";";
         const html = master
           .replace(/const CARD = \{[\s\S]*?\n    \};/, cardBlock)
           .replace(/<meta id="robotsMeta" name="robots" content="[^"]+">/, '<meta id="robotsMeta" name="robots" content="index,follow">');
