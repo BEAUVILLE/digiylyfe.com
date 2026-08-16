@@ -1,0 +1,35 @@
+{
+  "version": "fiche-digiylyfe-v1",
+  "family": "service-artisan",
+  "published": false,
+  "subscriptionActive": false,
+  "slug": "professionnel-exemple",
+  "name": "PROFESSIONNEL EXEMPLE",
+  "phone": "+221000000000",
+  "whatsapp": "+221000000000",
+  "photoUrl": "",
+  "finalUrl": "",
+  "qrUrl": "",
+  "ficheColor": "#126b43",
+  "ficheColor2": "#e4b84b",
+  "languages": ["fr", "en", "es", "pt", "it", "de", "nl", "ar"],
+  "i18n": {
+    "fr": {
+      "job": "Activité",
+      "zone": "Zone",
+      "lead": "Présentation courte validée par le professionnel.",
+      "about": "Présentation complète facultative.",
+      "services": ["Service 1", "Service 2", "Service 3", "Service 4"],
+      "cta": "Contacter directement"
+    }
+  },
+  "gallery": [],
+  "videos": [],
+  "audio": null,
+  "products": [],
+  "facts": [],
+  "pricing": [],
+  "modules": [],
+  "contactNote": "",
+  "updatedAt": null
+}
