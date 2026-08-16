@@ -10,6 +10,7 @@
   "photoUrl": "",
   "finalUrl": "",
   "qrUrl": "",
+  "siteUrl": "",
   "ficheColor": "#126b43",
   "ficheColor2": "#e4b84b",
   "languages": ["fr", "en", "es", "pt", "it", "de", "nl", "ar"],
@@ -24,8 +25,6 @@
     }
   },
   "gallery": [],
-  "videos": [],
-  "audio": null,
   "products": [],
   "facts": [],
   "pricing": [],
