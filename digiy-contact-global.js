@@ -3,12 +3,14 @@
  * Rôle : afficher l'adresse professionnelle officielle sur les pages publiques.
  * Navigation : le HUB reste à l'atelier ; son ancien lien générique de footer est retiré.
  * Parcours adhésion : après règlement, les deux pages adhérent ouvrent la préparation de carte avec le bon forfait.
+ * Vitrine : les cartes adhérents réellement publiées sont ajoutées automatiquement sans modifier les pionniers historiques.
  */
 (function(){
   'use strict';
 
   var EMAIL='contact@digiylyfe.com';
   var MAILTO='mailto:'+EMAIL;
+  var PUBLIC_CARDS_API='https://wesqmwjjtsefyjnluosj.supabase.co/functions/v1/digiy-card-public?asset=list';
 
   function cleanLegacyHubFooter(){
     document.querySelectorAll('footer a[data-i18n="footerHub"][href^="https://digiy-hub.digiylyfe.com/"]').forEach(function(a){
@@ -66,9 +68,54 @@
     payment.appendChild(wrap);
   }
 
+  function installPublicShowcase(){
+    var grid=document.querySelector('.proofGrid');
+    if(!grid || grid.querySelector('[data-digiy-live-card]')) return;
+
+    fetch(PUBLIC_CARDS_API,{cache:'no-store'})
+      .then(function(r){if(!r.ok) throw new Error('vitrine indisponible');return r.json();})
+      .then(function(payload){
+        var cards=Array.isArray(payload&&payload.cards)?payload.cards:[];
+        cards.forEach(function(card){
+          if(!card || !card.final_url || !card.name) return;
+          if(grid.querySelector('a[href="'+CSS.escape(card.final_url)+'"]')) return;
+
+          var a=document.createElement('a');
+          a.className='proofCard';
+          a.href=card.final_url;
+          a.setAttribute('data-digiy-live-card','1');
+          a.setAttribute('aria-label','Ouvrir '+card.name);
+
+          var img=document.createElement('img');
+          img.src=card.photo_url||'';
+          img.alt=card.name;
+          img.loading='lazy';
+          img.decoding='async';
+          img.style.cssText='width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;display:block;margin-bottom:7px;background:#ffffff12';
+
+          var strong=document.createElement('strong');
+          strong.textContent=card.name;
+
+          var small=document.createElement('small');
+          small.textContent=[card.job,card.zone].filter(Boolean).join(' · ');
+
+          var b=document.createElement('b');
+          b.textContent='Voir la carte →';
+
+          a.appendChild(img);
+          a.appendChild(strong);
+          a.appendChild(small);
+          a.appendChild(b);
+          grid.appendChild(a);
+        });
+      })
+      .catch(function(){ /* La vitrine historique reste intacte si le flux dynamique est indisponible. */ });
+  }
+
   function install(){
     cleanLegacyHubFooter();
     installPostPaymentCardButton();
+    installPublicShowcase();
     if(document.querySelector('a[href="'+MAILTO+'"]')) return;
 
     var link=document.createElement('a');
