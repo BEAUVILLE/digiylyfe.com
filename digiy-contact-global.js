@@ -2,6 +2,7 @@
  * Source unique : contact@digiylyfe.com
  * Rôle : afficher l'adresse professionnelle officielle sur les pages publiques.
  * Navigation : le HUB reste à l'atelier ; son ancien lien générique de footer est retiré.
+ * Parcours adhésion : après règlement, les deux pages adhérent ouvrent la préparation de carte avec le bon forfait.
  */
 (function(){
   'use strict';
@@ -17,8 +18,57 @@
     });
   }
 
+  function installPostPaymentCardButton(){
+    var file=(location.pathname.split('/').pop()||'').toLowerCase();
+    var plan=file==='tarifs-adherents-1.html'?'adherent-19900':file==='tarifs-adherents.html'?'adherent-28000':'';
+    if(!plan || document.querySelector('[data-digiy-prepare-card]')) return;
+
+    var payment=document.querySelector('#paiement');
+    if(!payment) return;
+
+    var labels={
+      fr:'✅ J’AI PAYÉ — PRÉPARER MA CARTE →',
+      en:'✅ I HAVE PAID — PREPARE MY CARD →',
+      es:'✅ YA HE PAGADO — PREPARAR MI TARJETA →',
+      pt:'✅ JÁ PAGUEI — PREPARAR O MEU CARTÃO →',
+      it:'✅ HO PAGATO — PREPARA IL MIO BIGLIETTO →',
+      de:'✅ ICH HABE BEZAHLT — KARTE VORBEREITEN →',
+      nl:'✅ IK HEB BETAALD — MIJN KAART VOORBEREIDEN →',
+      ar:'✅ لقد دفعت — إعداد بطاقتي ←'
+    };
+
+    var wrap=document.createElement('div');
+    wrap.setAttribute('data-digiy-prepare-card','1');
+    wrap.style.cssText='margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.16)';
+
+    var note=document.createElement('p');
+    note.style.cssText='margin:0 0 10px;color:rgba(247,255,249,.84);font-size:12px;line-height:1.5;font-weight:850;text-align:center';
+    note.textContent='Après votre règlement, transmettez les informations nécessaires à votre carte DIGIYLYFE.';
+
+    var link=document.createElement('a');
+    link.style.cssText='display:flex;min-height:56px;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;background:linear-gradient(135deg,#f6c453,#2dd4bf);color:#06140f;font-weight:1000;text-decoration:none;text-align:center';
+
+    function refresh(){
+      var lang=(document.documentElement.lang||localStorage.getItem('digiy_lang')||'fr').slice(0,2).toLowerCase();
+      if(!labels[lang]) lang='fr';
+      link.textContent=labels[lang];
+      link.href='https://digiylyfe.com/preparer-ma-carte.html?plan='+encodeURIComponent(plan)+'&lang='+encodeURIComponent(lang);
+      link.setAttribute('aria-label',labels[lang].replace(/^✅\s*/,''));
+    }
+
+    refresh();
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+    window.addEventListener('storage',refresh);
+    link.addEventListener('click',refresh);
+
+    wrap.appendChild(note);
+    wrap.appendChild(link);
+    payment.appendChild(wrap);
+  }
+
   function install(){
     cleanLegacyHubFooter();
+    installPostPaymentCardButton();
     if(document.querySelector('a[href="'+MAILTO+'"]')) return;
 
     var link=document.createElement('a');
