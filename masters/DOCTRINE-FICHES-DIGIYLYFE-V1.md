@@ -27,8 +27,7 @@ La fiche ne doit jamais devenir un mini-site qui détruit la valeur commerciale 
 
 ## Ce qui reste personnel
 
-- photo principale ;
-- petite galerie photo facultative ;
+- deux photos maximum par fiche : une photo principale et une photo secondaire ;
 - texte de présentation ;
 - prestations / produits / caractéristiques ;
 - tarifs lorsque le professionnel souhaite les publier ;
@@ -39,11 +38,16 @@ La fiche ne doit jamais devenir un mini-site qui détruit la valeur commerciale 
 
 ## Limite volontaire de la fiche
 
+La fiche DIGIYLYFE contient au maximum deux photos au total :
+
+1. la photo principale ;
+2. une photo secondaire facultative.
+
+Il n'y a pas de galerie étendue dans la fiche standard.
+
 Les vidéos et l'audio ne sont pas intégrés aux fiches standard DIGIYLYFE.
 
-Ils appartiennent au niveau SITE, afin de conserver une différence de valeur claire entre une fiche professionnelle et un site complet.
-
-Une fiche peut contenir quelques photos utiles, mais elle ne doit pas absorber toutes les possibilités d'un site.
+Les galeries riches, vidéos, audio, catalogues visuels développés et autres contenus approfondis appartiennent au niveau SITE, afin de conserver une différence de valeur claire entre une fiche professionnelle et un site complet.
 
 ## Trois familles
 
@@ -52,11 +56,11 @@ Une fiche peut contenir quelques photos utiles, mais elle ne doit pas absorber t
 Référence terrain : Babacar Plombier Pro.
 
 Ordre recommandé :
-1. identité + photo ;
+1. identité + photo principale ;
 2. contact direct ;
 3. services ;
 4. présentation ;
-5. quelques réalisations photo facultatives ;
+5. une photo secondaire facultative ;
 6. zone ;
 7. QR / partage ;
 8. bouton « VOIR LE SITE » si un site existe ;
@@ -67,25 +71,27 @@ Ordre recommandé :
 Référence terrain : Astou Boutique.
 
 Ordre recommandé :
-1. identité + univers visuel ;
+1. identité + photo principale ;
 2. contact / commande directe ;
 3. sélection limitée de produits ou rayons ;
 4. prix si publiés ;
-5. petite galerie photo facultative ;
+5. une photo secondaire facultative ;
 6. livraison / retrait / paiement si utile ;
 7. QR / partage ;
 8. bouton « VOIR LE SITE » si un site existe ;
 9. module commerce éventuel.
+
+Les produits de la fiche Commerce sont présentés en texte/prix. Les visuels produit multiples appartiennent au site ou au module Commerce.
 
 ### 3. Lieu / Tourisme
 
 Référence terrain : SARLAT CHEZ BAPTISTE.
 
 Ordre recommandé :
-1. grande photo du lieu ;
+1. grande photo principale du lieu ;
 2. identité + promesse ;
 3. caractéristiques essentielles ;
-4. petite galerie ;
+4. une photo secondaire facultative ;
 5. disponibilités ou demande directe ;
 6. conditions / prix si publiés ;
 7. contact direct ;
