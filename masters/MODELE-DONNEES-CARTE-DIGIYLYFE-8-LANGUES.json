@@ -1,0 +1,22 @@
+{
+  "request_id": "",
+  "plan_code": "",
+  "name": "",
+  "phone": "",
+  "whatsapp": "",
+  "photoUrl": "",
+  "finalUrl": "",
+  "qrUrl": "",
+  "ficheUrl": "",
+  "siteUrl": "",
+  "translations": {
+    "fr": {"job": "", "zone": "", "services": ["", "", "", ""]},
+    "en": {"job": "", "zone": "", "services": ["", "", "", ""]},
+    "es": {"job": "", "zone": "", "services": ["", "", "", ""]},
+    "pt": {"job": "", "zone": "", "services": ["", "", "", ""]},
+    "it": {"job": "", "zone": "", "services": ["", "", "", ""]},
+    "de": {"job": "", "zone": "", "services": ["", "", "", ""]},
+    "nl": {"job": "", "zone": "", "services": ["", "", "", ""]},
+    "ar": {"job": "", "zone": "", "services": ["", "", "", ""]}
+  }
+}
