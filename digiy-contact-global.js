@@ -2,7 +2,7 @@
  * Source unique : contact@digiylyfe.com
  * Rôle : afficher l'adresse professionnelle officielle sur les pages publiques.
  * Navigation : le HUB reste à l'atelier ; son ancien lien générique de footer est retiré.
- * Parcours adhésion : après règlement, les deux pages adhérent ouvrent la préparation de carte avec le bon forfait.
+ * Parcours adhésion : les deux pages adhérent ouvrent le même dossier d’adhésion avec le bon forfait.
  * Vitrine : les cartes adhérents réellement publiées sont ajoutées automatiquement sans modifier les pionniers historiques.
  */
 (function(){
@@ -29,14 +29,14 @@
     if(!payment) return;
 
     var labels={
-      fr:'✅ J’AI PAYÉ — PRÉPARER MA CARTE →',
-      en:'✅ I HAVE PAID — PREPARE MY CARD →',
-      es:'✅ YA HE PAGADO — PREPARAR MI TARJETA →',
-      pt:'✅ JÁ PAGUEI — PREPARAR O MEU CARTÃO →',
-      it:'✅ HO PAGATO — PREPARA IL MIO BIGLIETTO →',
-      de:'✅ ICH HABE BEZAHLT — KARTE VORBEREITEN →',
-      nl:'✅ IK HEB BETAALD — MIJN KAART VOORBEREIDEN →',
-      ar:'✅ لقد دفعت — إعداد بطاقتي ←'
+      fr:'POURSUIVRE MA DEMANDE D’ADHÉSION →',
+      en:'CONTINUE MY MEMBERSHIP REQUEST →',
+      es:'CONTINUAR MI SOLICITUD DE ADHESIÓN →',
+      pt:'CONTINUAR O MEU PEDIDO DE ADESÃO →',
+      it:'CONTINUA LA MIA RICHIESTA DI ADESIONE →',
+      de:'MITGLIEDSANTRAG FORTSETZEN →',
+      nl:'MIJN LIDMAATSCHAPSAANVRAAG VERVOLGEN →',
+      ar:'متابعة طلب العضوية ←'
     };
 
     var wrap=document.createElement('div');
@@ -45,7 +45,7 @@
 
     var note=document.createElement('p');
     note.style.cssText='margin:0 0 10px;color:rgba(247,255,249,.84);font-size:12px;line-height:1.5;font-weight:850;text-align:center';
-    note.textContent='Après votre règlement, transmettez les informations nécessaires à votre carte DIGIYLYFE.';
+    note.textContent='Accédez à votre dossier d’adhésion pour votre carte et, si vous le souhaitez, une fiche ou un site.';
 
     var link=document.createElement('a');
     link.style.cssText='display:flex;min-height:56px;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;background:linear-gradient(135deg,#f6c453,#2dd4bf);color:#06140f;font-weight:1000;text-decoration:none;text-align:center';
@@ -55,7 +55,7 @@
       if(!labels[lang]) lang='fr';
       link.textContent=labels[lang];
       link.href='https://digiylyfe.com/preparer-ma-carte.html?plan='+encodeURIComponent(plan)+'&lang='+encodeURIComponent(lang);
-      link.setAttribute('aria-label',labels[lang].replace(/^✅\s*/,''));
+      link.setAttribute('aria-label',labels[lang]);
     }
 
     refresh();
