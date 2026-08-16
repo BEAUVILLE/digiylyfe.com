@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Carte DIGIYLYFE</title>
+</head>
+<body>
+  <noscript>Cette carte DIGIYLYFE nécessite JavaScript.</noscript>
+  <script>
+  (() => {
+    const U = 'https://wesqmwjjtsefyjnluosj.supabase.co/functions/v1/digiy-card-public';
+    const MASTER_URL = '/masters/MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html';
+    const q = new URLSearchParams(location.search);
+    const slug = (q.get('slug') || '').trim().toLowerCase();
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+      document.body.innerHTML = '<main style="font-family:system-ui;padding:24px"><h1>Carte introuvable</h1></main>';
+      return;
+    }
+    const jsonUrl = U + '?slug=' + encodeURIComponent(slug) + '&asset=json';
+    const photoUrl = U + '?slug=' + encodeURIComponent(slug) + '&asset=photo';
+    Promise.all([
+      fetch(jsonUrl, { cache: 'no-store' }).then(r => { if (!r.ok) throw new Error('Carte introuvable'); return r.json(); }),
+      fetch(MASTER_URL, { cache: 'no-store' }).then(r => { if (!r.ok) throw new Error('MASTER introuvable'); return r.text(); })
+    ]).then(([d, master]) => {
+      const CARD = {
+        published: d.site_visible === true,
+        name: d.name || '',
+        phone: d.phone || '',
+        whatsapp: d.whatsapp || '',
+        photoUrl,
+        finalUrl: d.final_url || location.href,
+        qrUrl: d.qr_url || '',
+        ficheUrl: '',
+        siteUrl: '',
+        countryCode: 'SN',
+        languages: ['fr','en','es','pt','it','de','nl','ar'],
+        i18n: d.i18n || {
+          fr: { job: d.job || '', zone: d.zone || '', services: Array.isArray(d.services) ? d.services : [] }
+        }
+      };
+      const cardBlock = 'const CARD = ' + JSON.stringify(CARD, null, 2) + ';';
+      let html = master.replace(/const CARD = \{[\s\S]*?\n    \};/, cardBlock);
+      html = html.replace(/<meta id="robotsMeta" name="robots" content="[^"]+">/, '<meta id="robotsMeta" name="robots" content="' + (CARD.published ? 'index,follow' : 'noindex,nofollow') + '">');
+      document.open();
+      document.write(html);
+      document.close();
+    }).catch(err => {
+      document.body.innerHTML = '<main style="font-family:system-ui;padding:24px"><h1>Carte momentanément indisponible</h1><p>' + String(err.message || err) + '</p></main>';
+    });
+  })();
+  </script>
+</body>
+</html>
