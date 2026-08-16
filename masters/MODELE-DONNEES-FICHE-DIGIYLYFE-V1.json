@@ -8,6 +8,7 @@
   "phone": "+221000000000",
   "whatsapp": "+221000000000",
   "photoUrl": "",
+  "secondaryPhotoUrl": "",
   "finalUrl": "",
   "qrUrl": "",
   "siteUrl": "",
@@ -24,7 +25,6 @@
       "cta": "Contacter directement"
     }
   },
-  "gallery": [],
   "products": [],
   "facts": [],
   "pricing": [],
