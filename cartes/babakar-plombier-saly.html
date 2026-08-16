@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="index,follow">
+  <title>Babakar · Plombier · Saly · DIGIYLYFE</title>
+  <meta name="description" content="Babakar, plombier à Saly. Contact direct, WhatsApp direct et 0 % de commission DIGIYLYFE.">
+  <link rel="canonical" href="https://digiylyfe.com/cartes/babakar-plombier-saly.html">
+</head>
+<body>
+  <noscript>Cette carte DIGIYLYFE nécessite JavaScript pour afficher le MASTER public.</noscript>
+  <script>
+  (() => {
+    const MASTER_URL = "/masters/MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html";
+    const CARD = {
+      published: true,
+      name: "babakar",
+      phone: "+221776125124",
+      whatsapp: "+221776125124",
+      photoUrl: "https://wesqmwjjtsefyjnluosj.supabase.co/functions/v1/digiy-card-public?slug=babakar-plombier-saly&asset=photo",
+      finalUrl: "https://digiylyfe.com/cartes/babakar-plombier-saly.html",
+      qrUrl: "https://wesqmwjjtsefyjnluosj.supabase.co/functions/v1/digiy-card-public?slug=babakar-plombier-saly&asset=qr",
+      ficheUrl: "",
+      siteUrl: "",
+      countryCode: "SN",
+      languages: ["fr","en","es","pt","it","de","nl","ar"],
+      i18n: {
+        fr: {
+          job: "plombier",
+          zone: "Saly",
+          services: ["DÉPANAGE-FUITE","WC-DOUCHE","instalation maison neuve","TUYAUTERIE"]
+        }
+      }
+    };
+
+    fetch(MASTER_URL, { cache: "no-store" })
+      .then(r => {
+        if (!r.ok) throw new Error("MASTER introuvable");
+        return r.text();
+      })
+      .then(master => {
+        const cardBlock = "const CARD = " + JSON.stringify(CARD, null, 2).replace(/<\\/script/gi, "<\\\\/script") + ";";
+        const html = master
+          .replace(/const CARD = \{[\s\S]*?\n    \};/, cardBlock)
+          .replace(/<meta id="robotsMeta" name="robots" content="[^"]+">/, '<meta id="robotsMeta" name="robots" content="index,follow">');
+        document.open();
+        document.write(html);
+        document.close();
+      })
+      .catch(err => {
+        document.body.innerHTML = '<main style="font-family:system-ui;padding:24px"><h1>Carte momentanément indisponible</h1><p>' + String(err.message || err) + '</p></main>';
+      });
+  })();
+  </script>
+</body>
+</html>
