@@ -78,7 +78,8 @@
         var cards=Array.isArray(payload&&payload.cards)?payload.cards:[];
         cards.forEach(function(card){
           if(!card || !card.final_url || !card.name) return;
-          if(grid.querySelector('a[href="'+CSS.escape(card.final_url)+'"]')) return;
+          var already=[].some.call(grid.querySelectorAll('a[href]'),function(x){return x.href===card.final_url;});
+          if(already) return;
 
           var a=document.createElement('a');
           a.className='proofCard';
