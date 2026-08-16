@@ -87,11 +87,25 @@ Galerie, vidéo et audio sont des composants facultatifs utilisables dans les tr
 
 Les médias ne doivent jamais écraser le parcours principal. Pas d'autoplay lourd. Les vidéos peuvent rester hébergées hors dépôt si cela protège la bande passante.
 
+## Valeur commerciale de la fiche
+
+La création de la fiche professionnelle personnalisée est facturée 100 000 FCFA, hors modules métier, ajouts importants ou prestations complémentaires facturés séparément.
+
+La standardisation du MASTER sert à fiabiliser et accélérer la production. Elle ne réduit pas la valeur de la fiche livrée au professionnel.
+
+## Propriété
+
+La fiche personnalisée créée et payée appartient à l'abonné : ses contenus, ses données professionnelles et son livrable personnalisé ne sont pas confisqués si l'abonnement s'arrête.
+
+DIGIYLYFE conserve la propriété de son MASTER, de son moteur commun, de ses automatismes, de son infrastructure, de sa marque et de son code générique réutilisable.
+
+La propriété du livrable client et la propriété de l'outil de fabrication DIGIYLYFE sont donc distinctes.
+
 ## Règle abonnement
 
-La fiche peut être conservée même si l'abonnement expire. La visibilité commerciale dépend d'un abonnement à jour.
+La fiche peut être conservée même si l'abonnement expire. La visibilité commerciale et les services DIGIYLYFE liés à l'abonnement dépendent d'un abonnement à jour.
 
-Une suspension ne détruit ni les données, ni l'URL, ni le QR, ni l'historique.
+Une suspension ne détruit ni les données, ni l'URL, ni le QR, ni l'historique. Elle ne retire pas non plus la propriété du livrable personnalisé à l'abonné.
 
 ## Pionniers
 
