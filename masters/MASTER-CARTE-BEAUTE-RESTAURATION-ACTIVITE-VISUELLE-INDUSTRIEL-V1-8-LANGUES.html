@@ -1,1 +1,121 @@
-placeholder
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07140f">
+  <!-- MASTER / TEST : non indexable tant que la fiche n'a pas d'URL finale validée -->
+  <meta id="robotsMeta" name="robots" content="noindex,nofollow">
+  <title>Carte DIGIYLYFE · MASTER VISUEL</title>
+  <meta id="metaDescription" name="description" content="Carte activité visuelle DIGIYLYFE en préparation.">
+  <link id="canonicalLink" rel="canonical" href="">
+  <meta id="ogTitle" property="og:title" content="Carte DIGIYLYFE">
+  <meta id="ogDescription" property="og:description" content="Carte professionnelle DIGIYLYFE">
+  <meta id="ogUrl" property="og:url" content="">
+  <meta id="ogImage" property="og:image" content="">
+  <style>
+    :root{--bg:#06140f;--panel:#0b2119;--gold:#f6c453;--mint:#2dd4bf;--txt:#fffaf0;--soft:#c5d3cc;--line:#ffffff22}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top,#143d2c 0,#06140f 46%,#020705 100%);color:var(--txt);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif} a{color:inherit;text-decoration:none}
+    .wrap{width:min(560px,calc(100% - 24px));margin:auto;padding:18px 0 34px}
+    .langbar{display:flex;gap:6px;justify-content:center;overflow-x:auto;padding:0 2px 10px;scrollbar-width:none}.langbar::-webkit-scrollbar{display:none}
+    .langbar button{flex:0 0 auto;border:1px solid #ffffff22;background:#ffffff08;color:#fff;border-radius:999px;padding:7px 9px;font:inherit;font-size:10px;font-weight:1000;cursor:pointer}.langbar button.active{border-color:#f6c45388;background:#f6c45318;color:#fff1bd}
+    .mode{margin-bottom:10px;padding:9px 12px;border-radius:14px;border:1px solid #f59e0b55;background:#f59e0b12;color:#ffe5a3;text-align:center;font-size:10px;font-weight:1000}
+    .card{overflow:hidden;border-radius:30px;border:1px solid #f6c45355;background:linear-gradient(160deg,#0d281e,#07150f 62%,#09100d);box-shadow:0 28px 70px #0008}
+    .top{padding:18px 18px 8px;text-align:center}.member{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid #f6c45388;background:#f6c45313;color:#fff0b5;font-size:10px;font-weight:1000;letter-spacing:.06em}
+    h1{margin:15px 0 5px;font-size:clamp(30px,9vw,50px);line-height:.96;font-weight:1000}.meta{color:var(--soft);font-size:13px;font-weight:900}
+    .hero{margin:14px 14px 0;aspect-ratio:4/3;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:#ffffff08;display:flex;align-items:center;justify-content:center}.hero img{width:100%;height:100%;object-fit:cover;display:block}.hero span{color:#9eb0a8;font-size:12px;font-weight:900}
+    .section{padding:16px 16px 0}.section h2{margin:0 0 10px;color:#ffe8a0;font-size:12px;letter-spacing:.06em;font-weight:1000}
+    .offers{display:grid;grid-template-columns:1fr 1fr;gap:8px}.offer{min-height:52px;padding:11px;border-radius:16px;border:1px solid #ffffff18;background:#ffffff08;display:flex;align-items:center;font-size:12px;font-weight:950;line-height:1.25}
+    .contacts{display:grid;grid-template-columns:1fr;gap:9px}.contact{min-height:55px;padding:12px 14px;border-radius:999px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:1000}.call{background:linear-gradient(135deg,#f6c453,#e7ae35);color:#07140f}.whatsapp{background:linear-gradient(135deg,#22c55e,#2dd4bf);color:#04130d}.zone{border:1px solid #ffffff28;background:#ffffff09}.booking{border:1px solid #f6c45366;background:#f6c45312;color:#ffe9a6}.extra{border:1px solid #2dd4bf55;background:linear-gradient(135deg,#0f766e55,#ffffff08);color:#eafff8}
+    .qr{margin:14px 16px 0;padding:16px;border-radius:20px;border:1px dashed #ffffff38;text-align:center;color:var(--soft);font-size:11px;font-weight:900}.doctrine{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;padding:15px 14px 4px}.doctrine span{padding:7px 9px;border-radius:999px;border:1px solid #f6c45344;background:#f6c4530d;color:#fff0b5;font-size:9px;font-weight:1000}footer{padding:14px 16px 18px;text-align:center;color:#dce8e1;font-size:11px;font-weight:1000}
+    .debug{display:none;margin-top:14px;padding:14px;border-radius:20px;border:1px solid #38bdf855;background:#051b25;color:#dff7ff}.debug.show{display:block}.debug strong{display:block;margin-bottom:8px}.debug pre{white-space:pre-wrap;word-break:break-word;margin:0;font-size:10px;line-height:1.45}
+    @media(max-width:380px){.offers{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <nav class="langbar" aria-label="Langues"><button type="button" data-lang="fr">FR</button>
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="es">ES</button>
+      <button type="button" data-lang="pt">PT</button>
+      <button type="button" data-lang="it">IT</button>
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="nl">NL</button>
+      <button type="button" data-lang="ar">AR</button></nav>
+  <div id="modeBanner" class="mode">MASTER / TEST · NON INDEXÉ · QR BLOQUÉ JUSQU’À L’URL FINALE</div>
+  <article class="card">
+    <header class="top"><span class="member" data-i18n="member">ADHÉRENT DIGIYLYFE</span><h1 id="cardName">{{NOM_ACTIVITE}}</h1><div class="meta"><span id="cardJob">{{TYPE_ACTIVITE}}</span> · <span id="cardZone">{{ZONE}}</span></div></header>
+    <div class="hero" id="heroBox"><span>{{PHOTO_PRINCIPALE}}</span></div>
+    <section class="section" aria-labelledby="discoverTitle"><h2 id="discoverTitle" data-i18n="discoverTitle">À DÉCOUVRIR</h2><div class="offers" id="offersBox"></div></section>
+    <section class="section" aria-labelledby="contactTitle"><h2 id="contactTitle" data-i18n="contactTitle">CONTACT DIRECT</h2><div class="contacts">
+      <a id="callBtn" class="contact call" href="#">📞 <span data-i18n="call">Appeler</span></a>
+      <a id="waBtn" class="contact whatsapp" href="#" target="_blank" rel="noopener noreferrer">💬 <span data-i18n="whatsappBtn">WhatsApp</span></a>
+      <a id="zoneBtn" class="contact zone" href="#" target="_blank" rel="noopener noreferrer">📍 <span data-i18n="zoneBtn">Nous situer</span></a>
+      <a id="bookingBtn" class="contact booking" href="#" target="_blank" rel="noopener noreferrer" hidden>📅 <span data-i18n="bookingBtn">Réserver / Prendre rendez-vous</span></a>
+      <a id="ficheBtn" class="contact extra" href="#" target="_blank" rel="noopener noreferrer" hidden>📄 <span data-i18n="ficheBtn">Voir ma fiche</span></a>
+      <a id="siteBtn" class="contact extra" href="#" target="_blank" rel="noopener noreferrer" hidden>🌐 <span data-i18n="siteBtn">Voir mon site</span></a>
+    </div></section>
+    <div class="qr" id="qrBox"><span data-i18n="qrWaiting">QR CLIENT À POSER APRÈS VALIDATION DE L’URL DÉFINITIVE</span></div>
+    <div class="doctrine"><span data-i18n="directContact">Contact direct</span><span data-i18n="directPayment">Paiement direct</span><span data-i18n="zeroCommission">0 % de commission DIGIYLYFE</span></div>
+    <footer>DIGIYLYFE.COM</footer>
+  </article>
+  <section id="machineDebug" class="debug"><strong>🤖 COUCHE MACHINE · JSON-LD</strong><p style="margin:0 0 8px;font-size:10px;line-height:1.45">Socle = CARTE DIGIYLYFE · 1 photo principale + 4 prestations. Les liens Réservation, Fiche et Site restent des enrichissements conditionnels.</p><pre id="machineJson"></pre></section>
+</main>
+<script id="structuredData" type="application/ld+json">{}</script>
+<script>
+(() => {
+  "use strict";
+  const CARD = {
+    published:false,
+    name:"{{NOM_ACTIVITE}}",
+    phone:"{{TELEPHONE}}",
+    whatsapp:"{{WHATSAPP}}",
+    heroPhotoUrl:"{{PHOTO_PRINCIPALE_URL}}",
+    finalUrl:"{{URL_CARTE}}",
+    qrUrl:"{{QR_URL}}",
+    bookingUrl:"",
+    ficheUrl:"",
+    siteUrl:"",
+    countryCode:"SN",
+    languages:["fr","en","es","pt","it","de","nl","ar"],
+    i18n:{"fr":{"job":"{{TYPE_ACTIVITE_FR}}","zone":"{{ZONE_FR}}","offers":["{{PRESTATION_1_FR}}","{{PRESTATION_2_FR}}","{{PRESTATION_3_FR}}","{{PRESTATION_4_FR}}"]},"en":{"job":"{{TYPE_ACTIVITE_EN}}","zone":"{{ZONE_EN}}","offers":["{{PRESTATION_1_EN}}","{{PRESTATION_2_EN}}","{{PRESTATION_3_EN}}","{{PRESTATION_4_EN}}"]},"es":{"job":"{{TYPE_ACTIVITE_ES}}","zone":"{{ZONE_ES}}","offers":["{{PRESTATION_1_ES}}","{{PRESTATION_2_ES}}","{{PRESTATION_3_ES}}","{{PRESTATION_4_ES}}"]},"pt":{"job":"{{TYPE_ACTIVITE_PT}}","zone":"{{ZONE_PT}}","offers":["{{PRESTATION_1_PT}}","{{PRESTATION_2_PT}}","{{PRESTATION_3_PT}}","{{PRESTATION_4_PT}}"]},"it":{"job":"{{TYPE_ACTIVITE_IT}}","zone":"{{ZONE_IT}}","offers":["{{PRESTATION_1_IT}}","{{PRESTATION_2_IT}}","{{PRESTATION_3_IT}}","{{PRESTATION_4_IT}}"]},"de":{"job":"{{TYPE_ACTIVITE_DE}}","zone":"{{ZONE_DE}}","offers":["{{PRESTATION_1_DE}}","{{PRESTATION_2_DE}}","{{PRESTATION_3_DE}}","{{PRESTATION_4_DE}}"]},"nl":{"job":"{{TYPE_ACTIVITE_NL}}","zone":"{{ZONE_NL}}","offers":["{{PRESTATION_1_NL}}","{{PRESTATION_2_NL}}","{{PRESTATION_3_NL}}","{{PRESTATION_4_NL}}"]},"ar":{"job":"{{TYPE_ACTIVITE_AR}}","zone":"{{ZONE_AR}}","offers":["{{PRESTATION_1_AR}}","{{PRESTATION_2_AR}}","{{PRESTATION_3_AR}}","{{PRESTATION_4_AR}}"]}}
+  };
+  const UI={"fr":{"member":"ADHÉRENT DIGIYLYFE","discoverTitle":"À DÉCOUVRIR","contactTitle":"CONTACT DIRECT","call":"Appeler","whatsappBtn":"WhatsApp","zoneBtn":"Nous situer","bookingBtn":"Réserver / Prendre rendez-vous","ficheBtn":"Voir ma fiche","siteBtn":"Voir mon site","qrWaiting":"QR CLIENT À POSER APRÈS VALIDATION DE L’URL DÉFINITIVE","directContact":"Contact direct","directPayment":"Paiement direct","zeroCommission":"0 % de commission DIGIYLYFE","testMode":"MASTER / TEST · NON INDEXÉ · QR BLOQUÉ JUSQU’À L’URL FINALE","publicMode":"FICHE PUBLIQUE · FACE HUMAINE + FACE MACHINE ACTIVES"},"en":{"member":"DIGIYLYFE MEMBER","discoverTitle":"DISCOVER","contactTitle":"DIRECT CONTACT","call":"Call","whatsappBtn":"WhatsApp","zoneBtn":"Find us","bookingBtn":"Book / Make an appointment","ficheBtn":"View my profile","siteBtn":"View my website","qrWaiting":"CLIENT QR AFTER FINAL URL VALIDATION","directContact":"Direct contact","directPayment":"Direct payment","zeroCommission":"0% DIGIYLYFE commission","testMode":"MASTER / TEST · NOT INDEXED · QR LOCKED UNTIL FINAL URL","publicMode":"PUBLIC CARD · HUMAN + MACHINE LAYERS ACTIVE"},"es":{"member":"MIEMBRO DIGIYLYFE","discoverTitle":"DESCUBRIR","contactTitle":"CONTACTO DIRECTO","call":"Llamar","whatsappBtn":"WhatsApp","zoneBtn":"Cómo llegar","bookingBtn":"Reservar / Pedir cita","ficheBtn":"Ver mi ficha","siteBtn":"Ver mi sitio","qrWaiting":"QR DEL CLIENTE TRAS VALIDAR LA URL FINAL","directContact":"Contacto directo","directPayment":"Pago directo","zeroCommission":"0 % comisión DIGIYLYFE","testMode":"MASTER / PRUEBA · NO INDEXADO · QR BLOQUEADO HASTA LA URL FINAL","publicMode":"TARJETA PÚBLICA · CAPAS HUMANA + MÁQUINA ACTIVAS"},"pt":{"member":"ADERENTE DIGIYLYFE","discoverTitle":"DESCOBRIR","contactTitle":"CONTACTO DIRETO","call":"Ligar","whatsappBtn":"WhatsApp","zoneBtn":"Como chegar","bookingBtn":"Reservar / Marcar","ficheBtn":"Ver minha ficha","siteBtn":"Ver meu site","qrWaiting":"QR DO CLIENTE APÓS VALIDAÇÃO DA URL FINAL","directContact":"Contacto direto","directPayment":"Pagamento direto","zeroCommission":"0% comissão DIGIYLYFE","testMode":"MASTER / TESTE · NÃO INDEXADO · QR BLOQUEADO ATÉ À URL FINAL","publicMode":"CARTÃO PÚBLICO · CAMADAS HUMANA + MÁQUINA ATIVAS"},"it":{"member":"ADERENTE DIGIYLYFE","discoverTitle":"DA SCOPRIRE","contactTitle":"CONTATTO DIRETTO","call":"Chiama","whatsappBtn":"WhatsApp","zoneBtn":"Dove siamo","bookingBtn":"Prenota / Fissa un appuntamento","ficheBtn":"Vedi la mia scheda","siteBtn":"Vedi il mio sito","qrWaiting":"QR CLIENTE DOPO LA CONVALIDA DELL’URL FINALE","directContact":"Contatto diretto","directPayment":"Pagamento diretto","zeroCommission":"0% commissione DIGIYLYFE","testMode":"MASTER / TEST · NON INDICIZZATO · QR BLOCCATO FINO ALL’URL FINALE","publicMode":"BIGLIETTO PUBBLICO · LIVELLI UMANO + MACCHINA ATTIVI"},"de":{"member":"DIGIYLYFE MITGLIED","discoverTitle":"ENTDECKEN","contactTitle":"DIREKTER KONTAKT","call":"Anrufen","whatsappBtn":"WhatsApp","zoneBtn":"Standort","bookingBtn":"Reservieren / Termin buchen","ficheBtn":"Profil ansehen","siteBtn":"Website ansehen","qrWaiting":"KUNDEN-QR NACH FREIGABE DER ENDGÜLTIGEN URL","directContact":"Direkter Kontakt","directPayment":"Direkte Zahlung","zeroCommission":"0 % DIGIYLYFE-Provision","testMode":"MASTER / TEST · NICHT INDEXIERT · QR BIS ZUR FINALEN URL GESPERRT","publicMode":"ÖFFENTLICHE KARTE · MENSCH + MASCHINE AKTIV"},"nl":{"member":"DIGIYLYFE LID","discoverTitle":"ONTDEKKEN","contactTitle":"DIRECT CONTACT","call":"Bellen","whatsappBtn":"WhatsApp","zoneBtn":"Vind ons","bookingBtn":"Reserveren / Afspraak maken","ficheBtn":"Bekijk mijn fiche","siteBtn":"Bekijk mijn website","qrWaiting":"KLANT-QR NA VALIDATIE VAN DE DEFINITIEVE URL","directContact":"Direct contact","directPayment":"Directe betaling","zeroCommission":"0% DIGIYLYFE-commissie","testMode":"MASTER / TEST · NIET GEÏNDEXEERD · QR GEBLOKKEERD TOT DEFINITIEVE URL","publicMode":"PUBLIEKE KAART · MENS + MACHINE ACTIEF"},"ar":{"member":"عضو DIGIYLYFE","discoverTitle":"اكتشف","contactTitle":"تواصل مباشر","call":"اتصال","whatsappBtn":"واتساب","zoneBtn":"موقعنا","bookingBtn":"حجز / موعد","ficheBtn":"عرض بطاقتي المفصلة","siteBtn":"عرض موقعي","qrWaiting":"رمز QR للعميل بعد اعتماد الرابط النهائي","directContact":"تواصل مباشر","directPayment":"دفع مباشر","zeroCommission":"0٪ عمولة DIGIYLYFE","testMode":"نموذج / اختبار · غير مفهرس · رمز QR مقفل حتى اعتماد الرابط النهائي","publicMode":"بطاقة عامة · الطبقة البشرية + طبقة الآلة مفعّلتان"}};
+  const $=id=>document.getElementById(id), LANGS=CARD.languages, LANG_KEY="digiy_visual_lang_v1";
+  const hasPlaceholder=v=>/\{\{[^}]+\}\}/.test(String(v||""));
+  const clean=v=>String(v||"").trim();
+  const digits=v=>clean(v).replace(/\D/g,"");
+  const esc=v=>clean(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+  const validUrl=v=>{try{const u=new URL(clean(v));return /^https?:$/.test(u.protocol)?u.toString():""}catch(_){return ""}};
+  let currentLang="fr";
+  function getLangData(lang){
+    const fr=CARD.i18n.fr||{job:"",zone:"",offers:[]}, d=CARD.i18n[lang]||fr;
+    return {job:clean(d.job)&&!hasPlaceholder(d.job)?clean(d.job):clean(fr.job),zone:clean(d.zone)&&!hasPlaceholder(d.zone)?clean(d.zone):clean(fr.zone),offers:(d.offers||[]).map((s,i)=>{const fs=(fr.offers||[])[i]||"";return clean(s)&&!hasPlaceholder(s)?clean(s):clean(fs)})};
+  }
+  function visibleDescription(lang=currentLang){const d=getLangData(lang), names=d.offers.filter(x=>clean(x)&&!hasPlaceholder(x));return `${clean(CARD.name)} — ${clean(d.job)}. ${clean(d.zone)}.${names.length?" "+names.join(", ")+".":""}`}
+  function renderOffers(d){
+    $("offersBox").innerHTML=d.offers.map(label=>`<div class="offer">${esc(label)}</div>`).join("");
+  }
+  function renderHuman(){
+    const d=getLangData(currentLang); $("cardName").textContent=clean(CARD.name); $("cardJob").textContent=d.job; $("cardZone").textContent=d.zone; renderOffers(d);
+    const hero=validUrl(CARD.heroPhotoUrl); if(hero) $("heroBox").innerHTML=`<img src="${esc(hero)}" alt="${esc(CARD.name)} · ${esc(d.job)}">`;
+    if(CARD.phone&&!hasPlaceholder(CARD.phone)) $("callBtn").href="tel:+"+digits(CARD.phone);
+    if(CARD.whatsapp&&!hasPlaceholder(CARD.whatsapp)) $("waBtn").href="https://wa.me/"+digits(CARD.whatsapp)+"?text="+encodeURIComponent("Bonjour, je vous contacte depuis votre carte DIGIYLYFE.");
+    if(d.zone&&!hasPlaceholder(d.zone)) $("zoneBtn").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(d.zone);
+    for(const [id,key] of [["bookingBtn","bookingUrl"],["ficheBtn","ficheUrl"],["siteBtn","siteUrl"]]){const u=validUrl(CARD[key]);$(id).hidden=!u;if(u)$(id).href=u;}
+    if(CARD.published&&CARD.qrUrl&&!hasPlaceholder(CARD.qrUrl)&&validUrl(CARD.qrUrl)) $("qrBox").innerHTML=`<img src="${esc(validUrl(CARD.qrUrl))}" alt="QR ${esc(CARD.name)}" style="max-width:190px;width:55%;height:auto;border-radius:14px">`;
+  }
+  function buildStructuredData(){
+    const d=getLangData(currentLang), finalUrl=validUrl(CARD.finalUrl), hero=validUrl(CARD.heroPhotoUrl), ficheUrl=validUrl(CARD.ficheUrl), siteUrl=validUrl(CARD.siteUrl), bookingUrl=validUrl(CARD.bookingUrl), waUrl=CARD.whatsapp&&!hasPlaceholder(CARD.whatsapp)?"https://wa.me/"+digits(CARD.whatsapp):"";
+    const businessId=finalUrl?finalUrl+"#business":undefined;
+    const business={"@type":"LocalBusiness",...(businessId?{"@id":businessId}:{}),"name":clean(CARD.name),"category":clean(d.job),"description":visibleDescription(currentLang),...(finalUrl?{"url":finalUrl}:{}),...(CARD.phone&&!hasPlaceholder(CARD.phone)?{"telephone":clean(CARD.phone)}:{}),...(hero?{"image":hero}:{}),...(siteUrl?{"sameAs":[siteUrl]}:{}),...(ficheUrl?{"subjectOf":{"@type":"WebPage","name":"Fiche professionnelle détaillée","url":ficheUrl}}:{}),"areaServed":clean(d.zone),"contactPoint":[{"@type":"ContactPoint","contactType":"customer service",...(CARD.phone&&!hasPlaceholder(CARD.phone)?{"telephone":clean(CARD.phone)}:{}),...(waUrl?{"url":waUrl}:{}),"areaServed":clean(d.zone),"availableLanguage":CARD.languages}],"hasOfferCatalog":{"@type":"OfferCatalog","name":"À découvrir","itemListElement":d.offers.filter(x=>clean(x)&&!hasPlaceholder(x)).map(x=>({"@type":"Offer","itemOffered":{"@type":"Service","name":clean(x),"areaServed":clean(d.zone),...(businessId?{"provider":{"@id":businessId}}:{})}}))},...(bookingUrl?{"potentialAction":{"@type":"ReserveAction","target":bookingUrl}}:{})};
+    return {"@context":"https://schema.org","@graph":[business]};
+  }
+  function renderMachine(){const data=buildStructuredData(),json=JSON.stringify(data,null,2);$("structuredData").textContent=json;$("machineJson").textContent=json;const finalUrl=validUrl(CARD.finalUrl),hero=validUrl(CARD.heroPhotoUrl),d=getLangData(currentLang),desc=visibleDescription(currentLang);document.title=`${clean(CARD.name)} · ${clean(d.job)} · DIGIYLYFE`;$("metaDescription").setAttribute("content",desc);$("ogTitle").setAttribute("content",`${clean(CARD.name)} · ${clean(d.job)}`);$("ogDescription").setAttribute("content",desc);if(finalUrl){$("canonicalLink").setAttribute("href",finalUrl);$("ogUrl").setAttribute("content",finalUrl)}if(hero)$("ogImage").setAttribute("content",hero);if(CARD.published&&finalUrl&&!hasPlaceholder(finalUrl)){$("robotsMeta").setAttribute("content","index,follow");$("modeBanner").textContent=(UI[currentLang]||UI.fr).publicMode}}
+  function applyUi(lang){currentLang=LANGS.includes(lang)?lang:"fr";try{localStorage.setItem(LANG_KEY,currentLang)}catch(_){}document.documentElement.lang=currentLang;document.documentElement.dir=currentLang==="ar"?"rtl":"ltr";const u=UI[currentLang]||UI.fr;document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(u[k])el.textContent=u[k]});document.querySelectorAll("[data-lang]").forEach(btn=>btn.classList.toggle("active",btn.dataset.lang===currentLang));if(!CARD.published)$("modeBanner").textContent=u.testMode;renderHuman();renderMachine();}
+  document.querySelectorAll("[data-lang]").forEach(btn=>btn.addEventListener("click",()=>applyUi(btn.dataset.lang)));
+  let startLang="fr";try{const saved=localStorage.getItem(LANG_KEY);if(LANGS.includes(saved))startLang=saved}catch(_){}const params=new URLSearchParams(location.search),urlLang=params.get("lang");if(LANGS.includes(urlLang))startLang=urlLang;applyUi(startLang);if(params.get("debug")==="1")$("machineDebug").classList.add("show");
+})();
+</script>
+</body>
+</html>
