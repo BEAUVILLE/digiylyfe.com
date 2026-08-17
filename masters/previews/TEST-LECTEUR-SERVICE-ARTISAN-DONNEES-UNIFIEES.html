@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>DIGIYLYFE · TEST lecteur unifié Service-Artisan</title>
+<style>
+body{margin:0;background:#07150f;color:#fffaf0;font-family:system-ui,sans-serif}
+main{width:min(1100px,calc(100% - 24px));margin:auto;padding:18px 0 40px}
+.box{border:1px solid #ffffff22;border-radius:20px;background:#0b2119;padding:16px;margin:12px 0}
+.ok{border-color:#22c55e77}.bad{border-color:#ef444477}
+iframe{width:100%;height:760px;border:1px solid #ffffff22;border-radius:18px;background:#fff}
+pre{white-space:pre-wrap;word-break:break-word;font-size:11px}
+</style>
+</head>
+<body>
+<main>
+  <section class="box"><strong>BORNE 2 · TEST SERVICE / ARTISAN</strong>
+    <h1>Source unique → adaptateur → MASTER V3</h1>
+    <p>Aucune donnée professionnelle n'est ressaisie. Ce test charge l'exemple du modèle unifié, le convertit vers le payload du MASTER Service-Artisan et injecte ce payload dans le MASTER existant.</p>
+  </section>
+  <section id="status" class="box">Initialisation…</section>
+  <section class="box"><h2>Payload produit par le lecteur</h2><pre id="payload"></pre></section>
+  <section class="box"><h2>MASTER Service-Artisan</h2><iframe id="preview"></iframe></section>
+</main>
+<script src="../ADAPTATEUR-DONNEES-MASTER-DIGIYLYFE-SERVICE-ARTISAN-V1.js"></script>
+<script>
+(async()=>{
+  const status=document.getElementById("status");
+  try{
+    const modelRes=await fetch("../MODELE-DONNEES-MASTER-DIGIYLYFE-V1-UNIFIE.json",{cache:"no-store"});
+    if(!modelRes.ok)throw Error("Modèle unifié introuvable: HTTP "+modelRes.status);
+    const model=await modelRes.json();
+    const data=structuredClone(model.exemple_rempli);
+    data.validation.carte="en_attente";
+
+    const card=window.DIGIYLYFE_DATA_ADAPTER.toServiceCard(data,{baseUrl:"https://digiylyfe.com/"});
+    document.getElementById("payload").textContent=JSON.stringify(card,null,2);
+
+    const masterRes=await fetch("../MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html",{cache:"no-store"});
+    if(!masterRes.ok)throw Error("MASTER V3 introuvable: HTTP "+masterRes.status);
+    let html=await masterRes.text();
+    html=html.replace(
+      /const CARD\s*=\s*\{[\s\S]*?\n\s*\};/,
+      "const CARD = "+JSON.stringify(card,null,2).replace(/<\/script/gi,"<\\/script")+";"
+    );
+    if(!/const CARD\s*=/.test(html))throw Error("Injection CARD impossible.");
+
+    document.getElementById("preview").srcdoc=html;
+    status.className="box ok";
+    status.textContent="✅ TEST OK · Le modèle unifié nourrit le MASTER Service-Artisan V3 sans ressaisie.";
+  }catch(e){
+    status.className="box bad";
+    status.textContent="❌ TEST BLOQUÉ · "+e.message;
+  }
+})();
+</script>
+</body>
+</html>
