@@ -119,6 +119,31 @@
     return card;
   }
 
+  function toGeneratorPack(data,options={}){
+    const cfg=configFor(data);
+    const card=toCard(data,options);
+    const translations={};
+    LANGS.forEach(lang=>{
+      const row=card.i18n[lang]||{};
+      translations[lang]={job:row.job,zone:row.zone,[cfg.itemKey]:row[cfg.itemKey]||[]};
+    });
+    return {
+      master_type:cfg.masterType,
+      request_id:clean(data.meta?.dossier_id),
+      plan_code:'',
+      name:card.name,
+      phone:card.phone,
+      whatsapp:card.whatsapp,
+      photoUrl:card.photoUrl||card.heroPhotoUrl||'',
+      finalUrl:card.finalUrl,
+      qrUrl:card.qrUrl,
+      ficheUrl:card.ficheUrl,
+      siteUrl:card.siteUrl,
+      bookingUrl:card.bookingUrl||'',
+      translations
+    };
+  }
+
   function toServiceCard(data,options={}){
     if(data?.identite?.master!=="SERVICE_ARTISAN")throw new Error("MASTER attendu: SERVICE_ARTISAN.");
     return toCard(data,options);
@@ -133,6 +158,7 @@
     pendingLanguages,
     publicationReady,
     toCard,
+    toGeneratorPack,
     toServiceCard
   };
 })(window);
