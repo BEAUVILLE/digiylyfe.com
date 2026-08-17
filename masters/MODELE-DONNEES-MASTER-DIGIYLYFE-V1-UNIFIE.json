@@ -1,0 +1,316 @@
+{
+  "_modele": "MODELE-DONNEES-MASTER-DIGIYLYFE",
+  "_version": "V1-UNIFIE",
+  "_role": "Source unique de donnees. La CARTE et la FICHE lisent toutes les deux dans ce meme fichier. Les infos du pro sont saisies UNE seule fois et nourrissent les deux.",
+  "_doctrine": {
+    "commission": "0%",
+    "contact": "direct (WhatsApp / telephone), sans intermediaire",
+    "paiement": "direct, le terrain garde la main",
+    "verrou_humain": "rien n'est publie sans validation humaine",
+    "photos_fiche_max": 2,
+    "photos_carte_max": 1,
+    "images": "WebP leger (fallback JPEG), visuels reels du terrain, pas de stock generique",
+    "site": "HORS perimetre industriel — prestation sur mesure, a la demande. Le modele ne porte qu'un hook, jamais le contenu d'un site.",
+    "dossier_unique": "UNE personne ou entreprise = UN dossier adherent. Carte, fiche, site et prestations se rattachent a ce dossier."
+  },
+  "_lecteurs": {
+    "commentaire": "Contrat 'une seule source, deux lecteurs' — BORNE 1.",
+    "carte_lit": [
+      "meta.dossier_id",
+      "identifiant",
+      "identite.nom_affiche",
+      "identite.master",
+      "identite.metier",
+      "identite.ville",
+      "identite.pays",
+      "niveau_adherent",
+      "presence.telephone",
+      "presence.whatsapp",
+      "presence.qr_cible",
+      "presence.qr_image",
+      "presence.favoris",
+      "contenu_i18n[langue].accroche",
+      "contenu_i18n[langue].metier_label",
+      "contenu_i18n[langue].elements_metier",
+      "photos.principale",
+      "validation.carte"
+    ],
+    "fiche_lit": [
+      "TOUT ce que lit la carte",
+      "contenu_i18n[langue].description",
+      "photos.principale",
+      "photos.secondaire",
+      "prestations",
+      "site.url",
+      "validation.fiche"
+    ]
+  },
+  "enums": {
+    "masters": [
+      "SERVICE_ARTISAN",
+      "COMMERCE",
+      "LIEU_TOURISME",
+      "BEAUTE_RESTAURATION_ACTIVITE_VISUELLE"
+    ],
+    "langues": [
+      "fr",
+      "en",
+      "es",
+      "pt",
+      "it",
+      "de",
+      "nl",
+      "ar"
+    ],
+    "langue_rtl": [
+      "ar"
+    ],
+    "pays": [
+      "SN",
+      "FR"
+    ],
+    "niveau_adherent": [
+      1,
+      2
+    ],
+    "etat_validation": [
+      "brouillon",
+      "en_attente",
+      "valide",
+      "publie"
+    ],
+    "etat_site": [
+      null,
+      "en_attente",
+      "en_cours",
+      "livre"
+    ]
+  },
+  "schema_adherent": {
+    "identifiant": "chaine unique, minuscules-tirets (ex: babacar-plombier). Terrain-language: 'identifiant', jamais 'slug'.",
+    "identite": {
+      "nom_affiche": "chaine",
+      "master": "un des enums.masters",
+      "metier": "chaine (metier reel du pro)",
+      "ville": "chaine",
+      "pays": "un des enums.pays"
+    },
+    "niveau_adherent": "1 ou 2",
+    "presence": {
+      "telephone": "chaine E.164",
+      "whatsapp": "chaine E.164",
+      "qr_cible": "URL publique ouverte par le QR",
+      "qr_image": "URL ou chemin de l'image QR affichee sur la carte/fiche; null tant qu'elle n'existe pas",
+      "favoris": "booleen (barre Mes favoris)"
+    },
+    "contenu_i18n": {
+      "commentaire": "Une entree par langue. FR = base validee. Les autres langues portent _a_valider=true tant qu'un humain n'a pas confirme.",
+      "par_langue": {
+        "accroche": "chaine courte (carte + fiche)",
+        "metier_label": "chaine (carte + fiche)",
+        "description": "chaine (fiche uniquement)",
+        "elements_metier": [
+          {
+            "id": "identifiant stable de l'element",
+            "libelle": "texte traduit affiche par le MASTER"
+          }
+        ],
+        "_dir": "ltr | rtl (rtl pour ar)",
+        "_a_valider": "booleen"
+      },
+      "_regle_elements_metier": "4 elements exactement pour la CARTE. Leur sens est determine par le MASTER: services, produits, atouts ou prestations."
+    },
+    "photos": {
+      "principale": {
+        "src": "chemin .webp",
+        "alt": "chaine",
+        "poids_ko_max": 150
+      },
+      "secondaire": "null OU {src, alt, poids_ko_max}. FICHE uniquement.",
+      "_regle": "CARTE = principale seule. FICHE = principale + secondaire facultative, 2 photos maximum."
+    },
+    "prestations": [
+      {
+        "element_id": "reference vers contenu_i18n[langue].elements_metier[].id",
+        "note": "utilise par la FICHE; aucune duplication des traductions"
+      }
+    ],
+    "site": {
+      "demande": "booleen — hook seulement",
+      "statut": "null | en_attente | en_cours | livre",
+      "url": "URL publique du site si livre; sinon null",
+      "_note": "Le CONTENU du site est sur mesure et n'est PAS dans ce modele."
+    },
+    "validation": {
+      "dossier": "un des enums.etat_validation",
+      "carte": "un des enums.etat_validation",
+      "fiche": "un des enums.etat_validation",
+      "_regle": "verrou humain: carte/fiche ne passent 'publie' qu'apres validation humaine"
+    },
+    "meta": {
+      "dossier_id": "UUID Supabase du dossier adherent central",
+      "cree_le": "ISO date",
+      "mis_a_jour_le": "ISO date ou null",
+      "source": "ATELIER"
+    }
+  },
+  "exemple_rempli": {
+    "identifiant": "babacar-plombier",
+    "identite": {
+      "nom_affiche": "Babacar Plombier Pro",
+      "master": "SERVICE_ARTISAN",
+      "metier": "Plombier",
+      "ville": "Saly",
+      "pays": "SN"
+    },
+    "niveau_adherent": 1,
+    "presence": {
+      "telephone": "+221770000000",
+      "whatsapp": "+221770000000",
+      "qr_cible": "https://digiylyfe.com/c/babacar-plombier",
+      "qr_image": null,
+      "favoris": true
+    },
+    "contenu_i18n": {
+      "fr": {
+        "accroche": "Plomberie de confiance a Saly — depannage, installation, reseau.",
+        "metier_label": "Plombier",
+        "description": "Fuites, sanitaires, evacuation, installation et implantation de reseau. Contact direct, sans intermediaire, paiement direct.",
+        "elements_metier": [
+          {"id": "prest_fuite", "libelle": "Depannage fuite"},
+          {"id": "prest_installation", "libelle": "Installation sanitaire"},
+          {"id": "prest_reseau", "libelle": "Reseau plomberie"},
+          {"id": "prest_entretien", "libelle": "Entretien"}
+        ],
+        "_dir": "ltr",
+        "_a_valider": false
+      },
+      "en": {
+        "accroche": "Trusted plumbing in Saly — repairs, installation, networks.",
+        "metier_label": "Plumber",
+        "description": "Leaks, fixtures, drainage, installation and network layout. Direct contact, no middleman, direct payment.",
+        "elements_metier": [
+          {"id": "prest_fuite", "libelle": "Leak repair"},
+          {"id": "prest_installation", "libelle": "Sanitary installation"},
+          {"id": "prest_reseau", "libelle": "Plumbing networks"},
+          {"id": "prest_entretien", "libelle": "Maintenance"}
+        ],
+        "_dir": "ltr",
+        "_a_valider": true
+      },
+      "es": {
+        "accroche": "Fontaneria de confianza en Saly — reparacion, instalacion, redes.",
+        "metier_label": "Fontanero",
+        "description": "Fugas, sanitarios, desague, instalacion y trazado de redes. Contacto directo, sin intermediarios.",
+        "elements_metier": [
+          {"id": "prest_fuite", "libelle": "Reparacion de fugas"},
+          {"id": "prest_installation", "libelle": "Instalacion sanitaria"},
+          {"id": "prest_reseau", "libelle": "Redes de fontaneria"},
+          {"id": "prest_entretien", "libelle": "Mantenimiento"}
+        ],
+        "_dir": "ltr",
+        "_a_valider": true
+      },
+      "pt": {
+        "accroche": "Canalizacao de confianca em Saly — reparacao, instalacao, redes.",
+        "metier_label": "Canalizador",
+        "description": "Fugas, sanitarios, esgotos, instalacao e implantacao de redes. Contacto direto, sem intermediarios.",
+        "elements_metier": [
+          {"id": "prest_fuite", "libelle": "Reparacao de fugas"},
+          {"id": "prest_installation", "libelle": "Instalacao sanitaria"},
+          {"id": "prest_reseau", "libelle": "Redes de canalizacao"},
+          {"id": "prest_entretien", "libelle": "Manutencao"}
+        ],
+        "_dir": "ltr",
+        "_a_valider": true
+      },
+      "it": {
+        "accroche": "Idraulica di fiducia a Saly — riparazione, installazione, reti.",
+        "metier_label": "Idraulico",
+        "description": "Perdite, sanitari, scarichi, installazione e posa di reti. Contatto diretto, senza intermediari.",
+        "elements_metier": [
+          {"id": "prest_fuite", "libelle": "Riparazione perdite"},
+          {"id": "prest_installation", "libelle": "Installazione sanitaria"},
+          {"id": "prest_reseau", "libelle": "Reti idrauliche"},
+          {"id": "prest_entretien", "libelle": "Manutenzione"}
+        ],
+        "_dir": "ltr",
+        "_a_valider": true
+      },
+      "de": {
+        "accroche": "Zuverlassige Klempnerarbeit in Saly — Reparatur, Installation, Netze.",
+        "metier_label": "Klempner",
+        "description": "Lecks, Sanitar, Abfluss, Installation und Netzverlegung. Direkter Kontakt, ohne Zwischenhandler.",
+        "elements_metier": [
+          {"id": "prest_fuite", "libelle": "Leckreparatur"},
+          {"id": "prest_installation", "libelle": "Sanitarinstallation"},
+          {"id": "prest_reseau", "libelle": "Rohrleitungsnetze"},
+          {"id": "prest_entretien", "libelle": "Wartung"}
+        ],
+        "_dir": "ltr",
+        "_a_valider": true
+      },
+      "nl": {
+        "accroche": "Betrouwbaar loodgieterswerk in Saly — reparatie, installatie, netwerken.",
+        "metier_label": "Loodgieter",
+        "description": "Lekken, sanitair, afvoer, installatie en netwerkaanleg. Direct contact, geen tussenpersoon.",
+        "elements_metier": [
+          {"id": "prest_fuite", "libelle": "Lekkage reparatie"},
+          {"id": "prest_installation", "libelle": "Sanitaire installatie"},
+          {"id": "prest_reseau", "libelle": "Leidingnetwerken"},
+          {"id": "prest_entretien", "libelle": "Onderhoud"}
+        ],
+        "_dir": "ltr",
+        "_a_valider": true
+      },
+      "ar": {
+        "accroche": "سباكة موثوقة في سالي — إصلاح، تركيب، شبكات.",
+        "metier_label": "سبّاك",
+        "description": "تسربات، أدوات صحية، تصريف، تركيب ومد الشبكات. تواصل مباشر، دون وسيط.",
+        "elements_metier": [
+          {"id": "prest_fuite", "libelle": "إصلاح التسربات"},
+          {"id": "prest_installation", "libelle": "تركيب الأدوات الصحية"},
+          {"id": "prest_reseau", "libelle": "شبكات السباكة"},
+          {"id": "prest_entretien", "libelle": "الصيانة"}
+        ],
+        "_dir": "rtl",
+        "_a_valider": true
+      }
+    },
+    "photos": {
+      "principale": {
+        "src": "assets/babacar/pose-reelle.webp",
+        "alt": "Babacar en intervention",
+        "poids_ko_max": 150
+      },
+      "secondaire": {
+        "src": "assets/babacar/reseau-pose.webp",
+        "alt": "Reseau pose par Babacar",
+        "poids_ko_max": 150
+      },
+      "_regle": "CARTE = principale seule. FICHE = 2 photos maximum."
+    },
+    "prestations": [
+      {"element_id": "prest_fuite"},
+      {"element_id": "prest_installation"},
+      {"element_id": "prest_reseau"},
+      {"element_id": "prest_entretien"}
+    ],
+    "site": {
+      "demande": false,
+      "statut": null,
+      "url": null
+    },
+    "validation": {
+      "dossier": "valide",
+      "carte": "en_attente",
+      "fiche": "brouillon"
+    },
+    "meta": {
+      "dossier_id": "00000000-0000-0000-0000-000000000000",
+      "cree_le": "2026-08-17",
+      "mis_a_jour_le": null,
+      "source": "ATELIER"
+    }
+  }
+}
