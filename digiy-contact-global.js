@@ -51,6 +51,35 @@
     }
   }
 
+  function renameWorldHub(){
+    var section=document.querySelector('.worldHub');
+    if(!section) return;
+
+    var copy={
+      fr:{title:'DIGIYLYFE — HUB DES TERRITOIRES',lead:'Un HUB des territoires. Des besoins locaux. Un contact direct.'},
+      en:{title:'DIGIYLYFE — TERRITORY HUB',lead:'A hub for territories. Local needs. Direct contact.'},
+      es:{title:'DIGIYLYFE — HUB DE TERRITORIOS',lead:'Un HUB de territorios. Necesidades locales. Contacto directo.'},
+      pt:{title:'DIGIYLYFE — HUB DOS TERRITÓRIOS',lead:'Um HUB dos territórios. Necessidades locais. Contacto direto.'},
+      it:{title:'DIGIYLYFE — HUB DEI TERRITORI',lead:'Un HUB dei territori. Bisogni locali. Contatto diretto.'},
+      de:{title:'DIGIYLYFE — HUB DER REGIONEN',lead:'Ein HUB der Regionen. Lokale Bedürfnisse. Direkter Kontakt.'},
+      nl:{title:'DIGIYLYFE — HUB VAN GEBIEDEN',lead:'Een HUB van gebieden. Lokale behoeften. Direct contact.'},
+      ar:{title:'DIGIYLYFE — محور المناطق',lead:'محور للمناطق. احتياجات محلية. تواصل مباشر.'}
+    };
+
+    function apply(){
+      var lang=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
+      var t=copy[lang]||copy.fr;
+      var title=section.querySelector('[data-i18n="worldTitle"]');
+      var lead=section.querySelector('[data-i18n="worldLead"]');
+      if(title) title.textContent=t.title;
+      if(lead) lead.textContent=t.lead;
+      section.setAttribute('aria-label',lang==='fr'?'DIGIYLYFE HUB des territoires':'DIGIYLYFE territory hub');
+    }
+
+    apply();
+    new MutationObserver(apply).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+  }
+
   function installPostPaymentCardButton(){
     var file=(location.pathname.split('/').pop()||'').toLowerCase();
     var plan=file==='tarifs-adherents-1.html'?'adherent-19900':file==='tarifs-adherents.html'?'adherent-28000':'';
@@ -147,6 +176,7 @@
   function install(){
     cleanLegacyHubFooter();
     repairPublicDoors();
+    renameWorldHub();
     installPostPaymentCardButton();
     installPublicShowcase();
     if(document.querySelector('a[href="'+MAILTO+'"]')) return;
