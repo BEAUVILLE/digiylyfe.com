@@ -24,11 +24,27 @@
     var grid=document.querySelector('.publicGrid');
     if(!grid) return;
 
-    var rencontre=grid.querySelector('a.publicCard[href="https://rencontre.digiylyfe.com/"]');
-    if(rencontre){
-      rencontre.classList.add('rencontreCard');
-      rencontre.innerHTML='<i aria-hidden="true">🪑</i><strong>DIGIY RENCONTRE</strong><small data-i18n="rencontreText">Amitié · connaissances · activités · cercles</small>';
+    var humanCopy={
+      fr:'Gratuit · activités · cercles · liens locaux',
+      en:'Free · activities · circles · local connections',
+      es:'Gratis · actividades · círculos · vínculos locales',
+      pt:'Gratuito · atividades · círculos · ligações locais',
+      it:'Gratuito · attività · cerchie · legami locali',
+      de:'Kostenlos · Aktivitäten · Kreise · lokale Kontakte',
+      nl:'Gratis · activiteiten · kringen · lokale contacten',
+      ar:'مجاني · أنشطة · دوائر · روابط محلية'
+    };
+
+    function applyHumanDoor(){
+      var human=grid.querySelector('a.publicCard[href="https://rencontre.digiylyfe.com/"]');
+      if(!human) return;
+      var lang=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
+      human.classList.add('rencontreCard');
+      human.innerHTML='<i aria-hidden="true">🪑</i><strong>HUMAIN DU TERRITOIRE</strong><small>'+((humanCopy[lang])||humanCopy.fr)+'</small>';
     }
+
+    applyHumanDoor();
+    new MutationObserver(applyHumanDoor).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
 
     var market=grid.querySelector('a.publicCard[href="https://market.digiylyfe.com/"]');
     var commerce=grid.querySelector('a.publicCard[href="https://mon-commerce.digiylyfe.com/"]');
