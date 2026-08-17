@@ -20,6 +20,37 @@
     });
   }
 
+  function repairPublicDoors(){
+    var grid=document.querySelector('.publicGrid');
+    if(!grid) return;
+
+    var rencontre=grid.querySelector('a.publicCard[href="https://rencontre.digiylyfe.com/"]');
+    if(rencontre){
+      rencontre.classList.add('rencontreCard');
+      rencontre.innerHTML='<i aria-hidden="true">🪑</i><strong>DIGIY RENCONTRE</strong><small data-i18n="rencontreText">Amitié · connaissances · activités · cercles</small>';
+    }
+
+    var market=grid.querySelector('a.publicCard[href="https://market.digiylyfe.com/"]');
+    var commerce=grid.querySelector('a.publicCard[href="https://mon-commerce.digiylyfe.com/"]');
+    if(market && !commerce){
+      market.href='https://mon-commerce.digiylyfe.com/';
+      market.innerHTML='<i aria-hidden="true">🏪</i><strong>MON COMMERCE</strong><small data-i18n="marketText">Boutiques et produits</small>';
+      commerce=market;
+    }else if(market && commerce){
+      market.remove();
+    }
+
+    if(!grid.querySelector('a.publicCard[href="https://resto.digiylyfe.com/"]')){
+      var resa=grid.querySelector('a.publicCard[href="https://resa-table-resto.digiylyfe.com/"]');
+      var resto=document.createElement('a');
+      resto.className='publicCard';
+      resto.href='https://resto.digiylyfe.com/';
+      resto.innerHTML='<i aria-hidden="true">🍽️</i><strong>RESTO</strong><small data-i18n="resaText">Réservations directes</small>';
+      if(resa && resa.nextSibling) grid.insertBefore(resto,resa.nextSibling);
+      else grid.appendChild(resto);
+    }
+  }
+
   function installPostPaymentCardButton(){
     var file=(location.pathname.split('/').pop()||'').toLowerCase();
     var plan=file==='tarifs-adherents-1.html'?'adherent-19900':file==='tarifs-adherents.html'?'adherent-28000':'';
@@ -115,6 +146,7 @@
 
   function install(){
     cleanLegacyHubFooter();
+    repairPublicDoors();
     installPostPaymentCardButton();
     installPublicShowcase();
     if(document.querySelector('a[href="'+MAILTO+'"]')) return;
