@@ -33,10 +33,12 @@
       "contenu_i18n[langue].metier_label",
       "contenu_i18n[langue].elements_metier",
       "photos.principale",
+      "fiche.url",
       "validation.carte"
     ],
     "fiche_lit": [
       "TOUT ce que lit la carte",
+      "fiche.url",
       "contenu_i18n[langue].description",
       "photos.principale",
       "photos.secondaire",
@@ -135,6 +137,10 @@
         "note": "utilise par la FICHE; aucune duplication des traductions"
       }
     ],
+    "fiche": {
+      "url": "URL publique de la fiche si elle existe; sinon null",
+      "_note": "Hook de liaison Carte → Fiche. Le contenu de la fiche reste dans ce meme dossier unifie."
+    },
     "site": {
       "demande": "booleen — hook seulement",
       "statut": "null | en_attente | en_cours | livre",
@@ -177,10 +183,10 @@
         "metier_label": "Plombier",
         "description": "Fuites, sanitaires, evacuation, installation et implantation de reseau. Contact direct, sans intermediaire, paiement direct.",
         "elements_metier": [
-          {"id": "prest_fuite", "libelle": "Depannage fuite"},
-          {"id": "prest_installation", "libelle": "Installation sanitaire"},
-          {"id": "prest_reseau", "libelle": "Reseau plomberie"},
-          {"id": "prest_entretien", "libelle": "Entretien"}
+          {"id":"prest_fuite","libelle":"Depannage fuite"},
+          {"id":"prest_installation","libelle":"Installation sanitaire"},
+          {"id":"prest_reseau","libelle":"Reseau plomberie"},
+          {"id":"prest_entretien","libelle":"Entretien"}
         ],
         "_dir": "ltr",
         "_a_valider": false
@@ -190,10 +196,10 @@
         "metier_label": "Plumber",
         "description": "Leaks, fixtures, drainage, installation and network layout. Direct contact, no middleman, direct payment.",
         "elements_metier": [
-          {"id": "prest_fuite", "libelle": "Leak repair"},
-          {"id": "prest_installation", "libelle": "Sanitary installation"},
-          {"id": "prest_reseau", "libelle": "Plumbing networks"},
-          {"id": "prest_entretien", "libelle": "Maintenance"}
+          {"id":"prest_fuite","libelle":"Leak repair"},
+          {"id":"prest_installation","libelle":"Sanitary installation"},
+          {"id":"prest_reseau","libelle":"Plumbing networks"},
+          {"id":"prest_entretien","libelle":"Maintenance"}
         ],
         "_dir": "ltr",
         "_a_valider": true
@@ -203,10 +209,10 @@
         "metier_label": "Fontanero",
         "description": "Fugas, sanitarios, desague, instalacion y trazado de redes. Contacto directo, sin intermediarios.",
         "elements_metier": [
-          {"id": "prest_fuite", "libelle": "Reparacion de fugas"},
-          {"id": "prest_installation", "libelle": "Instalacion sanitaria"},
-          {"id": "prest_reseau", "libelle": "Redes de fontaneria"},
-          {"id": "prest_entretien", "libelle": "Mantenimiento"}
+          {"id":"prest_fuite","libelle":"Reparacion de fugas"},
+          {"id":"prest_installation","libelle":"Instalacion sanitaria"},
+          {"id":"prest_reseau","libelle":"Redes de fontaneria"},
+          {"id":"prest_entretien","libelle":"Mantenimiento"}
         ],
         "_dir": "ltr",
         "_a_valider": true
@@ -216,10 +222,10 @@
         "metier_label": "Canalizador",
         "description": "Fugas, sanitarios, esgotos, instalacao e implantacao de redes. Contacto direto, sem intermediarios.",
         "elements_metier": [
-          {"id": "prest_fuite", "libelle": "Reparacao de fugas"},
-          {"id": "prest_installation", "libelle": "Instalacao sanitaria"},
-          {"id": "prest_reseau", "libelle": "Redes de canalizacao"},
-          {"id": "prest_entretien", "libelle": "Manutencao"}
+          {"id":"prest_fuite","libelle":"Reparacao de fugas"},
+          {"id":"prest_installation","libelle":"Instalacao sanitaria"},
+          {"id":"prest_reseau","libelle":"Redes de canalizacao"},
+          {"id":"prest_entretien","libelle":"Manutencao"}
         ],
         "_dir": "ltr",
         "_a_valider": true
@@ -229,10 +235,10 @@
         "metier_label": "Idraulico",
         "description": "Perdite, sanitari, scarichi, installazione e posa di reti. Contatto diretto, senza intermediari.",
         "elements_metier": [
-          {"id": "prest_fuite", "libelle": "Riparazione perdite"},
-          {"id": "prest_installation", "libelle": "Installazione sanitaria"},
-          {"id": "prest_reseau", "libelle": "Reti idrauliche"},
-          {"id": "prest_entretien", "libelle": "Manutenzione"}
+          {"id":"prest_fuite","libelle":"Riparazione perdite"},
+          {"id":"prest_installation","libelle":"Installazione sanitaria"},
+          {"id":"prest_reseau","libelle":"Reti idrauliche"},
+          {"id":"prest_entretien","libelle":"Manutenzione"}
         ],
         "_dir": "ltr",
         "_a_valider": true
@@ -242,10 +248,10 @@
         "metier_label": "Klempner",
         "description": "Lecks, Sanitar, Abfluss, Installation und Netzverlegung. Direkter Kontakt, ohne Zwischenhandler.",
         "elements_metier": [
-          {"id": "prest_fuite", "libelle": "Leckreparatur"},
-          {"id": "prest_installation", "libelle": "Sanitarinstallation"},
-          {"id": "prest_reseau", "libelle": "Rohrleitungsnetze"},
-          {"id": "prest_entretien", "libelle": "Wartung"}
+          {"id":"prest_fuite","libelle":"Leckreparatur"},
+          {"id":"prest_installation","libelle":"Sanitarinstallation"},
+          {"id":"prest_reseau","libelle":"Rohrleitungsnetze"},
+          {"id":"prest_entretien","libelle":"Wartung"}
         ],
         "_dir": "ltr",
         "_a_valider": true
@@ -255,10 +261,10 @@
         "metier_label": "Loodgieter",
         "description": "Lekken, sanitair, afvoer, installatie en netwerkaanleg. Direct contact, geen tussenpersoon.",
         "elements_metier": [
-          {"id": "prest_fuite", "libelle": "Lekkage reparatie"},
-          {"id": "prest_installation", "libelle": "Sanitaire installatie"},
-          {"id": "prest_reseau", "libelle": "Leidingnetwerken"},
-          {"id": "prest_entretien", "libelle": "Onderhoud"}
+          {"id":"prest_fuite","libelle":"Lekkage reparatie"},
+          {"id":"prest_installation","libelle":"Sanitaire installatie"},
+          {"id":"prest_reseau","libelle":"Leidingnetwerken"},
+          {"id":"prest_entretien","libelle":"Onderhoud"}
         ],
         "_dir": "ltr",
         "_a_valider": true
@@ -268,10 +274,10 @@
         "metier_label": "سبّاك",
         "description": "تسربات، أدوات صحية، تصريف، تركيب ومد الشبكات. تواصل مباشر، دون وسيط.",
         "elements_metier": [
-          {"id": "prest_fuite", "libelle": "إصلاح التسربات"},
-          {"id": "prest_installation", "libelle": "تركيب الأدوات الصحية"},
-          {"id": "prest_reseau", "libelle": "شبكات السباكة"},
-          {"id": "prest_entretien", "libelle": "الصيانة"}
+          {"id":"prest_fuite","libelle":"إصلاح التسربات"},
+          {"id":"prest_installation","libelle":"تركيب الأدوات الصحية"},
+          {"id":"prest_reseau","libelle":"شبكات السباكة"},
+          {"id":"prest_entretien","libelle":"الصيانة"}
         ],
         "_dir": "rtl",
         "_a_valider": true
@@ -291,26 +297,14 @@
       "_regle": "CARTE = principale seule. FICHE = 2 photos maximum."
     },
     "prestations": [
-      {"element_id": "prest_fuite"},
-      {"element_id": "prest_installation"},
-      {"element_id": "prest_reseau"},
-      {"element_id": "prest_entretien"}
+      {"element_id":"prest_fuite"},
+      {"element_id":"prest_installation"},
+      {"element_id":"prest_reseau"},
+      {"element_id":"prest_entretien"}
     ],
-    "site": {
-      "demande": false,
-      "statut": null,
-      "url": null
-    },
-    "validation": {
-      "dossier": "valide",
-      "carte": "en_attente",
-      "fiche": "brouillon"
-    },
-    "meta": {
-      "dossier_id": "00000000-0000-0000-0000-000000000000",
-      "cree_le": "2026-08-17",
-      "mis_a_jour_le": null,
-      "source": "ATELIER"
-    }
+    "fiche": {"url":null},
+    "site": {"demande":false,"statut":null,"url":null},
+    "validation": {"dossier":"valide","carte":"en_attente","fiche":"brouillon"},
+    "meta": {"dossier_id":"00000000-0000-0000-0000-000000000000","cree_le":"2026-08-17","mis_a_jour_le":null,"source":"ATELIER"}
   }
 }
