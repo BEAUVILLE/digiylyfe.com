@@ -276,6 +276,116 @@
       .catch(function(){ /* La vitrine historique reste intacte si le flux dynamique est indisponible. */ });
   }
 
+  function installPwaHome(){
+    var host=(location.hostname||'').toLowerCase();
+    var path=(location.pathname||'/').replace(/\/+$/,'/') || '/';
+    if(host!=='digiylyfe.com' || (path!=='/' && path!=='/index.html')) return;
+    if(document.querySelector('[data-digiy-pwa-install]')) return;
+
+    if(!document.querySelector('link[rel="manifest"]')){
+      var manifest=document.createElement('link');
+      manifest.rel='manifest';
+      manifest.href='https://digiylyfe.com/manifest.json?v=20260818';
+      document.head.appendChild(manifest);
+    }
+
+    [
+      ['mobile-web-app-capable','yes'],
+      ['apple-mobile-web-app-capable','yes'],
+      ['apple-mobile-web-app-status-bar-style','black-translucent'],
+      ['apple-mobile-web-app-title','DIGIY']
+    ].forEach(function(item){
+      if(document.querySelector('meta[name="'+item[0]+'"]')) return;
+      var meta=document.createElement('meta');
+      meta.name=item[0];
+      meta.content=item[1];
+      document.head.appendChild(meta);
+    });
+
+    var style=document.createElement('style');
+    style.setAttribute('data-digiy-pwa-install','style');
+    style.textContent='.digiyPwaInstall{position:fixed;left:50%;bottom:calc(82px + env(safe-area-inset-bottom));z-index:76;transform:translateX(-50%);width:min(520px,calc(100% - 18px));padding:7px;border:1px solid rgba(246,196,83,.72);border-radius:22px;background:rgba(4,19,13,.97);box-shadow:0 18px 54px rgba(0,0,0,.48);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:grid;grid-template-columns:minmax(0,1fr) 42px;gap:7px;align-items:center}.digiyPwaInstall[hidden]{display:none!important}.digiyPwaMain{min-height:58px;padding:8px 12px;border:0;border-radius:16px;background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;display:grid;grid-template-columns:38px 1fr;gap:9px;align-items:center;text-align:left;cursor:pointer}.digiyPwaMain i{font-style:normal;font-size:27px;line-height:1}.digiyPwaMain strong{display:block;font-size:13px;line-height:1.08;font-weight:1000}.digiyPwaMain small{display:block;margin-top:4px;font-size:10.5px;line-height:1.25;font-weight:900;opacity:.82}.digiyPwaClose{width:42px;height:42px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#fff3cf;font-size:22px;cursor:pointer}@media(min-width:981px){.digiyPwaInstall{left:auto;right:126px;bottom:18px;transform:none;width:min(430px,calc(100% - 160px))}}';
+    document.head.appendChild(style);
+
+    var box=document.createElement('div');
+    box.className='digiyPwaInstall';
+    box.hidden=true;
+    box.setAttribute('data-digiy-pwa-install','1');
+    box.setAttribute('role','region');
+    box.setAttribute('aria-label','Installer DIGIYLYFE');
+    box.innerHTML='<button class="digiyPwaMain" type="button"><i aria-hidden="true">📲</i><span><strong>Installer DIGIYLYFE</strong><small>Gardez DIGIYLYFE directement sur votre téléphone.</small></span></button><button class="digiyPwaClose" type="button" aria-label="Fermer">×</button>';
+    document.body.appendChild(box);
+
+    var main=box.querySelector('.digiyPwaMain');
+    var close=box.querySelector('.digiyPwaClose');
+    var title=box.querySelector('strong');
+    var copy=box.querySelector('small');
+    var deferredPrompt=null;
+    var dismissed=false;
+    var isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+    var isStandalone=window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
+    var labels={
+      fr:{title:'Installer DIGIYLYFE',native:'Gardez DIGIYLYFE directement sur votre téléphone.',ios:'Partager, puis « Sur l’écran d’accueil ».'},
+      en:{title:'Install DIGIYLYFE',native:'Keep DIGIYLYFE directly on your phone.',ios:'Share, then Add to Home Screen.'},
+      es:{title:'Instalar DIGIYLYFE',native:'Guarde DIGIYLYFE directamente en su teléfono.',ios:'Compartir y luego Añadir a pantalla de inicio.'},
+      pt:{title:'Instalar DIGIYLYFE',native:'Guarde DIGIYLYFE diretamente no seu telefone.',ios:'Partilhar e depois Adicionar ao ecrã principal.'},
+      it:{title:'Installa DIGIYLYFE',native:'Tieni DIGIYLYFE direttamente sul telefono.',ios:'Condividi, poi Aggiungi alla schermata Home.'},
+      de:{title:'DIGIYLYFE installieren',native:'DIGIYLYFE direkt auf dem Telefon behalten.',ios:'Teilen, dann Zum Home-Bildschirm.'},
+      nl:{title:'DIGIYLYFE installeren',native:'Bewaar DIGIYLYFE rechtstreeks op uw telefoon.',ios:'Delen en vervolgens Zet op beginscherm.'},
+      ar:{title:'تثبيت DIGIYLYFE',native:'احتفظ بـ DIGIYLYFE مباشرة على هاتفك.',ios:'مشاركة ثم إضافة إلى الشاشة الرئيسية.'}
+    };
+
+    function lang(){
+      var key=(document.documentElement.lang||localStorage.getItem('digiy-lang')||'fr').slice(0,2).toLowerCase();
+      return labels[key]?key:'fr';
+    }
+    function refresh(mode){
+      var t=labels[lang()];
+      title.textContent=t.title;
+      copy.textContent=mode==='ios'?t.ios:t.native;
+      box.setAttribute('aria-label',t.title);
+    }
+    function show(mode){
+      if(dismissed || isStandalone) return;
+      box.dataset.mode=mode;
+      refresh(mode);
+      box.hidden=false;
+    }
+    function hide(){box.hidden=true;}
+
+    window.addEventListener('beforeinstallprompt',function(event){
+      event.preventDefault();
+      deferredPrompt=event;
+      show('native');
+    });
+
+    main.addEventListener('click',async function(){
+      if(deferredPrompt){
+        deferredPrompt.prompt();
+        try{await deferredPrompt.userChoice;}catch(error){}
+        deferredPrompt=null;
+        hide();
+        return;
+      }
+      if(isIOS) show('ios');
+    });
+    close.addEventListener('click',function(){dismissed=true;hide();});
+    window.addEventListener('appinstalled',function(){deferredPrompt=null;hide();});
+    new MutationObserver(function(){refresh(box.dataset.mode==='ios'?'ios':'native');}).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+
+    if(isIOS && !isStandalone) setTimeout(function(){show('ios');},1400);
+
+    if('serviceWorker' in navigator){
+      var register=function(){
+        navigator.serviceWorker.register('/sw.js',{scope:'/'}).catch(function(error){
+          console.warn('DIGIYLYFE PWA: service worker non enregistré',error);
+        });
+      };
+      if(document.readyState==='complete') register();
+      else window.addEventListener('load',register,{once:true});
+    }
+  }
+
   function install(){
     cleanLegacyHubFooter();
     repairPublicDoors();
@@ -284,6 +394,7 @@
     installOfferDemos();
     installPostPaymentCardButton();
     installPublicShowcase();
+    installPwaHome();
     if(document.querySelector('a[href="'+MAILTO+'"]')) return;
 
     var link=document.createElement('a');
