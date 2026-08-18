@@ -96,6 +96,60 @@
     new MutationObserver(apply).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
   }
 
+  function installOfferDemos(){
+    var file=(location.pathname.split('/').pop()||'').toLowerCase();
+    if(file!=='tarifs-adherents.html' && file!=='tarifs-adherents-1.html') return;
+    if(document.querySelector('[data-digiy-offer-demos]')) return;
+
+    var labels={
+      fr:{card:'👁 VOIR UNE CARTE',sheet:'👁 VOIR UNE FICHE',site:'👁 VOIR UN SITE'},
+      en:{card:'👁 VIEW A CARD',sheet:'👁 VIEW A PROFILE',site:'👁 VIEW A WEBSITE'},
+      es:{card:'👁 VER UNA TARJETA',sheet:'👁 VER UNA FICHA',site:'👁 VER UN SITIO'},
+      pt:{card:'👁 VER UM CARTÃO',sheet:'👁 VER UMA FICHA',site:'👁 VER UM SITE'},
+      it:{card:'👁 VEDI UNA CARD',sheet:'👁 VEDI UNA SCHEDA',site:'👁 VEDI UN SITO'},
+      de:{card:'👁 KARTE ANSEHEN',sheet:'👁 PROFIL ANSEHEN',site:'👁 WEBSITE ANSEHEN'},
+      nl:{card:'👁 KAART BEKIJKEN',sheet:'👁 FICHE BEKIJKEN',site:'👁 WEBSITE BEKIJKEN'},
+      ar:{card:'👁 عرض بطاقة',sheet:'👁 عرض ملف مهني',site:'👁 عرض موقع'}
+    };
+
+    var demos=[
+      {key:'card',after:'memberText',url:'https://master-site-digiylyfe.digiylyfe.com/demo-carte-001/'},
+      {key:'sheet',after:'sheetText',url:'https://master-site-digiylyfe.digiylyfe.com/demo-fiche-001/'},
+      {key:'site',after:'siteText',url:'https://master-site-digiylyfe.digiylyfe.com/demo-babacar-001/'}
+    ];
+
+    var marker=document.createElement('span');
+    marker.setAttribute('data-digiy-offer-demos','1');
+    marker.hidden=true;
+    document.body.appendChild(marker);
+
+    demos.forEach(function(demo){
+      var after=document.getElementById(demo.after);
+      if(!after) return;
+      var a=document.createElement('a');
+      a.href=demo.url;
+      a.target='_blank';
+      a.rel='noopener noreferrer';
+      a.setAttribute('data-digiy-offer-demo',demo.key);
+      a.style.cssText='display:flex;min-height:48px;align-items:center;justify-content:center;margin:0 0 10px;padding:10px 14px;border:2px solid rgba(246,196,83,.72);border-radius:999px;background:linear-gradient(135deg,rgba(246,196,83,.14),rgba(45,212,191,.10));color:#ffe9a8;font-size:13px;font-weight:1000;text-decoration:none;text-align:center;letter-spacing:.02em';
+      after.insertAdjacentElement('afterend',a);
+    });
+
+    function refresh(){
+      var lang=(document.documentElement.lang||localStorage.getItem('digiy_lang')||'fr').slice(0,2).toLowerCase();
+      var t=labels[lang]||labels.fr;
+      document.querySelectorAll('[data-digiy-offer-demo]').forEach(function(a){
+        var key=a.getAttribute('data-digiy-offer-demo');
+        a.textContent=t[key]||labels.fr[key];
+        a.setAttribute('aria-label',t[key]||labels.fr[key]);
+      });
+    }
+
+    refresh();
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+    window.addEventListener('storage',refresh);
+  }
+
   function installPostPaymentCardButton(){
     var file=(location.pathname.split('/').pop()||'').toLowerCase();
     var plan=file==='tarifs-adherents-1.html'?'adherent-19900':file==='tarifs-adherents.html'?'adherent-28000':'';
@@ -193,6 +247,7 @@
     cleanLegacyHubFooter();
     repairPublicDoors();
     renameWorldHub();
+    installOfferDemos();
     installPostPaymentCardButton();
     installPublicShowcase();
     if(document.querySelector('a[href="'+MAILTO+'"]')) return;
