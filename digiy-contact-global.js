@@ -96,6 +96,39 @@
     new MutationObserver(apply).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
   }
 
+  function installMembershipSiteBack(){
+    var file=(location.pathname.split('/').pop()||'').toLowerCase();
+    if(file!=='tarifs-adherents.html' && file!=='tarifs-adherents-1.html') return;
+    if(document.querySelector('[data-digiy-membership-back]')) return;
+
+    var main=document.querySelector('main.wrap')||document.querySelector('main')||document.body;
+    var labels={
+      fr:'← Retour au site DIGIYLYFE',
+      en:'← Back to DIGIYLYFE website',
+      es:'← Volver al sitio DIGIYLYFE',
+      pt:'← Voltar ao site DIGIYLYFE',
+      it:'← Torna al sito DIGIYLYFE',
+      de:'← Zurück zur DIGIYLYFE-Website',
+      nl:'← Terug naar de DIGIYLYFE-site',
+      ar:'العودة إلى موقع DIGIYLYFE →'
+    };
+
+    var link=document.createElement('a');
+    link.href='https://digiylyfe.com/';
+    link.setAttribute('data-digiy-membership-back','1');
+    link.style.cssText='display:flex;width:fit-content;max-width:100%;min-height:44px;align-items:center;justify-content:center;margin:0 auto 12px;padding:9px 14px;border:1px solid rgba(246,196,83,.72);border-radius:999px;background:rgba(246,196,83,.10);color:#ffe9a8;font-size:13px;font-weight:1000;text-decoration:none;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.18)';
+
+    function refresh(){
+      var lang=(document.documentElement.lang||localStorage.getItem('digiy_lang')||'fr').slice(0,2).toLowerCase();
+      link.textContent=labels[lang]||labels.fr;
+      link.setAttribute('aria-label',labels[lang]||labels.fr);
+    }
+
+    refresh();
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+    main.insertBefore(link,main.firstChild);
+  }
+
   function installOfferDemos(){
     var file=(location.pathname.split('/').pop()||'').toLowerCase();
     if(file!=='tarifs-adherents.html' && file!=='tarifs-adherents-1.html') return;
@@ -247,6 +280,7 @@
     cleanLegacyHubFooter();
     repairPublicDoors();
     renameWorldHub();
+    installMembershipSiteBack();
     installOfferDemos();
     installPostPaymentCardButton();
     installPublicShowcase();
