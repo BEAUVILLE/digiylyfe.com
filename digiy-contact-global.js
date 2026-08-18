@@ -113,7 +113,7 @@
     };
 
     var demos=[
-      {key:'card',after:'memberText',url:'https://master-site-digiylyfe.digiylyfe.com/demo-carte-001/'},
+      {key:'card',after:'memberText',url:'https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-18-aout-2026-01_14_59-1.png'},
       {key:'sheet',after:'sheetText',url:'https://master-site-digiylyfe.digiylyfe.com/demo-fiche-001/'},
       {key:'site',after:'siteText',url:'https://master-site-digiylyfe.digiylyfe.com/demo-babacar-001/'}
     ];
