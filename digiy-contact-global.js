@@ -183,6 +183,68 @@
     window.addEventListener('storage',refresh);
   }
 
+  function installSitePricingTiers(){
+    var file=(location.pathname.split('/').pop()||'').toLowerCase();
+    if(file!=='tarifs-adherents.html' && file!=='tarifs-adherents-1.html') return;
+
+    var siteTitle=document.getElementById('site');
+    var siteCard=siteTitle && siteTitle.closest('.card');
+    if(!siteCard || siteCard.querySelector('[data-digiy-site-tiers]')) return;
+
+    var sitePrice=document.getElementById('sitePrice');
+    var siteText=document.getElementById('siteText');
+    var siteItems=document.getElementById('siteItems');
+    if(sitePrice) sitePrice.style.display='none';
+    if(siteItems) siteItems.style.display='none';
+
+    var oldDemo=document.querySelector('[data-digiy-offer-demo="site"]');
+    if(oldDemo) oldDemo.remove();
+
+    var copy={
+      fr:{title:'NOTORIÉTÉ · SITE PROFESSIONNEL DIGIYLYFE',intro:'Deux niveaux clairs. Vous voyez un exemple avant de choisir et le montant final est accepté avant règlement.',premium:'PREMIUM',premiumPrice:'SÉNÉGAL · À PARTIR DE 250 000 FCFA · EUROPE · À PARTIR DE 480 €',premiumText:'Une présence professionnelle complète : adaptation du MASTER au métier, identité, mobile, PWA, 8 langues, contact direct et fonctions prévues dans le MASTER choisi.',premiumDemo:'👁 VOIR UN SITE PREMIUM · BABACAR',extra:'EXTRA',extraPrice:'SÉNÉGAL · À PARTIR DE 450 000 FCFA · EUROPE · À PARTIR DE 800 €',extraText:'Pour une réalisation plus riche : davantage de contenus, personnalisation avancée, galeries importantes, fonctions propriétaires ou intégrations spécifiques.',extraDemo:'👁 VOIR UN SITE EXTRA · ASTOU BOUTIQUE',note:'Les prix sont indiqués « à partir de ». Le montant final dépend du contenu et des besoins du projet. Il est présenté et accepté avant règlement. L’adhésion DIGIYLYFE est distincte de la création du site.'},
+      en:{title:'RECOGNITION · DIGIYLYFE PROFESSIONAL WEBSITE',intro:'Two clear levels. You can view an example before choosing, and the final amount is agreed before payment.',premium:'PREMIUM',premiumPrice:'SENEGAL · FROM 250,000 FCFA · EUROPE · FROM €480',premiumText:'A complete professional presence: MASTER adaptation to the business, identity, mobile, PWA, 8 languages, direct contact and the functions included in the selected MASTER.',premiumDemo:'👁 VIEW A PREMIUM WEBSITE · BABACAR',extra:'EXTRA',extraPrice:'SENEGAL · FROM 450,000 FCFA · EUROPE · FROM €800',extraText:'For a richer build: more content, advanced customization, larger galleries, owner functions or specific integrations.',extraDemo:'👁 VIEW AN EXTRA WEBSITE · ASTOU BOUTIQUE',note:'Prices are starting prices. The final amount depends on the project content and needs. It is presented and accepted before payment. DIGIYLYFE membership is separate from website creation.'},
+      es:{title:'NOTORIEDAD · SITIO PROFESIONAL DIGIYLYFE',intro:'Dos niveles claros. Puede ver un ejemplo antes de elegir y el importe final se acepta antes del pago.',premium:'PREMIUM',premiumPrice:'SENEGAL · DESDE 250.000 FCFA · EUROPA · DESDE 480 €',premiumText:'Una presencia profesional completa: adaptación del MASTER al oficio, identidad, móvil, PWA, 8 idiomas, contacto directo y funciones previstas en el MASTER elegido.',premiumDemo:'👁 VER UN SITIO PREMIUM · BABACAR',extra:'EXTRA',extraPrice:'SENEGAL · DESDE 450.000 FCFA · EUROPA · DESDE 800 €',extraText:'Para una realización más rica: más contenidos, personalización avanzada, galerías importantes, funciones del propietario o integraciones específicas.',extraDemo:'👁 VER UN SITIO EXTRA · ASTOU BOUTIQUE',note:'Los precios se indican « desde ». El importe final depende del contenido y de las necesidades del proyecto. Se presenta y acepta antes del pago. La adhesión DIGIYLYFE es independiente de la creación del sitio.'},
+      pt:{title:'NOTORIEDADE · SITE PROFISSIONAL DIGIYLYFE',intro:'Dois níveis claros. Pode ver um exemplo antes de escolher e o valor final é aceite antes do pagamento.',premium:'PREMIUM',premiumPrice:'SENEGAL · A PARTIR DE 250 000 FCFA · EUROPA · A PARTIR DE 480 €',premiumText:'Uma presença profissional completa: adaptação do MASTER ao negócio, identidade, mobile, PWA, 8 idiomas, contacto direto e funções previstas no MASTER escolhido.',premiumDemo:'👁 VER UM SITE PREMIUM · BABACAR',extra:'EXTRA',extraPrice:'SENEGAL · A PARTIR DE 450 000 FCFA · EUROPA · A PARTIR DE 800 €',extraText:'Para uma realização mais rica: mais conteúdos, personalização avançada, galerias importantes, funções do proprietário ou integrações específicas.',extraDemo:'👁 VER UM SITE EXTRA · ASTOU BOUTIQUE',note:'Os preços são indicados « a partir de ». O valor final depende do conteúdo e das necessidades do projeto. É apresentado e aceite antes do pagamento. A adesão DIGIYLYFE é separada da criação do site.'},
+      it:{title:'NOTORIETÀ · SITO PROFESSIONALE DIGIYLYFE',intro:'Due livelli chiari. Puoi vedere un esempio prima di scegliere e l’importo finale viene accettato prima del pagamento.',premium:'PREMIUM',premiumPrice:'SENEGAL · DA 250.000 FCFA · EUROPA · DA 480 €',premiumText:'Una presenza professionale completa: adattamento del MASTER al mestiere, identità, mobile, PWA, 8 lingue, contatto diretto e funzioni previste nel MASTER scelto.',premiumDemo:'👁 VEDI UN SITO PREMIUM · BABACAR',extra:'EXTRA',extraPrice:'SENEGAL · DA 450.000 FCFA · EUROPA · DA 800 €',extraText:'Per una realizzazione più ricca: più contenuti, personalizzazione avanzata, gallerie importanti, funzioni proprietario o integrazioni specifiche.',extraDemo:'👁 VEDI UN SITO EXTRA · ASTOU BOUTIQUE',note:'I prezzi sono indicati « da ». L’importo finale dipende dai contenuti e dalle esigenze del progetto. Viene presentato e accettato prima del pagamento. L’adesione DIGIYLYFE è separata dalla creazione del sito.'},
+      de:{title:'BEKANNTHEIT · PROFESSIONELLE DIGIYLYFE-WEBSITE',intro:'Zwei klare Stufen. Sie können vor der Auswahl ein Beispiel ansehen; der Endbetrag wird vor der Zahlung bestätigt.',premium:'PREMIUM',premiumPrice:'SENEGAL · AB 250.000 FCFA · EUROPA · AB 480 €',premiumText:'Eine vollständige professionelle Präsenz: Anpassung des MASTER an das Geschäft, Identität, Mobilversion, PWA, 8 Sprachen, direkter Kontakt und die im gewählten MASTER vorgesehenen Funktionen.',premiumDemo:'👁 PREMIUM-WEBSITE ANSEHEN · BABACAR',extra:'EXTRA',extraPrice:'SENEGAL · AB 450.000 FCFA · EUROPA · AB 800 €',extraText:'Für eine umfangreichere Umsetzung: mehr Inhalte, erweiterte Personalisierung, größere Galerien, Eigentümerfunktionen oder spezielle Integrationen.',extraDemo:'👁 EXTRA-WEBSITE ANSEHEN · ASTOU BOUTIQUE',note:'Die Preise sind Einstiegspreise. Der Endbetrag hängt von Inhalt und Projektbedarf ab. Er wird vor der Zahlung vorgelegt und bestätigt. Die DIGIYLYFE-Mitgliedschaft ist von der Website-Erstellung getrennt.'},
+      nl:{title:'NAAMSBEKENDHEID · PROFESSIONELE DIGIYLYFE-WEBSITE',intro:'Twee duidelijke niveaus. U kunt eerst een voorbeeld bekijken; het definitieve bedrag wordt vóór betaling aanvaard.',premium:'PREMIUM',premiumPrice:'SENEGAL · VANAF 250.000 FCFA · EUROPA · VANAF €480',premiumText:'Een complete professionele aanwezigheid: aanpassing van de MASTER aan het beroep, identiteit, mobiel, PWA, 8 talen, direct contact en functies die in de gekozen MASTER zijn voorzien.',premiumDemo:'👁 PREMIUM-WEBSITE BEKIJKEN · BABACAR',extra:'EXTRA',extraPrice:'SENEGAL · VANAF 450.000 FCFA · EUROPA · VANAF €800',extraText:'Voor een rijkere uitvoering: meer inhoud, geavanceerde personalisatie, grotere galerijen, eigenaarsfuncties of specifieke integraties.',extraDemo:'👁 EXTRA-WEBSITE BEKIJKEN · ASTOU BOUTIQUE',note:'De prijzen zijn vanafprijzen. Het definitieve bedrag hangt af van de inhoud en behoeften van het project. Het wordt vóór betaling voorgelegd en aanvaard. Het DIGIYLYFE-lidmaatschap staat los van de creatie van de website.'},
+      ar:{title:'الشهرة · موقع DIGIYLYFE احترافي',intro:'مستويان واضحان. يمكن مشاهدة مثال قبل الاختيار، ويتم عرض المبلغ النهائي والموافقة عليه قبل الدفع.',premium:'PREMIUM',premiumPrice:'السنغال · ابتداءً من 250 000 FCFA · أوروبا · ابتداءً من 480 €',premiumText:'حضور مهني متكامل: تكييف MASTER مع المهنة، الهوية، الهاتف، PWA، 8 لغات، تواصل مباشر والوظائف المقررة في MASTER المختار.',premiumDemo:'👁 مشاهدة موقع PREMIUM · BABACAR',extra:'EXTRA',extraPrice:'السنغال · ابتداءً من 450 000 FCFA · أوروبا · ابتداءً من 800 €',extraText:'لإنجاز أكثر ثراءً: محتوى أكبر، تخصيص متقدم، معارض صور مهمة، وظائف للمالك أو تكاملات خاصة.',extraDemo:'👁 مشاهدة موقع EXTRA · ASTOU BOUTIQUE',note:'الأسعار مذكورة ابتداءً من. يعتمد المبلغ النهائي على محتوى المشروع واحتياجاته، ويتم عرضه والموافقة عليه قبل الدفع. عضوية DIGIYLYFE منفصلة عن إنشاء الموقع.'}
+    };
+
+    var wrap=document.createElement('div');
+    wrap.setAttribute('data-digiy-site-tiers','1');
+    wrap.style.cssText='display:grid;gap:11px;margin-top:12px';
+    wrap.innerHTML='<article data-tier="premium" style="padding:15px;border-radius:19px;border:2px solid rgba(246,196,83,.58);background:linear-gradient(145deg,rgba(246,196,83,.13),rgba(255,255,255,.05))"><strong data-tier-title style="display:block;color:#ffe9a8;font-size:22px;font-weight:1000"></strong><div data-tier-price style="margin-top:8px;color:#fff;font-size:16px;line-height:1.35;font-weight:1000"></div><p data-tier-text style="margin:9px 0 12px;color:#c5d3cc;font-size:13px;line-height:1.5;font-weight:800"></p><a data-tier-demo href="https://master-site-digiylyfe.digiylyfe.com/demo-babacar-001/" target="_blank" rel="noopener noreferrer" style="display:flex;min-height:46px;align-items:center;justify-content:center;padding:9px 12px;border-radius:999px;background:linear-gradient(135deg,#f6c453,#2dd4bf);color:#06140f;font-size:12px;font-weight:1000;text-decoration:none;text-align:center"></a></article><article data-tier="extra" style="padding:15px;border-radius:19px;border:2px solid rgba(45,212,191,.58);background:linear-gradient(145deg,rgba(45,212,191,.12),rgba(246,196,83,.07))"><strong data-tier-title style="display:block;color:#a7fff0;font-size:22px;font-weight:1000"></strong><div data-tier-price style="margin-top:8px;color:#fff;font-size:16px;line-height:1.35;font-weight:1000"></div><p data-tier-text style="margin:9px 0 12px;color:#c5d3cc;font-size:13px;line-height:1.5;font-weight:800"></p><a data-tier-demo href="https://astou-boutique.digiylyfe.com/" target="_blank" rel="noopener noreferrer" style="display:flex;min-height:46px;align-items:center;justify-content:center;padding:9px 12px;border-radius:999px;border:1px solid rgba(246,196,83,.72);background:rgba(246,196,83,.12);color:#ffe9a8;font-size:12px;font-weight:1000;text-decoration:none;text-align:center"></a></article><p data-tier-note style="margin:2px 2px 0;padding:11px;border-radius:15px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.05);color:#c5d3cc;font-size:11px;line-height:1.5;font-weight:850"></p>';
+    siteCard.appendChild(wrap);
+
+    function refresh(){
+      var lang=(document.documentElement.lang||localStorage.getItem('digiy_lang')||'fr').slice(0,2).toLowerCase();
+      var t=copy[lang]||copy.fr;
+      siteTitle.textContent=t.title;
+      if(siteText) siteText.textContent=t.intro;
+
+      var premium=wrap.querySelector('[data-tier="premium"]');
+      premium.querySelector('[data-tier-title]').textContent=t.premium;
+      premium.querySelector('[data-tier-price]').textContent=t.premiumPrice;
+      premium.querySelector('[data-tier-text]').textContent=t.premiumText;
+      premium.querySelector('[data-tier-demo]').textContent=t.premiumDemo;
+
+      var extra=wrap.querySelector('[data-tier="extra"]');
+      extra.querySelector('[data-tier-title]').textContent=t.extra;
+      extra.querySelector('[data-tier-price]').textContent=t.extraPrice;
+      extra.querySelector('[data-tier-text]').textContent=t.extraText;
+      extra.querySelector('[data-tier-demo]').textContent=t.extraDemo;
+      wrap.querySelector('[data-tier-note]').textContent=t.note;
+
+      var meta=document.querySelector('meta[name="description"]');
+      if(meta && lang==='fr') meta.content=meta.content.replace(/Site personnalisé\s*:\s*550 000 FCFA au Sénégal\s*\/\s*950 € en Europe\.?/i,'Sites DIGIYLYFE : PREMIUM à partir de 250 000 FCFA / 480 € ; EXTRA à partir de 450 000 FCFA / 800 €.');
+    }
+
+    refresh();
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+    window.addEventListener('storage',refresh);
+  }
+
   function installPostPaymentCardButton(){
     var file=(location.pathname.split('/').pop()||'').toLowerCase();
     var plan=file==='tarifs-adherents-1.html'?'adherent-19900':file==='tarifs-adherents.html'?'adherent-28000':'';
@@ -392,6 +454,7 @@
     renameWorldHub();
     installMembershipSiteBack();
     installOfferDemos();
+    installSitePricingTiers();
     installPostPaymentCardButton();
     installPublicShowcase();
     installPwaHome();
