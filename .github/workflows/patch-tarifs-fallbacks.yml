@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '.github/workflows/patch-tarifs-fallbacks.yml'
+      - '.github/patch-tarifs-fallbacks.trigger'
 permissions:
   contents: write
 jobs:
@@ -24,7 +24,6 @@ jobs:
                   raise SystemExit(f'{label}: expected 1 occurrence, found {count}')
               return text.replace(old, new, 1)
 
-          # Structures / establishments page: make the commercial essentials visible without JS.
           p = Path('tarifs-adherents.html')
           text = p.read_text(encoding='utf-8')
           text = replace_once(text,
@@ -47,7 +46,6 @@ jobs:
               raise SystemExit('structures HUB translations not found')
           p.write_text(text, encoding='utf-8')
 
-          # 19 900 page: the old HUB link is already gone, remove the stale JS reference that can stop language switching.
           p = Path('tarifs-adherents-1.html')
           text = p.read_text(encoding='utf-8')
           text = replace_once(text, '"back","hub"].forEach', '"back"].forEach', 'metiers JS hub reference')
@@ -56,11 +54,11 @@ jobs:
               raise SystemExit('metiers HUB translations not found')
           p.write_text(text, encoding='utf-8')
           PY
-      - name: Commit patch and remove temporary workflow
+      - name: Commit patch and remove temporary files
         run: |
           git config user.name "DIGIYLYFE Atelier"
           git config user.email "actions@users.noreply.github.com"
           git add tarifs-adherents.html tarifs-adherents-1.html
-          git rm .github/workflows/patch-tarifs-fallbacks.yml
+          git rm .github/workflows/patch-tarifs-fallbacks.yml .github/patch-tarifs-fallbacks.trigger
           git commit -m "UI: harden public tariffs fallbacks"
           git push
