@@ -12,6 +12,7 @@ Vitrine publique et multilingue de l’écosystème DIGIYLYFE.
 
 ## Territoires et contenus
 
+- `territoire.html` — moteur territorial public hébergé directement sur DIGIYLYFE.COM ;
 - `sarlat.html` — porte territoriale Sarlat ;
 - `aly-parle.html` — Aly Kane, La Voix du Terrain ;
 - `architecture-digiylyfe.html`, `notre-methode.html`, `le-terrain-garde-la-main.html` — doctrine publique.
