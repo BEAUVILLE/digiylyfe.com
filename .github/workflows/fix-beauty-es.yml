@@ -1,0 +1,38 @@
+name: Fix Beauty Spanish label
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-beauty-es.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix Spanish label only
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('territoire.html')
+          s=p.read_text(encoding='utf-8')
+          marker="es:{tag:'Profesionales del territorio"
+          i=s.find(marker)
+          if i >= 0:
+              j=s.find("},\npt:{", i)
+              if j >= 0:
+                  block=s[i:j]
+                  block=block.replace("beauty:'Beleza e bem-estar'", "beauty:'Belleza y bienestar'")
+                  s=s[:i]+block+s[j:]
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name "DIGIYLYFE Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add territoire.html
+          git rm .github/workflows/fix-beauty-es.yml
+          git commit -m "Fix: Spanish Beauté & Bien-être label"
+          git push origin HEAD:main
