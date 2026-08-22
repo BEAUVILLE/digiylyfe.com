@@ -13,19 +13,19 @@
   if(document.getElementById('digiyDock')||document.getElementById('digiy-global-dock')) return;
 
   var HOME='https://digiylyfe.com/';
-  var HUB='https://digiy-hub.digiylyfe.com/';
+  var HUB='https://digiylyfe.com/#territoires';
   var FAV_KEY='digiy_global_favorites_v1';
   var lang=(document.documentElement.lang||'fr').toLowerCase().indexOf('en')===0?'en':'fr';
 
   var copy={
-    fr:{home:'Accueil',hub:'HUB',menu:'Tout',favorites:'Favoris',back:'Retour',menuTitle:'Toutes les portes DIGIYLYFE',favTitle:'Mes favoris',favLead:'Touchez une étoile pour mémoriser jusqu’à trois raccourcis sur cet appareil.',close:'Fermer',open:'Ouvrir',selected:'Retirer des favoris',notSelected:'Ajouter aux favoris'},
-    en:{home:'Home',hub:'HUB',menu:'All',favorites:'Favorites',back:'Back',menuTitle:'All DIGIYLYFE doors',favTitle:'My favorites',favLead:'Tap a star to remember up to three shortcuts on this device.',close:'Close',open:'Open',selected:'Remove from favorites',notSelected:'Add to favorites'}
+    fr:{home:'Accueil',hub:'Territoires',menu:'Tout',favorites:'Favoris',back:'Retour',menuTitle:'Toutes les portes DIGIYLYFE',favTitle:'Mes favoris',favLead:'Touchez une étoile pour mémoriser jusqu’à trois raccourcis sur cet appareil.',close:'Fermer',open:'Ouvrir',selected:'Retirer des favoris',notSelected:'Ajouter aux favoris'},
+    en:{home:'Home',hub:'Territories',menu:'All',favorites:'Favorites',back:'Back',menuTitle:'All DIGIYLYFE doors',favTitle:'My favorites',favLead:'Tap a star to remember up to three shortcuts on this device.',close:'Close',open:'Open',selected:'Remove from favorites',notSelected:'Add to favorites'}
   }[lang];
 
   var favoriteChoices=[
     {id:'pro',icon:'🔐',fr:'Mon espace pro',en:'My pro space',url:'https://pro-espace.digiylyfe.com/'},
     {id:'carnet',icon:'📒',fr:'PRO CARNET',en:'PRO CARNET',url:'https://pro-carnet.digiylyfe.com/pin.html'},
-    {id:'modules',icon:'🧭',fr:'Tous mes modules',en:'All my modules',url:HUB}
+    {id:'modules',icon:'🧭',fr:'Territoires',en:'Territories',url:HUB}
   ];
 
   function getCookie(name){
@@ -125,7 +125,7 @@
 
   var menuLinks=[
     ['🔎 Trouver un professionnel','https://digiylyfe.com/recherche.html',true],
-    ['🧭 HUB DIGIYLYFE',HUB,true],
+    ['🧭 TERRITOIRES',HUB,true],
     ['🚗 DRIVER','https://driver-client.digiylyfe.com/'],
     ['🏠 LOC','https://loc.digiylyfe.com/'],
     ['🛍️ MARKET','https://market.digiylyfe.com/'],
