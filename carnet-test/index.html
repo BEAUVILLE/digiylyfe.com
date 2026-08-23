@@ -8,7 +8,7 @@
   <title>DIGIY CARNET — Test magic link</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3"></script>
   <style>
-    *{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:18px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.card{width:min(560px,100%);padding:22px;border-radius:28px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06)}.eyebrow{color:#f4d27a;font-weight:900;font-size:12px;letter-spacing:.12em}.badge{display:inline-block;margin:10px 0;padding:7px 10px;border-radius:999px;border:1px solid rgba(244,210,122,.25);color:#fde68a;background:rgba(244,210,122,.08);font-size:11px;font-weight:900}h1{margin:8px 0;font-size:clamp(36px,10vw,58px);line-height:.95}.status{margin-top:16px;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);line-height:1.5;font-weight:800}.ok{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.3);color:#bbf7d0}.warn{background:rgba(244,210,122,.10);border-color:rgba(244,210,122,.3);color:#fff4c8}.bad{background:rgba(248,113,113,.10);border-color:rgba(248,113,113,.3);color:#fecaca}.small{margin-top:14px;color:rgba(255,255,255,.55);font-size:11px;line-height:1.5}button{width:100%;min-height:52px;margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font:inherit;font-weight:900}
+    *{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:18px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.card{width:min(560px,100%);padding:22px;border-radius:28px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06)}.eyebrow{color:#f4d27a;font-weight:900;font-size:12px;letter-spacing:.12em}.badge{display:inline-block;margin:10px 0;padding:7px 10px;border-radius:999px;border:1px solid rgba(244,210,122,.25);color:#fde68a;background:rgba(244,210,122,.08);font-size:11px;font-weight:900}h1{margin:8px 0;font-size:clamp(36px,10vw,58px);line-height:.95}p{line-height:1.5}.field{display:grid;gap:6px;margin-top:16px}.field label{font-size:11px;color:#fde68a;font-weight:900}.field input{width:100%;min-height:54px;border-radius:16px;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.22);color:#fff;padding:11px 12px;font:inherit}.status{margin-top:16px;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);line-height:1.5;font-weight:800}.ok{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.3);color:#bbf7d0}.warn{background:rgba(244,210,122,.10);border-color:rgba(244,210,122,.3);color:#fff4c8}.bad{background:rgba(248,113,113,.10);border-color:rgba(248,113,113,.3);color:#fecaca}.small{margin-top:14px;color:rgba(255,255,255,.55);font-size:11px;line-height:1.5}button{width:100%;min-height:52px;margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font:inherit;font-weight:900}.send{background:linear-gradient(135deg,#22c55e,#f4d27a);color:#102014;border:0}.send:disabled,button:disabled{opacity:.45}
   </style>
 </head>
 <body>
@@ -16,10 +16,17 @@
   <div class="eyebrow">DIGIYLYFE · ATELIER</div>
   <div class="badge">TEST ISOLÉ · NON COMMERCIAL</div>
   <h1>DIGIY CARNET</h1>
-  <p>Cette page vérifie uniquement le retour du magic link et la session Supabase du faux adhérent.</p>
+  <p>Cette page vérifie uniquement l’envoi, le retour du magic link et la session Supabase du faux adhérent.</p>
+
+  <div class="field" id="loginBox">
+    <label for="email">EMAIL DU COMPTE TEST EXISTANT</label>
+    <input id="email" type="email" autocomplete="email" placeholder="nom@exemple.com">
+    <button class="send" id="send" type="button">✉️ ENVOYER MON MAGIC LINK TEST</button>
+  </div>
+
   <div class="status warn" id="status">Recherche d’une session CARNET…</div>
   <button id="logout" type="button">↩ FERMER LA SESSION TEST</button>
-  <div class="small">Aucun email n’est stocké dans cette page. Aucun SQL CARNET n’est exécuté depuis ici. Le droit test est limité au cobaye <b>digiy-carnet-test-001</b>.</div>
+  <div class="small">L’email saisi n’est ni écrit dans GitHub ni ajouté à la page. <b>shouldCreateUser:false</b> : une adresse inconnue ne doit pas créer de compte. Aucun SQL CARNET n’est exécuté depuis ici. Slug test : <b>digiy-carnet-test-001</b>.</div>
 </main>
 <script>
 (() => {
@@ -29,12 +36,17 @@
   const MEMBER_SLUG="digiy-carnet-test-001";
   const status=document.getElementById("status");
   const logout=document.getElementById("logout");
+  const send=document.getElementById("send");
+  const email=document.getElementById("email");
+  const loginBox=document.getElementById("loginBox");
   const db=supabase.createClient(PROJECT_URL,PUBLISHABLE_KEY,{auth:{persistSession:true,detectSessionInUrl:true,autoRefreshToken:true}});
   function set(text,kind){status.textContent=text;status.className="status "+(kind||"warn")}
+
   async function check(){
     try{
       const {data,error}=await db.auth.getUser();
-      if(error||!data?.user){set("Aucune session authentifiée. Ouvre le magic link reçu par email.","warn");return}
+      if(error||!data?.user){set("Aucune session authentifiée. Demande le magic link ci-dessus puis ouvre le lien reçu.","warn");loginBox.hidden=false;return}
+      loginBox.hidden=true;
       set("✅ MAGIC LINK VALIDÉ · session Supabase authentifiée. Le bridge CARNET sera testé à l’étape SQL suivante.","ok");
       try{
         const {data:access,error:accessError}=await db.rpc("digiy_carnet_my_access",{p_slug:MEMBER_SLUG});
@@ -42,7 +54,22 @@
       }catch(_){}
     }catch(err){set("Retour Auth non validé : "+(err?.message||err),"bad")}
   }
-  logout.onclick=async()=>{try{await db.auth.signOut()}catch(_){}set("Session test fermée.","warn")};
+
+  send.onclick=async()=>{
+    const em=String(email.value||"").trim();
+    if(!em){set("Indique l’email du compte test existant.","warn");email.focus();return}
+    send.disabled=true;
+    set("Envoi du magic link test…","warn");
+    try{
+      const redirectTo=location.origin+location.pathname;
+      const {error}=await db.auth.signInWithOtp({email:em,options:{shouldCreateUser:false,emailRedirectTo:redirectTo}});
+      if(error)throw error;
+      set("✅ Magic link demandé. Ouvre maintenant le message reçu sur cette adresse.","ok");
+    }catch(err){set("Envoi impossible : "+(err?.message||err),"bad")}
+    finally{send.disabled=false}
+  };
+
+  logout.onclick=async()=>{try{await db.auth.signOut()}catch(_){}loginBox.hidden=false;set("Session test fermée.","warn")};
   check();
 })();
 </script>
