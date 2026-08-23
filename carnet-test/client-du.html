@@ -7,7 +7,28 @@
   <meta name="theme-color" content="#06140f">
   <title>DIGIY CARNET — Client dû test</title>
   <style>
-    *{box-sizing:border-box}body{margin:0;min-height:100dvh;padding:16px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{width:min(720px,100%);margin:0 auto}.hero,.panel,.debt{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);border-radius:24px;padding:18px}.hero{background:linear-gradient(135deg,#fff7df,#ead29a);color:#162016}.eyebrow{font-size:11px;font-weight:1000;letter-spacing:.11em;color:#6b5525}.hero h1{margin:6px 0 4px;font-size:clamp(38px,10vw,60px);line-height:.95}.hero p{margin:8px 0 0;line-height:1.45;font-weight:750}.status{margin:12px 0;padding:13px 14px;border-radius:16px;border:1px solid rgba(244,210,122,.24);background:rgba(244,210,122,.1);font-weight:850;line-height:1.45;white-space:pre-wrap}.status.ok{color:#bbf7d0;border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.1)}.status.bad{color:#fecaca;border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.1)}.panel{margin-top:12px}.panel h2{margin:0 0 12px;color:#f4d27a}.grid{display:grid;grid-template-columns:1fr;gap:10px}.field{display:grid;gap:5px}.field label{font-size:11px;font-weight:900;color:#fde68a}.field input,.field select,.field textarea{width:100%;min-height:50px;border-radius:14px;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.22);color:#fff;padding:10px 12px;font:inherit}.field textarea{min-height:72px;resize:vertical}.row{display:grid;grid-template-columns:1fr;gap:9px}.btn{width:100%;min-height:50px;border-radius:15px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-weight:950;padding:10px 12px}.btn.primary{background:linear-gradient(135deg,#f4d27a,#fb923c);color:#221509;border:0}.btn.pay{background:rgba(34,197,94,.16);border-color:rgba(34,197,94,.34);color:#dcfce7}.btn.cancel{color:#fecaca;border-color:rgba(248,113,113,.24)}.btn:disabled{opacity:.45}.list{display:grid;gap:10px}.debt h3{margin:0 0 8px;font-size:22px}.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:10px 0}.num{padding:10px;border-radius:14px;background:rgba(0,0,0,.2);text-align:center}.num small{display:block;color:rgba(255,255,255,.58);font-size:10px;font-weight:900}.num b{display:block;margin-top:4px;font-size:15px}.pill{display:inline-block;padding:5px 8px;border-radius:999px;background:rgba(244,210,122,.12);color:#fde68a;font-size:10px;font-weight:950}.payments{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.72);line-height:1.55}.payment{padding:6px 0}.empty{padding:20px;text-align:center;color:rgba(255,255,255,.55)}.foot{margin:14px 0 4px;text-align:center}.foot a{color:#fde68a;font-weight:900;text-decoration:none}.small{margin-top:8px;color:rgba(255,255,255,.48);font-size:11px;line-height:1.5}@media(min-width:620px){.row{grid-template-columns:1fr 1fr}.grid.two{grid-template-columns:1fr 1fr}}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100dvh;padding:16px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+    .wrap{width:min(720px,100%);margin:0 auto}
+    .hero,.panel,.debt{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);border-radius:24px;padding:18px}
+    .hero{background:linear-gradient(135deg,#fff7df,#ead29a);color:#162016}
+    .eyebrow{font-size:11px;font-weight:1000;letter-spacing:.11em;color:#6b5525}
+    .hero h1{margin:6px 0 4px;font-size:clamp(38px,10vw,60px);line-height:.95}
+    .hero p{margin:8px 0 0;line-height:1.45;font-weight:750}
+    .status{margin:12px 0;padding:13px 14px;border-radius:16px;border:1px solid rgba(244,210,122,.24);background:rgba(244,210,122,.1);font-weight:850;line-height:1.45;white-space:pre-wrap}
+    .status.ok{color:#bbf7d0;border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.1)}
+    .status.bad{color:#fecaca;border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.1)}
+    .panel{margin-top:12px}.panel h2{margin:0 0 12px;color:#f4d27a}
+    .grid{display:grid;grid-template-columns:1fr;gap:10px}.row{display:grid;grid-template-columns:1fr;gap:9px}
+    .field{display:grid;gap:5px;position:relative;z-index:2}.field label{font-size:11px;font-weight:900;color:#fde68a}
+    .field input,.field select,.field textarea{width:100%;min-height:52px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:#10231b;color:#fff;padding:11px 12px;font:inherit;font-size:18px;pointer-events:auto!important;touch-action:manipulation;-webkit-user-select:text;user-select:text;position:relative;z-index:3;opacity:1;-webkit-text-fill-color:#fff}
+    .field input:focus,.field select:focus,.field textarea:focus{outline:3px solid rgba(244,210,122,.38);border-color:#f4d27a}
+    .field textarea{min-height:72px;resize:vertical}
+    .btn{width:100%;min-height:50px;border-radius:15px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-weight:950;padding:10px 12px;touch-action:manipulation}
+    .btn.primary{background:linear-gradient(135deg,#f4d27a,#fb923c);color:#221509;border:0}.btn.pay{background:rgba(34,197,94,.16);border-color:rgba(34,197,94,.34);color:#dcfce7}.btn.cancel{color:#fecaca;border-color:rgba(248,113,113,.24)}.btn:disabled{opacity:.45}
+    .quick{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin:8px 0 10px}.quick button{min-height:44px;border-radius:12px;border:1px solid rgba(244,210,122,.28);background:rgba(244,210,122,.10);color:#fde68a;font:inherit;font-weight:950;touch-action:manipulation}
+    .list{display:grid;gap:10px}.debt h3{margin:0 0 8px;font-size:22px}.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:10px 0}.num{padding:10px;border-radius:14px;background:rgba(0,0,0,.2);text-align:center}.num small{display:block;color:rgba(255,255,255,.58);font-size:10px;font-weight:900}.num b{display:block;margin-top:4px;font-size:15px}.pill{display:inline-block;padding:5px 8px;border-radius:999px;background:rgba(244,210,122,.12);color:#fde68a;font-size:10px;font-weight:950}.payments{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.72);line-height:1.55}.payment{padding:6px 0}.empty{padding:20px;text-align:center;color:rgba(255,255,255,.55)}.foot{margin:14px 0 4px;text-align:center}.foot a{color:#fde68a;font-weight:900;text-decoration:none}.small{margin-top:8px;color:rgba(255,255,255,.48);font-size:11px;line-height:1.5}
+    @media(min-width:620px){.row{grid-template-columns:1fr 1fr}.grid.two{grid-template-columns:1fr 1fr}.quick{grid-template-columns:repeat(4,1fr)}}
   </style>
 </head>
 <body>
@@ -24,8 +45,8 @@
     <h2>➕ NOUVEAU DÛ</h2>
     <div class="grid two">
       <div class="field"><label for="client">CLIENT</label><input id="client" value="CLIENT TEST A" autocomplete="off"></div>
-      <div class="field"><label for="amount">MONTANT DÛ · XOF</label><input id="amount" type="number" min="1" step="1" value="50000"></div>
-      <div class="field"><label for="phone">TÉLÉPHONE · OPTIONNEL</label><input id="phone" inputmode="tel" placeholder="+221…"></div>
+      <div class="field"><label for="amount">MONTANT DÛ · XOF</label><input id="amount" type="text" inputmode="numeric" value="50000" autocomplete="off"></div>
+      <div class="field"><label for="phone">TÉLÉPHONE · OPTIONNEL</label><input id="phone" type="text" inputmode="tel" placeholder="+221…" autocomplete="off"></div>
       <div class="field"><label for="due">ÉCHÉANCE · OPTIONNELLE</label><input id="due" type="date"></div>
     </div>
     <div class="field" style="margin-top:10px"><label for="note">NOTE · OPTIONNELLE</label><textarea id="note" placeholder="Ex. Paiement prévu vendredi"></textarea></div>
@@ -53,7 +74,9 @@
 
   function setStatus(text,kind=""){status.textContent=text;status.className="status "+kind}
   function money(n){return new Intl.NumberFormat("fr-FR").format(Number(n||0))+" XOF"}
+  function parseAmount(value){const digits=String(value??"").replace(/[^0-9]/g,"");return digits?Number(digits):0}
   function uid(prefix){return prefix+"-"+(crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(16).slice(2))}
+  function esc(value){return String(value??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[ch])}
   async function jsonSafe(res){try{return await res.json()}catch(_){return {}}}
   async function api(path,opts={}){
     const headers={apikey:PUBLISHABLE_KEY,Authorization:"Bearer "+token,...(opts.headers||{})};
@@ -84,7 +107,7 @@
     render();
   }
 
-  function labelStatus(s){return ({open:"DÛ",partial:"PARTIEL",paid:"PAYÉ",cancelled:"ANNULÉ"})[s]||s.toUpperCase()}
+  function labelStatus(s){return ({open:"DÛ",partial:"PARTIEL",paid:"PAYÉ",cancelled:"ANNULÉ"})[s]||String(s).toUpperCase()}
   function render(){
     if(!debts.length){list.innerHTML='<div class="empty">Aucun dû pour ce test. Crée <b>CLIENT TEST A · 50 000 XOF</b> ci-dessus.</div>';return}
     list.innerHTML="";
@@ -92,25 +115,39 @@
       const remaining=Math.max(0,Number(d.amount_due_xof)-Number(d.amount_paid_xof));
       const related=payments.filter(p=>p.receivable_id===d.id);
       const box=document.createElement("article");box.className="debt";
-      const payHtml=related.length?related.map(p=>'<div class="payment">✅ '+money(p.amount_xof)+' · '+String(p.channel).replace("orange_money","Orange Money").replace("wave","Wave")+' · mouvement lié</div>').join(""):'<div class="payment">Aucun remboursement encaissé.</div>';
+      const payHtml=related.length?related.map(p=>'<div class="payment">✅ '+money(p.amount_xof)+' · '+esc(String(p.channel).replace("orange_money","Orange Money").replace("wave","Wave"))+' · mouvement lié</div>').join(""):'<div class="payment">Aucun remboursement encaissé.</div>';
       const actions=(d.status==="open"||d.status==="partial")?`
         <div class="row" style="margin-top:10px">
-          <div class="field"><label>REMBOURSEMENT · XOF</label><input class="payAmount" type="number" min="1" max="${remaining}" value="${remaining}" data-id="${d.id}"></div>
+          <div class="field"><label>REMBOURSEMENT · XOF</label><input class="payAmount" type="text" inputmode="numeric" autocomplete="off" value="${remaining}" data-id="${d.id}"></div>
           <div class="field"><label>CANAL</label><select class="payChannel" data-id="${d.id}"><option value="wave">Wave</option><option value="orange_money">Orange Money</option><option value="cash">Espèces</option><option value="bank">Banque</option><option value="card">Carte</option><option value="sendwave">Sendwave</option><option value="other">Autre</option></select></div>
+        </div>
+        <div class="quick">
+          <button class="quickPay" type="button" data-id="${d.id}" data-value="10000">10 000</button>
+          <button class="quickPay" type="button" data-id="${d.id}" data-value="20000">20 000</button>
+          <button class="quickPay" type="button" data-id="${d.id}" data-value="30000">30 000</button>
+          <button class="quickPay" type="button" data-id="${d.id}" data-value="${remaining}">TOUT · ${money(remaining)}</button>
         </div>
         <button class="btn pay doPay" data-id="${d.id}" type="button">💰 CONFIRMER LE REMBOURSEMENT</button>
         <button class="btn cancel doCancel" data-id="${d.id}" type="button">ANNULER CE DÛ</button>`:"";
-      box.innerHTML=`<span class="pill">${labelStatus(d.status)}</span><h3>${d.client_label}</h3>
+      box.innerHTML=`<span class="pill">${labelStatus(d.status)}</span><h3>${esc(d.client_label)}</h3>
         <div class="numbers"><div class="num"><small>DÛ</small><b>${money(d.amount_due_xof)}</b></div><div class="num"><small>REMBOURSÉ</small><b>${money(d.amount_paid_xof)}</b></div><div class="num"><small>RESTE</small><b>${money(remaining)}</b></div></div>
-        ${d.note_text?'<div class="small">'+d.note_text+'</div>':''}<div class="payments">${payHtml}</div>${actions}`;
+        ${d.note_text?'<div class="small">'+esc(d.note_text)+'</div>':''}<div class="payments">${payHtml}</div>${actions}`;
       list.appendChild(box);
+    });
+    list.querySelectorAll(".payAmount").forEach(el=>{
+      el.addEventListener("focus",()=>el.select());
+      el.addEventListener("click",()=>el.focus());
+    });
+    list.querySelectorAll(".quickPay").forEach(btn=>btn.onclick=()=>{
+      const input=list.querySelector('.payAmount[data-id="'+btn.dataset.id+'"]');
+      if(input){input.value=btn.dataset.value;input.focus();input.select()}
     });
     list.querySelectorAll(".doPay").forEach(btn=>btn.onclick=()=>pay(btn.dataset.id));
     list.querySelectorAll(".doCancel").forEach(btn=>btn.onclick=()=>cancelDebt(btn.dataset.id));
   }
 
   async function createDebt(){
-    const label=$("client").value.trim(), amount=Number(amountInput.value), phone=$("phone").value.trim(), due=$("due").value||null, note=$("note").value.trim();
+    const label=$("client").value.trim(),amount=parseAmount(amountInput.value),phone=$("phone").value.trim(),due=$("due").value||null,note=$("note").value.trim();
     if(!label||!Number.isFinite(amount)||amount<=0){setStatus("Renseigne un client et un montant supérieur à zéro.");return}
     createBtn.disabled=true;setStatus("Création du dû…");
     try{
@@ -122,7 +159,7 @@
 
   async function pay(id){
     const amountEl=list.querySelector('.payAmount[data-id="'+id+'"]'),channelEl=list.querySelector('.payChannel[data-id="'+id+'"]');
-    const amount=Number(amountEl?.value),channel=channelEl?.value;
+    const amount=parseAmount(amountEl?.value),channel=channelEl?.value;
     if(!Number.isFinite(amount)||amount<=0){setStatus("Montant de remboursement invalide.");return}
     setStatus("Enregistrement du remboursement + mouvement CARNET…");
     try{
@@ -141,7 +178,10 @@
     }catch(err){setStatus("❌ ANNULATION REFUSÉE\n"+(err?.message||err),"bad")}
   }
 
-  amountInput.addEventListener("input",()=>{createBtn.textContent="✅ CRÉER LE DÛ "+money(amountInput.value||0)});
+  [$("client"),amountInput,$("phone"),$("due"),$("note")].forEach(el=>{
+    el.addEventListener("click",()=>el.focus());
+  });
+  amountInput.addEventListener("input",()=>{createBtn.textContent="✅ CRÉER LE DÛ "+money(parseAmount(amountInput.value))});
   createBtn.onclick=createDebt;
   guard().then(ok=>{if(ok)return load()}).catch(err=>{createPanel.hidden=true;listPanel.hidden=true;setStatus("❌ PORTE CLIENT DÛ FERMÉE\n"+(err?.message||err),"bad")});
 })();
