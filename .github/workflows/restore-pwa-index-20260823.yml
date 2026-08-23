@@ -63,3 +63,5 @@ if ('serviceWorker' in navigator) {
           git add index.html
           git commit -m "fix(pwa): restaurer le raccord PWA sur l'index"
           git push
+
+# trigger: workflow already present on main
