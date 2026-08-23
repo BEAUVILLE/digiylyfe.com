@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '.github/workflows/restore-pwa-index-20260823.yml'
+      - '.github/pwa-trigger-20260823'
 
 permissions:
   contents: write
@@ -59,9 +59,7 @@ if ('serviceWorker' in navigator) {
         run: |
           git config user.name "DIGIYLYFE Bot"
           git config user.email "actions@users.noreply.github.com"
-          git rm .github/workflows/restore-pwa-index-20260823.yml
+          git rm .github/pwa-trigger-20260823 .github/workflows/restore-pwa-index-20260823.yml
           git add index.html
           git commit -m "fix(pwa): restaurer le raccord PWA sur l'index"
           git push
-
-# trigger: workflow already present on main
