@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#06140f">
   <title>DIGIY CARNET — Test OTP + droit</title>
   <style>
-    *{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:18px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.card{width:min(560px,100%);padding:22px;border-radius:28px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06)}.eyebrow{color:#f4d27a;font-weight:900;font-size:12px;letter-spacing:.12em}.badge{display:inline-block;margin:10px 0;padding:7px 10px;border-radius:999px;border:1px solid rgba(244,210,122,.25);color:#fde68a;background:rgba(244,210,122,.08);font-size:11px;font-weight:900}h1{margin:8px 0;font-size:clamp(36px,10vw,58px);line-height:.95}p{line-height:1.5}.field{display:grid;gap:6px;margin-top:16px}.field label{font-size:11px;color:#fde68a;font-weight:900}.field input{width:100%;min-height:54px;border-radius:16px;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.22);color:#fff;padding:11px 12px;font:inherit}.code{font-size:28px!important;letter-spacing:.18em;text-align:center;font-weight:900}.status{margin-top:16px;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);line-height:1.5;font-weight:800;white-space:pre-wrap}.ok{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.3);color:#bbf7d0}.warn{background:rgba(244,210,122,.10);border-color:rgba(244,210,122,.3);color:#fff4c8}.bad{background:rgba(248,113,113,.10);border-color:rgba(248,113,113,.3);color:#fecaca}.small{margin-top:14px;color:rgba(255,255,255,.55);font-size:11px;line-height:1.5}button{width:100%;min-height:52px;margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font:inherit;font-weight:900}.verify{background:linear-gradient(135deg,#f4d27a,#fb923c);color:#221509;border:0}.send{margin-top:18px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.72)}.send:disabled,button:disabled{opacity:.45}.notice{margin:14px 0;padding:12px 14px;border-radius:16px;background:rgba(34,197,94,.09);border:1px solid rgba(34,197,94,.25);color:#d1fae5;font-weight:800;line-height:1.45}
+    *{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:18px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.card{width:min(560px,100%);padding:22px;border-radius:28px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06)}.eyebrow{color:#f4d27a;font-weight:900;font-size:12px;letter-spacing:.12em}.badge{display:inline-block;margin:10px 0;padding:7px 10px;border-radius:999px;border:1px solid rgba(244,210,122,.25);color:#fde68a;background:rgba(244,210,122,.08);font-size:11px;font-weight:900}h1{margin:8px 0;font-size:clamp(36px,10vw,58px);line-height:.95}p{line-height:1.5}.field{display:grid;gap:6px;margin-top:16px}.field label{font-size:11px;color:#fde68a;font-weight:900}.field input{width:100%;min-height:54px;border-radius:16px;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.22);color:#fff;padding:11px 12px;font:inherit}.code{font-size:28px!important;letter-spacing:.18em;text-align:center;font-weight:900}.status{margin-top:16px;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);line-height:1.5;font-weight:800;white-space:pre-wrap}.ok{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.3);color:#bbf7d0}.warn{background:rgba(244,210,122,.10);border-color:rgba(244,210,122,.3);color:#fff4c8}.bad{background:rgba(248,113,113,.10);border-color:rgba(248,113,113,.3);color:#fecaca}.small{margin-top:14px;color:rgba(255,255,255,.55);font-size:11px;line-height:1.5}button{width:100%;min-height:52px;margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font:inherit;font-weight:900}.verify{background:linear-gradient(135deg,#f4d27a,#fb923c);color:#221509;border:0}.retry{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.35);color:#d1fae5}.send{margin-top:18px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.72)}.send:disabled,button:disabled{opacity:.45}.notice{margin:14px 0;padding:12px 14px;border-radius:16px;background:rgba(34,197,94,.09);border:1px solid rgba(34,197,94,.25);color:#d1fae5;font-weight:800;line-height:1.45}
   </style>
 </head>
 <body>
@@ -15,7 +15,9 @@
   <div class="eyebrow">DIGIYLYFE · ATELIER</div>
   <div class="badge">TEST ISOLÉ · NON COMMERCIAL · OTP + DROIT CARNET</div>
   <h1>DIGIY CARNET</h1>
-  <div class="notice">TU AS DÉJÀ REÇU UN CODE ? Ne redemande rien. Si ta session OTP existe déjà dans cet onglet, elle sera reprise automatiquement et le droit CARNET sera contrôlé.</div>
+  <div class="notice">Si une session OTP a déjà été validée, teste-la d’abord. Aucun nouvel email n’est nécessaire tant que cette session fonctionne.</div>
+
+  <button class="retry" id="retry" type="button">🔐 RETESTER LA SESSION EXISTANTE</button>
 
   <div class="field" id="loginBox">
     <label for="email">EMAIL DU COMPTE TEST EXISTANT</label>
@@ -25,12 +27,12 @@
     <input class="code" id="otp" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="8" pattern="[0-9]{8}" placeholder="••••••••">
     <button class="verify" id="verify" type="button">✅ VALIDER CE CODE</button>
 
-    <button class="send" id="send" type="button">✉️ DEMANDER UN NOUVEAU CODE — SEULEMENT SI L’ANCIEN EST EXPIRÉ</button>
+    <button class="send" id="send" type="button">✉️ DEMANDER UN NOUVEAU CODE — SEULEMENT SI NÉCESSAIRE</button>
   </div>
 
   <div class="status warn" id="status">Recherche d’une session OTP existante…</div>
   <button id="clear" type="button">↩ EFFACER LA SESSION TEST LOCALE</button>
-  <div class="small">Le code n’est pas écrit dans GitHub. Le jeton de cette page test est conservé localement dans le navigateur afin de survivre à un nouvel onglet. <b>create_user:false</b> : une adresse inconnue ne crée pas de compte. Slug test : <b>digiy-carnet-test-001</b>.</div>
+  <div class="small">Le code n’est pas écrit dans GitHub. Le jeton de cette page test est conservé localement dans le navigateur. <b>create_user:false</b> : une adresse inconnue ne crée pas de compte. Slug test : <b>digiy-carnet-test-001</b>.</div>
 </main>
 <script>
 (() => {
@@ -39,10 +41,11 @@
   const PUBLISHABLE_KEY="sb_publishable_2KVRayr3oWcewu0Y7xMkOQ_D6522h1E";
   const MEMBER_SLUG="digiy-carnet-test-001";
   const TOKEN_KEY="DIGIY_CARNET_TEST_ACCESS_TOKEN";
-  const status=document.getElementById("status"), send=document.getElementById("send"), verify=document.getElementById("verify"), email=document.getElementById("email"), otp=document.getElementById("otp"), loginBox=document.getElementById("loginBox"), clear=document.getElementById("clear");
+  const status=document.getElementById("status"), send=document.getElementById("send"), verify=document.getElementById("verify"), retry=document.getElementById("retry"), email=document.getElementById("email"), otp=document.getElementById("otp"), loginBox=document.getElementById("loginBox"), clear=document.getElementById("clear");
   function set(text,kind){status.textContent=text;status.className="status "+(kind||"warn")}
   async function jsonSafe(res){try{return await res.json()}catch(_){return {}}}
   function saveToken(token){localStorage.setItem(TOKEN_KEY,token);sessionStorage.setItem(TOKEN_KEY,token)}
+  function getToken(){return localStorage.getItem(TOKEN_KEY)||sessionStorage.getItem(TOKEN_KEY)||""}
   function clearToken(){localStorage.removeItem(TOKEN_KEY);sessionStorage.removeItem(TOKEN_KEY)}
 
   async function verifyCarnetAccess(token){
@@ -64,41 +67,54 @@
 
   async function checkStoredSession(){
     const sessionToken=sessionStorage.getItem(TOKEN_KEY);
-    const token=localStorage.getItem(TOKEN_KEY)||sessionToken;
-    if(!token){set("Aucune session OTP retrouvée dans cet onglet. Si tu viens de valider le code dans un autre onglet, retourne sur cet onglet et actualise-le une fois pour transférer la session.","warn");return}
+    const token=getToken();
+    if(!token){loginBox.hidden=false;set("Aucune session OTP locale retrouvée. N’utilise pas un ancien code expiré : demande un nouveau code seulement si nécessaire.","warn");return false}
     if(sessionToken && !localStorage.getItem(TOKEN_KEY))localStorage.setItem(TOKEN_KEY,sessionToken);
+    set("Contrôle de la session OTP existante…","warn");
     try{
       const res=await fetch(PROJECT_URL+"/auth/v1/user",{headers:{apikey:PUBLISHABLE_KEY,Authorization:"Bearer "+token}});
-      if(!res.ok)throw new Error("Session expirée · HTTP "+res.status);
-      loginBox.hidden=true;
+      if(!res.ok){clearToken();loginBox.hidden=false;set("❌ SESSION OTP EXPIRÉE OU INVALIDE\nLa session stockée n’est plus acceptée par Supabase.","bad");return false}
+    }catch(err){loginBox.hidden=false;set("❌ CONTRÔLE SESSION IMPOSSIBLE\n"+(err?.message||err),"bad");return false}
+
+    loginBox.hidden=true;
+    try{
       await verifyCarnetAccess(token);
+      return true;
     }catch(err){
-      clearToken();
-      loginBox.hidden=false;
-      set("❌ SESSION OU DROIT NON VALIDÉ\n"+(err?.message||err),"bad");
+      loginBox.hidden=true;
+      set("⚠️ SESSION OTP VALIDE · DROIT CARNET À RECONTRÔLER\n"+(err?.message||err)+"\nLe token Auth est conservé pour permettre un nouvel essai.","warn");
+      return false;
     }
   }
+
+  retry.onclick=()=>checkStoredSession();
 
   verify.onclick=async()=>{
     const em=String(email.value||"").trim();
     const code=String(otp.value||"").replace(/\D/g,"").slice(0,8);
     if(!em){set("L’email est nécessaire pour vérifier le code.","warn");email.focus();return}
-    if(code.length!==8){set("Saisis les 8 chiffres déjà reçus par email.","warn");otp.focus();return}
+    if(code.length!==8){set("Saisis les 8 chiffres du code reçu par email.","warn");otp.focus();return}
     verify.disabled=true;
     set("Vérification du code OTP…","warn");
+    let body;
     try{
       const res=await fetch(PROJECT_URL+"/auth/v1/verify",{method:"POST",headers:{apikey:PUBLISHABLE_KEY,"Content-Type":"application/json"},body:JSON.stringify({email:em,token:code,type:"email"})});
-      const body=await jsonSafe(res);
-      if(!res.ok)throw new Error("HTTP "+res.status+" · "+(body?.msg||body?.message||body?.error_description||JSON.stringify(body)));
-      if(!body?.access_token)throw new Error("Session absente dans la réponse Auth");
+      body=await jsonSafe(res);
+      if(!res.ok){set("❌ CODE OTP NON VALIDÉ\nHTTP "+res.status+" · "+(body?.msg||body?.message||body?.error_description||JSON.stringify(body)),"bad");return}
+      if(!body?.access_token){set("❌ OTP ACCEPTÉ MAIS SESSION ABSENTE","bad");return}
       const userRes=await fetch(PROJECT_URL+"/auth/v1/user",{headers:{apikey:PUBLISHABLE_KEY,Authorization:"Bearer "+body.access_token}});
-      if(!userRes.ok)throw new Error("OTP accepté mais validation utilisateur échouée · HTTP "+userRes.status);
+      if(!userRes.ok){set("❌ OTP ACCEPTÉ MAIS SESSION UTILISATEUR REFUSÉE · HTTP "+userRes.status,"bad");return}
       saveToken(body.access_token);
       loginBox.hidden=true;
       otp.value="";
-      await verifyCarnetAccess(body.access_token);
-    }catch(err){set("❌ CODE OU DROIT NON VALIDÉ\n"+(err?.message||err),"bad")}
+    }catch(err){set("❌ ERREUR AUTH OTP\n"+(err?.message||err),"bad");return}
     finally{verify.disabled=false}
+
+    try{
+      await verifyCarnetAccess(body.access_token);
+    }catch(err){
+      set("⚠️ OTP VALIDÉ · DROIT CARNET À RECONTRÔLER\n"+(err?.message||err)+"\nLa session Auth reste conservée.","warn");
+    }
   };
 
   send.onclick=async()=>{
@@ -110,17 +126,17 @@
       const res=await fetch(PROJECT_URL+"/auth/v1/otp",{method:"POST",headers:{apikey:PUBLISHABLE_KEY,"Content-Type":"application/json"},body:JSON.stringify({email:em,data:{},create_user:false,gotrue_meta_security:{}})});
       const body=await jsonSafe(res);
       if(!res.ok)throw new Error("HTTP "+res.status+" · "+(body?.msg||body?.message||body?.error_description||JSON.stringify(body)));
-      set("✅ NOUVEAU CODE DEMANDÉ\nSaisis les 8 chiffres reçus par email.","ok");otp.focus();
+      set("✅ NOUVEAU CODE DEMANDÉ\nSaisis uniquement les 8 chiffres du nouveau code reçu.","ok");otp.focus();
     }catch(err){
       const msg=String(err?.message||err);
-      if(msg.includes("429")) set("⚠️ RENVOI TEMPORAIREMENT BLOQUÉ PAR SUPABASE\nUtilise le dernier code déjà reçu s’il est encore valide.","warn");
+      if(msg.includes("429")) set("⚠️ RENVOI TEMPORAIREMENT BLOQUÉ PAR SUPABASE\nN’insiste pas : aucun nouveau code n’a été émis par cette tentative.","warn");
       else set("❌ ENVOI REFUSÉ\n"+msg,"bad");
     }finally{send.disabled=false}
   };
 
   otp.addEventListener("input",()=>{otp.value=otp.value.replace(/\D/g,"").slice(0,8)});
   otp.addEventListener("keydown",e=>{if(e.key==="Enter")verify.click()});
-  clear.onclick=()=>{clearToken();loginBox.hidden=false;otp.value="";set("Session test locale effacée. Tu peux toujours valider un code déjà reçu.","warn")};
+  clear.onclick=()=>{clearToken();loginBox.hidden=false;otp.value="";set("Session test locale effacée.","warn")};
   checkStoredSession();
 })();
 </script>
