@@ -1,0 +1,56 @@
+name: Territory results auto-scroll
+
+on:
+  push:
+    paths:
+      - '.github/workflows/territory-scroll-results.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore result auto-scroll after territory filters
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p=Path('territoire.html')
+          s=p.read_text(encoding='utf-8')
+
+          anchor="function syncUrl(){if(!history.replaceState)return;var u=new URL(location.href);u.searchParams.set('zone',territoryId);if(state.need)u.searchParams.set('need',state.need);else u.searchParams.delete('need');if(state.zone!=='all')u.searchParams.set('local',state.zone);else u.searchParams.delete('local');u.searchParams.set('lang',lang);history.replaceState({},'',u.pathname+u.search)}"
+          reveal="function revealResults(){var section=document.getElementById('resultsSection');if(!section)return;var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;requestAnimationFrame(function(){section.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});var first=document.querySelector('#results .card');if(first){first.setAttribute('tabindex','-1');setTimeout(function(){try{first.focus({preventScroll:true})}catch(e){}},350)}})}"
+          if 'function revealResults()' not in s:
+              if anchor not in s:
+                  raise SystemExit('syncUrl anchor not found')
+              s=s.replace(anchor,anchor+'\n'+reveal,1)
+
+          old_need="state.need=state.need===n[0]?'':n[0];syncUrl();renderNeeds();renderResults()"
+          new_need="state.need=state.need===n[0]?'':n[0];syncUrl();renderNeeds();renderResults();revealResults()"
+          if old_need in s:
+              s=s.replace(old_need,new_need,1)
+          elif new_need not in s:
+              raise SystemExit('need click anchor not found')
+
+          old_zone="state.zone=z;syncUrl();renderZones();renderResults()"
+          new_zone="state.zone=z;syncUrl();renderZones();renderResults();revealResults()"
+          if old_zone in s:
+              s=s.replace(old_zone,new_zone,1)
+          elif new_zone not in s:
+              raise SystemExit('zone click anchor not found')
+
+          p.write_text(s,encoding='utf-8')
+          PY
+
+          git config user.name "DIGIYLYFE Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add territoire.html
+          git rm .github/workflows/territory-scroll-results.yml
+          git commit -m "Territoires: restore automatic result reveal after filters"
+          git push origin HEAD:main
