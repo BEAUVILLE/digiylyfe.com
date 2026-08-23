@@ -1,0 +1,65 @@
+name: Restore PWA index wiring
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/restore-pwa-index-20260823.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore only PWA wiring on index
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          manifest = '<link rel="manifest" href="/manifest.json"/>'
+          if manifest not in s:
+              anchor = '<link rel="apple-touch-icon" href="https://digiylyfe.com/icon-192.png?v=20260713"/>'
+              if s.count(anchor) != 1:
+                  raise SystemExit(f'manifest anchor guard failed: {s.count(anchor)}')
+              s = s.replace(anchor, anchor + '\n  ' + manifest, 1)
+
+          sw_marker = "navigator.serviceWorker.register('/sw.js')"
+          if sw_marker not in s:
+              anchor = '<script src="https://digiylyfe.com/digiy-contact-global.js?v=20260815"></script>'
+              if s.count(anchor) != 1:
+                  raise SystemExit(f'service worker anchor guard failed: {s.count(anchor)}')
+              block = '''<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('/sw.js').catch(function(){});
+  });
+}
+</script>'''
+              s = s.replace(anchor, anchor + '\n' + block, 1)
+
+          if s.count(manifest) != 1:
+              raise SystemExit(f'manifest final guard failed: {s.count(manifest)}')
+          if s.count(sw_marker) != 1:
+              raise SystemExit(f'service worker final guard failed: {s.count(sw_marker)}')
+
+          p.write_text(s, encoding='utf-8')
+          PY
+          git diff --check
+      - name: Commit exact PWA repair
+        shell: bash
+        run: |
+          git config user.name "DIGIYLYFE Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/restore-pwa-index-20260823.yml
+          git add index.html
+          git commit -m "fix(pwa): restaurer le raccord PWA sur l'index"
+          git push
