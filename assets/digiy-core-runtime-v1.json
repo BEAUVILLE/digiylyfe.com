@@ -1,0 +1,110 @@
+{
+  "runtime": "DIGIYLYFE-PUBLIC-CORE-RUNTIME-V1",
+  "default_territory": "petite-cote",
+  "generated_from_master": {
+    "core_registry": "BEAUVILLE/digiy-master-modeles/MASTER-CORE-WORLD-V1/config/runtime-registry.json",
+    "senegal": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-SENEGAL-V1/",
+    "france": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-FRANCE-V1/"
+  },
+  "countries": [
+    {
+      "id": "SN",
+      "slug": "senegal",
+      "status": "active",
+      "labels": {
+        "fr": "Sénégal",
+        "en": "Senegal",
+        "es": "Senegal",
+        "pt": "Senegal",
+        "de": "Senegal",
+        "it": "Senegal",
+        "nl": "Senegal",
+        "ar": "السنغال"
+      },
+      "territories": [
+        {
+          "id": "SN-PETITE-COTE",
+          "slug": "petite-cote",
+          "status": "active",
+          "labels": {
+            "fr": "Petite Côte",
+            "en": "Petite Côte",
+            "es": "Petite Côte",
+            "pt": "Petite Côte",
+            "de": "Petite Côte",
+            "it": "Petite Côte",
+            "nl": "Petite Côte",
+            "ar": "الساحل الصغير"
+          },
+          "zones": [
+            {"id": "SN-PETITE-COTE-AIBD", "slug": "aibd", "label": "AIBD", "status": "active"},
+            {"id": "SN-PETITE-COTE-NDAYANE", "slug": "ndayane", "label": "Ndayane", "status": "active"},
+            {"id": "SN-PETITE-COTE-POPENGUINE", "slug": "popenguine", "label": "Popenguine", "status": "active"},
+            {"id": "SN-PETITE-COTE-SOMONE", "slug": "somone", "label": "Somone", "status": "active"},
+            {"id": "SN-PETITE-COTE-NGAPAROU", "slug": "ngaparou", "label": "Ngaparou", "status": "active"},
+            {"id": "SN-PETITE-COTE-SALY", "slug": "saly", "label": "Saly", "status": "active"},
+            {"id": "SN-PETITE-COTE-MBOUR", "slug": "mbour", "label": "Mbour", "status": "active"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FR",
+      "slug": "france",
+      "status": "active",
+      "labels": {
+        "fr": "France",
+        "en": "France",
+        "es": "Francia",
+        "pt": "França",
+        "de": "Frankreich",
+        "it": "Francia",
+        "nl": "Frankrijk",
+        "ar": "فرنسا"
+      },
+      "territories": [
+        {
+          "id": "FR-DORDOGNE",
+          "slug": "vallee-dordogne",
+          "status": "active",
+          "labels": {
+            "fr": "Périgord · Vallée de la Dordogne",
+            "en": "Périgord · Dordogne Valley",
+            "es": "Périgord · Valle del Dordoña",
+            "pt": "Périgord · Vale da Dordogne",
+            "de": "Périgord · Dordogne-Tal",
+            "it": "Périgord · Valle della Dordogna",
+            "nl": "Périgord · Dordognevallei",
+            "ar": "بيريغور · وادي دوردوني"
+          },
+          "zones": [
+            {"id": "FR-DORDOGNE-SARLAT", "slug": "sarlat", "label": "Sarlat-la-Canéda", "status": "active"}
+          ],
+          "direct_door": {
+            "url": "https://digiylyfe.com/sarlat.html",
+            "label": "SARLAT EN DIRECT →"
+          }
+        }
+      ]
+    }
+  ],
+  "needs": [
+    {"id": "transport", "icon": "🚗", "status": "core"},
+    {"id": "artisan", "icon": "🔧", "status": "core"},
+    {"id": "accommodation", "icon": "🏠", "status": "core"},
+    {"id": "food", "icon": "🍽️", "status": "core"},
+    {"id": "shopping", "icon": "🛍️", "status": "core"},
+    {"id": "beauty", "icon": "💅", "status": "core"},
+    {"id": "jobs", "icon": "💼", "status": "core"},
+    {"id": "announcements", "icon": "⚡", "status": "core"},
+    {"id": "guidance", "icon": "🎙️", "status": "core"}
+  ],
+  "rules": {
+    "active_country_only": true,
+    "active_territory_only": true,
+    "active_zone_only": true,
+    "planned_is_never_public": true,
+    "no_geography_hardcoded_in_territory_engine": true,
+    "fail_closed": true
+  }
+}
