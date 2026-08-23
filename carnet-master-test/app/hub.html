@@ -30,13 +30,15 @@
 <script>
 (() => {
   const Store=window.DIGIY_CARNET_STORE,I18N=window.DIGIY_CARNET_I18N,$=id=>document.getElementById(id);
+  const OTP_OK={fr:"✅ OTP reconnu · droit CARNET actif.",en:"✅ OTP recognized · CARNET access active.",es:"✅ OTP reconocido · acceso CARNET activo.",pt:"✅ OTP reconhecido · acesso CARNET ativo.",it:"✅ OTP riconosciuto · accesso CARNET attivo.",de:"✅ OTP erkannt · CARNET-Zugang aktiv.",nl:"✅ OTP herkend · CARNET-toegang actief.",ar:"✅ تم التحقق من OTP · دخول CARNET مفعل."};
   I18N.bindSelector($("language"));
   I18N.apply();
   function status(t,k){$("status").textContent=t;$("status").className="status "+(k||"")}
-  Store.access().then(()=>{status(I18N.t("accessOk"),"ok");$("doors").hidden=false}).catch(err=>status(I18N.t("accessDenied")+(err?.message||err),"bad"));
+  function otpOk(){return OTP_OK[I18N.current()]||OTP_OK.fr}
+  Store.access().then(()=>{status(otpOk(),"ok");$("doors").hidden=false}).catch(err=>status(I18N.t("accessDenied")+(err?.message||err),"bad"));
   window.addEventListener("digiy:carnet-language",()=>{
     if($("doors").hidden) status(I18N.t("accessChecking"),"");
-    else status(I18N.t("accessOk"),"ok");
+    else status(otpOk(),"ok");
   });
   $("logout").onclick=async()=>{try{await Store.client().auth.signOut()}catch(_){}location.href="../index.html"};
 })();
