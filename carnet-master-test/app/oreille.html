@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+  <meta name="theme-color" content="#06140f">
+  <title>DIGIY CARNET — Oreille MASTER</title>
+  <script src="../master-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3"></script>
+  <script src="../assets/carnet-contract.js"></script>
+  <script src="../assets/carnet-store.js"></script>
+  <script src="../assets/carnet-i18n.js"></script>
+  <script src="../assets/carnet-world8-ui.js"></script>
+  <script src="../assets/carnet-oreille.js"></script>
+  <style>
+    *{box-sizing:border-box}body{margin:0;min-height:100dvh;padding:12px 12px 90px;background:radial-gradient(circle at top left,rgba(244,210,122,.14),transparent 35%),linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:800}.app{width:min(620px,100%);margin:auto}.langbar{display:flex;justify-content:flex-end;margin-bottom:8px}.langbar select{min-height:42px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;padding:7px 10px;font:inherit;font-size:12px;font-weight:1000}.top{display:flex;align-items:center;justify-content:space-between;gap:8px}.back{color:#fff8e8;text-decoration:none;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.06)}.brand{text-align:right}.brand small{display:block;color:rgba(255,255,255,.5);font-size:10px;letter-spacing:.1em}.brand b{color:#f4d27a}.hero{margin-top:12px;padding:18px;border-radius:28px;background:linear-gradient(135deg,#fff7df,#ead29a);color:#162016}.hero h1{margin:4px 0;font-size:clamp(42px,12vw,68px);line-height:.9;letter-spacing:-.06em}.hero p{margin:9px 0 0;line-height:1.4}.status{margin-top:12px;padding:12px;border:1px solid rgba(244,210,122,.25);border-radius:16px;background:rgba(244,210,122,.1);color:#fff4c8;font-size:12px}.status.ok{border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.1);color:#bbf7d0}.status.bad{border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.1);color:#fecaca}.card{margin-top:12px;padding:16px;border-radius:25px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09)}.card h2{margin:0 0 6px;color:#f4d27a}.lead{margin:0 0 12px;color:rgba(255,255,255,.62);font-size:12px;line-height:1.45}.mic{width:100%;min-height:112px;border:0;border-radius:28px;background:linear-gradient(135deg,#22c55e,#f4d27a);color:#102014;font:inherit;font-size:24px;font-weight:1100}.field{display:grid;gap:5px;margin-top:10px}.field label{font-size:10px;color:#fde68a}.field input,.field select,.field textarea{width:100%;min-height:50px;border-radius:15px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.23);color:#fff;padding:10px 12px;font:inherit;font-weight:900}.field textarea{min-height:82px}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btn{width:100%;min-height:56px;margin-top:11px;border:0;border-radius:17px;background:linear-gradient(135deg,#22c55e,#f4d27a);color:#102014;font:inherit;font-weight:1100}.btn.secondary{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.11)}.btn:disabled{opacity:.45}.preview{display:none;margin-top:12px;padding:14px;border-radius:20px;background:#fff7df;color:#172016}.preview.show{display:block}.preview strong{display:block;font-size:17px}.preview p{margin:7px 0;font-size:13px;line-height:1.45}.dock{position:fixed;left:8px;right:8px;bottom:8px;width:min(604px,calc(100% - 16px));margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px;border-radius:18px;background:rgba(6,20,15,.95);border:1px solid rgba(255,255,255,.1)}.dock a{min-height:52px;display:grid;place-items:center;text-align:center;text-decoration:none;color:#fff;border-radius:13px;background:rgba(255,255,255,.07);font-size:12px}html[dir="rtl"] .langbar{justify-content:flex-start}html[dir="rtl"] .brand{text-align:left}html[dir="rtl"] .hero,html[dir="rtl"] .card{text-align:right}@media(max-width:440px){.row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <div class="langbar"><select id="language" aria-label="Language"></select></div>
+  <header class="top"><a class="back" href="./index.html" data-w8="backCarnet">← CARNET</a><div class="brand"><small>DIGIYLYFE · <span data-i18n="member">ADHÉRENT</span></small><b data-w8="earBrand">🎙️ OREILLE CARNET</b></div></header>
+
+  <section class="hero">
+    <small data-i18n="earHeroTop">LA VOIX AU-DESSUS DE L’ACTION</small>
+    <h1 data-i18n="earHero">Parle. CARNET prépare.</h1>
+    <p data-i18n="earExample">Exemple : « Vente 25 000 Wave » ou « Gasoil 15 000 espèces ». Tu vérifies toujours avant que la trace entre dans CARNET.</p>
+  </section>
+
+  <div class="status" id="status" data-w8="accessMicChecking">Contrôle de l’accès et du micro…</div>
+
+  <section class="card">
+    <button class="mic" id="listen" type="button" data-i18n="speak">🎙️ PARLER À CARNET</button>
+    <div class="field"><label for="spoken" data-i18n="spoken">Phrase entendue / saisie</label><textarea id="spoken" data-w8-placeholder="spokenPh" placeholder="Ex : Vente 25 000 Wave"></textarea></div>
+    <button class="btn secondary" id="analyse" type="button" data-i18n="analyse">ANALYSER LA PHRASE</button>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="draftCheck">Brouillon à vérifier</h2>
+    <p class="lead" data-i18n="neverAuto">Aucune donnée n’est rangée tant que tu n’appuies pas sur CONFIRMER.</p>
+    <div class="row">
+      <div class="field"><label for="direction" data-w8="type">Type</label><select id="direction"><option value="in" data-w8="typeIn">Entrée / vente</option><option value="out" data-w8="typeOut">Dépense / sortie</option></select></div>
+      <div class="field"><label for="amount" data-i18n="amount">Montant</label><input id="amount" type="number" min="1" step="1" inputmode="numeric"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="channel" data-i18n="mode">Mode</label><select id="channel"></select></div>
+      <div class="field"><label for="label" data-i18n="reason">Motif</label><input id="label" type="text"></div>
+    </div>
+    <div class="field"><label for="note" data-w8="note">Note</label><textarea id="note"></textarea></div>
+    <button class="btn" id="prepare" type="button" data-w8="prepareConfirm">PRÉPARER POUR CONFIRMATION →</button>
+    <div class="preview" id="preview"><strong data-w8="previewTitle">Je vais ranger :</strong><p id="previewText"></p><button class="btn" id="confirm" type="button" data-i18n="confirm">✅ JE VÉRIFIE ET JE CONFIRME</button><button class="btn secondary" id="edit" type="button" data-i18n="edit">Modifier</button></div>
+  </section>
+</main>
+
+<nav class="dock"><a href="./index.html">📊 <span data-i18n="dayTitle">JOUR / CAISSE</span></a><a href="./oreille.html">🎙️ <span data-i18n="earTitle">OREILLE</span></a></nav>
+
+<script>
+(() => {
+  "use strict";
+  const Store=window.DIGIY_CARNET_STORE, Contract=window.DIGIY_CARNET_CONTRACT, Ear=window.DIGIY_CARNET_OREILLE, C=window.DIGIY_CARNET_MASTER||{}, I18N=window.DIGIY_CARNET_I18N, UI=window.DIGIY_CARNET_WORLD8_UI;
+  const $=id=>document.getElementById(id);
+  const money=n=>UI.money(n,C.identity?.currency||"XOF");
+  let draft=null;
+  function setStatus(t,k){$("status").textContent=t;$("status").className="status "+(k||"")}
+  function fieldNames(list){return (list||[]).map(k=>I18N.t(String(k))).join(", ")}
+
+  function renderChannels(){
+    const current=$("channel").value;
+    const active=(C.channels||[]).filter(x=>x.active!==false);
+    $("channel").innerHTML=active.map(x=>`<option value="${x.id}">${UI.channelLabel(x.id,x.label)}</option>`).join("");
+    if(active.some(x=>x.id===current)) $("channel").value=current;
+  }
+
+  function renderLanguage(){UI.apply();renderChannels()}
+
+  function fill(d){
+    draft=d;
+    $("direction").value=d.direction;
+    $("amount").value=d.amount||"";
+    $("channel").value=d.channel;
+    $("label").value=d.label||"";
+    $("note").value=d.note||"";
+    const r=Ear.readiness(d);
+    setStatus(r.ok?UI.t("draftReady"):UI.format("complete",{detail:fieldNames(r.missing)}),r.ok?"ok":"");
+  }
+
+  function rebuild(){
+    draft=Contract.canonicalMovement({member_slug:C.identity?.memberSlug||"",scope:"activity",direction:$("direction").value,kind:$("direction").value==="out"?"expense":"sale",category:$("direction").value==="out"?"depense":"vente",channel:$("channel").value,amount:Math.round(Number($("amount").value||0)),currency:C.identity?.currency||"XOF",label:String($("label").value||"").trim(),note:$("note").value,origin:"voice",status:"draft",meta:{voice_text:$("spoken").value,voice_lang:I18N.current()}});
+    return draft;
+  }
+
+  async function checkAccess(){
+    try{await Store.access();setStatus(Ear.supported()?UI.t("accessMicOk"):UI.t("accessNoMic"),"ok")}
+    catch(err){setStatus(I18N.t("accessDenied")+(err?.message||err),"bad")}
+  }
+
+  $("listen").disabled=!Ear.supported();
+  $("listen").onclick=async()=>{
+    setStatus(UI.t("listening"),"");
+    $("listen").disabled=true;
+    try{
+      const result=await Ear.listen({lang:UI.speechLocale()});
+      $("spoken").value=result.text;
+      fill(result.draft);
+    }catch(err){setStatus(UI.format("microphone",{detail:err?.message||err}),"bad")}
+    finally{$("listen").disabled=!Ear.supported()}
+  };
+
+  $("analyse").onclick=()=>{
+    const text=String($("spoken").value||"").trim();
+    if(!text){setStatus(UI.t("sayFirst"),"bad");return}
+    fill(Ear.parse(text,{lang:I18N.current()}));
+  };
+
+  $("prepare").onclick=()=>{
+    const d=rebuild(), check=Contract.validateConfirmed(d);
+    if(!check.ok){setStatus(UI.format("complete",{detail:fieldNames(check.errors)}),"bad");return}
+    $("previewText").textContent=UI.t(d.direction==="out"?"movementOut":"movementIn")+" · "+money(d.amount)+" · "+UI.channelLabel(d.channel,Contract.channels[d.channel]||d.channel)+" · "+d.label;
+    $("preview").classList.add("show");
+    $("prepare").disabled=true;
+  };
+
+  $("edit").onclick=()=>{$("preview").classList.remove("show");$("prepare").disabled=false};
+
+  function networkLike(err){const m=String(err?.message||err||"").toLowerCase();return navigator.onLine===false || /fetch|network|failed to fetch|load failed/.test(m)}
+
+  $("confirm").onclick=async()=>{
+    if(!draft)return;
+    $("confirm").disabled=true;
+    try{
+      const saved=await Store.insertMovement(draft);
+      setStatus(saved.idempotent?UI.t("duplicate"):UI.t("traceSaved"),"ok");
+      $("spoken").value="";$("amount").value="";$("label").value="";$("note").value="";draft=null;$("preview").classList.remove("show");$("prepare").disabled=false;
+    }catch(err){
+      if(networkLike(err)){
+        Store.queueDraft(draft);
+        setStatus(UI.t("offline"),"");
+        $("preview").classList.remove("show");$("prepare").disabled=false;
+      }else setStatus(UI.format("traceNotStored",{detail:err?.message||err}),"bad");
+    }finally{$("confirm").disabled=false}
+  };
+
+  I18N.bindSelector($("language"));
+  I18N.apply();
+  renderLanguage();
+  checkAccess();
+  window.addEventListener("digiy:carnet-language",()=>{renderLanguage();if(draft)fill(draft);else checkAccess()});
+})();
+</script>
+</body>
+</html>
