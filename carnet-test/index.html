@@ -7,32 +7,51 @@
   <meta name="theme-color" content="#06140f">
   <title>DIGIY CARNET — Test OTP + droit</title>
   <style>
-    *{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:18px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.card{width:min(560px,100%);padding:22px;border-radius:28px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06)}.eyebrow{color:#f4d27a;font-weight:900;font-size:12px;letter-spacing:.12em}.badge{display:inline-block;margin:10px 0;padding:7px 10px;border-radius:999px;border:1px solid rgba(244,210,122,.25);color:#fde68a;background:rgba(244,210,122,.08);font-size:11px;font-weight:900}h1{margin:8px 0;font-size:clamp(36px,10vw,58px);line-height:.95}p{line-height:1.5}.field{display:grid;gap:6px;margin-top:16px}.field label{font-size:11px;color:#fde68a;font-weight:900}.field input{width:100%;min-height:54px;border-radius:16px;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.22);color:#fff;padding:11px 12px;font:inherit}.code{font-size:28px!important;letter-spacing:.18em;text-align:center;font-weight:900}.status{margin-top:16px;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);line-height:1.5;font-weight:800;white-space:pre-wrap}.ok{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.3);color:#bbf7d0}.warn{background:rgba(244,210,122,.10);border-color:rgba(244,210,122,.3);color:#fff4c8}.bad{background:rgba(248,113,113,.10);border-color:rgba(248,113,113,.3);color:#fecaca}.small{margin-top:14px;color:rgba(255,255,255,.55);font-size:11px;line-height:1.5}button{width:100%;min-height:52px;margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font:inherit;font-weight:900}.verify{background:linear-gradient(135deg,#f4d27a,#fb923c);color:#221509;border:0}.retry{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.35);color:#d1fae5}.send{margin-top:18px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.72)}.send:disabled,button:disabled{opacity:.45}.notice{margin:14px 0;padding:12px 14px;border-radius:16px;background:rgba(34,197,94,.09);border:1px solid rgba(34,197,94,.25);color:#d1fae5;font-weight:800;line-height:1.45}
+    *{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:18px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.card{width:min(620px,100%);padding:22px;border-radius:28px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06)}.eyebrow{color:#f4d27a;font-weight:900;font-size:12px;letter-spacing:.12em}.badge{display:inline-block;margin:10px 0;padding:7px 10px;border-radius:999px;border:1px solid rgba(244,210,122,.25);color:#fde68a;background:rgba(244,210,122,.08);font-size:11px;font-weight:900}h1{margin:8px 0;font-size:clamp(36px,10vw,58px);line-height:.95}p{line-height:1.5}.field{display:grid;gap:6px;margin-top:16px}.field label{font-size:11px;color:#fde68a;font-weight:900}.field input{width:100%;min-height:54px;border-radius:16px;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.22);color:#fff;padding:11px 12px;font:inherit}.code{font-size:28px!important;letter-spacing:.18em;text-align:center;font-weight:900}.status{margin-top:16px;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);line-height:1.5;font-weight:800;white-space:pre-wrap}.ok{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.3);color:#bbf7d0}.warn{background:rgba(244,210,122,.10);border-color:rgba(244,210,122,.3);color:#fff4c8}.bad{background:rgba(248,113,113,.10);border-color:rgba(248,113,113,.3);color:#fecaca}.small{margin-top:14px;color:rgba(255,255,255,.55);font-size:11px;line-height:1.5}button{width:100%;min-height:52px;margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font:inherit;font-weight:900}.verify{background:linear-gradient(135deg,#f4d27a,#fb923c);color:#221509;border:0}.retry{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.35);color:#d1fae5}.send{margin-top:18px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.72)}.send:disabled,button:disabled{opacity:.45}.notice{margin:14px 0;padding:12px 14px;border-radius:16px;background:rgba(34,197,94,.09);border:1px solid rgba(34,197,94,.25);color:#d1fae5;font-weight:800;line-height:1.45}.insideHero{padding:22px;border-radius:24px;background:linear-gradient(135deg,#fff7df,#ead29a);color:#162016}.insideHero small{font-weight:1000;color:#6b5525}.insideHero h1{margin:5px 0}.insideHero p{margin:10px 0 0;font-weight:800}.doors{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}.door{padding:18px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)}.door span{font-size:28px}.door b{display:block;margin-top:6px;color:#f4d27a;font-size:19px}.door small{display:block;margin-top:5px;color:rgba(255,255,255,.58);line-height:1.4}.proof{margin-top:14px;padding:14px;border-radius:18px;background:rgba(34,197,94,.10);border:1px solid rgba(34,197,94,.3);color:#bbf7d0;font-weight:900}.exit{margin-top:16px}
   </style>
 </head>
 <body>
 <main class="card">
-  <div class="eyebrow">DIGIYLYFE · ATELIER</div>
-  <div class="badge">TEST ISOLÉ · NON COMMERCIAL · OTP + DROIT CARNET</div>
-  <h1>DIGIY CARNET</h1>
-  <div class="notice">Si une session OTP a déjà été validée, teste-la d’abord. Aucun nouvel email n’est nécessaire tant que cette session fonctionne.</div>
+  <section id="gate">
+    <div class="eyebrow">DIGIYLYFE · ATELIER</div>
+    <div class="badge">TEST ISOLÉ · NON COMMERCIAL · OTP + DROIT CARNET</div>
+    <h1>DIGIY CARNET</h1>
+    <div class="notice">Si une session OTP a déjà été validée, teste-la d’abord. Aucun nouvel email n’est nécessaire tant que cette session fonctionne.</div>
 
-  <button class="retry" id="retry" type="button">🔐 RETESTER LA SESSION EXISTANTE</button>
+    <button class="retry" id="retry" type="button">🔐 RETESTER LA SESSION EXISTANTE</button>
 
-  <div class="field" id="loginBox">
-    <label for="email">EMAIL DU COMPTE TEST EXISTANT</label>
-    <input id="email" type="email" autocomplete="email" placeholder="nom@exemple.com">
+    <div class="field" id="loginBox">
+      <label for="email">EMAIL DU COMPTE TEST EXISTANT</label>
+      <input id="email" type="email" autocomplete="email" placeholder="nom@exemple.com">
 
-    <label for="otp" style="margin-top:12px">CODE DÉJÀ REÇU · 8 CHIFFRES</label>
-    <input class="code" id="otp" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="8" pattern="[0-9]{8}" placeholder="••••••••">
-    <button class="verify" id="verify" type="button">✅ VALIDER CE CODE</button>
+      <label for="otp" style="margin-top:12px">CODE DÉJÀ REÇU · 8 CHIFFRES</label>
+      <input class="code" id="otp" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="8" pattern="[0-9]{8}" placeholder="••••••••">
+      <button class="verify" id="verify" type="button">✅ VALIDER CE CODE</button>
 
-    <button class="send" id="send" type="button">✉️ DEMANDER UN NOUVEAU CODE — SEULEMENT SI NÉCESSAIRE</button>
-  </div>
+      <button class="send" id="send" type="button">✉️ DEMANDER UN NOUVEAU CODE — SEULEMENT SI NÉCESSAIRE</button>
+    </div>
 
-  <div class="status warn" id="status">Recherche d’une session OTP existante…</div>
-  <button id="clear" type="button">↩ EFFACER LA SESSION TEST LOCALE</button>
-  <div class="small">Le code n’est pas écrit dans GitHub. Le jeton de cette page test est conservé localement dans le navigateur. <b>create_user:false</b> : une adresse inconnue ne crée pas de compte. Slug test : <b>digiy-carnet-test-001</b>.</div>
+    <div class="status warn" id="status">Recherche d’une session OTP existante…</div>
+    <button id="clear" type="button">↩ EFFACER LA SESSION TEST LOCALE</button>
+    <div class="small">Le code n’est pas écrit dans GitHub. Le jeton de cette page test est conservé localement dans le navigateur. <b>create_user:false</b> : une adresse inconnue ne crée pas de compte. Slug test : <b>digiy-carnet-test-001</b>.</div>
+  </section>
+
+  <section id="inside" hidden>
+    <div class="eyebrow">DIGIYLYFE · CARNET TEST</div>
+    <div class="badge">PORTE OUVERTE · SESSION + DROIT VALIDÉS</div>
+    <div class="insideHero">
+      <small>ADHÉRENT TEST AUTORISÉ</small>
+      <h1>DIGIY CARNET</h1>
+      <p>Tu es passé derrière la porte. Ceci est l’intérieur de contrôle du MASTER, sans écriture métier.</p>
+    </div>
+    <div class="proof">✅ OTP AUTHENTIFIÉ · ✅ DROIT CARNET · ✅ HUB TEST OUVERT</div>
+    <div class="doors">
+      <div class="door"><span>📊</span><b>JOUR / CAISSE</b><small>Porte visible uniquement pour confirmer l’entrée dans le HUB test.</small></div>
+      <div class="door"><span>🎙️</span><b>OREILLE</b><small>Porte visible uniquement pour confirmer l’entrée dans le HUB test.</small></div>
+      <div class="door"><span>🤝</span><b>CLIENT DÛ</b><small>Porte visible uniquement pour confirmer l’entrée dans le HUB test. Aucun SQL 002 n’est lancé.</small></div>
+    </div>
+    <button class="exit" id="exit" type="button">↩ SORTIR DU HUB TEST</button>
+  </section>
 </main>
 <script>
 (() => {
@@ -41,12 +60,14 @@
   const PUBLISHABLE_KEY="sb_publishable_2KVRayr3oWcewu0Y7xMkOQ_D6522h1E";
   const MEMBER_SLUG="digiy-carnet-test-001";
   const TOKEN_KEY="DIGIY_CARNET_TEST_ACCESS_TOKEN";
-  const status=document.getElementById("status"), send=document.getElementById("send"), verify=document.getElementById("verify"), retry=document.getElementById("retry"), email=document.getElementById("email"), otp=document.getElementById("otp"), loginBox=document.getElementById("loginBox"), clear=document.getElementById("clear");
+  const status=document.getElementById("status"), send=document.getElementById("send"), verify=document.getElementById("verify"), retry=document.getElementById("retry"), email=document.getElementById("email"), otp=document.getElementById("otp"), loginBox=document.getElementById("loginBox"), clear=document.getElementById("clear"), gate=document.getElementById("gate"), inside=document.getElementById("inside"), exit=document.getElementById("exit");
   function set(text,kind){status.textContent=text;status.className="status "+(kind||"warn")}
   async function jsonSafe(res){try{return await res.json()}catch(_){return {}}}
   function saveToken(token){localStorage.setItem(TOKEN_KEY,token);sessionStorage.setItem(TOKEN_KEY,token)}
   function getToken(){return localStorage.getItem(TOKEN_KEY)||sessionStorage.getItem(TOKEN_KEY)||""}
   function clearToken(){localStorage.removeItem(TOKEN_KEY);sessionStorage.removeItem(TOKEN_KEY)}
+  function openHub(){gate.hidden=true;inside.hidden=false;document.title="DIGIY CARNET — HUB TEST OUVERT"}
+  function closeHub(){inside.hidden=true;gate.hidden=false;document.title="DIGIY CARNET — Test OTP + droit"}
 
   async function verifyCarnetAccess(token){
     set("✅ SESSION OTP AUTHENTIFIÉE\nContrôle du droit CARNET…","ok");
@@ -58,8 +79,7 @@
     const body=await jsonSafe(res);
     if(!res.ok)throw new Error("RPC droit CARNET · HTTP "+res.status+" · "+(body?.message||body?.hint||JSON.stringify(body)));
     if(body?.ok===true && body?.module==="CARNET" && body?.slug===MEMBER_SLUG){
-      loginBox.hidden=true;
-      set("✅ OTP + DROIT CARNET VALIDÉS\nSession Supabase réelle + entitlement CARNET réel.","ok");
+      openHub();
       return true;
     }
     throw new Error("Droit CARNET refusé · "+JSON.stringify(body));
@@ -68,19 +88,20 @@
   async function checkStoredSession(){
     const sessionToken=sessionStorage.getItem(TOKEN_KEY);
     const token=getToken();
-    if(!token){loginBox.hidden=false;set("Aucune session OTP locale retrouvée. N’utilise pas un ancien code expiré : demande un nouveau code seulement si nécessaire.","warn");return false}
+    if(!token){closeHub();loginBox.hidden=false;set("Aucune session OTP locale retrouvée. N’utilise pas un ancien code expiré : demande un nouveau code seulement si nécessaire.","warn");return false}
     if(sessionToken && !localStorage.getItem(TOKEN_KEY))localStorage.setItem(TOKEN_KEY,sessionToken);
     set("Contrôle de la session OTP existante…","warn");
     try{
       const res=await fetch(PROJECT_URL+"/auth/v1/user",{headers:{apikey:PUBLISHABLE_KEY,Authorization:"Bearer "+token}});
-      if(!res.ok){clearToken();loginBox.hidden=false;set("❌ SESSION OTP EXPIRÉE OU INVALIDE\nLa session stockée n’est plus acceptée par Supabase.","bad");return false}
-    }catch(err){loginBox.hidden=false;set("❌ CONTRÔLE SESSION IMPOSSIBLE\n"+(err?.message||err),"bad");return false}
+      if(!res.ok){clearToken();closeHub();loginBox.hidden=false;set("❌ SESSION OTP EXPIRÉE OU INVALIDE\nLa session stockée n’est plus acceptée par Supabase.","bad");return false}
+    }catch(err){closeHub();loginBox.hidden=false;set("❌ CONTRÔLE SESSION IMPOSSIBLE\n"+(err?.message||err),"bad");return false}
 
     loginBox.hidden=true;
     try{
       await verifyCarnetAccess(token);
       return true;
     }catch(err){
+      closeHub();
       loginBox.hidden=true;
       set("⚠️ SESSION OTP VALIDE · DROIT CARNET À RECONTRÔLER\n"+(err?.message||err)+"\nLe token Auth est conservé pour permettre un nouvel essai.","warn");
       return false;
@@ -113,6 +134,7 @@
     try{
       await verifyCarnetAccess(body.access_token);
     }catch(err){
+      closeHub();
       set("⚠️ OTP VALIDÉ · DROIT CARNET À RECONTRÔLER\n"+(err?.message||err)+"\nLa session Auth reste conservée.","warn");
     }
   };
@@ -136,7 +158,8 @@
 
   otp.addEventListener("input",()=>{otp.value=otp.value.replace(/\D/g,"").slice(0,8)});
   otp.addEventListener("keydown",e=>{if(e.key==="Enter")verify.click()});
-  clear.onclick=()=>{clearToken();loginBox.hidden=false;otp.value="";set("Session test locale effacée.","warn")};
+  clear.onclick=()=>{clearToken();closeHub();loginBox.hidden=false;otp.value="";set("Session test locale effacée.","warn")};
+  exit.onclick=()=>{clearToken();closeHub();loginBox.hidden=false;otp.value="";set("Tu es sorti du HUB test. La session locale test a été effacée.","warn")};
   checkStoredSession();
 })();
 </script>
