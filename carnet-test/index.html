@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#06140f">
   <title>DIGIY CARNET — Test OTP email</title>
   <style>
-    *{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:18px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.card{width:min(560px,100%);padding:22px;border-radius:28px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06)}.eyebrow{color:#f4d27a;font-weight:900;font-size:12px;letter-spacing:.12em}.badge{display:inline-block;margin:10px 0;padding:7px 10px;border-radius:999px;border:1px solid rgba(244,210,122,.25);color:#fde68a;background:rgba(244,210,122,.08);font-size:11px;font-weight:900}h1{margin:8px 0;font-size:clamp(36px,10vw,58px);line-height:.95}p{line-height:1.5}.field{display:grid;gap:6px;margin-top:16px}.field label{font-size:11px;color:#fde68a;font-weight:900}.field input{width:100%;min-height:54px;border-radius:16px;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.22);color:#fff;padding:11px 12px;font:inherit}.code{font-size:28px!important;letter-spacing:.18em;text-align:center;font-weight:900}.status{margin-top:16px;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);line-height:1.5;font-weight:800;white-space:pre-wrap}.ok{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.3);color:#bbf7d0}.warn{background:rgba(244,210,122,.10);border-color:rgba(244,210,122,.3);color:#fff4c8}.bad{background:rgba(248,113,113,.10);border-color:rgba(248,113,113,.3);color:#fecaca}.small{margin-top:14px;color:rgba(255,255,255,.55);font-size:11px;line-height:1.5}button{width:100%;min-height:52px;margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font:inherit;font-weight:900}.send{background:linear-gradient(135deg,#22c55e,#f4d27a);color:#102014;border:0}.verify{background:linear-gradient(135deg,#f4d27a,#fb923c);color:#221509;border:0}.send:disabled,button:disabled{opacity:.45}
+    *{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:18px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.card{width:min(560px,100%);padding:22px;border-radius:28px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06)}.eyebrow{color:#f4d27a;font-weight:900;font-size:12px;letter-spacing:.12em}.badge{display:inline-block;margin:10px 0;padding:7px 10px;border-radius:999px;border:1px solid rgba(244,210,122,.25);color:#fde68a;background:rgba(244,210,122,.08);font-size:11px;font-weight:900}h1{margin:8px 0;font-size:clamp(36px,10vw,58px);line-height:.95}p{line-height:1.5}.field{display:grid;gap:6px;margin-top:16px}.field label{font-size:11px;color:#fde68a;font-weight:900}.field input{width:100%;min-height:54px;border-radius:16px;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.22);color:#fff;padding:11px 12px;font:inherit}.code{font-size:28px!important;letter-spacing:.18em;text-align:center;font-weight:900}.status{margin-top:16px;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);line-height:1.5;font-weight:800;white-space:pre-wrap}.ok{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.3);color:#bbf7d0}.warn{background:rgba(244,210,122,.10);border-color:rgba(244,210,122,.3);color:#fff4c8}.bad{background:rgba(248,113,113,.10);border-color:rgba(248,113,113,.3);color:#fecaca}.small{margin-top:14px;color:rgba(255,255,255,.55);font-size:11px;line-height:1.5}button{width:100%;min-height:52px;margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font:inherit;font-weight:900}.verify{background:linear-gradient(135deg,#f4d27a,#fb923c);color:#221509;border:0}.send{margin-top:18px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.72)}.send:disabled,button:disabled{opacity:.45}.notice{margin:14px 0;padding:12px 14px;border-radius:16px;background:rgba(34,197,94,.09);border:1px solid rgba(34,197,94,.25);color:#d1fae5;font-weight:800;line-height:1.45}
   </style>
 </head>
 <body>
@@ -15,19 +15,20 @@
   <div class="eyebrow">DIGIYLYFE · ATELIER</div>
   <div class="badge">TEST ISOLÉ · NON COMMERCIAL · OTP EMAIL</div>
   <h1>DIGIY CARNET</h1>
-  <p>Le template Auth actuel envoie un code à 8 chiffres. Cette page vérifie ce code directement auprès de Supabase puis valide la session.</p>
+  <div class="notice">TU AS DÉJÀ REÇU UN CODE ? Ne redemande rien. Saisis directement l’email et les 8 chiffres ci-dessous.</div>
 
   <div class="field" id="loginBox">
     <label for="email">EMAIL DU COMPTE TEST EXISTANT</label>
     <input id="email" type="email" autocomplete="email" placeholder="nom@exemple.com">
-    <button class="send" id="send" type="button">✉️ ENVOYER UN CODE OTP</button>
 
-    <label for="otp" style="margin-top:12px">CODE REÇU PAR EMAIL · 8 CHIFFRES</label>
+    <label for="otp" style="margin-top:12px">CODE DÉJÀ REÇU · 8 CHIFFRES</label>
     <input class="code" id="otp" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="8" pattern="[0-9]{8}" placeholder="••••••••">
-    <button class="verify" id="verify" type="button">✅ VALIDER LE CODE</button>
+    <button class="verify" id="verify" type="button">✅ VALIDER CE CODE</button>
+
+    <button class="send" id="send" type="button">✉️ DEMANDER UN NOUVEAU CODE — SEULEMENT SI L’ANCIEN EST EXPIRÉ</button>
   </div>
 
-  <div class="status warn" id="status">Diagnostic OTP prêt.</div>
+  <div class="status warn" id="status">Si tu as déjà le code, saisis-le puis valide. Aucun nouvel email n’est nécessaire.</div>
   <button id="clear" type="button">↩ EFFACER LA SESSION TEST LOCALE</button>
   <div class="small">Le code reste dans ton navigateur et n’est pas écrit dans GitHub. <b>create_user:false</b> : une adresse inconnue ne crée pas de compte. Aucun SQL CARNET n’est exécuté ici. Slug test : <b>digiy-carnet-test-001</b>.</div>
 </main>
@@ -50,26 +51,11 @@
     }catch(_){sessionStorage.removeItem("DIGIY_CARNET_TEST_ACCESS_TOKEN")}
   }
 
-  send.onclick=async()=>{
-    const em=String(email.value||"").trim();
-    if(!em){set("Indique l’email du compte test existant.","warn");email.focus();return}
-    send.disabled=true;
-    set("Envoi du code vers Supabase Auth…","warn");
-    try{
-      const res=await fetch(PROJECT_URL+"/auth/v1/otp",{method:"POST",headers:{apikey:PUBLISHABLE_KEY,"Content-Type":"application/json"},body:JSON.stringify({email:em,data:{},create_user:false,gotrue_meta_security:{}})});
-      const body=await jsonSafe(res);
-      if(!res.ok)throw new Error("HTTP "+res.status+" · "+(body?.msg||body?.message||body?.error_description||JSON.stringify(body)));
-      set("✅ CODE DEMANDÉ\nSupabase a accepté la demande. Saisis ci-dessous les 8 chiffres reçus par email.","ok");
-      otp.focus();
-    }catch(err){set("❌ ENVOI REFUSÉ\n"+(err?.message||err),"bad")}
-    finally{send.disabled=false}
-  };
-
   verify.onclick=async()=>{
     const em=String(email.value||"").trim();
     const code=String(otp.value||"").replace(/\D/g,"").slice(0,8);
     if(!em){set("L’email est nécessaire pour vérifier le code.","warn");email.focus();return}
-    if(code.length!==8){set("Saisis les 8 chiffres reçus par email.","warn");otp.focus();return}
+    if(code.length!==8){set("Saisis les 8 chiffres déjà reçus par email.","warn");otp.focus();return}
     verify.disabled=true;
     set("Vérification du code OTP…","warn");
     try{
@@ -87,9 +73,26 @@
     finally{verify.disabled=false}
   };
 
+  send.onclick=async()=>{
+    const em=String(email.value||"").trim();
+    if(!em){set("Indique l’email du compte test existant.","warn");email.focus();return}
+    send.disabled=true;
+    set("Demande d’un nouveau code…","warn");
+    try{
+      const res=await fetch(PROJECT_URL+"/auth/v1/otp",{method:"POST",headers:{apikey:PUBLISHABLE_KEY,"Content-Type":"application/json"},body:JSON.stringify({email:em,data:{},create_user:false,gotrue_meta_security:{}})});
+      const body=await jsonSafe(res);
+      if(!res.ok)throw new Error("HTTP "+res.status+" · "+(body?.msg||body?.message||body?.error_description||JSON.stringify(body)));
+      set("✅ NOUVEAU CODE DEMANDÉ\nSaisis les 8 chiffres reçus par email.","ok");otp.focus();
+    }catch(err){
+      const msg=String(err?.message||err);
+      if(msg.includes("429")) set("⚠️ RENVOI TEMPORAIREMENT BLOQUÉ PAR SUPABASE\nUtilise le dernier code déjà reçu s’il est encore valide.","warn");
+      else set("❌ ENVOI REFUSÉ\n"+msg,"bad");
+    }finally{send.disabled=false}
+  };
+
   otp.addEventListener("input",()=>{otp.value=otp.value.replace(/\D/g,"").slice(0,8)});
   otp.addEventListener("keydown",e=>{if(e.key==="Enter")verify.click()});
-  clear.onclick=()=>{sessionStorage.removeItem("DIGIY_CARNET_TEST_ACCESS_TOKEN");loginBox.hidden=false;otp.value="";set("Session test locale effacée.","warn")};
+  clear.onclick=()=>{sessionStorage.removeItem("DIGIY_CARNET_TEST_ACCESS_TOKEN");loginBox.hidden=false;otp.value="";set("Session test locale effacée. Tu peux toujours valider un code déjà reçu.","warn")};
   checkStoredSession();
 })();
 </script>
