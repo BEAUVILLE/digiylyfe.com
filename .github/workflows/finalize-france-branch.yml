@@ -1,0 +1,60 @@
+name: Finalize France branch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/finalize-france-branch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch France route and sitemap safely
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          index = Path('index.html')
+          s = index.read_text(encoding='utf-8')
+          old = 'href="./territoire.html?zone=vallee-dordogne"'
+          new = 'href="./france.html"'
+          if s.count(old) != 1:
+              raise SystemExit(f'index guard failed: {s.count(old)} occurrences')
+          s = s.replace(old, new, 1)
+          index.write_text(s, encoding='utf-8')
+
+          sitemap = Path('sitemap.xml')
+          x = sitemap.read_text(encoding='utf-8')
+          anchor = '  <url><loc>https://digiylyfe.com/territoire.html</loc><lastmod>2026-08-22</lastmod></url>'
+          france = '  <url><loc>https://digiylyfe.com/france.html</loc><lastmod>2026-08-23</lastmod></url>'
+          if x.count(anchor) != 1:
+              raise SystemExit(f'sitemap territory guard failed: {x.count(anchor)} occurrences')
+          if 'https://digiylyfe.com/france.html' in x:
+              raise SystemExit('france.html already in sitemap')
+          x = x.replace(anchor, anchor + '\n' + france, 1)
+
+          old_sarlat = '  <url><loc>https://digiylyfe.com/sarlat.html</loc><lastmod>2026-08-05</lastmod></url>'
+          new_sarlat = '  <url><loc>https://digiylyfe.com/sarlat.html</loc><lastmod>2026-08-23</lastmod></url>'
+          if x.count(old_sarlat) != 1:
+              raise SystemExit(f'sitemap sarlat guard failed: {x.count(old_sarlat)} occurrences')
+          x = x.replace(old_sarlat, new_sarlat, 1)
+          sitemap.write_text(x, encoding='utf-8')
+          PY
+          git diff --check
+      - name: Commit final France branch
+        shell: bash
+        run: |
+          git config user.name "DIGIYLYFE Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/finalize-france-branch.yml
+          git add index.html sitemap.xml
+          git commit -m "feat(france): relier la branche France au HUB mondial"
+          git push
