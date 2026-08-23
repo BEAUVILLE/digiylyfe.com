@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
   <meta name="theme-color" content="#06140f">
-  <title>DIGIY CARNET — Test OTP email</title>
+  <title>DIGIY CARNET — Test OTP + droit</title>
   <style>
     *{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:18px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.card{width:min(560px,100%);padding:22px;border-radius:28px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06)}.eyebrow{color:#f4d27a;font-weight:900;font-size:12px;letter-spacing:.12em}.badge{display:inline-block;margin:10px 0;padding:7px 10px;border-radius:999px;border:1px solid rgba(244,210,122,.25);color:#fde68a;background:rgba(244,210,122,.08);font-size:11px;font-weight:900}h1{margin:8px 0;font-size:clamp(36px,10vw,58px);line-height:.95}p{line-height:1.5}.field{display:grid;gap:6px;margin-top:16px}.field label{font-size:11px;color:#fde68a;font-weight:900}.field input{width:100%;min-height:54px;border-radius:16px;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.22);color:#fff;padding:11px 12px;font:inherit}.code{font-size:28px!important;letter-spacing:.18em;text-align:center;font-weight:900}.status{margin-top:16px;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);line-height:1.5;font-weight:800;white-space:pre-wrap}.ok{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.3);color:#bbf7d0}.warn{background:rgba(244,210,122,.10);border-color:rgba(244,210,122,.3);color:#fff4c8}.bad{background:rgba(248,113,113,.10);border-color:rgba(248,113,113,.3);color:#fecaca}.small{margin-top:14px;color:rgba(255,255,255,.55);font-size:11px;line-height:1.5}button{width:100%;min-height:52px;margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font:inherit;font-weight:900}.verify{background:linear-gradient(135deg,#f4d27a,#fb923c);color:#221509;border:0}.send{margin-top:18px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.72)}.send:disabled,button:disabled{opacity:.45}.notice{margin:14px 0;padding:12px 14px;border-radius:16px;background:rgba(34,197,94,.09);border:1px solid rgba(34,197,94,.25);color:#d1fae5;font-weight:800;line-height:1.45}
   </style>
@@ -13,9 +13,9 @@
 <body>
 <main class="card">
   <div class="eyebrow">DIGIYLYFE · ATELIER</div>
-  <div class="badge">TEST ISOLÉ · NON COMMERCIAL · OTP EMAIL</div>
+  <div class="badge">TEST ISOLÉ · NON COMMERCIAL · OTP + DROIT CARNET</div>
   <h1>DIGIY CARNET</h1>
-  <div class="notice">TU AS DÉJÀ REÇU UN CODE ? Ne redemande rien. Saisis directement l’email et les 8 chiffres ci-dessous.</div>
+  <div class="notice">TU AS DÉJÀ REÇU UN CODE ? Ne redemande rien. Si ta session OTP existe déjà dans cet onglet, elle sera reprise automatiquement et le droit CARNET sera contrôlé.</div>
 
   <div class="field" id="loginBox">
     <label for="email">EMAIL DU COMPTE TEST EXISTANT</label>
@@ -28,27 +28,55 @@
     <button class="send" id="send" type="button">✉️ DEMANDER UN NOUVEAU CODE — SEULEMENT SI L’ANCIEN EST EXPIRÉ</button>
   </div>
 
-  <div class="status warn" id="status">Si tu as déjà le code, saisis-le puis valide. Aucun nouvel email n’est nécessaire.</div>
+  <div class="status warn" id="status">Recherche d’une session OTP existante…</div>
   <button id="clear" type="button">↩ EFFACER LA SESSION TEST LOCALE</button>
-  <div class="small">Le code reste dans ton navigateur et n’est pas écrit dans GitHub. <b>create_user:false</b> : une adresse inconnue ne crée pas de compte. Aucun SQL CARNET n’est exécuté ici. Slug test : <b>digiy-carnet-test-001</b>.</div>
+  <div class="small">Le code n’est pas écrit dans GitHub. Le jeton de cette page test est conservé localement dans le navigateur afin de survivre à un nouvel onglet. <b>create_user:false</b> : une adresse inconnue ne crée pas de compte. Slug test : <b>digiy-carnet-test-001</b>.</div>
 </main>
 <script>
 (() => {
   "use strict";
   const PROJECT_URL="https://wesqmwjjtsefyjnluosj.supabase.co";
   const PUBLISHABLE_KEY="sb_publishable_2KVRayr3oWcewu0Y7xMkOQ_D6522h1E";
+  const MEMBER_SLUG="digiy-carnet-test-001";
+  const TOKEN_KEY="DIGIY_CARNET_TEST_ACCESS_TOKEN";
   const status=document.getElementById("status"), send=document.getElementById("send"), verify=document.getElementById("verify"), email=document.getElementById("email"), otp=document.getElementById("otp"), loginBox=document.getElementById("loginBox"), clear=document.getElementById("clear");
   function set(text,kind){status.textContent=text;status.className="status "+(kind||"warn")}
   async function jsonSafe(res){try{return await res.json()}catch(_){return {}}}
+  function saveToken(token){localStorage.setItem(TOKEN_KEY,token);sessionStorage.setItem(TOKEN_KEY,token)}
+  function clearToken(){localStorage.removeItem(TOKEN_KEY);sessionStorage.removeItem(TOKEN_KEY)}
+
+  async function verifyCarnetAccess(token){
+    set("✅ SESSION OTP AUTHENTIFIÉE\nContrôle du droit CARNET…","ok");
+    const res=await fetch(PROJECT_URL+"/rest/v1/rpc/digiy_carnet_my_access",{
+      method:"POST",
+      headers:{apikey:PUBLISHABLE_KEY,Authorization:"Bearer "+token,"Content-Type":"application/json"},
+      body:JSON.stringify({p_slug:MEMBER_SLUG})
+    });
+    const body=await jsonSafe(res);
+    if(!res.ok)throw new Error("RPC droit CARNET · HTTP "+res.status+" · "+(body?.message||body?.hint||JSON.stringify(body)));
+    if(body?.ok===true && body?.module==="CARNET" && body?.slug===MEMBER_SLUG){
+      loginBox.hidden=true;
+      set("✅ OTP + DROIT CARNET VALIDÉS\nSession Supabase réelle + entitlement CARNET réel.","ok");
+      return true;
+    }
+    throw new Error("Droit CARNET refusé · "+JSON.stringify(body));
+  }
 
   async function checkStoredSession(){
-    const token=sessionStorage.getItem("DIGIY_CARNET_TEST_ACCESS_TOKEN");
-    if(!token)return;
+    const sessionToken=sessionStorage.getItem(TOKEN_KEY);
+    const token=localStorage.getItem(TOKEN_KEY)||sessionToken;
+    if(!token){set("Aucune session OTP retrouvée dans cet onglet. Si tu viens de valider le code dans un autre onglet, retourne sur cet onglet et actualise-le une fois pour transférer la session.","warn");return}
+    if(sessionToken && !localStorage.getItem(TOKEN_KEY))localStorage.setItem(TOKEN_KEY,sessionToken);
     try{
       const res=await fetch(PROJECT_URL+"/auth/v1/user",{headers:{apikey:PUBLISHABLE_KEY,Authorization:"Bearer "+token}});
-      if(res.ok){loginBox.hidden=true;set("✅ SESSION OTP DÉJÀ VALIDÉE\nHTTP 200 · utilisateur Supabase authentifié.","ok");return}
-      sessionStorage.removeItem("DIGIY_CARNET_TEST_ACCESS_TOKEN");
-    }catch(_){sessionStorage.removeItem("DIGIY_CARNET_TEST_ACCESS_TOKEN")}
+      if(!res.ok)throw new Error("Session expirée · HTTP "+res.status);
+      loginBox.hidden=true;
+      await verifyCarnetAccess(token);
+    }catch(err){
+      clearToken();
+      loginBox.hidden=false;
+      set("❌ SESSION OU DROIT NON VALIDÉ\n"+(err?.message||err),"bad");
+    }
   }
 
   verify.onclick=async()=>{
@@ -65,11 +93,11 @@
       if(!body?.access_token)throw new Error("Session absente dans la réponse Auth");
       const userRes=await fetch(PROJECT_URL+"/auth/v1/user",{headers:{apikey:PUBLISHABLE_KEY,Authorization:"Bearer "+body.access_token}});
       if(!userRes.ok)throw new Error("OTP accepté mais validation utilisateur échouée · HTTP "+userRes.status);
-      sessionStorage.setItem("DIGIY_CARNET_TEST_ACCESS_TOKEN",body.access_token);
+      saveToken(body.access_token);
       loginBox.hidden=true;
       otp.value="";
-      set("✅ OTP VALIDÉ · SESSION SUPABASE AUTHENTIFIÉE\nLe compte test a franchi la porte Auth.","ok");
-    }catch(err){set("❌ CODE NON VALIDÉ\n"+(err?.message||err),"bad")}
+      await verifyCarnetAccess(body.access_token);
+    }catch(err){set("❌ CODE OU DROIT NON VALIDÉ\n"+(err?.message||err),"bad")}
     finally{verify.disabled=false}
   };
 
@@ -92,7 +120,7 @@
 
   otp.addEventListener("input",()=>{otp.value=otp.value.replace(/\D/g,"").slice(0,8)});
   otp.addEventListener("keydown",e=>{if(e.key==="Enter")verify.click()});
-  clear.onclick=()=>{sessionStorage.removeItem("DIGIY_CARNET_TEST_ACCESS_TOKEN");loginBox.hidden=false;otp.value="";set("Session test locale effacée. Tu peux toujours valider un code déjà reçu.","warn")};
+  clear.onclick=()=>{clearToken();loginBox.hidden=false;otp.value="";set("Session test locale effacée. Tu peux toujours valider un code déjà reçu.","warn")};
   checkStoredSession();
 })();
 </script>
