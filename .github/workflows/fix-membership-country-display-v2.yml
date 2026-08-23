@@ -1,0 +1,82 @@
+name: Fix membership country display V2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/fix-membership-country-display-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch country pricing ownership and cache bust
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          global_path=Path('digiy-contact-global.js')
+          text=global_path.read_text(encoding='utf-8')
+
+          # The global presentation layer must never overwrite country-driven prices.
+          old="premium.querySelector('[data-tier-price]').textContent=t.premiumPrice;"
+          new="/* price supplied exclusively by digiy-membership-country-v1.js */"
+          if text.count(old)!=1:
+              raise SystemExit(f'Safety stop: premium price writer count={text.count(old)}')
+          text=text.replace(old,new,1)
+
+          old="extra.querySelector('[data-tier-price]').textContent=t.extraPrice;"
+          new="/* price supplied exclusively by digiy-membership-country-v1.js */"
+          if text.count(old)!=1:
+              raise SystemExit(f'Safety stop: extra price writer count={text.count(old)}')
+          text=text.replace(old,new,1)
+
+          # Remove legacy dual-currency literals from the injected SITE tier copy.
+          text,n1=re.subn(r"premiumPrice:'[^']*'", "premiumPrice:''", text)
+          text,n2=re.subn(r"extraPrice:'[^']*'", "extraPrice:''", text)
+          if n1!=8 or n2!=8:
+              raise SystemExit(f'Safety stop: expected 8 premium + 8 extra price literals, got {n1}+{n2}')
+
+          # The post-payment button must preserve the selected country even on click refresh.
+          old="link.href='https://digiylyfe.com/preparer-ma-carte.html?plan='+encodeURIComponent(plan)+'&lang='+encodeURIComponent(lang);"
+          new="var selectedCountry=(new URLSearchParams(location.search).get('country')||localStorage.getItem('digiy_country')||'sn').toLowerCase();\n      if(selectedCountry!=='fr') selectedCountry='sn';\n      link.href='https://digiylyfe.com/preparer-ma-carte.html?plan='+encodeURIComponent(plan)+'&lang='+encodeURIComponent(lang)+'&country='+encodeURIComponent(selectedCountry);"
+          if text.count(old)!=1:
+              raise SystemExit(f'Safety stop: membership handoff writer count={text.count(old)}')
+          text=text.replace(old,new,1)
+          global_path.write_text(text,encoding='utf-8')
+
+          # Force browsers to load the corrected global + country runtimes on both membership pages.
+          pages=[Path('tarifs-adherents-1.html'),Path('tarifs-adherents.html')]
+          for path in pages:
+              page=path.read_text(encoding='utf-8')
+              old_global='<script src="https://digiylyfe.com/digiy-contact-global.js?v=20260815"></script>'
+              new_global='<script src="https://digiylyfe.com/digiy-contact-global.js?v=20260823-country-v2"></script>'
+              if old_global not in page:
+                  raise SystemExit(f'Safety stop: old global cache key missing in {path}')
+              page=page.replace(old_global,new_global,1)
+
+              old_country='<script src="/assets/digiy-membership-country-v1.js?v=20260823"></script>'
+              new_country='<script src="/assets/digiy-membership-country-v1.js?v=20260823b"></script>'
+              if old_country not in page:
+                  raise SystemExit(f'Safety stop: old country runtime cache key missing in {path}')
+              page=page.replace(old_country,new_country,1)
+              path.write_text(page,encoding='utf-8')
+
+          Path('.github/workflows/fix-membership-country-display-v2.yml').unlink()
+
+      - name: Commit exact membership display fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add digiy-contact-global.js tarifs-adherents-1.html tarifs-adherents.html .github/workflows/fix-membership-country-display-v2.yml
+          git diff --cached --check
+          git commit -m "fix(adhesion): supprimer les doubles devises des sites et figer le pays"
+          git push
