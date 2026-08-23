@@ -140,9 +140,10 @@ function renderLangs(){
 }
 
 function renderCountries(){
-  const cur=$('#country').value;
+  const cur=$('#country').value,requested=(Q.get('country')||'').toUpperCase();
   $('#country').innerHTML=`<option value="">${txt('select')}</option>`+countries().map(c=>`<option value="${c.id}">${label(c)}</option>`).join('');
   if(countries().some(c=>c.id===cur))$('#country').value=cur;
+  else if(countries().some(c=>c.id===requested))$('#country').value=requested;
 }
 
 function renderTerritories(){
@@ -249,7 +250,7 @@ async function loadRuntime(){
     const r=await fetch(RUNTIME_URL,{cache:'no-store'});if(!r.ok)throw new Error('runtime '+r.status);
     runtime=await r.json();if(!countries().length)throw new Error('runtime vide');
     renderCountries();setLang(lang);
-    $('#country').addEventListener('change',()=>{renderTerritories();renderLangs();refreshMeta()});
+    $('#country').addEventListener('change',()=>{const u=new URL(location.href);if($('#country').value)u.searchParams.set('country',$('#country').value.toLowerCase());history.replaceState(null,'',u);renderTerritories();renderLangs();refreshMeta()});
     $('#territory').addEventListener('change',renderZones);
     $('#baseZone').addEventListener('change',()=>{togglePending();renderCoverage();refreshMeta()});
     $('#wholeTerritory').addEventListener('change',renderCoverage);
