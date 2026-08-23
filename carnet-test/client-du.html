@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+  <meta name="theme-color" content="#06140f">
+  <title>DIGIY CARNET — Client dû test</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;min-height:100dvh;padding:16px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{width:min(720px,100%);margin:0 auto}.hero,.panel,.debt{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);border-radius:24px;padding:18px}.hero{background:linear-gradient(135deg,#fff7df,#ead29a);color:#162016}.eyebrow{font-size:11px;font-weight:1000;letter-spacing:.11em;color:#6b5525}.hero h1{margin:6px 0 4px;font-size:clamp(38px,10vw,60px);line-height:.95}.hero p{margin:8px 0 0;line-height:1.45;font-weight:750}.status{margin:12px 0;padding:13px 14px;border-radius:16px;border:1px solid rgba(244,210,122,.24);background:rgba(244,210,122,.1);font-weight:850;line-height:1.45;white-space:pre-wrap}.status.ok{color:#bbf7d0;border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.1)}.status.bad{color:#fecaca;border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.1)}.panel{margin-top:12px}.panel h2{margin:0 0 12px;color:#f4d27a}.grid{display:grid;grid-template-columns:1fr;gap:10px}.field{display:grid;gap:5px}.field label{font-size:11px;font-weight:900;color:#fde68a}.field input,.field select,.field textarea{width:100%;min-height:50px;border-radius:14px;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.22);color:#fff;padding:10px 12px;font:inherit}.field textarea{min-height:72px;resize:vertical}.row{display:grid;grid-template-columns:1fr;gap:9px}.btn{width:100%;min-height:50px;border-radius:15px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-weight:950;padding:10px 12px}.btn.primary{background:linear-gradient(135deg,#f4d27a,#fb923c);color:#221509;border:0}.btn.pay{background:rgba(34,197,94,.16);border-color:rgba(34,197,94,.34);color:#dcfce7}.btn.cancel{color:#fecaca;border-color:rgba(248,113,113,.24)}.btn:disabled{opacity:.45}.list{display:grid;gap:10px}.debt h3{margin:0 0 8px;font-size:22px}.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:10px 0}.num{padding:10px;border-radius:14px;background:rgba(0,0,0,.2);text-align:center}.num small{display:block;color:rgba(255,255,255,.58);font-size:10px;font-weight:900}.num b{display:block;margin-top:4px;font-size:15px}.pill{display:inline-block;padding:5px 8px;border-radius:999px;background:rgba(244,210,122,.12);color:#fde68a;font-size:10px;font-weight:950}.payments{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.72);line-height:1.55}.payment{padding:6px 0}.empty{padding:20px;text-align:center;color:rgba(255,255,255,.55)}.foot{margin:14px 0 4px;text-align:center}.foot a{color:#fde68a;font-weight:900;text-decoration:none}.small{margin-top:8px;color:rgba(255,255,255,.48);font-size:11px;line-height:1.5}@media(min-width:620px){.row{grid-template-columns:1fr 1fr}.grid.two{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">DIGIYLYFE · TEST ISOLÉ · CLIENT DÛ</div>
+    <h1>CLIENT DÛ</h1>
+    <p>Une dette n’est jamais de l’argent encaissé. Seul un remboursement confirmé crée un mouvement CARNET.</p>
+  </section>
+
+  <div class="status" id="status">Contrôle de la session et du droit CARNET…</div>
+
+  <section class="panel" id="createPanel" hidden>
+    <h2>➕ NOUVEAU DÛ</h2>
+    <div class="grid two">
+      <div class="field"><label for="client">CLIENT</label><input id="client" value="CLIENT TEST A" autocomplete="off"></div>
+      <div class="field"><label for="amount">MONTANT DÛ · XOF</label><input id="amount" type="number" min="1" step="1" value="50000"></div>
+      <div class="field"><label for="phone">TÉLÉPHONE · OPTIONNEL</label><input id="phone" inputmode="tel" placeholder="+221…"></div>
+      <div class="field"><label for="due">ÉCHÉANCE · OPTIONNELLE</label><input id="due" type="date"></div>
+    </div>
+    <div class="field" style="margin-top:10px"><label for="note">NOTE · OPTIONNELLE</label><textarea id="note" placeholder="Ex. Paiement prévu vendredi"></textarea></div>
+    <button class="btn primary" id="create" type="button">✅ CRÉER LE DÛ 50 000 XOF</button>
+    <div class="small">Écriture uniquement via <b>digiy_carnet_create_receivable</b>. La création du dû ne crée aucun mouvement de caisse.</div>
+  </section>
+
+  <section class="panel" id="listPanel" hidden>
+    <h2>🤝 DÛS DU TEST</h2>
+    <div class="list" id="list"></div>
+  </section>
+
+  <div class="foot"><a href="./">↩ RETOUR HUB TEST</a></div>
+</main>
+<script>
+(() => {
+  "use strict";
+  const PROJECT_URL="https://wesqmwjjtsefyjnluosj.supabase.co";
+  const PUBLISHABLE_KEY="sb_publishable_2KVRayr3oWcewu0Y7xMkOQ_D6522h1E";
+  const MEMBER_SLUG="digiy-carnet-test-001";
+  const TOKEN_KEY="DIGIY_CARNET_TEST_ACCESS_TOKEN";
+  const $=id=>document.getElementById(id);
+  const status=$("status"),createPanel=$("createPanel"),listPanel=$("listPanel"),list=$("list"),createBtn=$("create"),amountInput=$("amount");
+  let token="", debts=[], payments=[];
+
+  function setStatus(text,kind=""){status.textContent=text;status.className="status "+kind}
+  function money(n){return new Intl.NumberFormat("fr-FR").format(Number(n||0))+" XOF"}
+  function uid(prefix){return prefix+"-"+(crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(16).slice(2))}
+  async function jsonSafe(res){try{return await res.json()}catch(_){return {}}}
+  async function api(path,opts={}){
+    const headers={apikey:PUBLISHABLE_KEY,Authorization:"Bearer "+token,...(opts.headers||{})};
+    const res=await fetch(PROJECT_URL+path,{...opts,headers});
+    const body=await jsonSafe(res);
+    if(!res.ok) throw new Error("HTTP "+res.status+" · "+(body?.message||body?.hint||body?.msg||JSON.stringify(body)));
+    return body;
+  }
+  async function rpc(name,body){return api("/rest/v1/rpc/"+name,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})}
+
+  async function guard(){
+    token=localStorage.getItem(TOKEN_KEY)||sessionStorage.getItem(TOKEN_KEY)||"";
+    if(!token){setStatus("❌ AUCUNE SESSION OTP LOCALE\nRetourne au HUB test et authentifie-toi.","bad");return false}
+    const user=await api("/auth/v1/user");
+    if(!user?.id) throw new Error("session_user_missing");
+    const access=await rpc("digiy_carnet_my_access",{p_slug:MEMBER_SLUG});
+    if(access?.ok!==true || access?.module!=="CARNET" || access?.slug!==MEMBER_SLUG) throw new Error("droit_carnet_refuse · "+JSON.stringify(access));
+    setStatus("✅ PORTE CLIENT DÛ OUVERTE\nSession OTP + droit CARNET validés.","ok");
+    createPanel.hidden=false;listPanel.hidden=false;return true;
+  }
+
+  async function load(){
+    debts=await api("/rest/v1/digiy_carnet_receivables?select=id,member_slug,client_label,client_phone,amount_due_xof,amount_paid_xof,currency_code,debt_date,due_date,status,note_text,client_id,created_at&member_slug=eq."+encodeURIComponent(MEMBER_SLUG)+"&order=created_at.desc");
+    const ids=debts.map(d=>d.id);
+    if(ids.length){
+      payments=await api("/rest/v1/digiy_carnet_receivable_payments?select=id,receivable_id,amount_xof,channel,movement_id,client_id,paid_at,note_text&receivable_id="+encodeURIComponent("in.("+ids.join(",")+")")+"&order=paid_at.desc");
+    }else payments=[];
+    render();
+  }
+
+  function labelStatus(s){return ({open:"DÛ",partial:"PARTIEL",paid:"PAYÉ",cancelled:"ANNULÉ"})[s]||s.toUpperCase()}
+  function render(){
+    if(!debts.length){list.innerHTML='<div class="empty">Aucun dû pour ce test. Crée <b>CLIENT TEST A · 50 000 XOF</b> ci-dessus.</div>';return}
+    list.innerHTML="";
+    debts.forEach(d=>{
+      const remaining=Math.max(0,Number(d.amount_due_xof)-Number(d.amount_paid_xof));
+      const related=payments.filter(p=>p.receivable_id===d.id);
+      const box=document.createElement("article");box.className="debt";
+      const payHtml=related.length?related.map(p=>'<div class="payment">✅ '+money(p.amount_xof)+' · '+String(p.channel).replace("orange_money","Orange Money").replace("wave","Wave")+' · mouvement lié</div>').join(""):'<div class="payment">Aucun remboursement encaissé.</div>';
+      const actions=(d.status==="open"||d.status==="partial")?`
+        <div class="row" style="margin-top:10px">
+          <div class="field"><label>REMBOURSEMENT · XOF</label><input class="payAmount" type="number" min="1" max="${remaining}" value="${remaining}" data-id="${d.id}"></div>
+          <div class="field"><label>CANAL</label><select class="payChannel" data-id="${d.id}"><option value="wave">Wave</option><option value="orange_money">Orange Money</option><option value="cash">Espèces</option><option value="bank">Banque</option><option value="card">Carte</option><option value="sendwave">Sendwave</option><option value="other">Autre</option></select></div>
+        </div>
+        <button class="btn pay doPay" data-id="${d.id}" type="button">💰 CONFIRMER LE REMBOURSEMENT</button>
+        <button class="btn cancel doCancel" data-id="${d.id}" type="button">ANNULER CE DÛ</button>`:"";
+      box.innerHTML=`<span class="pill">${labelStatus(d.status)}</span><h3>${d.client_label}</h3>
+        <div class="numbers"><div class="num"><small>DÛ</small><b>${money(d.amount_due_xof)}</b></div><div class="num"><small>REMBOURSÉ</small><b>${money(d.amount_paid_xof)}</b></div><div class="num"><small>RESTE</small><b>${money(remaining)}</b></div></div>
+        ${d.note_text?'<div class="small">'+d.note_text+'</div>':''}<div class="payments">${payHtml}</div>${actions}`;
+      list.appendChild(box);
+    });
+    list.querySelectorAll(".doPay").forEach(btn=>btn.onclick=()=>pay(btn.dataset.id));
+    list.querySelectorAll(".doCancel").forEach(btn=>btn.onclick=()=>cancelDebt(btn.dataset.id));
+  }
+
+  async function createDebt(){
+    const label=$("client").value.trim(), amount=Number(amountInput.value), phone=$("phone").value.trim(), due=$("due").value||null, note=$("note").value.trim();
+    if(!label||!Number.isFinite(amount)||amount<=0){setStatus("Renseigne un client et un montant supérieur à zéro.");return}
+    createBtn.disabled=true;setStatus("Création du dû…");
+    try{
+      const out=await rpc("digiy_carnet_create_receivable",{p_member_slug:MEMBER_SLUG,p_client_label:label,p_amount_xof:Math.round(amount),p_client_phone:phone||null,p_due_date:due,p_note_text:note||null,p_client_id:uid("UI-DEBT")});
+      if(out?.ok!==true)throw new Error(JSON.stringify(out));
+      setStatus("✅ DÛ CRÉÉ · AUCUN ENCAISSEMENT CRÉÉ\nLe client doit "+money(amount)+".","ok");await load();
+    }catch(err){setStatus("❌ CRÉATION REFUSÉE\n"+(err?.message||err),"bad")}finally{createBtn.disabled=false}
+  }
+
+  async function pay(id){
+    const amountEl=list.querySelector('.payAmount[data-id="'+id+'"]'),channelEl=list.querySelector('.payChannel[data-id="'+id+'"]');
+    const amount=Number(amountEl?.value),channel=channelEl?.value;
+    if(!Number.isFinite(amount)||amount<=0){setStatus("Montant de remboursement invalide.");return}
+    setStatus("Enregistrement du remboursement + mouvement CARNET…");
+    try{
+      const out=await rpc("digiy_carnet_record_receivable_payment",{p_receivable_id:id,p_amount_xof:Math.round(amount),p_channel:channel,p_client_id:uid("UI-PAY"),p_paid_at:new Date().toISOString(),p_note_text:"Validation humaine Client dû"});
+      if(out?.ok!==true)throw new Error(JSON.stringify(out));
+      setStatus("✅ REMBOURSEMENT ENCAISSÉ\n"+money(out.amount_received_xof)+" · reste "+money(out.remaining_xof)+" · mouvement CARNET lié.","ok");await load();
+    }catch(err){setStatus("❌ REMBOURSEMENT REFUSÉ\n"+(err?.message||err),"bad")}
+  }
+
+  async function cancelDebt(id){
+    setStatus("Annulation du dû…");
+    try{
+      const out=await rpc("digiy_carnet_cancel_receivable",{p_receivable_id:id});
+      if(out?.ok!==true)throw new Error(JSON.stringify(out));
+      setStatus("✅ DÛ ANNULÉ · aucun encaissement créé.","ok");await load();
+    }catch(err){setStatus("❌ ANNULATION REFUSÉE\n"+(err?.message||err),"bad")}
+  }
+
+  amountInput.addEventListener("input",()=>{createBtn.textContent="✅ CRÉER LE DÛ "+money(amountInput.value||0)});
+  createBtn.onclick=createDebt;
+  guard().then(ok=>{if(ok)return load()}).catch(err=>{createPanel.hidden=true;listPanel.hidden=true;setStatus("❌ PORTE CLIENT DÛ FERMÉE\n"+(err?.message||err),"bad")});
+})();
+</script>
+</body>
+</html>
