@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+  <meta name="theme-color" content="#06140f">
+  <title>DIGIY CARNET — Test magic link</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3"></script>
+  <style>
+    *{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;padding:18px;background:linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.card{width:min(560px,100%);padding:22px;border-radius:28px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06)}.eyebrow{color:#f4d27a;font-weight:900;font-size:12px;letter-spacing:.12em}.badge{display:inline-block;margin:10px 0;padding:7px 10px;border-radius:999px;border:1px solid rgba(244,210,122,.25);color:#fde68a;background:rgba(244,210,122,.08);font-size:11px;font-weight:900}h1{margin:8px 0;font-size:clamp(36px,10vw,58px);line-height:.95}.status{margin-top:16px;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);line-height:1.5;font-weight:800}.ok{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.3);color:#bbf7d0}.warn{background:rgba(244,210,122,.10);border-color:rgba(244,210,122,.3);color:#fff4c8}.bad{background:rgba(248,113,113,.10);border-color:rgba(248,113,113,.3);color:#fecaca}.small{margin-top:14px;color:rgba(255,255,255,.55);font-size:11px;line-height:1.5}button{width:100%;min-height:52px;margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font:inherit;font-weight:900}
+  </style>
+</head>
+<body>
+<main class="card">
+  <div class="eyebrow">DIGIYLYFE · ATELIER</div>
+  <div class="badge">TEST ISOLÉ · NON COMMERCIAL</div>
+  <h1>DIGIY CARNET</h1>
+  <p>Cette page vérifie uniquement le retour du magic link et la session Supabase du faux adhérent.</p>
+  <div class="status warn" id="status">Recherche d’une session CARNET…</div>
+  <button id="logout" type="button">↩ FERMER LA SESSION TEST</button>
+  <div class="small">Aucun email n’est stocké dans cette page. Aucun SQL CARNET n’est exécuté depuis ici. Le droit test est limité au cobaye <b>digiy-carnet-test-001</b>.</div>
+</main>
+<script>
+(() => {
+  "use strict";
+  const PROJECT_URL="https://wesqmwjjtsefyjnluosj.supabase.co";
+  const PUBLISHABLE_KEY="sb_publishable_2KVRayr3oWcewu0Y7xMkOQ_D6522h1E";
+  const MEMBER_SLUG="digiy-carnet-test-001";
+  const status=document.getElementById("status");
+  const logout=document.getElementById("logout");
+  const db=supabase.createClient(PROJECT_URL,PUBLISHABLE_KEY,{auth:{persistSession:true,detectSessionInUrl:true,autoRefreshToken:true}});
+  function set(text,kind){status.textContent=text;status.className="status "+(kind||"warn")}
+  async function check(){
+    try{
+      const {data,error}=await db.auth.getUser();
+      if(error||!data?.user){set("Aucune session authentifiée. Ouvre le magic link reçu par email.","warn");return}
+      set("✅ MAGIC LINK VALIDÉ · session Supabase authentifiée. Le bridge CARNET sera testé à l’étape SQL suivante.","ok");
+      try{
+        const {data:access,error:accessError}=await db.rpc("digiy_carnet_my_access",{p_slug:MEMBER_SLUG});
+        if(!accessError && access?.ok){set("✅ MAGIC LINK + DROIT CARNET VALIDÉS.","ok")}
+      }catch(_){}
+    }catch(err){set("Retour Auth non validé : "+(err?.message||err),"bad")}
+  }
+  logout.onclick=async()=>{try{await db.auth.signOut()}catch(_){}set("Session test fermée.","warn")};
+  check();
+})();
+</script>
+</body>
+</html>
