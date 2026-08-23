@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+  <meta name="theme-color" content="#06140f">
+  <title>DIGIY CARNET — Client dû</title>
+  <script src="../master-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3"></script>
+  <script src="../assets/carnet-contract.js"></script>
+  <script src="../assets/carnet-store.js"></script>
+  <script src="../assets/carnet-i18n.js"></script>
+  <script src="../assets/carnet-world8-ui.js"></script>
+  <script src="../assets/carnet-debts.js"></script>
+  <style>
+    *{box-sizing:border-box}body{margin:0;min-height:100dvh;padding:12px 12px 90px;background:radial-gradient(circle at top left,rgba(244,210,122,.13),transparent 34%),linear-gradient(180deg,#06140f,#020806);color:#fff8e8;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:800}.app{width:min(620px,100%);margin:auto}.langbar{display:flex;justify-content:flex-end;margin-bottom:8px}.langbar select{min-height:42px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;padding:7px 10px;font:inherit;font-size:12px;font-weight:1000}.top{display:flex;align-items:center;justify-content:space-between;gap:8px}.back{color:#fff;text-decoration:none;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.06)}.brand{text-align:right}.brand small{display:block;color:rgba(255,255,255,.5);font-size:10px}.brand b{color:#f4d27a}.hero{margin-top:12px;padding:18px;border-radius:28px;background:linear-gradient(135deg,#fff7df,#ead29a);color:#162016}.hero h1{margin:4px 0;font-size:clamp(38px,11vw,58px);line-height:.92;letter-spacing:-.05em}.hero p{margin:8px 0 0;line-height:1.4}.status{margin-top:12px;padding:12px;border-radius:16px;background:rgba(244,210,122,.1);border:1px solid rgba(244,210,122,.22);font-size:12px}.status.ok{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.25);color:#bbf7d0}.status.bad{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.25);color:#fecaca}.card{margin-top:12px;padding:15px;border-radius:24px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09)}.card h2{margin:0 0 5px;color:#f4d27a}.lead{margin:0 0 12px;color:rgba(255,255,255,.62);font-size:12px}.field{display:grid;gap:5px;margin-top:10px}.field label{font-size:10px;color:#fde68a}.field input,.field select,.field textarea{width:100%;min-height:50px;border-radius:15px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.22);color:#fff;padding:10px 12px;font:inherit;font-weight:900}.field textarea{min-height:70px}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btn{width:100%;min-height:54px;margin-top:11px;border:0;border-radius:16px;background:linear-gradient(135deg,#22c55e,#f4d27a);color:#102014;font:inherit;font-weight:1100}.btn.secondary{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.12)}.btn.cancel{background:rgba(248,113,113,.08);color:#fecaca;border:1px solid rgba(248,113,113,.24)}.btn:disabled{opacity:.45}.debts{display:grid;gap:10px;margin-top:10px}.debt{padding:14px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}.head{display:flex;justify-content:space-between;gap:8px;align-items:start}.head b{font-size:18px}.clientPhone{margin-top:3px;color:#fde68a;font-size:11px;font-weight:1000}.pill{padding:5px 8px;border-radius:999px;background:rgba(244,210,122,.12);color:#fde68a;font-size:9px}.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}.num{padding:9px;border-radius:14px;background:rgba(255,255,255,.05);text-align:center}.num small{display:block;color:rgba(255,255,255,.5);font-size:9px}.num b{display:block;margin-top:3px}.history{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:rgba(255,255,255,.7)}.paybox{margin-top:10px;padding:10px;border-radius:16px;background:rgba(0,0,0,.16)}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}.quick button{min-height:44px;border-radius:13px;border:1px solid rgba(244,210,122,.25);background:rgba(244,210,122,.10);color:#fde68a;font:inherit;font-size:11px;font-weight:1000}.empty{padding:18px;text-align:center;color:rgba(255,255,255,.55)}.dock{position:fixed;left:8px;right:8px;bottom:8px;width:min(604px,calc(100% - 16px));margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px;border-radius:18px;background:rgba(6,20,15,.95);border:1px solid rgba(255,255,255,.1)}.dock a{min-height:52px;display:grid;place-items:center;text-align:center;text-decoration:none;color:#fff;border-radius:13px;background:rgba(255,255,255,.07);font-size:11px}html[dir="rtl"] .langbar{justify-content:flex-start}html[dir="rtl"] .brand{text-align:left}html[dir="rtl"] .hero,html[dir="rtl"] .card{text-align:right}@media(max-width:440px){.row,.nums{grid-template-columns:1fr}.nums{grid-template-columns:repeat(3,1fr)}.quick{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <div class="langbar"><select id="language" aria-label="Language"></select></div>
+  <header class="top"><a class="back" href="./index.html" data-w8="backCarnet">← CARNET</a><div class="brand"><small>DIGIYLYFE · <span data-i18n="member">ADHÉRENT</span></small><b>🤝 <span data-i18n="debtTitle">CLIENT DÛ</span></b></div></header>
+
+  <section class="hero"><small data-i18n="debtHeroTop">ÉCHÉANCIER TERRAIN</small><h1 data-i18n="debtHero">Il doit. Il rembourse. Il reste.</h1><p data-i18n="debtRule">Une dette n’entre pas dans la caisse à sa création. Chaque remboursement confirmé, lui, entre immédiatement dans CARNET.</p></section>
+  <div class="status" id="status" data-w8="registryChecking">Contrôle du registre…</div>
+
+  <section class="card">
+    <h2 data-i18n="newDebt">Nouveau client dû</h2>
+    <p class="lead" data-i18n="debtLead">Nom + téléphone + somme due. Le téléphone reste facultatif.</p>
+    <div class="row"><div class="field"><label for="client" data-i18n="clientName">Nom du client</label><input id="client" type="text" autocomplete="off" data-w8-placeholder="clientPh" placeholder="Ex : Mamadou"></div><div class="field"><label for="phone" data-i18n="phoneOptional">Téléphone facultatif</label><input id="phone" type="tel" inputmode="tel" autocomplete="off" data-w8-placeholder="phonePh" placeholder="Ex : 77 000 00 00"></div></div>
+    <div class="row"><div class="field"><label for="amount" data-i18n="amountDue">Somme due</label><input id="amount" type="text" inputmode="numeric" autocomplete="off" placeholder="50000"></div><div class="field"><label for="due" data-i18n="dueOptional">Échéance facultative</label><input id="due" type="date"></div></div>
+    <div class="field"><label for="note" data-i18n="noteOptional">Note facultative</label><textarea id="note"></textarea></div>
+    <button class="btn" id="create" type="button" data-i18n="saveDebt">ENREGISTRER LE CLIENT DÛ</button>
+  </section>
+
+  <section class="card"><h2 data-i18n="schedules">Échéanciers</h2><div class="debts" id="debts"><div class="empty" data-w8="loading">Chargement…</div></div></section>
+</main>
+<nav class="dock"><a href="./index.html">📊 <span data-w8="navDay">Jour</span></a><a href="./oreille.html">🎙️ <span data-i18n="earTitle">OREILLE</span></a><a href="./dettes.html">🤝 <span data-i18n="debtTitle">CLIENT DÛ</span></a></nav>
+<script>
+(() => {
+  "use strict";
+  const Store=window.DIGIY_CARNET_STORE, Debts=window.DIGIY_CARNET_DEBTS, Contract=window.DIGIY_CARNET_CONTRACT, C=window.DIGIY_CARNET_MASTER||{}, I18N=window.DIGIY_CARNET_I18N, UI=window.DIGIY_CARNET_WORLD8_UI;
+  const $=id=>document.getElementById(id), money=n=>UI.money(n,C.identity?.currency||"XOF");
+  const esc=v=>String(v??"").replace(/[&<>\"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+  const number=v=>Number(String(v??"").replace(/[^0-9]/g,""));
+  const local=(map)=>map[I18N.current()]||map.fr;
+  const allLabel=()=>local({fr:"TOUT",en:"ALL",es:"TODO",pt:"TUDO",it:"TUTTO",de:"ALLES",nl:"ALLES",ar:"الكل"});
+  const cancelLabel=()=>local({fr:"ANNULER CE DÛ",en:"CANCEL THIS DEBT",es:"ANULAR ESTA DEUDA",pt:"CANCELAR ESTA DÍVIDA",it:"ANNULLA QUESTO DEBITO",de:"DIESE SCHULD STORNIEREN",nl:"DEZE SCHULD ANNULEREN",ar:"إلغاء هذا الدين"});
+  function setStatus(t,k){$("status").textContent=t;$("status").className="status "+(k||"")}
+
+  async function load(){
+    try{
+      await Store.access();
+      const rows=await Debts.list();
+      setStatus(UI.t("registryLoaded"),"ok");
+      if(!rows.length){$("debts").innerHTML=`<div class='empty'>${esc(UI.t("noDebt"))}</div>`;return}
+      const html=[];
+      for(const d of rows){
+        const pays=await Debts.payments(d.id).catch(()=>[]), remain=Math.max(0,Number(d.amount_due_xof)-Number(d.amount_paid_xof));
+        const dueText=d.due_date?UI.format("deadline",{date:UI.date(d.due_date)}):UI.t("noDeadline");
+        const history=pays.length?pays.map(p=>`${esc(UI.date(p.paid_at))} · +${esc(money(p.amount_xof))} · ${esc(UI.channelLabel(p.channel,Contract.channels[p.channel]||p.channel))}${p.movement_id?" · ✅ CARNET":""}`).join("<br>"):esc(UI.t("noRepayment"));
+        const quick=[10000,20000,30000].filter(x=>x<=remain).map(x=>`<button class="quickPay" type="button" data-value="${x}">${esc(money(x))}</button>`).join("")+`<button class="quickPay" type="button" data-value="${remain}">${esc(allLabel())} · ${esc(money(remain))}</button>`;
+        const paymentBox=remain>0?`<div class="paybox"><div class="row"><div class="field"><label>${esc(I18N.t("repayment"))}</label><input class="payAmount" type="text" inputmode="numeric" autocomplete="off" value="${remain}"></div><div class="field"><label>${esc(I18N.t("receivedMode"))}</label><select class="payChannel">${(C.channels||[]).filter(x=>x.active!==false).map(x=>`<option value="${esc(x.id)}">${esc(UI.channelLabel(x.id,x.label))}</option>`).join("")}</select></div></div><div class="quick">${quick}</div><button class="btn payBtn" type="button">${esc(I18N.t("saveRepayment"))}</button><button class="btn cancel cancelBtn" type="button">${esc(cancelLabel())}</button></div>`:`<div class='history'>${esc(I18N.t("settled"))}</div>`;
+        html.push(`<article class="debt" data-id="${esc(d.id)}"><div class="head"><div><b>${esc(d.client_label)}</b>${d.client_phone?`<div class="clientPhone">📞 ${esc(d.client_phone)}</div>`:""}<div style="font-size:11px;color:rgba(255,255,255,.55);margin-top:3px">${esc(dueText)}</div></div><span class="pill">${esc(UI.statusLabel(d.status))}</span></div><div class="nums"><div class="num"><small>${esc(I18N.t("due"))}</small><b>${money(d.amount_due_xof)}</b></div><div class="num"><small>${esc(I18N.t("repaid"))}</small><b>${money(d.amount_paid_xof)}</b></div><div class="num"><small>${esc(I18N.t("remaining"))}</small><b>${money(remain)}</b></div></div><div class="history">${history}</div>${paymentBox}</article>`);
+      }
+      $("debts").innerHTML=html.join("");
+      document.querySelectorAll(".debt").forEach(card=>{
+        const amountEl=card.querySelector(".payAmount");
+        if(amountEl){
+          amountEl.addEventListener("focus",()=>amountEl.select());
+          amountEl.addEventListener("click",()=>amountEl.focus());
+        }
+        card.querySelectorAll(".quickPay").forEach(q=>q.onclick=()=>{
+          if(!amountEl)return;
+          amountEl.value=q.dataset.value;
+          amountEl.focus();
+          amountEl.select();
+        });
+        const btn=card.querySelector(".payBtn");
+        if(btn){
+          btn.onclick=async()=>{
+            const amount=Math.round(number(amountEl?.value)), channel=card.querySelector(".payChannel").value;
+            if(!(amount>0)){setStatus(UI.t("repaymentRequired"),"bad");return}
+            btn.disabled=true;
+            try{
+              const r=await Debts.recordPayment(card.dataset.id,{amount_xof:amount,channel});
+              setStatus(UI.format("repaymentSaved",{amount:money(r.amount_received_xof),remaining:money(r.remaining_xof)}),"ok");
+              await load();
+            }catch(err){setStatus(UI.format("repaymentFailed",{detail:err?.message||err}),"bad")}
+            finally{btn.disabled=false}
+          };
+        }
+        const cancelBtn=card.querySelector(".cancelBtn");
+        if(cancelBtn){
+          cancelBtn.onclick=async()=>{
+            cancelBtn.disabled=true;
+            try{
+              await Debts.cancel(card.dataset.id);
+              setStatus("✅ "+cancelLabel(),"ok");
+              await load();
+            }catch(err){setStatus("MASTER · "+(err?.message||err),"bad")}
+            finally{cancelBtn.disabled=false}
+          };
+        }
+      });
+    }catch(err){setStatus("MASTER · "+(err?.message||err),"bad");$("debts").innerHTML=`<div class='empty'>${esc(UI.t("sqlPending"))}</div>`}
+  }
+
+  $("create").onclick=async()=>{
+    const label=$("client").value.trim(), amount=Math.round(number($("amount").value));
+    if(!label||!(amount>0)){setStatus(UI.t("debtRequired"),"bad");return}
+    $("create").disabled=true;
+    try{
+      await Debts.create({client_label:label,amount_due_xof:amount,client_phone:$("phone").value,due_date:$("due").value||null,note_text:$("note").value});
+      $("client").value="";$("amount").value="";$("phone").value="";$("due").value="";$("note").value="";
+      setStatus(UI.t("debtSaved"),"ok");
+      await load();
+    }catch(err){setStatus(UI.format("debtCreateFailed",{detail:err?.message||err}),"bad")}
+    finally{$("create").disabled=false}
+  };
+
+  I18N.bindSelector($("language"));
+  I18N.apply();
+  UI.apply();
+  load();
+  window.addEventListener("digiy:carnet-language",()=>{UI.apply();load()});
+})();
+</script>
+</body>
+</html>
