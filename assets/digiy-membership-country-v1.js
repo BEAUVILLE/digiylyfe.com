@@ -69,8 +69,9 @@
     table.style.minWidth='0';
     var lead=document.getElementById('locLead');
     if(lead){
-      var single=amount(membership.amount,c);
-      lead.textContent=lead.textContent.replace(/28(?:[ .,\u00a0\u202f])000 FCFA\s*\/\s*(?:€\s*75|75\s*€)/gi,single);
+      var lang=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
+      var source=(typeof LOC!=='undefined'&&LOC&&(LOC[lang]||LOC.fr))?(LOC[lang]||LOC.fr).lead:lead.textContent;
+      lead.textContent=source.replace(/28(?:[ .,\u00a0\u202f])000 FCFA\s*\/\s*(?:€\s*75|75\s*€)/gi,amount(membership.amount,c));
     }
   }
   function patchPayments(){
@@ -95,8 +96,8 @@
       var on=btn.getAttribute('data-digiy-country')===countryId;btn.classList.toggle('active',on);btn.setAttribute('aria-pressed',on?'true':'false');
     });
     var memberPrice=document.getElementById('memberPrice');if(memberPrice)memberPrice.textContent=amount(membership.amount,c);
-    var sheetPrice=document.getElementById('sheetPrice');if(sheetPrice)sheetPrice.textContent=amount(fiche.starting_amount,c)+' · À PARTIR DE';
-    var sitePrice=document.getElementById('sitePrice');if(sitePrice)sitePrice.textContent='SITE PREMIUM · '+amount(premium.starting_amount,c)+' · SITE EXTRA · '+amount(extra.starting_amount,c);
+    var sheetPrice=document.getElementById('sheetPrice');if(sheetPrice)sheetPrice.textContent='À PARTIR DE '+amount(fiche.starting_amount,c);
+    var sitePrice=document.getElementById('sitePrice');if(sitePrice)sitePrice.textContent='SITE PREMIUM · À PARTIR DE '+amount(premium.starting_amount,c)+' · SITE EXTRA · À PARTIR DE '+amount(extra.starting_amount,c);
     patchLoc(c,membership);
     patchPayments();
     patchPrepareLink();
