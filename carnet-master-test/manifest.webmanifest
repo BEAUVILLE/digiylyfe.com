@@ -1,0 +1,12 @@
+{
+  "name": "DIGIY CARNET — MASTER TEST",
+  "short_name": "CARNET TEST",
+  "description": "Instance isolée de validation du MASTER DIGIY CARNET — accès adhérent par OTP.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#06140f",
+  "theme_color": "#06140f",
+  "lang": "fr",
+  "dir": "ltr"
+}
