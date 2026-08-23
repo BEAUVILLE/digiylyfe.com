@@ -19,9 +19,14 @@
   function country(){
     return runtime&&Array.isArray(runtime.countries)?runtime.countries.find(function(c){return c.id===countryId&&c.status==='active';}):null;
   }
+  function lang(){return (document.documentElement.lang||'fr').slice(0,2).toLowerCase();}
   function label(c){
-    var lang=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
-    return (c&&c.labels&&(c.labels[lang]||c.labels.fr))||c.id;
+    var l=lang();
+    return (c&&c.labels&&(c.labels[l]||c.labels.fr))||c.id;
+  }
+  function fromLabel(){
+    var map={fr:'À PARTIR DE',en:'FROM',es:'DESDE',pt:'A PARTIR DE',it:'DA',de:'AB',nl:'VANAF',ar:'ابتداءً من'};
+    return map[lang()]||map.fr;
   }
   function amount(n,c){
     if(c.currency.code==='XOF') return new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0}).format(Number(n)).replace(/\u202f/g,' ')+' FCFA';
@@ -69,8 +74,8 @@
     table.style.minWidth='0';
     var lead=document.getElementById('locLead');
     if(lead){
-      var lang=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
-      var source=(typeof LOC!=='undefined'&&LOC&&(LOC[lang]||LOC.fr))?(LOC[lang]||LOC.fr).lead:lead.textContent;
+      var l=lang();
+      var source=(typeof LOC!=='undefined'&&LOC&&(LOC[l]||LOC.fr))?(LOC[l]||LOC.fr).lead:lead.textContent;
       lead.textContent=source.replace(/28(?:[ .,\u00a0\u202f])000 FCFA\s*\/\s*(?:€\s*75|75\s*€)/gi,amount(membership.amount,c));
     }
   }
@@ -81,6 +86,22 @@
       cards[1].hidden=countryId!=='FR';
       var grid=document.querySelector('#paiement .paymentGrid');if(grid)grid.style.gridTemplateColumns='1fr';
     }
+  }
+  function patchSiteTiers(c,premium,extra){
+    var p=document.querySelector('[data-digiy-site-tiers] [data-tier="premium"] [data-tier-price]');
+    var x=document.querySelector('[data-digiy-site-tiers] [data-tier="extra"] [data-tier-price]');
+    var prefix=fromLabel();
+    var pv=prefix+' '+amount(premium.starting_amount,c);
+    var xv=prefix+' '+amount(extra.starting_amount,c);
+    if(p&&p.textContent!==pv)p.textContent=pv;
+    if(x&&x.textContent!==xv)x.textContent=xv;
+  }
+  function patchSiteTiersFromRuntime(){
+    if(!runtime) return;
+    var c=country();if(!c) return;
+    var premium=c.pricing&&c.pricing.services&&c.pricing.services.site_premium;
+    var extra=c.pricing&&c.pricing.services&&c.pricing.services.site_extra;
+    if(premium&&extra)patchSiteTiers(c,premium,extra);
   }
   function apply(){
     if(!runtime) return;
@@ -96,8 +117,9 @@
       var on=btn.getAttribute('data-digiy-country')===countryId;btn.classList.toggle('active',on);btn.setAttribute('aria-pressed',on?'true':'false');
     });
     var memberPrice=document.getElementById('memberPrice');if(memberPrice)memberPrice.textContent=amount(membership.amount,c);
-    var sheetPrice=document.getElementById('sheetPrice');if(sheetPrice)sheetPrice.textContent='À PARTIR DE '+amount(fiche.starting_amount,c);
-    var sitePrice=document.getElementById('sitePrice');if(sitePrice)sitePrice.textContent='SITE PREMIUM · À PARTIR DE '+amount(premium.starting_amount,c)+' · SITE EXTRA · À PARTIR DE '+amount(extra.starting_amount,c);
+    var sheetPrice=document.getElementById('sheetPrice');if(sheetPrice)sheetPrice.textContent=fromLabel()+' '+amount(fiche.starting_amount,c);
+    var sitePrice=document.getElementById('sitePrice');if(sitePrice)sitePrice.textContent='SITE PREMIUM · '+fromLabel()+' '+amount(premium.starting_amount,c)+' · SITE EXTRA · '+fromLabel()+' '+amount(extra.starting_amount,c);
+    patchSiteTiers(c,premium,extra);
     patchLoc(c,membership);
     patchPayments();
     patchPrepareLink();
@@ -112,5 +134,5 @@
 
   document.querySelectorAll('.top [data-l]').forEach(function(btn){btn.addEventListener('click',function(){setTimeout(apply,0);});});
   new MutationObserver(function(){setTimeout(apply,0);}).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
-  new MutationObserver(function(){patchPrepareLink();}).observe(document.body,{childList:true,subtree:true});
+  new MutationObserver(function(){patchPrepareLink();patchSiteTiersFromRuntime();}).observe(document.body,{childList:true,subtree:true});
 })();
