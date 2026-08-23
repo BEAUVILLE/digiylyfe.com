@@ -72,14 +72,14 @@
     if(!section) return;
 
     var copy={
-      fr:{title:'DIGIYLYFE — HUB DES TERRITOIRES',lead:'Un HUB des territoires. Des besoins locaux. Un contact direct.'},
-      en:{title:'DIGIYLYFE — TERRITORY HUB',lead:'A hub for territories. Local needs. Direct contact.'},
-      es:{title:'DIGIYLYFE — HUB DE TERRITORIOS',lead:'Un HUB de territorios. Necesidades locales. Contacto directo.'},
-      pt:{title:'DIGIYLYFE — HUB DOS TERRITÓRIOS',lead:'Um HUB dos territórios. Necessidades locais. Contacto direto.'},
-      it:{title:'DIGIYLYFE — HUB DEI TERRITORI',lead:'Un HUB dei territori. Bisogni locali. Contatto diretto.'},
-      de:{title:'DIGIYLYFE — HUB DER REGIONEN',lead:'Ein HUB der Regionen. Lokale Bedürfnisse. Direkter Kontakt.'},
-      nl:{title:'DIGIYLYFE — HUB VAN GEBIEDEN',lead:'Een HUB van gebieden. Lokale behoeften. Direct contact.'},
-      ar:{title:'DIGIYLYFE — محور المناطق',lead:'محور للمناطق. احتياجات محلية. تواصل مباشر.'}
+      fr:{title:'DIGIYLYFE · DU LOCAL AU MONDE',lead:'Un même CORE. Des territoires différents. Le professionnel reste local.',intro:'Deux portes réelles montrent l’ouverture de DIGIYLYFE : Sénégal · Petite Côte et France · Périgord · Vallée de la Dordogne. Choisissez votre territoire, puis votre besoin et votre zone.',path:'Pays → Territoire → Zone → Besoin → Professionnel → OUVRIR',dordogneTitle:'DIGIY PÉRIGORD · VALLÉE DE LA DORDOGNE',dordogneZones:'Sarlat-la-Canéda · Périgord · Vallée de la Dordogne',aria:'DIGIYLYFE du local au monde'},
+      en:{title:'DIGIYLYFE · FROM LOCAL TO THE WORLD',lead:'One CORE. Different territories. The professional stays local.',intro:'Two real doors show DIGIYLYFE’s reach: Senegal · Petite Côte and France · Périgord · Dordogne Valley. Choose your territory, then your need and local area.',path:'Country → Territory → Area → Need → Professional → OPEN',dordogneTitle:'DIGIY PÉRIGORD · DORDOGNE VALLEY',dordogneZones:'Sarlat-la-Canéda · Périgord · Dordogne Valley',aria:'DIGIYLYFE from local to the world'},
+      es:{title:'DIGIYLYFE · DE LO LOCAL AL MUNDO',lead:'Un mismo CORE. Territorios diferentes. El profesional sigue siendo local.',intro:'Dos puertas reales muestran la apertura de DIGIYLYFE: Senegal · Petite Côte y Francia · Périgord · Valle del Dordoña. Elija su territorio, después su necesidad y su zona.',path:'País → Territorio → Zona → Necesidad → Profesional → ABRIR',dordogneTitle:'DIGIY PÉRIGORD · VALLE DEL DORDOÑA',dordogneZones:'Sarlat-la-Canéda · Périgord · Valle del Dordoña',aria:'DIGIYLYFE de lo local al mundo'},
+      pt:{title:'DIGIYLYFE · DO LOCAL AO MUNDO',lead:'Um único CORE. Territórios diferentes. O profissional permanece local.',intro:'Duas portas reais mostram a abertura da DIGIYLYFE: Senegal · Petite Côte e França · Périgord · Vale da Dordogne. Escolha o território, depois a necessidade e a zona.',path:'País → Território → Zona → Necessidade → Profissional → ABRIR',dordogneTitle:'DIGIY PÉRIGORD · VALE DA DORDOGNE',dordogneZones:'Sarlat-la-Canéda · Périgord · Vale da Dordogne',aria:'DIGIYLYFE do local ao mundo'},
+      it:{title:'DIGIYLYFE · DAL LOCALE AL MONDO',lead:'Un solo CORE. Territori diversi. Il professionista resta locale.',intro:'Due porte reali mostrano l’apertura di DIGIYLYFE: Senegal · Petite Côte e Francia · Périgord · Valle della Dordogna. Scegli il territorio, poi il bisogno e la zona.',path:'Paese → Territorio → Zona → Bisogno → Professionista → APRI',dordogneTitle:'DIGIY PÉRIGORD · VALLE DELLA DORDOGNA',dordogneZones:'Sarlat-la-Canéda · Périgord · Valle della Dordogna',aria:'DIGIYLYFE dal locale al mondo'},
+      de:{title:'DIGIYLYFE · VOM LOKALEN IN DIE WELT',lead:'Ein CORE. Unterschiedliche Gebiete. Der Profi bleibt lokal.',intro:'Zwei reale Türen zeigen die Öffnung von DIGIYLYFE: Senegal · Petite Côte und Frankreich · Périgord · Dordogne-Tal. Wählen Sie zuerst das Gebiet, dann Bedarf und Zone.',path:'Land → Gebiet → Zone → Bedarf → Profi → ÖFFNEN',dordogneTitle:'DIGIY PÉRIGORD · DORDOGNE-TAL',dordogneZones:'Sarlat-la-Canéda · Périgord · Dordogne-Tal',aria:'DIGIYLYFE vom Lokalen in die Welt'},
+      nl:{title:'DIGIYLYFE · VAN LOKAAL NAAR DE WERELD',lead:'Eén CORE. Verschillende gebieden. De professional blijft lokaal.',intro:'Twee echte ingangen tonen de internationale opening van DIGIYLYFE: Senegal · Petite Côte en Frankrijk · Périgord · Dordognevallei. Kies uw gebied, daarna uw behoefte en zone.',path:'Land → Gebied → Zone → Behoefte → Professional → OPENEN',dordogneTitle:'DIGIY PÉRIGORD · DORDOGNEVALLEI',dordogneZones:'Sarlat-la-Canéda · Périgord · Dordognevallei',aria:'DIGIYLYFE van lokaal naar de wereld'},
+      ar:{title:'DIGIYLYFE · من المحلي إلى العالم',lead:'CORE واحد. مناطق مختلفة. والمهني يبقى محليًا.',intro:'بابان حقيقيان يبرزان انفتاح DIGIYLYFE: السنغال · Petite Côte وفرنسا · Périgord · وادي دوردوني. اختر الإقليم ثم حاجتك والمنطقة المحلية.',path:'البلد ← الإقليم ← المنطقة ← الحاجة ← المهني ← فتح',dordogneTitle:'DIGIY PÉRIGORD · وادي دوردوني',dordogneZones:'Sarlat-la-Canéda · Périgord · وادي دوردوني',aria:'DIGIYLYFE من المحلي إلى العالم'}
     };
 
     function apply(){
@@ -87,9 +87,21 @@
       var t=copy[lang]||copy.fr;
       var title=section.querySelector('[data-i18n="worldTitle"]');
       var lead=section.querySelector('[data-i18n="worldLead"]');
+      var intro=section.querySelector('[data-i18n="worldIntro"]');
+      var path=section.querySelector('[data-i18n="worldPath"]');
+      var dordogneTitle=section.querySelector('[data-i18n="dordogneTitle"]');
+      var dordogneZones=section.querySelector('[data-i18n="dordogneZones"]');
       if(title) title.textContent=t.title;
       if(lead) lead.textContent=t.lead;
-      section.setAttribute('aria-label',lang==='fr'?'DIGIYLYFE HUB des territoires':'DIGIYLYFE territory hub');
+      if(intro) intro.textContent=t.intro;
+      if(path) path.textContent=t.path;
+      if(dordogneTitle) dordogneTitle.textContent=t.dordogneTitle;
+      if(dordogneZones) dordogneZones.textContent=t.dordogneZones;
+      section.id='territoires';
+      section.setAttribute('aria-label',t.aria);
+
+      var hero=document.querySelector('section.hero');
+      if(hero && hero.nextElementSibling!==section) hero.insertAdjacentElement('afterend',section);
     }
 
     apply();
