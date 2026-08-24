@@ -9,7 +9,8 @@
     root + "master-config.js",
     "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3",
     root + "assets/carnet-contract.js",
-    root + "assets/carnet-store.js"
+    root + "assets/carnet-store.js",
+    root + "assets/pro-carnet-sync.js"
   ];
 
   const show = () => {
