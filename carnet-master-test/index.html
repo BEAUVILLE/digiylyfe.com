@@ -19,7 +19,7 @@
       <div class="eyebrow">DIGIYLYFE · MASTER MAÎTRE</div>
       <div class="badge">ATELIER · OTP 8 CHIFFRES · NON DÉPLOYABLE TEL QUEL</div>
       <h1>DIGIY CARNET</h1>
-      <p>Accès adhérent : <strong>email → code OTP → session → droit CARNET → HUB privé</strong>. Aucun PIN neuf n’est créé.</p>
+      <p>Accès adhérent : <strong>email → code OTP → session → droit CARNET → PRO CARNET</strong>. Aucun PIN neuf n’est créé.</p>
 
       <div id="loginBox">
         <div class="field">
@@ -38,7 +38,7 @@
       </div>
 
       <div id="status" class="status warn">Contrôle du MASTER…</div>
-      <a class="btn" id="openApp" href="./app/hub.html" hidden>📒 OUVRIR DIGIY CARNET →</a>
+      <a class="btn" id="openApp" href="./app/index.html" hidden>📒 OUVRIR PRO CARNET →</a>
 
       <div class="row">
         <button class="btn secondary" id="check" type="button">🔐 Vérifier ma session</button>
@@ -116,7 +116,7 @@
       }
       sessionStorage.removeItem(PENDING_EMAIL_KEY);
       showInside();
-      setStatus("✅ OTP AUTHENTIFIÉ · ✅ DROIT CARNET · ✅ HUB AUTORISÉ","ok");
+      setStatus("✅ OTP AUTHENTIFIÉ · ✅ DROIT CARNET · ✅ PRO CARNET AUTORISÉ","ok");
       return true;
     }catch(err){
       showLogin();
