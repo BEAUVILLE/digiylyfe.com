@@ -1,9 +1,10 @@
-const CACHE = "digiy-carnet-master-test-v1-20260823-a";
+const CACHE = "digiy-carnet-master-test-v2-pro-carnet-rail-20260824";
 const CORE = [
   "./",
   "./index.html",
   "./master-config.js",
   "./manifest.webmanifest",
+  "./app/guard.js",
   "./app/hub.html",
   "./app/index.html",
   "./app/oreille.html",
