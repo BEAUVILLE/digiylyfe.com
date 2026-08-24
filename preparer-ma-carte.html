@@ -16,7 +16,7 @@
   fetch('/preparer-ma-carte-core-20260824.html?v=20260824-carnet-v1',{cache:'no-store'})
     .then(function(r){if(!r.ok)throw new Error('load '+r.status);return r.text();})
     .then(function(h){
-      var addon='<script src="/assets/digiy-dossier-carnet-v1.js?v=20260824-carnet-v1"><\/script>';
+      var addon='<script src="/assets/digiy-dossier-carnet-v1.js?v=20260824-carnet-minimal-v2"><\/script>';
       h=h.replace(/<\/body>/i,addon+'</body>');
       document.open();
       document.write(h);
