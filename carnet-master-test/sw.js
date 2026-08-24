@@ -1,4 +1,4 @@
-const CACHE = "digiy-carnet-master-test-v2-pro-carnet-rail-20260824";
+const CACHE = "digiy-carnet-master-test-v3-pro-carnet-sync-20260824";
 const CORE = [
   "./",
   "./index.html",
@@ -11,6 +11,7 @@ const CORE = [
   "./app/dettes.html",
   "./assets/carnet-contract.js",
   "./assets/carnet-store.js",
+  "./assets/pro-carnet-sync.js",
   "./assets/carnet-oreille.js",
   "./assets/carnet-debts.js",
   "./assets/carnet-i18n.js",
