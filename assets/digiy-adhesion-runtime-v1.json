@@ -23,6 +23,9 @@
           "adherent-19900": {"amount":19900,"label":"19 900 FCFA / mois"},
           "adherent-28000": {"amount":28000,"label":"28 000 FCFA / mois"}
         },
+        "modules": {
+          "carnet_pro": {"amount":13000,"label":"13 000 FCFA / mois"}
+        },
         "services": {
           "fiche": {"starting_amount":100000,"label":"À partir de 100 000 FCFA"},
           "site_premium": {"starting_amount":250000,"label":"À partir de 250 000 FCFA"},
@@ -51,7 +54,7 @@
       "id": "FR",
       "slug": "france",
       "status": "active",
-      "labels": {"fr":"France","en":"France","es":"Francia","pt":"França","it":"Francia","de":"Frankreich","nl":"Frankrijk","ar":"فرنسا"},
+      "labels": {"fr":"France","en":"France","es":"Francia","pt":"França","it":"Italia","de":"Frankreich","nl":"Frankrijk","ar":"فرنسا"},
       "currency": {"code":"EUR","label":"€"},
       "calling_code": "+33",
       "timezone": "Europe/Paris",
@@ -61,6 +64,9 @@
         "membership": {
           "adherent-19900": {"amount":45,"label":"45 € / mois"},
           "adherent-28000": {"amount":75,"label":"75 € / mois"}
+        },
+        "modules": {
+          "carnet_pro": {"amount":20,"label":"20 € / mois"}
         },
         "services": {
           "fiche": {"starting_amount":250,"label":"À partir de 250 €"},
