@@ -1,4 +1,4 @@
-/* DIGIYLYFE — dossier commun : mode CARNET PRO autonome — 20260824 */
+/* DIGIYLYFE — dossier CARNET PRO minimal — 20260824 */
 (function(){
   'use strict';
 
@@ -16,35 +16,50 @@
   var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s));};
 
   var COPY={
-    fr:{title:'Préparer mon dossier CARNET PRO',lead:'CARNET PRO est un abonnement autonome. Aucune carte de visite DIGIYLYFE n’est obligatoire.',consent:'Je confirme que ces informations sont exactes et j’autorise DIGIYLYFE à traiter ma demande CARNET PRO après contrôle du règlement.',send:'ENVOYER MON DOSSIER CARNET PRO →',wait:'Le paiement et l’activation CARNET PRO sont contrôlés manuellement.',done:'Dossier CARNET PRO reçu. Paiement À CONFIRMER · activation À VALIDER.',badProof:'Preuve de règlement invalide.',sending:'Envoi sécurisé du dossier CARNET PRO…'},
-    en:{title:'Prepare my CARNET PRO file',lead:'CARNET PRO is a standalone subscription. A DIGIYLYFE business card is not required.',consent:'I confirm this information is accurate and authorize DIGIYLYFE to process my CARNET PRO request after payment review.',send:'SEND MY CARNET PRO FILE →',wait:'CARNET PRO payment and activation are reviewed manually.',done:'CARNET PRO file received. Payment TO CONFIRM · activation TO VALIDATE.',badProof:'Invalid payment proof.',sending:'Securely sending CARNET PRO file…'},
-    es:{title:'Preparar mi expediente CARNET PRO',lead:'CARNET PRO es una suscripción autónoma. No es obligatoria una tarjeta DIGIYLYFE.',consent:'Confirmo que estos datos son correctos y autorizo a DIGIYLYFE a tramitar mi solicitud CARNET PRO tras revisar el pago.',send:'ENVIAR MI EXPEDIENTE CARNET PRO →',wait:'El pago y la activación de CARNET PRO se controlan manualmente.',done:'Expediente CARNET PRO recibido. Pago POR CONFIRMAR · activación POR VALIDAR.',badProof:'Prueba de pago inválida.',sending:'Envío seguro del expediente CARNET PRO…'},
-    pt:{title:'Preparar o meu processo CARNET PRO',lead:'CARNET PRO é uma assinatura autónoma. Não é obrigatório ter um cartão DIGIYLYFE.',consent:'Confirmo que estes dados são exatos e autorizo a DIGIYLYFE a tratar o meu pedido CARNET PRO após verificação do pagamento.',send:'ENVIAR O MEU PROCESSO CARNET PRO →',wait:'O pagamento e a ativação CARNET PRO são verificados manualmente.',done:'Processo CARNET PRO recebido. Pagamento A CONFIRMAR · ativação A VALIDAR.',badProof:'Comprovativo de pagamento inválido.',sending:'Envio seguro do processo CARNET PRO…'},
-    it:{title:'Prepara il mio dossier CARNET PRO',lead:'CARNET PRO è un abbonamento autonomo. La carta DIGIYLYFE non è obbligatoria.',consent:'Confermo che i dati sono corretti e autorizzo DIGIYLYFE a trattare la richiesta CARNET PRO dopo il controllo del pagamento.',send:'INVIA IL MIO DOSSIER CARNET PRO →',wait:'Pagamento e attivazione CARNET PRO sono verificati manualmente.',done:'Dossier CARNET PRO ricevuto. Pagamento DA CONFERMARE · attivazione DA VALIDARE.',badProof:'Prova di pagamento non valida.',sending:'Invio sicuro del dossier CARNET PRO…'},
-    de:{title:'Meinen CARNET-PRO-Antrag vorbereiten',lead:'CARNET PRO ist ein eigenständiges Abonnement. Eine DIGIYLYFE-Karte ist nicht erforderlich.',consent:'Ich bestätige die Richtigkeit der Angaben und erlaube DIGIYLYFE, meinen CARNET-PRO-Antrag nach Zahlungsprüfung zu bearbeiten.',send:'MEINEN CARNET-PRO-ANTRAG SENDEN →',wait:'Zahlung und Aktivierung von CARNET PRO werden manuell geprüft.',done:'CARNET-PRO-Antrag erhalten. Zahlung ZU BESTÄTIGEN · Aktivierung ZU PRÜFEN.',badProof:'Ungültiger Zahlungsnachweis.',sending:'CARNET-PRO-Antrag wird sicher gesendet…'},
-    nl:{title:'Mijn CARNET PRO-dossier voorbereiden',lead:'CARNET PRO is een zelfstandig abonnement. Een DIGIYLYFE-kaart is niet verplicht.',consent:'Ik bevestig dat deze gegevens juist zijn en geef DIGIYLYFE toestemming mijn CARNET PRO-aanvraag na betalingscontrole te verwerken.',send:'MIJN CARNET PRO-DOSSIER VERZENDEN →',wait:'Betaling en activering van CARNET PRO worden handmatig gecontroleerd.',done:'CARNET PRO-dossier ontvangen. Betaling TE BEVESTIGEN · activering TE VALIDEREN.',badProof:'Ongeldig betalingsbewijs.',sending:'CARNET PRO-dossier veilig verzenden…'},
-    ar:{title:'إعداد ملف CARNET PRO',lead:'CARNET PRO اشتراك مستقل ولا يتطلب بطاقة DIGIYLYFE.',consent:'أؤكد صحة هذه المعلومات وأسمح لـ DIGIYLYFE بمعالجة طلب CARNET PRO بعد التحقق من الدفع.',send:'إرسال ملف CARNET PRO ←',wait:'يتم التحقق من الدفع وتفعيل CARNET PRO يدويًا.',done:'تم استلام ملف CARNET PRO. الدفع قيد التأكيد · التفعيل قيد المراجعة.',badProof:'إثبات الدفع غير صالح.',sending:'جارٍ إرسال ملف CARNET PRO بأمان…'}
+    fr:{title:'Préparer mon dossier CARNET PRO',lead:'Renseignez uniquement les informations nécessaires à votre accès CARNET PRO.',email:'Email *',country:'Pays',consent:'Je confirme que ces informations sont exactes et j’autorise DIGIYLYFE à traiter ma demande CARNET PRO après contrôle du règlement.',send:'ENVOYER MON DOSSIER CARNET PRO →',wait:'Le paiement et l’activation CARNET PRO sont contrôlés manuellement.',done:'Dossier CARNET PRO reçu. Paiement À CONFIRMER · activation À VALIDER.',badProof:'Preuve de règlement invalide.',badEmail:'Adresse email invalide.',sending:'Envoi sécurisé du dossier CARNET PRO…'},
+    en:{title:'Prepare my CARNET PRO file',lead:'Enter only the information needed for your CARNET PRO access.',email:'Email *',country:'Country',consent:'I confirm this information is accurate and authorize DIGIYLYFE to process my CARNET PRO request after payment review.',send:'SEND MY CARNET PRO FILE →',wait:'CARNET PRO payment and activation are reviewed manually.',done:'CARNET PRO file received. Payment TO CONFIRM · activation TO VALIDATE.',badProof:'Invalid payment proof.',badEmail:'Invalid email address.',sending:'Securely sending CARNET PRO file…'},
+    es:{title:'Preparar mi expediente CARNET PRO',lead:'Indique únicamente los datos necesarios para acceder a CARNET PRO.',email:'Email *',country:'País',consent:'Confirmo que estos datos son correctos y autorizo a DIGIYLYFE a tramitar mi solicitud CARNET PRO tras revisar el pago.',send:'ENVIAR MI EXPEDIENTE CARNET PRO →',wait:'El pago y la activación de CARNET PRO se controlan manualmente.',done:'Expediente CARNET PRO recibido. Pago POR CONFIRMAR · activación POR VALIDAR.',badProof:'Prueba de pago inválida.',badEmail:'Dirección de email inválida.',sending:'Envío seguro del expediente CARNET PRO…'},
+    pt:{title:'Preparar o meu processo CARNET PRO',lead:'Indique apenas os dados necessários para o seu acesso ao CARNET PRO.',email:'Email *',country:'País',consent:'Confirmo que estes dados são exatos e autorizo a DIGIYLYFE a tratar o meu pedido CARNET PRO após verificação do pagamento.',send:'ENVIAR O MEU PROCESSO CARNET PRO →',wait:'O pagamento e a ativação CARNET PRO são verificados manualmente.',done:'Processo CARNET PRO recebido. Pagamento A CONFIRMAR · ativação A VALIDAR.',badProof:'Comprovativo de pagamento inválido.',badEmail:'Endereço de email inválido.',sending:'Envio seguro do processo CARNET PRO…'},
+    it:{title:'Prepara il mio dossier CARNET PRO',lead:'Inserisci solo i dati necessari per accedere a CARNET PRO.',email:'Email *',country:'Paese',consent:'Confermo che i dati sono corretti e autorizzo DIGIYLYFE a trattare la richiesta CARNET PRO dopo il controllo del pagamento.',send:'INVIA IL MIO DOSSIER CARNET PRO →',wait:'Pagamento e attivazione CARNET PRO sono verificati manualmente.',done:'Dossier CARNET PRO ricevuto. Pagamento DA CONFERMARE · attivazione DA VALIDARE.',badProof:'Prova di pagamento non valida.',badEmail:'Indirizzo email non valido.',sending:'Invio sicuro del dossier CARNET PRO…'},
+    de:{title:'Meinen CARNET-PRO-Antrag vorbereiten',lead:'Geben Sie nur die für Ihren CARNET-PRO-Zugang notwendigen Daten ein.',email:'E-Mail *',country:'Land',consent:'Ich bestätige die Richtigkeit der Angaben und erlaube DIGIYLYFE, meinen CARNET-PRO-Antrag nach Zahlungsprüfung zu bearbeiten.',send:'MEINEN CARNET-PRO-ANTRAG SENDEN →',wait:'Zahlung und Aktivierung von CARNET PRO werden manuell geprüft.',done:'CARNET-PRO-Antrag erhalten. Zahlung ZU BESTÄTIGEN · Aktivierung ZU PRÜFEN.',badProof:'Ungültiger Zahlungsnachweis.',badEmail:'Ungültige E-Mail-Adresse.',sending:'CARNET-PRO-Antrag wird sicher gesendet…'},
+    nl:{title:'Mijn CARNET PRO-dossier voorbereiden',lead:'Vul alleen de gegevens in die nodig zijn voor uw CARNET PRO-toegang.',email:'E-mail *',country:'Land',consent:'Ik bevestig dat deze gegevens juist zijn en geef DIGIYLYFE toestemming mijn CARNET PRO-aanvraag na betalingscontrole te verwerken.',send:'MIJN CARNET PRO-DOSSIER VERZENDEN →',wait:'Betaling en activering van CARNET PRO worden handmatig gecontroleerd.',done:'CARNET PRO-dossier ontvangen. Betaling TE BEVESTIGEN · activering TE VALIDEREN.',badProof:'Ongeldig betalingsbewijs.',badEmail:'Ongeldig e-mailadres.',sending:'CARNET PRO-dossier veilig verzenden…'},
+    ar:{title:'إعداد ملف CARNET PRO',lead:'أدخل فقط المعلومات اللازمة للوصول إلى CARNET PRO.',email:'البريد الإلكتروني *',country:'البلد',consent:'أؤكد صحة هذه المعلومات وأسمح لـ DIGIYLYFE بمعالجة طلب CARNET PRO بعد التحقق من الدفع.',send:'إرسال ملف CARNET PRO ←',wait:'يتم التحقق من الدفع وتفعيل CARNET PRO يدويًا.',done:'تم استلام ملف CARNET PRO. الدفع قيد التأكيد · التفعيل قيد المراجعة.',badProof:'إثبات الدفع غير صالح.',badEmail:'عنوان البريد الإلكتروني غير صالح.',sending:'جارٍ إرسال ملف CARNET PRO بأمان…'}
   };
 
   function t(){return COPY[lang]||COPY.fr;}
   function countries(){return runtime&&Array.isArray(runtime.countries)?runtime.countries.filter(function(x){return x.status==='active';}):[];}
   function country(){var el=$('#country');return el?countries().find(function(x){return x.id===el.value;}):null;}
-  function territory(){var c=country(),el=$('#territory');return c&&el?(c.territories||[]).find(function(x){return x.id===el.value&&x.status==='active';}):null;}
-  function baseZone(){var tt=territory(),el=$('#baseZone');return tt&&el?(tt.zones||[]).find(function(x){return x.id===el.value&&x.status==='active';}):null;}
   function carnetPrice(){var c=country();return c&&c.pricing&&c.pricing.modules?c.pricing.modules.carnet_pro:null;}
   function label(o){return o&&o.labels?(o.labels[lang]||o.labels.fr||o.slug):String(o&&o.label||'');}
-  function zoneLabel(){var b=baseZone(),el=$('#baseZone');if(b)return b.label;if(el&&el.value==='__other__')return ($('#pendingZone')&&$('#pendingZone').value||'').trim();return '';}
   function normalizePhone(v,c){var s=String(v||'').trim().replace(/[^\d+]/g,'');if(!s)return'';if(s.indexOf('00')===0)s='+'+s.slice(2);if(s.indexOf('+')===0)return s;s=s.replace(/^0+/,'');return c.calling_code+s;}
   function ext(f){if(f.type==='image/png')return'png';if(f.type==='image/webp')return'webp';if(f.type==='application/pdf')return'pdf';return'jpg';}
-  function chosenServiceZones(){var whole=$('#wholeTerritory');return whole&&whole.checked?[]:$$('[data-service-zone]:checked').map(function(x){return x.value;});}
-  function chosenServiceTerritories(){var tt=territory(),whole=$('#wholeTerritory');return whole&&whole.checked&&tt?[tt.id]:[];}
+  function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').trim());}
 
-  function hideCardFields(){
+  function installMinimalForm(){
     var photo=$('#photo');
     if(photo){photo.required=false;var pw=photo.closest('label');if(pw)pw.hidden=true;}
-    ['#s1','#s2','#s3','#s4'].forEach(function(sel){var el=$(sel);if(el)el.required=false;});
+    ['#s1','#s2','#s3','#s4','#territory','#baseZone','#pendingZone'].forEach(function(sel){var el=$(sel);if(el)el.required=false;});
     var services=$('.services');if(services)services.hidden=true;
     var extra=$('.extra');if(extra)extra.hidden=true;
+
+    var territory=$('#territory');if(territory&&territory.closest('label'))territory.closest('label').hidden=true;
+    var base=$('#baseZone');if(base&&base.closest('label'))base.closest('label').hidden=true;
+    var pending=$('#pendingZoneWrap');if(pending)pending.hidden=true;
+    var coverage=$('#coverageTitle');if(coverage&&coverage.parentElement)coverage.parentElement.hidden=true;
+    var meta=$('#countryMeta');if(meta)meta.hidden=true;
+    var countryEl=$('#country');if(countryEl&&countryEl.closest('label'))countryEl.closest('label').classList.add('full');
+    var whole=$('#wholeTerritory');if(whole)whole.checked=false;
+
+    if(!$('#email')){
+      var firstGrid=$('#name')&&$('#name').closest('.grid');
+      if(firstGrid){
+        var lab=document.createElement('label');
+        lab.className='full';
+        lab.setAttribute('data-carnet-email-wrap','1');
+        lab.innerHTML='<span id="emailLabel">Email *</span><input id="email" type="email" maxlength="254" autocomplete="email" required>';
+        firstGrid.appendChild(lab);
+      }
+    }
   }
 
   function refresh(){
@@ -54,14 +69,16 @@
     document.documentElement.lang=lang;
     document.documentElement.dir=lang==='ar'?'rtl':'ltr';
     document.title='DIGIYLYFE — CARNET PRO';
+    installMinimalForm();
     if($('#title'))$('#title').textContent=copy.title;
     if($('#lead'))$('#lead').textContent=copy.lead;
+    if($('#geoTitle'))$('#geoTitle').textContent=copy.country;
+    if($('#emailLabel'))$('#emailLabel').textContent=copy.email;
     if($('#consentText'))$('#consentText').textContent=copy.consent;
     if($('#submit'))$('#submit').textContent=copy.send;
-    hideCardFields();
     if($('#plan'))$('#plan').textContent=c&&p?'CARNET PRO · '+p.label+' · '+label(c):'CARNET PRO';
     if($('#status')&&!$('#status').classList.contains('ok')&&!$('#status').classList.contains('bad'))$('#status').textContent=copy.wait;
-    if($('#submit'))$('#submit').disabled=!(c&&p&&territory()&&$('#baseZone')&&$('#baseZone').value);
+    if($('#submit'))$('#submit').disabled=!(c&&p&&$('#email')&&validEmail($('#email').value));
   }
 
   function installSubmit(){
@@ -69,9 +86,10 @@
     if(!form)return;
     form.onsubmit=async function(e){
       e.preventDefault();
-      var c=country(),tt=territory(),bz=baseZone(),zLabel=zoneLabel(),p=carnetPrice();
+      var c=country(),p=carnetPrice(),email=$('#email')&&$('#email').value.trim().toLowerCase();
       var st=$('#status'),btn=$('#submit'),proof=$('#proof')&&$('#proof').files[0];
-      if(!c||!tt||!p||!$('#baseZone')||!$('#baseZone').value||!zLabel){st.className='status bad';st.textContent='Configuration du dossier incomplète.';return;}
+      if(!c||!p){st.className='status bad';st.textContent='Configuration pays indisponible.';return;}
+      if(!validEmail(email)){st.className='status bad';st.textContent=t().badEmail;return;}
       if(!proof||proof.size>10*1024*1024||['image/jpeg','image/png','image/webp','application/pdf'].indexOf(proof.type)===-1){st.className='status bad';st.textContent=t().badProof;return;}
       btn.disabled=true;st.className='status';st.textContent=t().sending;
       var id=crypto.randomUUID(),rp='pending/'+id+'.'+ext(proof),inserted=false;
@@ -86,16 +104,17 @@
           price_xof:c.currency.code==='XOF'?p.amount:null,
           price_eur:c.currency.code==='EUR'?p.amount:null,
           country_id:c.id,
-          territory_id:tt.id,
-          base_zone_id:bz?bz.id:null,
-          service_zone_ids:chosenServiceZones(),
-          service_territory_ids:chosenServiceTerritories(),
+          territory_id:null,
+          base_zone_id:null,
+          service_zone_ids:[],
+          service_territory_ids:[],
           currency_code:c.currency.code,
           calling_code:c.calling_code,
           timezone:c.timezone,
           pro_name:$('#name').value.trim(),
           job_label:$('#job').value.trim(),
-          zone_label:zLabel,
+          email:email,
+          zone_label:null,
           phone:phone,
           whatsapp:wa,
           service_1:null,
@@ -130,10 +149,11 @@
       .catch(function(){if($('#status')){$('#status').className='status bad';$('#status').textContent='Configuration pays indisponible.';}});
   }
 
-  hideCardFields();
+  installMinimalForm();
   installSubmit();
   loadRuntime();
-  ['#country','#territory','#baseZone','#wholeTerritory'].forEach(function(sel){var el=$(sel);if(el)el.addEventListener('change',function(){setTimeout(refresh,0);});});
+  var countryEl=$('#country');if(countryEl)countryEl.addEventListener('change',function(){setTimeout(refresh,0);});
+  document.addEventListener('input',function(e){if(e.target&&e.target.id==='email')refresh();});
   document.addEventListener('click',function(e){if(e.target&&e.target.matches&&e.target.matches('[data-lang]'))setTimeout(refresh,40);});
   setTimeout(refresh,120);
   setTimeout(refresh,600);
