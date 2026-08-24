@@ -54,7 +54,7 @@
       "id": "FR",
       "slug": "france",
       "status": "active",
-      "labels": {"fr":"France","en":"France","es":"Francia","pt":"França","it":"Italia","de":"Frankreich","nl":"Frankrijk","ar":"فرنسا"},
+      "labels": {"fr":"France","en":"France","es":"Francia","pt":"França","it":"Francia","de":"Frankreich","nl":"Frankrijk","ar":"فرنسا"},
       "currency": {"code":"EUR","label":"€"},
       "calling_code": "+33",
       "timezone": "Europe/Paris",
