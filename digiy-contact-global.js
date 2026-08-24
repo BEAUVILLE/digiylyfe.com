@@ -33,22 +33,14 @@
     return runtime&&Array.isArray(runtime.countries)?runtime.countries.find(function(c){return c.id===id&&c.status==='active';}):null;
   }
 
-  function priceLabel(p){
-    return p&&p.label?p.label:'';
-  }
+  function priceLabel(p){return p&&p.label?p.label:'';}
 
   function selectedProduct(){
-    var q=(new URLSearchParams(location.search).get('product')||'').toLowerCase();
-    if(q==='carnet-pro') return 'carnet-pro';
-    try{
-      if(localStorage.getItem('digiy_payment_product')==='carnet-pro') return 'carnet-pro';
-    }catch(e){}
-    return 'membership-card';
+    return (new URLSearchParams(location.search).get('product')||'').toLowerCase()==='carnet-pro'?'carnet-pro':'membership-card';
   }
 
   function setProduct(product){
     product=product==='carnet-pro'?'carnet-pro':'membership-card';
-    try{localStorage.setItem('digiy_payment_product',product);}catch(e){}
     var u=new URL(location.href);
     if(product==='carnet-pro')u.searchParams.set('product','carnet-pro');
     else u.searchParams.delete('product');
@@ -106,7 +98,13 @@
     if(!onMembershipPage()) return;
     var cards=document.querySelector('.cards');
     if(!cards) return;
-    cards.style.gridTemplateColumns='repeat(4,minmax(0,1fr))';
+    cards.setAttribute('data-digiy-carnet-grid','1');
+    if(!document.querySelector('style[data-digiy-carnet-grid-style]')){
+      var style=document.createElement('style');
+      style.setAttribute('data-digiy-carnet-grid-style','1');
+      style.textContent='.cards[data-digiy-carnet-grid="1"]{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:1000px){.cards[data-digiy-carnet-grid="1"]{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:820px){.cards[data-digiy-carnet-grid="1"]{grid-template-columns:1fr}}';
+      document.head.appendChild(style);
+    }
     if(!document.querySelector('[data-digiy-carnet-offer]')){
       var card=document.createElement('article');
       card.className='card';
