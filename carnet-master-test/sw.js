@@ -1,4 +1,4 @@
-const CACHE = "digiy-carnet-master-test-v3-pro-carnet-sync-20260824";
+const CACHE = "digiy-carnet-master-test-v4-mutations-hydration-20260824";
 const CORE = [
   "./",
   "./index.html",
