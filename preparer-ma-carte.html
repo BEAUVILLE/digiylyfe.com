@@ -19,6 +19,7 @@
   var dakar=territory==='dakar';
   var bordeaux=territory==='bordeaux';
   var dordogne=territory==='vallee-dordogne';
+  var petiteCote=territory==='petite-cote';
   fetch('/preparer-ma-carte-core-20260824.html?v=20260824-carnet-v1',{cache:'no-store'})
     .then(function(r){if(!r.ok)throw new Error('load '+r.status);return r.text();})
     .then(function(h){
@@ -34,6 +35,7 @@
       if(dakar)addon+='<script src="/assets/digiy-dossier-prefill-dakar-v1.js?v=20260826"><\/script>';
       if(bordeaux)addon+='<script src="/assets/digiy-dossier-prefill-bordeaux-v1.js?v=20260826"><\/script>';
       if(dordogne)addon+='<script src="/assets/digiy-dossier-prefill-dordogne-v1.js?v=20260826"><\/script>';
+      if(petiteCote)addon+='<script src="/assets/digiy-dossier-prefill-petite-cote-v1.js?v=20260826"><\/script>';
       h=h.replace(/<\/head>/i,forceCarnet+'</head>');
       h=h.replace(/<\/body>/i,addon+'</body>');
       document.open();
