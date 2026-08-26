@@ -1,43 +1,29 @@
 {
-  "runtime": "DIGIYLYFE-PUBLIC-ADHESION-RUNTIME-BORDEAUX-V1",
-  "country": {
-    "id": "FR",
-    "slug": "france",
-    "status": "active",
-    "labels": {"fr":"France","en":"France","es":"Francia","pt":"França","it":"Francia","de":"Frankreich","nl":"Frankrijk","ar":"فرنسا"},
-    "currency": {"code":"EUR","label":"€"},
-    "calling_code": "+33",
-    "timezone": "Europe/Paris",
-    "default_language": "fr",
-    "interface_languages": ["fr","en","es","pt","it","de","nl","ar"]
-  },
-  "pricing": {
-    "membership": {
-      "adherent-19900": {"amount":45,"label":"45 € / mois"}
-    }
-  },
-  "territory": {
-    "id": "FR-BORDEAUX",
-    "slug": "bordeaux",
-    "status": "active",
-    "labels": {"fr":"Bordeaux","en":"Bordeaux","es":"Burdeos","pt":"Bordéus","it":"Bordeaux","de":"Bordeaux","nl":"Bordeaux","ar":"بوردو"},
-    "zones": [
-      {"id":"FR-BORDEAUX-MARITIME","slug":"bordeaux-maritime","label":"Bordeaux Maritime","status":"active"},
-      {"id":"FR-BORDEAUX-CHARTRONS-GRAND-PARC-JARDIN-PUBLIC","slug":"chartrons-grand-parc-jardin-public","label":"Chartrons · Grand Parc · Jardin Public","status":"active"},
-      {"id":"FR-BORDEAUX-CENTRE","slug":"bordeaux-centre","label":"Bordeaux Centre","status":"active"},
-      {"id":"FR-BORDEAUX-SAINT-AUGUSTIN-TAUZIN-ALPHONSE-DUPEUX","slug":"saint-augustin-tauzin-alphonse-dupeux","label":"Saint-Augustin · Tauzin · Alphonse Dupeux","status":"active"},
-      {"id":"FR-BORDEAUX-NANSOUTY-SAINT-GENES","slug":"nansouty-saint-genes","label":"Nansouty · Saint-Genès","status":"active"},
-      {"id":"FR-BORDEAUX-SUD","slug":"bordeaux-sud","label":"Bordeaux Sud","status":"active"},
-      {"id":"FR-BORDEAUX-BASTIDE","slug":"la-bastide","label":"La Bastide","status":"active"},
-      {"id":"FR-BORDEAUX-CAUDERAN","slug":"cauderan","label":"Caudéran","status":"active"}
-    ]
-  },
-  "rules": {
-    "single_membership": true,
-    "membership_plan": "adherent-19900",
-    "country_locked": "FR",
-    "territory_locked": "FR-BORDEAUX",
-    "examples_are_not_members": true,
-    "human_validation_before_publication": true
-  }
+  "runtime":"DIGIYLYFE-BORDEAUX-ADHESION-V1",
+  "countries":[{
+    "id":"FR","slug":"france","status":"active",
+    "labels":{"fr":"France","en":"France","es":"Francia","pt":"França","it":"Francia","de":"Frankreich","nl":"Frankrijk","ar":"فرنسا"},
+    "currency":{"code":"EUR","label":"€"},
+    "calling_code":"+33","timezone":"Europe/Paris","default_language":"fr",
+    "interface_languages":["fr","en","es","pt","it","de","nl","ar"],
+    "pricing":{
+      "membership":{"adherent-19900":{"amount":45,"label":"45 € / mois"}},
+      "services":{"fiche":{"starting_amount":250,"label":"À partir de 250 €"},"site_premium":{"starting_amount":480,"label":"À partir de 480 €"},"site_extra":{"starting_amount":800,"label":"À partir de 800 €"}}
+    },
+    "territories":[{
+      "id":"FR-BORDEAUX","slug":"bordeaux","status":"active",
+      "labels":{"fr":"Bordeaux","en":"Bordeaux","es":"Burdeos","pt":"Bordéus","it":"Bordeaux","de":"Bordeaux","nl":"Bordeaux","ar":"بوردو"},
+      "zones":[
+        {"id":"FR-BORDEAUX-MARITIME","slug":"bordeaux-maritime","label":"Bordeaux Maritime","status":"active"},
+        {"id":"FR-BORDEAUX-CHARTRONS-GRAND-PARC-JARDIN-PUBLIC","slug":"chartrons-grand-parc-jardin-public","label":"Chartrons · Grand Parc · Jardin Public","status":"active"},
+        {"id":"FR-BORDEAUX-CENTRE","slug":"bordeaux-centre","label":"Bordeaux Centre","status":"active"},
+        {"id":"FR-BORDEAUX-SAINT-AUGUSTIN-TAUZIN-ALPHONSE-DUPEUX","slug":"saint-augustin-tauzin-alphonse-dupeux","label":"Saint-Augustin · Tauzin · Alphonse Dupeux","status":"active"},
+        {"id":"FR-BORDEAUX-NANSOUTY-SAINT-GENES","slug":"nansouty-saint-genes","label":"Nansouty · Saint-Genès","status":"active"},
+        {"id":"FR-BORDEAUX-SUD","slug":"bordeaux-sud","label":"Bordeaux Sud","status":"active"},
+        {"id":"FR-BORDEAUX-BASTIDE","slug":"la-bastide","label":"La Bastide","status":"active"},
+        {"id":"FR-BORDEAUX-CAUDERAN","slug":"cauderan","label":"Caudéran","status":"active"}
+      ]
+    }]
+  }],
+  "rules":{"membership_is_single":true,"membership_plan":"adherent-19900","active_territory_only":true,"active_zone_only":true,"fail_closed":true}
 }
