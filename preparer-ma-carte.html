@@ -15,16 +15,21 @@
   'use strict';
   var q=new URLSearchParams(location.search);
   var carnet=(q.get('product')||'').toLowerCase()==='carnet-pro';
-  var dakar=(q.get('territory')||'').toLowerCase()==='dakar';
+  var territory=(q.get('territory')||'').toLowerCase();
+  var dakar=territory==='dakar';
+  var bordeaux=territory==='bordeaux';
   fetch('/preparer-ma-carte-core-20260824.html?v=20260824-carnet-v1',{cache:'no-store'})
     .then(function(r){if(!r.ok)throw new Error('load '+r.status);return r.text();})
     .then(function(h){
       var forceCarnet=carnet?'<style data-carnet-force-minimal>label:has(#territory),label:has(#baseZone),label:has(#photo),#pendingZoneWrap,#countryMeta,#geoTitle,#coverageTitle,label:has(#wholeTerritory),#zonesLead,#serviceZones,.services,.extra{display:none!important}</style>':'';
       if(dakar){
         h=h.replace("const RUNTIME_URL='/assets/digiy-adhesion-runtime-v1.json';","const RUNTIME_URL='/assets/digiy-adhesion-runtime-dakar-v1.json?v=20260826';");
+      }else if(bordeaux){
+        h=h.replace("const RUNTIME_URL='/assets/digiy-adhesion-runtime-v1.json';","const RUNTIME_URL='/assets/digiy-adhesion-runtime-bordeaux-v1.json?v=20260826';");
       }
       var addon='<script src="/assets/digiy-dossier-carnet-v1.js?v=20260824-carnet-minimal-v3"><\/script>';
       if(dakar)addon+='<script src="/assets/digiy-dossier-prefill-dakar-v1.js?v=20260826"><\/script>';
+      if(bordeaux)addon+='<script src="/assets/digiy-dossier-prefill-bordeaux-v1.js?v=20260826"><\/script>';
       h=h.replace(/<\/head>/i,forceCarnet+'</head>');
       h=h.replace(/<\/body>/i,addon+'</body>');
       document.open();
