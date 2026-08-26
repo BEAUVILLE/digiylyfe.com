@@ -1,12 +1,46 @@
 /* DIGIYLYFE — chargeur vitrine stable 20260826
  * Core historique figé bit pour bit : /digiy-contact-global-core-20260824.js
  * Ajouts isolés : lien officiel PRO CARNET + porte PARTENAIRE TERRAIN.
+ * Retrait publication : FG NAILS n’est plus exposé dans la vitrine publique.
  */
 (function(){
   'use strict';
 
   function currentLang(){
     return (document.documentElement.lang||'fr').slice(0,2).toLowerCase();
+  }
+
+  function retireFgNails(){
+    var selector='.proofCard[href^="https://f-g-nails.digiylyfe.com/"]';
+    var card=document.querySelector(selector);
+    if(card) card.remove();
+
+    try{
+      var key='digiy-vitrine-favoris';
+      var favs=JSON.parse(localStorage.getItem(key)||'[]');
+      if(Array.isArray(favs)){
+        var cleaned=favs.filter(function(href){
+          return typeof href!=='string' || href.indexOf('https://f-g-nails.digiylyfe.com/')!==0;
+        });
+        if(cleaned.length!==favs.length)localStorage.setItem(key,JSON.stringify(cleaned));
+      }
+    }catch(error){}
+
+    var grid=document.querySelector('.proofGrid');
+    if(grid){
+      var mq=window.matchMedia('(min-width:761px)');
+      var adjust=function(){grid.style.gridTemplateColumns=mq.matches?'repeat(4,1fr)':'';};
+      adjust();
+      if(!grid.getAttribute('data-digiy-fg-layout')){
+        grid.setAttribute('data-digiy-fg-layout','1');
+        if(mq.addEventListener)mq.addEventListener('change',adjust);
+        else if(mq.addListener)mq.addListener(adjust);
+      }
+    }
+
+    if(window.digiyRenderFavoris){
+      try{window.digiyRenderFavoris();}catch(error){}
+    }
   }
 
   function installCarnetModuleLink(){
@@ -90,9 +124,12 @@
   }
 
   function installExtras(){
+    retireFgNails();
     installCarnetModuleLink();
     installPartnerTerrainDoor();
   }
+
+  retireFgNails();
 
   var core=document.createElement('script');
   core.src='/digiy-contact-global-core-20260824.js?v=20260824';
