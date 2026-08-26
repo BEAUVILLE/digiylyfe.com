@@ -45,6 +45,26 @@
             {"id": "SN-PETITE-COTE-SALY", "slug": "saly", "label": "Saly", "status": "active"},
             {"id": "SN-PETITE-COTE-MBOUR", "slug": "mbour", "label": "Mbour", "status": "active"}
           ]
+        },
+        {
+          "id": "SN-DAKAR",
+          "slug": "dakar",
+          "status": "active",
+          "labels": {
+            "fr": "Dakar",
+            "en": "Dakar",
+            "es": "Dakar",
+            "pt": "Dakar",
+            "de": "Dakar",
+            "it": "Dakar",
+            "nl": "Dakar",
+            "ar": "داكار"
+          },
+          "zones": [],
+          "direct_door": {
+            "url": "https://digiylyfe.com/dakar.html",
+            "label": "DAKAR EN DIRECT →"
+          }
         }
       ]
     },
