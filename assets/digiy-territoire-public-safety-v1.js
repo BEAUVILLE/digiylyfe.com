@@ -1,6 +1,7 @@
-/* DIGIYLYFE — sécurité publication + porte pro Dakar V2
+/* DIGIYLYFE — sécurité publication + porte pro Dakar V3
  * Retrait défensif FG NAILS.
  * Dakar : résultat vide = place à prendre ; avec ou sans résultat = porte d’adhésion métier.
+ * V3 : stoppe la boucle MutationObserver sur l’état vide et verrouille le clic de la porte pro.
  */
 (function(){
   'use strict';
@@ -32,6 +33,10 @@
     return u.pathname+u.search;
   }
 
+  function setTextIfChanged(el,value){
+    if(el&&el.textContent!==value)el.textContent=value;
+  }
+
   function installEmpty(results){
     if(!isDakar()||!results||results.querySelector('.card'))return;
     var empty=results.querySelector('.empty');if(!empty)return;
@@ -43,28 +48,32 @@
       var places=document.createElement('a');places.href='/dakar.html#quartiers';places.setAttribute('data-seat-places','1');
       actions.appendChild(places);box.append(p,actions);empty.appendChild(box);
     }
-    box.querySelector('[data-seat-text]').textContent=t.seat;
-    box.querySelector('[data-seat-places]').textContent=t.places;
+    setTextIfChanged(box.querySelector('[data-seat-text]'),t.seat);
+    setTextIfChanged(box.querySelector('[data-seat-places]'),t.places);
   }
 
   function installProfessionalJoin(results){
     if(!isDakar()||!results)return;
-    var t=COPY[currentLang()]||COPY.fr,p=params(),need=p.get('need')||'',name=NAMES[need]||t.pro;
+    var t=COPY[currentLang()]||COPY.fr,p=params(),need=p.get('need')||'',name=NAMES[need]||t.pro,url=adhesionUrl();
     var link=document.querySelector('[data-digiy-dakar-pro-join]');
     if(!link){
       link=document.createElement('a');link.setAttribute('data-digiy-dakar-pro-join','1');
-      link.style.cssText='display:flex;min-height:54px;margin-top:14px;align-items:center;justify-content:center;text-align:center;padding:12px 15px;border-radius:999px;background:linear-gradient(135deg,#f6c453,#22c55e);color:#06140f;text-decoration:none;font-size:12px;font-weight:1000';
+      link.style.cssText='display:flex;position:relative;z-index:8;pointer-events:auto;cursor:pointer;touch-action:manipulation;min-height:54px;margin-top:14px;align-items:center;justify-content:center;text-align:center;padding:12px 15px;border-radius:999px;background:linear-gradient(135deg,#f6c453,#22c55e);color:#06140f;text-decoration:none;font-size:12px;font-weight:1000';
       results.insertAdjacentElement('afterend',link);
     }
-    link.href=adhesionUrl();
-    link.textContent=t.prefix+name+t.suffix;
+    link.href=url;
+    link.onclick=function(ev){
+      ev.preventDefault();
+      location.assign(adhesionUrl());
+    };
+    setTextIfChanged(link,t.prefix+name+t.suffix);
   }
 
   function purge(){
     var results=document.getElementById('results');if(!results)return;
     var changed=false;
     Array.prototype.slice.call(results.querySelectorAll('.card')).forEach(function(card){if(isFgCard(card)){card.remove();changed=true;}});
-    if(changed){var status=document.getElementById('status');if(status){var count=results.querySelectorAll('.card').length;status.textContent=(status.textContent||'').replace(/^\s*\d+/,String(count));}}
+    if(changed){var status=document.getElementById('status');if(status){var count=results.querySelectorAll('.card').length,next=(status.textContent||'').replace(/^\s*\d+/,String(count));if(status.textContent!==next)status.textContent=next;}}
     installEmpty(results);installProfessionalJoin(results);
   }
 
