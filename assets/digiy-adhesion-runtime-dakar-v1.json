@@ -1,0 +1,26 @@
+{
+  "runtime":"DIGIYLYFE-DAKAR-ADHESION-V1",
+  "countries":[{
+    "id":"SN","slug":"senegal","status":"active",
+    "labels":{"fr":"Sénégal","en":"Senegal","es":"Senegal","pt":"Senegal","it":"Senegal","de":"Senegal","nl":"Senegal","ar":"السنغال"},
+    "currency":{"code":"XOF","label":"FCFA"},
+    "calling_code":"+221","timezone":"Africa/Dakar","default_language":"fr",
+    "interface_languages":["fr","en","es","pt","it","de","nl","ar"],
+    "pricing":{
+      "membership":{"adherent-19900":{"amount":19900,"label":"19 900 FCFA / mois"}},
+      "services":{"fiche":{"starting_amount":100000,"label":"À partir de 100 000 FCFA"},"site_premium":{"starting_amount":250000,"label":"À partir de 250 000 FCFA"},"site_extra":{"starting_amount":450000,"label":"À partir de 450 000 FCFA"}}
+    },
+    "territories":[{
+      "id":"SN-DAKAR","slug":"dakar","status":"active",
+      "labels":{"fr":"Dakar","en":"Dakar","es":"Dakar","pt":"Dakar","it":"Dakar","de":"Dakar","nl":"Dakar","ar":"داكار"},
+      "zones":[
+        {"id":"SN-DAKAR-PLATEAU","slug":"plateau","label":"Plateau","status":"active"},
+        {"id":"SN-DAKAR-ALMADIES-NGOR","slug":"almadies-ngor","label":"Almadies · Ngor","status":"active"},
+        {"id":"SN-DAKAR-MERMOZ-SACRE-COEUR","slug":"mermoz-sacre-coeur","label":"Mermoz · Sacré-Cœur","status":"active"},
+        {"id":"SN-DAKAR-POINT-E-FANN","slug":"point-e-fann","label":"Point E · Fann","status":"active"},
+        {"id":"SN-DAKAR-YOFF-OUAKAM-MAMELLES","slug":"yoff-ouakam-mamelles","label":"Yoff · Ouakam · Mamelles","status":"active"}
+      ]
+    }]
+  }],
+  "rules":{"membership_is_single":true,"membership_plan":"adherent-19900","active_territory_only":true,"active_zone_only":true,"fail_closed":true}
+}
