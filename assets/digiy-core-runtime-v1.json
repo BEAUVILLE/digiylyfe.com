@@ -110,6 +110,35 @@
             "url": "https://digiylyfe.com/sarlat.html",
             "label": "SARLAT EN DIRECT →"
           }
+        },
+        {
+          "id": "FR-BORDEAUX",
+          "slug": "bordeaux",
+          "status": "active",
+          "labels": {
+            "fr": "Bordeaux",
+            "en": "Bordeaux",
+            "es": "Burdeos",
+            "pt": "Bordéus",
+            "de": "Bordeaux",
+            "it": "Bordeaux",
+            "nl": "Bordeaux",
+            "ar": "بوردو"
+          },
+          "zones": [
+            {"id":"FR-BORDEAUX-MARITIME","slug":"bordeaux-maritime","label":"Bordeaux Maritime","status":"active"},
+            {"id":"FR-BORDEAUX-CHARTRONS-GRAND-PARC-JARDIN-PUBLIC","slug":"chartrons-grand-parc-jardin-public","label":"Chartrons · Grand Parc · Jardin Public","status":"active"},
+            {"id":"FR-BORDEAUX-CENTRE","slug":"bordeaux-centre","label":"Bordeaux Centre","status":"active"},
+            {"id":"FR-BORDEAUX-SAINT-AUGUSTIN-TAUZIN-ALPHONSE-DUPEUX","slug":"saint-augustin-tauzin-alphonse-dupeux","label":"Saint-Augustin · Tauzin · Alphonse Dupeux","status":"active"},
+            {"id":"FR-BORDEAUX-NANSOUTY-SAINT-GENES","slug":"nansouty-saint-genes","label":"Nansouty · Saint-Genès","status":"active"},
+            {"id":"FR-BORDEAUX-SUD","slug":"bordeaux-sud","label":"Bordeaux Sud","status":"active"},
+            {"id":"FR-BORDEAUX-BASTIDE","slug":"la-bastide","label":"La Bastide","status":"active"},
+            {"id":"FR-BORDEAUX-CAUDERAN","slug":"cauderan","label":"Caudéran","status":"active"}
+          ],
+          "direct_door": {
+            "url": "https://digiylyfe.com/bordeaux.html",
+            "label": "BORDEAUX EN DIRECT →"
+          }
         }
       ]
     }
