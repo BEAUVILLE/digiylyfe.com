@@ -2,12 +2,125 @@
  * Core historique figé bit pour bit : /digiy-contact-global-core-20260824.js
  * Ajouts isolés : lien officiel PRO CARNET + porte PARTENAIRE TERRAIN.
  * Retrait publication : FG NAILS n’est plus exposé dans la vitrine publique.
+ * Cotisation : Supabase décide quelles présences professionnelles restent publiques.
  */
 (function(){
   'use strict';
 
+  var SUPABASE_URL='https://wesqmwjjtsefyjnluosj.supabase.co';
+  var SUPABASE_PUBLISHABLE_KEY='sb_publishable_2KVRayr3oWcewu0Y7xMkOQ_D6522h1E';
+  var PUBLIC_GATE_CACHE_KEY='digiy-public-presence-gate-v1';
+  var publicGatePromise=null;
+
   function currentLang(){
     return (document.documentElement.lang||'fr').slice(0,2).toLowerCase();
+  }
+
+  function normalizePublicUrl(value){
+    var raw=String(value||'').trim();
+    if(!raw||raw==='#')return '';
+    try{
+      var u=new URL(raw,location.href);
+      return (u.origin+u.pathname.replace(/\/+$/,'')).toLowerCase();
+    }catch(error){
+      return raw.split('?')[0].split('#')[0].replace(/\/+$/,'').toLowerCase();
+    }
+  }
+
+  function readRecentPublicGateCache(){
+    try{
+      var cached=JSON.parse(localStorage.getItem(PUBLIC_GATE_CACHE_KEY)||'null');
+      if(!cached||!Array.isArray(cached.urls)||!cached.at)return null;
+      if(Date.now()-Number(cached.at)>120000)return null;
+      return cached.urls;
+    }catch(error){
+      return null;
+    }
+  }
+
+  function savePublicGateCache(urls){
+    try{
+      localStorage.setItem(PUBLIC_GATE_CACHE_KEY,JSON.stringify({at:Date.now(),urls:urls}));
+    }catch(error){}
+  }
+
+  function fetchAllowedPublicUrls(){
+    if(publicGatePromise)return publicGatePromise;
+
+    publicGatePromise=fetch(SUPABASE_URL+'/rest/v1/digiy_annuaire_public?select=public_url',{
+      method:'GET',
+      headers:{
+        apikey:SUPABASE_PUBLISHABLE_KEY,
+        Accept:'application/json'
+      },
+      cache:'no-store'
+    }).then(function(response){
+      if(!response.ok)throw new Error('Supabase public gate '+response.status);
+      return response.json();
+    }).then(function(rows){
+      var urls=(Array.isArray(rows)?rows:[]).map(function(row){
+        return normalizePublicUrl(row&&row.public_url);
+      }).filter(Boolean);
+      savePublicGateCache(urls);
+      return urls;
+    }).catch(function(error){
+      var cached=readRecentPublicGateCache();
+      try{console.warn('DIGIY public gate indisponible : cache court ou fermeture de sécurité.',error);}catch(ignore){}
+      return cached||[];
+    });
+
+    return publicGatePromise;
+  }
+
+  function applySupabasePresenceGate(){
+    var cards=Array.prototype.slice.call(document.querySelectorAll('.proofCard[href]'));
+    if(!cards.length)return Promise.resolve();
+
+    var proofUrls=new Set(cards.map(function(card){return normalizePublicUrl(card.href);}).filter(Boolean));
+
+    return fetchAllowedPublicUrls().then(function(urls){
+      var allowed=new Set((urls||[]).map(normalizePublicUrl).filter(Boolean));
+
+      cards.forEach(function(card){
+        var url=normalizePublicUrl(card.href);
+        if(!url||!allowed.has(url))card.remove();
+      });
+
+      try{
+        var key='digiy-vitrine-favoris';
+        var favs=JSON.parse(localStorage.getItem(key)||'[]');
+        if(Array.isArray(favs)){
+          var cleaned=favs.filter(function(href){
+            var url=normalizePublicUrl(href);
+            return !proofUrls.has(url)||allowed.has(url);
+          });
+          if(cleaned.length!==favs.length)localStorage.setItem(key,JSON.stringify(cleaned));
+        }
+      }catch(error){}
+
+      var grid=document.querySelector('.proofGrid');
+      if(grid){
+        var refreshGrid=function(){
+          var count=grid.querySelectorAll('.proofCard[href]').length;
+          if(window.matchMedia('(min-width:761px)').matches&&count>0){
+            grid.style.gridTemplateColumns='repeat('+Math.min(count,4)+',1fr)';
+          }else{
+            grid.style.gridTemplateColumns='';
+          }
+        };
+        refreshGrid();
+        if(!grid.getAttribute('data-digiy-public-gate-layout')){
+          grid.setAttribute('data-digiy-public-gate-layout','1');
+          var mq=window.matchMedia('(min-width:761px)');
+          if(mq.addEventListener)mq.addEventListener('change',refreshGrid);
+          else if(mq.addListener)mq.addListener(refreshGrid);
+        }
+      }
+
+      if(window.digiyRenderFavoris){
+        try{window.digiyRenderFavoris();}catch(error){}
+      }
+    });
   }
 
   function retireFgNails(){
@@ -29,7 +142,10 @@
     var grid=document.querySelector('.proofGrid');
     if(grid){
       var mq=window.matchMedia('(min-width:761px)');
-      var adjust=function(){grid.style.gridTemplateColumns=mq.matches?'repeat(4,1fr)':'';};
+      var adjust=function(){
+        var count=grid.querySelectorAll('.proofCard[href]').length;
+        grid.style.gridTemplateColumns=mq.matches&&count>0?'repeat('+Math.min(count,4)+',1fr)':'';
+      };
       adjust();
       if(!grid.getAttribute('data-digiy-fg-layout')){
         grid.setAttribute('data-digiy-fg-layout','1');
@@ -125,11 +241,13 @@
 
   function installExtras(){
     retireFgNails();
+    applySupabasePresenceGate();
     installCarnetModuleLink();
     installPartnerTerrainDoor();
   }
 
   retireFgNails();
+  applySupabasePresenceGate();
 
   var core=document.createElement('script');
   core.src='/digiy-contact-global-core-20260824.js?v=20260824';
