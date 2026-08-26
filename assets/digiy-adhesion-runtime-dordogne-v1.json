@@ -1,0 +1,17 @@
+{
+  "runtime":"DIGIYLYFE-DORDOGNE-ADHESION-V1",
+  "countries":[{
+    "id":"FR","slug":"france","status":"active",
+    "labels":{"fr":"France","en":"France","es":"Francia","pt":"França","it":"Francia","de":"Frankreich","nl":"Frankrijk","ar":"فرنسا"},
+    "currency":{"code":"EUR","label":"€"},
+    "calling_code":"+33","timezone":"Europe/Paris","default_language":"fr",
+    "interface_languages":["fr","en","es","pt","it","de","nl","ar"],
+    "pricing":{"membership":{"adherent-19900":{"amount":45,"label":"45 € / mois"}}},
+    "territories":[{
+      "id":"FR-DORDOGNE","slug":"vallee-dordogne","status":"active",
+      "labels":{"fr":"Périgord · Vallée de la Dordogne","en":"Périgord · Dordogne Valley","es":"Périgord · Valle del Dordoña","pt":"Périgord · Vale da Dordogne","it":"Périgord · Valle della Dordogna","de":"Périgord · Dordogne-Tal","nl":"Périgord · Dordognevallei","ar":"بيريغور · وادي دوردوني"},
+      "zones":[{"id":"FR-DORDOGNE-SARLAT","slug":"sarlat","label":"Sarlat-la-Canéda","status":"active"}]
+    }]
+  }],
+  "rules":{"membership_is_single":true,"membership_plan":"adherent-19900","active_territory_only":true,"active_zone_only":true,"examples_are_not_members":true,"human_validation_before_publication":true,"fail_closed":true}
+}
