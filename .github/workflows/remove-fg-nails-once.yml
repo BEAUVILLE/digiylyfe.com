@@ -1,0 +1,74 @@
+name: Retrait source FG NAILS - une fois
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/remove-fg-nails-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Retirer uniquement FG NAILS de index.html
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          s = path.read_text(encoding='utf-8')
+
+          card = '        <a class="proofCard" href="https://f-g-nails.digiylyfe.com/?lang=fr" aria-label="Ouvrir FG NAILS"><i aria-hidden="true">💅</i><strong>FG NAILS</strong><small data-i18n="fgText">Beauté · onglerie · soins · Saly</small><b data-i18n="seeCard">Voir l’exemple →</b></a>\n'
+          assert s.count(card) == 1, f'Carte FG attendue 1 fois, trouvée {s.count(card)}'
+          s = s.replace(card, '')
+
+          grid_old = '.proofGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}'
+          grid_new = '.proofGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}'
+          assert s.count(grid_old) == 1, 'Grille 5 colonnes introuvable ou ambiguë'
+          s = s.replace(grid_old, grid_new)
+
+          fg_texts = [
+              ',"fgText":"Beauté · onglerie · soins · Saly"',
+              ',"fgText":"Beauty · nails · care · Saly"',
+              ',"fgText":"Belleza · uñas · cuidados · Saly"',
+              ',"fgText":"Beleza · unhas · cuidados · Saly"',
+              ',"fgText":"Bellezza · unghie · trattamenti · Saly"',
+              ',"fgText":"Beauty · Nägel · Pflege · Saly"',
+              ',"fgText":"Schoonheid · nagels · verzorging · Saly"',
+              ',"fgText":"جمال · أظافر · عناية · سالي"',
+          ]
+          for item in fg_texts:
+              assert s.count(item) == 1, f'Traduction FG introuvable ou ambiguë: {item}'
+              s = s.replace(item, '')
+
+          build_old = 'index-empreinte-numerique-tarif-unique-reseau-retire-pwa-v9-20260824'
+          build_new = 'index-empreinte-numerique-tarif-unique-reseau-retire-fg-retire-pwa-v10-20260826'
+          assert s.count(build_old) == 1, 'Marqueur build attendu introuvable'
+          s = s.replace(build_old, build_new)
+
+          assert 'FG NAILS' not in s
+          assert 'f-g-nails.digiylyfe.com' not in s
+          assert '"fgText"' not in s
+
+          path.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Contrôler et pousser le retrait
+        shell: bash
+        run: |
+          rm .github/workflows/remove-fg-nails-once.yml
+          git config user.name "DIGIYLYFE Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html .github/workflows/remove-fg-nails-once.yml
+          git diff --cached --check
+          git commit -m "Retire FG NAILS de la source de la vitrine"
+          git push origin main
