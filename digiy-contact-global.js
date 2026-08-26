@@ -1,6 +1,6 @@
 /* DIGIYLYFE — chargeur vitrine stable 20260826
  * Core historique figé bit pour bit : /digiy-contact-global-core-20260824.js
- * Ajouts isolés : lien officiel PRO CARNET + porte PARTENAIRE TERRAIN.
+ * Ajouts isolés : lien officiel PRO CARNET + porte PARTENAIRE TERRAIN + territoire DAKAR.
  * Retrait publication : FG NAILS n’est plus exposé dans la vitrine publique.
  * Cotisation : Supabase décide quelles présences professionnelles restent publiques.
  */
@@ -113,7 +113,7 @@
           grid.setAttribute('data-digiy-public-gate-layout','1');
           var mq=window.matchMedia('(min-width:761px)');
           if(mq.addEventListener)mq.addEventListener('change',refreshGrid);
-          else if(mq.addListener)mq.addListener(refreshGrid);
+          else if(mq.addListener)mq.addListener('change',refreshGrid);
         }
       }
 
@@ -239,11 +239,49 @@
     new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
   }
 
+  function installDakarTerritoryDoor(){
+    var grid=document.querySelector('.territoryGrid');
+    if(!grid||grid.querySelector('[data-digiy-dakar-door]')||grid.querySelector('a[href*="zone=dakar"]'))return;
+
+    var copy={
+      fr:{country:'SÉNÉGAL',title:'DIGIY DAKAR',zones:'Dakar · territoire ouvert · zones locales à venir',cta:'OUVRIR DAKAR'},
+      en:{country:'SENEGAL',title:'DIGIY DAKAR',zones:'Dakar · open territory · local areas coming next',cta:'OPEN DAKAR'},
+      es:{country:'SENEGAL',title:'DIGIY DAKAR',zones:'Dakar · territorio abierto · zonas locales próximamente',cta:'ABRIR DAKAR'},
+      pt:{country:'SENEGAL',title:'DIGIY DAKAR',zones:'Dakar · território aberto · zonas locais a seguir',cta:'ABRIR DAKAR'},
+      it:{country:'SENEGAL',title:'DIGIY DAKAR',zones:'Dakar · territorio aperto · zone locali in arrivo',cta:'APRI DAKAR'},
+      de:{country:'SENEGAL',title:'DIGIY DAKAR',zones:'Dakar · Gebiet geöffnet · lokale Zonen folgen',cta:'DAKAR ÖFFNEN'},
+      nl:{country:'SENEGAL',title:'DIGIY DAKAR',zones:'Dakar · gebied geopend · lokale zones volgen',cta:'OPEN DAKAR'},
+      ar:{country:'السنغال',title:'DIGIY DAKAR',zones:'داكار · المنطقة مفتوحة · المناطق المحلية لاحقًا',cta:'افتح داكار'}
+    };
+
+    var card=document.createElement('a');
+    card.className='territoryCard';
+    card.href='./dakar.html';
+    card.setAttribute('data-digiy-dakar-door','1');
+    card.innerHTML='<span class="territoryCountry">🇸🇳 <b data-digiy-dakar-country></b></span><strong data-digiy-dakar-title></strong><small data-digiy-dakar-zones></small><span class="territoryBtn" data-digiy-dakar-cta></span>';
+
+    var france=grid.querySelector('a[href="./france.html"]');
+    if(france)grid.insertBefore(card,france);else grid.appendChild(card);
+
+    function refresh(){
+      var t=copy[currentLang()]||copy.fr;
+      card.querySelector('[data-digiy-dakar-country]').textContent=t.country;
+      card.querySelector('[data-digiy-dakar-title]').textContent=t.title;
+      card.querySelector('[data-digiy-dakar-zones]').textContent=t.zones;
+      card.querySelector('[data-digiy-dakar-cta]').textContent=t.cta;
+      card.setAttribute('aria-label',t.title);
+    }
+
+    refresh();
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+  }
+
   function installExtras(){
     retireFgNails();
     applySupabasePresenceGate();
     installCarnetModuleLink();
     installPartnerTerrainDoor();
+    installDakarTerritoryDoor();
   }
 
   retireFgNails();
