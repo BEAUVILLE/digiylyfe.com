@@ -60,7 +60,13 @@
             "nl": "Dakar",
             "ar": "داكار"
           },
-          "zones": [],
+          "zones": [
+            {"id": "SN-DAKAR-PLATEAU", "slug": "plateau", "label": "Plateau", "status": "active"},
+            {"id": "SN-DAKAR-ALMADIES-NGOR", "slug": "almadies-ngor", "label": "Almadies · Ngor", "status": "active"},
+            {"id": "SN-DAKAR-MERMOZ-SACRE-COEUR", "slug": "mermoz-sacre-coeur", "label": "Mermoz · Sacré-Cœur", "status": "active"},
+            {"id": "SN-DAKAR-POINT-E-FANN", "slug": "point-e-fann", "label": "Point E · Fann", "status": "active"},
+            {"id": "SN-DAKAR-YOFF-OUAKAM-MAMELLES", "slug": "yoff-ouakam-mamelles", "label": "Yoff · Ouakam · Mamelles", "status": "active"}
+          ],
           "direct_door": {
             "url": "https://digiylyfe.com/dakar.html",
             "label": "DAKAR EN DIRECT →"
