@@ -113,7 +113,7 @@
           grid.setAttribute('data-digiy-public-gate-layout','1');
           var mq=window.matchMedia('(min-width:761px)');
           if(mq.addEventListener)mq.addEventListener('change',refreshGrid);
-          else if(mq.addListener)mq.addListener('change',refreshGrid);
+          else if(mq.addListener)mq.addListener(refreshGrid);
         }
       }
 
