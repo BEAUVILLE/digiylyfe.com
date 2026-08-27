@@ -39,7 +39,7 @@ translations = {
     'nl': ('DIGIY FRANKRIJK','2 ACTIEVE GEBIEDEN · Dordognevallei · Bordeaux','OPEN FRANKRIJK'),
     'ar': ('DIGIY فرنسا','منطقتان نشطتان · وادي دوردوني · بوردو','افتح فرنسا'),
 }
-if '"franceTitle"' in s or '"openFrance"' in s:
+if '"franceTitle":"' in s or '"openFrance":"' in s:
     raise SystemExit('France translation keys already exist')
 langs = ['fr','en','es','pt','it','de','nl','ar']
 for lang in reversed(langs):
