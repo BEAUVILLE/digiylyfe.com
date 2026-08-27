@@ -1,0 +1,54 @@
+name: Archive legacy public doors grid
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  archive-public-grid:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Archive and remove legacy public grid
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          index = Path('index.html')
+          text = index.read_text(encoding='utf-8')
+          pattern = re.compile(r'(?ms)^      <div class="publicGrid">\n.*?^      </div>\n(?=    </section>\n\n    <section class="section worldHub")')
+          match = pattern.search(text)
+          if not match:
+              print('Legacy publicGrid already absent; nothing to do.')
+              raise SystemExit(0)
+
+          block = match.group(0)
+          archive = Path('archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html')
+          archive.parent.mkdir(parents=True, exist_ok=True)
+          archive.write_text(
+              '<!-- ARCHIVE DIGIYLYFE — ancienne grille horizontale des portes publiques.\n'
+              '     Retirée de la vitrine principale le 27 août 2026 après validation humaine.\n'
+              '     Les modules et leurs dépôts restent actifs ; seule cette ancienne présentation est archivée. -->\n\n'
+              + block,
+              encoding='utf-8'
+          )
+          index.write_text(text[:match.start()] + text[match.end():], encoding='utf-8')
+          PY
+
+          if git diff --quiet -- index.html archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html; then
+            echo "Nothing changed"
+            exit 0
+          fi
+
+          git config user.name "DIGIY LYFE"
+          git config user.email "baptistejb24@gmail.com"
+          git add index.html archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html
+          git commit -m "Vitrine: archive legacy public doors grid"
+          git push origin HEAD:main
