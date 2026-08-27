@@ -144,6 +144,7 @@
     }
   ],
   "needs": [
+    {"id": "announcements", "icon": "⚡", "status": "core"},
     {"id": "transport", "icon": "🚗", "status": "core"},
     {"id": "artisan", "icon": "🔧", "status": "core"},
     {"id": "accommodation", "icon": "🏠", "status": "core"},
@@ -151,7 +152,6 @@
     {"id": "shopping", "icon": "🛍️", "status": "core"},
     {"id": "beauty", "icon": "💅", "status": "core"},
     {"id": "jobs", "icon": "💼", "status": "core"},
-    {"id": "announcements", "icon": "⚡", "status": "core"},
     {"id": "guidance", "icon": "🎙️", "status": "core"}
   ],
   "rules": {
