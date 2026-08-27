@@ -1,0 +1,29 @@
+name: Align Bordeaux i18n once
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  align:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply guarded Bordeaux i18n alignment
+        run: python3 tools/align-bordeaux-i18n-once.py
+      - name: Remove one-time tooling
+        run: |
+          rm -f tools/align-bordeaux-i18n-once.py
+          rm -f .github/workflows/align-bordeaux-i18n-once.yml
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bordeaux.html demo-bordeaux.html adhesion-bordeaux.html territoire.html assets/digiy-territoire-bordeaux-projection-v1.js assets/digiy-bordeaux-i18n-v1.js tools/align-bordeaux-i18n-once.py .github/workflows/align-bordeaux-i18n-once.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "Bordeaux: aligner les 8 langues sur tout le parcours"
+          git push origin HEAD:main
