@@ -9,7 +9,7 @@
   'use strict';
 
   var LANGS=['fr','en','es','pt','it','de','nl','ar'];
-  var ORDER=['transport','artisan','accommodation','food','shopping','beauty','jobs','announcements','guidance'];
+  var ORDER=['announcements','transport','artisan','accommodation','food','shopping','beauty','jobs','guidance'];
   var ZONES={
     'plateau':'Plateau',
     'almadies-ngor':'Almadies · Ngor',
@@ -17,6 +17,8 @@
     'point-e-fann':'Point E · Fann',
     'yoff-ouakam-mamelles':'Yoff · Ouakam · Mamelles'
   };
+
+  function dakarPack(){var d=window.DIGIY_DAKAR_DATA,l=lang();return d&&d.packs?(d.packs[l]||d.packs.fr):null;}
 
   var COPY={
     fr:{badge:'EXEMPLE · PLACE À PRENDRE',summary:'Exemple de présence DIGIYLYFE : cette carte sert à montrer au professionnel comment son activité peut apparaître.',meta:'Carte de démonstration · pas encore un adhérent',cta:'PRENDRE CETTE PLACE →',empty:'Aucun adhérent réel encore pour ce filtre. Les cartes ci-dessous montrent les places ouvertes.',joinPrefix:'VOUS ÊTES ',joinSuffix:' ? REJOINDRE DIGIY DAKAR →',pro:'PROFESSIONNEL À DAKAR',allTitle:'PROJECTION DAKAR · 27 CARTES EXEMPLES · 3 PAR MODULE',filteredTitle:'3 CARTES EXEMPLES POUR CE MODULE · PLACES À PRENDRE'},
@@ -91,12 +93,12 @@
     var a=document.getElementById('dakarProJoin')||document.querySelector('[data-digiy-dakar-pro-join]');
     if(!a)return;
     if(!isDakar()){a.classList.remove('show');return;}
-    var need=params().get('need')||'',t=COPY[lang()]||COPY.fr,name=PRO_NAMES[need]||t.pro;
-    a.classList.add('show');a.href=adhesionUrl(need);a.textContent=t.joinPrefix+name+t.joinSuffix;
+    var need=params().get('need')||'',pk=dakarPack(),name=pk&&pk.needs[need]?pk.needs[need]:(pk?pk.projection.pro:'PROFESSIONNEL À DAKAR');
+    a.classList.add('show');if(need==='guidance'){a.href='https://pro-action-digiy.digiylyfe.com/';a.textContent=pk?pk.projection.voiceTry:'ESSAYER LA VOIX →';}else{a.href=adhesionUrl(need);a.textContent=pk?pk.projection.join:name;}
   }
 
   function projectionTitle(need,count){
-    var t=COPY[lang()]||COPY.fr,d=document.createElement('div');
+    var pk=dakarPack(),t=pk?pk.projection:(COPY[lang()]||COPY.fr),d=document.createElement('div');
     d.setAttribute('data-dakar-projection-title','1');
     d.style.cssText='grid-column:1/-1;margin:6px 0 2px;padding:11px 13px;border-radius:16px;border:1px solid rgba(246,196,83,.40);background:rgba(246,196,83,.09);color:#fff2bf;font-size:11px;font-weight:1000;letter-spacing:.04em;text-align:center';
     d.textContent=need?t.filteredTitle:t.allTitle;
@@ -104,7 +106,7 @@
   }
 
   function placeholderCard(need,example,index){
-    var l=lang(),t=COPY[l]||COPY.fr,article=document.createElement('article');
+    var l=lang(),pk=dakarPack(),t=pk?pk.projection:(COPY[l]||COPY.fr),row=pk&&pk.ex&&pk.ex[need]?pk.ex[need][index]:null,article=document.createElement('article');if(row)example={title:row[0],zone:row[1],services:row[2]};
     article.className='card';article.setAttribute('data-dakar-placeholder',need+'-'+index);
     article.style.borderStyle='dashed';article.style.borderColor='rgba(246,196,83,.62)';article.style.background='linear-gradient(145deg,rgba(246,196,83,.10),rgba(34,197,94,.08))';
 
@@ -113,8 +115,8 @@
     var s=document.createElement('p');s.className='summary';s.textContent=t.summary;
     var m=document.createElement('div');m.className='meta';m.textContent='📍 '+zoneLabelFor(example)+' · DAKAR\n🪪 '+t.meta;m.style.whiteSpace='pre-line';
     var sv=document.createElement('div');sv.className='services';
-    (example.services||[]).concat(['Carte digitale · QR','19 900 FCFA / mois','0 % commission']).forEach(function(x){var sp=document.createElement('span');sp.className='service';sp.textContent=x;sv.appendChild(sp);});
-    var ac=document.createElement('div');ac.className='actions';var a=document.createElement('a');a.href=adhesionUrl(need);a.textContent=t.cta;ac.appendChild(a);
+    (example.services||[]).concat([t.qr||'Carte digitale · QR',t.price||'19 900 FCFA / mois',t.commission||'0 % commission']).forEach(function(x){var sp=document.createElement('span');sp.className='service';sp.textContent=x;sv.appendChild(sp);});
+    var ac=document.createElement('div');ac.className='actions';var a=document.createElement('a'),du=new URL('/demo-dakar.html',location.origin),local=selectedLocal()||example.zone;du.searchParams.set('need',need);du.searchParams.set('variant',String(index+1));if(local)du.searchParams.set('local',local);du.searchParams.set('lang',l);a.href=du.pathname+du.search;a.textContent=need==='guidance'?(t.voice||t.demo||t.cta):(t.demo||t.cta);ac.appendChild(a);
     article.append(badge,h,s,m,sv,ac);return article;
   }
 
