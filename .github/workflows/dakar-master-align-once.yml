@@ -1,0 +1,34 @@
+name: Dakar MAITRE align once
+on:
+  push:
+    paths:
+      - '.github/workflows/dakar-master-align-once.yml'
+permissions:
+  contents: write
+jobs:
+  align:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate patch script
+        run: python3 -m py_compile scripts/dakar-master-align.py
+      - name: Apply Dakar MAITRE alignment
+        run: python3 scripts/dakar-master-align.py
+      - name: Validate JavaScript and markers
+        run: |
+          node --check assets/digiy-dakar-i18n-v1.js
+          node --check assets/digiy-territoire-public-safety-v1.js
+          node --check assets/digiy-territoire-demos-v1.js
+          grep -q "data-i18n=\"nAnnouncements\">ANNONCES" dakar.html
+          grep -q "digiy-dakar-i18n-v1.js?v=20260827-dakar-master-v1" dakar.html
+          grep -q "digiy-dakar-i18n-v1.js?v=20260827-dakar-master-v1" demo-dakar.html
+          grep -q "digiy-dakar-i18n-v1.js?v=20260827-dakar-master-v1" adhesion-dakar.html
+          grep -q "20260827-dakar-master-v1" territoire.html
+          grep -q "ORDER=\['announcements','transport'" assets/digiy-territoire-public-safety-v1.js
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add dakar.html demo-dakar.html adhesion-dakar.html territoire.html assets/digiy-territoire-public-safety-v1.js assets/digiy-territoire-demos-v1.js
+          git commit -m 'Dakar: aligner la couche publique sur le MAITRE'
+          git push
