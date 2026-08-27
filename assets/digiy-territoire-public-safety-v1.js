@@ -134,7 +134,7 @@
     var count=0;
     wanted.forEach(function(id){count+=(EXAMPLES[id]||[]).length;});
     if(count)results.appendChild(projectionTitle(need,count));
-    wanted.forEach(function(id){(EXAMPLES[id]||[]).forEach(function(ex,i){results.appendChild(placeholderCard(id,ex,i+1));});});
+    wanted.forEach(function(id){(EXAMPLES[id]||[]).forEach(function(ex,i){results.appendChild(placeholderCard(id,ex,i));});});
     configureJoin();
   }
 
