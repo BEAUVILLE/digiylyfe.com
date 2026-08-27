@@ -1,0 +1,28 @@
+name: Dakar final voice fix once
+on:
+  push:
+    paths:
+      - '.github/workflows/dakar-final-voice-fix-once.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate patch
+        run: python3 -m py_compile scripts/dakar-final-voice-fix.py
+      - name: Apply
+        run: python3 scripts/dakar-final-voice-fix.py
+      - name: Validate
+        run: |
+          node --check assets/digiy-territoire-public-safety-v1.js
+          grep -q "voiceNotTrade" assets/digiy-territoire-public-safety-v1.js
+          grep -q "voiceBadge').textContent=pk.projection.voiceMeta" demo-dakar.html
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/digiy-territoire-public-safety-v1.js demo-dakar.html
+          git commit -m 'Dakar: garder LA VOIX hors des metiers'
+          git push
