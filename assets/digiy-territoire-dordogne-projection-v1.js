@@ -119,6 +119,7 @@
       }
     }
   };
+  window.DIGIY_DORDOGNE_DATA=DATA;
   function p(){try{return new URLSearchParams(location.search)}catch(e){return new URLSearchParams()}}
   function active(){return (p().get('zone')||'')==='vallee-dordogne'}
   function lang(){var q=(p().get('lang')||'').slice(0,2).toLowerCase();var d=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();var l=DATA[q]?q:d;return DATA[l]?l:'fr'}
