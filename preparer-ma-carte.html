@@ -24,6 +24,7 @@
     .then(function(r){if(!r.ok)throw new Error('load '+r.status);return r.text();})
     .then(function(h){
       var forceCarnet=carnet?'<style data-carnet-force-minimal>label:has(#territory),label:has(#baseZone),label:has(#photo),#pendingZoneWrap,#countryMeta,#geoTitle,#coverageTitle,label:has(#wholeTerritory),#zonesLead,#serviceZones,.services,.extra{display:none!important}</style>':'';
+      var tariffLayout=!carnet?'<style data-digiy-tariff-layout>.digiy-tariff-row{display:grid!important;grid-template-columns:minmax(0,1.55fr) minmax(160px,.75fr)!important;gap:12px!important;padding:12px!important;border:1px solid #ffffff1f!important;border-radius:14px!important;background:#ffffff05!important}.digiy-tariff-row label{display:grid!important;gap:7px!important;min-width:0!important}.digiy-tariff-label,.digiy-tariff-price-label{display:block!important;line-height:1.25!important}.digiy-price-wrap{display:block!important;position:relative!important}.digiy-price-wrap input{padding-right:68px!important}.digiy-currency{right:12px!important;white-space:nowrap!important}@media(max-width:640px){.digiy-tariff-row{grid-template-columns:1fr!important;gap:10px!important}.digiy-tariff-rows{gap:12px!important}}</style>':'';
       if(dakar){
         h=h.replace("const RUNTIME_URL='/assets/digiy-adhesion-runtime-v1.json';","const RUNTIME_URL='/assets/digiy-adhesion-runtime-dakar-v1.json?v=20260826';");
       }else if(bordeaux){
@@ -40,13 +41,13 @@
         h=h.replace(baseNeedle,baseReplacement).replace(adminNeedle,adminReplacement);
       }
       var addon='';
-      if(!carnet)addon+='<script src="/assets/digiy-indicative-tariffs-v1.js?v=20260827-v1"><\/script>';
+      if(!carnet)addon+='<script src="/assets/digiy-indicative-tariffs-v1.js?v=20260827-v2"><\/script>';
       addon+='<script src="/assets/digiy-dossier-carnet-v1.js?v=20260824-carnet-minimal-v3"><\/script>';
       if(dakar)addon+='<script src="/assets/digiy-dossier-prefill-dakar-v1.js?v=20260826"><\/script>';
       if(bordeaux)addon+='<script src="/assets/digiy-dossier-prefill-bordeaux-v1.js?v=20260826"><\/script>';
       if(dordogne)addon+='<script src="/assets/digiy-dossier-prefill-dordogne-v1.js?v=20260826"><\/script>';
       if(petiteCote)addon+='<script src="/assets/digiy-dossier-prefill-petite-cote-v1.js?v=20260826"><\/script>';
-      h=h.replace(/<\/head>/i,forceCarnet+'</head>');
+      h=h.replace(/<\/head>/i,forceCarnet+tariffLayout+'</head>');
       h=h.replace(/<\/body>/i,addon+'</body>');
       document.open();
       document.write(h);
