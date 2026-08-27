@@ -1,0 +1,143 @@
+name: Master align Bordeaux France once
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  align:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Align Bordeaux and France door with MASTER
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          # 1) BORDEAUX DIRECT: visible doors = human CORE needs.
+          p = Path('bordeaux.html')
+          s = p.read_text(encoding='utf-8')
+          old = "var NEEDS=[['announcements','⚡','ANNONCES / SERVICES'],['transport','🚗','DRIVER'],['artisan','🔧','ARTISAN'],['accommodation','🏠','LOGEMENT / LOC'],['food','🍽️','RESTAURANT'],['shopping','🛍️','MON COMMERCE'],['beauty','💅','BEAUTÉ & BIEN-ÊTRE'],['jobs','💼','JOBS / MISSIONS'],['guidance','🎙️','LA VOIX']];"
+          new = "var NEEDS=[['announcements','⚡','ANNONCES'],['transport','🚗','SE DÉPLACER'],['artisan','🔧','TROUVER UN ARTISAN'],['accommodation','🏠','DORMIR OU LOUER'],['food','🍽️','MANGER OU RÉSERVER'],['shopping','🛍️','ACHETER LOCAL'],['beauty','💅','BEAUTÉ & BIEN-ÊTRE'],['jobs','💼','EMPLOI ET MISSIONS'],['guidance','🎙️','LA VOIX']];"
+          if s.count(old) != 1:
+              raise SystemExit(f'Bordeaux NEEDS guard failed: {s.count(old)}')
+          s = s.replace(old, new, 1)
+          p.write_text(s, encoding='utf-8')
+
+          # 2) INDEX: France is a COUNTRY door, not Dordogne disguised as France.
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          old_block = '''        <a class="territoryCard" href="./france.html">
+          <span class="territoryCountry">🇫🇷 <b data-i18n="franceCountry">FRANCE</b></span>
+          <strong data-i18n="dordogneTitle">DIGIY VALLÉE DE LA DORDOGNE</strong>
+          <small data-i18n="dordogneZones">PLACE À PRENDRE · Sarlat · communes et villages du territoire</small>
+          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
+        </a>'''
+          new_block = '''        <a class="territoryCard" href="./france.html">
+          <span class="territoryCountry">🇫🇷 <b data-i18n="franceCountry">FRANCE</b></span>
+          <strong data-i18n="franceTitle">DIGIY FRANCE</strong>
+          <small data-i18n="franceZones">2 TERRITOIRES ACTIFS · Vallée de la Dordogne · Bordeaux</small>
+          <span class="territoryBtn" data-i18n="openFrance">OUVRIR LA FRANCE</span>
+        </a>'''
+          if s.count(old_block) != 1:
+              raise SystemExit(f'France card guard failed: {s.count(old_block)}')
+          s = s.replace(old_block, new_block, 1)
+
+          additions = {
+            'fr': ('DIGIY FRANCE','2 TERRITOIRES ACTIFS · Vallée de la Dordogne · Bordeaux','OUVRIR LA FRANCE'),
+            'en': ('DIGIY FRANCE','2 ACTIVE TERRITORIES · Dordogne Valley · Bordeaux','OPEN FRANCE'),
+            'es': ('DIGIY FRANCIA','2 TERRITORIOS ACTIVOS · Valle del Dordoña · Burdeos','ABRIR FRANCIA'),
+            'pt': ('DIGIY FRANÇA','2 TERRITÓRIOS ATIVOS · Vale da Dordogne · Bordéus','ABRIR FRANÇA'),
+            'it': ('DIGIY FRANCIA','2 TERRITORI ATTIVI · Valle della Dordogna · Bordeaux','APRI LA FRANCIA'),
+            'de': ('DIGIY FRANKREICH','2 AKTIVE GEBIETE · Dordogne-Tal · Bordeaux','FRANKREICH ÖFFNEN'),
+            'nl': ('DIGIY FRANKRIJK','2 ACTIEVE GEBIEDEN · Dordognevallei · Bordeaux','OPEN FRANKRIJK'),
+            'ar': ('DIGIY فرنسا','منطقتان نشطتان · وادي دوردوني · بوردو','افتح فرنسا')
+          }
+          if '"franceTitle"' in s or '"openFrance"' in s:
+              raise SystemExit('France translation keys already exist; aborting')
+          for lang, (title, zones, cta) in additions.items():
+              pat = re.compile(r'("'+re.escape(lang)+r'":\{.*?"franceCountry":"[^"]*")', re.S)
+              m = pat.search(s)
+              if not m:
+                  raise SystemExit(f'Missing franceCountry in language {lang}')
+              repl = m.group(1) + ',"franceTitle":"' + title + '","franceZones":"' + zones + '","openFrance":"' + cta + '"'
+              s = s[:m.start()] + repl + s[m.end():]
+          if 'manifest.json?v=20260824-tarif-unique' not in s or "navigator.serviceWorker.register('/sw.js?v=20260824-tarif-unique')" not in s:
+              raise SystemExit('PWA non-regression guard failed')
+          p.write_text(s, encoding='utf-8')
+
+          # 3) TERRITORY PAGE: load Bordeaux projection extension.
+          p = Path('territoire.html')
+          s = p.read_text(encoding='utf-8')
+          anchor = '<script src="/assets/digiy-territoire-dordogne-projection-v1.js?v=20260827-dordogne-territory-annonces-v2" defer></script>'
+          add = anchor + '\n<script src="/assets/digiy-territoire-bordeaux-projection-v1.js?v=20260827-bordeaux-master-v1" defer></script>'
+          if s.count(anchor) != 1:
+              raise SystemExit(f'Territoire script anchor guard failed: {s.count(anchor)}')
+          if 'digiy-territoire-bordeaux-projection-v1.js' in s:
+              raise SystemExit('Bordeaux projection already loaded; aborting')
+          s = s.replace(anchor, add, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+
+          cat > assets/digiy-territoire-bordeaux-projection-v1.js <<'EOF'
+          /* DIGIYLYFE — projection commerciale Bordeaux V1
+           * MASTER: le réel passe devant ; le vide se projette ; ANNONCES remonte.
+           * Les cartes sont des exemples sans identité, téléphone, avis ni disponibilité fictifs.
+           */
+          (function(){'use strict';
+            var ORDER=['announcements','transport','artisan','accommodation','food','shopping','beauty','jobs','guidance'];
+            var EX={
+              announcements:[['⚡ Dépannage express','la-bastide',['Besoin urgent','Service local','Contact direct']],['🧰 Location de matériel','bordeaux-maritime',['Matériel','Disponibilité','Réservation directe']],['🎪 Services événementiels','chartrons-grand-parc-jardin-public',['Événement','Prestataire','Demande de devis']]],
+              transport:[['🚗 Chauffeur gare & centre','bordeaux-centre',['Gare ↔ centre','Réservation','Contact direct']],['🚐 Transfert aéroport & gare','saint-augustin-tauzin-alphonse-dupeux',['Aéroport / gare','Accueil voyageur','Réservation directe']],['🚘 Driver affaires & événements','cauderan',['Mise à disposition','Entreprises','Événements']]],
+              artisan:[['🔧 Plombier dépannage','bordeaux-sud',['Fuite d’eau','Dépannage','Devis direct']],['⚡ Électricien rénovation','nansouty-saint-genes',['Installation','Rénovation','Intervention directe']],['🎨 Peintre / rénovation intérieure','bordeaux-maritime',['Peinture','Rafraîchissement','Devis sur mesure']]],
+              accommodation:[['🏠 Studio courte durée','bordeaux-centre',['Séjour urbain','Réservation directe','Équipements']],['🏢 Appartement meublé','chartrons-grand-parc-jardin-public',['Séjour Bordeaux','Location directe','Disponibilités']],['🛏️ Chambre / coliving','la-bastide',['Nuitée','Moyenne durée','Contact direct']]],
+              food:[['🍽️ Bistrot de quartier','bordeaux-centre',['Carte du jour','Réservation','Contact direct']],['🥂 Restaurant rive droite','la-bastide',['Déjeuner','Dîner','Réservation directe']],['☕ Brunch / café','chartrons-grand-parc-jardin-public',['Petit déjeuner','Brunch','Contact direct']]],
+              shopping:[['🛍️ Boutique créateurs','chartrons-grand-parc-jardin-public',['Mode','Créateurs','Commande directe']],['🧺 Épicerie fine / produits locaux','nansouty-saint-genes',['Produits locaux','Commande','Contact direct']],['🏺 Maison & décoration','cauderan',['Maison','Décoration','Catalogue direct']]],
+              beauty:[['💇 Coiffure & soins','bordeaux-sud',['Coiffure','Soins','Rendez-vous direct']],['💅 Onglerie & beauté','saint-augustin-tauzin-alphonse-dupeux',['Ongles','Beauté','Réservation directe']],['🌿 Bien-être / massage','cauderan',['Massage','Bien-être','Rendez-vous direct']]],
+              jobs:[['💼 Commerce qui recrute','bordeaux-centre',['Vente','Candidature directe','Emploi local']],['👨‍🍳 Restaurant qui recrute','bordeaux-sud',['Cuisine','Service','Candidature directe']],['🤝 Missions événementielles','bordeaux-maritime',['Accueil','Animation','Mission ponctuelle']]],
+              guidance:[['🎙️ Trouver un chauffeur','bordeaux-centre',['« près de la gare »','Recherche vocale','Résultat territorial']],['🎙️ Trouver un restaurant','chartrons-grand-parc-jardin-public',['« aux Chartrons »','Recherche vocale','Résultat territorial']],['🎙️ Trouver un artisan','nansouty-saint-genes',['« un plombier à Nansouty »','Recherche vocale','Résultat territorial']]]
+            };
+            var Z={'bordeaux-maritime':'Bordeaux Maritime','chartrons-grand-parc-jardin-public':'Chartrons · Grand Parc · Jardin Public','bordeaux-centre':'Bordeaux Centre','saint-augustin-tauzin-alphonse-dupeux':'Saint-Augustin · Tauzin · Alphonse Dupeux','nansouty-saint-genes':'Nansouty · Saint-Genès','bordeaux-sud':'Bordeaux Sud','la-bastide':'La Bastide','cauderan':'Caudéran'};
+            var C={
+              fr:{badge:'EXEMPLE · PLACE À PRENDRE',titleAll:'BORDEAUX · 27 EXEMPLES · LE VIDE NE S’AFFICHE PAS, IL SE PROJETTE',titleOne:'EXEMPLES · PLACES À PRENDRE',summary:'Exemple de présence DIGIYLYFE : cette place montre ce que la future activité peut devenir.',meta:'Démonstration · pas encore un adhérent',demo:'OUVRIR LE MODÈLE →',voice:'ESSAYER LA VOIX →',empty:'Aucun professionnel réel pour ce filtre · places à prendre ci-dessous'},
+              en:{badge:'EXAMPLE · PLACE AVAILABLE',titleAll:'BORDEAUX · 27 EXAMPLES · EMPTY SPACE IS PROJECTED',titleOne:'EXAMPLES · PLACES AVAILABLE',summary:'DIGIYLYFE presence example showing what a future activity can become.',meta:'Demo · not yet a member',demo:'OPEN MODEL →',voice:'TRY VOICE SEARCH →',empty:'No real professional for this filter · places available below'},
+              es:{badge:'EJEMPLO · PLAZA DISPONIBLE',titleAll:'BURDEOS · 27 EJEMPLOS · EL VACÍO SE PROYECTA',titleOne:'EJEMPLOS · PLAZAS DISPONIBLES',summary:'Ejemplo de presencia DIGIYLYFE para mostrar lo que puede llegar a ser la actividad.',meta:'Demostración · todavía no es miembro',demo:'ABRIR MODELO →',voice:'PROBAR LA VOZ →',empty:'Ningún profesional real para este filtro · plazas disponibles abajo'},
+              pt:{badge:'EXEMPLO · LUGAR DISPONÍVEL',titleAll:'BORDÉUS · 27 EXEMPLOS · O VAZIO É PROJETADO',titleOne:'EXEMPLOS · LUGARES DISPONÍVEIS',summary:'Exemplo de presença DIGIYLYFE para mostrar o que a futura atividade pode tornar-se.',meta:'Demonstração · ainda não é membro',demo:'ABRIR MODELO →',voice:'EXPERIMENTAR A VOZ →',empty:'Nenhum profissional real para este filtro · lugares disponíveis abaixo'},
+              it:{badge:'ESEMPIO · POSTO DISPONIBILE',titleAll:'BORDEAUX · 27 ESEMPI · IL VUOTO VIENE PROIETTATO',titleOne:'ESEMPI · POSTI DISPONIBILI',summary:'Esempio di presenza DIGIYLYFE che mostra cosa può diventare la futura attività.',meta:'Dimostrazione · non ancora membro',demo:'APRI IL MODELLO →',voice:'PROVA LA VOCE →',empty:'Nessun professionista reale per questo filtro · posti disponibili sotto'},
+              de:{badge:'BEISPIEL · PLATZ FREI',titleAll:'BORDEAUX · 27 BEISPIELE · LEERSTAND WIRD PROJIZIERT',titleOne:'BEISPIELE · FREIE PLÄTZE',summary:'DIGIYLYFE-Beispiel, das zeigt, wie die künftige Tätigkeit erscheinen kann.',meta:'Demo · noch kein Mitglied',demo:'MODELL ÖFFNEN →',voice:'SPRACHSUCHE TESTEN →',empty:'Kein echter Profi für diesen Filter · freie Plätze unten'},
+              nl:{badge:'VOORBEELD · PLEK BESCHIKBAAR',titleAll:'BORDEAUX · 27 VOORBEELDEN · LEEGTE WORDT GEPROJECTEERD',titleOne:'VOORBEELDEN · BESCHIKBARE PLEKKEN',summary:'DIGIYLYFE-voorbeeld dat laat zien wat de toekomstige activiteit kan worden.',meta:'Demo · nog geen lid',demo:'OPEN MODEL →',voice:'PROBEER STEMZOEKEN →',empty:'Geen echte professional voor dit filter · beschikbare plekken hieronder'},
+              ar:{badge:'مثال · مكان متاح',titleAll:'بوردو · 27 مثالاً · المساحة الفارغة تُعرض كنموذج',titleOne:'أمثلة · أماكن متاحة',summary:'مثال DIGIYLYFE يوضح كيف يمكن أن يظهر النشاط مستقبلاً.',meta:'عرض توضيحي · ليس عضواً بعد',demo:'فتح النموذج ←',voice:'جرّب البحث بالصوت ←',empty:'لا يوجد مهني حقيقي لهذا الاختيار · أماكن متاحة أدناه'}
+            };
+            function p(){try{return new URLSearchParams(location.search)}catch(e){return new URLSearchParams()}}
+            function active(){return (p().get('zone')||'')==='bordeaux'}
+            function lang(){var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return C[l]?l:'fr'}
+            function t(){return C[lang()]||C.fr}
+            function clear(r){r.querySelectorAll('[data-bordeaux-placeholder],[data-bordeaux-projection-title]').forEach(function(n){n.remove()})}
+            function title(count,filtered){var d=document.createElement('div');d.setAttribute('data-bordeaux-projection-title','1');d.style.cssText='grid-column:1/-1;margin:8px 0 2px;padding:11px 13px;border-radius:16px;border:1px solid rgba(214,179,106,.50);background:rgba(122,41,65,.30);color:#fff0c8;font-size:11px;font-weight:1000;text-align:center';d.textContent=filtered?(count+' · '+t().titleOne):t().titleAll;return d}
+            function card(k,row,i){var local=p().get('local')||row[1];if(local==='all')local=row[1];var a=document.createElement('article');a.className='card';a.setAttribute('data-bordeaux-placeholder',k+'-'+i);a.style.cssText='border-style:dashed;border-color:rgba(214,179,106,.68);background:linear-gradient(145deg,rgba(122,41,65,.34),rgba(214,179,106,.09))';var u=new URL('/demo-bordeaux.html',location.origin);u.searchParams.set('need',k);u.searchParams.set('variant',String(i+1));u.searchParams.set('local',local);u.searchParams.set('lang',lang());var badge=document.createElement('div');badge.textContent=t().badge;badge.style.cssText='display:inline-flex;margin-bottom:10px;padding:5px 8px;border-radius:999px;border:1px solid rgba(214,179,106,.55);color:#fff0c8;font-size:9px;font-weight:1000';var h=document.createElement('h3');h.textContent=row[0];var sum=document.createElement('p');sum.className='summary';sum.textContent=k==='guidance'?'LA VOIX permet de dire ce que l’on cherche au lieu de parcourir les catégories.':t().summary;var meta=document.createElement('div');meta.className='meta';meta.textContent='📍 '+(Z[local]||'Bordeaux')+' · BORDEAUX\n🪪 '+t().meta;meta.style.whiteSpace='pre-line';var sv=document.createElement('div');sv.className='services';row[2].concat(k==='guidance'?['Recherche vocale','Pas une fiche métier']:['Carte digitale · QR','45 € / mois','0 % commission']).forEach(function(x){var sp=document.createElement('span');sp.className='service';sp.textContent=x;sv.appendChild(sp)});var ac=document.createElement('div');ac.className='actions';var link=document.createElement('a');link.href=u.pathname+u.search;link.textContent=k==='guidance'?t().voice:t().demo;ac.appendChild(link);a.append(badge,h,sum,meta,sv,ac);return a}
+            var busy=false;
+            function render(){if(!active()||busy)return;var r=document.getElementById('results');if(!r)return;busy=true;clear(r);var need=p().get('need')||'',real=Array.prototype.slice.call(r.querySelectorAll('.card:not([data-bordeaux-placeholder])')),empty=r.querySelector('.empty');if(empty)empty.remove();var keys=need?[need]:ORDER.slice(),limit=3;if(need)limit=Math.max(0,3-real.length);var total=need?Math.min(limit,(EX[need]||[]).length):27;if(!real.length){var status=document.getElementById('status');if(status)status.textContent=t().empty}if(total>0){r.appendChild(title(total,!!need));keys.forEach(function(k){(EX[k]||[]).slice(0,need?limit:3).forEach(function(row,i){r.appendChild(card(k,row,i))})})}busy=false}
+            function boot(){if(!active())return;setTimeout(render,140);var r=document.getElementById('results');if(r)new MutationObserver(function(m){if(busy)return;var external=m.some(function(x){return Array.prototype.some.call(x.addedNodes,function(n){return !(n.nodeType===1&&(n.hasAttribute('data-bordeaux-placeholder')||n.hasAttribute('data-bordeaux-projection-title')))})});if(external)setTimeout(render,25)}).observe(r,{childList:true});document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('#needs,#zones'))setTimeout(render,90)});window.addEventListener('popstate',function(){setTimeout(render,60)})}
+            if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+          })();
+          EOF
+
+          node --check assets/digiy-territoire-bordeaux-projection-v1.js
+          grep -Fq "SE DÉPLACER" bordeaux.html
+          grep -Fq "2 TERRITOIRES ACTIFS · Vallée de la Dordogne · Bordeaux" index.html
+          grep -Fq "digiy-territoire-bordeaux-projection-v1.js" territoire.html
+          grep -Fq "EXEMPLE · PLACE À PRENDRE" assets/digiy-territoire-bordeaux-projection-v1.js
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bordeaux.html index.html territoire.html assets/digiy-territoire-bordeaux-projection-v1.js
+          git commit -m "Territoires: aligner Bordeaux et porte France sur le MASTER"
+          git push origin HEAD:main
