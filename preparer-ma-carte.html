@@ -31,7 +31,17 @@
       }else if(dordogne){
         h=h.replace("const RUNTIME_URL='/assets/digiy-adhesion-runtime-v1.json';","const RUNTIME_URL='/assets/digiy-adhesion-runtime-dordogne-v1.json?v=20260826';");
       }
-      var addon='<script src="/assets/digiy-dossier-carnet-v1.js?v=20260824-carnet-minimal-v3"><\/script>';
+      if(!carnet){
+        var baseNeedle="service_4:$('#s4').value.trim()||null,photo_path:pp";
+        var baseReplacement="service_4:$('#s4').value.trim()||null,indicative_tariffs:(window.DIGIY_INDICATIVE_TARIFFS?window.DIGIY_INDICATIVE_TARIFFS():[]),photo_path:pp";
+        var adminNeedle="if(base.service_4)lines.push('4. '+base.service_4);\n  lines.push('','Option : '+option);";
+        var adminReplacement="if(base.service_4)lines.push('4. '+base.service_4);\n  if(Array.isArray(base.indicative_tariffs)&&base.indicative_tariffs.length){lines.push('','TARIFS INDICATIFS');base.indicative_tariffs.forEach(function(tariff,i){var cur=tariff.currency_code==='XOF'?'FCFA':tariff.currency_code==='EUR'?'€':(tariff.currency_code||'');lines.push((i+1)+'. '+tariff.label+' : '+tariff.price+(cur?' '+cur:''));});}\n  lines.push('','Option : '+option);";
+        if(h.indexOf(baseNeedle)===-1||h.indexOf(adminNeedle)===-1)throw new Error('tariff integration marker missing');
+        h=h.replace(baseNeedle,baseReplacement).replace(adminNeedle,adminReplacement);
+      }
+      var addon='';
+      if(!carnet)addon+='<script src="/assets/digiy-indicative-tariffs-v1.js?v=20260827-v1"><\/script>';
+      addon+='<script src="/assets/digiy-dossier-carnet-v1.js?v=20260824-carnet-minimal-v3"><\/script>';
       if(dakar)addon+='<script src="/assets/digiy-dossier-prefill-dakar-v1.js?v=20260826"><\/script>';
       if(bordeaux)addon+='<script src="/assets/digiy-dossier-prefill-bordeaux-v1.js?v=20260826"><\/script>';
       if(dordogne)addon+='<script src="/assets/digiy-dossier-prefill-dordogne-v1.js?v=20260826"><\/script>';
