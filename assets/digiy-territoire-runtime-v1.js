@@ -138,7 +138,7 @@ function renderHeader(){
   document.getElementById('tagline').textContent=tr.tag;document.getElementById('path').textContent=tr.path;
   document.getElementById('needTitle').textContent=tr.need;document.getElementById('zoneTitle').textContent=tr.zone;
   var door=document.getElementById('sarlatDoor'),doorLink=door.querySelector('a');
-  if(c.directDoor&&c.directDoor.url){doorLink.href=c.directDoor.url;doorLink.textContent=c.directDoor.label||'OUVRIR →';door.classList.add('show')}else door.classList.remove('show');
+  if(c.directDoor&&c.directDoor.url){doorLink.href=c.directDoor.url;doorLink.textContent=(territoryId==='dakar'&&lang==='pt')?'DAKAR EM DIRETO →':(c.directDoor.label||'OUVRIR →');door.classList.add('show')}else door.classList.remove('show');
   document.querySelectorAll('[data-lang]').forEach(function(b){b.classList.toggle('active',b.dataset.lang===lang)});
   document.getElementById('source').textContent=state.live?tr.sourceLive:tr.sourceFallback;
 }
