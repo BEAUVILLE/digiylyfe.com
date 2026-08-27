@@ -1,0 +1,54 @@
+name: Align Sarlat final once
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  align:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fix preflight pilot-language hook
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tools/align-sarlat-final-once.py')
+          s=p.read_text(encoding='utf-8')
+          old="""# Make context dynamically accurate in all languages without changing the canonical pilot local.
+          s = rep(s, \"document.getElementById('context').textContent=m[0]+' '+m[1]+' · SARLAT-LA-CANÉDA';\", \"var PILOT={fr:'ZONE PILOTE',en:'PILOT AREA',es:'ZONA PILOTO',pt:'ZONA PILOTO',it:'ZONA PILOTA',de:'PILOTGEBIET',nl:'PILOTGEBIED',ar:'منطقة تجريبية'};document.getElementById('context').textContent=m[0]+' '+m[1]+' · SARLAT-LA-CANÉDA · '+(PILOT[l]||PILOT.fr);\", 'translated pilot context')
+          """
+          new="""# Make context dynamically accurate inside set(l), while preserving canonical local=sarlat.
+          hook = \"document.querySelectorAll('[data-l]').forEach(function(b){b.classList.toggle('on',b.dataset.l===l)});var u=new URL('/preparer-ma-carte.html',location.origin);\"
+          hooked = \"document.querySelectorAll('[data-l]').forEach(function(b){b.classList.toggle('on',b.dataset.l===l)});var PILOT={fr:'ZONE PILOTE',en:'PILOT AREA',es:'ZONA PILOTO',pt:'ZONA PILOTO',it:'ZONA PILOTA',de:'PILOTGEBIET',nl:'PILOTGEBIED',ar:'منطقة تجريبية'};document.getElementById('context').textContent=m[0]+' '+m[1]+' · SARLAT-LA-CANÉDA · '+(PILOT[l]||PILOT.fr);var u=new URL('/preparer-ma-carte.html',location.origin);\"
+          s = rep(s, hook, hooked, 'pilot context inside language setter')
+          s = rep(s, \"document.getElementById('context').textContent=m[0]+' '+m[1]+' · SARLAT-LA-CANÉDA';\", \"\", 'remove static pilot context')
+          """
+          if s.count(old)!=1:
+              raise SystemExit('preflight source guard failed')
+          p.write_text(s.replace(old,new,1),encoding='utf-8')
+          PY
+      - name: Apply Sarlat corrections
+        run: python tools/align-sarlat-final-once.py
+      - name: Validate production diff
+        run: |
+          git diff --check
+          grep -q "window.DIGIY_DORDOGNE_DATA=DATA" assets/digiy-territoire-dordogne-projection-v1.js
+          grep -q "dordogne-master-sarlat-i18n-pwa-v4-20260827" sarlat.html
+          grep -q "navigator.serviceWorker.register('/sw.js?v=20260824-tarif-unique')" sarlat.html
+          grep -q "SARLAT ZONE PILOTE" sarlat.html
+          grep -q "Sarlat zone pilote" adhesion-dordogne.html
+          grep -q "local','sarlat" adhesion-dordogne.html
+      - name: Commit production files only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/digiy-territoire-dordogne-projection-v1.js sarlat.html adhesion-dordogne.html
+          git commit -m "Sarlat: finaliser i18n, pilote Dordogne et PWA"
+          git push origin HEAD:main
