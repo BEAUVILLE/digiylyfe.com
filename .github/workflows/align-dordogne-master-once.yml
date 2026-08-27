@@ -1,0 +1,35 @@
+name: Align Dordogne MASTER once
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  align:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply guarded Dordogne patch
+        run: python tools/align-dordogne-master-once.py
+      - name: Check diff
+        run: |
+          git diff --check
+          grep -q "DORDOGNE<em id=\"pilotLabel\">Sarlat · zone pilote</em>" sarlat.html
+          grep -q "var NEEDS=\[\['announcements'" sarlat.html
+          grep -q "Vallée de la Dordogne · Périgord" sarlat.html
+          grep -q "var LABELS=" sarlat.html
+          grep -q "manifest.json?v=20260824-tarif-unique" sarlat.html
+      - name: Commit Dordogne alignment
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sarlat.html
+          git commit -m "Dordogne: aligner la vitrine sur le MASTER"
+          git push origin HEAD:main
