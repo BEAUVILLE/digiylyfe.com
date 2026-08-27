@@ -112,10 +112,10 @@
 
     var badge=document.createElement('div');badge.textContent=t.badge;badge.style.cssText='display:inline-flex;margin-bottom:10px;padding:5px 8px;border-radius:999px;border:1px solid rgba(246,196,83,.50);color:#fff1bd;font-size:9px;font-weight:1000;letter-spacing:.04em';
     var h=document.createElement('h3');h.textContent=example.title;
-    var s=document.createElement('p');s.className='summary';s.textContent=t.summary;
-    var m=document.createElement('div');m.className='meta';m.textContent='📍 '+zoneLabelFor(example)+' · DAKAR\n🪪 '+t.meta;m.style.whiteSpace='pre-line';
+    var s=document.createElement('p');s.className='summary';s.textContent=need==='guidance'?(t.voiceSummary||t.summary):t.summary;
+    var m=document.createElement('div');m.className='meta';m.textContent=need==='guidance'?'🎙️ '+(t.voiceMeta||'LA VOIX · DAKAR'):'📍 '+zoneLabelFor(example)+' · DAKAR\n🪪 '+t.meta;m.style.whiteSpace='pre-line';
     var sv=document.createElement('div');sv.className='services';
-    (example.services||[]).concat([t.qr||'Carte digitale · QR',t.price||'19 900 FCFA / mois',t.commission||'0 % commission']).forEach(function(x){var sp=document.createElement('span');sp.className='service';sp.textContent=x;sv.appendChild(sp);});
+    (example.services||[]).concat(need==='guidance'?[t.voiceNotTrade||'Pas une fiche métier',t.voiceAccess||'Accès direct au moteur vocal']:[t.qr||'Carte digitale · QR',t.price||'19 900 FCFA / mois',t.commission||'0 % commission']).forEach(function(x){var sp=document.createElement('span');sp.className='service';sp.textContent=x;sv.appendChild(sp);});
     var ac=document.createElement('div');ac.className='actions';var a=document.createElement('a'),du=new URL('/demo-dakar.html',location.origin),local=selectedLocal()||example.zone;du.searchParams.set('need',need);du.searchParams.set('variant',String(index+1));if(local)du.searchParams.set('local',local);du.searchParams.set('lang',l);a.href=du.pathname+du.search;a.textContent=need==='guidance'?(t.voice||t.demo||t.cta):(t.demo||t.cta);ac.appendChild(a);
     article.append(badge,h,s,m,sv,ac);return article;
   }
