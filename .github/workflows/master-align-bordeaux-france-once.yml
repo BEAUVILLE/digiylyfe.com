@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Apply guarded patch
+      - name: Apply guarded patch v2
         run: python tools/master-align-bordeaux-france-once.py
       - name: Validate Bordeaux projection syntax
         run: node --check assets/digiy-territoire-bordeaux-projection-v1.js
