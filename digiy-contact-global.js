@@ -1,6 +1,6 @@
-/* DIGIYLYFE — chargeur vitrine stable 20260826
+/* DIGIYLYFE — chargeur vitrine stable 20260827
  * Core historique figé bit pour bit : /digiy-contact-global-core-20260824.js
- * Ajouts isolés : lien officiel PRO CARNET + porte PARTENAIRE TERRAIN + territoire DAKAR.
+ * Ajouts isolés : lien officiel PRO CARNET + GALERIE CHAUFFEURS + porte PARTENAIRE TERRAIN + territoire DAKAR.
  * Retrait publication : FG NAILS n’est plus exposé dans la vitrine publique.
  * Cotisation : Supabase décide quelles présences professionnelles restent publiques.
  */
@@ -190,6 +190,41 @@
     new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
   }
 
+  function installDriverGalleryLink(){
+    var grid=document.querySelector('.publicGrid');
+    if(!grid || grid.querySelector('[data-digiy-driver-gallery]')) return;
+
+    var copy={
+      fr:'Je suis chauffeur · voir ma place · QR · contact direct',
+      en:'I am a driver · see my place · QR · direct contact',
+      es:'Soy conductor · ver mi lugar · QR · contacto directo',
+      pt:'Sou motorista · ver o meu lugar · QR · contacto direto',
+      it:'Sono autista · vedere il mio posto · QR · contatto diretto',
+      de:'Ich bin Fahrer · meinen Platz sehen · QR · Direktkontakt',
+      nl:'Ik ben chauffeur · bekijk mijn plaats · QR · direct contact',
+      ar:'أنا سائق · شاهد مكاني · QR · تواصل مباشر'
+    };
+
+    var card=document.createElement('a');
+    card.className='publicCard';
+    card.href='https://galerie-chauffeurs.digiylyfe.com/';
+    card.setAttribute('data-digiy-driver-gallery','1');
+    card.setAttribute('aria-label','Galerie Chauffeurs DIGIY DRIVER');
+    card.innerHTML='<i aria-hidden="true">🪪</i><strong>GALERIE CHAUFFEURS</strong><small data-digiy-driver-gallery-copy></small>';
+
+    var clientDoor=grid.querySelector('a[href="https://driver-client.digiylyfe.com/"]');
+    if(clientDoor)clientDoor.insertAdjacentElement('afterend',card);
+    else grid.appendChild(card);
+
+    function refresh(){
+      var small=card.querySelector('[data-digiy-driver-gallery-copy]');
+      if(small) small.textContent=copy[currentLang()]||copy.fr;
+    }
+
+    refresh();
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+  }
+
   function installPartnerTerrainDoor(){
     var section=document.querySelector('section[aria-label="Portes publiques DIGIYLYFE"]');
     var grid=section&&section.querySelector('.publicGrid');
@@ -280,6 +315,7 @@
     retireFgNails();
     applySupabasePresenceGate();
     installCarnetModuleLink();
+    installDriverGalleryLink();
     installPartnerTerrainDoor();
     installDakarTerritoryDoor();
   }
