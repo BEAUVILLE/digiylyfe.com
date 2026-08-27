@@ -1,0 +1,48 @@
+name: Dordogne finish single
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  finish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply final Dordogne finish
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          changed=False
+
+          p=Path('territoire.html')
+          s=p.read_text(encoding='utf-8')
+          old='/assets/digiy-territoire-dordogne-projection-v1.js?v=20260826-sarlat-projection-v1'
+          new='/assets/digiy-territoire-dordogne-projection-v1.js?v=20260827-dordogne-territory-annonces-v2'
+          if old in s:
+              p.write_text(s.replace(old,new,1),encoding='utf-8'); changed=True
+
+          p=Path('demo-dordogne.html')
+          s=p.read_text(encoding='utf-8')
+          old="'← VALLÉE DE LA DORDOGNE']};function set(l)"
+          new="'← DORDOGNE VALLEY']};function set(l)"
+          if old in s:
+              p.write_text(s.replace(old,new,1),encoding='utf-8'); changed=True
+
+          if not changed:
+              print('Already finished; no push needed.')
+              raise SystemExit(0)
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add territoire.html demo-dordogne.html
+          git commit -m "Dordogne: finaliser cache et libelle EN"
+          git pull --rebase origin main
+          git push origin HEAD:main
