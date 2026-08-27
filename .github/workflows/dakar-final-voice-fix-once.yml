@@ -1,4 +1,4 @@
-name: Dakar final voice fix once
+name: Dakar projection index fix once
 on:
   push:
     paths:
@@ -17,12 +17,12 @@ jobs:
       - name: Validate
         run: |
           node --check assets/digiy-territoire-public-safety-v1.js
-          grep -q "voiceNotTrade" assets/digiy-territoire-public-safety-v1.js
-          grep -q "voiceBadge').textContent=pk.projection.voiceMeta" demo-dakar.html
+          grep -q "placeholderCard(id,ex,i)" assets/digiy-territoire-public-safety-v1.js
+          ! grep -q "placeholderCard(id,ex,i+1)" assets/digiy-territoire-public-safety-v1.js
       - name: Commit
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/digiy-territoire-public-safety-v1.js demo-dakar.html
-          git commit -m 'Dakar: garder LA VOIX hors des metiers'
+          git add assets/digiy-territoire-public-safety-v1.js
+          git commit -m 'Dakar: corriger les 3 variantes de projection'
           git push
