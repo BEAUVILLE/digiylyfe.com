@@ -1,4 +1,4 @@
-name: Dakar projection index fix once
+name: Dakar projection cache fix once
 on:
   push:
     paths:
@@ -19,10 +19,11 @@ jobs:
           node --check assets/digiy-territoire-public-safety-v1.js
           grep -q "placeholderCard(id,ex,i)" assets/digiy-territoire-public-safety-v1.js
           ! grep -q "placeholderCard(id,ex,i+1)" assets/digiy-territoire-public-safety-v1.js
+          grep -q "digiy-territoire-public-safety-v1.js?v=20260827-dakar-master-v2" territoire.html
       - name: Commit
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/digiy-territoire-public-safety-v1.js
-          git commit -m 'Dakar: corriger les 3 variantes de projection'
+          git add assets/digiy-territoire-public-safety-v1.js territoire.html
+          git commit -m 'Dakar: forcer les variantes 1 2 3 sans cache ancien'
           git push
