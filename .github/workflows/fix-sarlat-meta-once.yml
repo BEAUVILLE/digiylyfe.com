@@ -1,0 +1,31 @@
+name: Fix Sarlat meta once
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply newline-safe meta fix
+        run: python tools/fix-sarlat-meta-once.py
+      - name: Validate
+        run: |
+          git diff --check
+          grep -q "ui.meta.split(String.fromCharCode(10))\[0\]" sarlat.html
+          grep -q "navigator.serviceWorker.register('/sw.js?v=20260824-tarif-unique')" sarlat.html
+      - name: Commit production file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sarlat.html
+          git commit -m "Sarlat: fiabiliser la meta localisee"
+          git push origin HEAD:main
