@@ -309,6 +309,199 @@
     .brandClaim p{margin:11px auto 0;max-width:720px;color:rgba(255,250,240,.84);font-size:clamp(13px,3vw,17px);line-height:1.45;font-weight:850}
     .brandClaim strong{display:block;margin:14px auto 0;max-width:760px;color:#f6c453;font-size:clamp(17px,4vw,27px);line-height:1.12;font-weight:1000;letter-spacing:-.02em}
     .brandClaim .brandClaimChannels{margin:14px auto 0;max-width:780px;padding-top:12px;border-top:1px solid rgba(246,196,83,.28);color:#fffaf0;font-size:clamp(12px,2.8vw,15px);line-height:1.4;font-weight:950}
+
+    /* =========================================================
+       LANGAGE VISUEL DIGIYLYFE
+       PREUVE = compact / concret
+       TERRITOIRE = ample / photographique
+       ACTION = immédiat / directionnel
+       CSS uniquement : aucun contenu, lien ou moteur modifié
+       ========================================================= */
+
+    /* 1 — PREUVES TERRAIN : aspect fiche / preuve concrète */
+    .section[aria-label="Preuves terrain DIGIYLYFE"]{
+      border-color:rgba(246,196,83,.42);
+      background:linear-gradient(145deg,rgba(246,196,83,.055),rgba(255,255,255,.035));
+    }
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .sectionHead{
+      padding-bottom:11px;
+      border-bottom:1px solid rgba(246,196,83,.20);
+    }
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofGrid{
+      gap:10px;
+    }
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard{
+      min-height:136px;
+      padding:14px 13px 13px 16px;
+      border-radius:16px;
+      border:1px solid rgba(246,196,83,.25);
+      border-left:4px solid rgba(246,196,83,.82);
+      background:linear-gradient(145deg,rgba(255,255,255,.070),rgba(246,196,83,.035));
+      box-shadow:0 9px 20px rgba(0,0,0,.14);
+    }
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard:hover{
+      transform:translateY(-2px);
+      border-color:rgba(246,196,83,.62);
+      border-left-color:var(--gold);
+      background:linear-gradient(145deg,rgba(255,255,255,.090),rgba(246,196,83,.055));
+    }
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard i{
+      width:38px;height:38px;border-radius:12px;
+      display:grid;place-items:center;
+      font-size:21px;
+      border:1px solid rgba(246,196,83,.28);
+      background:rgba(246,196,83,.09);
+    }
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard strong{
+      margin-top:2px;font-size:15px;line-height:1.08;
+    }
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard small{
+      font-size:10.8px;
+    }
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard b{
+      padding-top:8px;
+      border-top:1px solid rgba(246,196,83,.14);
+      color:#ffe8a1;
+      letter-spacing:.025em;
+    }
+
+    /* 2 — ACTION PUBLIQUE : lecture immédiate, comme une porte à déclencher */
+    .section[aria-label="Portes publiques DIGIYLYFE"]{
+      border-color:rgba(45,212,191,.42);
+      background:
+        radial-gradient(420px 180px at 0 0,rgba(45,212,191,.10),transparent 68%),
+        rgba(255,255,255,.045);
+    }
+    .section[aria-label="Portes publiques DIGIYLYFE"] .sectionHead{
+      padding-bottom:11px;
+      border-bottom:1px solid rgba(45,212,191,.22);
+    }
+    .section[aria-label="Portes publiques DIGIYLYFE"] .publicLeadDoor{
+      margin-top:15px;
+      padding:15px;
+      border-radius:20px;
+      border:1px solid rgba(45,212,191,.68);
+      background:linear-gradient(110deg,rgba(8,73,50,.98),rgba(5,34,25,.98) 62%,rgba(10,76,70,.95));
+      box-shadow:0 16px 34px rgba(0,0,0,.24), inset 0 0 0 1px rgba(255,255,255,.035);
+    }
+    .section[aria-label="Portes publiques DIGIYLYFE"] .publicLeadIcon{
+      width:64px;height:64px;border-radius:18px;
+      background:linear-gradient(145deg,rgba(45,212,191,.24),rgba(34,197,94,.17));
+      border-color:rgba(45,212,191,.56);
+      box-shadow:inset 0 0 18px rgba(45,212,191,.08);
+    }
+    .section[aria-label="Portes publiques DIGIYLYFE"] .publicLeadCopy strong{
+      font-size:20px;
+    }
+    .section[aria-label="Portes publiques DIGIYLYFE"] .publicLeadBtn{
+      min-height:50px;
+      padding:11px 16px;
+      border:1px solid rgba(255,241,189,.72);
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
+    }
+
+    /* 3 — TERRITOIRES : la photo porte l'identité et doit respirer */
+    .worldHub{
+      border-color:rgba(125,211,252,.46);
+    }
+    .worldHub .territoryGrid{
+      gap:14px;
+      margin-top:14px;
+    }
+    .worldHub .territoryCard{
+      min-height:330px;
+      padding:0 16px 16px;
+      gap:9px;
+      overflow:hidden;
+      border-radius:27px;
+      border:1px solid rgba(125,211,252,.40);
+      background:
+        linear-gradient(180deg,rgba(9,58,63,.18),rgba(8,39,28,.92) 52%,rgba(5,27,20,.98));
+      box-shadow:0 18px 36px rgba(0,0,0,.22);
+    }
+    .worldHub .territoryCard:hover{
+      transform:translateY(-3px);
+      border-color:rgba(246,196,83,.72);
+      box-shadow:0 22px 44px rgba(0,0,0,.28);
+    }
+    .worldHub .territoryCountry{
+      order:2;
+      margin-top:3px;
+      font-size:10.5px;
+      letter-spacing:.10em;
+    }
+    .worldHub .territoryPhoto{
+      order:1;
+      width:calc(100% + 32px);
+      height:190px;
+      margin:0 -16px 2px;
+      border:0;
+      border-radius:26px 26px 0 0;
+      background:#041510;
+      position:relative;
+    }
+    .worldHub .territoryPhoto::after{
+      content:"";
+      position:absolute;inset:auto 0 0;
+      height:42%;
+      background:linear-gradient(180deg,transparent,rgba(3,18,13,.70));
+      pointer-events:none;
+    }
+    .worldHub .territoryPhoto img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      transform:scale(1.002);
+    }
+    .worldHub .territoryCard>strong{
+      order:3;
+      font-size:23px;
+      line-height:1;
+      letter-spacing:-.025em;
+    }
+    .worldHub .territoryCard>small{
+      order:4;
+      min-height:34px;
+      font-size:11.2px;
+    }
+    .worldHub .territoryBtn{
+      order:5;
+      min-height:47px;
+      margin-top:auto;
+      border-color:rgba(250,204,21,.68);
+      background:linear-gradient(135deg,rgba(14,116,144,.40),rgba(22,163,74,.30),rgba(202,138,4,.30));
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);
+    }
+
+    @media(max-width:760px){
+      .worldHub .territoryGrid{gap:12px}
+      .worldHub .territoryCard{min-height:320px}
+      .worldHub .territoryPhoto{height:188px}
+    }
+
+    @media(max-width:560px){
+      .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard{
+        min-height:122px;
+        padding:12px 11px 11px 14px;
+      }
+      .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard i{
+        width:34px;height:34px;font-size:19px;border-radius:10px;
+      }
+      .section[aria-label="Portes publiques DIGIYLYFE"] .publicLeadDoor{
+        border-radius:18px;
+      }
+      .section[aria-label="Portes publiques DIGIYLYFE"] .publicLeadIcon{
+        width:52px;height:52px;border-radius:15px;font-size:27px;
+      }
+      .worldHub .territoryCard{
+        min-height:304px;
+        border-radius:23px;
+      }
+      .worldHub .territoryPhoto{
+        height:176px;
+        border-radius:22px 22px 0 0;
+      }
+      .worldHub .territoryCard>strong{font-size:21px}
+    }
+
   </style>
 </head>
 <body>
@@ -586,6 +779,10 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
+
+
+
+
 
 
 
