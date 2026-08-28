@@ -1,0 +1,87 @@
+name: Install Chez Baptiste Saly signature
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/install-saly-baptiste-signature.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install-saly-signature:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Saly Carte Vitrine loader
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          targets = ["index.html", "territoire.html", "saly.html"]
+          marker = '<script src="/assets/digiy-saly-baptiste-signature-v1.js?v=20260828-v1" defer></script>'
+
+          if not Path("assets/digiy-saly-baptiste-signature-v1.js").exists():
+              raise SystemExit("Saly signature component missing; installation stopped.")
+
+          changed = []
+          for name in targets:
+              path = Path(name)
+              if not path.exists():
+                  raise SystemExit(f"Required page missing: {name}")
+              text = path.read_text(encoding="utf-8")
+              if "digiy-saly-baptiste-signature-v1.js" in text:
+                  print(f"OK already installed: {name}")
+                  continue
+              if "</body>" not in text:
+                  raise SystemExit(f"No </body> marker in {name}")
+              head, tail = text.rsplit("</body>", 1)
+              text = head.rstrip() + "\n" + marker + "\n</body>" + tail
+              path.write_text(text, encoding="utf-8")
+              changed.append(name)
+              print(f"INSTALLED: {name}")
+
+          print("Changed files:", ", ".join(changed) if changed else "none")
+          PY
+
+      - name: Verify protected structure
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          index = Path("index.html").read_text(encoding="utf-8")
+          territoire = Path("territoire.html").read_text(encoding="utf-8")
+          saly = Path("saly.html").read_text(encoding="utf-8")
+          checks = {
+              "index PWA manifest": '/manifest.json?v=20260824-tarif-unique' in index,
+              "index service worker": '/sw.js?v=20260824-tarif-unique' in index,
+              "Sarlat signature preserved": 'digiy-sarlat-baptiste-signature-v1.js' in index,
+              "territory runtime preserved": 'digiy-territoire-runtime-v1.js' in territoire,
+              "Petite Côte config preserved": 'digiy-petite-cote-config-v1.js' in territoire and 'digiy-petite-cote-config-v1.js' in saly,
+              "Saly signature index": 'digiy-saly-baptiste-signature-v1.js' in index,
+              "Saly signature territory": 'digiy-saly-baptiste-signature-v1.js' in territoire,
+              "Saly signature page": 'digiy-saly-baptiste-signature-v1.js' in saly,
+          }
+          bad = [k for k,v in checks.items() if not v]
+          for k,v in checks.items(): print(('OK  ' if v else 'FAIL'), k)
+          if bad: raise SystemExit('Verification failed: ' + ', '.join(bad))
+          PY
+
+      - name: Commit installed loaders
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No page needed an update."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html territoire.html saly.html
+          git commit -m "Install Chez Baptiste Saly card signature [skip ci]"
+          git push
