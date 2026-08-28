@@ -204,6 +204,8 @@
     .territoryCard>strong{font-size:21px;line-height:1.04;font-weight:1000}
     .territoryCard>small{color:var(--soft);font-size:11.5px;line-height:1.45;font-weight:850}
     .territoryBtn{margin-top:auto;min-height:44px;padding:10px 13px;border-radius:999px;border:1px solid rgba(250,204,21,.62);background:linear-gradient(135deg,rgba(14,116,144,.34),rgba(22,163,74,.28),rgba(202,138,4,.24));display:flex;align-items:center;justify-content:center;text-align:center;font-size:10.5px;font-weight:1000;color:#fff7d6}
+    .territoryPhoto{display:block;width:100%;height:150px;border-radius:17px;overflow:hidden;border:1px solid rgba(125,211,252,.30);background:rgba(3,18,13,.45)}
+    .territoryPhoto img{width:100%;height:100%;object-fit:cover;display:block}
 
     .supportNote{margin-top:11px;color:var(--soft);font-size:11px;line-height:1.45;font-weight:850;text-align:center}
 
@@ -251,6 +253,7 @@
       .publicLeadDoor{grid-template-columns:50px 1fr}.publicLeadIcon{width:50px;height:50px}.publicLeadBtn{grid-column:1/-1;width:100%}
       .hubDoor{grid-template-columns:50px 1fr}.hubIcon{width:50px;height:50px}.hubBtn{grid-column:1/-1;width:100%}
       .territoryGrid{grid-template-columns:1fr}
+      .territoryPhotoSaly,.territoryPhotoDakar{height:auto;aspect-ratio:4/5}.territoryPhotoFrance{height:auto;aspect-ratio:4/3}
     }
     @media(max-width:560px){
       .app{padding-left:9px;padding-right:9px}
@@ -408,7 +411,7 @@
       </a>
     </section>
 
-    <section class="section worldHub" aria-label="DIGIYLYFE HUB des territoires">
+    <section class="section worldHub" id="territoires" aria-label="DIGIYLYFE HUB des territoires">
       <div class="worldHead">
         <span class="worldKicker" data-i18n="worldTitle">DIGIYLYFE — HUB DES TERRITOIRES</span>
         <h2 data-i18n="worldLead">Un HUB des territoires. Des besoins locaux. Un contact direct.</h2>
@@ -417,15 +420,33 @@
       </div>
 
       <div class="territoryGrid">
-        <a class="territoryCard" href="./territoire.html?zone=petite-cote">
+        <a class="territoryCard" href="https://digiylyfe.com/territoire.html?zone=petite-cote">
           <span class="territoryCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b></span>
+          <picture class="territoryPhoto territoryPhotoSaly">
+            <source media="(max-width:760px)" srcset="https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-28-aout-2026-18_40_45.png"/>
+            <img src="https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-28-aout-2026-18_23_46.png" alt="Pêcheurs et pirogue sénégalaise · Petite Côte" loading="lazy" decoding="async"/>
+          </picture>
           <strong data-i18n="petiteTitle">DIGIY PETITE CÔTE</strong>
           <small data-i18n="petiteZones">AIBD · Ndayane · Popenguine · Somone · Ngaparou · Saly · Mbour</small>
           <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
         </a>
 
-        <a class="territoryCard" href="./france.html">
+        <a class="territoryCard" href="https://digiylyfe.com/territoire.html?zone=dakar">
+          <span class="territoryCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b></span>
+          <picture class="territoryPhoto territoryPhotoDakar">
+            <source media="(max-width:760px)" srcset="https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-28-aout-2026-18_54_21-2-1.png"/>
+            <img src="https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-28-aout-2026-19_00_50.png" alt="Dakar · Corniche et ville" loading="lazy" decoding="async"/>
+          </picture>
+          <strong>DIGIY DAKAR</strong>
+          <small>Dakar · capitale · territoire urbain</small>
+          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
+        </a>
+
+        <a class="territoryCard" href="https://digiylyfe.com/france.html">
           <span class="territoryCountry">🇫🇷 <b data-i18n="franceCountry">FRANCE</b></span>
+          <picture class="territoryPhoto territoryPhotoFrance">
+            <img src="https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-28-aout-2026-19_17_29.png" alt="Périgord · Vallée de la Dordogne" loading="lazy" decoding="async"/>
+          </picture>
           <strong data-i18n="franceTitle">DIGIY FRANCE</strong>
           <small data-i18n="franceZones">2 TERRITOIRES ACTIFS · Vallée de la Dordogne · Bordeaux</small>
           <span class="territoryBtn" data-i18n="openFrance">OUVRIR LA FRANCE</span>
@@ -555,6 +576,11 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
