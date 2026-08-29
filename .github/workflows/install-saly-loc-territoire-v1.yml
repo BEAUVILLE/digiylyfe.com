@@ -1,0 +1,55 @@
+name: Install SALY LOC territorial projection
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-saly-loc-territoire-v1.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Install SALY LOC loaders
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          territory = Path('territoire.html')
+          t = territory.read_text(encoding='utf-8')
+          loader = '<script src="/assets/digiy-territoire-petite-cote-loc-v1.js?v=20260829-v1" defer></script>'
+          marker = '<script src="/assets/digiy-territoire-petite-cote-projection-v1.js?v=20260827-master-i18n-v3" defer></script>'
+          if loader not in t:
+              if marker not in t:
+                  raise SystemExit('Territoire marker not found')
+              t = t.replace(marker, marker + '\n' + loader, 1)
+              territory.write_text(t, encoding='utf-8')
+
+          demo = Path('demo-petite-cote.html')
+          d = demo.read_text(encoding='utf-8')
+          demo_loader = '<script src="/assets/digiy-demo-loc-price-v1.js?v=20260829-v1"></script>'
+          if demo_loader not in d:
+              closing = '</body></html>'
+              if closing not in d:
+                  raise SystemExit('Demo closing marker not found')
+              d = d.replace(closing, demo_loader + closing, 1)
+              demo.write_text(d, encoding='utf-8')
+          PY
+      - name: Commit installation
+        run: |
+          if git diff --quiet; then
+            echo 'Nothing to install'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add territoire.html demo-petite-cote.html
+          git commit -m 'SALY LOC: show 28000 territorial examples [skip ci]'
+          git push origin main
