@@ -28,8 +28,8 @@ jobs:
 
           page = Path('territoire.html')
           t = page.read_text(encoding='utf-8')
-          old_loader = 'https://digiylyfe.com/assets/digiy-saly-baptiste-signature-v1.js?v=20260828-v1'
-          new_loader = 'https://digiylyfe.com/assets/digiy-saly-baptiste-signature-v1.js?v=20260829-territory-v2'
+          old_loader = '/assets/digiy-saly-baptiste-signature-v1.js?v=20260828-v1'
+          new_loader = '/assets/digiy-saly-baptiste-signature-v1.js?v=20260829-territory-v2'
           if old_loader not in t:
               raise SystemExit('Expected Saly signature loader not found in territoire.html; aborting.')
           t = t.replace(old_loader, new_loader, 1)
