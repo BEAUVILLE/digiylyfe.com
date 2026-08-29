@@ -1,11 +1,11 @@
-/* DIGIYLYFE — SALY / PETITE COTE · LOC V1
+/* DIGIYLYFE — PETITE COTE · LOC V1
  * Hébergements : présence réelle devant, 3 projections derrière.
  * LOC = 28 000 FCFA / mois. Les autres portes gardent leur tarification propre.
  */
 (function(){'use strict';
 var busy=false;
 function params(){try{return new URLSearchParams(location.search)}catch(e){return new URLSearchParams()}}
-function active(){var p=params();return (p.get('zone')||'')==='petite-cote'&&(p.get('local')||'')==='saly'&&(p.get('need')||'')==='accommodation'}
+function active(){var p=params();return (p.get('zone')||'')==='petite-cote'&&(p.get('need')||'')==='accommodation'}
 function lang(){var l=(document.documentElement.lang||params().get('lang')||'fr').slice(0,2).toLowerCase();return ['fr','en','es','pt','it','de','nl','ar'].indexOf(l)>=0?l:'fr'}
 var PRICE={fr:'28 000 FCFA / mois',en:'28,000 FCFA / month',es:'28 000 FCFA / mes',pt:'28 000 FCFA / mês',it:'28 000 FCFA / mese',de:'28.000 FCFA / Monat',nl:'28 000 FCFA / maand',ar:'28 000 FCFA / شهر'};
 function text(){var p=window.DIGIY_PETITE_COTE_I18N,x=p&&p.get?p.get(lang()):null;return x||null}
