@@ -2,7 +2,7 @@
    Installation permanente, sans cache de page et sans réécriture de route.
 */
 
-const DIGIY_PWA_VERSION = 'digiylyfe-pwa-20260824-pro-carnet-vitrine';
+const DIGIY_PWA_VERSION = 'digiylyfe-pwa-20260829-voix';
 
 self.addEventListener('install', () => {
   self.skipWaiting();
