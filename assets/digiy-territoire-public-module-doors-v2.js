@@ -1,17 +1,19 @@
-/* DIGIYLYFE — TERRITOIRE · PUBLIC MODULE DOORS V4
+/* DIGIYLYFE — TERRITOIRE · PUBLIC MODULE DOORS V5
  * Dordogne: document-capture opens the central territory module page before legacy listeners.
+ * LA VOIX is not a métier module: it always opens the search engine directly.
  * Other territories keep the current public module routing.
  * MARKET stays retired / absent.
  */
 (function(){'use strict';
 var LANGS=['fr','en','es','pt','de','it','nl','ar'];
+var VOICE='https://pro-action-digiy.digiylyfe.com/';
 var STANDARD={
   '⚡':'https://bonne-affaire.digiylyfe.com/master.html',
   '🚗':'https://driver-client.digiylyfe.com/master.html',
   '🔧':'https://build.digiylyfe.com/master.html',
   '🏠':'https://loc.digiylyfe.com/master.html',
   '🍽️':'https://resto.digiylyfe.com/master.html',
-  '🎙️':'https://digiylyfe.com/voix-business.html'
+  '🎙️':VOICE
 };
 var DORDOGNE={
   '⚡':'announcements',
@@ -21,8 +23,7 @@ var DORDOGNE={
   '🍽️':'food',
   '🛍️':'shopping',
   '💅':'beauty',
-  '💼':'jobs',
-  '🎙️':'guidance'
+  '💼':'jobs'
 };
 var RESA='https://resa-table-resto.digiylyfe.com/master.html';
 function params(){try{return new URLSearchParams(location.search)}catch(e){return new URLSearchParams()}}
@@ -36,7 +37,9 @@ document.addEventListener('click',function(e){
   var resa=e.target.closest&&e.target.closest('[data-digiy-resa-multi-door]');
   if(resa){e.preventDefault();e.stopImmediatePropagation();location.href=dordogneTarget('resa');return}
   var b=e.target.closest&&e.target.closest('button.need');if(!b)return;
-  var s=b.querySelector('strong'),icon=s&&s.textContent.trim(),module=DORDOGNE[icon];if(!module)return;
+  var s=b.querySelector('strong'),icon=s&&s.textContent.trim();
+  if(icon==='🎙️'){e.preventDefault();e.stopImmediatePropagation();location.href=standardTarget(VOICE);return}
+  var module=DORDOGNE[icon];if(!module)return;
   e.preventDefault();e.stopImmediatePropagation();location.href=dordogneTarget(module);
 },true);
 
