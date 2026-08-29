@@ -1,8 +1,9 @@
-/* DIGIYLYFE — chargeur vitrine stable 20260827
+/* DIGIYLYFE — chargeur vitrine stable 20260829
  * Core historique figé bit pour bit : /digiy-contact-global-core-20260824.js
  * Ajouts isolés : lien officiel PRO CARNET + GALERIE CHAUFFEURS + porte PARTENAIRE TERRAIN + territoire DAKAR.
  * Retrait publication : FG NAILS n’est plus exposé dans la vitrine publique.
  * Cotisation : Supabase décide quelles présences professionnelles restent publiques.
+ * Accueil : LA VOIX reste le moteur transversal, sans ancien libellé ACTION PRO.
  */
 (function(){
   'use strict';
@@ -311,6 +312,34 @@
     new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
   }
 
+  function installVoiceHomeLabel(){
+    var door=document.querySelector('a.publicLeadDoor[href^="https://pro-action-digiy.digiylyfe.com/"]');
+    if(!door)return;
+
+    var copy={
+      fr:{title:'LA VOIX',text:'Choisissez le pays et la zone, puis parlez ou écrivez votre besoin.'},
+      en:{title:'THE VOICE',text:'Choose the country and area, then speak or write what you need.'},
+      es:{title:'LA VOZ',text:'Elija el país y la zona, luego hable o escriba lo que necesita.'},
+      pt:{title:'A VOZ',text:'Escolha o país e a zona, depois fale ou escreva o que precisa.'},
+      it:{title:'LA VOCE',text:'Scegliete il paese e la zona, poi parlate o scrivete ciò che cercate.'},
+      de:{title:'DIE STIMME',text:'Wählen Sie Land und Gebiet, dann sagen oder schreiben Sie, was Sie brauchen.'},
+      nl:{title:'DE STEM',text:'Kies het land en gebied en spreek of schrijf daarna wat u nodig hebt.'},
+      ar:{title:'الصوت',text:'اختر البلد والمنطقة، ثم تحدث أو اكتب ما تحتاجه.'}
+    };
+
+    function refresh(){
+      var t=copy[currentLang()]||copy.fr;
+      var title=door.querySelector('[data-i18n="voicePublicTitle"]');
+      var text=door.querySelector('[data-i18n="voicePublicText"]');
+      if(title)title.textContent=t.title;
+      if(text)text.textContent=t.text;
+      door.setAttribute('aria-label',t.title);
+    }
+
+    refresh();
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+  }
+
   function installExtras(){
     retireFgNails();
     applySupabasePresenceGate();
@@ -318,10 +347,12 @@
     installDriverGalleryLink();
     installPartnerTerrainDoor();
     installDakarTerritoryDoor();
+    installVoiceHomeLabel();
   }
 
   retireFgNails();
   applySupabasePresenceGate();
+  installVoiceHomeLabel();
 
   var core=document.createElement('script');
   core.src='/digiy-contact-global-core-20260824.js?v=20260824';
