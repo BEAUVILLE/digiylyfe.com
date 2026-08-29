@@ -164,13 +164,13 @@
     .section h2{margin:0;font-size:clamp(23px,5vw,34px);line-height:1;font-weight:1000;letter-spacing:-.035em}
     .sectionHead p{margin:0;color:var(--soft);font-size:12px;line-height:1.35;font-weight:850;text-align:right}
 
-    .proofGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
-    .proofCard{min-height:128px;padding:13px;border-radius:19px;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;gap:5px;transition:transform .15s ease,border-color .15s ease}
-    .proofCard:hover{transform:none;border-color:rgba(246,196,83,.65)}
-    .proofCard i{font-style:normal;font-size:25px}
-    .proofCard strong{font-size:15px;font-weight:1000}
-    .proofCard small{color:var(--soft);font-size:11px;line-height:1.32;font-weight:850}
-    .proofCard b{margin-top:auto;color:#fff3cf;font-size:10.5px;font-weight:1000}
+    .exampleGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+    .exampleCard{min-height:128px;padding:13px;border-radius:19px;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;gap:5px;transition:transform .15s ease,border-color .15s ease}
+    .exampleCard:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.65)}
+    .exampleCard i{font-style:normal;font-size:25px}
+    .exampleCard strong{font-size:15px;font-weight:1000}
+    .exampleCard small{color:var(--soft);font-size:11px;line-height:1.32;font-weight:850}
+    .exampleCard b{margin-top:auto;color:#fff3cf;font-size:10.5px;font-weight:1000}
 
     .proofAction{margin-top:14px;padding:13px;border-radius:20px;border:1px solid rgba(246,196,83,.34);background:linear-gradient(145deg,rgba(246,196,83,.10),rgba(34,197,94,.08));display:grid;grid-template-columns:1fr auto;gap:9px;align-items:center}
     .proofAction span{color:var(--soft);font-size:12px;line-height:1.35;font-weight:900}
@@ -248,7 +248,7 @@
     @media(max-width:760px){
       .offer{grid-template-columns:1fr}.price{text-align:center;padding-top:11px;border-top:1px solid rgba(6,20,15,.22)}
       .features{grid-template-columns:repeat(2,1fr)}
-      .proofGrid{grid-template-columns:repeat(2,1fr)}
+      .exampleGrid{grid-template-columns:repeat(2,1fr)}
       .publicGrid{grid-template-columns:repeat(3,1fr)}
       .publicLeadDoor{grid-template-columns:50px 1fr}.publicLeadIcon{width:50px;height:50px}.publicLeadBtn{grid-column:1/-1;width:100%}
       .hubDoor{grid-template-columns:50px 1fr}.hubIcon{width:50px;height:50px}.hubBtn{grid-column:1/-1;width:100%}
@@ -266,11 +266,11 @@
       .ctaRow{grid-template-columns:1fr}.cta{min-height:54px}
       .proofAction{grid-template-columns:1fr;text-align:center}.proofAction .cta{min-width:0;width:100%}
       .sectionHead{display:block}.sectionHead p{margin-top:6px;text-align:left}
-      .proofGrid{grid-template-columns:1fr 1fr}.proofCard{min-height:116px}
+      .exampleGrid{grid-template-columns:1fr 1fr}.exampleCard{min-height:116px}
       .publicGrid{grid-template-columns:repeat(2,1fr)}
     }
-    @media(max-width:370px){.brand small{display:none}.proofGrid,.publicGrid{grid-template-columns:1fr}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.proofCard{transition:none}}
+    @media(max-width:370px){.brand small{display:none}.exampleGrid,.publicGrid{grid-template-columns:1fr}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.exampleCard{transition:none}}
 
     /* --- Favoris terrain (étoile en haut, moins de scroll) --- */
     .digiyFavoris{margin:0 0 12px;padding:11px 12px;border:1px solid rgba(246,196,83,.42);border-radius:20px;background:linear-gradient(145deg,rgba(246,196,83,.10),rgba(34,197,94,.06),rgba(255,255,255,.03))}
@@ -327,10 +327,10 @@
       padding-bottom:11px;
       border-bottom:1px solid rgba(246,196,83,.20);
     }
-    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofGrid{
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .exampleGrid{
       gap:10px;
     }
-    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard{
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .exampleCard{
       min-height:136px;
       padding:14px 13px 13px 16px;
       border-radius:16px;
@@ -339,26 +339,26 @@
       background:linear-gradient(145deg,rgba(255,255,255,.070),rgba(246,196,83,.035));
       box-shadow:0 9px 20px rgba(0,0,0,.14);
     }
-    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard:hover{
-      transform:none;
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .exampleCard:hover{
+      transform:translateY(-2px);
       border-color:rgba(246,196,83,.62);
       border-left-color:var(--gold);
       background:linear-gradient(145deg,rgba(255,255,255,.090),rgba(246,196,83,.055));
     }
-    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard i{
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .exampleCard i{
       width:38px;height:38px;border-radius:12px;
       display:grid;place-items:center;
       font-size:21px;
       border:1px solid rgba(246,196,83,.28);
       background:rgba(246,196,83,.09);
     }
-    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard strong{
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .exampleCard strong{
       margin-top:2px;font-size:15px;line-height:1.08;
     }
-    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard small{
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .exampleCard small{
       font-size:10.8px;
     }
-    .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard b{
+    .section[aria-label="Preuves terrain DIGIYLYFE"] .exampleCard b{
       padding-top:8px;
       border-top:1px solid rgba(246,196,83,.14);
       color:#ffe8a1;
@@ -478,11 +478,11 @@
     }
 
     @media(max-width:560px){
-      .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard{
+      .section[aria-label="Preuves terrain DIGIYLYFE"] .exampleCard{
         min-height:122px;
         padding:12px 11px 11px 14px;
       }
-      .section[aria-label="Preuves terrain DIGIYLYFE"] .proofCard i{
+      .section[aria-label="Preuves terrain DIGIYLYFE"] .exampleCard i{
         width:34px;height:34px;font-size:19px;border-radius:10px;
       }
       .section[aria-label="Portes publiques DIGIYLYFE"] .publicLeadDoor{
@@ -502,7 +502,28 @@
       .worldHub .territoryCard>strong{font-size:21px}
     }
 
-  </style>
+  
+
+    /* === V4 · EXEMPLES TOTALEMENT ISOLES DU RUNTIME DIGIY === */
+    .exampleGrid,
+    .exampleGrid *,
+    .exampleGrid *::before,
+    .exampleGrid *::after{
+      animation:none !important;
+      transition:none !important;
+    }
+    .exampleCard,
+    .exampleCard:hover,
+    .exampleCard:focus,
+    .exampleCard:active{
+      transform:none !important;
+    }
+    .exampleCard{
+      position:relative;
+      contain:layout paint;
+      will-change:auto !important;
+    }
+</style>
 </head>
 <body>
   <main class="app" id="haut">
@@ -579,11 +600,11 @@
         <h2 data-i18n="proofTitle">Déjà sur le terrain</h2>
         <p data-i18n="proofLead">Des activités différentes. Une même logique : être visible et joignable directement.</p>
       </div>
-      <div class="proofGrid">
-        <a class="proofCard" href="https://astou-boutique.digiylyfe.com/" aria-label="Ouvrir Astou Boutique"><i aria-hidden="true">🛍️</i><strong>Astou Boutique</strong><small data-i18n="astouText">Boutique locale · Saly</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
-        <a class="proofCard" href="https://babacar-plombier-pro.digiylyfe.com/" aria-label="Ouvrir Babacar Plombier Pro"><i aria-hidden="true">🔧</i><strong>Babacar Plombier Pro</strong><small data-i18n="babacarText">Artisan · Saly</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
-        <a class="proofCard" href="https://sarlat-chez-baptiste.digiylyfe.com/" aria-label="Ouvrir Chez Baptiste à Sarlat"><i aria-hidden="true">🏠</i><strong>Chez Baptiste · Sarlat</strong><small>Chambre privée · Périgord Noir</small><b data-i18n="seeCard">Voir la fiche →</b></a>
-        <a class="proofCard" href="https://partenaire-lamine.digiylyfe.com/" aria-label="Ouvrir Lamine"><i aria-hidden="true">🚗</i><strong>Lamine</strong><small data-i18n="lamineText">Chauffeur privé · Petite Côte</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
+      <div class="exampleGrid">
+        <a class="exampleCard" href="https://astou-boutique.digiylyfe.com/" aria-label="Ouvrir Astou Boutique"><i aria-hidden="true">🛍️</i><strong>Astou Boutique</strong><small data-i18n="astouText">Boutique locale · Saly</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
+        <a class="exampleCard" href="https://babacar-plombier-pro.digiylyfe.com/" aria-label="Ouvrir Babacar Plombier Pro"><i aria-hidden="true">🔧</i><strong>Babacar Plombier Pro</strong><small data-i18n="babacarText">Artisan · Saly</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
+        <a class="exampleCard" href="https://sarlat-chez-baptiste.digiylyfe.com/" aria-label="Ouvrir Chez Baptiste à Sarlat"><i aria-hidden="true">🏠</i><strong>Chez Baptiste · Sarlat</strong><small>Chambre privée · Périgord Noir</small><b data-i18n="seeCard">Voir la fiche →</b></a>
+        <a class="exampleCard" href="https://partenaire-lamine.digiylyfe.com/" aria-label="Ouvrir Lamine"><i aria-hidden="true">🚗</i><strong>Lamine</strong><small data-i18n="lamineText">Chauffeur privé · Petite Côte</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
       </div>
       <div class="proofAction">
         <span data-i18n="proofInvite">Rejoignez la vitrine DIGIYLYFE avec votre carte de visite digitale.</span>
@@ -783,6 +804,33 @@ if ('serviceWorker' in navigator) {
 <script src="/assets/digiy-helage-signature-v1.js?v=20260829-v1" defer></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
