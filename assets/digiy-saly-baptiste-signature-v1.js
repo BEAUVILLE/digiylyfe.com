@@ -88,7 +88,7 @@
   function mountTerritory(){
     if(!/\/territoire\.html$/i.test(location.pathname))return false;
     var p=new URLSearchParams(location.search),zone=p.get('zone')||'',local=p.get('local')||'',need=p.get('need')||'';
-    if(zone!=='petite-cote'||local!=='saly'||(need&&need!=='accommodation'))return false;
+    if(zone!=='petite-cote'||(need&&need!=='accommodation'))return false;
     var grid=document.getElementById('results');if(!grid||document.querySelector('[data-digiy-saly-mount="territory"]'))return !!grid;
     var old=findReal(grid);if(!old)return false;old.replaceWith(makeMount('territory'));return true;
   }
