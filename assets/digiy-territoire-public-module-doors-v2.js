@@ -1,19 +1,19 @@
-/* DIGIYLYFE — TERRITOIRE · PUBLIC MODULE DOORS V2
- * Restore existing public vitrines (including 1/3 visual · 2/3 content cards).
- * TERRITOIRE remains the main entry and passes territory + local + lang.
+/* DIGIYLYFE — TERRITOIRE · PUBLIC MODULE DOORS V3
+ * TERRITOIRE remains the main entry.
+ * Each remaining public module opens its country/zone filtered 1/3-2/3 master.
  * MARKET is intentionally absent / retired.
  */
 (function(){'use strict';
 var LANGS=['fr','en','es','pt','de','it','nl','ar'];
 var MAP={
-  '⚡':'https://bonne-affaire.digiylyfe.com/',
-  '🚗':'https://driver-client.digiylyfe.com/',
-  '🔧':'https://build.digiylyfe.com/',
-  '🏠':'https://loc.digiylyfe.com/',
-  '🍽️':'https://resto.digiylyfe.com/',
-  '🎙️':'https://pro-action-digiy.digiylyfe.com/'
+  '⚡':'https://bonne-affaire.digiylyfe.com/master.html',
+  '🚗':'https://driver-client.digiylyfe.com/master.html',
+  '🔧':'https://build.digiylyfe.com/master.html',
+  '🏠':'https://loc.digiylyfe.com/master.html',
+  '🍽️':'https://resto.digiylyfe.com/master.html',
+  '🎙️':'https://digiylyfe.com/voix-business.html'
 };
-var RESA='https://resa-table-resto.digiylyfe.com/';
+var RESA='https://resa-table-resto.digiylyfe.com/master.html';
 function params(){try{return new URLSearchParams(location.search)}catch(e){return new URLSearchParams()}}
 function lang(){var p=params(),l=(p.get('lang')||document.documentElement.lang||'fr').slice(0,2).toLowerCase();return LANGS.indexOf(l)>=0?l:'fr'}
 function target(raw){var p=params(),u=new URL(raw),territory=p.get('zone')||'',local=p.get('local')||'';if(territory)u.searchParams.set('territory',territory);if(local)u.searchParams.set('local',local);u.searchParams.set('lang',lang());return u.toString()}
