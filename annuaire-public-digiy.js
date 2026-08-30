@@ -106,6 +106,25 @@
     },
 
     {
+      id: "mane-gning-nettoyage",
+      nom: "MANÉ & GNING",
+      titre: "Service de nettoyage à Saly / Mbour",
+      badge: "SERVICE · Nettoyage",
+      zone: "Saly · Mbour · Petite Côte",
+      url: "https://mane-gning.digiylyfe.com/",
+      type: "fiche",
+      statut: "public",
+      categories: ["service", "nettoyage", "entretien", "hotel", "résidence", "maison"],
+      zones: ["saly", "mbour", "petite cote", "petite côte"],
+      mots: [
+        "mané", "mane", "gning", "service de nettoyage", "prestation de service",
+        "prestation de nettoyage", "nettoyage", "ménage", "menage", "entretien",
+        "hôtel", "hotel", "résidence", "residence", "maison", "moquette", "propreté", "proprete"
+      ],
+      description:
+        "Service de nettoyage à Saly et Mbour pour hôtels, résidences, maisons, moquettes et entretien."
+    },
+    {
       id: "digiy-solaire",
       nom: "DIGIY Solaire",
       titre: "Solution solaire",
@@ -284,5 +303,5 @@
     }
   ];
 
-  window.DIGIY_ANNUAIRE_PUBLIC_VERSION = "safe-20260614";
+  window.DIGIY_ANNUAIRE_PUBLIC_VERSION = "safe-20260830-mane-gning";
 })();
