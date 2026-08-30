@@ -32,15 +32,39 @@ jobs:
           test -s assets/territoires/perigord-dordogne.png
           test -s assets/territoires/bordeaux.png
 
-      - name: Publier les medias sur digiylyfe.com
+      - name: Basculer l index vers les medias locaux
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          replacements = {
+            'https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-28-aout-2026-18_23_46.png': '/assets/territoires/petite-cote-desktop.png',
+            'https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-28-aout-2026-18_40_45.png': '/assets/territoires/petite-cote-mobile.png',
+            'https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-28-aout-2026-19_00_50.png': '/assets/territoires/dakar-desktop.png',
+            'https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-28-aout-2026-18_54_21-2-1.png': '/assets/territoires/dakar-mobile.png',
+            'https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-28-aout-2026-19_17_29.png': '/assets/territoires/perigord-dordogne.png',
+            'https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-28-aout-2026-20_18_55.png': '/assets/territoires/bordeaux.png',
+          }
+          for old, new in replacements.items():
+            if old not in s:
+              raise SystemExit(f'URL source introuvable dans index.html: {old}')
+            s = s.replace(old, new)
+          if 'ChatGPT-Image-28-aout-2026' in s:
+            raise SystemExit('Une reference ChatGPT-Image reste dans index.html')
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Publier les medias et l index
         run: |
           set -euo pipefail
           git config user.name 'DIGIYLYFE Media Bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add assets/territoires
+          git add assets/territoires index.html
           if git diff --cached --quiet; then
             echo 'Aucun changement a publier.'
             exit 0
           fi
-          git commit -m 'Media: rapatrier les visuels territoires sur digiylyfe.com'
+          git commit -m 'Media: servir les territoires depuis digiylyfe.com'
           git push
