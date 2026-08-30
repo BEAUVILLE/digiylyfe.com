@@ -1,0 +1,47 @@
+name: Retirer override nettoyage
+
+on:
+  push:
+    paths:
+      - '.github/workflows/retirer-override-nettoyage-temp.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restaurer layout MASTER commun
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('assets/digiy-master-ui-v1.css')
+          s=p.read_text(encoding='utf-8')
+          marker='/* CLEANING VISUAL MASTER V2 */'
+          if marker in s:
+              s=s.split(marker,1)[0].rstrip()+"\n"
+          p.write_text(s,encoding='utf-8')
+          p=Path('nettoyage-master.html')
+          s=p.read_text(encoding='utf-8').replace('digiy-master-ui-v1.css?v=20260830-cleaning-v2','digiy-master-ui-v1.css?v=20260830-cleaning-v3')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Vérifier
+        run: |
+          set -euo pipefail
+          ! grep -F 'CLEANING VISUAL MASTER V2' assets/digiy-master-ui-v1.css
+          grep -F 'digiy-master-ui-v1.css?v=20260830-cleaning-v3' nettoyage-master.html
+          grep -F 'grid-template-columns:34% 66%' assets/digiy-public-module-master-v2.js
+          grep -F 'grid-template-columns:32% 68%' assets/digiy-public-module-master-v2.js
+      - name: Publier et nettoyer
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/retirer-override-nettoyage-temp.yml
+          git config user.name 'DIGIYLYFE Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add assets/digiy-master-ui-v1.css nettoyage-master.html .github/workflows/retirer-override-nettoyage-temp.yml
+          git commit -m 'MASTER: restaurer layout commun nettoyage 1 tiers'
+          git push origin main
