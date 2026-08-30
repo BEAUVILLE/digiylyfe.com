@@ -1,0 +1,41 @@
+name: Aligner PWA V4 temporaire
+
+on:
+  push:
+    paths:
+      - '.github/workflows/aligner-pwa-v4-temp.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  align:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Aligner accueil sur PWA V4
+        run: |
+          set -e
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          old='/sw.js?v=20260830-territory-unified-v3'
+          new='/sw.js?v=20260830-territory-native-v4'
+          if old not in s and new not in s:
+              raise SystemExit('version PWA accueil inattendue')
+          s=s.replace(old,new)
+          p.write_text(s,encoding='utf-8')
+          PY
+          grep -F '/sw.js?v=20260830-territory-native-v4' index.html
+      - name: Publier et nettoyer
+        run: |
+          set -e
+          rm -f .github/workflows/aligner-pwa-v4-temp.yml
+          git config user.name 'DIGIYLYFE Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add index.html .github/workflows/aligner-pwa-v4-temp.yml
+          git commit -m 'PWA aligner accueil et territoire sur V4'
+          git push origin main
