@@ -40,9 +40,9 @@ document.addEventListener('click',function(e){
   e.preventDefault();e.stopImmediatePropagation();location.href=target(raw);
 },true);
 
-function wire(b,icon){if(!b||b.hasAttribute('data-digiy-public-module-door'))return;b.setAttribute('data-digiy-public-module-door',icon);b.addEventListener('click',function(e){if(isDordogne())return;e.preventDefault();e.stopImmediatePropagation();location.href=target(STANDARD[icon])},true)}
+function wire(b,icon,raw){if(!b||!raw||b.hasAttribute('data-digiy-public-module-door'))return;b.setAttribute('data-digiy-public-module-door',icon);b.addEventListener('click',function(e){if(isDordogne())return;e.preventDefault();e.stopImmediatePropagation();location.href=target(raw)},true)}
 function wireResa(root){var a=root.querySelector('[data-digiy-resa-multi-door]');if(!a)return;a.href=target(RESA);a.addEventListener('click',function(e){if(isDordogne())return;e.preventDefault();e.stopImmediatePropagation();location.href=target(RESA)},true)}
-function install(){var root=document.getElementById('needs');if(!root)return;Array.prototype.slice.call(root.querySelectorAll('button.need')).forEach(function(b){var s=b.querySelector('strong'),icon=s&&s.textContent.trim();if(STANDARD[icon])wire(b,icon)});wireResa(root)}
+function install(){var root=document.getElementById('needs');if(!root)return;Array.prototype.slice.call(root.querySelectorAll('button.need')).forEach(function(b){var s=b.querySelector('strong'),icon=s&&s.textContent.trim(),raw=STANDARD[icon]||SPECIAL[icon];if(raw)wire(b,icon,raw)});wireResa(root)}
 function boot(){install();var root=document.getElementById('needs');if(root)new MutationObserver(function(){setTimeout(install,0)}).observe(root,{childList:true,subtree:true});document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-lang],#zones'))setTimeout(install,80)});window.addEventListener('popstate',function(){setTimeout(install,50)})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();

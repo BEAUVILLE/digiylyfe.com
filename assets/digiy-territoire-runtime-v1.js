@@ -30,6 +30,17 @@ nl:{tag:'Professionals uit de regio, rechtstreeks bereikbaar.',path:'Gebied → 
 ar:{tag:'مهنيون من المنطقة يمكن التواصل معهم مباشرة.',path:'المنطقة ← الحاجة ← النطاق ← المهني ← تواصل مباشر',need:'ما الذي تبحث عنه؟',zone:'حدد المنطقة',all:'كل المنطقة',results:'مهني متاح',empty:'لا يوجد مهني مطابق لهذا الاختيار بعد.',based:'مقره في',serves:'يعمل في',profile:'فتح',whatsapp:'واتساب',call:'اتصال',sourceLive:'بيانات المنطقة: Supabase',sourceFallback:'وضع احتياطي محلي',configError:'إعدادات المنطقة غير متاحة.',labels:{transport:'التنقل',artisan:'العثور على حرفي',accommodation:'الإقامة أو الاستئجار',food:'الأكل أو الحجز',shopping:'الشراء محلياً',beauty:'الجمال والعافية',jobs:'وظائف ومهام',announcements:'إعلانات',guidance:'الصوت'}}
 };
 
+var NEED_META={
+fr:{transport:'DRIVER · Chauffeurs & mobilité',artisan:'BUILD · Artisans & chantiers',accommodation:'LOC · Logements & locations',food:'RESTO · Restaurants & réservations',shopping:'MON COMMERCE · Boutiques & produits',beauty:'BEAUTÉ & BIEN-ÊTRE · Soins & rendez-vous',jobs:'JOBS · Emploi & missions',announcements:'BONNE AFFAIRE · Annonces & contact direct',guidance:'LA VOIX · ACTION PRO'},
+en:{transport:'DRIVER · Drivers & mobility',artisan:'BUILD · Trades & worksites',accommodation:'LOC · Accommodation & rentals',food:'RESTO · Restaurants & bookings',shopping:'MON COMMERCE · Shops & products',beauty:'BEAUTY & WELLNESS · Care & appointments',jobs:'JOBS · Jobs & missions',announcements:'BONNE AFFAIRE · Listings & direct contact',guidance:'THE VOICE · ACTION PRO'},
+es:{transport:'DRIVER · Conductores y movilidad',artisan:'BUILD · Artesanos y obras',accommodation:'LOC · Alojamientos y alquileres',food:'RESTO · Restaurantes y reservas',shopping:'MON COMMERCE · Tiendas y productos',beauty:'BELLEZA Y BIENESTAR · Cuidados y citas',jobs:'JOBS · Empleo y misiones',announcements:'BONNE AFFAIRE · Anuncios y contacto directo',guidance:'LA VOZ · ACTION PRO'},
+pt:{transport:'DRIVER · Motoristas e mobilidade',artisan:'BUILD · Artesãos e obras',accommodation:'LOC · Alojamentos e alugueres',food:'RESTO · Restaurantes e reservas',shopping:'MON COMMERCE · Lojas e produtos',beauty:'BELEZA E BEM-ESTAR · Cuidados e marcações',jobs:'JOBS · Emprego e missões',announcements:'BONNE AFFAIRE · Anúncios e contacto direto',guidance:'A VOZ · ACTION PRO'},
+de:{transport:'DRIVER · Fahrer & Mobilität',artisan:'BUILD · Handwerk & Baustellen',accommodation:'LOC · Unterkünfte & Vermietung',food:'RESTO · Restaurants & Reservierungen',shopping:'MON COMMERCE · Geschäfte & Produkte',beauty:'BEAUTY & WELLNESS · Pflege & Termine',jobs:'JOBS · Arbeit & Aufträge',announcements:'BONNE AFFAIRE · Anzeigen & Direktkontakt',guidance:'DIE STIMME · ACTION PRO'},
+it:{transport:'DRIVER · Autisti e mobilità',artisan:'BUILD · Artigiani e cantieri',accommodation:'LOC · Alloggi e affitti',food:'RESTO · Ristoranti e prenotazioni',shopping:'MON COMMERCE · Negozi e prodotti',beauty:'BELLEZZA E BENESSERE · Trattamenti e appuntamenti',jobs:'JOBS · Lavoro e incarichi',announcements:'BONNE AFFAIRE · Annunci e contatto diretto',guidance:'LA VOCE · ACTION PRO'},
+nl:{transport:'DRIVER · Chauffeurs & mobiliteit',artisan:'BUILD · Vakmensen & werken',accommodation:'LOC · Verblijf & verhuur',food:'RESTO · Restaurants & reservaties',shopping:'MON COMMERCE · Winkels & producten',beauty:'BEAUTY & WELLNESS · Verzorging & afspraken',jobs:'JOBS · Werk & opdrachten',announcements:'BONNE AFFAIRE · Advertenties & direct contact',guidance:'DE STEM · ACTION PRO'},
+ar:{transport:'DRIVER · سائقون وتنقل',artisan:'BUILD · حرفيون وأشغال',accommodation:'LOC · سكن وإيجار',food:'RESTO · مطاعم وحجوزات',shopping:'MON COMMERCE · متاجر ومنتجات',beauty:'الجمال والعافية · عناية ومواعيد',jobs:'JOBS · وظائف ومهام',announcements:'BONNE AFFAIRE · إعلانات وتواصل مباشر',guidance:'الصوت · ACTION PRO'}
+};
+
 var FALLBACK=[
 {id:'baptiste-driver',territoryId:'petite-cote',name:'Chauffeur Baptiste',need:'transport',mainZone:'saly',zones:['aibd','saly','mbour'],services:['Chauffeur ambassadeur','Transport sur réservation'],url:'https://digiy-driver-part-bapt.digiylyfe.com/'},
 {id:'lamine',territoryId:'petite-cote',name:'Lamine — Chauffeur privé',need:'transport',mainZone:'saly',zones:['aibd','saly','mbour'],services:['Transfert AIBD','Courses locales'],url:'https://partenaire-lamine.digiylyfe.com/'},
@@ -144,8 +155,15 @@ function renderHeader(){
 }
 
 function renderNeeds(){
-  var root=document.getElementById('needs'),tr=T[lang];root.innerHTML='';
-  NEEDS.forEach(function(n){var b=document.createElement('button');b.type='button';b.className='need'+(state.need===n[0]?' active':'');var ic=document.createElement('strong'),tx=document.createElement('span');ic.textContent=n[1];tx.textContent=tr.labels[n[0]]||n[0];b.append(ic,tx);b.addEventListener('click',function(){if(n[0]==='guidance'){location.href='https://pro-action-digiy.digiylyfe.com/';return}state.need=state.need===n[0]?'':n[0];syncUrl();renderNeeds();renderResults();revealResults()});root.appendChild(b)});
+  var root=document.getElementById('needs'),tr=T[lang],meta=(NEED_META[lang]||NEED_META.fr);root.innerHTML='';
+  NEEDS.forEach(function(n){
+    var b=document.createElement('button');b.type='button';b.className='need'+(state.need===n[0]?' active':'');b.setAttribute('data-digiy-native-door','1');
+    var ic=document.createElement('strong'),tx=document.createElement('span'),sm=document.createElement('small');
+    ic.textContent=n[1];tx.textContent=tr.labels[n[0]]||n[0];sm.textContent=meta[n[0]]||'';
+    b.append(ic,tx,sm);
+    b.addEventListener('click',function(){if(n[0]==='guidance'){location.href='https://pro-action-digiy.digiylyfe.com/';return}state.need=state.need===n[0]?'':n[0];syncUrl();renderNeeds();renderResults();revealResults()});
+    root.appendChild(b)
+  });
 }
 
 function renderZones(){
