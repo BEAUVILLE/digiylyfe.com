@@ -12,6 +12,8 @@ var STANDARD={
   '⚡':'https://bonne-affaire.digiylyfe.com/master.html',
   '🚗':'https://driver-client.digiylyfe.com/master.html',
   '🔧':'https://build.digiylyfe.com/master.html',
+  '🧹':'https://digiylyfe.com/nettoyage-master.html',
+  '🏛️':'https://digiylyfe.com/services-professionnels-master.html',
   '🏠':'https://loc.digiylyfe.com/master.html',
   '🍽️':'https://resto.digiylyfe.com/master.html',
   '🎙️':VOICE
