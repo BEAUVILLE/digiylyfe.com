@@ -1,0 +1,39 @@
+name: Native local needs v2
+on:
+  push:
+    paths:
+      - '.github/workflows/native-local-needs-v2-temp.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply native local needs patch
+        run: python3 .github/scripts/native-local-needs-v2.py
+      - name: Verify
+        run: |
+          set -euo pipefail
+          grep -F "var LOCAL_NEEDS={'petite-cote':[['cleaning','🧹'],['professional','🏛️']]};" assets/digiy-territoire-runtime-v1.js
+          grep -F "professional:'Services professionnels'" assets/digiy-territoire-runtime-v1.js
+          grep -F "cleaning:'Service de nettoyage'" assets/digiy-territoire-runtime-v1.js
+          grep -F "'🧹':'https://digiylyfe.com/nettoyage-master.html'" assets/digiy-territoire-public-module-doors-v2.js
+          grep -F "'🏛️':'https://digiylyfe.com/services-professionnels-master.html'" assets/digiy-territoire-public-module-doors-v2.js
+          ! grep -F 'digiy-territoire-petite-cote-cleaning-v1.js' territoire.html
+          ! grep -F 'digiy-territoire-petite-cote-professional-services-v1.js' territoire.html
+          grep -F 'digiy-territoire-runtime-v1.js?v=20260830-native-local-v2' territoire.html
+          grep -F 'digiy-territoire-public-module-doors-v2.js?v=20260830-master-native-v2' territoire.html
+          grep -F 'digiylyfe-pwa-20260830-master-ui-v8' sw.js
+          node --check assets/digiy-territoire-runtime-v1.js
+          node --check assets/digiy-territoire-public-module-doors-v2.js
+      - name: Publish and cleanup
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/native-local-needs-v2-temp.yml .github/scripts/native-local-needs-v2.py
+          git config user.name 'DIGIYLYFE Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add assets/digiy-territoire-runtime-v1.js assets/digiy-territoire-public-module-doors-v2.js territoire.html index.html nettoyage-master.html services-professionnels-master.html sw.js .github/workflows/native-local-needs-v2-temp.yml .github/scripts/native-local-needs-v2.py
+          git commit -m 'Territoire: intégrer nativement nettoyage et services professionnels'
+          git push origin main
