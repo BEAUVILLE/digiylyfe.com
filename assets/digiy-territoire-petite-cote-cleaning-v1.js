@@ -1,5 +1,5 @@
 /* DIGIYLYFE — PETITE COTE · porte SERVICE DE NETTOYAGE V1
- * Porte territoriale locale vers la fiche publique MANÉ & GNING.
+ * Porte territoriale locale vers le MASTER NETTOYAGE, puis MANÉ & GNING.
  * Visible uniquement sur DIGIY PETITE CÔTE.
  */
 (function(){'use strict';

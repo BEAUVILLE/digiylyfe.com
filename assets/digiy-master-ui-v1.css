@@ -140,3 +140,9 @@ body[data-digiy-master-ui="beauty"] .langs button.active{background:linear-gradi
   body[data-digiy-module] .wrap,body[data-digiy-master-ui] .wrap,body[data-digiy-master-ui="commerce"] main{width:min(100% - 18px,1100px)!important}
 }
 html[dir="rtl"] body[data-digiy-module] .rule{border-left:0!important;border-right:3px solid var(--digiy-gold)!important}
+
+/* COMMERCE CASCADE FIX V2 */
+body[data-digiy-master-ui="commerce"] header .wrap>a:first-child{border:1px solid rgba(246,196,83,.45)!important;background:rgba(255,255,255,.09)!important;color:#fff3cf!important;box-shadow:none!important}
+body[data-digiy-master-ui="commerce"] .join{background:rgba(255,255,255,.065)!important;color:var(--digiy-text)!important;border:1px solid rgba(246,196,83,.34)!important}
+body[data-digiy-master-ui="commerce"] .join a{background:linear-gradient(135deg,var(--digiy-gold),var(--digiy-green))!important;color:#06140f!important}
+body[data-digiy-master-ui="commerce"] .section .ico{background:rgba(94,234,212,.12)!important;color:var(--digiy-text)!important}
