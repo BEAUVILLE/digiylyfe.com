@@ -20,11 +20,12 @@ var I18N={
  ar:{back:'← العودة إلى المنطقة',real:'حضور حقيقي',realLead:'فقط الأعضاء المرتبطون فعلياً بهذا البلد وهذه المنطقة.',none:'لا يوجد عضو حقيقي في هذه المنطقة حالياً.',open:'أماكن متاحة',openLead:'هذه البطاقات تمثل أنشطة متاحة وليست مهنيين وهميين.',member:'عضو DIGIYLYFE',place:'مكان متاح',view:'فتح البطاقة ←',take:'خذ مكاني ←',zero:'عمولة 0٪ · تواصل مباشر',choose:'اختر منطقة من صفحة المناطق.',country:'البلد',zone:'المنطقة',local:'القطاع'}
 };
 var U=I18N[lang]||I18N.fr,M=META[territory]||null;
-var TITLES={transport:'DIGIY DRIVER',artisan:'DIGIY BUILD · ARTISANS',accommodation:'DIGIY LOC · DORMIR & LOUER',food:'DIGIY RESTO · MANGER',announcements:'BONNE AFFAIRE · ANNONCES',resa:'RÉSA MULTI · SERVICES',guidance:'LA VOIX DU BUSINESS'};
+var TITLES={transport:'DIGIY DRIVER',artisan:'DIGIY BUILD · ARTISANS',accommodation:'DIGIY LOC · DORMIR & LOUER',food:'DIGIY RESTO · MANGER',announcements:'BONNE AFFAIRE · ANNONCES',resa:'RÉSA MULTI · SERVICES',cleaning:'SERVICE DE NETTOYAGE',guidance:'LA VOIX DU BUSINESS'};
 var REAL=[
  {module:'transport',territory:'petite-cote',name:'Lamine',activity:'Chauffeur privé sur réservation',zone:'Saly · Mbour · AIBD · Petite Côte',image:'https://partenaire-lamine.digiylyfe.com/carte-visite.png',url:'https://partenaire-lamine.digiylyfe.com/',chips:['Transfert AIBD','Courses locales','Sur réservation']},
  {module:'transport',territory:'petite-cote',name:'Baptiste',activity:'Chauffeur ambassadeur · Adhérent DIGIYLYFE',zone:'Saly · Mbour · AIBD · Petite Côte',image:'https://digiy-driver-part-bapt.digiylyfe.com/carte-visite-baptiste-adherent.png',url:'https://digiy-driver-part-bapt.digiylyfe.com/',chips:['Transferts','Mise à disposition','Contact direct']},
  {module:'transport',territory:'petite-cote',name:'Nazir Driver',activity:'Chauffeur · Adhérent DIGIYLYFE',zone:'Saly · Mbour · AIBD · Petite Côte',image:'https://galerie-chauffeurs.digiylyfe.com/nazir-driver-card.svg',url:'https://galerie-chauffeurs.digiylyfe.com/nazir-driver.html',chips:['Trajets directs','Transferts aéroport','Mise à disposition']},
+ {module:'cleaning',territory:'petite-cote',name:'MANÉ & GNING',activity:'Service de nettoyage',zone:'Saly · Mbour · Petite Côte',image:'https://mane-gning.digiylyfe.com/assets/mane-gning/poster.avif',url:'https://mane-gning.digiylyfe.com/',chips:['Nettoyage','Ménage','Entretien','Contact direct']},
  {module:'artisan',territory:'petite-cote',name:'Babacar Plombier Pro',activity:'Plombier',zone:'Saly · Mbour · Petite Côte',image:'https://build.digiylyfe.com/babacar-plombier-pro.webp',url:'https://babacar-plombier-pro.digiylyfe.com/',chips:['Fuite & dépannage','Installation sanitaire','Sur devis']},
  {module:'artisan',territory:'petite-cote',name:'Kourant Électricien',activity:'Électricien',zone:'Saly · Mbour · Petite Côte',image:'https://kourant.digiylyfe.com/carte-visite.png?v=20260714-v3',url:'https://kourant.digiylyfe.com/',chips:['Électricité','Dépannage','Installation']},
  {module:'artisan',territory:'petite-cote',name:'Mbaye Diouf',activity:'Bâtisseur',zone:'Saly · Mbour · Thiès · Petite Côte',image:'https://mbaye-macon.digiylyfe.com/carte-visite.png?v=20260714-v3',url:'https://mbaye-macon.digiylyfe.com/',chips:['Construction de villas','Rénovation','Piscines béton']},
@@ -39,6 +40,7 @@ var OPEN={
  accommodation:[['🏠','Appartement meublé'],['🏡','Villa / maison'],['🛏️','Chambre d’hôtes'],['🏨','Petit hôtel / résidence']],
  food:[['🍽️','Restaurant'],['🥪','Snack / fast-food'],['👨‍🍳','Traiteur & événements'],['🥐','Boulangerie / pâtisserie']],
  announcements:[['🚙','Véhicules & mobilité'],['🧰','Matériel professionnel'],['🏠','Maison & équipement'],['🎪','Services & événements']],
+ cleaning:[['🧹','Nettoyage maison'],['🏨','Hôtels & résidences'],['🏢','Bureaux & commerces'],['✨','Remise en état']],
  resa:[['🍽️','Table / restaurant'],['🚗','Trajet / transfert'],['💅','Onglerie / beauté'],['💆','Massage / bien-être'],['💇','Coiffure / soins'],['🎪','Prestataire événementiel']],
  guidance:[['🎙️','Parler de mon activité'],['🧭','Clarifier mon besoin'],['📝','Formuler ma demande']]
 };

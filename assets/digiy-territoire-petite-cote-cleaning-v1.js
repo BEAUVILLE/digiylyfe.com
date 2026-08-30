@@ -17,7 +17,7 @@ var TEXT={
 function params(){try{return new URLSearchParams(location.search)}catch(e){return new URLSearchParams()}}
 function active(){return (params().get('zone')||'')==='petite-cote'}
 function lang(){var l=(document.documentElement.lang||params().get('lang')||'fr').slice(0,2).toLowerCase();return LANGS.indexOf(l)>=0?l:'fr'}
-function target(l){var u=new URL('https://mane-gning.digiylyfe.com/');u.searchParams.set('lang',l||lang());return u.toString()}
+function target(l){var p=params(),u=new URL('https://digiylyfe.com/nettoyage-master.html');u.searchParams.set('territory','petite-cote');var local=p.get('local')||'';if(local)u.searchParams.set('local',local);u.searchParams.set('lang',l||lang());return u.toString()}
 function install(){
   var root=document.getElementById('needs');if(!root)return;
   var old=root.querySelector('[data-digiy-cleaning-door]');
