@@ -1,7 +1,8 @@
-/* DIGIYLYFE — TERRITOIRE · STYLE UNIFIÉ DES PORTES V2
+/* DIGIYLYFE — TERRITOIRE · STYLE UNIFIÉ DES PORTES V3
  * Une seule structure visuelle pour toutes les portes métier du territoire.
  * Référence : SERVICE DE NETTOYAGE = icône + titre + ligne métier/module.
  * Aucun routage ni moteur métier n'est modifié.
+ * V3 : observer limité aux enfants directs + écritures idempotentes.
  */
 (function(){'use strict';
 var STYLE_ID='digiyTerritoryUnifiedDoorsStyle';
@@ -36,16 +37,25 @@ function decorate(){
  var root=document.getElementById('needs');if(!root)return;
  var pack=META[lang()]||META.fr;
  root.querySelectorAll('.need').forEach(function(n){
-   n.setAttribute('data-digiy-unified-door-style','2');
+   if(n.getAttribute('data-digiy-unified-door-style')!=='3')n.setAttribute('data-digiy-unified-door-style','3');
    if(n.hasAttribute('data-digiy-cleaning-door')||n.hasAttribute('data-digiy-resa-multi-door'))return;
    var ic=n.querySelector('strong'),icon=ic&&ic.textContent.trim(),text=pack[icon];
    if(!text)return;
    var meta=n.querySelector('.digiyUnifiedDoorMeta');
    if(!meta){meta=document.createElement('small');meta.className='digiyUnifiedDoorMeta';n.appendChild(meta)}
-   meta.textContent=text;
+   if(meta.textContent!==text)meta.textContent=text;
  });
 }
 function apply(){installStyle();decorate()}
-function boot(){apply();var root=document.getElementById('needs');if(root)new MutationObserver(function(){decorate()}).observe(root,{childList:true,subtree:true});document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-lang]'))setTimeout(decorate,100)});window.addEventListener('popstate',function(){setTimeout(decorate,60)})}
+function boot(){
+ apply();
+ var root=document.getElementById('needs');
+ if(root)new MutationObserver(function(mutations){
+   var changed=mutations.some(function(m){return m.addedNodes&&m.addedNodes.length});
+   if(changed)decorate();
+ }).observe(root,{childList:true});
+ document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-lang]'))setTimeout(decorate,100)});
+ window.addEventListener('popstate',function(){setTimeout(decorate,60)});
+}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
