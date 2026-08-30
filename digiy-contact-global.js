@@ -1,6 +1,6 @@
-/* DIGIYLYFE — chargeur vitrine stable 20260829
+/* DIGIYLYFE — chargeur vitrine stable 20260830
  * Core historique figé bit pour bit : /digiy-contact-global-core-20260824.js
- * Ajouts isolés : lien officiel PRO CARNET + GALERIE CHAUFFEURS + porte PARTENAIRE TERRAIN + territoire DAKAR.
+ * Ajouts isolés : signature écosystème + lien officiel PRO CARNET + GALERIE CHAUFFEURS + porte PARTENAIRE TERRAIN + territoire DAKAR.
  * Retrait publication : FG NAILS n’est plus exposé dans la vitrine publique.
  * Cotisation : Supabase décide quelles présences professionnelles restent publiques.
  * Accueil : LA VOIX reste le moteur transversal, sans ancien libellé ACTION PRO.
@@ -340,6 +340,56 @@
     new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
   }
 
+  function installEcosystemSignature(){
+    var claim=document.querySelector('.brandClaim');
+    var title=claim&&claim.querySelector('h1');
+    if(!claim||!title)return;
+
+    var copy={
+      fr:'Tous les métiers. Tous les territoires. Un même écosystème.',
+      en:'Every profession. Every territory. One ecosystem.',
+      es:'Todos los oficios. Todos los territorios. Un mismo ecosistema.',
+      pt:'Todas as profissões. Todos os territórios. Um único ecossistema.',
+      it:'Tutte le professioni. Tutti i territori. Un unico ecosistema.',
+      de:'Alle Berufe. Alle Regionen. Ein gemeinsames Ökosystem.',
+      nl:'Alle beroepen. Alle gebieden. Eén ecosysteem.',
+      ar:'جميع المهن. جميع المناطق. منظومة واحدة.'
+    };
+
+    var line=claim.querySelector('[data-digiy-ecosystem-signature]');
+    if(!line){
+      line=document.createElement('div');
+      line.setAttribute('data-digiy-ecosystem-signature','1');
+      line.style.cssText='margin:12px auto 0;max-width:780px;color:#fff3cf;font-size:clamp(14px,3.2vw,20px);line-height:1.25;font-weight:1000;letter-spacing:-.01em;';
+      title.insertAdjacentElement('afterend',line);
+    }
+
+    function refresh(){
+      line.textContent=copy[currentLang()]||copy.fr;
+    }
+
+    refresh();
+    if(!line.getAttribute('data-digiy-ecosystem-observer')){
+      line.setAttribute('data-digiy-ecosystem-observer','1');
+      new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+    }
+
+    try{
+      var ld=Array.prototype.slice.call(document.querySelectorAll('script[type="application/ld+json"]')).find(function(node){
+        return (node.textContent||'').indexOf('https://digiylyfe.com/#organization')>-1;
+      });
+      if(ld){
+        var data=JSON.parse(ld.textContent);
+        var graph=data&&Array.isArray(data['@graph'])?data['@graph']:[];
+        var org=graph.find(function(item){return item&&item['@id']==='https://digiylyfe.com/#organization';});
+        if(org){
+          org.description='DIGIYLYFE est l’écosystème numérique transversal du professionnel : tous les métiers, tous les territoires, une même architecture. Identité, données, relation client directe, carte digitale, QR, 8 langues, paiement direct et 0 % de commission DIGIYLYFE.';
+          ld.textContent=JSON.stringify(data);
+        }
+      }
+    }catch(error){}
+  }
+
   function installExtras(){
     retireFgNails();
     applySupabasePresenceGate();
@@ -348,8 +398,10 @@
     installPartnerTerrainDoor();
     installDakarTerritoryDoor();
     installVoiceHomeLabel();
+    installEcosystemSignature();
   }
 
+  installEcosystemSignature();
   retireFgNails();
   applySupabasePresenceGate();
   installVoiceHomeLabel();
