@@ -50,7 +50,7 @@ jobs:
 
           if s.count('data-i18n="maneText"') != 1:
               raise SystemExit('Carte MANE GNING absente ou dupliquee')
-          if s.count('"maneText"') != 8:
+          if s.count('"maneText":') != 8:
               raise SystemExit('Les 8 traductions MANE GNING ne sont pas presentes')
           index.write_text(s, encoding='utf-8')
 
