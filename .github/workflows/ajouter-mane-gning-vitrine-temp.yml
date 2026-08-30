@@ -1,0 +1,121 @@
+name: Ajouter MANE GNING a la vitrine temporaire
+
+on:
+  push:
+    paths:
+      - '.github/workflows/ajouter-mane-gning-vitrine-temp.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ajouter:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Poser MANE GNING dans la vitrine et l annuaire
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          index = Path('index.html')
+          s = index.read_text(encoding='utf-8')
+
+          if 'https://mane-gning.digiylyfe.com/' not in s:
+              anchor = '<a class="exampleCard" href="https://babacar-plombier-pro.digiylyfe.com/" aria-label="Ouvrir Babacar Plombier Pro"><i aria-hidden="true">🔧</i><strong>Babacar Plombier Pro</strong><small data-i18n="babacarText">Artisan · Saly</small><b data-i18n="seeCard">Voir l’exemple →</b></a>'
+              card = '<a class="exampleCard" href="https://mane-gning.digiylyfe.com/" aria-label="Ouvrir MANÉ &amp; GNING — Service de nettoyage"><i aria-hidden="true">🧹</i><strong>MANÉ &amp; GNING</strong><small data-i18n="maneText">Service de nettoyage · Saly / Mbour</small><b data-i18n="seeCard">Voir l’exemple →</b></a>'
+              if s.count(anchor) != 1:
+                  raise SystemExit(f'Ancre Babacar inattendue: {s.count(anchor)}')
+              s = s.replace(anchor, anchor + '\n        ' + card, 1)
+
+          translations = {
+              'fr': ('"lamineText":"Chauffeur privé · Petite Côte","seeCard"', '"lamineText":"Chauffeur privé · Petite Côte","maneText":"Service de nettoyage · Saly / Mbour","seeCard"'),
+              'en': ('"lamineText":"Private driver · Petite Côte","seeCard"', '"lamineText":"Private driver · Petite Côte","maneText":"Cleaning service · Saly / Mbour","seeCard"'),
+              'es': ('"lamineText":"Conductor privado · Petite Côte","seeCard"', '"lamineText":"Conductor privado · Petite Côte","maneText":"Servicio de limpieza · Saly / Mbour","seeCard"'),
+              'pt': ('"lamineText":"Motorista privado · Petite Côte","seeCard"', '"lamineText":"Motorista privado · Petite Côte","maneText":"Serviço de limpeza · Saly / Mbour","seeCard"'),
+              'it': ('"lamineText":"Autista privato · Petite Côte","seeCard"', '"lamineText":"Autista privato · Petite Côte","maneText":"Servizio di pulizia · Saly / Mbour","seeCard"'),
+              'de': ('"lamineText":"Privatfahrer · Petite Côte","seeCard"', '"lamineText":"Privatfahrer · Petite Côte","maneText":"Reinigungsservice · Saly / Mbour","seeCard"'),
+              'nl': ('"lamineText":"Privéchauffeur · Petite Côte","seeCard"', '"lamineText":"Privéchauffeur · Petite Côte","maneText":"Schoonmaakservice · Saly / Mbour","seeCard"'),
+              'ar': ('"lamineText":"سائق خاص · بيتيت كوت","seeCard"', '"lamineText":"سائق خاص · بيتيت كوت","maneText":"خدمة تنظيف · سالي / مبور","seeCard"'),
+          }
+          for lang, (old, new) in translations.items():
+              if '"maneText"' not in s or new not in s:
+                  if s.count(old) != 1:
+                      raise SystemExit(f'Ancre traduction {lang} inattendue: {s.count(old)}')
+                  s = s.replace(old, new, 1)
+
+          if s.count('data-i18n="maneText"') != 1:
+              raise SystemExit('Carte MANE GNING absente ou dupliquee')
+          if s.count('"maneText"') != 8:
+              raise SystemExit(f'Traductions maneText attendues 8, trouvees {s.count(chr(34)+"maneText"+chr(34))}')
+          index.write_text(s, encoding='utf-8')
+
+          ann = Path('annuaire-public-digiy.js')
+          a = ann.read_text(encoding='utf-8')
+          if 'id: "mane-gning-nettoyage"' not in a:
+              anchor = '    {\n      id: "digiy-solaire",'
+              entry = '''    {
+      id: "mane-gning-nettoyage",
+      nom: "MANÉ & GNING",
+      titre: "Service de nettoyage à Saly / Mbour",
+      badge: "SERVICE · Nettoyage",
+      zone: "Saly · Mbour · Petite Côte",
+      url: "https://mane-gning.digiylyfe.com/",
+      type: "fiche",
+      statut: "public",
+      categories: ["service", "nettoyage", "entretien", "hotel", "résidence", "maison"],
+      zones: ["saly", "mbour", "petite cote", "petite côte"],
+      mots: [
+        "mané",
+        "mane",
+        "gning",
+        "service de nettoyage",
+        "prestation de service",
+        "prestation de nettoyage",
+        "nettoyage",
+        "ménage",
+        "menage",
+        "entretien",
+        "hôtel",
+        "hotel",
+        "résidence",
+        "residence",
+        "maison",
+        "moquette",
+        "propreté",
+        "proprete"
+      ],
+      description:
+        "Service de nettoyage à Saly et Mbour pour hôtels, résidences, maisons, moquettes et entretien."
+    },
+
+'''
+              if a.count(anchor) != 1:
+                  raise SystemExit(f'Ancre annuaire inattendue: {a.count(anchor)}')
+              a = a.replace(anchor, entry + anchor, 1)
+          a = a.replace('window.DIGIY_ANNUAIRE_PUBLIC_VERSION = "safe-20260614";', 'window.DIGIY_ANNUAIRE_PUBLIC_VERSION = "safe-20260830-mane-gning";')
+          if a.count('id: "mane-gning-nettoyage"') != 1:
+              raise SystemExit('Entree annuaire MANE GNING absente ou dupliquee')
+          ann.write_text(a, encoding='utf-8')
+          PY
+      - name: Verifier
+        run: |
+          set -euo pipefail
+          grep -F 'MANÉ &amp; GNING' index.html
+          grep -F 'Service de nettoyage · Saly / Mbour' index.html
+          grep -F 'id: "mane-gning-nettoyage"' annuaire-public-digiy.js
+          grep -F 'badge: "SERVICE · Nettoyage"' annuaire-public-digiy.js
+          node --check annuaire-public-digiy.js
+      - name: Publier et nettoyer
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/ajouter-mane-gning-vitrine-temp.yml
+          git config user.name 'DIGIYLYFE Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add index.html annuaire-public-digiy.js .github/workflows/ajouter-mane-gning-vitrine-temp.yml
+          git commit -m 'Vitrine: ajouter MANE et GNING service de nettoyage'
+          git push origin main
