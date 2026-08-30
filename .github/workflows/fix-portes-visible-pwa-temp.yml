@@ -1,0 +1,72 @@
+name: Corriger rendu portes et PWA temporaire
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-portes-visible-pwa-temp.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  corriger:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Forcer version visible et PWA
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          terr=Path('territoire.html')
+          t=terr.read_text(encoding='utf-8')
+          old='digiy-territoire-doors-style-v1.js?v=20260830-v1'
+          new='digiy-territoire-doors-style-v1.js?v=20260830-v2'
+          if new not in t:
+              if t.count(old)!=1: raise SystemExit(f'version style inattendue: {t.count(old)}')
+              t=t.replace(old,new,1)
+          reg="""<script>\nif ('serviceWorker' in navigator) {\n  window.addEventListener('load', function(){\n    navigator.serviceWorker.register('/sw.js?v=20260830-territory-unified-v2').catch(function(){});\n  });\n}\n</script>"""
+          if '/sw.js?v=20260830-territory-unified-v2' not in t:
+              if '</body>' not in t: raise SystemExit('territoire sans body')
+              t=t.replace('</body>',reg+'\n</body>',1)
+          terr.write_text(t,encoding='utf-8')
+
+          idx=Path('index.html')
+          s=idx.read_text(encoding='utf-8')
+          oldi='/sw.js?v=20260830-territory-unified-v1'
+          newi='/sw.js?v=20260830-territory-unified-v2'
+          if newi not in s:
+              if s.count(oldi)!=1: raise SystemExit(f'index sw inattendu: {s.count(oldi)}')
+              s=s.replace(oldi,newi,1)
+          idx.write_text(s,encoding='utf-8')
+
+          sw=Path('sw.js')
+          w=sw.read_text(encoding='utf-8')
+          oldv="const DIGIY_PWA_VERSION = 'digiylyfe-pwa-20260830-territory-unified-v1';"
+          newv="const DIGIY_PWA_VERSION = 'digiylyfe-pwa-20260830-territory-unified-v2';"
+          if newv not in w:
+              if w.count(oldv)!=1: raise SystemExit('sw version inattendue')
+              w=w.replace(oldv,newv,1)
+          sw.write_text(w,encoding='utf-8')
+          PY
+      - name: Vérifier
+        run: |
+          set -euo pipefail
+          grep -F 'digiy-territoire-doors-style-v1.js?v=20260830-v2' territoire.html
+          grep -F '/sw.js?v=20260830-territory-unified-v2' territoire.html
+          grep -F '/sw.js?v=20260830-territory-unified-v2' index.html
+          grep -F "digiylyfe-pwa-20260830-territory-unified-v2" sw.js
+          node --check assets/digiy-territoire-doors-style-v1.js
+      - name: Publier et nettoyer
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/fix-portes-visible-pwa-temp.yml
+          git config user.name 'DIGIYLYFE Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add territoire.html index.html sw.js assets/digiy-territoire-doors-style-v1.js .github/workflows/fix-portes-visible-pwa-temp.yml
+          git commit -m 'Territoire: rendre harmonisation visible et actualiser PWA'
+          git push origin main
