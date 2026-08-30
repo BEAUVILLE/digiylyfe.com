@@ -1,0 +1,110 @@
+name: Harmoniser MASTER core et nettoyage
+
+on:
+  push:
+    paths:
+      - '.github/workflows/harmoniser-master-core-temp.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Appliquer rail MASTER commun
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          # 1. MASTER central : ajouter NETTOYAGE comme métier natif
+          p=Path('assets/digiy-public-module-master-v2.js')
+          s=p.read_text(encoding='utf-8')
+          old="var TITLES={transport:'DIGIY DRIVER',artisan:'DIGIY BUILD · ARTISANS',accommodation:'DIGIY LOC · DORMIR & LOUER',food:'DIGIY RESTO · MANGER',announcements:'BONNE AFFAIRE · ANNONCES',resa:'RÉSA MULTI · SERVICES',guidance:'LA VOIX DU BUSINESS'};"
+          new="var TITLES={transport:'DIGIY DRIVER',artisan:'DIGIY BUILD · ARTISANS',accommodation:'DIGIY LOC · DORMIR & LOUER',food:'DIGIY RESTO · MANGER',announcements:'BONNE AFFAIRE · ANNONCES',resa:'RÉSA MULTI · SERVICES',cleaning:'SERVICE DE NETTOYAGE',guidance:'LA VOIX DU BUSINESS'};"
+          if old not in s: raise SystemExit('TITLES introuvable')
+          s=s.replace(old,new,1)
+
+          anchor=" {module:'artisan',territory:'petite-cote',name:'Babacar Plombier Pro'"
+          real=" {module:'cleaning',territory:'petite-cote',name:'MANÉ & GNING',activity:'Service de nettoyage',zone:'Saly · Mbour · Petite Côte',image:'https://mane-gning.digiylyfe.com/assets/mane-gning/poster.avif',url:'https://mane-gning.digiylyfe.com/',chips:['Nettoyage','Ménage','Entretien','Contact direct']},\n"
+          if "module:'cleaning',territory:'petite-cote'" not in s:
+              if anchor not in s: raise SystemExit('ancre REAL nettoyage introuvable')
+              s=s.replace(anchor,real+anchor,1)
+
+          old=" announcements:[['🚙','Véhicules & mobilité'],['🧰','Matériel professionnel'],['🏠','Maison & équipement'],['🎪','Services & événements']],\n resa:"
+          new=" announcements:[['🚙','Véhicules & mobilité'],['🧰','Matériel professionnel'],['🏠','Maison & équipement'],['🎪','Services & événements']],\n cleaning:[['🧹','Nettoyage maison'],['🏨','Hôtels & résidences'],['🏢','Bureaux & commerces'],['✨','Remise en état']],\n resa:"
+          if old not in s: raise SystemExit('ancre OPEN nettoyage introuvable')
+          s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
+
+          # 2. BEAUTÉ : brancher le style MASTER partagé
+          p=Path('beaute-bien-etre.html')
+          s=p.read_text(encoding='utf-8')
+          if 'digiy-master-ui-v1.css' not in s:
+              s=s.replace('<link rel="canonical" href="https://digiylyfe.com/beaute-bien-etre.html">','<link rel="canonical" href="https://digiylyfe.com/beaute-bien-etre.html">\n<link rel="stylesheet" href="/assets/digiy-master-ui-v1.css?v=20260830-v1">',1)
+          s=s.replace('<body>','<body data-digiy-master-ui="beauty">',1)
+          p.write_text(s,encoding='utf-8')
+
+          # 3. Porte NETTOYAGE : passer par le MASTER, pas directement par la fiche
+          p=Path('assets/digiy-territoire-petite-cote-cleaning-v1.js')
+          s=p.read_text(encoding='utf-8')
+          old="function target(l){var u=new URL('https://mane-gning.digiylyfe.com/');u.searchParams.set('lang',l||lang());return u.toString()}"
+          new="function target(l){var p=params(),u=new URL('https://digiylyfe.com/nettoyage-master.html');u.searchParams.set('territory','petite-cote');var local=p.get('local')||'';if(local)u.searchParams.set('local',local);u.searchParams.set('lang',l||lang());return u.toString()}"
+          if old not in s: raise SystemExit('target nettoyage introuvable')
+          s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
+
+          # 4. territoire : cache-busting du nouveau rail nettoyage
+          p=Path('territoire.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('/assets/digiy-territoire-petite-cote-cleaning-v1.js?v=20260830-v2','/assets/digiy-territoire-petite-cote-cleaning-v1.js?v=20260830-master-v3')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Créer MASTER nettoyage
+        run: |
+          cat > nettoyage-master.html <<'EOF'
+          <!doctype html>
+          <html lang="fr">
+          <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+          <meta name="robots" content="index,follow">
+          <meta name="theme-color" content="#0a2b20">
+          <title>SERVICE DE NETTOYAGE · MASTER TERRITORIAL</title>
+          <meta name="description" content="Service de nettoyage DIGIYLYFE par territoire : professionnels réels, contact direct et 0 % commission.">
+          <link rel="canonical" href="https://digiylyfe.com/nettoyage-master.html">
+          <link rel="stylesheet" href="/assets/digiy-master-ui-v1.css?v=20260830-v1">
+          </head>
+          <body data-digiy-module="cleaning">
+          <div id="digiy-master-root"></div>
+          <script src="/assets/digiy-public-module-master-v2.js?v=20260830-ui-v1"></script>
+          <script src="/assets/digiy-public-module-local-filter-v1.js?v=20260829-local-v1"></script>
+          <script>
+          if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js?v=20260830-territory-native-v4').catch(function(){})})}
+          </script>
+          </body>
+          </html>
+          EOF
+      - name: Vérifier
+        run: |
+          set -euo pipefail
+          node --check assets/digiy-public-module-master-v2.js
+          node --check assets/digiy-territoire-petite-cote-cleaning-v1.js
+          grep -F "cleaning:'SERVICE DE NETTOYAGE'" assets/digiy-public-module-master-v2.js
+          grep -F "module:'cleaning',territory:'petite-cote'" assets/digiy-public-module-master-v2.js
+          grep -F 'digiy-master-ui-v1.css?v=20260830-v1' beaute-bien-etre.html
+          grep -F 'data-digiy-master-ui="beauty"' beaute-bien-etre.html
+          grep -F 'nettoyage-master.html' assets/digiy-territoire-petite-cote-cleaning-v1.js
+          grep -F 'data-digiy-module="cleaning"' nettoyage-master.html
+      - name: Publier et nettoyer
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/harmoniser-master-core-temp.yml
+          git config user.name 'DIGIYLYFE Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add assets/digiy-public-module-master-v2.js assets/digiy-territoire-petite-cote-cleaning-v1.js assets/digiy-master-ui-v1.css beaute-bien-etre.html territoire.html nettoyage-master.html .github/workflows/harmoniser-master-core-temp.yml
+          git commit -m 'MASTER: unifier UI et intégrer service nettoyage'
+          git push origin main
