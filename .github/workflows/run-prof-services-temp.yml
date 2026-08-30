@@ -1,0 +1,35 @@
+name: Run professional services patch
+on:
+  push:
+    paths:
+      - '.github/workflows/run-prof-services-temp.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply patch
+        run: python3 .github/scripts/patch_prof_services.py
+      - name: Verify
+        run: |
+          set -euo pipefail
+          node --check assets/digiy-public-module-master-v2.js
+          node --check assets/digiy-territoire-petite-cote-professional-services-v1.js
+          grep -F 'media/mane-gning-poster.avif' assets/digiy-public-module-master-v2.js
+          grep -F "professional:[['⚖️','Avocat'],['🖋️','Notaire'],['📊','Comptable'],['📐','Architecte']]" assets/digiy-public-module-master-v2.js
+          grep -F 'services-professionnels-master.html' assets/digiy-territoire-petite-cote-professional-services-v1.js
+          grep -F 'digiylyfe-pwa-20260830-master-ui-v7' sw.js
+          grep -F 'grid-template-columns:34% 66%' assets/digiy-public-module-master-v2.js
+          ! grep -F "cleaning:[['🧹','Nettoyage maison'],['🏨','Hôtels & résidences']" assets/digiy-public-module-master-v2.js
+      - name: Publish and cleanup
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/run-prof-services-temp.yml .github/workflows/poser-services-professionnels-temp.yml .github/scripts/patch_prof_services.py
+          git config user.name 'DIGIYLYFE Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'MASTER: services professionnels et nettoyage corrige'
+          git push origin main
