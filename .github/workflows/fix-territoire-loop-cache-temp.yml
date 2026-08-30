@@ -1,0 +1,60 @@
+name: Fix territoire loop cache V3 temporaire
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-territoire-loop-cache-temp.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Passer territoire et PWA en V3
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          replacements = {
+            'territoire.html': [
+              ('digiy-territoire-doors-style-v1.js?v=20260830-v2','digiy-territoire-doors-style-v1.js?v=20260830-v3'),
+              ('/sw.js?v=20260830-territory-unified-v2','/sw.js?v=20260830-territory-unified-v3'),
+            ],
+            'index.html': [
+              ('/sw.js?v=20260830-territory-unified-v1','/sw.js?v=20260830-territory-unified-v3'),
+              ('/sw.js?v=20260830-territory-unified-v2','/sw.js?v=20260830-territory-unified-v3'),
+            ],
+            'sw.js': [
+              ("digiylyfe-pwa-20260830-territory-unified-v2","digiylyfe-pwa-20260830-territory-unified-v3"),
+              ("digiylyfe-pwa-20260830-territory-unified-v1","digiylyfe-pwa-20260830-territory-unified-v3"),
+            ],
+          }
+          for name, reps in replacements.items():
+            p=Path(name); s=p.read_text(encoding='utf-8')
+            before=s
+            for old,new in reps:
+              s=s.replace(old,new)
+            if s==before and 'v3' not in s:
+              raise SystemExit(f'aucun remplacement dans {name}')
+            p.write_text(s,encoding='utf-8')
+          PY
+      - name: Vérifier V3
+        run: |
+          set -euo pipefail
+          node --check assets/digiy-territoire-doors-style-v1.js
+          grep -F 'digiy-territoire-doors-style-v1.js?v=20260830-v3' territoire.html
+          grep -F '/sw.js?v=20260830-territory-unified-v3' territoire.html
+          grep -F '/sw.js?v=20260830-territory-unified-v3' index.html
+          grep -F 'digiylyfe-pwa-20260830-territory-unified-v3' sw.js
+      - name: Publier et retirer le workflow temporaire
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/fix-territoire-loop-cache-temp.yml
+          git config user.name 'DIGIYLYFE Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add territoire.html index.html sw.js .github/workflows/fix-territoire-loop-cache-temp.yml
+          git commit -m 'Fix: stabiliser portes territoire et rafraichir PWA V3'
+          git push origin main
