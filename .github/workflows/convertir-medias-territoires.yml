@@ -36,54 +36,57 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
+
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-          replacements = {
-          '''<picture class="territoryPhoto territoryPhotoSaly">
-            <source media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile.png"/>
-            <img src="/assets/territoires/petite-cote-desktop.png" alt="Pêcheurs et pirogue sénégalaise · Petite Côte" loading="lazy" decoding="async"/>
-          </picture>''':
-          '''<picture class="territoryPhoto territoryPhotoSaly">
+
+          def replace_picture(marker, replacement):
+              global s
+              pattern = rf'<picture class="{re.escape(marker)}">.*?</picture>'
+              s2, n = re.subn(pattern, replacement, s, count=1, flags=re.S)
+              if n != 1:
+                  raise SystemExit(f'Bloc {marker} introuvable ou ambigu')
+              s = s2
+
+          replace_picture('territoryPhoto territoryPhotoSaly', '''<picture class="territoryPhoto territoryPhotoSaly">
             <source type="image/avif" media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile.avif"/>
             <source type="image/webp" media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile.webp"/>
             <source type="image/avif" srcset="/assets/territoires/petite-cote-desktop.avif"/>
             <source type="image/webp" srcset="/assets/territoires/petite-cote-desktop.webp"/>
             <source media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile.png"/>
             <img src="/assets/territoires/petite-cote-desktop.png" alt="Pêcheurs et pirogue sénégalaise · Petite Côte" loading="lazy" decoding="async"/>
-          </picture>''',
-          '''<picture class="territoryPhoto territoryPhotoDakar">
-            <source media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile.png"/>
-            <img src="/assets/territoires/dakar-desktop.png" alt="Dakar · Corniche et ville" loading="lazy" decoding="async"/>
-          </picture>''':
-          '''<picture class="territoryPhoto territoryPhotoDakar">
+          </picture>''')
+
+          replace_picture('territoryPhoto territoryPhotoDakar', '''<picture class="territoryPhoto territoryPhotoDakar">
             <source type="image/avif" media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile.avif"/>
             <source type="image/webp" media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile.webp"/>
             <source type="image/avif" srcset="/assets/territoires/dakar-desktop.avif"/>
             <source type="image/webp" srcset="/assets/territoires/dakar-desktop.webp"/>
             <source media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile.png"/>
             <img src="/assets/territoires/dakar-desktop.png" alt="Dakar · Corniche et ville" loading="lazy" decoding="async"/>
-          </picture>''',
-          '''<picture class="territoryPhoto territoryPhotoFrance">
-            <img src="/assets/territoires/perigord-dordogne.png" alt="Périgord · Vallée de la Dordogne" loading="lazy" decoding="async"/>
-          </picture>''':
-          '''<picture class="territoryPhoto territoryPhotoFrance">
+          </picture>''')
+
+          pattern = r'<picture class="territoryPhoto territoryPhotoFrance">\s*<img src="/assets/territoires/perigord-dordogne\.png".*?</picture>'
+          repl = '''<picture class="territoryPhoto territoryPhotoFrance">
             <source type="image/avif" srcset="/assets/territoires/perigord-dordogne.avif"/>
             <source type="image/webp" srcset="/assets/territoires/perigord-dordogne.webp"/>
             <img src="/assets/territoires/perigord-dordogne.png" alt="Périgord · Vallée de la Dordogne" loading="lazy" decoding="async"/>
-          </picture>''',
-          '''<picture class="territoryPhoto territoryPhotoFrance">
-            <img src="/assets/territoires/bordeaux.png" alt="Bordeaux · Place de la Bourse et miroir d’eau" loading="lazy" decoding="async"/>
-          </picture>''':
-          '''<picture class="territoryPhoto territoryPhotoFrance">
+          </picture>'''
+          s, n = re.subn(pattern, repl, s, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('Bloc Périgord introuvable')
+
+          pattern = r'<picture class="territoryPhoto territoryPhotoFrance">\s*<img src="/assets/territoires/bordeaux\.png".*?</picture>'
+          repl = '''<picture class="territoryPhoto territoryPhotoFrance">
             <source type="image/avif" srcset="/assets/territoires/bordeaux.avif"/>
             <source type="image/webp" srcset="/assets/territoires/bordeaux.webp"/>
             <img src="/assets/territoires/bordeaux.png" alt="Bordeaux · Place de la Bourse et miroir d’eau" loading="lazy" decoding="async"/>
           </picture>'''
-          }
-          for old, new in replacements.items():
-              if old not in s:
-                  raise SystemExit(f'Bloc introuvable pour remplacement:\n{old[:120]}')
-              s = s.replace(old, new, 1)
+          s, n = re.subn(pattern, repl, s, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('Bloc Bordeaux introuvable')
+
           p.write_text(s, encoding='utf-8')
           PY
 
@@ -93,9 +96,5 @@ jobs:
           git config user.name 'DIGIYLYFE Media Bot'
           git config user.email 'actions@users.noreply.github.com'
           git add assets/territoires index.html
-          if git diff --cached --quiet; then
-            echo 'Aucun changement a publier.'
-            exit 0
-          fi
           git commit -m 'Media: convertir les visuels territoires en WebP et AVIF'
           git push
