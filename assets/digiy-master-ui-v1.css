@@ -1,0 +1,142 @@
+/* DIGIYLYFE — MASTER UI V1 · 2026-08-30
+   Un seul langage visuel pour les MASTER métier.
+   Le métier garde sa logique ; l'interface reste DIGIYLYFE.
+*/
+:root{
+  --digiy-bg:#0a2b20;
+  --digiy-panel:#10382a;
+  --digiy-deep:#03120d;
+  --digiy-text:#fffaf0;
+  --digiy-muted:rgba(255,250,240,.78);
+  --digiy-line:rgba(255,255,255,.15);
+  --digiy-gold:#f6c453;
+  --digiy-green:#22c55e;
+  --digiy-cyan:#5eead4;
+}
+body[data-digiy-module],body[data-digiy-master-ui]{
+  margin:0!important;
+  min-height:100svh!important;
+  color:var(--digiy-text)!important;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  background:
+    radial-gradient(900px 480px at 0 0,rgba(246,196,83,.18),transparent 62%),
+    radial-gradient(900px 480px at 100% 0,rgba(34,197,94,.22),transparent 62%),
+    linear-gradient(180deg,#12653f 0,#0b3c2c 30%,var(--digiy-bg) 100%)!important;
+}
+body[data-digiy-module] .wrap,body[data-digiy-master-ui] .wrap{
+  width:min(1100px,calc(100% - 28px))!important;
+  max-width:1100px!important;
+  margin:auto!important;
+  padding:14px 0 44px!important;
+}
+body[data-digiy-module] .back,body[data-digiy-master-ui] .back{
+  min-height:44px!important;
+  border:1px solid rgba(246,196,83,.45)!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.09)!important;
+  color:#fff3cf!important;
+  text-decoration:none!important;
+  box-shadow:none!important;
+}
+body[data-digiy-module] .hero,body[data-digiy-master-ui] .hero{
+  margin-top:16px!important;
+  padding:clamp(20px,5vw,34px)!important;
+  border:1px solid rgba(246,196,83,.42)!important;
+  border-bottom:1px solid rgba(246,196,83,.42)!important;
+  border-radius:30px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.045))!important;
+  color:var(--digiy-text)!important;
+  box-shadow:0 22px 52px rgba(0,0,0,.20)!important;
+}
+body[data-digiy-module] .hero h1,body[data-digiy-master-ui] .hero h1{color:var(--digiy-text)!important}
+body[data-digiy-module] .hero p,body[data-digiy-master-ui] .hero p{color:var(--digiy-muted)!important}
+body[data-digiy-module] .eyebrow,body[data-digiy-master-ui] .eyebrow{color:var(--digiy-cyan)!important}
+body[data-digiy-module] .territorySep,body[data-digiy-master-ui] .context{
+  border:1px solid rgba(94,234,212,.40)!important;
+  background:rgba(94,234,212,.08)!important;
+  color:#dfffea!important;
+  border-radius:16px!important;
+}
+body[data-digiy-module] .territorySep b{color:var(--digiy-cyan)!important}
+body[data-digiy-module] .territorySep strong{color:var(--digiy-text)!important}
+body[data-digiy-module] .territorySep i{color:var(--digiy-gold)!important}
+body[data-digiy-module] .sectionHead h2,body[data-digiy-master-ui] .section h2{color:var(--digiy-text)!important}
+body[data-digiy-module] .sectionHead p,body[data-digiy-module] .activity,body[data-digiy-module] .footer,
+body[data-digiy-master-ui] .lead,body[data-digiy-master-ui] .meta{color:var(--digiy-muted)!important}
+body[data-digiy-module] .none{
+  background:rgba(255,255,255,.055)!important;
+  border:1px dashed rgba(255,255,255,.22)!important;
+  color:var(--digiy-muted)!important;
+}
+body[data-digiy-module] .listing,body[data-digiy-master-ui] .place{
+  background:rgba(16,56,42,.96)!important;
+  border:1px solid rgba(255,255,255,.15)!important;
+  border-radius:22px!important;
+  color:var(--digiy-text)!important;
+  box-shadow:0 16px 36px rgba(0,0,0,.20)!important;
+}
+body[data-digiy-module] .listing.open,body[data-digiy-master-ui] .place{border:1px dashed rgba(246,196,83,.68)!important}
+body[data-digiy-module] .visual{background:#0b3326!important}
+body[data-digiy-module] .placeholder{background:linear-gradient(145deg,#0f5c38,#0a2b20)!important;color:#fff!important}
+body[data-digiy-module] .placeholder small{color:#fff0c8!important}
+body[data-digiy-module] .hint{background:rgba(3,18,13,.88)!important;color:#fff3cf!important;border:1px solid rgba(246,196,83,.35)!important}
+body[data-digiy-module] .info h2,body[data-digiy-master-ui] .pt strong{color:var(--digiy-text)!important}
+body[data-digiy-module] .area,body[data-digiy-master-ui] .badge{
+  background:rgba(94,234,212,.10)!important;
+  color:#dfffea!important;
+  border:1px solid rgba(94,234,212,.24)!important;
+}
+body[data-digiy-module] .chips span,body[data-digiy-master-ui] .chips span{
+  border:1px solid rgba(255,255,255,.13)!important;
+  background:rgba(255,255,255,.07)!important;
+  color:var(--digiy-text)!important;
+}
+body[data-digiy-module] .rule{
+  border-left:3px solid var(--digiy-gold)!important;
+  background:rgba(246,196,83,.08)!important;
+  color:#fff0c8!important;
+}
+body[data-digiy-module] .cta,body[data-digiy-master-ui] .cta,body[data-digiy-master-ui] .join,
+body[data-digiy-master-ui] .door.recruiter,body[data-digiy-master-ui] .door.candidate{
+  background:linear-gradient(135deg,var(--digiy-gold),var(--digiy-green))!important;
+  color:#06140f!important;
+  border:0!important;
+}
+body[data-digiy-master-ui] .section{
+  background:rgba(16,56,42,.84)!important;
+  color:var(--digiy-text)!important;
+  border:1px solid rgba(255,255,255,.15)!important;
+  border-radius:26px!important;
+}
+body[data-digiy-master-ui] .pt{
+  background:linear-gradient(145deg,#0f5c38,#0a2b20)!important;
+  color:#fff!important;
+}
+body[data-digiy-master-ui] .doctrine,body[data-digiy-master-ui] .note{
+  border:1px solid rgba(246,196,83,.28)!important;
+  background:rgba(246,196,83,.07)!important;
+  color:var(--digiy-muted)!important;
+}
+/* MON COMMERCE */
+body[data-digiy-master-ui="commerce"] header{background:transparent!important;border:0!important;padding:14px!important}
+body[data-digiy-master-ui="commerce"] main{width:min(1100px,calc(100% - 28px))!important;max-width:1100px!important;margin:auto!important}
+body[data-digiy-master-ui="commerce"] .zero{border-color:rgba(246,196,83,.58)!important;color:#fff3cf!important}
+body[data-digiy-master-ui="commerce"] .langs button{background:rgba(255,255,255,.08)!important;color:#fff!important;border-color:rgba(255,255,255,.15)!important}
+body[data-digiy-master-ui="commerce"] .langs button.active{background:linear-gradient(135deg,var(--digiy-gold),var(--digiy-green))!important;color:#06140f!important}
+body[data-digiy-master-ui="commerce"] .listing{background:rgba(16,56,42,.96)!important;border-color:rgba(255,255,255,.15)!important;color:var(--digiy-text)!important}
+body[data-digiy-master-ui="commerce"] h2,body[data-digiy-master-ui="commerce"] .direct strong{color:var(--digiy-text)!important}
+body[data-digiy-master-ui="commerce"] .activity,body[data-digiy-master-ui="commerce"] .desc,body[data-digiy-master-ui="commerce"] footer{color:var(--digiy-muted)!important}
+body[data-digiy-master-ui="commerce"] .area,body[data-digiy-master-ui="commerce"] .chip,body[data-digiy-master-ui="commerce"] .qrrow{background:rgba(94,234,212,.08)!important;color:var(--digiy-text)!important;border-color:rgba(94,234,212,.18)!important}
+body[data-digiy-master-ui="commerce"] .direct{border-color:rgba(255,255,255,.14)!important}
+body[data-digiy-master-ui="commerce"] .primary,body[data-digiy-master-ui="commerce"] .secondary,body[data-digiy-master-ui="commerce"] .whatsapp{background:linear-gradient(135deg,var(--digiy-gold),var(--digiy-green))!important;color:#06140f!important;border:0!important}
+/* JOBS */
+body[data-digiy-master-ui="jobs"] .top{color:var(--digiy-text)!important}
+body[data-digiy-master-ui="jobs"] .langs button{background:rgba(255,255,255,.08)!important;color:#fff!important;border-color:rgba(255,255,255,.15)!important}
+body[data-digiy-master-ui="jobs"] .langs button.active{background:linear-gradient(135deg,var(--digiy-gold),var(--digiy-green))!important;color:#06140f!important}
+/* BEAUTÉ */
+body[data-digiy-master-ui="beauty"] .langs button{background:rgba(255,255,255,.08)!important;color:#fff!important;border-color:rgba(255,255,255,.15)!important}
+body[data-digiy-master-ui="beauty"] .langs button.active{background:linear-gradient(135deg,var(--digiy-gold),var(--digiy-green))!important;color:#06140f!important}
+@media(max-width:430px){
+  body[data-digiy-module] .wrap,body[data-digiy-master-ui] .wrap,body[data-digiy-master-ui="commerce"] main{width:min(100% - 18px,1100px)!important}
+}
+html[dir="rtl"] body[data-digiy-module] .rule{border-left:0!important;border-right:3px solid var(--digiy-gold)!important}
