@@ -18,7 +18,7 @@ var TERRITORIES={};
 var ZN={};
 var NEEDS=[];
 var runtimeDefault='';
-var LOCAL_NEEDS={'petite-cote':[['cleaning','🧹'],['professional','🏛️']],'dakar':[['cleaning','🧹'],['professional','🏛️']],'vallee-dordogne':[['cleaning','🧹'],['professional','🏛️']]};
+var LOCAL_NEEDS={'petite-cote':[['cleaning','🧹'],['professional','🏛️']],'dakar':[['cleaning','🧹'],['professional','🏛️']],'vallee-dordogne':[['cleaning','🧹'],['professional','🏛️']],'bordeaux':[['cleaning','🧹'],['professional','🏛️']]};
 
 var T={
 fr:{tag:'Les professionnels du territoire, joignables directement.',path:'Territoire → Besoin → Zone → Professionnel → Contact direct',need:'Que recherchez-vous ?',zone:'Préciser la zone',all:'Tout le territoire',results:'professionnel(s) disponible(s)',empty:'Aucun professionnel ne correspond encore à ce filtre.',based:'Basé à',serves:'Intervient à',profile:'OUVRIR',whatsapp:'WhatsApp',call:'Appeler',sourceLive:'Données territoriales : Supabase',sourceFallback:'Mode secours local',configError:'Configuration territoriale indisponible.',labels:{transport:'Se déplacer',artisan:'Trouver un artisan',accommodation:'Dormir ou louer',food:'Manger ou réserver',shopping:'Acheter local',beauty:'Beauté & Bien-être',jobs:'Emploi et missions',announcements:'Annonces',guidance:'La Voix',cleaning:'Service de nettoyage',professional:'Services professionnels'}},

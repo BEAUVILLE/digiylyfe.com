@@ -1,6 +1,6 @@
 /* DIGIYLYFE — Bordeaux shared i18n data V1
  * One source for direct showcase, territory projection, demo and membership context.
- * 9 needs x 3 examples · FR/EN/ES/PT/IT/DE/NL/AR.
+ * 11 doors · 9 projection needs x 3 examples · FR/EN/ES/PT/IT/DE/NL/AR.
  */
 (function(){'use strict';
 var Z={
@@ -15,7 +15,7 @@ var Z={
 };
 var DATA={
 fr:{
- needs:{announcements:'ANNONCES',transport:'SE DÉPLACER',artisan:'TROUVER UN ARTISAN',accommodation:'DORMIR OU LOUER',food:'MANGER OU RÉSERVER',shopping:'ACHETER LOCAL',beauty:'BEAUTÉ & BIEN-ÊTRE',jobs:'EMPLOI ET MISSIONS',guidance:'LA VOIX'},
+ needs:{announcements:'ANNONCES',transport:'SE DÉPLACER',artisan:'TROUVER UN ARTISAN',accommodation:'DORMIR OU LOUER',food:'MANGER OU RÉSERVER',shopping:'ACHETER LOCAL',beauty:'BEAUTÉ & BIEN-ÊTRE',jobs:'EMPLOI ET MISSIONS',guidance:'LA VOIX',cleaning:'SERVICE DE NETTOYAGE',professional:'SERVICES PROFESSIONNELS'},
  ui:{city:'BORDEAUX',card:'Carte digitale · QR',price:'45 € / mois',commission:'0 % commission',voiceChip:'Recherche vocale',notTrade:'Pas une fiche métier',summary:'Exemple de présence DIGIYLYFE : cette place montre ce que la future activité peut devenir.',voiceSummary:'LA VOIX permet de dire ce que l’on cherche au lieu de parcourir les catégories.',promiseDirect:'Contact direct',promiseOwner:'Identité propriétaire',galleryMain:'APERÇU PRINCIPAL',galleryContact:'CONTACT DIRECT',galleryCard:'CARTE DIGITALE',voiceBadge:'LA VOIX · RECHERCHE VOCALE'},
  ex:{
  announcements:[['⚡ Dépannage express','la-bastide',['Besoin urgent','Service local','Contact direct'],'⚡','🧰','📞'],['🧰 Location de matériel','bordeaux-maritime',['Matériel','Disponibilité','Réservation directe'],'🧰','🔩','📅'],['🎪 Services événementiels','chartrons-grand-parc-jardin-public',['Événement','Prestataire','Demande de devis'],'🎪','🎉','📩']],
@@ -29,7 +29,7 @@ fr:{
  guidance:[['🎙️ Recherche chauffeur','bordeaux-centre',['« Trouve-moi un chauffeur près de la gare »','Résultat territorial','Contact direct'],'🎙️','🚗','🔎'],['🎙️ Recherche restaurant','chartrons-grand-parc-jardin-public',['« Où manger ce soir aux Chartrons ? »','Résultat territorial','Réservation directe'],'🎙️','🍽️','🔎'],['🎙️ Recherche artisan','nansouty-saint-genes',['« Je cherche un plombier à Nansouty »','Résultat territorial','Contact direct'],'🎙️','🔧','🔎']]
  }},
 en:{
- needs:{announcements:'LISTINGS',transport:'GET AROUND',artisan:'FIND A TRADESPERSON',accommodation:'STAY OR RENT',food:'EAT OR BOOK',shopping:'SHOP LOCAL',beauty:'BEAUTY & WELLNESS',jobs:'JOBS & GIGS',guidance:'THE VOICE'},
+ needs:{announcements:'LISTINGS',transport:'GET AROUND',artisan:'FIND A TRADESPERSON',accommodation:'STAY OR RENT',food:'EAT OR BOOK',shopping:'SHOP LOCAL',beauty:'BEAUTY & WELLNESS',jobs:'JOBS & GIGS',guidance:'THE VOICE',cleaning:'CLEANING SERVICE',professional:'PROFESSIONAL SERVICES'},
  ui:{city:'BORDEAUX',card:'Digital card · QR',price:'€45 / month',commission:'0% commission',voiceChip:'Voice search',notTrade:'Not a business listing',summary:'DIGIYLYFE presence example: this place shows what a future activity can become.',voiceSummary:'THE VOICE lets you say what you need instead of browsing categories.',promiseDirect:'Direct contact',promiseOwner:'Owned identity',galleryMain:'MAIN PREVIEW',galleryContact:'DIRECT CONTACT',galleryCard:'DIGITAL CARD',voiceBadge:'THE VOICE · VOICE SEARCH'},
  ex:{
  announcements:[['⚡ Emergency repair','la-bastide',['Urgent need','Local service','Direct contact'],'⚡','🧰','📞'],['🧰 Equipment rental','bordeaux-maritime',['Equipment','Availability','Direct booking'],'🧰','🔩','📅'],['🎪 Event services','chartrons-grand-parc-jardin-public',['Event','Provider','Quote request'],'🎪','🎉','📩']],
@@ -43,7 +43,7 @@ en:{
  guidance:[['🎙️ Driver search','bordeaux-centre',['“Find me a driver near the station”','Territorial result','Direct contact'],'🎙️','🚗','🔎'],['🎙️ Restaurant search','chartrons-grand-parc-jardin-public',['“Where can I eat tonight in Chartrons?”','Territorial result','Direct booking'],'🎙️','🍽️','🔎'],['🎙️ Tradesperson search','nansouty-saint-genes',['“I need a plumber in Nansouty”','Territorial result','Direct contact'],'🎙️','🔧','🔎']]
  }},
 es:{
- needs:{announcements:'ANUNCIOS',transport:'DESPLAZARSE',artisan:'ENCONTRAR UN ARTESANO',accommodation:'ALOJARSE O ALQUILAR',food:'COMER O RESERVAR',shopping:'COMPRAR LOCAL',beauty:'BELLEZA Y BIENESTAR',jobs:'EMPLEO Y MISIONES',guidance:'LA VOZ'},
+ needs:{announcements:'ANUNCIOS',transport:'DESPLAZARSE',artisan:'ENCONTRAR UN ARTESANO',accommodation:'ALOJARSE O ALQUILAR',food:'COMER O RESERVAR',shopping:'COMPRAR LOCAL',beauty:'BELLEZA Y BIENESTAR',jobs:'EMPLEO Y MISIONES',guidance:'LA VOZ',cleaning:'SERVICIO DE LIMPIEZA',professional:'SERVICIOS PROFESIONALES'},
  ui:{city:'BURDEOS',card:'Tarjeta digital · QR',price:'45 € / mes',commission:'0 % comisión',voiceChip:'Búsqueda por voz',notTrade:'No es una ficha profesional',summary:'Ejemplo de presencia DIGIYLYFE: esta plaza muestra lo que puede llegar a ser una futura actividad.',voiceSummary:'LA VOZ permite decir lo que busca en lugar de recorrer categorías.',promiseDirect:'Contacto directo',promiseOwner:'Identidad propia',galleryMain:'VISTA PRINCIPAL',galleryContact:'CONTACTO DIRECTO',galleryCard:'TARJETA DIGITAL',voiceBadge:'LA VOZ · BÚSQUEDA POR VOZ'},
  ex:{
  announcements:[['⚡ Reparación urgente','la-bastide',['Necesidad urgente','Servicio local','Contacto directo'],'⚡','🧰','📞'],['🧰 Alquiler de material','bordeaux-maritime',['Material','Disponibilidad','Reserva directa'],'🧰','🔩','📅'],['🎪 Servicios para eventos','chartrons-grand-parc-jardin-public',['Evento','Proveedor','Solicitud de presupuesto'],'🎪','🎉','📩']],
@@ -57,7 +57,7 @@ es:{
  guidance:[['🎙️ Buscar conductor','bordeaux-centre',['« Encuéntrame un conductor cerca de la estación »','Resultado territorial','Contacto directo'],'🎙️','🚗','🔎'],['🎙️ Buscar restaurante','chartrons-grand-parc-jardin-public',['« ¿Dónde comer esta noche en Chartrons? »','Resultado territorial','Reserva directa'],'🎙️','🍽️','🔎'],['🎙️ Buscar artesano','nansouty-saint-genes',['« Busco un fontanero en Nansouty »','Resultado territorial','Contacto directo'],'🎙️','🔧','🔎']]
  }},
 pt:{
- needs:{announcements:'ANÚNCIOS',transport:'DESLOCAR-SE',artisan:'ENCONTRAR UM ARTESÃO',accommodation:'DORMIR OU ALUGAR',food:'COMER OU RESERVAR',shopping:'COMPRAR LOCAL',beauty:'BELEZA E BEM-ESTAR',jobs:'EMPREGO E MISSÕES',guidance:'A VOZ'},
+ needs:{announcements:'ANÚNCIOS',transport:'DESLOCAR-SE',artisan:'ENCONTRAR UM ARTESÃO',accommodation:'DORMIR OU ALUGAR',food:'COMER OU RESERVAR',shopping:'COMPRAR LOCAL',beauty:'BELEZA E BEM-ESTAR',jobs:'EMPREGO E MISSÕES',guidance:'A VOZ',cleaning:'SERVIÇO DE LIMPEZA',professional:'SERVIÇOS PROFISSIONAIS'},
  ui:{city:'BORDÉUS',card:'Cartão digital · QR',price:'45 € / mês',commission:'0 % comissão',voiceChip:'Pesquisa por voz',notTrade:'Não é uma ficha profissional',summary:'Exemplo de presença DIGIYLYFE: este lugar mostra o que a futura atividade pode tornar-se.',voiceSummary:'A VOZ permite dizer o que procura em vez de percorrer categorias.',promiseDirect:'Contacto direto',promiseOwner:'Identidade própria',galleryMain:'VISÃO PRINCIPAL',galleryContact:'CONTACTO DIRETO',galleryCard:'CARTÃO DIGITAL',voiceBadge:'A VOZ · PESQUISA POR VOZ'},
  ex:{
  announcements:[['⚡ Reparação urgente','la-bastide',['Necessidade urgente','Serviço local','Contacto direto'],'⚡','🧰','📞'],['🧰 Aluguer de material','bordeaux-maritime',['Material','Disponibilidade','Reserva direta'],'🧰','🔩','📅'],['🎪 Serviços para eventos','chartrons-grand-parc-jardin-public',['Evento','Prestador','Pedido de orçamento'],'🎪','🎉','📩']],
@@ -71,7 +71,7 @@ pt:{
  guidance:[['🎙️ Procurar motorista','bordeaux-centre',['« Encontra-me um motorista perto da estação »','Resultado territorial','Contacto direto'],'🎙️','🚗','🔎'],['🎙️ Procurar restaurante','chartrons-grand-parc-jardin-public',['« Onde comer esta noite nos Chartrons? »','Resultado territorial','Reserva direta'],'🎙️','🍽️','🔎'],['🎙️ Procurar artesão','nansouty-saint-genes',['« Procuro um canalizador em Nansouty »','Resultado territorial','Contacto direto'],'🎙️','🔧','🔎']]
  }},
 it:{
- needs:{announcements:'ANNUNCI',transport:'SPOSTARSI',artisan:'TROVARE UN ARTIGIANO',accommodation:'DORMIRE O AFFITTARE',food:'MANGIARE O PRENOTARE',shopping:'COMPRARE LOCALE',beauty:'BELLEZZA E BENESSERE',jobs:'LAVORO E INCARICHI',guidance:'LA VOCE'},
+ needs:{announcements:'ANNUNCI',transport:'SPOSTARSI',artisan:'TROVARE UN ARTIGIANO',accommodation:'DORMIRE O AFFITTARE',food:'MANGIARE O PRENOTARE',shopping:'COMPRARE LOCALE',beauty:'BELLEZZA E BENESSERE',jobs:'LAVORO E INCARICHI',guidance:'LA VOCE',cleaning:'SERVIZIO DI PULIZIA',professional:'SERVIZI PROFESSIONALI'},
  ui:{city:'BORDEAUX',card:'Biglietto digitale · QR',price:'45 € / mese',commission:'0 % commissioni',voiceChip:'Ricerca vocale',notTrade:'Non è una scheda professionale',summary:'Esempio di presenza DIGIYLYFE: questo posto mostra cosa può diventare una futura attività.',voiceSummary:'LA VOCE permette di dire ciò che si cerca invece di scorrere le categorie.',promiseDirect:'Contatto diretto',promiseOwner:'Identità proprietaria',galleryMain:'ANTEPRIMA PRINCIPALE',galleryContact:'CONTATTO DIRETTO',galleryCard:'BIGLIETTO DIGITALE',voiceBadge:'LA VOCE · RICERCA VOCALE'},
  ex:{
  announcements:[['⚡ Riparazione urgente','la-bastide',['Bisogno urgente','Servizio locale','Contatto diretto'],'⚡','🧰','📞'],['🧰 Noleggio attrezzatura','bordeaux-maritime',['Attrezzatura','Disponibilità','Prenotazione diretta'],'🧰','🔩','📅'],['🎪 Servizi per eventi','chartrons-grand-parc-jardin-public',['Evento','Fornitore','Richiesta preventivo'],'🎪','🎉','📩']],
@@ -85,7 +85,7 @@ it:{
  guidance:[['🎙️ Cerca un autista','bordeaux-centre',['« Trovami un autista vicino alla stazione »','Risultato territoriale','Contatto diretto'],'🎙️','🚗','🔎'],['🎙️ Cerca un ristorante','chartrons-grand-parc-jardin-public',['« Dove mangiare stasera ai Chartrons? »','Risultato territoriale','Prenotazione diretta'],'🎙️','🍽️','🔎'],['🎙️ Cerca un artigiano','nansouty-saint-genes',['« Cerco un idraulico a Nansouty »','Risultato territoriale','Contatto diretto'],'🎙️','🔧','🔎']]
  }},
 de:{
- needs:{announcements:'ANZEIGEN',transport:'UNTERWEGS SEIN',artisan:'HANDWERKER FINDEN',accommodation:'ÜBERNACHTEN ODER MIETEN',food:'ESSEN ODER RESERVIEREN',shopping:'LOKAL EINKAUFEN',beauty:'SCHÖNHEIT & WELLNESS',jobs:'JOBS UND AUFTRÄGE',guidance:'DIE STIMME'},
+ needs:{announcements:'ANZEIGEN',transport:'UNTERWEGS SEIN',artisan:'HANDWERKER FINDEN',accommodation:'ÜBERNACHTEN ODER MIETEN',food:'ESSEN ODER RESERVIEREN',shopping:'LOKAL EINKAUFEN',beauty:'SCHÖNHEIT & WELLNESS',jobs:'JOBS UND AUFTRÄGE',guidance:'DIE STIMME',cleaning:'REINIGUNGSSERVICE',professional:'PROFESSIONELLE DIENSTE'},
  ui:{city:'BORDEAUX',card:'Digitale Karte · QR',price:'45 € / Monat',commission:'0 % Provision',voiceChip:'Sprachsuche',notTrade:'Kein Branchenprofil',summary:'DIGIYLYFE-Beispiel: Dieser Platz zeigt, wie die künftige Tätigkeit erscheinen kann.',voiceSummary:'DIE STIMME ermöglicht die Suche per Sprache statt über Kategorien.',promiseDirect:'Direkter Kontakt',promiseOwner:'Eigene Identität',galleryMain:'HAUPTVORSCHAU',galleryContact:'DIREKTER KONTAKT',galleryCard:'DIGITALE KARTE',voiceBadge:'DIE STIMME · SPRACHSUCHE'},
  ex:{
  announcements:[['⚡ Schnelle Reparatur','la-bastide',['Dringender Bedarf','Lokaler Service','Direkter Kontakt'],'⚡','🧰','📞'],['🧰 Geräteverleih','bordeaux-maritime',['Material','Verfügbarkeit','Direkte Buchung'],'🧰','🔩','📅'],['🎪 Eventservices','chartrons-grand-parc-jardin-public',['Event','Dienstleister','Angebotsanfrage'],'🎪','🎉','📩']],
@@ -99,7 +99,7 @@ de:{
  guidance:[['🎙️ Fahrer suchen','bordeaux-centre',['„Finde mir einen Fahrer nahe dem Bahnhof“','Territoriales Ergebnis','Direkter Kontakt'],'🎙️','🚗','🔎'],['🎙️ Restaurant suchen','chartrons-grand-parc-jardin-public',['„Wo kann ich heute Abend in Chartrons essen?“','Territoriales Ergebnis','Direkte Buchung'],'🎙️','🍽️','🔎'],['🎙️ Handwerker suchen','nansouty-saint-genes',['„Ich suche einen Klempner in Nansouty“','Territoriales Ergebnis','Direkter Kontakt'],'🎙️','🔧','🔎']]
  }},
 nl:{
- needs:{announcements:'ADVERTENTIES',transport:'VERPLAATSEN',artisan:'EEN VAKMAN VINDEN',accommodation:'OVERNACHTEN OF HUREN',food:'ETEN OF RESERVEREN',shopping:'LOKAAL KOPEN',beauty:'SCHOONHEID & WELZIJN',jobs:'WERK EN OPDRACHTEN',guidance:'DE STEM'},
+ needs:{announcements:'ADVERTENTIES',transport:'VERPLAATSEN',artisan:'EEN VAKMAN VINDEN',accommodation:'OVERNACHTEN OF HUREN',food:'ETEN OF RESERVEREN',shopping:'LOKAAL KOPEN',beauty:'SCHOONHEID & WELZIJN',jobs:'WERK EN OPDRACHTEN',guidance:'DE STEM',cleaning:'SCHOONMAAKSERVICE',professional:'PROFESSIONELE DIENSTEN'},
  ui:{city:'BORDEAUX',card:'Digitale kaart · QR',price:'€45 / maand',commission:'0 % commissie',voiceChip:'Stemzoeken',notTrade:'Geen bedrijfsprofiel',summary:'DIGIYLYFE-voorbeeld: deze plek laat zien wat de toekomstige activiteit kan worden.',voiceSummary:'DE STEM laat u zeggen wat u zoekt in plaats van categorieën te doorlopen.',promiseDirect:'Direct contact',promiseOwner:'Eigen identiteit',galleryMain:'HOOFDVOORBEELD',galleryContact:'DIRECT CONTACT',galleryCard:'DIGITALE KAART',voiceBadge:'DE STEM · STEMZOEKEN'},
  ex:{
  announcements:[['⚡ Spoedreparatie','la-bastide',['Dringende behoefte','Lokale service','Direct contact'],'⚡','🧰','📞'],['🧰 Materiaalverhuur','bordeaux-maritime',['Materiaal','Beschikbaarheid','Direct reserveren'],'🧰','🔩','📅'],['🎪 Evenementendiensten','chartrons-grand-parc-jardin-public',['Evenement','Dienstverlener','Offerteaanvraag'],'🎪','🎉','📩']],
@@ -113,7 +113,7 @@ nl:{
  guidance:[['🎙️ Chauffeur zoeken','bordeaux-centre',['“Vind een chauffeur bij het station”','Territoriaal resultaat','Direct contact'],'🎙️','🚗','🔎'],['🎙️ Restaurant zoeken','chartrons-grand-parc-jardin-public',['“Waar kan ik vanavond eten in Chartrons?”','Territoriaal resultaat','Direct reserveren'],'🎙️','🍽️','🔎'],['🎙️ Vakman zoeken','nansouty-saint-genes',['“Ik zoek een loodgieter in Nansouty”','Territoriaal resultaat','Direct contact'],'🎙️','🔧','🔎']]
  }},
 ar:{
- needs:{announcements:'إعلانات',transport:'التنقل',artisan:'العثور على حرفي',accommodation:'الإقامة أو الاستئجار',food:'الأكل أو الحجز',shopping:'الشراء محلياً',beauty:'الجمال والعافية',jobs:'وظائف ومهام',guidance:'الصوت'},
+ needs:{announcements:'إعلانات',transport:'التنقل',artisan:'العثور على حرفي',accommodation:'الإقامة أو الاستئجار',food:'الأكل أو الحجز',shopping:'الشراء محلياً',beauty:'الجمال والعافية',jobs:'وظائف ومهام',guidance:'الصوت',cleaning:'خدمة تنظيف',professional:'الخدمات المهنية'},
  ui:{city:'بوردو',card:'بطاقة رقمية · QR',price:'45 € / شهر',commission:'0٪ عمولة',voiceChip:'بحث صوتي',notTrade:'ليست بطاقة مهنية',summary:'مثال حضور DIGIYLYFE: يوضح هذا المكان كيف يمكن أن يظهر النشاط مستقبلاً.',voiceSummary:'الصوت يتيح لك قول ما تبحث عنه بدل تصفح الفئات.',promiseDirect:'تواصل مباشر',promiseOwner:'هوية مملوكة لك',galleryMain:'المعاينة الرئيسية',galleryContact:'تواصل مباشر',galleryCard:'بطاقة رقمية',voiceBadge:'الصوت · بحث صوتي'},
  ex:{
  announcements:[['⚡ إصلاح عاجل','la-bastide',['حاجة عاجلة','خدمة محلية','تواصل مباشر'],'⚡','🧰','📞'],['🧰 تأجير معدات','bordeaux-maritime',['معدات','التوفر','حجز مباشر'],'🧰','🔩','📅'],['🎪 خدمات فعاليات','chartrons-grand-parc-jardin-public',['فعالية','مقدم خدمة','طلب عرض سعر'],'🎪','🎉','📩']],
