@@ -18,7 +18,7 @@ var TERRITORIES={};
 var ZN={};
 var NEEDS=[];
 var runtimeDefault='';
-var LOCAL_NEEDS={'petite-cote':[['cleaning','🧹'],['professional','🏛️']]};
+var LOCAL_NEEDS={'petite-cote':[['cleaning','🧹'],['professional','🏛️']],'dakar':[['cleaning','🧹'],['professional','🏛️']],'vallee-dordogne':[['cleaning','🧹'],['professional','🏛️']]};
 
 var T={
 fr:{tag:'Les professionnels du territoire, joignables directement.',path:'Territoire → Besoin → Zone → Professionnel → Contact direct',need:'Que recherchez-vous ?',zone:'Préciser la zone',all:'Tout le territoire',results:'professionnel(s) disponible(s)',empty:'Aucun professionnel ne correspond encore à ce filtre.',based:'Basé à',serves:'Intervient à',profile:'OUVRIR',whatsapp:'WhatsApp',call:'Appeler',sourceLive:'Données territoriales : Supabase',sourceFallback:'Mode secours local',configError:'Configuration territoriale indisponible.',labels:{transport:'Se déplacer',artisan:'Trouver un artisan',accommodation:'Dormir ou louer',food:'Manger ou réserver',shopping:'Acheter local',beauty:'Beauté & Bien-être',jobs:'Emploi et missions',announcements:'Annonces',guidance:'La Voix',cleaning:'Service de nettoyage',professional:'Services professionnels'}},
@@ -155,6 +155,14 @@ function renderHeader(){
   document.getElementById('source').textContent=state.live?tr.sourceLive:tr.sourceFallback;
 }
 
+function localNeedMeta(id,meta){
+  if(id==='cleaning'&&territoryId!=='petite-cote'){
+    var generic={fr:'NETTOYAGE · Maison · Entretien · Bureaux',en:'CLEANING · Home · Maintenance · Offices',es:'LIMPIEZA · Hogar · Mantenimiento · Oficinas',pt:'LIMPEZA · Casa · Manutenção · Escritórios',de:'REINIGUNG · Haus · Pflege · Büros',it:'PULIZIA · Casa · Manutenzione · Uffici',nl:'SCHOONMAAK · Woning · Onderhoud · Kantoren',ar:'تنظيف · منازل · صيانة · مكاتب'};
+    return generic[lang]||generic.fr;
+  }
+  return meta[id]||'';
+}
+
 function renderNeeds(){
   var root=document.getElementById('needs'),tr=T[lang],meta=(NEED_META[lang]||NEED_META.fr);root.innerHTML='';
   var list=NEEDS.slice(),extras=LOCAL_NEEDS[territoryId]||[],at=list.length;
@@ -163,7 +171,7 @@ function renderNeeds(){
   list.forEach(function(n){
     var b=document.createElement('button');b.type='button';b.className='need'+(state.need===n[0]?' active':'');b.setAttribute('data-digiy-native-door','1');
     var ic=document.createElement('strong'),tx=document.createElement('span'),sm=document.createElement('small');
-    ic.textContent=n[1];tx.textContent=tr.labels[n[0]]||n[0];sm.textContent=meta[n[0]]||'';
+    ic.textContent=n[1];tx.textContent=tr.labels[n[0]]||n[0];sm.textContent=localNeedMeta(n[0],meta);
     b.append(ic,tx,sm);
     b.addEventListener('click',function(){if(n[0]==='guidance'){location.href='https://pro-action-digiy.digiylyfe.com/';return}state.need=state.need===n[0]?'':n[0];syncUrl();renderNeeds();renderResults();revealResults()});
     root.appendChild(b)
