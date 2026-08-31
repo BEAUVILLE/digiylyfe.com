@@ -61,15 +61,21 @@ jobs:
           print("Changed files:", ", ".join(changed) if changed else "none")
           PY
 
-      - name: Commit installed loaders
+      - name: Emphasize global hero direction
+        shell: bash
+        run: python3 .github/tmp-patch-global-hero-emphasis.py
+
+      - name: Restore workflow and commit hero emphasis
         shell: bash
         run: |
-          if git diff --quiet; then
-            echo "No page needed an update."
-            exit 0
-          fi
+          git show HEAD^:.github/workflows/install-global-navigation.yml > .github/workflows/install-global-navigation.yml
+          rm -f .github/tmp-patch-global-hero-emphasis.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add presence-terrain.html recherche.html menu.html tarif-entreprise-petite-cote.html architecture-digiylyfe.html notre-methode.html le-terrain-garde-la-main.html
-          git commit -m "Install global DIGIY navigation [skip ci]"
+          git add index.html .github/workflows/install-global-navigation.yml .github/tmp-patch-global-hero-emphasis.py
+          if git diff --cached --quiet; then
+            echo "No hero emphasis update needed."
+            exit 0
+          fi
+          git commit -m "Vitrine: renforcer la direction internationale du hero [skip ci]"
           git push
