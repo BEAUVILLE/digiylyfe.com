@@ -111,7 +111,11 @@
 
     <section class="card">
       <a class="visual" href="https://digiylyfe.com/" aria-label="Ouvrir DIGIYLYFE.COM">
-        <img src="https://digiylyfe.com/carte-visite-digiy.png" alt="Carte officielle DIGIYLYFE">
+        <picture>
+          <source srcset="https://digiylyfe.com/carte-visite-digiy.avif" type="image/avif">
+          <source srcset="https://digiylyfe.com/carte-visite-digiy.webp" type="image/webp">
+          <img src="https://digiylyfe.com/carte-visite-digiy.png" alt="Carte officielle DIGIYLYFE" decoding="async" fetchpriority="high">
+        </picture>
       </a>
 
       <div class="body">
