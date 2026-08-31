@@ -1,0 +1,89 @@
+name: France Cartouche V1
+on:
+  push:
+    paths:
+      - '.github/workflows/france-cartouche-v1-temp.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Poser la cartouche France
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('france.html')
+          s=p.read_text(encoding='utf-8')
+          assert 'id="franceTerritoryMap"' not in s, 'cartouche déjà présente'
+          s=s.replace('france-dordogne-bordeaux-tarif-unique-v2-20260826','france-cartouche-territoires-v1-20260831',1)
+          css='''
+.franceNav{overflow:hidden;border-color:rgba(94,234,212,.34);background:radial-gradient(760px 360px at 8% 10%,rgba(94,234,212,.09),transparent 65%),radial-gradient(620px 320px at 100% 0,rgba(246,196,83,.09),transparent 62%),linear-gradient(145deg,rgba(5,35,27,.96),rgba(4,24,19,.92))}.franceNavHead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}.franceNavHead .mapEyebrow{color:var(--gold);font-size:12px;font-weight:1000;letter-spacing:.1em;text-transform:uppercase}.franceNavHead h2{margin-top:7px}.mapStatus{flex:0 0 auto;padding:8px 11px;border:1px solid rgba(34,197,94,.32);border-radius:999px;background:rgba(34,197,94,.08);color:#caffda;font-size:10px;font-weight:1000;letter-spacing:.07em}.franceNavGrid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);gap:18px;margin-top:18px;align-items:stretch}.franceMapPanel{position:relative;min-height:520px;border:1px solid rgba(94,234,212,.22);border-radius:26px;background:radial-gradient(circle at 50% 44%,rgba(34,197,94,.08),transparent 48%),linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015));overflow:hidden}.franceMapPanel:before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(94,234,212,.16) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(to bottom,transparent,black 20%,black 80%,transparent);opacity:.3;pointer-events:none}.franceMap{position:relative;width:100%;height:100%;min-height:520px;display:block}.franceOutline{fill:rgba(8,70,52,.45);stroke:rgba(94,234,212,.72);stroke-width:3}.franceCorsica{fill:rgba(8,70,52,.42);stroke:rgba(94,234,212,.62);stroke-width:2}.mapFuture circle{fill:#dbe5df;stroke:#fff;stroke-width:2;opacity:.72}.mapFuture text{fill:rgba(255,250,240,.78);font-size:16px;font-weight:850;paint-order:stroke;stroke:#06140f;stroke-width:4px}.mapActive{cursor:pointer}.mapActive .halo{fill:rgba(246,196,83,.12);stroke:rgba(246,196,83,.42);stroke-width:2}.mapActive .pin{fill:var(--gold);stroke:#fff3bd;stroke-width:3}.mapActive .core{fill:#173d2c}.mapActive text{fill:#ffe897;font-size:20px;font-weight:1000;paint-order:stroke;stroke:#06140f;stroke-width:5px}.mapActive .sub{font-size:13px;fill:#fff1bd;font-weight:900}.mapActive:hover .halo,.mapActive:focus .halo{fill:rgba(246,196,83,.25);stroke:var(--gold)}.mapActive:focus{outline:none}.mapLegend{position:absolute;left:14px;right:14px;bottom:12px;padding:9px 11px;border:1px solid rgba(255,255,255,.11);border-radius:14px;background:rgba(3,18,13,.72);backdrop-filter:blur(8px);color:var(--muted);font-size:10px;font-weight:900}.mapLegend b{color:var(--gold)}.territoryLinks{display:flex;flex-direction:column;gap:10px}.territoryLinksTitle{display:flex;align-items:center;gap:8px;padding:3px 3px 8px;color:var(--green);font-size:12px;font-weight:1000;letter-spacing:.09em}.territoryLink{min-height:112px;display:grid;grid-template-columns:58px 1fr auto;align-items:center;gap:13px;padding:14px 15px;border:1px solid rgba(94,234,212,.48);border-radius:22px;background:linear-gradient(145deg,rgba(94,234,212,.07),rgba(34,197,94,.055));transition:transform .15s ease,border-color .15s ease,background .15s ease}.territoryLink:hover,.territoryLink:focus{transform:translateY(-1px);border-color:rgba(246,196,83,.72);background:linear-gradient(145deg,rgba(246,196,83,.10),rgba(34,197,94,.08));outline:none}.territoryPin{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(246,196,83,.45);background:rgba(246,196,83,.08);color:var(--gold);font-size:23px}.territoryLink strong{display:block;font-size:clamp(19px,3.5vw,27px);line-height:1.05}.territoryLink small{display:block;margin-top:6px;color:var(--muted);font-size:11px;font-weight:850;line-height:1.35}.territoryArrow{color:var(--gold);font-size:38px;font-weight:300}.baseRule{margin-top:auto;padding:13px 14px;border:1px solid rgba(94,234,212,.24);border-radius:18px;background:rgba(94,234,212,.045);color:#dffff8;font-size:11px;line-height:1.5;font-weight:900}.baseRule b{color:var(--gold)}@media(max-width:820px){.franceNavHead{align-items:flex-start;flex-direction:column}.franceNavGrid{grid-template-columns:1fr}.franceMapPanel,.franceMap{min-height:470px}.territoryLinks{display:grid;grid-template-columns:1fr 1fr}.territoryLinksTitle,.baseRule{grid-column:1/-1}.territoryLink:last-of-type{grid-column:1/-1}}@media(max-width:560px){.franceNav{padding:15px}.franceMapPanel,.franceMap{min-height:390px}.mapFuture text{font-size:12px}.mapActive text{font-size:16px}.mapActive .sub{font-size:10px}.territoryLinks{grid-template-columns:1fr}.territoryLinksTitle,.baseRule,.territoryLink:last-of-type{grid-column:auto}.territoryLink{min-height:94px;grid-template-columns:48px 1fr auto;padding:12px}.territoryPin{width:44px;height:44px;font-size:19px}}
+'''
+          assert '</style>' in s
+          s=s.replace('</style>',css+'\n</style>',1)
+          block='''
+  <section class="section franceNav" id="franceTerritoryMap" aria-labelledby="franceMapTitle">
+    <div class="franceNavHead">
+      <div>
+        <div class="mapEyebrow">FRANCE · TERRITOIRES DIGIYLYFE</div>
+        <h2 id="franceMapTitle">Choisissez une zone active.</h2>
+        <p class="lead">La carte montre le maillage. Les liens ouvrent uniquement les territoires réellement actifs ; les autres métropoles restent de simples repères.</p>
+      </div>
+      <div class="mapStatus">● 2 TERRITOIRES ACTIFS · 1 ZONE PILOTE</div>
+    </div>
+    <div class="franceNavGrid">
+      <div class="franceMapPanel">
+        <svg class="franceMap" viewBox="0 0 600 620" role="img" aria-label="Carte schématique de la France avec Bordeaux et Sarlat actifs">
+          <path class="franceOutline" d="M208 55 L326 38 L433 88 L500 184 L482 288 L534 382 L483 494 L390 557 L276 584 L169 543 L91 455 L72 348 L102 270 L67 178 L143 111 Z"/>
+          <path class="franceCorsica" d="M506 499 C531 511 540 546 527 581 C514 595 497 581 499 553 C499 531 501 513 506 499 Z"/>
+          <g class="mapFuture" aria-hidden="true"><circle cx="322" cy="93" r="7"/><text x="338" y="99">Lille</text></g>
+          <g class="mapFuture" aria-hidden="true"><circle cx="303" cy="177" r="7"/><text x="319" y="183">Paris</text></g>
+          <g class="mapFuture" aria-hidden="true"><circle cx="448" cy="194" r="7"/><text x="464" y="200">Strasbourg</text></g>
+          <g class="mapFuture" aria-hidden="true"><circle cx="143" cy="265" r="7"/><text x="159" y="271">Nantes</text></g>
+          <g class="mapFuture" aria-hidden="true"><circle cx="384" cy="342" r="7"/><text x="400" y="348">Lyon</text></g>
+          <g class="mapFuture" aria-hidden="true"><circle cx="468" cy="452" r="7"/><text x="484" y="458">Nice</text></g>
+          <g class="mapFuture" aria-hidden="true"><circle cx="210" cy="468" r="7"/><text x="226" y="474">Toulouse</text></g>
+          <g class="mapFuture" aria-hidden="true"><circle cx="316" cy="488" r="7"/><text x="332" y="494">Montpellier</text></g>
+          <g class="mapFuture" aria-hidden="true"><circle cx="390" cy="505" r="7"/><text x="406" y="511">Marseille</text></g>
+          <a class="mapActive" href="https://digiylyfe.com/bordeaux.html" aria-label="Ouvrir Bordeaux">
+            <circle class="halo" cx="153" cy="397" r="28"/><circle class="pin" cx="153" cy="397" r="13"/><circle class="core" cx="153" cy="397" r="5"/><text x="180" y="402">Bordeaux</text>
+          </a>
+          <a class="mapActive" href="https://digiylyfe.com/sarlat.html" aria-label="Ouvrir Sarlat, zone pilote de la Vallée de la Dordogne">
+            <circle class="halo" cx="244" cy="418" r="28"/><circle class="pin" cx="244" cy="418" r="13"/><circle class="core" cx="244" cy="418" r="5"/><text x="272" y="416">Sarlat</text><text class="sub" x="272" y="437">Vallée de la Dordogne</text>
+          </a>
+        </svg>
+        <div class="mapLegend"><b>● ACTIF</b> · ○ REPÈRE MÉTROPOLE · carte d’orientation schématique</div>
+      </div>
+      <div class="territoryLinks" aria-label="Territoires actifs en France">
+        <div class="territoryLinksTitle">📍 TERRITOIRES ACTIFS</div>
+        <a class="territoryLink" href="https://digiylyfe.com/bordeaux.html"><span class="territoryPin">●</span><span><strong>Bordeaux</strong><small>Territoire urbain · 8 quartiers · 11 portes</small></span><span class="territoryArrow">›</span></a>
+        <a class="territoryLink" href="https://digiylyfe.com/territoire.html?zone=vallee-dordogne"><span class="territoryPin">●</span><span><strong>Vallée de la Dordogne</strong><small>Territoire saisonnier · professionnels et places à prendre</small></span><span class="territoryArrow">›</span></a>
+        <a class="territoryLink" href="https://digiylyfe.com/sarlat.html"><span class="territoryPin">●</span><span><strong>Sarlat</strong><small>Zone pilote · Vallée de la Dordogne</small></span><span class="territoryArrow">›</span></a>
+        <div class="baseRule">Base territoriale V1 · <b>pays → territoire → zone → besoin → master métier</b></div>
+      </div>
+    </div>
+  </section>
+
+'''
+          marker='  <section class="section">\n    <h2>Territoires actifs en France</h2>'
+          assert marker in s, 'section territoires introuvable'
+          s=s.replace(marker,block+marker,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+          grep -F 'id="franceTerritoryMap"' france.html
+          grep -F 'href="https://digiylyfe.com/bordeaux.html"' france.html
+          grep -F 'href="https://digiylyfe.com/sarlat.html"' france.html
+          grep -F 'zone=vallee-dordogne' france.html
+      - name: Publier et nettoyer
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/france-cartouche-v1-temp.yml
+          git config user.name 'DIGIYLYFE Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add france.html .github/workflows/france-cartouche-v1-temp.yml
+          git commit -m 'France: transcrire la cartouche territoriale interactive'
+          git push origin main
