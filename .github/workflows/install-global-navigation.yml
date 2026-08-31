@@ -61,6 +61,12 @@ jobs:
           print("Changed files:", ", ".join(changed) if changed else "none")
           PY
 
+      - name: Install ffmpeg
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+
       - name: Optimize DIGIYLYFE business-card media
         shell: bash
         run: |
