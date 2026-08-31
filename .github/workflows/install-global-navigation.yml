@@ -61,21 +61,15 @@ jobs:
           print("Changed files:", ", ".join(changed) if changed else "none")
           PY
 
-      - name: Emphasize global hero direction
-        shell: bash
-        run: python3 .github/tmp-patch-global-hero-emphasis.py
-
-      - name: Restore workflow and commit hero emphasis
+      - name: Commit installed loaders
         shell: bash
         run: |
-          echo 'bmFtZTogSW5zdGFsbCBnbG9iYWwgRElHSVkgbmF2aWdhdGlvbgoKb246CiAgcHVzaDoKICAgIGJyYW5jaGVzOiBbbWFpbl0KICAgIHBhdGhzOgogICAgICAtICJkaWdpeS1uYXZpZ2F0aW9uLWdsb2JhbGUuanMiCiAgICAgIC0gIi5naXRodWIvd29ya2Zsb3dzL2luc3RhbGwtZ2xvYmFsLW5hdmlnYXRpb24ueW1sIgogIHdvcmtmbG93X2Rpc3BhdGNoOgoKcGVybWlzc2lvbnM6CiAgY29udGVudHM6IHdyaXRlCgpqb2JzOgogIGluc3RhbGwtbmF2aWdhdGlvbjoKICAgIGlmOiBnaXRodWIuYWN0b3IgIT0gJ2dpdGh1Yi1hY3Rpb25zW2JvdF0nCiAgICBydW5zLW9uOiB1YnVudHUtbGF0ZXN0CiAgICBzdGVwczoKICAgICAgLSBuYW1lOiBDaGVja291dAogICAgICAgIHVzZXM6IGFjdGlvbnMvY2hlY2tvdXRAdjQKCiAgICAgIC0gbmFtZTogSW5zdGFsbCB0aGUgc2hhcmVkIG5hdmlnYXRpb24gbG9hZGVyCiAgICAgICAgc2hlbGw6IGJhc2gKICAgICAgICBydW46IHwKICAgICAgICAgIHB5dGhvbjMgLSA8PCdQWScKICAgICAgICAgIGZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aAoKICAgICAgICAgIHRhcmdldHMgPSBbCiAgICAgICAgICAgICAgInByZXNlbmNlLXRlcnJhaW4uaHRtbCIsCiAgICAgICAgICAgICAgInJlY2hlcmNoZS5odG1sIiwKICAgICAgICAgICAgICAibWVudS5odG1sIiwKICAgICAgICAgICAgICAidGFyaWYtZW50cmVwcmlzZS1wZXRpdGUtY290ZS5odG1sIiwKICAgICAgICAgICAgICAiYXJjaGl0ZWN0dXJlLWRpZ2l5bHlmZS5odG1sIiwKICAgICAgICAgICAgICAibm90cmUtbWV0aG9kZS5odG1sIiwKICAgICAgICAgICAgICAibGUtdGVycmFpbi1nYXJkZS1sYS1tYWluLmh0bWwiLAogICAgICAgICAgXQogICAgICAgICAgbWFya2VyID0gJzxzY3JpcHQgc3JjPSIuL2RpZ2l5LW5hdmlnYXRpb24tZ2xvYmFsZS5qcz92PTIwMjYwNzIyIj48L3NjcmlwdD4nCgogICAgICAgICAgaWYgbm90IFBhdGgoImRpZ2l5LW5hdmlnYXRpb24tZ2xvYmFsZS5qcyIpLmV4aXN0cygpOgogICAgICAgICAgICAgIHJhaXNlIFN5c3RlbUV4aXQoIlNoYXJlZCBuYXZpZ2F0aW9uIGZpbGUgaXMgbm90IHByZXNlbnQgeWV0OyBub3RoaW5nIHRvIGluc3RhbGwuIikKCiAgICAgICAgICBjaGFuZ2VkID0gW10KICAgICAgICAgIGZvciBuYW1lIGluIHRhcmdldHM6CiAgICAgICAgICAgICAgcGF0aCA9IFBhdGgobmFtZSkKICAgICAgICAgICAgICBpZiBub3QgcGF0aC5leGlzdHMoKToKICAgICAgICAgICAgICAgICAgcHJpbnQoZiJTS0lQIG1pc3Npbmc6IHtuYW1lfSIpCiAgICAgICAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgICAgICAgdGV4dCA9IHBhdGgucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpCiAgICAgICAgICAgICAgaWYgImRpZ2l5LW5hdmlnYXRpb24tZ2xvYmFsZS5qcyIgaW4gdGV4dDoKICAgICAgICAgICAgICAgICAgcHJpbnQoZiJPSyBhbHJlYWR5IGluc3RhbGxlZDoge25hbWV9IikKICAgICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICAgICAgICBpZiAiPC9ib2R5PiIgaW4gdGV4dDoKICAgICAgICAgICAgICAgICAgaGVhZCwgdGFpbCA9IHRleHQucnNwbGl0KCI8L2JvZHk+IiwgMSkKICAgICAgICAgICAgICAgICAgdGV4dCA9IGhlYWQucnN0cmlwKCkgKyAiXG4iICsgbWFya2VyICsgIlxuPC9ib2R5PiIgKyB0YWlsCiAgICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgICAgdGV4dCA9IHRleHQucnN0cmlwKCkgKyAiXG4iICsgbWFya2VyICsgIlxuIgogICAgICAgICAgICAgIHBhdGgud3JpdGVfdGV4dCh0ZXh0LCBlbmNvZGluZz0idXRmLTgiKQogICAgICAgICAgICAgIGNoYW5nZWQuYXBwZW5kKG5hbWUpCiAgICAgICAgICAgICAgcHJpbnQoZiJJTlNUQUxMRUQ6IHtuYW1lfSIpCgogICAgICAgICAgcHJpbnQoIkNoYW5nZWQgZmlsZXM6IiwgIiwgIi5qb2luKGNoYW5nZWQpIGlmIGNoYW5nZWQgZWxzZSAibm9uZSIpCiAgICAgICAgICBQWQoKICAgICAgLSBuYW1lOiBDb21taXQgaW5zdGFsbGVkIGxvYWRlcnMKICAgICAgICBzaGVsbDogYmFzaAogICAgICAgIHJ1bjogfAogICAgICAgICAgaWYgZ2l0IGRpZmYgLS1xdWlldDsgdGhlbgogICAgICAgICAgICBlY2hvICJObyBwYWdlIG5lZWRlZCBhbiB1cGRhdGUuIgogICAgICAgICAgICBleGl0IDAKICAgICAgICAgIGZpCiAgICAgICAgICBnaXQgY29uZmlnIHVzZXIubmFtZSAiZ2l0aHViLWFjdGlvbnNbYm90XSIKICAgICAgICAgIGdpdCBjb25maWcgdXNlci5lbWFpbCAiNDE4OTgyODIrZ2l0aHViLWFjdGlvbnNbYm90XUB1c2Vycy5ub3JlcGx5LmdpdGh1Yi5jb20iCiAgICAgICAgICBnaXQgYWRkIHByZXNlbmNlLXRlcnJhaW4uaHRtbCByZWNoZXJjaGUuaHRtbCBtZW51Lmh0bWwgdGFyaWYtZW50cmVwcmlzZS1wZXRpdGUtY290ZS5odG1sIGFyY2hpdGVjdHVyZS1kaWdpeWx5ZmUuaHRtbCBub3RyZS1tZXRob2RlLmh0bWwgbGUtdGVycmFpbi1nYXJkZS1sYS1tYWluLmh0bWwKICAgICAgICAgIGdpdCBjb21taXQgLW0gIkluc3RhbGwgZ2xvYmFsIERJR0lZIG5hdmlnYXRpb24gW3NraXAgY2ldIgogICAgICAgICAgZ2l0IHB1c2gK' | base64 -d > .github/workflows/install-global-navigation.yml
-          rm -f .github/tmp-patch-global-hero-emphasis.py
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A index.html .github/workflows/install-global-navigation.yml .github/tmp-patch-global-hero-emphasis.py
-          if git diff --cached --quiet; then
-            echo "No hero emphasis update needed."
+          if git diff --quiet; then
+            echo "No page needed an update."
             exit 0
           fi
-          git commit -m "Vitrine: renforcer la direction internationale du hero [skip ci]"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add presence-terrain.html recherche.html menu.html tarif-entreprise-petite-cote.html architecture-digiylyfe.html notre-methode.html le-terrain-garde-la-main.html
+          git commit -m "Install global DIGIY navigation [skip ci]"
           git push
