@@ -61,10 +61,6 @@ jobs:
           print("Changed files:", ", ".join(changed) if changed else "none")
           PY
 
-      - name: Patch France homepage cartouche
-        shell: bash
-        run: python3 scripts/patch-france-vitrine.py
-
       - name: Commit installed loaders
         shell: bash
         run: |
@@ -74,6 +70,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Vitrine: afficher la cartouche France interactive [skip ci]"
+          git add presence-terrain.html recherche.html menu.html tarif-entreprise-petite-cote.html architecture-digiylyfe.html notre-methode.html le-terrain-garde-la-main.html
+          git commit -m "Install global DIGIY navigation [skip ci]"
           git push
