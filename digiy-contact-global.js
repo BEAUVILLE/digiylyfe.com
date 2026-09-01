@@ -1,7 +1,7 @@
 /* DIGIYLYFE — chargeur vitrine relais 20260901
  * Le chargeur stable précédent est conservé intégralement dans :
  * /digiy-contact-global-stable-20260830.js
- * Ajout isolé : Services professionnels + Santé & soins.
+ * Ajouts isolés : Services professionnels + Santé & soins + raccord Sarlat.
  * PWA / manifest / service worker : inchangés.
  */
 (function(){
@@ -9,48 +9,29 @@
   if(window.DIGIY_VITRINE_RELAY_20260901)return;
   window.DIGIY_VITRINE_RELAY_20260901=true;
 
-  function currentLang(){
-    var q='';
-    try{q=(new URLSearchParams(location.search).get('lang')||'').slice(0,2).toLowerCase();}catch(e){}
-    var h=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
-    return ['fr','en','es','pt','it','de','nl','ar'].indexOf(q)>=0?q:(['fr','en','es','pt','it','de','nl','ar'].indexOf(h)>=0?h:'fr');
+  function addScript(src,attr){
+    if(attr&&document.querySelector('script['+attr+']'))return null;
+    var s=document.createElement('script');s.src=src;s.async=false;if(attr)s.setAttribute(attr,'1');document.head.appendChild(s);return s;
   }
 
-  function healthTarget(){
-    var u=new URL('/territoire.html',location.origin);
-    u.searchParams.set('zone','petite-cote');
-    u.searchParams.set('need','health_care');
-    u.searchParams.set('lang',currentLang());
-    u.hash='resultsSection';
-    return u.pathname+u.search+u.hash;
-  }
-
-  function fixHealthDoor(){
-    var a=document.querySelector('[data-digiy-health-door]');
-    if(!a)return false;
-    a.href=healthTarget();
-    return true;
-  }
-
-  function settleHealthDoor(){
-    var tries=0;
-    var timer=setInterval(function(){
-      tries++;
-      if(fixHealthDoor()||tries>40)clearInterval(timer);
-    },100);
+  function loadContextExtras(){
+    var p=location.pathname.replace(/\/+$/,'');
+    if(/\/sarlat\.html$/i.test(p))addScript('/assets/digiy-sarlat-health-v1.js?v=20260901-v1','data-digiy-sarlat-health');
+    if(/\/demo-dordogne\.html$/i.test(p)){
+      var q=new URLSearchParams(location.search);
+      if((q.get('need')||'')==='health_care')addScript('/assets/digiy-demo-dordogne-health-v1.js?v=20260901-v1','data-digiy-demo-dordogne-health');
+    }
   }
 
   function loadHealthDoors(){
-    if(document.querySelector('script[data-digiy-pro-health-loader]')){
-      settleHealthDoor();
-      return;
-    }
+    var existing=document.querySelector('script[data-digiy-pro-health-loader]');
+    if(existing){loadContextExtras();return;}
     var extra=document.createElement('script');
     extra.src='/assets/digiy-vitrine-professional-health-v1.js?v=20260901-v4';
     extra.async=false;
     extra.setAttribute('data-digiy-pro-health-loader','1');
-    extra.onload=settleHealthDoor;
-    extra.onerror=settleHealthDoor;
+    extra.onload=loadContextExtras;
+    extra.onerror=loadContextExtras;
     document.head.appendChild(extra);
   }
 
@@ -60,6 +41,4 @@
   stable.onload=loadHealthDoors;
   stable.onerror=loadHealthDoors;
   document.head.appendChild(stable);
-
-  new MutationObserver(function(){fixHealthDoor();}).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
 })();
