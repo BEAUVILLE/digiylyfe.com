@@ -1,5 +1,6 @@
 /* DIGIYLYFE — Libellés territoire : Services professionnels + Santé & soins V1
  * Exemples de catégories uniquement, jamais des professionnels fictifs.
+ * Correctif 20260901 : aucune réécriture DOM si le texte est déjà correct.
  */
 (function(){
   'use strict';
@@ -17,7 +18,11 @@
     ar:{health:['الصحة والرعاية','طبيب · طبيب أسنان · ممرض · قابلة · مساعدة شخصية'],pro:['الخدمات المهنية','محامٍ · موثق · مهندس معماري · محاسب · مسّاح · تأمين']}
   };
 
-  function current(){var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return COPY[l]||COPY.fr;}
+  function current(){
+    var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
+    return COPY[l]||COPY.fr;
+  }
+
   function findByIcon(icon){
     var buttons=document.querySelectorAll('#needs .need');
     for(var i=0;i<buttons.length;i++){
@@ -26,19 +31,46 @@
     }
     return null;
   }
+
+  function setText(el,value){
+    if(el&&el.textContent!==value)el.textContent=value;
+  }
+
   function apply(){
     var t=current();
     var h=findByIcon('🩺');
-    if(h){var hs=h.querySelector('span'),hm=h.querySelector('small');if(hs)hs.textContent=t.health[0];if(hm)hm.textContent=t.health[1];}
+    if(h){
+      setText(h.querySelector('span'),t.health[0]);
+      setText(h.querySelector('small'),t.health[1]);
+    }
     var p=findByIcon('🏛️');
-    if(p){var ps=p.querySelector('span'),pm=p.querySelector('small');if(ps)ps.textContent=t.pro[0];if(pm)pm.textContent=t.pro[1];}
+    if(p){
+      setText(p.querySelector('span'),t.pro[0]);
+      setText(p.querySelector('small'),t.pro[1]);
+    }
   }
+
   function boot(){
     apply();
     var root=document.getElementById('needs');
-    if(root)new MutationObserver(function(){apply();}).observe(root,{childList:true,subtree:true});
-    new MutationObserver(function(){setTimeout(apply,0);}).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
-    setTimeout(apply,120);setTimeout(apply,500);
+    if(root){
+      var pending=false;
+      new MutationObserver(function(){
+        if(pending)return;
+        pending=true;
+        requestAnimationFrame(function(){
+          pending=false;
+          apply();
+        });
+      }).observe(root,{childList:true,subtree:true});
+    }
+    new MutationObserver(function(){
+      requestAnimationFrame(apply);
+    }).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+    setTimeout(apply,120);
+    setTimeout(apply,500);
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);
+  else boot();
 })();
