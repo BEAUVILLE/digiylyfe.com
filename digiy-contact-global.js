@@ -1,7 +1,7 @@
 /* DIGIYLYFE — chargeur vitrine relais 20260901
  * Le chargeur stable précédent est conservé intégralement dans :
  * /digiy-contact-global-stable-20260830.js
- * Ajouts isolés : Services professionnels + Santé & soins + raccord Sarlat + COM MAÎTRE accueil.
+ * Ajouts isolés : Services professionnels + Santé & soins + raccord Sarlat + COM MAÎTRE accueil + séparation façade public/pro.
  * PWA / manifest / service worker : inchangés.
  */
 (function(){
@@ -20,6 +20,10 @@
     var s=document.createElement('script');s.src=src;s.async=false;if(attr)s.setAttribute(attr,'1');document.head.appendChild(s);return s;
   }
 
+  function loadHomeFacade(){
+    addScript('/assets/digiy-facade-two-worlds-v1.js?v=20260901-v1','data-digiy-facade-two-worlds');
+  }
+
   function fixSarlatPublicHealthDoor(){
     if(!/\/sarlat\.html$/i.test(location.pathname.replace(/\/+$/,'')))return;
     var a=document.querySelector('[data-digiy-health-door]');if(!a)return;
@@ -29,7 +33,8 @@
   function loadContextExtras(){
     var p=location.pathname.replace(/\/+$/,'');
     if(p===''||p==='/'||/\/index\.html$/i.test(p)){
-      addScript('/assets/digiy-com-maitre-v1.js?v=20260901-v1','data-digiy-com-maitre');
+      var com=addScript('/assets/digiy-com-maitre-v1.js?v=20260901-v1','data-digiy-com-maitre');
+      if(com){com.onload=loadHomeFacade;com.onerror=loadHomeFacade}else loadHomeFacade();
     }
     if(/\/sarlat\.html$/i.test(p)){
       fixSarlatPublicHealthDoor();
