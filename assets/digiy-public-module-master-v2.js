@@ -20,7 +20,7 @@ var I18N={
  ar:{back:'← العودة إلى المنطقة',real:'حضور حقيقي',realLead:'فقط الأعضاء المرتبطون فعلياً بهذا البلد وهذه المنطقة.',none:'لا يوجد عضو حقيقي في هذه المنطقة حالياً.',open:'أماكن متاحة',openLead:'هذه البطاقات تمثل أنشطة متاحة وليست مهنيين وهميين.',member:'عضو DIGIYLYFE',place:'مكان متاح',view:'فتح ←',take:'خذ مكاني ←',zero:'عمولة 0٪ · تواصل مباشر',choose:'اختر منطقة من صفحة المناطق.',country:'البلد',zone:'المنطقة',local:'القطاع'}
 };
 var U=I18N[lang]||I18N.fr,M=META[territory]||null;
-var TITLES={transport:'DIGIY DRIVER',artisan:'DIGIY BUILD · ARTISANS',accommodation:'DIGIY LOC · DORMIR & LOUER',food:'DIGIY RESTO · MANGER',announcements:'BONNE AFFAIRE · ANNONCES',resa:'RÉSA MULTI · SERVICES',cleaning:'SERVICE DE NETTOYAGE',professional:'SERVICES PROFESSIONNELS',guidance:'LA VOIX DU BUSINESS'};
+var TITLES={transport:'DIGIY DRIVER',artisan:'DIGIY BUILD · ARTISANS',accommodation:'DIGIY LOC · DORMIR & LOUER',food:'DIGIY RESTO · MANGER',announcements:'BONNE AFFAIRE · ANNONCES',resa:'RÉSA MULTI · SERVICES',cleaning:'SERVICE DE NETTOYAGE',professional:'SERVICES PROFESSIONNELS',health:'SANTÉ & SOINS',guidance:'LA VOIX DU BUSINESS'};
 var REAL=[
  {module:'transport',territory:'petite-cote',name:'Lamine',activity:'Chauffeur privé sur réservation',zone:'Saly · Mbour · AIBD · Petite Côte',image:'https://partenaire-lamine.digiylyfe.com/carte-visite.png',url:'https://partenaire-lamine.digiylyfe.com/',chips:['Transfert AIBD','Courses locales','Sur réservation']},
  {module:'transport',territory:'petite-cote',name:'Baptiste',activity:'Chauffeur ambassadeur · Adhérent DIGIYLYFE',zone:'Saly · Mbour · AIBD · Petite Côte',image:'https://digiy-driver-part-bapt.digiylyfe.com/carte-visite-baptiste-adherent.png',url:'https://digiy-driver-part-bapt.digiylyfe.com/',chips:['Transferts','Mise à disposition','Contact direct']},
@@ -42,6 +42,7 @@ var OPEN={
  announcements:[['🚙','Véhicules & mobilité'],['🧰','Matériel professionnel'],['🏠','Maison & équipement'],['🎪','Services & événements']],
  cleaning:[['🧹','Nettoyage maison'],['🧼','Entretien régulier'],['🏢','Bureaux & commerces'],['✨','Remise en état']],
  professional:[['⚖️','Avocat'],['🖋️','Notaire'],['📊','Comptable'],['📐','Architecte']],
+ health:[['🩺','Médecin généraliste'],['🦷','Dentiste'],['💉','Infirmier / infirmière'],['🤱','Sage-femme'],['🤝','Aide à la personne']],
  resa:[['🍽️','Table / restaurant'],['🚗','Trajet / transfert'],['💅','Onglerie / beauté'],['💆','Massage / bien-être'],['💇','Coiffure / soins'],['🎪','Prestataire événementiel']],
  guidance:[['🎙️','Parler de mon activité'],['🧭','Clarifier mon besoin'],['📝','Formuler ma demande']]
 };
