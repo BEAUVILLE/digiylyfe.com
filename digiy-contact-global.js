@@ -9,14 +9,31 @@
   if(window.DIGIY_VITRINE_RELAY_20260901)return;
   window.DIGIY_VITRINE_RELAY_20260901=true;
 
+  function currentLang(){
+    var q='';try{q=(new URLSearchParams(location.search).get('lang')||'').slice(0,2).toLowerCase()}catch(e){}
+    var h=(document.documentElement.lang||'fr').slice(0,2).toLowerCase(),ok=['fr','en','es','pt','it','de','nl','ar'];
+    return ok.indexOf(q)>=0?q:(ok.indexOf(h)>=0?h:'fr');
+  }
+
   function addScript(src,attr){
     if(attr&&document.querySelector('script['+attr+']'))return null;
     var s=document.createElement('script');s.src=src;s.async=false;if(attr)s.setAttribute(attr,'1');document.head.appendChild(s);return s;
   }
 
+  function fixSarlatPublicHealthDoor(){
+    if(!/\/sarlat\.html$/i.test(location.pathname.replace(/\/+$/,'')))return;
+    var a=document.querySelector('[data-digiy-health-door]');if(!a)return;
+    var u=new URL('/sarlat.html',location.origin);u.searchParams.set('need','health_care');u.searchParams.set('lang',currentLang());u.hash='places';a.href=u.pathname+u.search+u.hash;
+  }
+
   function loadContextExtras(){
     var p=location.pathname.replace(/\/+$/,'');
-    if(/\/sarlat\.html$/i.test(p))addScript('/assets/digiy-sarlat-health-v1.js?v=20260901-v1','data-digiy-sarlat-health');
+    if(/\/sarlat\.html$/i.test(p)){
+      fixSarlatPublicHealthDoor();
+      var s=addScript('/assets/digiy-sarlat-health-v1.js?v=20260901-v1','data-digiy-sarlat-health');
+      if(s){s.onload=fixSarlatPublicHealthDoor;s.onerror=fixSarlatPublicHealthDoor}
+      setTimeout(fixSarlatPublicHealthDoor,250);
+    }
     if(/\/demo-dordogne\.html$/i.test(p)){
       var q=new URLSearchParams(location.search);
       if((q.get('need')||'')==='health_care')addScript('/assets/digiy-demo-dordogne-health-v1.js?v=20260901-v1','data-digiy-demo-dordogne-health');
