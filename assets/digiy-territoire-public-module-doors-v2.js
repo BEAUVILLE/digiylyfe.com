@@ -15,6 +15,7 @@ var STANDARD={
   '🔧':'https://build.digiylyfe.com/master.html',
   '🧹':'https://digiylyfe.com/nettoyage-master.html',
   '🏛️':'https://digiylyfe.com/services-professionnels-master.html',
+  '🩺':'https://digiylyfe.com/sante-master.html',
   '🏠':'https://loc.digiylyfe.com/master.html',
   '🍽️':'https://resto.digiylyfe.com/master.html',
   '🎙️':VOICE
