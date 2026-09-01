@@ -12,7 +12,7 @@
   function loadHealthDoors(){
     if(document.querySelector('script[data-digiy-pro-health-loader]'))return;
     var extra=document.createElement('script');
-    extra.src='/assets/digiy-vitrine-professional-health-v1.js?v=20260901-v1';
+    extra.src='/assets/digiy-vitrine-professional-health-v1.js?v=20260901-v3';
     extra.async=false;
     extra.setAttribute('data-digiy-pro-health-loader','1');
     document.head.appendChild(extra);
