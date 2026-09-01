@@ -1,12 +1,12 @@
-/* DIGIYLYFE — Portes publiques : Services professionnels + Santé & soins V2
+/* DIGIYLYFE — Portes publiques : Services professionnels + Santé & soins V3
  * Vitrine + pages territoire France (Sarlat / Bordeaux).
- * Catégories publiques uniquement. Aucun professionnel fictif n'est créé.
- * PWA / service worker : hors périmètre de ce module.
+ * Sarlat/Bordeaux : Santé ouvre directement le bloc des résultats/exemples.
+ * Aucun professionnel fictif n'est créé. PWA hors périmètre.
  */
 (function(){
   'use strict';
-  if(window.DIGIY_VITRINE_PRO_HEALTH_V2)return;
-  window.DIGIY_VITRINE_PRO_HEALTH_V2=true;
+  if(window.DIGIY_VITRINE_PRO_HEALTH_V3)return;
+  window.DIGIY_VITRINE_PRO_HEALTH_V3=true;
 
   var COPY={
     fr:{pro:{title:'SERVICES PROFESSIONNELS',text:'Avocat · Notaire · Architecte · Comptable · Géomètre · Assureur',cta:'Voir les professionnels →'},health:{title:'SANTÉ & SOINS',text:'Médecin · Dentiste · Infirmier · Sage-femme · Aide à la personne',cta:'Ouvrir Santé & soins →'},bordeauxLead:'12 portes simples. LA VOIX reste un moteur de recherche, jamais un métier.'},
@@ -45,7 +45,7 @@
     if(!section)return false;
     var grid=ensureGrid(section),pro=section.querySelector('[data-digiy-professional-door]'),health=section.querySelector('[data-digiy-health-door]');
     if(!pro){pro=card('professional','🏛️','https://digiylyfe.com/territoire.html');grid.appendChild(pro)}
-    if(!health){health=card('health','🩺','https://digiylyfe.com/territoire.html?need=health_care');grid.appendChild(health)}
+    if(!health){health=card('health','🩺','https://digiylyfe.com/territoire.html?need=health_care#resultsSection');grid.appendChild(health)}
     function refresh(){
       var t=COPY[lang()]||COPY.fr,pTitle=pro.querySelector('strong'),pText=pro.querySelector('small'),pCta=pro.querySelector('b'),hTitle=health.querySelector('strong'),hText=health.querySelector('small'),hCta=health.querySelector('b');
       if(pTitle)pTitle.textContent=t.pro.title;if(pText)pText.textContent=t.pro.text;if(pCta)pCta.textContent=t.pro.cta;
@@ -66,8 +66,12 @@
 
   function cityTarget(cfg){
     var q=new URLSearchParams(location.search),u=new URL('/territoire.html',location.origin),local=cfg.local||(q.get('local')||'');
-    u.searchParams.set('zone',cfg.territory);u.searchParams.set('need','health_care');if(local&&local!=='all')u.searchParams.set('local',local);u.searchParams.set('lang',lang());
-    return u.pathname+u.search;
+    u.searchParams.set('zone',cfg.territory);
+    u.searchParams.set('need','health_care');
+    if(local&&local!=='all')u.searchParams.set('local',local);
+    u.searchParams.set('lang',lang());
+    u.hash='resultsSection';
+    return u.pathname+u.search+u.hash;
   }
 
   var cityBusy=false;
