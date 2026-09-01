@@ -1,0 +1,415 @@
+/* DIGIYLYFE — chargeur vitrine stable 20260830
+ * Core historique figé bit pour bit : /digiy-contact-global-core-20260824.js
+ * Ajouts isolés : signature écosystème + lien officiel PRO CARNET + GALERIE CHAUFFEURS + porte PARTENAIRE TERRAIN + territoire DAKAR.
+ * Retrait publication : FG NAILS n’est plus exposé dans la vitrine publique.
+ * Cotisation : Supabase décide quelles présences professionnelles restent publiques.
+ * Accueil : LA VOIX reste le moteur transversal, sans ancien libellé ACTION PRO.
+ */
+(function(){
+  'use strict';
+
+  var SUPABASE_URL='https://wesqmwjjtsefyjnluosj.supabase.co';
+  var SUPABASE_PUBLISHABLE_KEY='sb_publishable_2KVRayr3oWcewu0Y7xMkOQ_D6522h1E';
+  var PUBLIC_GATE_CACHE_KEY='digiy-public-presence-gate-v1';
+  var publicGatePromise=null;
+
+  function currentLang(){
+    return (document.documentElement.lang||'fr').slice(0,2).toLowerCase();
+  }
+
+  function normalizePublicUrl(value){
+    var raw=String(value||'').trim();
+    if(!raw||raw==='#')return '';
+    try{
+      var u=new URL(raw,location.href);
+      return (u.origin+u.pathname.replace(/\/+$/,'')).toLowerCase();
+    }catch(error){
+      return raw.split('?')[0].split('#')[0].replace(/\/+$/,'').toLowerCase();
+    }
+  }
+
+  function readRecentPublicGateCache(){
+    try{
+      var cached=JSON.parse(localStorage.getItem(PUBLIC_GATE_CACHE_KEY)||'null');
+      if(!cached||!Array.isArray(cached.urls)||!cached.at)return null;
+      if(Date.now()-Number(cached.at)>120000)return null;
+      return cached.urls;
+    }catch(error){
+      return null;
+    }
+  }
+
+  function savePublicGateCache(urls){
+    try{
+      localStorage.setItem(PUBLIC_GATE_CACHE_KEY,JSON.stringify({at:Date.now(),urls:urls}));
+    }catch(error){}
+  }
+
+  function fetchAllowedPublicUrls(){
+    if(publicGatePromise)return publicGatePromise;
+
+    publicGatePromise=fetch(SUPABASE_URL+'/rest/v1/digiy_annuaire_public?select=public_url',{
+      method:'GET',
+      headers:{
+        apikey:SUPABASE_PUBLISHABLE_KEY,
+        Accept:'application/json'
+      },
+      cache:'no-store'
+    }).then(function(response){
+      if(!response.ok)throw new Error('Supabase public gate '+response.status);
+      return response.json();
+    }).then(function(rows){
+      var urls=(Array.isArray(rows)?rows:[]).map(function(row){
+        return normalizePublicUrl(row&&row.public_url);
+      }).filter(Boolean);
+      savePublicGateCache(urls);
+      return urls;
+    }).catch(function(error){
+      var cached=readRecentPublicGateCache();
+      try{console.warn('DIGIY public gate indisponible : cache court ou fermeture de sécurité.',error);}catch(ignore){}
+      return cached||[];
+    });
+
+    return publicGatePromise;
+  }
+
+  function applySupabasePresenceGate(){
+    var cards=Array.prototype.slice.call(document.querySelectorAll('.proofCard[href]'));
+    if(!cards.length)return Promise.resolve();
+
+    var proofUrls=new Set(cards.map(function(card){return normalizePublicUrl(card.href);}).filter(Boolean));
+
+    return fetchAllowedPublicUrls().then(function(urls){
+      var allowed=new Set((urls||[]).map(normalizePublicUrl).filter(Boolean));
+
+      cards.forEach(function(card){
+        var url=normalizePublicUrl(card.href);
+        if(!url||!allowed.has(url))card.remove();
+      });
+
+      try{
+        var key='digiy-vitrine-favoris';
+        var favs=JSON.parse(localStorage.getItem(key)||'[]');
+        if(Array.isArray(favs)){
+          var cleaned=favs.filter(function(href){
+            var url=normalizePublicUrl(href);
+            return !proofUrls.has(url)||allowed.has(url);
+          });
+          if(cleaned.length!==favs.length)localStorage.setItem(key,JSON.stringify(cleaned));
+        }
+      }catch(error){}
+
+      var grid=document.querySelector('.proofGrid');
+      if(grid){
+        var refreshGrid=function(){
+          var count=grid.querySelectorAll('.proofCard[href]').length;
+          if(window.matchMedia('(min-width:761px)').matches&&count>0){
+            grid.style.gridTemplateColumns='repeat('+Math.min(count,4)+',1fr)';
+          }else{
+            grid.style.gridTemplateColumns='';
+          }
+        };
+        refreshGrid();
+        if(!grid.getAttribute('data-digiy-public-gate-layout')){
+          grid.setAttribute('data-digiy-public-gate-layout','1');
+          var mq=window.matchMedia('(min-width:761px)');
+          if(mq.addEventListener)mq.addEventListener('change',refreshGrid);
+          else if(mq.addListener)mq.addListener(refreshGrid);
+        }
+      }
+
+      if(window.digiyRenderFavoris){
+        try{window.digiyRenderFavoris();}catch(error){}
+      }
+    });
+  }
+
+  function retireFgNails(){
+    var selector='.proofCard[href^="https://f-g-nails.digiylyfe.com/"]';
+    var card=document.querySelector(selector);
+    if(card) card.remove();
+
+    try{
+      var key='digiy-vitrine-favoris';
+      var favs=JSON.parse(localStorage.getItem(key)||'[]');
+      if(Array.isArray(favs)){
+        var cleaned=favs.filter(function(href){
+          return typeof href!=='string' || href.indexOf('https://f-g-nails.digiylyfe.com/')!==0;
+        });
+        if(cleaned.length!==favs.length)localStorage.setItem(key,JSON.stringify(cleaned));
+      }
+    }catch(error){}
+
+    var grid=document.querySelector('.proofGrid');
+    if(grid){
+      var mq=window.matchMedia('(min-width:761px)');
+      var adjust=function(){
+        var count=grid.querySelectorAll('.proofCard[href]').length;
+        grid.style.gridTemplateColumns=mq.matches&&count>0?'repeat('+Math.min(count,4)+',1fr)':'';
+      };
+      adjust();
+      if(!grid.getAttribute('data-digiy-fg-layout')){
+        grid.setAttribute('data-digiy-fg-layout','1');
+        if(mq.addEventListener)mq.addEventListener('change',adjust);
+        else if(mq.addListener)mq.addListener(adjust);
+      }
+    }
+
+    if(window.digiyRenderFavoris){
+      try{window.digiyRenderFavoris();}catch(error){}
+    }
+  }
+
+  function installCarnetModuleLink(){
+    var grid=document.querySelector('.publicGrid');
+    if(!grid || grid.querySelector('a[href="https://digiy-carnet-pro.digiylyfe.com/"]')) return;
+
+    var copy={
+      fr:'Carnet d’activité · entrées · sorties',
+      en:'Activity ledger · income · expenses',
+      es:'Cuaderno de actividad · entradas · salidas',
+      pt:'Caderno de atividade · entradas · saídas',
+      it:'Registro attività · entrate · uscite',
+      de:'Aktivitätsbuch · Einnahmen · Ausgaben',
+      nl:'Activiteitenboek · inkomsten · uitgaven',
+      ar:'دفتر النشاط · مداخيل · مصاريف'
+    };
+
+    var card=document.createElement('a');
+    card.className='publicCard';
+    card.href='https://digiy-carnet-pro.digiylyfe.com/';
+    card.setAttribute('aria-label','Découvrir PRO CARNET');
+    card.innerHTML='<i aria-hidden="true">📒</i><strong>PRO CARNET</strong><small data-digiy-carnet-module-copy></small>';
+    grid.appendChild(card);
+
+    function refresh(){
+      var small=card.querySelector('[data-digiy-carnet-module-copy]');
+      if(small) small.textContent=copy[currentLang()]||copy.fr;
+    }
+
+    refresh();
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+  }
+
+  function installDriverGalleryLink(){
+    var grid=document.querySelector('.publicGrid');
+    if(!grid || grid.querySelector('[data-digiy-driver-gallery]')) return;
+
+    var copy={
+      fr:'Je suis chauffeur · voir ma place · QR · contact direct',
+      en:'I am a driver · see my place · QR · direct contact',
+      es:'Soy conductor · ver mi lugar · QR · contacto directo',
+      pt:'Sou motorista · ver o meu lugar · QR · contacto direto',
+      it:'Sono autista · vedere il mio posto · QR · contatto diretto',
+      de:'Ich bin Fahrer · meinen Platz sehen · QR · Direktkontakt',
+      nl:'Ik ben chauffeur · bekijk mijn plaats · QR · direct contact',
+      ar:'أنا سائق · شاهد مكاني · QR · تواصل مباشر'
+    };
+
+    var card=document.createElement('a');
+    card.className='publicCard';
+    card.href='https://galerie-chauffeurs.digiylyfe.com/';
+    card.setAttribute('data-digiy-driver-gallery','1');
+    card.setAttribute('aria-label','Galerie Chauffeurs DIGIY DRIVER');
+    card.innerHTML='<i aria-hidden="true">🪪</i><strong>GALERIE CHAUFFEURS</strong><small data-digiy-driver-gallery-copy></small>';
+
+    var clientDoor=grid.querySelector('a[href="https://driver-client.digiylyfe.com/"]');
+    if(clientDoor)clientDoor.insertAdjacentElement('afterend',card);
+    else grid.appendChild(card);
+
+    function refresh(){
+      var small=card.querySelector('[data-digiy-driver-gallery-copy]');
+      if(small) small.textContent=copy[currentLang()]||copy.fr;
+    }
+
+    refresh();
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+  }
+
+  function installPartnerTerrainDoor(){
+    var section=document.querySelector('section[aria-label="Portes publiques DIGIYLYFE"]');
+    var grid=section&&section.querySelector('.publicGrid');
+    if(!section||!grid||section.querySelector('[data-digiy-partner-door]')) return;
+
+    var copy={
+      fr:{title:'DEVENIR PARTENAIRE TERRAIN',text:'Vous connaissez les professionnels de votre ville ? Construisez votre portefeuille local avec DIGIYLYFE.',cta:'Découvrir le partenariat →',footer:'DEVENIR PARTENAIRE'},
+      en:{title:'BECOME A FIELD PARTNER',text:'Know the professionals in your city? Build your local portfolio with DIGIYLYFE.',cta:'Discover the partnership →',footer:'BECOME A PARTNER'},
+      es:{title:'SER SOCIO DE TERRENO',text:'¿Conoce a los profesionales de su ciudad? Construya su cartera local con DIGIYLYFE.',cta:'Descubrir la colaboración →',footer:'SER SOCIO'},
+      pt:{title:'TORNAR-SE PARCEIRO DE TERRENO',text:'Conhece os profissionais da sua cidade? Construa a sua carteira local com a DIGIYLYFE.',cta:'Descobrir a parceria →',footer:'TORNAR-SE PARCEIRO'},
+      it:{title:'DIVENTA PARTNER SUL TERRITORIO',text:'Conosci i professionisti della tua città? Costruisci il tuo portafoglio locale con DIGIYLYFE.',cta:'Scopri la partnership →',footer:'DIVENTA PARTNER'},
+      de:{title:'FIELD-PARTNER WERDEN',text:'Kennen Sie die Profis in Ihrer Stadt? Bauen Sie mit DIGIYLYFE Ihr lokales Portfolio auf.',cta:'Partnerschaft entdecken →',footer:'PARTNER WERDEN'},
+      nl:{title:'WORD TERREINPARTNER',text:'Kent u de professionals in uw stad? Bouw uw lokale portefeuille op met DIGIYLYFE.',cta:'Ontdek het partnerschap →',footer:'WORD PARTNER'},
+      ar:{title:'كن شريكًا ميدانيًا',text:'هل تعرف المهنيين في مدينتك؟ ابنِ محفظتك المحلية مع DIGIYLYFE.',cta:'اكتشف الشراكة ←',footer:'كن شريكًا'}
+    };
+
+    var door=document.createElement('a');
+    door.className='publicLeadDoor';
+    door.href='https://partenaire-terrain.digiylyfe.com/';
+    door.setAttribute('data-digiy-partner-door','1');
+    door.innerHTML='<span class="publicLeadIcon" aria-hidden="true">🤝</span><span class="publicLeadCopy"><strong data-digiy-partner-title></strong><span data-digiy-partner-text></span></span><span class="publicLeadBtn" data-digiy-partner-cta></span>';
+    grid.insertAdjacentElement('afterend',door);
+
+    var footer=document.querySelector('footer.footer');
+    var footerLink=null;
+    if(footer&&!footer.querySelector('[data-digiy-partner-footer]')){
+      footerLink=document.createElement('a');
+      footerLink.href='https://partenaire-terrain.digiylyfe.com/';
+      footerLink.setAttribute('data-digiy-partner-footer','1');
+      footer.appendChild(document.createTextNode(' · '));
+      footer.appendChild(footerLink);
+    }
+
+    function refresh(){
+      var t=copy[currentLang()]||copy.fr;
+      var title=door.querySelector('[data-digiy-partner-title]');
+      var text=door.querySelector('[data-digiy-partner-text]');
+      var cta=door.querySelector('[data-digiy-partner-cta]');
+      if(title)title.textContent=t.title;
+      if(text)text.textContent=t.text;
+      if(cta)cta.textContent=t.cta;
+      door.setAttribute('aria-label',t.title);
+      if(footerLink)footerLink.textContent=t.footer;
+    }
+
+    refresh();
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+  }
+
+  function installDakarTerritoryDoor(){
+    var grid=document.querySelector('.territoryGrid');
+    if(!grid||grid.querySelector('[data-digiy-dakar-door]')||grid.querySelector('a[href*="zone=dakar"]'))return;
+
+    var copy={
+      fr:{country:'SÉNÉGAL',title:'DIGIY DAKAR',zones:'Dakar · territoire ouvert · zones locales à venir',cta:'OUVRIR DAKAR'},
+      en:{country:'SENEGAL',title:'DIGIY DAKAR',zones:'Dakar · open territory · local areas coming next',cta:'OPEN DAKAR'},
+      es:{country:'SENEGAL',title:'DIGIY DAKAR',zones:'Dakar · territorio abierto · zonas locales próximamente',cta:'ABRIR DAKAR'},
+      pt:{country:'SENEGAL',title:'DIGIY DAKAR',zones:'Dakar · território aberto · zonas locais a seguir',cta:'ABRIR DAKAR'},
+      it:{country:'SENEGAL',title:'DIGIY DAKAR',zones:'Dakar · territorio aperto · zone locali in arrivo',cta:'APRI DAKAR'},
+      de:{country:'SENEGAL',title:'DIGIY DAKAR',zones:'Dakar · Gebiet geöffnet · lokale Zonen folgen',cta:'DAKAR ÖFFNEN'},
+      nl:{country:'SENEGAL',title:'DIGIY DAKAR',zones:'Dakar · gebied geopend · lokale zones volgen',cta:'OPEN DAKAR'},
+      ar:{country:'السنغال',title:'DIGIY DAKAR',zones:'داكار · المنطقة مفتوحة · المناطق المحلية لاحقًا',cta:'افتح داكار'}
+    };
+
+    var card=document.createElement('a');
+    card.className='territoryCard';
+    card.href='./dakar.html';
+    card.setAttribute('data-digiy-dakar-door','1');
+    card.innerHTML='<span class="territoryCountry">🇸🇳 <b data-digiy-dakar-country></b></span><strong data-digiy-dakar-title></strong><small data-digiy-dakar-zones></small><span class="territoryBtn" data-digiy-dakar-cta></span>';
+
+    var france=grid.querySelector('a[href="./france.html"]');
+    if(france)grid.insertBefore(card,france);else grid.appendChild(card);
+
+    function refresh(){
+      var t=copy[currentLang()]||copy.fr;
+      card.querySelector('[data-digiy-dakar-country]').textContent=t.country;
+      card.querySelector('[data-digiy-dakar-title]').textContent=t.title;
+      card.querySelector('[data-digiy-dakar-zones]').textContent=t.zones;
+      card.querySelector('[data-digiy-dakar-cta]').textContent=t.cta;
+      card.setAttribute('aria-label',t.title);
+    }
+
+    refresh();
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+  }
+
+  function installVoiceHomeLabel(){
+    var door=document.querySelector('a.publicLeadDoor[href^="https://pro-action-digiy.digiylyfe.com/"]');
+    if(!door)return;
+
+    var copy={
+      fr:{title:'LA VOIX',text:'Choisissez le pays et la zone, puis parlez ou écrivez votre besoin.'},
+      en:{title:'THE VOICE',text:'Choose the country and area, then speak or write what you need.'},
+      es:{title:'LA VOZ',text:'Elija el país y la zona, luego hable o escriba lo que necesita.'},
+      pt:{title:'A VOZ',text:'Escolha o país e a zona, depois fale ou escreva o que precisa.'},
+      it:{title:'LA VOCE',text:'Scegliete il paese e la zona, poi parlate o scrivete ciò che cercate.'},
+      de:{title:'DIE STIMME',text:'Wählen Sie Land und Gebiet, dann sagen oder schreiben Sie, was Sie brauchen.'},
+      nl:{title:'DE STEM',text:'Kies het land en gebied en spreek of schrijf daarna wat u nodig hebt.'},
+      ar:{title:'الصوت',text:'اختر البلد والمنطقة، ثم تحدث أو اكتب ما تحتاجه.'}
+    };
+
+    function refresh(){
+      var t=copy[currentLang()]||copy.fr;
+      var title=door.querySelector('[data-i18n="voicePublicTitle"]');
+      var text=door.querySelector('[data-i18n="voicePublicText"]');
+      if(title)title.textContent=t.title;
+      if(text)text.textContent=t.text;
+      door.setAttribute('aria-label',t.title);
+    }
+
+    refresh();
+    new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+  }
+
+  function installEcosystemSignature(){
+    var claim=document.querySelector('.brandClaim');
+    var title=claim&&claim.querySelector('h1');
+    if(!claim||!title)return;
+
+    var copy={
+      fr:'Tous les métiers. Tous les territoires. Un même écosystème.',
+      en:'Every profession. Every territory. One ecosystem.',
+      es:'Todos los oficios. Todos los territorios. Un mismo ecosistema.',
+      pt:'Todas as profissões. Todos os territórios. Um único ecossistema.',
+      it:'Tutte le professioni. Tutti i territori. Un unico ecosistema.',
+      de:'Alle Berufe. Alle Regionen. Ein gemeinsames Ökosystem.',
+      nl:'Alle beroepen. Alle gebieden. Eén ecosysteem.',
+      ar:'جميع المهن. جميع المناطق. منظومة واحدة.'
+    };
+
+    var line=claim.querySelector('[data-digiy-ecosystem-signature]');
+    if(!line){
+      line=document.createElement('div');
+      line.setAttribute('data-digiy-ecosystem-signature','1');
+      line.style.cssText='margin:12px auto 0;max-width:780px;color:#fff3cf;font-size:clamp(14px,3.2vw,20px);line-height:1.25;font-weight:1000;letter-spacing:-.01em;';
+      title.insertAdjacentElement('afterend',line);
+    }
+
+    function refresh(){
+      line.textContent=copy[currentLang()]||copy.fr;
+    }
+
+    refresh();
+    if(!line.getAttribute('data-digiy-ecosystem-observer')){
+      line.setAttribute('data-digiy-ecosystem-observer','1');
+      new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});
+    }
+
+    try{
+      var ld=Array.prototype.slice.call(document.querySelectorAll('script[type="application/ld+json"]')).find(function(node){
+        return (node.textContent||'').indexOf('https://digiylyfe.com/#organization')>-1;
+      });
+      if(ld){
+        var data=JSON.parse(ld.textContent);
+        var graph=data&&Array.isArray(data['@graph'])?data['@graph']:[];
+        var org=graph.find(function(item){return item&&item['@id']==='https://digiylyfe.com/#organization';});
+        if(org){
+          org.description='DIGIYLYFE est l’écosystème numérique transversal du professionnel : tous les métiers, tous les territoires, une même architecture. Identité, données, relation client directe, carte digitale, QR, 8 langues, paiement direct et 0 % de commission DIGIYLYFE.';
+          ld.textContent=JSON.stringify(data);
+        }
+      }
+    }catch(error){}
+  }
+
+  function installExtras(){
+    retireFgNails();
+    applySupabasePresenceGate();
+    installCarnetModuleLink();
+    installDriverGalleryLink();
+    installPartnerTerrainDoor();
+    installDakarTerritoryDoor();
+    installVoiceHomeLabel();
+    installEcosystemSignature();
+  }
+
+  installEcosystemSignature();
+  retireFgNails();
+  applySupabasePresenceGate();
+  installVoiceHomeLabel();
+
+  var core=document.createElement('script');
+  core.src='/digiy-contact-global-core-20260824.js?v=20260824';
+  core.async=false;
+  core.onload=installExtras;
+  core.onerror=installExtras;
+  document.head.appendChild(core);
+})();
