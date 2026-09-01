@@ -1,0 +1,16 @@
+/* DIGIYLYFE — correctif modèle Santé Dordogne V1 */
+(function(){'use strict';
+  var q=new URLSearchParams(location.search);if((q.get('need')||'')!=='health_care')return;
+  var H={
+    fr:[['🩺 Médecin généraliste',['Consultation','Cabinet / permanence','Contact direct'],'🩺','🏥','📲'],['🦷 Dentiste',['Soins dentaires','Rendez-vous','Contact direct'],'🦷','😁','📅'],['🤲 Soins & accompagnement à domicile',['Infirmier / infirmière','Sage-femme','Aide à la personne'],'🤲','🏠','📲']],
+    en:[['🩺 General practitioner',['Consultation','Practice / clinic','Direct contact'],'🩺','🏥','📲'],['🦷 Dentist',['Dental care','Appointments','Direct contact'],'🦷','😁','📅'],['🤲 Home care & support',['Nurse','Midwife','Personal assistance'],'🤲','🏠','📲']],
+    es:[['🩺 Médico general',['Consulta','Consultorio / clínica','Contacto directo'],'🩺','🏥','📲'],['🦷 Dentista',['Atención dental','Citas','Contacto directo'],'🦷','😁','📅'],['🤲 Cuidados y apoyo a domicilio',['Enfermería','Matrona','Ayuda a la persona'],'🤲','🏠','📲']],
+    pt:[['🩺 Médico de clínica geral',['Consulta','Consultório / clínica','Contacto direto'],'🩺','🏥','📲'],['🦷 Dentista',['Cuidados dentários','Marcações','Contacto direto'],'🦷','😁','📅'],['🤲 Cuidados e apoio ao domicílio',['Enfermeiro','Parteira','Apoio à pessoa'],'🤲','🏠','📲']],
+    it:[['🩺 Medico di base',['Visita','Studio / clinica','Contatto diretto'],'🩺','🏥','📲'],['🦷 Dentista',['Cure dentali','Appuntamenti','Contatto diretto'],'🦷','😁','📅'],['🤲 Cure e assistenza a domicilio',['Infermiere','Ostetrica','Assistenza alla persona'],'🤲','🏠','📲']],
+    de:[['🩺 Hausarzt',['Sprechstunde','Praxis / Klinik','Direktkontakt'],'🩺','🏥','📲'],['🦷 Zahnarzt',['Zahnbehandlung','Termine','Direktkontakt'],'🦷','😁','📅'],['🤲 Pflege & Unterstützung zu Hause',['Pflegekraft','Hebamme','Alltagshilfe'],'🤲','🏠','📲']],
+    nl:[['🩺 Huisarts',['Consultatie','Praktijk / kliniek','Direct contact'],'🩺','🏥','📲'],['🦷 Tandarts',['Tandzorg','Afspraken','Direct contact'],'🦷','😁','📅'],['🤲 Zorg & ondersteuning aan huis',['Verpleegkundige','Verloskundige','Persoonlijke hulp'],'🤲','🏠','📲']],
+    ar:[['🩺 طبيب عام',['استشارة','عيادة','تواصل مباشر'],'🩺','🏥','📲'],['🦷 طبيب أسنان',['عناية بالأسنان','مواعيد','تواصل مباشر'],'🦷','😁','📅'],['🤲 رعاية ومساعدة منزلية',['ممرض','قابلة','مساعدة شخصية'],'🤲','🏠','📲']]
+  };
+  function apply(){var l=(q.get('lang')||document.documentElement.lang||'fr').slice(0,2).toLowerCase(),rows=H[l]||H.fr,v=Math.max(1,Math.min(3,parseInt(q.get('variant')||'1',10)||1)),r=rows[v-1];if(!r)return;var title=document.getElementById('title'),services=document.getElementById('services'),g1=document.getElementById('g1'),g2=document.getElementById('g2'),g3=document.getElementById('g3'),join=document.getElementById('join');if(title)title.textContent=r[0];if(services)services.innerHTML=r[1].map(function(x){return '<span class="chip">'+x+'</span>'}).join('');if(g1&&g1.firstChild)g1.firstChild.nodeValue=r[2];if(g2&&g2.firstChild)g2.firstChild.nodeValue=r[3];if(g3&&g3.firstChild)g3.firstChild.nodeValue=r[4];if(join){var u=new URL('/adhesion-dordogne.html',location.origin);u.searchParams.set('need','health_care');u.searchParams.set('local','sarlat');u.searchParams.set('lang',l);join.href=u.pathname+u.search}}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);else apply();window.addEventListener('load',apply,{once:true});
+})();
