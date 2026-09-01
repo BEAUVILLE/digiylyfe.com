@@ -147,6 +147,7 @@
     {"id": "announcements", "icon": "⚡", "status": "core"},
     {"id": "transport", "icon": "🚗", "status": "core"},
     {"id": "artisan", "icon": "🔧", "status": "core"},
+    {"id": "health_care", "icon": "🩺", "status": "core"},
     {"id": "accommodation", "icon": "🏠", "status": "core"},
     {"id": "food", "icon": "🍽️", "status": "core"},
     {"id": "shopping", "icon": "🛍️", "status": "core"},
