@@ -1,0 +1,50 @@
+name: Corriger Sarlat territoire uniquement
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-sarlat-territory-only.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enfermer les portes dans le territoire Dordogne
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          p=Path('sarlat.html')
+          s=p.read_text()
+          s2=re.sub(
+            r"var DIRECT_DOORS=\{.*?\};function renderNeeds\(\)\{var el=document\.getElementById\('needs'\);el\.innerHTML='';NEEDS\.forEach\(function\(n\)\{var b=document\.createElement\('button'\);b\.className='need'\+\(state\.need===n\[0\]\?' on':''\);b\.innerHTML='<strong>'\+n\[1\]\+'</strong><span>'\+\(\(LABELS\[lang\(\)\]\|\|LABELS\.fr\)\[n\[0\]\]\|\|n\[2\]\)\+'</span>';b\.onclick=function\(\)\{.*?\};el\.appendChild\(b\)\}\)\}",
+            "function territoryDoor(need){var d=new URL('/territoire.html',location.origin);d.searchParams.set('zone','vallee-dordogne');d.searchParams.set('local','sarlat');d.searchParams.set('need',need);d.searchParams.set('lang',lang());return d.pathname+d.search}function renderNeeds(){var el=document.getElementById('needs');el.innerHTML='';NEEDS.forEach(function(n){var b=document.createElement('button');b.className='need'+(state.need===n[0]?' on':'');b.innerHTML='<strong>'+n[1]+'</strong><span>'+((LABELS[lang()]||LABELS.fr)[n[0]]||n[2])+'</span>';b.onclick=function(){location.href=territoryDoor(n[0])};el.appendChild(b)})}",
+            s,
+            count=1,
+            flags=re.S
+          )
+          if s2==s:
+              raise SystemExit('routeur Sarlat attendu introuvable')
+          p.write_text(s2)
+      - name: Vérifier absence de portes globales
+        shell: bash
+        run: |
+          grep -F "function territoryDoor(need)" sarlat.html
+          grep -F "d.searchParams.set('zone','vallee-dordogne')" sarlat.html
+          grep -F "d.searchParams.set('local','sarlat')" sarlat.html
+          ! grep -F "https://driver-client.digiylyfe.com/" sarlat.html
+          ! grep -F "https://build.digiylyfe.com/" sarlat.html
+          ! grep -F "https://loc.digiylyfe.com/" sarlat.html
+          ! grep -F "https://resto.digiylyfe.com/" sarlat.html
+          ! grep -F "https://market.digiylyfe.com/" sarlat.html
+          ! grep -F "https://jobs.digiylyfe.com/" sarlat.html
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add sarlat.html
+          git commit -m 'Limiter toutes les portes Sarlat au territoire Dordogne'
+          git push
