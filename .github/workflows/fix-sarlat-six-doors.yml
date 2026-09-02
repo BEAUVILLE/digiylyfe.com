@@ -1,0 +1,44 @@
+name: Corriger les six portes publiques Sarlat
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-sarlat-six-doors.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Raccorder les portes actuelles
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('sarlat.html')
+          s=p.read_text()
+          old="""function t(){return COPY[lang()]||COPY.fr}function renderNeeds(){var el=document.getElementById('needs');el.innerHTML='';NEEDS.forEach(function(n){var b=document.createElement('button');b.className='need'+(state.need===n[0]?' on':'');b.innerHTML='<strong>'+n[1]+'</strong><span>'+((LABELS[lang()]||LABELS.fr)[n[0]]||n[2])+'</span>';b.onclick=function(){if(n[0]==='cleaning'||n[0]==='professional'){var path=n[0]==='cleaning'?'/nettoyage-master.html':'/services-professionnels-master.html',m=new URL(path,location.origin);m.searchParams.set('territory','vallee-dordogne');m.searchParams.set('local','sarlat');m.searchParams.set('lang',lang());location.href=m.pathname+m.search;return}state.need=state.need===n[0]?'':n[0];"""
+          new="""function t(){return COPY[lang()]||COPY.fr}var DIRECT_DOORS={accommodation:'https://loc.digiylyfe.com/',food:'https://resto.digiylyfe.com/',shopping:'https://market.digiylyfe.com/',beauty:'/beaute-bien-etre.html',jobs:'https://jobs.digiylyfe.com/',guidance:'https://pro-action-digiy.digiylyfe.com/'};function renderNeeds(){var el=document.getElementById('needs');el.innerHTML='';NEEDS.forEach(function(n){var b=document.createElement('button');b.className='need'+(state.need===n[0]?' on':'');b.innerHTML='<strong>'+n[1]+'</strong><span>'+((LABELS[lang()]||LABELS.fr)[n[0]]||n[2])+'</span>';b.onclick=function(){if(DIRECT_DOORS[n[0]]){var d=new URL(DIRECT_DOORS[n[0]],location.origin);d.searchParams.set('territory','vallee-dordogne');d.searchParams.set('local','sarlat');d.searchParams.set('lang',lang());location.href=d.href;return}if(n[0]==='cleaning'||n[0]==='professional'){var path=n[0]==='cleaning'?'/nettoyage-master.html':'/services-professionnels-master.html',m=new URL(path,location.origin);m.searchParams.set('territory','vallee-dordogne');m.searchParams.set('local','sarlat');m.searchParams.set('lang',lang());location.href=m.pathname+m.search;return}state.need=state.need===n[0]?'':n[0];"""
+          if old not in s:
+              raise SystemExit('Routeur Sarlat attendu introuvable')
+          s=s.replace(old,new,1)
+          p.write_text(s)
+          PY
+      - name: Vérifier les six destinations
+        run: |
+          grep -F "accommodation:'https://loc.digiylyfe.com/'" sarlat.html
+          grep -F "food:'https://resto.digiylyfe.com/'" sarlat.html
+          grep -F "shopping:'https://market.digiylyfe.com/'" sarlat.html
+          grep -F "beauty:'/beaute-bien-etre.html'" sarlat.html
+          grep -F "jobs:'https://jobs.digiylyfe.com/'" sarlat.html
+          grep -F "guidance:'https://pro-action-digiy.digiylyfe.com/'" sarlat.html
+      - name: Commit
+        run: |
+          git config user.name "DIGIY LYFE"
+          git config user.email "baptistejb24@gmail.com"
+          git add sarlat.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Réparer les six portes publiques de Sarlat"
+          git push
