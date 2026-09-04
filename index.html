@@ -12,7 +12,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <meta name="apple-mobile-web-app-title" content="DIGIYLYFE"/>
   <meta name="application-name" content="DIGIYLYFE"/>
-  <meta name="digiy-build" content="index-public-mon-digiy-pwa-i18n-v4-20260904"/>
+  <meta name="digiy-build" content="index-public-mon-digiy-catalog-v5-20260904"/>
 
   <link rel="canonical" href="https://digiylyfe.com/"/>
   <link rel="alternate" hreflang="fr" href="https://digiylyfe.com/"/>
@@ -37,7 +37,7 @@
 
   <link rel="icon" sizes="192x192" href="https://digiylyfe.com/icon-192.png?v=20260713"/>
   <link rel="apple-touch-icon" href="https://digiylyfe.com/icon-192.png?v=20260713"/>
-  <link rel="manifest" href="/manifest.json?v=20260904-mon-digiy-v4"/>
+  <link rel="manifest" href="/manifest.json?v=20260904-mon-digiy-catalog-v5"/>
 
   <script type="application/ld+json">
   {
@@ -910,11 +910,14 @@
     setLang(initial);
   })();
   </script>
+  <script src="/assets/digiy-catalog.js?v=20260904-v1"></script>
   <script>
   (function(){
     'use strict';
     var KEY='digiy-vitrine-favoris';
     var META_KEY='digiy-vitrine-favoris-meta';
+    var CATALOG=window.DIGIY_CATALOG||{};
+    var OLD_URL_MAP=window.DIGIY_OLD_URL_MAP||{};
     var listEl=document.getElementById('favList');
     var hintEl=document.getElementById('favHint');
     var clearEl=document.getElementById('favClear');
@@ -922,13 +925,13 @@
     var cards=[].slice.call(document.querySelectorAll('.exampleCard, .territoryCard, .publicLeadDoor'));
     function cardId(c){return c.getAttribute('data-fav-id')||(c.getAttribute('href')||'');}
     function cardKind(c){if(c.classList.contains('territoryCard'))return'territoire';if(c.classList.contains('publicLeadDoor'))return'service';return'professionnel';}
-    function meta(c){var kind=cardKind(c);var iEl=c.querySelector('.publicLeadIcon, i');var sEl=c.querySelector('strong');var icon=iEl?iEl.textContent.trim():(kind==='territoire'?'📍':kind==='service'?'🎙️':'⭐');return{id:cardId(c),href:c.getAttribute('href')||'',icon:icon,label:sEl?sEl.textContent.trim():(c.getAttribute('href')||''),kind:kind};}
+    function meta(c){var id=cardId(c),base=CATALOG[id]||{},kind=base.kind||cardKind(c);var iEl=c.querySelector('.publicLeadIcon, i');var sEl=c.querySelector('strong');var icon=base.icon||(iEl?iEl.textContent.trim():(kind==='territoire'?'📍':kind==='service'?'🎙️':'⭐'));return{id:id,href:base.href||(c.getAttribute('href')||''),icon:icon,label:base.label||(sEl?sEl.textContent.trim():(c.getAttribute('href')||'')),kind:kind};}
     function loadMeta(){try{var x=JSON.parse(localStorage.getItem(META_KEY)||'{}');return x&&typeof x==='object'&&!Array.isArray(x)?x:{};}catch(e){return{};}}
     function saveMeta(m){try{localStorage.setItem(META_KEY,JSON.stringify(m));}catch(e){}}
     function syncMeta(){var map=loadMeta();cards.forEach(function(c){var m=meta(c);map[m.id]=m;});saveMeta(map);return map;}
     function byId(id){for(var i=0;i<cards.length;i++){if(cardId(cards[i])===id)return cards[i];}return null;}
     function idsForHref(href){var out=[];for(var i=0;i<cards.length;i++){if((cards[i].getAttribute('href')||'')===href)out.push(cardId(cards[i]));}return out;}
-    function normalize(raw){var out=[];(Array.isArray(raw)?raw:[]).forEach(function(v){var id='';if(typeof v==='string'){if(byId(v))id=v;else{var matches=idsForHref(v);if(matches.length)id=matches[0];}}else if(v&&typeof v==='object'){id=v.id||'';}if(id&&out.indexOf(id)===-1)out.push(id);});return out;}
+    function normalize(raw){var out=[];(Array.isArray(raw)?raw:[]).forEach(function(v){var id='';if(typeof v==='string'){if(CATALOG[v]||byId(v))id=v;else if(OLD_URL_MAP[v])id=OLD_URL_MAP[v];else{var matches=idsForHref(v);if(matches.length)id=matches[0];else if(v.indexOf('://')===-1)id=v;}}else if(v&&typeof v==='object'){id=v.id||'';}if(id&&out.indexOf(id)===-1)out.push(id);});return out;}
     function load(){try{var raw=JSON.parse(localStorage.getItem(KEY)||'[]');var ids=normalize(raw);if(JSON.stringify(raw)!==JSON.stringify(ids))save(ids);return ids;}catch(e){return[];}}
     function save(a){try{localStorage.setItem(KEY,JSON.stringify(a));}catch(e){}}
     function render(){
@@ -966,7 +969,7 @@ window.DIGIY_FACADE_TWO_WORLDS_V1=true;
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function(){
-    navigator.serviceWorker.register('/sw.js?v=20260904-mon-digiy-v4').catch(function(){});
+    navigator.serviceWorker.register('/sw.js?v=20260904-mon-digiy-catalog-v5').catch(function(){});
   });
 }
 </script>
@@ -976,6 +979,116 @@ if ('serviceWorker' in navigator) {
 <script src="/assets/digiy-helage-signature-v1.js?v=20260829-v1" defer></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
