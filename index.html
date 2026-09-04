@@ -12,7 +12,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <meta name="apple-mobile-web-app-title" content="DIGIYLYFE"/>
   <meta name="application-name" content="DIGIYLYFE"/>
-  <meta name="digiy-build" content="index-public-fullstack-pwa-i18n-v1-20260904"/>
+  <meta name="digiy-build" content="index-public-fullstack-visible-pwa-i18n-v2-20260904"/>
 
   <link rel="canonical" href="https://digiylyfe.com/"/>
   <link rel="alternate" hreflang="fr" href="https://digiylyfe.com/"/>
@@ -37,7 +37,7 @@
 
   <link rel="icon" sizes="192x192" href="https://digiylyfe.com/icon-192.png?v=20260713"/>
   <link rel="apple-touch-icon" href="https://digiylyfe.com/icon-192.png?v=20260713"/>
-  <link rel="manifest" href="/manifest.json?v=20260904-fullstack-v1"/>
+  <link rel="manifest" href="/manifest.json?v=20260904-fullstack-visible-v2"/>
 
   <script type="application/ld+json">
   {
@@ -310,8 +310,19 @@
     .brandClaim p{margin:11px auto 0;max-width:720px;color:rgba(255,250,240,.84);font-size:clamp(13px,3vw,17px);line-height:1.45;font-weight:850}
     .brandClaim strong{display:block;margin:14px auto 0;max-width:760px;color:#f6c453;font-size:clamp(17px,4vw,27px);line-height:1.12;font-weight:1000;letter-spacing:-.02em}
     .brandClaim .brandClaimChannels{margin:14px auto 0;max-width:780px;padding-top:12px;border-top:1px solid rgba(246,196,83,.28);color:#fffaf0;font-size:clamp(12px,2.8vw,15px);line-height:1.4;font-weight:950}
-    .fullStackBadge{display:inline-flex;margin:14px auto 0;padding:8px 13px;border-radius:999px;border:1px solid rgba(45,212,191,.58);background:linear-gradient(135deg,rgba(45,212,191,.14),rgba(246,196,83,.10));color:#e8fffa;font-size:clamp(10px,2.4vw,12px);line-height:1;font-weight:1000;letter-spacing:.09em;text-transform:uppercase}
-    .fullStackText{margin:8px auto 0!important;max-width:760px!important;color:rgba(255,250,240,.82)!important;font-size:clamp(11px,2.6vw,14px)!important;line-height:1.4!important;font-weight:900!important}
+    .fullStackIntro{
+      margin:2px 0 12px;padding:14px 15px;border-radius:22px;text-align:center;
+      border:1px solid rgba(45,212,191,.66);
+      background:linear-gradient(135deg,rgba(45,212,191,.16),rgba(246,196,83,.13),rgba(34,197,94,.12));
+      box-shadow:0 14px 30px rgba(0,0,0,.20),inset 0 0 0 1px rgba(255,255,255,.035)
+    }
+    .fullStackIntro strong{
+      display:block;color:#fff4c8;font-size:clamp(17px,4.5vw,26px);line-height:1.05;font-weight:1000;
+      letter-spacing:.035em;text-transform:uppercase
+    }
+    .fullStackIntro span{
+      display:block;margin-top:7px;color:#effffb;font-size:clamp(11px,2.7vw,14px);line-height:1.4;font-weight:900
+    }
 
     /* =========================================================
        LANGAGE VISUEL DIGIYLYFE
@@ -611,6 +622,11 @@
       <button type="button" class="langBtn" data-lang="ar" aria-pressed="false">AR</button>
     </nav>
 
+    <section class="fullStackIntro" aria-label="Écosystème digital full-stack DIGIYLYFE">
+      <strong data-i18n="fullStackBadge">ÉCOSYSTÈME DIGITAL FULL‑STACK</strong>
+      <span data-i18n="fullStackText">Présence web · outils métier · données · QR · contact direct · action terrain.</span>
+    </section>
+
     <section class="section" aria-label="Portes publiques DIGIYLYFE">
       <div class="sectionHead">
         <h2 data-i18n="publicTitle">Portes publiques DIGIYLYFE</h2>
@@ -627,8 +643,6 @@
     <section class="brandClaim" aria-label="Empreinte numérique DIGIYLYFE">
       <span class="brandClaimKicker">DIGIYLYFE.COM</span>
       <h1 data-i18n="claimTitle">L’EMPREINTE NUMÉRIQUE DU PROFESSIONNEL</h1>
-      <span class="fullStackBadge" data-i18n="fullStackBadge">ÉCOSYSTÈME DIGITAL FULL‑STACK</span>
-      <p class="fullStackText" data-i18n="fullStackText">Présence web · outils métier · données · QR · contact direct · action terrain.</p>
       <p data-i18n="claimLead">Votre savoir-faire mérite une présence qui vous ressemble.</p>
       <strong data-i18n="claimWorld">Votre identité. Vos données. Votre relation directe.</strong>
       <div class="globalDirection" id="digiyGlobalDirection" aria-label="Direction internationale DIGIYLYFE">
@@ -952,7 +966,7 @@ window.DIGIY_FACADE_TWO_WORLDS_V1=true;
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function(){
-    navigator.serviceWorker.register('/sw.js?v=20260904-fullstack-v1').catch(function(){});
+    navigator.serviceWorker.register('/sw.js?v=20260904-fullstack-visible-v2').catch(function(){});
   });
 }
 </script>
@@ -962,6 +976,115 @@ if ('serviceWorker' in navigator) {
 <script src="/assets/digiy-helage-signature-v1.js?v=20260829-v1" defer></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
