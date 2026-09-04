@@ -18,7 +18,7 @@
 <body>
 <main class="wrap">
   <header class="brand">
-    <div><small>🦅 DIGIYLYFE</small><h1>🎓 Liste CAMPUS — Intéressés</h1></div>
+    <div><small>🦅 DIGIYLYFE</small><h1>🎓 Liste CAMPUS — Intéressés · A → Z</h1></div>
     <button id="logoutBtn" class="btn small hidden" type="button">Déconnexion</button>
   </header>
   <nav class="adminRail" aria-label="Navigation administration DIGIYLYFE"><a class="btn gold" href="https://backoffice.digiylyfe.com/">👥 ADHÉRENTS</a><a class="btn gold" href="https://backoffice.digiylyfe.com/partenaires-terrain.html">🤝 PARTENAIRES</a><a class="btn gold deptActive" href="https://digiylyfe.com/digiy-campus-prive.html" aria-current="page">🎓 CAMPUS</a><a class="btn gold" href="https://backoffice.digiylyfe.com/bonne-affaire.html">🏷️ BONNE AFFAIRE</a></nav>
@@ -73,7 +73,7 @@
 
   function render(){
     var q=norm(searchInput.value.trim());
-    var filtered=!q?rows:rows.filter(function(r){return norm([r.first_name,r.age,r.city,r.profile_status,r.phone_whatsapp,r.source_lang,r.pipeline_status].join(' ')).indexOf(q)>=0});
+    var filtered=(!q?rows.slice():rows.filter(function(r){return norm([r.first_name,r.age,r.city,r.profile_status,r.phone_whatsapp,r.source_lang,r.pipeline_status].join(' ')).indexOf(q)>=0})).sort(function(a,b){return String(a.first_name||'').localeCompare(String(b.first_name||''),'fr',{sensitivity:'base',ignorePunctuation:true})});
     list.textContent='';
     if(!filtered.length){var e=document.createElement('div');e.className='empty';e.textContent=q?'Aucun résultat pour cette recherche.':'Aucun intérêt enregistré pour le moment.';list.appendChild(e);return}
     filtered.forEach(function(r){
