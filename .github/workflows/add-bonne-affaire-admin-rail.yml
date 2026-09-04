@@ -1,0 +1,37 @@
+name: Add BONNE AFFAIRE to CAMPUS admin rail
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-bonne-affaire-admin-rail.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add fourth department to CAMPUS rail
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('digiy-campus-prive.html')
+          s=p.read_text(encoding='utf-8')
+          old='<a class="btn gold" href="https://backoffice.digiylyfe.com/">👥 ADHÉRENTS</a><a class="btn gold" href="https://backoffice.digiylyfe.com/partenaires-terrain.html">🤝 PARTENAIRES</a><a class="btn gold deptActive" href="https://digiylyfe.com/digiy-campus-prive.html" aria-current="page">🎓 CAMPUS</a>'
+          new=old+'<a class="btn gold" href="https://backoffice.digiylyfe.com/bonne-affaire.html">🏷️ BONNE AFFAIRE</a>'
+          if old in s and 'bonne-affaire.html' not in s:
+              s=s.replace(old,new,1)
+          elif 'bonne-affaire.html' not in s:
+              raise SystemExit('CAMPUS rail target not found')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit CAMPUS rail
+        run: |
+          if git diff --quiet -- digiy-campus-prive.html; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add digiy-campus-prive.html
+          git commit -m 'Add BONNE AFFAIRE department to CAMPUS navigation'
+          git push
