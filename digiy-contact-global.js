@@ -1,7 +1,7 @@
-/* DIGIYLYFE — chargeur vitrine relais 20260901
+/* DIGIYLYFE — chargeur vitrine relais 20260904
  * Le chargeur stable précédent est conservé intégralement dans :
  * /digiy-contact-global-stable-20260830.js
- * Ajouts isolés : Services professionnels + Santé & soins + raccord Sarlat + COM MAÎTRE accueil + séparation façade public/pro.
+ * Ajouts isolés : Services professionnels + Santé & soins + raccord Sarlat + COM MAÎTRE accueil + séparation façade public/pro + DIGIY CAMPUS.
  * PWA / manifest / service worker : inchangés.
  */
 (function(){
@@ -33,6 +33,7 @@
   function loadContextExtras(){
     var p=location.pathname.replace(/\/+$/,'');
     if(p===''||p==='/'||/\/index\.html$/i.test(p)){
+      addScript('/assets/digiy-campus-interest-v1.js?v=20260904-v1','data-digiy-campus-interest');
       var com=addScript('/assets/digiy-com-maitre-v1.js?v=20260901-v1','data-digiy-com-maitre');
       if(com){com.onload=loadHomeFacade;com.onerror=loadHomeFacade}else loadHomeFacade();
     }
