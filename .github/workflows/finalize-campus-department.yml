@@ -1,0 +1,39 @@
+name: Finalize CAMPUS department
+
+on:
+  push:
+    paths:
+      - '.github/workflows/finalize-campus-department.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Mark CAMPUS as active department
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('digiy-campus-prive.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('.adminRail .btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}',
+                      '.adminRail .btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.deptActive{outline:2px solid #fff3a6;box-shadow:0 0 0 4px rgba(246,196,83,.16),0 10px 28px rgba(0,0,0,.22)}',1)
+          old='<a class="btn gold" href="https://backoffice.digiylyfe.com/">👥 ADHÉRENTS</a><a class="btn gold" href="https://backoffice.digiylyfe.com/partenaires-terrain.html">🤝 PARTENAIRES</a><a class="btn gold" href="https://digiylyfe.com/digiy-campus-prive.html">🎓 CAMPUS</a>'
+          new='<a class="btn gold" href="https://backoffice.digiylyfe.com/">👥 ADHÉRENTS</a><a class="btn gold" href="https://backoffice.digiylyfe.com/partenaires-terrain.html">🤝 PARTENAIRES</a><a class="btn gold deptActive" href="https://digiylyfe.com/digiy-campus-prive.html" aria-current="page">🎓 CAMPUS</a>'
+          if old in s:s=s.replace(old,new,1)
+          elif 'aria-current="page">🎓 CAMPUS' not in s: raise SystemExit('CAMPUS rail target missing')
+          s=s.replace('<div><small>🦅 DIGIYLYFE</small><h1>🎓 DIGIY CAMPUS — Intéressés</h1></div>',
+                      '<div><small>🦅 DIGIYLYFE</small><h1>🎓 Liste CAMPUS — Intéressés</h1></div>',1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit CAMPUS department
+        run: |
+          if git diff --quiet -- digiy-campus-prive.html; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add digiy-campus-prive.html
+          git commit -m 'Finalize CAMPUS department list'
+          git push
