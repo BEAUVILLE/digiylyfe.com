@@ -12,7 +12,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <meta name="apple-mobile-web-app-title" content="MON DIGIY"/>
   <meta name="application-name" content="MON DIGIY"/>
-  <meta name="digiy-build" content="mon-digiy-local-carnet-catalog-v2-20260904"/>
+  <meta name="digiy-build" content="mon-digiy-card-favorites-v3-20260904"/>
   <link rel="canonical" href="https://digiylyfe.com/mon-digiy.html"/>
   <link rel="icon" sizes="192x192" href="https://digiylyfe.com/icon-192.png?v=20260713"/>
   <link rel="apple-touch-icon" href="https://digiylyfe.com/icon-192.png?v=20260713"/>
@@ -75,6 +75,29 @@
       function t(k){return (TEXT[current]&&TEXT[current][k])||(TEXT.fr&&TEXT.fr[k])||k;}
       function loadMeta(){try{var x=JSON.parse(localStorage.getItem(META_KEY)||'{}');return x&&typeof x==='object'&&!Array.isArray(x)?x:{};}catch(e){return{};}}
       function save(a){try{localStorage.setItem(KEY,JSON.stringify(a));}catch(e){}}
+      function saveMeta(map){try{localStorage.setItem(META_KEY,JSON.stringify(map));}catch(e){}}
+      function safeImportHref(v){try{var u=new URL(String(v||'').trim());return /^https?:$/.test(u.protocol)?u.toString():'';}catch(e){return'';}}
+      function importFavoriteFromUrl(){
+        try{
+          var p=new URLSearchParams(location.search);
+          if(p.get('digiy_add')!=='1')return false;
+          var id=String(p.get('id')||'').trim().replace(/[^a-zA-Z0-9:_-]+/g,'-').slice(0,180);
+          var label=String(p.get('label')||'').trim().slice(0,120);
+          var href=safeImportHref(p.get('href')||'');
+          if(!id||!label||!href)return false;
+          var ids=load();
+          if(ids.indexOf(id)===-1){ids.unshift(id);save(ids);}
+          var meta=loadMeta();
+          meta[id]={id:id,href:href,icon:'🪪',label:label,kind:'professionnel'};
+          var job=String(p.get('job')||'').trim().slice(0,100),zone=String(p.get('zone')||'').trim().slice(0,100);
+          if(job||zone)meta[id].detail=[job,zone].filter(Boolean).join(' · ');
+          saveMeta(meta);
+          ['digiy_add','id','label','href','kind','icon','job','zone'].forEach(function(k){p.delete(k);});
+          var q=p.toString();
+          history.replaceState(null,'',location.pathname+(q?'?'+q:'')+location.hash);
+          return true;
+        }catch(e){return false;}
+      }
       function normalize(raw){var out=[];(Array.isArray(raw)?raw:[]).forEach(function(v){var id='';if(typeof v==='string'){if(CATALOG[v])id=v;else if(OLD_URL_MAP[v])id=OLD_URL_MAP[v];else if(v.indexOf('://')===-1)id=v;}else if(v&&typeof v==='object')id=v.id||'';if(id&&out.indexOf(id)===-1)out.push(id);});return out;}
       function load(){try{var raw=JSON.parse(localStorage.getItem(KEY)||'[]');var ids=normalize(raw);if(JSON.stringify(raw)!==JSON.stringify(ids))save(ids);return ids;}catch(e){return[];}}
       function fallback(id){if(CATALOG[id])return Object.assign({id:id},CATALOG[id]);return{id:id,href:'/',icon:'⭐',label:id,kind:'autre'};}
@@ -85,6 +108,7 @@
       function render(){var ids=load();var groups={professionnel:[],territoire:[],service:[],autre:[]};ids.forEach(function(id){var m=itemMeta(id);var k=groups[m.kind]?m.kind:'autre';groups[k].push([id,m]);});['professionnel','territoire','service','autre'].forEach(function(k){var sec=document.getElementById('group-'+k),grid=sec.querySelector('.grid'),gc=sec.querySelector('.groupCount');grid.innerHTML='';groups[k].forEach(function(pair){grid.appendChild(makeCard(pair[0],pair[1]));});sec.hidden=groups[k].length===0;gc.textContent=groups[k].length;});var n=ids.length;document.getElementById('count').textContent=n+' '+(n===1?t('countOne'):t('countMany'));document.getElementById('empty').hidden=n>0;document.getElementById('clear').hidden=n===0;}
       document.querySelectorAll('.lang').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'));});});
       document.getElementById('clear').addEventListener('click',function(){if(window.confirm(t('confirm'))){save([]);render();}});
+      importFavoriteFromUrl();
       var initial='fr';try{var p=new URLSearchParams(location.search),q=(p.get('lang')||'').toLowerCase(),s=(localStorage.getItem('digiy-lang')||'').toLowerCase();if(TEXT[q])initial=q;else if(TEXT[s])initial=s;}catch(e){}setLang(initial);
     })();
   </script>

@@ -117,5 +117,6 @@
   let startLang="fr";try{const saved=localStorage.getItem(LANG_KEY);if(LANGS.includes(saved))startLang=saved}catch(_){}const params=new URLSearchParams(location.search),urlLang=params.get("lang");if(LANGS.includes(urlLang))startLang=urlLang;applyUi(startLang);if(params.get("debug")==="1")$("machineDebug").classList.add("show");
 })();
 </script>
+  <script src="https://digiylyfe.com/assets/digiy-card-favorite-v1.js?v=20260904-v1"></script>
 </body>
 </html>
