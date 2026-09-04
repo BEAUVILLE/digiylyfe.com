@@ -1,0 +1,53 @@
+name: Add unified admin rail to CAMPUS
+
+on:
+  push:
+    paths:
+      - '.github/workflows/campus-admin-rail.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch CAMPUS private cockpit
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('digiy-campus-prive.html')
+          s=p.read_text(encoding='utf-8')
+
+          css_old='.panel{border:1px solid var(--line);border-radius:22px;background:rgba(10,27,21,.92);box-shadow:0 18px 55px rgba(0,0,0,.22);padding:18px}.hidden{display:none!important}'
+          css_new='.panel{border:1px solid var(--line);border-radius:22px;background:rgba(10,27,21,.92);box-shadow:0 18px 55px rgba(0,0,0,.22);padding:18px}.adminRail{display:flex;gap:9px;flex-wrap:wrap;margin:-4px 0 16px}.adminRail .btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.hidden{display:none!important}'
+          if css_old in s:
+              s=s.replace(css_old,css_new,1)
+          elif '.adminRail{' not in s:
+              raise SystemExit('CAMPUS CSS target not found')
+
+          head_old='  </header>\n\n  <section id="loginPanel" class="panel login">'
+          head_new='  </header>\n  <nav class="adminRail" aria-label="Navigation administration DIGIYLYFE"><a class="btn gold" href="https://backoffice.digiylyfe.com/">👥 ADHÉRENTS</a><a class="btn gold" href="https://backoffice.digiylyfe.com/partenaires-terrain.html">🤝 PARTENAIRES</a><a class="btn gold" href="https://digiylyfe.com/digiy-campus-prive.html">🎓 CAMPUS</a></nav>\n\n  <section id="loginPanel" class="panel login">'
+          if head_old in s:
+              s=s.replace(head_old,head_new,1)
+          elif 'aria-label="Navigation administration DIGIYLYFE"' not in s:
+              raise SystemExit('CAMPUS header target not found')
+
+          init_old="  var existing=sessionStorage.getItem(TOKEN_KEY)||'';\n  if(existing){loadData(existing)}else{showLogin()}"
+          init_new="  var existing=sessionStorage.getItem(TOKEN_KEY)||localStorage.getItem('digiy_admin_jwt')||'';\n  if(existing){validToken(existing).then(function(ok){if(ok){sessionStorage.setItem(TOKEN_KEY,existing);loadData(existing)}else{sessionStorage.removeItem(TOKEN_KEY);showLogin()}})}else{showLogin()}"
+          if init_old in s:
+              s=s.replace(init_old,init_new,1)
+          elif "localStorage.getItem('digiy_admin_jwt')" not in s:
+              raise SystemExit('CAMPUS session target not found')
+
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit CAMPUS navigation
+        run: |
+          if git diff --quiet -- digiy-campus-prive.html; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add digiy-campus-prive.html
+          git commit -m 'Unify CAMPUS admin navigation and reuse admin session'
+          git push
