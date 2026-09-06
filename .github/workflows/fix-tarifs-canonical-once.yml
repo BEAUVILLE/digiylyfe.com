@@ -1,0 +1,58 @@
+name: Fix tarifs canonical once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-tarifs-canonical-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add canonical and robots to tarifs-adherents-1
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('tarifs-adherents-1.html')
+          s = p.read_text(encoding='utf-8')
+
+          robots = '<meta name="robots" content="index,follow">'
+          canonical = '<link rel="canonical" href="https://digiylyfe.com/tarifs-adherents-1.html">'
+
+          if robots in s and canonical in s:
+              print('Already correct')
+          else:
+              anchor = '<meta name="description" content="DIGIYLYFE · Adhérent 1 : 19 900 FCFA/mois · Europe : 45 €/mois. Carte digitale, QR, présence dans la vitrine, contact direct, 8 langues et 0 % de commission. Fiche personnalisée : 100 000 FCFA au Sénégal / 250 € en Europe. Site personnalisé : 550 000 FCFA au Sénégal / 950 € en Europe.">'
+              if s.count(anchor) != 1:
+                  raise SystemExit(f'Anchor count unexpected: {s.count(anchor)}')
+              addition = anchor + '\n' + robots + '\n' + canonical
+              s = s.replace(anchor, addition, 1)
+              if s.count(robots) != 1 or s.count(canonical) != 1:
+                  raise SystemExit('Post-patch verification failed')
+              p.write_text(s, encoding='utf-8')
+              print('Patched canonical + robots')
+
+          wf = Path('.github/workflows/fix-tarifs-canonical-once.yml')
+          if wf.exists():
+              wf.unlink()
+          PY
+      - name: Commit exact correction
+        shell: bash
+        run: |
+          git config user.name "DIGIYLYFE Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add tarifs-adherents-1.html .github/workflows/fix-tarifs-canonical-once.yml
+          git diff --cached --check
+          git diff --cached
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "fix: add canonical and robots to tarifs adherent 1 [skip ci]"
+          git push
