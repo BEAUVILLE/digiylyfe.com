@@ -56,7 +56,7 @@
     st.id='digiyCardFavoriteStyleV1';
     st.textContent='\
       .digiyCardFavoriteStar{position:absolute;top:13px;right:13px;z-index:80;width:48px;height:48px;border-radius:999px;border:1px solid rgba(246,196,83,.82);background:rgba(3,18,13,.92);color:#fff3cf;display:grid;place-items:center;padding:0;font:1000 27px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;box-shadow:0 9px 24px rgba(0,0,0,.34);cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent}\
-      .digiyCardFavoriteStar:hover,.digiyCardFavoriteStar:focus-visible{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;transform:translateY(-1px)}\
+      .digiyCardFavoriteStar:hover,.digiyCardFavoriteStar:focus-visible{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f}\
       .digiyCardFavoriteStar:focus-visible{outline:3px solid rgba(246,196,83,.52);outline-offset:3px}\
       html[dir="rtl"] .digiyCardFavoriteStar{right:auto;left:13px}\
       @media(max-width:420px){.digiyCardFavoriteStar{top:10px;right:10px;width:44px;height:44px;font-size:25px}html[dir="rtl"] .digiyCardFavoriteStar{right:auto;left:10px}}\
@@ -97,7 +97,6 @@
     a.href=DEST+'?'+p.toString();
     a.textContent='☆';
     a.setAttribute('aria-label','Ajouter '+name+' à MON DIGIY');
-    a.setAttribute('title','Ajouter à MON DIGIY');
     info.host.appendChild(a);
   }
 
