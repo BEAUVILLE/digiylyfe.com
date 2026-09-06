@@ -20,8 +20,8 @@
     "pro-helage":{href:homeCard("pro-helage"),icon:"🔧",label:"Helage · Plombier",kind:"professionnel",legacyUrls:["https://helage-plombier.digiylyfe.com/"]},
     "territoire-petite-cote":{href:"https://digiylyfe.com/territoire.html?zone=petite-cote",icon:"📍",label:"DIGIY PETITE CÔTE",kind:"territoire"},
     "territoire-dakar":{href:"https://digiylyfe.com/territoire.html?zone=dakar",icon:"📍",label:"DIGIY DAKAR",kind:"territoire"},
-    "territoire-dordogne":{href:"https://digiylyfe.com/france.html",icon:"📍",label:"DIGIY VALLÉE DE LA DORDOGNE",kind:"territoire",legacyUrls:["https://digiylyfe.com/france.html"]},
-    "territoire-bordeaux":{href:"https://digiylyfe.com/france.html",icon:"📍",label:"DIGIY BORDEAUX",kind:"territoire"}
+    "territoire-dordogne":{href:"https://digiylyfe.com/territoire.html?zone=vallee-dordogne",icon:"📍",label:"DIGIY VALLÉE DE LA DORDOGNE",kind:"territoire",legacyUrls:["https://digiylyfe.com/france.html"]},
+    "territoire-bordeaux":{href:"https://digiylyfe.com/territoire.html?zone=bordeaux",icon:"📍",label:"DIGIY BORDEAUX",kind:"territoire"}
   };
 
   var hrefCount={};
@@ -104,7 +104,7 @@
   }
 
   function writeMeta(m){var map=loadMeta();map[m.id]=m;saveMeta(map);}
-  function state(b,id){var yes=on(id);b.classList.toggle('active',yes);b.setAttribute('aria-pressed',yes?'true':'false');b.textContent=yes?'★':'☆';b.setAttribute('aria-label',yes?'Retirer de MON DIGIY':'Ajouter à MON DIGIY');b.title=yes?'Dans MON DIGIY':'Ajouter à MON DIGIY';}
+  function state(b,id){var yes=on(id);b.classList.toggle('active',yes);b.setAttribute('aria-pressed',yes?'true':'false');var symbol=yes?'★':'☆';if(b.textContent!==symbol)b.textContent=symbol;b.setAttribute('aria-label',yes?'Retirer de MON DIGIY':'Ajouter à MON DIGIY');b.title=yes?'Dans MON DIGIY':'Ajouter à MON DIGIY';}
   function toggle(m,b){var a=loadFavs(),i=a.indexOf(m.id);if(i>-1)a.splice(i,1);else{a.push(m.id);writeMeta(m);}saveFavs(a);state(b,m.id);refreshTop();}
 
   function attach(card){
@@ -138,10 +138,11 @@
   var focused='';
   function focusHash(){var h=(location.hash||'').slice(1);if(!/^fav-/.test(h)||focused===h)return;var el=document.getElementById(h);if(!el)return;focused=h;setTimeout(function(){try{el.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){el.scrollIntoView();}},100);}
 
+  var scanPending=false;
   function boot(){
     scan();refreshTop();
     var root=location.pathname==='/territoire.html'?(document.getElementById('resultsSection')||document.body):(document.querySelector('.exampleGrid')||document.body);
-    try{new MutationObserver(function(){setTimeout(scan,0);}).observe(root,{childList:true,subtree:true});}catch(e){}
+    try{new MutationObserver(function(){if(scanPending)return;scanPending=true;setTimeout(function(){scanPending=false;scan();},0);}).observe(root,{childList:true,subtree:true});}catch(e){}
     var clear=document.getElementById('favClear');if(clear)clear.addEventListener('click',function(){setTimeout(refreshAll,0);});
     window.addEventListener('hashchange',function(){focused='';scan();});
     setTimeout(scan,200);setTimeout(scan,700);setTimeout(scan,1500);setTimeout(scan,3000);

@@ -19,7 +19,7 @@
 <main class="wrap">
   <header class="brand">
     <div><small>🦅 DIGIYLYFE</small><h1>🎓 Liste CAMPUS — Intéressés · A → Z</h1></div>
-    <button id="logoutBtn" class="btn small hidden" type="button">Déconnexion</button>
+    <button id="logoutBtn" class="btn small hidden" type="button">Déconnexion CAMPUS</button>
   </header>
   <nav class="adminRail" aria-label="Navigation administration DIGIYLYFE"><a class="btn gold" href="https://backoffice.digiylyfe.com/">👥 ADHÉRENTS</a><a class="btn gold" href="https://backoffice.digiylyfe.com/partenaires-terrain.html">🤝 PARTENAIRES</a><a class="btn gold deptActive" href="https://digiylyfe.com/digiy-campus-prive.html" aria-current="page">🎓 CAMPUS</a><a class="btn gold" href="https://backoffice.digiylyfe.com/bonne-affaire.html">🏷️ BONNE AFFAIRE</a><a class="btn gold" href="https://backoffice.digiylyfe.com/carnet-wave.html">💳 CARNET WAVE</a></nav>
 
@@ -30,7 +30,7 @@
       <div class="field"><label for="pin">PIN administrateur DIGIYLYFE</label><input id="pin" type="password" inputmode="numeric" autocomplete="off" required maxlength="32" autofocus></div>
       <button id="loginBtn" class="btn gold" type="submit" style="width:100%;margin-top:12px">OUVRIR DIGIY CAMPUS →</button>
       <div id="loginStatus" class="status" aria-live="polite"></div>
-      <div class="note">Le PIN n’est jamais enregistré dans cette page. Seul le jeton de session administrateur reste temporairement dans cet onglet.</div>
+      <div class="note">Le PIN n’est jamais enregistré dans cette page. La session CAMPUS reste temporairement dans cet onglet. Le backoffice dispose de sa propre connexion.</div>
     </form>
   </section>
 
@@ -135,10 +135,10 @@
 
   refreshBtn.addEventListener('click',function(){var token=sessionStorage.getItem(TOKEN_KEY)||'';loadData(token)});
   searchInput.addEventListener('input',render);
-  logoutBtn.addEventListener('click',function(){sessionStorage.removeItem(TOKEN_KEY);rows=[];totalCount.textContent='—';setStatus(loginStatus,'','');showLogin()});
+  logoutBtn.addEventListener('click',function(){sessionStorage.removeItem(TOKEN_KEY);rows=[];list.textContent='';pinInput.value='';totalCount.textContent='—';setStatus(loginStatus,'','');showLogin()});
 
-  var existing=sessionStorage.getItem(TOKEN_KEY)||localStorage.getItem('digiy_admin_jwt')||'';
-  if(existing){validToken(existing).then(function(ok){if(ok){sessionStorage.setItem(TOKEN_KEY,existing);loadData(existing)}else{sessionStorage.removeItem(TOKEN_KEY);showLogin()}})}else{showLogin()}
+  var existing=sessionStorage.getItem(TOKEN_KEY)||'';
+  if(existing){validToken(existing).then(function(ok){if(ok){sessionStorage.setItem(TOKEN_KEY,existing);loadData(existing)}else{sessionStorage.removeItem(TOKEN_KEY);showLogin()}}).catch(function(){sessionStorage.removeItem(TOKEN_KEY);setStatus(loginStatus,'Connexion impossible. Réessaie.','bad');showLogin()})}else{showLogin()}
 })();
 </script>
 </body>
