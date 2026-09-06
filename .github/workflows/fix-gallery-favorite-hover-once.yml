@@ -1,0 +1,70 @@
+name: Fix gallery favorite hover once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-gallery-favorite-hover-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Patch common favorite hover and territory cache
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          gallery = Path('assets/digiy-gallery-favorites-v1.js')
+          t = gallery.read_text(encoding='utf-8')
+          old = ".digiyGalleryFavoriteStar:hover,.digiyGalleryFavoriteStar:focus-visible{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;transform:translateY(-1px)}"
+          new = ".digiyGalleryFavoriteStar:hover,.digiyGalleryFavoriteStar:focus-visible{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f}"
+          assert t.count(old) == 1, t.count(old)
+          t = t.replace(old, new, 1)
+          title = "    a.title='Ajouter à MON DIGIY';\n"
+          assert t.count(title) == 1, t.count(title)
+          t = t.replace(title, '', 1)
+          gallery.write_text(t, encoding='utf-8')
+
+          fav = Path('assets/digiy-territoire-favoris-v1.js')
+          t = fav.read_text(encoding='utf-8')
+          old_scan = "    var root=document.getElementById('resultsSection')||document.getElementById('results');if(!root)return;\n    candidates(root).forEach(attach);"
+          new_scan = "    var root=document.getElementById('resultsSection')||document.getElementById('results');if(!root)return;\n    root.querySelectorAll('.digiyGalleryFavoriteStar').forEach(function(a){if(a.hasAttribute('title'))a.removeAttribute('title');});\n    candidates(root).forEach(attach);"
+          assert t.count(old_scan) == 1, t.count(old_scan)
+          t = t.replace(old_scan, new_scan, 1)
+          old_css = "html[dir=\"rtl\"] .digiyTerritoryFav{right:auto;left:10px;direction:rtl}\\n';document.head.appendChild(s);"
+          new_css = "html[dir=\"rtl\"] .digiyTerritoryFav{right:auto;left:10px;direction:rtl}\\n.digiyGalleryFavoriteStar:hover,.digiyGalleryFavoriteStar:focus-visible{transform:none!important}\\n';document.head.appendChild(s);"
+          assert t.count(old_css) == 1, t.count(old_css)
+          t = t.replace(old_css, new_css, 1)
+          fav.write_text(t, encoding='utf-8')
+
+          page = Path('territoire.html')
+          t = page.read_text(encoding='utf-8')
+          old_ver = '/assets/digiy-territoire-favoris-v1.js?v=20260906-v4'
+          new_ver = '/assets/digiy-territoire-favoris-v1.js?v=20260906-v5'
+          assert t.count(old_ver) == 1, t.count(old_ver)
+          t = t.replace(old_ver, new_ver, 1)
+          page.write_text(t, encoding='utf-8')
+          PY
+
+      - name: Validate JavaScript
+        run: |
+          node --check assets/digiy-gallery-favorites-v1.js
+          node --check assets/digiy-territoire-favoris-v1.js
+          git diff --check
+
+      - name: Commit correction and self-delete
+        shell: bash
+        run: |
+          git config user.name "DIGIYLYFE Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/fix-gallery-favorite-hover-once.yml
+          git add assets/digiy-gallery-favorites-v1.js assets/digiy-territoire-favoris-v1.js territoire.html
+          git commit -m "fix: keep MON DIGIY gallery stars stable [skip ci]"
+          git push
