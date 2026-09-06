@@ -1,0 +1,27 @@
+name: Fix territory favorite visible label once
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-territory-fav-no-visible-label-once.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply patch
+        run: |
+          python .github/scripts/fix-territory-fav-no-visible-label.py
+          node --check assets/digiy-territoire-favoris-v1.js
+      - name: Commit patch and cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm .github/scripts/fix-territory-fav-no-visible-label.py
+          rm .github/workflows/fix-territory-fav-no-visible-label-once.yml
+          git add assets/digiy-territoire-favoris-v1.js territoire.html .github/scripts .github/workflows
+          git commit -m 'fix: keep territory MON DIGIY favorite icon-only [skip ci]'
+          git push
