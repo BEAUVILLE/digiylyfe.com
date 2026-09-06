@@ -1,0 +1,55 @@
+name: Fix territory favorite flicker once
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-territory-favorite-flicker-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Stop territory favorite mutation loop
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          fav = Path('assets/digiy-territoire-favoris-v1.js')
+          s = fav.read_text(encoding='utf-8')
+          old = "function updateButton(b,id){var on=active(id),t=tr();b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false');b.textContent=on?t.on:t.add;}"
+          new = "function updateButton(b,id){var on=active(id),t=tr(),pressed=on?'true':'false',label=on?t.on:t.add;b.classList.toggle('active',on);if(b.getAttribute('aria-pressed')!==pressed)b.setAttribute('aria-pressed',pressed);if(b.textContent!==label)b.textContent=label;}"
+          if s.count(old) != 1:
+              raise SystemExit(f'updateButton expected once, found {s.count(old)}')
+          s = s.replace(old, new, 1)
+          fav.write_text(s, encoding='utf-8')
+
+          page = Path('territoire.html')
+          h = page.read_text(encoding='utf-8')
+          old_src = '<script src="/assets/digiy-territoire-favoris-v1.js?v=20260904-v3" defer></script>'
+          new_src = '<script src="/assets/digiy-territoire-favoris-v1.js?v=20260906-v4" defer></script>'
+          if h.count(old_src) != 1:
+              raise SystemExit(f'territory favorite script tag expected once, found {h.count(old_src)}')
+          h = h.replace(old_src, new_src, 1)
+          page.write_text(h, encoding='utf-8')
+          PY
+          node --check assets/digiy-territoire-favoris-v1.js
+          grep -F 'v=20260906-v4' territoire.html
+
+      - name: Commit fix and remove one-shot workflow
+        shell: bash
+        run: |
+          git config user.name "DIGIYLYFE Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/fix-territory-favorite-flicker-once.yml
+          git add assets/digiy-territoire-favoris-v1.js territoire.html
+          git diff --cached --check
+          git commit -m "fix: stop territory MON DIGIY favorite flicker [skip ci]"
+          git push
