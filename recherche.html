@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b3d2e">
 <meta name="robots" content="index,follow">
-<meta name="digiy-build" content="recherche-internationale-v5-controle-sans-push-20260810">
+<meta name="digiy-build" content="recherche-v6-territoire-commerce-20260906">
 <link rel="canonical" href="https://digiylyfe.com/recherche.html">
 <link rel="alternate" hreflang="fr" href="https://digiylyfe.com/recherche.html?lang=fr">
 <link rel="alternate" hreflang="en" href="https://digiylyfe.com/recherche.html?lang=en">
@@ -16,34 +16,38 @@
 <link rel="alternate" hreflang="nl" href="https://digiylyfe.com/recherche.html?lang=nl">
 <link rel="alternate" hreflang="ar" href="https://digiylyfe.com/recherche.html?lang=ar">
 <link rel="alternate" hreflang="x-default" href="https://digiylyfe.com/recherche.html">
-<title>Recherche DIGIYLYFE — Trouver un professionnel</title>
-<meta name="description" content="Trouvez un professionnel, un artisan, un chauffeur, un logement, une boutique ou un service et contactez-le directement via sa vitrine DIGIYLYFE.">
+<title>Recherche DIGIYLYFE — Trouver un professionnel par métier et territoire</title>
+<meta name="description" content="Trouvez un professionnel DIGIYLYFE par métier et territoire : fiche officielle, QR, contact direct, paiement direct et 0 % de commission DIGIYLYFE.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://digiylyfe.com/recherche.html">
+<meta property="og:title" content="Recherche DIGIYLYFE — Trouver un professionnel">
+<meta property="og:description" content="Métier, territoire, fiche officielle et contact direct avec le professionnel.">
 <link rel="stylesheet" href="./assets/css/recherche-v5.css?v=20260810">
 </head>
 <body>
 <header class="shell">
-<div class="brand"><a class="brandMark" id="brandLink" href="https://digiylyfe.com/"><span class="logo">D</span><span><strong>DIGIYLYFE</strong><small id="brandSub"></small></span></a><a class="home" id="homeLink" href="https://digiylyfe.com/"></a></div>
+<div class="brand"><a class="brandMark" id="brandLink" href="https://digiylyfe.com/"><span class="logo">D</span><span><strong>DIGIYLYFE</strong><small id="brandSub">Recherche terrain · contact direct</small></span></a><a class="home" id="homeLink" href="https://digiylyfe.com/">← Accueil</a></div>
 <nav class="langbar" aria-label="Languages"><button data-l="fr">FR</button><button data-l="en">EN</button><button data-l="es">ES</button><button data-l="pt">PT</button><button data-l="it">IT</button><button data-l="de">DE</button><button data-l="nl">NL</button><button data-l="ar">AR</button></nav>
 </header>
 <main class="shell">
-<section class="hero"><span class="eyebrow" id="eyebrow"></span><h1 id="heroTitle"></h1><p id="heroLead"></p></section>
+<section class="hero"><span class="eyebrow" id="eyebrow">🔎 Trouver un professionnel par métier et territoire</span><h1 id="heroTitle">Trouvez un professionnel DIGIYLYFE.</h1><p id="heroLead">Indiquez votre besoin et votre zone. DIGIYLYFE vous conduit vers la fiche officielle du professionnel pour un contact direct, sans intermédiaire et avec 0 % de commission DIGIYLYFE.</p></section>
 <section class="searchPanel" id="searchPanel">
 <form id="searchForm" class="formGrid">
-<div class="field"><label for="query" id="queryLabel"></label><input id="query" type="search" autocomplete="off"></div>
-<div class="field"><label for="city" id="cityLabel"></label><input id="city" type="search"></div>
-<div class="field"><label for="module" id="moduleLabel"></label><select id="module"></select></div>
-<button class="searchBtn" id="submitBtn" type="submit"></button>
+<div class="field"><label for="query" id="queryLabel">Métier, nom ou service</label><input id="query" type="search" autocomplete="off" placeholder="Ex. électricien, maçon, chauffeur…"></div>
+<div class="field"><label for="city" id="cityLabel">Ville ou territoire</label><input id="city" type="search" placeholder="Ex. Saly, Dakar, Bordeaux…"></div>
+<div class="field"><label for="module" id="moduleLabel">Besoin</label><select id="module"><option value="">Tous les besoins</option></select></div>
+<button class="searchBtn" id="submitBtn" type="submit">Rechercher</button>
 </form>
 <div class="chips" id="chips"></div>
 </section>
-<div class="headRow"><h2 id="resultsTitle"></h2><span class="count" id="count"></span></div>
-<div class="state" id="status"></div><section class="results" id="results" hidden aria-live="polite"></section>
-<div class="note"><strong id="ruleTitle"></strong> <span id="ruleText"></span></div>
-<footer id="footer"></footer>
+<div class="headRow"><h2 id="resultsTitle">Professionnels DIGIYLYFE</h2><span class="count" id="count"></span></div>
+<div class="state" id="status">Connexion au réseau DIGIYLYFE…</div><section class="results" id="results" hidden aria-live="polite"></section>
+<div class="note"><strong id="ruleTitle">Règle DIGIY :</strong> <span id="ruleText">une fiche officielle par professionnel, un QR, un contact direct et une relation client qui reste dans la main du terrain.</span></div>
+<footer id="footer">DIGIYLYFE · Recherche terrain · Contact direct · Paiement direct · 0 % commission</footer>
 </main>
 <script src="./assets/i18n/recherche-v5-data.js?v=20260810"></script>
-<script src="./assets/i18n/recherche-v5-app.js?v=20260810"></script>
-<script src="./recherche-cartes-officielles.js?v=20260714-v4" defer></script>
+<script src="./assets/i18n/recherche-v5-app.js?v=20260906-commerce"></script>
+<script src="./recherche-cartes-officielles.js?v=20260906-labels-publics" defer></script>
 <script src="./digiy-navigation-globale.js?v=20260722"></script>
 <script src="https://digiylyfe.com/digiy-contact-global.js?v=20260815"></script>
 </body></html>
