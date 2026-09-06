@@ -11,14 +11,12 @@ User-agent: *
 Allow: /
 Allow: /index.html
 Allow: /explore/
-Allow: /market/
 Allow: /jobs/
 Allow: /build/
 Allow: /loc/
 Allow: /resa/
 Allow: /driver/
 Allow: /caisse/
-Allow: /pay/
 
 # --- PAGES SENSIBLES : ACCÈS INTERDIT ---
 # Espaces pro, PIN, cockpit, admin, sessions
@@ -45,8 +43,6 @@ Disallow: /driver-pro/
 Disallow: /loc-pro/
 Disallow: /jobs-pro/
 Disallow: /build-pro/
-Disallow: /pay-pro/
-Disallow: /market-pro/
 
 # API & endpoints métiers
 Disallow: /api/
@@ -55,72 +51,10 @@ Disallow: /rpc/
 Disallow: /functions/
 
 # ============================================================
-# CRAWLERS IA — RÈGLES SPÉCIFIQUES
-# Bienvenue sur la façade. Pas dans la maison.
+# CRAWLERS & MOTEURS — RÈGLE UNIQUE
+# Tous les robots appliquent le groupe général ci-dessus.
+# Façade publique ouverte ; espaces sensibles exclus.
 # ============================================================
-
-User-agent: GPTBot
-Allow: /
-Disallow: /pro/
-Disallow: /pin.html
-Disallow: /cockpit.html
-Disallow: /api/
-
-User-agent: Claude-Web
-Allow: /
-Disallow: /pro/
-Disallow: /pin.html
-Disallow: /cockpit.html
-Disallow: /api/
-
-User-agent: anthropic-ai
-Allow: /
-Disallow: /pro/
-Disallow: /pin.html
-Disallow: /cockpit.html
-Disallow: /api/
-
-User-agent: PerplexityBot
-Allow: /
-Disallow: /pro/
-Disallow: /pin.html
-Disallow: /cockpit.html
-Disallow: /api/
-
-User-agent: Applebot
-Allow: /
-Disallow: /pro/
-Disallow: /pin.html
-Disallow: /cockpit.html
-Disallow: /api/
-
-User-agent: Googlebot
-Allow: /
-Disallow: /pro/
-Disallow: /pin.html
-Disallow: /cockpit.html
-Disallow: /api/
-
-User-agent: Bingbot
-Allow: /
-Disallow: /pro/
-Disallow: /pin.html
-Disallow: /cockpit.html
-Disallow: /api/
-
-User-agent: cohere-ai
-Allow: /
-Disallow: /pro/
-Disallow: /pin.html
-Disallow: /cockpit.html
-Disallow: /api/
-
-User-agent: meta-externalagent
-Allow: /
-Disallow: /pro/
-Disallow: /pin.html
-Disallow: /cockpit.html
-Disallow: /api/
 
 # ============================================================
 # SITEMAP

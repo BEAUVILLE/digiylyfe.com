@@ -1,5 +1,5 @@
 /* DIGIYLYFE — Navigation globale partagée
- * Version: dgn-global-v1-20260722
+ * Version: dgn-global-v1-20260906-commerce
  * Rôle: injecter le cartouche permanent sur les pages publiques qui le chargent.
  * Sécurité: aucun PIN, aucun jeton et aucune donnée privée ne sont enregistrés ici.
  */
@@ -128,7 +128,7 @@
     ['🧭 TERRITOIRES',HUB,true],
     ['🚗 DRIVER','https://driver-client.digiylyfe.com/'],
     ['🏠 LOC','https://loc.digiylyfe.com/'],
-    ['🛍️ MARKET','https://market.digiylyfe.com/'],
+    ['🛍️ MON COMMERCE','https://mon-commerce.digiylyfe.com/'],
     ['🏗️ BUILD','https://build.digiylyfe.com/'],
     ['💼 JOBS','https://jobs.digiylyfe.com/'],
     ['📅 RESA','https://resa-table-resto.digiylyfe.com/'],
