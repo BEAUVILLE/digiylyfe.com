@@ -1,0 +1,44 @@
+name: Fix homepage territory links once
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-home-territory-links-once.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch exact territory links
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          replacements = {
+            '<a class="territoryCard" href="https://digiylyfe.com/territoire.html?zone=dakar" data-fav-id="territoire-dakar">':
+            '<a class="territoryCard" href="https://digiylyfe.com/dakar.html" data-fav-id="territoire-dakar">',
+            '<a class="territoryCard" href="https://digiylyfe.com/france.html" data-fav-id="territoire-dordogne">':
+            '<a class="territoryCard" href="https://digiylyfe.com/territoire.html?zone=vallee-dordogne" data-fav-id="territoire-dordogne">',
+            '<a class="territoryCard" href="https://digiylyfe.com/france.html" data-fav-id="territoire-bordeaux">':
+            '<a class="territoryCard" href="https://digiylyfe.com/bordeaux.html" data-fav-id="territoire-bordeaux">',
+          }
+          for old, new in replacements.items():
+              count = s.count(old)
+              if count != 1:
+                  raise SystemExit(f'Expected exactly 1 occurrence, found {count}: {old}')
+              s = s.replace(old, new)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit correction and remove one-shot workflow
+        run: |
+          rm .github/workflows/fix-home-territory-links-once.yml
+          git config user.name 'DIGIYLYFE Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add index.html .github/workflows/fix-home-territory-links-once.yml
+          git diff --cached --check
+          git commit -m 'fix: route homepage territory cards directly [skip ci]'
+          git push
