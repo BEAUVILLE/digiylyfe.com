@@ -24,7 +24,11 @@ jobs:
           if s.count(old) != 1:
               raise SystemExit('ancre MARKET navigation absente ou non unique')
           s = s.replace(old, new, 1)
-          s = s.replace(' * Version: dgn-global-v1-20260722', ' * Version: dgn-global-v1-20260906-commerce', 1)
+          version_old = ' * Version: dgn-global-v1-20260722'
+          version_new = ' * Version: dgn-global-v1-20260906-commerce'
+          if s.count(version_old) != 1:
+              raise SystemExit('marqueur version navigation inattendu')
+          s = s.replace(version_old, version_new, 1)
           if 'market.digiylyfe.com' in s or '🛍️ MARKET' in s:
               raise SystemExit('relique MARKET encore présente dans la navigation')
           if 'https://mon-commerce.digiylyfe.com/' not in s:
@@ -60,11 +64,12 @@ jobs:
           p = Path('index.html')
           h = p.read_text()
           before_scripts = h.count('<script')
-          block = '''      <div class="doctrine">
-        <strong data-i18n="doctrineTitle">Votre savoir-faire. Votre identité. Vos objectifs.</strong>
-        <span data-i18n="doctrineText">DIGIYLYFE vous offre ses ailes pour aller plus loin.</span>
-      </div>
-'''
+          block = (
+              '      <div class="doctrine">\n'
+              '        <strong data-i18n="doctrineTitle">Votre savoir-faire. Votre identité. Vos objectifs.</strong>\n'
+              '        <span data-i18n="doctrineText">DIGIYLYFE vous offre ses ailes pour aller plus loin.</span>\n'
+              '      </div>\n'
+          )
           if h.count(block) != 1:
               raise SystemExit('cartouche doublon accueil absent ou non unique')
           h = h.replace(block, '', 1)
