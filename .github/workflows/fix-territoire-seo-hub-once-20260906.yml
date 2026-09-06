@@ -1,0 +1,84 @@
+name: Renforcer territoire avant indexation
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-territoire-seo-hub-once-20260906.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Renforcer la couche statique de territoire
+        shell: python
+        run: |
+          from pathlib import Path
+
+          p = Path('territoire.html')
+          s = p.read_text()
+          before_scripts = s.count('<script src="/assets/')
+
+          replacements = [
+            (
+              '<title>DIGIY — Territoire | DIGIYLYFE</title>',
+              '<title>DIGIYLYFE — Territoires | Trouver un professionnel local</title>'
+            ),
+            (
+              '<meta name="description" content="Choisissez un besoin et une zone pour trouver les professionnels DIGIYLYFE du territoire et les contacter directement.">',
+              '<meta name="description" content="Explorez les territoires DIGIYLYFE au Sénégal et en France : Petite Côte, Dakar, Vallée de la Dordogne et Bordeaux. Choisissez un besoin, trouvez un professionnel et contactez-le directement.">\n<meta name="digiy-version" content="territoire-hub-statique-20260906">'
+            ),
+            (
+              '.source{margin-top:18px;text-align:center;color:rgba(255,250,240,.55);font-size:10px;font-weight:800}',
+              '.source{margin-top:18px;text-align:center;color:rgba(255,250,240,.55);font-size:10px;font-weight:800}.territoryHub{margin-top:18px;padding:18px;border:1px solid rgba(246,196,83,.42);border-radius:26px;background:linear-gradient(145deg,rgba(246,196,83,.10),rgba(34,197,94,.08))}.territoryHubHead h2{margin:6px 0 6px;font-size:clamp(26px,5vw,38px)}.territoryHubHead p{margin:0;color:var(--muted);font-weight:800;line-height:1.5}.territoryHubGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.territoryHubCard{border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.07);padding:14px}.territoryHubCard strong{display:block;font-size:20px}.territoryHubCard p{margin:6px 0 10px;color:var(--muted);font-size:13px;font-weight:850}.territoryHubLinks{display:flex;flex-wrap:wrap;gap:7px}.territoryHubLinks a{display:inline-flex;align-items:center;min-height:40px;padding:8px 11px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--green));color:#06140f;text-decoration:none;font-size:12px;font-weight:1000}.territoryHubFlow{margin:12px 0 0;padding:10px 12px;border-radius:14px;background:rgba(34,197,94,.10);color:#dfffea;font-size:12px;font-weight:950}@media(max-width:760px){.territoryHubGrid{grid-template-columns:1fr}}'
+            ),
+            (
+              '  </section>\n  <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>',
+              '  </section>\n  <section class="territoryHub" aria-labelledby="territoryHubTitle">\n    <div class="territoryHubHead">\n      <div class="eyebrow">DIGIYLYFE · TERRITOIRES ACTIFS</div>\n      <h2 id="territoryHubTitle">Choisir son territoire</h2>\n      <p>Une même logique partout : territoire → besoin → professionnel → fiche officielle → contact direct.</p>\n    </div>\n    <div class="territoryHubGrid">\n      <article class="territoryHubCard">\n        <strong>🇸🇳 Sénégal</strong>\n        <p>Petite Côte · Dakar</p>\n        <div class="territoryHubLinks"><a href="/territoire.html?zone=petite-cote">Petite Côte</a><a href="/dakar.html">Dakar</a></div>\n      </article>\n      <article class="territoryHubCard">\n        <strong>🇫🇷 France</strong>\n        <p>Vallée de la Dordogne · Bordeaux</p>\n        <div class="territoryHubLinks"><a href="/sarlat.html">Vallée de la Dordogne</a><a href="/bordeaux.html">Bordeaux</a></div>\n      </article>\n    </div>\n    <p class="territoryHubFlow">DIGIYLYFE relie le territoire au bon professionnel sans intermédiaire : QR, fiche officielle, contact direct et 0 % commission.</p>\n  </section>\n  <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>'
+            )
+          ]
+
+          for old, new in replacements:
+            if s.count(old) != 1:
+              raise SystemExit(f'ancre attendue absente ou non unique: {old[:80]}')
+            s = s.replace(old, new, 1)
+
+          if s.count('<script src="/assets/') != before_scripts:
+            raise SystemExit('les scripts du moteur territoire ont été modifiés')
+          if 'territoire-hub-statique-20260906' not in s:
+            raise SystemExit('marqueur de version absent')
+          if 'Vallée de la Dordogne' not in s or 'Petite Côte' not in s or 'Bordeaux' not in s or '>Dakar<' not in s:
+            raise SystemExit('hub statique incomplet')
+          if '<meta name="robots" content="index,follow">' not in s:
+            raise SystemExit('index,follow absent')
+          if '<link rel="canonical" href="https://digiylyfe.com/territoire.html">' not in s:
+            raise SystemExit('canonical territoire absente')
+          p.write_text(s)
+
+          sm = Path('sitemap.xml')
+          x = sm.read_text()
+          old = '<url><loc>https://digiylyfe.com/territoire.html</loc><lastmod>2026-08-26</lastmod></url>'
+          new = '<url><loc>https://digiylyfe.com/territoire.html</loc><lastmod>2026-09-06</lastmod></url>'
+          if x.count(old) != 1:
+            raise SystemExit('entrée sitemap territoire attendue introuvable ou non unique')
+          sm.write_text(x.replace(old, new, 1))
+      - name: Vérifier le patch
+        shell: bash
+        run: |
+          grep -F 'territoire-hub-statique-20260906' territoire.html
+          grep -F 'DIGIYLYFE — Territoires | Trouver un professionnel local' territoire.html
+          grep -F 'territoryHubTitle' territoire.html
+          grep -F 'Petite Côte' territoire.html
+          grep -F 'Vallée de la Dordogne' territoire.html
+          grep -F '<meta name="robots" content="index,follow">' territoire.html
+          grep -F '<link rel="canonical" href="https://digiylyfe.com/territoire.html">' territoire.html
+          grep -F '<loc>https://digiylyfe.com/territoire.html</loc><lastmod>2026-09-06</lastmod>' sitemap.xml
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add territoire.html sitemap.xml
+          git commit -m 'Renforcer territoire pour indexation Google'
+          git push
