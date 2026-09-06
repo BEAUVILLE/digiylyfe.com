@@ -1,7 +1,7 @@
 (function(){
   "use strict";
 
-  const MARKER="recherche-stricte-v8-lamine-babacar-20260714";
+  const MARKER="recherche-stricte-v9-labels-publics-20260906";
   const form=document.getElementById("searchForm");
   const queryInput=document.getElementById("query");
   const cityInput=document.getElementById("city");
@@ -92,9 +92,11 @@
     const avatar=profile.image
       ? `<div class="avatar"><img src="${escapeHtml(profile.image)}" alt="Carte de visite officielle de ${escapeHtml(profile.name)}" loading="eager"></div>`
       : `<div class="avatar">BP</div>`;
+    const moduleCode=type==="lamine"?"DRIVER":"BUILD";
+    const moduleLabel=type==="lamine"?"Chauffeurs":"Artisans · Bâtiment";
 
-    return `<article class="card" data-digiy-official="${escapeHtml(type)}">
-      <span class="moduleBadge">${type==="lamine"?"DRIVER":"BUILD"}</span>
+    return `<article class="card" data-digiy-official="${escapeHtml(type)}" data-module="${moduleCode}">
+      <span class="moduleBadge">${moduleLabel}</span>
       <div class="cardTop">
         ${avatar}
         <div>
@@ -135,7 +137,7 @@
     const trade=norm(card.querySelector(".meta")?.textContent);
     const services=norm(Array.from(card.querySelectorAll(".service")).map(node=>node.textContent).join(" "));
     const description=norm(card.querySelector(".description")?.textContent);
-    const module=norm(card.querySelector(".moduleBadge")?.textContent);
+    const module=norm(card.dataset.module||card.querySelector(".moduleBadge")?.textContent);
     return {title,trade,services,description,module,primary:[title,trade,services].join(" ")};
   }
 
