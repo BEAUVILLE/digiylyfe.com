@@ -71,7 +71,7 @@
   }
 
   function active(id){return load().indexOf(id)>-1;}
-  function updateButton(b,id){var on=active(id),t=tr();b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false');b.textContent=on?t.on:t.add;}
+  function updateButton(b,id){var on=active(id),t=tr(),pressed=on?'true':'false',label=on?t.on:t.add;b.classList.toggle('active',on);if(b.getAttribute('aria-pressed')!==pressed)b.setAttribute('aria-pressed',pressed);if(b.textContent!==label)b.textContent=label;}
   function toggle(m,b){
     var a=load(),i=a.indexOf(m.id),map=loadMeta();
     if(i>-1)a.splice(i,1);else{a.push(m.id);map[m.id]=m;}
