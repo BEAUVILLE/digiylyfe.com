@@ -24,7 +24,7 @@
     s.id='digiyGalleryFavoriteStyleV1';
     s.textContent='\
       .digiyGalleryFavoriteStar{position:absolute;top:10px;right:10px;z-index:70;width:44px;height:44px;border-radius:999px;border:1px solid rgba(216,173,70,.78);background:rgba(3,18,13,.91);color:#fff3cf;display:grid;place-items:center;text-decoration:none!important;font:1000 25px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;box-shadow:0 8px 22px rgba(0,0,0,.26);-webkit-tap-highlight-color:transparent}\
-      .digiyGalleryFavoriteStar:hover,.digiyGalleryFavoriteStar:focus-visible{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;transform:translateY(-1px)}\
+      .digiyGalleryFavoriteStar:hover,.digiyGalleryFavoriteStar:focus-visible{background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f}\
       .digiyGalleryFavoriteStar:focus-visible{outline:3px solid rgba(246,196,83,.45);outline-offset:3px}\
       html[dir="rtl"] .digiyGalleryFavoriteStar{right:auto;left:10px}\
       @media(max-width:520px){.digiyGalleryFavoriteStar{width:42px;height:42px;font-size:24px;top:8px;right:8px}html[dir="rtl"] .digiyGalleryFavoriteStar{right:auto;left:8px}}\
@@ -81,7 +81,6 @@
     a.className='digiyGalleryFavoriteStar';
     a.href=DEST+'?'+p.toString();
     a.textContent='☆';
-    a.title='Ajouter à MON DIGIY';
     a.setAttribute('aria-label','Ajouter '+name+' à MON DIGIY');
     card.appendChild(a);
   }

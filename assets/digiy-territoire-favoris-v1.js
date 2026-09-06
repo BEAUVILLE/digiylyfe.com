@@ -100,13 +100,14 @@
 
   function scan(){
     var root=document.getElementById('resultsSection')||document.getElementById('results');if(!root)return;
+    root.querySelectorAll('.digiyGalleryFavoriteStar').forEach(function(a){if(a.hasAttribute('title'))a.removeAttribute('title');});
     candidates(root).forEach(attach);
     root.querySelectorAll('.digiyTerritoryFav').forEach(function(b){var c=b.parentElement,m=c&&metaFor(c);if(m)updateButton(b,m.id);});
   }
 
   function style(){
     if(document.getElementById('digiyTerritoryFavStyle'))return;
-    var s=document.createElement('style');s.id='digiyTerritoryFavStyle';s.textContent='\n.digiyFavHost{position:relative!important}\n.digiyTerritoryFav{position:absolute;top:10px;right:10px;z-index:80;display:inline-flex;align-items:center;justify-content:center;max-width:calc(100% - 20px);min-height:34px;padding:7px 10px;border-radius:999px;border:1px solid rgba(246,196,83,.62);background:rgba(3,18,13,.90);color:#fff3cf;font:inherit;font-size:10px;font-weight:1000;line-height:1.05;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.24);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}\n.digiyTerritoryFav.active{border-color:rgba(246,196,83,.95);background:linear-gradient(135deg,rgba(246,196,83,.30),rgba(34,197,94,.23));color:#fff1bd}\n.digiyTerritoryFav:focus-visible{outline:3px solid rgba(246,196,83,.72);outline-offset:2px}\nhtml[dir="rtl"] .digiyTerritoryFav{right:auto;left:10px;direction:rtl}\n';document.head.appendChild(s);
+    var s=document.createElement('style');s.id='digiyTerritoryFavStyle';s.textContent='\n.digiyFavHost{position:relative!important}\n.digiyTerritoryFav{position:absolute;top:10px;right:10px;z-index:80;display:inline-flex;align-items:center;justify-content:center;max-width:calc(100% - 20px);min-height:34px;padding:7px 10px;border-radius:999px;border:1px solid rgba(246,196,83,.62);background:rgba(3,18,13,.90);color:#fff3cf;font:inherit;font-size:10px;font-weight:1000;line-height:1.05;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.24);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}\n.digiyTerritoryFav.active{border-color:rgba(246,196,83,.95);background:linear-gradient(135deg,rgba(246,196,83,.30),rgba(34,197,94,.23));color:#fff1bd}\n.digiyTerritoryFav:focus-visible{outline:3px solid rgba(246,196,83,.72);outline-offset:2px}\nhtml[dir="rtl"] .digiyTerritoryFav{right:auto;left:10px;direction:rtl}\n.digiyGalleryFavoriteStar:hover,.digiyGalleryFavoriteStar:focus-visible{transform:none!important}\n';document.head.appendChild(s);
   }
 
   function boot(){
