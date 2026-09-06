@@ -48,10 +48,10 @@ jobs:
               raise SystemExit('bornes du bloc crawlers introuvables')
           a = r.index(start)
           b = r.index(end)
-          replacement = "# ============================================================\n# CRAWLERS & MOTEURS — RÈGLE UNIQUE\n# Tous appliquent le groupe User-agent: * ci-dessus.\n# Façade publique ouverte ; espaces sensibles exclus.\n# ============================================================\n\n"
+          replacement = "# ============================================================\n# CRAWLERS & MOTEURS — RÈGLE UNIQUE\n# Tous les robots appliquent le groupe général ci-dessus.\n# Façade publique ouverte ; espaces sensibles exclus.\n# ============================================================\n\n"
           r = r[:a] + replacement + r[b:]
           if r.count('User-agent:') != 1 or 'User-agent: *' not in r:
-              raise SystemExit('robots.txt doit garder un groupe unique User-agent: *')
+              raise SystemExit('robots.txt doit garder un groupe unique pour tous les robots')
           for required in ['Disallow: /dashboard-pro.html', 'Disallow: /admin/', 'Disallow: /*?token=', 'Disallow: /*?session=', 'Disallow: /api/', 'Sitemap: https://digiylyfe.com/sitemap.xml']:
               if required not in r:
                   raise SystemExit(f'protection robots manquante: {required}')
