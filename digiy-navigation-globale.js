@@ -1,5 +1,5 @@
 /* DIGIYLYFE — Navigation globale partagée
- * Version: dgn-global-v1-20260906-commerce
+ * Version: dgn-global-v1-20260907-doctrine
  * Rôle: injecter le cartouche permanent sur les pages publiques qui le chargent.
  * Sécurité: aucun PIN, aucun jeton et aucune donnée privée ne sont enregistrés ici.
  */
@@ -23,8 +23,8 @@
   }[lang];
 
   var favoriteChoices=[
-    {id:'pro',icon:'🔐',fr:'Mon espace pro',en:'My pro space',url:'https://pro-espace.digiylyfe.com/'},
-    {id:'carnet',icon:'📒',fr:'PRO CARNET',en:'PRO CARNET',url:'https://pro-carnet.digiylyfe.com/pin.html'},
+    {id:'adhesion',icon:'🤝',fr:'Adhésion',en:'Membership',url:'https://digiylyfe.com/tarifs-adherents-1.html'},
+    {id:'mon-digiy',icon:'⭐',fr:'MON DIGIY',en:'MY DIGIY',url:'https://digiylyfe.com/mon-digiy.html'},
     {id:'modules',icon:'🧭',fr:'Territoires',en:'Territories',url:HUB}
   ];
 
@@ -132,12 +132,12 @@
     ['🏗️ BUILD','https://build.digiylyfe.com/'],
     ['💼 JOBS','https://jobs.digiylyfe.com/'],
     ['📅 RESA','https://resa-table-resto.digiylyfe.com/'],
-    ['📒 CARNET PRO','https://digiy-carnet-pro.digiylyfe.com/'],
+    ['⭐ MON DIGIY','https://digiylyfe.com/mon-digiy.html'],
     ['🗺️ EXPLORE','https://explore.digiylyfe.com/'],
     ['▣ Pack Présence Terrain','https://digiylyfe.com/presence-terrain.html',true],
     ['🧪 Activation pilote','https://partenaire-pilote.digiylyfe.com/',true],
     ['📊 Voir les offres','https://digiylyfe.com/tarif-entreprise-petite-cote.html#choisir'],
-    ['🔐 Espace pro','https://pro-espace.digiylyfe.com/'],
+    ['🤝 Adhésion','https://digiylyfe.com/tarifs-adherents-1.html',true],
     ['🏛️ Architecture','https://digiylyfe.com/architecture-digiylyfe.html'],
     ['🌍 Accueil',HOME]
   ];
