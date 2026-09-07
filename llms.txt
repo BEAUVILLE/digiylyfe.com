@@ -28,19 +28,19 @@ La plateforme aide les professionnels locaux à être trouvés, contactés, rés
 
 Le terrain garde la main.
 
-## Modules principaux
+## Portes publiques et moteurs atelier
 
-DIGIYLYFE organise plusieurs portes métiers :
+Les portes publiques principales de DIGIYLYFE sont :
 
-* POS : caisse et suivi commerce.
 * DRIVER : chauffeurs, trajets, demandes locales.
 * LOC : logements, chambres, villas, séjours, tourisme.
 * RESA : réservation restaurant ou rendez-vous.
 * COMMERCE : produits, vitrines, commerce local.
 * BUILD : artisans, services, construction, dépannage.
 * JOBS : offres, missions, candidats, recrutement.
-* CARNET : suivi d’argent terrain, entrées, sorties, preuves.
 * EXPLORE : lieux, tourisme, découverte locale.
+
+POS et CARNET restent des moteurs d’atelier : ils servent à organiser et produire le résultat métier, mais ne sont pas présentés comme des portes publiques d’acquisition.
 
 ## Paiement
 
