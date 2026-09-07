@@ -1,4 +1,4 @@
-/* DIGIYLYFE — PETITE COTE · LOC V3
+/* DIGIYLYFE — PETITE COTE · LOC V4
  * Hébergements : présence réelle devant, 3 projections derrière.
  * LOC = à partir de 28 000 FCFA / mois, avec paliers par hébergements / unités.
  */
@@ -9,7 +9,7 @@ function active(){var p=params();return (p.get('zone')||'')==='petite-cote'&&(p.
 function lang(){var l=(document.documentElement.lang||params().get('lang')||'fr').slice(0,2).toLowerCase();return ['fr','en','es','pt','it','de','nl','ar'].indexOf(l)>=0?l:'fr'}
 var PRICE={fr:'À partir de 28 000 FCFA / mois',en:'From 28,000 FCFA / month',es:'Desde 28 000 FCFA / mes',pt:'A partir de 28 000 FCFA / mês',it:'Da 28 000 FCFA / mese',de:'Ab 28.000 FCFA / Monat',nl:'Vanaf 28 000 FCFA / maand',ar:'ابتداءً من 28 000 FCFA / شهر'};
 var JOIN={fr:'PRENDRE MA PLACE LOC · VOIR LES PALIERS →',en:'TAKE MY LOC PLACE · VIEW TIERS →',es:'OCUPAR MI PLAZA LOC · VER TRAMOS →',pt:'OCUPAR O MEU LUGAR LOC · VER ESCALÕES →',it:'PRENDERE IL MIO POSTO LOC · VEDI LE FASCE →',de:'MEINEN LOC-PLATZ NEHMEN · STAFFELN ANSEHEN →',nl:'MIJN LOC-PLAATS NEMEN · STAFFELS BEKIJKEN →',ar:'LOC خذ مكاني · عرض الشرائح ←'};
-var JOIN_URL='https://digiylyfe.com/demande-prestation.html#digiy-loc';
+var JOIN_URL='https://digiylyfe.com/tarifs-loc.html';
 function text(){var p=window.DIGIY_PETITE_COTE_I18N,x=p&&p.get?p.get(lang()):null;return x||null}
 function config(){return window.DIGIY_PETITE_COTE||null}
 function clear(r){r.querySelectorAll('[data-petite-cote-placeholder="accommodation-0"],[data-petite-cote-placeholder="accommodation-1"],[data-petite-cote-placeholder="accommodation-2"],[data-petite-cote-title],[data-digiy-saly-loc-title]').forEach(function(n){n.remove()})}
