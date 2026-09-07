@@ -1,0 +1,84 @@
+name: Freeze doctrine public rail
+
+on:
+  push:
+    paths:
+      - '.github/workflows/freeze-doctrine-public-rail.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Align public rail with current doctrine
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_exact(path, old, new, expected=1):
+              p = Path(path)
+              s = p.read_text()
+              count = s.count(old)
+              assert count == expected, f"{path}: expected {expected} occurrence(s), got {count}: {old!r}"
+              p.write_text(s.replace(old, new))
+
+          nav = Path('digiy-navigation-globale.js')
+          nav_text = nav.read_text()
+          assert nav_text.count('https://pro-espace.digiylyfe.com/') == 2, 'unexpected pro-espace count in global nav'
+          assert nav_text.count('https://pro-carnet.digiylyfe.com/pin.html') == 1, 'unexpected pro-carnet PIN count in global nav'
+
+          replace_exact(
+              'digiy-navigation-globale.js',
+              ' * Version: dgn-global-v1-20260906-commerce',
+              ' * Version: dgn-global-v1-20260907-doctrine'
+          )
+          replace_exact(
+              'digiy-navigation-globale.js',
+              "    {id:'pro',icon:'🔐',fr:'Mon espace pro',en:'My pro space',url:'https://pro-espace.digiylyfe.com/'},\n    {id:'carnet',icon:'📒',fr:'PRO CARNET',en:'PRO CARNET',url:'https://pro-carnet.digiylyfe.com/pin.html'},\n    {id:'modules',icon:'🧭',fr:'Territoires',en:'Territories',url:HUB}",
+              "    {id:'adhesion',icon:'🤝',fr:'Adhésion',en:'Membership',url:'https://digiylyfe.com/tarifs-adherents-1.html'},\n    {id:'mon-digiy',icon:'⭐',fr:'MON DIGIY',en:'MY DIGIY',url:'https://digiylyfe.com/mon-digiy.html'},\n    {id:'modules',icon:'🧭',fr:'Territoires',en:'Territories',url:HUB}"
+          )
+          replace_exact(
+              'digiy-navigation-globale.js',
+              "    ['📒 CARNET PRO','https://digiy-carnet-pro.digiylyfe.com/'],",
+              "    ['⭐ MON DIGIY','https://digiylyfe.com/mon-digiy.html'],"
+          )
+          replace_exact(
+              'digiy-navigation-globale.js',
+              "    ['🔐 Espace pro','https://pro-espace.digiylyfe.com/'],",
+              "    ['🤝 Adhésion','https://digiylyfe.com/tarifs-adherents-1.html',true],"
+          )
+
+          replace_exact(
+              'architecture-digiylyfe.html',
+              '<a class="btn" href="https://pro-espace.digiylyfe.com/">🔐 Espace Pro</a>',
+              '<a class="btn" href="https://digiylyfe.com/tarifs-adherents-1.html">🤝 Découvrir l’adhésion</a>'
+          )
+
+          sm = Path('sitemap.xml')
+          s = sm.read_text()
+          old = '<url><loc>https://digiylyfe.com/architecture-digiylyfe.html</loc><lastmod>2026-08-05</lastmod></url>'
+          new = '<url><loc>https://digiylyfe.com/architecture-digiylyfe.html</loc><lastmod>2026-09-07</lastmod></url>'
+          assert s.count(old) == 1, 'architecture sitemap entry unexpected'
+          sm.write_text(s.replace(old, new))
+
+          # Guard: these legacy public doors must no longer be injected by active shared navigation or Architecture.
+          for path in ['digiy-navigation-globale.js', 'architecture-digiylyfe.html']:
+              text = Path(path).read_text()
+              assert 'pro-espace.digiylyfe.com' not in text, f'legacy pro-espace remains in {path}'
+              assert 'pro-carnet.digiylyfe.com/pin.html' not in text, f'legacy pro-carnet PIN remains in {path}'
+
+          # Self-clean temporary workflow.
+          Path('.github/workflows/freeze-doctrine-public-rail.yml').unlink()
+          PY
+
+          git diff --check
+          git diff -- digiy-navigation-globale.js architecture-digiylyfe.html sitemap.xml
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add -A
+          git commit -m 'Aligner la vitrine sur la doctrine adhésion'
+          git push
