@@ -45,9 +45,9 @@ jobs:
           # 2) Operator support page: keep functionality, remove from indexing.
           p = Path('support-whatsapp.html')
           s = read(p)
-          desired = '<meta name="robots" content="noindex,nofollow">'
+          desired = '  <meta name="robots" content="noindex,nofollow"/>'
           if desired not in s:
-              marker = '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
+              marker = '  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>'
               if s.count(marker) != 1:
                   raise SystemExit(f'support viewport marker count={s.count(marker)}')
               s = s.replace(marker, marker + '\n' + desired, 1)
