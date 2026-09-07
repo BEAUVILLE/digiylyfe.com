@@ -3,508 +3,59 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-  <meta name="robots" content="noindex,nofollow"/>
+  <meta name="robots" content="noindex,nofollow,noarchive"/>
   <meta name="theme-color" content="#020617"/>
   <title>DIGIY — Support WhatsApp (0 API)</title>
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <style>
-    :root{
-      --bg:#020617; --card:#0b1222; --card2:#0a1020; --line:#22304a;
-      --ink:#f8fafc; --muted:#cbd5e1; --soft:#94a3b8;
-      --gold:#facc15; --green:#22c55e; --orange:#fb923c; --red:#fb7185;
-      --r:18px; --shadow:0 18px 55px rgba(0,0,0,.45);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0; min-height:100vh; background:radial-gradient(1200px 600px at 15% -10%, rgba(250,204,21,.14), transparent 55%),
-                                 radial-gradient(900px 500px at 90% 0%, rgba(34,197,94,.12), transparent 60%),
-                                 var(--bg);
-      color:var(--ink);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-    }
-    .wrap{max-width:1100px; margin:0 auto; padding:18px 14px 30px}
-    .top{
-      display:flex; gap:12px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
-      padding:14px; border:1px solid rgba(255,255,255,.10); border-radius:22px;
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      box-shadow:var(--shadow);
-    }
-    .brand{ display:flex; gap:12px; align-items:center; }
-    .logo{
-      width:46px; height:46px; border-radius:16px;
-      display:grid; place-items:center; font-weight:900;
-      background:linear-gradient(135deg, rgba(250,204,21,.95), rgba(34,197,94,.75));
-      color:#071016;
-    }
-    h1{font-size:16px; margin:0 0 3px}
-    .sub{font-size:12px; color:var(--muted)}
-    .pill{
-      font-size:12px; padding:7px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.14); color:var(--muted);
-      background:rgba(2,6,23,.45);
-      display:flex; gap:8px; align-items:center;
-    }
-    .dot{width:8px; height:8px; border-radius:99px; background:var(--red)}
-    .dot.ok{background:var(--green)}
-
-    .controls{
-      width:100%;
-      display:grid; gap:10px;
-      grid-template-columns: 1.2fr 0.7fr 0.7fr 0.7fr;
-    }
-    @media (max-width:900px){ .controls{grid-template-columns:1fr 1fr} }
-
-    .field{
-      background:rgba(11,18,34,.72);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:16px; padding:10px 10px;
-      display:flex; gap:8px; align-items:center;
-    }
-    .field input, .field select{
-      width:100%;
-      background:transparent; border:0; outline:0;
-      color:var(--ink); font-size:13px;
-    }
-    .field label{font-size:12px; color:var(--soft)}
-
-    .btn{
-      cursor:pointer; user-select:none;
-      padding:10px 12px; border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background:linear-gradient(180deg, rgba(250,204,21,.18), rgba(250,204,21,.08));
-      color:var(--ink);
-      font-weight:800; font-size:13px;
-      display:flex; gap:8px; align-items:center; justify-content:center;
-    }
-    .btn.ghost{
-      background:rgba(255,255,255,.05);
-      font-weight:800;
-    }
-
-    .grid{
-      margin-top:14px;
-      display:grid; gap:12px;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-    }
-    @media (max-width:900px){ .grid{grid-template-columns:1fr} }
-
-    .card{
-      border:1px solid rgba(255,255,255,.10);
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border-radius:22px; padding:14px; box-shadow:var(--shadow);
-    }
-    .row{display:flex; gap:10px; justify-content:space-between; align-items:flex-start}
-    .k{font-size:12px; color:var(--muted)}
-    .v{font-size:13px; font-weight:800}
-
-    .msg{
-      margin-top:10px;
-      padding:10px; border-radius:16px;
-      background:rgba(2,6,23,.55);
-      border:1px solid rgba(255,255,255,.10);
-      color:var(--muted);
-      font-size:13px; white-space:pre-wrap;
-    }
-
-    .actions{
-      margin-top:10px;
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
-    .btn2{
-      cursor:pointer; user-select:none;
-      padding:10px 12px; border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
-      color:var(--ink);
-      font-weight:800; font-size:13px;
-      display:flex; gap:8px; align-items:center; justify-content:center;
-      flex:1;
-      min-width:140px;
-    }
-    .btn2.gold{background:linear-gradient(180deg, rgba(250,204,21,.22), rgba(250,204,21,.10))}
-    .btn2.green{background:linear-gradient(180deg, rgba(34,197,94,.20), rgba(34,197,94,.08))}
-    .btn2.gray{background:linear-gradient(180deg, rgba(148,163,184,.16), rgba(148,163,184,.06))}
-    .btn2.red{background:linear-gradient(180deg, rgba(251,113,133,.20), rgba(251,113,133,.08))}
-
-    .toast{
-      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
-      background:rgba(2,6,23,.85);
-      border:1px solid rgba(255,255,255,.14);
-      color:var(--ink);
-      padding:10px 12px; border-radius:14px;
-      display:none; gap:10px; align-items:center;
-      box-shadow:var(--shadow);
-      max-width:92vw;
-      font-size:13px;
-      z-index:9999;
-    }
-    .toast.show{display:flex}
-    .small{font-size:12px; color:var(--soft); margin-top:6px}
-
-    .hint{
-      font-size:12px;
-      color:var(--soft);
-      margin-top:4px;
-    }
+    :root{--bg:#020617;--card:#0b1222;--line:#22304a;--ink:#f8fafc;--muted:#cbd5e1;--soft:#94a3b8;--gold:#facc15;--green:#22c55e;--red:#fb7185;--shadow:0 18px 55px rgba(0,0,0,.45)}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(1200px 600px at 15% -10%,rgba(250,204,21,.14),transparent 55%),radial-gradient(900px 500px at 90% 0%,rgba(34,197,94,.12),transparent 60%),var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}.wrap{max-width:1100px;margin:auto;padding:18px 14px 30px}.top,.card{border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));box-shadow:var(--shadow)}.top{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;padding:14px;border-radius:22px}.brand{display:flex;gap:12px;align-items:center}.logo{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;font-weight:900;background:linear-gradient(135deg,rgba(250,204,21,.95),rgba(34,197,94,.75));color:#071016}h1{font-size:16px;margin:0 0 3px}.sub,.hint,.small,.k{font-size:12px;color:var(--soft)}.pill{font-size:12px;padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.14);color:var(--muted);background:rgba(2,6,23,.45);display:flex;gap:8px;align-items:center}.dot{width:8px;height:8px;border-radius:99px;background:var(--red)}.dot.ok{background:var(--green)}.controls{width:100%;display:grid;gap:10px;grid-template-columns:1.2fr .7fr .7fr .7fr}.field{background:rgba(11,18,34,.72);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:10px;display:flex;gap:8px;align-items:center}.field input,.field select{width:100%;background:transparent;border:0;outline:0;color:var(--ink);font-size:13px}.field label{font-size:12px;color:var(--soft)}.btn,.btn2{cursor:pointer;user-select:none;border:1px solid rgba(255,255,255,.14);color:var(--ink);font-weight:800;font-size:13px;display:flex;gap:8px;align-items:center;justify-content:center}.btn{padding:10px 12px;border-radius:14px;background:linear-gradient(180deg,rgba(250,204,21,.18),rgba(250,204,21,.08))}.btn.ghost,.btn2{background:rgba(255,255,255,.06)}.grid{margin-top:14px;display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}.card{border-radius:22px;padding:14px}.row{display:flex;gap:10px;justify-content:space-between;align-items:flex-start}.v{font-size:13px;font-weight:800}.msg{margin-top:10px;padding:10px;border-radius:16px;background:rgba(2,6,23,.55);border:1px solid rgba(255,255,255,.10);color:var(--muted);font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.msg strong{color:var(--ink)}.actions{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}.btn2{padding:10px 12px;border-radius:14px;flex:1;min-width:140px}.btn2.gold{background:linear-gradient(180deg,rgba(250,204,21,.22),rgba(250,204,21,.10))}.btn2.green{background:linear-gradient(180deg,rgba(34,197,94,.20),rgba(34,197,94,.08))}.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:rgba(2,6,23,.90);border:1px solid rgba(255,255,255,.14);color:var(--ink);padding:10px 12px;border-radius:14px;display:none;gap:10px;align-items:center;box-shadow:var(--shadow);max-width:92vw;font-size:13px;z-index:9999}.toast.show{display:flex}.small{margin-top:8px}@media(max-width:900px){.controls{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}@media(max-width:620px){.controls{grid-template-columns:1fr}.field[style]{grid-column:auto!important}}
   </style>
 </head>
-
 <body>
   <div class="wrap">
     <div class="top">
-      <div class="brand">
-        <div class="logo">∞</div>
-        <div>
-          <h1>DIGIY — Support WhatsApp (0 API)</h1>
-          <div class="sub">On lit les replies générées par SWARM, puis on envoie à la main via WhatsApp.</div>
-          <div class="hint">Onglets: À traiter / Envoyés • + normalisation du numéro (221) • bouton “Envoyé ✅”.</div>
-        </div>
-      </div>
-
-      <div class="pill" id="statusPill">
-        <span class="dot" id="dot"></span>
-        <span id="statusTxt">Déconnecté</span>
-      </div>
-
+      <div class="brand"><div class="logo">∞</div><div><h1>DIGIY — Support WhatsApp (0 API)</h1><div class="sub">Replies SWARM → envoi manuel WhatsApp.</div><div class="hint">Vue interne · aucun contenu client n’est injecté comme HTML.</div></div></div>
+      <div class="pill"><span class="dot" id="dot"></span><span id="statusTxt">Déconnecté</span></div>
       <div class="controls">
-        <div class="field">
-          <div style="min-width:86px">
-            <label>Recherche</label>
-            <div class="k">business/msg</div>
-          </div>
-          <input id="q" placeholder="Ex: Baptiste, Saly, réserver..." />
-        </div>
-
-        <div class="field">
-          <div style="min-width:72px">
-            <label>Business</label>
-            <div class="k">filtre</div>
-          </div>
-          <select id="business"></select>
-        </div>
-
-        <div class="field">
-          <div style="min-width:52px">
-            <label>Ville</label>
-            <div class="k">filtre</div>
-          </div>
-          <select id="city"></select>
-        </div>
-
-        <button class="btn" id="refreshBtn">↻ Actualiser</button>
-        <button class="btn ghost" id="autoBtn">⏱ Auto: OFF</button>
-        <button class="btn ghost" id="clearBtn">✕ Reset filtres</button>
-
-        <!-- ✅ ONGLET VIEWS -->
-        <button class="btn ghost" id="tabReady">📥 À traiter</button>
-        <button class="btn ghost" id="tabSent">✅ Envoyés</button>
-
-        <div class="field" style="grid-column:1/-1">
-          <div style="min-width:110px">
-            <label>WhatsApp</label>
-            <div class="k">numéro client</div>
-          </div>
-          <input id="phone" placeholder="Ex: 221771234567 (sans + ni espaces)" inputmode="numeric"/>
-        </div>
+        <div class="field"><div style="min-width:86px"><label>Recherche</label><div class="k">business/msg</div></div><input id="q" placeholder="Ex: Baptiste, Saly, réserver..."/></div>
+        <div class="field"><div style="min-width:72px"><label>Business</label><div class="k">filtre</div></div><select id="business"></select></div>
+        <div class="field"><div style="min-width:52px"><label>Ville</label><div class="k">filtre</div></div><select id="city"></select></div>
+        <button class="btn" id="refreshBtn">↻ Actualiser</button><button class="btn ghost" id="autoBtn">⏱ Auto: OFF</button><button class="btn ghost" id="clearBtn">✕ Reset filtres</button><button class="btn ghost" id="tabReady">📥 À traiter</button><button class="btn ghost" id="tabSent">✅ Envoyés</button>
+        <div class="field" style="grid-column:1/-1"><div style="min-width:110px"><label>WhatsApp</label><div class="k">numéro client</div></div><input id="phone" placeholder="Ex: 221771234567" inputmode="numeric"/></div>
       </div>
     </div>
-
     <div class="grid" id="grid"></div>
-
-    <div class="small">
-      Astuce : si tu n’as pas le numéro client, tu copies le texte et tu le colles dans ton WhatsApp direct.
-      Si le client t’écrit “77 123 45 67”, colle ça dans le champ : on le normalise automatiquement en “221771234567”.
-    </div>
+    <div class="small">Le navigateur affiche les messages comme texte brut. La protection d’accès reste imposée côté Supabase.</div>
   </div>
-
   <div class="toast" id="toast"><span>✅</span><span id="toastTxt">Copié.</span></div>
-
-  <script>
-    // ============================
-    // ✅ CONFIG SUPABASE (ANON)
-    // ============================
-    const SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
-    const SUPABASE_ANON_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA";
-
-    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-      auth: { persistSession: true }
-    });
-
-    // ✅ view dynamique (ready / sent)
-    let VIEW = "v_support_whatsapp_ready";
-
-    // UI refs
-    const grid = document.getElementById('grid');
-    const q = document.getElementById('q');
-    const businessSel = document.getElementById('business');
-    const citySel = document.getElementById('city');
-    const phone = document.getElementById('phone');
-
-    const refreshBtn = document.getElementById('refreshBtn');
-    const autoBtn = document.getElementById('autoBtn');
-    const clearBtn = document.getElementById('clearBtn');
-
-    const tabReady = document.getElementById('tabReady');
-    const tabSent = document.getElementById('tabSent');
-
-    const statusTxt = document.getElementById('statusTxt');
-    const dot = document.getElementById('dot');
-
-    const toast = document.getElementById('toast');
-    const toastTxt = document.getElementById('toastTxt');
-
-    let allRows = [];
-    let auto = false;
-    let timer = null;
-
-    function showToast(msg){
-      toastTxt.textContent = msg;
-      toast.classList.add('show');
-      clearTimeout(showToast._t);
-      showToast._t = setTimeout(()=>toast.classList.remove('show'), 1200);
-    }
-
-    function setStatus(ok, txt){
-      dot.classList.toggle('ok', !!ok);
-      statusTxt.textContent = txt;
-    }
-
-    function norm(s){ return String(s || '').toLowerCase(); }
-
-    function fillSelect(sel, values, placeholder){
-      const cur = sel.value;
-      sel.innerHTML = '';
-      const opt0 = document.createElement('option');
-      opt0.value = '';
-      opt0.textContent = placeholder;
-      sel.appendChild(opt0);
-      for(const v of values){
-        const o = document.createElement('option');
-        o.value = v;
-        o.textContent = v;
-        sel.appendChild(o);
-      }
-      if([...sel.options].some(o=>o.value===cur)) sel.value = cur;
-    }
-
-    async function copyText(text){
-      await navigator.clipboard.writeText(text);
-      showToast("Copié ✅");
-    }
-
-    // ✅ normalisation simple Sénégal: si 9 chiffres (77xxxxxxx) => préfixe 221
-    function normalizePhone(raw){
-      let p = String(raw || '').replace(/[^\d]/g,'').trim();
-      if(!p) return '';
-      // enlever 00, +, etc déjà filtrés, mais on couvre "00221"
-      if(p.startsWith('00')) p = p.slice(2);
-      // si déjà en 221...
-      if(p.startsWith('221') && p.length === 12) return p;
-      // si 9 chiffres (77xxxxxxx / 78 / 76 / 70 / 75 / etc)
-      if(p.length === 9) return '221' + p;
-      // si 12 chiffres mais pas 221 (on garde)
-      return p;
-    }
-
-    // live normalize on input (sans casser la saisie)
-    phone.addEventListener('blur', () => {
-      const n = normalizePhone(phone.value);
-      if(n) phone.value = n;
-    });
-
-    function openWhatsApp(phoneDigits, message){
-      const p = normalizePhone(phoneDigits);
-      const text = encodeURIComponent(message);
-      const url = p
-        ? `https://wa.me/${p}?text=${text}`
-        : `https://wa.me/?text=${text}`;
-      window.open(url, '_blank');
-    }
-
-    function buildMsg(row){
-      const fr = row.reply_fr || '';
-      const wo = row.reply_wo || '';
-      if(fr && wo) return `${fr}\n\n${wo}`;
-      return row.reply_short || fr || wo || '';
-    }
-
-    function fmtDate(row){
-      const d = row.sent_at || row.finished_at || null;
-      if(!d) return '';
-      try { return new Date(d).toLocaleString(); } catch { return ''; }
-    }
-
-    function render(rows){
-      grid.innerHTML = '';
-      if(!rows.length){
-        grid.innerHTML = `<div class="card" style="grid-column:1/-1">
-          <div class="row"><div class="v">Rien à afficher</div><div class="k">Change filtre / Actualiser</div></div>
-        </div>`;
-        return;
-      }
-
-      const isSentTab = (VIEW === "v_support_whatsapp_sent");
-
-      for(const r of rows){
-        const card = document.createElement('div');
-        card.className = 'card';
-
-        const msg = buildMsg(r);
-
-        // actions selon onglet
-        const actionsHtml = isSentTab
-          ? `
-            <button class="btn2 gold">📋 Copier</button>
-            <button class="btn2 green">🟢 WhatsApp</button>
-            <button class="btn2 gray">📞 Copier numéro</button>
-          `
-          : `
-            <button class="btn2 gold">📋 Copier</button>
-            <button class="btn2 green">🟢 WhatsApp</button>
-            <button class="btn2 gray">📞 Copier numéro</button>
-            <button class="btn2" style="background:linear-gradient(180deg, rgba(250,204,21,.22), rgba(250,204,21,.10))">✅ Envoyé</button>
-          `;
-
-        card.innerHTML = `
-          <div class="row">
-            <div>
-              <div class="v">${r.business || '—'} ${r.city ? '— ' + r.city : ''}</div>
-              <div class="k">task: ${r.task_id}</div>
-            </div>
-            <div class="k">${fmtDate(r)}</div>
-          </div>
-
-          <div class="msg"><b>Client:</b> ${r.customer_msg || '—'}</div>
-          <div class="msg"><b>${isSentTab ? 'Message envoyé:' : 'Réponse prête:'}</b>\n${msg || '—'}</div>
-
-          <div class="actions">${actionsHtml}</div>
-        `;
-
-        const buttons = card.querySelectorAll('button');
-
-        const btnCopy = buttons[0];
-        const btnWa = buttons[1];
-        const btnCopyPhone = buttons[2];
-        const btnSent = (!isSentTab ? buttons[3] : null);
-
-        btnCopy.onclick = () => copyText(msg);
-        btnWa.onclick = () => openWhatsApp(phone.value, msg);
-
-        btnCopyPhone.onclick = async () => {
-          const p = normalizePhone(phone.value);
-          if(!p){
-            showToast("Mets le numéro client d'abord");
-            return;
-          }
-          await copyText(p);
-          showToast("Numéro copié 📞");
-        };
-
-        if(btnSent){
-          btnSent.onclick = async () => {
-            const { error } = await sb.rpc('swarm_mark_whatsapp_sent', { p_task_id: r.task_id });
-            if(error){
-              showToast("Erreur: " + error.message);
-              return;
-            }
-            showToast("Marqué envoyé ✅");
-            load();
-          };
-        }
-
-        grid.appendChild(card);
-      }
-    }
-
-    function applyFilters(){
-      const qq = norm(q.value);
-      const b = businessSel.value;
-      const c = citySel.value;
-
-      let rows = [...allRows];
-
-      if(b) rows = rows.filter(r => (r.business || '') === b);
-      if(c) rows = rows.filter(r => (r.city || '') === c);
-
-      if(qq){
-        rows = rows.filter(r => {
-          const hay = [
-            r.business, r.city, r.customer_msg,
-            r.reply_short, r.reply_fr, r.reply_wo,
-            r.sent_via
-          ].map(norm).join(' ');
-          return hay.includes(qq);
-        });
-      }
-
-      render(rows);
-    }
-
-    async function load(){
-      setStatus(false, "Chargement…");
-      const { data, error } = await sb.from(VIEW).select('*').limit(60);
-      if(error){
-        setStatus(false, "Erreur Supabase");
-        grid.innerHTML = `<div class="card" style="grid-column:1/-1">
-          <div class="v" style="color:var(--red)">Erreur: ${error.message}</div>
-          <div class="k">Vérifie URL/ANON + RLS sur la view.</div>
-        </div>`;
-        return;
-      }
-
-      allRows = data || [];
-      const label = (VIEW === "v_support_whatsapp_sent") ? "envoyés" : "à traiter";
-      setStatus(true, `OK — ${allRows.length} ${label}`);
-
-      const businesses = [...new Set(allRows.map(r=>r.business).filter(Boolean))].sort();
-      const cities = [...new Set(allRows.map(r=>r.city).filter(Boolean))].sort();
-      fillSelect(businessSel, businesses, "Tous");
-      fillSelect(citySel, cities, "Toutes");
-
-      applyFilters();
-    }
-
-    function setAuto(on){
-      auto = on;
-      autoBtn.textContent = on ? "⏱ Auto: ON" : "⏱ Auto: OFF";
-      autoBtn.classList.toggle('ghost', !on);
-      if(timer) clearInterval(timer);
-      if(on){
-        timer = setInterval(load, 6000);
-      }
-    }
-
-    function setTab(which){
-      VIEW = (which === 'sent') ? "v_support_whatsapp_sent" : "v_support_whatsapp_ready";
-      tabReady.classList.toggle('ghost', which !== 'ready');
-      tabSent.classList.toggle('ghost', which !== 'sent');
-      load();
-    }
-
-    // events
-    refreshBtn.onclick = load;
-    autoBtn.onclick = () => setAuto(!auto);
-    clearBtn.onclick = () => {
-      q.value = '';
-      businessSel.value = '';
-      citySel.value = '';
-      applyFilters();
-    };
-
-    q.oninput = applyFilters;
-    businessSel.onchange = applyFilters;
-    citySel.onchange = applyFilters;
-
-    // onglets
-    tabReady.onclick = () => setTab('ready');
-    tabSent.onclick  = () => setTab('sent');
-
-    // boot
-    setTab('ready');
-  </script>
+<script>
+  const SUPABASE_URL='https://wesqmwjjtsefyjnluosj.supabase.co';
+  const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA';
+  const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{auth:{persistSession:true}});
+  let VIEW='v_support_whatsapp_ready',allRows=[],auto=false,timer=null;
+  const $=id=>document.getElementById(id),grid=$('grid'),q=$('q'),businessSel=$('business'),citySel=$('city'),phone=$('phone'),refreshBtn=$('refreshBtn'),autoBtn=$('autoBtn'),clearBtn=$('clearBtn'),tabReady=$('tabReady'),tabSent=$('tabSent'),statusTxt=$('statusTxt'),dot=$('dot'),toast=$('toast'),toastTxt=$('toastTxt');
+  function showToast(msg){toastTxt.textContent=String(msg||'');toast.classList.add('show');clearTimeout(showToast._t);showToast._t=setTimeout(()=>toast.classList.remove('show'),1400)}
+  function setStatus(ok,txt){dot.classList.toggle('ok',!!ok);statusTxt.textContent=String(txt||'')}
+  function norm(s){return String(s||'').toLowerCase()}
+  function fillSelect(sel,values,placeholder){const cur=sel.value;sel.replaceChildren();const o0=document.createElement('option');o0.value='';o0.textContent=placeholder;sel.appendChild(o0);for(const v of values){const o=document.createElement('option');o.value=v;o.textContent=v;sel.appendChild(o)}if([...sel.options].some(o=>o.value===cur))sel.value=cur}
+  async function copyText(text){await navigator.clipboard.writeText(String(text||''));showToast('Copié ✅')}
+  function normalizePhone(raw){let p=String(raw||'').replace(/[^\d]/g,'').trim();if(!p)return'';if(p.startsWith('00'))p=p.slice(2);if(p.startsWith('221')&&p.length===12)return p;if(p.length===9)return'221'+p;return p}
+  phone.addEventListener('blur',()=>{const n=normalizePhone(phone.value);if(n)phone.value=n});
+  function openWhatsApp(phoneDigits,message){const p=normalizePhone(phoneDigits),text=encodeURIComponent(String(message||'')),url=p?`https://wa.me/${p}?text=${text}`:`https://wa.me/?text=${text}`;window.open(url,'_blank','noopener')}
+  function buildMsg(row){const fr=row.reply_fr||'',wo=row.reply_wo||'';if(fr&&wo)return`${fr}\n\n${wo}`;return row.reply_short||fr||wo||''}
+  function fmtDate(row){const d=row.sent_at||row.finished_at||row.updated_at||null;if(!d)return'';try{return new Date(d).toLocaleString()}catch{return''}}
+  function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=String(text);return n}
+  function makeMsg(label,text){const box=el('div','msg');const strong=el('strong','',label);box.appendChild(strong);box.appendChild(document.createTextNode(' '+String(text||'—')));return box}
+  function makeButton(text,cls,fn){const b=el('button','btn2 '+(cls||''),text);b.type='button';b.addEventListener('click',fn);return b}
+  function emptyCard(title,detail){grid.replaceChildren();const card=el('div','card'),row=el('div','row');row.append(el('div','v',title),el('div','k',detail||''));card.appendChild(row);grid.appendChild(card)}
+  function render(rows){grid.replaceChildren();if(!rows.length){emptyCard('Rien à afficher','Change filtre / Actualiser');return}const isSent=VIEW==='v_support_whatsapp_sent';for(const r of rows){const card=el('div','card'),top=el('div','row'),left=el('div'),name=[r.business||'—',r.city?'— '+r.city:''].filter(Boolean).join(' '),msg=buildMsg(r);left.append(el('div','v',name),el('div','k','task: '+String(r.task_id||'—')));top.append(left,el('div','k',fmtDate(r)));card.append(top,makeMsg('Client:',r.customer_msg||'—'),makeMsg(isSent?'Message envoyé:':'Réponse prête:',msg||'—'));const actions=el('div','actions');actions.append(makeButton('📋 Copier','gold',()=>copyText(msg)),makeButton('🟢 WhatsApp','green',()=>openWhatsApp(phone.value,msg)),makeButton('📞 Copier numéro','',async()=>{const p=normalizePhone(phone.value);if(!p){showToast("Mets le numéro client d'abord");return}await copyText(p);showToast('Numéro copié 📞')}));if(!isSent)actions.append(makeButton('✅ Envoyé','gold',async()=>{const {error}=await sb.rpc('swarm_mark_whatsapp_sent',{p_task_id:r.task_id});if(error){showToast('Erreur: '+error.message);return}showToast('Marqué envoyé ✅');load()}));card.appendChild(actions);grid.appendChild(card)}}
+  function applyFilters(){const qq=norm(q.value),b=businessSel.value,c=citySel.value;let rows=[...allRows];if(b)rows=rows.filter(r=>(r.business||'')===b);if(c)rows=rows.filter(r=>(r.city||'')===c);if(qq)rows=rows.filter(r=>[r.business,r.city,r.customer_msg,r.reply_short,r.reply_fr,r.reply_wo,r.sent_via].map(norm).join(' ').includes(qq));render(rows)}
+  async function load(){setStatus(false,'Chargement…');const {data,error}=await sb.from(VIEW).select('*').limit(60);if(error){setStatus(false,'Accès refusé / erreur Supabase');emptyCard('Impossible de charger le support',error.message);return}allRows=data||[];const label=VIEW==='v_support_whatsapp_sent'?'envoyés':'à traiter';setStatus(true,`OK — ${allRows.length} ${label}`);fillSelect(businessSel,[...new Set(allRows.map(r=>r.business).filter(Boolean))].sort(),'Tous');fillSelect(citySel,[...new Set(allRows.map(r=>r.city).filter(Boolean))].sort(),'Toutes');applyFilters()}
+  function setAuto(on){auto=on;autoBtn.textContent=on?'⏱ Auto: ON':'⏱ Auto: OFF';autoBtn.classList.toggle('ghost',!on);if(timer)clearInterval(timer);timer=on?setInterval(load,6000):null}
+  function setTab(which){VIEW=which==='sent'?'v_support_whatsapp_sent':'v_support_whatsapp_ready';tabReady.classList.toggle('ghost',which!=='ready');tabSent.classList.toggle('ghost',which!=='sent');load()}
+  refreshBtn.onclick=load;autoBtn.onclick=()=>setAuto(!auto);clearBtn.onclick=()=>{q.value='';businessSel.value='';citySel.value='';applyFilters()};q.oninput=applyFilters;businessSel.onchange=applyFilters;citySel.onchange=applyFilters;tabReady.onclick=()=>setTab('ready');tabSent.onclick=()=>setTab('sent');setTab('ready');
+</script>
 <script src="https://digiylyfe.com/digiy-contact-global.js?v=20260815"></script>
 </body>
 </html>
