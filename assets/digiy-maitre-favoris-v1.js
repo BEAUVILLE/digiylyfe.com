@@ -8,7 +8,7 @@
   if(window.DIGIY_MAITRE_FAVORIS_V1) return;
 
   var policy={
-    version:'2026-09-07-v2',
+    version:'2026-09-07-v3',
     required:true,
     symbol:'☆',
     destination:'https://digiylyfe.com/mon-digiy.html',
@@ -54,7 +54,7 @@
     var door=document.createElement('a');
     door.id='digiyHomeLocDoor';
     door.className='digiyEntryDoor pro digiyLocDoor';
-    door.href='https://digiylyfe.com/demande-prestation.html#digiy-loc';
+    door.href='https://digiylyfe.com/tarifs-loc.html';
     door.setAttribute('data-digiy-loc-entry','1');
     door.innerHTML='<span class="digiyEntryKicker" data-loc-k></span><strong data-loc-t></strong><span class="digiyLocPrice">28 000 FCFA · 75 € / mois · dès 1–3 unités</span><p data-loc-p></p><span class="digiyEntryCta" data-loc-c></span>';
     grid.appendChild(door);
