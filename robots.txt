@@ -28,6 +28,10 @@ Disallow: /admin.html
 Disallow: /admin/
 Disallow: /pro/
 Disallow: /guard.js
+Disallow: /archive/
+Disallow: /carnet-test/
+Disallow: /carnet-master-test/
+Disallow: /SECURITE/
 
 # Patterns sensibles (slug, token, session, phone)
 Disallow: /*?slug=

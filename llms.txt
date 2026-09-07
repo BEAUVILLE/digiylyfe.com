@@ -36,10 +36,10 @@ DIGIYLYFE organise plusieurs portes métiers :
 * DRIVER : chauffeurs, trajets, demandes locales.
 * LOC : logements, chambres, villas, séjours, tourisme.
 * RESA : réservation restaurant ou rendez-vous.
-* MARKET : produits, annonces, commerce local.
+* COMMERCE : produits, vitrines, commerce local.
 * BUILD : artisans, services, construction, dépannage.
 * JOBS : offres, missions, candidats, recrutement.
-* PAY : suivi d’argent terrain, entrées, sorties, preuves.
+* CARNET : suivi d’argent terrain, entrées, sorties, preuves.
 * EXPLORE : lieux, tourisme, découverte locale.
 
 ## Paiement
