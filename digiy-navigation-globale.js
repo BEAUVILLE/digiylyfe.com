@@ -135,7 +135,6 @@
     ['⭐ MON DIGIY','https://digiylyfe.com/mon-digiy.html'],
     ['🗺️ EXPLORE','https://explore.digiylyfe.com/'],
     ['▣ Pack Présence Terrain','https://digiylyfe.com/presence-terrain.html',true],
-    ['🧪 Activation pilote','https://partenaire-pilote.digiylyfe.com/',true],
     ['📊 Voir les offres','https://digiylyfe.com/tarif-entreprise-petite-cote.html#choisir'],
     ['🤝 Adhésion','https://digiylyfe.com/tarifs-adherents-1.html',true],
     ['🏛️ Architecture','https://digiylyfe.com/architecture-digiylyfe.html'],
@@ -179,28 +178,27 @@
     body.appendChild(wrap);
   }
 
-  function openPanel(mode){
-    if(mode==='favorites') renderFavorites(); else renderMenu();
-    overlay.classList.add('dgn-open');sheet.classList.add('dgn-open');
-    overlay.setAttribute('aria-hidden','false');sheet.setAttribute('aria-hidden','false');
-    document.documentElement.classList.add('dgn-page-lock');
-    setTimeout(function(){close.focus();},20);
-  }
-
-  function closePanel(){
+  function closeSheet(){
     overlay.classList.remove('dgn-open');sheet.classList.remove('dgn-open');
     overlay.setAttribute('aria-hidden','true');sheet.setAttribute('aria-hidden','true');
     document.documentElement.classList.remove('dgn-page-lock');
   }
-
-  dock.querySelectorAll('[data-dgn-open]').forEach(function(button){button.addEventListener('click',function(){openPanel(button.getAttribute('data-dgn-open'));});});
-  dock.querySelector('[data-dgn-back]').addEventListener('click',function(){if(history.length>1) history.back();else location.href=HOME;});
-  overlay.addEventListener('click',closePanel);close.addEventListener('click',closePanel);
-  document.addEventListener('keydown',function(event){if(event.key==='Escape')closePanel();});
-  sheet.addEventListener('click',function(event){if(event.target.closest('a'))closePanel();});
-
-  document.body.appendChild(dock);
-  document.body.appendChild(overlay);
-  document.body.appendChild(sheet);
-  document.body.appendChild(spacer);
+  function openSheet(kind){
+    if(kind==='favorites') renderFavorites(); else renderMenu();
+    overlay.classList.add('dgn-open');sheet.classList.add('dgn-open');
+    overlay.setAttribute('aria-hidden','false');sheet.setAttribute('aria-hidden','false');
+    document.documentElement.classList.add('dgn-page-lock');
+    close.focus();
+  }
+  dock.addEventListener('click',function(event){
+    var btn=event.target.closest('[data-dgn-open]');
+    if(btn){event.preventDefault();openSheet(btn.getAttribute('data-dgn-open'));return;}
+    if(event.target.closest('[data-dgn-back]')){
+      event.preventDefault();
+      if(history.length>1) history.back(); else location.href=HOME;
+    }
+  });
+  close.addEventListener('click',closeSheet);overlay.addEventListener('click',closeSheet);
+  document.addEventListener('keydown',function(event){if(event.key==='Escape') closeSheet();});
+  document.body.appendChild(dock);document.body.appendChild(overlay);document.body.appendChild(sheet);document.body.appendChild(spacer);
 })();
