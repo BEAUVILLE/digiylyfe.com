@@ -1,0 +1,90 @@
+name: Freeze coherence final
+
+on:
+  push:
+    paths:
+      - '.github/workflows/freeze-coherence-final.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply proven freeze fixes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          def rep(path, old, new, expected=1):
+              p=Path(path); s=p.read_text()
+              c=s.count(old)
+              assert c==expected, f"{path}: expected {expected} occurrences of {old!r}, got {c}"
+              p.write_text(s.replace(old,new))
+
+          rep('llms.txt','* MARKET : produits, annonces, commerce local.','* COMMERCE : produits, vitrines, commerce local.')
+          rep('llms.txt','* PAY : suivi d’argent terrain, entrées, sorties, preuves.','* CARNET : suivi d’argent terrain, entrées, sorties, preuves.')
+
+          rep('architecture-digiylyfe.html','<span class="pill">DIGIY MARKET · produits</span>','<span class="pill">DIGIY COMMERCE · produits</span>')
+          rep('architecture-digiylyfe.html','<span class="pill">DIGIY PAY · suivi paiement</span>','<span class="pill">DIGIY CARNET · suivi paiement</span>')
+
+          p=Path('digiy-business.html'); s=p.read_text(); c=s.count('PAY')
+          assert c==4, f'digiy-business.html: expected 4 PAY, got {c}'
+          p.write_text(s.replace('PAY','CARNET'))
+
+          old="var JOIN_URL='https://digiylyfe.com/tarifs-adherents.html#digiy-loc';"
+          new="var JOIN_URL='https://digiylyfe.com/tarifs-adherents-1.html#digiy-loc';"
+          rep('assets/digiy-territoire-petite-cote-loc-v1.js',old,new)
+          rep('assets/digiy-demo-loc-price-v1.js',old,new)
+
+          # Retire the old tariff page without losing historic visitors/hash.
+          old_tariff=Path('tarifs-adherents.html')
+          assert '<title>DIGIYLYFE — Tarifs adhérents</title>' in old_tariff.read_text()
+          old_tariff.write_text('''<!doctype html>\n<html lang="fr">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>DIGIYLYFE — Tarifs adhérents</title>\n<meta name="robots" content="noindex,follow">\n<link rel="canonical" href="https://digiylyfe.com/tarifs-adherents-1.html">\n<meta http-equiv="refresh" content="0;url=https://digiylyfe.com/tarifs-adherents-1.html">\n<script>location.replace('https://digiylyfe.com/tarifs-adherents-1.html'+location.hash);</script>\n</head>\n<body><p><a href="https://digiylyfe.com/tarifs-adherents-1.html">Continuer vers les tarifs DIGIYLYFE</a></p></body>\n</html>\n''')
+
+          # The language folders are redirect/noindex shims; do not advertise them as hreflang canonicals.
+          idx=Path('index.html'); s=idx.read_text()
+          lines=s.splitlines(True)
+          removed=[ln for ln in lines if '<link rel="alternate" hreflang=' in ln]
+          assert len(removed)==9, f'index.html: expected 9 hreflang links, got {len(removed)}'
+          s=''.join(ln for ln in lines if '<link rel="alternate" hreflang=' not in ln)
+          idx.write_text(s)
+
+          sm=Path('sitemap.xml'); s=sm.read_text()
+          s=s.replace(' xmlns:xhtml="http://www.w3.org/1999/xhtml"','')
+          # Remove hreflang alternates from root block.
+          s=re.sub(r'^\s*<xhtml:link[^\n]+\n','',s,flags=re.M)
+          # Remove redirect/noindex language entries.
+          s,n=re.subn(r'^\s*<url><loc>https://digiylyfe\.com/(?:en|es|pt|de|it|nl|ar)/</loc>.*?</url>\s*\n','',s,flags=re.M)
+          assert n==7, f'sitemap.xml: expected 7 language URL removals, got {n}'
+          s=s.replace('<loc>https://digiylyfe.com/</loc><lastmod>2026-08-26</lastmod>','<loc>https://digiylyfe.com/</loc><lastmod>2026-09-07</lastmod>',1)
+          additions=[]
+          for url in ['https://digiylyfe.com/tarifs-adherents-1.html','https://digiylyfe.com/senegal.html','https://digiylyfe.com/saly.html']:
+              if f'<loc>{url}</loc>' not in s:
+                  additions.append(f'  <url><loc>{url}</loc><lastmod>2026-09-07</lastmod></url>')
+          if additions:
+              s=s.replace('</urlset>','\n'.join(additions)+'\n</urlset>')
+          sm.write_text(s)
+
+          robots=Path('robots.txt'); s=robots.read_text()
+          anchor='Disallow: /guard.js\n'
+          assert anchor in s
+          block='Disallow: /archive/\nDisallow: /carnet-test/\nDisallow: /carnet-master-test/\nDisallow: /SECURITE/\n'
+          assert 'Disallow: /archive/' not in s
+          robots.write_text(s.replace(anchor,anchor+block,1))
+
+          Path('.github/workflows/freeze-coherence-final.yml').unlink()
+          PY
+      - name: Commit fixes and cleanup workflow
+        shell: bash
+        run: |
+          git config user.name "DIGIY LYFE"
+          git config user.email "baptistejb24@gmail.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Nettoyer les derniers legacy avant freeze"
+          git push
