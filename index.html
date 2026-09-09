@@ -12,7 +12,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <meta name="apple-mobile-web-app-title" content="DIGIYLYFE"/>
   <meta name="application-name" content="DIGIYLYFE"/>
-  <meta name="digiy-build" content="index-public-clarity-v1-20260908"/>
+  <meta name="digiy-build" content="index-public-clarity-v1-20260909-pwa-touchfix-v1"/>
 
   <link rel="canonical" href="https://digiylyfe.com/"/>
 
@@ -610,6 +610,29 @@
     .campusStatus{display:block;margin-top:10px;text-align:center;color:#bfe9df;font-size:10px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
     @media(max-width:560px){.digiyCampus{padding:16px}.campusCopy h2{font-size:20px}.campusExamples{grid-template-columns:1fr}.campusExample{display:flex;align-items:center;justify-content:space-between;text-align:left}.campusExample span{margin-top:0}}
 
+    /* ===== BUGFIX PWA · touche d’installation mobile ===== */
+    .digiyInstallBand{
+      margin:0 0 12px;padding:8px;border-radius:21px;
+      border:1px solid rgba(246,196,83,.46);
+      background:linear-gradient(145deg,rgba(246,196,83,.10),rgba(34,197,94,.07),rgba(255,255,255,.035));
+      position:relative;z-index:20
+    }
+    .digiyInstallBand[hidden]{display:none}
+    .digiyInstallBtn{
+      width:100%;min-height:62px;padding:13px 16px;border:0;border-radius:16px;
+      display:flex;align-items:center;justify-content:center;gap:9px;text-align:center;
+      background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;
+      font-size:13px;line-height:1.2;font-weight:1000;cursor:pointer;
+      position:relative;z-index:21;pointer-events:auto!important;touch-action:manipulation;
+      -webkit-appearance:none;appearance:none;user-select:none;-webkit-user-select:none;
+      box-shadow:0 12px 28px rgba(0,0,0,.24);
+      transition:transform .08s ease,filter .08s ease
+    }
+    .digiyInstallBtn:active,.digiyInstallBtn.is-pressed{transform:scale(.985);filter:brightness(.96)}
+    .digiyInstallBtn:disabled{opacity:.78;cursor:default}
+    .digiyInstallNote{display:block;margin:7px 5px 1px;color:var(--soft);font-size:10.5px;line-height:1.35;font-weight:850;text-align:center}
+    @media(max-width:560px){.digiyInstallBtn{min-height:64px;font-size:12.5px}.digiyInstallBand{padding:7px}}
+
   </style>
 </head>
 <body>
@@ -634,6 +657,14 @@
       <strong data-i18n="fullStackBadge">TOUT LE LOCAL DANS VOTRE TÉLÉPHONE</strong>
       <span data-i18n="fullStackText">Hébergements · restaurants · chauffeurs · artisans · commerces · services : trouvez le bon professionnel et contactez-le directement.</span>
       <small data-i18n="fullStackSignature">QR partageable · WhatsApp · réservation et paiement directs · 0 % commission · 8 langues.</small>
+    </section>
+
+    <section class="digiyInstallBand" id="digiyInstallBand" aria-label="Installer DIGIYLYFE sur ce téléphone">
+      <button type="button" class="digiyInstallBtn" id="digiyInstallBtn">
+        <span aria-hidden="true">📲</span>
+        <span id="digiyInstallLabel">Installer DIGIYLYFE sur ce téléphone</span>
+      </button>
+      <small class="digiyInstallNote" id="digiyInstallNote" aria-live="polite">Touchez la bande pour installer ou afficher les instructions.</small>
     </section>
 
     <section class="section" aria-label="Portes publiques DIGIYLYFE">
@@ -1009,9 +1040,81 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+<script id="digiy-pwa-touchfix-v1">
+(function(){
+  'use strict';
+  var band=document.getElementById('digiyInstallBand');
+  var btn=document.getElementById('digiyInstallBtn');
+  var label=document.getElementById('digiyInstallLabel');
+  var note=document.getElementById('digiyInstallNote');
+  if(!band||!btn||!label||!note)return;
+
+  var promptEvent=null;
+  var installed=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;
+  var ua=navigator.userAgent||'';
+  var isIOS=/iPad|iPhone|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+
+  var COPY={
+    fr:['Installer DIGIYLYFE sur ce téléphone','Touchez la bande pour installer ou afficher les instructions.','Installation disponible : touchez la bande.','Sur iPhone : ouvrez cette page dans Safari → Partager ⬆︎ → Ajouter à l’écran d’accueil.','Ouvrez le menu du navigateur (⋮ ou Partager), puis choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil ».','DIGIYLYFE est déjà installé sur ce téléphone.','Installation annulée. Vous pouvez réessayer.','Impossible d’ouvrir l’installation automatique. Utilisez le menu du navigateur.'],
+    en:['Install DIGIYLYFE on this phone','Tap the bar to install or show instructions.','Installation is ready: tap the bar.','On iPhone: open this page in Safari → Share ⬆︎ → Add to Home Screen.','Open the browser menu (⋮ or Share), then choose “Install app” or “Add to Home Screen”.','DIGIYLYFE is already installed on this phone.','Installation cancelled. You can try again.','Automatic installation could not open. Use the browser menu.'],
+    es:['Instalar DIGIYLYFE en este teléfono','Toca la barra para instalar o ver las instrucciones.','Instalación disponible: toca la barra.','En iPhone: abre esta página en Safari → Compartir ⬆︎ → Añadir a pantalla de inicio.','Abre el menú del navegador (⋮ o Compartir) y elige «Instalar aplicación» o «Añadir a pantalla de inicio».','DIGIYLYFE ya está instalado en este teléfono.','Instalación cancelada. Puedes volver a intentarlo.','No se pudo abrir la instalación automática. Usa el menú del navegador.'],
+    pt:['Instalar DIGIYLYFE neste telefone','Toque na barra para instalar ou ver as instruções.','Instalação disponível: toque na barra.','No iPhone: abra esta página no Safari → Partilhar ⬆︎ → Adicionar ao ecrã principal.','Abra o menu do navegador (⋮ ou Partilhar) e escolha «Instalar aplicação» ou «Adicionar ao ecrã principal».','DIGIYLYFE já está instalado neste telefone.','Instalação cancelada. Pode tentar novamente.','Não foi possível abrir a instalação automática. Use o menu do navegador.'],
+    it:['Installa DIGIYLYFE su questo telefono','Tocca la barra per installare o vedere le istruzioni.','Installazione disponibile: tocca la barra.','Su iPhone: apri questa pagina in Safari → Condividi ⬆︎ → Aggiungi alla schermata Home.','Apri il menu del browser (⋮ o Condividi), quindi scegli «Installa app» o «Aggiungi alla schermata Home».','DIGIYLYFE è già installato su questo telefono.','Installazione annullata. Puoi riprovare.','Impossibile aprire l’installazione automatica. Usa il menu del browser.'],
+    de:['DIGIYLYFE auf diesem Telefon installieren','Tippen Sie auf die Leiste, um zu installieren oder die Anleitung anzuzeigen.','Installation verfügbar: Tippen Sie auf die Leiste.','Auf dem iPhone: Seite in Safari öffnen → Teilen ⬆︎ → Zum Home-Bildschirm.','Öffnen Sie das Browsermenü (⋮ oder Teilen) und wählen Sie „App installieren“ oder „Zum Home-Bildschirm“.','DIGIYLYFE ist auf diesem Telefon bereits installiert.','Installation abgebrochen. Sie können es erneut versuchen.','Die automatische Installation konnte nicht geöffnet werden. Nutzen Sie das Browsermenü.'],
+    nl:['DIGIYLYFE op deze telefoon installeren','Tik op de balk om te installeren of de instructies te tonen.','Installatie beschikbaar: tik op de balk.','Op iPhone: open deze pagina in Safari → Deel ⬆︎ → Zet op beginscherm.','Open het browsermenu (⋮ of Deel) en kies ‘App installeren’ of ‘Zet op beginscherm’.','DIGIYLYFE is al op deze telefoon geïnstalleerd.','Installatie geannuleerd. U kunt opnieuw proberen.','Automatische installatie kon niet worden geopend. Gebruik het browsermenu.'],
+    ar:['تثبيت DIGIYLYFE على هذا الهاتف','اضغط على الشريط للتثبيت أو لعرض التعليمات.','التثبيت متاح: اضغط على الشريط.','على iPhone: افتح الصفحة في Safari ← مشاركة ⬆︎ ← إضافة إلى الشاشة الرئيسية.','افتح قائمة المتصفح (⋮ أو مشاركة)، ثم اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».','DIGIYLYFE مثبت بالفعل على هذا الهاتف.','تم إلغاء التثبيت. يمكنك المحاولة مرة أخرى.','تعذر فتح التثبيت التلقائي. استخدم قائمة المتصفح.']
+  };
+
+  function lang(){var l=(document.documentElement.lang||'fr').toLowerCase().split('-')[0];return COPY[l]?l:'fr';}
+  function text(i){return COPY[lang()][i];}
+  function refreshCopy(){label.textContent=text(0);if(installed)note.textContent=text(5);else if(promptEvent)note.textContent=text(2);else note.textContent=text(1);}
+
+  if(installed){band.hidden=true;return;}
+
+  window.addEventListener('beforeinstallprompt',function(ev){
+    ev.preventDefault();
+    promptEvent=ev;
+    note.textContent=text(2);
+  });
+
+  window.addEventListener('appinstalled',function(){
+    installed=true;
+    promptEvent=null;
+    band.hidden=true;
+  });
+
+  btn.addEventListener('pointerdown',function(){btn.classList.add('is-pressed');});
+  ['pointerup','pointercancel','pointerleave'].forEach(function(name){btn.addEventListener(name,function(){btn.classList.remove('is-pressed');});});
+  btn.addEventListener('touchstart',function(){},{passive:true});
+
+  btn.addEventListener('click',function(){
+    if(installed){note.textContent=text(5);return;}
+    if(promptEvent){
+      var ev=promptEvent;
+      promptEvent=null;
+      try{
+        ev.prompt();
+        ev.userChoice.then(function(choice){
+          if(choice&&choice.outcome==='accepted'){
+            note.textContent=text(5);
+          }else{
+            note.textContent=text(6);
+          }
+        }).catch(function(){note.textContent=text(7);});
+      }catch(error){note.textContent=text(7);}
+      return;
+    }
+    note.textContent=isIOS?text(3):text(4);
+  });
+
+  document.querySelectorAll('.langBtn').forEach(function(b){b.addEventListener('click',function(){setTimeout(refreshCopy,0);});});
+  refreshCopy();
+})();
+</script>
 <script src="/assets/digiy-sarlat-baptiste-signature-v1.js?v=20260828-v1" defer></script>
 <script src="/assets/digiy-saly-baptiste-signature-v1.js?v=20260828-v1" defer></script>
 <script src="/assets/digiy-mbaye-diouf-signature-v1.js?v=20260829-v1" defer></script>
 <script src="/assets/digiy-helage-signature-v1.js?v=20260829-v1" defer></script>
 </body>
 </html>
+
