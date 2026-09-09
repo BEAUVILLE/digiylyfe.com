@@ -2,7 +2,7 @@
  * Scope: tarifs-adherents-1.html + tarifs-adherents.html
  * Source of truth: /assets/digiy-adhesion-runtime-v1.json
  * Rule: one country => one currency => one visible price set.
- * Commercial 20260829: make owned value explicit before the monthly price.
+ * Commercial 20260909: France Adherent 1 annual billing + 2 welcome months.
  */
 (function(){
   'use strict';
@@ -46,6 +46,21 @@
     ar:{kicker:'حضورك · رمز QR الخاص بك · علاقتك بعملائك',h1:'ما تملكه مع DIGIYLYFE.',lead:'حضور رقمي باسمك، قابل للمشاركة عبر QR، متاح بـ8 لغات ومن دون عمولة DIGIYLYFE على عملائك.',member:'حضورك على DIGIYLYFE',memberText:'بطاقتك الرقمية ورمز QR الخاص بك وتواصلك المباشر مع عملائك.',ownership:'ملكك: هويتك · QR الخاص بك · تواصلك المباشر',ownershipSub:'DIGIYLYFE توفر الحضور، وتبقى علاقة العميل للمهني.',items:['هويتك المهنية على الإنترنت','رمز QR شخصي قابل للمشاركة','مكانك في واجهة DIGIYLYFE','واتساب · SMS · اتصال مباشر','8 لغات','0٪ عمولة DIGIYLYFE']}
   };
 
+  var PERIOD={
+    fr:{month:'PAR MOIS',year:'PAR AN · 1 RÈGLEMENT',gift:'🎁 2 MOIS OFFERTS À LA PREMIÈRE ADHÉSION',first:'Premier cycle : {cycle} mois pour {amount}.',renew:'Premier renouvellement : {months} mois à {amount}.',future:'Toute évolution ultérieure sera annoncée avant la période concernée.'},
+    en:{month:'PER MONTH',year:'PER YEAR · 1 PAYMENT',gift:'🎁 2 MONTHS FREE WITH THE FIRST MEMBERSHIP',first:'First cycle: {cycle} months for {amount}.',renew:'First renewal: {months} months for {amount}.',future:'Any later price change will be announced before the relevant period.'},
+    es:{month:'AL MES',year:'AL AÑO · 1 PAGO',gift:'🎁 2 MESES GRATIS EN LA PRIMERA ADHESIÓN',first:'Primer ciclo: {cycle} meses por {amount}.',renew:'Primera renovación: {months} meses por {amount}.',future:'Cualquier cambio posterior de tarifa se anunciará antes del periodo correspondiente.'},
+    pt:{month:'POR MÊS',year:'POR ANO · 1 PAGAMENTO',gift:'🎁 2 MESES GRÁTIS NA PRIMEIRA ADESÃO',first:'Primeiro ciclo: {cycle} meses por {amount}.',renew:'Primeira renovação: {months} meses por {amount}.',future:'Qualquer alteração posterior será anunciada antes do período em causa.'},
+    it:{month:'AL MESE',year:'ALL’ANNO · 1 PAGAMENTO',gift:'🎁 2 MESI GRATIS ALLA PRIMA ADESIONE',first:'Primo ciclo: {cycle} mesi per {amount}.',renew:'Primo rinnovo: {months} mesi a {amount}.',future:'Ogni successiva variazione sarà comunicata prima del periodo interessato.'},
+    de:{month:'PRO MONAT',year:'PRO JAHR · 1 ZAHLUNG',gift:'🎁 2 MONATE GRATIS BEI DER ERSTEN MITGLIEDSCHAFT',first:'Erster Zeitraum: {cycle} Monate für {amount}.',renew:'Erste Verlängerung: {months} Monate für {amount}.',future:'Spätere Preisänderungen werden vor dem betreffenden Zeitraum angekündigt.'},
+    nl:{month:'PER MAAND',year:'PER JAAR · 1 BETALING',gift:'🎁 2 MAANDEN GRATIS BIJ DE EERSTE AANSLUITING',first:'Eerste periode: {cycle} maanden voor {amount}.',renew:'Eerste verlenging: {months} maanden voor {amount}.',future:'Latere prijswijzigingen worden voorafgaand aan de betreffende periode aangekondigd.'},
+    ar:{month:'شهريًا',year:'سنويًا · دفعة واحدة',gift:'🎁 شهران مجانًا عند الاشتراك الأول',first:'الفترة الأولى: {cycle} شهرًا مقابل {amount}.',renew:'أول تجديد: {months} شهرًا مقابل {amount}.',future:'سيتم الإعلان مسبقًا عن أي تغيير لاحق في السعر.'}
+  };
+
+  function textTpl(s,values){
+    return String(s||'').replace(/\{(\w+)\}/g,function(_,k){return values[k]!==undefined?values[k]:'';});
+  }
+
   function patchCommercialValue(){
     if(plan!=='adherent-19900') return;
     var t=COMMERCIAL[lang()]||COMMERCIAL.fr;
@@ -69,6 +84,31 @@
       }
       note.innerHTML='<strong style="display:block;color:#fff3cf;font-size:12px;font-weight:1000">'+t.ownership+'</strong><small style="display:block;margin-top:4px;color:#c5d3cc;font-size:11px;font-weight:800">'+t.ownershipSub+'</small>';
     }
+  }
+
+  function patchMembershipPeriod(c,membership){
+    var period=document.getElementById('month');
+    var member=document.getElementById('member');
+    var card=member&&member.closest('.card');
+    var p=PERIOD[lang()]||PERIOD.fr;
+    var yearly=membership&&membership.billing_period==='year';
+    if(period)period.textContent=yearly?p.year:p.month;
+    if(!card)return;
+    var offer=card.querySelector('[data-digiy-annual-offer]');
+    if(!yearly){if(offer)offer.remove();return;}
+    if(!offer){
+      offer=document.createElement('div');
+      offer.setAttribute('data-digiy-annual-offer','1');
+      offer.style.cssText='margin:12px 0 14px;padding:13px 14px;border-radius:17px;border:1px solid rgba(246,196,83,.58);background:linear-gradient(145deg,rgba(246,196,83,.15),rgba(34,197,94,.09));line-height:1.42';
+      var list=document.getElementById('memberItems');
+      if(list)card.insertBefore(offer,list);else card.appendChild(offer);
+    }
+    var amt=amount(membership.amount,c);
+    var renewal=amount(membership.first_renewal_amount||membership.amount,c);
+    var values={cycle:membership.first_cycle_months||14,amount:amt,months:membership.first_renewal_months||12};
+    offer.innerHTML='<strong style="display:block;color:#fff3cf;font-size:13px;font-weight:1000">'+p.gift+'</strong>'+
+      '<span style="display:block;margin-top:6px;color:#fff;font-size:12px;font-weight:900">'+textTpl(p.first,values)+'</span>'+
+      '<span style="display:block;margin-top:3px;color:#c5d3cc;font-size:11px;font-weight:850">'+textTpl(p.renew,{months:values.months,amount:renewal})+' '+p.future+'</span>';
   }
 
   function ensureUi(){
@@ -158,11 +198,12 @@
     var sheetPrice=document.getElementById('sheetPrice');if(sheetPrice)sheetPrice.textContent=fromLabel()+' '+amount(fiche.starting_amount,c);
     var sitePrice=document.getElementById('sitePrice');if(sitePrice)sitePrice.textContent='SITE PREMIUM · '+fromLabel()+' '+amount(premium.starting_amount,c)+' · SITE EXTRA · '+fromLabel()+' '+amount(extra.starting_amount,c);
     patchCommercialValue();
+    patchMembershipPeriod(c,membership);
     patchSiteTiers(c,premium,extra);
     patchLoc(c,membership);
     patchPayments();
     patchPrepareLink();
-    document.title='DIGIYLYFE — '+(plan==='adherent-19900'?'Adhérent 1':'Adhérent 2')+' · '+label(c)+' · '+amount(membership.amount,c);
+    document.title='DIGIYLYFE — '+(plan==='adherent-19900'?'Adhérent 1':'Adhérent 2')+' · '+label(c)+' · '+amount(membership.amount,c)+(membership.billing_period==='year'?' / an':'');
     persist();
   }
 
