@@ -9,6 +9,7 @@
   var path=location.pathname.replace(/\/+$/,'');
   var isBordeauxPage=/\/bordeaux\.html$/i.test(path);
   var isBordeauxJoin=/\/adhesion-bordeaux\.html$/i.test(path);
+  var isBordeauxDemo=/\/demo-bordeaux\.html$/i.test(path);
 
   var prices={fr:'450 € / an',en:'€450 / year',es:'450 € / año',pt:'450 € / ano',it:'450 € / anno',de:'450 € / Jahr',nl:'€ 450 / jaar',ar:'450 € / سنة'};
   var finalCta={
@@ -16,6 +17,9 @@
   };
   var annualLabel={
     fr:'PAR AN · 1 RÈGLEMENT · 2 MOIS OFFERTS À LA PREMIÈRE ADHÉSION · 0 % COMMISSION',en:'PER YEAR · 1 PAYMENT · 2 FREE MONTHS WITH FIRST MEMBERSHIP · 0% COMMISSION',es:'AL AÑO · 1 PAGO · 2 MESES GRATIS EN LA PRIMERA ADHESIÓN · 0 % COMISIÓN',pt:'POR ANO · 1 PAGAMENTO · 2 MESES GRÁTIS NA PRIMEIRA ADESÃO · 0 % COMISSÃO',it:'ALL’ANNO · 1 PAGAMENTO · 2 MESI GRATIS ALLA PRIMA ADESIONE · 0 % COMMISSIONI',de:'PRO JAHR · 1 ZAHLUNG · 2 MONATE GRATIS BEI DER ERSTEN MITGLIEDSCHAFT · 0 % PROVISION',nl:'PER JAAR · 1 BETALING · 2 MAANDEN GRATIS BIJ DE EERSTE AANSLUITING · 0 % COMMISSIE',ar:'سنويًا · دفعة واحدة · شهران مجانًا عند الاشتراك الأول · 0٪ عمولة'
+  };
+  var demoAnnualLabel={
+    fr:'1 RÈGLEMENT ANNUEL · 2 MOIS OFFERTS À LA PREMIÈRE ADHÉSION',en:'1 ANNUAL PAYMENT · 2 FREE MONTHS WITH FIRST MEMBERSHIP',es:'1 PAGO ANUAL · 2 MESES GRATIS EN LA PRIMERA ADHESIÓN',pt:'1 PAGAMENTO ANUAL · 2 MESES GRÁTIS NA PRIMEIRA ADESÃO',it:'1 PAGAMENTO ANNUALE · 2 MESI GRATIS ALLA PRIMA ADESIONE',de:'1 JAHRESZAHLUNG · 2 MONATE GRATIS BEI DER ERSTEN MITGLIEDSCHAFT',nl:'1 JAARBETALING · 2 MAANDEN GRATIS BIJ DE EERSTE AANSLUITING',ar:'دفعة سنوية واحدة · شهران مجانًا عند الاشتراك الأول'
   };
 
   function lang(){var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return prices[l]?l:'fr';}
@@ -36,6 +40,10 @@
       var p=document.querySelector('.price strong');if(p)p.textContent='450 €';
       var m=document.getElementById('month');if(m)m.textContent=annualLabel[l];
       var pay=document.getElementById('payBtn');if(pay)pay.href='/tarifs-adherents-1.html?country=fr#paiement';
+    }
+    if(isBordeauxDemo){
+      var dp=document.querySelector('.price strong');if(dp)dp.textContent=prices[l];
+      var dm=document.getElementById('month');if(dm)dm.textContent=demoAnnualLabel[l];
     }
   }
   function bindDomPatch(){
