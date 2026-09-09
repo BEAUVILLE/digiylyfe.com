@@ -20,8 +20,8 @@
       "interface_languages": ["fr","en","es","pt","it","de","nl","ar"],
       "pricing": {
         "membership": {
-          "adherent-19900": {"amount":19900,"label":"19 900 FCFA / mois"},
-          "adherent-28000": {"amount":28000,"label":"28 000 FCFA / mois"}
+          "adherent-19900": {"amount":19900,"label":"19 900 FCFA / mois","billing_period":"month","billing_months":1},
+          "adherent-28000": {"amount":28000,"label":"28 000 FCFA / mois","billing_period":"month","billing_months":1}
         },
         "modules": {
           "carnet_pro": {"amount":13000,"label":"13 000 FCFA / mois"}
