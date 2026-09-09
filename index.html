@@ -659,10 +659,10 @@
       <small data-i18n="fullStackSignature">QR partageable · WhatsApp · réservation et paiement directs · 0 % commission · 8 langues.</small>
     </section>
 
-    <section class="digiyInstallBand" id="digiyInstallBand" aria-label="Installer DIGIYLYFE sur ce téléphone">
+    <section class="digiyInstallBand" id="digiyInstallBand" aria-label="Installer DIGIYLYFE">
       <button type="button" class="digiyInstallBtn" id="digiyInstallBtn">
         <span aria-hidden="true">📲</span>
-        <span id="digiyInstallLabel">Installer DIGIYLYFE sur ce téléphone</span>
+        <span id="digiyInstallLabel">Installer DIGIYLYFE</span>
       </button>
       <small class="digiyInstallNote" id="digiyInstallNote" aria-live="polite">Touchez la bande pour installer ou afficher les instructions.</small>
     </section>
@@ -1053,6 +1053,7 @@ if ('serviceWorker' in navigator) {
   var installed=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;
   var ua=navigator.userAgent||'';
   var isIOS=/iPad|iPhone|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var isMobile=/Android|iPhone|iPad|iPod|Mobile/i.test(ua)||(navigator.maxTouchPoints>1&&/MacIntel/i.test(navigator.platform||''));
 
   var COPY={
     fr:['Installer DIGIYLYFE sur ce téléphone','Touchez la bande pour installer ou afficher les instructions.','Installation disponible : touchez la bande.','Sur iPhone : ouvrez cette page dans Safari → Partager ⬆︎ → Ajouter à l’écran d’accueil.','Ouvrez le menu du navigateur (⋮ ou Partager), puis choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil ».','DIGIYLYFE est déjà installé sur ce téléphone.','Installation annulée. Vous pouvez réessayer.','Impossible d’ouvrir l’installation automatique. Utilisez le menu du navigateur.'],
@@ -1065,9 +1066,32 @@ if ('serviceWorker' in navigator) {
     ar:['تثبيت DIGIYLYFE على هذا الهاتف','اضغط على الشريط للتثبيت أو لعرض التعليمات.','التثبيت متاح: اضغط على الشريط.','على iPhone: افتح الصفحة في Safari ← مشاركة ⬆︎ ← إضافة إلى الشاشة الرئيسية.','افتح قائمة المتصفح (⋮ أو مشاركة)، ثم اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».','DIGIYLYFE مثبت بالفعل على هذا الهاتف.','تم إلغاء التثبيت. يمكنك المحاولة مرة أخرى.','تعذر فتح التثبيت التلقائي. استخدم قائمة المتصفح.']
   };
 
+  var DESKTOP={
+    fr:['Installer DIGIYLYFE sur cet ordinateur','Sur ordinateur : utilisez le menu du navigateur puis « Installer DIGIYLYFE » si l’installation automatique n’apparaît pas.','DIGIYLYFE est déjà installé sur cet ordinateur.'],
+    en:['Install DIGIYLYFE on this computer','On desktop: open the browser menu and choose “Install DIGIYLYFE” if the automatic install option does not appear.','DIGIYLYFE is already installed on this computer.'],
+    es:['Instalar DIGIYLYFE en este ordenador','En ordenador: abre el menú del navegador y elige «Instalar DIGIYLYFE» si no aparece la instalación automática.','DIGIYLYFE ya está instalado en este ordenador.'],
+    pt:['Instalar DIGIYLYFE neste computador','No computador: abra o menu do navegador e escolha «Instalar DIGIYLYFE» se a instalação automática não aparecer.','DIGIYLYFE já está instalado neste computador.'],
+    it:['Installa DIGIYLYFE su questo computer','Sul computer: apri il menu del browser e scegli «Installa DIGIYLYFE» se l’installazione automatica non compare.','DIGIYLYFE è già installato su questo computer.'],
+    de:['DIGIYLYFE auf diesem Computer installieren','Am Computer: Öffnen Sie das Browsermenü und wählen Sie „DIGIYLYFE installieren“, falls die automatische Installation nicht erscheint.','DIGIYLYFE ist auf diesem Computer bereits installiert.'],
+    nl:['DIGIYLYFE op deze computer installeren','Op de computer: open het browsermenu en kies ‘DIGIYLYFE installeren’ als de automatische installatie niet verschijnt.','DIGIYLYFE is al op deze computer geïnstalleerd.'],
+    ar:['تثبيت DIGIYLYFE على هذا الكمبيوتر','على الكمبيوتر: افتح قائمة المتصفح واختر «تثبيت DIGIYLYFE» إذا لم يظهر التثبيت التلقائي.','DIGIYLYFE مثبت بالفعل على هذا الكمبيوتر.']
+  };
+
   function lang(){var l=(document.documentElement.lang||'fr').toLowerCase().split('-')[0];return COPY[l]?l:'fr';}
-  function text(i){return COPY[lang()][i];}
-  function refreshCopy(){label.textContent=text(0);if(installed)note.textContent=text(5);else if(promptEvent)note.textContent=text(2);else note.textContent=text(1);}
+  function text(i){
+    var l=lang();
+    if(!isMobile&&i===0)return DESKTOP[l][0];
+    if(!isMobile&&i===4)return DESKTOP[l][1];
+    if(!isMobile&&i===5)return DESKTOP[l][2];
+    return COPY[l][i];
+  }
+  function refreshCopy(){
+    label.textContent=text(0);
+    band.setAttribute('aria-label',text(0));
+    if(installed)note.textContent=text(5);
+    else if(promptEvent)note.textContent=text(2);
+    else note.textContent=text(1);
+  }
 
   if(installed){band.hidden=true;return;}
 
