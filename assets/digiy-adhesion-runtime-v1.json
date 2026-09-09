@@ -43,7 +43,7 @@
             {"id":"SN-PETITE-COTE-NDAYANE","slug":"ndayane","label":"Ndayane","status":"active"},
             {"id":"SN-PETITE-COTE-POPENGUINE","slug":"popenguine","label":"Popenguine","status":"active"},
             {"id":"SN-PETITE-COTE-SOMONE","slug":"somone","label":"Somone","status":"active"},
-            {"id":"SN-PETITE-COTE-NGAPAROU","slug":"ngap arou","label":"Ngaparou","status":"active"},
+            {"id":"SN-PETITE-COTE-NGAPAROU","slug":"ngaparou","label":"Ngaparou","status":"active"},
             {"id":"SN-PETITE-COTE-SALY","slug":"saly","label":"Saly","status":"active"},
             {"id":"SN-PETITE-COTE-MBOUR","slug":"mbour","label":"Mbour","status":"active"}
           ]
