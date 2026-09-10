@@ -51,7 +51,7 @@ jobs:
           git diff --check
       - name: Commit and cleanup
         run: |
-          rm -f .github/workflows/patch-index-owner-modules.yml .github/workflows/temp-trigger-loc-note.txt .github/workflows/temp-cleanup-loc-note.yml .github/workflows/poke-loc-final.txt .github/workflows/poke-final-loc.txt tmp-loc-marker.txt
+          rm -f .github/workflows/patch-index-owner-modules.yml .github/workflows/temp-trigger-loc-note.txt .github/workflows/temp-cleanup-loc-note.yml .github/workflows/poke-loc-final.txt .github/workflows/poke-final-loc.txt tmp-loc-marker.txt noop-loc.txt
           git config user.name "DIGIY LYFE"
           git config user.email "baptistejb24@gmail.com"
           git add -A
