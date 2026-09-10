@@ -1,0 +1,88 @@
+name: Patch LOC owner access wording
+
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-loc-owner-access.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch tarifs-loc owner access wording
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('tarifs-loc.html')
+          s = p.read_text(encoding='utf-8')
+          replacements = {
+            'aria-label="Aperçu de l’espace adhérent DIGIY LOC"': 'aria-label="Aperçu de l’accès propriétaire DIGIY LOC"',
+            'APERÇU DE VOTRE ESPACE ADHÉRENT': 'APERÇU DE VOTRE ACCÈS PROPRIÉTAIRE',
+            'Voyez ce que vous pilotez avant d’investir.': 'Voici ce que vous retrouvez depuis votre fiche professionnelle.',
+            'Après adhésion, vous gardez la main sur l’essentiel : calendrier, disponibilités, tarifs et demandes clients. L’aperçu ci-dessous est volontairement simple ; les commandes réelles s’activent après votre adhésion.': 'Depuis votre fiche, le bouton PROPRIÉTAIRE ouvre votre espace sécurisé par e-mail et magic link. Vous y pilotez calendrier, disponibilités, tarifs et demandes clients.',
+            '🔒 Aperçu visible avant adhésion · gestion réelle activée pour l’adhérent.': '🔒 Aperçu public · accès réel réservé au propriétaire après validation de l’adhésion.',
+            'PREVIEW OF YOUR MEMBER SPACE': 'PREVIEW OF YOUR OWNER ACCESS',
+            'See what you control before you invest.': 'See what you access from your professional profile.',
+            'After joining, you stay in control of the essentials: calendar, availability, prices and customer requests. This preview is intentionally simple; real controls are activated after membership.': 'From your professional profile, the OWNER button opens your secure space by email and magic link. Manage calendar, availability, prices and customer requests there.',
+            '🔒 Preview visible before membership · real management activated for members.': '🔒 Public preview · real access reserved for the owner after membership validation.',
+            'VISTA PREVIA DE SU ESPACIO DE MIEMBRO': 'VISTA PREVIA DE SU ACCESO PROPIETARIO',
+            'Vea lo que controla antes de invertir.': 'Vea lo que encuentra desde su ficha profesional.',
+            'Tras la adhesión, usted controla calendario, disponibilidad, tarifas y solicitudes de clientes. La vista es voluntariamente simple; los controles reales se activan después de la adhesión.': 'Desde su ficha profesional, el botón PROPIETARIO abre su espacio seguro mediante e-mail y magic link. Allí gestiona calendario, disponibilidad, tarifas y solicitudes de clientes.',
+            '🔒 Vista previa antes de la adhesión · gestión real activada para miembros.': '🔒 Vista pública · acceso real reservado al propietario tras validar la adhesión.',
+            'PRÉ-VISUALIZAÇÃO DO ESPAÇO DE MEMBRO': 'PRÉ-VISUALIZAÇÃO DO ACESSO DO PROPRIETÁRIO',
+            'Veja o que controla antes de investir.': 'Veja o que encontra a partir da sua ficha profissional.',
+            'Após a adesão, controla calendário, disponibilidade, tarifas e pedidos de clientes. A pré-visualização é simples de propósito; os controlos reais são ativados após a adesão.': 'A partir da sua ficha profissional, o botão PROPRIETÁRIO abre o seu espaço seguro por e-mail e magic link. Aí gere calendário, disponibilidade, tarifas e pedidos de clientes.',
+            '🔒 Pré-visualização antes da adesão · gestão real ativada para membros.': '🔒 Pré-visualização pública · acesso real reservado ao proprietário após validação da adesão.',
+            'ANTEPRIMA DELLO SPAZIO MEMBRO': 'ANTEPRIMA DELL’ACCESSO PROPRIETARIO',
+            'Guarda cosa controlli prima di investire.': 'Guarda cosa trovi dalla tua scheda professionale.',
+            'Dopo l’adesione controlli calendario, disponibilità, tariffe e richieste clienti. L’anteprima è volutamente semplice; i controlli reali si attivano dopo l’adesione.': 'Dalla tua scheda professionale, il pulsante PROPRIETARIO apre lo spazio sicuro tramite e-mail e magic link. Qui gestisci calendario, disponibilità, tariffe e richieste clienti.',
+            '🔒 Anteprima prima dell’adesione · gestione reale attivata per i membri.': '🔒 Anteprima pubblica · accesso reale riservato al proprietario dopo la convalida dell’adesione.',
+            'VORSCHAU IHRES MITGLIEDSBEREICHS': 'VORSCHAU IHRES EIGENTÜMERZUGANGS',
+            'Sehen Sie vor der Investition, was Sie steuern.': 'Sehen Sie, was Sie über Ihr professionelles Profil erreichen.',
+            'Nach dem Beitritt steuern Sie Kalender, Verfügbarkeit, Preise und Kundenanfragen. Die Vorschau ist bewusst einfach; echte Funktionen werden nach dem Beitritt aktiviert.': 'Über Ihr professionelles Profil öffnet die Schaltfläche EIGENTÜMER Ihren sicheren Bereich per E-Mail und Magic Link. Dort verwalten Sie Kalender, Verfügbarkeit, Preise und Kundenanfragen.',
+            '🔒 Vorschau vor dem Beitritt · echte Verwaltung für Mitglieder aktiviert.': '🔒 Öffentliche Vorschau · echter Zugang nach Bestätigung der Mitgliedschaft nur für den Eigentümer.',
+            'VOORBEELD VAN UW LEDENRUIMTE': 'VOORBEELD VAN UW EIGENAARSTOEGANG',
+            'Bekijk wat u beheert vóór u investeert.': 'Bekijk wat u vanuit uw professionele fiche bereikt.',
+            'Na aansluiting beheert u kalender, beschikbaarheid, prijzen en klantaanvragen. De preview is bewust eenvoudig; echte bediening wordt na aansluiting geactiveerd.': 'Vanuit uw professionele fiche opent de knop EIGENAAR uw beveiligde ruimte via e-mail en magic link. Daar beheert u kalender, beschikbaarheid, prijzen en klantaanvragen.',
+            '🔒 Preview vóór aansluiting · echte bediening geactiveerd voor leden.': '🔒 Openbare preview · echte toegang na validatie alleen voor de eigenaar.',
+            'معاينة مساحة العضو': 'معاينة دخول المالك',
+            'شاهد ما ستديره قبل الاستثمار.': 'شاهد ما تصل إليه من بطاقتك المهنية.',
+            'بعد الاشتراك، تتحكم في التقويم والتوفر والأسعار وطلبات العملاء. هذه معاينة مبسطة؛ أدوات التحكم الفعلية تُفعّل بعد الاشتراك.': 'من بطاقتك المهنية، يفتح زر المالك مساحتك الآمنة عبر البريد الإلكتروني والرابط السحري. ومن هناك تدير التقويم والتوفر والأسعار وطلبات العملاء.',
+            '🔒 المعاينة متاحة قبل الاشتراك · الإدارة الفعلية تُفعّل للأعضاء.': '🔒 معاينة عامة · الدخول الفعلي مخصص للمالك بعد اعتماد الاشتراك.',
+            'Accès PRO protégé par votre identifiant/PIN. Le client n’entre jamais dans votre espace de gestion.': 'Depuis votre fiche, l’accès PROPRIÉTAIRE est sécurisé par votre e-mail et un magic link. Le client n’entre jamais dans votre espace de gestion.',
+            '<strong>Espace sécurisé</strong>': '<strong>Accès propriétaire sécurisé</strong>',
+            '<strong>Secure member space</strong><span>Protected PRO access; customers never enter your management area.</span>': '<strong>Secure owner access</strong><span>From your professional profile, access is protected by email and magic link; customers never enter your management area.</span>',
+            '<strong>Espacio seguro</strong><span>Acceso PRO protegido.</span>': '<strong>Acceso propietario seguro</strong><span>Desde su ficha, acceso protegido por e-mail y magic link.</span>',
+            '<strong>Espaço seguro</strong><span>Acesso PRO protegido.</span>': '<strong>Acesso seguro do proprietário</strong><span>A partir da ficha, acesso protegido por e-mail e magic link.</span>',
+            '<strong>Spazio sicuro</strong><span>Accesso PRO protetto.</span>': '<strong>Accesso proprietario sicuro</strong><span>Dalla scheda, accesso protetto tramite e-mail e magic link.</span>',
+            '<strong>Sicherer Bereich</strong><span>Geschützter PRO-Zugang.</span>': '<strong>Sicherer Eigentümerzugang</strong><span>Über das Profil per E-Mail und Magic Link geschützt.</span>',
+            '<strong>Beveiligde ruimte</strong><span>Beschermde PRO-toegang.</span>': '<strong>Beveiligde eigenaarstoegang</strong><span>Vanuit de fiche beveiligd via e-mail en magic link.</span>',
+            '<strong>مساحة آمنة</strong><span>دخول مهني محمي.</span>': '<strong>دخول آمن للمالك</strong><span>دخول محمي من البطاقة المهنية عبر البريد الإلكتروني والرابط السحري.</span>'
+          }
+          missing = [old for old in replacements if old not in s]
+          if missing:
+              raise SystemExit('Missing expected text: ' + repr(missing))
+          for old, new in replacements.items():
+              s = s.replace(old, new)
+          p.write_text(s, encoding='utf-8')
+      - name: Verify patch
+        run: |
+          grep -q "APERÇU DE VOTRE ACCÈS PROPRIÉTAIRE" tarifs-loc.html
+          grep -q "magic link" tarifs-loc.html
+          ! grep -q "identifiant/PIN" tarifs-loc.html
+          git diff --check
+      - name: Commit patch and remove one-shot workflow
+        run: |
+          rm .github/workflows/patch-loc-owner-access.yml
+          git config user.name "DIGIY LYFE"
+          git config user.email "baptistejb24@gmail.com"
+          git add tarifs-loc.html .github/workflows/patch-loc-owner-access.yml
+          git commit -m "fix: clarify LOC owner access preview"
+          git push
