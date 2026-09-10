@@ -40,7 +40,6 @@ jobs:
               if css_anchor not in s:
                   raise SystemExit('CSS anchor missing')
               s = s.replace(css_anchor, css + css_anchor, 1)
-
           block = '''    <section class="ownerModules" aria-label="Accès propriétaire adaptés aux métiers DIGIYLYFE">
               <div class="ownerModulesLang" data-owner-lang="fr"><span class="ownerModulesKicker">ACCÈS PROPRIÉTAIRE · SELON VOTRE MÉTIER</span><h2>Un même réseau. Des outils adaptés à votre activité.</h2><p>Depuis votre fiche professionnelle, votre accès PROPRIÉTAIRE ouvre les outils utiles à votre métier.</p><div class="ownerModuleList"><span class="ownerModule"><b>🏠 LOC</b> · disponibilités · tarifs · réservations</span><span class="ownerModule"><b>🚘 DRIVER</b> · trajets · disponibilités · demandes clients</span><span class="ownerModule"><b>📅 RESA</b> · créneaux · rendez-vous · confirmations</span><span class="ownerModule"><b>🛍️ COMMERCE</b> · produits · disponibilité · demandes clients</span></div><div class="ownerModulesBottom">Les outils changent selon votre activité. La relation client reste directe.</div></div>
               <div class="ownerModulesLang" data-owner-lang="en"><span class="ownerModulesKicker">OWNER ACCESS · BUILT FOR YOUR BUSINESS</span><h2>One network. Tools adapted to your activity.</h2><p>From your professional profile, your OWNER access opens the tools useful to your business.</p><div class="ownerModuleList"><span class="ownerModule"><b>🏠 LOC</b> · availability · prices · bookings</span><span class="ownerModule"><b>🚘 DRIVER</b> · trips · availability · customer requests</span><span class="ownerModule"><b>📅 RESA</b> · time slots · appointments · confirmations</span><span class="ownerModule"><b>🛍️ COMMERCE</b> · products · availability · customer requests</span></div><div class="ownerModulesBottom">The tools change with your activity. The customer relationship stays direct.</div></div>
@@ -63,16 +62,22 @@ jobs:
               s = s[:end] + '\n\n' + block + s[end:]
           p.write_text(s, encoding='utf-8')
       - name: Verify patch
+        shell: python
         run: |
-          grep -q "ACCÈS PROPRIÉTAIRE · SELON VOTRE MÉTIER" index.html
-          grep -q "🛍️ COMMERCE" index.html
-          test "$(grep -o 'data-owner-lang=' index.html | wc -l)" -eq 8
-          git diff --check
+          from pathlib import Path
+          s = Path('index.html').read_text(encoding='utf-8')
+          assert s.count('ACCÈS PROPRIÉTAIRE · SELON VOTRE MÉTIER') == 1
+          assert s.count('<section class="ownerModules"') == 1
+          assert s.count('<div class="ownerModulesLang" data-owner-lang=') == 8
+          for module in ('LOC','DRIVER','RESA','COMMERCE'):
+              assert module in s
+          print('8 languages and 4 module families validated')
       - name: Commit patch and remove one-shot workflow
         run: |
           rm .github/workflows/patch-index-owner-modules.yml
           git config user.name "DIGIY LYFE"
           git config user.email "baptistejb24@gmail.com"
           git add index.html .github/workflows/patch-index-owner-modules.yml
+          git diff --cached --check
           git commit -m "feat: clarify owner access across DIGIY modules"
           git push
