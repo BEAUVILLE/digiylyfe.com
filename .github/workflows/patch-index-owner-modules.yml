@@ -20,15 +20,15 @@ jobs:
         shell: python
         run: |
           from pathlib import Path
-          p = Path('tarifs-loc.html')
-          s = p.read_text(encoding='utf-8')
-          css_anchor = '.productPreview{'
-          css = '''.networkBreadth{margin:16px 0;padding:14px;border-radius:20px;border:1px solid rgba(94,234,212,.34);background:linear-gradient(145deg,rgba(20,184,166,.08),rgba(246,196,83,.06));text-align:center}\n.networkBreadth .previewLang{display:none}\n.networkBreadth h2{margin:7px 0 0;font-size:clamp(18px,4.2vw,25px);line-height:1.08}\n.networkBreadth p{margin:7px auto 0;max-width:760px;font-size:11.5px;line-height:1.45;color:rgba(255,255,255,.78);font-weight:850}\n.networkBreadthList{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:10px}\n.networkBreadthList span{padding:7px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);font-size:10px;font-weight:950}\n.networkBreadthNote{margin-top:9px;font-size:10.5px;line-height:1.4;font-weight:1000;color:#dffff7}\n'''
+          p=Path('tarifs-loc.html')
+          s=p.read_text(encoding='utf-8')
+          css_anchor='.productPreview{'
+          css='.networkBreadth{margin:16px 0;padding:14px;border-radius:20px;border:1px solid rgba(94,234,212,.34);background:linear-gradient(145deg,rgba(20,184,166,.08),rgba(246,196,83,.06));text-align:center}\n.networkBreadth .previewLang{display:none}\n.networkBreadth h2{margin:7px 0 0;font-size:clamp(18px,4.2vw,25px);line-height:1.08}\n.networkBreadth p{margin:7px auto 0;max-width:760px;font-size:11.5px;line-height:1.45;color:rgba(255,255,255,.78);font-weight:850}\n.networkBreadthList{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:10px}\n.networkBreadthList span{padding:7px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);font-size:10px;font-weight:950}\n.networkBreadthNote{margin-top:9px;font-size:10.5px;line-height:1.4;font-weight:1000;color:#dffff7}\n'
           if '.networkBreadth{' not in s:
               if css_anchor not in s: raise SystemExit('CSS anchor missing')
-              s = s.replace(css_anchor, css + css_anchor, 1)
-          html_anchor = '<section class="box productPreview" id="locProductPreview"'
-          block = '''<section class="box networkBreadth" id="networkBreadth" aria-label="DIGIYLYFE adapte l’accès propriétaire au métier">
+              s=s.replace(css_anchor,css+css_anchor,1)
+          html_anchor='<section class="box productPreview" id="locProductPreview"'
+          block='''<section class="box networkBreadth" id="networkBreadth" aria-label="DIGIYLYFE adapte l’accès propriétaire au métier">
 <div class="previewLang" data-preview-lang="fr"><span class="previewKicker">DIGIYLYFE · PAS SEULEMENT LOC</span><h2>Un même accès propriétaire, des outils adaptés à votre métier.</h2><p>LOC est l’exemple détaillé présenté ici. DIGIYLYFE équipe aussi d’autres activités avec leur propre logique métier.</p><div class="networkBreadthList"><span>🏠 LOC · réservations</span><span>🚘 DRIVER · trajets</span><span>📅 RESA · rendez-vous</span><span>🛍️ COMMERCE · produits</span></div><div class="networkBreadthNote">Les outils changent selon l’activité. La relation client reste directe.</div></div>
 <div class="previewLang" data-preview-lang="en"><span class="previewKicker">DIGIYLYFE · NOT ONLY LOC</span><h2>One owner access, tools adapted to your business.</h2><p>LOC is the detailed example shown here. DIGIYLYFE also equips other activities with their own business logic.</p><div class="networkBreadthList"><span>🏠 LOC · bookings</span><span>🚘 DRIVER · trips</span><span>📅 RESA · appointments</span><span>🛍️ COMMERCE · products</span></div><div class="networkBreadthNote">The tools change with the activity. The customer relationship stays direct.</div></div>
 <div class="previewLang" data-preview-lang="es"><span class="previewKicker">DIGIYLYFE · NO SOLO LOC</span><h2>Un mismo acceso propietario, herramientas adaptadas a su actividad.</h2><p>LOC es el ejemplo detallado que se muestra aquí. DIGIYLYFE también equipa otras actividades con su propia lógica profesional.</p><div class="networkBreadthList"><span>🏠 LOC · reservas</span><span>🚘 DRIVER · trayectos</span><span>📅 RESA · citas</span><span>🛍️ COMMERCE · productos</span></div><div class="networkBreadthNote">Las herramientas cambian según la actividad. La relación con el cliente sigue siendo directa.</div></div>
@@ -40,8 +40,8 @@ jobs:
 </section>\n\n'''
           if 'id="networkBreadth"' not in s:
               if html_anchor not in s: raise SystemExit('HTML anchor missing')
-              s = s.replace(html_anchor, block + html_anchor, 1)
-          p.write_text(s, encoding='utf-8')
+              s=s.replace(html_anchor,block+html_anchor,1)
+          p.write_text(s,encoding='utf-8')
       - name: Verify patch
         run: |
           grep -q 'DIGIYLYFE · PAS SEULEMENT LOC' tarifs-loc.html
@@ -51,7 +51,7 @@ jobs:
           git diff --check
       - name: Commit patch and cleanup
         run: |
-          rm -f .github/workflows/patch-index-owner-modules.yml .github/workflows/temp-trigger-loc-note.txt .github/workflows/temp-cleanup-loc-note.yml .github/workflows/poke-loc-final.txt
+          rm -f .github/workflows/patch-index-owner-modules.yml .github/workflows/temp-trigger-loc-note.txt .github/workflows/temp-cleanup-loc-note.yml .github/workflows/poke-loc-final.txt .github/workflows/poke-final-loc.txt
           git config user.name "DIGIY LYFE"
           git config user.email "baptistejb24@gmail.com"
           git add -A
