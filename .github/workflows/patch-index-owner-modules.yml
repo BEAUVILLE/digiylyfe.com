@@ -49,9 +49,9 @@ jobs:
           grep -q '📅 RESA · rendez-vous' tarifs-loc.html
           grep -q '🛍️ COMMERCE · produits' tarifs-loc.html
           git diff --check
-      - name: Commit patch and remove one-shot workflow
+      - name: Commit patch and cleanup
         run: |
-          rm -f .github/workflows/patch-index-owner-modules.yml .github/workflows/temp-trigger-loc-note.txt .github/workflows/temp-cleanup-loc-note.yml
+          rm -f .github/workflows/patch-index-owner-modules.yml .github/workflows/temp-trigger-loc-note.txt .github/workflows/temp-cleanup-loc-note.yml .github/workflows/poke-loc-final.txt
           git config user.name "DIGIY LYFE"
           git config user.email "baptistejb24@gmail.com"
           git add -A
