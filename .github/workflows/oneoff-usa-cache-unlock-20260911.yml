@@ -1,0 +1,60 @@
+name: One-off USA cache unlock
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/oneoff-usa-cache-unlock-20260911.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply three micro fixes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def rep(path, old, new):
+              p=Path(path)
+              s=p.read_text(encoding='utf-8')
+              if old not in s:
+                  raise SystemExit(f'marker missing in {path}: {old[:120]}')
+              p.write_text(s.replace(old,new,1),encoding='utf-8')
+
+          # 1) Force a fresh global relay from the homepage.
+          rep('index.html',
+              'https://digiylyfe.com/digiy-contact-global.js?v=20260911-miami-v1',
+              'https://digiylyfe.com/digiy-contact-global.js?v=20260911-usa-world-v3')
+
+          # 2) Force a fresh stable loader inside the relay.
+          rep('digiy-contact-global.js',
+              "/digiy-contact-global-stable-20260830.js?v=20260911-miami-v1",
+              "/digiy-contact-global-stable-20260830.js?v=20260911-usa-world-v3")
+
+          # 3) Make the tariff tunnel map US explicitly to the public slug `us`.
+          p=Path('tarifs-adherents-1.html')
+          s=p.read_text(encoding='utf-8')
+          old="document.getElementById('freeCta').href='/carte-gratuite.html?country='+countryId.toLowerCase();const payApproved=(new URLSearchParams(location.search)).get('approved')==='1';const mc=document.getElementById('memberCta');mc.href=payApproved?'#paiement':'/preparer-ma-carte.html?plan=adherent-19900&country='+countryId.toLowerCase()+'&lang='+lang()+'&flow=prevalidation-20260911';"
+          new="const countrySlug=countryId==='US'?'us':countryId==='FR'?'fr':'sn';document.getElementById('freeCta').href='/carte-gratuite.html?country='+countrySlug;const payApproved=(new URLSearchParams(location.search)).get('approved')==='1';const mc=document.getElementById('memberCta');mc.href=payApproved?'#paiement':'/preparer-ma-carte.html?plan=adherent-19900&country='+countrySlug+'&lang='+lang()+'&flow=prevalidation-20260911';"
+          if old not in s:
+              raise SystemExit('tariff tunnel marker missing')
+          s=s.replace(old,new,1)
+          s=s.replace("u.searchParams.set('country',countryId.toLowerCase());","u.searchParams.set('country',countrySlug);",1)
+          p.write_text(s,encoding='utf-8')
+          PY
+
+      - name: Commit patch
+        shell: bash
+        run: |
+          git config user.name "DIGIY LYFE"
+          git config user.email "baptistejb24@gmail.com"
+          git add index.html digiy-contact-global.js tarifs-adherents-1.html
+          git commit -m "fix: bust USA vitrine cache and normalize US tunnel" || exit 0
+          git push
