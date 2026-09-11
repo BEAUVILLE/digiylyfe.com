@@ -138,7 +138,7 @@
   fixTarifsPrevalidationFlow();
 
   var stable=document.createElement('script');
-  stable.src='/digiy-contact-global-stable-20260830.js?v=20260911-usa-world-v3';
+  stable.src='/digiy-contact-global-stable-20260830.js?v=20260911-usa-native-v4';
   stable.async=false;
   stable.onload=function(){guardUniqueDakar();fixTarifsPrevalidationFlow();loadHealthDoors();};
   stable.onerror=function(){guardUniqueDakar();fixTarifsPrevalidationFlow();loadHealthDoors();};

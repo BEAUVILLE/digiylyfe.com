@@ -407,7 +407,7 @@
   installVoiceHomeLabel();
 
   var core=document.createElement('script');
-  core.src='/digiy-contact-global-core-20260824.js?v=20260911-hubfix';
+  core.src='/digiy-contact-global-core-20260824.js?v=20260911-usa-native-v4';
   core.async=false;
   core.onload=installExtras;
   core.onerror=installExtras;
