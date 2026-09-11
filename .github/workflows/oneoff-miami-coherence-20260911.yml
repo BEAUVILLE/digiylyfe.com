@@ -1,0 +1,54 @@
+name: One-off finalize Miami pilot coherence
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/oneoff-miami-coherence-20260911.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Finalize Miami pilot labels
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new):
+              p=Path(path); s=p.read_text(encoding='utf-8')
+              if old not in s:
+                  raise SystemExit(f'marker missing in {path}: {old}')
+              p.write_text(s.replace(old,new,1),encoding='utf-8')
+
+          replace_once(
+            'index.html',
+            '<span class="globalCountry future">🇺🇸 <span data-i18n="globalUsa">États-Unis</span> <b class="globalStatus" data-i18n="globalComing">À VENIR</b></span>',
+            '<a class="globalCountry active" href="https://digiylyfe.com/carte-gratuite.html?country=us&amp;lang=en&amp;territory=miami">🇺🇸 <span data-i18n="globalUsa">États-Unis</span> <b class="globalStatus">MIAMI PILOT</b></a>'
+          )
+          replace_once(
+            'tarifs-loc.html',
+            '<meta name="description" content="DIGIY LOC : un règlement annuel par palier, 20 % d’avantage par rapport au tarif mensuel de référence et 2 mois offerts à la première adhésion. 0 % commission sur les réservations.">',
+            '<meta name="description" content="DIGIY LOC : un règlement annuel par palier, réservation directe, paiement direct et 0 % commission DIGIYLYFE sur les réservations.">'
+          )
+          replace_once(
+            'tarifs-loc.html',
+            '<span id="baseNote">PALIER 1–3 · TARIF ANNUEL DIGIY · -20 %</span>',
+            '<span id="baseNote">PALIER 1–3 · TARIF ANNUEL DIGIY · 0 % COMMISSION</span>'
+          )
+          print('Miami coherence patch OK')
+          PY
+      - name: Commit coherence patch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html tarifs-loc.html
+          git commit -m "fix: mark Miami as pilot and keep LOC USD messaging coherent [skip ci]"
+          git push
