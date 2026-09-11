@@ -229,7 +229,7 @@ document.getElementById('locForm').addEventListener('submit',function(e){
  document.getElementById('paySn').classList.toggle('hidden',c!=='sn');document.getElementById('payEu').classList.toggle('hidden',c!=='eu');
  var msg=dossier(t,c,cp.amount,'RÈGLEMENT ANNUEL EFFECTUÉ — PREUVE À JOINDRE');document.getElementById('paidWa').href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg);document.getElementById('paidSms').href='sms:+'+PHONE+'?body='+encodeURIComponent(msg);document.getElementById('paiement').classList.remove('hidden');document.getElementById('paiement').scrollIntoView({behavior:'smooth',block:'start'});
 });
-renderTable();var init='fr';try{var s=(localStorage.getItem('digiy-lang')||'').slice(0,2);if(T[s])init=s}catch(_){}setLang(init);
+renderTable();var init=(new URLSearchParams(location.search).get('lang')||'').slice(0,2).toLowerCase();try{if(!T[init]){var s=(localStorage.getItem('digiy-lang')||'').slice(0,2);if(T[s])init=s}}catch(_){}if(!T[init])init='fr';setLang(init);
 })();
 </script>
 <script src="/assets/digiy-loc-secure-flow-20260911.js?v=20260911-bat-v1"></script>
