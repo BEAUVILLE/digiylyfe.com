@@ -58,18 +58,19 @@
     var country=(active&&active.dataset.country?active.dataset.country:(q.get('country')||'sn')).toLowerCase()==='fr'?'fr':'sn';
     var l=currentLang();
     var txt={
-      fr:{cta:'PRÉPARER MON DOSSIER →',title:'RÈGLEMENT APRÈS PRÉSENTATION ET ACCORD SUR LA FICHE',lead:'N’effectuez aucun règlement maintenant. Envoyez vos renseignements : DIGIYLYFE contrôle le dossier, prépare la fiche, vous la présente et recueille votre accord. Le règlement vient seulement ensuite.',locked:'DOSSIER → FICHE PRÉSENTÉE → VOTRE ACCORD → PAIEMENT',valid:'FICHE APPROUVÉE · VOIR LE RÈGLEMENT →'},
-      en:{cta:'PREPARE MY FILE →',title:'PAYMENT AFTER PROFILE PRESENTATION AND APPROVAL',lead:'Do not pay now. Send your information first. DIGIYLYFE reviews the file, prepares the profile, presents it to you and gets your approval. Payment comes only after that.',locked:'FILE → PROFILE PRESENTED → YOUR APPROVAL → PAYMENT',valid:'PROFILE APPROVED · VIEW PAYMENT →'},
-      es:{cta:'PREPARAR MI EXPEDIENTE →',title:'PAGO DESPUÉS DE PRESENTAR Y APROBAR LA FICHA',lead:'No pague ahora. Envíe sus datos: DIGIYLYFE revisa el expediente, prepara la ficha, se la presenta y recoge su aprobación. El pago viene después.',locked:'EXPEDIENTE → FICHA PRESENTADA → SU APROBACIÓN → PAGO',valid:'FICHA APROBADA · VER PAGO →'},
-      pt:{cta:'PREPARAR O MEU DOSSIER →',title:'PAGAMENTO APÓS APRESENTAÇÃO E APROVAÇÃO DA FICHA',lead:'Não pague agora. Envie os seus dados: a DIGIYLYFE analisa o dossier, prepara a ficha, apresenta-a e recolhe a sua aprovação. O pagamento vem depois.',locked:'DOSSIER → FICHA APRESENTADA → SUA APROVAÇÃO → PAGAMENTO',valid:'FICHA APROVADA · VER PAGAMENTO →'},
-      it:{cta:'PREPARA IL DOSSIER →',title:'PAGAMENTO DOPO PRESENTAZIONE E APPROVAZIONE DELLA SCHEDA',lead:'Non pagare ora. Invia i tuoi dati: DIGIYLYFE controlla il dossier, prepara la scheda, te la presenta e raccoglie la tua approvazione. Il pagamento viene dopo.',locked:'DOSSIER → SCHEDA PRESENTATA → TUA APPROVAZIONE → PAGAMENTO',valid:'SCHEDA APPROVATA · VEDI PAGAMENTO →'},
-      de:{cta:'UNTERLAGEN VORBEREITEN →',title:'ZAHLUNG NACH VORLAGE UND FREIGABE DES PROFILS',lead:'Jetzt nicht zahlen. Senden Sie zuerst Ihre Angaben. DIGIYLYFE prüft die Unterlagen, erstellt das Profil, legt es Ihnen vor und holt Ihre Freigabe ein. Erst danach erfolgt die Zahlung.',locked:'UNTERLAGEN → PROFIL VORGELEGT → FREIGABE → ZAHLUNG',valid:'PROFIL FREIGEGEBEN · ZAHLUNG ANSEHEN →'},
-      nl:{cta:'MIJN DOSSIER VOORBEREIDEN →',title:'BETALING NA VOORLEGGING EN GOEDKEURING VAN HET PROFIEL',lead:'Betaal nu niet. Stuur eerst uw gegevens. DIGIYLYFE controleert het dossier, maakt het profiel, legt het aan u voor en vraagt uw goedkeuring. Pas daarna volgt de betaling.',locked:'DOSSIER → PROFIEL VOORGELEGD → UW GOEDKEURING → BETALING',valid:'PROFIEL GOEDGEKEURD · BETALING BEKIJKEN →'},
-      ar:{cta:'إعداد ملفي ←',title:'الدفع بعد عرض الملف المهني والموافقة عليه',lead:'لا تدفع الآن. أرسل معلوماتك أولاً. تراجع DIGIYLYFE الملف، تُعد ملفك المهني، تعرضه عليك وتأخذ موافقتك. يأتي الدفع بعد ذلك فقط.',locked:'الملف → عرض الملف المهني → موافقتك → الدفع',valid:'تمت الموافقة على الملف · عرض الدفع ←'}
+      fr:{cta:'PRÉPARER MON DOSSIER →',title:'SECTION PAIEMENT · APRÈS PRÉSENTATION ET ACCORD SUR LA FICHE',lead:'Cette section reste visible, mais aucun moyen de paiement n’est affiché avant votre accord sur la fiche préparée par DIGIYLYFE.',locked:'🔒 PAIEMENT VERROUILLÉ · LA FICHE DOIT D’ABORD VOUS ÊTRE PRÉSENTÉE ET APPROUVÉE',valid:'FICHE APPROUVÉE · VOIR LE RÈGLEMENT →'},
+      en:{cta:'PREPARE MY FILE →',title:'PAYMENT SECTION · AFTER PROFILE PRESENTATION AND APPROVAL',lead:'This section remains visible, but no payment method is shown before you approve the profile prepared by DIGIYLYFE.',locked:'🔒 PAYMENT LOCKED · THE PROFILE MUST FIRST BE PRESENTED TO YOU AND APPROVED',valid:'PROFILE APPROVED · VIEW PAYMENT →'},
+      es:{cta:'PREPARAR MI EXPEDIENTE →',title:'SECCIÓN DE PAGO · DESPUÉS DE PRESENTAR Y APROBAR LA FICHA',lead:'La sección permanece visible, pero no se muestra ningún medio de pago antes de su aprobación de la ficha.',locked:'🔒 PAGO BLOQUEADO · PRIMERO DEBE VER Y APROBAR LA FICHA',valid:'FICHA APROBADA · VER PAGO →'},
+      pt:{cta:'PREPARAR O MEU DOSSIER →',title:'SECÇÃO DE PAGAMENTO · APÓS APRESENTAÇÃO E APROVAÇÃO DA FICHA',lead:'A secção permanece visível, mas nenhum meio de pagamento é mostrado antes da sua aprovação da ficha.',locked:'🔒 PAGAMENTO BLOQUEADO · PRIMEIRO TEM DE VER E APROVAR A FICHA',valid:'FICHA APROVADA · VER PAGAMENTO →'},
+      it:{cta:'PREPARA IL DOSSIER →',title:'SEZIONE PAGAMENTO · DOPO PRESENTAZIONE E APPROVAZIONE DELLA SCHEDA',lead:'La sezione resta visibile, ma nessun metodo di pagamento viene mostrato prima della tua approvazione.',locked:'🔒 PAGAMENTO BLOCCATO · PRIMA DEVI VEDERE E APPROVARE LA SCHEDA',valid:'SCHEDA APPROVATA · VEDI PAGAMENTO →'},
+      de:{cta:'UNTERLAGEN VORBEREITEN →',title:'ZAHLUNGSBEREICH · NACH VORLAGE UND FREIGABE DES PROFILS',lead:'Dieser Bereich bleibt sichtbar, aber Zahlungsdaten werden erst nach Ihrer Freigabe des Profils angezeigt.',locked:'🔒 ZAHLUNG GESPERRT · PROFIL MUSS ZUERST VORGELEGT UND FREIGEGEBEN WERDEN',valid:'PROFIL FREIGEGEBEN · ZAHLUNG ANSEHEN →'},
+      nl:{cta:'MIJN DOSSIER VOORBEREIDEN →',title:'BETALINGSSECTIE · NA VOORLEGGING EN GOEDKEURING VAN HET PROFIEL',lead:'Deze sectie blijft zichtbaar, maar betaalgegevens verschijnen pas nadat u het profiel hebt goedgekeurd.',locked:'🔒 BETALING VERGRENDELD · PROFIEL MOET EERST WORDEN VOORGELEGD EN GOEDGEKEURD',valid:'PROFIEL GOEDGEKEURD · BETALING BEKIJKEN →'},
+      ar:{cta:'إعداد ملفي ←',title:'قسم الدفع · بعد عرض الملف المهني والموافقة عليه',lead:'يبقى قسم الدفع ظاهرًا، لكن لا تظهر وسائل الدفع قبل موافقتك على الملف المهني.',locked:'🔒 الدفع مقفل · يجب أولاً عرض الملف المهني عليك والموافقة عليه',valid:'تمت الموافقة على الملف · عرض الدفع ←'}
     }[l]||null;
     if(!txt)return;
     var cta=document.getElementById('memberCta'),title=document.getElementById('paymentTitle'),lead=document.getElementById('paymentLead');
     var grid=document.querySelector('#paiement .paymentGrid'),contact=document.querySelector('#paiement .contactPay'),box=document.getElementById('paiement');
+    if(box){box.hidden=false;box.style.display='block';}
     if(title)title.textContent=txt.title;
     if(lead)lead.textContent=txt.lead;
     if(!approved){
@@ -77,15 +78,17 @@
       if(grid)grid.style.display='none';
       if(contact)contact.style.display='none';
       if(box){
-        var b=document.getElementById('digiyDossierBeforePay');
-        if(!b){b=document.createElement('a');b.id='digiyDossierBeforePay';b.className='cta primary';b.style.marginTop='14px';box.appendChild(b);}
-        b.textContent=txt.locked+' →';b.href='/preparer-ma-carte.html?plan=adherent-19900&country='+country+'&lang='+l+'&flow=prevalidation-20260911';
+        var b=document.getElementById('digiyPaymentLockedState');
+        if(!b){b=document.createElement('div');b.id='digiyPaymentLockedState';b.style.marginTop='14px';b.style.padding='14px';b.style.border='1px solid #f6c45366';b.style.borderRadius='16px';b.style.background='#f6c45312';b.style.color='#fff3cf';b.style.fontWeight='1000';b.style.lineHeight='1.45';b.style.textAlign='center';box.appendChild(b);}
+        b.textContent=txt.locked;
       }
+      var old=document.getElementById('digiyDossierBeforePay');if(old)old.remove();
     }else{
       if(cta){cta.textContent=txt.valid;cta.href='#paiement';}
       if(grid)grid.style.display='grid';
       if(contact)contact.style.display='flex';
-      var old=document.getElementById('digiyDossierBeforePay');if(old)old.remove();
+      var locked=document.getElementById('digiyPaymentLockedState');if(locked)locked.remove();
+      var legacy=document.getElementById('digiyDossierBeforePay');if(legacy)legacy.remove();
     }
   }
 
