@@ -54,7 +54,7 @@ if(dakar)addon+='<script src="/assets/digiy-dossier-prefill-dakar-v1.js?v=202608
 if(bordeaux)addon+='<script src="/assets/digiy-dossier-prefill-bordeaux-v1.js?v=20260826"><\/script>';
 if(dordogne)addon+='<script src="/assets/digiy-dossier-prefill-dordogne-v1.js?v=20260826"><\/script>';
 if(petiteCote)addon+='<script src="/assets/digiy-dossier-prefill-petite-cote-v1.js?v=20260826"><\/script>';
-if(!carnet)addon+='<script src="/assets/digiy-fiche-flow-20260911.js?v=20260911-fiche-before-payment-v2"><\/script><script src="/assets/digiy-prevalidation-flow-20260911.js?v=20260911-payment-section-v3"><\/script>';
+if(!carnet)addon+='<script src="/assets/digiy-fiche-flow-20260911.js?v=20260911-fiche-before-payment-v2"><\/script><script src="/assets/digiy-prevalidation-flow-20260911.js?v=20260911-payment-direct-v4"><\/script>';
 h=h.replace(/<\/head>/i,forceCarnet+tariffLayout+freeCardStyle+'</head>');
 h=h.replace(/<\/body>/i,addon+'</body>');
 document.open();document.write(h);document.close();
