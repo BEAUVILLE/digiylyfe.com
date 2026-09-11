@@ -26,7 +26,7 @@ jobs:
           text = path.read_text(encoding='utf-8')
 
           territory_re = re.compile(
-              r'\n\s*<section class="section worldHub" id="territoires" aria-label="DIGIYLYFE HUB des territoires">.*?</section>',
+              r'\n\s*<section\b[^>]*\bid="territoires"[^>]*>.*?</section>',
               re.S,
           )
           matches = list(territory_re.finditer(text))
@@ -36,7 +36,7 @@ jobs:
           text = territory_re.sub('', text, count=1)
 
           public_re = re.compile(
-              r'(<section class="section" aria-label="Portes publiques DIGIYLYFE">.*?</section>)',
+              r'(<section\b[^>]*aria-label="Portes publiques DIGIYLYFE"[^>]*>.*?</section>)',
               re.S,
           )
           pubs = list(public_re.finditer(text))
