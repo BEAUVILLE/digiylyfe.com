@@ -21,7 +21,6 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
 
-          # 1) Public LOC: intercept the old immediate-payment submit with the secure dossier rail.
           p=Path('tarifs-loc.html')
           s=p.read_text(encoding='utf-8')
           tag='<script src="/assets/digiy-loc-secure-flow-20260911.js?v=20260911-bat-v1"></script>'
@@ -30,26 +29,25 @@ jobs:
               s=s.replace('</body>',tag+'\n</body>',1)
           p.write_text(s,encoding='utf-8')
 
-          # 2) Generic dossier firewall: LOC must never fall back to DIGIY PRO generic pricing.
           p=Path('preparer-ma-carte.html')
           s=p.read_text(encoding='utf-8')
           needle="const q=new URLSearchParams(location.search);\n"
-          guard="""const q=new URLSearchParams(location.search);
-const locNeed=(q.get('need')||'').toLowerCase(),locModule=(q.get('module')||'').toLowerCase(),locProduct=(q.get('product')||'').toLowerCase();
-if(locNeed==='accommodation'||locModule==='loc'||locProduct==='loc'){
-  const u=new URL('/tarifs-loc.html',location.origin),c=(q.get('country')||'').toLowerCase(),l=(q.get('lang')||'').slice(0,2).toLowerCase();
-  if(c==='fr'||c==='eu')u.searchParams.set('country','eu');else if(c==='sn')u.searchParams.set('country','sn');
-  if(l)u.searchParams.set('lang',l);
-  location.replace(u.pathname+u.search);
-  return;
-}
-"""
+          guard=(
+              "const q=new URLSearchParams(location.search);\n"
+              "const locNeed=(q.get('need')||'').toLowerCase(),locModule=(q.get('module')||'').toLowerCase(),locProduct=(q.get('product')||'').toLowerCase();\n"
+              "if(locNeed==='accommodation'||locModule==='loc'||locProduct==='loc'){\n"
+              "  const u=new URL('/tarifs-loc.html',location.origin),c=(q.get('country')||'').toLowerCase(),l=(q.get('lang')||'').slice(0,2).toLowerCase();\n"
+              "  if(c==='fr'||c==='eu')u.searchParams.set('country','eu');else if(c==='sn')u.searchParams.set('country','sn');\n"
+              "  if(l)u.searchParams.set('lang',l);\n"
+              "  location.replace(u.pathname+u.search);\n"
+              "  return;\n"
+              "}\n"
+          )
           if 'const locNeed=' not in s:
               if needle not in s: raise SystemExit('preparer-ma-carte LOC guard marker missing')
               s=s.replace(needle,guard,1)
           p.write_text(s,encoding='utf-8')
 
-          # 3) Legacy territory adhesion URLs: accommodation always goes to LOC tiers.
           for filename,country in [
               ('adhesion-petite-cote.html','sn'),
               ('adhesion-dakar.html','sn'),
@@ -60,22 +58,23 @@ if(locNeed==='accommodation'||locModule==='loc'||locProduct==='loc'){
               s=p.read_text(encoding='utf-8')
               marker='data-digiy-loc-route-guard'
               if marker not in s:
-                  guard=f'''<script {marker}>
-(function(){{
-  const q=new URLSearchParams(location.search);
-  if((q.get('need')||'').toLowerCase()!=='accommodation')return;
-  const u=new URL('/tarifs-loc.html',location.origin);
-  u.searchParams.set('country','{country}');
-  const l=(q.get('lang')||'').slice(0,2).toLowerCase();
-  if(l)u.searchParams.set('lang',l);
-  location.replace(u.pathname+u.search);
-}})();
-</script>'''
-                  if '</head>' not in s: raise SystemExit(f'{filename} head marker missing')
+                  guard=(
+                      '<script '+marker+'>\n'
+                      '(function(){\n'
+                      '  const q=new URLSearchParams(location.search);\n'
+                      "  if((q.get('need')||'').toLowerCase()!=='accommodation')return;\n"
+                      "  const u=new URL('/tarifs-loc.html',location.origin);\n"
+                      "  u.searchParams.set('country','"+country+"');\n"
+                      "  const l=(q.get('lang')||'').slice(0,2).toLowerCase();\n"
+                      "  if(l)u.searchParams.set('lang',l);\n"
+                      '  location.replace(u.pathname+u.search);\n'
+                      '})();\n'
+                      '</script>'
+                  )
+                  if '</head>' not in s: raise SystemExit(filename+' head marker missing')
                   s=s.replace('</head>',guard+'\n</head>',1)
               p.write_text(s,encoding='utf-8')
 
-          # 4) Petite Côte example: accommodation CTA directly opens LOC tiers.
           p=Path('demo-petite-cote.html')
           s=p.read_text(encoding='utf-8')
           old="var j=new URL('/adhesion-petite-cote.html',location.origin);if(need!=='guidance')j.searchParams.set('need',need);j.searchParams.set('local',zone);j.searchParams.set('lang',l);"
@@ -86,7 +85,6 @@ if(locNeed==='accommodation'||locModule==='loc'||locProduct==='loc'){
               raise SystemExit('demo-petite-cote LOC route marker missing')
           p.write_text(s,encoding='utf-8')
 
-          # 5) Dordogne example: accommodation CTA directly opens Europe LOC tiers.
           p=Path('demo-dordogne.html')
           s=p.read_text(encoding='utf-8')
           old="var join=new URL('/adhesion-dordogne.html',location.origin);if(need!=='guidance')join.searchParams.set('need',need);join.searchParams.set('local','sarlat');document.getElementById('join').href=join.pathname+join.search;"
@@ -97,7 +95,6 @@ if(locNeed==='accommodation'||locModule==='loc'||locProduct==='loc'){
               raise SystemExit('demo-dordogne LOC route marker missing')
           p.write_text(s,encoding='utf-8')
 
-          # 6) BAT workshop: LOC dossiers use their dedicated annual SN/FR server rail.
           p=Path('masters/BAT-ATELIER-DIGIYLYFE-V1.html')
           s=p.read_text(encoding='utf-8')
           old="async function call(action,payload={}){const s=await session();if(!s)throw Error('Session atelier absente.');const r=await fetch(U+'/functions/v1/digiy-adhesion-inbox',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+s.access_token,'apikey':K},body:JSON.stringify({action,...payload})});const j=await r.json().catch(()=>({}));if(!r.ok||!j.ok)throw Error(j.error||j.detail||'Erreur atelier');return j}"
