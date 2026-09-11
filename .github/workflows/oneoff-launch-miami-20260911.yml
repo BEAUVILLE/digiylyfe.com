@@ -1,0 +1,138 @@
+name: One-off launch Miami pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/oneoff-launch-miami-20260911.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Open Miami pilot
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          def rep(path, old, new, count=1):
+              p=Path(path); s=p.read_text(encoding='utf-8')
+              if old not in s:
+                  raise SystemExit(f'marker missing in {path}: {old[:120]}')
+              s=s.replace(old,new,count)
+              p.write_text(s,encoding='utf-8')
+
+          # 1) Country runtime: US / Miami pilot, only validated public prices.
+          p=Path('assets/digiy-adhesion-runtime-v1.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          gm=d.setdefault('generated_from_master',{})
+          gm['usa_country']='BEAUVILLE/digiy-master-modeles/MASTER-PAYS-USA-V1/config/country.json'
+          gm['usa_pricing']='BEAUVILLE/digiy-master-modeles/MASTER-PAYS-USA-V1/config/pricing.json'
+          d['countries']=[c for c in d.get('countries',[]) if c.get('id')!='US']
+          d['countries'].append({
+            'id':'US','slug':'united-states','status':'active',
+            'labels':{'fr':'États-Unis','en':'United States','es':'Estados Unidos','pt':'Estados Unidos','it':'Stati Uniti','de':'Vereinigte Staaten','nl':'Verenigde Staten','ar':'الولايات المتحدة'},
+            'currency':{'code':'USD','label':'$'},'calling_code':'+1','timezone':'America/New_York','default_language':'en',
+            'interface_languages':['en','es','fr','pt','it','de','nl','ar'],
+            'pricing':{
+              'membership':{'adherent-19900':{'amount':29,'label':'$29 / month','billing_period':'month','billing_months':1,'annual_amount':290,'annual_label':'$290 / year'}},
+              'modules':{'loc':{'billing_period':'year','commission_rate':0,'tiers':[{'max':3,'label':'1–3','amount':790},{'max':10,'label':'4–10','amount':990},{'max':15,'label':'11–15','amount':1290},{'max':20,'label':'16–20','amount':1590}],'above_20':'quote'}},
+              'services':{}
+            },
+            'territories':[{'id':'US-FL-MIAMI','slug':'miami','status':'active','labels':{'fr':'Miami · Floride','en':'Miami · Florida','es':'Miami · Florida','pt':'Miami · Flórida','it':'Miami · Florida','de':'Miami · Florida','nl':'Miami · Florida','ar':'ميامي · فلوريدا'},'zones':[{'id':'US-FL-MIAMI-MIAMI','slug':'miami','label':'Miami','status':'active'}]}]
+          })
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          # 2) Root landing: the exact ?lang=en URL used in the Miami emails sees the pilot immediately.
+          p=Path('index.html'); s=p.read_text(encoding='utf-8')
+          marker='data-digiy-miami-pilot="1"'
+          if marker not in s:
+              inject='''\n<style data-digiy-miami-pilot="1">#digiy-miami-pilot{width:min(1050px,calc(100% - 28px));margin:14px auto 6px;padding:18px;border:1px solid rgba(246,196,83,.65);border-radius:24px;background:linear-gradient(145deg,rgba(246,196,83,.15),rgba(45,212,191,.11));color:#fffaf0;text-align:center;box-shadow:0 16px 40px #0004}#digiy-miami-pilot strong{display:block;color:#fff3cf;font-size:clamp(20px,4vw,30px);font-weight:1000}#digiy-miami-pilot p{margin:8px auto 12px;max-width:760px;color:#dce9e3;font-weight:800;line-height:1.45}#digiy-miami-pilot .miami-actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}#digiy-miami-pilot a{min-height:48px;padding:10px 15px;border-radius:999px;border:1px solid #ffffff2b;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:#fff;font-weight:1000}#digiy-miami-pilot a:first-child{background:linear-gradient(135deg,#fff1bd,#f6c453,#2dd4bf);color:#06140f;border:0}</style>\n<script data-digiy-miami-pilot="1">(function(){try{var q=new URLSearchParams(location.search),l=(q.get('lang')||'').slice(0,2).toLowerCase();if(l!=='en')return;var x=document.createElement('section');x.id='digiy-miami-pilot';x.innerHTML='<strong>🇺🇸 MIAMI PILOT · YOUR FIRST DIGIY CARD IS FREE</strong><p>A permanent digital card + QR, direct customer contact, no advertising and 0% DIGIYLYFE commission. You keep your existing website, Google and social tools.</p><div class="miami-actions"><a href="/carte-gratuite.html?country=us&lang=en&territory=miami">GET MY FREE MIAMI CARD →</a><a href="/tarifs-adherents-1.html?country=us&lang=en">SEE USA PRICING →</a></div>';var m=document.querySelector('main');if(m)m.insertAdjacentElement('afterbegin',x);else document.body.insertAdjacentElement('afterbegin',x)}catch(_){}})();</script>\n'''
+              if '</body>' not in s: raise SystemExit('index body marker missing')
+              s=s.replace('</body>',inject+'</body>',1)
+              p.write_text(s,encoding='utf-8')
+
+          # 3) Free card page: US country + $0. US pilot intake falls back to direct WhatsApp if server-side US intake is unavailable.
+          rep('carte-gratuite.html','<div class="free">0 FCFA · 0 €</div>','<div class="free">0 FCFA · 0 € · $0</div>')
+          rep('carte-gratuite.html','<select id="country" required><option value="SN">🇸🇳 Sénégal</option><option value="FR">🇫🇷 France</option></select>','<select id="country" required><option value="SN">🇸🇳 Sénégal</option><option value="FR">🇫🇷 France</option><option value="US">🇺🇸 USA · Miami</option></select>')
+          rep('carte-gratuite.html',"document.getElementById('country').value=c==='FR'?'FR':'SN';document.getElementById('backTariffs').href='https://digiylyfe.com/tarifs-adherents-1.html?country='+(c==='FR'?'fr':'sn');","const initialCountry=c==='US'?'US':c==='FR'?'FR':'SN';document.getElementById('country').value=initialCountry;document.getElementById('backTariffs').href='https://digiylyfe.com/tarifs-adherents-1.html?country='+initialCountry.toLowerCase();")
+          rep('carte-gratuite.html',"try{const r=await fetch(ENDPOINT,{method:'POST'","const selectedCountry=document.getElementById('country').value;if(selectedCountry==='US'){const msg=['🪪 DIGIYLYFE — MIAMI PILOT · FREE CARD REQUEST','',`Business: ${document.getElementById('proName').value}`,`Contact: ${document.getElementById('responsible').value}`,`Activity: ${document.getElementById('job').value}`,`City / area: ${document.getElementById('zone').value}`,`WhatsApp / phone: ${document.getElementById('phone').value}`,`Email: ${document.getElementById('email').value}`,'','No payment requested · Miami pilot'].join('\\n');wa.href='https://wa.me/221771342889?text='+encodeURIComponent(msg);after.classList.add('show');status.textContent=lang()==='es'?'Piloto Miami: continúa por WhatsApp para enviar tu solicitud de tarjeta gratuita.':'Miami pilot: continue on WhatsApp to send your free card request.';btn.disabled=false;return}try{const r=await fetch(ENDPOINT,{method:'POST'",1)
+          rep('carte-gratuite.html',"form.reset();document.getElementById('country').value=c==='FR'?'FR':'SN';","form.reset();document.getElementById('country').value=initialCountry;",1)
+
+          # 4) USA pricing on the professional offer page. No invented USA pricing for optional websites.
+          rep('tarifs-adherents-1.html','.country{display:grid;grid-template-columns:1fr 1fr;gap:8px;','.country{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;',1)
+          rep('tarifs-adherents-1.html','<div class="country"><button type="button" data-country="SN">🇸🇳 SÉNÉGAL · FCFA</button><button type="button" data-country="FR">🇫🇷 FRANCE · €</button></div>','<div class="country"><button type="button" data-country="SN">🇸🇳 SÉNÉGAL · FCFA</button><button type="button" data-country="FR">🇫🇷 FRANCE · €</button><button type="button" data-country="US">🇺🇸 USA · $</button></div>')
+          old="const PRICES={SN:{sheet:'À PARTIR DE 100 000 FCFA',pro:'19 900 FCFA / MOIS',proExtra:'',premium:'À PARTIR DE 250 000 FCFA',extra:'À PARTIR DE 450 000 FCFA'},FR:{sheet:'À PARTIR DE 250 €',pro:'450 € / AN',proExtra:'1 RÈGLEMENT · 2 MOIS OFFERTS À LA PREMIÈRE ADHÉSION',premium:'À PARTIR DE 480 €',extra:'À PARTIR DE 800 €'}};"
+          new="const PRICES={SN:{sheet:'À PARTIR DE 100 000 FCFA',pro:'19 900 FCFA / MOIS',proExtra:'',premium:'À PARTIR DE 250 000 FCFA',extra:'À PARTIR DE 450 000 FCFA'},FR:{sheet:'À PARTIR DE 250 €',pro:'450 € / AN',proExtra:'1 RÈGLEMENT · 2 MOIS OFFERTS À LA PREMIÈRE ADHÉSION',premium:'À PARTIR DE 480 €',extra:'À PARTIR DE 800 €'},US:{sheet:'INCLUDED WITH DIGIY PRO',pro:'$29 / MONTH',proExtra:'OR $290 / YEAR',premium:'ON REQUEST',extra:'ON REQUEST'}};"
+          rep('tarifs-adherents-1.html',old,new)
+          rep('tarifs-adherents-1.html',"if(pc)pc.style.display=payApproved?'flex':'none';document.querySelectorAll('[data-country]')","if(pc)pc.style.display=payApproved?'flex':'none';const payCards=document.querySelectorAll('#paiement .payCard');if(payCards.length>=2){payCards[0].hidden=countryId!=='SN';payCards[1].hidden=countryId==='SN';const f=payCards[1].querySelector('.payFlag');if(f)f.textContent=countryId==='US'?'🇺🇸':'🇪🇺'}if(countryId==='US'){document.getElementById('sendwaveTitle').textContent='USA · SENDWAVE → WAVE SENEGAL';document.getElementById('sendwaveText').textContent='From the United States, select Senegal and Jean Baptiste Beauville: +221 77 134 28 89.'}document.querySelectorAll('[data-country]')",1)
+          rep('tarifs-adherents-1.html',"setLang(localStorage.getItem('digiy_lang')||'fr');","setLang((new URLSearchParams(location.search)).get('lang')||localStorage.getItem('digiy_lang')||'fr');",1)
+
+          # 5) Prevalidation loader: allow US and hide unpriced optional services during the Miami pilot.
+          rep('preparer-ma-carte.html',"const locNeed=(q.get('need')||'').toLowerCase(),locModule=(q.get('module')||'').toLowerCase(),locProduct=(q.get('product')||'').toLowerCase();","const locNeed=(q.get('need')||'').toLowerCase(),locModule=(q.get('module')||'').toLowerCase(),locProduct=(q.get('product')||'').toLowerCase(),usPilot=(q.get('country')||'').toLowerCase()==='us';")
+          rep('preparer-ma-carte.html',"if(c==='fr'||c==='eu')u.searchParams.set('country','eu');else if(c==='sn')u.searchParams.set('country','sn');","if(c==='fr'||c==='eu')u.searchParams.set('country','eu');else if(c==='sn')u.searchParams.set('country','sn');else if(c==='us')u.searchParams.set('country','us');")
+          rep('preparer-ma-carte.html',"const forceCarnet=carnet?'<style data-carnet-force-minimal>","const forceUs=usPilot?'<style data-us-pilot>.extra{display:none!important}</style>':'';\nconst forceCarnet=carnet?'<style data-carnet-force-minimal>",1)
+          rep('preparer-ma-carte.html',"h=h.replace(/<\\/head>/i,forceCarnet+tariffLayout+freeCardStyle+'</head>');","h=h.replace(/<\\/head>/i,forceUs+forceCarnet+tariffLayout+freeCardStyle+'</head>');",1)
+
+          # 6) LOC: add Miami fixed annual tiers. Above 20 units => human quote. No fake monthly reference or promo claim.
+          rep('tarifs-loc.html','<strong id="base">268 800 FCFA · 720 € / an</strong>','<strong id="base">268 800 FCFA · 720 € / an · $790 / year</strong>')
+          rep('tarifs-loc.html','<th>EUROPE · RÉFÉRENCE 12 MOIS</th><th>EUROPE · ANNUEL DIGIY -20 %</th></tr>','<th>EUROPE · RÉFÉRENCE 12 MOIS</th><th>EUROPE · ANNUEL DIGIY -20 %</th><th>USA · MIAMI PILOT · ANNUEL</th></tr>')
+          rep('tarifs-loc.html','<select id="country" required><option value="sn">Sénégal · FCFA</option><option value="eu">Europe · €</option></select>','<select id="country" required><option value="sn">Sénégal · FCFA</option><option value="eu">Europe · €</option><option value="us">USA · Miami · $</option></select>')
+          rep('tarifs-loc.html','<article class="pay" id="payEu"><strong>🇪🇺 EUROPE · SENDWAVE → WAVE SÉNÉGAL</strong><div class="name">Jean Baptiste Beauville</div><a href="tel:+221771342889">+221 77 134 28 89</a><p id="sendwave">Depuis l’Europe, utilisez Sendwave vers ce numéro Wave Sénégal pour le règlement annuel affiché.</p></article>','<article class="pay" id="payEu"><strong>🇪🇺 EUROPE · SENDWAVE → WAVE SÉNÉGAL</strong><div class="name">Jean Baptiste Beauville</div><a href="tel:+221771342889">+221 77 134 28 89</a><p id="sendwave">Depuis l’Europe, utilisez Sendwave vers ce numéro Wave Sénégal pour le règlement annuel affiché.</p></article><article class="pay hidden" id="payUs"><strong>🇺🇸 USA · SENDWAVE → WAVE SÉNÉGAL</strong><div class="name">Jean Baptiste Beauville</div><a href="tel:+221771342889">+221 77 134 28 89</a><p>From the United States, use Sendwave to this Wave Senegal number only after DIGIYLYFE validates your file.</p></article>')
+          reps={
+            "{max:3,label:'1–3',snRef:28000,snAnnual:268800,euRef:75,euAnnual:720}":"{max:3,label:'1–3',snRef:28000,snAnnual:268800,euRef:75,euAnnual:720,usAnnual:790}",
+            "{max:10,label:'4–10',snRef:35000,snAnnual:336000,euRef:95,euAnnual:912}":"{max:10,label:'4–10',snRef:35000,snAnnual:336000,euRef:95,euAnnual:912,usAnnual:990}",
+            "{max:15,label:'11–15',snRef:45000,snAnnual:432000,euRef:125,euAnnual:1200}":"{max:15,label:'11–15',snRef:45000,snAnnual:432000,euRef:125,euAnnual:1200,usAnnual:1290}",
+            "{max:20,label:'16–20',snRef:55000,snAnnual:528000,euRef:150,euAnnual:1440}":"{max:20,label:'16–20',snRef:55000,snAnnual:528000,euRef:150,euAnnual:1440,usAnnual:1590}",
+            "{max:25,label:'21–25',snRef:65000,snAnnual:624000,euRef:180,euAnnual:1728}":"{max:25,label:'21–25',snRef:65000,snAnnual:624000,euRef:180,euAnnual:1728,usAnnual:null}",
+            "{max:30,label:'26–30',snRef:75000,snAnnual:720000,euRef:210,euAnnual:2016}":"{max:30,label:'26–30',snRef:75000,snAnnual:720000,euRef:210,euAnnual:2016,usAnnual:null}",
+            "{max:35,label:'31–35',snRef:90000,snAnnual:864000,euRef:250,euAnnual:2400}":"{max:35,label:'31–35',snRef:90000,snAnnual:864000,euRef:250,euAnnual:2400,usAnnual:null}",
+            "{max:40,label:'36–40',snRef:105000,snAnnual:1008000,euRef:290,euAnnual:2784}":"{max:40,label:'36–40',snRef:105000,snAnnual:1008000,euRef:290,euAnnual:2784,usAnnual:null}"
+          }
+          for a,b in reps.items(): rep('tarifs-loc.html',a,b)
+          rep('tarifs-loc.html',"function money(n,c){return c==='sn'?Number(n).toLocaleString('fr-FR').replace(/\\u202f/g,' ')+' FCFA':Number(n).toLocaleString('fr-FR')+' €'}\nfunction refMonthly(t,c){return c==='sn'?t.snRef:t.euRef}\nfunction annualAmount(t,c){return c==='sn'?t.snAnnual:t.euAnnual}\nfunction expectedTier(n){for(var i=0;i<tiers.length;i++)if(n<=tiers[i].max)return tiers[i];return null}","function money(n,c){if(c==='sn')return Number(n).toLocaleString('fr-FR').replace(/\\u202f/g,' ')+' FCFA';if(c==='us')return '$'+Number(n).toLocaleString('en-US');return Number(n).toLocaleString('fr-FR')+' €'}\nfunction refMonthly(t,c){return c==='sn'?t.snRef:c==='eu'?t.euRef:null}\nfunction annualAmount(t,c){return c==='sn'?t.snAnnual:c==='eu'?t.euAnnual:t.usAnnual}\nfunction expectedTier(n,c){if(c==='us'&&n>20)return null;for(var i=0;i<tiers.length;i++)if(n<=tiers[i].max)return tiers[i];return null}")
+          rep('tarifs-loc.html',"   '<td class=\"annualPrice\">'+money(t.euAnnual,'eu')+'<span class=\"saving\">− '+money(euSave,'eu')+' · + 2 mois offerts</span></td>';","   '<td class=\"annualPrice\">'+money(t.euAnnual,'eu')+'<span class=\"saving\">− '+money(euSave,'eu')+' · + 2 mois offerts</span></td>'+\n   '<td class=\"annualPrice\">'+(t.usAnnual?money(t.usAnnual,'us')+' / year · 0% DIGIYLYFE commission':'SUR DEVIS')+'</td>';",1)
+          rep('tarifs-loc.html',"var tr=document.createElement('tr');tr.innerHTML='<td>+40</td><td>SUR DEVIS</td><td>SUR DEVIS</td><td>SUR DEVIS</td><td>SUR DEVIS</td>';body.appendChild(tr);","var tr=document.createElement('tr');tr.innerHTML='<td>+40</td><td>SUR DEVIS</td><td>SUR DEVIS</td><td>SUR DEVIS</td><td>SUR DEVIS</td><td>SUR DEVIS</td>';body.appendChild(tr);",1)
+          rep('tarifs-loc.html',"tiers.forEach(function(t){var a=annualAmount(t,c),o=document.createElement('option');o.value=t.label+'|'+a+'|'+c;o.textContent=t.label+' · '+annualText(a,c,x);sel.appendChild(o)});","tiers.forEach(function(t){var a=annualAmount(t,c);if(a==null)return;var o=document.createElement('option');o.value=t.label+'|'+a+'|'+c;o.textContent=t.label+' · '+annualText(a,c,x);sel.appendChild(o)});",1)
+          rep('tarifs-loc.html',"var n=Number(document.getElementById('units').value||0),c=document.getElementById('country').value,x=T[currentLang()]||T.fr,t=expectedTier(n),st=document.getElementById('summaryTitle'),tx=document.getElementById('summaryText');","var n=Number(document.getElementById('units').value||0),c=document.getElementById('country').value,x=T[currentLang()]||T.fr,t=expectedTier(n,c),st=document.getElementById('summaryTitle'),tx=document.getElementById('summaryText');",1)
+          rep('tarifs-loc.html',"if(!t){st.textContent=x.quoteTitle;tx.textContent=x.quoteText;return}\n var ref=refMonthly(t,c),annual=annualAmount(t,c),ref12=ref*12,save=ref12-annual;\n st.textContent=x.expected+' '+t.label+' · '+annualText(annual,c,x);\n tx.textContent=money(ref,'sn'===c?'sn':'eu')+' / mois de référence · '+money(ref12,c)+' sur 12 mois → économie '+money(save,c)+' (-20 %) · + 2 mois offerts au premier cycle.';","if(!t){st.textContent=c==='us'?'Miami pilot · 20+ units · quote':x.quoteTitle;tx.textContent=c==='us'?'Contact DIGIYLYFE for a validated annual quote before any payment.':x.quoteText;return}\n var ref=refMonthly(t,c),annual=annualAmount(t,c);\n st.textContent=x.expected+' '+t.label+' · '+annualText(annual,c,x);\n if(c==='us'){tx.textContent='Miami pilot · fixed annual price · 0% DIGIYLYFE commission · no payment before file validation.';return}\n var ref12=ref*12,save=ref12-annual;tx.textContent=money(ref,c)+' / mois de référence · '+money(ref12,c)+' sur 12 mois → économie '+money(save,c)+' (-20 %) · + 2 mois offerts au premier cycle.';",1)
+          rep('tarifs-loc.html',"e.preventDefault();var n=Number(field('units')),c=document.getElementById('country').value,t=expectedTier(n),cp=chosen()","e.preventDefault();var n=Number(field('units')),c=document.getElementById('country').value,t=expectedTier(n,c),cp=chosen()",1)
+          rep('tarifs-loc.html',"'Avantage : -20 % + 2 mois offerts à la première adhésion','Premier renouvellement : 12 mois au même tarif annuel affiché'","'Avantage : '+(c==='us'?'0 % commission DIGIYLYFE · tarif pilote Miami':'-20 % + 2 mois offerts à la première adhésion'),c==='us'?'Règlement : après validation humaine du dossier':'Premier renouvellement : 12 mois au même tarif annuel affiché'",1)
+
+          # 7) Secure LOC layer: US preselection + honest WhatsApp prevalidation fallback while the US Edge Function remains closed.
+          rep('assets/digiy-loc-secure-flow-20260911.js',"function fmt(n,c){return c==='sn'?Number(n).toLocaleString('fr-FR').replace(/\\u202f/g,' ')+' FCFA':Number(n).toLocaleString('fr-FR')+' €'}","function fmt(n,c){if(c==='sn')return Number(n).toLocaleString('fr-FR').replace(/\\u202f/g,' ')+' FCFA';if(c==='us')return '$'+Number(n).toLocaleString('en-US');return Number(n).toLocaleString('fr-FR')+' €'}")
+          rep('assets/digiy-loc-secure-flow-20260911.js',"if(c!=='sn'&&c!=='eu')return;","if(c!=='sn'&&c!=='eu'&&c!=='us')return;",1)
+          rep('assets/digiy-loc-secure-flow-20260911.js',"if(n>40){const q=$('quote');if(q){q.classList.remove('hidden');q.scrollIntoView({behavior:'smooth',block:'start'})}return}","if(n>40||(country==='us'&&n>20)){const q=$('quote');if(q){q.classList.remove('hidden');const h=$('quoteTitle');if(h&&country==='us')h.textContent='Miami pilot · 20+ units · quote';q.scrollIntoView({behavior:'smooth',block:'start'})}return}",1)
+          rep('assets/digiy-loc-secure-flow-20260911.js',"btn.disabled=true;show(x.sending,false);\n try{\n  const body={country:country==='sn'?'SN':'FR',tier_label:tier,amount,units:n,business:value('business'),manager:value('manager'),phone:value('phone'),email,zone:value('zone'),lodging_type:value('type'),note:value('free'),lang:lang()};","btn.disabled=true;if(country==='us'){const body={country:'US',tier_label:tier,amount,units:n,business:value('business'),manager:value('manager'),phone:value('phone'),email,zone:value('zone'),lodging_type:value('type'),note:value('free'),lang:lang()};const adminText=['DIGIY LOC — MIAMI PILOT · DOSSIER AVANT BAT','Établissement : '+body.business,'Responsable : '+body.manager,'E-mail : '+body.email,'Téléphone : '+body.phone,'Zone : '+body.zone,'Unités : '+body.units,'Palier : '+body.tier_label,'Tarif annuel : $'+Number(body.amount).toLocaleString('en-US'),'Statut : BAT À PRÉPARER · AUCUN PAIEMENT ENCORE'].join('\\n');show('<strong>✅ MIAMI PILOT · LOC FILE READY</strong><br><br>No payment now. Send this file to DIGIYLYFE on WhatsApp for human validation and proof approval.<div class=\"actions\" style=\"margin-top:12px\"><a class=\"cta\" target=\"_blank\" rel=\"noopener\" href=\"https://wa.me/'+PHONE+'?text='+encodeURIComponent(adminText)+'\">'+x.wa+'</a></div>',false);Array.from(form.querySelectorAll('input,select,textarea,button')).forEach(el=>el.disabled=true);statusBox().scrollIntoView({behavior:'smooth',block:'center'});return}show(x.sending,false);\n try{\n  const body={country:country==='sn'?'SN':'FR',tier_label:tier,amount,units:n,business:value('business'),manager:value('manager'),phone:value('phone'),email,zone:value('zone'),lodging_type:value('type'),note:value('free'),lang:lang()};",1)
+          rep('assets/digiy-loc-secure-flow-20260911.js',"document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>setTimeout(copy,0)));preselectCountry();copy();","document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>setTimeout(copy,0)));$('country')?.addEventListener('change',()=>setTimeout(()=>{if(value('country')==='us'){if($('offerTitle'))$('offerTitle').textContent='🇺🇸 MIAMI PILOT · FIXED ANNUAL PRICE';if($('offerText'))$('offerText').textContent='$790 · $990 · $1,290 · $1,590 per year depending on active units. Above 20 units: quote. 0% DIGIYLYFE commission.';if($('note'))$('note').textContent='Miami pilot · fixed annual LOC pricing · direct booking · direct customer relationship · 0% DIGIYLYFE commission · no payment before human validation.'}else marketing()},0));preselectCountry();copy();if(value('country')==='us')$('country')?.dispatchEvent(new Event('change',{bubbles:true}));",1)
+
+          # Lightweight integrity checks.
+          checks={
+            'index.html':['MIAMI PILOT','carte-gratuite.html?country=us'],
+            'carte-gratuite.html':['value="US"','MIAMI PILOT · FREE CARD REQUEST'],
+            'tarifs-adherents-1.html':["US:{sheet:'INCLUDED WITH DIGIY PRO'",'$29 / MONTH','$290 / YEAR'],
+            'preparer-ma-carte.html':["c==='us'","data-us-pilot"],
+            'tarifs-loc.html':['USA · Miami · $','usAnnual:790','usAnnual:1590'],
+            'assets/digiy-loc-secure-flow-20260911.js':['MIAMI PILOT · LOC FILE READY',"c!=='us'"]
+          }
+          for f,needles in checks.items():
+              text=Path(f).read_text(encoding='utf-8')
+              for n in needles:
+                  if n not in text: raise SystemExit(f'check failed {f}: {n}')
+          print('Miami pilot public launch patched successfully')
+          PY
+      - name: Commit Miami pilot launch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/digiy-adhesion-runtime-v1.json index.html carte-gratuite.html tarifs-adherents-1.html preparer-ma-carte.html tarifs-loc.html assets/digiy-loc-secure-flow-20260911.js
+          git commit -m "feat: launch Miami pilot with USD pricing and intake [skip ci]"
+          git push
