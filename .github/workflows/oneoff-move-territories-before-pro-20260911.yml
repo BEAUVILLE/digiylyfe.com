@@ -1,0 +1,67 @@
+name: oneoff-move-territories-before-pro-20260911
+
+on:
+  push:
+    paths:
+      - '.github/workflows/oneoff-move-territories-before-pro-20260911.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  reorder:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Move public territory hub before professional journey
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          territory_re = re.compile(
+              r'\n\s*<section class="section worldHub" id="territoires" aria-label="DIGIYLYFE HUB des territoires">.*?</section>',
+              re.S,
+          )
+          territory_matches = list(territory_re.finditer(text))
+          if len(territory_matches) != 1:
+              raise SystemExit(f'Expected exactly 1 territory hub, found {len(territory_matches)}')
+          territory = territory_matches[0].group(0).strip('\n')
+          text_without = territory_re.sub('', text, count=1)
+
+          public_re = re.compile(
+              r'(<section class="section" aria-label="Portes publiques DIGIYLYFE">.*?</section>)',
+              re.S,
+          )
+          public_matches = list(public_re.finditer(text_without))
+          if len(public_matches) != 1:
+              raise SystemExit(f'Expected exactly 1 public doors section, found {len(public_matches)}')
+
+          text_new = public_re.sub(r'\1\n\n' + territory, text_without, count=1)
+
+          if text_new.count('id="territoires"') != 1:
+              raise SystemExit('Territory hub duplication/removal detected')
+          if text_new.index('id="territoires"') > text_new.index('class="brandClaim"'):
+              raise SystemExit('Territory hub was not moved before the professional presentation')
+          if text_new.index('aria-label="Portes publiques DIGIYLYFE"') > text_new.index('id="territoires"'):
+              raise SystemExit('Territory hub must remain after the public door')
+
+          path.write_text(text_new, encoding='utf-8')
+          PY
+
+      - name: Commit targeted reorder
+        run: |
+          git config user.name "DIGIY LYFE"
+          git config user.email "baptistejb24@gmail.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No index change required"
+            exit 0
+          fi
+          git commit -m "fix: move territory access before professional journey"
+          git push
