@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#06140f">
 <title>DIGIYLYFE — Bon à tirer</title>
 <style>
-:root{--bg:#06140f;--panel:#0b241a;--ink:#fffaf0;--muted:#c6d4cd;--gold:#f6c453;--mint:#2dd4bf;--green:#22c55e;--red:#ef4444;--line:#ffffff22}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#123b2b 0,#06140f 45%,#020805 100%);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{width:min(760px,calc(100% - 24px));margin:auto;padding:20px 0 42px}.card{border:1px solid var(--line);border-radius:26px;background:#ffffff08;box-shadow:0 22px 60px #0005;padding:20px;margin-bottom:14px}.ey{font-size:11px;font-weight:1000;letter-spacing:.11em;color:var(--gold)}h1{margin:8px 0;font-size:clamp(34px,8vw,56px);line-height:.95}h2{margin:0 0 8px}.muted{color:var(--muted);line-height:1.5;font-weight:750}.status,.summary,.pay{padding:13px;border:1px solid var(--line);border-radius:16px;background:#ffffff08;margin-top:12px}.summary{display:grid;gap:7px}.row{display:flex;justify-content:space-between;gap:12px}.row strong:last-child{text-align:right}.total{font-size:22px;color:#fff1bd}.btn{width:100%;min-height:54px;border:0;border-radius:999px;padding:12px 16px;font:inherit;font-weight:1000;cursor:pointer}.primary{background:linear-gradient(135deg,#fff1bd,var(--gold),var(--mint));color:#07160f}.secondary{background:#ffffff0d;color:#fff;border:1px solid var(--line);text-decoration:none;display:flex;align-items:center;justify-content:center}.danger{background:#ef444418;color:#fecaca;border:1px solid #ef444466}.actions{display:grid;gap:9px;margin-top:12px}.check{display:flex;gap:9px;align-items:flex-start;margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:15px}.check input{width:22px;height:22px;margin:0}.check span{color:var(--muted);font-size:13px;line-height:1.45;font-weight:800}textarea{width:100%;min-height:100px;margin-top:10px;border:1px solid var(--line);border-radius:14px;background:#04140f;color:#fff;padding:12px;font:inherit}.ok{border-color:#22c55e66;background:#22c55e14;color:#bbf7d0}.warn{border-color:#f6c45366;background:#f6c45312;color:#fff3cf}.bad{border-color:#ef444466;background:#ef444412;color:#fecaca}[hidden]{display:none!important}
+:root{--bg:#06140f;--panel:#0b241a;--ink:#fffaf0;--muted:#c6d4cd;--gold:#f6c453;--mint:#2dd4bf;--green:#22c55e;--red:#ef4444;--line:#ffffff22}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#123b2b 0,#06140f 45%,#020805 100%);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{width:min(760px,calc(100% - 24px));margin:auto;padding:20px 0 42px}.card{border:1px solid var(--line);border-radius:26px;background:#ffffff08;box-shadow:0 22px 60px #0005;padding:20px;margin-bottom:14px}.ey{font-size:11px;font-weight:1000;letter-spacing:.11em;color:var(--gold)}h1{margin:8px 0;font-size:clamp(34px,8vw,56px);line-height:.95}h2{margin:0 0 8px}.muted{color:var(--muted);line-height:1.5;font-weight:750}.status,.summary,.pay{padding:13px;border:1px solid var(--line);border-radius:16px;background:#ffffff08;margin-top:12px}.summary{display:grid;gap:7px}.row{display:flex;justify-content:space-between;gap:12px}.row strong:last-child{text-align:right}.total{font-size:22px;color:#fff1bd}.btn{width:100%;min-height:54px;border:0;border-radius:999px;padding:12px 16px;font:inherit;font-weight:1000;cursor:pointer}.primary{background:linear-gradient(135deg,#fff1bd,var(--gold),var(--mint));color:#07160f}.secondary{background:#ffffff0d;color:#fff;border:1px solid var(--line);text-decoration:none;display:flex;align-items:center;justify-content:center}.danger{background:#ef444418;color:#fecaca;border:1px solid #ef444466}.actions{display:grid;gap:9px;margin-top:12px}.check{display:flex;gap:9px;align-items:flex-start;margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:15px}.check input{width:22px;height:22px;margin:0}.check span{color:var(--muted);font-size:13px;line-height:1.45;font-weight:800}textarea,input[type=file]{width:100%;margin-top:10px;border:1px solid var(--line);border-radius:14px;background:#04140f;color:#fff;padding:12px;font:inherit}textarea{min-height:100px}.ok{border-color:#22c55e66;background:#22c55e14;color:#bbf7d0}.warn{border-color:#f6c45366;background:#f6c45312;color:#fff3cf}.bad{border-color:#ef444466;background:#ef444412;color:#fecaca}.proofBox{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}.proofBox strong{color:#fff1bd}.small{font-size:11px;color:var(--muted);line-height:1.45;margin-top:7px}[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -29,24 +29,58 @@
 <textarea id="note" maxlength="1000" placeholder="Une correction à demander ? Indiquez-la ici avant de valider."></textarea>
 <div class="actions"><button class="btn danger" id="correction">↩ DEMANDER UNE CORRECTION</button></div>
 </div>
-<div id="payment" class="pay ok" hidden></div>
+<div id="payment" class="pay ok" hidden>
+<div id="paymentText"></div>
+<div class="proofBox" id="proofBox">
+<strong>APRÈS VOTRE RÈGLEMENT</strong>
+<div class="small">Ajoutez ici la capture du règlement ou le reçu PDF. JPEG, PNG, WEBP ou PDF · 10 Mo maximum.</div>
+<input id="proof" type="file" accept="image/jpeg,image/png,image/webp,application/pdf">
+<div class="actions"><button class="btn primary" id="sendProof">📎 ENVOYER MA PREUVE DE RÈGLEMENT</button></div>
+</div>
+<div id="proofState" class="status warn" hidden></div>
+</div>
 </section>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (()=>{
 'use strict';
-const API='https://wesqmwjjtsefyjnluosj.supabase.co/functions/v1/digiy-bat-public';
-const KEY='sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3';
-const q=new URLSearchParams(location.search),id=q.get('id')||'',token=q.get('token')||'';
-const $=s=>document.querySelector(s),status=$('#status'),content=$('#content'),decision=$('#decision'),payment=$('#payment'),approve=$('#approve'),confirm=$('#confirm'),note=$('#note');
+const U='https://wesqmwjjtsefyjnluosj.supabase.co',API=U+'/functions/v1/digiy-bat-public',KEY='sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3',BUCKET='digiy-adhesion-payment-proofs';
+const db=window.supabase.createClient(U,KEY),q=new URLSearchParams(location.search),id=q.get('id')||'',token=q.get('token')||'';
+const $=s=>document.querySelector(s),status=$('#status'),content=$('#content'),decision=$('#decision'),payment=$('#payment'),approve=$('#approve'),confirm=$('#confirm'),note=$('#note'),proof=$('#proof'),sendProof=$('#sendProof'),proofBox=$('#proofBox'),proofState=$('#proofState');
 let dossier=null;
 function money(v,c){const n=Number(v||0);return c==='EUR'?n.toLocaleString('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}):n.toLocaleString('fr-FR')+' FCFA'}
 function setStatus(t,k='warn'){status.textContent=t;status.className='status '+k}
+function ext(f){const m={'image/jpeg':'jpg','image/png':'png','image/webp':'webp','application/pdf':'pdf'};return m[f.type]||''}
 async function call(action,extra={}){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY},body:JSON.stringify({action,id,token,...extra})});const j=await r.json().catch(()=>({}));if(!r.ok||!j.ok)throw new Error(j.error||'Erreur BAT');return j}
-function render(d){dossier=d;content.hidden=false;$('#name').textContent=d.pro_name||'Dossier professionnel';$('#meta').textContent=[d.job_label,d.zone_label,'BAT v'+(d.bat_version||1)].filter(Boolean).join(' · ');const s=d.bat_snapshot||{},cur=s.currency||d.currency_code||'EUR',m=s.membership||{},sv=s.service||null;let rows=`<div class="row"><span>${m.label||'ADHÉSION DIGIY PRO'}</span><strong>${money(m.amount,cur)}</strong></div>`;if(sv)rows+=`<div class="row"><span>${s.option_label||'PRESTATION'}</span><strong>${money(sv.amount,cur)}</strong></div>`;rows+=`<div class="row total"><span>TOTAL</span><strong>${money(s.total_amount??m.amount,cur)}</strong></div>`;$('#summary').innerHTML=rows;$('#preview').href=d.bat_preview_url||s.preview_url||'#';if(d.bat_status==='accepte'){decision.hidden=true;payment.hidden=false;payment.innerHTML=`<strong>✅ BON À TIRER ACCEPTÉ</strong><br><br>Vous pouvez maintenant effectuer le règlement de <strong>${money(s.total_amount??m.amount,cur)}</strong>.<br><br>${String(d.country_id||'').toUpperCase()==='FR'?'France : Sendwave → Wave Sénégal':'Sénégal : Wave'} · +221 77 134 28 89`;setStatus('BAT accepté le '+new Date(d.bat_approved_at).toLocaleString('fr-FR')+'.','ok')}else if(d.bat_status==='a_corriger'){decision.hidden=true;payment.hidden=true;setStatus('Correction demandée. DIGIYLYFE prépare une nouvelle version avant tout paiement.','warn')}else{decision.hidden=false;payment.hidden=true;setStatus('Version prête à être vérifiée. Aucun paiement avant votre décision.','warn')}}
+function render(d){
+  dossier=d;content.hidden=false;$('#name').textContent=d.pro_name||'Dossier professionnel';$('#meta').textContent=[d.job_label,d.zone_label,'BAT v'+(d.bat_version||1)].filter(Boolean).join(' · ');
+  const s=d.bat_snapshot||{},cur=s.currency||d.currency_code||'EUR',m=s.membership||{},sv=s.service||null,total=s.total_amount??m.amount;
+  let rows=`<div class="row"><span>${m.label||'ADHÉSION DIGIY PRO'}</span><strong>${money(m.amount,cur)}</strong></div>`;
+  if(sv)rows+=`<div class="row"><span>${s.option_label||'PRESTATION'}</span><strong>${money(sv.amount,cur)}</strong></div>`;
+  rows+=`<div class="row total"><span>TOTAL</span><strong>${money(total,cur)}</strong></div>`;$('#summary').innerHTML=rows;$('#preview').href=d.bat_preview_url||s.preview_url||'#';
+  if(d.bat_status==='accepte'){
+    decision.hidden=true;payment.hidden=false;$('#paymentText').innerHTML=`<strong>✅ BON À TIRER ACCEPTÉ</strong><br><br>Vous pouvez maintenant effectuer le règlement de <strong>${money(total,cur)}</strong>.<br><br>${String(d.country_id||'').toUpperCase()==='FR'?'France : Sendwave → Wave Sénégal':'Sénégal : Wave'} · +221 77 134 28 89`;
+    if(d.payment_status==='confirme'){proofBox.hidden=true;proofState.hidden=false;proofState.className='status ok';proofState.textContent='✅ RÈGLEMENT CONFIRMÉ PAR DIGIYLYFE';setStatus('BAT accepté · règlement confirmé.','ok')}
+    else if(d.payment_proof_received){proofBox.hidden=true;proofState.hidden=false;proofState.className='status warn';proofState.textContent='✅ PREUVE REÇUE · DIGIYLYFE VÉRIFIE MAINTENANT LE RÈGLEMENT';setStatus('BAT accepté · preuve de règlement reçue.','ok')}
+    else{proofBox.hidden=false;proofState.hidden=true;setStatus('BAT accepté le '+new Date(d.bat_approved_at).toLocaleString('fr-FR')+'. Le règlement peut maintenant être effectué.','ok')}
+  }else if(d.bat_status==='a_corriger'){
+    decision.hidden=true;payment.hidden=true;setStatus('Correction demandée. DIGIYLYFE prépare une nouvelle version avant tout paiement.','warn')
+  }else{decision.hidden=false;payment.hidden=true;setStatus('Version prête à être vérifiée. Aucun paiement avant votre décision.','warn')}
+}
 confirm.addEventListener('change',()=>approve.disabled=!confirm.checked);
-approve.addEventListener('click',async()=>{approve.disabled=true;try{const j=await call('approve',{note:note.value.trim()});const g=await call('get');render(g.dossier)}catch(e){setStatus(e.message,'bad');approve.disabled=!confirm.checked}});
+approve.addEventListener('click',async()=>{approve.disabled=true;try{await call('approve',{note:note.value.trim()});const g=await call('get');render(g.dossier)}catch(e){setStatus(e.message,'bad');approve.disabled=!confirm.checked}});
 $('#correction').addEventListener('click',async()=>{const n=note.value.trim();if(!n){setStatus('Indiquez la correction souhaitée avant d’envoyer.','bad');note.focus();return}try{await call('correction',{note:n});const g=await call('get');render(g.dossier)}catch(e){setStatus(e.message,'bad')}});
+sendProof.addEventListener('click',async()=>{
+  const f=proof.files&&proof.files[0],allowed=['image/jpeg','image/png','image/webp','application/pdf'];
+  if(!f||!allowed.includes(f.type)||f.size>10*1024*1024){proofState.hidden=false;proofState.className='status bad';proofState.textContent='Preuve invalide. Utilisez JPEG, PNG, WEBP ou PDF, 10 Mo maximum.';return}
+  sendProof.disabled=true;proofState.hidden=false;proofState.className='status warn';proofState.textContent='Envoi de la preuve…';
+  const path=`pending/${id}/${crypto.randomUUID()}.${ext(f)}`;
+  try{
+    const {error}=await db.storage.from(BUCKET).upload(path,f,{contentType:f.type,upsert:false});if(error)throw error;
+    await call('register_proof',{proof_path:path,proof_mime:f.type});const g=await call('get');render(g.dossier)
+  }catch(e){proofState.hidden=false;proofState.className='status bad';proofState.textContent='Envoi impossible : '+(e?.message||e)}finally{sendProof.disabled=false}
+});
 (async()=>{if(!id||!token){setStatus('Lien de bon à tirer invalide.','bad');return}try{const j=await call('get');render(j.dossier)}catch(e){setStatus('Ce lien de bon à tirer est invalide ou n’est plus actif.','bad')}})();
 })();
 </script>
