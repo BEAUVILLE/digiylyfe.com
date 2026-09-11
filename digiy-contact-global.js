@@ -55,7 +55,8 @@
     if(!/\/tarifs-adherents-1\.html$/i.test(p))return;
     var q=new URLSearchParams(location.search),approved=q.get('approved')==='1';
     var active=document.querySelector('[data-country].active');
-    var country=(active&&active.dataset.country?active.dataset.country:(q.get('country')||'sn')).toLowerCase()==='fr'?'fr':'sn';
+    var rawCountry=(active&&active.dataset.country?active.dataset.country:(q.get('country')||'sn')).toLowerCase();
+    var country=rawCountry==='fr'?'fr':rawCountry==='us'?'us':'sn';
     var l=currentLang();
     var txt={
       fr:{cta:'PRÉPARER MON DOSSIER →',title:'SECTION PAIEMENT · APRÈS PRÉSENTATION ET ACCORD SUR LA FICHE',lead:'Cette section reste visible, mais aucun moyen de paiement n’est affiché avant votre accord sur la fiche préparée par DIGIYLYFE.',locked:'🔒 PAIEMENT VERROUILLÉ · LA FICHE DOIT D’ABORD VOUS ÊTRE PRÉSENTÉE ET APPROUVÉE',valid:'FICHE APPROUVÉE · VOIR LE RÈGLEMENT →'},
@@ -133,7 +134,7 @@
   fixTarifsPrevalidationFlow();
 
   var stable=document.createElement('script');
-  stable.src='/digiy-contact-global-stable-20260830.js?v=20260830-stable';
+  stable.src='/digiy-contact-global-stable-20260830.js?v=20260911-miami-v1';
   stable.async=false;
   stable.onload=function(){guardUniqueDakar();fixTarifsPrevalidationFlow();loadHealthDoors();};
   stable.onerror=function(){guardUniqueDakar();fixTarifsPrevalidationFlow();loadHealthDoors();};
