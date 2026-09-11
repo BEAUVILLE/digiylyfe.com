@@ -1,0 +1,40 @@
+name: One-off add Miami places section
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/oneoff-miami-places-20260911.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wire Miami places section
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('miami.html')
+          s=p.read_text(encoding='utf-8')
+          tag='<script src="/assets/digiy-miami-places-v1.js?v=20260911-v1"></script>'
+          if tag not in s:
+              if '</body>' not in s:
+                  raise SystemExit('miami.html body marker missing')
+              s=s.replace('</body>',tag+'\n</body>',1)
+              p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit patch
+        shell: bash
+        run: |
+          git config user.name "DIGIY LYFE"
+          git config user.email "baptistejb24@gmail.com"
+          git add miami.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "feat: show places available on Miami page"
+          git push
