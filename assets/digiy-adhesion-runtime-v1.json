@@ -5,47 +5,136 @@
     "senegal_country": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-SENEGAL-V1/config/country.json",
     "senegal_pricing": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-SENEGAL-V1/config/pricing.json",
     "france_country": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-FRANCE-V1/config/country.json",
-    "france_pricing": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-FRANCE-V1/config/pricing.json"
+    "france_pricing": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-FRANCE-V1/config/pricing.json",
+    "usa_country": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-USA-V1/config/country.json",
+    "usa_pricing": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-USA-V1/config/pricing.json"
   },
   "countries": [
     {
       "id": "SN",
       "slug": "senegal",
       "status": "active",
-      "labels": {"fr":"Sénégal","en":"Senegal","es":"Senegal","pt":"Senegal","it":"Senegal","de":"Senegal","nl":"Senegal","ar":"السنغال"},
-      "currency": {"code":"XOF","label":"FCFA"},
+      "labels": {
+        "fr": "Sénégal",
+        "en": "Senegal",
+        "es": "Senegal",
+        "pt": "Senegal",
+        "it": "Senegal",
+        "de": "Senegal",
+        "nl": "Senegal",
+        "ar": "السنغال"
+      },
+      "currency": {
+        "code": "XOF",
+        "label": "FCFA"
+      },
       "calling_code": "+221",
       "timezone": "Africa/Dakar",
       "default_language": "fr",
-      "interface_languages": ["fr","en","es","pt","it","de","nl","ar"],
+      "interface_languages": [
+        "fr",
+        "en",
+        "es",
+        "pt",
+        "it",
+        "de",
+        "nl",
+        "ar"
+      ],
       "pricing": {
         "membership": {
-          "adherent-19900": {"amount":19900,"label":"19 900 FCFA / mois","billing_period":"month","billing_months":1},
-          "adherent-28000": {"amount":28000,"label":"28 000 FCFA / mois","billing_period":"month","billing_months":1}
+          "adherent-19900": {
+            "amount": 19900,
+            "label": "19 900 FCFA / mois",
+            "billing_period": "month",
+            "billing_months": 1
+          },
+          "adherent-28000": {
+            "amount": 28000,
+            "label": "28 000 FCFA / mois",
+            "billing_period": "month",
+            "billing_months": 1
+          }
         },
         "modules": {
-          "carnet_pro": {"amount":13000,"label":"13 000 FCFA / mois"}
+          "carnet_pro": {
+            "amount": 13000,
+            "label": "13 000 FCFA / mois"
+          }
         },
         "services": {
-          "fiche": {"starting_amount":100000,"label":"À partir de 100 000 FCFA"},
-          "site_premium": {"starting_amount":250000,"label":"À partir de 250 000 FCFA"},
-          "site_extra": {"starting_amount":450000,"label":"À partir de 450 000 FCFA"}
+          "fiche": {
+            "starting_amount": 100000,
+            "label": "À partir de 100 000 FCFA"
+          },
+          "site_premium": {
+            "starting_amount": 250000,
+            "label": "À partir de 250 000 FCFA"
+          },
+          "site_extra": {
+            "starting_amount": 450000,
+            "label": "À partir de 450 000 FCFA"
+          }
         }
       },
       "territories": [
         {
-          "id":"SN-PETITE-COTE",
-          "slug":"petite-cote",
-          "status":"active",
-          "labels":{"fr":"Petite Côte","en":"Petite Côte","es":"Petite Côte","pt":"Petite Côte","it":"Petite Côte","de":"Petite Côte","nl":"Petite Côte","ar":"الساحل الصغير"},
-          "zones":[
-            {"id":"SN-PETITE-COTE-AIBD","slug":"aibd","label":"AIBD","status":"active"},
-            {"id":"SN-PETITE-COTE-NDAYANE","slug":"ndayane","label":"Ndayane","status":"active"},
-            {"id":"SN-PETITE-COTE-POPENGUINE","slug":"popenguine","label":"Popenguine","status":"active"},
-            {"id":"SN-PETITE-COTE-SOMONE","slug":"somone","label":"Somone","status":"active"},
-            {"id":"SN-PETITE-COTE-NGAPAROU","slug":"ngaparou","label":"Ngaparou","status":"active"},
-            {"id":"SN-PETITE-COTE-SALY","slug":"saly","label":"Saly","status":"active"},
-            {"id":"SN-PETITE-COTE-MBOUR","slug":"mbour","label":"Mbour","status":"active"}
+          "id": "SN-PETITE-COTE",
+          "slug": "petite-cote",
+          "status": "active",
+          "labels": {
+            "fr": "Petite Côte",
+            "en": "Petite Côte",
+            "es": "Petite Côte",
+            "pt": "Petite Côte",
+            "it": "Petite Côte",
+            "de": "Petite Côte",
+            "nl": "Petite Côte",
+            "ar": "الساحل الصغير"
+          },
+          "zones": [
+            {
+              "id": "SN-PETITE-COTE-AIBD",
+              "slug": "aibd",
+              "label": "AIBD",
+              "status": "active"
+            },
+            {
+              "id": "SN-PETITE-COTE-NDAYANE",
+              "slug": "ndayane",
+              "label": "Ndayane",
+              "status": "active"
+            },
+            {
+              "id": "SN-PETITE-COTE-POPENGUINE",
+              "slug": "popenguine",
+              "label": "Popenguine",
+              "status": "active"
+            },
+            {
+              "id": "SN-PETITE-COTE-SOMONE",
+              "slug": "somone",
+              "label": "Somone",
+              "status": "active"
+            },
+            {
+              "id": "SN-PETITE-COTE-NGAPAROU",
+              "slug": "ngaparou",
+              "label": "Ngaparou",
+              "status": "active"
+            },
+            {
+              "id": "SN-PETITE-COTE-SALY",
+              "slug": "saly",
+              "label": "Saly",
+              "status": "active"
+            },
+            {
+              "id": "SN-PETITE-COTE-MBOUR",
+              "slug": "mbour",
+              "label": "Mbour",
+              "status": "active"
+            }
           ]
         }
       ]
@@ -54,43 +143,192 @@
       "id": "FR",
       "slug": "france",
       "status": "active",
-      "labels": {"fr":"France","en":"France","es":"Francia","pt":"França","it":"Francia","de":"Frankreich","nl":"Frankrijk","ar":"فرنسا"},
-      "currency": {"code":"EUR","label":"€"},
+      "labels": {
+        "fr": "France",
+        "en": "France",
+        "es": "Francia",
+        "pt": "França",
+        "it": "Francia",
+        "de": "Frankreich",
+        "nl": "Frankrijk",
+        "ar": "فرنسا"
+      },
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
       "calling_code": "+33",
       "timezone": "Europe/Paris",
       "default_language": "fr",
-      "interface_languages": ["fr","en","es","pt","it","de","nl","ar"],
+      "interface_languages": [
+        "fr",
+        "en",
+        "es",
+        "pt",
+        "it",
+        "de",
+        "nl",
+        "ar"
+      ],
       "pricing": {
         "membership": {
           "adherent-19900": {
-            "amount":450,
-            "label":"450 € / an",
-            "billing_period":"year",
-            "billing_months":12,
-            "welcome_months":2,
-            "first_cycle_months":14,
-            "first_renewal_amount":450,
-            "first_renewal_months":12
+            "amount": 450,
+            "label": "450 € / an",
+            "billing_period": "year",
+            "billing_months": 12,
+            "welcome_months": 2,
+            "first_cycle_months": 14,
+            "first_renewal_amount": 450,
+            "first_renewal_months": 12
           },
-          "adherent-28000": {"amount":75,"label":"75 € / mois"}
+          "adherent-28000": {
+            "amount": 75,
+            "label": "75 € / mois"
+          }
         },
         "modules": {
-          "carnet_pro": {"amount":20,"label":"20 € / mois"}
+          "carnet_pro": {
+            "amount": 20,
+            "label": "20 € / mois"
+          }
         },
         "services": {
-          "fiche": {"starting_amount":250,"label":"À partir de 250 €"},
-          "site_premium": {"starting_amount":480,"label":"À partir de 480 €"},
-          "site_extra": {"starting_amount":800,"label":"À partir de 800 €"}
+          "fiche": {
+            "starting_amount": 250,
+            "label": "À partir de 250 €"
+          },
+          "site_premium": {
+            "starting_amount": 480,
+            "label": "À partir de 480 €"
+          },
+          "site_extra": {
+            "starting_amount": 800,
+            "label": "À partir de 800 €"
+          }
         }
       },
       "territories": [
         {
-          "id":"FR-DORDOGNE",
-          "slug":"vallee-dordogne",
-          "status":"active",
-          "labels":{"fr":"Périgord · Vallée de la Dordogne","en":"Périgord · Dordogne Valley","es":"Périgord · Valle del Dordoña","pt":"Périgord · Vale da Dordogne","it":"Périgord · Valle della Dordogna","de":"Périgord · Dordogne-Tal","nl":"Périgord · Dordognevallei","ar":"بيريغور · وادي دوردوني"},
-          "zones":[
-            {"id":"FR-DORDOGNE-SARLAT","slug":"sarlat","label":"Sarlat-la-Canéda","status":"active"}
+          "id": "FR-DORDOGNE",
+          "slug": "vallee-dordogne",
+          "status": "active",
+          "labels": {
+            "fr": "Périgord · Vallée de la Dordogne",
+            "en": "Périgord · Dordogne Valley",
+            "es": "Périgord · Valle del Dordoña",
+            "pt": "Périgord · Vale da Dordogne",
+            "it": "Périgord · Valle della Dordogna",
+            "de": "Périgord · Dordogne-Tal",
+            "nl": "Périgord · Dordognevallei",
+            "ar": "بيريغور · وادي دوردوني"
+          },
+          "zones": [
+            {
+              "id": "FR-DORDOGNE-SARLAT",
+              "slug": "sarlat",
+              "label": "Sarlat-la-Canéda",
+              "status": "active"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "US",
+      "slug": "united-states",
+      "status": "active",
+      "labels": {
+        "fr": "États-Unis",
+        "en": "United States",
+        "es": "Estados Unidos",
+        "pt": "Estados Unidos",
+        "it": "Stati Uniti",
+        "de": "Vereinigte Staaten",
+        "nl": "Verenigde Staten",
+        "ar": "الولايات المتحدة"
+      },
+      "currency": {
+        "code": "USD",
+        "label": "$"
+      },
+      "calling_code": "+1",
+      "timezone": "America/New_York",
+      "default_language": "en",
+      "interface_languages": [
+        "en",
+        "es",
+        "fr",
+        "pt",
+        "it",
+        "de",
+        "nl",
+        "ar"
+      ],
+      "pricing": {
+        "membership": {
+          "adherent-19900": {
+            "amount": 29,
+            "label": "$29 / month",
+            "billing_period": "month",
+            "billing_months": 1,
+            "annual_amount": 290,
+            "annual_label": "$290 / year"
+          }
+        },
+        "modules": {
+          "loc": {
+            "billing_period": "year",
+            "commission_rate": 0,
+            "tiers": [
+              {
+                "max": 3,
+                "label": "1–3",
+                "amount": 790
+              },
+              {
+                "max": 10,
+                "label": "4–10",
+                "amount": 990
+              },
+              {
+                "max": 15,
+                "label": "11–15",
+                "amount": 1290
+              },
+              {
+                "max": 20,
+                "label": "16–20",
+                "amount": 1590
+              }
+            ],
+            "above_20": "quote"
+          }
+        },
+        "services": {}
+      },
+      "territories": [
+        {
+          "id": "US-FL-MIAMI",
+          "slug": "miami",
+          "status": "active",
+          "labels": {
+            "fr": "Miami · Floride",
+            "en": "Miami · Florida",
+            "es": "Miami · Florida",
+            "pt": "Miami · Flórida",
+            "it": "Miami · Florida",
+            "de": "Miami · Florida",
+            "nl": "Miami · Florida",
+            "ar": "ميامي · فلوريدا"
+          },
+          "zones": [
+            {
+              "id": "US-FL-MIAMI-MIAMI",
+              "slug": "miami",
+              "label": "Miami",
+              "status": "active"
+            }
           ]
         }
       ]

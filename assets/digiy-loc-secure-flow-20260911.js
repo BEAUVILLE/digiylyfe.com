@@ -26,7 +26,7 @@ const ANNUAL_SN=[268800,336000,432000,528000,624000,720000,864000,1008000];
 const ANNUAL_EU=[720,912,1200,1440,1728,2016,2400,2784];
 const $=id=>document.getElementById(id),form=$('locForm');if(!form)return;
 function lang(){const l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return M[l]?l:'fr'}
-function fmt(n,c){return c==='sn'?Number(n).toLocaleString('fr-FR').replace(/\u202f/g,' ')+' FCFA':Number(n).toLocaleString('fr-FR')+' €'}
+function fmt(n,c){if(c==='sn')return Number(n).toLocaleString('fr-FR').replace(/\u202f/g,' ')+' FCFA';if(c==='us')return '$'+Number(n).toLocaleString('en-US');return Number(n).toLocaleString('fr-FR')+' €'}
 function marketing(){
  const x=P[lang()]||P.fr;
  if($('offerTitle'))$('offerTitle').textContent=x.offerTitle;
@@ -46,7 +46,7 @@ function preselectCountry(){
  try{
   let c=(new URLSearchParams(location.search).get('country')||'').toLowerCase();
   if(c==='fr')c='eu';
-  if(c!=='sn'&&c!=='eu')return;
+  if(c!=='sn'&&c!=='eu'&&c!=='us')return;
   const el=$('country');if(!el)return;
   el.value=c;
   el.dispatchEvent(new Event('change',{bubbles:true}));
@@ -59,10 +59,10 @@ function show(text,bad){const s=statusBox();s.style.display='block';s.className=
 function tierFor(n){const a=[3,10,15,20,25,30,35,40],l=['1–3','4–10','11–15','16–20','21–25','26–30','31–35','36–40'];for(let i=0;i<a.length;i++)if(n<=a[i])return l[i];return null}
 form.addEventListener('submit',async function(e){
  e.preventDefault();e.stopImmediatePropagation();const x=M[lang()],btn=$('continue'),n=Number(value('units')),country=value('country'),raw=value('chosenPrice'),email=value('email').toLowerCase();
- if(n>40){const q=$('quote');if(q){q.classList.remove('hidden');q.scrollIntoView({behavior:'smooth',block:'start'})}return}
+ if(n>40||(country==='us'&&n>20)){const q=$('quote');if(q){q.classList.remove('hidden');const h=$('quoteTitle');if(h&&country==='us')h.textContent='Miami pilot · 20+ units · quote';q.scrollIntoView({behavior:'smooth',block:'start'})}return}
  if(!email||!/^\S+@\S+\.\S+$/.test(email)){show(x.need,true);$('email')?.focus();return}
  const p=raw.split('|'),tier=tierFor(n),amount=Number(p[1]);if(!tier||p[0]!==tier||p[2]!==country||!Number.isFinite(amount)){show('Tarif LOC incohérent avec le nombre d’unités.',true);return}
- btn.disabled=true;show(x.sending,false);
+ btn.disabled=true;if(country==='us'){const body={country:'US',tier_label:tier,amount,units:n,business:value('business'),manager:value('manager'),phone:value('phone'),email,zone:value('zone'),lodging_type:value('type'),note:value('free'),lang:lang()};const adminText=['DIGIY LOC — MIAMI PILOT · DOSSIER AVANT BAT','Établissement : '+body.business,'Responsable : '+body.manager,'E-mail : '+body.email,'Téléphone : '+body.phone,'Zone : '+body.zone,'Unités : '+body.units,'Palier : '+body.tier_label,'Tarif annuel : $'+Number(body.amount).toLocaleString('en-US'),'Statut : BAT À PRÉPARER · AUCUN PAIEMENT ENCORE'].join('\n');show('<strong>✅ MIAMI PILOT · LOC FILE READY</strong><br><br>No payment now. Send this file to DIGIYLYFE on WhatsApp for human validation and proof approval.<div class="actions" style="margin-top:12px"><a class="cta" target="_blank" rel="noopener" href="https://wa.me/'+PHONE+'?text='+encodeURIComponent(adminText)+'">'+x.wa+'</a></div>',false);Array.from(form.querySelectorAll('input,select,textarea,button')).forEach(el=>el.disabled=true);statusBox().scrollIntoView({behavior:'smooth',block:'center'});return}show(x.sending,false);
  try{
   const body={country:country==='sn'?'SN':'FR',tier_label:tier,amount,units:n,business:value('business'),manager:value('manager'),phone:value('phone'),email,zone:value('zone'),lodging_type:value('type'),note:value('free'),lang:lang()};
   const r=await fetch(U,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY},body:JSON.stringify(body)}),j=await r.json().catch(()=>({}));if(!r.ok||!j.ok)throw new Error(j.error||'Envoi impossible');
@@ -71,5 +71,5 @@ form.addEventListener('submit',async function(e){
   Array.from(form.querySelectorAll('input,select,textarea,button')).forEach(el=>el.disabled=true);statusBox().scrollIntoView({behavior:'smooth',block:'center'});
  }catch(err){show(String(err?.message||err),true);btn.disabled=false}
 },true);
-document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>setTimeout(copy,0)));preselectCountry();copy();
+document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>setTimeout(copy,0)));$('country')?.addEventListener('change',()=>setTimeout(()=>{if(value('country')==='us'){if($('offerTitle'))$('offerTitle').textContent='🇺🇸 MIAMI PILOT · FIXED ANNUAL PRICE';if($('offerText'))$('offerText').textContent='$790 · $990 · $1,290 · $1,590 per year depending on active units. Above 20 units: quote. 0% DIGIYLYFE commission.';if($('note'))$('note').textContent='Miami pilot · fixed annual LOC pricing · direct booking · direct customer relationship · 0% DIGIYLYFE commission · no payment before human validation.'}else marketing()},0));preselectCountry();copy();if(value('country')==='us')$('country')?.dispatchEvent(new Event('change',{bubbles:true}));
 })();
