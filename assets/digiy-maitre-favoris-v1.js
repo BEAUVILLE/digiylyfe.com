@@ -2,13 +2,14 @@
  * Invariant industriel : aucune carte adhérent publiée sans accès ☆ à MON DIGIY.
  * Le MAÎTRE expose cette règle aux couches de vitrine, territoire, MASTER et ateliers.
  * Vitrine : porte DIGIY LOC visible vers la grille publique de paliers.
+ * Vitrine : le HUB territoires public passe avant le parcours professionnel.
  */
 (function(){
   'use strict';
   if(window.DIGIY_MAITRE_FAVORIS_V1) return;
 
   var policy={
-    version:'2026-09-07-v3',
+    version:'2026-09-11-v4',
     required:true,
     symbol:'☆',
     destination:'https://digiylyfe.com/mon-digiy.html',
@@ -26,6 +27,17 @@
     document.documentElement.dataset.digiyMaitreFavoris='required';
     document.documentElement.dataset.digiyMaitreFavorisVersion=policy.version;
   }catch(_){}
+
+  /* Vitrine principale — le client qui cherche voit les territoires avant le parcours pro. */
+  function promoteTerritoryHub(){
+    var path=(location.pathname||'/').replace(/\/index\.html$/,'/');
+    if(path!=='/') return;
+    var hub=document.getElementById('territoires');
+    var publicDoor=document.querySelector('section.section[aria-label="Portes publiques DIGIYLYFE"]');
+    if(!hub||!publicDoor) return;
+    if(publicDoor.nextElementSibling!==hub) publicDoor.insertAdjacentElement('afterend',hub);
+    try{document.documentElement.dataset.digiyTerritoryHubPosition='public-first';}catch(_){}
+  }
 
   /* Porte tarifaire LOC — uniquement sur la vitrine principale. */
   function installLocDoor(){
@@ -72,8 +84,13 @@
     try{new MutationObserver(applyLang).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});}catch(_){}
   }
 
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',installLocDoor,{once:true});
-  else installLocDoor();
+  function boot(){
+    promoteTerritoryHub();
+    installLocDoor();
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true});
+  else boot();
 
   window.dispatchEvent(new CustomEvent('digiy:maitre:favoris',{detail:policy}));
 })();
