@@ -39,5 +39,6 @@ function setLang(l){if(!T[l])l='en';const t=T[l];document.documentElement.lang=l
 document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));const q=new URLSearchParams(location.search);setLang((q.get('lang')||localStorage.getItem('digiy_lang')||'en').slice(0,2).toLowerCase());
 })();
 </script>
+<script src="/assets/digiy-miami-places-v1.js?v=20260911-v1"></script>
 </body>
 </html>
