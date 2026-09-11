@@ -14,6 +14,14 @@
 (function(){
 'use strict';
 const q=new URLSearchParams(location.search);
+const locNeed=(q.get('need')||'').toLowerCase(),locModule=(q.get('module')||'').toLowerCase(),locProduct=(q.get('product')||'').toLowerCase();
+if(locNeed==='accommodation'||locModule==='loc'||locProduct==='loc'){
+  const u=new URL('/tarifs-loc.html',location.origin),c=(q.get('country')||'').toLowerCase(),l=(q.get('lang')||'').slice(0,2).toLowerCase();
+  if(c==='fr'||c==='eu')u.searchParams.set('country','eu');else if(c==='sn')u.searchParams.set('country','sn');
+  if(l)u.searchParams.set('lang',l);
+  location.replace(u.pathname+u.search);
+  return;
+}
 const carnet=(q.get('product')||'').toLowerCase()==='carnet-pro';
 const territory=(q.get('territory')||'').toLowerCase();
 const dakar=territory==='dakar',bordeaux=territory==='bordeaux',dordogne=territory==='vallee-dordogne',petiteCote=territory==='petite-cote';
