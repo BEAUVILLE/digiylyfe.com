@@ -65,3 +65,5 @@ jobs:
           fi
           git commit -m "fix: move territory access before professional journey"
           git push
+
+# trigger: 2026-09-11
