@@ -1,0 +1,48 @@
+name: One-off honor Miami language parameter
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/oneoff-miami-language-20260911.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Honor lang query on Miami entry pages
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def rep(path, old, new):
+              p=Path(path); s=p.read_text(encoding='utf-8')
+              if old not in s: raise SystemExit(f'marker missing: {path}')
+              p.write_text(s.replace(old,new,1),encoding='utf-8')
+
+          rep(
+            'carte-gratuite.html',
+            "document.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>setLang(b.dataset.l));setLang(localStorage.getItem('digiy_lang')||'fr');",
+            "document.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>setLang(b.dataset.l));setLang(params.get('lang')||localStorage.getItem('digiy_lang')||'fr');"
+          )
+          rep(
+            'tarifs-loc.html',
+            "renderTable();var init='fr';try{var s=(localStorage.getItem('digiy-lang')||'').slice(0,2);if(T[s])init=s}catch(_){}setLang(init);",
+            "renderTable();var init=(new URLSearchParams(location.search).get('lang')||'').slice(0,2).toLowerCase();try{if(!T[init]){var s=(localStorage.getItem('digiy-lang')||'').slice(0,2);if(T[s])init=s}}catch(_){}if(!T[init])init='fr';setLang(init);"
+          )
+          print('Miami language query patch OK')
+          PY
+      - name: Commit language patch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add carte-gratuite.html tarifs-loc.html
+          git commit -m "fix: honor lang=en across Miami pilot entry [skip ci]"
+          git push
