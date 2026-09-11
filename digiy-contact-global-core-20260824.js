@@ -100,8 +100,8 @@
       section.id='territoires';
       section.setAttribute('aria-label',t.aria);
 
-      var hero=document.querySelector('section.hero');
-      if(hero && hero.nextElementSibling!==section) hero.insertAdjacentElement('afterend',section);
+      var publicDoor=document.querySelector('section.section[aria-label="Portes publiques DIGIYLYFE"]');
+      if(publicDoor && publicDoor.nextElementSibling!==section) publicDoor.insertAdjacentElement('afterend',section);
     }
 
     apply();
