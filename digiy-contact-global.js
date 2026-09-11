@@ -58,6 +58,8 @@
     var rawCountry=(active&&active.dataset.country?active.dataset.country:(q.get('country')||'sn')).toLowerCase();
     var country=rawCountry==='fr'?'fr':rawCountry==='us'?'us':'sn';
     var l=currentLang();
+    var sheetPrice=document.getElementById('sheetPrice');
+    if(sheetPrice&&country==='us')sheetPrice.textContent='$299';
     var txt={
       fr:{cta:'PRÉPARER MON DOSSIER →',title:'SECTION PAIEMENT · APRÈS PRÉSENTATION ET ACCORD SUR LA FICHE',lead:'Cette section reste visible, mais aucun moyen de paiement n’est affiché avant votre accord sur la fiche préparée par DIGIYLYFE.',locked:'🔒 PAIEMENT VERROUILLÉ · LA FICHE DOIT D’ABORD VOUS ÊTRE PRÉSENTÉE ET APPROUVÉE',valid:'FICHE APPROUVÉE · VOIR LE RÈGLEMENT →'},
       en:{cta:'PREPARE MY FILE →',title:'PAYMENT SECTION · AFTER PROFILE PRESENTATION AND APPROVAL',lead:'This section remains visible, but no payment method is shown before you approve the profile prepared by DIGIYLYFE.',locked:'🔒 PAYMENT LOCKED · THE PROFILE MUST FIRST BE PRESENTED TO YOU AND APPROVED',valid:'PROFILE APPROVED · VIEW PAYMENT →'},
