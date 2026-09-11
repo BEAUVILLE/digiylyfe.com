@@ -14,6 +14,16 @@ ar:{title:'بياناتك والسعر السنوي قبل الموافقة',lea
 };
 const $=id=>document.getElementById(id),form=$('locForm');if(!form)return;
 function lang(){const l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return M[l]?l:'fr'}
+function preselectCountry(){
+ try{
+  let c=(new URLSearchParams(location.search).get('country')||'').toLowerCase();
+  if(c==='fr')c='eu';
+  if(c!=='sn'&&c!=='eu')return;
+  const el=$('country');if(!el)return;
+  el.value=c;
+  el.dispatchEvent(new Event('change',{bubbles:true}));
+ }catch(_){}
+}
 function copy(){const x=M[lang()];if($('formTitle'))$('formTitle').textContent=x.title;if($('formLead'))$('formLead').textContent=x.lead;if($('lEmail'))$('lEmail').textContent=x.email;if($('continue'))$('continue').textContent=x.submit;const em=$('email');if(em){em.required=true;em.setAttribute('aria-required','true')}const p=$('paiement');if(p)p.classList.add('hidden')}
 function value(id){return String($(id)?.value||'').trim()}
 function statusBox(){let s=$('locSecureStatus');if(!s){s=document.createElement('div');s.id='locSecureStatus';s.className='summary';s.style.display='none';form.insertAdjacentElement('afterend',s)}return s}
@@ -33,5 +43,5 @@ form.addEventListener('submit',async function(e){
   Array.from(form.querySelectorAll('input,select,textarea,button')).forEach(el=>el.disabled=true);statusBox().scrollIntoView({behavior:'smooth',block:'center'});
  }catch(err){show(String(err?.message||err),true);btn.disabled=false}
 },true);
-document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>setTimeout(copy,0)));copy();
+document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>setTimeout(copy,0)));preselectCountry();copy();
 })();
