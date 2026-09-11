@@ -17,9 +17,11 @@ jobs:
           from pathlib import Path
           p=Path('preparer-ma-carte.html')
           s=p.read_text(encoding='utf-8')
-          s=s.replace('digiy-prevalidation-flow-20260911.js?v=20260911-fiche-before-payment-v2','digiy-prevalidation-flow-20260911.js?v=20260911-payment-direct-v4')
-          s=s.replace('digiy-prevalidation-flow-20260911.js?v=20260911-payment-direct-v3','digiy-prevalidation-flow-20260911.js?v=20260911-payment-direct-v4')
-          p.write_text(s,encoding='utf-8')
+          old='digiy-prevalidation-flow-20260911.js?v=20260911-payment-section-v3'
+          new='digiy-prevalidation-flow-20260911.js?v=20260911-payment-direct-v4'
+          if old not in s:
+              raise SystemExit('exact asset marker missing')
+          p.write_text(s.replace(old,new),encoding='utf-8')
           PY
       - name: Commit
         run: |
