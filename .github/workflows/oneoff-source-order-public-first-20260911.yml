@@ -1,21 +1,20 @@
 name: oneoff-source-order-public-first-20260911
 
 on:
-  workflow_run:
-    workflows: ["pages build and deployment"]
-    types: [completed]
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: write
 
 jobs:
   reorder:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
       - name: Move territory hub in source before professional journey
         run: |
@@ -55,14 +54,14 @@ jobs:
 
           path.write_text(text, encoding='utf-8')
           PY
-      - name: Commit source-order correction
+      - name: Commit source-order correction to PR branch
         run: |
-          git config user.name "DIGIY LYFE"
-          git config user.email "baptistejb24@gmail.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
           if git diff --cached --quiet; then
             echo "No change required"
             exit 0
           fi
-          git commit -m "fix: put territory hub before professional journey in source"
-          git push origin HEAD:main
+          git commit -m "fix: put territory hub before professional journey in source [skip ci]"
+          git push origin HEAD:${{ github.head_ref }}
