@@ -3,7 +3,7 @@
  * /digiy-contact-global-stable-20260830.js
  * Ajouts isolés : Services professionnels + Santé & soins + raccord Sarlat + COM MAÎTRE accueil + séparation façade public/pro + DIGIY CAMPUS.
  * Correctif cohérence : retire l’ancienne carte Dakar de secours si la vraie carte Dakar illustrée est déjà présente.
- * Correctif tunnel PRO : dossier et validation humaine avant tout règlement.
+ * Correctif tunnel PRO : renseignements → validation → création/présentation fiche → accord PRO → paiement → mise en ligne/activation.
  * PWA / manifest / service worker : inchangés.
  */
 (function(){
@@ -53,26 +53,26 @@
   function fixTarifsPrevalidationFlow(){
     var p=location.pathname.replace(/\/+$/,'');
     if(!/\/tarifs-adherents-1\.html$/i.test(p))return;
-    var q=new URLSearchParams(location.search),validated=q.get('validated')==='1';
+    var q=new URLSearchParams(location.search),approved=q.get('approved')==='1';
     var active=document.querySelector('[data-country].active');
     var country=(active&&active.dataset.country?active.dataset.country:(q.get('country')||'sn')).toLowerCase()==='fr'?'fr':'sn';
     var l=currentLang();
     var txt={
-      fr:{cta:'PRÉPARER MON DOSSIER →',title:'RÈGLEMENT APRÈS VALIDATION DU DOSSIER',lead:'N’effectuez aucun règlement maintenant. Envoyez d’abord vos renseignements. DIGIYLYFE contrôle et valide votre dossier humainement, puis vous confirme le règlement.',locked:'DOSSIER D’ABORD · VALIDATION DIGIYLYFE · PUIS RÈGLEMENT',valid:'DOSSIER VALIDÉ · VOIR LE RÈGLEMENT →'},
-      en:{cta:'PREPARE MY FILE →',title:'PAYMENT AFTER FILE VALIDATION',lead:'Do not pay now. Send your information first. DIGIYLYFE reviews and validates your file, then confirms payment.',locked:'FILE FIRST · DIGIYLYFE VALIDATION · THEN PAYMENT',valid:'FILE VALIDATED · VIEW PAYMENT →'},
-      es:{cta:'PREPARAR MI EXPEDIENTE →',title:'PAGO DESPUÉS DE VALIDAR EL EXPEDIENTE',lead:'No pague ahora. Envíe primero sus datos. DIGIYLYFE revisa y valida el expediente y después confirma el pago.',locked:'EXPEDIENTE PRIMERO · VALIDACIÓN · DESPUÉS PAGO',valid:'EXPEDIENTE VALIDADO · VER PAGO →'},
-      pt:{cta:'PREPARAR O MEU DOSSIER →',title:'PAGAMENTO APÓS VALIDAÇÃO DO DOSSIER',lead:'Não pague agora. Envie primeiro os seus dados. A DIGIYLYFE valida o dossier e depois confirma o pagamento.',locked:'DOSSIER PRIMEIRO · VALIDAÇÃO · DEPOIS PAGAMENTO',valid:'DOSSIER VALIDADO · VER PAGAMENTO →'},
-      it:{cta:'PREPARA IL DOSSIER →',title:'PAGAMENTO DOPO LA CONVALIDA DEL DOSSIER',lead:'Non pagare ora. Invia prima i tuoi dati. DIGIYLYFE controlla e convalida il dossier, poi conferma il pagamento.',locked:'DOSSIER PRIMA · CONVALIDA · POI PAGAMENTO',valid:'DOSSIER CONVALIDATO · VEDI PAGAMENTO →'},
-      de:{cta:'UNTERLAGEN VORBEREITEN →',title:'ZAHLUNG NACH PRÜFUNG DER UNTERLAGEN',lead:'Jetzt nicht zahlen. Senden Sie zuerst Ihre Angaben. DIGIYLYFE prüft die Unterlagen und bestätigt danach die Zahlung.',locked:'UNTERLAGEN ZUERST · PRÜFUNG · DANN ZAHLUNG',valid:'UNTERLAGEN GEPRÜFT · ZAHLUNG ANSEHEN →'},
-      nl:{cta:'MIJN DOSSIER VOORBEREIDEN →',title:'BETALING NA VALIDATIE VAN HET DOSSIER',lead:'Betaal nu niet. Stuur eerst uw gegevens. DIGIYLYFE valideert het dossier en bevestigt daarna de betaling.',locked:'DOSSIER EERST · VALIDATIE · DAN BETALING',valid:'DOSSIER GEVALIDEERD · BETALING BEKIJKEN →'},
-      ar:{cta:'إعداد ملفي ←',title:'الدفع بعد التحقق من الملف',lead:'لا تدفع الآن. أرسل معلوماتك أولاً. تتحقق DIGIYLYFE من الملف ثم تؤكد لك الدفع.',locked:'الملف أولاً · التحقق · ثم الدفع',valid:'تم التحقق من الملف · عرض الدفع ←'}
+      fr:{cta:'PRÉPARER MON DOSSIER →',title:'RÈGLEMENT APRÈS PRÉSENTATION ET ACCORD SUR LA FICHE',lead:'N’effectuez aucun règlement maintenant. Envoyez vos renseignements : DIGIYLYFE contrôle le dossier, prépare la fiche, vous la présente et recueille votre accord. Le règlement vient seulement ensuite.',locked:'DOSSIER → FICHE PRÉSENTÉE → VOTRE ACCORD → PAIEMENT',valid:'FICHE APPROUVÉE · VOIR LE RÈGLEMENT →'},
+      en:{cta:'PREPARE MY FILE →',title:'PAYMENT AFTER PROFILE PRESENTATION AND APPROVAL',lead:'Do not pay now. Send your information first. DIGIYLYFE reviews the file, prepares the profile, presents it to you and gets your approval. Payment comes only after that.',locked:'FILE → PROFILE PRESENTED → YOUR APPROVAL → PAYMENT',valid:'PROFILE APPROVED · VIEW PAYMENT →'},
+      es:{cta:'PREPARAR MI EXPEDIENTE →',title:'PAGO DESPUÉS DE PRESENTAR Y APROBAR LA FICHA',lead:'No pague ahora. Envíe sus datos: DIGIYLYFE revisa el expediente, prepara la ficha, se la presenta y recoge su aprobación. El pago viene después.',locked:'EXPEDIENTE → FICHA PRESENTADA → SU APROBACIÓN → PAGO',valid:'FICHA APROBADA · VER PAGO →'},
+      pt:{cta:'PREPARAR O MEU DOSSIER →',title:'PAGAMENTO APÓS APRESENTAÇÃO E APROVAÇÃO DA FICHA',lead:'Não pague agora. Envie os seus dados: a DIGIYLYFE analisa o dossier, prepara a ficha, apresenta-a e recolhe a sua aprovação. O pagamento vem depois.',locked:'DOSSIER → FICHA APRESENTADA → SUA APROVAÇÃO → PAGAMENTO',valid:'FICHA APROVADA · VER PAGAMENTO →'},
+      it:{cta:'PREPARA IL DOSSIER →',title:'PAGAMENTO DOPO PRESENTAZIONE E APPROVAZIONE DELLA SCHEDA',lead:'Non pagare ora. Invia i tuoi dati: DIGIYLYFE controlla il dossier, prepara la scheda, te la presenta e raccoglie la tua approvazione. Il pagamento viene dopo.',locked:'DOSSIER → SCHEDA PRESENTATA → TUA APPROVAZIONE → PAGAMENTO',valid:'SCHEDA APPROVATA · VEDI PAGAMENTO →'},
+      de:{cta:'UNTERLAGEN VORBEREITEN →',title:'ZAHLUNG NACH VORLAGE UND FREIGABE DES PROFILS',lead:'Jetzt nicht zahlen. Senden Sie zuerst Ihre Angaben. DIGIYLYFE prüft die Unterlagen, erstellt das Profil, legt es Ihnen vor und holt Ihre Freigabe ein. Erst danach erfolgt die Zahlung.',locked:'UNTERLAGEN → PROFIL VORGELEGT → FREIGABE → ZAHLUNG',valid:'PROFIL FREIGEGEBEN · ZAHLUNG ANSEHEN →'},
+      nl:{cta:'MIJN DOSSIER VOORBEREIDEN →',title:'BETALING NA VOORLEGGING EN GOEDKEURING VAN HET PROFIEL',lead:'Betaal nu niet. Stuur eerst uw gegevens. DIGIYLYFE controleert het dossier, maakt het profiel, legt het aan u voor en vraagt uw goedkeuring. Pas daarna volgt de betaling.',locked:'DOSSIER → PROFIEL VOORGELEGD → UW GOEDKEURING → BETALING',valid:'PROFIEL GOEDGEKEURD · BETALING BEKIJKEN →'},
+      ar:{cta:'إعداد ملفي ←',title:'الدفع بعد عرض الملف المهني والموافقة عليه',lead:'لا تدفع الآن. أرسل معلوماتك أولاً. تراجع DIGIYLYFE الملف، تُعد ملفك المهني، تعرضه عليك وتأخذ موافقتك. يأتي الدفع بعد ذلك فقط.',locked:'الملف → عرض الملف المهني → موافقتك → الدفع',valid:'تمت الموافقة على الملف · عرض الدفع ←'}
     }[l]||null;
     if(!txt)return;
     var cta=document.getElementById('memberCta'),title=document.getElementById('paymentTitle'),lead=document.getElementById('paymentLead');
     var grid=document.querySelector('#paiement .paymentGrid'),contact=document.querySelector('#paiement .contactPay'),box=document.getElementById('paiement');
     if(title)title.textContent=txt.title;
     if(lead)lead.textContent=txt.lead;
-    if(!validated){
+    if(!approved){
       if(cta){cta.textContent=txt.cta;cta.href='/preparer-ma-carte.html?plan=adherent-19900&country='+country+'&lang='+l+'&flow=prevalidation-20260911';}
       if(grid)grid.style.display='none';
       if(contact)contact.style.display='none';
@@ -99,7 +99,7 @@
     }
     if(/\/sarlat\.html$/i.test(p)){
       fixSarlatPublicHealthDoor();
-      var s=addScript('/assets/digiy-sarlat-health-v1.js?v=20260901-v1','data-digiy-sarlat-health');
+      var s=addScript('/assets/digiy-sarlat-health-v1.js?v=20260901-v4','data-digiy-sarlat-health');
       if(s){s.onload=fixSarlatPublicHealthDoor;s.onerror=fixSarlatPublicHealthDoor}
       setTimeout(fixSarlatPublicHealthDoor,250);
     }
