@@ -1,0 +1,44 @@
+name: oneoff-bust-hub-core-cache-20260911
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Bump legacy core cache key
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('digiy-contact-global-stable-20260830.js')
+          s = p.read_text(encoding='utf-8')
+          old = "core.src='/digiy-contact-global-core-20260824.js?v=20260824';"
+          new = "core.src='/digiy-contact-global-core-20260824.js?v=20260911-hubfix';"
+          if old not in s:
+              if new in s:
+                  print('Cache key already updated')
+                  raise SystemExit(0)
+              raise SystemExit('Expected core loader URL not found')
+          if s.count(old) != 1:
+              raise SystemExit('Expected exactly one core loader URL')
+          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          PY
+      - name: Commit cache bust
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add digiy-contact-global-stable-20260830.js
+          if git diff --cached --quiet; then
+            echo "No change required"
+            exit 0
+          fi
+          git commit -m "fix(home): bust legacy hub core cache"
+          git push origin HEAD:main
