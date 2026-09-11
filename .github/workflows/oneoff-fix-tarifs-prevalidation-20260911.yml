@@ -1,0 +1,71 @@
+name: One-off harden tariffs prevalidation flow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/oneoff-fix-tarifs-prevalidation-20260911.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch tariffs page statically
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tarifs-adherents-1.html')
+          s=p.read_text(encoding='utf-8')
+          reps={
+            'href="#paiement" id="memberCta"':'href="/preparer-ma-carte.html?plan=adherent-19900&country=sn&lang=fr&flow=prevalidation-20260911" id="memberCta"',
+            '<div class="paymentGrid">':'<div class="paymentGrid" style="display:none">',
+            '<div class="contactPay">':'<div class="contactPay" style="display:none">',
+            "memberCta:'PAYER / VOIR LE RÈGLEMENT →'":"memberCta:'PRÉPARER MON DOSSIER →'",
+            "memberCta:'PAY / VIEW PAYMENT →'":"memberCta:'PREPARE MY FILE →'",
+            "memberCta:'PAGAR / VER PAGO →'":"memberCta:'PREPARAR MI EXPEDIENTE →'",
+            "memberCta:'PAGAR / VER PAGAMENTO →'":"memberCta:'PREPARAR O MEU DOSSIER →'",
+            "memberCta:'PAGA / VEDI PAGAMENTO →'":"memberCta:'PREPARA IL DOSSIER →'",
+            "memberCta:'ZAHLEN / ZAHLUNG ANSEHEN →'":"memberCta:'UNTERLAGEN VORBEREITEN →'",
+            "memberCta:'BETALEN / BETALING BEKIJKEN →'":"memberCta:'MIJN DOSSIER VOORBEREIDEN →'",
+            "memberCta:'الدفع / عرض طريقة الدفع ←'":"memberCta:'إعداد ملفي ←'",
+            "paymentTitle:'RÈGLEMENT — TOUT SUR LA MÊME PAGE'":"paymentTitle:'RÈGLEMENT APRÈS VALIDATION DU DOSSIER'",
+            "paymentLead:'Le pays sélectionné affiche le tarif correspondant. Au Sénégal, règlement par Wave. En France, règlement annuel par Sendwave vers Wave Sénégal.'":"paymentLead:'N’effectuez aucun règlement maintenant. Envoyez d’abord vos renseignements. DIGIYLYFE valide humainement votre dossier, puis vous confirme le règlement.'",
+            "paymentTitle:'PAYMENT — ALL ON THE SAME PAGE'":"paymentTitle:'PAYMENT AFTER FILE VALIDATION'",
+            "paymentLead:'The selected country shows the matching price. Senegal uses Wave. France uses an annual Sendwave payment to Wave Senegal.'":"paymentLead:'Do not pay now. Send your information first. DIGIYLYFE validates your file, then confirms payment.'",
+            "paymentTitle:'PAGO'":"paymentTitle:'PAGO DESPUÉS DE VALIDAR EL EXPEDIENTE'",
+            "paymentLead:'Senegal: Wave. Francia: Sendwave hacia Wave Senegal.'":"paymentLead:'No pague ahora. Envíe primero sus datos. DIGIYLYFE valida el expediente y después confirma el pago.'",
+            "paymentTitle:'PAGAMENTO'":"paymentTitle:'PAGAMENTO APÓS VALIDAÇÃO DO DOSSIER'",
+            "paymentLead:'Senegal: Wave. França: Sendwave para Wave Senegal.'":"paymentLead:'Não pague agora. Envie primeiro os seus dados. A DIGIYLYFE valida o dossier e depois confirma o pagamento.'",
+            "paymentTitle:'ZAHLUNG'":"paymentTitle:'ZAHLUNG NACH PRÜFUNG DER UNTERLAGEN'",
+            "paymentLead:'Senegal: Wave. Frankreich: Sendwave zu Wave Senegal.'":"paymentLead:'Jetzt nicht zahlen. Senden Sie zuerst Ihre Angaben. DIGIYLYFE prüft die Unterlagen und bestätigt danach die Zahlung.'",
+            "paymentTitle:'BETALING'":"paymentTitle:'BETALING NA VALIDATIE VAN HET DOSSIER'",
+            "paymentLead:'Senegal: Wave. Frankrijk: Sendwave naar Wave Senegal.'":"paymentLead:'Betaal nu niet. Stuur eerst uw gegevens. DIGIYLYFE valideert het dossier en bevestigt daarna de betaling.'",
+            "paymentTitle:'الدفع'":"paymentTitle:'الدفع بعد التحقق من الملف'",
+            "paymentLead:'السنغال: Wave. فرنسا: Sendwave إلى Wave Senegal.'":"paymentLead:'لا تدفع الآن. أرسل معلوماتك أولاً. تتحقق DIGIYLYFE من الملف ثم تؤكد لك الدفع.'",
+            'https://digiylyfe.com/digiy-contact-global.js?v=20260823-country-v2':'https://digiylyfe.com/digiy-contact-global.js?v=20260911-prevalidation-v2'
+          }
+          for a,b in reps.items():
+            if a not in s:
+              raise SystemExit(f'marker missing: {a[:90]}')
+            s=s.replace(a,b,1)
+          needle="document.getElementById('freeCta').href='/carte-gratuite.html?country='+countryId.toLowerCase();"
+          inject="""document.getElementById('freeCta').href='/carte-gratuite.html?country='+countryId.toLowerCase();const payValidated=(new URLSearchParams(location.search)).get('validated')==='1';const mc=document.getElementById('memberCta');mc.href=payValidated?'#paiement':'/preparer-ma-carte.html?plan=adherent-19900&country='+countryId.toLowerCase()+'&lang='+lang()+'&flow=prevalidation-20260911';const pg=document.querySelector('#paiement .paymentGrid'),pc=document.querySelector('#paiement .contactPay');if(pg)pg.style.display=payValidated?'grid':'none';if(pc)pc.style.display=payValidated?'flex':'none';"""
+          if needle not in s: raise SystemExit('render marker missing')
+          s=s.replace(needle,inject,1)
+          p.write_text(s,encoding='utf-8')
+          print('tariffs prevalidation flow hardened')
+          PY
+      - name: Commit patched tariffs page
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tarifs-adherents-1.html
+          git commit -m "fix: make dossier mandatory before payment [skip ci]"
+          git push
