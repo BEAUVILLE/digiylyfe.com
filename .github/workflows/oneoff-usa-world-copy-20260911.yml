@@ -1,0 +1,41 @@
+name: One-off USA world copy coherence
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/oneoff-usa-world-copy-20260911.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wire USA world copy
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('digiy-contact-global.js')
+          s=p.read_text(encoding='utf-8')
+          old="      addScript('/assets/digiy-miami-door-v1.js?v=20260911-v1','data-digiy-miami-door');"
+          new=old+"\n      addScript('/assets/digiy-usa-world-copy-v1.js?v=20260911-v1','data-digiy-usa-world-copy');"
+          if "data-digiy-usa-world-copy" not in s:
+              if old not in s:
+                  raise SystemExit('Miami loader marker missing')
+              s=s.replace(old,new,1)
+              p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit patch
+        shell: bash
+        run: |
+          git config user.name "DIGIY LYFE"
+          git config user.email "baptistejb24@gmail.com"
+          git add digiy-contact-global.js
+          git diff --cached --quiet && exit 0
+          git commit -m "fix: announce USA Miami in global vitrine copy"
+          git push
