@@ -1,8 +1,9 @@
-/* DIGIYLYFE — chargeur vitrine relais 20260907
+/* DIGIYLYFE — chargeur vitrine relais 20260911
  * Le chargeur stable précédent est conservé intégralement dans :
  * /digiy-contact-global-stable-20260830.js
  * Ajouts isolés : Services professionnels + Santé & soins + raccord Sarlat + COM MAÎTRE accueil + séparation façade public/pro + DIGIY CAMPUS.
  * Correctif cohérence : retire l’ancienne carte Dakar de secours si la vraie carte Dakar illustrée est déjà présente.
+ * Correctif tunnel PRO : dossier et validation humaine avant tout règlement.
  * PWA / manifest / service worker : inchangés.
  */
 (function(){
@@ -49,6 +50,45 @@
     var u=new URL('/sarlat.html',location.origin);u.searchParams.set('need','health_care');u.searchParams.set('lang',currentLang());u.hash='places';a.href=u.pathname+u.search+u.hash;
   }
 
+  function fixTarifsPrevalidationFlow(){
+    var p=location.pathname.replace(/\/+$/,'');
+    if(!/\/tarifs-adherents-1\.html$/i.test(p))return;
+    var q=new URLSearchParams(location.search),validated=q.get('validated')==='1';
+    var active=document.querySelector('[data-country].active');
+    var country=(active&&active.dataset.country?active.dataset.country:(q.get('country')||'sn')).toLowerCase()==='fr'?'fr':'sn';
+    var l=currentLang();
+    var txt={
+      fr:{cta:'PRÉPARER MON DOSSIER →',title:'RÈGLEMENT APRÈS VALIDATION DU DOSSIER',lead:'N’effectuez aucun règlement maintenant. Envoyez d’abord vos renseignements. DIGIYLYFE contrôle et valide votre dossier humainement, puis vous confirme le règlement.',locked:'DOSSIER D’ABORD · VALIDATION DIGIYLYFE · PUIS RÈGLEMENT',valid:'DOSSIER VALIDÉ · VOIR LE RÈGLEMENT →'},
+      en:{cta:'PREPARE MY FILE →',title:'PAYMENT AFTER FILE VALIDATION',lead:'Do not pay now. Send your information first. DIGIYLYFE reviews and validates your file, then confirms payment.',locked:'FILE FIRST · DIGIYLYFE VALIDATION · THEN PAYMENT',valid:'FILE VALIDATED · VIEW PAYMENT →'},
+      es:{cta:'PREPARAR MI EXPEDIENTE →',title:'PAGO DESPUÉS DE VALIDAR EL EXPEDIENTE',lead:'No pague ahora. Envíe primero sus datos. DIGIYLYFE revisa y valida el expediente y después confirma el pago.',locked:'EXPEDIENTE PRIMERO · VALIDACIÓN · DESPUÉS PAGO',valid:'EXPEDIENTE VALIDADO · VER PAGO →'},
+      pt:{cta:'PREPARAR O MEU DOSSIER →',title:'PAGAMENTO APÓS VALIDAÇÃO DO DOSSIER',lead:'Não pague agora. Envie primeiro os seus dados. A DIGIYLYFE valida o dossier e depois confirma o pagamento.',locked:'DOSSIER PRIMEIRO · VALIDAÇÃO · DEPOIS PAGAMENTO',valid:'DOSSIER VALIDADO · VER PAGAMENTO →'},
+      it:{cta:'PREPARA IL DOSSIER →',title:'PAGAMENTO DOPO LA CONVALIDA DEL DOSSIER',lead:'Non pagare ora. Invia prima i tuoi dati. DIGIYLYFE controlla e convalida il dossier, poi conferma il pagamento.',locked:'DOSSIER PRIMA · CONVALIDA · POI PAGAMENTO',valid:'DOSSIER CONVALIDATO · VEDI PAGAMENTO →'},
+      de:{cta:'UNTERLAGEN VORBEREITEN →',title:'ZAHLUNG NACH PRÜFUNG DER UNTERLAGEN',lead:'Jetzt nicht zahlen. Senden Sie zuerst Ihre Angaben. DIGIYLYFE prüft die Unterlagen und bestätigt danach die Zahlung.',locked:'UNTERLAGEN ZUERST · PRÜFUNG · DANN ZAHLUNG',valid:'UNTERLAGEN GEPRÜFT · ZAHLUNG ANSEHEN →'},
+      nl:{cta:'MIJN DOSSIER VOORBEREIDEN →',title:'BETALING NA VALIDATIE VAN HET DOSSIER',lead:'Betaal nu niet. Stuur eerst uw gegevens. DIGIYLYFE valideert het dossier en bevestigt daarna de betaling.',locked:'DOSSIER EERST · VALIDATIE · DAN BETALING',valid:'DOSSIER GEVALIDEERD · BETALING BEKIJKEN →'},
+      ar:{cta:'إعداد ملفي ←',title:'الدفع بعد التحقق من الملف',lead:'لا تدفع الآن. أرسل معلوماتك أولاً. تتحقق DIGIYLYFE من الملف ثم تؤكد لك الدفع.',locked:'الملف أولاً · التحقق · ثم الدفع',valid:'تم التحقق من الملف · عرض الدفع ←'}
+    }[l]||null;
+    if(!txt)return;
+    var cta=document.getElementById('memberCta'),title=document.getElementById('paymentTitle'),lead=document.getElementById('paymentLead');
+    var grid=document.querySelector('#paiement .paymentGrid'),contact=document.querySelector('#paiement .contactPay'),box=document.getElementById('paiement');
+    if(title)title.textContent=txt.title;
+    if(lead)lead.textContent=txt.lead;
+    if(!validated){
+      if(cta){cta.textContent=txt.cta;cta.href='/preparer-ma-carte.html?plan=adherent-19900&country='+country+'&lang='+l+'&flow=prevalidation-20260911';}
+      if(grid)grid.style.display='none';
+      if(contact)contact.style.display='none';
+      if(box){
+        var b=document.getElementById('digiyDossierBeforePay');
+        if(!b){b=document.createElement('a');b.id='digiyDossierBeforePay';b.className='cta primary';b.style.marginTop='14px';box.appendChild(b);}
+        b.textContent=txt.locked+' →';b.href='/preparer-ma-carte.html?plan=adherent-19900&country='+country+'&lang='+l+'&flow=prevalidation-20260911';
+      }
+    }else{
+      if(cta){cta.textContent=txt.valid;cta.href='#paiement';}
+      if(grid)grid.style.display='grid';
+      if(contact)contact.style.display='flex';
+      var old=document.getElementById('digiyDossierBeforePay');if(old)old.remove();
+    }
+  }
+
   function loadContextExtras(){
     var p=location.pathname.replace(/\/+$/,'');
     if(p===''||p==='/'||/\/index\.html$/i.test(p)){
@@ -62,6 +102,11 @@
       var s=addScript('/assets/digiy-sarlat-health-v1.js?v=20260901-v1','data-digiy-sarlat-health');
       if(s){s.onload=fixSarlatPublicHealthDoor;s.onerror=fixSarlatPublicHealthDoor}
       setTimeout(fixSarlatPublicHealthDoor,250);
+    }
+    if(/\/tarifs-adherents-1\.html$/i.test(p)){
+      fixTarifsPrevalidationFlow();
+      document.querySelectorAll('[data-country],[data-l]').forEach(function(b){b.addEventListener('click',function(){setTimeout(fixTarifsPrevalidationFlow,0)});});
+      setTimeout(fixTarifsPrevalidationFlow,250);
     }
     if(/\/demo-dordogne\.html$/i.test(p)){
       var q=new URLSearchParams(location.search);
@@ -82,11 +127,12 @@
   }
 
   guardUniqueDakar();
+  fixTarifsPrevalidationFlow();
 
   var stable=document.createElement('script');
   stable.src='/digiy-contact-global-stable-20260830.js?v=20260830-stable';
   stable.async=false;
-  stable.onload=function(){guardUniqueDakar();loadHealthDoors();};
-  stable.onerror=function(){guardUniqueDakar();loadHealthDoors();};
+  stable.onload=function(){guardUniqueDakar();fixTarifsPrevalidationFlow();loadHealthDoors();};
+  stable.onerror=function(){guardUniqueDakar();fixTarifsPrevalidationFlow();loadHealthDoors();};
   document.head.appendChild(stable);
 })();
