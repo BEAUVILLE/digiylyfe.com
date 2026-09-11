@@ -12,8 +12,36 @@ de:{title:'Ihre Angaben und der Jahrespreis vor der Freigabe',lead:'Senden Sie z
 nl:{title:'Uw gegevens en jaarprijs vóór goedkeuring',lead:'Stuur eerst uw dossier. DIGIYLYFE maakt uw LOC-versie en stuurt u de BON À TIRER. Geen betaling vóór uw goedkeuring.',submit:'MIJN LOC-DOSSIER VERSTUREN →',email:'E-mail *',need:'E-mail is verplicht om na betaling uw beveiligde eigenaarstoegang te ontvangen.',sending:'LOC-dossier veilig verzenden…',done:'✅ LOC-DOSSIER ONTVANGEN',after:'DIGIYLYFE maakt nu uw LOC-versie. U ontvangt de bon à tirer vóór elke betaling. Na goedkeuring en betalingsbevestiging wordt uw eigenaarstoegang geactiveerd en wordt de magic link naar uw e-mail gestuurd.',wa:'DIGIYLYFE VIA WHATSAPP MELDEN →'},
 ar:{title:'بياناتك والسعر السنوي قبل الموافقة',lead:'أرسل ملفك أولاً. تُعد DIGIYLYFE نسخة LOC وترسل لك نسخة الاعتماد. لا دفع قبل موافقتك.',submit:'إرسال ملف LOC ←',email:'البريد الإلكتروني *',need:'البريد الإلكتروني إلزامي لاستلام دخول المالك الآمن بعد الدفع.',sending:'جارٍ إرسال ملف LOC بشكل آمن…',done:'✅ تم استلام ملف LOC',after:'تُعد DIGIYLYFE الآن نسخة LOC الخاصة بك. ستستلم نسخة الاعتماد قبل أي دفع. بعد الموافقة وتأكيد الدفع، يتم تفعيل دخول المالك وإرسال الرابط السحري إلى بريدك الإلكتروني.',wa:'إبلاغ DIGIYLYFE عبر واتساب ←'}
 };
+const P={
+fr:{offerTitle:'🎁 PLUS DE 4 MOIS D’AVANTAGE ÉQUIVALENT À LA PREMIÈRE ADHÉSION',offerText:'La remise annuelle de 20 % représente 2,4 mois d’avantage, auxquels s’ajoutent 2 mois sans supplément : premier cycle de 14 mois au tarif annuel affiché.',note:'🎁 Première adhésion : plus de 4 mois d’avantage équivalent — remise annuelle de 20 % + 2 mois ajoutés sans supplément. La fiche professionnelle obligatoire est facturée séparément : 100 000 FCFA au Sénégal ou 250 € en Europe. Réservation directe · paiement direct · 0 % commission DIGIYLYFE.',fiche:'Fiche professionnelle',first:'1re adhésion'},
+en:{offerTitle:'🎁 MORE THAN 4 MONTHS OF EQUIVALENT VALUE WITH THE FIRST MEMBERSHIP',offerText:'The 20% annual discount represents 2.4 months of value, plus 2 extra months at no additional cost: your first cycle lasts 14 months at the displayed annual price.',note:'🎁 First membership: more than 4 months of equivalent value — 20% annual discount + 2 extra months at no additional cost. The mandatory professional profile is billed separately: 100,000 FCFA in Senegal or €250 in Europe. Direct booking · direct payment · 0% DIGIYLYFE commission.',fiche:'Professional profile',first:'1st membership'},
+es:{offerTitle:'🎁 MÁS DE 4 MESES DE VENTAJA EQUIVALENTE EN LA PRIMERA ADHESIÓN',offerText:'El descuento anual del 20 % equivale a 2,4 meses de ventaja, a los que se añaden 2 meses sin suplemento: primer ciclo de 14 meses al precio anual indicado.',note:'🎁 Primera adhesión: más de 4 meses de ventaja equivalente — 20 % de descuento anual + 2 meses añadidos sin suplemento. La ficha profesional obligatoria se factura aparte: 100 000 FCFA en Senegal o 250 € en Europa. Reserva directa · pago directo · 0 % comisión DIGIYLYFE.',fiche:'Ficha profesional',first:'1.ª adhesión'},
+pt:{offerTitle:'🎁 MAIS DE 4 MESES DE VANTAGEM EQUIVALENTE NA PRIMEIRA ADESÃO',offerText:'O desconto anual de 20 % equivale a 2,4 meses de vantagem, aos quais se juntam 2 meses sem custo adicional: primeiro ciclo de 14 meses ao preço anual indicado.',note:'🎁 Primeira adesão: mais de 4 meses de vantagem equivalente — 20 % de desconto anual + 2 meses sem custo adicional. A ficha profissional obrigatória é faturada separadamente: 100 000 FCFA no Senegal ou 250 € na Europa. Reserva direta · pagamento direto · 0 % comissão DIGIYLYFE.',fiche:'Ficha profissional',first:'1.ª adesão'},
+it:{offerTitle:'🎁 OLTRE 4 MESI DI VANTAGGIO EQUIVALENTE ALLA PRIMA ADESIONE',offerText:'Lo sconto annuale del 20% equivale a 2,4 mesi di vantaggio, a cui si aggiungono 2 mesi senza supplemento: primo ciclo di 14 mesi al prezzo annuale indicato.',note:'🎁 Prima adesione: oltre 4 mesi di vantaggio equivalente — sconto annuale del 20% + 2 mesi senza supplemento. La scheda professionale obbligatoria è fatturata separatamente: 100.000 FCFA in Senegal o 250 € in Europa. Prenotazione diretta · pagamento diretto · 0% commissioni DIGIYLYFE.',fiche:'Scheda professionale',first:'1ª adesione'},
+de:{offerTitle:'🎁 MEHR ALS 4 MONATE GLEICHWERTIGER VORTEIL BEI DER ERSTEN MITGLIEDSCHAFT',offerText:'Der Jahresrabatt von 20 % entspricht 2,4 Monaten Vorteil; zusätzlich kommen 2 Monate ohne Aufpreis hinzu: erster Zeitraum 14 Monate zum angezeigten Jahrespreis.',note:'🎁 Erste Mitgliedschaft: mehr als 4 Monate gleichwertiger Vorteil — 20 % Jahresrabatt + 2 Monate ohne Aufpreis. Das obligatorische professionelle Profil wird separat berechnet: 100.000 FCFA im Senegal oder 250 € in Europa. Direktbuchung · Direktzahlung · 0 % DIGIYLYFE-Provision.',fiche:'Professionelles Profil',first:'1. Mitgliedschaft'},
+nl:{offerTitle:'🎁 MEER DAN 4 MAANDEN GELIJKWAARDIG VOORDEEL BIJ DE EERSTE AANSLUITING',offerText:'De jaarlijkse korting van 20% staat gelijk aan 2,4 maanden voordeel, plus 2 extra maanden zonder meerprijs: de eerste periode duurt 14 maanden tegen de getoonde jaarprijs.',note:'🎁 Eerste aansluiting: meer dan 4 maanden gelijkwaardig voordeel — 20% jaarlijkse korting + 2 extra maanden zonder meerprijs. De verplichte professionele fiche wordt apart gefactureerd: 100.000 FCFA in Senegal of €250 in Europa. Directe boeking · directe betaling · 0% DIGIYLYFE-commissie.',fiche:'Professionele fiche',first:'1e aansluiting'},
+ar:{offerTitle:'🎁 أكثر من 4 أشهر من القيمة المكافئة عند الاشتراك الأول',offerText:'خصم 20٪ السنوي يعادل 2.4 شهر من القيمة، ويضاف إليه شهران دون تكلفة إضافية: الدورة الأولى 14 شهرًا بالسعر السنوي المعروض.',note:'🎁 الاشتراك الأول: أكثر من 4 أشهر من القيمة المكافئة — خصم سنوي 20٪ + شهران إضافيان دون تكلفة. تُحتسب البطاقة المهنية الإلزامية بشكل منفصل: 100,000 فرنك CFA في السنغال أو 250 € في أوروبا. حجز مباشر · دفع مباشر · عمولة DIGIYLYFE بنسبة 0٪.',fiche:'البطاقة المهنية',first:'الاشتراك الأول'}
+};
+const ANNUAL_SN=[268800,336000,432000,528000,624000,720000,864000,1008000];
+const ANNUAL_EU=[720,912,1200,1440,1728,2016,2400,2784];
 const $=id=>document.getElementById(id),form=$('locForm');if(!form)return;
 function lang(){const l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return M[l]?l:'fr'}
+function fmt(n,c){return c==='sn'?Number(n).toLocaleString('fr-FR').replace(/\u202f/g,' ')+' FCFA':Number(n).toLocaleString('fr-FR')+' €'}
+function marketing(){
+ const x=P[lang()]||P.fr;
+ if($('offerTitle'))$('offerTitle').textContent=x.offerTitle;
+ if($('offerText'))$('offerText').textContent=x.offerText;
+ if($('note'))$('note').textContent=x.note;
+ Array.from(document.querySelectorAll('#tiersBody tr')).slice(0,8).forEach((tr,i)=>{
+  const cells=tr.children;if(cells.length<5)return;
+  [[2,'sn',100000,ANNUAL_SN[i]],[4,'eu',250,ANNUAL_EU[i]]].forEach(v=>{
+   const cell=cells[v[0]];cell.querySelectorAll('[data-first-join]').forEach(el=>el.remove());
+   const s=document.createElement('span');s.setAttribute('data-first-join','1');s.style.cssText='display:block;margin-top:7px;padding-top:7px;border-top:1px solid #ffffff22;color:#eaf7ef;font-size:10.5px;font-weight:900;line-height:1.45';
+   s.innerHTML=x.fiche+' : + '+fmt(v[2],v[1])+'<br><strong>'+x.first+' : '+fmt(v[3]+v[2],v[1])+'</strong>';
+   cell.appendChild(s);
+  });
+ });
+}
 function preselectCountry(){
  try{
   let c=(new URLSearchParams(location.search).get('country')||'').toLowerCase();
@@ -24,7 +52,7 @@ function preselectCountry(){
   el.dispatchEvent(new Event('change',{bubbles:true}));
  }catch(_){}
 }
-function copy(){const x=M[lang()];if($('formTitle'))$('formTitle').textContent=x.title;if($('formLead'))$('formLead').textContent=x.lead;if($('lEmail'))$('lEmail').textContent=x.email;if($('continue'))$('continue').textContent=x.submit;const em=$('email');if(em){em.required=true;em.setAttribute('aria-required','true')}const p=$('paiement');if(p)p.classList.add('hidden')}
+function copy(){const x=M[lang()];if($('formTitle'))$('formTitle').textContent=x.title;if($('formLead'))$('formLead').textContent=x.lead;if($('lEmail'))$('lEmail').textContent=x.email;if($('continue'))$('continue').textContent=x.submit;const em=$('email');if(em){em.required=true;em.setAttribute('aria-required','true')}const p=$('paiement');if(p)p.classList.add('hidden');marketing()}
 function value(id){return String($(id)?.value||'').trim()}
 function statusBox(){let s=$('locSecureStatus');if(!s){s=document.createElement('div');s.id='locSecureStatus';s.className='summary';s.style.display='none';form.insertAdjacentElement('afterend',s)}return s}
 function show(text,bad){const s=statusBox();s.style.display='block';s.className=bad?'error':'summary ok';s.innerHTML=text}
