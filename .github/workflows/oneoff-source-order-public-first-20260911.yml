@@ -26,13 +26,13 @@ jobs:
           text = path.read_text(encoding='utf-8')
 
           territory_re = re.compile(
-              r'\n\s*<section\b[^>]*\bid="territoires"[^>]*>.*?</section>',
+              r'<section\b[^>]*\bid="territoires"[^>]*>.*?</section>',
               re.S,
           )
           matches = list(territory_re.finditer(text))
           if len(matches) != 1:
               raise SystemExit(f'Expected exactly one territory hub, found {len(matches)}')
-          territory = matches[0].group(0).strip('\n')
+          territory = matches[0].group(0)
           text = territory_re.sub('', text, count=1)
 
           public_re = re.compile(
@@ -43,7 +43,7 @@ jobs:
           if len(pubs) != 1:
               raise SystemExit(f'Expected exactly one public doors section, found {len(pubs)}')
 
-          text = public_re.sub(r'\1\n\n' + territory, text, count=1)
+          text = public_re.sub(r'\1\n\n    ' + territory, text, count=1)
 
           if text.count('id="territoires"') != 1:
               raise SystemExit('Territory hub count changed unexpectedly')
