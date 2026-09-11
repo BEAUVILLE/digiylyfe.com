@@ -29,7 +29,7 @@ else if(dordogne)h=h.replace("const RUNTIME_URL='/assets/digiy-adhesion-runtime-
 if(!carnet){
 const proofBlock=/<div class="proof">[\s\S]*?<\/div>\s*<label class="consent">/;
 if(!proofBlock.test(h))throw new Error('payment proof marker missing');
-h=h.replace(proofBlock,'<div class="proof"><strong id="proofTitle">AUCUN PAIEMENT MAINTENANT</strong><div class="note" id="proofLabel">Envoyez d’abord vos renseignements. DIGIYLYFE valide votre dossier avant de vous demander le règlement.</div><small class="note" id="proofHelp"></small><input id="proof" type="file" hidden></div>\n\n  <label class="consent">');
+h=h.replace(proofBlock,'<div class="proof"><strong id="proofTitle">AUCUN PAIEMENT MAINTENANT</strong><div class="note" id="proofLabel">Envoyez d’abord vos renseignements. DIGIYLYFE contrôle votre dossier, prépare votre fiche et vous la présente. Le règlement n’est demandé qu’après votre accord.</div><small class="note" id="proofHelp"></small><input id="proof" type="file" hidden></div>\n\n  <label class="consent">');
 const flowPatches=[
 ["if(!proof||proof.size>10*1024*1024||!['image/jpeg','image/png','image/webp','application/pdf'].includes(proof.type)){st.className='status bad';st.textContent='Preuve de règlement invalide.';return}",""],
 ["let id=crypto.randomUUID(),pp=`pending/${id}.${ext(photo)}`,rp=`pending/${id}.${ext(proof)}`,inserted=false;","let id=crypto.randomUUID(),pp=`pending/${id}.${ext(photo)}`,rp=null,inserted=false;"],
@@ -54,7 +54,7 @@ if(dakar)addon+='<script src="/assets/digiy-dossier-prefill-dakar-v1.js?v=202608
 if(bordeaux)addon+='<script src="/assets/digiy-dossier-prefill-bordeaux-v1.js?v=20260826"><\/script>';
 if(dordogne)addon+='<script src="/assets/digiy-dossier-prefill-dordogne-v1.js?v=20260826"><\/script>';
 if(petiteCote)addon+='<script src="/assets/digiy-dossier-prefill-petite-cote-v1.js?v=20260826"><\/script>';
-if(!carnet)addon+='<script src="/assets/digiy-fiche-flow-20260911.js?v=20260911-freeze-fix-v1"><\/script><script src="/assets/digiy-prevalidation-flow-20260911.js?v=20260911-v1"><\/script>';
+if(!carnet)addon+='<script src="/assets/digiy-fiche-flow-20260911.js?v=20260911-fiche-before-payment-v2"><\/script><script src="/assets/digiy-prevalidation-flow-20260911.js?v=20260911-fiche-before-payment-v2"><\/script>';
 h=h.replace(/<\/head>/i,forceCarnet+tariffLayout+freeCardStyle+'</head>');
 h=h.replace(/<\/body>/i,addon+'</body>');
 document.open();document.write(h);document.close();
