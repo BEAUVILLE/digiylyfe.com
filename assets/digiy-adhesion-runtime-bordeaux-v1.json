@@ -7,7 +7,7 @@
     "calling_code":"+33","timezone":"Europe/Paris","default_language":"fr",
     "interface_languages":["fr","en","es","pt","it","de","nl","ar"],
     "pricing":{
-      "membership":{"adherent-19900":{"amount":45,"label":"45 € / mois"}},
+      "membership":{"adherent-19900":{"amount":450,"label":"450 € / an","billing_period":"year","billing_months":12,"welcome_months":2,"first_cycle_months":14,"first_renewal_amount":450,"first_renewal_months":12}},
       "services":{"fiche":{"starting_amount":250,"label":"À partir de 250 €"},"site_premium":{"starting_amount":480,"label":"À partir de 480 €"},"site_extra":{"starting_amount":800,"label":"À partir de 800 €"}}
     },
     "territories":[{
