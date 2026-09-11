@@ -19,7 +19,7 @@
       <div class="eyebrow">DIGIYLYFE · MASTER MAÎTRE</div>
       <div class="badge">ATELIER · OTP 8 CHIFFRES · NON DÉPLOYABLE TEL QUEL</div>
       <h1>DIGIY CARNET</h1>
-      <p>Accès adhérent : <strong>email → code OTP → session → droit CARNET → PRO CARNET</strong>. Aucun PIN neuf n’est créé.</p>
+      <p>Accès adhérent : <strong>droit actif → email → code OTP → session → recontrôle du droit CARNET → PRO CARNET</strong>. Aucun PIN neuf n’est créé.</p>
 
       <div id="loginBox">
         <div class="field">
@@ -45,7 +45,7 @@
         <button class="btn secondary" id="logout" type="button">↩ Déconnexion</button>
       </div>
 
-      <div class="small">Doctrine : l’OTP authentifie la personne ; le bridge vérifie ensuite séparément son droit CARNET. Le téléphone n’est jamais utilisé comme secret d’accès navigateur.</div>
+      <div class="small">Doctrine : aucun OTP avant droit actif. Après authentification, le bridge contrôle encore le droit CARNET avant d’ouvrir PRO CARNET.</div>
     </section>
   </main>
 <script>
@@ -125,22 +125,39 @@
     }
   }
 
+  async function eligibleBeforeOtp(em){
+    const {data,error}=await db.rpc("digiy_carnet_precheck_email",{
+      p_slug:C.identity.memberSlug,
+      p_email:em
+    });
+    if(error) throw error;
+    return data?.ok===true;
+  }
+
   send.addEventListener("click", async()=>{
     const em=String(email.value||"").trim();
     if(!em){ setStatus("Indique l’email de l’adhérent.","warn"); email.focus(); return; }
     send.disabled=true;
-    setStatus("Envoi du code OTP…","warn");
+    setStatus("Vérification du droit actif…","warn");
     try{
+      const eligible=await eligibleBeforeOtp(em);
+      if(!eligible){
+        otpBox.hidden=true;
+        sessionStorage.removeItem(PENDING_EMAIL_KEY);
+        setStatus("Accès non actif. Le code OTP est envoyé uniquement après activation de l’adhésion.","warn");
+        return;
+      }
+      setStatus("Droit actif confirmé · envoi du code OTP…","warn");
       const {error}=await db.auth.signInWithOtp({email:em,options:{shouldCreateUser:false}});
       if(error) throw error;
       showOtp(em);
-      setStatus("✅ CODE OTP ENVOYÉ\nSaisis les 8 chiffres reçus par email.","ok");
+      setStatus("✅ DROIT ACTIF CONFIRMÉ · ✅ CODE OTP ENVOYÉ\nSaisis les 8 chiffres reçus par email.","ok");
     }catch(err){
       const message=String(err?.message||err);
       if(/rate limit|too many|429/i.test(message)){
         setStatus("⚠️ RENVOI TEMPORAIREMENT BLOQUÉ PAR SUPABASE\nN’insiste pas : utilise le dernier code réellement reçu ou reteste une session existante.","warn");
       }else{
-        setStatus("Envoi OTP impossible : "+message,"bad");
+        setStatus("Vérification ou envoi OTP impossible : "+message,"bad");
       }
     }finally{ send.disabled=false; }
   });
@@ -159,7 +176,7 @@
       const {data,error}=await db.auth.verifyOtp({email:em,token:code,type:"email"});
       if(error) throw error;
       if(!data?.session){ throw new Error("session_otp_absente"); }
-      setStatus("✅ OTP VALIDÉ · contrôle du droit CARNET…","ok");
+      setStatus("✅ OTP VALIDÉ · recontrôle du droit CARNET…","ok");
       await verifyAccess();
     }catch(err){
       const message=String(err?.message||err);
