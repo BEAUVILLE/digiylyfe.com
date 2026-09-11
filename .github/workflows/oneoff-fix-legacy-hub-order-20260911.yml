@@ -20,19 +20,20 @@ jobs:
           from pathlib import Path
           p = Path('digiy-contact-global-core-20260824.js')
           s = p.read_text(encoding='utf-8')
-          old = """      var hero=document.querySelector('section.hero');
-      if(hero && hero.nextElementSibling!==section) hero.insertAdjacentElement('afterend',section);"""
-          new = """      var publicDoor=document.querySelector('section.section[aria-label=\"Portes publiques DIGIYLYFE\"]');
-      if(publicDoor && publicDoor.nextElementSibling!==section) publicDoor.insertAdjacentElement('afterend',section);"""
+          old1 = "      var hero=document.querySelector('section.hero');"
+          old2 = "      if(hero && hero.nextElementSibling!==section) hero.insertAdjacentElement('afterend',section);"
+          new1 = "      var publicDoor=document.querySelector('section.section[aria-label=\"Portes publiques DIGIYLYFE\"]');"
+          new2 = "      if(publicDoor && publicDoor.nextElementSibling!==section) publicDoor.insertAdjacentElement('afterend',section);"
+          old = old1 + chr(10) + old2
+          new = new1 + chr(10) + new2
           if old not in s:
               if new in s:
                   print('Legacy relocation already fixed')
                   raise SystemExit(0)
               raise SystemExit('Expected legacy relocation block not found')
           if s.count(old) != 1:
-              raise SystemExit(f'Expected one legacy relocation block, found {s.count(old)}')
-          s = s.replace(old, new, 1)
-          p.write_text(s, encoding='utf-8')
+              raise SystemExit('Expected exactly one legacy relocation block')
+          p.write_text(s.replace(old, new, 1), encoding='utf-8')
           PY
       - name: Commit targeted fix
         run: |
