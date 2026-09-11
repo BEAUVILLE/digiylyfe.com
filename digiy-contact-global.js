@@ -99,7 +99,7 @@
     }
     if(/\/sarlat\.html$/i.test(p)){
       fixSarlatPublicHealthDoor();
-      var s=addScript('/assets/digiy-sarlat-health-v1.js?v=20260901-v4','data-digiy-sarlat-health');
+      var s=addScript('/assets/digiy-sarlat-health-v1.js?v=20260901-v1','data-digiy-sarlat-health');
       if(s){s.onload=fixSarlatPublicHealthDoor;s.onerror=fixSarlatPublicHealthDoor}
       setTimeout(fixSarlatPublicHealthDoor,250);
     }
