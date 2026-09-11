@@ -12,12 +12,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Move Miami into its own USA sector
+      - name: Harden Miami USA sector and translations
         run: python .github/scripts/fix_miami_sector_20260911.py
       - name: Commit patch
         run: |
           git config user.name 'DIGIY LYFE'
           git config user.email 'baptistejb24@gmail.com'
           git add index.html assets/digiy-miami-door-v1.js
-          git commit -m 'fix: separate Miami from France sector'
+          git commit -m 'fix: harden Miami USA sector and translations'
           git push origin HEAD:main
