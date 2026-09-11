@@ -1,0 +1,58 @@
+name: One-off Miami cache and US route fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/oneoff-miami-cache-route-fix-20260911.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch Miami cache chain and US route
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new):
+              p = Path(path)
+              s = p.read_text(encoding='utf-8')
+              if old not in s:
+                  raise SystemExit(f'marker missing in {path}: {old}')
+              s = s.replace(old, new, 1)
+              p.write_text(s, encoding='utf-8')
+
+          replace_once(
+              'index.html',
+              'https://digiylyfe.com/digiy-contact-global.js?v=20260906-coherence-v1',
+              'https://digiylyfe.com/digiy-contact-global.js?v=20260911-miami-v1'
+          )
+
+          replace_once(
+              'digiy-contact-global.js',
+              "stable.src='/digiy-contact-global-stable-20260830.js?v=20260830-stable';",
+              "stable.src='/digiy-contact-global-stable-20260830.js?v=20260911-miami-v1';"
+          )
+
+          replace_once(
+              'digiy-contact-global.js',
+              "var country=(active&&active.dataset.country?active.dataset.country:(q.get('country')||'sn')).toLowerCase()==='fr'?'fr':'sn';",
+              "var rawCountry=(active&&active.dataset.country?active.dataset.country:(q.get('country')||'sn')).toLowerCase();\n    var country=rawCountry==='fr'?'fr':rawCountry==='us'?'us':'sn';"
+          )
+          PY
+
+          git diff --check
+          git diff -- index.html digiy-contact-global.js
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html digiy-contact-global.js
+          git commit -m "fix(miami): bust legacy cache and preserve US route [skip ci]"
+          git push
