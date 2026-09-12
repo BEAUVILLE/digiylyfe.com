@@ -1,0 +1,178 @@
+name: Normalize France first-year pricing
+
+on:
+  push:
+    paths:
+      - '.github/workflows/normalize-france-pricing-20260912.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  normalize-france-pricing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply France pricing doctrine
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re
+
+          changed=[]
+
+          def save(path, text):
+              p=Path(path)
+              old=p.read_text(encoding='utf-8')
+              if text != old:
+                  p.write_text(text, encoding='utf-8')
+                  changed.append(path)
+
+          # 1) France hub: never show 450 €/an as if it were the first-year entry price.
+          path='france.html'
+          s=Path(path).read_text(encoding='utf-8')
+          s=s.replace(
+              'La porte France de DIGIYLYFE : Paris, Périgord · Vallée de la Dordogne et Bordeaux. Professionnels locaux, contact direct, adhésion 450 € par an avec 2 mois offerts à la première adhésion et 0 % de commission DIGIYLYFE.',
+              'La porte France de DIGIYLYFE : Paris, Périgord · Vallée de la Dordogne et Bordeaux. Entrée PRO : fiche professionnelle 250 € + adhésion 450 €/an, soit 700 € la première année, puis 450 €/an. 2 mois offerts au premier cycle et 0 % de commission DIGIYLYFE.'
+          )
+          s=s.replace(
+              '<div><b>450 € / an</b><strong>Adhésion DIGIYLYFE</strong><small>1 règlement annuel · carte digitale · QR · place dans la vitrine · contact direct · 0 % commission. 🎁 2 mois offerts à la première adhésion : premier cycle 14 mois.</small></div>',
+              '<div><b>700 € · 1re année</b><strong>Fiche professionnelle 250 € + adhésion DIGIYLYFE 450 €/an</strong><small>La fiche professionnelle est créée au démarrage. L’adhésion maintient ensuite votre accès PRO, votre carte digitale, QR, place dans la vitrine, contact direct et 0 % commission. 🎁 2 mois offerts au premier cycle : 14 mois. Puis 450 €/an.</small></div>'
+          )
+          s=s.replace(
+              '<div class="rule">Premier renouvellement : 12 mois à 450 €. Toute évolution tarifaire ultérieure sera annoncée avant la période concernée. · 0 % commission DIGIYLYFE · contact direct · paiement direct.</div>',
+              '<div class="rule">Première année : fiche professionnelle 250 € + adhésion annuelle 450 € = 700 €. Premier renouvellement : 12 mois à 450 €. Toute évolution tarifaire ultérieure sera annoncée avant la période concernée. · 0 % commission DIGIYLYFE · contact direct · paiement direct.</div>'
+          )
+          save(path,s)
+
+          # 2) Central pricing page: the France PRO card must state the actual first-year total.
+          path='tarifs-adherents-1.html'
+          s=Path(path).read_text(encoding='utf-8')
+          s=s.replace(
+              "FR:{sheet:'À PARTIR DE 250 €',pro:'450 € / AN',proExtra:'1 RÈGLEMENT · 2 MOIS OFFERTS À LA PREMIÈRE ADHÉSION',premium:'À PARTIR DE 480 €',extra:'À PARTIR DE 800 €'}",
+              "FR:{sheet:'250 € · CRÉATION DE LA FICHE',pro:'700 € · TOTAL 1RE ANNÉE',proExtra:'FICHE 250 € + ADHÉSION 450 € / AN · PUIS 450 € / AN · 2 MOIS OFFERTS AU 1ER CYCLE (14 MOIS)',premium:'À PARTIR DE 480 €',extra:'À PARTIR DE 800 €'}"
+          )
+          s=s.replace(
+              "memberText:'Votre adhésion maintient votre accès propriétaire et les fonctions professionnelles rattachées à votre fiche, sans abandonner votre indépendance.'",
+              "memberText:'En France, la première année comprend la création de la fiche professionnelle à 250 € et l’adhésion DIGIY PRO à 450 €/an.'"
+          )
+          s=s.replace(
+              "memberPeriod:'TARIF ADHÉSION PRO'",
+              "memberPeriod:'COÛT TOTAL FRANCE'"
+          )
+          s=s.replace(
+              "memberNote:'La carte gratuite ne comporte aucun accès propriétaire. L’accès sécurisé appartient exclusivement à la fiche professionnelle activée dans DIGIY PRO.'",
+              "memberNote:'TOTAL 1re ANNÉE EN FRANCE : 700 € = fiche 250 € + adhésion 450 €. Puis renouvellement : 450 €/an. La carte gratuite ne comporte aucun accès propriétaire.'"
+          )
+          s=s.replace(
+              "sendwaveText:'Pour la France, règlement annuel de l’adhésion. Dans Sendwave, choisissez Sénégal puis renseignez Jean Baptiste Beauville et le numéro +221 77 134 28 89.'",
+              "sendwaveText:'Pour la France, le premier règlement PRO comprend la fiche professionnelle 250 € + l’adhésion annuelle 450 €, soit 700 €. Puis l’adhésion se renouvelle à 450 €/an. Dans Sendwave, choisissez Sénégal puis renseignez Jean Baptiste Beauville et le numéro +221 77 134 28 89.'"
+          )
+          save(path,s)
+
+          # 3) Paris: the three-step view must show the combined first-year total, not 450 € alone.
+          path='paris.html'
+          s=Path(path).read_text(encoding='utf-8')
+          s=s.replace('<b id="sheetPrice">250 €+</b>','<b id="sheetPrice">250 €</b>')
+          s=s.replace(
+              '<article class="step"><b>450 €</b><strong id="s3t">DIGIY PRO / an</strong><small id="s3x">Un règlement annuel. Deux mois offerts à la première adhésion. Accès propriétaire sécurisé et fonctions professionnelles.</small></article>',
+              '<article class="step"><b>700 €</b><strong id="s3t">TOTAL 1re année</strong><small id="s3x">Fiche professionnelle 250 € + adhésion DIGIY PRO 450 €/an. Puis 450 €/an. Deux mois offerts au premier cycle : 14 mois.</small></article>'
+          )
+          s=s.replace(
+              "s2x:'Création unique de votre fiche professionnelle personnalisée.',s3t:'DIGIY PRO / an',s3x:'Un règlement annuel. Deux mois offerts à la première adhésion. Accès propriétaire sécurisé et fonctions professionnelles.'",
+              "s2x:'Création unique de votre fiche professionnelle personnalisée : 250 €.',s3t:'TOTAL 1re année',s3x:'Fiche professionnelle 250 € + adhésion DIGIY PRO 450 €/an. Puis 450 €/an. Deux mois offerts au premier cycle : 14 mois.'"
+          )
+          save(path,s)
+
+          # 4) Bordeaux relay: all Bordeaux surfaces use the first-year total as the headline price.
+          path='assets/digiy-bordeaux-i18n-v1.js'
+          s=Path(path).read_text(encoding='utf-8')
+          s=re.sub(
+              r"var prices=\{fr:'450 € / an',en:'€450 / year',es:'450 € / año',pt:'450 € / ano',it:'450 € / anno',de:'450 € / Jahr',nl:'€ 450 / jaar',ar:'450 € / سنة'\};",
+              "var prices={fr:'700 € · 1re année',en:'€700 · first year',es:'700 € · primer año',pt:'700 € · 1.º ano',it:'700 € · 1° anno',de:'700 € · 1. Jahr',nl:'€700 · 1e jaar',ar:'700 € · السنة الأولى'};",
+              s
+          )
+          s=s.replace("var p=document.querySelector('.price strong');if(p)p.textContent='450 €';", "var p=document.querySelector('.price strong');if(p)p.textContent=prices[l];")
+          s=s.replace("var m=document.getElementById('month');if(m)m.textContent=annualLabel[l];", "var m=document.getElementById('month');if(m)m.textContent=total[l][1];")
+          save(path,s)
+
+          # 5) Bordeaux page: remove stale monthly public price even before the relay executes.
+          path='bordeaux.html'
+          s=Path(path).read_text(encoding='utf-8')
+          s=s.replace('contact direct, 0 % commission, adhésion 45 € par mois.', 'contact direct, 0 % commission, fiche professionnelle 250 € + adhésion 450 €/an, soit 700 € la première année puis 450 €/an.')
+          s=s.replace('<b id="heroPrice">45 € / mois</b>', '<b id="heroPrice">700 € · 1re année</b>')
+          s=s.replace('REJOINDRE DIGIY BORDEAUX · 45 € / MOIS →', 'REJOINDRE DIGIY BORDEAUX · 700 € 1re ANNÉE →')
+          s=s.replace("priceLead:'Une présence. Contact direct. 0 % commission.'", "priceLead:'Fiche 250 € + adhésion 450 €/an · puis 450 €/an · 0 % commission.'")
+          s=s.replace("finalBtn:'REJOINDRE DIGIY BORDEAUX · 45 € / MOIS →'", "finalBtn:'REJOINDRE DIGIY BORDEAUX · 700 € 1re ANNÉE →'")
+          s=s.replace("price=ui&&ui.price?ui.price:'45 € / mois'", "price=ui&&ui.price?ui.price:'700 € · 1re année'")
+          s=s.replace("document.getElementById('heroPrice').textContent=ui&&ui.price?ui.price:'45 € / mois';", "document.getElementById('heroPrice').textContent=ui&&ui.price?ui.price:'700 € · 1re année';")
+          save(path,s)
+
+          # 6) Bordeaux join page: no flash or copy suggesting 450 € is the complete entry cost.
+          path='adhesion-bordeaux.html'
+          s=Path(path).read_text(encoding='utf-8')
+          s=s.replace('<div class="price"><strong>450 €</strong><small id="month">PAR AN · 1 RÈGLEMENT · 0 % COMMISSION</small></div>', '<div class="price"><strong>700 €</strong><small id="month">TOTAL 1RE ANNÉE · FICHE 250 € + ADHÉSION 450 €/AN · PUIS 450 €/AN</small></div>')
+          s=s.replace('<h2 id="payTitle">Régler l’adhésion annuelle</h2><p id="payText">Après avoir vu et approuvé votre fiche, vous effectuez un seul règlement annuel de 450 €. Vos clients vous paient directement : DIGIYLYFE ne prélève aucune commission sur vos ventes ou prestations.</p>', '<h2 id="payTitle">Régler la fiche + l’adhésion DIGIY PRO</h2><p id="payText">Après avoir vu et approuvé votre fiche, le premier règlement comprend la fiche professionnelle 250 € + l’adhésion DIGIY PRO 450 €/an, soit 700 € la première année. Puis 450 €/an. Vos clients vous paient directement : DIGIYLYFE ne prélève aucune commission.</p>')
+          s=s.replace("month:'PAR AN · 1 RÈGLEMENT · 0 % COMMISSION'", "month:'TOTAL 1RE ANNÉE · FICHE 250 € + ADHÉSION 450 €/AN · PUIS 450 €/AN · 0 % COMMISSION'")
+          s=s.replace("pt:'Régler l’adhésion annuelle',px:'Après avoir vu et approuvé votre fiche, vous effectuez un seul règlement annuel de 450 €. Vos clients vous paient directement : DIGIYLYFE ne prélève aucune commission sur vos ventes ou prestations.'", "pt:'Régler la fiche + l’adhésion DIGIY PRO',px:'Après avoir vu et approuvé votre fiche, le premier règlement comprend la fiche professionnelle 250 € + l’adhésion DIGIY PRO 450 €/an, soit 700 € la première année. Puis 450 €/an. Vos clients vous paient directement : DIGIYLYFE ne prélève aucune commission.'")
+          save(path,s)
+
+          # 7) Sarlat public page + relay: headline price must also carry the first-year total.
+          path='assets/digiy-territoire-dordogne-projection-v1.js'
+          s=Path(path).read_text(encoding='utf-8')
+          s=re.sub(
+              r"var prices=\{fr:'450 € / an',en:'€450 / year',es:'450 € / año',pt:'450 € / ano',it:'450 € / anno',de:'450 € / Jahr',nl:'€ 450 / jaar',ar:'450 € / سنة'\};",
+              "var prices={fr:'700 € · 1re année',en:'€700 · first year',es:'700 € · primer año',pt:'700 € · 1.º ano',it:'700 € · 1° anno',de:'700 € · 1. Jahr',nl:'€700 · 1e jaar',ar:'700 € · السنة الأولى'};",
+              s
+          )
+          save(path,s)
+
+          path='sarlat.html'
+          s=Path(path).read_text(encoding='utf-8')
+          s=s.replace('Contact direct, 0 % commission, adhésion 45 € par mois.', 'Contact direct, 0 % commission, fiche professionnelle 250 € + adhésion 450 €/an, soit 700 € la première année puis 450 €/an.')
+          s=s.replace('<strong id="priceLead">Identité locale · contact direct · 0 % commission</strong><b>45 € / mois</b>', '<strong id="priceLead">Fiche 250 € + adhésion 450 €/an · puis 450 €/an · 0 % commission</strong><b>700 € · 1re année</b>')
+          s=s.replace('PRENDRE MA PLACE · SARLAT ZONE PILOTE · 45 € / MOIS →', 'PRENDRE MA PLACE · SARLAT ZONE PILOTE · 700 € 1re ANNÉE →')
+          s=s.replace("price:'Identité locale · contact direct · 0 % commission'", "price:'Fiche 250 € + adhésion 450 €/an · puis 450 €/an · 0 % commission'")
+          s=s.replace("finalBtn:'PRENDRE MA PLACE · SARLAT ZONE PILOTE · 45 € / MOIS →'", "finalBtn:'PRENDRE MA PLACE · SARLAT ZONE PILOTE · 700 € 1re ANNÉE →'")
+          s=s.replace("price=ui&&ui.price?ui.price:'45 € / mois'", "price=ui&&ui.price?ui.price:'700 € · 1re année'")
+          save(path,s)
+
+          # 8) Generic public runtime: retain the annual membership amount for data semantics,
+          # but expose the mandatory first-year profile cost in the public label/metadata.
+          path='assets/digiy-adhesion-runtime-v1.json'
+          p=Path(path)
+          data=json.loads(p.read_text(encoding='utf-8'))
+          for c in data.get('countries',[]):
+              if c.get('id')=='FR':
+                  m=c.setdefault('pricing',{}).setdefault('membership',{}).get('adherent-19900')
+                  if m:
+                      m['label']='Fiche 250 € + adhésion 450 € / an · TOTAL 1re année 700 € · puis 450 € / an'
+                      m['profile_amount']=250
+                      m['first_year_total_amount']=700
+                      m['first_year_total_label']='700 €'
+          new=json.dumps(data,ensure_ascii=False,indent=2)+'\n'
+          if new != p.read_text(encoding='utf-8'):
+              p.write_text(new,encoding='utf-8');changed.append(path)
+
+          print('Changed files:')
+          for x in changed: print(' -',x)
+          if not changed:
+              print('No changes needed')
+          PY
+
+      - name: Commit corrections
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'No pricing correction needed.'
+            exit 0
+          fi
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add france.html tarifs-adherents-1.html paris.html bordeaux.html adhesion-bordeaux.html sarlat.html assets/digiy-bordeaux-i18n-v1.js assets/digiy-territoire-dordogne-projection-v1.js assets/digiy-adhesion-runtime-v1.json
+          git commit -m 'fix: show France 700 euro first-year total everywhere'
+          git push
