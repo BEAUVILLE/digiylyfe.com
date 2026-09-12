@@ -13,7 +13,7 @@
   var isBordeauxJoin=/\/adhesion-bordeaux\.html$/i.test(path);
   var isBordeauxDemo=/\/demo-bordeaux\.html$/i.test(path);
 
-  var prices={fr:'450 € / an',en:'€450 / year',es:'450 € / año',pt:'450 € / ano',it:'450 € / anno',de:'450 € / Jahr',nl:'€ 450 / jaar',ar:'450 € / سنة'};
+  var prices={fr:'700 € · 1re année',en:'€700 · first year',es:'700 € · primer año',pt:'700 € · 1.º ano',it:'700 € · 1° anno',de:'700 € · 1. Jahr',nl:'€700 · 1e jaar',ar:'700 € · السنة الأولى'};
   var creation={fr:'À PARTIR DE 250 €',en:'FROM €250',es:'DESDE 250 €',pt:'A PARTIR DE 250 €',it:'DA 250 €',de:'AB 250 €',nl:'VANAF €250',ar:'ابتداءً من 250 €'};
   var total={
     fr:['TOTAL MINIMUM 1RE ANNÉE : À PARTIR DE 700 €','250 € minimum pour la création de la fiche + 450 € d’adhésion DIGIY PRO. À partir de la 2e année : 450 €/an, hors PREMIUM / EXTRA et prestations supplémentaires.'],
@@ -84,8 +84,8 @@
       ensureFlow();
     }
     if(isBordeauxJoin){
-      var p=document.querySelector('.price strong');if(p)p.textContent='450 €';
-      var m=document.getElementById('month');if(m)m.textContent=annualLabel[l];
+      var p=document.querySelector('.price strong');if(p)p.textContent=prices[l];
+      var m=document.getElementById('month');if(m)m.textContent=total[l][1];
       var pay=document.getElementById('payBtn');if(pay)pay.href='/tarifs-adherents-1.html?country=fr#paiement';
     }
     if(isBordeauxDemo){
