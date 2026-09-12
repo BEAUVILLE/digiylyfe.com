@@ -19,7 +19,6 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re
           p=Path('territoire.html')
           s=p.read_text()
           s=s.replace('territoire-hub-statique-20260906','territoire-hub-country-20260912')
@@ -35,11 +34,14 @@ jobs:
           p.write_text(s)
           p=Path('assets/digiy-territoire-runtime-v1.js')
           s=p.read_text()
-          pattern=r"document\.title='DIGIY '\+label\(c\.name\)\+' \| DIGIYLYFE';\s*document\.getElementById\('country'\)\.textContent=label\(c\.country\);\s*document\.getElementById\('territoryName'\)\.textContent='DIGIY '\+label\(c\.name\)\.toUpperCase\(\);"
-          replacement="var isSenegal=territoryId==='petite-cote'||territoryId==='dakar';\n  var isFrance=territoryId==='vallee-dordogne'||territoryId==='bordeaux'||territoryId==='sarlat';\n  var isCountryHub=isSenegal||isFrance;\n  document.title=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase()+' | Professionnels du territoire':'DIGIY '+label(c.name)+' | DIGIYLYFE';\n  document.getElementById('country').textContent=isCountryHub?label(c.name).toUpperCase()+' · '+label(c.country).toUpperCase():label(c.country);\n  document.getElementById('territoryName').textContent=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase():'DIGIY '+label(c.name).toUpperCase();"
-          s2,n=re.subn(pattern,replacement,s,count=1)
-          if n!=1: raise SystemExit('territory runtime header marker not found')
-          p.write_text(s2)
+          a="document.title='DIGIY '+label(c.name)+' | DIGIYLYFE';"
+          b="document.getElementById('country').textContent=label(c.country);"
+          c="document.getElementById('territoryName').textContent='DIGIY '+label(c.name).toUpperCase();"
+          if a not in s or b not in s or c not in s: raise SystemExit('territory runtime line marker not found')
+          s=s.replace(a,"var isSenegal=territoryId==='petite-cote'||territoryId==='dakar';var isFrance=territoryId==='vallee-dordogne'||territoryId==='bordeaux'||territoryId==='sarlat';var isCountryHub=isSenegal||isFrance;document.title=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase()+' | Professionnels du territoire':'DIGIY '+label(c.name)+' | DIGIYLYFE';",1)
+          s=s.replace(b,"document.getElementById('country').textContent=isCountryHub?label(c.name).toUpperCase()+' · '+label(c.country).toUpperCase():label(c.country);",1)
+          s=s.replace(c,"document.getElementById('territoryName').textContent=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase():'DIGIY '+label(c.name).toUpperCase();",1)
+          p.write_text(s)
           PY
           git config user.name 'DIGIY LYFE'
           git config user.email 'baptistejb24@gmail.com'
