@@ -111,6 +111,9 @@
       if(s){s.onload=fixSarlatPublicHealthDoor;s.onerror=fixSarlatPublicHealthDoor}
       setTimeout(fixSarlatPublicHealthDoor,250);
     }
+    if(/\/paris\.html$/i.test(p)){
+      addScript('/assets/digiy-paris-places-v1.js?v=20260912-v1','data-digiy-paris-places');
+    }
     if(/\/tarifs-adherents-1\.html$/i.test(p)){
       fixTarifsPrevalidationFlow();
       document.querySelectorAll('[data-country],[data-l]').forEach(function(b){b.addEventListener('click',function(){setTimeout(fixTarifsPrevalidationFlow,0)});});
