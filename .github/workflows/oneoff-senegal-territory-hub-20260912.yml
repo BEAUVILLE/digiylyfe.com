@@ -19,6 +19,7 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
 
           p=Path('territoire.html')
           s=p.read_text()
@@ -29,9 +30,20 @@ jobs:
           s=s.replace('<article class="territoryHubCard">\n        <strong>🇫🇷 France</strong>','<article class="territoryHubCard" data-country-hub="FR">\n        <strong>🇫🇷 France</strong>',1)
           s=s.replace('<p>Vallée de la Dordogne · Bordeaux</p>\n        <div class="territoryHubLinks"><a href="/sarlat.html">Vallée de la Dordogne</a><a href="/bordeaux.html">Bordeaux</a></div>',
                       '<p>Paris · Bordeaux · Périgord · Vallée de la Dordogne</p>\n        <div class="territoryHubLinks"><a href="/paris.html">Paris</a><a href="/bordeaux.html">Bordeaux</a><a href="/sarlat.html">Périgord · Vallée de la Dordogne</a></div>',1)
-
-          anchor='''  </section>\n  <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>'''
-          script='''  </section>\n  <script>\n  (function(){\n    var zone=(new URLSearchParams(location.search).get('zone')||'petite-cote').toLowerCase();\n    var france=zone==='vallee-dordogne'||zone==='bordeaux'||zone==='sarlat';\n    var country=france?'FR':'SN';\n    document.querySelectorAll('[data-country-hub]').forEach(function(card){card.hidden=card.getAttribute('data-country-hub')!==country;});\n    var e=document.getElementById('territoryHubEyebrow'),l=document.getElementById('territoryHubLead');\n    if(e)e.textContent=france?'DIGIYLYFE · FRANCE · TERRITOIRES ACTIFS':'DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS';\n    if(l)l.textContent=france?'Une même logique en France : territoire → besoin → professionnel → fiche officielle → contact direct.':'Une même logique au Sénégal : territoire → besoin → professionnel → fiche officielle → contact direct.';\n  })();\n  <\/script>\n  <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>'''
+          anchor='  </section>\n  <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>'
+          script='''  </section>
+  <script>
+  (function(){
+    var zone=(new URLSearchParams(location.search).get('zone')||'petite-cote').toLowerCase();
+    var france=zone==='vallee-dordogne'||zone==='bordeaux'||zone==='sarlat';
+    var country=france?'FR':'SN';
+    document.querySelectorAll('[data-country-hub]').forEach(function(card){card.hidden=card.getAttribute('data-country-hub')!==country;});
+    var e=document.getElementById('territoryHubEyebrow'),l=document.getElementById('territoryHubLead');
+    if(e)e.textContent=france?'DIGIYLYFE · FRANCE · TERRITOIRES ACTIFS':'DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS';
+    if(l)l.textContent=france?'Une même logique en France : territoire → besoin → professionnel → fiche officielle → contact direct.':'Une même logique au Sénégal : territoire → besoin → professionnel → fiche officielle → contact direct.';
+  })();
+  </script>
+  <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>'''
           if anchor not in s:
               raise SystemExit('hub script anchor not found')
           s=s.replace(anchor,script,1)
@@ -39,12 +51,18 @@ jobs:
 
           p=Path('assets/digiy-territoire-runtime-v1.js')
           s=p.read_text()
-          old="""  document.title='DIGIY '+label(c.name)+' | DIGIYLYFE';\n  document.getElementById('country').textContent=label(c.country);\n  document.getElementById('territoryName').textContent='DIGIY '+label(c.name).toUpperCase();"""
-          new="""  var isSenegal=territoryId==='petite-cote'||territoryId==='dakar';\n  var isFrance=territoryId==='vallee-dordogne'||territoryId==='bordeaux'||territoryId==='sarlat';\n  var isCountryHub=isSenegal||isFrance;\n  document.title=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase()+' | Professionnels du territoire':'DIGIY '+label(c.name)+' | DIGIYLYFE';\n  document.getElementById('country').textContent=isCountryHub?label(c.name).toUpperCase()+' · '+label(c.country).toUpperCase():label(c.country);\n  document.getElementById('territoryName').textContent=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase():'DIGIY '+label(c.name).toUpperCase();"""
-          if old not in s:
+          pattern=r"\s*document\.title='DIGIY '\+label\(c\.name\)\+' \| DIGIYLYFE';\s*document\.getElementById\('country'\)\.textContent=label\(c\.country\);\s*document\.getElementById\('territoryName'\)\.textContent='DIGIY '\+label\(c\.name\)\.toUpperCase\(\);"
+          replacement="""
+  var isSenegal=territoryId==='petite-cote'||territoryId==='dakar';
+  var isFrance=territoryId==='vallee-dordogne'||territoryId==='bordeaux'||territoryId==='sarlat';
+  var isCountryHub=isSenegal||isFrance;
+  document.title=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase()+' | Professionnels du territoire':'DIGIY '+label(c.name)+' | DIGIYLYFE';
+  document.getElementById('country').textContent=isCountryHub?label(c.name).toUpperCase()+' · '+label(c.country).toUpperCase():label(c.country);
+  document.getElementById('territoryName').textContent=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase():'DIGIY '+label(c.name).toUpperCase();"""
+          s2,n=re.subn(pattern,replacement,s,count=1)
+          if n!=1:
               raise SystemExit('territory runtime header marker not found')
-          s=s.replace(old,new,1)
-          p.write_text(s)
+          p.write_text(s2)
           PY
           git config user.name 'DIGIY LYFE'
           git config user.email 'baptistejb24@gmail.com'
