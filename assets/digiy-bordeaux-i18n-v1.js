@@ -1,6 +1,7 @@
 /* DIGIYLYFE — Bordeaux i18n relay 20260912
  * Ancien moteur conservé par blob stable ; surcouche doctrine France.
  * Carte gratuite -> fiche à partir de 250 € -> DIGIY PRO 450 €/an.
+ * Total minimum 1re année France : à partir de 700 €.
  * Santé France ajoutée seulement sur bordeaux.html.
  */
 (function(){
@@ -14,8 +15,18 @@
 
   var prices={fr:'450 € / an',en:'€450 / year',es:'450 € / año',pt:'450 € / ano',it:'450 € / anno',de:'450 € / Jahr',nl:'€ 450 / jaar',ar:'450 € / سنة'};
   var creation={fr:'À PARTIR DE 250 €',en:'FROM €250',es:'DESDE 250 €',pt:'A PARTIR DE 250 €',it:'DA 250 €',de:'AB 250 €',nl:'VANAF €250',ar:'ابتداءً من 250 €'};
+  var total={
+    fr:['TOTAL MINIMUM 1RE ANNÉE : À PARTIR DE 700 €','250 € minimum pour la création de la fiche + 450 € d’adhésion DIGIY PRO. À partir de la 2e année : 450 €/an, hors PREMIUM / EXTRA et prestations supplémentaires.'],
+    en:['MINIMUM FIRST-YEAR TOTAL: FROM €700','Minimum €250 profile creation + €450 DIGIY PRO membership. From year 2: €450/year, excluding PREMIUM / EXTRA and additional services.'],
+    es:['TOTAL MÍNIMO PRIMER AÑO: DESDE 700 €','Mínimo 250 € por la creación de la ficha + 450 € de adhesión DIGIY PRO. Desde el segundo año: 450 €/año, sin PREMIUM / EXTRA ni servicios adicionales.'],
+    pt:['TOTAL MÍNIMO NO 1.º ANO: A PARTIR DE 700 €','Mínimo 250 € pela criação da ficha + 450 € de adesão DIGIY PRO. A partir do 2.º ano: 450 €/ano, sem PREMIUM / EXTRA nem serviços adicionais.'],
+    it:['TOTALE MINIMO 1° ANNO: DA 700 €','Minimo 250 € per la creazione della scheda + 450 € di adesione DIGIY PRO. Dal 2° anno: 450 €/anno, esclusi PREMIUM / EXTRA e servizi aggiuntivi.'],
+    de:['MINDESTGESAMT 1. JAHR: AB 700 €','Mindestens 250 € Profilerstellung + 450 € DIGIY PRO Mitgliedschaft. Ab dem 2. Jahr: 450 €/Jahr, ohne PREMIUM / EXTRA und Zusatzleistungen.'],
+    nl:['MINIMUMTOTAAL 1E JAAR: VANAF €700','Minimaal €250 profielcreatie + €450 DIGIY PRO-lidmaatschap. Vanaf jaar 2: €450/jaar, exclusief PREMIUM / EXTRA en aanvullende diensten.'],
+    ar:['الحد الأدنى لإجمالي السنة الأولى: ابتداءً من 700 €','250 € كحد أدنى لإنشاء الملف + 450 € لعضوية DIGIY PRO. ابتداءً من السنة الثانية: 450 € سنويًا، باستثناء PREMIUM / EXTRA والخدمات الإضافية.']
+  };
   var finalCta={
-    fr:'REJOINDRE DIGIY BORDEAUX · 450 € / AN →',en:'JOIN DIGIY BORDEAUX · €450 / YEAR →',es:'UNIRSE A DIGIY BORDEAUX · 450 € / AÑO →',pt:'ADERIR AO DIGIY BORDEAUX · 450 € / ANO →',it:'ENTRA IN DIGIY BORDEAUX · 450 € / ANNO →',de:'DIGIY BORDEAUX BEITRETEN · 450 € / JAHR →',nl:'WORD LID VAN DIGIY BORDEAUX · € 450 / JAAR →',ar:'انضم إلى DIGIY BORDEAUX · 450 € سنويًا ←'
+    fr:'REJOINDRE DIGIY BORDEAUX →',en:'JOIN DIGIY BORDEAUX →',es:'UNIRSE A DIGIY BORDEAUX →',pt:'ADERIR AO DIGIY BORDEAUX →',it:'ENTRA IN DIGIY BORDEAUX →',de:'DIGIY BORDEAUX BEITRETEN →',nl:'WORD LID VAN DIGIY BORDEAUX →',ar:'انضم إلى DIGIY BORDEAUX ←'
   };
   var annualLabel={
     fr:'PAR AN · 1 RÈGLEMENT · 2 MOIS OFFERTS À LA PREMIÈRE ADHÉSION · 0 % COMMISSION',en:'PER YEAR · 1 PAYMENT · 2 FREE MONTHS WITH FIRST MEMBERSHIP · 0% COMMISSION',es:'AL AÑO · 1 PAGO · 2 MESES GRATIS EN LA PRIMERA ADHESIÓN · 0 % COMISIÓN',pt:'POR ANO · 1 PAGAMENTO · 2 MESES GRÁTIS NA PRIMEIRA ADESÃO · 0 % COMISSÃO',it:'ALL’ANNO · 1 PAGAMENTO · 2 MESI GRATIS ALLA PRIMA ADESIONE · 0 % COMMISSIONI',de:'PRO JAHR · 1 ZAHLUNG · 2 MONATE GRATIS BEI DER ERSTEN MITGLIEDSCHAFT · 0 % PROVISION',nl:'PER JAAR · 1 BETALING · 2 MAANDEN GRATIS BIJ DE EERSTE AANSLUITING · 0 % COMMISSIE',ar:'سنويًا · دفعة واحدة · شهران مجانًا عند الاشتراك الأول · 0٪ عمولة'
@@ -41,16 +52,24 @@
     if(!d)return;
     Object.keys(prices).forEach(function(l){if(d[l]&&d[l].ui)d[l].ui.price=prices[l];});
   }
+  function totalHtml(l){return '<div class="digiyBordeauxTotal"><strong>'+total[l][0]+'</strong><span>'+total[l][1]+'</span></div>';}
+  function ensureDemoTotal(l){
+    if(!isBordeauxDemo)return;
+    var price=document.querySelector('.price');if(!price)return;
+    var box=document.getElementById('digiyBordeauxDemoTotal');
+    if(!box){box=document.createElement('div');box.id='digiyBordeauxDemoTotal';box.className='digiyBordeauxTotal';price.insertAdjacentElement('afterend',box);}
+    box.innerHTML='<strong>'+total[l][0]+'</strong><span>'+total[l][1]+'</span>';
+  }
   function ensureFlow(){
     if(!isBordeauxPage)return;
     var hero=document.querySelector('.hero');if(!hero)return;
     var host=document.getElementById('digiyBordeauxProFlow');
     if(!host){
-      var st=document.createElement('style');st.id='digiyBordeauxProFlowStyle';st.textContent='.digiyBordeauxFlow{margin-top:18px;padding:18px;border:1px solid #d6b36a66;border-radius:28px;background:linear-gradient(145deg,#d6b36a12,#ffffff08)}.digiyBordeauxFlow h2{margin:0;font-size:clamp(24px,5vw,36px);line-height:1}.digiyBordeauxFlow>p{margin:8px 0 0;color:var(--soft);font-weight:800;line-height:1.45}.digiyBordeauxSteps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}.digiyBordeauxStep{padding:16px;border-radius:21px;border:1px solid #ffffff22;background:#ffffff09}.digiyBordeauxStep b{display:block;color:var(--cream);font-size:28px}.digiyBordeauxStep strong{display:block;margin-top:7px;font-size:17px}.digiyBordeauxStep small{display:block;margin-top:6px;color:var(--soft);font-weight:800;line-height:1.45}.digiyBordeauxFlow .btn{margin-top:14px}@media(max-width:760px){.digiyBordeauxSteps{grid-template-columns:1fr}}';document.head.appendChild(st);
+      var st=document.createElement('style');st.id='digiyBordeauxProFlowStyle';st.textContent='.digiyBordeauxFlow{margin-top:18px;padding:18px;border:1px solid #d6b36a66;border-radius:28px;background:linear-gradient(145deg,#d6b36a12,#ffffff08)}.digiyBordeauxFlow h2{margin:0;font-size:clamp(24px,5vw,36px);line-height:1}.digiyBordeauxFlow>p{margin:8px 0 0;color:var(--soft);font-weight:800;line-height:1.45}.digiyBordeauxSteps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}.digiyBordeauxStep{padding:16px;border-radius:21px;border:1px solid #ffffff22;background:#ffffff09}.digiyBordeauxStep b{display:block;color:var(--cream);font-size:28px}.digiyBordeauxStep strong{display:block;margin-top:7px;font-size:17px}.digiyBordeauxStep small{display:block;margin-top:6px;color:var(--soft);font-weight:800;line-height:1.45}.digiyBordeauxTotal{margin-top:12px;padding:14px 15px;border-radius:18px;border:2px solid #d6b36a88;background:#2b1019;color:#fff8ea}.digiyBordeauxTotal strong{display:block;color:#fff0c8;font-size:17px}.digiyBordeauxTotal span{display:block;margin-top:5px;font-size:12px;font-weight:850;line-height:1.42}.digiyBordeauxFlow .btn{margin-top:14px}@media(max-width:760px){.digiyBordeauxSteps{grid-template-columns:1fr}}';document.head.appendChild(st);
       host=document.createElement('section');host.id='digiyBordeauxProFlow';host.className='digiyBordeauxFlow';hero.insertAdjacentElement('afterend',host);
     }
     var l=lang(),x=flow[l];
-    host.innerHTML='<h2>'+x[0]+'</h2><p>'+x[1]+'</p><div class="digiyBordeauxSteps"><article class="digiyBordeauxStep"><b>0 €</b><strong>'+x[2]+'</strong><small>'+x[3]+'</small></article><article class="digiyBordeauxStep"><b>'+creation[l]+'</b><strong>'+x[4]+'</strong><small>'+x[5]+'</small></article><article class="digiyBordeauxStep"><b>'+prices[l]+'</b><strong>'+x[6]+'</strong><small>'+x[7]+'</small></article></div><a class="btn primary" href="'+prepareHref(l)+'">'+x[8]+'</a>';
+    host.innerHTML='<h2>'+x[0]+'</h2><p>'+x[1]+'</p><div class="digiyBordeauxSteps"><article class="digiyBordeauxStep"><b>0 €</b><strong>'+x[2]+'</strong><small>'+x[3]+'</small></article><article class="digiyBordeauxStep"><b>'+creation[l]+'</b><strong>'+x[4]+'</strong><small>'+x[5]+'</small></article><article class="digiyBordeauxStep"><b>'+prices[l]+'</b><strong>'+x[6]+'</strong><small>'+x[7]+'</small></article></div>'+totalHtml(l)+'<a class="btn primary" href="'+prepareHref(l)+'">'+x[8]+'</a>';
   }
   function patchDom(){
     patchAnnualPricing();
@@ -58,10 +77,10 @@
     if(isBordeauxPage){
       var hp=document.getElementById('heroPrice');if(hp)hp.textContent=prices[l];
       var pt=document.getElementById('priceTop');if(pt)pt.textContent='DIGIY PRO · BORDEAUX';
-      var pl=document.getElementById('priceLead');if(pl)pl.textContent=(l==='fr'?'Fiche professionnelle à partir de 250 € · puis adhésion annuelle.':'Professional profile from €250 · then annual membership.');
-      var fb=document.getElementById('finalBtn');if(fb){fb.textContent=flow[l][8];fb.href=prepareHref(l);}
+      var pl=document.getElementById('priceLead');if(pl)pl.textContent=(l==='fr'?'Fiche professionnelle à partir de 250 € + adhésion DIGIY PRO':'Professional profile from €250 + DIGIY PRO membership');
+      var fb=document.getElementById('finalBtn');if(fb){fb.textContent=finalCta[l];fb.href=prepareHref(l);}
       var jb=document.getElementById('joinBtn');if(jb)jb.href=prepareHref(l);
-      var md=document.querySelector('meta[name="description"]');if(md)md.content='DIGIY BORDEAUX : carte DIGIY gratuite, fiche professionnelle à partir de 250 €, DIGIY PRO 450 € par an, contact direct et 0 % commission.';
+      var md=document.querySelector('meta[name="description"]');if(md)md.content='DIGIY BORDEAUX : carte DIGIY gratuite, fiche professionnelle à partir de 250 €, DIGIY PRO 450 € par an, soit un minimum de 700 € la première année, contact direct et 0 % commission.';
       ensureFlow();
     }
     if(isBordeauxJoin){
@@ -72,6 +91,7 @@
     if(isBordeauxDemo){
       var dp=document.querySelector('.price strong');if(dp)dp.textContent=creation[l];
       var dm=document.getElementById('month');if(dm)dm.textContent=demoAnnualLabel[l];
+      ensureDemoTotal(l);
     }
   }
   function bindDomPatch(){
