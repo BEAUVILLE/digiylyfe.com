@@ -1,0 +1,191 @@
+{
+  "runtime": "DIGIYLYFE-FRANCE-ADHESION-V1",
+  "countries": [
+    {
+      "id": "FR",
+      "slug": "france",
+      "status": "active",
+      "labels": {
+        "fr": "France",
+        "en": "France",
+        "es": "Francia",
+        "pt": "França",
+        "it": "Francia",
+        "de": "Frankreich",
+        "nl": "Frankrijk",
+        "ar": "فرنسا"
+      },
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "calling_code": "+33",
+      "timezone": "Europe/Paris",
+      "default_language": "fr",
+      "interface_languages": [
+        "fr",
+        "en",
+        "es",
+        "pt",
+        "it",
+        "de",
+        "nl",
+        "ar"
+      ],
+      "pricing": {
+        "membership": {
+          "adherent-19900": {
+            "amount": 450,
+            "label": "Fiche 250 € + adhésion 450 € / an · TOTAL 1re année 700 € · puis 450 € / an",
+            "billing_period": "year",
+            "billing_months": 12,
+            "profile_amount": 250,
+            "first_year_total_amount": 700,
+            "first_year_total_label": "700 €",
+            "welcome_months": 2,
+            "first_cycle_months": 14,
+            "first_renewal_amount": 450,
+            "first_renewal_months": 12
+          }
+        },
+        "services": {
+          "fiche": {
+            "starting_amount": 250,
+            "label": "250 €"
+          },
+          "site_premium": {
+            "starting_amount": 480,
+            "label": "À partir de 480 €"
+          },
+          "site_extra": {
+            "starting_amount": 800,
+            "label": "À partir de 800 €"
+          }
+        }
+      },
+      "territories": [
+        {
+          "id": "FR-DORDOGNE",
+          "slug": "vallee-dordogne",
+          "status": "active",
+          "labels": {
+            "fr": "Périgord · Vallée de la Dordogne",
+            "en": "Périgord · Dordogne Valley",
+            "es": "Périgord · Valle del Dordoña",
+            "pt": "Périgord · Vale da Dordogne",
+            "it": "Périgord · Valle della Dordogna",
+            "de": "Périgord · Dordogne-Tal",
+            "nl": "Périgord · Dordognevallei",
+            "ar": "بيريغور · وادي دوردوني"
+          },
+          "zones": [
+            {
+              "id": "FR-DORDOGNE-SARLAT",
+              "slug": "sarlat",
+              "label": "Sarlat-la-Canéda",
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "id": "FR-BORDEAUX",
+          "slug": "bordeaux",
+          "status": "active",
+          "labels": {
+            "fr": "Bordeaux",
+            "en": "Bordeaux",
+            "es": "Bordeaux",
+            "pt": "Bordeaux",
+            "it": "Bordeaux",
+            "de": "Bordeaux",
+            "nl": "Bordeaux",
+            "ar": "بوردو"
+          },
+          "zones": [
+            {
+              "id": "FR-BORDEAUX-MARITIME",
+              "slug": "bordeaux-maritime",
+              "label": "Bordeaux Maritime",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-CHARTRONS-GRAND-PARC-JARDIN-PUBLIC",
+              "slug": "chartrons-grand-parc-jardin-public",
+              "label": "Chartrons · Grand Parc · Jardin Public",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-CENTRE",
+              "slug": "bordeaux-centre",
+              "label": "Bordeaux Centre",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-SAINT-AUGUSTIN-TAUZIN-ALPHONSE-DUPEUX",
+              "slug": "saint-augustin-tauzin-alphonse-dupeux",
+              "label": "Saint-Augustin · Tauzin · Alphonse Dupeux",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-NANSOUTY-SAINT-GENES",
+              "slug": "nansouty-saint-genes",
+              "label": "Nansouty · Saint-Genès",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-SUD",
+              "slug": "bordeaux-sud",
+              "label": "Bordeaux Sud",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-BASTIDE",
+              "slug": "la-bastide",
+              "label": "La Bastide",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-CAUDERAN",
+              "slug": "cauderan",
+              "label": "Caudéran",
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "id": "FR-SARLAT",
+          "slug": "sarlat",
+          "status": "active",
+          "labels": {
+            "fr": "Sarlat-la-Canéda",
+            "en": "Sarlat-la-Canéda",
+            "es": "Sarlat-la-Canéda",
+            "pt": "Sarlat-la-Canéda",
+            "it": "Sarlat-la-Canéda",
+            "de": "Sarlat-la-Canéda",
+            "nl": "Sarlat-la-Canéda",
+            "ar": "سارلا-لا-كانيدا"
+          },
+          "zones": [
+            {
+              "id": "FR-SARLAT-CENTRE",
+              "slug": "sarlat-la-caneda",
+              "label": "Sarlat-la-Canéda",
+              "status": "active"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "rules": {
+    "membership_is_single": true,
+    "membership_plan": "adherent-19900",
+    "active_territory_only": true,
+    "active_zone_only": true,
+    "unknown_locality_is_pending_validation": true,
+    "examples_are_not_members": true,
+    "human_validation_before_publication": true,
+    "fail_closed": true
+  }
+}
