@@ -100,7 +100,7 @@
     if(p===''||p==='/'||/\/index\.html$/i.test(p)){
       guardUniqueDakar();
       addScript('/assets/digiy-miami-door-v1.js?v=20260911-v1','data-digiy-miami-door');
-      addScript('/assets/digiy-usa-world-copy-v1.js?v=20260911-v1','data-digiy-usa-world-copy');
+      addScript('/assets/digiy-usa-world-copy-v1.js?v=20260912-paris-v1','data-digiy-usa-world-copy');
       addScript('/assets/digiy-campus-interest-v2.js?v=20260904-v2','data-digiy-campus-interest');
       var com=addScript('/assets/digiy-com-maitre-v1.js?v=20260901-v1','data-digiy-com-maitre');
       if(com){com.onload=loadHomeFacade;com.onerror=loadHomeFacade}else loadHomeFacade();
