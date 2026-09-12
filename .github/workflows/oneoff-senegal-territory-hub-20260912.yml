@@ -15,36 +15,41 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Split territory hub by country
+      - name: Expand current Senegal hub into country-specific hub
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p=Path('territoire.html')
           s=p.read_text()
-          s=s.replace('territoire-hub-statique-20260906','territoire-hub-country-20260912')
-          s=s.replace('<div class="eyebrow">DIGIYLYFE · TERRITOIRES ACTIFS</div>','<div class="eyebrow" id="territoryHubEyebrow">DIGIYLYFE · TERRITOIRES ACTIFS</div>',1)
-          s=s.replace('<p>Une même logique partout : territoire → besoin → professionnel → fiche officielle → contact direct.</p>','<p id="territoryHubLead">Une même logique partout : territoire → besoin → professionnel → fiche officielle → contact direct.</p>',1)
+          s=s.replace('Explorez les territoires DIGIYLYFE au Sénégal : Petite Côte et Dakar. Choisissez un besoin, trouvez un professionnel et contactez-le directement.','Explorez les territoires DIGIYLYFE : choisissez votre territoire, trouvez un professionnel et contactez-le directement.',1)
+          s=s.replace('territoire-hub-senegal-20260912','territoire-hub-country-20260912',1)
+          s=s.replace('<div class="eyebrow">DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS</div>','<div class="eyebrow" id="territoryHubEyebrow">DIGIYLYFE · TERRITOIRES ACTIFS</div>',1)
+          s=s.replace('<p>Une même logique au Sénégal : territoire → besoin → professionnel → fiche officielle → contact direct.</p>','<p id="territoryHubLead">Territoire → besoin → professionnel → fiche officielle → contact direct.</p>',1)
           s=s.replace('<article class="territoryHubCard">\n        <strong>🇸🇳 Sénégal</strong>','<article class="territoryHubCard" data-country-hub="SN">\n        <strong>🇸🇳 Sénégal</strong>',1)
-          s=s.replace('<article class="territoryHubCard">\n        <strong>🇫🇷 France</strong>','<article class="territoryHubCard" data-country-hub="FR">\n        <strong>🇫🇷 France</strong>',1)
-          s=s.replace('<p>Vallée de la Dordogne · Bordeaux</p>\n        <div class="territoryHubLinks"><a href="/sarlat.html">Vallée de la Dordogne</a><a href="/bordeaux.html">Bordeaux</a></div>','<p>Paris · Bordeaux · Périgord · Vallée de la Dordogne</p>\n        <div class="territoryHubLinks"><a href="/paris.html">Paris</a><a href="/bordeaux.html">Bordeaux</a><a href="/sarlat.html">Périgord · Vallée de la Dordogne</a></div>',1)
-          anchor='  </section>\n  <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>'
+          anchor='''      </article>\n    </div>\n    <p class="territoryHubFlow">'''
+          france='''      </article>\n      <article class="territoryHubCard" data-country-hub="FR">\n        <strong>🇫🇷 France</strong>\n        <p>Paris · Bordeaux · Périgord · Vallée de la Dordogne</p>\n        <div class="territoryHubLinks"><a href="/paris.html">Paris</a><a href="/bordeaux.html">Bordeaux</a><a href="/sarlat.html">Périgord · Vallée de la Dordogne</a></div>\n      </article>\n    </div>\n    <p class="territoryHubFlow">'''
+          if anchor not in s: raise SystemExit('territory card anchor not found')
+          s=s.replace(anchor,france,1)
+          section_anchor='  </section>\n  <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>'
           script='  </section>\n  <script>\n  (function(){\n    var zone=(new URLSearchParams(location.search).get(\'zone\')||\'petite-cote\').toLowerCase();\n    var france=zone===\'vallee-dordogne\'||zone===\'bordeaux\'||zone===\'sarlat\';\n    var country=france?\'FR\':\'SN\';\n    document.querySelectorAll(\'[data-country-hub]\').forEach(function(card){card.hidden=card.getAttribute(\'data-country-hub\')!==country;});\n    var e=document.getElementById(\'territoryHubEyebrow\'),l=document.getElementById(\'territoryHubLead\');\n    if(e)e.textContent=france?\'DIGIYLYFE · FRANCE · TERRITOIRES ACTIFS\':\'DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS\';\n    if(l)l.textContent=france?\'Une même logique en France : territoire → besoin → professionnel → fiche officielle → contact direct.\':\'Une même logique au Sénégal : territoire → besoin → professionnel → fiche officielle → contact direct.\';\n  })();\n  </script>\n  <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>'
-          if anchor not in s: raise SystemExit('hub script anchor not found')
-          s=s.replace(anchor,script,1)
+          if section_anchor not in s: raise SystemExit('territory section anchor not found')
+          s=s.replace(section_anchor,script,1)
           p.write_text(s)
           p=Path('assets/digiy-territoire-runtime-v1.js')
           s=p.read_text()
-          a="document.title='DIGIY '+label(c.name)+' | DIGIYLYFE';"
-          b="document.getElementById('country').textContent=label(c.country);"
-          c="document.getElementById('territoryName').textContent='DIGIY '+label(c.name).toUpperCase();"
-          if a not in s or b not in s or c not in s: raise SystemExit('territory runtime line marker not found')
-          s=s.replace(a,"var isSenegal=territoryId==='petite-cote'||territoryId==='dakar';var isFrance=territoryId==='vallee-dordogne'||territoryId==='bordeaux'||territoryId==='sarlat';var isCountryHub=isSenegal||isFrance;document.title=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase()+' | Professionnels du territoire':'DIGIY '+label(c.name)+' | DIGIYLYFE';",1)
-          s=s.replace(b,"document.getElementById('country').textContent=isCountryHub?label(c.name).toUpperCase()+' · '+label(c.country).toUpperCase():label(c.country);",1)
-          s=s.replace(c,"document.getElementById('territoryName').textContent=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase():'DIGIY '+label(c.name).toUpperCase();",1)
+          a="var isSenegal=territoryId==='petite-cote'||territoryId==='dakar';"
+          b="document.title=isSenegal?'DIGIYLYFE · '+label(c.country).toUpperCase()+' | Professionnels du territoire':'DIGIY '+label(c.name)+' | DIGIYLYFE';"
+          c="document.getElementById('country').textContent=isSenegal?label(c.name).toUpperCase()+' · '+label(c.country).toUpperCase():label(c.country);"
+          d="document.getElementById('territoryName').textContent=isSenegal?'DIGIYLYFE · '+label(c.country).toUpperCase():'DIGIY '+label(c.name).toUpperCase();"
+          if any(x not in s for x in (a,b,c,d)): raise SystemExit('current Senegal runtime marker not found')
+          s=s.replace(a,a+"\n  var isFrance=territoryId==='vallee-dordogne'||territoryId==='bordeaux'||territoryId==='sarlat';\n  var isCountryHub=isSenegal||isFrance;",1)
+          s=s.replace(b,"document.title=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase()+' | Professionnels du territoire':'DIGIY '+label(c.name)+' | DIGIYLYFE';",1)
+          s=s.replace(c,"document.getElementById('country').textContent=isCountryHub?label(c.name).toUpperCase()+' · '+label(c.country).toUpperCase():label(c.country);",1)
+          s=s.replace(d,"document.getElementById('territoryName').textContent=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase():'DIGIY '+label(c.name).toUpperCase();",1)
           p.write_text(s)
           PY
           git config user.name 'DIGIY LYFE'
           git config user.email 'baptistejb24@gmail.com'
           git add territoire.html assets/digiy-territoire-runtime-v1.js
-          git commit -m 'fix: split territory hub by country'
+          git commit -m 'fix: make territory hub country-specific for Senegal and France'
           git push
