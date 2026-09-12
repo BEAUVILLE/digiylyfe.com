@@ -51,9 +51,8 @@ jobs:
 
           p=Path('assets/digiy-territoire-runtime-v1.js')
           s=p.read_text()
-          pattern=r"\s*document\.title='DIGIY '\+label\(c\.name\)\+' \| DIGIYLYFE';\s*document\.getElementById\('country'\)\.textContent=label\(c\.country\);\s*document\.getElementById\('territoryName'\)\.textContent='DIGIY '\+label\(c\.name\)\.toUpperCase\(\);"
-          replacement="""
-  var isSenegal=territoryId==='petite-cote'||territoryId==='dakar';
+          pattern=r"document\.title='DIGIY '\+label\(c\.name\)\+' \| DIGIYLYFE';\s*document\.getElementById\('country'\)\.textContent=label\(c\.country\);\s*document\.getElementById\('territoryName'\)\.textContent='DIGIY '\+label\(c\.name\)\.toUpperCase\(\);"
+          replacement="""var isSenegal=territoryId==='petite-cote'||territoryId==='dakar';
   var isFrance=territoryId==='vallee-dordogne'||territoryId==='bordeaux'||territoryId==='sarlat';
   var isCountryHub=isSenegal||isFrance;
   document.title=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase()+' | Professionnels du territoire':'DIGIY '+label(c.name)+' | DIGIYLYFE';
