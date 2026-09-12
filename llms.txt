@@ -28,6 +28,19 @@ La plateforme aide les professionnels locaux à être trouvés, contactés, rés
 
 Le terrain garde la main.
 
+## Territoires publics
+
+DIGIYLYFE fonctionne par territoires ouverts. Une ville ou un territoire n’est pas fermé quartier par quartier : la zone locale sert à organiser la découverte du professionnel, pas à bloquer son entrée dans le réseau.
+
+Territoires publics importants :
+
+* Sénégal : https://digiylyfe.com/senegal.html
+* France : https://digiylyfe.com/france.html
+* Paris : https://digiylyfe.com/paris.html — territoire urbain ouvert à tous les arrondissements et quartiers.
+* Bordeaux : https://digiylyfe.com/bordeaux.html
+* Vallée de la Dordogne : https://digiylyfe.com/territoire.html?zone=vallee-dordogne
+* Miami : https://digiylyfe.com/miami.html
+
 ## Portes publiques et moteurs atelier
 
 Les portes publiques principales de DIGIYLYFE sont :
