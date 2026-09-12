@@ -1,0 +1,62 @@
+name: Add profile CTA to all active examples
+
+on:
+  push:
+    paths:
+      - '.github/workflows/oneoff-profile-cta-all-examples-20260912.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add create-profile CTAs
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          labels = {
+            'fr':'CRÉER MA FICHE PROFESSIONNELLE →',
+            'en':'CREATE MY PROFESSIONAL PROFILE →',
+            'es':'CREAR MI FICHA PROFESIONAL →',
+            'pt':'CRIAR O MEU PERFIL PROFISSIONAL →',
+            'it':'CREARE IL MIO PROFILO PROFESSIONALE →',
+            'de':'MEIN PROFESSIONELLES PROFIL ERSTELLEN →',
+            'nl':'MIJN PROFESSIONELE PROFIEL MAKEN →',
+            'ar':'إنشاء ملفي المهني ←'
+          }
+
+          def add_card_bridge(path, country, join_path, lang_fn):
+              p=Path(path); s=p.read_text()
+              marker='data-digiy-profile-cta-bridge="1"'
+              if marker in s:
+                  return
+              script=f'''\n<script {marker}>\n(function(){{\nvar LABELS={labels!r};\nfunction addProfileCtas(){{\n  var lang=({lang_fn})||'fr';\n  document.querySelectorAll('#cards .card').forEach(function(card){{\n    if(card.querySelector('.digiyProfileCta')) return;\n    var demo=card.querySelector('a.btn');\n    if(!demo) return;\n    var d=new URL(demo.href,location.origin);\n    var j=new URL('{join_path}',location.origin);\n    var need=d.searchParams.get('need');\n    var local=d.searchParams.get('local');\n    if(need && need!=='guidance') j.searchParams.set('need',need);\n    if(local) j.searchParams.set('local',local);\n    j.searchParams.set('lang',lang);\n    var a=document.createElement('a');\n    a.className='btn secondary digiyProfileCta';\n    a.href=j.pathname+j.search;\n    a.textContent=LABELS[lang]||LABELS.fr;\n    a.style.marginTop='8px';\n    card.appendChild(a);\n  }});\n}}\nvar mo=new MutationObserver(addProfileCtas);\nvar cards=document.getElementById('cards');\nif(cards){{mo.observe(cards,{{childList:true,subtree:true}});addProfileCtas();}}\n}})();\n</script>\n'''
+              s=s.replace('</body>',script+'</body>',1)
+              p.write_text(s)
+
+          add_card_bridge('bordeaux.html','fr','/adhesion-bordeaux.html',"(new URLSearchParams(location.search).get('lang')||'fr').slice(0,2).toLowerCase()")
+          add_card_bridge('sarlat.html','fr','/adhesion-dordogne.html',"(new URLSearchParams(location.search).get('lang')||'fr').slice(0,2).toLowerCase()")
+
+          def add_loc_bridge(path,country):
+              p=Path(path); s=p.read_text()
+              marker='data-digiy-loc-profile-cta="1"'
+              if marker in s:
+                  return
+              script=f'''\n<script {marker}>\n(function(){{\nvar LABELS={labels!r};\ndocument.querySelectorAll('#locExample .locLang').forEach(function(block){{\n  var lang=block.getAttribute('data-loc-lang')||'fr';\n  var actions=block.querySelector('.actions');\n  if(!actions || actions.querySelector('.digiyProfileCta')) return;\n  var a=document.createElement('a');\n  a.className='cta primary digiyProfileCta';\n  a.href='/preparer-ma-carte.html?plan=adherent-19900&country={country}&lang='+encodeURIComponent(lang)+'&flow=prevalidation-20260911';\n  a.textContent=LABELS[lang]||LABELS.fr;\n  actions.appendChild(a);\n}});\n}})();\n</script>\n'''
+              s=s.replace('</body>',script+'</body>',1)
+              p.write_text(s)
+
+          add_loc_bridge('paris.html','fr')
+          add_loc_bridge('miami.html','us')
+          PY
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add bordeaux.html sarlat.html paris.html miami.html
+          git commit -m 'feat: add profile creation CTA to all active examples'
+          git push
