@@ -1,4 +1,4 @@
-# one-shot trigger
+# one-shot trigger v2
 name: Country-specific territory hub
 
 on:
@@ -27,14 +27,13 @@ jobs:
           s=s.replace('<div class="eyebrow">DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS</div>','<div class="eyebrow" id="territoryHubEyebrow">DIGIYLYFE · TERRITOIRES ACTIFS</div>',1)
           s=s.replace('<p>Une même logique au Sénégal : territoire → besoin → professionnel → fiche officielle → contact direct.</p>','<p id="territoryHubLead">Territoire → besoin → professionnel → fiche officielle → contact direct.</p>',1)
           s=s.replace('<article class="territoryHubCard">\n        <strong>🇸🇳 Sénégal</strong>','<article class="territoryHubCard" data-country-hub="SN">\n        <strong>🇸🇳 Sénégal</strong>',1)
-          anchor='''      </article>\n    </div>\n    <p class="territoryHubFlow">'''
-          france='''      </article>\n      <article class="territoryHubCard" data-country-hub="FR">\n        <strong>🇫🇷 France</strong>\n        <p>Paris · Bordeaux · Périgord · Vallée de la Dordogne</p>\n        <div class="territoryHubLinks"><a href="/paris.html">Paris</a><a href="/bordeaux.html">Bordeaux</a><a href="/sarlat.html">Périgord · Vallée de la Dordogne</a></div>\n      </article>\n    </div>\n    <p class="territoryHubFlow">'''
+          anchor='      </article>\n    </div>\n    <p class="territoryHubFlow">'
+          france='      </article>\n      <article class="territoryHubCard" data-country-hub="FR">\n        <strong>🇫🇷 France</strong>\n        <p>Paris · Bordeaux · Périgord · Vallée de la Dordogne</p>\n        <div class="territoryHubLinks"><a href="/paris.html">Paris</a><a href="/bordeaux.html">Bordeaux</a><a href="/sarlat.html">Périgord · Vallée de la Dordogne</a></div>\n      </article>\n    </div>\n    <p class="territoryHubFlow">'
           if anchor not in s: raise SystemExit('territory card anchor not found')
           s=s.replace(anchor,france,1)
-          section_anchor='  </section>\n  <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>'
-          script='  </section>\n  <script>\n  (function(){\n    var zone=(new URLSearchParams(location.search).get(\'zone\')||\'petite-cote\').toLowerCase();\n    var france=zone===\'vallee-dordogne\'||zone===\'bordeaux\'||zone===\'sarlat\';\n    var country=france?\'FR\':\'SN\';\n    document.querySelectorAll(\'[data-country-hub]\').forEach(function(card){card.hidden=card.getAttribute(\'data-country-hub\')!==country;});\n    var e=document.getElementById(\'territoryHubEyebrow\'),l=document.getElementById(\'territoryHubLead\');\n    if(e)e.textContent=france?\'DIGIYLYFE · FRANCE · TERRITOIRES ACTIFS\':\'DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS\';\n    if(l)l.textContent=france?\'Une même logique en France : territoire → besoin → professionnel → fiche officielle → contact direct.\':\'Une même logique au Sénégal : territoire → besoin → professionnel → fiche officielle → contact direct.\';\n  })();\n  </script>\n  <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>'
-          if section_anchor not in s: raise SystemExit('territory section anchor not found')
-          s=s.replace(section_anchor,script,1)
+          selector='<script data-country-territory-hub>\n(function(){var zone=(new URLSearchParams(location.search).get(\'zone\')||\'petite-cote\').toLowerCase();var france=zone===\'vallee-dordogne\'||zone===\'bordeaux\'||zone===\'sarlat\';var country=france?\'FR\':\'SN\';document.querySelectorAll(\'[data-country-hub]\').forEach(function(card){card.hidden=card.getAttribute(\'data-country-hub\')!==country;});var e=document.getElementById(\'territoryHubEyebrow\'),l=document.getElementById(\'territoryHubLead\');if(e)e.textContent=france?\'DIGIYLYFE · FRANCE · TERRITOIRES ACTIFS\':\'DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS\';if(l)l.textContent=france?\'Une même logique en France : territoire → besoin → professionnel → fiche officielle → contact direct.\':\'Une même logique au Sénégal : territoire → besoin → professionnel → fiche officielle → contact direct.\';})();\n</script>\n'
+          if '</body>' not in s: raise SystemExit('body marker not found')
+          s=s.replace('</body>',selector+'</body>',1)
           p.write_text(s)
           p=Path('assets/digiy-territoire-runtime-v1.js')
           s=p.read_text()
