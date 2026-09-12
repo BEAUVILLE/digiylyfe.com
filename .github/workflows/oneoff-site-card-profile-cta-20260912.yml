@@ -1,0 +1,46 @@
+name: Add profile CTA to site offer cards
+
+on:
+  push:
+    paths:
+      - '.github/workflows/oneoff-site-card-profile-cta-20260912.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add CTAs to PREMIUM and EXTRA cards
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          labels={
+            'fr':'CRÉER MA FICHE PROFESSIONNELLE →',
+            'en':'CREATE MY PROFESSIONAL PROFILE →',
+            'es':'CREAR MI FICHA PROFESIONAL →',
+            'pt':'CRIAR O MEU PERFIL PROFISSIONAL →',
+            'it':'CREARE IL MIO PROFILO PROFESSIONALE →',
+            'de':'MEIN PROFESSIONELLES PROFIL ERSTELLEN →',
+            'nl':'MIJN PROFESSIONELE PROFIEL MAKEN →',
+            'ar':'إنشاء ملفي المهني ←'
+          }
+          def patch(path,country):
+            p=Path(path); s=p.read_text()
+            marker='data-digiy-site-profile-cta="1"'
+            if marker in s: return
+            js=f'''\n<script {marker}>\n(function(){{\nvar LABELS={labels!r};\nfunction refreshSiteCtas(){{\n var lang=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();\n document.querySelectorAll('.siteGrid .site').forEach(function(card){{\n   var a=card.querySelector('.digiySiteProfileCta');\n   if(!a){{a=document.createElement('a');a.className='cta primary digiySiteProfileCta';a.style.marginTop='12px';card.appendChild(a);}}\n   a.href='/preparer-ma-carte.html?plan=adherent-19900&country={country}&lang='+encodeURIComponent(lang)+'&flow=prevalidation-20260911';\n   a.textContent=LABELS[lang]||LABELS.fr;\n }});\n}}\nrefreshSiteCtas();\nnew MutationObserver(refreshSiteCtas).observe(document.documentElement,{{attributes:true,attributeFilter:['lang']}});\n}})();\n</script>\n'''
+            s=s.replace('</body>',js+'</body>',1)
+            p.write_text(s)
+          patch('paris.html','fr')
+          patch('miami.html','us')
+          PY
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add paris.html miami.html
+          git commit -m 'feat: add profile CTA to PREMIUM and EXTRA offer cards'
+          git push
