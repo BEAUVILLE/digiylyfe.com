@@ -121,6 +121,7 @@
     }
     if(/\/demo-dordogne\.html$/i.test(p)){
       var q=new URLSearchParams(location.search);
+      addScript('/assets/digiy-demo-dordogne-pro-pricing-v1.js?v=20260912-v1','data-digiy-demo-dordogne-pro-pricing');
       if((q.get('need')||'')==='health_care')addScript('/assets/digiy-demo-dordogne-health-v1.js?v=20260901-v1','data-digiy-demo-dordogne-health');
     }
   }
