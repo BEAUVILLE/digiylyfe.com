@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>DIGIYLYFE — Territoires | Trouver un professionnel local</title>
-<meta name="description" content="Explorez les territoires DIGIYLYFE au Sénégal : Petite Côte et Dakar. Choisissez un besoin, trouvez un professionnel et contactez-le directement.">
-<meta name="digiy-version" content="territoire-hub-senegal-20260912">
+<meta name="description" content="Explorez les territoires DIGIYLYFE : choisissez votre territoire, trouvez un professionnel et contactez-le directement.">
+<meta name="digiy-version" content="territoire-hub-country-20260912">
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#0a2b20">
 <link rel="canonical" href="https://digiylyfe.com/territoire.html">
@@ -34,19 +34,35 @@ html[dir="rtl"] body{text-align:right}html[dir="rtl"] .need{text-align:right;ali
   </section>
   <section class="territoryHub" aria-labelledby="territoryHubTitle">
     <div class="territoryHubHead">
-      <div class="eyebrow">DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS</div>
+      <div class="eyebrow" id="territoryHubEyebrow">DIGIYLYFE · TERRITOIRES ACTIFS</div>
       <h2 id="territoryHubTitle">Choisir son territoire</h2>
-      <p>Une même logique au Sénégal : territoire → besoin → professionnel → fiche officielle → contact direct.</p>
+      <p id="territoryHubLead">Territoire → besoin → professionnel → fiche officielle → contact direct.</p>
     </div>
     <div class="territoryHubGrid">
-      <article class="territoryHubCard">
+      <article class="territoryHubCard" data-country-hub="SN">
         <strong>🇸🇳 Sénégal</strong>
         <p>Petite Côte · Dakar</p>
         <div class="territoryHubLinks"><a href="/territoire.html?zone=petite-cote">Petite Côte</a><a href="/dakar.html">Dakar</a></div>
       </article>
+      <article class="territoryHubCard" data-country-hub="FR">
+        <strong>🇫🇷 France</strong>
+        <p>Paris · Bordeaux · Périgord · Vallée de la Dordogne</p>
+        <div class="territoryHubLinks"><a href="/paris.html">Paris</a><a href="/bordeaux.html">Bordeaux</a><a href="/sarlat.html">Périgord · Vallée de la Dordogne</a></div>
+      </article>
     </div>
     <p class="territoryHubFlow">DIGIYLYFE relie le territoire au bon professionnel sans intermédiaire : QR, fiche officielle, contact direct et 0 % commission.</p>
   </section>
+  <script>
+  (function(){
+    var zone=(new URLSearchParams(location.search).get('zone')||'petite-cote').toLowerCase();
+    var france=zone==='vallee-dordogne'||zone==='bordeaux'||zone==='sarlat';
+    var country=france?'FR':'SN';
+    document.querySelectorAll('[data-country-hub]').forEach(function(card){card.hidden=card.getAttribute('data-country-hub')!==country;});
+    var e=document.getElementById('territoryHubEyebrow'),l=document.getElementById('territoryHubLead');
+    if(e)e.textContent=france?'DIGIYLYFE · FRANCE · TERRITOIRES ACTIFS':'DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS';
+    if(l)l.textContent=france?'Une même logique en France : territoire → besoin → professionnel → fiche officielle → contact direct.':'Une même logique au Sénégal : territoire → besoin → professionnel → fiche officielle → contact direct.';
+  })();
+  </script>
   <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>
   <section class="section"><h2 id="zoneTitle">Préciser la zone</h2><div class="zones" id="zones"></div></section>
   <section class="section" id="resultsSection"><div class="status" id="status">Chargement du territoire…</div><div class="cards" id="results"></div><a class="dakarProNative" data-digiy-dakar-pro-join="1" id="dakarProJoin" href="/adhesion-dakar.html">VOUS ÊTES PROFESSIONNEL À DAKAR ? REJOINDRE DIGIY DAKAR →</a></section>

@@ -145,9 +145,11 @@ function renderHeader(){
   var c=current(),tr=T[lang];if(!c)return;
   document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
   var isSenegal=territoryId==='petite-cote'||territoryId==='dakar';
-  document.title=isSenegal?'DIGIYLYFE · '+label(c.country).toUpperCase()+' | Professionnels du territoire':'DIGIY '+label(c.name)+' | DIGIYLYFE';
-  document.getElementById('country').textContent=isSenegal?label(c.name).toUpperCase()+' · '+label(c.country).toUpperCase():label(c.country);
-  document.getElementById('territoryName').textContent=isSenegal?'DIGIYLYFE · '+label(c.country).toUpperCase():'DIGIY '+label(c.name).toUpperCase();
+  var isFrance=territoryId==='vallee-dordogne'||territoryId==='bordeaux'||territoryId==='sarlat';
+  var isCountryHub=isSenegal||isFrance;
+  document.title=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase()+' | Professionnels du territoire':'DIGIY '+label(c.name)+' | DIGIYLYFE';
+  document.getElementById('country').textContent=isCountryHub?label(c.name).toUpperCase()+' · '+label(c.country).toUpperCase():label(c.country);
+  document.getElementById('territoryName').textContent=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase():'DIGIY '+label(c.name).toUpperCase();
   document.getElementById('tagline').textContent=tr.tag;document.getElementById('path').textContent=tr.path;
   document.getElementById('needTitle').textContent=tr.need;document.getElementById('zoneTitle').textContent=tr.zone;
   var door=document.getElementById('sarlatDoor'),doorLink=door.querySelector('a');
