@@ -24,3 +24,5 @@ jobs:
           git add index.html miami.html
           git commit -m 'fix: guide Miami visitors through full offer'
           git push
+
+# clean trigger after removing invalid predecessors
