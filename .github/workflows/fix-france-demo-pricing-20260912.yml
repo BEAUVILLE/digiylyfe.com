@@ -15,62 +15,39 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Patch France demo pricing
+      - name: Add profile fee to France example cards
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
 
           changed=[]
-          def patch(path, reps):
+
+          def replace_once(path, old, new):
               p=Path(path)
               s=p.read_text(encoding='utf-8')
-              old=s
-              for a,b in reps:
-                  s=s.replace(a,b)
-              if s!=old:
-                  p.write_text(s,encoding='utf-8')
-                  changed.append(path)
+              if old not in s:
+                  raise SystemExit(f'Expected fragment not found in {path}')
+              s2=s.replace(old,new,1)
+              p.write_text(s2,encoding='utf-8')
+              changed.append(path)
 
-          # Bordeaux demo: remove legacy monthly price and always show the profile creation fee.
-          patch('demo-bordeaux.html', [
-            ('<div class="price"><strong>45 €</strong><br><b id="month">PAR MOIS · ADHÉSION UNIQUE</b></div>',
-             '<div class="price"><strong id="offerPrice">700 € · 1re année</strong><br><b id="month">FICHE 250 € + DIGIY PRO 450 €/AN · PUIS 450 €/AN</b><span class="sheetNotice">FICHE PROFESSIONNELLE · 250 € AU DÉMARRAGE</span></div>'),
-            ('.price strong{font-size:30px}', '.price strong{font-size:30px}.price .sheetNotice{display:block;margin-top:8px;font-size:12px;font-weight:1000;line-height:1.35}'),
-            ("month:'PAR MOIS · ADHÉSION UNIQUE'", "month:'FICHE 250 € + DIGIY PRO 450 €/AN · PUIS 450 €/AN'"),
-            ("month:'PER MONTH · ONE MEMBERSHIP'", "month:'€250 PROFILE + DIGIY PRO €450/YEAR · THEN €450/YEAR'")
-          ])
+          replace_once(
+              'bordeaux.html',
+              '''<div class="chips">'+services+'<span class="chip">'+price+'</span><span class="chip">'+commission+'</span>''',
+              '''<div class="chips">'+services+'<span class="chip">FICHE PRO · 250 €</span><span class="chip">'+price+'</span><span class="chip">'+commission+'</span>'''
+          )
 
-          # Dordogne demo: the standard demo must show the first-year total; LOC still keeps its own tariff,
-          # but the mandatory profile creation fee stays visibly announced underneath.
-          patch('demo-dordogne.html', [
-            ('<div class="price"><strong id="offerPrice">450 € / an</strong><br><b id="month">1 RÈGLEMENT ANNUEL · 2 MOIS OFFERTS À LA PREMIÈRE ADHÉSION</b></div>',
-             '<div class="price"><strong id="offerPrice">700 € · 1re année</strong><br><b id="month">FICHE 250 € + DIGIY PRO 450 €/AN · PUIS 450 €/AN</b><span class="sheetNotice">FICHE PROFESSIONNELLE · 250 € AU DÉMARRAGE</span></div>'),
-            ('.price strong{font-size:28px}', '.price strong{font-size:28px}.price .sheetNotice{display:block;margin-top:8px;font-size:12px;font-weight:1000;line-height:1.35}'),
-            ("'1 RÈGLEMENT ANNUEL · 2 MOIS OFFERTS À LA PREMIÈRE ADHÉSION'", "'FICHE 250 € + DIGIY PRO 450 €/AN · PUIS 450 €/AN'"),
-            ("'1 ANNUAL PAYMENT · 2 FREE MONTHS WITH FIRST MEMBERSHIP'", "'€250 PROFILE + DIGIY PRO €450/YEAR · THEN €450/YEAR'"),
-            (":'450 € / an';", ":(l==='en'?'€700 · first year':'700 € · 1re année');")
-          ])
-
-          # Cards on Bordeaux/Sarlat: the examples themselves must always carry the sheet price reminder,
-          # independently from whatever PRO/module tariff chip follows.
-          patch('bordeaux.html', [
-            ("+'<span class=\"chip\">'+card+'</span><span class=\"chip\">'+price+'</span><span class=\"chip\">'+commission+'</span>'",
-             "+'<span class=\"chip\">'+card+'</span><span class=\"chip\">FICHE PRO · 250 €</span><span class=\"chip\">'+price+'</span><span class=\"chip\">'+commission+'</span>'")
-          ])
-          patch('sarlat.html', [
-            ("+'<span class=\"chip\">'+card+'</span><span class=\"chip\">'+price+'</span><span class=\"chip\">'+commission+'</span>'",
-             "+'<span class=\"chip\">'+card+'</span><span class=\"chip\">FICHE PRO · 250 €</span><span class=\"chip\">'+price+'</span><span class=\"chip\">'+commission+'</span>'")
-          ])
+          replace_once(
+              'sarlat.html',
+              '''<span class="chip">'+card+'</span><span class="chip">'+price+'</span><span class="chip">'+commission+'</span>''',
+              '''<span class="chip">'+card+'</span><span class="chip">FICHE PRO · 250 €</span><span class="chip">'+price+'</span><span class="chip">'+commission+'</span>'''
+          )
 
           print('changed:', changed)
           PY
           git config user.name 'DIGIY LYFE'
           git config user.email 'baptistejb24@gmail.com'
-          git add demo-bordeaux.html demo-dordogne.html bordeaux.html sarlat.html
-          if git diff --cached --quiet; then
-            echo 'No changes needed'
-            exit 0
-          fi
-          git commit -m 'fix: show 250 euro profile fee on France examples'
+          git add bordeaux.html sarlat.html
+          git commit -m 'fix: show profile fee on France example cards'
           git push
