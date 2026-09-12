@@ -31,7 +31,7 @@ jobs:
             'ar':'إنشاء ملفي المهني ←'
           }
 
-          def add_card_bridge(path, country, join_path, lang_fn):
+          def add_card_bridge(path, join_path, lang_fn):
               p=Path(path); s=p.read_text()
               marker='data-digiy-profile-cta-bridge="1"'
               if marker in s:
@@ -40,8 +40,8 @@ jobs:
               s=s.replace('</body>',script+'</body>',1)
               p.write_text(s)
 
-          add_card_bridge('bordeaux.html','fr','/adhesion-bordeaux.html',"(new URLSearchParams(location.search).get('lang')||'fr').slice(0,2).toLowerCase()")
-          add_card_bridge('sarlat.html','fr','/adhesion-dordogne.html',"(new URLSearchParams(location.search).get('lang')||'fr').slice(0,2).toLowerCase()")
+          add_card_bridge('bordeaux.html','/adhesion-bordeaux.html',"(new URLSearchParams(location.search).get('lang')||'fr').slice(0,2).toLowerCase()")
+          add_card_bridge('sarlat.html','/adhesion-dordogne.html',"(new URLSearchParams(location.search).get('lang')||'fr').slice(0,2).toLowerCase()")
 
           def add_loc_bridge(path,country):
               p=Path(path); s=p.read_text()
