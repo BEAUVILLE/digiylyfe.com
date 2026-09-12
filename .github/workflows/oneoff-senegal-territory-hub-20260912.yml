@@ -1,0 +1,54 @@
+name: Senegal-only territory hub
+
+on:
+  push:
+    paths:
+      - '.github/workflows/oneoff-senegal-territory-hub-20260912.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Keep territory hub Senegal-only
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          # Public territory hub: Senegal only.
+          p=Path('territoire.html')
+          s=p.read_text()
+          s=s.replace(
+            'Explorez les territoires DIGIYLYFE au Sénégal et en France : Petite Côte, Dakar, Vallée de la Dordogne et Bordeaux. Choisissez un besoin, trouvez un professionnel et contactez-le directement.',
+            'Explorez les territoires DIGIYLYFE au Sénégal : Petite Côte et Dakar. Choisissez un besoin, trouvez un professionnel et contactez-le directement.'
+          )
+          s=s.replace('territoire-hub-statique-20260906','territoire-hub-senegal-20260912')
+          s=s.replace('<div class="eyebrow">DIGIYLYFE · TERRITOIRES ACTIFS</div>','<div class="eyebrow">DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS</div>')
+          s=s.replace('Une même logique partout : territoire → besoin → professionnel → fiche officielle → contact direct.','Une même logique au Sénégal : territoire → besoin → professionnel → fiche officielle → contact direct.')
+          france='''      <article class="territoryHubCard">\n        <strong>🇫🇷 France</strong>\n        <p>Vallée de la Dordogne · Bordeaux</p>\n        <div class="territoryHubLinks"><a href="/sarlat.html">Vallée de la Dordogne</a><a href="/bordeaux.html">Bordeaux</a></div>\n      </article>\n'''
+          if france not in s:
+              raise SystemExit('France territory card marker not found')
+          s=s.replace(france,'',1)
+          p.write_text(s)
+
+          # Runtime header: country is the main identity on Senegal routes,
+          # while keeping the active territory visible in the eyebrow.
+          p=Path('assets/digiy-territoire-runtime-v1.js')
+          s=p.read_text()
+          old="""  document.title='DIGIY '+label(c.name)+' | DIGIYLYFE';\n  document.getElementById('country').textContent=label(c.country);\n  document.getElementById('territoryName').textContent='DIGIY '+label(c.name).toUpperCase();"""
+          new="""  var isSenegal=territoryId==='petite-cote'||territoryId==='dakar';\n  document.title=isSenegal?'DIGIYLYFE · '+label(c.country).toUpperCase()+' | Professionnels du territoire':'DIGIY '+label(c.name)+' | DIGIYLYFE';\n  document.getElementById('country').textContent=isSenegal?label(c.name).toUpperCase()+' · '+label(c.country).toUpperCase():label(c.country);\n  document.getElementById('territoryName').textContent=isSenegal?'DIGIYLYFE · '+label(c.country).toUpperCase():'DIGIY '+label(c.name).toUpperCase();"""
+          if old not in s:
+              raise SystemExit('territory runtime header marker not found')
+          s=s.replace(old,new,1)
+          p.write_text(s)
+          PY
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add territoire.html assets/digiy-territoire-runtime-v1.js
+          git commit -m 'fix: make Senegal territory hub country-specific'
+          git push
