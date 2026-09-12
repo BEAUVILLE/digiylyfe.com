@@ -36,3 +36,5 @@ jobs:
           git add tarifs-adherents-1.html
           git commit -m 'fix: clarify Senegal first payment and Wave sequence'
           git push
+
+# trigger 20260912
