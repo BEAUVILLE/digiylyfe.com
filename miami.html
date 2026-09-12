@@ -83,5 +83,22 @@ document.querySelectorAll('#locExample .locLang').forEach(function(block){
 });
 })();
 </script>
+
+<script data-digiy-site-profile-cta="1">
+(function(){
+var LABELS={'fr': 'CRÉER MA FICHE PROFESSIONNELLE →', 'en': 'CREATE MY PROFESSIONAL PROFILE →', 'es': 'CREAR MI FICHA PROFESIONAL →', 'pt': 'CRIAR O MEU PERFIL PROFISSIONAL →', 'it': 'CREARE IL MIO PROFILO PROFESSIONALE →', 'de': 'MEIN PROFESSIONELLES PROFIL ERSTELLEN →', 'nl': 'MIJN PROFESSIONELE PROFIEL MAKEN →', 'ar': 'إنشاء ملفي المهني ←'};
+function refreshSiteCtas(){
+ var lang=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
+ document.querySelectorAll('.siteGrid .site').forEach(function(card){
+   var a=card.querySelector('.digiySiteProfileCta');
+   if(!a){a=document.createElement('a');a.className='cta primary digiySiteProfileCta';a.style.marginTop='12px';card.appendChild(a);}
+   a.href='/preparer-ma-carte.html?plan=adherent-19900&country=us&lang='+encodeURIComponent(lang)+'&flow=prevalidation-20260911';
+   a.textContent=LABELS[lang]||LABELS.fr;
+ });
+}
+refreshSiteCtas();
+new MutationObserver(refreshSiteCtas).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+})();
+</script>
 </body>
 </html>
