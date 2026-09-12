@@ -1,9 +1,10 @@
-/* DIGIYLYFE — chargeur vitrine relais 20260911
+/* DIGIYLYFE — chargeur vitrine relais 20260912
  * Le chargeur stable précédent est conservé intégralement dans :
  * /digiy-contact-global-stable-20260830.js
  * Ajouts isolés : Services professionnels + Santé & soins + raccord Sarlat + COM MAÎTRE accueil + séparation façade public/pro + DIGIY CAMPUS.
  * Correctif cohérence : retire l’ancienne carte Dakar de secours si la vraie carte Dakar illustrée est déjà présente.
  * Correctif tunnel PRO : renseignements → validation → création/présentation fiche → accord PRO → paiement → mise en ligne/activation.
+ * France : total minimum 1re année explicite = 250 € minimum de création + 450 € DIGIY PRO = 700 € minimum.
  * PWA / manifest / service worker : inchangés.
  */
 (function(){
@@ -50,6 +51,29 @@
     var u=new URL('/sarlat.html',location.origin);u.searchParams.set('need','health_care');u.searchParams.set('lang',currentLang());u.hash='places';a.href=u.pathname+u.search+u.hash;
   }
 
+  function ensureFranceFirstYearTotal(country,l){
+    var old=document.getElementById('digiyFranceFirstYearTotal');
+    if(country!=='fr'){if(old)old.remove();return;}
+    var texts={
+      fr:['TOTAL MINIMUM 1RE ANNÉE : À PARTIR DE 700 €','250 € minimum pour la création de la fiche professionnelle + 450 € d’adhésion DIGIY PRO. À partir de la 2e année : 450 €/an, hors PREMIUM / EXTRA et prestations supplémentaires.'],
+      en:['MINIMUM FIRST-YEAR TOTAL: FROM €700','Minimum €250 professional profile creation + €450 DIGIY PRO membership. From year 2: €450/year, excluding PREMIUM / EXTRA and additional services.'],
+      es:['TOTAL MÍNIMO PRIMER AÑO: DESDE 700 €','Mínimo 250 € por la creación de la ficha profesional + 450 € de adhesión DIGIY PRO. Desde el segundo año: 450 €/año, sin PREMIUM / EXTRA ni servicios adicionales.'],
+      pt:['TOTAL MÍNIMO NO 1.º ANO: A PARTIR DE 700 €','Mínimo 250 € pela criação da ficha profissional + 450 € de adesão DIGIY PRO. A partir do 2.º ano: 450 €/ano, sem PREMIUM / EXTRA nem serviços adicionais.'],
+      it:['TOTALE MINIMO 1° ANNO: DA 700 €','Minimo 250 € per la creazione della scheda professionale + 450 € di adesione DIGIY PRO. Dal 2° anno: 450 €/anno, esclusi PREMIUM / EXTRA e servizi aggiuntivi.'],
+      de:['MINDESTGESAMT 1. JAHR: AB 700 €','Mindestens 250 € Profilerstellung + 450 € DIGIY PRO Mitgliedschaft. Ab dem 2. Jahr: 450 €/Jahr, ohne PREMIUM / EXTRA und Zusatzleistungen.'],
+      nl:['MINIMUMTOTAAL 1E JAAR: VANAF €700','Minimaal €250 creatie van het professionele profiel + €450 DIGIY PRO-lidmaatschap. Vanaf jaar 2: €450/jaar, exclusief PREMIUM / EXTRA en aanvullende diensten.'],
+      ar:['الحد الأدنى لإجمالي السنة الأولى: ابتداءً من 700 €','250 € كحد أدنى لإنشاء الملف المهني + 450 € لعضوية DIGIY PRO. ابتداءً من السنة الثانية: 450 € سنويًا، باستثناء PREMIUM / EXTRA والخدمات الإضافية.']
+    };
+    var t=texts[l]||texts.fr, cards=document.querySelector('.cards');if(!cards)return;
+    var box=old;
+    if(!box){
+      box=document.createElement('section');box.id='digiyFranceFirstYearTotal';
+      box.style.marginTop='14px';box.style.padding='17px 18px';box.style.border='2px solid rgba(246,196,83,.68)';box.style.borderRadius='22px';box.style.background='linear-gradient(145deg,rgba(246,196,83,.16),rgba(45,212,191,.10))';box.style.color='#fffaf0';box.style.textAlign='center';
+      cards.insertAdjacentElement('afterend',box);
+    }
+    box.innerHTML='<strong style="display:block;color:#fff3cf;font-size:clamp(18px,3vw,25px);font-weight:1000">'+t[0]+'</strong><span style="display:block;margin-top:7px;color:#e5eee9;font-size:12px;font-weight:850;line-height:1.5">'+t[1]+'</span>';
+  }
+
   function fixTarifsPrevalidationFlow(){
     var p=location.pathname.replace(/\/+$/,'');
     if(!/\/tarifs-adherents-1\.html$/i.test(p))return;
@@ -60,6 +84,7 @@
     var l=currentLang();
     var sheetPrice=document.getElementById('sheetPrice');
     if(sheetPrice&&country==='us')sheetPrice.textContent='$299';
+    ensureFranceFirstYearTotal(country,l);
     var txt={
       fr:{cta:'PRÉPARER MON DOSSIER →',title:'SECTION PAIEMENT · APRÈS PRÉSENTATION ET ACCORD SUR LA FICHE',lead:'Cette section reste visible, mais aucun moyen de paiement n’est affiché avant votre accord sur la fiche préparée par DIGIYLYFE.',locked:'🔒 PAIEMENT VERROUILLÉ · LA FICHE DOIT D’ABORD VOUS ÊTRE PRÉSENTÉE ET APPROUVÉE',valid:'FICHE APPROUVÉE · VOIR LE RÈGLEMENT →'},
       en:{cta:'PREPARE MY FILE →',title:'PAYMENT SECTION · AFTER PROFILE PRESENTATION AND APPROVAL',lead:'This section remains visible, but no payment method is shown before you approve the profile prepared by DIGIYLYFE.',locked:'🔒 PAYMENT LOCKED · THE PROFILE MUST FIRST BE PRESENTED TO YOU AND APPROVED',valid:'PROFILE APPROVED · VIEW PAYMENT →'},
@@ -112,7 +137,7 @@
       setTimeout(fixSarlatPublicHealthDoor,250);
     }
     if(/\/paris\.html$/i.test(p)){
-      addScript('/assets/digiy-paris-places-v1.js?v=20260912-v1','data-digiy-paris-places');
+      addScript('/assets/digiy-paris-places-v1.js?v=20260912-total700-v2','data-digiy-paris-places');
     }
     if(/\/tarifs-adherents-1\.html$/i.test(p)){
       fixTarifsPrevalidationFlow();
@@ -121,7 +146,7 @@
     }
     if(/\/demo-dordogne\.html$/i.test(p)){
       var q=new URLSearchParams(location.search);
-      addScript('/assets/digiy-demo-dordogne-pro-pricing-v1.js?v=20260912-v1','data-digiy-demo-dordogne-pro-pricing');
+      addScript('/assets/digiy-demo-dordogne-pro-pricing-v1.js?v=20260912-total700-v2','data-digiy-demo-dordogne-pro-pricing');
       if((q.get('need')||'')==='health_care')addScript('/assets/digiy-demo-dordogne-health-v1.js?v=20260901-v1','data-digiy-demo-dordogne-health');
     }
   }
