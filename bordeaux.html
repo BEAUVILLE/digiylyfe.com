@@ -68,4 +68,34 @@ document.querySelectorAll('[data-l]').forEach(function(b){b.onclick=function(){v
 </script><script>
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js?v=20260830-master-ui-v9').catch(function(){})})}
 </script>
+
+<script data-digiy-profile-cta-bridge="1">
+(function(){
+var LABELS={'fr': 'CRÉER MA FICHE PROFESSIONNELLE →', 'en': 'CREATE MY PROFESSIONAL PROFILE →', 'es': 'CREAR MI FICHA PROFESIONAL →', 'pt': 'CRIAR O MEU PERFIL PROFISSIONAL →', 'it': 'CREARE IL MIO PROFILO PROFESSIONALE →', 'de': 'MEIN PROFESSIONELLES PROFIL ERSTELLEN →', 'nl': 'MIJN PROFESSIONELE PROFIEL MAKEN →', 'ar': 'إنشاء ملفي المهني ←'};
+function addProfileCtas(){
+  var lang=((new URLSearchParams(location.search).get('lang')||'fr').slice(0,2).toLowerCase())||'fr';
+  document.querySelectorAll('#cards .card').forEach(function(card){
+    if(card.querySelector('.digiyProfileCta')) return;
+    var demo=card.querySelector('a.btn');
+    if(!demo) return;
+    var d=new URL(demo.href,location.origin);
+    var j=new URL('/adhesion-bordeaux.html',location.origin);
+    var need=d.searchParams.get('need');
+    var local=d.searchParams.get('local');
+    if(need && need!=='guidance') j.searchParams.set('need',need);
+    if(local) j.searchParams.set('local',local);
+    j.searchParams.set('lang',lang);
+    var a=document.createElement('a');
+    a.className='btn secondary digiyProfileCta';
+    a.href=j.pathname+j.search;
+    a.textContent=LABELS[lang]||LABELS.fr;
+    a.style.marginTop='8px';
+    card.appendChild(a);
+  });
+}
+var mo=new MutationObserver(addProfileCtas);
+var cards=document.getElementById('cards');
+if(cards){mo.observe(cards,{childList:true,subtree:true});addProfileCtas();}
+})();
+</script>
 </body></html>

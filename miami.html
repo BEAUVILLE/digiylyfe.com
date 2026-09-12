@@ -67,5 +67,21 @@ document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>setLang(b.data
 })();
 </script>
 <script src="/assets/digiy-miami-places-v1.js?v=20260911-v1"></script>
+
+<script data-digiy-loc-profile-cta="1">
+(function(){
+var LABELS={'fr': 'CRÉER MA FICHE PROFESSIONNELLE →', 'en': 'CREATE MY PROFESSIONAL PROFILE →', 'es': 'CREAR MI FICHA PROFESIONAL →', 'pt': 'CRIAR O MEU PERFIL PROFISSIONAL →', 'it': 'CREARE IL MIO PROFILO PROFESSIONALE →', 'de': 'MEIN PROFESSIONELLES PROFIL ERSTELLEN →', 'nl': 'MIJN PROFESSIONELE PROFIEL MAKEN →', 'ar': 'إنشاء ملفي المهني ←'};
+document.querySelectorAll('#locExample .locLang').forEach(function(block){
+  var lang=block.getAttribute('data-loc-lang')||'fr';
+  var actions=block.querySelector('.actions');
+  if(!actions || actions.querySelector('.digiyProfileCta')) return;
+  var a=document.createElement('a');
+  a.className='cta primary digiyProfileCta';
+  a.href='/preparer-ma-carte.html?plan=adherent-19900&country=us&lang='+encodeURIComponent(lang)+'&flow=prevalidation-20260911';
+  a.textContent=LABELS[lang]||LABELS.fr;
+  actions.appendChild(a);
+});
+})();
+</script>
 </body>
 </html>
