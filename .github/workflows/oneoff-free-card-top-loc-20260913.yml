@@ -1,0 +1,134 @@
+# one-shot trigger
+name: Surface free DIGIY card on home and LOC
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/oneoff-free-card-top-loc-20260913.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add free-card entry near the top of home and DIGIY LOC
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          LANG_SELECTOR = '''
+          .digiyFreeLang{display:none}
+          html[lang^="fr"] .digiyFreeLang[data-free-lang="fr"],
+          html[lang^="en"] .digiyFreeLang[data-free-lang="en"],
+          html[lang^="es"] .digiyFreeLang[data-free-lang="es"],
+          html[lang^="pt"] .digiyFreeLang[data-free-lang="pt"],
+          html[lang^="it"] .digiyFreeLang[data-free-lang="it"],
+          html[lang^="de"] .digiyFreeLang[data-free-lang="de"],
+          html[lang^="nl"] .digiyFreeLang[data-free-lang="nl"],
+          html[lang^="ar"] .digiyFreeLang[data-free-lang="ar"]{display:block}
+          '''
+
+          INDEX_CSS = r'''
+              /* ===== CARTE GRATUITE · première marche visible dès l'entrée ===== */
+              .digiyFreeCardTop{
+                margin:0 0 14px;padding:18px;border:2px solid rgba(246,196,83,.72);border-radius:26px;
+                background:linear-gradient(145deg,rgba(246,196,83,.16),rgba(45,212,191,.11),rgba(255,255,255,.045));
+                box-shadow:0 18px 44px rgba(0,0,0,.24);text-align:center
+              }
+              .digiyFreeCardTop .freeMini{display:inline-flex;padding:6px 10px;border-radius:999px;border:1px solid rgba(45,212,191,.52);background:rgba(45,212,191,.09);color:#c9fff7;font-size:9.5px;font-weight:1000;letter-spacing:.08em;text-transform:uppercase}
+              .digiyFreeCardTop h2{margin:10px auto 0;max-width:760px;font-size:clamp(24px,5vw,36px);line-height:1;font-weight:1000;letter-spacing:-.03em}
+              .digiyFreeCardTop p{margin:9px auto 0;max-width:760px;color:var(--soft);font-size:12px;line-height:1.5;font-weight:850}
+              .digiyFreeCardTop .freeCta{display:flex;align-items:center;justify-content:center;width:min(100%,520px);min-height:56px;margin:14px auto 0;padding:12px 17px;border-radius:999px;background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;border:1px solid rgba(255,241,189,.80);font-size:12px;line-height:1.2;font-weight:1000;box-shadow:0 12px 28px rgba(0,0,0,.24)}
+          ''' + LANG_SELECTOR
+
+          INDEX_BLOCK = r'''
+              <section class="digiyFreeCardTop" data-digiy-free-card-top="1" aria-label="Carte DIGIY gratuite">
+                <div class="digiyFreeLang" data-free-lang="fr"><span class="freeMini">PREMIÈRE MARCHE · RÉSEAU OUVERT</span><h2>Votre carte de visite DIGIY est gratuite.</h2><p>Entrez dans DIGIYLYFE avec votre identité, votre métier, votre territoire et votre contact direct. Sans publicité · 0 % commission.</p><a class="freeCta" href="/carte-gratuite.html?lang=fr">DEMANDER MA CARTE DIGIY GRATUITE →</a></div>
+                <div class="digiyFreeLang" data-free-lang="en"><span class="freeMini">FIRST STEP · OPEN NETWORK</span><h2>Your DIGIY business card is free.</h2><p>Join DIGIYLYFE with your identity, activity, territory and direct contact. No advertising · 0% commission.</p><a class="freeCta" href="/carte-gratuite.html?lang=en">REQUEST MY FREE DIGIY CARD →</a></div>
+                <div class="digiyFreeLang" data-free-lang="es"><span class="freeMini">PRIMER PASO · RED ABIERTA</span><h2>Su tarjeta de visita DIGIY es gratuita.</h2><p>Entre en DIGIYLYFE con su identidad, actividad, territorio y contacto directo. Sin publicidad · 0 % comisión.</p><a class="freeCta" href="/carte-gratuite.html?lang=es">SOLICITAR MI TARJETA DIGIY GRATUITA →</a></div>
+                <div class="digiyFreeLang" data-free-lang="pt"><span class="freeMini">PRIMEIRO PASSO · REDE ABERTA</span><h2>O seu cartão de visita DIGIY é gratuito.</h2><p>Entre na DIGIYLYFE com a sua identidade, atividade, território e contacto direto. Sem publicidade · 0% comissão.</p><a class="freeCta" href="/carte-gratuite.html?lang=pt">PEDIR O MEU CARTÃO DIGIY GRATUITO →</a></div>
+                <div class="digiyFreeLang" data-free-lang="it"><span class="freeMini">PRIMO PASSO · RETE APERTA</span><h2>Il vostro biglietto da visita DIGIY è gratuito.</h2><p>Entrate in DIGIYLYFE con identità, attività, territorio e contatto diretto. Nessuna pubblicità · 0% commissioni.</p><a class="freeCta" href="/carte-gratuite.html?lang=it">RICHIEDI LA MIA CARTA DIGIY GRATUITA →</a></div>
+                <div class="digiyFreeLang" data-free-lang="de"><span class="freeMini">ERSTER SCHRITT · OFFENES NETZWERK</span><h2>Ihre DIGIY-Visitenkarte ist kostenlos.</h2><p>Starten Sie bei DIGIYLYFE mit Identität, Tätigkeit, Region und direktem Kontakt. Keine Werbung · 0 % Provision.</p><a class="freeCta" href="/carte-gratuite.html?lang=de">KOSTENLOSE DIGIY-KARTE ANFORDERN →</a></div>
+                <div class="digiyFreeLang" data-free-lang="nl"><span class="freeMini">EERSTE STAP · OPEN NETWERK</span><h2>Uw DIGIY-visitekaart is gratis.</h2><p>Kom in DIGIYLYFE met uw identiteit, activiteit, regio en direct contact. Geen reclame · 0% commissie.</p><a class="freeCta" href="/carte-gratuite.html?lang=nl">MIJN GRATIS DIGIY-KAART AANVRAGEN →</a></div>
+                <div class="digiyFreeLang" data-free-lang="ar" dir="rtl"><span class="freeMini">الخطوة الأولى · شبكة مفتوحة</span><h2>بطاقة DIGIY المهنية مجانية.</h2><p>ادخل شبكة DIGIYLYFE بهويتك المهنية ونشاطك ومنطقتك ووسيلة الاتصال المباشر. بدون إعلانات · عمولة 0٪.</p><a class="freeCta" href="/carte-gratuite.html?lang=ar">اطلب بطاقة DIGIY المجانية ←</a></div>
+              </section>
+          '''
+
+          LOC_CSS = r'''
+          /* ===== CARTE GRATUITE · porte d'entrée avant LOC ===== */
+          .digiyFreeCardLoc{margin:0 0 14px;padding:18px;border:2px solid #f6c453aa;border-radius:25px;background:linear-gradient(145deg,#f6c4531c,#2dd4bf14,#ffffff08);box-shadow:0 16px 40px #0004;text-align:center}
+          .digiyFreeCardLoc .freeMini{display:inline-flex;padding:6px 9px;border-radius:999px;border:1px solid #2dd4bf66;background:#2dd4bf10;color:#c9fff7;font-size:10px;font-weight:1000;letter-spacing:.06em}
+          .digiyFreeCardLoc h2{margin:10px auto 0;max-width:760px;font-size:clamp(24px,5vw,36px);line-height:1.03}
+          .digiyFreeCardLoc p{margin:9px auto 0;max-width:790px;color:#dce9e3;font-size:12px;line-height:1.5;font-weight:850}
+          .digiyFreeCardLoc .freeCta{display:inline-flex;align-items:center;justify-content:center;min-height:54px;margin-top:14px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,#fff1bd,#f6c453,#2dd4bf);color:#06140f;text-decoration:none;font-size:12px;font-weight:1000;box-shadow:0 12px 26px #0004}
+          ''' + LANG_SELECTOR
+
+          LOC_BLOCK = r'''
+          <section class="digiyFreeCardLoc" data-digiy-free-card-loc="1" aria-label="Carte DIGIY gratuite avant DIGIY LOC">
+            <div class="digiyFreeLang" data-free-lang="fr"><span class="freeMini">AVANT DIGIY LOC · ENTRÉE GRATUITE</span><h2>Commencez par votre carte DIGIY gratuite.</h2><p>Votre carte vous fait entrer dans le réseau. Si la location correspond à votre activité, vous poursuivez ensuite vers DIGIY LOC et ses outils de réservation directe à 0 % de commission.</p><a class="freeCta" href="/carte-gratuite.html?lang=fr">DEMANDER MA CARTE GRATUITE →</a></div>
+            <div class="digiyFreeLang" data-free-lang="en"><span class="freeMini">BEFORE DIGIY LOC · FREE ENTRY</span><h2>Start with your free DIGIY card.</h2><p>Your card gets you into the network. If rentals fit your business, continue to DIGIY LOC with direct-booking tools and 0% commission.</p><a class="freeCta" href="/carte-gratuite.html?lang=en">REQUEST MY FREE CARD →</a></div>
+            <div class="digiyFreeLang" data-free-lang="es"><span class="freeMini">ANTES DE DIGIY LOC · ENTRADA GRATUITA</span><h2>Empiece con su tarjeta DIGIY gratuita.</h2><p>La tarjeta le permite entrar en la red. Si el alquiler corresponde a su actividad, continúe después con DIGIY LOC y sus herramientas de reserva directa con 0 % de comisión.</p><a class="freeCta" href="/carte-gratuite.html?lang=es">SOLICITAR MI TARJETA GRATUITA →</a></div>
+            <div class="digiyFreeLang" data-free-lang="pt"><span class="freeMini">ANTES DO DIGIY LOC · ENTRADA GRATUITA</span><h2>Comece com o seu cartão DIGIY gratuito.</h2><p>O cartão permite entrar na rede. Se o alojamento faz parte da sua atividade, continue depois para o DIGIY LOC com ferramentas de reserva direta e 0% de comissão.</p><a class="freeCta" href="/carte-gratuite.html?lang=pt">PEDIR O MEU CARTÃO GRATUITO →</a></div>
+            <div class="digiyFreeLang" data-free-lang="it"><span class="freeMini">PRIMA DI DIGIY LOC · INGRESSO GRATUITO</span><h2>Iniziate con la vostra carta DIGIY gratuita.</h2><p>La carta vi fa entrare nella rete. Se le locazioni fanno parte della vostra attività, proseguite poi verso DIGIY LOC con prenotazione diretta e 0% commissioni.</p><a class="freeCta" href="/carte-gratuite.html?lang=it">RICHIEDI LA CARTA GRATUITA →</a></div>
+            <div class="digiyFreeLang" data-free-lang="de"><span class="freeMini">VOR DIGIY LOC · KOSTENLOSER EINSTIEG</span><h2>Starten Sie mit Ihrer kostenlosen DIGIY-Karte.</h2><p>Die Karte bringt Sie ins Netzwerk. Wenn Vermietung zu Ihrem Geschäft gehört, gehen Sie anschließend zu DIGIY LOC mit Direktbuchung und 0 % Provision.</p><a class="freeCta" href="/carte-gratuite.html?lang=de">KOSTENLOSE KARTE ANFORDERN →</a></div>
+            <div class="digiyFreeLang" data-free-lang="nl"><span class="freeMini">VÓÓR DIGIY LOC · GRATIS INSTAP</span><h2>Begin met uw gratis DIGIY-kaart.</h2><p>Met de kaart komt u in het netwerk. Past verhuur bij uw activiteit, ga dan verder met DIGIY LOC, directe boekingen en 0% commissie.</p><a class="freeCta" href="/carte-gratuite.html?lang=nl">MIJN GRATIS KAART AANVRAGEN →</a></div>
+            <div class="digiyFreeLang" data-free-lang="ar" dir="rtl"><span class="freeMini">قبل DIGIY LOC · دخول مجاني</span><h2>ابدأ ببطاقة DIGIY المجانية.</h2><p>تُدخلك البطاقة إلى الشبكة. وإذا كان التأجير جزءًا من نشاطك، يمكنك بعد ذلك الانتقال إلى DIGIY LOC مع الحجز المباشر وعمولة 0٪.</p><a class="freeCta" href="/carte-gratuite.html?lang=ar">اطلب بطاقتي المجانية ←</a></div>
+          </section>
+          '''
+
+          def add_css(html, css, marker):
+              if marker in html:
+                  return html
+              needle='</style>\n</head>'
+              if needle not in html:
+                  raise SystemExit(f'CSS insertion marker missing for {marker}')
+              return html.replace(needle, css+'\n</style>\n</head>', 1)
+
+          # Homepage: put the free entry before public doors, right after the install band.
+          p=Path('index.html')
+          s=p.read_text()
+          if 'data-digiy-free-card-top="1"' not in s:
+              s=add_css(s, INDEX_CSS, 'data-digiy-free-card-top')
+              needle='    <section class="section" aria-label="Portes publiques DIGIYLYFE">'
+              if needle not in s:
+                  raise SystemExit('home public-door insertion marker not found')
+              s=s.replace(needle, INDEX_BLOCK+'\n'+needle, 1)
+              p.write_text(s)
+
+          # LOC: put the free entry immediately after the language selector and before the paid LOC hero.
+          p=Path('tarifs-loc.html')
+          s=p.read_text()
+          if 'data-digiy-free-card-loc="1"' not in s:
+              s=add_css(s, LOC_CSS, 'data-digiy-free-card-loc')
+              needle='<section class="hero">'
+              if needle not in s:
+                  raise SystemExit('LOC hero insertion marker not found')
+              s=s.replace(needle, LOC_BLOCK+'\n\n'+needle, 1)
+              p.write_text(s)
+
+          # Safety checks before committing.
+          home=Path('index.html').read_text()
+          loc=Path('tarifs-loc.html').read_text()
+          assert home.count('data-digiy-free-card-top="1"') == 1
+          assert loc.count('data-digiy-free-card-loc="1"') == 1
+          assert '/carte-gratuite.html?lang=fr' in home
+          assert '/carte-gratuite.html?lang=fr' in loc
+          assert home.index('data-digiy-free-card-top="1"') < home.index('aria-label="Portes publiques DIGIYLYFE"')
+          assert loc.index('data-digiy-free-card-loc="1"') < loc.index('<section class="hero">')
+          PY
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add index.html tarifs-loc.html
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git commit -m 'feat: surface free DIGIY card on home and LOC'
+          git push
