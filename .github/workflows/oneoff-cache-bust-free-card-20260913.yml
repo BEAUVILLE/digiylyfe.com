@@ -1,0 +1,33 @@
+name: Force fresh free-card intake asset
+on:
+  push:
+    paths:
+      - '.github/workflows/oneoff-cache-bust-free-card-20260913.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copy fresh intake asset and switch page reference
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          src=Path('assets/digiy-card-intake-brief-v1.js')
+          dst=Path('assets/digiy-card-intake-brief-v2.js')
+          dst.write_text(src.read_text())
+          p=Path('carte-gratuite.html')
+          s=p.read_text()
+          old='/assets/digiy-card-intake-brief-v1.js?v=20260913-v1'
+          new='/assets/digiy-card-intake-brief-v2.js?v=20260913-v2'
+          if old not in s:
+              raise SystemExit('old asset reference not found')
+          s=s.replace(old,new,1)
+          p.write_text(s)
+          PY
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add carte-gratuite.html assets/digiy-card-intake-brief-v2.js
+          git commit -m 'fix: force fresh free-card module list without PRO CARNET'
+          git push
