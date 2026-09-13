@@ -44,6 +44,8 @@
   consent.parentNode.insertBefore(details,consent);
 
   var module=document.getElementById('digiyRequestedModule');
+  var moduleField=module&&module.closest('.field');
+  if(moduleField){moduleField.classList.add('digiyModuleQuick');moduleField.style.marginTop='14px';moduleField.style.padding='14px';moduleField.style.border='1px solid #f6c45366';moduleField.style.borderRadius='18px';moduleField.style.background='linear-gradient(145deg,#f6c45310,#2dd4bf0b)';details.parentNode.insertBefore(moduleField,details);}
   function refresh(){
     var d=I18N[L()]||I18N.fr;
     document.getElementById('digiyBriefTitle').textContent=d.title;
