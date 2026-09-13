@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#08130f">
+<title>BCHEIKH · Vidéo + lien direct DIGIYLYFE</title>
+<style>
+:root{--bg:#08130f;--ink:#fffdf7;--soft:#d9e6df;--gold:#f6c453;--green:#22c55e;--line:#ffffff24}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}body{min-height:100svh}.wrap{width:min(560px,100%);margin:auto;padding:0 12px 96px}.top{padding:14px 4px 10px;display:flex;justify-content:space-between;align-items:center;gap:10px}.brand{font-weight:1000;letter-spacing:.08em;font-size:12px}.tag{padding:7px 10px;border:1px solid #f6c45355;border-radius:999px;color:#ffe8a4;background:#f6c45312;font-size:11px;font-weight:950}.stage{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:#000;box-shadow:0 22px 54px #0007}.stage video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#000}.copy{padding:16px 6px 8px}.copy h1{margin:0;font-size:clamp(28px,8vw,44px);line-height:1}.copy p{margin:10px 0 0;color:var(--soft);font-weight:800;line-height:1.45}.flow{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}.pill{border:1px solid var(--line);background:#ffffff0d;border-radius:999px;padding:8px 10px;font-size:12px;font-weight:950}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}.btn{min-height:52px;border-radius:999px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;font-weight:1000;padding:11px 14px}.primary{background:linear-gradient(135deg,var(--gold),var(--green));color:#07130e;border:0}.secondary{background:#ffffff10;color:#fff}.note{margin:14px 2px 0;color:#aebfb6;font-size:11px;font-weight:750;line-height:1.4}.sticky{position:fixed;left:0;right:0;bottom:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(180deg,transparent,#08130fe8 22%,#08130f 46%)}.stickyInner{width:min(560px,100%);margin:auto}.sticky .btn{box-shadow:0 12px 36px #0008}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top"><div class="brand">DIGIYLYFE ∞</div><div class="tag">VIDÉO → FICHE → CONTACT</div></div>
+  <section class="stage" aria-label="Vidéo BCHEIKH">
+    <video controls playsinline autoplay muted loop preload="metadata" poster="./carte-visite-bcheikh-prix.png">
+      <source src="./BCHEIKH_TIKTOK_CARTE_PRIX_FIN_FIXE_9x16.mp4?v=20260720" type="video/mp4">
+      Votre navigateur ne permet pas de lire cette vidéo.
+    </video>
+  </section>
+  <section class="copy">
+    <h1>BCHEIKH</h1>
+    <p>Regarde l’offre. Ouvre la vitrine. Contacte directement le vendeur. Aucun détour.</p>
+    <div class="flow" aria-label="Parcours client">
+      <span class="pill">🎥 Voir</span><span class="pill">👆 Ouvrir</span><span class="pill">💬 Contacter</span><span class="pill">0 % commission</span>
+    </div>
+    <div class="actions">
+      <a class="btn primary" id="openCard" href="https://bcheikh.digiylyfe.com/?utm_source=tiktok&utm_medium=video&utm_campaign=bcheikh_social">OUVRIR LA VITRINE →</a>
+      <button class="btn secondary" id="shareBtn" type="button">↗ PARTAGER</button>
+    </div>
+    <div class="note">Le réseau attire. DIGIY ouvre la porte. La relation et le paiement restent directs avec le professionnel.</div>
+  </section>
+</main>
+<div class="sticky"><div class="stickyInner"><a class="btn primary" href="https://bcheikh.digiylyfe.com/?utm_source=tiktok&utm_medium=video&utm_campaign=bcheikh_social">👕 VOIR BCHEIKH SUR DIGIYLYFE</a></div></div>
+<script>
+(function(){
+  var direct='https://bcheikh.digiylyfe.com/?utm_source=tiktok&utm_medium=video&utm_campaign=bcheikh_social';
+  var btn=document.getElementById('shareBtn');
+  btn.addEventListener('click',async function(){
+    var data={title:'BCHEIKH · DIGIYLYFE',text:'Découvre la vitrine BCHEIKH sur DIGIYLYFE',url:direct};
+    try{if(navigator.share){await navigator.share(data);return}}catch(e){}
+    try{await navigator.clipboard.writeText(direct);btn.textContent='✓ LIEN COPIÉ'}catch(e){location.href=direct}
+  });
+})();
+</script>
+</body>
+</html>
