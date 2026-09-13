@@ -1,0 +1,40 @@
+name: Load free DIGIY card entry on home and LOC
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/oneoff-load-free-card-entry-20260913.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Load reusable free-card block
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          tag='<script src="/assets/digiy-free-card-entry-v1.js?v=20260913-v1" defer></script>\n'
+          for name in ('index.html','tarifs-loc.html'):
+              p=Path(name)
+              s=p.read_text(encoding='utf-8')
+              if 'digiy-free-card-entry-v1.js' in s:
+                  continue
+              if '</body>' not in s:
+                  raise SystemExit('missing body close in '+name)
+              s=s.replace('</body>',tag+'</body>',1)
+              p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add index.html tarifs-loc.html
+          git diff --cached --check
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'feat: expose free DIGIY card on home and LOC'
+          git push
