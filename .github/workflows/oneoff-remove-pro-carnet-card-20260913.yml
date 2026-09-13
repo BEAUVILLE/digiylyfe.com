@@ -1,0 +1,45 @@
+name: Remove unavailable PRO CARNET from free-card intake
+on:
+  push:
+    paths:
+      - '.github/workflows/oneoff-remove-pro-carnet-card-20260913.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove PRO CARNET from module selector
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('assets/digiy-card-intake-brief-v1.js')
+          s=p.read_text()
+          removals=[
+            ",'PRO CARNET · suivi clients / activité'",
+            ",'PRO CARNET · customer / activity tracking'",
+            ",'PRO CARNET · seguimiento clientes / actividad'",
+            ",'PRO CARNET · acompanhamento clientes / atividade'",
+            ",'PRO CARNET · gestione clienti / attività'",
+            ",'PRO CARNET · Kunden- / Tätigkeitsverfolgung'",
+            ",'PRO CARNET · klanten- / activiteitenopvolging'",
+            ",'PRO CARNET · متابعة العملاء / النشاط'",
+          ]
+          for x in removals:
+              if x not in s:
+                  raise SystemExit('missing module label: '+x)
+              s=s.replace(x,'',1)
+          old="var values=['','SERVICE','SANTÉ','LOC','DRIVER','RESA','MON RESTO','MON COMMERCE','CARNET','AUTRE / À DÉFINIR'];"
+          new="var values=['','SERVICE','SANTÉ','LOC','DRIVER','RESA','MON RESTO','MON COMMERCE','AUTRE / À DÉFINIR'];"
+          if old not in s:
+              raise SystemExit('values anchor not found')
+          s=s.replace(old,new,1)
+          s=s.replace(",'CARNET':'Type d’activité, organisation clients, besoins de suivi…'",'',1)
+          p.write_text(s)
+          PY
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add assets/digiy-card-intake-brief-v1.js
+          git commit -m 'fix: hide PRO CARNET until module is operational'
+          git push
