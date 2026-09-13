@@ -1,0 +1,59 @@
+name: Fix free-card module taxonomy
+on:
+  push:
+    paths:
+      - '.github/workflows/oneoff-card-module-taxonomy-20260913.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Align module choices with DIGIY activity families
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('assets/digiy-card-intake-brief-v1.js')
+          s=p.read_text()
+
+          arrays={
+          "modules:['— Choisissez le module lié à votre activité —','Carte gratuite seulement','DIGIY PRO · fiche professionnelle','DIGIY LOC','DIGIY DRIVER','DIGIY RESA','MON RESTO','MON COMMERCE','PRO CARNET','Autre / à définir']":"modules:['— Choisissez le module lié à votre activité —','SERVICE · avocat · architecte · autres services','SANTÉ · docteur · dentiste · infirmier','DIGIY LOC · location / hébergement','DIGIY DRIVER · chauffeur / transport','DIGIY RESA · rendez-vous / réservation multi-métier','MON RESTO · restauration','MON COMMERCE · boutique / commerce','PRO CARNET · suivi clients / activité','Autre / à définir']",
+          "modules:['— Choose the module linked to your activity —','Free card only','DIGIY PRO · professional profile','DIGIY LOC','DIGIY DRIVER','DIGIY RESA','MON RESTO','MON COMMERCE','PRO CARNET','Other / to be defined']":"modules:['— Choose the module linked to your activity —','SERVICES · lawyer · architect · other services','HEALTH · doctor · dentist · nurse','DIGIY LOC · rental / accommodation','DIGIY DRIVER · driver / transport','DIGIY RESA · multi-business booking / appointments','MON RESTO · food / restaurant','MON COMMERCE · shop / retail','PRO CARNET · customer / activity tracking','Other / to be defined']",
+          "modules:['— Elija el módulo relacionado con su actividad —','Solo tarjeta gratuita','DIGIY PRO · ficha profesional','DIGIY LOC','DIGIY DRIVER','DIGIY RESA','MON RESTO','MON COMMERCE','PRO CARNET','Otro / por definir']":"modules:['— Elija el módulo relacionado con su actividad —','SERVICIOS · abogado · arquitecto · otros servicios','SALUD · médico · dentista · enfermero','DIGIY LOC · alquiler / alojamiento','DIGIY DRIVER · conductor / transporte','DIGIY RESA · reservas / citas multioficio','MON RESTO · restauración','MON COMMERCE · tienda / comercio','PRO CARNET · seguimiento clientes / actividad','Otro / por definir']",
+          "modules:['— Escolha o módulo ligado à sua atividade —','Apenas cartão gratuito','DIGIY PRO · ficha profissional','DIGIY LOC','DIGIY DRIVER','DIGIY RESA','MON RESTO','MON COMMERCE','PRO CARNET','Outro / a definir']":"modules:['— Escolha o módulo ligado à sua atividade —','SERVIÇOS · advogado · arquiteto · outros serviços','SAÚDE · médico · dentista · enfermeiro','DIGIY LOC · aluguer / alojamento','DIGIY DRIVER · motorista / transporte','DIGIY RESA · reservas / marcações multiatividade','MON RESTO · restauração','MON COMMERCE · loja / comércio','PRO CARNET · acompanhamento clientes / atividade','Outro / a definir']",
+          "modules:['— Scegliete il modulo legato alla vostra attività —','Solo carta gratuita','DIGIY PRO · scheda professionale','DIGIY LOC','DIGIY DRIVER','DIGIY RESA','MON RESTO','MON COMMERCE','PRO CARNET','Altro / da definire']":"modules:['— Scegliete il modulo legato alla vostra attività —','SERVIZI · avvocato · architetto · altri servizi','SALUTE · medico · dentista · infermiere','DIGIY LOC · affitto / alloggio','DIGIY DRIVER · autista / trasporto','DIGIY RESA · prenotazioni / appuntamenti multiattività','MON RESTO · ristorazione','MON COMMERCE · negozio / commercio','PRO CARNET · gestione clienti / attività','Altro / da definire']",
+          "modules:['— Wählen Sie das Modul für Ihre Tätigkeit —','Nur kostenlose Karte','DIGIY PRO · Profi-Profil','DIGIY LOC','DIGIY DRIVER','DIGIY RESA','MON RESTO','MON COMMERCE','PRO CARNET','Andere / noch offen']":"modules:['— Wählen Sie das Modul für Ihre Tätigkeit —','DIENSTLEISTUNGEN · Anwalt · Architekt · weitere Services','GESUNDHEIT · Arzt · Zahnarzt · Pflege','DIGIY LOC · Vermietung / Unterkunft','DIGIY DRIVER · Fahrer / Transport','DIGIY RESA · branchenübergreifende Termine / Reservierung','MON RESTO · Gastronomie','MON COMMERCE · Handel / Geschäft','PRO CARNET · Kunden- / Tätigkeitsverfolgung','Andere / noch offen']",
+          "modules:['— Kies de module die bij uw activiteit hoort —','Alleen gratis kaart','DIGIY PRO · professioneel profiel','DIGIY LOC','DIGIY DRIVER','DIGIY RESA','MON RESTO','MON COMMERCE','PRO CARNET','Andere / nog te bepalen']":"modules:['— Kies de module die bij uw activiteit hoort —','DIENSTEN · advocaat · architect · andere diensten','GEZONDHEID · arts · tandarts · verpleegkundige','DIGIY LOC · verhuur / accommodatie','DIGIY DRIVER · chauffeur / vervoer','DIGIY RESA · afspraken / reserveringen voor meerdere beroepen','MON RESTO · horeca','MON COMMERCE · winkel / handel','PRO CARNET · klanten- / activiteitenopvolging','Andere / nog te bepalen']",
+          "modules:['— اختر الوحدة المرتبطة بنشاطك —','البطاقة المجانية فقط','DIGIY PRO · الملف المهني','DIGIY LOC','DIGIY DRIVER','DIGIY RESA','MON RESTO','MON COMMERCE','PRO CARNET','آخر / يحدد لاحقاً']":"modules:['— اختر الوحدة المرتبطة بنشاطك —','الخدمات · محام · مهندس معماري · خدمات أخرى','الصحة · طبيب · طبيب أسنان · ممرض','DIGIY LOC · إيجار / إقامة','DIGIY DRIVER · سائق / نقل','DIGIY RESA · مواعيد / حجوزات متعددة المهن','MON RESTO · مطاعم','MON COMMERCE · متجر / تجارة','PRO CARNET · متابعة العملاء / النشاط','آخر / يحدد لاحقاً']"
+          }
+          for old,new in arrays.items():
+              if old not in s:
+                  raise SystemExit('missing module array anchor')
+              s=s.replace(old,new,1)
+
+          old="var values=['','CARTE GRATUITE','DIGIY PRO','LOC','DRIVER','RESA','MON RESTO','MON COMMERCE','CARNET','AUTRE / À DÉFINIR'];"
+          new="var values=['','SERVICE','SANTÉ','LOC','DRIVER','RESA','MON RESTO','MON COMMERCE','CARNET','AUTRE / À DÉFINIR'];"
+          if old not in s:
+              raise SystemExit('values anchor missing')
+          s=s.replace(old,new,1)
+
+          old="values.forEach(function(v,i){if(v==='CARTE GRATUITE')return;var o=document.createElement('option');o.value=v;o.textContent=(d.modules&&d.modules[i])||I18N.fr.modules[i];module.appendChild(o)});module.required=true;module.value=old;"
+          new="values.forEach(function(v,i){var o=document.createElement('option');o.value=v;o.textContent=(d.modules&&d.modules[i])||I18N.fr.modules[i];module.appendChild(o)});module.required=true;module.value=old;"
+          if old not in s:
+              raise SystemExit('builder anchor missing')
+          s=s.replace(old,new,1)
+
+          old="detailMap:{'LOC':'Nombre d’unités, type d’hébergement, services proposés…','DRIVER':'Type de véhicule, capacité, zones et horaires de disponibilité…','RESA':'Type de réservation, capacité, services, créneaux…','MON RESTO':'Type de cuisine, nombre de places, horaires, livraison / emporter…','MON COMMERCE':'Produits, catégories, livraison, zone desservie…','CARNET':'Type d’activité, organisation clients, besoins de suivi…','DIGIY PRO':'Services principaux, clientèle visée, particularités de votre activité…'}"
+          new="detailMap:{'SERVICE':'Profession, services proposés, clientèle, zone d’intervention, horaires…','SANTÉ':'Profession / spécialité, cabinet ou zone d’intervention, horaires, prise de rendez-vous…','LOC':'Nombre d’unités, type d’hébergement, services proposés…','DRIVER':'Type de véhicule, capacité, zones et horaires de disponibilité…','RESA':'Métier concerné, type de rendez-vous / réservation, capacité, services, créneaux…','MON RESTO':'Type de cuisine, nombre de places, horaires, livraison / emporter…','MON COMMERCE':'Produits, catégories, livraison, zone desservie…','CARNET':'Type d’activité, organisation clients, besoins de suivi…'}"
+          if old not in s:
+              raise SystemExit('detailMap anchor missing')
+          s=s.replace(old,new,1)
+
+          p.write_text(s)
+          PY
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add assets/digiy-card-intake-brief-v1.js
+          git commit -m 'fix: align free-card module taxonomy with services and health'
+          git push
