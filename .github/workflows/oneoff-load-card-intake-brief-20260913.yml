@@ -1,0 +1,31 @@
+name: Load enriched free-card intake brief
+on:
+  push:
+    paths:
+      - '.github/workflows/oneoff-load-card-intake-brief-20260913.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Load activity brief on free-card page
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('carte-gratuite.html')
+          s=p.read_text(encoding='utf-8')
+          tag='<script src="/assets/digiy-card-intake-brief-v1.js?v=20260913-v1" defer></script>'
+          if tag not in s:
+              if '</body>' not in s:
+                  raise SystemExit('missing </body>')
+              s=s.replace('</body>',tag+'\n</body>',1)
+              p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name "DIGIY LYFE"
+          git config user.email "baptistejb24@gmail.com"
+          if git diff --quiet; then exit 0; fi
+          git add carte-gratuite.html
+          git commit -m "feat: enrich free card request with activity brief"
+          git push
