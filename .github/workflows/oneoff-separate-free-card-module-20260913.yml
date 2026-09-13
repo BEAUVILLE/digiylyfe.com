@@ -1,0 +1,55 @@
+name: Separate free card from module choice
+on:
+  push:
+    paths:
+      - '.github/workflows/oneoff-separate-free-card-module-20260913.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Make module choice independent from free card
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('assets/digiy-card-intake-brief-v1.js')
+          s=p.read_text()
+
+          replacements={
+            "modules:['— Carte gratuite, sans autre choix pour le moment —','Carte gratuite seulement'":"modules:['— Choisissez le module lié à votre activité —','Carte gratuite seulement'",
+            "modules:['— Free card, no other choice for now —','Free card only'":"modules:['— Choose the module linked to your activity —','Free card only'",
+            "modules:['— Tarjeta gratuita, sin otra elección por ahora —','Solo tarjeta gratuita'":"modules:['— Elija el módulo relacionado con su actividad —','Solo tarjeta gratuita'",
+            "modules:['— Cartão gratuito, sem outra escolha por agora —','Apenas cartão gratuito'":"modules:['— Escolha o módulo ligado à sua atividade —','Apenas cartão gratuito'",
+            "modules:['— Carta gratuita, nessun’altra scelta per ora —','Solo carta gratuita'":"modules:['— Scegliete il modulo legato alla vostra attività —','Solo carta gratuita'",
+            "modules:['— Kostenlose Karte, vorerst keine weitere Auswahl —','Nur kostenlose Karte'":"modules:['— Wählen Sie das Modul für Ihre Tätigkeit —','Nur kostenlose Karte'",
+            "modules:['— Gratis kaart, voorlopig geen andere keuze —','Alleen gratis kaart'":"modules:['— Kies de module die bij uw activiteit hoort —','Alleen gratis kaart'",
+            "modules:['— بطاقة مجانية دون اختيار آخر حالياً —','البطاقة المجانية فقط'":"modules:['— اختر الوحدة المرتبطة بنشاطك —','البطاقة المجانية فقط'",
+            "module:'Projet / module envisagé',moduleHelp:'Ce choix prépare votre dossier. Il ne déclenche aucun paiement.'":"module:'Module lié à votre activité *',moduleHelp:'La carte reste gratuite. Choisissez le module qui correspond à votre activité. Si vous hésitez, choisissez « Autre / à définir ».'",
+            "module:'Project / module you are considering',moduleHelp:'This only prepares your file. It does not trigger any payment.'":"module:'Module linked to your activity *',moduleHelp:'The card stays free. Choose the module that fits your activity. If unsure, choose Other / to be defined.'",
+            "module:'Proyecto / módulo previsto',moduleHelp:'Solo sirve para preparar el dossier. No inicia ningún pago.'":"module:'Módulo relacionado con su actividad *',moduleHelp:'La tarjeta sigue siendo gratuita. Elija el módulo que corresponde a su actividad.'",
+            "module:'Projeto / módulo pretendido',moduleHelp:'Serve apenas para preparar o processo. Não inicia nenhum pagamento.'":"module:'Módulo ligado à sua atividade *',moduleHelp:'O cartão continua gratuito. Escolha o módulo que corresponde à sua atividade.'",
+            "module:'Progetto / modulo previsto',moduleHelp:'Serve solo a preparare il dossier. Non avvia alcun pagamento.'":"module:'Modulo legato alla vostra attività *',moduleHelp:'La carta resta gratuita. Scegliete il modulo che corrisponde alla vostra attività.'",
+            "module:'Geplantes Projekt / Modul',moduleHelp:'Diese Auswahl dient nur zur Vorbereitung. Sie löst keine Zahlung aus.'":"module:'Modul für Ihre Tätigkeit *',moduleHelp:'Die Karte bleibt kostenlos. Wählen Sie das Modul, das zu Ihrer Tätigkeit passt.'",
+            "module:'Gewenst project / module',moduleHelp:'Deze keuze helpt alleen bij de voorbereiding en start geen betaling.'":"module:'Module voor uw activiteit *',moduleHelp:'De kaart blijft gratis. Kies de module die bij uw activiteit past.'",
+            "module:'المشروع / الوحدة المطلوبة',moduleHelp:'هذا الاختيار لإعداد الملف فقط ولا يبدأ أي دفع.'":"module:'الوحدة المرتبطة بنشاطك *',moduleHelp:'تبقى البطاقة مجانية. اختر الوحدة التي تناسب نشاطك.'"
+          }
+          for old,new in replacements.items():
+              if old not in s:
+                  raise SystemExit('missing anchor: '+old[:70])
+              s=s.replace(old,new,1)
+
+          old="values.forEach(function(v,i){var o=document.createElement('option');o.value=v;o.textContent=(d.modules&&d.modules[i])||I18N.fr.modules[i];module.appendChild(o)});module.value=old;"
+          new="values.forEach(function(v,i){if(v==='CARTE GRATUITE')return;var o=document.createElement('option');o.value=v;o.textContent=(d.modules&&d.modules[i])||I18N.fr.modules[i];module.appendChild(o)});module.required=true;module.value=old;"
+          if old not in s:
+              raise SystemExit('option builder anchor not found')
+          s=s.replace(old,new,1)
+
+          p.write_text(s)
+          PY
+          git config user.name 'DIGIY LYFE'
+          git config user.email 'baptistejb24@gmail.com'
+          git add assets/digiy-card-intake-brief-v1.js
+          git commit -m 'fix: require module independently from free card'
+          git push
