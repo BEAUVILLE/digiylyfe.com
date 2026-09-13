@@ -11,29 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Expose module selector above optional brief
+        shell: bash
         run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          p=Path('assets/digiy-card-intake-brief-v1.js')
-          s=p.read_text()
-          old="  var module=document.getElementById('digiyRequestedModule');\n  function refresh(){"
-          new="""  var module=document.getElementById('digiyRequestedModule');
-  var moduleField=module&&module.closest('.field');
-  if(moduleField){
-    moduleField.classList.add('digiyModuleQuick');
-    moduleField.style.marginTop='14px';
-    moduleField.style.padding='14px';
-    moduleField.style.border='1px solid #f6c45366';
-    moduleField.style.borderRadius='18px';
-    moduleField.style.background='linear-gradient(145deg,#f6c45310,#2dd4bf0b)';
-    details.parentNode.insertBefore(moduleField,details);
-  }
-  function refresh(){"""
-          if old not in s:
-              raise SystemExit('module anchor not found')
-          s=s.replace(old,new,1)
-          p.write_text(s)
-          PY
+          python3 -c "from pathlib import Path; p=Path('assets/digiy-card-intake-brief-v1.js'); s=p.read_text(); old=\"  var module=document.getElementById('digiyRequestedModule');\\n  function refresh(){\"; new=\"  var module=document.getElementById('digiyRequestedModule');\\n  var moduleField=module&&module.closest('.field');\\n  if(moduleField){moduleField.classList.add('digiyModuleQuick');moduleField.style.marginTop='14px';moduleField.style.padding='14px';moduleField.style.border='1px solid #f6c45366';moduleField.style.borderRadius='18px';moduleField.style.background='linear-gradient(145deg,#f6c45310,#2dd4bf0b)';details.parentNode.insertBefore(moduleField,details);}\\n  function refresh(){\"; assert old in s, 'module anchor not found'; p.write_text(s.replace(old,new,1))"
           git config user.name 'DIGIY LYFE'
           git config user.email 'baptistejb24@gmail.com'
           git add assets/digiy-card-intake-brief-v1.js
