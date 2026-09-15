@@ -1,16 +1,13 @@
-/* DIGIYLYFE — MAÎTRE · POLITIQUE FAVORIS V1 · 2026-09-07
- * Invariant industriel : aucune carte adhérent publiée sans accès ☆ à MON DIGIY.
- * Le MAÎTRE expose cette règle aux couches de vitrine, territoire, MASTER et ateliers.
- * Vitrine : porte DIGIY LOC visible vers la grille publique de paliers.
- * Vitrine : le HUB territoires public passe avant le parcours professionnel.
- * PWA : guide visible + mode ?pwa-test=1 pour tester depuis un seul appareil.
+/* DIGIYLYFE — MAÎTRE · POLITIQUE FAVORIS V1
+ * Invariants : MON DIGIY, porte LOC, HUB territoires public, guide PWA visible.
+ * Maroc : porte nationale Casablanca + Marrakech en phase carte gratuite, sans paiement PRO.
  */
 (function(){
   'use strict';
   if(window.DIGIY_MAITRE_FAVORIS_V1) return;
 
   var policy={
-    version:'2026-09-14-pwa-test-v6',
+    version:'2026-09-15-maroc-hub-v7',
     required:true,
     symbol:'☆',
     destination:'https://digiylyfe.com/mon-digiy.html',
@@ -36,10 +33,11 @@
     if(pwaTestMode)document.documentElement.dataset.digiyPwaTest='1';
   }catch(_){}
 
-  /* Vitrine principale — le client qui cherche voit les territoires avant le parcours pro. */
+  function homepagePath(){return (location.pathname||'/').replace(/\/index\.html$/,'/');}
+
+  /* Vitrine principale — le client voit les territoires avant le parcours pro. */
   function promoteTerritoryHub(){
-    var path=(location.pathname||'/').replace(/\/index\.html$/,'/');
-    if(path!=='/') return;
+    if(homepagePath()!=='/') return;
     var hub=document.getElementById('territoires');
     var publicDoor=document.querySelector('section.section[aria-label="Portes publiques DIGIYLYFE"]');
     if(!hub||!publicDoor) return;
@@ -47,10 +45,54 @@
     try{document.documentElement.dataset.digiyTerritoryHubPosition='public-first';}catch(_){}
   }
 
+  /* Maroc — phase température : carte gratuite uniquement, aucun tarif PRO inventé. */
+  function installMoroccoHubDoor(){
+    if(homepagePath()!=='/') return;
+    if(document.getElementById('digiyMoroccoHubDoor')) return;
+    var grid=document.querySelector('#territoires .territoryGrid');
+    if(!grid) return;
+
+    var COPY={
+      fr:{country:'MAROC',title:'DIGIY MAROC',zones:'Casablanca · Marrakech · carte gratuite',cta:'OUVRIR LE MAROC'},
+      en:{country:'MOROCCO',title:'DIGIY MOROCCO',zones:'Casablanca · Marrakech · free business card',cta:'OPEN MOROCCO'},
+      es:{country:'MARRUECOS',title:'DIGIY MARRUECOS',zones:'Casablanca · Marrakech · tarjeta gratuita',cta:'ABRIR MARRUECOS'},
+      pt:{country:'MARROCOS',title:'DIGIY MARROCOS',zones:'Casablanca · Marrakech · cartão gratuito',cta:'ABRIR MARROCOS'},
+      it:{country:'MAROCCO',title:'DIGIY MAROCCO',zones:'Casablanca · Marrakech · biglietto gratuito',cta:'APRI IL MAROCCO'},
+      de:{country:'MAROKKO',title:'DIGIY MAROKKO',zones:'Casablanca · Marrakesch · kostenlose Karte',cta:'MAROKKO ÖFFNEN'},
+      nl:{country:'MAROKKO',title:'DIGIY MAROKKO',zones:'Casablanca · Marrakech · gratis kaart',cta:'OPEN MAROKKO'},
+      ar:{country:'المغرب',title:'DIGIY المغرب',zones:'الدار البيضاء · مراكش · بطاقة مهنية مجانية',cta:'افتح المغرب'}
+    };
+
+    var style=document.createElement('style');
+    style.setAttribute('data-digiy-morocco-hub','1');
+    style.textContent='#digiyMoroccoHubDoor{border-color:rgba(246,196,83,.64);background:linear-gradient(180deg,rgba(193,39,45,.15),rgba(0,98,51,.28) 55%,rgba(5,27,20,.98))}#digiyMoroccoHubDoor .digiyMoroccoPhoto{display:grid;place-items:center;background:radial-gradient(circle at 52% 42%,rgba(246,196,83,.20),transparent 27%),linear-gradient(135deg,#c1272d 0 49%,#006233 51% 100%)}#digiyMoroccoHubDoor .digiyMoroccoFlag{position:relative;z-index:2;font-size:82px;filter:drop-shadow(0 12px 22px rgba(0,0,0,.35))}#digiyMoroccoHubDoor .digiyMoroccoCities{position:absolute;left:12px;right:12px;bottom:12px;z-index:3;display:flex;gap:6px;justify-content:center;flex-wrap:wrap}#digiyMoroccoHubDoor .digiyMoroccoCities i{font-style:normal;padding:5px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.33);background:rgba(3,18,13,.72);color:#fffaf0;font-size:9px;font-weight:1000}';
+    document.head.appendChild(style);
+
+    var card=document.createElement('a');
+    card.id='digiyMoroccoHubDoor';
+    card.className='territoryCard';
+    card.href='https://digiylyfe.com/maroc.html';
+    card.setAttribute('data-fav-id','territoire-maroc');
+    card.setAttribute('aria-label','Ouvrir DIGIY Maroc — Casablanca et Marrakech');
+    card.innerHTML='<span class="territoryCountry">🇲🇦 <b data-ma-country></b></span><div class="territoryPhoto digiyMoroccoPhoto"><span class="digiyMoroccoFlag" aria-hidden="true">🇲🇦</span><span class="digiyMoroccoCities"><i>CASABLANCA</i><i>MARRAKECH</i></span></div><strong data-ma-title></strong><small data-ma-zones></small><span class="territoryBtn" data-ma-cta></span>';
+    grid.appendChild(card);
+
+    function applyLang(){
+      var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
+      var x=COPY[l]||COPY.fr;
+      card.querySelector('[data-ma-country]').textContent=x.country;
+      card.querySelector('[data-ma-title]').textContent=x.title;
+      card.querySelector('[data-ma-zones]').textContent=x.zones;
+      card.querySelector('[data-ma-cta]').textContent=x.cta;
+      card.setAttribute('aria-label',x.title+' — Casablanca · Marrakech');
+    }
+    applyLang();
+    try{new MutationObserver(applyLang).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});}catch(_){}
+  }
+
   /* Porte tarifaire LOC — uniquement sur la vitrine principale. */
   function installLocDoor(){
-    var path=(location.pathname||'/').replace(/\/index\.html$/,'/');
-    if(path!=='/') return;
+    if(homepagePath()!=='/') return;
     if(document.getElementById('digiyHomeLocDoor')) return;
     var grid=document.querySelector('#digiyEntryChoice .digiyEntryGrid');
     if(!grid) return;
@@ -94,8 +136,7 @@
 
   /* PWA — réponse visible obligatoire au toucher du bouton. */
   function installPwaVisibleGuide(){
-    var path=(location.pathname||'/').replace(/\/index\.html$/,'/');
-    if(path!=='/') return;
+    if(homepagePath()!=='/') return;
     var band=document.getElementById('digiyInstallBand');
     var btn=document.getElementById('digiyInstallBtn');
     var label=document.getElementById('digiyInstallLabel');
@@ -161,11 +202,7 @@
     function closeGuide(){guide.classList.remove('is-open');document.documentElement.style.overflow='';try{btn.focus()}catch(_){};}
 
     if(pwaTestMode){
-      btn.addEventListener('click',function(ev){
-        ev.preventDefault();
-        ev.stopImmediatePropagation();
-        openGuide();
-      },true);
+      btn.addEventListener('click',function(ev){ev.preventDefault();ev.stopImmediatePropagation();openGuide();},true);
     }else{
       btn.addEventListener('click',function(){
         if(isIOS){openGuide();return;}
@@ -182,6 +219,7 @@
 
   function boot(){
     promoteTerritoryHub();
+    installMoroccoHubDoor();
     installLocDoor();
     installPwaVisibleGuide();
   }
