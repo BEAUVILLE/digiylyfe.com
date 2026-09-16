@@ -1,4 +1,4 @@
-/* DIGIYLYFE · entrée carte + façade claire + VA CHEZ DIGIY · 2026-09-16 */
+/* DIGIYLYFE · doctrine réseau/territoires + VA CHEZ DIGIY premium · 2026-09-16 */
 (function(){
   'use strict';
   if(window.DIGIY_FREE_CARD_ENTRY_V1)return;
@@ -10,7 +10,7 @@
     fr:{mini:'PREMIÈRE MARCHE · RÉSEAU OUVERT',homeTitle:'Votre carte de visite DIGIY est gratuite.',homeText:'Entrez dans DIGIYLYFE avec votre identité, votre métier, votre territoire et votre contact direct. Sans publicité · 0 % commission.',locMini:'AVANT DIGIY LOC · ENTRÉE GRATUITE',locTitle:'Commencez par votre carte DIGIY gratuite.',locText:'Votre carte vous fait entrer dans le réseau. Si la location correspond à votre activité, poursuivez ensuite vers DIGIY LOC et ses outils de réservation directe à 0 % de commission.',cta:'DEMANDER MA CARTE DIGIY GRATUITE →',storyMini:'DIGIY EN ACTION · UNE SOIRÉE À SALY',storyTitle:'Une chambre. Un chauffeur. Un restaurant.',storyText:'Voyez comment le réseau fait circuler le client tout en laissant chaque professionnel indépendant.',storyCta:'▶ VOIR L’HISTOIRE',franceZones:'2 TERRITOIRES OUVERTS · Vallée de la Dordogne · Bordeaux',mobileInstall:'Installer DIGIYLYFE sur ce téléphone'},
     en:{mini:'FIRST STEP · OPEN NETWORK',homeTitle:'Your DIGIY business card is free.',homeText:'Join DIGIYLYFE with your identity, activity, territory and direct contact. No advertising · 0% commission.',locMini:'BEFORE DIGIY LOC · FREE ENTRY',locTitle:'Start with your free DIGIY card.',locText:'Your card gets you into the network. If rentals fit your business, continue to DIGIY LOC with direct-booking tools and 0% commission.',cta:'REQUEST MY FREE DIGIY CARD →',storyMini:'DIGIY IN ACTION · AN EVENING IN SALY',storyTitle:'One room. One driver. One restaurant.',storyText:'See how the network moves the customer while each professional stays independent.',storyCta:'▶ WATCH THE STORY',franceZones:'2 OPEN TERRITORIES · Dordogne Valley · Bordeaux',mobileInstall:'Install DIGIYLYFE on this phone'},
     es:{mini:'PRIMER PASO · RED ABIERTA',homeTitle:'Su tarjeta de visita DIGIY es gratuita.',homeText:'Entre en DIGIYLYFE con su identidad, actividad, territorio y contacto directo. Sin publicidad · 0 % comisión.',locMini:'ANTES DE DIGIY LOC · ENTRADA GRATUITA',locTitle:'Empiece con su tarjeta DIGIY gratuita.',locText:'La tarjeta le permite entrar en la red. Si el alquiler corresponde a su actividad, continúe con DIGIY LOC y sus herramientas de reserva directa con 0 % de comisión.',cta:'SOLICITAR MI TARJETA DIGIY GRATUITA →',storyMini:'DIGIY EN ACCIÓN · UNA NOCHE EN SALY',storyTitle:'Una habitación. Un conductor. Un restaurante.',storyText:'Vea cómo la red hace circular al cliente manteniendo independiente a cada profesional.',storyCta:'▶ VER LA HISTORIA',franceZones:'2 TERRITORIOS ABIERTOS · Valle del Dordoña · Burdeos',mobileInstall:'Instalar DIGIYLYFE en este teléfono'},
-    pt:{mini:'PRIMEIRO PASSO · REDE ABERTA',homeTitle:'O seu cartão de visita DIGIY é gratuito.',homeText:'Entre na DIGIYLYFE com identidade, atividade, território e contacto direto. Sem publicidade · 0% comissão.',locMini:'ANTES DO DIGIY LOC · ENTRADA GRATUITA',locTitle:'Comece com o seu cartão DIGIY gratuito.',locText:'O cartão permite entrar na rede. Se o alojamento faz parte da sua atividade, continue para o DIGIY LOC com reserva direta e 0% de comissão.',cta:'PEDIR O MEU CARTÃO DIGIY GRATUITO →',storyMini:'DIGIY EM AÇÃO · UMA NOITE EM SALY',storyTitle:'Um quarto. Um motorista. Um restaurante.',storyText:'Veja como a rede faz o cliente circular mantendo cada profissional independente.',storyCta:'▶ VER A HISTÓRIA',franceZones:'2 TERRITÓRIOS ABERTOS · Vale da Dordonha · Bordéus',mobileInstall:'Instalar DIGIYLYFE neste telefone'},
+    pt:{mini:'PRIMEIRO PASSO · REDE ABERTA',homeTitle:'O seu cartão de visita DIGIY é gratuito.',homeText:'Entre na DIGIYLYFE com identidade, atividade, território e contacto direto. Sem publicidade · 0% comissão.',locMini:'ANTES DO DIGIY LOC · ENTRADA GRATUITA',locTitle:'Comece com o seu cartão DIGIY gratuita.',locText:'O cartão permite entrar na rede. Se o alojamento faz parte da sua atividade, continue para o DIGIY LOC com reserva direta e 0% comissão.',cta:'PEDIR O MEU CARTÃO DIGIY GRATUITO →',storyMini:'DIGIY EM AÇÃO · UMA NOITE EM SALY',storyTitle:'Um quarto. Um motorista. Um restaurante.',storyText:'Veja como a rede faz o cliente circular mantendo cada profissional independente.',storyCta:'▶ VER A HISTÓRIA',franceZones:'2 TERRITÓRIOS ABERTOS · Vale da Dordonha · Bordéus',mobileInstall:'Instalar DIGIYLYFE neste telefone'},
     it:{mini:'PRIMO PASSO · RETE APERTA',homeTitle:'Il vostro biglietto da visita DIGIY è gratuito.',homeText:'Entrate in DIGIYLYFE con identità, attività, territorio e contatto diretto. Nessuna pubblicità · 0% commissioni.',locMini:'PRIMA DI DIGIY LOC · INGRESSO GRATUITO',locTitle:'Iniziate con la vostra carta DIGIY gratuita.',locText:'La carta vi fa entrare nella rete. Se le locazioni fanno parte della vostra attività, proseguite con DIGIY LOC, prenotazione diretta e 0% commissioni.',cta:'RICHIEDI LA MIA CARTA DIGIY GRATUITA →',storyMini:'DIGIY IN AZIONE · UNA SERA A SALY',storyTitle:'Una camera. Un autista. Un ristorante.',storyText:'Scopri come la rete fa circolare il cliente lasciando indipendente ogni professionista.',storyCta:'▶ GUARDA LA STORIA',franceZones:'2 TERRITORI APERTI · Valle della Dordogna · Bordeaux',mobileInstall:'Installa DIGIYLYFE su questo telefono'},
     de:{mini:'ERSTER SCHRITT · OFFENES NETZWERK',homeTitle:'Ihre DIGIY-Visitenkarte ist kostenlos.',homeText:'Starten Sie bei DIGIYLYFE mit Identität, Tätigkeit, Region und direktem Kontakt. Keine Werbung · 0 % Provision.',locMini:'VOR DIGIY LOC · KOSTENLOSER EINSTIEG',locTitle:'Starten Sie mit Ihrer kostenlosen DIGIY-Karte.',locText:'Die Karte bringt Sie ins Netzwerk. Wenn Vermietung zu Ihrem Geschäft gehört, gehen Sie anschließend zu DIGIY LOC mit Direktbuchung und 0 % Provision.',cta:'KOSTENLOSE DIGIY-KARTE ANFORDERN →',storyMini:'DIGIY IN AKTION · EIN ABEND IN SALY',storyTitle:'Ein Zimmer. Ein Fahrer. Ein Restaurant.',storyText:'Sehen Sie, wie das Netzwerk Kunden weiterführt und jeder Profi unabhängig bleibt.',storyCta:'▶ GESCHICHTE ANSEHEN',franceZones:'2 OFFENE GEBIETE · Dordogne-Tal · Bordeaux',mobileInstall:'DIGIYLYFE auf diesem Telefon installieren'},
     nl:{mini:'EERSTE STAP · OPEN NETWERK',homeTitle:'Uw DIGIY-visitekaart is gratis.',homeText:'Kom in DIGIYLYFE met uw identiteit, activiteit, regio en direct contact. Geen reclame · 0% commissie.',locMini:'VÓÓR DIGIY LOC · GRATIS INSTAP',locTitle:'Begin met uw gratis DIGIY-kaart.',locText:'Met de kaart komt u in het netwerk. Past verhuur bij uw activiteit, ga dan verder met DIGIY LOC, directe boekingen en 0% commissie.',cta:'MIJN GRATIS DIGIY-KAART AANVRAGEN →',storyMini:'DIGIY IN ACTIE · EEN AVOND IN SALY',storyTitle:'Een kamer. Een chauffeur. Een restaurant.',storyText:'Bekijk hoe het netwerk de klant laat doorstromen terwijl elke professional onafhankelijk blijft.',storyCta:'▶ BEKIJK HET VERHAAL',franceZones:'2 OPEN GEBIEDEN · Dordognevallei · Bordeaux',mobileInstall:'DIGIYLYFE op deze telefoon installeren'},
@@ -28,23 +28,14 @@
     if(['sn','fr','us'].indexOf(country)>=0)u.searchParams.set('country',country);
     return u.pathname+u.search;
   }
-  function isHome(){var p=location.pathname.replace(/\/+$/,'')||'/';return p==='/'||/\/index\.html$/i.test(p)}
+  function isHome(){
+    var p=location.pathname.replace(/\/+$/,'')||'/';
+    return p==='/'||/\/index\.html$/i.test(p);
+  }
   function style(){
     if(document.getElementById('digiyFreeCardEntryStyle'))return;
     var s=document.createElement('style');s.id='digiyFreeCardEntryStyle';
-    s.textContent='\
-.digiyFreeCardEntry{margin:0 0 14px;padding:18px;border:2px solid rgba(246,196,83,.72);border-radius:26px;background:linear-gradient(145deg,rgba(246,196,83,.16),rgba(45,212,191,.11),rgba(255,255,255,.045));box-shadow:0 18px 44px rgba(0,0,0,.24);text-align:center;color:#fffaf0}\
-.digiyFreeCardEntry .freeMini,.digiyStoryEntry .storyMini{display:inline-flex;padding:6px 10px;border-radius:999px;border:1px solid rgba(45,212,191,.52);background:rgba(45,212,191,.09);color:#c9fff7;font-size:9.5px;font-weight:1000;letter-spacing:.07em;text-transform:uppercase}\
-.digiyFreeCardEntry h2,.digiyStoryEntry h2{margin:10px auto 0;max-width:760px;font-size:clamp(24px,5vw,36px);line-height:1.03;font-weight:1000;letter-spacing:-.03em}\
-.digiyFreeCardEntry p,.digiyStoryEntry p{margin:9px auto 0;max-width:790px;color:#dce9e3;font-size:12px;line-height:1.5;font-weight:850}\
-.digiyFreeCardEntry .freeCta,.digiyStoryEntry .storyCta{display:flex;align-items:center;justify-content:center;width:min(100%,540px);min-height:56px;margin:14px auto 0;padding:12px 17px;border-radius:999px;background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;border:1px solid rgba(255,241,189,.80);font-size:12px;line-height:1.2;font-weight:1000;box-shadow:0 12px 28px rgba(0,0,0,.24);text-decoration:none}\
-.digiyFreeCardEntry[dir="rtl"],.digiyStoryEntry[dir="rtl"]{direction:rtl}\
-.digiyStoryEntry{position:relative;overflow:hidden;margin:14px 0;padding:18px;border:1px solid rgba(246,196,83,.62);border-radius:26px;background:radial-gradient(480px 220px at 0 0,rgba(246,196,83,.15),transparent 68%),linear-gradient(145deg,rgba(8,73,50,.98),rgba(4,31,24,.98) 66%,rgba(10,76,70,.78));box-shadow:0 18px 44px rgba(0,0,0,.24);text-align:center;color:#fffaf0}\
-.digiyStoryEntry .storyFlow{display:flex;align-items:center;justify-content:center;gap:8px;margin:15px auto 0;flex-wrap:wrap}.digiyStoryEntry .storyNode{min-width:72px;padding:9px 11px;border-radius:16px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);font-size:22px}.digiyStoryEntry .storyArrow{color:#f6c453;font-size:20px;font-weight:1000}\
-html.digiyFacadeSimple .digiyCampus,html.digiyFacadeSimple .ownerModules,html.digiyFacadeSimple .brandClaim,html.digiyFacadeSimple #digiyFavorisBar,html.digiyFacadeSimple .section[aria-label="Portes publiques DIGIYLYFE"]{display:none!important}\
-html.digiyFacadeSimple .worldHub .worldPath{display:none!important}html.digiyFacadeSimple .worldHub .worldHead{padding:15px}html.digiyFacadeSimple .worldHub .worldHead p{margin-top:7px;max-width:680px}html.digiyFacadeSimple .worldHub .territoryGrid{gap:10px;margin-top:10px}html.digiyFacadeSimple .worldHub .territoryCard{min-height:235px}html.digiyFacadeSimple .worldHub .territoryPhoto{height:125px}html.digiyFacadeSimple .worldHub .territoryCard>small{min-height:0}\
-@media(max-width:760px){html.digiyFacadeSimple .worldHub .territoryCard{min-height:220px}html.digiyFacadeSimple .worldHub .territoryPhoto{height:120px}}\
-@media(max-width:420px){.digiyStoryEntry{padding:16px 12px}.digiyStoryEntry .storyNode{min-width:64px}.digiyStoryEntry .storyFlow{gap:6px}}';
+    s.textContent='.digiyFreeCardEntry{margin:0 0 14px;padding:18px;border:2px solid rgba(246,196,83,.72);border-radius:26px;background:linear-gradient(145deg,rgba(246,196,83,.16),rgba(45,212,191,.11),rgba(255,255,255,.045));box-shadow:0 18px 44px rgba(0,0,0,.24);text-align:center;color:#fffaf0}.digiyFreeCardEntry .freeMini,.digiyStoryEntry .storyMini{display:inline-flex;padding:6px 10px;border-radius:999px;border:1px solid rgba(45,212,191,.52);background:rgba(45,212,191,.09);color:#c9fff7;font-size:9.5px;font-weight:1000;letter-spacing:.07em;text-transform:uppercase}.digiyFreeCardEntry h2,.digiyStoryEntry h2{margin:10px auto 0;max-width:760px;font-size:clamp(24px,5vw,36px);line-height:1.03;font-weight:1000;letter-spacing:-.03em}.digiyFreeCardEntry p,.digiyStoryEntry p{margin:9px auto 0;max-width:790px;color:#dce9e3;font-size:12px;line-height:1.5;font-weight:850}.digiyFreeCardEntry .freeCta,.digiyStoryEntry .storyCta{display:flex;align-items:center;justify-content:center;width:min(100%,540px);min-height:56px;margin:14px auto 0;padding:12px 17px;border-radius:999px;background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;border:1px solid rgba(255,241,189,.80);font-size:12px;line-height:1.2;font-weight:1000;box-shadow:0 12px 28px rgba(0,0,0,.24);text-decoration:none}.digiyFreeCardEntry[dir="rtl"],.digiyStoryEntry[dir="rtl"]{direction:rtl}.digiyStoryEntry{position:relative;overflow:hidden;margin:14px 0;padding:22px 18px;border:2px solid rgba(246,196,83,.78);border-radius:28px;background:radial-gradient(540px 240px at 0 0,rgba(246,196,83,.18),transparent 68%),linear-gradient(145deg,rgba(8,73,50,.99),rgba(4,31,24,.99) 64%,rgba(10,76,70,.82));box-shadow:0 22px 52px rgba(0,0,0,.30);text-align:center;color:#fffaf0}.digiyStoryEntry .storyFlow{display:flex;align-items:center;justify-content:center;gap:8px;margin:15px auto 0;flex-wrap:wrap}.digiyStoryEntry .storyNode{min-width:72px;padding:9px 11px;border-radius:16px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);font-size:22px}.digiyStoryEntry .storyArrow{color:#f6c453;font-size:20px;font-weight:1000}@media(max-width:420px){.digiyStoryEntry{padding:18px 12px}.digiyStoryEntry .storyNode{min-width:64px}.digiyStoryEntry .storyFlow{gap:6px}}';
     document.head.appendChild(s);
   }
   function render(box,mode){
@@ -68,8 +59,7 @@ html.digiyFacadeSimple .worldHub .worldPath{display:none!important}html.digiyFac
   function mount(){
     var p=location.pathname.replace(/\/+$/,'')||'/';
     var mode=(/\/tarifs-loc\.html$/i.test(p))?'loc':((p==='/'||/\/index\.html$/i.test(p))?'home':'');
-    if(!mode)return;
-    if(document.getElementById('digiyFreeCardEntry'))return;
+    if(!mode||document.getElementById('digiyFreeCardEntry'))return;
     style();
     var box=document.createElement('section');box.id='digiyFreeCardEntry';box.className='digiyFreeCardEntry';box.setAttribute('data-digiy-free-card-entry','1');
     var anchor=mode==='loc'?document.querySelector('.langs'):document.getElementById('digiyInstallBand');
@@ -79,11 +69,10 @@ html.digiyFacadeSimple .worldHub .worldPath{display:none!important}html.digiyFac
     document.querySelectorAll(selector).forEach(function(b){b.addEventListener('click',function(){setTimeout(function(){render(box,mode);refreshFacadeText()},20)})});
   }
   function mountStory(){
-    if(!isHome())return;
-    if(document.getElementById('digiyStoryEntry'))return;
+    if(!isHome()||document.getElementById('digiyStoryEntry'))return;
     style();
     var box=document.createElement('section');box.id='digiyStoryEntry';box.className='digiyStoryEntry';box.setAttribute('data-digiy-story-entry','1');box.setAttribute('aria-label','VA CHEZ DIGIY');
-    var anchor=document.getElementById('digiyFreeCardEntry')||document.getElementById('digiyInstallBand');
+    var anchor=document.querySelector('.fullStackIntro')||document.querySelector('.languageStrip');
     if(anchor)anchor.insertAdjacentElement('afterend',box);else{var m=document.querySelector('main');if(m)m.insertAdjacentElement('afterbegin',box)}
     renderStory(box);
     document.querySelectorAll('.langBtn').forEach(function(b){b.addEventListener('click',function(){setTimeout(function(){renderStory(box);refreshFacadeText()},20)})});
@@ -95,27 +84,37 @@ html.digiyFacadeSimple .worldHub .worldPath{display:none!important}html.digiyFac
     var coarse=(window.matchMedia&&matchMedia('(pointer:coarse)').matches)||navigator.maxTouchPoints>0||innerWidth<=820;
     if(coarse){
       var lab=document.getElementById('digiyInstallLabel');
-      if(lab && /ordinateur|computer|ordenador|computador|computer|telefon|الهاتف/i.test(lab.textContent||''))lab.textContent=t.mobileInstall;
+      if(lab)lab.textContent=t.mobileInstall;
     }
   }
-  function simplifyFacade(){
+  function arrangeDoctrine(){
     if(!isHome())return;
-    document.documentElement.classList.add('digiyFacadeSimple');
-    style();
-    var install=document.getElementById('digiyInstallBand');
-    var free=document.getElementById('digiyFreeCardEntry');
-    var story=document.getElementById('digiyStoryEntry');
-    var hero=document.querySelector('.hero[aria-label="Présence numérique DIGIYLYFE"]');
-    var entry=document.getElementById('digiyEntryChoice');
-    var proof=document.querySelector('.section[aria-label="Preuves terrain DIGIYLYFE"]');
-    var world=document.getElementById('territoires')||document.querySelector('.worldHub');
-    var card=document.querySelector('.digiyCardSection');
-    var footer=document.querySelector('.footer');
-    var anchor=install||document.querySelector('.fullStackIntro')||document.querySelector('.languageStrip');
-    [free,story,hero,entry,proof,world,card,footer].forEach(function(el){if(el&&anchor&&el!==anchor){anchor.insertAdjacentElement('afterend',el);anchor=el}});
+    document.documentElement.classList.remove('digiyFacadeSimple');
+    var promise=document.querySelector('.fullStackIntro');
+    if(!promise)return;
+    var order=[
+      document.getElementById('digiyStoryEntry'),
+      document.getElementById('territoires')||document.querySelector('.worldHub'),
+      document.querySelector('.brandClaim'),
+      document.getElementById('digiyEntryChoice'),
+      document.getElementById('digiyFreeCardEntry'),
+      document.getElementById('digiyCampus'),
+      document.querySelector('.ownerModules'),
+      document.querySelector('.section[aria-label="Portes publiques DIGIYLYFE"]'),
+      document.querySelector('.section[aria-label="Preuves terrain DIGIYLYFE"]'),
+      document.querySelector('.hero[aria-label="Présence numérique DIGIYLYFE"]'),
+      document.getElementById('digiyInstallBand'),
+      document.getElementById('digiyFavorisBar'),
+      document.querySelector('.digiyCardSection'),
+      document.querySelector('.footer')
+    ];
+    var anchor=promise;
+    order.forEach(function(el){
+      if(el&&el!==anchor){anchor.insertAdjacentElement('afterend',el);anchor=el;}
+    });
     refreshFacadeText();
     setTimeout(refreshFacadeText,80);
   }
-  function boot(){mount();mountStory();simplifyFacade();}
+  function boot(){mount();mountStory();arrangeDoctrine();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
