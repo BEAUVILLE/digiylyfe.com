@@ -80,7 +80,7 @@ def main() -> int:
             continue
 
         slug = safe_slug(path.stem)
-        name = js_string(block, "name") or slug.replace("-", " ").title()
+        name = js_string(block, "pwaName") or js_string(block, "name") or slug.replace("-", " ").title()
         icon_url = (
             js_string(block, "pwaIconUrl")
             or js_string(block, "photoUrl")
