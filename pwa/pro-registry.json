@@ -1,0 +1,9 @@
+[
+  {
+    "slug": "babakar-plombier-saly",
+    "name": "babakar",
+    "card": "/cartes/babakar-plombier-saly.html",
+    "manifest": "/pwa/babakar-plombier-saly.webmanifest",
+    "icon_source": "https://wesqmwjjtsefyjnluosj.supabase.co/functions/v1/digiy-card-public?slug=babakar-plombier-saly&asset=photo"
+  }
+]
