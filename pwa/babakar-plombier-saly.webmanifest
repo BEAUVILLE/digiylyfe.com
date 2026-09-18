@@ -1,8 +1,8 @@
 {
   "id": "/pwa/babakar-plombier-saly",
-  "name": "babakar",
-  "short_name": "babakar",
-  "description": "babakar · présence professionnelle propulsée par DIGIYLYFE",
+  "name": "Babacar Plombier Pro",
+  "short_name": "Babacar Plombier P",
+  "description": "Babacar Plombier Pro · présence professionnelle propulsée par DIGIYLYFE",
   "start_url": "/cartes/babakar-plombier-saly.html?source=pwa",
   "scope": "/",
   "display": "standalone",
