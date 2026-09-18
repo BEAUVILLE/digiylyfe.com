@@ -63,7 +63,7 @@ def make_icon(source: bytes, size: int, dest: Path) -> None:
         fitted.save(dest, format="PNG", optimize=True)
 
 def fallback_icon(size: int, dest: Path) -> None:
-    src = ROOT / f"icon-{size}.png"
+    src = ROOT / "assets" / "pwa" / f"digiy-fallback-{size}.png"
     if not src.exists():
         raise FileNotFoundError(src)
     shutil.copyfile(src, dest)

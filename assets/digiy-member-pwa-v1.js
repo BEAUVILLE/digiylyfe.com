@@ -15,7 +15,7 @@
     var name=clean(C.name)||clean(document.querySelector('h1')?.textContent)||clean(document.title.split(/[·—|-]/)[0])||'Professionnel';
     var finalUrl=clean(C.finalUrl)||location.origin+location.pathname;
     var manifestUrl=clean(C.manifestUrl)||'/manifest.webmanifest';
-    var iconUrl=clean(C.iconUrl)||'/favicon.png';
+    var iconUrl=clean(C.iconUrl)||'https://digiylyfe.com/assets/pwa/digiy-fallback-192.png';
 
     function ensureLink(rel,href){
       var el=document.querySelector('link[rel="'+rel+'"][data-digiy-member-pwa="1"]');
