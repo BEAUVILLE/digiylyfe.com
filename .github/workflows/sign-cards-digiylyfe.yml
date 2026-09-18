@@ -8,6 +8,7 @@ on:
       - '**/*card*'
       - '**/*CARD*'
       - '.github/workflows/sign-cards-digiylyfe.yml'
+      - '.github/scripts/build-pro-pwa.py'
   workflow_dispatch:
 
 permissions:
@@ -16,3 +17,34 @@ permissions:
 jobs:
   sign-cards:
     uses: BEAUVILLE/digiylyfe.com/.github/workflows/sign-cards-reusable.yml@23c34b7b20139e62f4d5c20dcce953622f88f198
+
+
+  build-pro-pwa:
+    if: github.ref == 'refs/heads/main'
+    needs: sign-cards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+      - name: Générer les empreintes PWA PRO
+        run: python .github/scripts/build-pro-pwa.py
+      - name: Publier les manifests et icônes
+        shell: bash
+        run: |
+          if [[ -n "$(git status --porcelain -- pwa)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add pwa
+            git commit -m "chore: build DIGIY PRO PWA footprints"
+            git push
+          else
+            echo "Aucune empreinte PWA à mettre à jour."
+          fi
