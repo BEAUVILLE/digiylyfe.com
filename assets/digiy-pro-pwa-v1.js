@@ -12,7 +12,7 @@
     if(!CARD||CARD.pwaEnabled!==true)return;
 
     var clean=function(v){return String(v||'').trim();};
-    var name=clean(CARD.name)||'Professionnel';
+    var name=clean(CARD.pwaName)||clean(CARD.name)||'Professionnel';
     var path=(location.pathname.split('/').pop()||'professionnel').replace(/\.html?$/i,'');
     var slug=path.replace(/[^a-z0-9-]/gi,'-').replace(/-+/g,'-').replace(/^-|-$/g,'').toLowerCase()||'professionnel';
     var manifest='/pwa/'+encodeURIComponent(slug)+'.webmanifest';
