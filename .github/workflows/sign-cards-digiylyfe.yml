@@ -20,7 +20,7 @@ jobs:
 
 
   build-pro-pwa:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/feat/empreinte-pwa-pro-20260918'
     needs: sign-cards
     runs-on: ubuntu-latest
     steps:
