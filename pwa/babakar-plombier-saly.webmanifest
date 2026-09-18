@@ -1,0 +1,25 @@
+{
+  "id": "/pwa/babakar-plombier-saly",
+  "name": "Babacar Plombier Pro",
+  "short_name": "Babacar Plombier P",
+  "description": "Babacar Plombier Pro · présence professionnelle propulsée par DIGIYLYFE",
+  "start_url": "/cartes/babakar-plombier-saly.html?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#06140f",
+  "theme_color": "#126b43",
+  "icons": [
+    {
+      "src": "/pwa/icons/babakar-plombier-saly-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pwa/icons/babakar-plombier-saly-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
