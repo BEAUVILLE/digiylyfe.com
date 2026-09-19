@@ -124,6 +124,7 @@
     var promise=document.querySelector('.fullStackIntro');
     if(!promise)return;
     var order=[
+      document.querySelector('.hero[aria-label="Présence numérique DIGIYLYFE"]'),
       document.getElementById('digiyStoryEntry'),
       document.getElementById('territoires')||document.querySelector('.worldHub'),
       document.getElementById('digiyInternational'),
@@ -134,7 +135,6 @@
       document.querySelector('.ownerModules'),
       document.querySelector('.section[aria-label="Portes publiques DIGIYLYFE"]'),
       document.querySelector('.section[aria-label="Preuves terrain DIGIYLYFE"]'),
-      document.querySelector('.hero[aria-label="Présence numérique DIGIYLYFE"]'),
       document.getElementById('digiyInstallBand'),
       document.getElementById('digiyFavorisBar'),
       document.querySelector('.digiyCardSection'),
