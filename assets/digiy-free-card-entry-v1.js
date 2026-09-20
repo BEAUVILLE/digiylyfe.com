@@ -124,6 +124,7 @@
     var promise=document.querySelector('.fullStackIntro');
     if(!promise)return;
     var order=[
+      document.querySelector('.voiceSearchBand'),
       document.querySelector('.hero[aria-label="Présence numérique DIGIYLYFE"]'),
       document.getElementById('digiyStoryEntry'),
       document.getElementById('territoires')||document.querySelector('.worldHub'),
