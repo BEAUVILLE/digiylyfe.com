@@ -2,7 +2,7 @@
    Installation permanente, sans cache de page et sans réécriture de route.
 */
 
-const DIGIY_PWA_VERSION = 'digiylyfe-pwa-20260830-master-ui-v9';
+const DIGIY_PWA_VERSION = 'digiylyfe-pwa-20260920-fresh-nav-v10';
 
 self.addEventListener('install', () => {
   self.skipWaiting();
@@ -16,5 +16,5 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET' || event.request.mode !== 'navigate') return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
-  event.respondWith(fetch(event.request));
+  event.respondWith(fetch(event.request, { cache: 'no-store' }));
 });
