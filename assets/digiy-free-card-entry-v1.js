@@ -124,13 +124,13 @@
     var promise=document.querySelector('.fullStackIntro');
     if(!promise)return;
     var order=[
+      document.getElementById('digiyEntryChoice'),
       document.querySelector('.voiceSearchBand'),
       document.querySelector('.hero[aria-label="Présence numérique DIGIYLYFE"]'),
       document.getElementById('digiyStoryEntry'),
       document.getElementById('territoires')||document.querySelector('.worldHub'),
       document.getElementById('digiyInternational'),
       document.querySelector('.brandClaim'),
-      document.getElementById('digiyEntryChoice'),
       document.getElementById('digiyFreeCardEntry'),
       document.getElementById('digiyCampus'),
       document.querySelector('.ownerModules'),
