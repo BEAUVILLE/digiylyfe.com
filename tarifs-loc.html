@@ -225,7 +225,7 @@ document.getElementById('locForm').addEventListener('submit',function(e){
  if(!t){document.getElementById('quote').classList.remove('hidden');document.getElementById('quoteWa').href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(dossier(null,c,null,'DEMANDE DE DEVIS +40 UNITÉS'));document.getElementById('quote').scrollIntoView({behavior:'smooth',block:'start'});return}
  var expected=annualAmount(t,c);
  if(!cp||cp.country!==c||cp.label!==t.label||cp.amount!==expected){err.textContent=x.mismatch+' '+x.expected+' '+t.label+' · '+annualText(expected,c,x)+'.';err.classList.remove('hidden');document.getElementById('chosenPrice').focus();return}
- document.getElementById('chosenAmount').textContent=t.label+' · '+annualText(cp.amount,c,x)+' · premier cycle 14 mois';
+ document.getElementById('chosenAmount').textContent=t.label+' · '+annualText(cp.amount,c,x)+' · 12 mois';
  document.getElementById('paySn').classList.toggle('hidden',c!=='sn');document.getElementById('payEu').classList.toggle('hidden',c!=='eu');
  var msg=dossier(t,c,cp.amount,'RÈGLEMENT ANNUEL EFFECTUÉ — PREUVE À JOINDRE');document.getElementById('paidWa').href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg);document.getElementById('paidSms').href='sms:+'+PHONE+'?body='+encodeURIComponent(msg);document.getElementById('paiement').classList.remove('hidden');document.getElementById('paiement').scrollIntoView({behavior:'smooth',block:'start'});
 });
