@@ -28,19 +28,10 @@ const $=id=>document.getElementById(id),form=$('locForm');if(!form)return;
 function lang(){const l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return M[l]?l:'fr'}
 function fmt(n,c){if(c==='sn')return Number(n).toLocaleString('fr-FR').replace(/\u202f/g,' ')+' FCFA';if(c==='us')return '$'+Number(n).toLocaleString('en-US');return Number(n).toLocaleString('fr-FR')+' €'}
 function marketing(){
- const x=P[lang()]||P.fr;
- if($('offerTitle'))$('offerTitle').textContent=x.offerTitle;
- if($('offerText'))$('offerText').textContent=x.offerText;
- if($('note'))$('note').textContent=x.note;
- Array.from(document.querySelectorAll('#tiersBody tr')).slice(0,8).forEach((tr,i)=>{
-  const cells=tr.children;if(cells.length<5)return;
-  [[2,'sn',100000,ANNUAL_SN[i]],[4,'eu',250,ANNUAL_EU[i]]].forEach(v=>{
-   const cell=cells[v[0]];cell.querySelectorAll('[data-first-join]').forEach(el=>el.remove());
-   const s=document.createElement('span');s.setAttribute('data-first-join','1');s.style.cssText='display:block;margin-top:7px;padding-top:7px;border-top:1px solid #ffffff22;color:#eaf7ef;font-size:10.5px;font-weight:900;line-height:1.45';
-   s.innerHTML=x.fiche+' : + '+fmt(v[2],v[1])+'<br><strong>'+x.first+' : '+fmt(v[3]+v[2],v[1])+'</strong>';
-   cell.appendChild(s);
-  });
- });
+ // La grille tarifaire appartient désormais à tarifs-loc-v2.html.
+ // Ce script sécurise le dossier/BAT mais ne réécrit plus les prix,
+ // remises, fiches ni totaux de première adhésion.
+ document.querySelectorAll('[data-first-join]').forEach(function(el){el.remove()});
 }
 function preselectCountry(){
  try{
