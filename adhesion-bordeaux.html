@@ -13,7 +13,7 @@
 (function(){
   const q=new URLSearchParams(location.search);
   if((q.get('need')||'').toLowerCase()!=='accommodation')return;
-  const u=new URL('/tarifs-loc.html',location.origin);
+  const u=new URL('/tarifs-loc-v2.html',location.origin);
   u.searchParams.set('country','eu');
   const l=(q.get('lang')||'').slice(0,2).toLowerCase();
   if(l)u.searchParams.set('lang',l);
