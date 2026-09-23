@@ -2,7 +2,7 @@
 'use strict';
 const form=document.getElementById('form'),st=document.getElementById('status'),btn=document.getElementById('submit');
 if(!form||!st||!btn)return;
-const names={name:'Nom professionnel',job:'Métier / activité',country:'Pays',territory:'Territoire',baseZone:'Zone / localité de base',pendingZone:'Localité à valider',phone:'Téléphone',wa:'WhatsApp',photo:'Photo principale',s1:'Service 1',s2:'Service 2',s3:'Service 3',consent:'Confirmation / autorisation'};
+const names={name:'Nom professionnel',job:'Métier / activité',country:'Pays',territory:'Territoire',baseZone:'Zone / localité de base',pendingZone:'Localité à valider',phone:'Téléphone',wa:'WhatsApp',email:'E-mail client / magic-link',photo:'Photo principale',s1:'Service 1',s2:'Service 2',s3:'Service 3',consent:'Confirmation / autorisation'};
 let handling=false;
 function labelFor(el){return names[el.id]||el.name||'Un champ obligatoire'}
 form.addEventListener('invalid',function(e){
