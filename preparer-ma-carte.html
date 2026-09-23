@@ -39,6 +39,10 @@ if(!carnet){
 const planNeedle="const Q=new URLSearchParams(location.search),planCode=Q.get('plan')||'';";
 if(h.indexOf(planNeedle)===-1)throw new Error('plan marker missing');
 h=h.replace(planNeedle,"const Q=new URLSearchParams(location.search),planCode=Q.get('plan')||'adherent-19900';");
+const contactNeedle='<label><span id="waLabel">WhatsApp *</span><input id="wa" type="tel" maxlength="40" required></label>';
+const contactReplacement=contactNeedle+'\n    <label class="full"><span id="emailLabel">E-mail client · magic-link *</span><input id="email" type="email" maxlength="254" autocomplete="email" required></label>';
+if(h.indexOf(contactNeedle)===-1)throw new Error('email field marker missing');
+h=h.replace(contactNeedle,contactReplacement);
 const proofBlock=/<div class="proof">[\s\S]*?<\/div>\s*<label class="consent">/;
 if(!proofBlock.test(h))throw new Error('payment proof marker missing');
 h=h.replace(proofBlock,'<div class="proof"><strong id="proofTitle">AUCUN PAIEMENT MAINTENANT</strong><div class="note" id="proofLabel">Envoyez d’abord vos renseignements. DIGIYLYFE contrôle votre dossier, prépare votre fiche et vous la présente. Le règlement n’est demandé qu’après votre accord.</div><small class="note" id="proofHelp"></small><input id="proof" type="file" hidden></div>\n\n  <label class="consent">');
@@ -52,8 +56,16 @@ const flowPatches=[
 ["const option=extra==='none'?'CARTE SEULE':extra==='site'?`SITE ${siteTier.toUpperCase()}`:extra.toUpperCase();","const option=extra==='none'?'FICHE SEULE':extra==='site'?`SITE ${siteTier.toUpperCase()}`:extra.toUpperCase();"]
 ];
 flowPatches.forEach(([a,b])=>{if(h.indexOf(a)===-1)throw new Error('prevalidation marker missing');h=h.replace(a,b)});
+const emailBaseNeedle="zone_label:zLabel,phone,whatsapp:wa,service_1:$('#s1').value.trim()";
+const emailBaseReplacement="zone_label:zLabel,phone,whatsapp:wa,email:$('#email').value.trim().toLowerCase(),service_1:$('#s1').value.trim()";
+if(h.indexOf(emailBaseNeedle)===-1)throw new Error('email base marker missing');
+h=h.replace(emailBaseNeedle,emailBaseReplacement);
 const baseNeedle="service_4:$('#s4').value.trim()||null,photo_path:pp";
 const baseReplacement="service_4:$('#s4').value.trim()||null,indicative_tariffs:(window.DIGIY_INDICATIVE_TARIFFS?window.DIGIY_INDICATIVE_TARIFFS():[]),photo_path:pp";
+const emailAdminNeedle="'WhatsApp : '+base.whatsapp,'','SERVICES'";
+const emailAdminReplacement="'WhatsApp : '+base.whatsapp,'E-mail : '+base.email,'','SERVICES'";
+if(h.indexOf(emailAdminNeedle)===-1)throw new Error('email whatsapp marker missing');
+h=h.replace(emailAdminNeedle,emailAdminReplacement);
 const adminNeedle="if(base.service_4)lines.push('4. '+base.service_4);\n  lines.push('','Option : '+option);";
 const adminReplacement="if(base.service_4)lines.push('4. '+base.service_4);\n  if(Array.isArray(base.indicative_tariffs)&&base.indicative_tariffs.length){lines.push('','TARIFS INDICATIFS');base.indicative_tariffs.forEach(function(tariff,i){var cur=tariff.currency_code==='XOF'?'FCFA':tariff.currency_code==='EUR'?'€':(tariff.currency_code||'');lines.push((i+1)+'. '+tariff.label+' : '+tariff.price+(cur?' '+cur:''));});}\n  lines.push('','Étape : DOSSIER AVANT RÈGLEMENT','Option : '+option);";
 if(h.indexOf(baseNeedle)===-1||h.indexOf(adminNeedle)===-1)throw new Error('tariff integration marker missing');
