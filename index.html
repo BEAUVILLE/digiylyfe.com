@@ -181,8 +181,8 @@
     }
     .digiyMasterVideo strong{display:block;color:#fff3cf;font-size:clamp(20px,4.8vw,31px);line-height:1.08;font-weight:1000}
     .digiyMasterVideo p{margin:7px auto 12px;max-width:680px;color:var(--soft);font-size:12.5px;line-height:1.45;font-weight:850}
-    .digiyMasterVideoFrame{width:min(430px,100%);margin:0 auto;padding:7px;border-radius:26px;border:1px solid rgba(246,196,83,.48);background:rgba(255,255,255,.045);box-shadow:0 16px 38px rgba(0,0,0,.28)}
-    .digiyMasterVideo video{display:block;width:100%;height:auto;aspect-ratio:9/16;border-radius:20px;background:#000;object-fit:contain}
+    .digiyMasterVideoFrame{width:min(430px,100%);margin:0 auto;padding:7px;border-radius:26px;border:1px solid rgba(246,196,83,.48);background:rgba(255,255,255,.045);box-shadow:0 16px 38px rgba(0,0,0,.28);position:relative;z-index:5;pointer-events:auto!important;touch-action:manipulation}
+    .digiyMasterVideo video{display:block;width:100%;height:auto;aspect-ratio:9/16;border-radius:20px;background:#000;object-fit:contain;position:relative;z-index:6;pointer-events:auto!important;touch-action:manipulation;-webkit-user-select:none;user-select:none}
     .digiyMasterVideo small{display:block;margin-top:10px;color:rgba(255,250,240,.68);font-size:10.5px;line-height:1.35;font-weight:850}
     @media(max-width:560px){.digiyMasterVideo{padding:12px 9px;border-radius:22px}.digiyMasterVideoFrame{padding:5px;border-radius:22px}.digiyMasterVideo video{border-radius:17px}}
 
@@ -778,13 +778,32 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
       <strong>DIGIYLYFE · 20 SECONDES POUR COMPRENDRE</strong>
       <p>Un besoin. Une réponse locale. Un contact direct. Le réseau apporte de la puissance, la relation reste humaine et directe.</p>
       <div class="digiyMasterVideoFrame">
-        <video controls playsinline preload="metadata" aria-label="Vidéo de présentation DIGIYLYFE">
-          <source src="/assets/videos/DIGIYLYFE_MASTER_20s_ALY_POSEE.mp4?v=20260924" type="video/mp4"/>
+        <video id="digiyMasterVideoPlayer" controls playsinline webkit-playsinline preload="metadata" x-webkit-airplay="allow" aria-label="Vidéo de présentation DIGIYLYFE">
+          <source src="/assets/videos/DIGIYLYFE_MASTER_20s_ALY_POSEE.mp4?v=20260924-mobile-touch-v2" type="video/mp4"/>
           Votre navigateur ne peut pas lire cette vidéo.
         </video>
       </div>
-      <small>▶ Appuyez sur lecture · narration française · 20 secondes</small>
+      <small id="digiyMasterVideoHint">▶ Appuyez sur lecture · narration française · 20 secondes</small>
     </section>
+    <script id="digiy-master-video-mobile-fix-v2">
+    (function(){
+      var v=document.getElementById('digiyMasterVideoPlayer');
+      var h=document.getElementById('digiyMasterVideoHint');
+      if(!v)return;
+      v.addEventListener('error',function(){
+        if(h)h.textContent='⚠️ Le lecteur mobile n\u2019arrive pas à ouvrir cette vidéo. Rechargez la page puis réessayez.';
+      });
+      v.addEventListener('playing',function(){
+        if(h)h.textContent='🔊 Lecture en cours · narration française';
+      });
+      v.addEventListener('pause',function(){
+        if(h&&!v.ended)h.textContent='▶ Appuyez sur lecture · narration française · 20 secondes';
+      });
+      v.addEventListener('ended',function(){
+        if(h)h.textContent='✓ DIGIYLYFE · 20 secondes';
+      });
+    })();
+    </script>
 
     <section class="voiceSearchBand" aria-label="Recherche locale DIGIYLYFE par la voix">
       <div class="voiceSearchIntro">
