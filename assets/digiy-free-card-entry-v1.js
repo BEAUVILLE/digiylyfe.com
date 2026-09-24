@@ -127,6 +127,7 @@
       document.getElementById('digiyEntryChoice'),
       document.querySelector('.voiceSearchBand'),
       document.querySelector('.hero[aria-label="Présence numérique DIGIYLYFE"]'),
+      document.querySelector('.digiyMasterVideo'),
       document.getElementById('digiyStoryEntry'),
       document.getElementById('territoires')||document.querySelector('.worldHub'),
       document.getElementById('digiyInternational'),
