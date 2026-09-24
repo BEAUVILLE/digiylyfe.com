@@ -173,6 +173,19 @@
     .publicLeadCopy strong{display:block;font-size:19px;line-height:1.05;font-weight:1000}.publicLeadCopy span{display:block;margin-top:5px;color:var(--soft);font-size:11.5px;line-height:1.35;font-weight:850}
     .publicLeadBtn{min-height:46px;padding:10px 14px;border-radius:999px;background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;font-weight:1000}
 
+    .digiyMasterVideo{
+      margin:0 0 12px;padding:16px;border-radius:28px;
+      border:2px solid rgba(246,196,83,.72);
+      background:linear-gradient(145deg,rgba(7,70,46,.98),rgba(3,18,13,.99));
+      box-shadow:0 18px 42px rgba(0,0,0,.28);text-align:center
+    }
+    .digiyMasterVideo strong{display:block;color:#fff3cf;font-size:clamp(20px,4.8vw,31px);line-height:1.08;font-weight:1000}
+    .digiyMasterVideo p{margin:7px auto 12px;max-width:680px;color:var(--soft);font-size:12.5px;line-height:1.45;font-weight:850}
+    .digiyMasterVideoFrame{width:min(430px,100%);margin:0 auto;padding:7px;border-radius:26px;border:1px solid rgba(246,196,83,.48);background:rgba(255,255,255,.045);box-shadow:0 16px 38px rgba(0,0,0,.28)}
+    .digiyMasterVideo video{display:block;width:100%;height:auto;aspect-ratio:9/16;border-radius:20px;background:#000;object-fit:contain}
+    .digiyMasterVideo small{display:block;margin-top:10px;color:rgba(255,250,240,.68);font-size:10.5px;line-height:1.35;font-weight:850}
+    @media(max-width:560px){.digiyMasterVideo{padding:12px 9px;border-radius:22px}.digiyMasterVideoFrame{padding:5px;border-radius:22px}.digiyMasterVideo video{border-radius:17px}}
+
     .voiceSearchBand{
       margin:0 0 12px;padding:15px;border-radius:26px;
       border:2px solid rgba(246,196,83,.76);
@@ -760,6 +773,18 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
       </div>
     </section>
 
+
+    <section class="digiyMasterVideo" aria-label="DIGIYLYFE en 20 secondes">
+      <strong>DIGIYLYFE · 20 SECONDES POUR COMPRENDRE</strong>
+      <p>Un besoin. Une réponse locale. Un contact direct. Le réseau apporte de la puissance, la relation reste humaine et directe.</p>
+      <div class="digiyMasterVideoFrame">
+        <video controls playsinline preload="metadata" aria-label="Vidéo de présentation DIGIYLYFE">
+          <source src="/assets/videos/DIGIYLYFE_MASTER_20s_ALY_POSEE.mp4?v=20260924" type="video/mp4"/>
+          Votre navigateur ne peut pas lire cette vidéo.
+        </video>
+      </div>
+      <small>▶ Appuyez sur lecture · narration française · 20 secondes</small>
+    </section>
 
     <section class="voiceSearchBand" aria-label="Recherche locale DIGIYLYFE par la voix">
       <div class="voiceSearchIntro">
