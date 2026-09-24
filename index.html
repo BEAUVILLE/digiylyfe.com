@@ -184,6 +184,8 @@
     .digiyMasterVideoFrame{width:min(430px,100%);margin:0 auto;padding:7px;border-radius:26px;border:1px solid rgba(246,196,83,.48);background:rgba(255,255,255,.045);box-shadow:0 16px 38px rgba(0,0,0,.28);position:relative;z-index:5;pointer-events:auto!important;touch-action:manipulation}
     .digiyMasterVideo video{display:block;width:100%;height:auto;aspect-ratio:9/16;border-radius:20px;background:#000;object-fit:contain;position:relative;z-index:6;pointer-events:auto!important;touch-action:manipulation;-webkit-user-select:none;user-select:none}
     .digiyMasterVideo small{display:block;margin-top:10px;color:rgba(255,250,240,.68);font-size:10.5px;line-height:1.35;font-weight:850}
+    .digiyMasterVideoPlay{display:flex;align-items:center;justify-content:center;width:min(100%,430px);min-height:58px;margin:10px auto 0;padding:12px 16px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;font-size:13px;font-weight:1000;cursor:pointer;position:relative;z-index:8;pointer-events:auto!important;touch-action:manipulation;-webkit-appearance:none;appearance:none;box-shadow:0 12px 28px rgba(0,0,0,.24)}
+    .digiyMasterVideoPlay:active{transform:scale(.985)}
     @media(max-width:560px){.digiyMasterVideo{padding:12px 9px;border-radius:22px}.digiyMasterVideoFrame{padding:5px;border-radius:22px}.digiyMasterVideo video{border-radius:17px}}
 
     .voiceSearchBand{
@@ -783,13 +785,37 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
           Votre navigateur ne peut pas lire cette vidéo.
         </video>
       </div>
+      <button class="digiyMasterVideoPlay" id="digiyMasterVideoPlay" type="button">▶ LIRE LA VIDÉO</button>
       <small id="digiyMasterVideoHint">▶ Appuyez sur lecture · narration française · 20 secondes</small>
     </section>
     <script id="digiy-master-video-mobile-fix-v2">
     (function(){
       var v=document.getElementById('digiyMasterVideoPlayer');
       var h=document.getElementById('digiyMasterVideoHint');
+      var b=document.getElementById('digiyMasterVideoPlay');
       if(!v)return;
+      if(b){
+        b.addEventListener('click',function(){
+          try{
+            v.muted=false;
+            var p=v.play();
+            if(p&&typeof p.then==='function'){
+              p.then(function(){
+                b.textContent='❚❚ PAUSE';
+                if(h)h.textContent='🔊 Lecture en cours · narration française';
+              }).catch(function(){
+                if(h)h.textContent='▶ Ouverture dans le lecteur du téléphone…';
+                window.location.href='/assets/videos/DIGIYLYFE_MASTER_20s_ALY_POSEE.mp4?v=20260924-native-open-v1';
+              });
+            }
+          }catch(e){
+            window.location.href='/assets/videos/DIGIYLYFE_MASTER_20s_ALY_POSEE.mp4?v=20260924-native-open-v1';
+          }
+        });
+        v.addEventListener('play',function(){b.textContent='❚❚ PAUSE';});
+        v.addEventListener('pause',function(){if(!v.ended)b.textContent='▶ LIRE LA VIDÉO';});
+        v.addEventListener('ended',function(){b.textContent='↻ REVOIR LA VIDÉO';});
+      }
       v.addEventListener('error',function(){
         if(h)h.textContent='⚠️ Le lecteur mobile n\u2019arrive pas à ouvrir cette vidéo. Rechargez la page puis réessayez.';
       });
