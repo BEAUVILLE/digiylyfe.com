@@ -118,6 +118,35 @@
       if(lab)lab.textContent=t.mobileInstall;
     }
   }
+  function hardenMasterVideo(){
+    if(!isHome())return;
+    var box=document.querySelector('.digiyMasterVideo');
+    var frame=box&&box.querySelector('.digiyMasterVideoFrame');
+    var v=box&&box.querySelector('video');
+    if(!box||!frame||!v)return;
+    box.style.position='relative';
+    box.style.zIndex='4';
+    frame.style.position='relative';
+    frame.style.zIndex='5';
+    frame.style.pointerEvents='auto';
+    frame.style.touchAction='manipulation';
+    v.style.position='relative';
+    v.style.zIndex='6';
+    v.style.pointerEvents='auto';
+    v.style.touchAction='manipulation';
+    v.setAttribute('controls','');
+    v.setAttribute('playsinline','');
+    v.setAttribute('webkit-playsinline','');
+    v.setAttribute('preload','metadata');
+    v.setAttribute('x-webkit-airplay','allow');
+    var src=v.querySelector('source');
+    if(src&&src.getAttribute('src')&&src.getAttribute('src').indexOf('runtime-mobile-v3')===-1){
+      src.setAttribute('src','/assets/videos/DIGIYLYFE_MASTER_20s_ALY_POSEE.mp4?v=20260924-runtime-mobile-v3');
+      try{v.load();}catch(e){}
+    }
+    document.documentElement.setAttribute('data-digiy-master-video-mobile','v3');
+  }
+
   function arrangeDoctrine(){
     if(!isHome())return;
     document.documentElement.classList.remove('digiyFacadeSimple');
@@ -149,6 +178,14 @@
     refreshFacadeText();
     setTimeout(refreshFacadeText,80);
   }
-  function boot(){mount();mountStory();mountWorld();arrangeDoctrine();}
+  function boot(){
+    mount();
+    mountStory();
+    mountWorld();
+    arrangeDoctrine();
+    hardenMasterVideo();
+    setTimeout(hardenMasterVideo,120);
+    setTimeout(hardenMasterVideo,600);
+  }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
