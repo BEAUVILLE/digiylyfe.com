@@ -100,7 +100,7 @@ th,td{padding:13px 12px;text-align:left;border-bottom:1px solid #ffffff18;vertic
 <h2 id="tiersTitle">Paliers DIGIY LOC</h2>
 <div class="tablewrap"><table><thead><tr><th>HÉBERGEMENTS / UNITÉS</th><th>SÉNÉGAL · MENSUEL</th><th>SÉNÉGAL · ANNUEL -15 %</th><th>EUROPE · MENSUEL</th><th>EUROPE · ANNUEL -15 %</th><th>USA · MIAMI PILOT · ANNUEL</th></tr></thead>
 <tbody id="tiersBody"></tbody></table></div>
-<p class="note" id="note">💚 Deux rythmes : mensuel libre pour préserver votre trésorerie · annuel avec remise de 15 %. Les saisonniers peuvent cotiser pendant les mois d’ouverture et mettre LOC en sommeil hors saison. La fiche professionnelle obligatoire est facturée séparément : 100 000 FCFA au Sénégal ou 250 € en Europe. Réservation directe · paiement direct · 0 % commission DIGIYLYFE.<br><strong>GRILLE LOC MENSUEL + ANNUEL · VERSION 24/09/2026</strong></p>
+<p class="note" id="note">💚 Deux rythmes : mensuel libre pour préserver votre trésorerie · annuel avec remise de 15 %. Les saisonniers peuvent cotiser pendant les mois d’ouverture et mettre LOC en sommeil hors saison. La fiche professionnelle obligatoire est ajoutée au premier règlement uniquement : + 100 000 FCFA au Sénégal ou + 250 € en Europe. Réservation directe · paiement direct · 0 % commission DIGIYLYFE.<br><strong>GRILLE LOC MENSUEL + ANNUEL · VERSION 24/09/2026</strong></p>
 </section>
 
 <section class="box" id="coordonnees">
@@ -180,9 +180,9 @@ function renderTable(){
    var snRef12=t.snRef*12,euRef12=t.euRef*12,snSave=snRef12-t.snAnnual,euSave=euRef12-t.euAnnual;
    var tr=document.createElement('tr');
    tr.innerHTML='<td>'+t.label+'</td>'+
-   '<td class="refPrice">'+money(t.snRef,'sn')+'<span class="monthly">/ mois · mensuel libre · saisonnier possible</span></td>'+
+   '<td class="refPrice">'+money(t.snRef,'sn')+'<span class="monthly">/ mois · mensuel libre · saisonnier possible</span><span class="monthly">Fiche professionnelle au démarrage : + 100 000 FCFA</span><span class="firstJoin">★ <strong>1re adhésion mensuelle : '+money(t.snRef+100000,'sn')+'</strong></span></td>'+
    '<td class="annualPrice">'+money(t.snAnnual,'sn')+'<span class="saving">− '+money(snSave,'sn')+' · remise annuelle 15 %</span><span class="monthly">12 mois couverts · fiche professionnelle : + 100 000 FCFA</span><span class="firstJoin">★ <strong>1re adhésion annuelle : '+money(t.snFirst,'sn')+'</strong></span></td>'+
-   '<td class="refPrice">'+money(t.euRef,'eu')+'<span class="monthly">/ mois · mensuel libre · saisonnier possible</span></td>'+
+   '<td class="refPrice">'+money(t.euRef,'eu')+'<span class="monthly">/ mois · mensuel libre · saisonnier possible</span><span class="monthly">Fiche professionnelle au démarrage : + 250 €</span><span class="firstJoin">★ <strong>1re adhésion mensuelle : '+money(t.euRef+250,'eu')+'</strong></span></td>'+
    '<td class="annualPrice">'+money(t.euAnnual,'eu')+'<span class="saving">− '+money(euSave,'eu')+' · remise annuelle 15 %</span><span class="monthly">12 mois couverts · fiche professionnelle : + 250 €</span><span class="firstJoin">★ <strong>1re adhésion annuelle : '+money(t.euFirst,'eu')+'</strong></span></td>'+
    '<td class="annualPrice">'+(t.usAnnual?money(t.usAnnual,'us')+' / year · 0% DIGIYLYFE commission':'SUR DEVIS')+'</td>';
    body.appendChild(tr);
