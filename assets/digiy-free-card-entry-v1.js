@@ -27,6 +27,16 @@
     nl:{mini:'DIGIYLYFE INTERNATIONAL',title:'Van lokaal naar wereldwijd.',lead:'24/7 gevonden worden.',text:'Een professionele aanwezigheid die altijd zichtbaar, deelbaar en bereikbaar blijft. Permanente QR · digitale kaart · direct contact · 0% commissie.'},
     ar:{mini:'DIGIYLYFE INTERNATIONAL',title:'من المحلي إلى العالم.',lead:'ليتم العثور عليك 24/7.',text:'حضور مهني مرئي وقابل للمشاركة والوصول في أي وقت. رمز QR دائم · بطاقة رقمية · تواصل مباشر · عمولة 0٪.'}
   };
+  var SYNTHESIS={
+    fr:{mini:'LE RÉSEAU DIGIYLYFE',title:'Votre activité. Votre autonomie. Votre réseau.',p1:'Chaque professionnel garde ses clients, ses contacts, ses paiements et son autonomie.',p2:'DIGIYLYFE complète Google, Booking, Yango et les réseaux sociaux avec une présence directe, permanente et locale.',p3:'Un abonnement fixe · 0 % commission sur chaque vente ou réservation. Plus vous travaillez, plus vous gardez la valeur créée.',p4:'Hébergement, chauffeur, restaurant, artisan, commerce, guide et services sont reliés : un besoin peut en créer un autre.',strong:'DIGIYLYFE ne capte pas le commerce. Il organise la circulation entre les besoins, les professionnels et les territoires.',promise:'Être vu. Être compris. Être trouvé. Être contacté.'},
+    en:{mini:'THE DIGIYLYFE NETWORK',title:'Your business. Your autonomy. Your network.',p1:'Every professional keeps their customers, contacts, payments and independence.',p2:'DIGIYLYFE complements Google, Booking, Yango and social networks with a direct, permanent and local presence.',p3:'One fixed subscription · 0% commission on each sale or booking. The more you work, the more value you keep.',p4:'Accommodation, drivers, restaurants, artisans, shops, guides and services are connected: one need can lead to another.',strong:'DIGIYLYFE does not capture the business. It organizes the flow between needs, professionals and territories.',promise:'Be seen. Be understood. Be found. Be contacted.'},
+    es:{mini:'LA RED DIGIYLYFE',title:'Su actividad. Su autonomía. Su red.',p1:'Cada profesional conserva sus clientes, contactos, pagos y autonomía.',p2:'DIGIYLYFE complementa Google, Booking, Yango y las redes sociales con una presencia directa, permanente y local.',p3:'Una suscripción fija · 0 % de comisión por cada venta o reserva. Cuanto más trabaja, más valor conserva.',p4:'Alojamiento, conductor, restaurante, artesano, comercio, guía y servicios están conectados: una necesidad puede generar otra.',strong:'DIGIYLYFE no capta el comercio. Organiza la circulación entre necesidades, profesionales y territorios.',promise:'Ser visto. Ser comprendido. Ser encontrado. Ser contactado.'},
+    pt:{mini:'A REDE DIGIYLYFE',title:'A sua atividade. A sua autonomia. A sua rede.',p1:'Cada profissional mantém os seus clientes, contactos, pagamentos e autonomia.',p2:'A DIGIYLYFE complementa Google, Booking, Yango e as redes sociais com uma presença direta, permanente e local.',p3:'Uma subscrição fixa · 0% de comissão por cada venda ou reserva. Quanto mais trabalha, mais valor conserva.',p4:'Alojamento, motorista, restaurante, artesão, comércio, guia e serviços estão ligados: uma necessidade pode gerar outra.',strong:'A DIGIYLYFE não captura o comércio. Organiza a circulação entre necessidades, profissionais e territórios.',promise:'Ser visto. Ser compreendido. Ser encontrado. Ser contactado.'},
+    it:{mini:'LA RETE DIGIYLYFE',title:'La vostra attività. La vostra autonomia. La vostra rete.',p1:'Ogni professionista mantiene i propri clienti, contatti, pagamenti e autonomia.',p2:'DIGIYLYFE completa Google, Booking, Yango e i social network con una presenza diretta, permanente e locale.',p3:'Un abbonamento fisso · 0% di commissioni su ogni vendita o prenotazione. Più lavorate, più valore conservate.',p4:'Alloggio, autista, ristorante, artigiano, commercio, guida e servizi sono collegati: un bisogno può generarne un altro.',strong:'DIGIYLYFE non cattura il commercio. Organizza la circolazione tra bisogni, professionisti e territori.',promise:'Essere visti. Essere compresi. Essere trovati. Essere contattati.'},
+    de:{mini:'DAS DIGIYLYFE-NETZWERK',title:'Ihr Geschäft. Ihre Unabhängigkeit. Ihr Netzwerk.',p1:'Jeder Profi behält seine Kunden, Kontakte, Zahlungen und seine Unabhängigkeit.',p2:'DIGIYLYFE ergänzt Google, Booking, Yango und soziale Netzwerke durch eine direkte, dauerhafte und lokale Präsenz.',p3:'Ein fester Beitrag · 0 % Provision auf jeden Verkauf oder jede Buchung. Je mehr Sie arbeiten, desto mehr Wert behalten Sie.',p4:'Unterkunft, Fahrer, Restaurant, Handwerk, Handel, Guide und Dienstleistungen sind verbunden: Ein Bedarf kann den nächsten auslösen.',strong:'DIGIYLYFE zieht den Handel nicht an sich. Es organisiert den Austausch zwischen Bedürfnissen, Profis und Gebieten.',promise:'Gesehen werden. Verstanden werden. Gefunden werden. Kontaktiert werden.'},
+    nl:{mini:'HET DIGIYLYFE-NETWERK',title:'Uw activiteit. Uw autonomie. Uw netwerk.',p1:'Elke professional behoudt zijn klanten, contacten, betalingen en autonomie.',p2:'DIGIYLYFE vult Google, Booking, Yango en sociale netwerken aan met een directe, permanente en lokale aanwezigheid.',p3:'Een vast abonnement · 0% commissie per verkoop of boeking. Hoe meer u werkt, hoe meer waarde u behoudt.',p4:'Accommodatie, chauffeur, restaurant, vakman, winkel, gids en diensten zijn verbonden: de ene behoefte kan de volgende creëren.',strong:'DIGIYLYFE neemt de handel niet over. Het organiseert de doorstroming tussen behoeften, professionals en gebieden.',promise:'Gezien worden. Begrepen worden. Gevonden worden. Gecontacteerd worden.'},
+    ar:{mini:'شبكة DIGIYLYFE',title:'نشاطك. استقلاليتك. شبكتك.',p1:'يحتفظ كل مهني بعملائه وجهات اتصاله ومدفوعاته واستقلاليته.',p2:'تُكمل DIGIYLYFE خدمات Google وBooking وYango وشبكات التواصل بحضور مباشر ودائم ومحلي.',p3:'اشتراك ثابت · عمولة 0٪ على كل بيع أو حجز. كلما زاد نشاطك، احتفظت بقيمة أكبر مما تصنعه.',p4:'الإقامة والسائق والمطعم والحرفي والتاجر والدليل والخدمات مترابطة: حاجة واحدة قد تؤدي إلى حاجة أخرى.',strong:'DIGIYLYFE لا تستحوذ على التجارة. بل تنظم الحركة بين الاحتياجات والمهنيين والمناطق.',promise:'أن تُرى. أن تُفهم. أن يتم العثور عليك. أن يتم التواصل معك.'}
+  };
 
   function lang(){
     var q='';try{q=(new URLSearchParams(location.search).get('lang')||'').slice(0,2).toLowerCase()}catch(e){}
@@ -47,6 +57,7 @@
     if(document.getElementById('digiyFreeCardEntryStyle'))return;
     var s=document.createElement('style');s.id='digiyFreeCardEntryStyle';
     s.textContent='.digiyFreeCardEntry{margin:0 0 14px;padding:18px;border:2px solid rgba(246,196,83,.72);border-radius:26px;background:linear-gradient(145deg,rgba(246,196,83,.16),rgba(45,212,191,.11),rgba(255,255,255,.045));box-shadow:0 18px 44px rgba(0,0,0,.24);text-align:center;color:#fffaf0}.digiyFreeCardEntry .freeMini,.digiyStoryEntry .storyMini{display:inline-flex;padding:6px 10px;border-radius:999px;border:1px solid rgba(45,212,191,.52);background:rgba(45,212,191,.09);color:#c9fff7;font-size:9.5px;font-weight:1000;letter-spacing:.07em;text-transform:uppercase}.digiyFreeCardEntry h2,.digiyStoryEntry h2{margin:10px auto 0;max-width:760px;font-size:clamp(24px,5vw,36px);line-height:1.03;font-weight:1000;letter-spacing:-.03em}.digiyFreeCardEntry p,.digiyStoryEntry p{margin:9px auto 0;max-width:790px;color:#dce9e3;font-size:12px;line-height:1.5;font-weight:850}.digiyFreeCardEntry .freeCta,.digiyStoryEntry .storyCta{display:flex;align-items:center;justify-content:center;width:min(100%,540px);min-height:56px;margin:14px auto 0;padding:12px 17px;border-radius:999px;background:linear-gradient(135deg,#fff1bd,#f6c453,#22c55e);color:#06140f;border:1px solid rgba(255,241,189,.80);font-size:12px;line-height:1.2;font-weight:1000;box-shadow:0 12px 28px rgba(0,0,0,.24);text-decoration:none}.digiyFreeCardEntry[dir="rtl"],.digiyStoryEntry[dir="rtl"]{direction:rtl}.digiyStoryEntry{position:relative;overflow:hidden;margin:14px 0;padding:22px 18px;border:2px solid rgba(246,196,83,.78);border-radius:28px;background:radial-gradient(540px 240px at 0 0,rgba(246,196,83,.18),transparent 68%),linear-gradient(145deg,rgba(8,73,50,.99),rgba(4,31,24,.99) 64%,rgba(10,76,70,.82));box-shadow:0 22px 52px rgba(0,0,0,.30);text-align:center;color:#fffaf0}.digiyStoryEntry .storyFlow{display:flex;align-items:center;justify-content:center;gap:8px;margin:15px auto 0;flex-wrap:wrap}.digiyStoryEntry .storyNode{min-width:72px;padding:9px 11px;border-radius:16px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);font-size:22px}.digiyStoryEntry .storyArrow{color:#f6c453;font-size:20px;font-weight:1000}@media(max-width:420px){.digiyStoryEntry{padding:18px 12px}.digiyStoryEntry .storyNode{min-width:64px}.digiyStoryEntry .storyFlow{gap:6px}}';
+    s.textContent+='.digiyNetworkSynthesis{margin:14px 0;padding:22px 18px;border-radius:28px;border:1px solid rgba(246,196,83,.55);background:linear-gradient(145deg,rgba(8,73,50,.97),rgba(4,31,24,.98));box-shadow:0 20px 48px rgba(0,0,0,.26);color:#fffaf0;text-align:center}.digiyNetworkSynthesis .synthMini{display:inline-flex;padding:6px 10px;border-radius:999px;border:1px solid rgba(45,212,191,.52);background:rgba(45,212,191,.09);color:#c9fff7;font-size:9.5px;font-weight:1000;letter-spacing:.08em;text-transform:uppercase}.digiyNetworkSynthesis h2{margin:10px auto 0;max-width:820px;font-size:clamp(25px,5vw,38px);line-height:1.03;font-weight:1000;letter-spacing:-.03em}.digiyNetworkSynthesis .synthBody{max-width:850px;margin:14px auto 0;display:grid;gap:9px}.digiyNetworkSynthesis p{margin:0;color:#dce9e3;font-size:12px;line-height:1.55;font-weight:800}.digiyNetworkSynthesis .synthStrong{margin-top:4px;color:#fff3cf;font-size:13px;font-weight:1000}.digiyNetworkSynthesis .synthPromise{margin-top:4px;color:#f6c453;font-size:14px;font-weight:1000}.digiyNetworkSynthesis[dir="rtl"]{direction:rtl}@media(max-width:520px){.digiyNetworkSynthesis{padding:18px 13px}.digiyNetworkSynthesis .synthBody{gap:8px}}';
     s.textContent+='.digiyInternational{margin:14px 0;padding:16px;border-radius:28px;border:1px solid rgba(125,211,252,.38);background:linear-gradient(145deg,rgba(7,25,45,.98),rgba(5,45,34,.98));box-shadow:0 20px 48px rgba(0,0,0,.26);color:#fffaf0}.digiyInternationalGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:center}.digiyInternationalMedia{overflow:hidden;border-radius:22px;border:1px solid rgba(255,255,255,.13);background:#071510}.digiyInternationalMedia img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}.digiyInternationalCopy{text-align:left}.digiyInternationalMini{display:inline-flex;padding:6px 10px;border-radius:999px;border:1px solid rgba(45,212,191,.50);background:rgba(45,212,191,.09);color:#c9fff7;font-size:9.5px;font-weight:1000;letter-spacing:.08em}.digiyInternational h2{margin:10px 0 0;font-size:clamp(28px,5vw,43px);line-height:.98;font-weight:1000;letter-spacing:-.04em}.digiyInternationalLead{margin:9px 0 0;color:#f6c453;font-size:clamp(21px,4vw,31px);line-height:1.05;font-weight:1000}.digiyInternationalText{margin:10px 0 0;color:#dce9e3;font-size:12px;line-height:1.5;font-weight:850}.digiyInternational[dir="rtl"] .digiyInternationalCopy{text-align:right}@media(max-width:720px){.digiyInternational{padding:12px}.digiyInternationalGrid{grid-template-columns:1fr}.digiyInternationalCopy{text-align:center}.digiyInternational[dir="rtl"] .digiyInternationalCopy{text-align:center}.digiyInternationalMedia img{aspect-ratio:4/3}}';
     document.head.appendChild(s);
   }
@@ -67,6 +78,19 @@
     box.querySelector('h2').textContent=t.storyTitle;
     box.querySelector('p').textContent=t.storyText;
     var a=box.querySelector('a');a.textContent=t.storyCta;a.href=STORY_URL;
+  }
+  function renderSynthesis(box){
+    var l=lang(),t=SYNTHESIS[l]||SYNTHESIS.fr;
+    box.dir=l==='ar'?'rtl':'ltr';
+    box.innerHTML='<span class="synthMini"></span><h2></h2><div class="synthBody"><p class="synthP1"></p><p class="synthP2"></p><p class="synthP3"></p><p class="synthP4"></p><p class="synthStrong"></p><p class="synthPromise"></p></div>';
+    box.querySelector('.synthMini').textContent=t.mini;
+    box.querySelector('h2').textContent=t.title;
+    box.querySelector('.synthP1').textContent=t.p1;
+    box.querySelector('.synthP2').textContent=t.p2;
+    box.querySelector('.synthP3').textContent=t.p3;
+    box.querySelector('.synthP4').textContent=t.p4;
+    box.querySelector('.synthStrong').textContent=t.strong;
+    box.querySelector('.synthPromise').textContent=t.promise;
   }
   function renderWorld(box){
     var l=lang(),t=WORLD[l]||WORLD.fr;
@@ -98,6 +122,15 @@
     if(anchor)anchor.insertAdjacentElement('afterend',box);else{var m=document.querySelector('main');if(m)m.insertAdjacentElement('afterbegin',box)}
     renderStory(box);
     document.querySelectorAll('.langBtn').forEach(function(b){b.addEventListener('click',function(){setTimeout(function(){renderStory(box);refreshFacadeText()},20)})});
+  }
+  function mountSynthesis(){
+    if(!isHome()||document.getElementById('digiyNetworkSynthesis'))return;
+    style();
+    var box=document.createElement('section');box.id='digiyNetworkSynthesis';box.className='digiyNetworkSynthesis';box.setAttribute('data-digiy-network-synthesis','1');box.setAttribute('aria-label','DIGIYLYFE · réseau local multi-métiers');
+    var anchor=document.querySelector('.fullStackIntro');
+    if(anchor)anchor.insertAdjacentElement('afterend',box);else{var m=document.querySelector('main');if(m)m.insertAdjacentElement('afterbegin',box)}
+    renderSynthesis(box);
+    document.querySelectorAll('.langBtn').forEach(function(b){b.addEventListener('click',function(){setTimeout(function(){renderSynthesis(box)},20)})});
   }
   function mountWorld(){
     if(!isHome()||document.getElementById('digiyInternational'))return;
@@ -153,6 +186,7 @@
     var promise=document.querySelector('.fullStackIntro');
     if(!promise)return;
     var order=[
+      document.getElementById('digiyNetworkSynthesis'),
       document.getElementById('digiyEntryChoice'),
       document.querySelector('.voiceSearchBand'),
       document.querySelector('.hero[aria-label="Présence numérique DIGIYLYFE"]'),
@@ -181,6 +215,7 @@
   function boot(){
     mount();
     mountStory();
+    mountSynthesis();
     mountWorld();
     arrangeDoctrine();
     hardenMasterVideo();
