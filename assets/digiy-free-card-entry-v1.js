@@ -124,11 +124,14 @@
     document.querySelectorAll('.langBtn').forEach(function(b){b.addEventListener('click',function(){setTimeout(function(){renderStory(box);refreshFacadeText()},20)})});
   }
   function mountSynthesis(){
-    if(!isHome()||document.getElementById('digiyNetworkSynthesis'))return;
+    if(!isHome())return;
     style();
-    var box=document.createElement('section');box.id='digiyNetworkSynthesis';box.className='digiyNetworkSynthesis';box.setAttribute('data-digiy-network-synthesis','1');box.setAttribute('aria-label','DIGIYLYFE · réseau local multi-métiers');
-    var anchor=document.querySelector('.fullStackIntro');
-    if(anchor)anchor.insertAdjacentElement('afterend',box);else{var m=document.querySelector('main');if(m)m.insertAdjacentElement('afterbegin',box)}
+    var box=document.getElementById('digiyNetworkSynthesis');
+    if(!box){
+      box=document.createElement('section');box.id='digiyNetworkSynthesis';box.className='digiyNetworkSynthesis';box.setAttribute('data-digiy-network-synthesis','1');box.setAttribute('aria-label','DIGIYLYFE · réseau local multi-métiers');
+      var anchor=document.querySelector('.fullStackIntro');
+      if(anchor)anchor.insertAdjacentElement('afterend',box);else{var m=document.querySelector('main');if(m)m.insertAdjacentElement('afterbegin',box)}
+    }
     renderSynthesis(box);
     document.querySelectorAll('.langBtn').forEach(function(b){b.addEventListener('click',function(){setTimeout(function(){renderSynthesis(box)},20)})});
   }
