@@ -7,7 +7,9 @@
     "france_country": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-FRANCE-V1/config/country.json",
     "france_pricing": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-FRANCE-V1/config/pricing.json",
     "usa_country": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-USA-V1/config/country.json",
-    "usa_pricing": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-USA-V1/config/pricing.json"
+    "usa_pricing": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-USA-V1/config/pricing.json",
+    "france_territories": "BEAUVILLE/digiy-master-modeles/MASTER-PAYS-FRANCE-V1/config/territories.json",
+    "paris_territory": "BEAUVILLE/digiy-master-modeles/MASTER-TERRITOIRE-PARIS-V1/config/territory.json"
   },
   "countries": [
     {
@@ -231,6 +233,208 @@
               "id": "FR-DORDOGNE-SARLAT",
               "slug": "sarlat",
               "label": "Sarlat-la-Canéda",
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "id": "FR-BORDEAUX",
+          "slug": "bordeaux",
+          "status": "active",
+          "labels": {
+            "fr": "Bordeaux",
+            "en": "Bordeaux",
+            "es": "Burdeos",
+            "pt": "Bordéus",
+            "it": "Bordeaux",
+            "de": "Bordeaux",
+            "nl": "Bordeaux",
+            "ar": "بوردو"
+          },
+          "zones": [
+            {
+              "id": "FR-BORDEAUX-MARITIME",
+              "slug": "bordeaux-maritime",
+              "label": "Bordeaux Maritime",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-CHARTRONS-GRAND-PARC-JARDIN-PUBLIC",
+              "slug": "chartrons-grand-parc-jardin-public",
+              "label": "Chartrons · Grand Parc · Jardin Public",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-CENTRE",
+              "slug": "bordeaux-centre",
+              "label": "Bordeaux Centre",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-SAINT-AUGUSTIN-TAUZIN-ALPHONSE-DUPEUX",
+              "slug": "saint-augustin-tauzin-alphonse-dupeux",
+              "label": "Saint-Augustin · Tauzin · Alphonse Dupeux",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-NANSOUTY-SAINT-GENES",
+              "slug": "nansouty-saint-genes",
+              "label": "Nansouty · Saint-Genès",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-SUD",
+              "slug": "bordeaux-sud",
+              "label": "Bordeaux Sud",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-BASTIDE",
+              "slug": "la-bastide",
+              "label": "La Bastide",
+              "status": "active"
+            },
+            {
+              "id": "FR-BORDEAUX-CAUDERAN",
+              "slug": "cauderan",
+              "label": "Caudéran",
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "id": "FR-PARIS",
+          "slug": "paris",
+          "status": "active",
+          "labels": {
+            "fr": "Paris · Île-de-France",
+            "en": "Paris · Île-de-France",
+            "es": "París · Île-de-France",
+            "pt": "Paris · Île-de-France",
+            "it": "Parigi · Île-de-France",
+            "de": "Paris · Île-de-France",
+            "nl": "Parijs · Île-de-France",
+            "ar": "باريس · إيل دو فرانس"
+          },
+          "zones": [
+            {
+              "id": "FR-PARIS-01",
+              "slug": "paris-1",
+              "label": "1er arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-02",
+              "slug": "paris-2",
+              "label": "2e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-03",
+              "slug": "paris-3",
+              "label": "3e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-04",
+              "slug": "paris-4",
+              "label": "4e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-05",
+              "slug": "paris-5",
+              "label": "5e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-06",
+              "slug": "paris-6",
+              "label": "6e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-07",
+              "slug": "paris-7",
+              "label": "7e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-08",
+              "slug": "paris-8",
+              "label": "8e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-09",
+              "slug": "paris-9",
+              "label": "9e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-10",
+              "slug": "paris-10",
+              "label": "10e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-11",
+              "slug": "paris-11",
+              "label": "11e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-12",
+              "slug": "paris-12",
+              "label": "12e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-13",
+              "slug": "paris-13",
+              "label": "13e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-14",
+              "slug": "paris-14",
+              "label": "14e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-15",
+              "slug": "paris-15",
+              "label": "15e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-16",
+              "slug": "paris-16",
+              "label": "16e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-17",
+              "slug": "paris-17",
+              "label": "17e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-18",
+              "slug": "paris-18",
+              "label": "18e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-19",
+              "slug": "paris-19",
+              "label": "19e arrondissement",
+              "status": "active"
+            },
+            {
+              "id": "FR-PARIS-20",
+              "slug": "paris-20",
+              "label": "20e arrondissement",
               "status": "active"
             }
           ]
