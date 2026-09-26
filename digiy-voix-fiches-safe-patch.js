@@ -24,6 +24,13 @@
       mots: [
         "plombier",
         "plomberie",
+        "canalisation",
+        "canalisation bouchee",
+        "canalisation bouchée",
+        "debouchage",
+        "débouchage",
+        "bouche",
+        "bouché",
         "fuite",
         "robinet",
         "robinetterie",
