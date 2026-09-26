@@ -32,7 +32,8 @@
   Object.keys(CATALOG).forEach(function(id){Object.freeze(CATALOG[id]);});
   w.DIGIY_CATALOG=Object.freeze(CATALOG);
   w.DIGIY_OLD_URL_MAP=Object.freeze(OLD_URL_MAP);
-  w.DIGIY_CATALOG_VERSION='20260904-card-direct-v3';
+  w.DIGIY_CATALOG_VERSION='20260926-single-favorites-v1';
+  w.DIGIY_FAVORITES_ENGINE='catalog-v1';
 
   /* Le carnet partage le localStorage uniquement sur le domaine principal. */
   if(location.hostname!=='digiylyfe.com')return;
@@ -119,7 +120,7 @@
     card.appendChild(b);state(b,m.id);
   }
 
-  function scanHome(){document.querySelectorAll('.exampleCard[data-fav-id]').forEach(attach);FIXED.forEach(function(d){document.querySelectorAll(d.selector).forEach(attach);});}
+  function scanHome(){document.querySelectorAll('.exampleCard[data-fav-id],.territoryCard[data-fav-id],.publicLeadDoor[data-fav-id]').forEach(attach);FIXED.forEach(function(d){document.querySelectorAll(d.selector).forEach(attach);});}
   function scanTerritory(){
     var root=document.getElementById('resultsSection')||document.getElementById('results');if(!root)return;
     root.querySelectorAll('.card,.digiyBaptisteSignatureCard,.digiySalyCard,.digiyMbayeCard,.digiyHelageCard,article[class$="Card"]').forEach(function(c){if(c.querySelector('a[href]'))attach(c);});
