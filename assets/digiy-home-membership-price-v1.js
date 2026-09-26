@@ -45,7 +45,7 @@
     ensureStyle();
     var c=COPY[lang()]||COPY.fr;
     var ok=false;
-    document.querySelectorAll('.digiyEntryDoor.pro,.digiyWorldDoor.pro').forEach(function(door){if(patchDoor(door,c))ok=true;});
+    document.querySelectorAll('.digiyEntryDoor.pro:not(.digiyLocDoor),.digiyWorldDoor.pro').forEach(function(door){if(patchDoor(door,c))ok=true;});
     if(ok)document.documentElement.setAttribute('data-digiy-home-membership-price','20260917-v1');
   }
 
