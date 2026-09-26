@@ -65,7 +65,7 @@
 
     var style=document.createElement('style');
     style.setAttribute('data-digiy-morocco-hub','1');
-    style.textContent='#digiyMoroccoHubDoor{border-color:rgba(246,196,83,.64);background:linear-gradient(180deg,rgba(193,39,45,.15),rgba(0,98,51,.28) 55%,rgba(5,27,20,.98))}#digiyMoroccoHubDoor .digiyMoroccoPhoto{display:grid;place-items:center;background:radial-gradient(circle at 52% 42%,rgba(246,196,83,.20),transparent 27%),linear-gradient(135deg,#c1272d 0 49%,#006233 51% 100%)}#digiyMoroccoHubDoor .digiyMoroccoFlag{position:relative;z-index:2;font-size:82px;filter:drop-shadow(0 12px 22px rgba(0,0,0,.35))}#digiyMoroccoHubDoor .digiyMoroccoCities{position:absolute;left:12px;right:12px;bottom:12px;z-index:3;display:flex;gap:6px;justify-content:center;flex-wrap:wrap}#digiyMoroccoHubDoor .digiyMoroccoCities i{font-style:normal;padding:5px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.33);background:rgba(3,18,13,.72);color:#fffaf0;font-size:9px;font-weight:1000}';
+    style.textContent='#digiyMoroccoHubDoor{border-color:rgba(246,196,83,.64);background:linear-gradient(180deg,rgba(193,39,45,.15),rgba(0,98,51,.28) 55%,rgba(5,27,20,.98))}#digiyMoroccoHubDoor .digiyMoroccoPhoto{position:relative;overflow:hidden;background:#4b241b}#digiyMoroccoHubDoor .digiyMoroccoPhoto img{width:100%;height:100%;object-fit:cover;display:block}#digiyMoroccoHubDoor .digiyMoroccoPhoto:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(3,18,13,.72));pointer-events:none}#digiyMoroccoHubDoor .digiyMoroccoCities{position:absolute;left:12px;right:12px;bottom:12px;z-index:3;display:flex;gap:6px;justify-content:center;flex-wrap:wrap}#digiyMoroccoHubDoor .digiyMoroccoCities i{font-style:normal;padding:5px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.33);background:rgba(3,18,13,.72);color:#fffaf0;font-size:9px;font-weight:1000}#digiyMoroccoHubDoor .digiyMoroccoCredit{position:absolute;top:7px;right:8px;z-index:3;padding:3px 6px;border-radius:999px;background:rgba(3,18,13,.58);color:rgba(255,250,240,.78);font-size:7px;font-weight:850}';
     document.head.appendChild(style);
 
     var card=document.createElement('a');
@@ -74,7 +74,7 @@
     card.href='https://digiylyfe.com/maroc.html';
     card.setAttribute('data-fav-id','territoire-maroc');
     card.setAttribute('aria-label','Ouvrir DIGIY Maroc — Casablanca et Marrakech');
-    card.innerHTML='<span class="territoryCountry">🇲🇦 <b data-ma-country></b></span><div class="territoryPhoto digiyMoroccoPhoto"><span class="digiyMoroccoFlag" aria-hidden="true">🇲🇦</span><span class="digiyMoroccoCities"><i>CASABLANCA</i><i>MARRAKECH</i></span></div><strong data-ma-title></strong><small data-ma-zones></small><span class="territoryBtn" data-ma-cta></span>';
+    card.innerHTML='<span class="territoryCountry">🇲🇦 <b data-ma-country></b></span><div class="territoryPhoto digiyMoroccoPhoto"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/A_narrow_street_in_the_old_medina_of_marrakech_and_a_women_in_the_classic_moroccan_clothing_called_djelaba.jpg" alt="Marrakech, Maroc" loading="lazy" decoding="async"><span class="digiyMoroccoCredit">Omalihy · CC BY-SA 4.0</span><span class="digiyMoroccoCities"><i>CASABLANCA</i><i>MARRAKECH</i></span></div><strong data-ma-title></strong><small data-ma-zones></small><span class="territoryBtn" data-ma-cta></span>';
     grid.appendChild(card);
 
     function applyLang(){
