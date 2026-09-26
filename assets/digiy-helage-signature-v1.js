@@ -1,13 +1,6 @@
 /* DIGIYLYFE — configuration HELAGE · PLOMBIER · moteur générique */
 (function(){
   'use strict';
-  var E=window.DIGIY_PRO_SIGNATURE_ENGINE;
-  if(!E){
-    var s=document.querySelector('script[data-digiy-pro-signature-engine-loader]');
-    if(!s){s=document.createElement('script');s.src='/assets/digiy-pro-signature-engine-v1.js?v=20260926-contexts-v1';s.defer=true;s.setAttribute('data-digiy-pro-signature-engine-loader','1');document.head.appendChild(s);}
-    s.addEventListener('load',function(){location.reload();},{once:true});
-    return;
-  }
   var SHEET='https://helage-plombier.digiylyfe.com/';
   var PHOTO='https://helage-plombier.digiylyfe.com/carte-visite.png?v=20260814-adherent';
   var WA='https://wa.me/221774513523?text='+encodeURIComponent('Bonjour Helage, je viens de DIGIYLYFE pour un besoin de plomberie.');
@@ -21,5 +14,10 @@
     nl:{photo:'🖼️ VISUAL VERGROTEN',eyebrow:'DIGIYLYFE-LID · DIRECT LOODGIETERSWERK',sub:'Allround loodgieter · Saly · Petite Côte',headline:'DIRECTE AANVRAAG',note:'Beschikbaarheid, interventie en voorwaarden worden rechtstreeks door Helage bevestigd',s1:'🔧 Lekkages · kranen · toiletten',s2:'🚿 Douche · wastafel · boiler',s3:'🌀 Ontstoppen',s4:'🧰 Kleine sanitaire werkzaamheden',desc:'Reparaties, installatie en badkamerwerk. De klant neemt rechtstreeks contact op met Helage; beschikbaarheid, diagnose, interventie en voorwaarden blijven onder zijn verantwoordelijkheid.',contact:'Direct contact',contactSub:'WhatsApp beschikbaar',request:'Directe aanvraag',requestSub:'behoefte rechtstreeks aan vakman',sheet:'Vakprofiel',sheetSub:'QR + aanvraag + delen',open:'PROFIEL OPENEN / MIJN BEHOEFTE BESCHRIJVEN →',wa:'💬 WHATSAPP',close:'✕ Sluiten',photoTitle:'Officieel Helage-visual',master:'1 VISUAL · MASTER'},
     ar:{photo:'🖼️ تكبير الصورة',eyebrow:'عضو DIGIYLYFE · سباكة مباشرة',sub:'سبّاك متعدد الخدمات · سالي · الساحل الصغير',headline:'طلب مباشر',note:'يؤكد Helage التوفر والتدخل والشروط مباشرة',s1:'🔧 تسربات · حنفيات · مراحيض',s2:'🚿 دش · مغسلة · سخان مياه',s3:'🌀 فتح الانسدادات',s4:'🧰 أعمال صحية صغيرة',desc:'إصلاحات وتركيب وأعمال الحمام. يتواصل العميل مباشرة مع Helage؛ وتبقى التوفر والتشخيص والتدخل والشروط تحت مسؤوليته.',contact:'تواصل مباشر',contactSub:'واتساب متاح',request:'طلب مباشر',requestSub:'وصف الحاجة للمهني مباشرة',sheet:'الصفحة المهنية',sheetSub:'QR + طلب + مشاركة',open:'فتح الصفحة / وصف حاجتي ←',wa:'💬 واتساب',close:'✕ إغلاق',photoTitle:'الصورة الرسمية لـ Helage',master:'صورة واحدة · MASTER'}
   };
-  E.register({"id":"helage","title":"HELAGE · PLOMBIER","headlineKey":"headline","noteKey":"note","chips":["s1","s2","s3","s4"],"direct":[["contact","contactSub",""],["request","requestSub",""],["sheet","sheetSub",""]],"hostNeedle":"helage-plombier.digiylyfe.com","zone":"petite-cote","need":"artisan","locals":["saly"],sheet:SHEET,photo:PHOTO,wa:WA,T:T});
+  function register(E){E.register({"id":"helage","title":"HELAGE · PLOMBIER","headlineKey":"headline","noteKey":"note","chips":["s1","s2","s3","s4"],"direct":[["contact","contactSub",""],["request","requestSub",""],["sheet","sheetSub",""]],"hostNeedle":"helage-plombier.digiylyfe.com","zone":"petite-cote","need":"artisan","locals":["saly"],sheet:SHEET,photo:PHOTO,wa:WA,T:T});}
+  var E=window.DIGIY_PRO_SIGNATURE_ENGINE;
+  if(E){register(E);return;}
+  var s=document.querySelector('script[data-digiy-pro-signature-engine-loader]');
+  if(!s){s=document.createElement('script');s.src='/assets/digiy-pro-signature-engine-v1.js?v=20260926-contexts-v1';s.defer=true;s.setAttribute('data-digiy-pro-signature-engine-loader','1');document.head.appendChild(s);}
+  s.addEventListener('load',function(){if(window.DIGIY_PRO_SIGNATURE_ENGINE)register(window.DIGIY_PRO_SIGNATURE_ENGINE);},{once:true});
 })();
