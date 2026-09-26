@@ -53,14 +53,14 @@
     if(!grid) return;
 
     var COPY={
-      fr:{country:'MAROC',title:'DIGIY MAROC',zones:'Casablanca · Marrakech · carte gratuite',cta:'OUVRIR LE MAROC'},
-      en:{country:'MOROCCO',title:'DIGIY MOROCCO',zones:'Casablanca · Marrakech · free business card',cta:'OPEN MOROCCO'},
-      es:{country:'MARRUECOS',title:'DIGIY MARRUECOS',zones:'Casablanca · Marrakech · tarjeta gratuita',cta:'ABRIR MARRUECOS'},
-      pt:{country:'MARROCOS',title:'DIGIY MARROCOS',zones:'Casablanca · Marrakech · cartão gratuito',cta:'ABRIR MARROCOS'},
-      it:{country:'MAROCCO',title:'DIGIY MAROCCO',zones:'Casablanca · Marrakech · biglietto gratuito',cta:'APRI IL MAROCCO'},
-      de:{country:'MAROKKO',title:'DIGIY MAROKKO',zones:'Casablanca · Marrakesch · kostenlose Karte',cta:'MAROKKO ÖFFNEN'},
-      nl:{country:'MAROKKO',title:'DIGIY MAROKKO',zones:'Casablanca · Marrakech · gratis kaart',cta:'OPEN MAROKKO'},
-      ar:{country:'المغرب',title:'DIGIY المغرب',zones:'الدار البيضاء · مراكش · بطاقة مهنية مجانية',cta:'افتح المغرب'}
+      fr:{country:'MAROC · APPEL À CANDIDATURES',title:'DIGIY MAROC',zones:'Casablanca · Marrakech · soyez parmi les premiers professionnels',cta:'SOYEZ PARMI LES PREMIERS →'},
+      en:{country:'MOROCCO · CALL FOR PROFESSIONALS',title:'DIGIY MOROCCO',zones:'Casablanca · Marrakech · be among the first professionals',cta:'BE AMONG THE FIRST →'},
+      es:{country:'MARRUECOS · CONVOCATORIA PROFESIONAL',title:'DIGIY MARRUECOS',zones:'Casablanca · Marrakech · sea de los primeros profesionales',cta:'SEA DE LOS PRIMEROS →'},
+      pt:{country:'MARROCOS · CHAMADA A PROFISSIONAIS',title:'DIGIY MARROCOS',zones:'Casablanca · Marrakech · esteja entre os primeiros profissionais',cta:'SEJA DOS PRIMEIROS →'},
+      it:{country:'MAROCCO · CANDIDATURE APERTE',title:'DIGIY MAROCCO',zones:'Casablanca · Marrakech · sii tra i primi professionisti',cta:'SII TRA I PRIMI →'},
+      de:{country:'MAROKKO · AUFRUF AN PROFIS',title:'DIGIY MAROKKO',zones:'Casablanca · Marrakesch · gehören Sie zu den ersten Profis',cta:'GEHÖREN SIE ZU DEN ERSTEN →'},
+      nl:{country:'MAROKKO · OPROEP VOOR PROFESSIONALS',title:'DIGIY MAROKKO',zones:'Casablanca · Marrakech · wees een van de eerste professionals',cta:'WEES ER ALS EERSTE BIJ →'},
+      ar:{country:'المغرب · باب الترشيح للمهنيين',title:'DIGIY المغرب',zones:'الدار البيضاء · مراكش · كن من أوائل المهنيين',cta:'كن من الأوائل ←'}
     };
 
     var style=document.createElement('style');
