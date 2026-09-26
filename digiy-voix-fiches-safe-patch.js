@@ -174,6 +174,13 @@
     }
   ];
 
+  if(!window.DIGIY_METIER && !document.querySelector('script[data-digiy-metier-central]')){
+    const s=document.createElement('script');
+    s.src='/assets/digiy-metier-dictionary-v1.js?v=20260926';
+    s.dataset.digiyMetierCentral='1';
+    (document.head||document.documentElement).appendChild(s);
+  }
+
   function norm(v) {
     return String(v || "")
       .toLowerCase()
@@ -209,7 +216,8 @@
   }
 
   function scoreItem(item, rawText) {
-    const text = norm(rawText);
+    const enriched=window.DIGIY_METIER?.enrich?.(rawText,(document.documentElement.lang||"fr")) || rawText;
+    const text = norm(enriched);
     let score = 0;
 
     for (const mot of item.mots || []) {
