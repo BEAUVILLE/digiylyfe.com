@@ -36,43 +36,7 @@
     if(!isFinite(v))return '';
     if(id==='SN')return new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0}).format(v).replace(/\u202f/g,' ')+' FCFA';
     if(id==='FR')return new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0}).format(v).replace(/\u202f/g,' ')+' €';
-    if(id==='US')return '  function country(){
-    var c='';
-    try{c=(new URLSearchParams(location.search).get('country')||'').toUpperCase();}catch(e){}
-    if(!/^(SN|FR|US)$/.test(c)){try{c=(localStorage.getItem('digiy_country')||'').toUpperCase();}catch(e){c='';}}
-    return /^(SN|FR|US)$/.test(c)?c:'';
-  }
-  function ensureStyle(){
-    if(document.getElementById('digiyHomeMembershipPriceStyle'))return;
-    var s=document.createElement('style');s.id='digiyHomeMembershipPriceStyle';s.textContent='\
-      .digiyHomeMembershipPrice{display:block;margin:4px 0 2px;padding:8px 10px;border-radius:13px;border:1px solid rgba(246,196,83,.55);background:rgba(246,196,83,.10);color:#fff3cf;font-size:10.5px;line-height:1.35;font-weight:1000;text-align:center}\
-      .digiyEntryDoor.pro .digiyHomeMembershipPrice,.digiyWorldDoor.pro .digiyHomeMembershipPrice{width:100%}\
-    ';document.head.appendChild(s);
-  }
-  function patchDoor(door,c){
-    if(!door)return false;
-    var p=door.querySelector('p');if(p)p.textContent=c.text;
-    var price=door.querySelector('.digiyHomeMembershipPrice');
-    if(!price){price=document.createElement('span');price.className='digiyHomeMembershipPrice';var cta=door.querySelector('.digiyEntryCta,.digiyWorldCta');if(cta)door.insertBefore(price,cta);else door.appendChild(price);}
-    var cc=country(),l=lang();
-    price.textContent=cc?(runtimePrice(cc,l)||c[cc]):(runtimeAll(l)||c.all);
-    return true;
-  }
-  function apply(){
-    ensureStyle();
-    var c=COPY[lang()]||COPY.fr;
-    var ok=false;
-    document.querySelectorAll('.digiyEntryDoor.pro:not(.digiyLocDoor),.digiyWorldDoor.pro').forEach(function(door){if(patchDoor(door,c))ok=true;});
-    if(ok)document.documentElement.setAttribute('data-digiy-home-membership-price','20260917-v1');
-  }
-
-  apply();
-  loadRuntime();
-  [80,250,700,1500].forEach(function(ms){setTimeout(apply,ms);});
-  document.addEventListener('click',function(e){var b=e.target&&e.target.closest?e.target.closest('.langBtn,[data-l],[data-country]'):null;if(b)setTimeout(apply,0);},false);
-  try{new MutationObserver(function(){setTimeout(apply,0);}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}
-})();
-+new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(v);
+    if(id==='US')return '$'+new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(v);
     return String(v);
   }
   function runtimePrice(id,l){
@@ -106,7 +70,8 @@
     var p=door.querySelector('p');if(p)p.textContent=c.text;
     var price=door.querySelector('.digiyHomeMembershipPrice');
     if(!price){price=document.createElement('span');price.className='digiyHomeMembershipPrice';var cta=door.querySelector('.digiyEntryCta,.digiyWorldCta');if(cta)door.insertBefore(price,cta);else door.appendChild(price);}
-    var cc=country();price.textContent=cc?c[cc]:c.all;
+    var cc=country(),l=lang();
+    price.textContent=cc?(runtimePrice(cc,l)||c[cc]):(runtimeAll(l)||c.all);
     return true;
   }
   function apply(){
@@ -118,6 +83,7 @@
   }
 
   apply();
+  loadRuntime();
   [80,250,700,1500].forEach(function(ms){setTimeout(apply,ms);});
   document.addEventListener('click',function(e){var b=e.target&&e.target.closest?e.target.closest('.langBtn,[data-l],[data-country]'):null;if(b)setTimeout(apply,0);},false);
   try{new MutationObserver(function(){setTimeout(apply,0);}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}
