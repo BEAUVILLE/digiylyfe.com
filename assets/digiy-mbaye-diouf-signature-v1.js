@@ -2,7 +2,12 @@
 (function(){
   'use strict';
   var E=window.DIGIY_PRO_SIGNATURE_ENGINE;
-  if(!E)return;
+  if(!E){
+    var s=document.querySelector('script[data-digiy-pro-signature-engine-loader]');
+    if(!s){s=document.createElement('script');s.src='/assets/digiy-pro-signature-engine-v1.js?v=20260926-contexts-v1';s.defer=true;s.setAttribute('data-digiy-pro-signature-engine-loader','1');document.head.appendChild(s);}
+    s.addEventListener('load',function(){location.reload();},{once:true});
+    return;
+  }
   var SHEET='https://mbaye-macon.digiylyfe.com/';
   var PHOTO='https://mbaye-macon.digiylyfe.com/carte-visite.png?v=20260714-v3';
   var WA='https://wa.me/221776427113?text='+encodeURIComponent('Bonjour Mbaye, je viens de DIGIYLYFE pour un projet de construction ou de rénovation.');
