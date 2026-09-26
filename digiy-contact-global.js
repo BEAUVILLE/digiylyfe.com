@@ -10,7 +10,7 @@
       load('https://digiylyfe.com/assets/digiy-membership-visibility-v1.js?v=20260917-v3');
     }
     if(home){
-      load('https://digiylyfe.com/assets/digiy-home-membership-price-v1.js?v=20260926-loc-scope-v1');
+      load('https://digiylyfe.com/assets/digiy-home-membership-price-v1.js?v=20260926-runtime-price-v1');
     }
     if(tariffs){
       load('https://digiylyfe.com/assets/digiy-tarifs-membership-bridge-v1.js?v=20260917-v1');
