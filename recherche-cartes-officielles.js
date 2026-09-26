@@ -78,6 +78,8 @@
   };
 
   function queryKind(value){
+    const central=window.DIGIY_METIER?.resolve?.(value,(document.documentElement.lang||"fr"));
+    if(central?.key && RULES[central.key]) return central.key;
     const q=norm(value);
     if(/(^| )chauffeur( |$)|(^| )driver( |$)|(^| )vtc( |$)|(^| )taxi( |$)/.test(q)) return "chauffeur";
     if(/(^| )macon( |$)|(^| )maconnerie( |$)|(^| )batisseur( |$)/.test(q)) return "macon";
