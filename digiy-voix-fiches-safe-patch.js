@@ -174,6 +174,13 @@
     }
   ];
 
+  if(!window.DIGIY_TERRITOIRE && !document.querySelector('script[data-digiy-territoire-central]')){
+    const s=document.createElement('script');
+    s.src='/assets/digiy-territoire-dictionary-v1.js?v=20260926';
+    s.dataset.digiyTerritoireCentral='1';
+    (document.head||document.documentElement).appendChild(s);
+  }
+
   if(!window.DIGIY_METIER && !document.querySelector('script[data-digiy-metier-central]')){
     const s=document.createElement('script');
     s.src='/assets/digiy-metier-dictionary-v1.js?v=20260926';
@@ -216,7 +223,8 @@
   }
 
   function scoreItem(item, rawText) {
-    const enriched=window.DIGIY_METIER?.enrich?.(rawText,(document.documentElement.lang||"fr")) || rawText;
+    const metierText=window.DIGIY_METIER?.enrich?.(rawText,(document.documentElement.lang||"fr")) || rawText;
+    const enriched=window.DIGIY_TERRITOIRE?.enrich?.(metierText) || metierText;
     const text = norm(enriched);
     let score = 0;
 
