@@ -147,7 +147,7 @@
     scan();refreshTop();
     var root=location.pathname==='/territoire.html'?(document.getElementById('resultsSection')||document.body):(document.querySelector('.exampleGrid')||document.body);
     try{new MutationObserver(function(){if(scanPending)return;scanPending=true;setTimeout(function(){scanPending=false;scan();},0);}).observe(root,{childList:true,subtree:true});}catch(e){}
-    var clear=document.getElementById('favClear');if(clear)clear.addEventListener('click',function(){setTimeout(refreshAll,0);});
+    var clear=document.getElementById('favClear');if(clear)clear.addEventListener('click',function(){saveFavs([]);refreshAll();});
     window.addEventListener('hashchange',function(){focused='';scan();});
     setTimeout(scan,200);setTimeout(scan,700);setTimeout(scan,1500);setTimeout(scan,3000);
   }
