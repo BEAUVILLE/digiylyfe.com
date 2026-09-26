@@ -451,7 +451,7 @@
 
     if(isIOS && !isStandalone) setTimeout(function(){show('ios');},1400);
 
-    if('serviceWorker' in navigator){
+    if('serviceWorker' in navigator&&!document.querySelector('[data-digiy-pwa-install]')){
       var register=function(){
         navigator.serviceWorker.register('/sw.js',{scope:'/'}).catch(function(error){
           console.warn('DIGIYLYFE PWA: service worker non enregistré',error);
