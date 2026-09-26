@@ -94,11 +94,10 @@
   }
   function applyLang(){var t=tr();document.querySelectorAll('[data-saly-t]').forEach(function(el){var k=el.getAttribute('data-saly-t');if(t[k]!=null)el.textContent=t[k];});}
   function refresh(){ensureStyle();mountHome();mountLoc();mountSaly();mountTerritory();applyLang();}
-  function watch(id){var el=document.getElementById(id);if(!el)return;new MutationObserver(function(){setTimeout(refresh,0);}).observe(el,{childList:true,subtree:true});}
-
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){refresh();watch('realGrid');watch('results');});else{refresh();watch('realGrid');watch('results');}
-  window.addEventListener('load',refresh);window.addEventListener('popstate',function(){setTimeout(refresh,0);});
-  document.addEventListener('click',function(e){if(e.target.closest('[data-lang],[data-l],.langBtn'))setTimeout(function(){applyLang();refresh();},0);});
-  try{new MutationObserver(function(){applyLang();}).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});}catch(e){}
-  var tries=0,timer=setInterval(function(){refresh();if(++tries>24)clearInterval(timer);},250);
+  function register(E){E.register({id:'saly-baptiste',refresh:refresh,watchIds:['realGrid','results'],clickSelector:'[data-lang],[data-l],.langBtn,#needs,#zones',maxTries:24,interval:250});}
+  var E=window.DIGIY_LOC_SIGNATURE_ENGINE;
+  if(E){register(E);return;}
+  var s=document.querySelector('script[data-digiy-loc-signature-engine-loader]');
+  if(!s){s=document.createElement('script');s.src='/assets/digiy-loc-signature-engine-v1.js?v=20260926-v1';s.defer=true;s.setAttribute('data-digiy-loc-signature-engine-loader','1');document.head.appendChild(s);}
+  s.addEventListener('load',function(){if(window.DIGIY_LOC_SIGNATURE_ENGINE)register(window.DIGIY_LOC_SIGNATURE_ENGINE);},{once:true});
 })();
