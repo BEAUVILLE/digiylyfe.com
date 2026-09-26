@@ -176,8 +176,9 @@
     v.setAttribute('preload','metadata');
     v.setAttribute('x-webkit-airplay','allow');
     var src=v.querySelector('source');
-    if(src&&src.getAttribute('src')&&src.getAttribute('src').indexOf('runtime-mobile-v3')===-1){
-      src.setAttribute('src','https://digiylyfe.net/wp-content/uploads/2026/09/DIGIYLYFE_BESOIN_REPONSE_CONTACT_20s_ALY_POSEE_MOBILE_SAFE.mp4');
+    var expectedSrc='https://digiylyfe.net/wp-content/uploads/2026/09/DIGIYLYFE_BESOIN_REPONSE_CONTACT_20s_ALY_POSEE_MOBILE_SAFE.mp4';
+    if(src&&src.getAttribute('src')!==expectedSrc){
+      src.setAttribute('src',expectedSrc);
       try{v.load();}catch(e){}
     }
     document.documentElement.setAttribute('data-digiy-master-video-mobile','v3');
