@@ -74,7 +74,7 @@
     card.href='https://digiylyfe.com/maroc.html';
     card.setAttribute('data-fav-id','territoire-maroc');
     card.setAttribute('aria-label','Ouvrir DIGIY Maroc — Casablanca et Marrakech');
-    card.innerHTML='<span class="territoryCountry">🇲🇦 <b data-ma-country></b></span><div class="territoryPhoto digiyMoroccoPhoto"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/A_narrow_street_in_the_old_medina_of_marrakech_and_a_women_in_the_classic_moroccan_clothing_called_djelaba.jpg" alt="Marrakech, Maroc" loading="lazy" decoding="async"><span class="digiyMoroccoCredit">Omalihy · CC BY-SA 4.0</span><span class="digiyMoroccoCities"><i>CASABLANCA</i><i>MARRAKECH</i></span></div><strong data-ma-title></strong><small data-ma-zones></small><span class="territoryBtn" data-ma-cta></span>';
+    card.innerHTML='<span class="territoryCountry">🇲🇦 <b data-ma-country></b></span><div class="territoryPhoto digiyMoroccoPhoto"><img src="https://images.unsplash.com/photo-1741812956072-bef4470e5828?auto=format&fit=crop&w=1200&q=82" alt="Marrakech, Maroc" loading="lazy" decoding="async"><span class="digiyMoroccoCredit">Karim Ouakkaha · Unsplash</span><span class="digiyMoroccoCities"><i>CASABLANCA</i><i>MARRAKECH</i></span></div><strong data-ma-title></strong><small data-ma-zones></small><span class="territoryBtn" data-ma-cta></span>';
     grid.appendChild(card);
 
     function applyLang(){
