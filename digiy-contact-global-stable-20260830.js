@@ -74,7 +74,7 @@
   }
 
   function applySupabasePresenceGate(){
-    var cards=Array.prototype.slice.call(document.querySelectorAll('.proofCard[href]'));
+    var cards=Array.prototype.slice.call(document.querySelectorAll('.proofCard[href],.exampleCard[href]'));
     if(!cards.length)return Promise.resolve();
 
     var proofUrls=new Set(cards.map(function(card){return normalizePublicUrl(card.href);}).filter(Boolean));
@@ -99,10 +99,10 @@
         }
       }catch(error){}
 
-      var grid=document.querySelector('.proofGrid');
+      var grid=document.querySelector('.proofGrid')||document.querySelector('.exampleGrid');
       if(grid){
         var refreshGrid=function(){
-          var count=grid.querySelectorAll('.proofCard[href]').length;
+          var count=grid.querySelectorAll('.proofCard[href],.exampleCard[href]').length;
           if(window.matchMedia('(min-width:761px)').matches&&count>0){
             grid.style.gridTemplateColumns='repeat('+Math.min(count,4)+',1fr)';
           }else{
@@ -125,7 +125,7 @@
   }
 
   function retireFgNails(){
-    var selector='.proofCard[href^="https://f-g-nails.digiylyfe.com/"]';
+    var selector='.proofCard[href^="https://f-g-nails.digiylyfe.com/"],.exampleCard[href^="https://f-g-nails.digiylyfe.com/"]';
     var card=document.querySelector(selector);
     if(card) card.remove();
 
@@ -140,11 +140,11 @@
       }
     }catch(error){}
 
-    var grid=document.querySelector('.proofGrid');
+    var grid=document.querySelector('.proofGrid')||document.querySelector('.exampleGrid');
     if(grid){
       var mq=window.matchMedia('(min-width:761px)');
       var adjust=function(){
-        var count=grid.querySelectorAll('.proofCard[href]').length;
+        var count=grid.querySelectorAll('.proofCard[href],.exampleCard[href]').length;
         grid.style.gridTemplateColumns=mq.matches&&count>0?'repeat('+Math.min(count,4)+',1fr)':'';
       };
       adjust();
