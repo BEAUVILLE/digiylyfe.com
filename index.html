@@ -1166,6 +1166,13 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
         btn.setAttribute('aria-pressed',active?'true':'false');
       });
       try{localStorage.setItem('digiy-lang',lang);}catch(error){}
+      try{
+        var url=new URL(location.href);
+        if(url.searchParams.get('lang')!==lang){
+          url.searchParams.set('lang',lang);
+          history.replaceState(history.state,'',url.pathname+url.search+url.hash);
+        }
+      }catch(error){}
       if(window.digiyRenderFavoris){try{window.digiyRenderFavoris();}catch(e){}}
     }
 
