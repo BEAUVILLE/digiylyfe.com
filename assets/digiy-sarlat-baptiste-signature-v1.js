@@ -151,13 +151,11 @@ body.digiyBaptisteSignatureSarlat .realGrid{grid-template-columns:repeat(2,minma
     var m=document.createElement('div');m.className='digiyBaptisteSignatureMount';m.setAttribute('data-digiy-baptiste-mount','territory');m.innerHTML=cardHTML(true);section.insertBefore(m,results);bindCard(m);return true;
   }
 
-  function boot(){
-    ensureStyle();
-    mountHome();mountLoc();mountSarlat();syncTerritory();applyLang();
-    document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('#needs,#zones,[data-lang],[data-l],.langBtn'))setTimeout(function(){syncTerritory();applyLang();},120);});
-    window.addEventListener('popstate',function(){setTimeout(function(){syncTerritory();applyLang();},50);});
-    try{new MutationObserver(function(){applyLang();}).observe(document.documentElement,{attributes:true,attributeFilter:['lang','dir']});}catch(e){}
-    setTimeout(function(){mountHome();mountLoc();mountSarlat();syncTerritory();applyLang();},350);
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+  function refresh(){ensureStyle();mountHome();mountLoc();mountSarlat();syncTerritory();applyLang();}
+  function register(E){E.register({id:'sarlat-baptiste',refresh:refresh,watchIds:['results'],clickSelector:'#needs,#zones,[data-lang],[data-l],.langBtn',maxTries:1,interval:350,delay:50});}
+  var E=window.DIGIY_LOC_SIGNATURE_ENGINE;
+  if(E){register(E);return;}
+  var s=document.querySelector('script[data-digiy-loc-signature-engine-loader]');
+  if(!s){s=document.createElement('script');s.src='/assets/digiy-loc-signature-engine-v1.js?v=20260926-v1';s.defer=true;s.setAttribute('data-digiy-loc-signature-engine-loader','1');document.head.appendChild(s);}
+  s.addEventListener('load',function(){if(window.DIGIY_LOC_SIGNATURE_ENGINE)register(window.DIGIY_LOC_SIGNATURE_ENGINE);},{once:true});
 })();
