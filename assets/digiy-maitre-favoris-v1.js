@@ -48,9 +48,8 @@
   /* Maroc — phase température : carte gratuite uniquement, aucun tarif PRO inventé. */
   function installMoroccoHubDoor(){
     if(homepagePath()!=='/') return;
-    if(document.getElementById('digiyMoroccoHubDoor')) return;
-    var grid=document.querySelector('#territoires .territoryGrid');
-    if(!grid) return;
+    var card=document.getElementById('digiyMoroccoHubDoor');
+    if(!card) return;
 
     var COPY={
       fr:{country:'MAROC · APPEL À CANDIDATURES',title:'DIGIY MAROC',zones:'Casablanca · Marrakech · soyez parmi les premiers professionnels',cta:'SOYEZ PARMI LES PREMIERS →'},
@@ -67,15 +66,6 @@
     style.setAttribute('data-digiy-morocco-hub','1');
     style.textContent='#digiyMoroccoHubDoor{border-color:rgba(246,196,83,.64);background:linear-gradient(180deg,rgba(193,39,45,.15),rgba(0,98,51,.28) 55%,rgba(5,27,20,.98))}#digiyMoroccoHubDoor .digiyMoroccoPhoto{position:relative;overflow:hidden;background:#4b241b}#digiyMoroccoHubDoor .digiyMoroccoPhoto img{width:100%;height:100%;object-fit:cover;display:block}#digiyMoroccoHubDoor .digiyMoroccoPhoto:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(3,18,13,.72));pointer-events:none}#digiyMoroccoHubDoor .digiyMoroccoCities{position:absolute;left:12px;right:12px;bottom:12px;z-index:3;display:flex;gap:6px;justify-content:center;flex-wrap:wrap}#digiyMoroccoHubDoor .digiyMoroccoCities i{font-style:normal;padding:5px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.33);background:rgba(3,18,13,.72);color:#fffaf0;font-size:9px;font-weight:1000}#digiyMoroccoHubDoor .digiyMoroccoCredit{position:absolute;top:7px;right:8px;z-index:3;padding:3px 6px;border-radius:999px;background:rgba(3,18,13,.58);color:rgba(255,250,240,.78);font-size:7px;font-weight:850}';
     document.head.appendChild(style);
-
-    var card=document.createElement('a');
-    card.id='digiyMoroccoHubDoor';
-    card.className='territoryCard';
-    card.href='https://digiylyfe.com/maroc.html';
-    card.setAttribute('data-fav-id','territoire-maroc');
-    card.setAttribute('aria-label','Ouvrir DIGIY Maroc — Casablanca et Marrakech');
-    card.innerHTML='<span class="territoryCountry">🇲🇦 <b data-ma-country></b></span><div class="territoryPhoto digiyMoroccoPhoto"><img src="https://images.unsplash.com/photo-1741812956072-bef4470e5828?auto=format&fit=crop&w=1200&q=82" alt="Marrakech, Maroc" loading="lazy" decoding="async"><span class="digiyMoroccoCredit">Karim Ouakkaha · Unsplash</span><span class="digiyMoroccoCities"><i>CASABLANCA</i><i>MARRAKECH</i></span></div><strong data-ma-title></strong><small data-ma-zones></small><span class="territoryBtn" data-ma-cta></span>';
-    grid.appendChild(card);
 
     function applyLang(){
       var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
