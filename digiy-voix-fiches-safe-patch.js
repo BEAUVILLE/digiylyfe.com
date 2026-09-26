@@ -457,9 +457,7 @@
         label.includes("voir") ||
         label.includes("chercher") ||
         label.includes("rechercher") ||
-        label.includes("action") ||
-        label.includes("ecoute") ||
-        label.includes("écoute");
+        label.includes("action");
 
       const isOnlyAudio =
         label.includes("ecouter") ||
@@ -510,13 +508,29 @@
     }
   }, true);
 
+  let voiceFinalBuffer="";
+  let voiceFinalTimer=null;
+
   window.addEventListener("digiy:voice-final", function (ev) {
     const text =
       ev && ev.detail
         ? ev.detail.text || ev.detail.transcript || ""
         : "";
 
-    if (text) routeDirect(text, true);
+    if (!text) return;
+
+    const clean=String(text).trim();
+    if(!clean) return;
+
+    if(!voiceFinalBuffer) voiceFinalBuffer=clean;
+    else if(!norm(voiceFinalBuffer).includes(norm(clean))) voiceFinalBuffer+=" "+clean;
+
+    clearTimeout(voiceFinalTimer);
+    voiceFinalTimer=setTimeout(function(){
+      const finalText=voiceFinalBuffer.trim();
+      voiceFinalBuffer="";
+      if(finalText) routeDirect(finalText, false);
+    },2200);
   });
 
   console.log("✅ DIGIYLYFE patch final voix → fiches directes actif");
