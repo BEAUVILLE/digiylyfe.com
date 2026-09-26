@@ -2,7 +2,7 @@
 (function(){
   'use strict';
   function load(src,done){var s=document.createElement('script');s.src=src;s.async=false;if(done)s.onload=done;document.head.appendChild(s);}
-  load('https://digiylyfe.com/digiy-contact-global-pre-membership-20260917.js?v=20260926-dead-loads-v1',function(){
+  load('https://digiylyfe.com/digiy-contact-global-pre-membership-20260917.js?v=20260926-publication-gate-v1',function(){
     var p=(location.pathname||'/').replace(/\/+$/,'')||'/',h=(location.hostname||'').toLowerCase();
     var home=h==='digiylyfe.com'&&(p==='/'||/\/index\.html$/i.test(p));
     var tariffs=/\/tarifs-adherents-1\.html$/i.test(p);
