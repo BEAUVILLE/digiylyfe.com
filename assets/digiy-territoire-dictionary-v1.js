@@ -61,6 +61,13 @@
             bordeaux:{canonical:"bordeaux",aliases:["bordeaux"]},
             arcachon:{canonical:"arcachon",aliases:["arcachon","bassin d arcachon","bassin d'arcachon"]}
           }
+        },
+        ile_de_france:{
+          canonical:"ile de france",
+          aliases:["ile de france","île-de-france","ile-de-france"],
+          places:{
+            paris:{canonical:"paris",aliases:["paris","paris ile de france","paris île-de-france","paris ile-de-france"]}
+          }
         }
       }
     },
@@ -150,7 +157,7 @@
   }
 
   window.DIGIY_TERRITOIRE={
-    version:"territoire-v1-20260926",
+    version:"territoire-v2-20260926",
     territories:TERRITORIES,
     norm,resolve,canonical,expand,matches,enrich
   };
