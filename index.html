@@ -1198,10 +1198,11 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     setLang(initial);
   })();
   </script>
-  <script src="/assets/digiy-catalog.js?v=20260906-coherence-v1"></script>
+  <script src="/assets/digiy-catalog.js?v=20260926-single-favorites-v1"></script>
   <script>
   (function(){
     'use strict';
+    if(window.DIGIY_FAVORITES_ENGINE==='catalog-v1')return;
     var KEY='digiy-vitrine-favoris';
     var META_KEY='digiy-vitrine-favoris-meta';
     var CATALOG=window.DIGIY_CATALOG||{};
