@@ -141,6 +141,7 @@
     var btn=document.getElementById('digiyInstallBtn');
     var label=document.getElementById('digiyInstallLabel');
     var note=document.getElementById('digiyInstallNote');
+    if(band&&band.hasAttribute('data-digiy-pwa-install')) return;
     if(!btn||document.getElementById('digiyPwaGuide')) return;
 
     var ua=navigator.userAgent||'';
