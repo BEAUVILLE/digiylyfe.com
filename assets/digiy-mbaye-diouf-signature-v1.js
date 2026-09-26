@@ -1,13 +1,6 @@
 /* DIGIYLYFE — configuration MBAYE DIOUF · BÂTISSEUR · moteur générique */
 (function(){
   'use strict';
-  var E=window.DIGIY_PRO_SIGNATURE_ENGINE;
-  if(!E){
-    var s=document.querySelector('script[data-digiy-pro-signature-engine-loader]');
-    if(!s){s=document.createElement('script');s.src='/assets/digiy-pro-signature-engine-v1.js?v=20260926-contexts-v1';s.defer=true;s.setAttribute('data-digiy-pro-signature-engine-loader','1');document.head.appendChild(s);}
-    s.addEventListener('load',function(){location.reload();},{once:true});
-    return;
-  }
   var SHEET='https://mbaye-macon.digiylyfe.com/';
   var PHOTO='https://mbaye-macon.digiylyfe.com/carte-visite.png?v=20260714-v3';
   var WA='https://wa.me/221776427113?text='+encodeURIComponent('Bonjour Mbaye, je viens de DIGIYLYFE pour un projet de construction ou de rénovation.');
@@ -21,5 +14,10 @@
     nl:{photo:'🖼️ VISUAL VERGROTEN',eyebrow:'DIGIYLYFE-LID · DIRECT BOUWWERK',sub:'Aannemer · Metselaar · Saly · Mbour · Thiès · Petite Côte',price:'OP AANVRAAG',priceNote:'Diagnose, materialen, termijnen en eindbedrag worden rechtstreeks met Mbaye Diouf bevestigd',villa:'🏠 Villabouw',pool:'🏊 Betonnen zwembaden',renov:'🧱 Renovatie & uitbreidingen',finish:'✨ Hoogwaardige afwerking',desc:'Bouw, renovatie en uitbreidingen. De klant neemt rechtstreeks contact op met Mbaye Diouf; beschikbaarheid, bezoek, offerte, materialen, termijnen en eindbedrag blijven onder zijn verantwoordelijkheid.',contact:'Direct contact',quote:'Directe offerte',quoteSub:'na bezoek en duidelijke behoefte',sheet:'Vakprofiel',sheetSub:'QR + aanvraag + delen',open:'PROFIEL OPENEN / OFFERTE VRAGEN →',wa:'💬 WHATSAPP',close:'✕ Sluiten',photoTitle:'Officieel visual van Mbaye Diouf',master:'1 VISUAL · MASTER'},
     ar:{photo:'🖼️ تكبير الصورة',eyebrow:'عضو DIGIYLYFE · بناء مباشر',sub:'مقاول بناء · سالي · مبور · تييس · Petite Côte',price:'حسب عرض السعر',priceNote:'يتم تأكيد التشخيص والمواد والمدة والمبلغ النهائي مباشرة مع Mbaye Diouf',villa:'🏠 بناء الفلل',pool:'🏊 مسابح خرسانية',renov:'🧱 تجديد وتوسعات',finish:'✨ تشطيبات عالية الجودة',desc:'البناء والتجديد والتوسعات. يتواصل العميل مباشرة مع Mbaye Diouf؛ وتبقى المعاينة وعرض السعر والمواد والمدة والمبلغ النهائي تحت مسؤوليته.',contact:'تواصل مباشر',quote:'عرض سعر مباشر',quoteSub:'بعد المعاينة وتحديد الحاجة',sheet:'الصفحة المهنية',sheetSub:'QR + طلب + مشاركة',open:'فتح الصفحة / طلب عرض سعر ←',wa:'💬 واتساب',close:'✕ إغلاق',photoTitle:'الصورة الرسمية لـ Mbaye Diouf',master:'صورة واحدة · MASTER'}
   };
-  E.register({"id":"mbaye-diouf","title":"MBAYE DIOUF · BÂTISSEUR","headlineKey":"price","noteKey":"priceNote","chips":["villa","pool","renov","finish"],"direct":[["contact",null,"+221 77 642 71 13"],["quote","quoteSub",""],["sheet","sheetSub",""]],"hostNeedle":"mbaye-macon.digiylyfe.com","zone":"petite-cote","need":"artisan","locals":["saly","mbour"],sheet:SHEET,photo:PHOTO,wa:WA,T:T});
+  function register(E){E.register({"id":"mbaye-diouf","title":"MBAYE DIOUF · BÂTISSEUR","headlineKey":"price","noteKey":"priceNote","chips":["villa","pool","renov","finish"],"direct":[["contact",null,"+221 77 642 71 13"],["quote","quoteSub",""],["sheet","sheetSub",""]],"hostNeedle":"mbaye-macon.digiylyfe.com","zone":"petite-cote","need":"artisan","locals":["saly","mbour"],sheet:SHEET,photo:PHOTO,wa:WA,T:T});}
+  var E=window.DIGIY_PRO_SIGNATURE_ENGINE;
+  if(E){register(E);return;}
+  var s=document.querySelector('script[data-digiy-pro-signature-engine-loader]');
+  if(!s){s=document.createElement('script');s.src='/assets/digiy-pro-signature-engine-v1.js?v=20260926-contexts-v1';s.defer=true;s.setAttribute('data-digiy-pro-signature-engine-loader','1');document.head.appendChild(s);}
+  s.addEventListener('load',function(){if(window.DIGIY_PRO_SIGNATURE_ENGINE)register(window.DIGIY_PRO_SIGNATURE_ENGINE);},{once:true});
 })();
