@@ -21,7 +21,9 @@
     "territoire-petite-cote":{href:"https://digiylyfe.com/territoire.html?zone=petite-cote",icon:"📍",label:"DIGIY PETITE CÔTE",kind:"territoire"},
     "territoire-dakar":{href:"https://digiylyfe.com/territoire.html?zone=dakar",icon:"📍",label:"DIGIY DAKAR",kind:"territoire"},
     "territoire-dordogne":{href:"https://digiylyfe.com/territoire.html?zone=vallee-dordogne",icon:"📍",label:"DIGIY VALLÉE DE LA DORDOGNE",kind:"territoire",legacyUrls:["https://digiylyfe.com/france.html"]},
-    "territoire-bordeaux":{href:"https://digiylyfe.com/territoire.html?zone=bordeaux",icon:"📍",label:"DIGIY BORDEAUX",kind:"territoire"}
+    "territoire-bordeaux":{href:"https://digiylyfe.com/territoire.html?zone=bordeaux",icon:"📍",label:"DIGIY BORDEAUX",kind:"territoire"},
+    "territoire-paris":{href:"https://digiylyfe.com/paris.html",icon:"📍",label:"DIGIY PARIS",kind:"territoire"},
+    "territoire-miami":{href:"https://digiylyfe.com/miami.html",icon:"📍",label:"DIGIY MIAMI",kind:"territoire"}
   };
 
   var hrefCount={};
@@ -32,7 +34,7 @@
   Object.keys(CATALOG).forEach(function(id){Object.freeze(CATALOG[id]);});
   w.DIGIY_CATALOG=Object.freeze(CATALOG);
   w.DIGIY_OLD_URL_MAP=Object.freeze(OLD_URL_MAP);
-  w.DIGIY_CATALOG_VERSION='20260926-single-favorites-v1';
+  w.DIGIY_CATALOG_VERSION='20260926-territories-v2';
   w.DIGIY_FAVORITES_ENGINE='catalog-v1';
 
   /* Le carnet partage le localStorage uniquement sur le domaine principal. */
@@ -45,8 +47,8 @@
   var FIXED=[
     {selector:'.digiyBaptisteSignatureCard',id:'pro-chez-baptiste-sarlat'},
     {selector:'.digiySalyCard',id:'pro-chez-baptiste-saly'},
-    {selector:'.digiyMbayeCard',id:'pro-mbaye-diouf'},
-    {selector:'.digiyHelageCard',id:'pro-helage'}
+    {selector:'[data-digiy-pro-signature="mbaye-diouf"] .digiyProSigCard',id:'pro-mbaye-diouf'},
+    {selector:'[data-digiy-pro-signature="helage"] .digiyProSigCard',id:'pro-helage'}
   ];
 
   function loadFavs(){try{var a=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(a)?a:[];}catch(e){return[];}}
@@ -101,7 +103,8 @@
     var href;
     if(location.pathname==='/territoire.html')href=cleanPage()+'#fav-'+id;
     else href=base.href||homeCard(id);
-    return{id:id,href:href,icon:base.icon||icon(card),label:base.label||label,kind:'professionnel'};
+    var kind=base.kind||(card.classList.contains('territoryCard')?'territoire':card.classList.contains('publicLeadDoor')?'service':'professionnel');
+    return{id:id,href:href,icon:base.icon||icon(card),label:base.label||label,kind:kind};
   }
 
   function writeMeta(m){var map=loadMeta();map[m.id]=m;saveMeta(map);}
