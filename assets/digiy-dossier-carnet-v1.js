@@ -16,14 +16,14 @@
   var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s));};
 
   var COPY={
-    fr:{title:'Préparer mon dossier CARNET PRO',lead:'Renseignez uniquement les informations nécessaires à votre accès CARNET PRO.',email:'Email *',country:'Pays',consent:'Je confirme que ces informations sont exactes et j’autorise DIGIYLYFE à traiter ma demande CARNET PRO après contrôle du règlement.',send:'ENVOYER MON DOSSIER CARNET PRO →',wait:'Le paiement et l’activation CARNET PRO sont contrôlés manuellement.',done:'Dossier CARNET PRO reçu. Paiement À CONFIRMER · activation À VALIDER.',badProof:'Preuve de règlement invalide.',badEmail:'Adresse email invalide.',sending:'Envoi sécurisé du dossier CARNET PRO…'},
-    en:{title:'Prepare my CARNET PRO file',lead:'Enter only the information needed for your CARNET PRO access.',email:'Email *',country:'Country',consent:'I confirm this information is accurate and authorize DIGIYLYFE to process my CARNET PRO request after payment review.',send:'SEND MY CARNET PRO FILE →',wait:'CARNET PRO payment and activation are reviewed manually.',done:'CARNET PRO file received. Payment TO CONFIRM · activation TO VALIDATE.',badProof:'Invalid payment proof.',badEmail:'Invalid email address.',sending:'Securely sending CARNET PRO file…'},
-    es:{title:'Preparar mi expediente CARNET PRO',lead:'Indique únicamente los datos necesarios para acceder a CARNET PRO.',email:'Email *',country:'País',consent:'Confirmo que estos datos son correctos y autorizo a DIGIYLYFE a tramitar mi solicitud CARNET PRO tras revisar el pago.',send:'ENVIAR MI EXPEDIENTE CARNET PRO →',wait:'El pago y la activación de CARNET PRO se controlan manualmente.',done:'Expediente CARNET PRO recibido. Pago POR CONFIRMAR · activación POR VALIDAR.',badProof:'Prueba de pago inválida.',badEmail:'Dirección de email inválida.',sending:'Envío seguro del expediente CARNET PRO…'},
-    pt:{title:'Preparar o meu processo CARNET PRO',lead:'Indique apenas os dados necessários para o seu acesso ao CARNET PRO.',email:'Email *',country:'País',consent:'Confirmo que estes dados são exatos e autorizo a DIGIYLYFE a tratar o meu pedido CARNET PRO após verificação do pagamento.',send:'ENVIAR O MEU PROCESSO CARNET PRO →',wait:'O pagamento e a ativação CARNET PRO são verificados manualmente.',done:'Processo CARNET PRO recebido. Pagamento A CONFIRMAR · ativação A VALIDAR.',badProof:'Comprovativo de pagamento inválido.',badEmail:'Endereço de email inválido.',sending:'Envio seguro do processo CARNET PRO…'},
-    it:{title:'Prepara il mio dossier CARNET PRO',lead:'Inserisci solo i dati necessari per accedere a CARNET PRO.',email:'Email *',country:'Paese',consent:'Confermo che i dati sono corretti e autorizzo DIGIYLYFE a trattare la richiesta CARNET PRO dopo il controllo del pagamento.',send:'INVIA IL MIO DOSSIER CARNET PRO →',wait:'Pagamento e attivazione CARNET PRO sono verificati manualmente.',done:'Dossier CARNET PRO ricevuto. Pagamento DA CONFERMARE · attivazione DA VALIDARE.',badProof:'Prova di pagamento non valida.',badEmail:'Indirizzo email non valido.',sending:'Invio sicuro del dossier CARNET PRO…'},
-    de:{title:'Meinen CARNET-PRO-Antrag vorbereiten',lead:'Geben Sie nur die für Ihren CARNET-PRO-Zugang notwendigen Daten ein.',email:'E-Mail *',country:'Land',consent:'Ich bestätige die Richtigkeit der Angaben und erlaube DIGIYLYFE, meinen CARNET-PRO-Antrag nach Zahlungsprüfung zu bearbeiten.',send:'MEINEN CARNET-PRO-ANTRAG SENDEN →',wait:'Zahlung und Aktivierung von CARNET PRO werden manuell geprüft.',done:'CARNET-PRO-Antrag erhalten. Zahlung ZU BESTÄTIGEN · Aktivierung ZU PRÜFEN.',badProof:'Ungültiger Zahlungsnachweis.',badEmail:'Ungültige E-Mail-Adresse.',sending:'CARNET-PRO-Antrag wird sicher gesendet…'},
-    nl:{title:'Mijn CARNET PRO-dossier voorbereiden',lead:'Vul alleen de gegevens in die nodig zijn voor uw CARNET PRO-toegang.',email:'E-mail *',country:'Land',consent:'Ik bevestig dat deze gegevens juist zijn en geef DIGIYLYFE toestemming mijn CARNET PRO-aanvraag na betalingscontrole te verwerken.',send:'MIJN CARNET PRO-DOSSIER VERZENDEN →',wait:'Betaling en activering van CARNET PRO worden handmatig gecontroleerd.',done:'CARNET PRO-dossier ontvangen. Betaling TE BEVESTIGEN · activering TE VALIDEREN.',badProof:'Ongeldig betalingsbewijs.',badEmail:'Ongeldig e-mailadres.',sending:'CARNET PRO-dossier veilig verzenden…'},
-    ar:{title:'إعداد ملف CARNET PRO',lead:'أدخل فقط المعلومات اللازمة للوصول إلى CARNET PRO.',email:'البريد الإلكتروني *',country:'البلد',consent:'أؤكد صحة هذه المعلومات وأسمح لـ DIGIYLYFE بمعالجة طلب CARNET PRO بعد التحقق من الدفع.',send:'إرسال ملف CARNET PRO ←',wait:'يتم التحقق من الدفع وتفعيل CARNET PRO يدويًا.',done:'تم استلام ملف CARNET PRO. الدفع قيد التأكيد · التفعيل قيد المراجعة.',badProof:'إثبات الدفع غير صالح.',badEmail:'عنوان البريد الإلكتروني غير صالح.',sending:'جارٍ إرسال ملف CARNET PRO بأمان…'}
+    fr:{title:'Préparer mon dossier CARNET PRO',lead:'Renseignez uniquement les informations nécessaires à votre accès CARNET PRO.',email:'Email *',country:'Pays',consent:'Je confirme que ces informations sont exactes et j’autorise DIGIYLYFE à traiter ma demande CARNET PRO. Aucun règlement avant acceptation du BAT.',send:'ENVOYER MON DOSSIER CARNET PRO →',wait:'Le BAT CARNET PRO est préparé, puis envoyé pour acceptation. Aucun règlement avant acceptation du BAT.',done:'Dossier CARNET PRO reçu. BAT À PRÉPARER · aucun règlement avant acceptation du BAT.',badProof:'Preuve de règlement invalide.',badEmail:'Adresse email invalide.',sending:'Envoi sécurisé du dossier CARNET PRO…'},
+    en:{title:'Prepare my CARNET PRO file',lead:'Enter only the information needed for your CARNET PRO access.',email:'Email *',country:'Country',consent:'I confirm this information is accurate and authorize DIGIYLYFE to process my CARNET PRO request. No payment before proof approval.',send:'SEND MY CARNET PRO FILE →',wait:'The CARNET PRO proof is prepared, then sent for approval. No payment before proof approval.',done:'CARNET PRO file received. PROOF TO PREPARE · no payment before proof approval.',badProof:'Invalid payment proof.',badEmail:'Invalid email address.',sending:'Securely sending CARNET PRO file…'},
+    es:{title:'Preparar mi expediente CARNET PRO',lead:'Indique únicamente los datos necesarios para acceder a CARNET PRO.',email:'Email *',country:'País',consent:'Confirmo que estos datos son correctos y autorizo a DIGIYLYFE a tramitar mi solicitud CARNET PRO. Ningún pago antes de la aprobación del BAT.',send:'ENVIAR MI EXPEDIENTE CARNET PRO →',wait:'El BAT de CARNET PRO se prepara y se envía para su aprobación. Ningún pago antes de la aprobación del BAT.',done:'Expediente CARNET PRO recibido. BAT POR PREPARAR · ningún pago antes de la aprobación del BAT.',badProof:'Prueba de pago inválida.',badEmail:'Dirección de email inválida.',sending:'Envío seguro del expediente CARNET PRO…'},
+    pt:{title:'Preparar o meu processo CARNET PRO',lead:'Indique apenas os dados necessários para o seu acesso ao CARNET PRO.',email:'Email *',country:'País',consent:'Confirmo que estes dados são exatos e autorizo a DIGIYLYFE a tratar o meu pedido CARNET PRO. Nenhum pagamento antes da aprovação do BAT.',send:'ENVIAR O MEU PROCESSO CARNET PRO →',wait:'O BAT do CARNET PRO é preparado e enviado para aprovação. Nenhum pagamento antes da aprovação do BAT.',done:'Processo CARNET PRO recebido. BAT A PREPARAR · nenhum pagamento antes da aprovação do BAT.',badProof:'Comprovativo de pagamento inválido.',badEmail:'Endereço de email inválido.',sending:'Envio seguro do processo CARNET PRO…'},
+    it:{title:'Prepara il mio dossier CARNET PRO',lead:'Inserisci solo i dati necessari per accedere a CARNET PRO.',email:'Email *',country:'Paese',consent:'Confermo che i dati sono corretti e autorizzo DIGIYLYFE a trattare la richiesta CARNET PRO. Nessun pagamento prima dell’approvazione del BAT.',send:'INVIA IL MIO DOSSIER CARNET PRO →',wait:'Il BAT CARNET PRO viene preparato e inviato per l’approvazione. Nessun pagamento prima dell’approvazione del BAT.',done:'Dossier CARNET PRO ricevuto. BAT DA PREPARARE · nessun pagamento prima dell’approvazione del BAT.',badProof:'Prova di pagamento non valida.',badEmail:'Indirizzo email non valido.',sending:'Invio sicuro del dossier CARNET PRO…'},
+    de:{title:'Meinen CARNET-PRO-Antrag vorbereiten',lead:'Geben Sie nur die für Ihren CARNET-PRO-Zugang notwendigen Daten ein.',email:'E-Mail *',country:'Land',consent:'Ich bestätige die Richtigkeit der Angaben und erlaube DIGIYLYFE, meinen CARNET-PRO-Antrag zu bearbeiten. Keine Zahlung vor Freigabe des BAT.',send:'MEINEN CARNET-PRO-ANTRAG SENDEN →',wait:'Der CARNET-PRO-BAT wird erstellt und zur Freigabe gesendet. Keine Zahlung vor Freigabe des BAT.',done:'CARNET-PRO-Antrag erhalten. BAT ZU ERSTELLEN · keine Zahlung vor Freigabe des BAT.',badProof:'Ungültiger Zahlungsnachweis.',badEmail:'Ungültige E-Mail-Adresse.',sending:'CARNET-PRO-Antrag wird sicher gesendet…'},
+    nl:{title:'Mijn CARNET PRO-dossier voorbereiden',lead:'Vul alleen de gegevens in die nodig zijn voor uw CARNET PRO-toegang.',email:'E-mail *',country:'Land',consent:'Ik bevestig dat deze gegevens juist zijn en geef DIGIYLYFE toestemming mijn CARNET PRO-aanvraag te verwerken. Geen betaling vóór goedkeuring van de BAT.',send:'MIJN CARNET PRO-DOSSIER VERZENDEN →',wait:'De CARNET PRO-BAT wordt voorbereid en ter goedkeuring verzonden. Geen betaling vóór goedkeuring van de BAT.',done:'CARNET PRO-dossier ontvangen. BAT VOOR TE BEREIDEN · geen betaling vóór goedkeuring van de BAT.',badProof:'Ongeldig betalingsbewijs.',badEmail:'Ongeldig e-mailadres.',sending:'CARNET PRO-dossier veilig verzenden…'},
+    ar:{title:'إعداد ملف CARNET PRO',lead:'أدخل فقط المعلومات اللازمة للوصول إلى CARNET PRO.',email:'البريد الإلكتروني *',country:'البلد',consent:'أؤكد صحة هذه المعلومات وأسمح لـ DIGIYLYFE بمعالجة طلب CARNET PRO. لا دفع قبل الموافقة على نسخة الاعتماد.',send:'إرسال ملف CARNET PRO ←',wait:'يتم إعداد نسخة اعتماد CARNET PRO ثم إرسالها للموافقة. لا دفع قبل الموافقة على نسخة الاعتماد.',done:'تم استلام ملف CARNET PRO. نسخة الاعتماد قيد الإعداد · لا دفع قبل الموافقة على نسخة الاعتماد.',badProof:'إثبات الدفع غير صالح.',badEmail:'عنوان البريد الإلكتروني غير صالح.',sending:'جارٍ إرسال ملف CARNET PRO بأمان…'}
   };
 
   function t(){return COPY[lang]||COPY.fr;}
@@ -87,14 +87,12 @@
     form.onsubmit=async function(e){
       e.preventDefault();
       var c=country(),p=carnetPrice(),email=$('#email')&&$('#email').value.trim().toLowerCase();
-      var st=$('#status'),btn=$('#submit'),proof=$('#proof')&&$('#proof').files[0];
+      var st=$('#status'),btn=$('#submit');
       if(!c||!p){st.className='status bad';st.textContent='Configuration pays indisponible.';return;}
       if(!validEmail(email)){st.className='status bad';st.textContent=t().badEmail;return;}
-      if(!proof||proof.size>10*1024*1024||['image/jpeg','image/png','image/webp','application/pdf'].indexOf(proof.type)===-1){st.className='status bad';st.textContent=t().badProof;return;}
       btn.disabled=true;st.className='status';st.textContent=t().sending;
-      var id=crypto.randomUUID(),rp='pending/'+id+'.'+ext(proof),inserted=false;
+      var id=crypto.randomUUID();
       try{
-        var up=await sb.storage.from('digiy-adhesion-payment-proofs').upload(rp,proof,{contentType:proof.type,upsert:false});if(up.error)throw up.error;
         var phone=normalizePhone($('#phone').value,c),wa=normalizePhone($('#wa').value,c);
         var base={
           id:id,
@@ -123,20 +121,22 @@
           service_4:null,
           photo_path:null,
           photo_mime:null,
-          payment_proof_path:rp,
-          payment_proof_mime:proof.type,
+          payment_proof_path:null,
+          payment_proof_mime:null,
           consent:$('#consent').checked,
           status:'a_valider',
           payment_status:'a_confirmer',
           card_status:'non_requis',
-          source:'post-payment-carnet-country-runtime',
+          bat_status:'a_preparer',
+          contract_version:'current_v1',
+          billing:'monthly',
+          source:'pre-bat-carnet-country-runtime',
           source_lang:lang
         };
-        var ins=await sb.from('digiy_adhesion_requests').insert(base);if(ins.error)throw ins.error;inserted=true;
+        var ins=await sb.from('digiy_adhesion_requests').insert(base);if(ins.error)throw ins.error;
         st.className='status ok';st.textContent=t().done;btn.style.display='none';
         $$('input,textarea,select,.choice').forEach(function(x){x.disabled=true;});
       }catch(err){
-        if(!inserted){try{await sb.storage.from('digiy-adhesion-payment-proofs').remove([rp]);}catch(e2){}}
         st.className='status bad';st.textContent=err&&err.message?err.message:'Erreur d’envoi.';refresh();
       }
     };
