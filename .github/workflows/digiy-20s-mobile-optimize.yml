@@ -1,0 +1,52 @@
+name: Optimize DIGIY 20s mobile video
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/digiy-20s-mobile-optimize.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Download current 20s source
+        run: |
+          curl -L --fail --retry 3             "https://digiylyfe.net/wp-content/uploads/2026/09/DIGIYLYFE_BESOIN_REPONSE_CONTACT_20s_ALY_POSEE_MOBILE_SAFE.mp4"             -o digiylyfe-20s-source.mp4
+          ls -lh digiylyfe-20s-source.mp4
+
+      - name: Create lightweight mobile version
+        run: |
+          ffmpeg -y -i digiylyfe-20s-source.mp4             -vf "scale='min(540,iw)':-2"             -c:v libx264 -preset slow -profile:v main -level 3.1             -b:v 340k -maxrate 420k -bufsize 680k             -pix_fmt yuv420p -movflags +faststart             -c:a aac -b:a 48k -ac 1             DIGIYLYFE_BESOIN_REPONSE_CONTACT_20s_MOBILE_LIGHT.mp4
+          ls -lh DIGIYLYFE_BESOIN_REPONSE_CONTACT_20s_MOBILE_LIGHT.mp4
+
+      - name: Wire homepage to local optimized source
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          old='https://digiylyfe.net/wp-content/uploads/2026/09/DIGIYLYFE_BESOIN_REPONSE_CONTACT_20s_ALY_POSEE_MOBILE_SAFE.mp4'
+          new='./DIGIYLYFE_BESOIN_REPONSE_CONTACT_20s_MOBILE_LIGHT.mp4'
+          s=s.replace(old,new)
+          s=s.replace('preload="metadata" x-webkit-airplay="allow" aria-label="Vidéo de présentation DIGIYLYFE"','preload="auto" x-webkit-airplay="allow" aria-label="Vidéo de présentation DIGIYLYFE"')
+          p.write_text(s,encoding='utf-8')
+          PY
+
+      - name: Commit optimized video
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add DIGIYLYFE_BESOIN_REPONSE_CONTACT_20s_MOBILE_LIGHT.mp4 index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "perf: optimize DIGIYLYFE 20s homepage video"
+          git push
