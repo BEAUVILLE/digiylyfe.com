@@ -59,7 +59,7 @@
           },
           "pionnier-saly-13000": {
             "amount": 13000,
-            "label": "13 000 FCFA / mois · Pionnier Saly",
+            "label": "Candidature pilote Saly · 13 000 FCFA / mois si sélectionné",
             "billing_period": "month",
             "billing_months": 1,
             "pilot": "saly",
