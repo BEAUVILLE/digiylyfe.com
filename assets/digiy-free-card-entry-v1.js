@@ -191,7 +191,6 @@
     if(!promise)return;
     var order=[
       document.getElementById('digiyNetworkSynthesis'),
-      document.getElementById('digiySalyPilotEntry'),
       document.getElementById('digiyEntryChoice'),
       document.querySelector('.voiceSearchBand'),
       document.querySelector('.hero[aria-label="Présence numérique DIGIYLYFE"]'),
