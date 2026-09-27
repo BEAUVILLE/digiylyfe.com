@@ -60,23 +60,8 @@
         },
         "modules": {
           "carnet_pro": {
-            "plans": {
-              "essentiel": {
-                "code": "carnet-essentiel",
-                "amount": 4900,
-                "label": "Essentiel · 4 900 FCFA / mois"
-              },
-              "pro": {
-                "code": "carnet-pro",
-                "amount": 9900,
-                "label": "Pro · 9 900 FCFA / mois"
-              },
-              "business": {
-                "code": "carnet-business",
-                "amount": 24900,
-                "label": "Business · 24 900 FCFA / mois"
-              }
-            }
+            "amount": 13000,
+            "label": "13 000 FCFA / mois"
           }
         },
         "services": {
