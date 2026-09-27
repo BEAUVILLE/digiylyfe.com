@@ -29,7 +29,17 @@
   function t(){return COPY[lang]||COPY.fr;}
   function countries(){return runtime&&Array.isArray(runtime.countries)?runtime.countries.filter(function(x){return x.status==='active';}):[];}
   function country(){var el=$('#country');return el?countries().find(function(x){return x.id===el.value;}):null;}
-  function carnetPrice(){var c=country();return c&&c.pricing&&c.pricing.modules?c.pricing.modules.carnet_pro:null;}
+  function carnetConfig(){var c=country();return c&&c.pricing&&c.pricing.modules?c.pricing.modules.carnet_pro:null;}
+  function carnetPrice(){
+    var cfg=carnetConfig();if(!cfg)return null;
+    if(!cfg.plans)return cfg;
+    var sel=$('#carnetPlan'),key=sel&&sel.value;
+    if(!key){
+      var qp=(Q.get('plan')||'').toLowerCase().replace(/^carnet-/,'');
+      if(cfg.plans[qp])key=qp;
+    }
+    return key&&cfg.plans[key]?cfg.plans[key]:null;
+  }
   function label(o){return o&&o.labels?(o.labels[lang]||o.labels.fr||o.slug):String(o&&o.label||'');}
   function normalizePhone(v,c){var s=String(v||'').trim().replace(/[^\d+]/g,'');if(!s)return'';if(s.indexOf('00')===0)s='+'+s.slice(2);if(s.indexOf('+')===0)return s;s=s.replace(/^0+/,'');return c.calling_code+s;}
   function ext(f){if(f.type==='image/png')return'png';if(f.type==='image/webp')return'webp';if(f.type==='application/pdf')return'pdf';return'jpg';}
@@ -60,16 +70,34 @@
         firstGrid.appendChild(lab);
       }
     }
+    var cfg=carnetConfig(),grid=$('#name')&&$('#name').closest('.grid');
+    if(cfg&&cfg.plans&&grid&&!$('#carnetPlan')){
+      var pl=document.createElement('label');
+      pl.className='full';
+      pl.setAttribute('data-carnet-plan-wrap','1');
+      pl.innerHTML='<span>Formule CARNET PRO *</span><select id="carnetPlan" required><option value="">— Choisir une formule —</option></select>';
+      grid.appendChild(pl);
+    }
+    var ps=$('#carnetPlan');
+    if(ps&&cfg&&cfg.plans){
+      var previous=ps.value,requested=(Q.get('plan')||'').toLowerCase().replace(/^carnet-/,'');
+      ps.innerHTML='<option value="">— Choisir une formule —</option>';
+      ['essentiel','pro','business'].forEach(function(k){
+        if(!cfg.plans[k])return;
+        var o=document.createElement('option');o.value=k;o.textContent=cfg.plans[k].label;ps.appendChild(o);
+      });
+      if(previous&&cfg.plans[previous])ps.value=previous;else if(requested&&cfg.plans[requested])ps.value=requested;
+    }else if(ps){var wrap=ps.closest('[data-carnet-plan-wrap]');if(wrap)wrap.hidden=true;}
   }
 
   function refresh(){
     lang=(new URLSearchParams(location.search).get('lang')||localStorage.getItem('digiy_lang')||document.documentElement.lang||'fr').slice(0,2).toLowerCase();
     if(!COPY[lang])lang='fr';
+    installMinimalForm();
     var c=country(),p=carnetPrice(),copy=t();
     document.documentElement.lang=lang;
     document.documentElement.dir=lang==='ar'?'rtl':'ltr';
     document.title='DIGIYLYFE — CARNET PRO';
-    installMinimalForm();
     if($('#title'))$('#title').textContent=copy.title;
     if($('#lead'))$('#lead').textContent=copy.lead;
     if($('#geoTitle'))$('#geoTitle').textContent=copy.country;
@@ -99,7 +127,7 @@
         var base={
           id:id,
           product_code:'carnet-pro',
-          plan_code:'carnet-pro',
+          plan_code:p.code||'carnet-pro',
           price_amount:p.amount,
           price_xof:c.currency.code==='XOF'?p.amount:null,
           price_eur:c.currency.code==='EUR'?p.amount:null,
@@ -153,6 +181,7 @@
   installSubmit();
   loadRuntime();
   var countryEl=$('#country');if(countryEl)countryEl.addEventListener('change',function(){setTimeout(refresh,0);});
+  document.addEventListener('change',function(e){if(e.target&&e.target.id==='carnetPlan')setTimeout(refresh,0);});
   document.addEventListener('input',function(e){if(e.target&&e.target.id==='email')refresh();});
   document.addEventListener('click',function(e){if(e.target&&e.target.matches&&e.target.matches('[data-lang]'))setTimeout(refresh,40);});
   setTimeout(refresh,120);
