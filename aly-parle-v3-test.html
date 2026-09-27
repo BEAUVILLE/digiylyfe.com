@@ -59,17 +59,17 @@
 </div>
 </section>
 
-<section class="alyLab" aria-label="Laboratoire Aly Kane interactif">
+<section class="alyLab" aria-label="Laboratoire Aly Kane interactif" data-aly-interact>
   <span class="alyLabBadge">LAB · ALY KANE V3</span>
   <h2>Aly Kane rencontre le moteur du terrain</h2>
   <p>Prototype isolé : la présence d’Aly reste intacte. Le moteur DIGIYLYFE existant est affiché juste dessous pour tester le passage naturel de l’accueil humain vers la recherche locale réelle.</p>
   <div class="alyLabActions">
-    <a class="primary" href="#aly-engine">🎙️ Parler ou rechercher avec DIGIY</a>
-    <a href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener">Ouvrir le moteur seul ↗</a>
+    <a class="primary" href="#aly-engine" data-aly-focus>🎙️ Parler ou rechercher avec DIGIY</a>
+    <a href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener" data-aly-open>Ouvrir le moteur seul ↗</a>
   </div>
   <div class="alyEngine" id="aly-engine">
     <iframe src="https://pro-action-digiy.digiylyfe.com/" title="Moteur de recherche local DIGIYLYFE" loading="lazy" allow="microphone"></iframe>
-    <div class="alyEngineFallback">Si le navigateur bloque l’intégration, utilisez « Ouvrir le moteur seul » ci-dessus. Aucun changement n’est appliqué au moteur public.</div>
+    <div class="alyEngineFallback">Si le navigateur bloque l’intégration, utilisez « Ouvrir le moteur seul » ci-dessus. Aucun changement n’est appliqué au moteur public.</div><div class="alyEngineFallback" data-aly-status aria-live="polite"></div>
   </div>
 </section>
 <div class="cta"><a id="cta" href="./index.html#modules">Découvrir toutes les portes DIGIYLYFE →</a></div>
@@ -99,5 +99,6 @@ try{loadVoices()}catch(e){}
 if(synth){if("onvoiceschanged" in synth)synth.onvoiceschanged=loadVoices;setTimeout(loadVoices,250);setTimeout(loadVoices,800);setTimeout(loadVoices,1800)}
 const q=new URLSearchParams(location.search).get("lang");const initial=safe(q||localStorage.getItem("digiy_lang")||(navigator.language||"fr").slice(0,2));setLang(initial);
 </script>
+<script src="./assets/aly-interact-v1.js?v=20260927-lab-v1" defer></script>
 </body>
 </html>
