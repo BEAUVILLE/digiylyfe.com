@@ -4,8 +4,8 @@ var MODULE=document.body.getAttribute('data-digiy-module')||'';
 var P=new URLSearchParams(location.search),territory=P.get('territory')||'',local=P.get('local')||'',lang=(P.get('lang')||'fr').slice(0,2).toLowerCase();
 var LANGS=['fr','en','es','pt','de','it','nl','ar'];if(LANGS.indexOf(lang)<0)lang='fr';
 var META={
- 'petite-cote':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'PETITE CÔTE',currency:'19 900 FCFA / mois',locPrice:'À partir de 28 000 FCFA / mois'},
- 'dakar':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'DAKAR',currency:'19 900 FCFA / mois',locPrice:'À partir de 28 000 FCFA / mois'},
+ 'petite-cote':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'PETITE CÔTE',currency:'19 900 FCFA / mois',locPrice:'À partir de 21 000 FCFA / mois'},
+ 'dakar':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'DAKAR',currency:'19 900 FCFA / mois',locPrice:'À partir de 21 000 FCFA / mois'},
  'vallee-dordogne':{country:'FRANCE',flag:'🇫🇷',zone:'VALLÉE DE LA DORDOGNE',currency:'45 € / mois',locPrice:'À partir de 75 € / mois'},
  'bordeaux':{country:'FRANCE',flag:'🇫🇷',zone:'BORDEAUX',currency:'45 € / mois',locPrice:'À partir de 75 € / mois'}
 };
