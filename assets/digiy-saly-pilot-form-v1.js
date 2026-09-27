@@ -33,6 +33,19 @@ function apply(){
   if(status&&!status.classList.contains('ok')&&!status.classList.contains('bad')){
     status.textContent='Candidature en préparation · aucun paiement demandé maintenant.';
   }
+
+  const formEl=document.getElementById('form');
+  if(formEl&&!formEl.dataset.salyPilotAckBound){
+    formEl.dataset.salyPilotAckBound='1';
+    formEl.addEventListener('submit',function(){
+      setTimeout(function(){
+        const st=document.getElementById('status');
+        if(st&&st.classList.contains('ok')){
+          st.textContent='Bonjour, nous avons bien reçu votre candidature pour le pilote DIGIYLYFE Saly. Nous revenons vers vous sous 48 heures. Cette réponse ne vaut pas acceptation — nous vous confirmerons la suite après étude du dossier.';
+        }
+      },1200);
+    });
+  }
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);else apply();
 })();
