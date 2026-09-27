@@ -2,9 +2,10 @@
 (function(){
 'use strict';
 const q=new URLSearchParams(location.search);
+const path=location.pathname.replace(/\/+$/,'')||'/';
+const isHome=path==='/'||/\/index\.html$/i.test(path);
+if(!isHome)return;
 const zone=(q.get('zone')||q.get('local')||'').toLowerCase();
-if(zone!=='saly')return;
-
 const src=(q.get('src')||'').trim();
 function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function u(path,params){
