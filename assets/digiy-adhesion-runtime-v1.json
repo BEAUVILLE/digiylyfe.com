@@ -56,6 +56,15 @@
             "label": "28 000 FCFA / mois",
             "billing_period": "month",
             "billing_months": 1
+          },
+          "pionnier-saly-13000": {
+            "amount": 13000,
+            "label": "13 000 FCFA / mois · Pionnier Saly",
+            "billing_period": "month",
+            "billing_months": 1,
+            "pilot": "saly",
+            "included_profile": true,
+            "commission_rate": 0
           }
         },
         "modules": {
