@@ -1,0 +1,83 @@
+name: Optimize territory images
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/optimize-territory-images.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install image tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick webp libavif-bin
+
+      - name: Download source images
+        run: |
+          mkdir -p assets/territoires
+          curl -L --fail "https://digiylyfe.net/wp-content/uploads/2026/09/Image-12-09-2026-a-06.40.jpeg" -o /tmp/paris.jpg
+          curl -L --fail "https://digiylyfe.net/wp-content/uploads/2026/09/ChatGPT-Image-11-sept.-2026-22_03_22.png" -o /tmp/miami.png
+          curl -L --fail "https://images.unsplash.com/photo-1741812956072-bef4470e5828?auto=format&fit=crop&w=1200&q=82" -o /tmp/maroc.jpg
+
+      - name: Create optimized images
+        run: |
+          convert /tmp/paris.jpg -resize '1200x1200>' -strip -quality 82 /tmp/paris-base.jpg
+          cwebp -quiet -q 76 /tmp/paris-base.jpg -o assets/territoires/paris.webp
+          avifenc --min 28 --max 38 --speed 6 /tmp/paris-base.jpg assets/territoires/paris.avif
+
+          convert /tmp/miami.png -resize '1200x1200>' -strip -quality 82 /tmp/miami-base.jpg
+          cwebp -quiet -q 76 /tmp/miami-base.jpg -o assets/territoires/miami.webp
+          avifenc --min 28 --max 38 --speed 6 /tmp/miami-base.jpg assets/territoires/miami.avif
+
+          convert /tmp/maroc.jpg -resize '1200x1200>' -strip -quality 82 /tmp/maroc-base.jpg
+          cwebp -quiet -q 76 /tmp/maroc-base.jpg -o assets/territoires/maroc.webp
+          avifenc --min 28 --max 38 --speed 6 /tmp/maroc-base.jpg assets/territoires/maroc.avif
+
+      - name: Update pages to local optimized images
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p=Path("index.html")
+          s=p.read_text()
+          s=s.replace(
+            '<picture class="territoryPhoto">\n            <img src="https://digiylyfe.net/wp-content/uploads/2026/09/ChatGPT-Image-11-sept.-2026-22_03_22.png" alt="Miami · Florida" loading="lazy" decoding="async"/>\n          </picture>',
+            '<picture class="territoryPhoto">\n            <source type="image/avif" srcset="/assets/territoires/miami.avif"/>\n            <source type="image/webp" srcset="/assets/territoires/miami.webp"/>\n            <img src="/assets/territoires/miami.webp" alt="Miami · Florida" loading="lazy" decoding="async"/>\n          </picture>'
+          )
+          s=s.replace(
+            '<div class="territoryPhoto digiyMoroccoPhoto">\n            <img src="https://images.unsplash.com/photo-1741812956072-bef4470e5828?auto=format&fit=crop&w=1200&q=82" alt="Casablanca, Maroc" loading="lazy" decoding="async"/>',
+            '<div class="territoryPhoto digiyMoroccoPhoto">\n            <picture>\n              <source type="image/avif" srcset="/assets/territoires/maroc.avif"/>\n              <source type="image/webp" srcset="/assets/territoires/maroc.webp"/>\n              <img src="/assets/territoires/maroc.webp" alt="Casablanca, Maroc" loading="lazy" decoding="async"/>\n            </picture>'
+          )
+          p.write_text(s)
+
+          p=Path("miami.html")
+          s=p.read_text().replace(
+            'https://digiylyfe.net/wp-content/uploads/2026/09/ChatGPT-Image-11-sept.-2026-22_03_22.png',
+            '/assets/territoires/miami.webp'
+          )
+          p.write_text(s)
+
+          p=Path("paris.html")
+          s=p.read_text().replace(
+            'https://digiylyfe.net/wp-content/uploads/2026/09/Image-12-09-2026-a-06.40.jpeg',
+            '/assets/territoires/paris.webp'
+          )
+          p.write_text(s)
+          PY
+
+      - name: Commit optimized assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/territoires/paris.webp assets/territoires/paris.avif assets/territoires/miami.webp assets/territoires/miami.avif assets/territoires/maroc.webp assets/territoires/maroc.avif index.html miami.html paris.html
+          git diff --cached --quiet && exit 0
+          git commit -m "perf: optimize Paris Miami Morocco territory images"
+          git push
