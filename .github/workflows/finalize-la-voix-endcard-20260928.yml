@@ -1,0 +1,73 @@
+name: Finalize LA VOIX end card
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/finalize-la-voix-endcard-20260928.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Ensure ffmpeg
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+
+      - name: Build final LA VOIX clip
+        run: |
+          set -euo pipefail
+          SRC="assets/DIGIYLYFE_LA_VOIX_PARCOURS_26_6S.mp4"
+          OUT="/tmp/DIGIYLYFE_LA_VOIX_PARCOURS_FINAL_FLAMME.mp4"
+          CARD="/tmp/voice_endcard.mp4"
+
+          ffmpeg -y -f lavfi -i color=c=0x021f18:s=1080x1920:d=3:r=30 \
+            -vf "drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='DIGIYLYFE':fontcolor=0xf6c453:fontsize=78:x=(w-text_w)/2:y=220,\
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='LA VOIX · LA RELATION RESTE HUMAINE':fontcolor=0xc9fff7:fontsize=30:x=(w-text_w)/2:y=335,\
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='La technologie rapproche.':fontcolor=white:fontsize=56:x=(w-text_w)/2:y=600,\
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='Elle est l’étincelle.':fontcolor=0xf6c453:fontsize=42:x=(w-text_w)/2:y=680,\
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='Le visuel rassure.':fontcolor=white:fontsize=56:x=(w-text_w)/2:y=880,\
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='L’humain choisit.':fontcolor=white:fontsize=56:x=(w-text_w)/2:y=1080,\
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='Le contact reste direct.':fontcolor=white:fontsize=56:x=(w-text_w)/2:y=1280,\
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='Il devient la flamme.':fontcolor=0xf6c453:fontsize=42:x=(w-text_w)/2:y=1360,\
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='Parler · Voir · Choisir · Contacter':fontcolor=0xc9fff7:fontsize=34:x=(w-text_w)/2:y=1600,format=yuv420p" \
+            -c:v libx264 -crf 20 -preset medium -an "$CARD"
+
+          ffmpeg -y \
+            -i "$SRC" \
+            -i "$CARD" \
+            -f lavfi -t 3 -i anullsrc=r=44100:cl=stereo \
+            -filter_complex "[0:v]fps=30,format=yuv420p[v0];[1:v]fps=30,format=yuv420p[v1];[0:a]aresample=44100[a0];[2:a]aresample=44100[a1];[v0][a0][v1][a1]concat=n=2:v=1:a=1[v][a]" \
+            -map "[v]" -map "[a]" \
+            -c:v libx264 -crf 20 -preset medium \
+            -c:a aac -b:a 128k -movflags +faststart "$OUT"
+
+          mv "$OUT" "$SRC"
+
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("index.html")
+          s=p.read_text(encoding="utf-8")
+          s=s.replace(
+              "/assets/DIGIYLYFE_LA_VOIX_PARCOURS_26_6S.mp4?v=20260928-voice-demo-v1",
+              "/assets/DIGIYLYFE_LA_VOIX_PARCOURS_26_6S.mp4?v=20260928-voice-demo-flamme-v2"
+          )
+          p.write_text(s,encoding="utf-8")
+          PY
+
+      - name: Commit final clip
+        run: |
+          git config user.name "DIGIY LYFE"
+          git config user.email "baptistejb24@gmail.com"
+          git add assets/DIGIYLYFE_LA_VOIX_PARCOURS_26_6S.mp4 index.html
+          git diff --cached --check
+          git commit -m "media: finalize LA VOIX with human flame end card [skip ci]"
+          git push
