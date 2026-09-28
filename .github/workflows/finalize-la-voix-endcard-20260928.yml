@@ -17,57 +17,62 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Ensure ffmpeg
+      - name: Install media tools
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          sudo apt-get install -y ffmpeg python3-pil fonts-dejavu-core
 
-      - name: Build final LA VOIX clip
+      - name: Build verified final end card
         run: |
           set -euo pipefail
           SRC="assets/DIGIYLYFE_LA_VOIX_PARCOURS_26_6S.mp4"
+          CARD="/tmp/voice_endcard_fixed.png"
           OUT="/tmp/DIGIYLYFE_LA_VOIX_PARCOURS_FINAL_FLAMME.mp4"
-          CARD="/tmp/voice_endcard.mp4"
 
-          ffmpeg -y -f lavfi -i color=c=0x021f18:s=1080x1920:d=3:r=30 \
-            -vf "drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='DIGIYLYFE':fontcolor=0xf6c453:fontsize=78:x=(w-text_w)/2:y=220,\
-drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='LA VOIX · LA RELATION RESTE HUMAINE':fontcolor=0xc9fff7:fontsize=30:x=(w-text_w)/2:y=335,\
-drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='La technologie rapproche.':fontcolor=white:fontsize=56:x=(w-text_w)/2:y=600,\
-drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='Elle est l’étincelle.':fontcolor=0xf6c453:fontsize=42:x=(w-text_w)/2:y=680,\
-drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='Le visuel rassure.':fontcolor=white:fontsize=56:x=(w-text_w)/2:y=880,\
-drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='L’humain choisit.':fontcolor=white:fontsize=56:x=(w-text_w)/2:y=1080,\
-drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='Le contact reste direct.':fontcolor=white:fontsize=56:x=(w-text_w)/2:y=1280,\
-drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='Il devient la flamme.':fontcolor=0xf6c453:fontsize=42:x=(w-text_w)/2:y=1360,\
-drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='Parler · Voir · Choisir · Contacter':fontcolor=0xc9fff7:fontsize=34:x=(w-text_w)/2:y=1600,format=yuv420p" \
-            -c:v libx264 -crf 20 -preset medium -an "$CARD"
+          python3 - <<'PY'
+          from PIL import Image, ImageDraw, ImageFont
+          W,H=1080,1920
+          img=Image.new('RGB',(W,H),(2,31,24))
+          d=ImageDraw.Draw(img)
+          fb='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
+          fr='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+          def F(path,size): return ImageFont.truetype(path,size)
+          def center(text,y,font,fill):
+              box=d.textbbox((0,0),text,font=font)
+              x=(W-(box[2]-box[0]))/2
+              d.text((x,y),text,font=font,fill=fill)
+          center('DIGIYLYFE',180,F(fb,82),(246,196,83))
+          center('LA VOIX · LA RELATION RESTE HUMAINE',305,F(fb,32),(201,255,247))
+          center('La technologie rapproche.',570,F(fb,58),(255,255,255))
+          center("Elle est l’étincelle.",655,F(fr,44),(246,196,83))
+          center('Le visuel rassure.',855,F(fb,58),(255,255,255))
+          center("L’humain choisit.",1060,F(fb,58),(255,255,255))
+          center('Le contact reste direct.',1265,F(fb,58),(255,255,255))
+          center('Il devient la flamme.',1350,F(fr,44),(246,196,83))
+          center('Parler · Voir · Choisir · Contacter',1605,F(fb,34),(201,255,247))
+          img.save('/tmp/voice_endcard_fixed.png')
+          PY
 
-          ffmpeg -y \
-            -i "$SRC" \
-            -i "$CARD" \
-            -f lavfi -t 3 -i anullsrc=r=44100:cl=stereo \
-            -filter_complex "[0:v]fps=30,format=yuv420p[v0];[1:v]fps=30,format=yuv420p[v1];[0:a]aresample=44100[a0];[2:a]aresample=44100[a1];[v0][a0][v1][a1]concat=n=2:v=1:a=1[v][a]" \
-            -map "[v]" -map "[a]" \
-            -c:v libx264 -crf 20 -preset medium \
-            -c:a aac -b:a 128k -movflags +faststart "$OUT"
+          ffmpeg -y             -i "$SRC"             -loop 1 -t 3 -i "$CARD"             -f lavfi -t 3 -i anullsrc=r=44100:cl=stereo             -filter_complex "[0:v]fps=30,format=yuv420p[v0];[1:v]fps=30,format=yuv420p[v1];[0:a]aresample=44100[a0];[2:a]aresample=44100[a1];[v0][a0][v1][a1]concat=n=2:v=1:a=1[v][a]"             -map "[v]" -map "[a]"             -c:v libx264 -crf 20 -preset medium             -c:a aac -b:a 128k -movflags +faststart "$OUT"
 
           mv "$OUT" "$SRC"
 
           python3 - <<'PY'
           from pathlib import Path
-          p=Path("index.html")
-          s=p.read_text(encoding="utf-8")
-          s=s.replace(
-              "/assets/DIGIYLYFE_LA_VOIX_PARCOURS_26_6S.mp4?v=20260928-voice-demo-v1",
-              "/assets/DIGIYLYFE_LA_VOIX_PARCOURS_26_6S.mp4?v=20260928-voice-demo-flamme-v2"
-          )
-          p.write_text(s,encoding="utf-8")
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          import re
+          s=re.sub(r'/assets/DIGIYLYFE_LA_VOIX_PARCOURS_26_6S\.mp4\?v=[^"\']+',
+                   '/assets/DIGIYLYFE_LA_VOIX_PARCOURS_26_6S.mp4?v=20260928-voice-demo-flamme-v3',
+                   s)
+          p.write_text(s,encoding='utf-8')
           PY
 
-      - name: Commit final clip
+      - name: Commit corrected clip
         run: |
           git config user.name "DIGIY LYFE"
           git config user.email "baptistejb24@gmail.com"
           git add assets/DIGIYLYFE_LA_VOIX_PARCOURS_26_6S.mp4 index.html
           git diff --cached --check
-          git commit -m "media: finalize LA VOIX with human flame end card [skip ci]"
+          git commit -m "media: fix LA VOIX final card without white ending"
           git push
