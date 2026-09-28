@@ -231,6 +231,9 @@
       text-align:center;color:#fff3cf;font-size:12px;line-height:1.45;font-weight:1000
     }
     .voiceHumanChoice small{display:block;margin-top:4px;color:rgba(255,250,240,.76);font-size:10.8px;line-height:1.4;font-weight:900}
+    .voiceDemoFrame{width:min(430px,100%);margin:12px auto 0;padding:6px;border-radius:24px;border:1px solid rgba(94,234,212,.42);background:rgba(255,255,255,.04);box-shadow:0 14px 34px rgba(0,0,0,.24)}
+    .voiceDemoFrame video{display:block;width:100%;height:auto;border-radius:18px;background:#000;object-fit:contain}
+    .voiceDemoHint{display:block;margin:8px auto 0;color:rgba(255,250,240,.72);font-size:10.5px;line-height:1.35;font-weight:850;text-align:center}
     @media(max-width:560px){
       .voiceSearchBand{padding:12px 10px;border-radius:22px}
       .voiceSearchIntro>strong{font-size:18px;line-height:1.22}
@@ -896,6 +899,13 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
         <div class="voiceHumanChoice">
           <span data-i18n="voiceHumanPath">Parler pour trouver. Voir pour choisir. Contacter pour agir.</span>
           <small data-i18n="voiceHumanDecision">La voix guide la recherche. Le visuel éclaire le choix. L’humain garde la décision.</small>
+        </div>
+        <div class="voiceDemoFrame">
+          <video controls playsinline webkit-playsinline preload="metadata" aria-label="Démonstration LA VOIX DIGIYLYFE">
+            <source src="/assets/DIGIYLYFE_LA_VOIX_PARCOURS_26_6S.mp4?v=20260928-voice-demo-v1" type="video/mp4"/>
+            Votre navigateur ne peut pas lire cette vidéo.
+          </video>
+          <small class="voiceDemoHint">▶ Démonstration LA VOIX · 26,6 secondes</small>
         </div>
       </div>
       <a class="publicLeadDoor voiceLeadDoor" href="https://pro-action-digiy.digiylyfe.com/" aria-label="Ouvrir LA VOIX · ACTION PRO" data-fav-id="service-voix-action-pro">
