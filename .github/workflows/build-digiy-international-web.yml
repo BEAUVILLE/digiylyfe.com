@@ -37,6 +37,8 @@ jobs:
 
       - name: Build corrected-ratio vertical video
         run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg
           python3 -m pip install --quiet pillow
           cat > /tmp/build_international.py <<'PY'
           from pathlib import Path
