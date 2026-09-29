@@ -1,0 +1,94 @@
+name: Validation captures DIGIY 20260929
+on:
+  push:
+    branches: [validation/captures-digiy-20260929]
+    paths: [.github/workflows/validation-captures-20260929.yml]
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Install browser tools
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Capture unchanged sources and public references
+        shell: python
+        run: |
+          import json, subprocess, threading, functools, pathlib, hashlib
+          from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
+          from playwright.sync_api import sync_playwright
+          out=pathlib.Path("captures"); out.mkdir(exist_ok=True)
+          repos=[
+          ("babacar","babacar-plombier-pro","c1b7c740f55004600ce21bc6d0024dabedd2667d","babacar-plombier-pro.digiylyfe.com"),
+          ("baptiste","part-chez-baptiste","89799f7170e8e960a9bf7c2b6b21ab5a76317739","part-chez-baptiste.digiylyfe.com"),
+          ("lamine","partenaire-lamine.","17a863d083b3e6108d65f811944ed9f69c68d78e","partenaire-lamine.digiylyfe.com"),
+          ("astou","astou-boutique","16c115bf47d2e7ca22196239eca015dbc92e00ae","astou-boutique.digiylyfe.com"),
+          ("mane","mane-gning","6bc40ee85e41f939367bfc29b495cb8d5ac5a0e9","mane-gning.digiylyfe.com"),
+          ("vitrine","digiylyfe.com","85bff89d9beca7dc053cb2d7a99268c20fe5e534","digiylyfe.com"),
+          ("voix","pro-action-digiy","0a2701ce3a8d796c1c2b3719167a65ddd1712c04","pro-action-digiy.digiylyfe.com")]
+          class Quiet(SimpleHTTPRequestHandler):
+           def log_message(self,*args): pass
+          servers={}; tasks=[]
+          for i,(name,repo,sha,domain) in enumerate(repos):
+           root=pathlib.Path("sources")/repo
+           subprocess.run(["git","clone","--quiet","https://github.com/BEAUVILLE/"+repo+".git",str(root)],check=True)
+           subprocess.run(["git","-C",str(root),"checkout","--quiet",sha],check=True)
+           handler=functools.partial(Quiet,directory=str(root.resolve()))
+           server=ThreadingHTTPServer(("127.0.0.1",8100+i),handler)
+           threading.Thread(target=server.serve_forever,daemon=True).start();servers[name]=server
+           tasks.append((name,repo,sha,domain,8100+i,"/"))
+           if name=="vitrine":tasks.append(("petite-cote",repo,sha,domain,8100+i,"/territoire.html?zone=petite-cote"))
+          reports=[]
+          with sync_playwright() as p:
+           browser=p.chromium.launch()
+           for name,repo,sha,domain,port,path in tasks:
+            pair={"name":name,"repo":repo,"sha":sha,"captures":{}}
+            for mode,url in [("local","http://127.0.0.1:"+str(port)+path),("public","https://"+domain+path)]:
+             report={"url":url,"http_errors":[],"request_failures":[],"js_errors":[]}
+             context=browser.new_context(viewport={"width":360,"height":640},device_scale_factor=3,is_mobile=True,has_touch=True,locale="fr-FR")
+             page=context.new_page()
+             page.on("pageerror",lambda e: report["js_errors"].append(str(e)))
+             page.on("requestfailed",lambda r: report["request_failures"].append({"url":r.url,"type":r.resource_type,"error":r.failure}))
+             page.on("response",lambda r: report["http_errors"].append({"url":r.url,"status":r.status,"type":r.request.resource_type}) if r.status>=400 else None)
+             try:
+              response=page.goto(url,wait_until="domcontentloaded",timeout=45000)
+              report["status"]=response.status if response else None
+              page.wait_for_timeout(6000)
+              for _ in range(12):
+               if page.evaluate("window.scrollY + innerHeight >= document.documentElement.scrollHeight-2"): break
+               page.mouse.wheel(0,600); page.wait_for_timeout(180)
+              page.evaluate("window.scrollTo(0,0)");page.wait_for_timeout(800)
+              report["title"]=page.title()
+              report["text"]=page.locator("body").inner_text()
+              report["images"]=page.locator("img").evaluate_all("(imgs)=>imgs.map(i=>({src:i.currentSrc,loaded:i.complete&&i.naturalWidth>0,width:i.naturalWidth}))")
+              report["fonts"]=page.evaluate("document.fonts.status")
+              report["html_source_sha256"]=hashlib.sha256(response.body()).hexdigest() if response else None
+              page.screenshot(path=str(out/(name+"-"+mode+".png")))
+              page.screenshot(path=str(out/(name+"-"+mode+"-full.png")),full_page=True)
+              report["screenshot"]=True
+             except Exception as e:
+              report["error"]=str(e);report["screenshot"]=False
+             (out/(name+"-"+mode+".json")).write_text(json.dumps(report,ensure_ascii=False,indent=2))
+             pair["captures"][mode]=report
+             context.close()
+            local=pair["captures"]["local"];public=pair["captures"]["public"]
+            pair["text_equal"]=local.get("text")==public.get("text") and bool(local.get("text"))
+            reports.append(pair)
+            (out/"report.json").write_text(json.dumps(reports,ensure_ascii=False,indent=2))
+           browser.close()
+          for name,repo,sha,domain in repos:
+           assert not subprocess.check_output(["git","-C","sources/"+repo,"status","--porcelain"]).strip(),"Source changed"
+          for server in servers.values():server.shutdown()
+          print(json.dumps([{"name":r["name"],"text_equal":r["text_equal"],"local_errors":r["captures"]["local"].get("js_errors")} for r in reports],ensure_ascii=False))
+          
+      - name: Preserve diagnostic captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: digiy-captures-validation-20260929
+          path: captures/
+          retention-days: 14
+          if-no-files-found: error
