@@ -1,0 +1,48 @@
+name: Generate INTERCONNEXION narration
+
+on:
+  push:
+    branches:
+      - validation/captures-digiy-20260929
+    paths:
+      - '.github/workflows/generate-interconnexion-narration.yml'
+  workflow_dispatch:
+
+jobs:
+  narration:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Generate French narration segments with Piper Siwis
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p work
+          cd work
+          wget -q https://github.com/rhasspy/piper/releases/download/v1.2.0/piper_amd64.tar.gz
+          tar -xzf piper_amd64.tar.gz
+          wget -q -O fr_FR-siwis-medium.onnx "https://huggingface.co/rhasspy/piper-voices/resolve/main/fr/fr_FR/siwis/medium/fr_FR-siwis-medium.onnx?download=true"
+          wget -q -O fr_FR-siwis-medium.onnx.json "https://huggingface.co/rhasspy/piper-voices/resolve/main/fr/fr_FR/siwis/medium/fr_FR-siwis-medium.onnx.json?download=true"
+
+          declare -a lines=(
+            "Un besoin peut en ouvrir un autre."
+            "Vous vous logez."
+            "Vous avez besoin d'un chauffeur."
+            "Puis d'un restaurant, d'un artisan, d'un commerce ou d'un service."
+            "DIGIYLYFE relie les besoins d'un même territoire."
+            "Vous choisissez."
+            "Vous contactez directement."
+            "Le réseau apporte de la puissance."
+            "La relation reste humaine et directe."
+          )
+
+          n=1
+          for line in "${lines[@]}"; do
+            printf "%s\n" "$line" | ./piper/piper               --model fr_FR-siwis-medium.onnx               --config fr_FR-siwis-medium.onnx.json               --output_file "seg_${n}.wav"
+            n=$((n+1))
+          done
+      - name: Upload narration segments
+        uses: actions/upload-artifact@v4
+        with:
+          name: digiy-interconnexion-narration-siwis
+          path: work/seg_*.wav
+          retention-days: 14
