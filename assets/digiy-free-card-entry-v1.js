@@ -95,7 +95,7 @@
   function renderWorld(box){
     var l=lang(),t=WORLD[l]||WORLD.fr;
     box.dir=l==='ar'?'rtl':'ltr';
-    box.innerHTML='<div class="digiyInternationalGrid"><div class="digiyInternationalMedia"><video controls playsinline webkit-playsinline preload="metadata" aria-label="DIGIY INTERNATIONAL · Ouvert au monde"><source src="/assets/DIGIY_INTERNATIONAL_OUVERT_AU_MONDE_CORRIGE_RATIO.mp4?v=20260929-international-v1" type="video/mp4"></video><small>▶ DIGIY INTERNATIONAL · Ouvert au monde. Ancré dans chaque territoire.</small></div><div class="digiyInternationalCopy"><span class="digiyInternationalMini"></span><h2></h2><p class="digiyInternationalLead"></p><p class="digiyInternationalText"></p></div></div>';
+    box.innerHTML='<div class="digiyInternationalGrid"><div class="digiyInternationalMedia"><video controls playsinline webkit-playsinline preload="metadata" aria-label="DIGIY INTERNATIONAL · Ouvert au monde"><source src="/assets/digiy-international-web-v2.mp4?v=20260929-cadrage-v2" type="video/mp4"></video><small>▶ DIGIY INTERNATIONAL · Ouvert au monde. Ancré dans chaque territoire.</small></div><div class="digiyInternationalCopy"><span class="digiyInternationalMini"></span><h2></h2><p class="digiyInternationalLead"></p><p class="digiyInternationalText"></p></div></div>';
     box.querySelector('.digiyInternationalMini').textContent=t.mini;
     box.querySelector('h2').textContent=t.title;
     box.querySelector('.digiyInternationalLead').textContent=t.lead;
