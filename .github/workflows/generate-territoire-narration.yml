@@ -33,10 +33,9 @@ jobs:
           Explorez votre territoire avec DIGIYLYFE.
           EOF
           ./piper/piper --model fr_FR-siwis-medium.onnx --config fr_FR-siwis-medium.onnx.json --output_file DIGIYLYFE_TERRITOIRE_NARRATION_SIWIS.wav < narration.txt
-          ffmpeg -y -i DIGIYLYFE_TERRITOIRE_NARRATION_SIWIS.wav -af "loudnorm=I=-18:TP=-2:LRA=7" DIGIYLYFE_TERRITOIRE_NARRATION_SIWIS_MASTER.wav
       - name: Upload narration
         uses: actions/upload-artifact@v4
         with:
           name: digiy-territoire-narration-siwis
-          path: work/DIGIYLYFE_TERRITOIRE_NARRATION_SIWIS_MASTER.wav
+          path: work/DIGIYLYFE_TERRITOIRE_NARRATION_SIWIS.wav
           retention-days: 14
