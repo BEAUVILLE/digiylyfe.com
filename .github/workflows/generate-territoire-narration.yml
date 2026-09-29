@@ -1,0 +1,42 @@
+name: Generate DIGIYLYFE Territory narration
+
+on:
+  push:
+    branches:
+      - validation/captures-digiy-20260929
+    paths:
+      - '.github/workflows/generate-territoire-narration.yml'
+  workflow_dispatch:
+
+jobs:
+  narration:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Generate French narration with Piper Siwis
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p work
+          cd work
+          wget -q https://github.com/rhasspy/piper/releases/download/v1.2.0/piper_amd64.tar.gz
+          tar -xzf piper_amd64.tar.gz
+          wget -q -O fr_FR-siwis-medium.onnx "https://huggingface.co/rhasspy/piper-voices/resolve/main/fr/fr_FR/siwis/medium/fr_FR-siwis-medium.onnx?download=true"
+          wget -q -O fr_FR-siwis-medium.onnx.json "https://huggingface.co/rhasspy/piper-voices/resolve/main/fr/fr_FR/siwis/medium/fr_FR-siwis-medium.onnx.json?download=true"
+          cat > narration.txt <<'EOF'
+          Sur la Petite Côte, DIGIYLYFE vous relie directement aux professionnels du territoire.
+          Se loger avec Chez Baptiste.
+          Se déplacer avec Lamine.
+          Faire réparer avec Babacar.
+          Acheter local chez Astou Boutique.
+          Trouver un service avec MANÉ & GNING.
+          Un territoire, plusieurs besoins, des contacts directs.
+          Explorez votre territoire avec DIGIYLYFE.
+          EOF
+          ./piper/piper --model fr_FR-siwis-medium.onnx --config fr_FR-siwis-medium.onnx.json --output_file DIGIYLYFE_TERRITOIRE_NARRATION_SIWIS.wav < narration.txt
+          ffmpeg -y -i DIGIYLYFE_TERRITOIRE_NARRATION_SIWIS.wav -af "loudnorm=I=-18:TP=-2:LRA=7" DIGIYLYFE_TERRITOIRE_NARRATION_SIWIS_MASTER.wav
+      - name: Upload narration
+        uses: actions/upload-artifact@v4
+        with:
+          name: digiy-territoire-narration-siwis
+          path: work/DIGIYLYFE_TERRITOIRE_NARRATION_SIWIS_MASTER.wav
+          retention-days: 14
