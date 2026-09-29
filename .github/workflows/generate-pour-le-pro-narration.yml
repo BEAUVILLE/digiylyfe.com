@@ -1,0 +1,46 @@
+name: Generate POUR LE PRO narration
+
+on:
+  push:
+    branches:
+      - validation/captures-digiy-20260929
+    paths:
+      - '.github/workflows/generate-pour-le-pro-narration.yml'
+  workflow_dispatch:
+
+jobs:
+  narration:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Generate French narration segments with Piper Siwis
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p work
+          cd work
+          wget -q https://github.com/rhasspy/piper/releases/download/v1.2.0/piper_amd64.tar.gz
+          tar -xzf piper_amd64.tar.gz
+          wget -q -O fr_FR-siwis-medium.onnx "https://huggingface.co/rhasspy/piper-voices/resolve/main/fr/fr_FR/siwis/medium/fr_FR-siwis-medium.onnx?download=true"
+          wget -q -O fr_FR-siwis-medium.onnx.json "https://huggingface.co/rhasspy/piper-voices/resolve/main/fr/fr_FR/siwis/medium/fr_FR-siwis-medium.onnx.json?download=true"
+
+          declare -a lines=(
+            "Votre activité mérite une présence qui vous ressemble."
+            "Être vu."
+            "Être compris."
+            "Être trouvé."
+            "Être contacté."
+            "Avec DIGIYLYFE, vos clients vous trouvent et vous contactent directement."
+            "Votre activité. Votre territoire. Votre contact direct."
+          )
+
+          n=1
+          for line in "${lines[@]}"; do
+            printf "%s\n" "$line" | ./piper/piper               --model fr_FR-siwis-medium.onnx               --config fr_FR-siwis-medium.onnx.json               --output_file "seg_${n}.wav"
+            n=$((n+1))
+          done
+      - name: Upload narration segments
+        uses: actions/upload-artifact@v4
+        with:
+          name: digiy-pour-le-pro-narration-siwis
+          path: work/seg_*.wav
+          retention-days: 14
