@@ -1,0 +1,27 @@
+name: Check live DIGIY INTERNATIONAL
+
+on:
+  push:
+    branches:
+      - validation/captures-digiy-20260929
+    paths:
+      - '.github/workflows/check-live-digiy-international.yml'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check live homepage and video
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "=== HOMEPAGE STATUS ==="
+          curl -sS -L -D /tmp/headers.txt -o /tmp/index.html https://digiylyfe.com/
+          head -n 20 /tmp/headers.txt
+          echo "=== INTERNATIONAL MARKER ==="
+          grep -n -C 3 "DIGIY INTERNATIONAL" /tmp/index.html || true
+          echo "=== RUNTIME SCRIPT ==="
+          grep -n "digiy-free-card-entry-v1.js" /tmp/index.html || true
+          echo "=== VIDEO STATUS ==="
+          curl -sS -L -I https://digiylyfe.com/assets/DIGIY_INTERNATIONAL_OUVERT_AU_MONDE_CORRIGE_RATIO.mp4
