@@ -738,6 +738,18 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     .digiyInstallNote{display:block;margin:7px 5px 1px;color:var(--soft);font-size:10.5px;line-height:1.35;font-weight:850;text-align:center}
     @media(max-width:560px){.digiyInstallBtn{min-height:64px;font-size:12.5px}.digiyInstallBand{padding:7px}}
 
+    .digiyInternationalStatic{margin:14px 0;padding:16px;border-radius:28px;border:1px solid rgba(125,211,252,.38);background:linear-gradient(145deg,rgba(7,25,45,.98),rgba(5,45,34,.98));box-shadow:0 20px 48px rgba(0,0,0,.26);color:#fffaf0}
+    .digiyInternationalStaticGrid{display:grid;grid-template-columns:minmax(260px,430px) minmax(0,1fr);gap:18px;align-items:center;justify-content:center}
+    .digiyInternationalStaticMedia{overflow:hidden;border-radius:22px;border:1px solid rgba(255,255,255,.13);background:#071510;padding:6px}
+    .digiyInternationalStaticMedia video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain;border-radius:17px;background:#000}
+    .digiyInternationalStaticMedia small{display:block;margin:8px 8px 4px;color:rgba(255,250,240,.70);font-size:10.5px;line-height:1.35;font-weight:850;text-align:center}
+    .digiyInternationalStaticCopy{text-align:left}
+    .digiyInternationalStaticMini{display:inline-flex;padding:6px 10px;border-radius:999px;border:1px solid rgba(45,212,191,.50);background:rgba(45,212,191,.09);color:#c9fff7;font-size:9.5px;font-weight:1000;letter-spacing:.08em}
+    .digiyInternationalStatic h2{margin:10px 0 0;font-size:clamp(28px,5vw,43px);line-height:.98;font-weight:1000;letter-spacing:-.04em}
+    .digiyInternationalStaticLead{margin:9px 0 0;color:#f6c453;font-size:clamp(21px,4vw,31px);line-height:1.05;font-weight:1000}
+    .digiyInternationalStaticText{margin:10px 0 0;color:#dce9e3;font-size:12px;line-height:1.5;font-weight:850}
+    @media(max-width:720px){.digiyInternationalStatic{padding:12px}.digiyInternationalStaticGrid{grid-template-columns:1fr}.digiyInternationalStaticCopy{text-align:center}.digiyInternationalStaticMedia{width:min(430px,100%);margin:0 auto}}
+
   </style>
 </head>
 <body>
@@ -1070,6 +1082,24 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
       </div>
     </section>
 
+
+    <section id="digiyInternational" class="digiyInternationalStatic" aria-label="DIGIY INTERNATIONAL · Ouvert au monde">
+      <div class="digiyInternationalStaticGrid">
+        <div class="digiyInternationalStaticMedia">
+          <video controls playsinline webkit-playsinline preload="metadata" aria-label="DIGIY INTERNATIONAL · Ouvert au monde">
+            <source src="/assets/DIGIY_INTERNATIONAL_OUVERT_AU_MONDE_CORRIGE_RATIO.mp4?v=20260929-international-v1" type="video/mp4"/>
+            Votre navigateur ne peut pas lire cette vidéo.
+          </video>
+          <small>▶ DIGIY INTERNATIONAL · Ouvert au monde. Ancré dans chaque territoire.</small>
+        </div>
+        <div class="digiyInternationalStaticCopy">
+          <span class="digiyInternationalStaticMini">DIGIY INTERNATIONAL 🌍</span>
+          <h2>Ouvert au monde. Ancré dans chaque territoire.</h2>
+          <p class="digiyInternationalStaticLead">Le web ouvre les frontières. DIGIY relie les territoires.</p>
+          <p class="digiyInternationalStaticText">Une même logique : des besoins universels, des réponses locales et un contact direct avec les professionnels.</p>
+        </div>
+      </div>
+    </section>
 
     <section class="brandClaim" aria-label="Empreinte numérique DIGIYLYFE">
       <span class="brandClaimKicker">DIGIYLYFE.COM</span>
