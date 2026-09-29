@@ -176,7 +176,7 @@
     v.setAttribute('preload','metadata');
     v.setAttribute('x-webkit-airplay','allow');
     var src=v.querySelector('source');
-    var expectedSrc='https://digiylyfe.net/wp-content/uploads/2026/09/DIGIYLYFE_BESOIN_REPONSE_CONTACT_20s_ALY_POSEE_MOBILE_SAFE.mp4';
+    var expectedSrc='/assets/DIGIYLYFE_TERRITOIRE_24S_ALY_SIWIS_SYNCHRO_WEB.mp4?v=20260929-territoire-v1';
     if(src&&src.getAttribute('src')!==expectedSrc){
       src.setAttribute('src',expectedSrc);
       try{v.load();}catch(e){}
