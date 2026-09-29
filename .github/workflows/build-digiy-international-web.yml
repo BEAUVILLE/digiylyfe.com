@@ -1,0 +1,184 @@
+name: Build DIGIY INTERNATIONAL web video
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-digiy-international-web.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download validated public captures
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf /tmp/digiy-captures
+          mkdir -p /tmp/digiy-captures
+          gh run download 36592879987 -n digiy-captures-validation-20260929 -D /tmp/digiy-captures
+
+      - name: Download validated Siwis narration
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf /tmp/digiy-voice
+          mkdir -p /tmp/digiy-voice
+          gh run download 36616206946 -n digiy-international-narration-siwis -D /tmp/digiy-voice
+
+      - name: Build corrected-ratio vertical video
+        run: |
+          python3 -m pip install --quiet pillow
+          cat > /tmp/build_international.py <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont, ImageEnhance
+          import subprocess
+
+          cap = Path('/tmp/digiy-captures')
+          voice = Path('/tmp/digiy-voice')
+          outdir = Path('/tmp/digiy-build')
+          outdir.mkdir(exist_ok=True)
+
+          full_path = next(cap.rglob('vitrine-public-full.png'))
+          full = Image.open(full_path).convert('RGB')
+          W,H = full.size
+
+          GREEN=(5,28,22); GOLD=(236,186,70); IVORY=(248,243,226)
+          TEXT=(13,44,35); WHITE=(255,255,255)
+          font_bold='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
+          font_reg='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+
+          scenes = [
+            ('01','LE WEB OUVRE LES FRONTIÈRES','Une présence numérique accessible au-delà d’un seul lieu.',0),
+            ('02','DIGIY RELIE LES TERRITOIRES','Du local au monde.',17600),
+            ('03','DES BESOINS UNIVERSELS','Se loger · se déplacer · acheter · trouver un service.',18400),
+            ('04','CHAQUE TERRITOIRE A SES RÉPONSES','Sénégal · France · États-Unis · Maroc.',21300),
+            ('05','ÊTRE VU · COMPRIS · TROUVÉ · CONTACTÉ','Une empreinte numérique pour chaque professionnel.',9300),
+            ('06','PAR LA VOIX · PAR L’IMAGE · PAR LE TERRITOIRE','Une recherche simple, visuelle et locale.',6100),
+            ('07','SANS COMMISSION · SANS INTERMÉDIAIRE','Le contact reste direct.',35000),
+            ('08','DIGIY OUVERT AU MONDE','Miami · Maroc · France · Sénégal : un même socle.',26700),
+            ('09','LE RÉSEAU APPORTE DE LA PUISSANCE','Des outils adaptés à chaque activité.',38500),
+            ('10','LA RELATION RESTE HUMAINE ET DIRECTE','DIGIY INTERNATIONAL · Ouvert au monde. Ancré dans chaque territoire.',30000),
+          ]
+
+          def dur(p):
+              r=subprocess.run(['ffprobe','-v','error','-show_entries','format=duration','-of','default=nw=1:nk=1',str(p)],capture_output=True,text=True,check=True)
+              return float(r.stdout.strip())
+
+          segs=[next(voice.rglob(f'seg_{i}.wav')) for i in range(1,11)]
+          speech=[dur(p) for p in segs]
+          pause=.28
+          sd=[d+pause for d in speech[:-1]]+[speech[-1]+1.0]
+          total=sum(sd)
+
+          def fit(draw,txt,width,max_size,min_size,bold=True):
+              path=font_bold if bold else font_reg
+              for s in range(max_size,min_size-1,-2):
+                  f=ImageFont.truetype(path,s)
+                  bb=draw.textbbox((0,0),txt,font=f)
+                  if bb[2]-bb[0] <= width: return f
+              return ImageFont.truetype(path,min_size)
+
+          def contain(img,bw,bh):
+              iw,ih=img.size
+              scale=min(bw/iw,bh/ih)
+              nw,nh=max(1,int(iw*scale)),max(1,int(ih*scale))
+              r=img.resize((nw,nh),Image.LANCZOS)
+              c=Image.new('RGB',(bw,bh),IVORY)
+              c.paste(r,((bw-nw)//2,(bh-nh)//2))
+              return c
+
+          frames=[]
+          for idx,(num,title,body,y0) in enumerate(scenes,1):
+              c=Image.new('RGB',(1080,1920),GREEN); d=ImageDraw.Draw(c)
+              d.text((72,80),'DIGIY INTERNATIONAL',font=ImageFont.truetype(font_bold,40),fill=GOLD)
+              d.text((72,176),num,font=ImageFont.truetype(font_bold,40),fill=GOLD)
+              d.text((150,160),title,font=fit(d,title,800,66,34,True),fill=WHITE)
+              d.rounded_rectangle((72,275,1008,282),radius=4,fill=GOLD)
+              d.rounded_rectangle((72,345,1008,1535),radius=42,fill=IVORY)
+
+              ch=min(3000,H); y=max(0,min(y0,H-ch))
+              crop=ImageEnhance.Contrast(full.crop((0,y,W,y+ch))).enhance(1.03)
+              c.paste(contain(crop,820,950),(130,395))
+
+              bf=fit(d,body,780,42,28,False)
+              words=body.split(); lines=[]; cur=''
+              for w in words:
+                  t=(cur+' '+w).strip()
+                  bb=d.textbbox((0,0),t,font=bf)
+                  if bb[2]-bb[0] <= 780: cur=t
+                  else:
+                      if cur: lines.append(cur)
+                      cur=w
+              if cur: lines.append(cur)
+              yy=1370
+              for line in lines[:3]:
+                  bb=d.textbbox((0,0),line,font=bf)
+                  d.text(((1080-(bb[2]-bb[0]))/2,yy),line,font=bf,fill=TEXT)
+                  yy += int(bf.size*1.2)
+
+              ff=ImageFont.truetype(font_bold,31)
+              foot='OUVERT AU MONDE · ANCRÉ DANS CHAQUE TERRITOIRE'
+              bb=d.textbbox((0,0),foot,font=ff)
+              d.text(((1080-(bb[2]-bb[0]))/2,1645),foot,font=ff,fill=GOLD)
+
+              if idx==10:
+                  sf=ImageFont.truetype(font_reg,30); yy=1720
+                  for line in ['Le web ouvre les frontières.','DIGIY relie les territoires.','La relation reste humaine et directe.']:
+                      bb=d.textbbox((0,0),line,font=sf)
+                      d.text(((1080-(bb[2]-bb[0]))/2,yy),line,font=sf,fill=WHITE); yy+=44
+              p=outdir/f'scene_{idx:02}.png'; c.save(p); frames.append(p)
+
+          parts=[]
+          for i,(frame,t) in enumerate(zip(frames,sd),1):
+              p=outdir/f'part_{i:02}.mp4'; n=max(1,int(round(t*30)))
+              vf=f"zoompan=z='min(zoom+0.00018,1.020)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={n}:s=1080x1920:fps=30,format=yuv420p"
+              subprocess.run(['ffmpeg','-y','-loop','1','-i',str(frame),'-t',f'{t:.3f}','-vf',vf,'-an','-c:v','libx264','-preset','medium','-crf','18',str(p)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+              parts.append(p)
+
+          cv=outdir/'video.txt'; cv.write_text('\n'.join(f"file '{p}'" for p in parts))
+          visual=outdir/'visual.mp4'
+          subprocess.run(['ffmpeg','-y','-f','concat','-safe','0','-i',str(cv),'-c:v','libx264','-preset','medium','-crf','18','-pix_fmt','yuv420p',str(visual)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+
+          sil=outdir/'sil.wav'
+          subprocess.run(['ffmpeg','-y','-f','lavfi','-i','anullsrc=r=22050:cl=mono','-t',f'{pause:.2f}',str(sil)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+          se=outdir/'end.wav'
+          subprocess.run(['ffmpeg','-y','-f','lavfi','-i','anullsrc=r=22050:cl=mono','-t','1.0',str(se)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+          items=[]
+          for i,p in enumerate(segs,1):
+              items.append(p)
+              if i<10: items.append(sil)
+          items.append(se)
+          ca=outdir/'audio.txt'; ca.write_text('\n'.join(f"file '{p}'" for p in items))
+          narration=outdir/'voice.wav'
+          subprocess.run(['ffmpeg','-y','-f','concat','-safe','0','-i',str(ca),'-af','loudnorm=I=-17:TP=-2:LRA=7,aresample=48000',str(narration)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+
+          ambient=outdir/'ambient.wav'
+          subprocess.run(['ffmpeg','-y','-f','lavfi','-i',f'sine=frequency=196:duration={total:.3f}:sample_rate=48000','-af',f'volume=0.010,afade=t=in:st=0:d=1.0,afade=t=out:st={total-1.6:.3f}:d=1.6',str(ambient)],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+
+          final=Path('assets/DIGIY_INTERNATIONAL_OUVERT_AU_MONDE_CORRIGE_RATIO.mp4')
+          subprocess.run(['ffmpeg','-y','-i',str(visual),'-i',str(narration),'-i',str(ambient),'-filter_complex','[1:a]volume=1.0[v];[2:a]volume=0.10[m];[v][m]amix=inputs=2:duration=longest:dropout_transition=0,alimiter=limit=0.95[a]','-map','0:v:0','-map','[a]','-c:v','copy','-c:a','aac','-b:a','192k','-t',f'{total:.3f}','-movflags','+faststart',str(final)],check=True)
+          print(final, total)
+          PY
+          python3 /tmp/build_international.py
+
+      - name: Commit generated web video
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/DIGIY_INTERNATIONAL_OUVERT_AU_MONDE_CORRIGE_RATIO.mp4
+          if git diff --cached --quiet; then
+            echo "Video already current"
+          else
+            git commit -m "media: add DIGIY INTERNATIONAL web video"
+            git push origin main
+          fi
