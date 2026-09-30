@@ -93,7 +93,7 @@
     "areaServed": list(p.areaServed).map(function (x) {
       return {"@type": "Place", "name": x};
     }),
-    "serviceType": list(p.serviceType),
+    "makesOffer": list(p.serviceType).map(function (x) { return {"@type":"Offer","itemOffered":{"@type":"Service","name":x}}; }),
     "openingHours": list(p.openingHours),
     "sameAs": list(p.sameAs)
   };
