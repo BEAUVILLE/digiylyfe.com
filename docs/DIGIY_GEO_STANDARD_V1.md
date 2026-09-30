@@ -50,7 +50,7 @@ window.DIGIY_GEO_PROFILE = {
   addressLocality: "Ville",
   addressCountry: "SN",
   areaServed: ["Ville", "Zone 2"],
-  serviceType: ["Service 1", "Service 2"]
+  serviceType: ["Service 1", "Service 2"] // converti en makesOffer -> Service
 };
 ```
 
@@ -70,7 +70,7 @@ Utiliser le type Schema.org le plus précis disponible, sans inventer de type :
 - chauffeur / transport local : `TaxiService` lorsque le service correspond réellement
 - boutique : `Store` ou sous-type exact
 - avocat / service juridique : `LegalService`
-- autres professionnels : `ProfessionalService` ou `LocalBusiness` selon le cas
+- autres professionnels : `LocalBusiness` avec des offres `Service` lorsque aucun sous-type métier précis ne convient
 
 ## Règles de qualité
 
