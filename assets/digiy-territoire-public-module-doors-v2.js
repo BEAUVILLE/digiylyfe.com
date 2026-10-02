@@ -10,7 +10,7 @@
 var LANGS=['fr','en','es','pt','de','it','nl','ar'];
 var VOICE='https://pro-action-digiy.digiylyfe.com/';
 var STANDARD={
-  '⚡':'https://bonne-affaire.digiylyfe.com/master.html',
+  '⚡':'https://bonne-affaire.digiylyfe.com/?lang=fr&country=sn',
   '🚗':'https://driver-client.digiylyfe.com/master.html',
   '🔧':'https://build.digiylyfe.com/master.html',
   '🧹':'https://digiylyfe.com/nettoyage-master.html',
