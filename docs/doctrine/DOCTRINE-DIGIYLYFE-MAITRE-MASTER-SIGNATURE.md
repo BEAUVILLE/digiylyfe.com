@@ -167,6 +167,32 @@ DIGIYLYFE structure sa présence sans confisquer sa relation humaine.
 **L’humain apporte la finition.**  
 **DIGIYLYFE signe.**
 
+## 10 bis. Règle d’accès propriétaire et e-mail
+
+L’e-mail n’est pas une donnée obligatoire de la Carte digitale.
+
+La Carte digitale :
+
+- n’ouvre pas d’accès propriétaire par magic-link ;
+- ne demande donc pas d’e-mail pour sa création ;
+- conserve le contact direct téléphone / WhatsApp comme contact principal.
+
+La Fiche professionnelle et le Site professionnel ouvrent un accès propriétaire sécurisé.
+
+Pour eux :
+
+- l’e-mail client est obligatoire ;
+- cet e-mail sert au magic-link d’accès propriétaire ;
+- il est saisi une seule fois dans le dossier central ;
+- un Site ajouté à une Fiche réutilise le même e-mail : aucune ressaisie ;
+- aucun faux e-mail ne doit être inventé pour satisfaire une contrainte technique.
+
+Règle de référence :
+
+**Carte = sans e-mail obligatoire.**  
+**Fiche = e-mail magic-link obligatoire.**  
+**Site = e-mail magic-link obligatoire, réutilisé depuis le dossier central.**
+
 ## 11. Alignement du dossier d’adhésion
 
 La fiche d’adhésion est la porte d’entrée de la matière professionnelle.
