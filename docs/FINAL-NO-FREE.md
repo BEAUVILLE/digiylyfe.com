@@ -1,0 +1,1 @@
+Aucune gratuité commerciale. Carte digitale 15 000 FCFA. Présence 19 900 FCFA/mois facultative.
