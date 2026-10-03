@@ -1,0 +1,1 @@
+DIGIYLYFE commercial policy v1: no free commercial offer. Card 15,000 XOF one-time. Professional presence 19,900 XOF/month optional. Zero commission maintained.

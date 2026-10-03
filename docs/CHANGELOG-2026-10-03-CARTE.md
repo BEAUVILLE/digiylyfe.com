@@ -1,0 +1,4 @@
+- Remplacement du parcours carte gratuite par carte digitale 15 000 FCFA.
+- Ajout du descriptif de demande.
+- Présence DIGIYLYFE 19 900 FCFA/mois présentée comme option.
+- Suppression visuelle des mois offerts sur la page tarifs via le wrapper global.

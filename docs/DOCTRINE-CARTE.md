@@ -1,0 +1,1 @@
+La carte DIGIY est une prestation numérique rémunérée. Elle n'impose pas l'adhésion. Elle peut servir de porte vers la présence DIGIYLYFE payante si le client le souhaite.

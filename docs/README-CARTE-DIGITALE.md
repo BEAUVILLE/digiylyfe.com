@@ -1,0 +1,1 @@
+Migration commerciale : ancienne carte gratuite remplacée par Carte digitale DIGIY à 15 000 FCFA (paiement unique). Présence professionnelle à 19 900 FCFA/mois facultative. Voir DECISION-COMMERCIALE-2026-10-03.md.
