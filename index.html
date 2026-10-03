@@ -386,22 +386,34 @@
     .brandClaim p{margin:11px auto 0;max-width:720px;color:rgba(255,250,240,.84);font-size:clamp(13px,3vw,17px);line-height:1.45;font-weight:850}
     .brandClaim strong{display:block;margin:14px auto 0;max-width:760px;color:#f6c453;font-size:clamp(17px,4vw,27px);line-height:1.12;font-weight:1000;letter-spacing:-.02em}
     .brandClaim .brandClaimChannels{margin:14px auto 0;max-width:780px;padding-top:12px;border-top:1px solid rgba(246,196,83,.28);color:#fffaf0;font-size:clamp(12px,2.8vw,15px);line-height:1.4;font-weight:950}
-    .fullStackIntro{
-      margin:2px 0 12px;padding:12px 14px 11px;border-radius:19px;text-align:center;
-      border:1px solid rgba(246,196,83,.30);
-      background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(246,196,83,.055),rgba(34,197,94,.045));
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.018)
-    }
-    .fullStackIntro strong{
-      display:block;color:#fffaf0;font-size:clamp(14px,3.5vw,20px);line-height:1.08;font-weight:1000;
-      letter-spacing:.025em
-    }
-    .fullStackIntro span{
-      display:block;margin-top:6px;color:rgba(255,250,240,.79);font-size:clamp(10.5px,2.45vw,13px);line-height:1.4;font-weight:850
-    }
-    .fullStackIntro small{
-      display:block;margin-top:6px;color:rgba(246,196,83,.78);font-size:clamp(9px,2.1vw,10.5px);line-height:1.25;font-weight:950;letter-spacing:.055em
-    }
+    /* Réseau DIGIYLYFE : trois cartes, lecture mobile en premier. */
+    .digiyNetworkCard{min-width:0;margin:16px 0;padding:24px 18px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,var(--panel),var(--bg));box-shadow:0 14px 34px rgba(0,0,0,.18);text-align:start;overflow-wrap:anywhere}
+    .digiyNetworkCard .digiyNetworkHeading{margin:0;color:var(--gold-soft);font-size:clamp(25px,5.5vw,36px);line-height:1.16;font-weight:1000;letter-spacing:-.025em}
+    .digiyNetworkHeading>span{display:block}
+    .fullStackIntro.digiyNetworkCard{border-color:var(--gold);text-align:center}
+    .digiyNetworkCard p{margin:16px 0 0;font-size:15px;line-height:1.6}
+    .digiyNetworkLead{color:var(--ink);font-weight:950}
+    .digiyLocalCategories{display:grid;gap:8px;margin-top:20px;color:var(--soft);font-size:14px;line-height:1.65;font-weight:800}
+    .digiyNetworkCard .digiyLocalTools{padding-top:16px;border-top:1px solid var(--line);color:var(--soft);font-size:14px}
+    .digiyNetworkCard .digiyNetworkSignature{display:inline-block;max-width:100%;padding:12px 16px;border:1px solid var(--gold);border-radius:16px;background:rgba(246,196,83,.1);color:var(--gold-soft);font-size:16px;font-weight:1000;line-height:1.45}
+    .digiyNetworkLabel{display:inline-block;margin-bottom:14px;color:var(--teal);font-size:12px;font-weight:1000;letter-spacing:.08em}
+    .digiyAutonomyList{display:grid;grid-template-columns:1fr;gap:10px;list-style:none;margin:20px 0 0;padding:0}
+    .digiyAutonomyList li{min-width:0;padding:12px 14px;border:1px solid var(--line);border-inline-start:3px solid var(--teal);border-radius:14px;background:rgba(45,212,191,.06);font-size:15px;font-weight:900;line-height:1.4}
+    .digiyNetworkCopy{color:var(--soft);font-weight:750}
+    .digiyFixedValue{display:grid;gap:8px;margin-top:20px;padding:18px;border:1px solid var(--gold);border-radius:18px;text-align:center;background:rgba(246,196,83,.08)}
+    .digiyFixedValue>span{color:var(--soft);font-size:13px;font-weight:950;letter-spacing:.06em}
+    .digiyFixedValue>strong{color:var(--gold-soft);font-size:clamp(24px,5vw,32px);line-height:1.2}
+    .digiyNetworkValue{color:var(--ink);font-weight:900;text-align:center}
+    .digiyCirculationFlow{display:grid;gap:28px;margin:22px 0 0;padding:0;list-style:none}
+    .digiyCirculationFlow li{position:relative;min-width:0;display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--line);border-radius:16px;background:rgba(45,212,191,.06);font-size:16px;font-weight:950;line-height:1.4}
+    .digiyFlowIcon{flex:0 0 auto;font-size:24px}
+    .digiyCirculationFlow li:not(:last-child)::after{content:'↓';position:absolute;top:100%;inset-inline-start:50%;height:28px;color:var(--teal);font-size:22px;line-height:28px}
+    .digiyNetworkConclusion{margin-top:22px;padding:20px 0 0;border-top:2px solid var(--gold)}
+    .digiyNetworkConclusion>strong{display:block;color:var(--gold-soft);font-size:20px;font-weight:1000;line-height:1.35}
+    .digiyNetworkCard .digiyNetworkConclusion>p{margin-top:10px;color:var(--ink);font-size:16px;font-weight:850}
+    html[dir="rtl"] .digiyNetworkHeading,html[dir="rtl"] .digiyNetworkLabel{letter-spacing:0}
+    @media(min-width:600px){.digiyNetworkCard{padding:30px}.digiyAutonomyList{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(min-width:1000px){.digiyCirculationFlow{grid-template-columns:repeat(5,minmax(0,1fr));gap:24px}.digiyCirculationFlow li{flex-direction:column;justify-content:center;text-align:center;padding:16px 10px;font-size:14px}.digiyCirculationFlow li:not(:last-child)::after{content:'→';top:50%;inset-inline-start:100%;width:24px;height:auto;line-height:1;transform:translateY(-50%)}html[dir="rtl"] .digiyCirculationFlow li:not(:last-child)::after{content:'←'}}
 
     /* =========================================================
        LANGAGE VISUEL DIGIYLYFE
@@ -835,23 +847,35 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
 
 
 
-    <section class="fullStackIntro" aria-label="Écosystème digital complet DIGIYLYFE">
-      <strong data-i18n="fullStackBadge">TOUT LE LOCAL DANS VOTRE TÉLÉPHONE</strong>
-      <span data-i18n="fullStackText">Hébergements · restaurants · chauffeurs · artisans · commerces · services : trouvez le bon professionnel et contactez-le directement.</span>
-      <small data-i18n="fullStackSignature">QR partageable · WhatsApp · réservation et paiement directs · 0 % commission · 8 langues.</small>
+    <section class="fullStackIntro digiyNetworkCard" aria-labelledby="digiyLocalTitle">
+      <h2 id="digiyLocalTitle" class="digiyNetworkHeading"><span data-i18n="localTitle">TOUT LE LOCAL</span><span data-i18n="localPhone">DANS VOTRE TÉLÉPHONE</span></h2>
+      <p class="digiyNetworkLead" data-i18n="localLead">Trouvez le bon professionnel. Contactez-le directement.</p>
+      <div class="digiyLocalCategories"><span data-i18n="localCategories1">Hébergements · Restaurants · Chauffeurs · Artisans</span><span data-i18n="localCategories2">Commerces · Services · Guides · Activités</span></div>
+      <p class="digiyLocalTools" data-i18n="localTools">QR partageable · WhatsApp · Réservation directe · Paiement direct</p><p class="digiyNetworkSignature" data-i18n="localSignature">0 % COMMISSION · 8 LANGUES</p>
     </section>
 
-    <section class="digiyNetworkSynthesis" id="digiyNetworkSynthesis" data-digiy-network-synthesis="1" aria-label="DIGIYLYFE · réseau local multi-métiers" dir="ltr">
-      <span class="synthMini">LE RÉSEAU DIGIYLYFE</span>
-      <h2>Votre activité. Votre autonomie. Votre réseau.</h2>
-      <div class="synthBody">
-        <p class="synthP1">Chaque professionnel garde ses clients, ses contacts, ses paiements et son autonomie.</p>
-        <p class="synthP2">DIGIYLYFE complète Google, Booking, Yango et les réseaux sociaux avec une présence directe, permanente et locale.</p>
-        <p class="synthP3">Un abonnement fixe · 0 % commission sur chaque vente ou réservation. Plus vous travaillez, plus vous gardez la valeur créée.</p>
-        <p class="synthP4">Hébergement, chauffeur, restaurant, artisan, commerce, guide et services sont reliés : un besoin peut en créer un autre.</p>
-        <p class="synthStrong">DIGIYLYFE ne capte pas le commerce. Il organise la circulation entre les besoins, les professionnels et les territoires.</p>
-        <p class="synthPromise">Être vu. Être compris. Être trouvé. Être contacté.</p>
-      </div>
+    <section class="digiyNetworkSynthesis digiyNetworkCard" id="digiyNetworkSynthesis" data-digiy-network-synthesis="1" aria-labelledby="digiyAutonomyTitle">
+      <span class="digiyNetworkLabel" data-i18n="networkLabel">LE RÉSEAU DIGIYLYFE</span>
+      <h2 id="digiyAutonomyTitle" class="digiyNetworkHeading"><span data-i18n="networkTitle">Votre activité. Votre autonomie. Votre réseau.</span></h2>
+      <ul class="digiyAutonomyList">
+        <li><span data-i18n="keepClients">Vous gardez vos clients.</span></li><li><span data-i18n="keepContacts">Vous gardez vos contacts.</span></li><li><span data-i18n="keepPayments">Vous gardez vos paiements.</span></li><li><span data-i18n="keepAutonomy">Vous gardez votre autonomie.</span></li>
+      </ul>
+      <p class="digiyNetworkCopy" data-i18n="networkComplements">DIGIYLYFE complète Google, Booking, Yango et les réseaux sociaux avec une présence directe, permanente et ancrée dans votre territoire.</p>
+      <div class="digiyFixedValue"><span data-i18n="fixedSubscription">UN ABONNEMENT FIXE</span><strong data-i18n="zeroCommission">0 % COMMISSION</strong></div>
+      <p class="digiyNetworkValue" data-i18n="networkValue">Plus vous travaillez, plus vous gardez la valeur que vous créez.</p>
+    </section>
+
+    <section class="digiyCirculation digiyNetworkCard" aria-labelledby="digiyCirculationTitle">
+      <h2 id="digiyCirculationTitle" class="digiyNetworkHeading"><span data-i18n="circulationTitle">UN BESOIN PEUT EN CRÉER UN AUTRE</span></h2>
+      <ol class="digiyCirculationFlow">
+        <li><span class="digiyFlowIcon" aria-hidden="true">🏠</span><span data-i18n="flowStay">Hébergement</span></li>
+        <li><span class="digiyFlowIcon" aria-hidden="true">🚗</span><span data-i18n="flowDriver">Chauffeur</span></li>
+        <li><span class="digiyFlowIcon" aria-hidden="true">🍽️</span><span data-i18n="flowRestaurant">Restaurant</span></li>
+        <li><span class="digiyFlowIcon" aria-hidden="true">🛠️</span><span data-i18n="flowService">Artisan · Service</span></li>
+        <li><span class="digiyFlowIcon" aria-hidden="true">🛍️</span><span data-i18n="flowCommerce">Commerce · Activité</span></li>
+      </ol>
+      <p class="digiyNetworkCopy" data-i18n="circulationText">Les professionnels ne sont pas isolés : ils sont reliés par les besoins du territoire.</p>
+      <div class="digiyNetworkConclusion"><strong data-i18n="networkConclusion">DIGIYLYFE ne capte pas le commerce.</strong><p data-i18n="networkConclusionText">Il organise la circulation entre les besoins, les professionnels et les territoires.</p></div>
     </section>
 
     <section class="alyHomeDoor" aria-label="Aly Kane · La voix du terrain">
@@ -1311,6 +1335,15 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     Object.assign(TEXT.de,{treasurePrelude:"Das Gebiet. Das Können. Die Frauen und Männer, die es mit Leben füllen.",treasureTitle:"DORT LIEGT DER SCHATZ.",treasureSignature:"DIGIYLYFE verbindet, was bereits da ist."});
     Object.assign(TEXT.nl,{treasurePrelude:"Het gebied. Het vakmanschap. De vrouwen en mannen die het tot leven brengen.",treasureTitle:"DAAR LIGT DE SCHAT.",treasureSignature:"DIGIYLYFE verbindt wat er al is."});
     Object.assign(TEXT.ar,{treasurePrelude:"الأرض. الخبرات. النساء والرجال الذين يمنحونها الحياة.",treasureTitle:"هُنَا يَكْمُنُ الكَنْز.",treasureSignature:"DIGIYLYFE تصل ما هو موجود بالفعل."});
+
+    Object.assign(TEXT.fr,{"localTitle":"TOUT LE LOCAL","localPhone":"DANS VOTRE TÉLÉPHONE","localLead":"Trouvez le bon professionnel. Contactez-le directement.","localCategories1":"Hébergements · Restaurants · Chauffeurs · Artisans","localCategories2":"Commerces · Services · Guides · Activités","localTools":"QR partageable · WhatsApp · Réservation directe · Paiement direct","localSignature":"0 % COMMISSION · 8 LANGUES","networkLabel":"LE RÉSEAU DIGIYLYFE","networkTitle":"Votre activité. Votre autonomie. Votre réseau.","keepClients":"Vous gardez vos clients.","keepContacts":"Vous gardez vos contacts.","keepPayments":"Vous gardez vos paiements.","keepAutonomy":"Vous gardez votre autonomie.","networkComplements":"DIGIYLYFE complète Google, Booking, Yango et les réseaux sociaux avec une présence directe, permanente et ancrée dans votre territoire.","fixedSubscription":"UN ABONNEMENT FIXE","zeroCommission":"0 % COMMISSION","networkValue":"Plus vous travaillez, plus vous gardez la valeur que vous créez.","circulationTitle":"UN BESOIN PEUT EN CRÉER UN AUTRE","flowStay":"Hébergement","flowDriver":"Chauffeur","flowRestaurant":"Restaurant","flowService":"Artisan · Service","flowCommerce":"Commerce · Activité","circulationText":"Les professionnels ne sont pas isolés : ils sont reliés par les besoins du territoire.","networkConclusion":"DIGIYLYFE ne capte pas le commerce.","networkConclusionText":"Il organise la circulation entre les besoins, les professionnels et les territoires."});
+    Object.assign(TEXT.en,{"localTitle":"ALL THINGS LOCAL","localPhone":"ON YOUR PHONE","localLead":"Find the right professional. Contact them directly.","localCategories1":"Accommodation · Restaurants · Drivers · Tradespeople","localCategories2":"Shops · Services · Guides · Activities","localTools":"Shareable QR · WhatsApp · Direct booking · Direct payment","localSignature":"0% COMMISSION · 8 LANGUAGES","networkLabel":"THE DIGIYLYFE NETWORK","networkTitle":"Your business. Your independence. Your network.","keepClients":"You keep your customers.","keepContacts":"You keep your contacts.","keepPayments":"You keep your payments.","keepAutonomy":"You keep your independence.","networkComplements":"DIGIYLYFE complements Google, Booking, Yango and social media with a direct, lasting presence rooted in your territory.","fixedSubscription":"A FIXED SUBSCRIPTION","zeroCommission":"0% COMMISSION","networkValue":"The more you work, the more of the value you create you keep.","circulationTitle":"ONE NEED CAN LEAD TO ANOTHER","flowStay":"Accommodation","flowDriver":"Driver","flowRestaurant":"Restaurant","flowService":"Tradesperson · Service","flowCommerce":"Shop · Activity","circulationText":"Professionals are connected through the needs of their territory.","networkConclusion":"DIGIYLYFE does not take over commerce.","networkConclusionText":"It connects needs, professionals and territories."});
+    Object.assign(TEXT.es,{"localTitle":"TODO LO LOCAL","localPhone":"EN SU TELÉFONO","localLead":"Encuentre al profesional adecuado. Contáctelo directamente.","localCategories1":"Alojamientos · Restaurantes · Conductores · Artesanos","localCategories2":"Comercios · Servicios · Guías · Actividades","localTools":"QR compartible · WhatsApp · Reserva directa · Pago directo","localSignature":"0 % COMISIÓN · 8 IDIOMAS","networkLabel":"LA RED DIGIYLYFE","networkTitle":"Su actividad. Su autonomía. Su red.","keepClients":"Conserva sus clientes.","keepContacts":"Conserva sus contactos.","keepPayments":"Conserva sus pagos.","keepAutonomy":"Conserva su autonomía.","networkComplements":"DIGIYLYFE complementa Google, Booking, Yango y las redes sociales con una presencia directa, permanente y arraigada en su territorio.","fixedSubscription":"UNA SUSCRIPCIÓN FIJA","zeroCommission":"0 % COMISIÓN","networkValue":"Cuanto más trabaja, más valor conserva del que crea.","circulationTitle":"UNA NECESIDAD PUEDE CREAR OTRA","flowStay":"Alojamiento","flowDriver":"Conductor","flowRestaurant":"Restaurante","flowService":"Artesano · Servicio","flowCommerce":"Comercio · Actividad","circulationText":"Los profesionales no están aislados: los conectan las necesidades del territorio.","networkConclusion":"DIGIYLYFE no se apropia del comercio.","networkConclusionText":"Organiza la circulación entre necesidades, profesionales y territorios."});
+    Object.assign(TEXT.pt,{"localTitle":"TUDO O QUE É LOCAL","localPhone":"NO SEU TELEFONE","localLead":"Encontre o profissional certo. Contacte-o diretamente.","localCategories1":"Alojamentos · Restaurantes · Motoristas · Artesãos","localCategories2":"Comércios · Serviços · Guias · Atividades","localTools":"QR partilhável · WhatsApp · Reserva direta · Pagamento direto","localSignature":"0% COMISSÃO · 8 IDIOMAS","networkLabel":"A REDE DIGIYLYFE","networkTitle":"A sua atividade. A sua autonomia. A sua rede.","keepClients":"Mantém os seus clientes.","keepContacts":"Mantém os seus contactos.","keepPayments":"Mantém os seus pagamentos.","keepAutonomy":"Mantém a sua autonomia.","networkComplements":"A DIGIYLYFE complementa Google, Booking, Yango e as redes sociais com uma presença direta, permanente e enraizada no seu território.","fixedSubscription":"UMA SUBSCRIÇÃO FIXA","zeroCommission":"0% COMISSÃO","networkValue":"Quanto mais trabalha, mais valor conserva do que cria.","circulationTitle":"UMA NECESSIDADE PODE CRIAR OUTRA","flowStay":"Alojamento","flowDriver":"Motorista","flowRestaurant":"Restaurante","flowService":"Artesão · Serviço","flowCommerce":"Comércio · Atividade","circulationText":"Os profissionais não estão isolados: estão ligados pelas necessidades do território.","networkConclusion":"A DIGIYLYFE não se apropria do comércio.","networkConclusionText":"Organiza a circulação entre necessidades, profissionais e territórios."});
+    Object.assign(TEXT.it,{"localTitle":"TUTTO IL LOCALE","localPhone":"NEL TUO TELEFONO","localLead":"Trova il professionista giusto. Contattalo direttamente.","localCategories1":"Alloggi · Ristoranti · Autisti · Artigiani","localCategories2":"Negozi · Servizi · Guide · Attività","localTools":"QR condivisibile · WhatsApp · Prenotazione diretta · Pagamento diretto","localSignature":"0% COMMISSIONI · 8 LINGUE","networkLabel":"LA RETE DIGIYLYFE","networkTitle":"La tua attività. La tua autonomia. La tua rete.","keepClients":"Mantieni i tuoi clienti.","keepContacts":"Mantieni i tuoi contatti.","keepPayments":"Mantieni i tuoi pagamenti.","keepAutonomy":"Mantieni la tua autonomia.","networkComplements":"DIGIYLYFE completa Google, Booking, Yango e i social con una presenza diretta, permanente e radicata nel tuo territorio.","fixedSubscription":"UN ABBONAMENTO FISSO","zeroCommission":"0% COMMISSIONI","networkValue":"Più lavori, più valore conservi di quello che crei.","circulationTitle":"UN BISOGNO PUÒ CREARNE UN ALTRO","flowStay":"Alloggio","flowDriver":"Autista","flowRestaurant":"Ristorante","flowService":"Artigiano · Servizio","flowCommerce":"Negozio · Attività","circulationText":"I professionisti non sono isolati: sono collegati dai bisogni del territorio.","networkConclusion":"DIGIYLYFE non si appropria del commercio.","networkConclusionText":"Organizza la circolazione tra bisogni, professionisti e territori."});
+    Object.assign(TEXT.de,{"localTitle":"ALLES LOKALE","localPhone":"AUF IHREM TELEFON","localLead":"Finden Sie den passenden Profi. Kontaktieren Sie ihn direkt.","localCategories1":"Unterkünfte · Restaurants · Fahrer · Handwerker","localCategories2":"Geschäfte · Dienstleistungen · Guides · Aktivitäten","localTools":"Teilbarer QR · WhatsApp · Direktbuchung · Direktzahlung","localSignature":"0 % PROVISION · 8 SPRACHEN","networkLabel":"DAS DIGIYLYFE-NETZWERK","networkTitle":"Ihr Geschäft. Ihre Unabhängigkeit. Ihr Netzwerk.","keepClients":"Sie behalten Ihre Kunden.","keepContacts":"Sie behalten Ihre Kontakte.","keepPayments":"Sie behalten Ihre Zahlungen.","keepAutonomy":"Sie behalten Ihre Unabhängigkeit.","networkComplements":"DIGIYLYFE ergänzt Google, Booking, Yango und soziale Medien mit einer direkten, dauerhaften und lokal verankerten Präsenz.","fixedSubscription":"EIN FESTES ABONNEMENT","zeroCommission":"0 % PROVISION","networkValue":"Je mehr Sie arbeiten, desto mehr des geschaffenen Wertes behalten Sie.","circulationTitle":"EIN BEDARF KANN EINEN WEITEREN AUSLÖSEN","flowStay":"Unterkunft","flowDriver":"Fahrer","flowRestaurant":"Restaurant","flowService":"Handwerker · Dienstleistung","flowCommerce":"Geschäft · Aktivität","circulationText":"Profis sind nicht isoliert: Die Bedürfnisse des Gebietes verbinden sie.","networkConclusion":"DIGIYLYFE vereinnahmt den Handel nicht.","networkConclusionText":"Es organisiert die Verbindungen zwischen Bedürfnissen, Profis und Gebieten."});
+    Object.assign(TEXT.nl,{"localTitle":"ALLES UIT DE BUURT","localPhone":"OP UW TELEFOON","localLead":"Vind de juiste professional. Neem rechtstreeks contact op.","localCategories1":"Accommodaties · Restaurants · Chauffeurs · Vakmensen","localCategories2":"Winkels · Diensten · Gidsen · Activiteiten","localTools":"Deelbare QR · WhatsApp · Direct boeken · Direct betalen","localSignature":"0% COMMISSIE · 8 TALEN","networkLabel":"HET DIGIYLYFE-NETWERK","networkTitle":"Uw activiteit. Uw zelfstandigheid. Uw netwerk.","keepClients":"U behoudt uw klanten.","keepContacts":"U behoudt uw contacten.","keepPayments":"U behoudt uw betalingen.","keepAutonomy":"U behoudt uw zelfstandigheid.","networkComplements":"DIGIYLYFE vult Google, Booking, Yango en sociale media aan met een directe, blijvende aanwezigheid in uw gebied.","fixedSubscription":"EEN VAST ABONNEMENT","zeroCommission":"0% COMMISSIE","networkValue":"Hoe meer u werkt, hoe meer van de waarde die u creëert u behoudt.","circulationTitle":"EEN BEHOEFTE KAN EEN ANDERE CREËREN","flowStay":"Accommodatie","flowDriver":"Chauffeur","flowRestaurant":"Restaurant","flowService":"Vakmens · Dienst","flowCommerce":"Winkel · Activiteit","circulationText":"Professionals staan niet alleen: de behoeften van het gebied verbinden hen.","networkConclusion":"DIGIYLYFE neemt de handel niet over.","networkConclusionText":"Het organiseert de verbindingen tussen behoeften, professionals en gebieden."});
+    Object.assign(TEXT.ar,{"localTitle":"كل ما هو محلي","localPhone":"في هاتفك","localLead":"اعثر على المهني المناسب. تواصل معه مباشرة.","localCategories1":"إقامة · مطاعم · سائقون · حرفيون","localCategories2":"متاجر · خدمات · مرشدون · أنشطة","localTools":"رمز QR قابل للمشاركة · واتساب · حجز مباشر · دفع مباشر","localSignature":"0٪ عمولة · 8 لغات","networkLabel":"شبكة DIGIYLYFE","networkTitle":"نشاطك. استقلاليتك. شبكتك.","keepClients":"تحتفظ بعملائك.","keepContacts":"تحتفظ بجهات اتصالك.","keepPayments":"تحتفظ بمدفوعاتك.","keepAutonomy":"تحتفظ باستقلاليتك.","networkComplements":"تُكمل DIGIYLYFE جوجل وبوكينغ ويانغو وشبكات التواصل بحضور مباشر ودائم ومتجذر في منطقتك.","fixedSubscription":"اشتراك ثابت","zeroCommission":"0٪ عمولة","networkValue":"كلما عملت أكثر، احتفظت بمزيد من القيمة التي تصنعها.","circulationTitle":"حاجة واحدة قد تخلق حاجة أخرى","flowStay":"إقامة","flowDriver":"سائق","flowRestaurant":"مطعم","flowService":"حرفي · خدمة","flowCommerce":"متجر · نشاط","circulationText":"المهنيون ليسوا معزولين: تربطهم احتياجات المنطقة.","networkConclusion":"DIGIYLYFE لا تستحوذ على التجارة.","networkConclusionText":"بل تنظم الترابط بين الاحتياجات والمهنيين والمناطق."});
 
     function setLang(lang){
       if(!TEXT[lang])lang='fr';
