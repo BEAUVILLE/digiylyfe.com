@@ -167,6 +167,58 @@ DIGIYLYFE structure sa présence sans confisquer sa relation humaine.
 **L’humain apporte la finition.**  
 **DIGIYLYFE signe.**
 
+## 11. Alignement du dossier d’adhésion
+
+La fiche d’adhésion est la porte d’entrée de la matière professionnelle.
+
+Elle collecte une seule fois les informations utiles du professionnel :
+
+- identité ;
+- métier / activité ;
+- territoire ;
+- téléphone ;
+- WhatsApp ;
+- photo ;
+- services ;
+- besoins de présence ;
+- prestation souhaitée.
+
+Une information saisie une fois ne doit pas être redemandée plus loin.
+
+Le parcours de référence est :
+
+```text
+ADHÉSION
+    ↓
+DOSSIER UNIQUE
+    ↓
+CHOIX HUMAIN DU MASTER
+    ↓
+MAÎTRE : CONTRÔLE DES INVARIANTS
+    ↓
+MASTER : PRODUCTION
+    ↓
+CARTE / FICHE / SITE
+    ↓
+CONTRÔLE ET FINITION HUMAINE
+    ↓
+VALIDATION
+    ↓
+SIGNATURE DIGIYLYFE
+    ↓
+PUBLICATION
+```
+
+Le choix du MASTER reste humain. Le système ne devine pas automatiquement le métier.
+
+Carte, Fiche et futur Site doivent réutiliser le même dossier central et la même source de données.
+
+La fiche d’adhésion collecte.  
+Le MAÎTRE contrôle.  
+Le MASTER produit.  
+L’humain apporte la finition.  
+DIGIYLYFE signe.
+
 ## 11. Principe final
 
 **Industrialiser la fabrication.  
