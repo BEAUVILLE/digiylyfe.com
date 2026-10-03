@@ -2,7 +2,7 @@
    Installation permanente, sans cache de page et sans réécriture de route.
 */
 
-const DIGIY_PWA_VERSION = 'digiylyfe-pwa-20260920-fresh-nav-v10';
+const DIGIY_PWA_VERSION = 'digiylyfe-pwa-20261003-home-no-pioneer-v1';
 
 self.addEventListener('install', () => {
   self.skipWaiting();
