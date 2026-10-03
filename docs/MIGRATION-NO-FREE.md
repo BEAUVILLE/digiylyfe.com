@@ -1,0 +1,1 @@
+Migration validée par le fondateur le 3 octobre 2026.
