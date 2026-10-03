@@ -1,0 +1,1 @@
+CARTE DIGITALE DIGIY : 15 000 FCFA, paiement unique. PRESENCE PROFESSIONNELLE DIGIYLYFE : 19 900 FCFA/mois, facultative. 0 % commission.
