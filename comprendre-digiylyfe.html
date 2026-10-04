@@ -1,28 +1,81 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Comprendre DIGIYLYFE en trois images : les activités locales, une interface simple et le contact direct."><title>DIGIYLYFE — Le territoire en trois regards</title><style>
-*{box-sizing:border-box}body{margin:0;background:#071810;color:#f4f6ee;font:15px system-ui,sans-serif}main{max-width:540px;margin:auto;padding:10px 12px calc(14px + env(safe-area-inset-bottom))}header{display:flex;justify-content:space-between;align-items:center;padding:4px 0 10px;font-size:12px;letter-spacing:.08em}header strong{color:#c7ef80}#stage{position:relative;aspect-ratio:9/16;background:#073d2b;overflow:hidden;border-radius:5px;width:min(100%,calc((100svh - 225px)*9/16));margin:auto}#stage img{position:absolute;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .75s ease}#stage img.active{opacity:1}.controls{display:flex;gap:8px;margin-top:10px}button,select{font:inherit;border:1px solid #547148;border-radius:10px;background:#133422;color:white;min-height:44px;padding:9px 12px}button{cursor:pointer}button:disabled{opacity:.4;cursor:default}#play{flex:1;background:#c7ef80;color:#0b2515;font-weight:750}#status{min-height:18px;font-size:12px;margin:8px 0;color:#d0dacb}details{font-size:12px;color:#b6c6b0}summary{cursor:pointer;padding:4px 0}select{width:100%;margin:8px 0}details p{line-height:1.5}button:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffe488;outline-offset:2px}@media(prefers-reduced-motion:reduce){#stage img{transition:none}}
-header{position:sticky;top:0;z-index:10;gap:10px;background:#071810;padding:8px 0}.homeReturn{display:flex;align-items:center;justify-content:center;min-height:48px;padding:12px 16px;border:1px solid #c7ef80;border-radius:10px;background:#173d29;color:#f4f6ee;font-size:14px;font-weight:750;letter-spacing:0;text-decoration:none;line-height:1.3}.homeReturn:focus-visible{outline:3px solid #ffe488;outline-offset:2px}.homeReturnBottom{width:100%;margin:12px 0}</style></head><body><main><header><a class="homeReturn" href="https://digiylyfe.com/">← Retour au site DIGIYLYFE</a><span id="count">1 / 3</span></header><div id="stage" aria-label="Diaporama DIGIYLYFE"><img class="active" src="/assets/serie-mobile/01.webp" decoding="async" alt="Voir l’essentiel simplement" width="941" height="1672"><img class="" src="/assets/serie-mobile/02.webp" decoding="async" alt="L’interface du territoire" width="941" height="1672"><img class="" src="/assets/serie-mobile/03.webp" decoding="async" alt="Ce qui travaille derrière" width="941" height="1672"></div><div class="controls"><button id="prev" aria-label="Diapo précédente">‹</button><button id="play">▶ Écouter la série</button><button id="next" aria-label="Diapo suivante">›</button></div><p id="status" role="status" aria-live="polite">Appuyez sur Écouter pour démarrer.</p><a id="zoom" href="/assets/serie-mobile/01.webp" target="_blank" rel="noopener" style="display:inline-block;color:#c7ef80;font-size:12px;padding:8px 0">Agrandir l’image</a><a class="homeReturn homeReturnBottom" href="https://digiylyfe.com/">← Retour au site DIGIYLYFE</a><details><summary>Choisir la voix</summary><label for="voice">Voix française du téléphone</label><select id="voice"><option value="">Voix française automatique</option></select><p>Ce lecteur reprend le principe du lecteur d’Aly : votre appareil lit la nouvelle narration. Le timbre dépend de la voix choisie. Gardez cette page ouverte pendant l’écoute.</p></details></main><script>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Découvrez les avantages de DIGIYLYFE, un à un : activités locales, contact direct et outils selon votre métier.">
+<title>DIGIYLYFE — Les avantages, simplement</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#071810;color:#f4f6ee;font:15px system-ui,sans-serif}main{max-width:540px;margin:auto;padding:8px 12px calc(14px + env(safe-area-inset-bottom))}
+header{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#071810;padding:8px 0}#count{white-space:nowrap;font-size:12px;color:#c4d4bd}
+.homeReturn{display:flex;align-items:center;justify-content:center;min-height:48px;padding:12px 16px;border:1px solid #c7ef80;border-radius:10px;background:#173d29;color:#f4f6ee;font-size:14px;font-weight:750;text-decoration:none;line-height:1.3}.homeReturnBottom{width:100%;margin:12px 0}
+#stage{position:relative;width:min(100%,calc((100svh - 270px)*9/16));min-width:200px;aspect-ratio:9/16;margin:auto;background:#073d2b;overflow:hidden;border-radius:8px;isolation:isolate}
+#stage>img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .65s ease,filter .5s ease}#stage>img.active{opacity:1}
+#stage.focused>img{filter:blur(3px) brightness(.38)}
+#shade{position:absolute;inset:0;background:linear-gradient(180deg,transparent 10%,rgba(2,24,15,.28) 50%,rgba(2,24,15,.75));opacity:0;transition:opacity .5s}#stage.focused #shade{opacity:1}
+#benefit{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px;padding:22px;text-align:center;pointer-events:none}#benefit[hidden]{display:none}
+.benefitKicker{font-size:11px;font-weight:750;letter-spacing:.12em;color:#d8efc2;text-transform:uppercase}
+#pill{width:100%;padding:24px 16px;border:1px solid #c7ef80;border-radius:28px;background:rgba(10,55,32,.96);box-shadow:0 12px 36px #0006;color:#eeffd7;font-size:clamp(23px,5.8vw,31px);font-weight:800;line-height:1.25;text-wrap:balance}
+#benefit.rise{animation:rise .8s cubic-bezier(.2,.75,.2,1) both}@keyframes rise{from{opacity:0;transform:translateY(65px)}to{opacity:1;transform:translateY(0)}}
+.benefitFooter{font-size:12px;letter-spacing:.08em;color:#d8efc2}#stage.paused #benefit{animation-play-state:paused}
+.controls{display:flex;gap:8px;margin-top:10px}button,select{font:inherit;min-height:44px;border:1px solid #547148;border-radius:10px;padding:9px 12px;background:#133422;color:white}button{cursor:pointer}button:disabled{opacity:.4;cursor:default}#play{flex:1;background:#c7ef80;color:#0b2515;font-weight:750}#prev,#next{min-width:44px}#stop{display:block;margin:0 auto;font-size:12px;padding:6px 14px;min-height:44px}#stop[hidden]{display:none}
+#status{min-height:18px;margin:8px 0;font-size:12px;line-height:1.4;color:#d0dacb}details{font-size:12px;color:#b6c6b0}summary{cursor:pointer;min-height:44px;padding:12px 0}select{width:100%;margin:8px 0}details p{line-height:1.6}#transcript{color:#f4f6ee;font-size:15px}#zoom{display:inline-block;min-height:44px;padding:12px 0;color:#c7ef80}
+a:focus-visible,button:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffe488;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){#stage>img,#shade{transition:none}#benefit.rise{animation:none}}
+</style>
+</head>
+<body><main>
+<header><a class="homeReturn" href="https://digiylyfe.com/">← Retour au site DIGIYLYFE</a><span id="count">Image 1 / 3</span></header>
+<div id="stage" aria-label="Les avantages de DIGIYLYFE">
+<img class="active" src="/assets/serie-mobile/01.webp" decoding="async" alt="Voir l’essentiel simplement" width="941" height="1672">
+<img class="" src="/assets/serie-mobile/02.webp" decoding="async" alt="L’interface du territoire" width="941" height="1672">
+<img class="" src="/assets/serie-mobile/03.webp" decoding="async" alt="Ce qui travaille derrière" width="941" height="1672">
+<div id="shade" aria-hidden="true"></div>
+<div id="benefit" hidden aria-live="polite" aria-atomic="true"><span class="benefitKicker">DIGIYLYFE · près de vous</span><div id="pill"></div><span class="benefitFooter" id="stepCount"></span></div>
+</div>
+<div class="controls"><button id="prev" aria-label="Avantage précédent">‹</button><button id="play">▶ Écouter les avantages</button><button id="next" aria-label="Avantage suivant">›</button></div>
+<p id="status" role="status">Cinq avantages, un à un. Appuyez pour écouter.</p>
+<button id="stop" hidden>Arrêter et revoir l’image</button>
+<a class="homeReturn homeReturnBottom" href="https://digiylyfe.com/">← Retour au site DIGIYLYFE</a>
+<details><summary>Voix, texte et image</summary><label for="voice">Voix française du téléphone</label><select id="voice"><option value="">Voix française automatique</option></select><p>La voix dépend de votre appareil. Gardez cette page ouverte pendant l’écoute.</p><p id="transcript"></p><a id="zoom" href="/assets/serie-mobile/01.webp" target="_blank" rel="noopener">Ouvrir l’image en grand</a></details>
+</main>
+<script>
 'use strict';
-const TEXTS=["Sur votre téléphone, vous voyez l’essentiel : un besoin, un professionnel près de vous, un contact direct. DIGIYLYFE simplifie la recherche pour vous aider à trouver votre réponse sur le territoire.", "À Saly, Ngaparou, Somone ou Mbour, les besoins rencontrent les activités locales. DIGIYLYFE leur donne une place pour être trouvées. Vous choisissez votre interlocuteur, puis vous échangez directement avec lui.", "Derrière cette interface, une organisation relie les fiches, les outils et les territoires. Elle soutient la présence des professionnels et facilite l’accès au contact. La relation reste humaine et directe, avec zéro commission DIGIYLYFE sur vos transactions."];
-const images=[...document.querySelectorAll('#stage img')],play=document.querySelector('#play'),prev=document.querySelector('#prev'),next=document.querySelector('#next'),status=document.querySelector('#status'),select=document.querySelector('#voice');
-const synth=window.speechSynthesis;
-let cur=0,playing=false,token=0,timer=null,utterance=null,voices=[],done=false;
-function show(n){cur=n;images.forEach((img,i)=>{img.classList.toggle('active',i===cur);img.setAttribute('aria-hidden',i===cur?'false':'true')});document.querySelector('#count').textContent=`${cur+1} / 3`;document.querySelector('#zoom').href=images[cur].src;prev.disabled=cur===0;next.disabled=cur===2;}
-function stop(message='Lecture arrêtée. Reprenez cette diapo quand vous voulez.') {token++;clearTimeout(timer);playing=false;if(synth)synth.cancel();utterance=null;play.textContent='▶ Reprendre cette diapo';status.textContent=message;}
-function loadVoices(){if(!synth)return;const previous=select.value;voices=synth.getVoices().filter(v=>/^fr(?:-|_|$)/i.test(v.lang));select.replaceChildren(new Option('Voix française automatique',''));voices.forEach(v=>select.add(new Option(v.name,v.voiceURI)));let saved='';try{saved=localStorage.getItem('digiy_series_voice')||''}catch{}const best=voices.find(v=>v.voiceURI===(previous||saved))||voices.find(v=>/Thomas/i.test(v.name))||voices.find(v=>v.lang==='fr-FR')||voices[0];if(best)select.value=best.voiceURI;}
-function speak(){if(!synth||!window.SpeechSynthesisUtterance){status.textContent='Ouvrez ce fichier dans un navigateur avec lecture vocale pour écouter la série.';return;}
- const id=++token;clearTimeout(timer);synth.cancel();playing=true;done=false;play.textContent='■ Arrêter';status.textContent='Préparation de la voix…';
- utterance=new SpeechSynthesisUtterance(TEXTS[cur]);const chosen=voices.find(v=>v.voiceURI===select.value);if(chosen)utterance.voice=chosen;utterance.lang=chosen?.lang||'fr-FR';utterance.rate=.95;utterance.pitch=1;
- utterance.onstart=()=>{if(id===token)status.textContent=`Lecture de la diapo ${cur+1} sur 3…`};
- utterance.onend=()=>{if(id!==token||!playing)return;if(cur<2){timer=setTimeout(()=>{if(id!==token||!playing)return;show(cur+1);speak()},650)}else{playing=false;done=true;utterance=null;play.textContent='↻ Réécouter la série';status.textContent='DIGIYLYFE. Votre place dans le village numérique.'}};
- utterance.onerror=e=>{if(id!==token)return;stop('La voix n’a pas démarré. Choisissez une voix française, puis relancez la lecture.');};
+const STEPS=[
+ {slide:0,label:'L’essentiel, simplement',text:'Sur votre téléphone, vous voyez l’essentiel. DIGIYLYFE simplifie la recherche pour vous aider à trouver votre réponse sur le territoire.'},
+ {slide:0,label:'Les activités près de vous',text:'À Saly, Ngaparou, Somone ou Mbour, retrouvez les activités locales et les professionnels près de vous.'},
+ {slide:1,label:'Le contact direct',text:'Vous choisissez votre interlocuteur, puis vous échangez directement avec lui. La relation reste humaine et directe.'},
+ {slide:2,label:'Vos outils selon votre métier',text:'Derrière cette interface, une organisation relie les fiches, les outils et les territoires. Les outils proposés dépendent de votre activité et de votre offre.'},
+ {slide:2,label:'0 % de commission DIGIYLYFE',text:'Vous convenez des conditions et payez directement votre interlocuteur. DIGIYLYFE ne prélève aucune commission sur vos transactions.'}
+];
+const $=s=>document.querySelector(s),images=[...document.querySelectorAll('#stage>img')];
+const stage=$('#stage'),benefit=$('#benefit'),play=$('#play'),status=$('#status'),select=$('#voice');
+const synth=window.speechSynthesis,hasSpeech=!!(synth&&window.SpeechSynthesisUtterance);
+let pos=0,state='idle',token=0,utterance=null,voices=[],timer=null,pendingNext=false,remaining=0,due=0,started=false;
+function cancelAudio(){token++;clearTimeout(timer);timer=null;if(hasSpeech)synth.cancel();utterance=null;started=false;pendingNext=false;remaining=0;}
+function show(focus=true){const step=STEPS[pos];images.forEach((image,i)=>{image.classList.toggle('active',i===step.slide);image.setAttribute('aria-hidden',focus||i!==step.slide?'true':'false')});$('#count').textContent=`Image ${step.slide+1} / 3`;$('#pill').textContent=step.label;$('#stepCount').textContent=`${pos+1} / ${STEPS.length}`;$('#transcript').textContent=step.text;$('#zoom').href=images[step.slide].src;stage.classList.toggle('focused',focus);benefit.hidden=!focus;benefit.classList.remove('rise');if(focus){void benefit.offsetWidth;benefit.classList.add('rise')}$('#prev').disabled=pos===0;$('#next').disabled=pos===STEPS.length-1;$('#stop').hidden=!focus;}
+function scheduleNext(ms){pendingNext=true;remaining=ms;due=Date.now()+ms;timer=setTimeout(()=>{timer=null;if(state!=='playing')return;pendingNext=false;remaining=0;if(pos<STEPS.length-1){pos++;read()}else{state='ended';utterance=null;show(false);play.textContent='↻ Réécouter les avantages';status.textContent='Votre place dans le village numérique.'}},ms);}
+function endSpeech(id){if(id!==token)return;utterance=null;started=false;if(state==='paused'){pendingNext=true;remaining=900;return}if(state==='playing')scheduleNext(900);}
+function revealAndSpeak(id){if(id!==token||state!=='playing')return;pendingNext=false;remaining=0;show(true);
+ if(!hasSpeech){status.textContent=`Avantage ${pos+1} sur ${STEPS.length}…`;scheduleNext(3000);return}
+ status.textContent='Préparation de la voix…';utterance=new SpeechSynthesisUtterance(STEPS[pos].text);const voice=voices.find(v=>v.voiceURI===select.value);if(voice)utterance.voice=voice;utterance.lang=voice?.lang||'fr-FR';utterance.rate=.95;utterance.pitch=1;
+ utterance.onstart=()=>{if(id!==token)return;started=true;status.textContent=`Avantage ${pos+1} sur ${STEPS.length}…`};
+ utterance.onend=()=>endSpeech(id);
+ utterance.onerror=()=>{if(id!==token)return;cancelAudio();state='idle';stage.classList.remove('paused');play.textContent='▶ Réessayer la voix';status.textContent='La voix est indisponible. Utilisez les flèches pour lire les avantages ou choisissez une autre voix.'};
  synth.speak(utterance);
 }
-play.onclick=()=>{if(playing){stop();return}if(done)show(0);speak()};
-function move(n){stop('Diapo prête. Appuyez sur Écouter.');done=false;show(Math.max(0,Math.min(2,n)));play.textContent='▶ Écouter dès cette diapo'}
-prev.onclick=()=>move(cur-1);next.onclick=()=>move(cur+1);
-select.onchange=()=>{const restart=playing;stop('Voix sélectionnée. Appuyez sur Écouter.');try{localStorage.setItem('digiy_series_voice',select.value)}catch{}if(restart)speak()};
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing)stop('Lecture interrompue. Appuyez sur Reprendre.')});
-document.querySelectorAll('.homeReturn').forEach(link=>link.addEventListener('click',()=>stop()));
-window.addEventListener('pagehide',()=>stop());
-if(synth){loadVoices();synth.addEventListener('voiceschanged',loadVoices)}else{play.disabled=true;status.textContent='La lecture vocale nécessite un navigateur compatible.'}show(0);
-</script></body></html>
+function read(){cancelAudio();state='playing';stage.classList.remove('paused');show(false);play.textContent='⏸ Pause';const id=token;status.textContent=`Image ${STEPS[pos].slide+1} · regardez 3 secondes…`;pendingNext=true;remaining=3000;due=Date.now()+3000;timer=setTimeout(()=>{timer=null;revealAndSpeak(id)},3000);}
+function pause(){if(state!=='playing')return;state='paused';stage.classList.add('paused');if(timer){remaining=Math.max(0,due-Date.now());clearTimeout(timer);timer=null}if(hasSpeech&&utterance){if(started)synth.pause();else{token++;synth.cancel();utterance=null}}play.textContent='▶ Reprendre';status.textContent='En pause. Prenez le temps de lire.';}
+function resume(){state='playing';stage.classList.remove('paused');play.textContent='⏸ Pause';if(pendingNext){const id=token;if(benefit.hidden){due=Date.now()+remaining;timer=setTimeout(()=>{timer=null;revealAndSpeak(id)},remaining);return}scheduleNext(remaining);return}if(hasSpeech&&utterance){synth.resume();status.textContent=`Avantage ${pos+1} sur ${STEPS.length}…`}else read();}
+function stop(){cancelAudio();state='idle';stage.classList.remove('paused');show(false);play.textContent=hasSpeech?'▶ Écouter les avantages':'▶ Voir les avantages';status.textContent='Image visible. Relancez les avantages quand vous voulez.';}
+play.onclick=()=>{if(state==='playing')pause();else if(state==='paused')resume();else{if(state==='ended')pos=0;read()}};
+$('#stop').onclick=stop;
+function move(delta){const keepPlaying=state==='playing';cancelAudio();state='idle';stage.classList.remove('paused');pos=Math.max(0,Math.min(STEPS.length-1,pos+delta));if(keepPlaying)read();else{show(true);play.textContent=hasSpeech?'▶ Écouter cet avantage':'▶ Voir les avantages';status.textContent='Avancez avec les flèches ou lancez la lecture.';}}
+$('#prev').onclick=()=>move(-1);$('#next').onclick=()=>move(1);
+function loadVoices(){if(!hasSpeech)return;const previous=select.value;voices=synth.getVoices().filter(v=>/^fr(?:-|_|$)/i.test(v.lang));select.replaceChildren(new Option('Voix française automatique',''));voices.forEach(v=>select.add(new Option(v.name,v.voiceURI)));let saved='';try{saved=localStorage.getItem('digiy_series_voice')||''}catch{}const best=voices.find(v=>v.voiceURI===(previous||saved))||voices.find(v=>/Thomas/i.test(v.name))||voices.find(v=>v.lang==='fr-FR')||voices[0];if(best)select.value=best.voiceURI;}
+select.onchange=()=>{const restart=state==='playing';cancelAudio();state='idle';stage.classList.remove('paused');try{localStorage.setItem('digiy_series_voice',select.value)}catch{}play.textContent='▶ Écouter cet avantage';if(restart)read()};
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&state==='playing'){cancelAudio();state='idle';stage.classList.remove('paused');play.textContent='▶ Reprendre cet avantage';status.textContent='Lecture interrompue. Appuyez pour reprendre.'}});
+document.querySelectorAll('.homeReturn').forEach(link=>link.addEventListener('click',cancelAudio));window.addEventListener('pagehide',cancelAudio);
+if(hasSpeech){loadVoices();synth.addEventListener('voiceschanged',loadVoices)}else{play.textContent='▶ Voir les avantages';status.textContent='La voix est indisponible ici. Les avantages restent accessibles.'}show(false);
+</script>
+</body></html>
