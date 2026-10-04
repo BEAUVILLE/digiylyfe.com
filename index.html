@@ -767,6 +767,15 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     .digiyInternationalStaticText{margin:10px 0 0;color:#dce9e3;font-size:12px;line-height:1.5;font-weight:850}
     @media(max-width:720px){.digiyInternationalStatic{padding:12px}.digiyInternationalStaticGrid{grid-template-columns:1fr}.digiyInternationalStaticCopy{text-align:center}.digiyInternationalStaticMedia{width:min(430px,100%);margin:0 auto}}
 
+
+    /* Mobile explainer: only the small preview loads on the homepage. */
+    .digiySeries{display:flex;align-items:center;gap:22px;margin:24px 0;padding:22px;border:1px solid rgba(246,196,83,.35);border-radius:20px;background:rgba(8,42,29,.65)}
+    .digiySeriesPreview{flex:0 0 132px;line-height:0}.digiySeriesPreview img{width:100%;height:auto;border-radius:10px}
+    .digiySeries h2{font-size:clamp(20px,4vw,28px);line-height:1.2;margin:0 0 12px}
+    .digiySeries p{line-height:1.6;margin:0 0 16px}.digiySeries small{display:block;margin-top:12px;line-height:1.5;color:rgba(255,250,240,.75)}
+    .digiySeriesCta{display:inline-flex;align-items:center;min-height:48px;padding:12px 18px;border-radius:999px;background:var(--gold);color:#06140f;font-weight:900;text-decoration:none}
+    .digiySeries a:focus-visible{outline:3px solid white;outline-offset:4px}
+    @media(max-width:480px){.digiySeries{gap:16px;padding:18px;flex-direction:column;text-align:center}.digiySeriesPreview{flex-basis:auto;width:132px}}
   </style>
 
 <style id="digiy-treasure-v1">
@@ -1308,6 +1317,18 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
       </div>
     </section>    
 
+    <section class="digiySeries" id="comment-ca-marche" aria-labelledby="digiySeriesTitle">
+      <a class="digiySeriesPreview" href="/comprendre-digiylyfe.html" aria-labelledby="digiySeriesTitle">
+        <img src="/assets/serie-mobile/apercu.webp" width="320" height="569" loading="lazy" decoding="async" alt=""/>
+      </a>
+      <div>
+        <h2 id="digiySeriesTitle" data-i18n="seriesTitle">Comment fonctionne DIGIYLYFE ?</h2>
+        <p data-i18n="seriesLead">Une interface simple, les activités de votre territoire et le contact direct. Découvrez ce qui les relie.</p>
+        <a class="digiySeriesCta" href="/comprendre-digiylyfe.html" data-i18n="seriesCta">Découvrir en 3 images</a>
+        <small data-i18n="seriesHint">Présentation en français · voix au clic · lecture à votre rythme</small>
+      </div>
+    </section>
+
     <section class="digiyCardSection" aria-label="Carte de visite DIGIYLYFE">
       <h2>🪪 <span data-i18n="cardSecTitle">Carte officielle DIGIYLYFE</span></h2>
       <p><span data-i18n="cardSecText">Ouvrez-la, partagez-la ou gardez-la sur votre téléphone.</span></p>
@@ -1366,6 +1387,17 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     Object.assign(TEXT.de,{"salyVideoTitle": "Ihr Platz im digitalen Dorf.", "salyVideoLead": "Die Berufe. Das lokale Leben. Ihre Region. Entdecken Sie DIGIYLYFE an der Petite Côte.", "salyVideoHint": "Wiedergabe starten · Video auf Französisch · 12 Sekunden", "salyVideoExplore": "Die Petite Côte entdecken →", "salyVideoFallback": "DIGIYLYFE-Video öffnen"});
     Object.assign(TEXT.nl,{"salyVideoTitle": "Uw plek in het digitale dorp.", "salyVideoLead": "De beroepen. Het lokale leven. Uw regio. Ontdek DIGIYLYFE aan de Petite Côte.", "salyVideoHint": "Druk op afspelen · video in het Frans · 12 seconden", "salyVideoExplore": "Ontdek de Petite Côte →", "salyVideoFallback": "Open de DIGIYLYFE-video"});
     Object.assign(TEXT.ar,{"salyVideoTitle": "مكانك في القرية الرقمية.", "salyVideoLead": "المهن. الحياة المحلية. منطقتك. اكتشف DIGIYLYFE في Petite Côte.", "salyVideoHint": "اضغط للتشغيل · فيديو بالفرنسية · 12 ثانية", "salyVideoExplore": "استكشف Petite Côte ←", "salyVideoFallback": "افتح فيديو DIGIYLYFE"});
+
+
+    // Mobile explainer entry: the linked presentation is explicitly French.
+    Object.assign(TEXT.fr,{"seriesTitle": "Comment fonctionne DIGIYLYFE ?", "seriesLead": "Une interface simple, les activités de votre territoire et le contact direct. Découvrez ce qui les relie.", "seriesCta": "Découvrir en 3 images", "seriesHint": "Présentation en français · voix au clic · lecture à votre rythme"});
+    Object.assign(TEXT.en,{"seriesTitle": "How does DIGIYLYFE work?", "seriesLead": "A simple interface, local businesses and direct contact. Discover how they connect.", "seriesCta": "Discover in 3 images", "seriesHint": "Presentation in French · tap to listen · explore at your own pace"});
+    Object.assign(TEXT.es,{"seriesTitle": "¿Cómo funciona DIGIYLYFE?", "seriesLead": "Una interfaz sencilla, las actividades de su territorio y el contacto directo. Descubra cómo se conectan.", "seriesCta": "Descubrir en 3 imágenes", "seriesHint": "Presentación en francés · pulse para escuchar · avance a su ritmo"});
+    Object.assign(TEXT.pt,{"seriesTitle": "Como funciona o DIGIYLYFE?", "seriesLead": "Uma interface simples, as atividades do seu território e o contacto direto. Descubra como se ligam.", "seriesCta": "Descobrir em 3 imagens", "seriesHint": "Apresentação em francês · toque para ouvir · avance ao seu ritmo"});
+    Object.assign(TEXT.it,{"seriesTitle": "Come funziona DIGIYLYFE?", "seriesLead": "Un’interfaccia semplice, le attività del territorio e il contatto diretto. Scopri come si collegano.", "seriesCta": "Scopri in 3 immagini", "seriesHint": "Presentazione in francese · tocca per ascoltare · procedi al tuo ritmo"});
+    Object.assign(TEXT.de,{"seriesTitle": "Wie funktioniert DIGIYLYFE?", "seriesLead": "Eine einfache Oberfläche, lokale Angebote und direkter Kontakt. Entdecken Sie, wie sie zusammenkommen.", "seriesCta": "In 3 Bildern entdecken", "seriesHint": "Präsentation auf Französisch · zum Anhören tippen · im eigenen Tempo ansehen"});
+    Object.assign(TEXT.nl,{"seriesTitle": "Hoe werkt DIGIYLYFE?", "seriesLead": "Een eenvoudige interface, lokale activiteiten en rechtstreeks contact. Ontdek hoe ze samenkomen.", "seriesCta": "Ontdek het in 3 beelden", "seriesHint": "Presentatie in het Frans · tik om te luisteren · bekijk op uw eigen tempo"});
+    Object.assign(TEXT.ar,{"seriesTitle": "كيف تعمل DIGIYLYFE؟", "seriesLead": "واجهة بسيطة وأنشطة منطقتك وتواصل مباشر. اكتشف ما يربط بينها.", "seriesCta": "اكتشف عبر 3 صور", "seriesHint": "عرض باللغة الفرنسية · اضغط للاستماع · تصفّح بالوتيرة التي تناسبك"});
 
     function setLang(lang){
       if(!TEXT[lang])lang='fr';
