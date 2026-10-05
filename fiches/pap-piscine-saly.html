@@ -91,7 +91,6 @@ async function boot(){
   $("ownerBtn2").href=$("ownerBtn").href;
   if(window.QRCode)new QRCode($("qr"),{text:ficheUrl,width:190,height:190,correctLevel:QRCode.CorrectLevel.H});
 }
-$("share").onclick=async()=>{try{if(navigator.share)await navigator.share({title:"PAP Piscine",url:ficheUrl});else await navigator.clipboard.writeText(ficheUrl)}catch(_){}};
 boot();
 })();
 </script>
