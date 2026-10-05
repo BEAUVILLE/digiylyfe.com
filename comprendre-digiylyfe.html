@@ -52,7 +52,48 @@ const $=s=>document.querySelector(s),images=[...document.querySelectorAll('#stag
 const stage=$('#stage'),benefit=$('#benefit'),play=$('#play'),status=$('#status'),select=$('#voice');
 const synth=window.speechSynthesis,hasSpeech=!!(synth&&window.SpeechSynthesisUtterance);
 let pos=0,state='idle',token=0,utterance=null,voices=[],timer=null,pendingNext=false,remaining=0,due=0,started=false,imagePhase=false;
-function cancelAudio(){token++;clearTimeout(timer);timer=null;if(hasSpeech)synth.cancel();utterance=null;started=false;pendingNext=false;remaining=0;imagePhase=false;}
+
+// Start the iOS speech session inside the actual button gesture, before the image delay.
+function unlockSpeech(){
+  if(!window.speechSynthesis||!window.SpeechSynthesisUtterance)return;
+  try{
+    const warmup=new SpeechSynthesisUtterance('DIGIYLYFE');
+    warmup.lang='fr-FR';warmup.volume=0;warmup.rate=10;
+    speechSynthesis.speak(warmup);
+    speechSynthesis.cancel();
+    speechSynthesis.resume();
+  }catch{}
+}
+// Some engines silently reject speak(): never wait indefinitely for their events.
+let abortSpeechGuard=null;
+function clearSpeechGuard(){if(abortSpeechGuard)abortSpeechGuard();abortSpeechGuard=null;}
+function guardSpeech(u,isCurrent,isPaused,onStart,onDone){
+  let watchdog=null,finished=false,started=false,elapsed=0;
+  const limit=Math.max(15000,u.text.length*140+10000);
+  function abort(){finished=true;clearTimeout(watchdog);u.onstart=u.onend=u.onerror=null;}
+  function finish(ok){
+    if(finished)return;
+    const current=isCurrent();abort();
+    if(!current)return;
+    if(!ok)try{speechSynthesis.cancel();}catch{}
+    onDone(ok);
+  }
+  u.onstart=()=>{if(!finished&&isCurrent()){started=true;elapsed=0;onStart();}};
+  u.onend=()=>finish(true);
+  u.onerror=()=>finish(false);
+  function tick(){
+    if(finished)return;
+    if(!isCurrent()){abort();return;}
+    if(!isPaused())elapsed+=250;
+    if(elapsed>=(started?limit:2500)){finish(false);return;}
+    watchdog=setTimeout(tick,250);
+  }
+  watchdog=setTimeout(tick,250);
+  try{speechSynthesis.speak(u);}catch{finish(false);}
+  return abort;
+}
+
+function cancelAudio(){token++;clearSpeechGuard();clearTimeout(timer);timer=null;if(hasSpeech)synth.cancel();utterance=null;started=false;pendingNext=false;remaining=0;imagePhase=false;}
 function show(focus=true){const step=STEPS[pos];images.forEach((image,i)=>{image.classList.toggle('active',i===step.slide);image.setAttribute('aria-hidden',focus||i!==step.slide?'true':'false')});$('#count').textContent=`Image ${step.slide+1} / 3`;$('#pill').textContent=step.label;$('#stepCount').textContent=`${pos+1} / ${STEPS.length}`;$('#transcript').textContent=step.text;$('#zoom').href=images[step.slide].src;stage.classList.toggle('focused',focus);benefit.hidden=!focus;benefit.classList.remove('rise');if(focus){void benefit.offsetWidth;benefit.classList.add('rise')}$('#prev').disabled=pos===0;$('#next').disabled=pos===STEPS.length-1;$('#stop').hidden=!focus;}
 function scheduleNext(ms){pendingNext=true;remaining=ms;due=Date.now()+ms;timer=setTimeout(()=>{timer=null;if(state!=='playing')return;pendingNext=false;remaining=0;if(pos<STEPS.length-1){pos++;read()}else{state='ended';utterance=null;play.textContent='↻ Réécouter les avantages';status.textContent='Votre place dans le village numérique.'}},ms);}
 function endSpeech(id){if(id!==token)return;utterance=null;started=false;if(state==='paused'){pendingNext=true;remaining=900;return}if(state==='playing')scheduleNext(900);}
@@ -61,20 +102,20 @@ function read(){cancelAudio();state='playing';stage.classList.remove('paused');s
 function startSpeech(){show(true);const id=token;
  if(!hasSpeech){status.textContent='Lecture sans voix sur cet appareil.';scheduleNext(6500);return}
  status.textContent='Préparation de la voix…';utterance=new SpeechSynthesisUtterance(STEPS[pos].text);const voice=voices.find(v=>v.voiceURI===select.value);if(voice)utterance.voice=voice;utterance.lang=voice?.lang||'fr-FR';utterance.rate=.95;utterance.pitch=1;
- utterance.onstart=()=>{if(id!==token)return;started=true;status.textContent=`Avantage ${pos+1} sur ${STEPS.length}…`};
- utterance.onend=()=>endSpeech(id);
- utterance.onerror=()=>{if(id!==token)return;cancelAudio();state='idle';stage.classList.remove('paused');play.textContent='▶ Réessayer la voix';status.textContent='La voix est indisponible. Utilisez les flèches pour lire les avantages ou choisissez une autre voix.'};
- synth.speak(utterance);
+ abortSpeechGuard=guardSpeech(utterance,()=>id===token,()=>state==='paused',
+   ()=>{started=true;status.textContent=`Avantage ${pos+1} sur ${STEPS.length}…`},
+   ok=>{if(ok){endSpeech(id);return}utterance=null;started=false;status.textContent='Voix indisponible · lecture des pastilles.';if(state==='paused'){pendingNext=true;remaining=6500}else if(state==='playing')scheduleNext(6500)});
+
 }
 function pause(){if(state!=='playing')return;state='paused';stage.classList.add('paused');if(timer){remaining=Math.max(0,due-Date.now());clearTimeout(timer);timer=null}if(hasSpeech&&utterance){if(started)synth.pause();else{token++;synth.cancel();utterance=null}}play.textContent='▶ Reprendre';status.textContent='En pause. Prenez le temps de lire.';}
 function resume(){state='playing';stage.classList.remove('paused');play.textContent='⏸ Pause';if(imagePhase){status.textContent='Regardez l’image…';scheduleImage(remaining);return}if(pendingNext){scheduleNext(remaining);return}if(hasSpeech&&utterance){synth.resume();status.textContent=`Avantage ${pos+1} sur ${STEPS.length}…`}else read();}
 function stop(){cancelAudio();state='idle';stage.classList.remove('paused');show(false);play.textContent=hasSpeech?'▶ Écouter les avantages':'▶ Voir les avantages';status.textContent='Image visible. Relancez les avantages quand vous voulez.';}
-play.onclick=()=>{if(state==='playing')pause();else if(state==='paused')resume();else{if(state==='ended')pos=0;read()}};
+play.onclick=()=>{if(state==='playing')pause();else if(state==='paused')resume();else{if(state==='ended')pos=0;unlockSpeech();read()}};
 $('#stop').onclick=stop;
 function move(delta){const keepPlaying=state==='playing';cancelAudio();state='idle';stage.classList.remove('paused');pos=Math.max(0,Math.min(STEPS.length-1,pos+delta));if(keepPlaying)read();else{show(true);play.textContent=hasSpeech?'▶ Écouter cet avantage':'▶ Voir les avantages';status.textContent='Avancez avec les flèches ou lancez la lecture.';}}
 $('#prev').onclick=()=>move(-1);$('#next').onclick=()=>move(1);
 function loadVoices(){if(!hasSpeech)return;const previous=select.value;voices=synth.getVoices().filter(v=>/^fr(?:-|_|$)/i.test(v.lang));select.replaceChildren(new Option('Voix française automatique',''));voices.forEach(v=>select.add(new Option(v.name,v.voiceURI)));let saved='';try{saved=localStorage.getItem('digiy_series_voice')||''}catch{}const best=voices.find(v=>v.voiceURI===(previous||saved))||voices.find(v=>/Thomas/i.test(v.name))||voices.find(v=>v.lang==='fr-FR')||voices[0];if(best)select.value=best.voiceURI;}
-select.onchange=()=>{const restart=state==='playing';cancelAudio();state='idle';stage.classList.remove('paused');try{localStorage.setItem('digiy_series_voice',select.value)}catch{}play.textContent='▶ Écouter cet avantage';if(restart)read()};
+select.onchange=()=>{const restart=state==='playing';cancelAudio();state='idle';stage.classList.remove('paused');try{localStorage.setItem('digiy_series_voice',select.value)}catch{}play.textContent='▶ Écouter cet avantage';if(restart){unlockSpeech();read()}};
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&state==='playing'){cancelAudio();state='idle';stage.classList.remove('paused');play.textContent='▶ Reprendre cet avantage';status.textContent='Lecture interrompue. Appuyez pour reprendre.'}});
 document.querySelectorAll('.homeReturn').forEach(link=>link.addEventListener('click',cancelAudio));window.addEventListener('pagehide',cancelAudio);
 if(hasSpeech){loadVoices();synth.addEventListener('voiceschanged',loadVoices)}else{play.textContent='▶ Voir les avantages';status.textContent='La voix est indisponible ici. Les avantages restent accessibles.'}show(false);
