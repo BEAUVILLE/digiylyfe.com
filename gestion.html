@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow">
+<title>DIGIYLYFE · Gestion propriétaire</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
+<style>
+:root{--bg:#06130f;--card:#0b241b;--gold:#d4af37;--gold2:#f3d46b;--ink:#f8fafc;--muted:#cbd5e1;--line:#ffffff1f;--green:#22c55e}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#071510,#04100c);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{width:min(100% - 24px,760px);margin:auto}header{padding:17px 0;border-bottom:1px solid #d4af3744}.brand{font-weight:950;color:var(--gold2);font-size:20px}.top{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.btn{border:1px solid var(--line);border-radius:999px;padding:10px 13px;background:#ffffff0c;color:#fff;font-weight:900;text-decoration:none;cursor:pointer}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;margin-bottom:14px}.lock{padding:11px;border-radius:13px;background:#d4af3712;color:#fff1b5;font-size:12px;line-height:1.45}label{display:block;margin:13px 0 6px;font-size:12px;font-weight:950;color:var(--gold2)}input,textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:#102b22;color:#fff;font:inherit}textarea{min-height:96px;resize:vertical}.service{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;border:1px solid var(--line);border-radius:14px;margin-top:9px}.save{width:100%;margin-top:16px;border:0;border-radius:999px;padding:13px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#102419;font-weight:950;cursor:pointer}.msg{display:none;margin:12px 0;padding:11px;border-radius:12px}.msg.show{display:block}.ok{background:#22c55e18;color:#bbf7d0}.bad{background:#ef444418;color:#fecaca}.hint{font-size:11px;color:var(--muted);line-height:1.45}@media(max-width:600px){.service{grid-template-columns:1fr}}
+</style></head>
+<body><header><div class="wrap"><div class="brand">🌍 DIGIYLYFE · Gestion propriétaire</div></div></header><main class="wrap"><div class="top"><a class="btn" id="back" href="https://digiylyfe.com/">← Retour à la fiche</a><button class="btn" id="logout" type="button">Déconnexion</button></div><div id="msg" class="msg"></div><section class="card" id="editor" hidden><h1 id="name">Fiche professionnelle</h1><div class="lock">Vous gérez les informations utiles de votre activité. Le nom, la catégorie, le slug et la structure DIGIYLYFE restent protégés.</div><label>Présentation</label><textarea id="description" maxlength="1200"></textarea><label>Téléphone / WhatsApp</label><input id="phone" type="tel" maxlength="32"><label>Horaires / fonctionnement</label><input id="hours" type="text" maxlength="200"><label>Tarifs résumés</label><textarea id="priceText" maxlength="700"></textarea><label>Image principale (URL)</label><input id="coverUrl" type="url"><label>Site / lien complémentaire</label><input id="website" type="url"><label>Prestations & tarifs</label><div class="hint">Modifiez le nom et le prix de chaque prestation. Les familles Piscine/Jardinage restent visibles pour le client.</div><div id="services"></div><button class="btn" id="addService" type="button" style="margin-top:10px">+ Ajouter une prestation</button><button class="save" id="save" type="button">Enregistrer</button></section></main>
+<script>
+(()=>{
+const sb=window.supabase.createClient("https://wesqmwjjtsefyjnluosj.supabase.co","sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3",{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+const p=new URL(location.href).searchParams,fiche=(p.get("fiche")||"").trim(),ret=p.get("return")||"https://digiylyfe.com/";
+const $=id=>document.getElementById(id);let user=null,services=[];
+try{const u=new URL(ret,location.origin);if(u.origin===location.origin||u.hostname.endsWith(".digiylyfe.com"))$("back").href=u.href}catch(_){}
+function msg(t,type="bad"){const e=$("msg");e.textContent=t;e.className="msg show "+type}
+function esc(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll('"',"&quot;")}
+function drawServices(){ $("services").innerHTML=services.map((s,i)=>'<div class="service"><div><label>Famille</label><input data-i="'+i+'" data-k="group" value="'+esc(s.group||"")+'"></div><div><label>Prestation</label><input data-i="'+i+'" data-k="name" value="'+esc(s.name||"")+'"></div><div style="grid-column:1/-1"><label>Prix / indication</label><input data-i="'+i+'" data-k="price" value="'+esc(s.price||"")+'"></div></div>').join(""); $("services").querySelectorAll("input[data-i]").forEach(inp=>inp.oninput=()=>{services[Number(inp.dataset.i)][inp.dataset.k]=inp.value});}
+async function boot(){
+  if(!fiche){msg("Fiche manquante.");return}
+  const {data:{user:cu},error:ue}=await sb.auth.getUser();if(ue||!cu){msg("Ouvrez cette page depuis le magic-link reçu par email.");return}user=cu;
+  await sb.from("professionals").update({owner_user_id:user.id}).eq("slug",fiche);
+  const {data:isOwner,error:oe}=await sb.rpc("digiy_professional_owner_is_owner",{p_slug:fiche});
+  if(oe||isOwner!==true){msg("Cette fiche n’est pas rattachée à ce compte.");return}
+  const {data,error}=await sb.from("professionals").select("name,description,phone,website,hours,services,slug,cover_url,price_text").eq("slug",fiche).maybeSingle();
+  if(error||!data){msg(error?.message||"Fiche introuvable.");return}
+  $("name").textContent=data.name||"Fiche professionnelle";$("description").value=data.description||"";$("phone").value=data.phone||"";$("website").value=data.website||"";$("hours").value=data.hours||"";$("coverUrl").value=data.cover_url||"";$("priceText").value=data.price_text||"";services=Array.isArray(data.services)?data.services:[];drawServices();$("editor").hidden=false;
+}
+$("addService").onclick=()=>{services.push({group:"Service",name:"Nouvelle prestation",price:"Sur devis"});drawServices()};
+$("save").onclick=async()=>{
+  if(!user)return;$("save").disabled=true;
+  const phone=$("phone").value.trim(),digits=phone.replace(/\D/g,"");
+  const patch={description:$("description").value.trim(),phone,website:$("website").value.trim(),hours:$("hours").value.trim(),cover_url:$("coverUrl").value.trim(),price_text:$("priceText").value.trim(),services,cta_primary_label:"💬 WhatsApp",cta_primary_url:"https://wa.me/"+digits+"?text="+encodeURIComponent("Bonjour, je vous contacte depuis DIGIYLYFE."),cta_secondary_label:"📞 Appeler",cta_secondary_url:"tel:"+phone,updated_at:new Date().toISOString()};
+  const {error}=await sb.from("professionals").update(patch).eq("slug",fiche);$("save").disabled=false;if(error){msg(error.message);return}msg("Modifications enregistrées.","ok");
+};
+$("logout").onclick=async()=>{await sb.auth.signOut();location.href=$("back").href};
+boot();
+})();
+</script></body></html>
