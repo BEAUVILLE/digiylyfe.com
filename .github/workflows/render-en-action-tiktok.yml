@@ -1,0 +1,45 @@
+name: Render DIGIYLYFE TikTok notice
+
+on:
+  push:
+    branches:
+      - render-en-action-tiktok-20261005
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install render tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg espeak-ng fonts-dejavu-core
+          python -m pip install --upgrade pip
+          python -m pip install pillow edge-tts
+
+      - name: Render 9x16 MP4
+        run: python tools/render_tiktok_notice.py
+
+      - name: Verify master
+        run: |
+          test -s DIGIYLYFE_NOTICE_TERRITOIRE_TIKTOK_9x16.mp4
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height -of json DIGIYLYFE_NOTICE_TERRITOIRE_TIKTOK_9x16.mp4
+
+      - name: Upload TikTok master
+        uses: actions/upload-artifact@v4
+        with:
+          name: DIGIYLYFE_NOTICE_TERRITOIRE_TIKTOK_9x16
+          path: DIGIYLYFE_NOTICE_TERRITOIRE_TIKTOK_9x16.mp4
+          if-no-files-found: error
+          retention-days: 14
