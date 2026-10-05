@@ -82,12 +82,53 @@ function drawPanel(index){
 }
 source.onload=()=>drawPanel(i);
 
+
+// Start the iOS speech session inside the actual button gesture, before the image delay.
+function unlockSpeech(){
+  if(!window.speechSynthesis||!window.SpeechSynthesisUtterance)return;
+  try{
+    const warmup=new SpeechSynthesisUtterance('DIGIYLYFE');
+    warmup.lang='fr-FR';warmup.volume=0;warmup.rate=10;
+    speechSynthesis.speak(warmup);
+    speechSynthesis.cancel();
+    speechSynthesis.resume();
+  }catch{}
+}
+// Some engines silently reject speak(): never wait indefinitely for their events.
+let abortSpeechGuard=null;
+function clearSpeechGuard(){if(abortSpeechGuard)abortSpeechGuard();abortSpeechGuard=null;}
+function guardSpeech(u,isCurrent,isPaused,onStart,onDone){
+  let watchdog=null,finished=false,started=false,elapsed=0;
+  const limit=Math.max(15000,u.text.length*140+10000);
+  function abort(){finished=true;clearTimeout(watchdog);u.onstart=u.onend=u.onerror=null;}
+  function finish(ok){
+    if(finished)return;
+    const current=isCurrent();abort();
+    if(!current)return;
+    if(!ok)try{speechSynthesis.cancel();}catch{}
+    onDone(ok);
+  }
+  u.onstart=()=>{if(!finished&&isCurrent()){started=true;elapsed=0;onStart();}};
+  u.onend=()=>finish(true);
+  u.onerror=()=>finish(false);
+  function tick(){
+    if(finished)return;
+    if(!isCurrent()){abort();return;}
+    if(!isPaused())elapsed+=250;
+    if(elapsed>=(started?limit:2500)){finish(false);return;}
+    watchdog=setTimeout(tick,250);
+  }
+  watchdog=setTimeout(tick,250);
+  try{speechSynthesis.speak(u);}catch{finish(false);}
+  return abort;
+}
+
 function frenchVoice(){
   const voices=speechSynthesis.getVoices();
   return voices.find(v=>/fr[-_]FR/i.test(v.lang)&&/Thomas|Audrey|Amélie|Marie|Daniel/i.test(v.name))
     ||voices.find(v=>/^fr/i.test(v.lang))||null;
 }
-function stopAudio(){token++;clearTimeout(timer);timer=null;if(window.speechSynthesis)speechSynthesis.cancel();utter=null}
+function stopAudio(){token++;clearSpeechGuard();clearTimeout(timer);timer=null;if(window.speechSynthesis)speechSynthesis.cancel();utter=null}
 function render(index){
   i=(index+STEPS.length)%STEPS.length;
   stage.classList.remove('focused');
@@ -98,10 +139,11 @@ function speakCurrent(id){
   return new Promise(resolve=>{
     if(id!==token){resolve();return}
     stage.classList.add('focused');statusEl.textContent='VOIX + BADGE';
-    if(!('speechSynthesis'in window)||!window.SpeechSynthesisUtterance){timer=setTimeout(resolve,3800);return}
+    if(!window.speechSynthesis||!window.SpeechSynthesisUtterance){timer=setTimeout(resolve,3800);return}
     utter=new SpeechSynthesisUtterance(STEPS[i].voice);utter.lang='fr-FR';utter.rate=.95;utter.pitch=1;
     const v=frenchVoice();if(v)utter.voice=v;
-    utter.onend=resolve;utter.onerror=resolve;speechSynthesis.speak(utter);
+    abortSpeechGuard=guardSpeech(utter,()=>id===token,()=>false,()=>{},
+      ok=>{utter=null;if(ok)resolve();else{statusEl.textContent='Voix indisponible · lecture des pastilles.';timer=setTimeout(resolve,6500);}});
   });
 }
 async function cycle(){
@@ -119,7 +161,7 @@ async function cycle(){
 }
 playBtn.onclick=()=>{
   if(running){running=false;stopAudio();stage.classList.remove('focused');playBtn.textContent='▶ REPRENDRE';statusEl.textContent='En pause.'}
-  else{running=true;stopAudio();playBtn.textContent='⏸ PAUSE';cycle()}
+  else{running=true;stopAudio();unlockSpeech();playBtn.textContent='⏸ PAUSE';cycle()}
 };
 document.getElementById('prev').onclick=()=>{running=false;stopAudio();render(i-1);playBtn.textContent='▶ LANCER'};
 document.getElementById('next').onclick=()=>{running=false;stopAudio();render(i+1);playBtn.textContent='▶ LANCER'};
