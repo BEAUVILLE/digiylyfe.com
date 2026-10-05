@@ -56,7 +56,7 @@ async function boot(){
   $("hours").textContent=data.hours||"Sur rendez-vous";
   $("badge").textContent=data.badge_text||"Piscines · Jardins · Service à domicile";
   $("priceText").textContent=data.price_text||"";
-  $("cover").src=data.cover_url||"/assets/pap-piscine-fiche-final.svg";$("cover").onerror=()=>{$("cover").src="/assets/pap-piscine-fiche-final.svg"};
+  $("cover").src=data.cover_url||"/assets/pap-piscine-fiche-officielle.webp";$("cover").onerror=()=>{$("cover").src="/assets/pap-piscine-fiche-officielle.webp"};
   renderServices(data.services);
   const tel=data.cta_secondary_url||("tel:"+String(data.phone||""));
   const wa=data.cta_primary_url||("https://wa.me/"+cleanPhone(data.phone));
