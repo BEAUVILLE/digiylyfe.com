@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow">
+<title>DIGIYLYFE · Accès propriétaire</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
+<style>
+:root{--bg:#06130f;--card:#0b241b;--gold:#d4af37;--gold2:#f3d46b;--ink:#f8fafc;--muted:#cbd5e1;--line:#ffffff1f}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:16px;background:linear-gradient(180deg,#071510,#04100c);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}.card{width:min(100%,440px);background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px}.brand{font-size:21px;font-weight:950;color:var(--gold2)}h1{margin:14px 0 6px}.lead{color:var(--muted);line-height:1.5;font-size:13px}input{width:100%;padding:13px;border:1px solid var(--line);border-radius:12px;background:#102b22;color:#fff;font:inherit;margin-top:10px}.btn{width:100%;display:flex;justify-content:center;border-radius:999px;padding:12px;font-weight:950;margin-top:10px;text-decoration:none;border:1px solid var(--line);background:#ffffff0c;color:#fff;cursor:pointer}.send{border:0;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#102419}.msg{display:none;margin-top:10px;padding:11px;border-radius:12px;font-size:12px}.msg.show{display:block}.ok{background:#22c55e18;color:#bbf7d0}.bad{background:#ef444418;color:#fecaca}
+</style></head>
+<body><main class="card"><div class="brand">🌍 DIGIYLYFE</div><h1>Accès propriétaire</h1><p class="lead">Saisissez l’email autorisé pour cette fiche. Un magic-link de connexion sera envoyé à cette adresse.</p><input id="email" type="email" autocomplete="email" placeholder="Votre email"><button class="btn send" id="send" type="button">Envoyer le magic-link</button><div id="msg" class="msg"></div><a class="btn" id="back" href="https://digiylyfe.com/">← Retour à la fiche</a></main>
+<script>
+(()=>{
+const sb=window.supabase.createClient("https://wesqmwjjtsefyjnluosj.supabase.co","sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3",{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+const p=new URL(location.href).searchParams,fiche=(p.get("fiche")||"").trim(),ret=p.get("return")||"https://digiylyfe.com/";
+const $=id=>document.getElementById(id);try{const u=new URL(ret,location.origin);if(u.origin===location.origin||u.hostname.endsWith(".digiylyfe.com"))$("back").href=u.href}catch(_){}
+function msg(t,type="bad"){const e=$("msg");e.textContent=t;e.className="msg show "+type}
+function goManage(){if(!fiche)return;const u=new URL("/gestion.html",location.origin);u.searchParams.set("fiche",fiche);u.searchParams.set("return",$("back").href);location.replace(u.href)}
+$("send").onclick=async()=>{
+  if(!fiche){msg("Fiche manquante.");return}
+  const email=$("email").value.trim();if(!email){msg("Email requis.");return}
+  $("send").disabled=true;
+  const {data:allowed,error:ae}=await sb.rpc("digiy_professional_owner_can_activate",{p_slug:fiche,p_email:email});
+  if(ae||allowed!==true){$("send").disabled=false;msg("Cet email n’est pas autorisé pour cette fiche.");return}
+  const redirect=new URL("/acces-proprietaire.html",location.origin);
+  redirect.searchParams.set("fiche",fiche);redirect.searchParams.set("return",$("back").href);
+  const {error}=await sb.auth.signInWithOtp({email,options:{shouldCreateUser:true,emailRedirectTo:redirect.href}});
+  $("send").disabled=false;if(error){msg(error.message);return}msg("Magic-link envoyé. Vérifiez votre email.","ok");
+};
+sb.auth.getSession().then(({data})=>{if(data.session)goManage()});
+sb.auth.onAuthStateChange((event,session)=>{if(session&&(event==="SIGNED_IN"||event==="INITIAL_SESSION"))setTimeout(goManage,0)});
+})();
+</script></body></html>
