@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0b4f7d">
+<link rel="canonical" href="https://digiylyfe.com/fiches/pap-piscine-saly.html">
+<title>PAP Piscine · Piscines & jardinage · Saly · DIGIYLYFE</title>
+<meta name="description" content="PAP Piscine à Saly : entretien, conception, rénovation de piscines et jardinage à domicile. Contact direct, forfaits publiés, 0 % commission DIGIYLYFE.">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--blue:#0b4f7d;--blue2:#118acb;--green:#2e7d32;--ink:#08243b;--muted:#627482;--bg:#f3fbff;--line:#0b4f7d22}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f7fdff,#e9f6fb);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}a{text-decoration:none;color:inherit}.wrap{width:min(100% - 24px,980px);margin:auto}
+.top{position:sticky;top:0;z-index:20;background:#ffffffee;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.topin{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:10px}.brand{font-weight:1000;color:var(--blue)}.topActions{display:flex;gap:7px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:999px;padding:11px 15px;font-weight:950;background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line);cursor:pointer}.btn.primary{background:linear-gradient(135deg,var(--blue2),var(--blue));color:#fff}.btn.green{background:linear-gradient(135deg,#28b463,var(--green));color:#fff}
+.hero{padding:18px 0 10px}.heroCard{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;background:linear-gradient(145deg,#0c5f92,#073c65);color:#fff;border-radius:30px;padding:22px;box-shadow:0 24px 55px #063a5c2d}.heroCard img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:23px;background:#fff}.kicker{font-size:.82rem;font-weight:1000;text-transform:uppercase;color:#c8f1ff;letter-spacing:.05em}h1{font-size:clamp(2.4rem,7vw,4.7rem);line-height:.94;margin:8px 0}.lead{font-size:1.05rem;line-height:1.55;color:#f4fbff}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:14px;padding:10px 0 34px}.panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:19px;box-shadow:0 12px 34px #0b4f7d12}.panel h2{margin:0 0 12px;color:var(--blue)}
+.services{display:grid;gap:10px}.service{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:14px;border-radius:17px;background:#edf8fd;border:1px solid #0b4f7d1c}.service.greenish{background:#eff9ef;border-color:#2e7d3222}.service b{display:block}.price{font-weight:1000;text-align:right;color:var(--blue)}.greenish .price{color:var(--green)}.note{color:var(--muted);line-height:1.55}.badge{display:inline-block;padding:8px 11px;border-radius:999px;background:#ffffff1b;border:1px solid #ffffff35;font-weight:900}
+.qr{text-align:center}.qrBox{display:inline-block;background:#fff;border-radius:18px;padding:10px}.qrBox img,.qrBox canvas{display:block!important}.status{display:none;margin:14px 0;padding:12px;border-radius:14px;background:#fff3cd;color:#6b5200}.status.show{display:block}
+.owner{margin-top:12px;border-top:1px solid var(--line);padding-top:12px}.foot{padding:0 0 38px;text-align:center;color:var(--muted);font-size:.86rem}
+@media(max-width:760px){.topin{padding:8px 0;align-items:flex-start;flex-direction:column}.heroCard,.grid{grid-template-columns:1fr}.heroCard{padding:17px}.heroCard img{aspect-ratio:16/12}.actions,.topActions{width:100%}.btn{flex:1}.service{grid-template-columns:1fr}.price{text-align:left}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap topin"><div class="brand">DIGIYLYFE · SERVICE / ARTISAN</div><div class="topActions"><a class="btn" href="https://digiylyfe.com/">← Retour au site</a><a class="btn primary" id="ownerBtn" href="/acces-proprietaire.html?fiche=pap-piscine-saly">🔐 Accès propriétaire</a></div></div></header>
+<main class="wrap">
+<div id="status" class="status"></div>
+<section class="hero"><div class="heroCard"><div><div class="kicker" id="badge">Piscines · Jardins · Service à domicile</div><h1 id="name">PAP Piscine</h1><p class="lead" id="description">Chargement…</p><span class="badge" id="zone">Saly et alentours</span><div class="actions"><a class="btn green" id="wa" href="#">💬 WhatsApp</a><a class="btn" id="call" href="#">📞 Appeler</a><button class="btn" id="share" type="button">📤 Partager</button></div></div><img id="cover" alt="PAP Piscine — piscines et jardinage"></div></section>
+<section class="grid"><div><article class="panel"><h2>Prestations & forfaits</h2><div id="services" class="services"></div></article><article class="panel" style="margin-top:14px"><h2>À propos</h2><p class="note" id="about"></p></article></div><aside><article class="panel"><h2>Intervention</h2><p class="note"><strong id="address">À domicile · Saly et alentours</strong></p><p class="note" id="hours">Sur rendez-vous</p><p class="note" id="priceText"></p><p class="note"><strong>Contact direct · Paiement direct · 0 % commission DIGIYLYFE.</strong></p><div class="owner"><a class="btn primary" id="ownerBtn2" href="/acces-proprietaire.html?fiche=pap-piscine-saly">🔐 Accès propriétaire</a></div></article><article class="panel qr" style="margin-top:14px"><h2>QR de la fiche</h2><div id="qr" class="qrBox"></div><p class="note">Scannez pour revenir directement sur la fiche PAP Piscine.</p></article></aside></section>
+</main>
+<footer class="foot">PAP Piscine · Saly et alentours · DIGIYLYFE</footer>
+<script>
+(()=>{
+const CORE={url:"https://wesqmwjjtsefyjnluosj.supabase.co",key:"sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3"};
+const sb=window.supabase.createClient(CORE.url,CORE.key,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
+const slug="pap-piscine-saly", $=id=>document.getElementById(id);
+const ficheUrl="https://digiylyfe.com/fiches/pap-piscine-saly.html";
+function status(t){$("status").textContent=t;$("status").className="status show"}
+function cleanPhone(v){return String(v||"").replace(/\D/g,"")}
+function renderServices(items){
+  $("services").innerHTML=(Array.isArray(items)?items:[]).map(x=>{
+    const green=String(x.group||"").toLowerCase().includes("jardin");
+    return '<div class="service '+(green?'greenish':'')+'"><div><b>'+String(x.group||"Service")+'</b><span>'+String(x.name||"")+'</span></div><div class="price">'+String(x.price||"Sur devis")+'</div></div>';
+  }).join("");
+}
+async function boot(){
+  const {data,error}=await sb.from("professionals").select("name,category,region,city,address,description,phone,website,hours,services,slug,card_url,is_published,is_active,cover_url,badge_text,price_text,cta_primary_label,cta_primary_url,cta_secondary_label,cta_secondary_url").eq("slug",slug).eq("is_active",true).maybeSingle();
+  if(error||!data){status("Fiche momentanément indisponible.");return}
+  $("name").textContent=data.name||"PAP Piscine";
+  $("description").textContent=data.description||"Piscines et jardinage à domicile.";
+  $("about").textContent=data.description||"";
+  $("zone").textContent=[data.city,"et alentours"].filter(Boolean).join(" ");
+  $("address").textContent=data.address||"Intervention à domicile";
+  $("hours").textContent=data.hours||"Sur rendez-vous";
+  $("badge").textContent=data.badge_text||"Piscines · Jardins · Service à domicile";
+  $("priceText").textContent=data.price_text||"";
+  $("cover").src=data.cover_url||data.card_url||"";
+  renderServices(data.services);
+  const tel=data.cta_secondary_url||("tel:"+String(data.phone||""));
+  const wa=data.cta_primary_url||("https://wa.me/"+cleanPhone(data.phone));
+  $("call").href=tel;$("wa").href=wa;
+  const returnParam=encodeURIComponent(ficheUrl);
+  $("ownerBtn").href="/acces-proprietaire.html?fiche="+encodeURIComponent(slug)+"&return="+returnParam;
+  $("ownerBtn2").href=$("ownerBtn").href;
+  if(window.QRCode)new QRCode($("qr"),{text:ficheUrl,width:190,height:190,correctLevel:QRCode.CorrectLevel.H});
+}
+$("share").onclick=async()=>{try{if(navigator.share)await navigator.share({title:"PAP Piscine",url:ficheUrl});else await navigator.clipboard.writeText(ficheUrl)}catch(_){}};
+boot();
+})();
+</script>
+</body></html>
