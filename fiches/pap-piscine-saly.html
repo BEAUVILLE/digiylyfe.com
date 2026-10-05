@@ -8,6 +8,12 @@
 <link rel="canonical" href="https://digiylyfe.com/fiches/pap-piscine-saly.html">
 <title>PAP Piscine · Piscines & jardinage · Saly · DIGIYLYFE</title>
 <meta name="description" content="PAP Piscine à Saly : entretien, conception, rénovation de piscines et jardinage à domicile. Contact direct, forfaits publiés, 0 % commission DIGIYLYFE.">
+<meta property="og:title" content="PAP Piscine · Piscines et jardinage à Saly">
+<meta property="og:description" content="Entretien piscine et jardinage à domicile. Contact direct avec PAP Piscine.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://digiylyfe.com/fiches/pap-piscine-saly.html">
+<meta property="og:image" content="https://digiylyfe.com/assets/pap-piscine-fiche-officielle.webp">
+<meta property="og:image:alt" content="Carte officielle PAP Piscine">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
@@ -27,10 +33,29 @@
 <header class="top"><div class="wrap topin"><div class="brand">DIGIYLYFE · SERVICE / ARTISAN</div><div class="topActions"><a class="btn" href="https://digiylyfe.com/">← Retour au site</a><a class="btn primary" id="ownerBtn" href="/acces-proprietaire.html?fiche=pap-piscine-saly">🔐 Accès propriétaire</a></div></div></header>
 <main class="wrap">
 <div id="status" class="status"></div>
+<section id="shareOptions" class="panel" hidden aria-label="Partager la fiche PAP"><p>Partager la fiche PAP Piscine</p><div class="actions"><a class="btn green" target="_blank" rel="noopener noreferrer" href="https://wa.me/?text=PAP%20Piscine%20%C2%B7%20Piscines%20et%20jardinage%20%C3%A0%20Saly%20https%3A%2F%2Fdigiylyfe.com%2Ffiches%2Fpap-piscine-saly.html">Partager sur WhatsApp</a><button class="btn" id="copyLink" type="button">Copier le lien</button></div><p><label for="shareLink">Lien de la fiche</label><input id="shareLink" type="url" readonly value="https://digiylyfe.com/fiches/pap-piscine-saly.html" style="display:block;width:100%;box-sizing:border-box;padding:10px"></p><p id="shareMessage" role="status" aria-live="polite"></p></section>
 <section class="hero"><div class="heroCard"><div><div class="kicker" id="badge">Piscines · Jardins · Service à domicile</div><h1 id="name">PAP Piscine</h1><p class="lead" id="description">Chargement…</p><span class="badge" id="zone">Saly et alentours</span><div class="actions"><a class="btn green" id="wa" href="#">💬 WhatsApp</a><a class="btn" id="call" href="#">📞 Appeler</a><button class="btn" id="share" type="button">📤 Partager</button></div></div><img id="cover" alt="PAP Piscine — piscines et jardinage"></div></section>
 <section class="grid"><div><article class="panel"><h2>Prestations & forfaits</h2><div id="services" class="services"></div></article><article class="panel" style="margin-top:14px"><h2>À propos</h2><p class="note" id="about"></p></article></div><aside><article class="panel"><h2>Intervention</h2><p class="note"><strong id="address">À domicile · Saly et alentours</strong></p><p class="note" id="hours">Sur rendez-vous</p><p class="note" id="priceText"></p><p class="note"><strong>Contact direct · Paiement direct · 0 % commission DIGIYLYFE.</strong></p><div class="owner"><a class="btn primary" id="ownerBtn2" href="/acces-proprietaire.html?fiche=pap-piscine-saly">🔐 Accès propriétaire</a></div></article><article class="panel qr" style="margin-top:14px"><h2>QR de la fiche</h2><div id="qr" class="qrBox"></div><p class="note">Scannez pour revenir directement sur la fiche PAP Piscine.</p></article></aside></section>
 </main>
 <footer class="foot">PAP Piscine · Saly et alentours · DIGIYLYFE</footer>
+<script>
+(()=>{
+const url="https://digiylyfe.com/fiches/pap-piscine-saly.html";
+const panel=document.getElementById("shareOptions"),message=document.getElementById("shareMessage"),link=document.getElementById("shareLink");
+document.getElementById("share").onclick=async()=>{
+  if(typeof navigator.share==="function"){
+    try{await navigator.share({title:"PAP Piscine",text:"Piscines et jardinage à Saly",url});return}
+    catch(error){if(error&&error.name==="AbortError")return}
+  }
+  panel.hidden=false;
+  panel.scrollIntoView({block:"nearest",behavior:"smooth"});
+};
+document.getElementById("copyLink").onclick=async()=>{
+  try{await navigator.clipboard.writeText(url);message.textContent="Lien copié. Collez-le dans votre message."}
+  catch(_){link.focus();link.select();message.textContent="Sélectionnez et copiez ce lien, ou utilisez Partager sur WhatsApp."}
+};
+})();
+</script>
 <script>
 (()=>{
 const CORE={url:"https://wesqmwjjtsefyjnluosj.supabase.co",key:"sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3"};
