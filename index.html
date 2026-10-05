@@ -186,6 +186,9 @@
     .digiyMasterVideo small{display:block;margin-top:10px;color:rgba(255,250,240,.68);font-size:10.5px;line-height:1.35;font-weight:850}
     .digiyMasterVideoPlay{display:flex;align-items:center;justify-content:center;width:min(100%,430px);min-height:58px;margin:10px auto 0;padding:12px 16px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;font-size:13px;font-weight:1000;cursor:pointer;position:relative;z-index:8;pointer-events:auto!important;touch-action:manipulation;-webkit-appearance:none;appearance:none;box-shadow:0 12px 28px rgba(0,0,0,.24)}
     .digiyMasterVideoPlay:active{transform:scale(.985)}
+    .digiyExperienceFrame{width:min(430px,100%);height:min(850px,198vw);min-height:640px;margin:0 auto;padding:6px;border-radius:26px;border:1px solid rgba(246,196,83,.48);background:#031722;box-shadow:0 16px 38px rgba(0,0,0,.28);overflow:hidden}
+    .digiyExperienceFrame iframe{display:block;width:100%;height:100%;border:0;border-radius:20px;background:#031722}
+    @media(max-width:560px){.digiyExperienceFrame{height:min(820px,205vw);min-height:620px;padding:4px;border-radius:22px}.digiyExperienceFrame iframe{border-radius:17px}}
     /* Saly signature clip: load video only when the visitor starts playback. */
     .digiySalyVideo .digiyMasterVideoFrame{width:min(340px,100%)}
     .digiySalyVideo .digiySalyExplore{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin-top:14px;padding:12px 22px;border-radius:999px;background:var(--gold);color:#06140f;font-weight:900;text-decoration:none;line-height:1.35}
@@ -930,67 +933,14 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     </section>
 
 
-    <section class="digiyMasterVideo" aria-label="DIGIYLYFE · TERRITOIRE">
-      <strong>DIGIYLYFE · 20 SECONDES POUR COMPRENDRE</strong>
-      <p>Un besoin. Une réponse locale. Un contact direct. Le réseau apporte de la puissance, la relation reste humaine et directe.</p>
-      <div class="digiyMasterVideoFrame">
-        <video id="digiyMasterVideoPlayer" controls playsinline webkit-playsinline preload="auto" x-webkit-airplay="allow" aria-label="Vidéo TERRITOIRE DIGIYLYFE">
-          <source src="/assets/DIGIYLYFE_TERRITOIRE_24S_ALY_SIWIS_SYNCHRO_WEB.mp4?v=20260929-territoire-v1" type="video/mp4"/>
-          Votre navigateur ne peut pas lire cette vidéo.
-        </video>
+    <section class="digiyMasterVideo digiyExperience" aria-label="DIGIYLYFE · Besoin, solution, résultat, compréhension">
+      <strong>BESOIN → SOLUTION → RÉSULTAT → COMPRÉHENSION</strong>
+      <p>Regardez d’abord ce que DIGIYLYFE fait. L’explication vient ensuite.</p>
+      <div class="digiyExperienceFrame">
+        <iframe src="/comprendre-digiylyfe.html?v=20261005-besoin-resultat-v1" title="DIGIYLYFE · Besoin → Solution → Résultat → Compréhension" loading="lazy" allow="autoplay"></iframe>
       </div>
-      <button class="digiyMasterVideoPlay" id="digiyMasterVideoPlay" type="button">▶ LIRE LA VIDÉO</button>
-      <small id="digiyMasterVideoHint">▶ Appuyez sur lecture · narration française · 25 secondes</small>
+      <small>Image 3 s → voix + badge · format téléphone 9:16</small>
     </section>
-    <script id="digiy-master-video-mobile-fix-v2">
-    (function(){
-      var v=document.getElementById('digiyMasterVideoPlayer');
-      var h=document.getElementById('digiyMasterVideoHint');
-      var b=document.getElementById('digiyMasterVideoPlay');
-      if(!v)return;
-      if(b){
-        b.addEventListener('click',function(){
-          try{
-            if(!v.paused&&!v.ended){
-              v.pause();
-              return;
-            }
-            if(v.ended){
-              try{v.currentTime=0;}catch(_){}
-            }
-            v.muted=false;
-            var p=v.play();
-            if(p&&typeof p.then==='function'){
-              p.then(function(){
-                b.textContent='❚❚ PAUSE';
-                if(h)h.textContent='🔊 Lecture en cours · narration française';
-              }).catch(function(){
-                if(h)h.textContent='▶ Ouverture dans le lecteur du téléphone…';
-                window.location.href='./DIGIYLYFE_BESOIN_REPONSE_CONTACT_20s_MOBILE_LIGHT.mp4';
-              });
-            }
-          }catch(e){
-            window.location.href='./DIGIYLYFE_BESOIN_REPONSE_CONTACT_20s_MOBILE_LIGHT.mp4';
-          }
-        });
-        v.addEventListener('play',function(){b.textContent='❚❚ PAUSE';});
-        v.addEventListener('pause',function(){if(!v.ended)b.textContent='▶ LIRE LA VIDÉO';});
-        v.addEventListener('ended',function(){b.textContent='↻ REVOIR LA VIDÉO';});
-      }
-      v.addEventListener('error',function(){
-        if(h)h.textContent='⚠️ Le lecteur mobile n\u2019arrive pas à ouvrir cette vidéo. Rechargez la page puis réessayez.';
-      });
-      v.addEventListener('playing',function(){
-        if(h)h.textContent='🔊 Lecture en cours · narration française';
-      });
-      v.addEventListener('pause',function(){
-        if(h&&!v.ended)h.textContent='▶ Appuyez sur lecture · narration française · 20 secondes';
-      });
-      v.addEventListener('ended',function(){
-        if(h)h.textContent='✓ DIGIYLYFE · 20 secondes';
-      });
-    })();
-    </script>
 
     <section class="voiceSearchBand" aria-label="Recherche locale DIGIYLYFE par la voix">
       <div class="voiceSearchIntro">
