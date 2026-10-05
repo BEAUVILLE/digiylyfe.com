@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="DIGIYLYFE en action : besoin, solution, résultat, compréhension.">
-<title>DIGIYLYFE — Besoin → Solution → Résultat</title>
+<title>DIGIYLYFE — Besoin → Solution → Résultat → Compréhension</title>
 <style>
 *{box-sizing:border-box}
 :root{--bg:#031722;--ink:#fff;--accent:#19dfb4;--line:#21506b}
@@ -31,7 +31,7 @@ button:focus-visible{outline:3px solid #ffe488;outline-offset:2px}
 </head>
 <body>
 <main>
-<header><strong>DIGIYLYFE · EN ACTION</strong><span id="count">1 / 8</span></header>
+<header><strong>DIGIYLYFE · EN ACTION</strong><span id="count">1 / 11</span></header>
 <section id="stage" aria-label="DIGIYLYFE · Besoin, solution, résultat, compréhension">
   <canvas id="scene" width="540" height="960" aria-hidden="true"></canvas>
   <div id="veil" aria-hidden="true"></div>
@@ -49,15 +49,18 @@ button:focus-visible{outline:3px solid #ffe488;outline-offset:2px}
 <script>
 'use strict';
 const STEPS=[
- {title:'BESOIN',badge:'Vous cherchez quelque chose près de vous ?',voice:'Vous cherchez quelque chose près de vous ? Un plombier à Saly. Un chauffeur pour AIBD. Un logement ce week-end. Un restaurant ce soir.'},
- {title:'SOLUTION',badge:'DIGIYLYFE vous trouve la bonne personne, près de vous.',voice:'Choisissez votre pays, votre zone, puis dites ce que vous cherchez. DIGIYLYFE vous aide à trouver la bonne personne, près de vous.'},
- {title:'RÉSULTAT',badge:'Vous avez trouvé. Vous contactez directement.',voice:'Vous avez trouvé. Vous contactez directement. Pas d’intermédiaire. Zéro pour cent de commission DIGIYLYFE.'},
- {title:'AUTRES BESOINS',badge:'Tout ce dont vous avez besoin dans votre territoire.',voice:'Se loger. Se déplacer. Manger. Travailler. Acheter ou vendre. Sortir, découvrir, prendre soin de soi. Tout ce dont vous avez besoin dans votre territoire.'},
- {title:'POUR LE PROFESSIONNEL',badge:'Et si c’était votre activité que l’on trouvait ?',voice:'Et si c’était votre activité que l’on trouvait ? Votre activité. Votre territoire. Votre contact direct.'},
- {title:'COMPRÉHENSION',badge:'Vous cherchez. Vous trouvez. Vous contactez.',voice:'DIGIYLYFE relie les besoins d’un territoire aux personnes qui peuvent y répondre. Vous cherchez. Vous trouvez. Vous contactez directement.'},
- {title:'LA PREUVE',badge:'Des besoins réels. Des résultats concrets.',voice:'Des besoins réels. Des résultats concrets. DIGIYLYFE commence ici, dans votre territoire.'},
- {title:'À VOUS',badge:'Être vu. Être compris. Être trouvé. Être contacté.',voice:'Être vu. Être compris. Être trouvé. Être contacté. Cherchez maintenant, ou faites connaître votre activité sur DIGIYLYFE.'}
-];
+ {panel:0,title:'BESOIN',badge:'Vous cherchez quelque chose près de vous ?',voice:'Vous cherchez quelque chose près de vous ? Un plombier à Saly. Un chauffeur pour AIBD. Un logement ce week-end. Un restaurant ce soir.'},
+ {panel:1,title:'SOLUTION',badge:'DIGIYLYFE vous trouve la bonne personne, près de vous.',voice:'Choisissez votre pays, votre zone, puis dites ce que vous cherchez. DIGIYLYFE vous aide à trouver la bonne personne, près de vous.'},
+ {panel:2,title:'RÉSULTAT',badge:'Vous avez trouvé. Vous contactez directement.',voice:'Vous avez trouvé. Vous contactez directement. Pas d’intermédiaire. Zéro pour cent de commission DIGIYLYFE.'},
+ {panel:3,title:'AUTRES BESOINS',badge:'Tout ce dont vous avez besoin dans votre territoire.',voice:'Se loger. Se déplacer. Manger. Travailler. Acheter ou vendre. Sortir, découvrir, prendre soin de soi. Tout ce dont vous avez besoin dans votre territoire.'},
+ {panel:4,title:'POUR LE PROFESSIONNEL',badge:'Et si c’était votre activité que l’on trouvait ?',voice:'Et si c’était votre activité que l’on trouvait ? Votre activité. Votre territoire. Votre contact direct.'},
+ {panel:5,title:'COMPRÉHENSION',badge:'Les professionnels créent l’offre. Les clients créent la circulation.',voice:'Les professionnels créent l’offre. Mais la force du réseau vient aussi des clients : ils créent la circulation, d’un besoin à l’autre, dans le territoire.'},
+ {panel:3,title:'ROUTE NUMÉRIQUE',badge:'Une route numérique devant la porte de chaque activité.',voice:'DIGIYLYFE met une route numérique devant la porte de chaque activité. Le client trouve, choisit et contacte directement le professionnel.'},
+ {panel:5,title:'EFFET RÉSEAU',badge:'Plus le territoire est utilisé, plus chacun a de chances d’être trouvé.',voice:'Plus les clients empruntent ces routes, plus le territoire devient visible, et plus chaque activité a de chances d’être trouvée.'},
+ {panel:4,title:'FORCE DU RÉSEAU',badge:'La force du réseau. L’indépendance de chacun.',voice:'La force du réseau. L’indépendance de chacun. Les professionnels gardent leurs clients, leurs contacts et leurs paiements.'},
+ {panel:6,title:'LA PREUVE',badge:'Des besoins réels. Des résultats concrets.',voice:'Des besoins réels. Des résultats concrets. DIGIYLYFE commence ici, dans votre territoire.'},
+ {panel:7,title:'À VOUS',badge:'Être vu. Être compris. Être trouvé. Être contacté.',voice:'Être vu. Être compris. Être trouvé. Être contacté. Cherchez maintenant, ou faites connaître votre activité sur DIGIYLYFE.'}
+]
 const stage=document.getElementById('stage'),canvas=document.getElementById('scene'),ctx=canvas.getContext('2d');
 const badge=document.getElementById('badge'),kicker=document.getElementById('kicker'),count=document.getElementById('count'),statusEl=document.getElementById('status'),playBtn=document.getElementById('play');
 const source=new Image();source.src='/assets/comprendre/digiylyfe-palette-vitrine.webp?v=20261005-v1';
@@ -65,7 +68,8 @@ let i=0,running=false,timer=null,utter=null,token=0;
 
 function drawPanel(index){
   if(!source.complete||!source.naturalWidth)return;
-  const col=index%4,row=Math.floor(index/4),sw=source.naturalWidth/4,sh=source.naturalHeight/2,sx=col*sw,sy=row*sh;
+  const panel=(STEPS[index]&&Number.isInteger(STEPS[index].panel))?STEPS[index].panel:index;
+  const col=panel%4,row=Math.floor(panel/4),sw=source.naturalWidth/4,sh=source.naturalHeight/2,sx=col*sw,sy=row*sh;
   const W=canvas.width,H=canvas.height;
   ctx.clearRect(0,0,W,H);
 
