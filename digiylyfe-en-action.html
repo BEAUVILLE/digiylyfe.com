@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="DIGIYLYFE en action : besoin, solution, résultat, compréhension.">
+<title>DIGIYLYFE — Besoin → Solution → Résultat</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#031722;--ink:#fff;--accent:#19dfb4;--line:#21506b}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+main{width:min(100%,540px);margin:auto;padding:8px 10px calc(14px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+header strong{font-size:13px;letter-spacing:.04em}#count{font-size:12px;color:#bad1dd}
+#stage{position:relative;width:min(100%,calc((100svh - 128px)*9/16));min-width:220px;aspect-ratio:9/16;margin:auto;border-radius:18px;overflow:hidden;background:#061a29;box-shadow:0 16px 50px #0008;isolation:isolate}
+#scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+#veil{position:absolute;inset:0;z-index:2;background:rgba(0,15,28,.58);opacity:0;transition:opacity .42s ease}
+#stage.focused #veil{opacity:1}
+#kicker{position:absolute;top:15px;left:15px;z-index:4;padding:7px 11px;border-radius:999px;background:#1497ff;color:white;font-size:11px;font-weight:900;letter-spacing:.07em}
+#badgeWrap{position:absolute;left:17px;right:17px;bottom:38px;z-index:5;opacity:0;transform:translateY(48px);transition:opacity .44s ease,transform .55s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+#stage.focused #badgeWrap{opacity:1;transform:translateY(0)}
+#badge{padding:19px 16px;border:1px solid #53f5d2;border-radius:25px;background:rgba(2,37,54,.95);box-shadow:0 14px 36px #0008;text-align:center;font-size:clamp(21px,5.3vw,29px);line-height:1.18;font-weight:900;text-wrap:balance}
+.controls{display:grid;grid-template-columns:48px 1fr 48px;gap:8px;margin-top:10px}
+button{min-height:46px;border:1px solid var(--line);border-radius:12px;background:#0c3145;color:white;font:inherit;cursor:pointer}
+#play{background:var(--accent);color:#06251f;font-weight:900}
+#status{min-height:18px;margin:8px 0 0;color:#bed0d8;font-size:11.5px;line-height:1.35;text-align:center}
+.note{margin:3px 0 0;color:#7899a8;font-size:10px;text-align:center}
+button:focus-visible{outline:3px solid #ffe488;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){#veil,#badgeWrap{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<header><strong>DIGIYLYFE · EN ACTION</strong><span id="count">1 / 8</span></header>
+<section id="stage" aria-label="DIGIYLYFE · Besoin, solution, résultat, compréhension">
+  <canvas id="scene" width="540" height="960" aria-hidden="true"></canvas>
+  <div id="veil" aria-hidden="true"></div>
+  <div id="kicker">BESOIN</div>
+  <div id="badgeWrap"><div id="badge"></div></div>
+</section>
+<div class="controls">
+  <button id="prev" aria-label="Scène précédente">‹</button>
+  <button id="play">▶ LANCER</button>
+  <button id="next" aria-label="Scène suivante">›</button>
+</div>
+<p id="status" role="status">Image 3 secondes → voix + badge</p>
+<p class="note">Voix française de votre téléphone · aucun service payant</p>
+</main>
+<script>
+'use strict';
+const STEPS=[
+ {title:'BESOIN',badge:'Vous cherchez quelque chose près de vous ?',voice:'Vous cherchez quelque chose près de vous ? Un plombier à Saly. Un chauffeur pour AIBD. Un logement ce week-end. Un restaurant ce soir.'},
+ {title:'SOLUTION',badge:'DIGIYLYFE vous trouve la bonne personne, près de vous.',voice:'Choisissez votre pays, votre zone, puis dites ce que vous cherchez. DIGIYLYFE vous aide à trouver la bonne personne, près de vous.'},
+ {title:'RÉSULTAT',badge:'Vous avez trouvé. Vous contactez directement.',voice:'Vous avez trouvé. Vous contactez directement. Pas d’intermédiaire. Zéro pour cent de commission DIGIYLYFE.'},
+ {title:'AUTRES BESOINS',badge:'Tout ce dont vous avez besoin dans votre territoire.',voice:'Se loger. Se déplacer. Manger. Travailler. Acheter ou vendre. Sortir, découvrir, prendre soin de soi. Tout ce dont vous avez besoin dans votre territoire.'},
+ {title:'POUR LE PROFESSIONNEL',badge:'Et si c’était votre activité que l’on trouvait ?',voice:'Et si c’était votre activité que l’on trouvait ? Votre activité. Votre territoire. Votre contact direct.'},
+ {title:'COMPRÉHENSION',badge:'Vous cherchez. Vous trouvez. Vous contactez.',voice:'DIGIYLYFE relie les besoins d’un territoire aux personnes qui peuvent y répondre. Vous cherchez. Vous trouvez. Vous contactez directement.'},
+ {title:'LA PREUVE',badge:'Des besoins réels. Des résultats concrets.',voice:'Des besoins réels. Des résultats concrets. DIGIYLYFE commence ici, dans votre territoire.'},
+ {title:'À VOUS',badge:'Être vu. Être compris. Être trouvé. Être contacté.',voice:'Être vu. Être compris. Être trouvé. Être contacté. Cherchez maintenant, ou faites connaître votre activité sur DIGIYLYFE.'}
+];
+const stage=document.getElementById('stage'),canvas=document.getElementById('scene'),ctx=canvas.getContext('2d');
+const badge=document.getElementById('badge'),kicker=document.getElementById('kicker'),count=document.getElementById('count'),statusEl=document.getElementById('status'),playBtn=document.getElementById('play');
+const source=new Image();source.src='/assets/comprendre/digiylyfe-palette-vitrine.webp?v=20261005-v1';
+let i=0,running=false,timer=null,utter=null,token=0;
+
+function drawPanel(index){
+  if(!source.complete||!source.naturalWidth)return;
+  const col=index%4,row=Math.floor(index/4),sw=source.naturalWidth/4,sh=source.naturalHeight/2,sx=col*sw,sy=row*sh;
+  const W=canvas.width,H=canvas.height;
+  ctx.clearRect(0,0,W,H);
+
+  // Background: same panel enlarged, darkened and blurred to fill true 9:16.
+  const cover=Math.max(W/sw,H/sh),bw=sw*cover,bh=sh*cover,bx=(W-bw)/2,by=(H-bh)/2;
+  ctx.save();
+  ctx.filter='blur(22px) brightness(0.52)';
+  ctx.drawImage(source,sx,sy,sw,sh,bx-22,by-22,bw+44,bh+44);
+  ctx.restore();
+
+  // Foreground: full panel visible, never cropped.
+  const contain=Math.min(W/sw,H/sh),fw=sw*contain,fh=sh*contain,fx=(W-fw)/2,fy=(H-fh)/2;
+  ctx.drawImage(source,sx,sy,sw,sh,fx,fy,fw,fh);
+}
+source.onload=()=>drawPanel(i);
+
+function frenchVoice(){
+  const voices=speechSynthesis.getVoices();
+  return voices.find(v=>/fr[-_]FR/i.test(v.lang)&&/Thomas|Audrey|Amélie|Marie|Daniel/i.test(v.name))
+    ||voices.find(v=>/^fr/i.test(v.lang))||null;
+}
+function stopAudio(){token++;clearTimeout(timer);timer=null;if(window.speechSynthesis)speechSynthesis.cancel();utter=null}
+function render(index){
+  i=(index+STEPS.length)%STEPS.length;
+  stage.classList.remove('focused');
+  kicker.textContent=STEPS[i].title;badge.textContent=STEPS[i].badge;count.textContent=(i+1)+' / '+STEPS.length;
+  statusEl.textContent='IMAGE · regardez 3 secondes…';drawPanel(i);
+}
+function speakCurrent(id){
+  return new Promise(resolve=>{
+    if(id!==token){resolve();return}
+    stage.classList.add('focused');statusEl.textContent='VOIX + BADGE';
+    if(!('speechSynthesis'in window)||!window.SpeechSynthesisUtterance){timer=setTimeout(resolve,3800);return}
+    utter=new SpeechSynthesisUtterance(STEPS[i].voice);utter.lang='fr-FR';utter.rate=.95;utter.pitch=1;
+    const v=frenchVoice();if(v)utter.voice=v;
+    utter.onend=resolve;utter.onerror=resolve;speechSynthesis.speak(utter);
+  });
+}
+async function cycle(){
+  if(!running)return;
+  const id=token;render(i);
+  await new Promise(r=>timer=setTimeout(r,3000));
+  if(!running||id!==token)return;
+  await speakCurrent(id);
+  if(!running||id!==token)return;
+  await new Promise(r=>timer=setTimeout(r,650));
+  if(!running||id!==token)return;
+  i++;
+  if(i>=STEPS.length){running=false;i=0;playBtn.textContent='↻ REJOUER';stage.classList.remove('focused');statusEl.textContent='DIGIYLYFE · dans votre territoire.';return}
+  cycle();
+}
+playBtn.onclick=()=>{
+  if(running){running=false;stopAudio();stage.classList.remove('focused');playBtn.textContent='▶ REPRENDRE';statusEl.textContent='En pause.'}
+  else{running=true;stopAudio();playBtn.textContent='⏸ PAUSE';cycle()}
+};
+document.getElementById('prev').onclick=()=>{running=false;stopAudio();render(i-1);playBtn.textContent='▶ LANCER'};
+document.getElementById('next').onclick=()=>{running=false;stopAudio();render(i+1);playBtn.textContent='▶ LANCER'};
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&running){running=false;stopAudio();playBtn.textContent='▶ REPRENDRE'}});
+window.addEventListener('pagehide',stopAudio);
+render(0);
+</script>
+</body>
+</html>
