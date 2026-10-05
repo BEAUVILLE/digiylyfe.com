@@ -1,0 +1,42 @@
+name: PWA regression guard
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  pwa-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify PWA wiring
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f index.html
+          test -f manifest.json
+          test -f sw.js
+          test -f assets/digiy-pwa-install.js
+          test -f icon-192.png
+          test -f icon-512.png
+
+          grep -F '<link rel="manifest" href="/manifest.json' index.html
+          grep -F 'id="digiyInstallBand"' index.html
+          grep -F '/assets/digiy-pwa-install.js' index.html
+          grep -F "navigator.serviceWorker.register('/sw.js" assets/digiy-pwa-install.js
+          grep -F '"display": "standalone"' manifest.json
+          grep -F '"/icon-192.png"' manifest.json
+          grep -F '"/icon-512.png"' manifest.json
+
+      - name: Check PWA JavaScript syntax
+        run: node --check assets/digiy-pwa-install.js
+
+      - name: Validate manifest JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('manifest.json','utf8')); console.log('manifest.json OK')"
