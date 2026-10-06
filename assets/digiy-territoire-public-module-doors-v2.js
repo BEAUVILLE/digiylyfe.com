@@ -29,7 +29,7 @@ var RESA='https://resa-table-resto.digiylyfe.com/master.html';
 var CARNET='https://digiy-carnet-pro.digiylyfe.com/';
 var EXPLORE='https://explore.digiylyfe.com/';
 var EXPLORE_TEXT={
-fr:{title:'Découvrir & activités',meta:'EXPLORE · SPORT · LOISIRS · SORTIES'},
+fr:{title:'Découvrir & activités',meta:'EXPLORE · SPORT · LOISIRS · SORTIES · DÉCOUVERTES'},
 en:{title:'Discover & activities',meta:'EXPLORE · SPORT · LEISURE · OUTINGS'},
 es:{title:'Descubrir & actividades',meta:'EXPLORE · DEPORTE · OCIO · SALIDAS'},
 pt:{title:'Descobrir & atividades',meta:'EXPLORE · DESPORTO · LAZER · PASSEIOS'},
