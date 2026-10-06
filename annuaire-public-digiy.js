@@ -225,6 +225,25 @@
     },
 
     {
+      id: "cainack-diouf-golf",
+      nom: "Cainack DIOUF",
+      titre: "Professeur de golf à Saly",
+      badge: "EXPLORE · Golf",
+      zone: "Saly · Sénégal",
+      url: "https://digiylyfe.com/assets/Carte%20promotionnelle%20de%20golf%20tropicale.png",
+      type: "carte",
+      statut: "public",
+      categories: ["explore", "sport", "loisirs", "golf", "cours"],
+      zones: ["saly", "senegal", "sénégal"],
+      mots: [
+        "cainack", "diouf", "golf", "professeur de golf", "cours de golf",
+        "initiation golf", "perfectionnement golf", "sport", "loisirs", "saly"
+      ],
+      description:
+        "Professeur de golf à Saly pour initiation, cours individuels ou en groupe et perfectionnement."
+    },
+
+    {
       id: "explore",
       nom: "DIGIY EXPLORE",
       titre: "Sorties et lieux à découvrir",
