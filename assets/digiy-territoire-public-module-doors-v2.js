@@ -27,6 +27,17 @@ var SPECIAL={
 };
 var RESA='https://resa-table-resto.digiylyfe.com/master.html';
 var CARNET='https://digiy-carnet-pro.digiylyfe.com/';
+var EXPLORE='https://explore.digiylyfe.com/';
+var EXPLORE_TEXT={
+fr:{title:'Découvrir & activités',meta:'EXPLORE · SPORT · LOISIRS · SORTIES'},
+en:{title:'Discover & activities',meta:'EXPLORE · SPORT · LEISURE · OUTINGS'},
+es:{title:'Descubrir & actividades',meta:'EXPLORE · DEPORTE · OCIO · SALIDAS'},
+pt:{title:'Descobrir & atividades',meta:'EXPLORE · DESPORTO · LAZER · PASSEIOS'},
+de:{title:'Entdecken & Aktivitäten',meta:'EXPLORE · SPORT · FREIZEIT · AUSFLÜGE'},
+it:{title:'Scoprire & attività',meta:'EXPLORE · SPORT · TEMPO LIBERO · USCITE'},
+nl:{title:'Ontdekken & activiteiten',meta:'EXPLORE · SPORT · VRIJE TIJD · UITJES'},
+ar:{title:'اكتشاف وأنشطة',meta:'EXPLORE · رياضة · ترفيه · نزهات'}
+};
 var CARNET_TEXT={
 fr:{title:'CARNET PRO',meta:'GESTION · SUIVI · RAPPELS · CLIENTS'},
 en:{title:'CARNET PRO',meta:'MANAGEMENT · FOLLOW-UP · REMINDERS · CLIENTS'},
@@ -84,6 +95,16 @@ document.addEventListener('click',function(e){
 
 function wire(b,icon,raw){if(!b||!raw||b.hasAttribute('data-digiy-public-module-door'))return;b.setAttribute('data-digiy-public-module-door',icon);b.addEventListener('click',function(e){if(isDordogne())return;e.preventDefault();e.stopImmediatePropagation();location.href=target(raw)},true)}
 function wireResa(root){var a=root.querySelector('[data-digiy-resa-multi-door]');if(!a)return;a.href=target(RESA);a.addEventListener('click',function(e){if(isDordogne())return;e.preventDefault();e.stopImmediatePropagation();location.href=target(RESA)},true)}
+function ensureExploreDoor(root){
+  if(!root||root.querySelector('[data-digiy-explore-door]'))return;
+  var t=EXPLORE_TEXT[currentLang()]||EXPLORE_TEXT.fr,b=document.createElement('button');
+  b.type='button';b.className='need';b.setAttribute('data-digiy-explore-door','1');
+  var ic=document.createElement('strong'),tx=document.createElement('span'),sm=document.createElement('small');
+  ic.textContent='⛳';tx.textContent=t.title;sm.textContent=t.meta;b.append(ic,tx,sm);
+  b.addEventListener('click',function(e){e.preventDefault();e.stopImmediatePropagation();location.href=target(EXPLORE)},true);
+  var jobs=Array.prototype.slice.call(root.querySelectorAll('button.need')).find(function(x){var s=x.querySelector('strong');return s&&s.textContent.trim()==='💼'});
+  if(jobs&&jobs.nextSibling)root.insertBefore(b,jobs.nextSibling);else root.appendChild(b);
+}
 function ensureCarnetDoor(root){
   if(!root||root.querySelector('[data-digiy-carnet-pro-door]'))return;
   var t=CARNET_TEXT[currentLang()]||CARNET_TEXT.fr,b=document.createElement('button');
@@ -94,7 +115,7 @@ function ensureCarnetDoor(root){
   var voice=Array.prototype.slice.call(root.querySelectorAll('button.need')).find(function(x){var s=x.querySelector('strong');return s&&s.textContent.trim()==='🎙️'});
   if(voice)root.insertBefore(b,voice);else root.appendChild(b);
 }
-function install(){var root=document.getElementById('needs');if(!root)return;applyHealth(root);ensureCarnetDoor(root);Array.prototype.slice.call(root.querySelectorAll('button.need')).forEach(function(b){var s=b.querySelector('strong'),icon=s&&s.textContent.trim(),raw=STANDARD[icon]||SPECIAL[icon];if(raw)wire(b,icon,raw)});wireResa(root)}
+function install(){var root=document.getElementById('needs');if(!root)return;applyHealth(root);ensureExploreDoor(root);ensureCarnetDoor(root);Array.prototype.slice.call(root.querySelectorAll('button.need')).forEach(function(b){var s=b.querySelector('strong'),icon=s&&s.textContent.trim(),raw=STANDARD[icon]||SPECIAL[icon];if(raw)wire(b,icon,raw)});wireResa(root)}
 function boot(){install();var root=document.getElementById('needs');if(root)new MutationObserver(function(){setTimeout(install,0)}).observe(root,{childList:true,subtree:true});var main=document.querySelector('main');if(main)new MutationObserver(function(){setTimeout(function(){applyHealth(root)},0)}).observe(main,{childList:true,subtree:true});document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-lang],#zones,#needs'))setTimeout(install,80)});window.addEventListener('popstate',function(){setTimeout(install,50)})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
