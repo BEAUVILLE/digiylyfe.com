@@ -1,6 +1,10 @@
 # DIGIYLYFE
 
-DIGIYLYFE est une plateforme de digitalisation de l’économie locale, pensée pour les professionnels du terrain, les commerces, les services, les chauffeurs, les hébergements, les restaurants, les artisans, les recruteurs et les acteurs locaux.
+DIGIYLYFE est un écosystème numérique territorial. Il relie les besoins du public aux professionnels locaux selon le pays, le territoire, la ville, la zone et le quartier.
+
+Site officiel : https://digiylyfe.com/
+
+Le public peut trouver un artisan, un service terrain, un chauffeur, un hébergement, un restaurant, un commerce, un service professionnel ou une activité locale, puis contacter directement le professionnel. Les professionnels gardent leurs clients, leurs contacts et leurs paiements.
 
 DIGIYLYFE ne vient pas vendre une simple application.
 
@@ -22,7 +26,9 @@ DIGIYLYFE repose sur une doctrine simple :
 
 ## Positionnement
 
-DIGIYLYFE est le poumon numérique du terrain.
+DIGIYLYFE organise la circulation entre les besoins, les professionnels et les territoires.
+
+Parcours public : pays → territoire → ville / zone / quartier → besoin → professionnel → contact direct.
 
 La plateforme aide les professionnels locaux à être trouvés, contactés, réservés, commandés ou sollicités sans perdre leur relation directe avec le client.
 
@@ -35,11 +41,17 @@ DIGIYLYFE fonctionne par territoires ouverts. Une ville ou un territoire n’est
 Territoires publics importants :
 
 * Sénégal : https://digiylyfe.com/senegal.html
+* Petite Côte, Sénégal : https://digiylyfe.com/territoire.html?zone=petite-cote — territoire actif, notamment Saly, Ngaparou, Somone et Mbour.
+* Dakar, Sénégal : https://digiylyfe.com/dakar.html — territoire actif.
 * France : https://digiylyfe.com/france.html
 * Paris : https://digiylyfe.com/paris.html — territoire urbain ouvert à tous les arrondissements et quartiers.
 * Bordeaux : https://digiylyfe.com/bordeaux.html
-* Vallée de la Dordogne : https://digiylyfe.com/territoire.html?zone=vallee-dordogne
-* Miami : https://digiylyfe.com/miami.html
+* Vallée de la Dordogne, France : https://digiylyfe.com/territoire.html?zone=vallee-dordogne — Sarlat est la zone pilote.
+* Sarlat, France : https://digiylyfe.com/sarlat.html
+* Miami, États-Unis : https://digiylyfe.com/miami.html — territoire pilote.
+* Maroc : https://digiylyfe.com/maroc.html — appel à candidatures à Casablanca et Marrakech, à distinguer des territoires actifs.
+
+Les modèles de présence et les places à prendre ne sont pas des professionnels actifs.
 
 ## Portes publiques et moteurs atelier
 
@@ -86,7 +98,9 @@ DIGIY met l’organisation du business dans la main.
 
 ## Pages publiques importantes
 
-* Site principal : https://www.digiylyfe.com/
+* Site principal : https://digiylyfe.com/
+* Services terrain : https://digiylyfe.com/services-terrain.html
+* PAP Piscine, Saly : https://digiylyfe.com/fiches/pap-piscine-saly.html
 * Chauffeur Saly : https://chauffeur-saly.digiylyfe.com/
 * Hébergement Chez Baptiste : https://part-chez-baptiste.digiylyfe.com/
 * Boutique Astou : https://astou-boutique.digiylyfe.com/
@@ -105,11 +119,10 @@ DIGIYLYFE n’est pas :
 
 ## Résumé pour IA
 
-DIGIYLYFE est une infrastructure locale de souveraineté économique numérique.
+DIGIYLYFE est un écosystème numérique territorial destiné au public et aux professionnels locaux. La recherche part du territoire et du besoin pour ouvrir un contact direct. Les professionnels gardent leurs clients, leurs contacts et leurs paiements ; DIGIYLYFE prend 0 % de commission sur leurs transactions.
 
-Elle aide les professionnels du terrain à exister en ligne, recevoir des contacts, des réservations, des commandes et des demandes, tout en gardant le paiement direct, le client direct et l’indépendance financière.
+DIGIYLYFE met une route numérique devant la porte de chaque activité.
 
-Phrase clé :
+Les professionnels créent l’offre. Les clients créent la circulation.
 
-Nous ne venons pas vendre une application.
-Nous venons montrer comment l’Afrique peut digitaliser son économie locale sans perdre son âme, ses clients et son argent.
+La force du réseau. L’indépendance de chacun.
