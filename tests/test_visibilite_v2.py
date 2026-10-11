@@ -97,7 +97,7 @@ class VisibiliteV2(unittest.TestCase):
             self.assertNotIn("location.replace(", html)
             self.assertNotIn('rel="id"', html)
             self.assertNotIn("wa.me/", html)  # Contacts live on the professionals' own profiles.
-            blocks = re.findall(r'<script type="application/ld\\+json">(.*?)</script>', html, re.S)
+            blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
             self.assertEqual(len(blocks), 1, lang)
             data = json.loads(blocks[0])
             self.assertEqual(data["@type"], "CollectionPage")
