@@ -36,3 +36,8 @@ footer a{color:#fff1bb}
 @media(min-width:680px){.choices{grid-template-columns:repeat(5,minmax(0,1fr))}.pros{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:370px){.choices{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* World8: bidirectional Arabic layouts */
+[dir="rtl"] .info{border-left:0;border-right:4px solid var(--gold);border-radius:12px 0 0 12px}
+[dir="rtl"] .choice{align-items:flex-start}
+[dir="rtl"] .pro{direction:rtl}
