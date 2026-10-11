@@ -1,16 +1,22 @@
-name: DIGIY VISIBILITE V2 · Saly international
+name: DIGIY VISIBILITE · WORLD8 Saly
 on:
   push:
     branches:
       - feature/digiy-visibilite-v2
+      - feature/digiy-visibilite-v3-world8-saly
     paths:
       - saly.html
       - en/saly.html
       - de/saly.html
       - nl/saly.html
+      - es/saly.html
+      - pt/saly.html
+      - it/saly.html
+      - ar/saly.html
       - sitemap.xml
       - assets/digiy-saly-international-v2.css
       - tests/test_visibilite_v2.py
+      - tests/test_visibilite_world8.py
       - .github/workflows/visibilite-v2.yml
   pull_request:
     paths:
@@ -18,9 +24,14 @@ on:
       - en/saly.html
       - de/saly.html
       - nl/saly.html
+      - es/saly.html
+      - pt/saly.html
+      - it/saly.html
+      - ar/saly.html
       - sitemap.xml
       - assets/digiy-saly-international-v2.css
       - tests/test_visibilite_v2.py
+      - tests/test_visibilite_world8.py
       - .github/workflows/visibilite-v2.yml
   workflow_dispatch:
 
@@ -36,5 +47,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Valider hreflang, contenu, sitemap et preservations
         run: python3 -m unittest discover -s tests -p 'test_visibilite_v2.py' -v
+      - name: Controler WORLD8 et RTL arabe
+        run: python3 -m unittest discover -s tests -p 'test_visibilite_world8.py' -v
       - name: Regresser VISIBILITE V1
         run: python3 -m unittest discover -s tests -p 'test_visibilite_v1.py' -v
