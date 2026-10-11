@@ -11,8 +11,12 @@ BASE = "https://digiylyfe.com"
 PATHS = {
     "fr": "/saly.html",
     "en": "/en/saly.html",
+    "es": "/es/saly.html",
+    "pt": "/pt/saly.html",
+    "it": "/it/saly.html",
     "de": "/de/saly.html",
     "nl": "/nl/saly.html",
+    "ar": "/ar/saly.html",
 }
 ALT = {lang: BASE + path for lang, path in PATHS.items()}
 ALT["x-default"] = ALT["fr"]
@@ -81,11 +85,11 @@ class VisibiliteV2(unittest.TestCase):
                 if l.get("rel") == "alternate" and l.get("hreflang")
             }
             self.assertEqual(alternates, ALT, lang)
-            self.assertEqual(len(alternates), 5, lang)
+            self.assertEqual(len(alternates), 9, lang)
             self.assertEqual(doc.lang, lang)
 
     def test_indexable_static_localized_pages(self):
-        for lang in ("en", "de", "nl"):
+        for lang in ("en", "es", "pt", "it", "de", "nl", "ar"):
             html = self.files[lang]
             doc = self.parsed[lang]
             self.assertTrue(any(m.get("name") == "robots" and m.get("content") == "index,follow" for m in doc.metas))
@@ -112,7 +116,7 @@ class VisibiliteV2(unittest.TestCase):
             "https://kourant.digiylyfe.com/",
             "https://astou-boutique.digiylyfe.com/",
         )
-        for lang in ("en", "de", "nl"):
+        for lang in ("en", "es", "pt", "it", "de", "nl", "ar"):
             html = self.files[lang]
             for need in NEEDS:
                 self.assertIn("local=saly&amp;need=" + need + "&amp;lang=" + lang, html)
