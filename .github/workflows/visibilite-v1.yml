@@ -1,0 +1,30 @@
+name: DIGIY VISIBILITE V1 · parcours public
+on:
+  push:
+    branches:
+      - feature/digiy-visibilite-v1
+    paths:
+      - index.html
+      - saly.html
+      - tests/test_visibilite_v1.py
+      - .github/workflows/visibilite-v1.yml
+  pull_request:
+    paths:
+      - index.html
+      - saly.html
+      - tests/test_visibilite_v1.py
+      - .github/workflows/visibilite-v1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  parcours-public:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Lire la branche
+        uses: actions/checkout@v4
+      - name: Contrôler les deux pages et les huit langues
+        run: python3 -m unittest discover -s tests -p 'test_visibilite_v1.py' -v
