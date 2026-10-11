@@ -20,7 +20,7 @@ class VisibiliteV1(unittest.TestCase):
         self.assertLess(SALY.index('id="salyPublicFirstV1"'), SALY.index('id="realGrid"'))
         self.assertLess(SALY.index('id="realGrid"'), SALY.index('class="hero"'))
         for content in (HOME, SALY):
-            self.assertEqual(len(re.findall(r"<h1\\b", content)), 1)
+            self.assertEqual(len(re.findall(r"<h1\b", content)), 1)
             self.assertIn("Vous cherchez quoi, près de chez vous ?", content)
             self.assertIn("Contactez-le directement.", content)
 
@@ -35,8 +35,8 @@ class VisibiliteV1(unittest.TestCase):
         self.assertIn('id="realGrid"', SALY)
 
     def test_all_eight_languages(self):
-        home_match = re.search(r"var DIGIY_PUBLIC_V1=(\\{.*?\\});\\s*Object.keys", HOME, re.S)
-        saly_match = re.search(r"var D=(\\{.*?\\});var q=", SALY, re.S)
+        home_match = re.search(r"var DIGIY_PUBLIC_V1=(\{.*?\});\s*Object.keys", HOME, re.S)
+        saly_match = re.search(r"var D=(\{.*?\});var q=", SALY, re.S)
         self.assertIsNotNone(home_match)
         self.assertIsNotNone(saly_match)
         for page, data in (("home", json.loads(home_match.group(1))), ("saly", json.loads(saly_match.group(1)))):
