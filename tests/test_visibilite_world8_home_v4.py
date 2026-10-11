@@ -89,6 +89,15 @@ class World8Homepage(unittest.TestCase):
             self.assertEqual(data["inLanguage"], lang)
             self.assertEqual(data["url"], URL[lang])
 
+    def test_h1_all_locales_match_existing_world8_home_dictionary(self):
+        """Les titres des 7 portes SEO reprennent les traductions de l'accueil existant."""
+        titles = re.findall(r'"v1Question":"([^"]+)"', self.html["fr"])
+        self.assertEqual(len(titles), len(LANGS), "Dictionnaire HOME V1 doit posséder 8 questions")
+        for lang, title in zip(LANGS, titles):
+            match = re.search(r'<h1[^>]*>(.*?)</h1>', self.html[lang], re.S)
+            self.assertIsNotNone(match, lang)
+            self.assertEqual(match.group(1).strip(), title, lang)
+
     def test_arabic_direction_and_unchanged_french_home_engine(self):
         self.assertIn('<html lang="ar" dir="rtl">', self.html["ar"])
         original = self.html["fr"]
