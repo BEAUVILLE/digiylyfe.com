@@ -1,0 +1,40 @@
+name: DIGIY VISIBILITE V2 · Saly international
+on:
+  push:
+    branches:
+      - feature/digiy-visibilite-v2
+    paths:
+      - saly.html
+      - en/saly.html
+      - de/saly.html
+      - nl/saly.html
+      - sitemap.xml
+      - assets/digiy-saly-international-v2.css
+      - tests/test_visibilite_v2.py
+      - .github/workflows/visibilite-v2.yml
+  pull_request:
+    paths:
+      - saly.html
+      - en/saly.html
+      - de/saly.html
+      - nl/saly.html
+      - sitemap.xml
+      - assets/digiy-saly-international-v2.css
+      - tests/test_visibilite_v2.py
+      - .github/workflows/visibilite-v2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  international-seo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Valider hreflang, contenu, sitemap et preservations
+        run: python3 -m unittest discover -s tests -p 'test_visibilite_v2.py' -v
+      - name: Regresser VISIBILITE V1
+        run: python3 -m unittest discover -s tests -p 'test_visibilite_v1.py' -v
