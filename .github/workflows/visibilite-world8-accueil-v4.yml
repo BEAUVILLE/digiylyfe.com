@@ -1,0 +1,47 @@
+name: DIGIY VISIBILITÉ V4 · accueil WORLD8
+on:
+  push:
+    branches:
+      - feature/digiy-visibilite-v4-world8-accueil
+    paths:
+      - index.html
+      - en/index.html
+      - es/index.html
+      - pt/index.html
+      - it/index.html
+      - de/index.html
+      - nl/index.html
+      - ar/index.html
+      - sitemap.xml
+      - tests/test_visibilite_world8_home_v4.py
+      - .github/workflows/visibilite-world8-accueil-v4.yml
+  pull_request:
+    paths:
+      - index.html
+      - en/index.html
+      - es/index.html
+      - pt/index.html
+      - it/index.html
+      - de/index.html
+      - nl/index.html
+      - ar/index.html
+      - sitemap.xml
+      - tests/test_visibilite_world8_home_v4.py
+      - .github/workflows/visibilite-world8-accueil-v4.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  world8-home:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Controle accueil international V4
+        run: python3 -m unittest discover -s tests -p 'test_visibilite_world8_home_v4.py' -v
+      - name: Non regression V1
+        run: python3 -m unittest discover -s tests -p 'test_visibilite_v1.py' -v
+      - name: Non regression V2
+        run: python3 -m unittest discover -s tests -p 'test_visibilite_v2.py' -v
+      - name: Non regression WORLD8 Saly
+        run: python3 -m unittest discover -s tests -p 'test_visibilite_world8.py' -v
