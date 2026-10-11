@@ -94,7 +94,7 @@ class World8Homepage(unittest.TestCase):
         titles = re.findall(r'"v1Question":"([^"]+)"', self.html["fr"])
         self.assertEqual(len(titles), len(LANGS), "Dictionnaire HOME V1 doit posséder 8 questions")
         for lang, title in zip(LANGS, titles):
-            match = re.search(r'<h1\\b[^>]*>(.*?)</h1>', self.html[lang], re.S)
+            match = re.search(r'<h1[^>]*>(.*?)</h1>', self.html[lang], re.S)
             self.assertIsNotNone(match, lang)
             self.assertEqual(match.group(1).strip(), title, lang)
 
