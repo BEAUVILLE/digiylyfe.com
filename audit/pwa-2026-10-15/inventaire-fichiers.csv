@@ -1,0 +1,428 @@
+fichier,extension,octets,sha256,occurrences,controle
+.digiy-card-signatures.json,.json,1343,9185f50519253bd5a032f6692c89096257423c674f746574802db9c1f6f1cc84,0,inventaire métadonnées; pas de revue métier
+.github/scripts/build-pro-pwa.py,.py,5465,51d5b4d9537c21c6181ef8cdd2a4afe74370139114647dbd1447c82823b07b42,0,inventaire métadonnées; pas de revue métier
+.github/scripts/fix_miami_sector_20260911.py,.py,5371,3d56490227fdb6b0e3ffc627b6fbd168563f53fdc107c29551893bfe6ff56843,0,inventaire métadonnées; pas de revue métier
+.github/scripts/install-card-favorites.py,.py,3049,af379cc3f82e7881ee7d58486f55c5f81a7e9971052ae9fc72d9a230065e7baa,0,inventaire métadonnées; pas de revue métier
+.github/scripts/patch_usa_native_20260911.py,.py,8012,5c2825616fc880c7efb9b07cc7e3b555c404955a6db8814ac74e7f86264a71c6,0,inventaire métadonnées; pas de revue métier
+.github/workflows/aly-mobile-optimize.yml,.yml,2012,cd7e5237ee7d10fb4770d01d847328c75f5274f9441666cbfc910a2cea049af4,0,inventaire métadonnées; pas de revue métier
+.github/workflows/build-digiy-international-web.yml,.yml,9391,011301cd129a0c35c39efea6323c20bb1edb27cad351c08195ec6f8e24197743,0,inventaire métadonnées; pas de revue métier
+.github/workflows/campus-admin-rail.yml,.yml,3014,7a2fb0ee8fdcf9a57b0aa60b31e0711092b1a9f4d6f8008e94fb74a1ac9e16f7,0,inventaire métadonnées; pas de revue métier
+.github/workflows/digiy-20s-mobile-optimize.yml,.yml,2282,f1912f1915b9fbf8229724235599930ad75d65727b8050fc19f35deb81d35eeb,0,inventaire métadonnées; pas de revue métier
+.github/workflows/finalize-la-voix-endcard-20260928.yml,.yml,3250,616698a55b4d97fc1c81663291026645489fc5af0d56b7a8f818b475a8253166,0,inventaire métadonnées; pas de revue métier
+.github/workflows/fix-sarlat-territory-only.yml,.yml,2723,32d0abc550df49e75aee9bcac99bfab2f5eab2871d74628f8c7d1d38d12af2bd,0,inventaire métadonnées; pas de revue métier
+.github/workflows/install-card-favorites.yml,.yml,866,05254d6eb343ae611df860fa23c690a4878e10bcc57870dc627721ef39e86738,0,inventaire métadonnées; pas de revue métier
+.github/workflows/install-global-contact.yml,.yml,3278,0a4f9d8cd649dc5a18cf3573fc9e23ea9c312acf45e03ae08fb06c7a81000c44,0,inventaire métadonnées; pas de revue métier
+.github/workflows/install-global-navigation.yml,.yml,2568,ea1c5d5b2a021fa898b323e7cae52f4c79d03e9b23f45372d35233125c9a9753,0,inventaire métadonnées; pas de revue métier
+.github/workflows/install-maitre-favoris-policy.yml,.yml,1052,fb6785316f2bcdc0c8b553ab4f1331d853dcfdc7017a977ca0b1d897465d35e6,0,inventaire métadonnées; pas de revue métier
+.github/workflows/install-mbaye-diouf-signature.yml,.yml,4244,cace3ddb8ce5dd6bfd7ef8d131eb6930afe31447b426cc3143a5e47fbd0250ac,0,inventaire métadonnées; pas de revue métier
+.github/workflows/install-saly-baptiste-signature.yml,.yml,3553,7f026e3bbc61d6d5c809b5d4b0fd36fdd7c600388dd0f189ef3e462534a5d227,0,inventaire métadonnées; pas de revue métier
+.github/workflows/install-saly-food-multimetier-v1.yml,.yml,2118,113e69ff7269aa29dca3f8873c595e1e9da40e24abf3984090ccd86e9ef24477,0,inventaire métadonnées; pas de revue métier
+.github/workflows/install-saly-loc-territoire-v1.yml,.yml,2003,d51c19549304bb7ade0064ea159106215958dd217bb85c0e7534e16a5a3cf8e3,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-cache-bust-free-card-20260913.yml,.yml,1196,87ce41fe6dab2dba6be575fff19711201fe6dc731642718511ef637185407d7b,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-card-module-taxonomy-20260913.yml,.yml,8818,6cecba4da2728cb5508097f3eec40128b858ae3558a4764dd54fff81ab8707cf,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-fix-tarifs-prevalidation-20260911.yml,.yml,5717,ccbce6aace0c08a8e3dd0569ae1ee9ec44846b3361c8a99af67383cd0837efad,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-free-card-top-loc-20260913.yml,.yml,13248,f7c8247e7788b9a0a614d7350f7faaa1818135035b4def40cbed0d9052790bb3,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-free-card-top-loc-fix-20260913.yml,.yml,12766,082f86d32fbcd934f591e4a9ac0f2e71ebe1942626a20be92b97698479154fc2,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-launch-miami-20260911.yml,.yml,24295,29c9b4e07f9245f4ac005c414274fbc9f59f449625e2b3e726a17f9cf1114852,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-load-card-intake-brief-20260913.yml,.yml,1078,c996adb2e7b8e8db23053582899fd0acdfca073cb518d52b44e02129138aeb43,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-load-free-card-entry-20260913.yml,.yml,1294,0f095f589e67b6290d226afbad2734bf43a92c2749fb9b3148ee7c44076f2f3f,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-miami-cache-route-fix-20260911.yml,.yml,2094,069ae9051552b0296659cec364a027caf4517c60bf84446be12936e0c7673448,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-miami-coherence-20260911.yml,.yml,2378,4be646b579d0fa442bf5e522bafdddb63124240cd599fed75ac7ce0724cfd704,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-miami-language-20260911.yml,.yml,1974,4a1937d3d979684a0151fb5de7d9e7c887c54a259a41702aa272eedcd4567541,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-miami-places-20260911.yml,.yml,1191,1280a44fcae6fdca0f5b51d86a82f3844acfda1d3af8464a2ba12d1d3d829281,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-miami-sector-20260911.yml,.yml,702,f6c96b45fd06ddd6c7049e2f82bc344ed75ec5a55a1c56de5852e0d1c3b5a9f6,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-remove-pro-carnet-card-20260913.yml,.yml,1954,7c4e8ad69adbd9813cdf8ff433ccddeebf57574812889ebaa99a242a921da593,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-senegal-territory-hub-20260912.yml,.yml,5066,fc4f04e33d0ff1eafc025e44f8728dceda45741e23559d22b244337b0c07e618,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-separate-free-card-module-20260913.yml,.yml,5426,f8e3c5edb1d87e08d48fc4f664adc7fc5d45f8d63e7902ecf4c7651a42a447b9,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-show-card-module-choice-20260913.yml,.yml,1390,9271f7abbbb9226233974caa99dc9fd1b67555b9b4c4d4a3ac9a66a68175cd23,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-transcode-master-video-mobile-20260924.yml,.yml,1297,b63baca24b522e8ec246cecf8f259586440876a00097ef6f6d6b74bfbb351087,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-usa-cache-unlock-20260911.yml,.yml,2905,783a4e9ce8d48997dcdf277f360aa1a16ff2292bd1863da6997afe4154b5b484,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-usa-static-home-20260911.yml,.yml,768,b7acaeb723d4ba096d8661ca762a621417cde23f0fe210904590d27a507d3505,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-usa-world-copy-20260911.yml,.yml,1342,29d321aa83f8d6e6a36e23744faa586218689cb74440eabef1e3c9450ff8a799,0,inventaire métadonnées; pas de revue métier
+.github/workflows/oneoff-wire-loc-secure-flow-20260911.yml,.yml,8394,476ab63f55f8a9078940d985ae7005126c86298e31c41d301ec5d9e219fb2ac9,0,inventaire métadonnées; pas de revue métier
+.github/workflows/optimize-territory-images.yml,.yml,4335,05c72b074e3c224abf3f2c1773fff2123c2235b74e2ef4b8c1da3901f247994c,0,inventaire métadonnées; pas de revue métier
+.github/workflows/pwa-guard.yml,.yml,1206,43ff00f89cca10082a5d365e4973b37434e21af7cbde5416ea75d066b93f89b2,0,inventaire métadonnées; pas de revue métier
+.github/workflows/sign-cards-digiylyfe.yml,.yml,2239,5e9193d20791489374e615e5139e99a725017cac84b382fa680830703c90c873,0,inventaire métadonnées; pas de revue métier
+.github/workflows/sign-cards-reusable.yml,.yml,4902,5ee611cde488c8553de22d50e1890310cdbdb5eebd97f801e76988442596d18c,0,inventaire métadonnées; pas de revue métier
+.github/workflows/visibilite-v1.yml,.yml,723,c433b5bab056f25cdcff31fcc999cfe0786f696eea4b3c9ad51e64f3c931c54e,0,inventaire métadonnées; pas de revue métier
+.github/workflows/visibilite-v2.yml,.yml,1483,2f60c8ebf99bb168c5a43f463a93230d3ff018cc4a5af4c6090ea187b14b45bb,0,inventaire métadonnées; pas de revue métier
+.github/workflows/visibilite-world8-accueil-v4.yml,.yml,1420,f6ea1406ea0859b504eb271899f44ba76f7eeb3d849385b0dd34619125278177,0,inventaire métadonnées; pas de revue métier
+AI_PRODUCT_BUILDER.md,.md,4880,45de995eb814fd18561be12394ec32dfec8eae013fa16207c8ba251300048749,0,inventaire métadonnées; pas de revue métier
+BCHEIKH_TIKTOK_CARTE_PRIX_FIN_FIXE_9x16.mp4,.mp4,13522851,7e50126a7007c2b4894122da9e0755c9b1815e9e99d63f9d8a40493a7e4c280a,0,inventaire métadonnées; pas de revue métier
+BLOC_VIDEO_BCHEIKH_PRIX_CARTE_FIN_20260720.html,.html,2383,a21dbe26674c0574db20b27eb68f0ba2b1cbc1c27470295d158c434a65905225,3,scan navigation
+CNAME,,13,39dd6253a9beb50d8239028f1585bc5c85c850048170e35dd2fc38b9973bd370,0,inventaire métadonnées; pas de revue métier
+"ChatGPT Image 9 août 2026, 15_37_18.png",.png,2240171,f87c17baa2c4224c5957a581998fa8c0a2275f7b597bd7bbfc744cc11d24d95e,0,inventaire métadonnées; pas de revue métier
+DIGIYLYFE_BESOIN_REPONSE_CONTACT_20s_MOBILE_LIGHT.mp4,.mp4,713461,472f16e1a5c94949ca3704a0709cbca93b72a80e8d39f53d110f7899e6d277b9,0,inventaire métadonnées; pas de revue métier
+DIGIYLYFE_Entreprise_Petite_Cote_45s_THE_MEGE_QR_TARIF_CHOISIR_FINAL_V2.mp4,.mp4,10591567,75c3dfcf3f04f2bf3e4b184a3f6c0abeed3ccc26cd43ed14459d5d11835fe132,0,inventaire métadonnées; pas de revue métier
+README.md,.md,2042,34c4a8d1a29c098efddacb5671e4a333be6371f85b4ddd89d9d7ec088f53f85f,0,inventaire métadonnées; pas de revue métier
+SECURITE/README-ACCUEIL-VOIX-20260829.md,.md,1188,4fb28cd62101152417d00f277c6591e72c8dd8e46f2d0046b93ee49ddd3a9a89,0,inventaire métadonnées; pas de revue métier
+SECURITE/README-COMMERCIAL-PRIX-20260829.md,.md,722,5c999dea147d75a3cd716827a0188296c0093d5e73a62ebb60c50a88afc31c22,0,inventaire métadonnées; pas de revue métier
+acces-proprietaire.html,.html,3908,d7803f9e6a48522bb42cb16c2d3db8b1c9949ccde896033d101ce915251448fb,4,scan navigation
+adhesion-bordeaux.html,.html,18508,a717043e0b9982f13af848b243c7a362497e083df502528210c93b07d9f1c03e,3,scan navigation
+adhesion-dakar.html,.html,7679,5e297150d3f8a3c9ed37610021fd5f204c4316cc892e4acbe4da3295af0a7e8d,6,scan navigation
+adhesion-dordogne.html,.html,22691,24088db4d907c037f449bb25e4390de03b09af4b4cbbf038f0d05c6e0a4bc105,3,scan navigation
+adhesion-petite-cote.html,.html,17764,9cd10f723823132a908d9805d3fea0cb7221c079b6d6fe22cc17e223a100e852,6,scan navigation
+aly-kane-la-voix-digiylyfe.mp4,.mp4,6558871,87365d52f8c2a5ef92ef90b986e02896e7f5e9c264d3e58134279acd2ba89c19,0,inventaire métadonnées; pas de revue métier
+aly-parle-v3-test.html,.html,23543,c0e6ed1676b041fbde61b703ee0db879ebf95f415cdd6289c522f61ed0067823,6,scan navigation
+aly-parle.html,.html,22762,508697b2c77822252d159e6717dceb44b5553a66c6587eefc8d5f4e2a275b1d3,5,scan navigation
+aly-portrait-carre-720_generated.mp4,.mp4,3862866,cf742cc437db4e4faf29d8f11f9950f886446d65b30145756d3b97f2dfbe194f,0,inventaire métadonnées; pas de revue métier
+aly-portrait-carre-mobile.mp4,.mp4,1406344,0e1a214ebe360d64093a7b527cd87e22750cc358c48e1dd3fa82b7bc7db4a72a,0,inventaire métadonnées; pas de revue métier
+annuaire-public-digiy.js,.js,9127,2b6c84a5b7ae82937d29862c3bea638bce40a02bed7e05893b17c9f98a371d0d,0,scan navigation
+ar/index.html,.html,6459,ddf9d2d807f1adc025f77d35d78a5b84214837788367d2e95ce80d3a24acfcf3,0,scan navigation
+ar/saly.html,.html,7943,2a651939d5818e19e5822abe2751f822665bb63c0a5f0bf16b6af75c99380bd9,6,scan navigation
+architecture-digiylyfe.html,.html,20612,e04a339ac37e0330554bc15db23058c23e0ab1e0ebc5a7032a103bc6c1c00012,6,scan navigation
+archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html,.html,2266,9a04b790ee8f6877bc1d864307a56aa698886c6d00c5dc21176232ce18a33a65,10,scan navigation
+assets/Carte promotionnelle de golf tropicale.png,.png,2189535,df779e1b9d39df22c1e6319bcd5b396b519495c43505c021a0541d18cb0d4a5d,0,inventaire métadonnées; pas de revue métier
+assets/DIGIYLYFE_LA_VOIX_PARCOURS_26_6S.mp4,.mp4,1003963,7a72b7cc41d35c12f66ee49112da5e3dda93c12340dc805a708e7871beeab68c,0,inventaire métadonnées; pas de revue métier
+assets/DIGIYLYFE_TERRITOIRE_24S_ALY_SIWIS_SYNCHRO_WEB.mp4,.mp4,784236,ff3c8f9e1f62a12622d8362b27b3fc6683ada5130810cb2508c4c66e2da3fe02,0,inventaire métadonnées; pas de revue métier
+assets/DIGIY_INTERNATIONAL_OUVERT_AU_MONDE_CORRIGE_RATIO.mp4,.mp4,9300259,71ea1ff83430be655587f7272062c9d9cd83aec84021fa36cf52ffa2e9c354f1,0,inventaire métadonnées; pas de revue métier
+assets/agnes/01-ancre-public-pro.jpg,.jpg,15008,2a2f25e05c1f983c32e3069a67a5d6e0233f2b2011134f63594e4cfe9b9e8210,0,inventaire métadonnées; pas de revue métier
+assets/aly-interact-v1.js,.js,1162,d13074e0a2007b9ffffc8da2a6a2d371f0ced391553fa61d8168ff0b6fe70904,0,scan navigation
+assets/comprendre/digiylyfe-palette-vitrine.webp,.webp,250708,46b6b146a85789063543d258f68e2da4644c8e641bb79ab9bc7370c44e43c095,0,inventaire métadonnées; pas de revue métier
+assets/css/presence-terrain-v2.css,.css,3977,59cfc69ad635449e37ab6bc0dd43edc7cb1ec698c8d6879ede6710750587cf57,0,inventaire métadonnées; pas de revue métier
+assets/css/recherche-v5.css,.css,6654,941f64722f6d2128091b521a932d5b068b1006f13bba308ae89afc16bb45f294,0,inventaire métadonnées; pas de revue métier
+assets/digiy-adhesion-runtime-bordeaux-v1.json,.json,2326,b6a2f03789b3fbeefb204e24346e514326265908805a28b5cba86a1c445ac0a9,0,inventaire métadonnées; pas de revue métier
+assets/digiy-adhesion-runtime-dakar-v1.json,.json,1795,fbde9b739633394361748b90de17bf325db1bed8c6d556240acfb254a6a3da9a,0,inventaire métadonnées; pas de revue métier
+assets/digiy-adhesion-runtime-dordogne-v1.json,.json,1669,172d9175d5c8f033b88b18e5622e3f2b1e3554e0a3b4559c0770a9e6adb65e0e,0,inventaire métadonnées; pas de revue métier
+assets/digiy-adhesion-runtime-france-v1.json,.json,5570,4725107ad9b7fdae00a56e3465e7ae91f58d7d2920af10418ba71cacaedfe177,0,inventaire métadonnées; pas de revue métier
+assets/digiy-adhesion-runtime-v1.json,.json,16699,e4d46b2c2e8cb3da4f3e521350363d6a85ff720bceecd16e6a7f1366f4f75367,0,inventaire métadonnées; pas de revue métier
+assets/digiy-babacar-plombier-signature-v1.js,.js,6441,3778c6946202c1626a6c7833da4bd1ce1a0e13bd7e57e1a1ea30a8b75c433761,0,scan navigation
+assets/digiy-beaute-bien-etre-master-v1.js,.js,10215,5d013f67f01911d271bc5f2bb83948ffb4e3b1c742212042a8cd317f0c2d96a3,1,scan navigation
+assets/digiy-bordeaux-i18n-stable-20260901.js,.js,37492,21ffc50f40eaa611a960d790a50c35ff1b193b75a3f588c050903c49926ca8ea,0,scan navigation
+assets/digiy-bordeaux-i18n-v1.js,.js,15566,70b50e46f95264177f6b43ea6471ee026ec35c968ed10ca3839b61941e81b407,3,scan navigation
+assets/digiy-campus-interest-v1.js,.js,13102,13d60c03f5f3e70617115e9208eea21c33c6852e27dc99338d3b643c6c291607,2,scan navigation
+assets/digiy-campus-interest-v2.js,.js,11181,3f7902eb53f995a690e44830f014a7326d71b6629133cc80bf307746c3cd98f5,2,scan navigation
+assets/digiy-card-favorite-v1.js,.js,4860,5b02920541501165e99072dc5d9e075cfd0a96e88c37de1d3698d0a40caffbb6,1,scan navigation
+assets/digiy-card-intake-brief-v1.js,.js,23853,7d2ab5ac098e7879ec30bc88043d0b26cd2f857b663d3039ef1a8e574407d750,1,scan navigation
+assets/digiy-card-intake-brief-v2-pre-membership-20260917.js,.js,23853,7d2ab5ac098e7879ec30bc88043d0b26cd2f857b663d3039ef1a8e574407d750,1,scan navigation
+assets/digiy-card-intake-brief-v2.js,.js,528,5557aaa02b3f9058b14a529d11809c12dfd35ee4c2878575b9ff69596cbc6a6a,0,scan navigation
+assets/digiy-carnet-entry-v1.js,.js,3380,e926d271f76c03054b96cdd78ac7c41875358bab3ddbe9b95d14726c8c900f8f,0,scan navigation
+assets/digiy-catalog.js,.js,13092,cedb232af002a2a9f77c177cefda2f182e50a046dfa5c8a0bbed2ccb9186c6b8,1,scan navigation
+assets/digiy-com-maitre-v1.js,.js,18861,a082615373e07dd69a9e9a7d572acfe1153eed9fd12fbb65dbaaa10eaedb623d,0,scan navigation
+assets/digiy-commercial-no-free-v1.js,.js,408,039d327d562fa3bd5a47ea8713356f106aad59ec62168fec9dde9573edf47fe6,0,scan navigation
+assets/digiy-core-runtime-v1.json,.json,6721,2c397c6139bf51fb17bf33f65fab09ded7ee59a87d0d4a9cd42f2e62da8a97a6,0,inventaire métadonnées; pas de revue métier
+assets/digiy-dakar-i18n-v1.js,.js,74572,6b62ddbe37cc1623858de70a4ddd493f8e10121fef4dfd7abb6342beb8024941,0,scan navigation
+assets/digiy-demo-dordogne-health-v1.js,.js,3780,3a378b9ca7600331ac9f8d964dfc129b9e3e8578e251fd0b262c29d50e5d2af0,1,scan navigation
+assets/digiy-demo-dordogne-pro-pricing-v1.js,.js,6958,15c80fa720e376c9580c7d095cf4e4280327bc0a7588f1324882061c33722518,0,scan navigation
+assets/digiy-demo-food-multimetier-v1.js,.js,4228,ee51e618a5e003c78527253746f8ffb5969501658e4a868ab4fbdbcbbb5d1b50,2,scan navigation
+assets/digiy-demo-loc-price-v1.js,.js,1843,77f0876676d101cbe8a143f386e70ece59276ad7fa8ce5db9d43fa08ad424bd4,1,scan navigation
+assets/digiy-dossier-carnet-v1.js,.js,13350,88e19f4107d5ade679c2fefc46bf1c1781081fe9db70e1bb8dc8097c8eb5ff0f,0,scan navigation
+assets/digiy-dossier-prefill-bordeaux-v1.js,.js,3063,e750ec84279623aab48c66a3310a0daa7b8a9e9acb2056915dcce49b3baba552,0,scan navigation
+assets/digiy-dossier-prefill-dakar-v1.js,.js,2798,691d048606aba6e2cad568cf30fa682cc204c0b3e798ccf33e2d76b575696ee6,0,scan navigation
+assets/digiy-dossier-prefill-dordogne-v1.js,.js,2216,f038e801e87fefec17663620a0cb53001d6d6ec716faab44368a19ca0be32fbe,0,scan navigation
+assets/digiy-dossier-prefill-petite-cote-v1.js,.js,2308,18d9da291b73faa93944b27bda9d7e9d4456fcceec48eda75f4a95a1d3b5d5d9,0,scan navigation
+assets/digiy-facade-two-worlds-v1.js,.js,12434,89f171304eea63778542d76db5bbc483910252b3c485c1de96b3c1d6748b8ee4,0,scan navigation
+assets/digiy-fiche-flow-20260911.js,.js,8645,9cc81e703e0e95debd9fe4aca2d4c99c05204f0cedbab49ce223bac98aa7f45e,0,scan navigation
+assets/digiy-free-card-entry-v1.js,.js,31973,37879fb94d441bd7faf7f2e4c0b845fde150f99c4aee04d0ea6c6656919998de,3,scan navigation
+assets/digiy-gallery-favorites-v1.js,.js,4495,7868c25f6e210475d439420cc840ef427d7bae83bbd18d438ed23c5a75390033,1,scan navigation
+assets/digiy-helage-signature-v1.js,.js,8868,49ee751c9302a56a0f90f102f24554fee4ce75eba60a5871a6f68402cff2d309,0,scan navigation
+assets/digiy-home-membership-price-v1.js,.js,7928,9bb50fa74b98accb1c6c35b1d6e78a30955934aa3e5c80f3c02084b7a020e4a7,0,scan navigation
+assets/digiy-indicative-tariffs-v1.js,.js,8874,4dcd7a4119771351658f35687e34593d6ae4b47cf0b302b7878d15922479c0b3,0,scan navigation
+assets/digiy-international-web-v2.mp4,.mp4,5175318,8d223646913cf8fb8bd9a9fc31744e8387667e95a2e674ae819a870166acefff,0,inventaire métadonnées; pas de revue métier
+assets/digiy-kourant-electricien-signature-v1.js,.js,6982,e6b8e7c9bf1f0ae1663748980d85aaf31f412a0a24da74991d7f6d424ae1af45,0,scan navigation
+assets/digiy-loc-secure-flow-20260911.js,.js,15868,3d45d8325afaf4dbbce9e3330337e68a3c11b867ca176a2f7f2567af22dcd404,2,scan navigation
+assets/digiy-loc-signature-engine-v1.js,.js,1887,ccc6e14e4f0719d0cc4156c4be424ab510169a51be148e36bf2208815c80a9a7,0,scan navigation
+assets/digiy-maitre-favoris-v1.js,.js,18790,420ac683fef79766558dab6e5c9729facaca433dcadd9fcb2c386d3c0ce07667,1,scan navigation
+assets/digiy-maroc-i18n-v1.js,.js,57017,be341916d9de81a40747a27cac27f0f9c5cdb09bdb176aeca344668d2d17bebf,2,scan navigation
+assets/digiy-master-ui-v1.css,.css,9000,deee60a4f0a99ca5d96979df6595cebb36133363369634471cf0b11318452748,0,inventaire métadonnées; pas de revue métier
+assets/digiy-mbaye-diouf-signature-v1.js,.js,9041,8db6b185f7354a6a11779a79a25405b2b254eb1d64dee55852c7c8ea1748ebca,0,scan navigation
+assets/digiy-member-pwa-v1.js,.js,10966,01a06de8578e189f3ed2e65e5184842f3b267e48ba2f13b808c24dc24e419b2f,1,scan navigation
+assets/digiy-membership-country-v1.js,.js,19501,9ee573050936053862274c19fb9f6cd3216e3f87720dfaf4b3d4a4b07f08b2fe,1,scan navigation
+assets/digiy-membership-visibility-v1.js,.js,18359,ed97a317dbfb624e885d9007e69a37a37f32e1a569d718d3e86a7cacd080d68e,0,scan navigation
+assets/digiy-metier-dictionary-v1.js,.js,5708,702ab5ed4905f7988de3f9e0e51710aaeba16780ffe7d7f79a8e7986cd66d2d2,0,scan navigation
+assets/digiy-miami-door-v1.js,.js,3856,23a45b7cda1f7532dabb05df263d6887b9a01603754b25c8ee56462e7a508969,1,scan navigation
+assets/digiy-miami-places-v1.js,.js,8028,84a605676da849a84df28cb626726abbf025a408faff2b9bbabb30943cabbff5,0,scan navigation
+assets/digiy-paris-places-v1.js,.js,14733,702286c0f40846df792fa2f2792865cfe7efe1440774122473d0731071d19ac9,0,scan navigation
+assets/digiy-petite-cote-config-v1.js,.js,36341,9c7f1acad38f111710e0700b1dd02ed45af808591b5bddbed5debb9568d3832a,3,scan navigation
+assets/digiy-prevalidation-flow-20260911.js,.js,11235,0d308e5d79b37c2d95906cc2a21dc9302291fcff50878606633679dfb2027f78,0,scan navigation
+assets/digiy-pro-carnet-geo-v1.js,.js,3912,f90c17938eb791f117bda7344f7a8582d8f9fbc70a44ec173393bfd068bd2631,0,scan navigation
+assets/digiy-pro-form-guard-20260923.js,.js,1844,7e8988b14b2cbf7e72c28089a0016c9d69ccf9c312ed43d5470cf1eb489c91aa,0,scan navigation
+assets/digiy-pro-pwa-v1.js,.js,10710,cc4c3f12b1d010dd52a56b18e11297e3d8cdb8cbcefe638ecf5588609892f5f1,1,scan navigation
+assets/digiy-pro-signature-engine-v1.js,.js,10570,6a0211e2303302d67038baf064bcd665d9ff9ac50023c0a05ed709b5a86f868b,2,scan navigation
+assets/digiy-public-module-local-filter-v1.js,.js,2309,2197d539d9f8ec93541955d666f3880413bacc4b9458b12e7ab09fb6216ebf78,0,scan navigation
+assets/digiy-public-module-master-v1.js,.js,23473,e5b4711e3ff7f004d93face3db9480263f024b973d3977f127431b4da206be19,2,scan navigation
+assets/digiy-public-module-master-v2.js,.js,22722,5008e2c3190b1328e5e08ca0b5a6addb26365710ec5c2d864b7e54438eeef994,2,scan navigation
+assets/digiy-public-module-master-v3.js,.js,14083,cea7616c4898bed25615c7c915509e76e6615ccb8c76a99561367bfe081ca9f1,0,scan navigation
+assets/digiy-pwa-install.js,.js,9338,363fd8dc455b45a959236baaa6f20fd47c88452bc5bbe7f21da5bedf33590888,0,scan navigation
+assets/digiy-saly-baptiste-signature-v1.js,.js,19053,07bc3e13c65199f6bfe86500554b324452437c5da81654704b198f1c1584d5c9,2,scan navigation
+assets/digiy-saly-international-v2.css,.css,3436,41322345f6cb6ff703565e10e01bdc559eda33eb61710eea242a281371888bdb,0,inventaire métadonnées; pas de revue métier
+assets/digiy-saly-pilot-entry-v1.js,.js,3644,b41dab2e3a74bc14d38fb50425cd123b36ea86e34781352839128fe37bd6bb78,0,scan navigation
+assets/digiy-saly-pilot-form-v1.js,.js,3093,8475c1a8d32cedb8d91e9faeb30885ab03da8e54b70ac9092834f23c7e2ea50f,0,scan navigation
+assets/digiy-sarlat-baptiste-signature-v1.js,.js,26813,2c7ef6ccd2d8e6abf252e2dda4d457f3511e2c2060da2aca2fbac718b86b6876,2,scan navigation
+assets/digiy-sarlat-health-v1.js,.js,7312,f6568832a90bced72ef7cd6d84a6024ffb880cb590d7ddfaeee67c36f7cde759,0,scan navigation
+assets/digiy-tarifs-membership-bridge-v1.js,.js,4778,92a53684e13982aa699afacb6e2488e2d2e41b55372c62083d4255425a8b8cf8,0,scan navigation
+assets/digiy-territoire-beauty-door-v1.js,.js,1768,8baa4bc0ea9fb1a1932eaeb0eaebc6cd545064883127a5ea03a317bc3297bc0d,2,scan navigation
+assets/digiy-territoire-bordeaux-projection-v1.js,.js,11757,3151cf042b505f06d3bece919113f73502cbbf8324b01e96c979c3dba91d0d51,1,scan navigation
+assets/digiy-territoire-commerce-door-v1.js,.js,1884,ddf47ddb4ae6d29535757e168dcb7471aca6e0a5047c809f314f38da9ad48f64,2,scan navigation
+assets/digiy-territoire-demos-v1.js,.js,11554,d10b2379e36f00330c254ece873b8f8d22f5c3df2eed209f2fd061e38af351f2,2,scan navigation
+assets/digiy-territoire-dictionary-v1.js,.js,5382,6c1282c60cc8d9e7fd55771879220d9beac98f9ea62cfde260511eac14fc67af,0,scan navigation
+assets/digiy-territoire-doors-style-v1.js,.js,6986,22aa15e315fde34d38e3834a8a8fab4ae3a78ff9c3c834edf1319d58cfcc1c14,0,scan navigation
+assets/digiy-territoire-dordogne-module-doors-v1.js,.js,1576,ee1ed5c3a3caabd64b87ac06561ef5477b0d0d930e04fd814b33282c8c40c71b,2,scan navigation
+assets/digiy-territoire-dordogne-projection-stable-20260909.js,.js,30488,71cf770e896aaa46a84d6264e4301ac6881483842c603d35af4cd4ec2ca3133a,1,scan navigation
+assets/digiy-territoire-dordogne-projection-v1.js,.js,5711,9f614b94f932746fb3544f81ac26d0fe65884d61e548a86a5a7e339948b371b1,0,scan navigation
+assets/digiy-territoire-favoris-v1.js,.js,8186,a452acb763b3515b128a3ca0353bfbb96db9475ac734490c73c6d4c934876398,0,scan navigation
+assets/digiy-territoire-jobs-door-v1.js,.js,1793,9dd1d31373ccd62259bcd1c32f2951934e01fb5b397c1a47976d3362ec8315bc,2,scan navigation
+assets/digiy-territoire-master-doors-v1.js,.js,4643,6171615dfc296c42b19e52e2c9f9b9311f256bedc82c7aa3fa22d635f3e4ff72,3,scan navigation
+assets/digiy-territoire-petite-cote-cleaning-v1.js,.js,3713,a73a13a7b468afcf1bc30e1199db568266aaf577b52acdf944be9206c33c4db2,2,scan navigation
+assets/digiy-territoire-petite-cote-food-v1.js,.js,6336,209b5a29ed92d3ad51a2d25d109da2a584e692974323b46860b15574edbdc1af,1,scan navigation
+assets/digiy-territoire-petite-cote-loc-v1.js,.js,4811,ee0ca5c8d3e0e95f9fc29d1786fb98c95a83a9c2d7871f5d8f84e1ac5a82c398,2,scan navigation
+assets/digiy-territoire-petite-cote-professional-services-v1.js,.js,3057,c89feea0c90c05981529eaf00a0b39673e6045e5fc6c611e4990b297c48a5f29,2,scan navigation
+assets/digiy-territoire-petite-cote-projection-v1.js,.js,8564,7e9adc373fa7afb4e7cc48d179dbe3e6787b9daf0539aeedccab7c7f86a406a7,3,scan navigation
+assets/digiy-territoire-pro-health-labels-v1.js,.js,3702,feb67d0e215b1995351775c6edd32488dd750fc6e0d54eb69b03f821b341d0da,0,scan navigation
+assets/digiy-territoire-public-module-doors-v2.js,.js,9263,de99264c1811704a1985c7ec116bd89f5617ef8e232243c1c9cef5623e3a8c76,13,scan navigation
+assets/digiy-territoire-public-safety-v1.js,.js,15487,09ebe53d90bc2cd5cd2b93934c2dc04c9525c59e7351bfcd007b2541e0be4b4f,3,scan navigation
+assets/digiy-territoire-retired-pros-v1.js,.js,1019,b26838a42e1a345407faa26645f40b00e6e8d96d4cb7b030465f8d505105db4b,0,scan navigation
+assets/digiy-territoire-runtime-stable-20260831.js,.js,28667,783da1f97924d006ff08886dc4292b5a52e98e575e907be07d313414effa33b6,5,scan navigation
+assets/digiy-territoire-runtime-v1.js,.js,29106,c1ede42959308d0319d507d6060e599ed7d135c4a39e944169e41407293e636c,5,scan navigation
+assets/digiy-usa-world-copy-v1.js,.js,8097,d1c3b207677a1f0a623963fb1e055f813035abab96b01789d59047e86da1eba5,1,scan navigation
+assets/digiy-vitrine-professional-health-v1.js,.js,9005,549b6eb5eaecdf560affbc73aae40f242ad2ef7760781ebbc45aaacd71bd2380,3,scan navigation
+assets/i18n/digiy-i18n.js,.js,29513,994a2dc42680709a00c36d72efe08d50a1dd04e84a6eb27cfaecad271a5b0e1f,1,scan navigation
+assets/i18n/digiy-route.js,.js,3306,02e9aab6c1d3fc3e0e282d21991fae2d48e0bebe8204de9578ff4800160af97a,5,scan navigation
+assets/i18n/digiy-world8-runtime.js,.js,4533,7811d152efd9996124057ce529cfd984501419db4a2b9c28242b34fa34d873dd,2,scan navigation
+assets/i18n/digiy-world8.js,.js,5772,37a5b0181d166272c98cfa731429ba85d4f55f9a7ec087dac8adb246f7895c95,4,scan navigation
+assets/i18n/presence-terrain-v2-app.js,.js,2334,17f4cfdc3f6f01c61ef3522aa18c1744bb8e5a581518337defcd4fdfa2c222e9,3,scan navigation
+assets/i18n/presence-terrain-v2-data.js,.js,19237,bdd8058c337b6fa6e5276c217d04cfc8eebef8172c01934d14844d270a015f5e,0,scan navigation
+assets/i18n/recherche-v5-app.js,.js,13392,4aabe6d554ade126d2870e716cbda8aeac6dccfd18743a1eba036f7e97acf7a9,4,scan navigation
+assets/i18n/recherche-v5-data.js,.js,13945,b7579c253bec9df44a1fbef1975f7adce5a3f4a169afe8e7a0f76b3830b59609,0,scan navigation
+assets/js/digiy-fidelisation.js,.js,20507,c3a4e0d747a7a76fb97bb1aabe1657c3a2ca8ad5b4572b594384eaaa6c4d635a,0,scan navigation
+assets/js/vitrine-top-favoris.js,.js,11875,f5db72b2095ad64d1f1077a7595e0914ecde29f37dd8e574548d1028a03efc63,1,scan navigation
+assets/multilang.css,.css,5994,b39dc4deca2cdee490a7c6ae4d6b67d1316b6c7077759c705b6999502502651a,0,inventaire métadonnées; pas de revue métier
+assets/pap-piscine-fiche-officielle.webp,.webp,510014,f974f62138786c69ccee3675a914bb32a394be53d3cae69c990c7c1459fd4777,0,inventaire métadonnées; pas de revue métier
+assets/pwa/digiy-fallback-192.png,.png,6335,fd6abc61c0ef0ccd29450a750ad56611a9de08e7aacd8a889bb248369b7ec65f,0,inventaire métadonnées; pas de revue métier
+assets/pwa/digiy-fallback-512.png,.png,17997,72c1f81fdae98a138b5994de891ced826e99dc3822adc5ab17cdf4b1062b0018,0,inventaire métadonnées; pas de revue métier
+assets/pwa/digiy-fallback.svg,.svg,2178,656790dbc9e4b13404fa71d2b7e91eca5bf17405d02e8f908bf57b4a01584c04,0,inventaire métadonnées; pas de revue métier
+assets/serie-mobile/01.webp,.webp,270606,463d2def5ae02e0864e7a78e3f026fe18fd220974981caee364a8f2de88f2c24,0,inventaire métadonnées; pas de revue métier
+assets/serie-mobile/02.webp,.webp,316062,73084052857fe0eee0b8aea1bea53e2ebf3233ae0d1a8dceb1a329ba6f193abb,0,inventaire métadonnées; pas de revue métier
+assets/serie-mobile/03.webp,.webp,317950,a4a0f0daabd824f149d62d05be32dd7cad2a63ce42c01389ed507bad27c32fcd,0,inventaire métadonnées; pas de revue métier
+assets/serie-mobile/apercu.webp,.webp,55316,9daccc02b8532266b29d549d39670a7a6fdfa3a4a56bc5de5c05581f2b2f7757,0,inventaire métadonnées; pas de revue métier
+assets/territoires/bordeaux-card.avif,.avif,103237,27e2ec283b9337803ce1dc06c8ed8e903f7fd9ce658cc8496e6c865b54c7e59c,0,inventaire métadonnées; pas de revue métier
+assets/territoires/bordeaux.avif,.avif,188823,2271dfa18e858472463fbd3ef221aa7acc6e192e3559ae005b9dadf65b871331,0,inventaire métadonnées; pas de revue métier
+assets/territoires/bordeaux.png,.png,2834611,eda7f96b9fd6fba19271ff9462696c0a0dc0ae173a627d09f9b917370cdc1fe0,0,inventaire métadonnées; pas de revue métier
+assets/territoires/bordeaux.webp,.webp,320882,f9f4a52c7bafdf3a99aceeaf6a70b00441952d2de11dc3b845d50f85692ab79a,0,inventaire métadonnées; pas de revue métier
+assets/territoires/dakar-desktop-card.avif,.avif,55263,8a134bd859d7260b700cf2ff6dce66b4763507661db2deec6fd61c7d69754ec1,0,inventaire métadonnées; pas de revue métier
+assets/territoires/dakar-desktop.avif,.avif,117471,318a0de9839ce3195d080ac1a458b19f7a7489d97adcd005aa133d49ac4bfc4a,0,inventaire métadonnées; pas de revue métier
+assets/territoires/dakar-desktop.png,.png,2169788,b136b89d4013fd09ddb36a4db7c078bccbe97116777b093815e66ee09508b004,0,inventaire métadonnées; pas de revue métier
+assets/territoires/dakar-desktop.webp,.webp,201692,a72d738e0d9cd31032522fed1b0866ac71c5e1a420f367ebcaf03bf3744236b9,0,inventaire métadonnées; pas de revue métier
+assets/territoires/dakar-mobile-card.avif,.avif,73643,31c58bd09ec7177e14fb7d7dd8914fc3c332865e38470cff59ed9fb0f2c19b3b,0,inventaire métadonnées; pas de revue métier
+assets/territoires/dakar-mobile.avif,.avif,133797,3d03b6777414a8fe8c17fb2b8cac3181c0ef5116f31c9511ea902dc2faa1c862,0,inventaire métadonnées; pas de revue métier
+assets/territoires/dakar-mobile.png,.png,2487074,028da64f0e0bb5eba05c2d5940788f3653d025da2953efa028c9fc05a8b6152f,0,inventaire métadonnées; pas de revue métier
+assets/territoires/dakar-mobile.webp,.webp,236306,37c61a7bee55437899c9ff84b8843480119a00f8b6ffb82bae90b774cb1baebe,0,inventaire métadonnées; pas de revue métier
+assets/territoires/manifest-qr.avif,.avif,165997,76dd2361b380a81d993f93dfd3d73ed33ae3fb4ab722924def51852112ce1449,0,inventaire métadonnées; pas de revue métier
+assets/territoires/manifest-qr.webp,.webp,272172,90e69a618860b18b62a296679723139632b02f565a5a34a60edcc0533604a7e9,0,inventaire métadonnées; pas de revue métier
+assets/territoires/maroc-card.avif,.avif,19410,a6b3c3fca9ca7bb56e870cbb916e67e0281351328d54835dfe8cb8a759e16ee0,0,inventaire métadonnées; pas de revue métier
+assets/territoires/maroc.avif,.avif,21634,e380807b2c184c7a7f75160d4f0a89a59d13306da368c9aaae79d2c21dbfee28,0,inventaire métadonnées; pas de revue métier
+assets/territoires/maroc.webp,.webp,45714,9c50e32a509be03d2629d4fd5732e355d6c133df6f4ba2112c69ea8343c02121,0,inventaire métadonnées; pas de revue métier
+assets/territoires/miami-card.avif,.avif,64404,f7b436f11b201cc752c9427b53fc2364a610c030861edcf7647e681456eded75,0,inventaire métadonnées; pas de revue métier
+assets/territoires/miami.avif,.avif,89412,fa881b978b2ab659a5f7cfdd4608a8bc3330e4a5acef01eb5511dca8a4cd503f,0,inventaire métadonnées; pas de revue métier
+assets/territoires/miami.webp,.webp,133772,8d3813f12591af36139e95e13448b2cd9f060cf3e438a2411e5716d2ef51da3c,0,inventaire métadonnées; pas de revue métier
+assets/territoires/paris.avif,.avif,90083,83b996cb6bfd32b30892fb7e474d56a5cd2721ee7aed665646109649c135163d,0,inventaire métadonnées; pas de revue métier
+assets/territoires/paris.webp,.webp,136542,d183a93ee8919b9890bea0c92bc7cf52a3ef010727b0fce91423ba8cf8d97d45,0,inventaire métadonnées; pas de revue métier
+assets/territoires/perigord-dordogne-card.avif,.avif,140893,aa495ab28be1ad0dd5376ee9b807a4d3d28071463a98eac3dc6735ec370ef09c,0,inventaire métadonnées; pas de revue métier
+assets/territoires/perigord-dordogne.avif,.avif,318669,f604045a6e86860e6211d1e55cbc68b9549079073fa3849cbe552b612496802c,0,inventaire métadonnées; pas de revue métier
+assets/territoires/perigord-dordogne.png,.png,3368853,edfef4f83b8611af3d464c67546613ce5828e94f8449aa07d0a81429f4d9cca1,0,inventaire métadonnées; pas de revue métier
+assets/territoires/perigord-dordogne.webp,.webp,490044,ff4e974d8880b3f14ffda890e23e12c4e7b9b4f6be2f972c4e8c6e90270bf65d,0,inventaire métadonnées; pas de revue métier
+assets/territoires/petite-cote-desktop-card.avif,.avif,86004,a86e25160507ce714aae9a1cb90424a7c58c9d969198d3d0b4f233c7cbd1467a,0,inventaire métadonnées; pas de revue métier
+assets/territoires/petite-cote-desktop.avif,.avif,189085,8d0d41e3b9cf18eb88f3eb947a88cf18fba130d84544ad80491860f8abda752d,0,inventaire métadonnées; pas de revue métier
+assets/territoires/petite-cote-desktop.png,.png,2720030,3aba383f958f55b4aa7d61e0e877198907a12dcac77f55a3284da3dcedc88505,0,inventaire métadonnées; pas de revue métier
+assets/territoires/petite-cote-desktop.webp,.webp,315612,cd012881c0c8c54e8366a46049537ad6c20444120c809f75ab100b3c7180e1a0,0,inventaire métadonnées; pas de revue métier
+assets/territoires/petite-cote-mobile-card.avif,.avif,68868,79348aa14d97d287cac84a09d99c2c9b5a5308dda46e5ad96bfdc3fb5e747641,0,inventaire métadonnées; pas de revue métier
+assets/territoires/petite-cote-mobile.avif,.avif,129302,429c908e647428d0c86a483202a61973022d207e9b9be062ed0b7b7414d6987e,0,inventaire métadonnées; pas de revue métier
+assets/territoires/petite-cote-mobile.png,.png,2378004,175e95204230cee48ab2f06743bdd9962bc6c058d412194d33e31293618a7a5e,0,inventaire métadonnées; pas de revue métier
+assets/territoires/petite-cote-mobile.webp,.webp,224320,828312d966cb90ddf44975ee1704de6e426370f6853baa00394392c0e1ca7d56,0,inventaire métadonnées; pas de revue métier
+assets/videos/DIGIYLYFE_ALY_KANE_23s_AVEC_VOIX.mp4,.mp4,2013572,63fb059fcf5e61eedc741f4973fc66d9f93d4710123c77c73137eb278cd6b937,0,inventaire métadonnées; pas de revue métier
+assets/videos/DIGIYLYFE_MASTER_20s_ALY_POSEE.mp4,.mp4,1709867,86ae528f0daa2d82214c622891bc2ee59ce2cb5bf616eac49ba77f624ad53910,0,inventaire métadonnées; pas de revue métier
+assets/videos/digiy-notice-territoire-activites-20261006-poster.webp,.webp,38796,3ad452e678d55b362d2584bd97f3b8b196b7348c71b31d55d8a2f68d41fdab48,0,inventaire métadonnées; pas de revue métier
+assets/videos/digiy-notice-territoire-activites-20261006.mp4,.mp4,3953825,56ee5480d8b596232fbcf3b1973dd41926d0e25f90faf4ee853b899f127b5ccc,0,inventaire métadonnées; pas de revue métier
+assets/videos/digiy-saly-signature-v2-poster.webp,.webp,32528,30e36a9431f3391d92055599692202f28e8c55be9f8e835293f57e2e422dd600,0,inventaire métadonnées; pas de revue métier
+assets/videos/digiy-saly-signature-v2.mp4,.mp4,1323045,3c90458bc40534525d79c62cc67a7000772b69ef6c0063fe46b7387906408a5a,0,inventaire métadonnées; pas de revue métier
+audio-button.js,.js,367,e993c14cb45d809ae3473955f44c68532004b17cb25f39d607296aae74a30a11,0,scan navigation
+beaute-bien-etre.html,.html,5998,8da4241c631a009f1a6cfdd8b0ab42f8c12fe1314b7e00a92d32745a761bb70d,2,scan navigation
+bon-a-tirer.html,.html,9929,73dc3370e7a8612ac54e3b91a40c1da33fc59528633b319266f5b6ac42cd36c0,2,scan navigation
+bordeaux.html,.html,31796,fce84dc5402762ed43e9573239c68d4cdf906cd2529b181cbc674bb7a6250fd5,12,scan navigation
+build-exemple.pdf,.pdf,45626,a96b02a8dce87e27e907be08b81ece76f7271386161f89eb0b1725ad0cce5630,0,inventaire métadonnées; pas de revue métier
+carnet-master-test/DIGIY-PAY-PISPI-SANDBOX.md,.md,2844,429df29e6d12bb58c4516936a935e1c98dfedeb011066743d12003fa11fcd4a0,0,inventaire métadonnées; pas de revue métier
+carnet-master-test/app/dettes.html,.html,13950,3226cdc330dba0dd321aadd1b874eca6dd31267cded6158b8e9f767fc0c84a8c,1,scan navigation
+carnet-master-test/app/guard.js,.js,1364,e2c1b3233cbb06a98a0633df561804b5c5e5dd349f3da400107d2d954755937b,1,scan navigation
+carnet-master-test/app/hub.html,.html,4972,4288658ad3c96b38ffc5aa71cc7ee6107f3aba5735758e7370dc78dd0037e9be,2,scan navigation
+carnet-master-test/app/index.html,.html,1370,247bcf53693fa5ae4e87b2c5b2f738ca1510121f885bfa64fa1601f33df96f8b,0,scan navigation
+carnet-master-test/app/oreille.html,.html,11455,9c6d42f55615d5a4064ed0358c1c4ed4bde847a09d70f56a7178a41c4319ae38,1,scan navigation
+carnet-master-test/assets/carnet-contract.js,.js,6468,4576931606c30d2f197e1d53f73fac9e5da1ebac6786908c5cb0b5fe920bce0b,0,scan navigation
+carnet-master-test/assets/carnet-debts.js,.js,3810,b9d31221697ae699150e87f9e1c990223dbb1bc88a5b37447c9f673ab7535bab,0,scan navigation
+carnet-master-test/assets/carnet-i18n.js,.js,20585,fd30430669925bf1f099ccdaed35f2c51d614796f275d052aa952de26edd83ea,0,scan navigation
+carnet-master-test/assets/carnet-oreille.js,.js,6890,eab4363ad8d81b34843e22ae9176d9ac143523b8a0f19311aa3d405dd8b02b0d,0,scan navigation
+carnet-master-test/assets/carnet-store.js,.js,6881,0c076556816e05eb8d238d0c9c12666278ad9d5ae00b1b0a4c98249c001af0f9,0,scan navigation
+carnet-master-test/assets/carnet-world8-ui.js,.js,22193,435aa3438d7eec2f4c4ff2e338a9c61d14875e5d888816c34d9e4cc02e0e9331,0,scan navigation
+carnet-master-test/assets/pro-carnet-sync.js,.js,11857,2df086d5103b20468d1703ce12c5a10098f834e438965c5c3167ceb610fcc882,0,scan navigation
+carnet-master-test/index.html,.html,11063,08ad82bdacab12274010c31dddc758991124d85a967a336e1fa2563754c458b4,0,scan navigation
+carnet-master-test/manifest.webmanifest,.webmanifest,348,65c63764945a34318026916bdac641bbcb49f568bdd6bccf3ad2758edc19d51d,0,inventaire métadonnées; pas de revue métier
+carnet-master-test/master-config.js,.js,1515,6c078153b1836ad9d674a0a5841753d4c58d9fa89d61fadf836aa9c5bee04b53,0,scan navigation
+carnet-master-test/sw.js,.js,1325,c3d83b2c7dd3d1636fd78b9990055d95f66e1ec228e809d1e2a8094a1ca999b7,0,scan navigation
+carnet-test/client-du.html,.html,14936,a5a68c339ceff238d61aed5bdfbb35dd9d0dda07b12847eeae81a2c60c8a2ea9,1,scan navigation
+carnet-test/index.html,.html,12718,d0ed88307fdfe4d80b59216c9492d92f1f5e37a0818a6bd72c2ca2f60240a17a,0,scan navigation
+carnet.pdf,.pdf,1759244,8d3e5555bcb849d8785d4e07d6edba7e918e066491437a4c6f67f7ddcdfb5445,0,inventaire métadonnées; pas de revue métier
+carte Cainack Diouf - Professeur de Golf,,2,7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6,0,inventaire métadonnées; pas de revue métier
+carte-digitale.html,.html,357,f75a6f11242635e788934454dd8b90af369283358c4ccf90eb733e3d9bc52ab3,1,scan navigation
+carte-gratuite-maroc.html,.html,12901,b48d843b31cc5a3781c929cb5a9215ad402f075927283145e3e28cb32765d178,6,scan navigation
+carte-gratuite.html,.html,9004,7023fbb87a84ae1cb2b08c9181bec605a003ae86c4020874e9b402b789bf9227,1,scan navigation
+carte-visite-bcheikh-prix.png,.png,1905845,93a25a68e5439d6e2bdec162929d7b52172473efcbeedb5dcc97ccb8175d7e5d,0,inventaire métadonnées; pas de revue métier
+carte-visite-digiy.avif,.avif,54758,27a127f855448fcbb6a94bbc68d63d4c303da82600f341836e96970bc27a0efd,0,inventaire métadonnées; pas de revue métier
+carte-visite-digiy.png,.png,1101502,61332f38c177d4b30446ab9a9cc7323bb76151272c07bf87ca1c20a232b1e9ad,0,inventaire métadonnées; pas de revue métier
+carte-visite-digiy.webp,.webp,124134,faf82321320195664118cfa86abeb782f72f3cb19c12869b49ae130cd2f1aa02,0,inventaire métadonnées; pas de revue métier
+carte.index.html,.html,14778,b87a923eeaf482de7c8e54875d65836f1cb10d3c51ad968ad672fcac96f4150a,7,scan navigation
+carte/index.html,.html,3085,38ec4750e5e67a86f40a2f059ca9325da593ec70cf9d9bc2c257ad7e5e62b9dd,1,scan navigation
+cartes/babakar-plombier-saly.html,.html,3895,625e2cc4229852020f9660c85d8e14ee49c201d9954cc208d23d7d1d1503b76e,0,scan navigation
+cartes/index.html,.html,2500,06d275877dc7a9aaea3f5d6f7cbb43c5002e6dbe636c34ceab77b47d35dfb533,0,scan navigation
+casablanca.html,.html,9616,93ad2038938bb0d549ccd064db70773a27d33d2badef0e2ca9650ce9efb6e0aa,3,scan navigation
+ciblage-pros-digiylyfe.html,.html,4347,8bd8aa00f75dc79236758c6f52b9af4fe0963ebc3413771b3516bface70f6e7c,0,scan navigation
+clip-ali.html,.html,1130,8a2dc188ed0ff3851ec3fab5f17bcf4332fc0de00f33e0551f0170d3f75a00d4,1,scan navigation
+commerce.pdf,.pdf,181989,492cf825769eeb55ae34d7c7befc8b799554214e8bee56f26c20913a488d1afc,0,inventaire métadonnées; pas de revue métier
+comprendre-digiylyfe.html,.html,1219886,341691a7e8454a67b42d766d58a753c723c6c22708190ac602a5b9fd3c776668,6,scan navigation
+courses.html,.html,7599,5efb6a9264be175a71c1020f3676f4a04636db452902d4f076a237fc2813dcb6,3,scan navigation
+dakar.html,.html,20892,8149f89e3988a17ff9b6859943e7d627e29a6099fe11a580a9a49261e78c447d,5,scan navigation
+de/index.html,.html,5782,5b084b2b8f1ee9897f1c2b5cb29307ca433056a57a75d886c67b2c21fe9b8b04,0,scan navigation
+de/saly.html,.html,7129,ca274ee84c247a0df4603c48231f25e6f40615956b3ace408d5050548302def1,6,scan navigation
+demande-prestation.html,.html,1599,19fd8aabd0d1e88d6be99a6f92892af9f859ec0b0f7c78def92d70d87bc9fca2,2,scan navigation
+demo-bordeaux.html,.html,22010,e537896737f054baf955569b0e773a1af16a13eecfdee286f62fc7b7a7dec9d5,8,scan navigation
+demo-build-gestion.html,.html,2888,1800b0eca7842603b5df66edd521c55e519a9da47c1d2e2c97358f99953dde8f,2,scan navigation
+demo-carnet-gestion.html,.html,2565,1f0f2c2dcc65218bfdb410a816f1c459001cf07380ffac3958974bca0ea2611f,2,scan navigation
+demo-commerce-gestion.html,.html,2559,9004d6996b212708b34a358b18d86c3f7e7ad0f01578c84546b0554e79c7dbbc,2,scan navigation
+demo-dakar.html,.html,10041,936357d64e7dc3bef0521e506bb3abb74a743d113a3c271cb272e9717d9890b3,10,scan navigation
+demo-dordogne.html,.html,13579,971d35b980209d35f6b8d07d0eb306ede5be97a03e852a2c533240ab141e5283,5,scan navigation
+demo-driver-gestion.html,.html,2592,e500fc650e537ca0ae2fa64e67e33ca5969bc0514da0e08659688b0a55335989,2,scan navigation
+demo-explore-gestion.html,.html,2849,819ba384cf23c5cc5a3ea5c021f61110347ece88edbfaf45d1c7f07f41a37efe,2,scan navigation
+demo-loc-gestion.html,.html,2887,2977c9de830b26e5e59f4d6c7cb389162611fb84b00bc02cf8f134bf690671b8,2,scan navigation
+demo-petite-cote.html,.html,11538,551bb5d8117206f651ae25631e0253cb550a260484d9b318526112d04c8e56cf,5,scan navigation
+demo-resto-gestion.html,.html,2895,f1e9aaf242d447b8aa300516e7b45fe775cd74b07c8bc8bab0c3fbe67263d7a7,2,scan navigation
+deploy-probe-20260924.txt,.txt,32,ff5ced4fef1662988779e019f43e6c2b5cf97853992673b8b9b92c968bec8a8d,0,inventaire métadonnées; pas de revue métier
+digiy-business.html,.html,17119,8a80c2a232944dd30ff7f062c0172fcb620aafc3a6366c78daeceed6ddc0bec4,6,scan navigation
+digiy-campus-admin.html,.html,694,70defa127348e05c40842fc4be7e27ddbefc9187955da8abf683abfd3f20e19b,2,scan navigation
+digiy-campus-prive.html,.html,15142,3e65cb0b6d35f1ede4d8896a1006f46c753e1a7a85c5369e583d2067db34043f,10,scan navigation
+digiy-contact-global-core-20260824.js,.js,38911,1e958f3371a9ecdf722c6855a315d9fbe5730a338b028b35bbce822e996ef9a0,12,scan navigation
+digiy-contact-global-pre-membership-20260917.js,.js,13491,93b9b0b3017b96e277415feb9ce3bdc8cf5958c7b1bf437f69250eef5d292d63,3,scan navigation
+digiy-contact-global-stable-20260830.js,.js,19457,c9c35a4f77315b01cc8fecfb8b536ac3537eb61bf7bc6e32001a9faf710f378d,5,scan navigation
+digiy-contact-global.js,.js,3297,3a08a87d1997370e71478142e605b89c0afda9aa6431968b1b2359077cd7fba4,1,scan navigation
+digiy-navigation-globale.js,.js,13542,dcb4f8a3fb58974b5a1755c681fe4a0ee7e348f6afac41fab20e9b6b7366a8c0,3,scan navigation
+digiy-priorite-fiches-directes.js,.js,9956,b0705a84a8934c77e1c28f462e7b6ec4bdbc9b9fbe6d8b8632cdeee8443c09a3,2,scan navigation
+digiy-voix-annuaire-bridge.js,.js,3252,8e9acbd728b9692dc4d05502b0b257fd923b810d1e87706216e3eafaac74765e,2,scan navigation
+digiy-voix-fiches-safe-patch.js,.js,13408,e2d6480d508a2e6fc051c4652af9aaed94fbc14622f1311daebd55fd99d0f7bb,2,scan navigation
+digiylyfe-en-action.html,.html,11369,78dd18c5138960bfbd2385dceb777540928adf3a8f1fc8d4df9573a1f348d980,0,scan navigation
+docs/CARTE-DIGITALE-15000.md,.md,574,0b919b47ab3055492bad5940a5dabd36bbc548f421be5f05c8cbc4fcdbab5f29,0,inventaire métadonnées; pas de revue métier
+docs/CHANGELOG-2026-10-03-CARTE.md,.md,255,e74b6bd764649f205eaf8aa90b1935b8898ac79649c28219582b6c29d7f95cc7,0,inventaire métadonnées; pas de revue métier
+docs/COMMERCIAL-POLICY-V1.md,.md,160,146c7469611c982eca7158f4778b6fbc5dabae4d38e4ea714d026730cc9af4e8,0,inventaire métadonnées; pas de revue métier
+docs/DECISION-COMMERCIALE-2026-10-03.md,.md,547,ce4bb3695ecf6b3ced32363028521a660bb6ef8857eb8eb13a40c5ba26ba6553,0,inventaire métadonnées; pas de revue métier
+docs/DOCTRINE-CARTE.md,.md,177,574a6a3d62583a9378ce9d7c0c2cc828e188e45c909e543b17a5cfda780a6eb4,0,inventaire métadonnées; pas de revue métier
+docs/FINAL-NO-FREE.md,.md,97,89e33c187595b6c85ed3d2e2ac47355867f371789be8c7eb5346bd8f16457a97,0,inventaire métadonnées; pas de revue métier
+docs/GEL-ARCHITECTURE-V1.md,.md,2624,e1ea4a11f5636dda6ca26da121b4f01539cdac647795b0957e7c90e58107c634,0,inventaire métadonnées; pas de revue métier
+docs/GEL-VITRINE-20260831.md,.md,1829,1f57c94c2efe993705b70f458b9c6668425b4fcd34b055fc9439c4e592263577,0,inventaire métadonnées; pas de revue métier
+docs/MIGRATION-NO-FREE.md,.md,54,40ffa5ef33ba1495d8ef0afef1d892030cceefbccd1f97bc54d76500c40c3e77,0,inventaire métadonnées; pas de revue métier
+docs/NO-FREE-POLICY.md,.md,443,34041452a6a0d90efd40d35df2ca4033ae917f3b0718211e2f0cb9ee2ba046c9,0,inventaire métadonnées; pas de revue métier
+docs/PRICE-LOCK.md,.md,105,c829b4de116f0dd18a5a98d04cb85a0668036aa62fc2cb1b7f9ed8b4bf6a7a77,0,inventaire métadonnées; pas de revue métier
+docs/README-CARTE-DIGITALE.md,.md,217,c56bf3fad62fa76aad5726da731aa21de892dd344165bfe4c9a5d630a34acc27,0,inventaire métadonnées; pas de revue métier
+docs/TARIFS-CARTE-PRESENCE.md,.md,136,fbd85a93755d8dd3b04b2f821ac0f885fe322be3862249a12d56a1cf2d77738d,0,inventaire métadonnées; pas de revue métier
+docs/audits/DIGIYLYFE-AUDIT-GLOBAL-FINAL-TARIFS-METIER-2026-07-18.md,.md,5268,9824de228e45296e5159a606c09297a75f1aadab3b94ef499d9595fb9887a209,0,inventaire métadonnées; pas de revue métier
+docs/doctrine/DOCTRINE-DIGIYLYFE-MAITRE-MASTER-SIGNATURE.md,.md,5787,ea917cfbe5471dd846da97c534d3a3319cc96aa556eaa9cc4a880d62b04ab581,0,inventaire métadonnées; pas de revue métier
+docs/multilingue/DEPLOIEMENT-MULTILINGUE-20260730.md,.md,3229,5f3294be15e8281800f0f64357b4b8c2cea205fe9e48a7c34e99eb881b596260,0,inventaire métadonnées; pas de revue métier
+docs/nettoyage/NETTOYAGE-20260805.md,.md,874,38b797519bdc78f47ef5e9720b7bc439e365952b75674ad0c09064d942585f05,0,inventaire métadonnées; pas de revue métier
+docs/seo/RECONNAISSANCE-2026-10-06.md,.md,9099,c319f097eb972a065889921de2e1c19fc1f91ff03fa79f500b2d619b99e4e172,0,inventaire métadonnées; pas de revue métier
+driver.pdf,.pdf,427146,8d6d4a40ed9c1a881b68246bb7addbc46131ccae63bf95f276e8b34d5819e0c5,0,inventaire métadonnées; pas de revue métier
+en/index.html,.html,5688,33e1050acc53d73a193e2e0d4cac6bd6bd3ba543b04e453284568eda6f0a55c9,0,scan navigation
+en/saly.html,.html,7053,8428b67c7ec562a887da57f76e741e18808e74fe7c000b0436bc59a44263319e,7,scan navigation
+es/index.html,.html,5767,f7ffe1afe5ad1e1d064655ed78b7c1664641b8005c1cd583ec838a1baf04ed4f,0,scan navigation
+es/saly.html,.html,7027,b96bc6549d824fb7f71a3209f3b472b412bb162edf9d75bf54f398c59532f2d9,6,scan navigation
+explore.pdf,.pdf,263696,4666b99284a41477f4fde2e793f75c259bd37232d11d99faf9606fcc358a108d,0,inventaire métadonnées; pas de revue métier
+fiches/pap-piscine-saly.html,.html,10661,b4b9f04c4427af2093dd0b82c429eda7e2e841b1360b6f7515e625df72dd18d1,7,scan navigation
+france.html,.html,22478,dccdbea38f6429e16314a5ed6eba86873a7cfbb424be31193db55be2584cf038,3,scan navigation
+gestion.html,.html,7001,2912988bff77dcea09d9b81cb00121276836c179f18f99de182604c784341fe7,5,scan navigation
+googlec73fa10600b7e5e7.html,.html,53,daba92117593a1fc60fcc99531054e5ad3dfcab29f32d706f23f4460446b1a71,0,scan navigation
+icon-192.png,.png,28674,f974a7d37f0eaa06e6aa835ed7e2771a65fb5e533f1932d1499c31e290b9d3c1,0,inventaire métadonnées; pas de revue métier
+icon-512.png,.png,194101,98911bb0e2bbe3fd43b28f51688221b44fd4ad8f355eb4d01c40054913ff560a,0,inventaire métadonnées; pas de revue métier
+index.html,.html,200027,e8d2183c4d067647b4738b5fcf4c257eaf841342dec11371ed928b414c861895,25,scan navigation
+inscription-entreprise.html,.html,36528,f24be675a91f6d31174d26006182c9cdc50a96b69db52a9ce56721500a6f5020,4,scan navigation
+inscription.html,.html,25834,d56c2448bc6192563b39141ced41ad655233cc868094e8559b1e881e86da1b5b,5,scan navigation
+it/index.html,.html,5622,510b4ff2c576f71203b2e60c82faedee8eac2e3cfec106836c6976812da2ba5e,0,scan navigation
+it/saly.html,.html,7037,ec9d24c3f6a5a23a72294ad9367ba11392ece68e8cdebd716c29eb284c5db208,6,scan navigation
+le-terrain-garde-la-main.html,.html,38170,026e9851b15ba7f106e1511a21eed93cbf319897d9e862d91e32bfe3d97d1350,6,scan navigation
+llms.txt,.txt,5645,c98fe3cf943826d0597dcfff582a0788d8c299d2ba99fa44e474adc75fd56d77,0,inventaire métadonnées; pas de revue métier
+loc.pdf,.pdf,283314,b50e307111484a44fd46064d17400411c390784f3fcfaa3e69d133d3b4db2283,0,inventaire métadonnées; pas de revue métier
+logo-3d.html,.html,8080,56cb66284eb37fa293c8d82deda4efd967cebee84f006bab1930643bf007814b,0,scan navigation
+manifest.json,.json,571,d9e03582d9b7e7eb9d2c3849776a9aa984adcad0509fe507178cbb86c85e17a9,0,inventaire métadonnées; pas de revue métier
+maroc.html,.html,11377,6c2e69201ed84be63cd483e395cceee787c74a8632eb1ebfc43439b0c3e1acb1,3,scan navigation
+marrakech.html,.html,9728,5a70cb2e4e36483ade76de4dd8ba0d59ca3f3f600357e85780fb76d45c0b7167,3,scan navigation
+masters/ADAPTATEUR-DONNEES-MASTER-DIGIYLYFE-SERVICE-ARTISAN-V1.js,.js,3801,b2942be9821815c07654a5543068f097fa2bf3915126765285ff55274b92447c,0,scan navigation
+masters/ADAPTATEUR-DONNEES-MASTER-DIGIYLYFE-V1.js,.js,8077,baf26d062840057a6acd7aa3655d4ec42b4365c2860490ae7ee253427d53ac7e,0,scan navigation
+masters/ADHESIONS-ATELIER-DIGIYLYFE-V1.html,.html,15654,c2e5665b1816aad0326d845c847d0cf3600523c63030b80cdf79b538ddb5dfb1,4,scan navigation
+masters/BAT-ATELIER-DIGIYLYFE-V1.html,.html,11179,eec5a8c5dffa0399e2af74e98e7a969dbf5a93570f44b2836fdb07a2a13e2ed7,2,scan navigation
+masters/DEMANDES-PRESTATIONS-ATELIER-DIGIYLYFE-V1.html,.html,7968,84df915e02d35589993ed1b0fdb4a94ea36b1c3b6118b5f1d8121b64abc5d71a,0,scan navigation
+masters/DOCTRINE-FICHES-DIGIYLYFE-V1.md,.md,5022,8cc0eeaf874109f6543de60dbbd12538e9c05877516e3f5b5ca04dd75e25a390,0,inventaire métadonnées; pas de revue métier
+masters/FREEZE-INDUSTRIEL-CARTE-FICHE-DIGIYLYFE-V1.md,.md,6401,774313e02fc78dd802b646b4c1c70e16a4210efd94ceed9c2ea6acf2c107531f,0,inventaire métadonnées; pas de revue métier
+masters/GENERATEUR-ATELIER-CARTE-DIGIYLYFE-V2-4-MASTERS.html,.html,26337,229fd91dd7c3e99f4c2cbf066c561dff0d442b17f3e9c9d348892c31115d93fd,2,scan navigation
+masters/GENERATEUR-ATELIER-FICHE-DIGIYLYFE-V1.html,.html,24481,ec66b2138dc1ef5301ac9031b9dc1dc37b4adae7089a68c5d85e1a0bf87fd7b3,2,scan navigation
+masters/MASTER-CARTE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-INDUSTRIEL-V1-8-LANGUES.html,.html,20209,5ccffc06aacf4a9ba3b3e3a9c611f11e1a22e6f8ad8d42022a7fdebf07527884,9,scan navigation
+masters/MASTER-CARTE-COMMERCE-INDUSTRIEL-V1-8-LANGUES.html,.html,23011,1557716b6a7c9e01cd99e3ceada94ff3fb777faa64b4dfc088ae64d12c446978,9,scan navigation
+masters/MASTER-CARTE-LIEU-TOURISME-INDUSTRIEL-V1-8-LANGUES.html,.html,23351,8846f4accab3f422a33fe63eee404fc69ea7f2fb1f22dc9a58f4eaa3f9a40516,9,scan navigation
+masters/MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html,.html,23471,4ad383df1a6ce997d5cc8645c66764c68aef9447b477532d4b2090388949c39a,9,scan navigation
+masters/MASTER-FICHE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-V1-TEST.html,.html,8026,83a0e268084f26281b7a41442a093c28981bdb5d5ce6ffe859d7b3ceb11de992,6,scan navigation
+masters/MASTER-FICHE-COMMERCE-V1-TEST.html,.html,7665,21753e326088386124ca9919845f5ae6a59bc2653d73a760cdb4dc15ae889999,4,scan navigation
+masters/MASTER-FICHE-LIEU-TOURISME-V1-TEST.html,.html,8283,adf5eee7aa05dd00f511198668caf5ac3d0cdfba2ef84b52eda77c630ccfe5fb,4,scan navigation
+masters/MASTER-FICHE-SERVICE-ARTISAN-V1-TEST.html,.html,7371,a2bd56a4ca646884e05909f1d8d057b8002cb538309a9d9096a119b9e26aaa88,4,scan navigation
+masters/MASTER-INTEGRATION-PRO-V1.md,.md,4085,8c9731e70b2258cf22d7d6b5aed6ce860d8c6d9ee8f1703f154e130269ff28aa,0,inventaire métadonnées; pas de revue métier
+masters/MODELE-DONNEES-CARTE-DIGIYLYFE-8-LANGUES.json,.json,719,e364e5c1480c09ef95157243905591c50c6e292e655c9f8b67dfe4459e4967e6,0,inventaire métadonnées; pas de revue métier
+masters/MODELE-DONNEES-FICHE-DIGIYLYFE-V1.json,.json,891,4162bf402a9e7470f23b3bce09e2befb999127e36229e365bc95d5978f138608,0,inventaire métadonnées; pas de revue métier
+masters/MODELE-DONNEES-MASTER-DIGIYLYFE-V1-UNIFIE.json,.json,11729,b8d6038aeb26988a312455a6eb832e32e51dd3c3f69f2d69ad19bbc7d4cc5237,0,inventaire métadonnées; pas de revue métier
+masters/previews/PREVIEW-FICHE-COMMERCE-ASTOU-V1.html,.html,1812,3e033827bb4fa53ff6ecb5bf32070eb169273c8890a20ebd4c1e46c4c77cfcee,0,scan navigation
+masters/previews/PREVIEW-FICHE-LIEU-SARLAT-V1.html,.html,2106,5acc396dd041ee7ec7b8d8de35f1f1d918126a14585ae0a78bea1cfec64a958a,0,scan navigation
+masters/previews/PREVIEW-FICHE-SERVICE-FG-NAILS-V1.html,.html,1704,e9630920880e4cc7fd1d7cc99dfd38834c56b53525c1dcf11a0b6e80973ebc39,0,scan navigation
+masters/previews/TEST-LECTEUR-SERVICE-ARTISAN-DONNEES-UNIFIEES.html,.html,2846,20962c067bf3040557be5eef84621c2b31ee1613686c08ce101c03cf9a768005,1,scan navigation
+menu.html,.html,908,6ae978942e88ea535dc33bd39b856d9e8d3bec99ded4eabf4b846fb771c53e57,2,scan navigation
+miami.html,.html,35055,b021dbf63793a52d6395a61af7465333bbaae3d384cddf469fa758ab8fa74c61,9,scan navigation
+module-territoire.html,.html,573,756d134b01065fcea228a2ffef676849f905d863b8f0e7a0baad7e7ff8f420b0,0,scan navigation
+mon-digiy.html,.html,23937,aebad250fdd0b03c86ce4756f9129272d78676374423817ee25bb8f513af2ef7,3,scan navigation
+nettoyage-master.html,.html,1050,ac5d09f458e947421b00845601ee1ed26f0a7d6e529c4e59e5f7f9b32a9d6838,0,scan navigation
+nl/index.html,.html,5743,501d8b28efcd693895513ed6b138c711512561ea321263adbf55a7d20cefd616,0,scan navigation
+nl/saly.html,.html,7024,f5493d9d0db76b4d15e45db7435761903415c1cb707e738ef467a11fa1c77367,6,scan navigation
+notre-methode.html,.html,22928,863cb250b170789e7b80b6761890800a054c71ad3944525de84a6993980e4c63,4,scan navigation
+og-hub-1200x630.png,.png,194101,98911bb0e2bbe3fd43b28f51688221b44fd4ad8f355eb4d01c40054913ff560a,0,inventaire métadonnées; pas de revue métier
+outils-gestion-demo.html,.html,6283,e871d1a8426f7ce80356ed00cdae3835e61c2d33840bfa68a6b19d555366e0b7,15,scan navigation
+paris.html,.html,38332,7a2f895890c16977fdb0b34c3e366a1e84f68cf61dc43fddbdc5323521a53355,8,scan navigation
+poster-pilote.webp,.webp,127976,a0f4f980eb23ea27cfc1afa4cc9f52b2a01e6a4e64450c20328bb4abc4e7c26f,0,inventaire métadonnées; pas de revue métier
+preparer-ma-carte-core-20260824.html,.html,38178,184780b05f29ca0e64ec10a818b5619fd1a0e35347f5bfd7e33f0f679495edd9,7,scan navigation
+preparer-ma-carte.html,.html,11565,c27474a0da653770270e7a161729fd0d63621475c65910cb649d6a551c04f98e,1,scan navigation
+presence-terrain.html,.html,3551,6076c63ab3f201326c9479d56521bed35dfa558e55a8acc7a684b6f5d64da3a9,1,scan navigation
+pt/index.html,.html,5682,a6f1d8358c6f56ac7e579442bfefe435870d3ce64e8747206de2efb03edfe600,0,scan navigation
+pt/saly.html,.html,7028,544d680dfa35e397c1d6d3a4469c1d0f38dca4338cf668bc7cc3e07d43867f79,6,scan navigation
+pwa/babakar-plombier-saly.webmanifest,.webmanifest,703,dd3347638e6d167c26d08b73961efcc41a08f16809b531f7edc934def403864e,0,inventaire métadonnées; pas de revue métier
+pwa/icons/babakar-plombier-saly-192.png,.png,27832,938d90ac33252ea27f56b5630b4701aa69d964388b03ad3084e834022dceb541,0,inventaire métadonnées; pas de revue métier
+pwa/icons/babakar-plombier-saly-512.png,.png,220414,76300aaff11e034db269697d03fcd24e397eaf6e46741c3c62f3a99dc348b4ae,0,inventaire métadonnées; pas de revue métier
+pwa/pro-registry.json,.json,325,bb6edb02a1dd9aca24dc0cbf631150c7d3dd735074a4bc83c4a316e80e7d5d45,0,inventaire métadonnées; pas de revue métier
+qr-module-digiylyfe.html,.html,4269,227ba5f1b88215f8a556c8adb248f68d7321aea1be2116b37c98dda91d8defb8,1,scan navigation
+qr.html,.html,10202,d9c3e58f568ccedd3401659f9e72b5a930c80b0ba6e0eb8cd66f155317b3f0c5,1,scan navigation
+qr.png,.png,1904112,a33fcf53b5b89b1196cccc99391d8378722061edda1cb6fafd8a9cf0519dc00c,0,inventaire métadonnées; pas de revue métier
+recherche-cartes-officielles.js,.js,9310,6140e5a5677c0f9d6e5ee91baa1b42b9aaf1cda6cfd7d47c3f7cc777e34252f7,2,scan navigation
+recherche.html,.html,4793,554caf9eb898d065af117c531b79ad36404196d22479fc1985adf5dc5d29f801,2,scan navigation
+resto-exemple.pdf,.pdf,46212,e815b14c072877d90aa01b7d3eb8fae8669cb588cd01a50b9e9ca86bcd33f5c1,0,inventaire métadonnées; pas de revue métier
+robots.txt,.txt,1697,73848ab98b141b5c0bb4dcce6efdaacb2687a3b8362ecd8ba68abdbd0425a9a7,0,inventaire métadonnées; pas de revue métier
+saly.html,.html,36486,9fdf5c9f43ccf5a0ca99a65c5dbc6cb497064bc1af8d8d7fc6270331675b70d5,12,scan navigation
+sante-master.html,.html,1099,aa8c5b69130743d0c36a20bbe90fcfb34860590e6ca45c5669e28a9db3703ddf,0,scan navigation
+sarlat-deux-portes.js,.js,5310,dae8db941225cecf8a9b1fafd077f740315df966600695a74aca0bb7f843ba68,0,scan navigation
+sarlat.html,.html,35387,22fa46d8f8d81ae689e5a17032089b6d177b469111be6d01dbd69956f8062a31,14,scan navigation
+senegal.html,.html,14613,0694f799a25e5996c5b9d3ac5a84be9ce73b858f7a31fcd762f6c323566025c9,3,scan navigation
+services-professionnels-master.html,.html,1113,3c3fab5eb5acfe2698a6f7d62ec93a7ffeadefbb60384fa00d219cd78cab1788,0,scan navigation
+services-terrain.html,.html,8829,f6bb03fffa800da6c2dd0c4742fad74598d232a951f06e44908565563c842959,2,scan navigation
+sitemap.xml,.xml,4318,18d31535d9461320006dfe4586a8f9dc3d6c3fc4b3d655a7c2c4a20060565d5c,0,inventaire métadonnées; pas de revue métier
+supabase/20261005_professional_owner_magic_link.sql,.sql,2539,1eded876a845a729ec0857324888bd88c4da30e4dcfb6ddb1c3bb67319acd508,0,inventaire métadonnées; pas de revue métier
+support-whatsapp.html,.html,11860,1651cbd24f656a476b5efeb7b50d4596aa828d4ee2b6d928ef157da4b68d0781,1,scan navigation
+sw.js,.js,652,209a42157a31c7ce43f70dede93ee0a625a91043c0d1c907ecbd112719d8875b,0,scan navigation
+tarif-entreprise-petite-cote.html,.html,19298,ab48b90313301df290fc0e1274d0ddcbe8fe7bf1799382d6e8140eb4165f6f65,10,scan navigation
+tarifs-adherents-1.html,.html,53310,e4363d1cdf4b201646308aec8d9d6276a133d58231688a5ebb2424adca42292f,13,scan navigation
+tarifs-adherents.html,.html,702,818dce465c5d3c2c13b35dfa24d4427d3e613e1e523bf2022464f217bba3cd5f,2,scan navigation
+tarifs-loc-v2.html,.html,95896,160cbfa4aa0dabf714b56019b3206b0485cbbb9ce139eea71d9c7da5de49be16,8,scan navigation
+tarifs-loc.html,.html,83119,8631194886f41ad1c8910804d143638181a5453d3a3b84508a3af514d73915dc,10,scan navigation
+territoire.html,.html,15512,eca69c9452063249e1b0088f2f84d05d624943c062b806fb9e02d38b4d44f94a,8,scan navigation
+tests/test_visibilite_v1.py,.py,3373,925e3659578fed20b07dfd1e1b2912f7f6838b601c79844db254b4f9fc86c578,0,inventaire métadonnées; pas de revue métier
+tests/test_visibilite_v2.py,.py,5833,338b89a2ff83e4084108fd58190a8c10bda546d7fc89e960bf3c46d7bd1110e5,0,inventaire métadonnées; pas de revue métier
+tests/test_visibilite_world8.py,.py,3977,5c40f408a495855e34c426ad2b33c27353e204e12faf540d3943f983312ed265,0,inventaire métadonnées; pas de revue métier
+tests/test_visibilite_world8_home_v4.py,.py,5500,099316a1f4ec0dc7e381f65166c30236a4ce34687649add53c336036227b4e61,0,inventaire métadonnées; pas de revue métier
+video-bcheikh.html,.html,4332,c97f9be581e231466279fe294ede24bfa9ae9e6946c88c6aa52aa3110d3b7889,4,scan navigation
+voice-live.html,.html,151483,b939777514cc48a6b6a711dcfc62ec42e99a902a43f7b45ab0204daed48457a5,9,scan navigation
+voir-pdf-metier.html,.html,5639,256d17abbf9b25b132cbfae62f1f78bf9ba9d6ca3786c92e6a5a6499beb533d4,12,scan navigation
+voix-business.html,.html,597,4f0dd750f1fe7101a8b37df7d0cdce45f7ab5a2928e0ce0bb890b8b75ea5a1f2,0,scan navigation
