@@ -1,0 +1,40 @@
+{
+  "commit": "1c974947727f125ee2785f4ba90b611fc11b95c7",
+  "fichiers": 427,
+  "extensions": {
+    ".json": 12,
+    ".py": 8,
+    ".yml": 43,
+    ".md": 26,
+    ".mp4": 14,
+    ".html": 122,
+    "": 2,
+    ".png": 18,
+    ".js": 122,
+    ".jpg": 1,
+    ".webp": 20,
+    ".css": 5,
+    ".svg": 1,
+    ".avif": 19,
+    ".pdf": 7,
+    ".webmanifest": 2,
+    ".txt": 3,
+    ".xml": 1,
+    ".sql": 1
+  },
+  "occurrences": {
+    "target_blank": 32,
+    "lien_autre_domaine": 143,
+    "retour_attribut": 73,
+    "retour_libelle": 48,
+    "redirection_js": 60,
+    "affectation_href_js": 234,
+    "iframe": 6,
+    "target_blank_template_js": 22,
+    "target_blank_js": 7,
+    "window_open": 3,
+    "redirection_meta": 7,
+    "retour_historique": 1,
+    "pdf_reference": 14
+  }
+}

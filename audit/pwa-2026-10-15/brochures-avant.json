@@ -1,0 +1,97 @@
+[
+  {
+    "doc": "loc",
+    "canvases": 2,
+    "status": "2 pages · Faites défiler ou utilisez les flèches.",
+    "next": "2 / 2",
+    "prev": "1 / 2",
+    "geometry": {
+      "barBottom": 89,
+      "toolsTop": 98,
+      "overflow": false
+    },
+    "back": "http://127.0.0.1:8765/outils-gestion-demo.html"
+  },
+  {
+    "doc": "driver",
+    "canvases": 2,
+    "status": "2 pages · Faites défiler ou utilisez les flèches.",
+    "next": "2 / 2",
+    "prev": "1 / 2",
+    "geometry": {
+      "barBottom": 89,
+      "toolsTop": 98,
+      "overflow": false
+    },
+    "back": "http://127.0.0.1:8765/outils-gestion-demo.html"
+  },
+  {
+    "doc": "commerce",
+    "canvases": 1,
+    "status": "1 page · Faites défiler ou utilisez les flèches.",
+    "geometry": {
+      "barBottom": 89,
+      "toolsTop": 98,
+      "overflow": false
+    },
+    "back": "http://127.0.0.1:8765/outils-gestion-demo.html"
+  },
+  {
+    "doc": "carnet",
+    "canvases": 2,
+    "status": "2 pages · Faites défiler ou utilisez les flèches.",
+    "next": "2 / 2",
+    "prev": "1 / 2",
+    "geometry": {
+      "barBottom": 89,
+      "toolsTop": 98,
+      "overflow": false
+    },
+    "back": "http://127.0.0.1:8765/outils-gestion-demo.html"
+  },
+  {
+    "doc": "explore",
+    "canvases": 2,
+    "status": "2 pages · Faites défiler ou utilisez les flèches.",
+    "next": "2 / 2",
+    "prev": "1 / 2",
+    "geometry": {
+      "barBottom": 89,
+      "toolsTop": 98,
+      "overflow": false
+    },
+    "back": "http://127.0.0.1:8765/outils-gestion-demo.html"
+  },
+  {
+    "doc": "resto",
+    "canvases": 1,
+    "status": "1 page · Faites défiler ou utilisez les flèches.",
+    "geometry": {
+      "barBottom": 89,
+      "toolsTop": 98,
+      "overflow": false
+    },
+    "back": "http://127.0.0.1:8765/outils-gestion-demo.html"
+  },
+  {
+    "doc": "build",
+    "canvases": 1,
+    "status": "1 page · Faites défiler ou utilisez les flèches.",
+    "geometry": {
+      "barBottom": 89,
+      "toolsTop": 98,
+      "overflow": false
+    },
+    "back": "http://127.0.0.1:8765/outils-gestion-demo.html"
+  },
+  {
+    "case": "short-screen-scroll-page-2",
+    "counter": "2 / 2",
+    "canvas": {
+      "x": 12,
+      "y": 28.5,
+      "width": 366,
+      "height": 517.5
+    }
+  }
+]

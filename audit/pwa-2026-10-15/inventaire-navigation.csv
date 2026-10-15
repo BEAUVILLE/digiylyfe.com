@@ -1,0 +1,657 @@
+fichier,ligne,type,cible,domaine,parcours,gravite,statut
+BLOC_VIDEO_BCHEIKH_PRIX_CARTE_FIN_20260720.html,28,target_blank,./BCHEIKH_TIKTOK_CARTE_PRIX_FIN_FIXE_9x16.mp4?v=20260720,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+BLOC_VIDEO_BCHEIKH_PRIX_CARTE_FIN_20260720.html,29,target_blank,https://bcheikh.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+BLOC_VIDEO_BCHEIKH_PRIX_CARTE_FIN_20260720.html,29,lien_autre_domaine,https://bcheikh.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+acces-proprietaire.html,10,retour_attribut,https://digiylyfe.com/,local,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+acces-proprietaire.html,10,retour_libelle,https://digiylyfe.com/,local,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+acces-proprietaire.html,17,redirection_js,location.replace(u.href)},local,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+acces-proprietaire.html,15,affectation_href_js,.href=u.href}catch(_){},local,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+adhesion-bordeaux.html,25,retour_attribut,/bordeaux.html,local,public,Info · retour présent,statique; comportement appareil non testé
+adhesion-bordeaux.html,20,redirection_js,location.replace(u.pathname+u.search),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-bordeaux.html,42,affectation_href_js,.href=u.pathname+u.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-dakar.html,25,retour_attribut,/dakar.html,local,public,Info · retour présent,statique; comportement appareil non testé
+adhesion-dakar.html,20,redirection_js,location.replace(u.pathname+u.search),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-dakar.html,32,redirection_js,location.href=u.pathname+u.search}}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-dakar.html,32,affectation_href_js,.href=u.pathname+u.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-dakar.html,32,affectation_href_js,.href=b.pathname+b.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-dakar.html,32,affectation_href_js,.href=u.pathname+u.search}}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-dordogne.html,27,retour_attribut,/sarlat.html,local,public,Info · retour présent,statique; comportement appareil non testé
+adhesion-dordogne.html,21,redirection_js,location.replace(u.pathname+u.search),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-dordogne.html,66,affectation_href_js,.href=u.pathname+u.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-petite-cote.html,13,retour_attribut,/saly.html,local,public,Info · retour présent,statique; comportement appareil non testé
+adhesion-petite-cote.html,10,redirection_js,location.replace(u.pathname+u.search),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-petite-cote.html,24,redirection_js,location.href=u.pathname+u.search}}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-petite-cote.html,23,affectation_href_js,.href=u.pathname+u.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-petite-cote.html,23,affectation_href_js,.href=back.pathname+back.search},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+adhesion-petite-cote.html,24,affectation_href_js,.href=u.pathname+u.search}}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+aly-parle-v3-test.html,31,retour_attribut,./index.html#modules,local,public,Info · retour présent,statique; comportement appareil non testé
+aly-parle-v3-test.html,31,retour_libelle,./index.html#modules,local,public,Info · retour présent,statique; comportement appareil non testé
+aly-parle-v3-test.html,32,retour_attribut,./index.html,local,public,Info · retour présent,statique; comportement appareil non testé
+aly-parle-v3-test.html,68,target_blank,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+aly-parle-v3-test.html,68,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+aly-parle-v3-test.html,71,iframe,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+aly-parle.html,28,retour_attribut,./index.html#modules,local,public,Info · retour présent,statique; comportement appareil non testé
+aly-parle.html,28,retour_libelle,./index.html#modules,local,public,Info · retour présent,statique; comportement appareil non testé
+aly-parle.html,29,retour_attribut,./index.html,local,public,Info · retour présent,statique; comportement appareil non testé
+aly-parle.html,64,target_blank,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+aly-parle.html,64,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+ar/saly.html,55,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+ar/saly.html,60,lien_autre_domaine,https://partenaire-lamine.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+ar/saly.html,61,lien_autre_domaine,https://babacar-plombier-pro.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+ar/saly.html,62,lien_autre_domaine,https://helage-plombier.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+ar/saly.html,63,lien_autre_domaine,https://kourant.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+ar/saly.html,64,lien_autre_domaine,https://astou-boutique.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+architecture-digiylyfe.html,370,retour_attribut,./index.html,local,public,Info · retour présent,statique; comportement appareil non testé
+architecture-digiylyfe.html,375,retour_attribut,./index.html,local,public,Info · retour présent,statique; comportement appareil non testé
+architecture-digiylyfe.html,375,retour_libelle,./index.html,local,public,Info · retour présent,statique; comportement appareil non testé
+architecture-digiylyfe.html,389,lien_autre_domaine,https://digiy-clip.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+architecture-digiylyfe.html,562,retour_libelle,./index.html,local,public,Info · retour présent,statique; comportement appareil non testé
+architecture-digiylyfe.html,562,lien_autre_domaine,https://digiy-clip.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html,6,lien_autre_domaine,https://rencontre.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html,7,lien_autre_domaine,https://driver-client.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html,8,lien_autre_domaine,https://loc.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html,9,lien_autre_domaine,https://resa-table-resto.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html,10,lien_autre_domaine,https://resto.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html,11,lien_autre_domaine,https://mon-commerce.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html,12,lien_autre_domaine,https://bonne-affaire.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html,13,lien_autre_domaine,https://build.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html,14,lien_autre_domaine,https://jobs.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+archive/ancienne-vitrine-portes-publiques-2026-08-27/bloc-portes-publiques.html,15,lien_autre_domaine,https://explore.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-beaute-bien-etre-master-v1.js,27,affectation_href_js,.href=territoryUrl(c),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-bordeaux-i18n-v1.js,81,affectation_href_js,.href=prepareHref(l),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-bordeaux-i18n-v1.js,82,affectation_href_js,.href=prepareHref(l),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-bordeaux-i18n-v1.js,89,affectation_href_js,.href='/tarifs-adherents-1.html?country=fr#paiement',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-campus-interest-v1.js,142,redirection_js,"window.location.href=wa},280)",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-campus-interest-v1.js,142,affectation_href_js,".href=wa},280)",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-campus-interest-v2.js,36,redirection_js,"location.href=j.wa_url},250)}).catch(function(err){try{console.warn('DIGIY CAMPUS',err)}catch(e){}button.disabled=false",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-campus-interest-v2.js,36,affectation_href_js,".href=j.wa_url},250)}).catch(function(err){try{console.warn('DIGIY CAMPUS',err)}catch(e){}button.disabled=false",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-card-favorite-v1.js,97,affectation_href_js,.href=DEST+'?'+p.toString(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-card-intake-brief-v1.js,106,affectation_href_js,.href=j.wa_url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-card-intake-brief-v2-pre-membership-20260917.js,106,affectation_href_js,.href=j.wa_url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-catalog.js,137,affectation_href_js,.href=m.href,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-demo-dordogne-health-v1.js,14,affectation_href_js,.href=u.pathname+u.search}},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-demo-food-multimetier-v1.js,15,affectation_href_js,.href=ju.pathname+ju.search}var tr=document.getElementById('territory'),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-demo-food-multimetier-v1.js,15,affectation_href_js,.href=tu.pathname+tu.search}},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-demo-loc-price-v1.js,9,affectation_href_js,.href=JOIN_URL+(JOIN_URL.indexOf('?')>=0?'&':'?')+'lang='+encodeURIComponent(l),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-free-card-entry-v1.js,71,affectation_href_js,.href=href(l),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-free-card-entry-v1.js,80,affectation_href_js,.href=STORY_URL,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-free-card-entry-v1.js,76,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-gallery-favorites-v1.js,82,affectation_href_js,.href=DEST+'?'+p.toString(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-loc-secure-flow-20260911.js,54,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-loc-secure-flow-20260911.js,60,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-maitre-favoris-v1.js,109,affectation_href_js,.href='https://digiylyfe.com/tarifs-loc-v2.html',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-maroc-i18n-v1.js,76,redirection_js,location.href=u.pathname+u.search+u.hash,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-maroc-i18n-v1.js,76,affectation_href_js,.href=u.pathname+u.search+u.hash,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-member-pwa-v1.js,23,affectation_href_js,.href=href,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-membership-country-v1.js,140,affectation_href_js,.href=u.href,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-miami-door-v1.js,16,affectation_href_js,.href='/miami.html?lang='+l,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-petite-cote-config-v1.js,106,target_blank_js,.target='_blank',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-petite-cote-config-v1.js,106,affectation_href_js,.href=x.c.public_url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-petite-cote-config-v1.js,106,affectation_href_js,.href='/territoire.html?zone=petite-cote&local=saly&lang='+encodeURIComponent(p.lang),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-pro-pwa-v1.js,25,affectation_href_js,.href=href,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-pro-signature-engine-v1.js,25,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-pro-signature-engine-v1.js,25,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-public-module-master-v1.js,72,redirection_js,location.href=x.toString()}})},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-public-module-master-v1.js,72,affectation_href_js,.href=x.toString()}})},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-public-module-master-v2.js,58,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-public-module-master-v2.js,58,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-saly-baptiste-signature-v1.js,49,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-saly-baptiste-signature-v1.js,49,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-sarlat-baptiste-signature-v1.js,76,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-sarlat-baptiste-signature-v1.js,76,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-beauty-door-v1.js,8,redirection_js,"location.href=target()},true)}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-beauty-door-v1.js,8,affectation_href_js,".href=target()},true)}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-bordeaux-projection-v1.js,36,affectation_href_js,.href=u.pathname+u.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-commerce-door-v1.js,9,redirection_js,"location.href=target()},true)}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-commerce-door-v1.js,9,affectation_href_js,".href=target()},true)}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-demos-v1.js,37,affectation_href_js,.href='https://pro-action-digiy.digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-demos-v1.js,89,affectation_href_js,.href=adhesionUrl(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-dordogne-module-doors-v1.js,20,redirection_js,location.href=u.pathname+u.search},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-dordogne-module-doors-v1.js,20,affectation_href_js,.href=u.pathname+u.search},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-dordogne-projection-stable-20260909.js,130,affectation_href_js,.href=url.pathname+url.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-jobs-door-v1.js,8,redirection_js,"location.href=target()},true)}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-jobs-door-v1.js,8,affectation_href_js,".href=target()},true)}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-master-doors-v1.js,29,redirection_js,"location.href=target(MAP[icon])},true)}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-master-doors-v1.js,29,affectation_href_js,".href=target(MAP[icon])},true)}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-master-doors-v1.js,31,affectation_href_js,.href=target(RESA),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-petite-cote-cleaning-v1.js,27,affectation_href_js,.href=target(l),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-petite-cote-cleaning-v1.js,31,affectation_href_js,.href=target(l),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-petite-cote-food-v1.js,24,affectation_href_js,.href=u.pathname+u.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-petite-cote-loc-v1.js,16,affectation_href_js,.href=u.pathname+u.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-petite-cote-loc-v1.js,16,affectation_href_js,.href=JOIN_URL,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-petite-cote-professional-services-v1.js,23,affectation_href_js,.href=target(l),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-petite-cote-professional-services-v1.js,24,affectation_href_js,.href=target(l),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-petite-cote-projection-v1.js,13,affectation_href_js,.href='/saly.html?lang='+encodeURIComponent(x.lang),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-petite-cote-projection-v1.js,15,affectation_href_js,.href='https://resa-table-resto.digiylyfe.com/?lang='+encodeURIComponent(x.lang),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-petite-cote-projection-v1.js,19,affectation_href_js,.href=u.pathname+u.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,89,redirection_js,location.href=target(RESA),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,93,redirection_js,location.href=target(raw),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,96,redirection_js,"location.href=target(raw)},true)}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,97,redirection_js,"location.href=target(RESA)},true)}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,104,redirection_js,"location.href=target(EXPLORE)},true)",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,114,redirection_js,"location.href=target(CARNET)},true)",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,89,affectation_href_js,.href=target(RESA),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,93,affectation_href_js,.href=target(raw),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,96,affectation_href_js,".href=target(raw)},true)}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,97,affectation_href_js,.href=target(RESA),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,97,affectation_href_js,".href=target(RESA)},true)}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,104,affectation_href_js,".href=target(EXPLORE)},true)",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-module-doors-v2.js,114,affectation_href_js,".href=target(CARNET)},true)",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-safety-v1.js,97,affectation_href_js,.href='https://pro-action-digiy.digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-safety-v1.js,97,affectation_href_js,.href=adhesionUrl(need),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-public-safety-v1.js,119,affectation_href_js,.href=du.pathname+du.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-runtime-stable-20260831.js,176,redirection_js,location.href='https://pro-action-digiy.digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-runtime-stable-20260831.js,201,target_blank_js,.target='_blank',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-runtime-stable-20260831.js,153,affectation_href_js,.href=c.directDoor.url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-runtime-stable-20260831.js,176,affectation_href_js,.href='https://pro-action-digiy.digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-runtime-stable-20260831.js,201,affectation_href_js,.href=x.url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-runtime-v1.js,179,redirection_js,location.href='https://pro-action-digiy.digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-runtime-v1.js,204,target_blank_js,.target='_blank',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-runtime-v1.js,156,affectation_href_js,.href=c.directDoor.url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-runtime-v1.js,179,affectation_href_js,.href='https://pro-action-digiy.digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-territoire-runtime-v1.js,204,affectation_href_js,.href=x.url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-usa-world-copy-v1.js,21,affectation_href_js,.href='https://digiylyfe.com/paris.html',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-vitrine-professional-health-v1.js,88,redirection_js,location.href=cityTarget(cfg)}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-vitrine-professional-health-v1.js,38,affectation_href_js,.href=href,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/digiy-vitrine-professional-health-v1.js,88,affectation_href_js,.href=cityTarget(cfg)}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/digiy-i18n.js,338,affectation_href_js,.href = url.toString(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/digiy-route.js,49,window_open,"window.open(route.toString(), '_blank', 'noopener')",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/digiy-route.js,50,redirection_js,location.href = route.toString(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/digiy-route.js,12,affectation_href_js,.href = 'https://digiylyfe.com/pt/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/digiy-route.js,18,affectation_href_js,.href = 'https://digiylyfe.com/pt/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/digiy-route.js,50,affectation_href_js,.href = route.toString(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/digiy-world8-runtime.js,32,affectation_href_js,.href=appendLang(a.href)})},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/digiy-world8-runtime.js,36,affectation_href_js,.href='?lang='+x[0],local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/digiy-world8.js,83,redirection_js,location.href=u.toString(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/digiy-world8.js,34,affectation_href_js,.href=withLang(u.href)}catch(e){},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/digiy-world8.js,50,affectation_href_js,.href='?lang='+l,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/digiy-world8.js,83,affectation_href_js,.href=u.toString(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/presence-terrain-v2-app.js,4,affectation_href_js,.href=homeFor(lang),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/presence-terrain-v2-app.js,4,affectation_href_js,.href=signup,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/presence-terrain-v2-app.js,4,affectation_href_js,.href=signup,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/recherche-v5-app.js,38,affectation_href_js,.href=homeFor(lang),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/recherche-v5-app.js,38,affectation_href_js,.href=homeFor(lang),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/recherche-v5-app.js,34,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/i18n/recherche-v5-app.js,34,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+assets/js/vitrine-top-favoris.js,163,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+beaute-bien-etre.html,19,retour_attribut,https://digiylyfe.com/territoire.html,local,public,Info · retour présent,statique; comportement appareil non testé
+beaute-bien-etre.html,19,retour_libelle,https://digiylyfe.com/territoire.html,local,public,Info · retour présent,statique; comportement appareil non testé
+bon-a-tirer.html,25,target_blank,,local,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+bon-a-tirer.html,61,affectation_href_js,.href=d.bat_preview_url||s.preview_url||'#',local,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+bordeaux.html,20,retour_attribut,/,local,public,Info · retour présent,statique; comportement appareil non testé
+bordeaux.html,27,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+bordeaux.html,27,retour_attribut,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,Info · retour présent,statique; comportement appareil non testé
+bordeaux.html,61,redirection_js,location.href=m.pathname+m.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+bordeaux.html,66,redirection_js,location.href=u.pathname+u.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+bordeaux.html,61,affectation_href_js,.href=m.pathname+m.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+bordeaux.html,65,affectation_href_js,.href=real.pathname+real.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+bordeaux.html,65,affectation_href_js,.href=real.pathname+real.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+bordeaux.html,65,affectation_href_js,.href=join.pathname+join.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+bordeaux.html,65,affectation_href_js,.href=join.pathname+join.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+bordeaux.html,66,affectation_href_js,.href=u.pathname+u.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+bordeaux.html,90,affectation_href_js,.href=j.pathname+j.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+carnet-master-test/app/dettes.html,23,retour_attribut,./index.html,local,public,Info · retour présent,statique; comportement appareil non testé
+carnet-master-test/app/guard.js,20,redirection_js,"location.replace(root + ""index.html"")",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+carnet-master-test/app/hub.html,43,redirection_js,"location.href=""../index.html""}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+carnet-master-test/app/hub.html,43,affectation_href_js,".href=""../index.html""}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+carnet-master-test/app/oreille.html,23,retour_attribut,./index.html,local,public,Info · retour présent,statique; comportement appareil non testé
+carnet-test/client-du.html,62,retour_libelle,./,local,public,Info · retour présent,statique; comportement appareil non testé
+carte-digitale.html,1,redirection_meta,0;url=/carte-gratuite.html,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+carte-gratuite-maroc.html,1,retour_attribut,/maroc.html,local,public,Info · retour présent,statique; comportement appareil non testé
+carte-gratuite-maroc.html,1,redirection_js,location.href='https://wa.me/221771342889?text='+encodeURIComponent(lines.join('\n')),local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+carte-gratuite-maroc.html,1,affectation_href_js,.href='/marrakech.html?lang='+encodeURIComponent(ctx.lang),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+carte-gratuite-maroc.html,1,affectation_href_js,.href='/casablanca.html?lang='+encodeURIComponent(ctx.lang),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+carte-gratuite-maroc.html,1,affectation_href_js,.href='/maroc.html?lang='+encodeURIComponent(ctx.lang),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+carte-gratuite-maroc.html,1,affectation_href_js,.href='https://wa.me/221771342889?text='+encodeURIComponent(lines.join('\n')),local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+carte-gratuite.html,30,affectation_href_js,.href=j.wa_url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+carte.index.html,99,retour_attribut,https://digiylyfe.com/,local,carte → accueil,Info · retour présent,statique; comportement appareil non testé
+carte.index.html,129,target_blank,https://wa.me/221771342889?text=Bonjour%20DIGIYLYFE,externe/dynamique,carte → accueil,Info · conserver,destination conservée; aucun message envoyé
+carte.index.html,129,lien_autre_domaine,https://wa.me/221771342889?text=Bonjour%20DIGIYLYFE,externe/dynamique,carte → accueil,Info · conserver,destination conservée; aucun message envoyé
+carte.index.html,133,lien_autre_domaine,tel:+221771342889,externe/dynamique,carte → accueil,P2 · risque à vérifier,statique; comportement appareil non testé
+carte.index.html,251,redirection_js,window.location.href=cardUrl,local,carte → accueil,P2 · risque à vérifier,statique; comportement appareil non testé
+carte.index.html,220,affectation_href_js,.href=url,local,carte → accueil,P2 · risque à vérifier,statique; comportement appareil non testé
+carte.index.html,251,affectation_href_js,.href=cardUrl,local,carte → accueil,P2 · risque à vérifier,statique; comportement appareil non testé
+carte/index.html,26,iframe,/carte.index.html,local,carte → accueil,P2 · risque à vérifier,statique; comportement appareil non testé
+casablanca.html,1,retour_attribut,/maroc.html,local,public,Info · retour présent,statique; comportement appareil non testé
+casablanca.html,1,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+casablanca.html,1,retour_attribut,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,Info · retour présent,statique; comportement appareil non testé
+clip-ali.html,10,redirection_js,location.replace('./aly-parle.html'),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+comprendre-digiylyfe.html,28,retour_attribut,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+comprendre-digiylyfe.html,28,retour_libelle,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+comprendre-digiylyfe.html,39,retour_attribut,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+comprendre-digiylyfe.html,39,retour_libelle,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+comprendre-digiylyfe.html,40,target_blank,/assets/serie-mobile/01.webp,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+comprendre-digiylyfe.html,97,affectation_href_js,.href=images[step.slide].src,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+courses.html,68,retour_libelle,./index.html,local,public,Info · retour présent,statique; comportement appareil non testé
+courses.html,108,target_blank,#,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+courses.html,135,affectation_href_js,".href=""https://wa.me/""+WA+""?text=""+encodeURIComponent(m)",local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+dakar.html,27,retour_attribut,https://digiylyfe.com/#territoires,local,public,Info · retour présent,statique; comportement appareil non testé
+dakar.html,55,lien_autre_domaine,https://partenaire-terrain.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+dakar.html,56,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+dakar.html,56,retour_attribut,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,Info · retour présent,statique; comportement appareil non testé
+dakar.html,60,affectation_href_js,.href=u.pathname+u.search}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+de/saly.html,55,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+de/saly.html,60,lien_autre_domaine,https://partenaire-lamine.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+de/saly.html,61,lien_autre_domaine,https://babacar-plombier-pro.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+de/saly.html,62,lien_autre_domaine,https://helage-plombier.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+de/saly.html,63,lien_autre_domaine,https://kourant.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+de/saly.html,64,lien_autre_domaine,https://astou-boutique.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demande-prestation.html,9,redirection_meta,0;url=https://digiylyfe.com/tarifs-loc.html#coordonnees,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demande-prestation.html,13,redirection_js,location.replace(target),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-bordeaux.html,14,retour_attribut,/bordeaux.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-bordeaux.html,16,retour_libelle,/bordeaux.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-bordeaux.html,17,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-bordeaux.html,17,retour_libelle,/bordeaux.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-bordeaux.html,47,affectation_href_js,.href=join.pathname+join.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-bordeaux.html,49,affectation_href_js,.href=ju.pathname+ju.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-bordeaux.html,49,affectation_href_js,.href=bu.pathname+bu.search}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-bordeaux.html,49,affectation_href_js,.href=bu.pathname+bu.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-build-gestion.html,1,retour_attribut,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-build-gestion.html,1,retour_libelle,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-carnet-gestion.html,1,retour_attribut,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-carnet-gestion.html,1,retour_libelle,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-commerce-gestion.html,1,retour_attribut,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-commerce-gestion.html,1,retour_libelle,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-dakar.html,14,retour_attribut,/territoire.html?zone=dakar,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-dakar.html,16,retour_libelle,/territoire.html?zone=dakar,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-dakar.html,17,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-dakar.html,17,retour_libelle,/territoire.html?zone=dakar,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-dakar.html,21,redirection_js,location.href=u.pathname+u.search}}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-dakar.html,21,affectation_href_js,.href=j.pathname+j.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-dakar.html,21,affectation_href_js,.href=r.pathname+r.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-dakar.html,21,affectation_href_js,.href=r.pathname+r.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-dakar.html,21,affectation_href_js,".href=r.pathname+r.search}document.querySelectorAll('[data-l]').forEach(function(b){b.classList.toggle('on',b.dataset.l===l)})}document.querySelectorAll('[data-l]').forEach(function(b){b",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-dakar.html,21,affectation_href_js,.href=u.pathname+u.search}}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-dordogne.html,5,retour_attribut,/territoire.html?zone=vallee-dordogne,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-dordogne.html,7,retour_libelle,/territoire.html?zone=vallee-dordogne,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-dordogne.html,8,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-dordogne.html,8,retour_libelle,/territoire.html?zone=vallee-dordogne,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-dordogne.html,9,affectation_href_js,.href=join.pathname+join.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-driver-gestion.html,1,retour_attribut,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-driver-gestion.html,1,retour_libelle,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-explore-gestion.html,1,retour_attribut,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-explore-gestion.html,1,retour_libelle,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-loc-gestion.html,1,retour_attribut,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-loc-gestion.html,1,retour_libelle,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-petite-cote.html,5,retour_attribut,/saly.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-petite-cote.html,6,redirection_js,location.href=u.pathname+u.search}})})(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-petite-cote.html,6,affectation_href_js,.href=need==='guidance'?'https://pro-action-digiy.digiylyfe.com/':j.pathname+j.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-petite-cote.html,6,affectation_href_js,.href=t.pathname+t.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-petite-cote.html,6,affectation_href_js,.href=u.pathname+u.search}})})(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+demo-resto-gestion.html,1,retour_attribut,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+demo-resto-gestion.html,1,retour_libelle,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+digiy-business.html,273,retour_attribut,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+digiy-business.html,278,retour_libelle,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+digiy-business.html,279,lien_autre_domaine,https://vision.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-business.html,368,lien_autre_domaine,https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20des%20informations%20sur%20DIGIY%20BUSINESS%20et%20ses%20tarifs.,externe/dynamique,contact direct,Info · conserver,destination conservée; aucun message envoyé
+digiy-business.html,369,lien_autre_domaine,tel:+221771342889,externe/dynamique,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-business.html,370,retour_libelle,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+digiy-campus-admin.html,8,redirection_meta,0;url=https://digiylyfe.com/digiy-campus-prive.html,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-campus-admin.html,13,redirection_js,location.replace(target.href),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-campus-prive.html,24,lien_autre_domaine,https://backoffice.digiylyfe.com/,sous-domaine,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+digiy-campus-prive.html,24,retour_attribut,https://backoffice.digiylyfe.com/,sous-domaine,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+digiy-campus-prive.html,24,lien_autre_domaine,https://backoffice.digiylyfe.com/partenaires-terrain.html,sous-domaine,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+digiy-campus-prive.html,24,retour_attribut,https://backoffice.digiylyfe.com/partenaires-terrain.html,sous-domaine,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+digiy-campus-prive.html,24,lien_autre_domaine,https://backoffice.digiylyfe.com/bonne-affaire.html,sous-domaine,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+digiy-campus-prive.html,24,retour_attribut,https://backoffice.digiylyfe.com/bonne-affaire.html,sous-domaine,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+digiy-campus-prive.html,24,lien_autre_domaine,https://backoffice.digiylyfe.com/carnet-wave.html,sous-domaine,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+digiy-campus-prive.html,24,retour_attribut,https://backoffice.digiylyfe.com/carnet-wave.html,sous-domaine,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+digiy-campus-prive.html,87,target_blank_js,.target='_blank',local,accès sécurisé,P2 · risque à vérifier,non exécuté; hors périmètre des corrections
+digiy-campus-prive.html,87,affectation_href_js,.href=num?'https://wa.me/'+num:'#',local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+digiy-contact-global-core-20260824.js,176,target_blank_js,.target='_blank',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-core-20260824.js,52,affectation_href_js,.href='https://mon-commerce.digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-core-20260824.js,63,affectation_href_js,.href='https://resto.digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-core-20260824.js,129,affectation_href_js,.href='https://digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-core-20260824.js,175,affectation_href_js,.href=demo.url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-core-20260824.js,296,affectation_href_js,.href='https://digiylyfe.com/preparer-ma-carte.html?plan='+encodeURIComponent(plan)+'&lang='+encodeURIComponent(lang)+'&country='+encodeURIComponent(selectedCountry),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-core-20260824.js,320,affectation_href_js,.href===card.final_url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-core-20260824.js,325,affectation_href_js,.href=card.final_url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-core-20260824.js,364,affectation_href_js,.href='https://digiylyfe.com/manifest.json?v=20260818',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-core-20260824.js,478,affectation_href_js,.href=MAILTO,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-core-20260824.js,229,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-core-20260824.js,229,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-pre-membership-20260917.js,51,affectation_href_js,.href=u.pathname+u.search+u.hash,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-pre-membership-20260917.js,105,affectation_href_js,.href='/preparer-ma-carte.html?plan=adherent-19900&country='+country+'&lang='+l+'&flow=prevalidation-20260911',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-pre-membership-20260917.js,115,affectation_href_js,.href='#paiement',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-stable-20260830.js,180,affectation_href_js,.href='https://digiy-carnet-pro.digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-stable-20260830.js,211,affectation_href_js,.href='https://galerie-chauffeurs.digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-stable-20260830.js,247,affectation_href_js,.href='https://partenaire-terrain.digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-stable-20260830.js,256,affectation_href_js,.href='https://partenaire-terrain.digiylyfe.com/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global-stable-20260830.js,295,affectation_href_js,.href='./dakar.html',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-contact-global.js,18,affectation_href_js,.href='/carte-gratuite.html?country=sn',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-navigation-globale.js,198,redirection_js,location.href=HOME,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-navigation-globale.js,198,retour_historique,history.back(),local,public,Info · retour présent,statique; comportement appareil non testé
+digiy-navigation-globale.js,198,affectation_href_js,.href=HOME,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-priorite-fiches-directes.js,328,redirection_js,window.location.href = fiche.url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-priorite-fiches-directes.js,328,affectation_href_js,.href = fiche.url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-voix-annuaire-bridge.js,9,affectation_href_js,".href=f.url||""#""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-voix-annuaire-bridge.js,9,affectation_href_js,".href=""#results""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-voix-fiches-safe-patch.js,403,redirection_js,window.location.href = top.item.url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+digiy-voix-fiches-safe-patch.js,403,affectation_href_js,.href = top.item.url,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+en/saly.html,55,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+en/saly.html,60,lien_autre_domaine,https://partenaire-lamine.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+en/saly.html,61,lien_autre_domaine,https://babacar-plombier-pro.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+en/saly.html,62,lien_autre_domaine,https://helage-plombier.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+en/saly.html,63,lien_autre_domaine,https://kourant.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+en/saly.html,64,lien_autre_domaine,https://astou-boutique.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+en/saly.html,64,retour_libelle,https://astou-boutique.digiylyfe.com/,sous-domaine,public,Info · retour présent,statique; comportement appareil non testé
+es/saly.html,55,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+es/saly.html,60,lien_autre_domaine,https://partenaire-lamine.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+es/saly.html,61,lien_autre_domaine,https://babacar-plombier-pro.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+es/saly.html,62,lien_autre_domaine,https://helage-plombier.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+es/saly.html,63,lien_autre_domaine,https://kourant.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+es/saly.html,64,lien_autre_domaine,https://astou-boutique.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+fiches/pap-piscine-saly.html,33,retour_libelle,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+fiches/pap-piscine-saly.html,36,target_blank,https://wa.me/?text=PAP%20Piscine%20%C2%B7%20Piscines%20et%20jardinage%20%C3%A0%20Saly%20https%3A%2F%2Fdigiylyfe.com%2Ffiches%2Fpap-piscine-saly.html,externe/dynamique,contact direct,Info · conserver,destination conservée; aucun message envoyé
+fiches/pap-piscine-saly.html,36,lien_autre_domaine,https://wa.me/?text=PAP%20Piscine%20%C2%B7%20Piscines%20et%20jardinage%20%C3%A0%20Saly%20https%3A%2F%2Fdigiylyfe.com%2Ffiches%2Fpap-piscine-saly.html,externe/dynamique,contact direct,Info · conserver,destination conservée; aucun message envoyé
+fiches/pap-piscine-saly.html,88,affectation_href_js,.href=tel,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+fiches/pap-piscine-saly.html,88,affectation_href_js,.href=wa,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+fiches/pap-piscine-saly.html,90,affectation_href_js,".href=""/acces-proprietaire.html?fiche=""+encodeURIComponent(slug)+""&return=""+returnParam",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+fiches/pap-piscine-saly.html,91,affectation_href_js,".href=$(""ownerBtn"").href",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+france.html,57,retour_attribut,https://digiylyfe.com/#territoires,local,public,Info · retour présent,statique; comportement appareil non testé
+france.html,164,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+france.html,164,retour_attribut,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,Info · retour présent,statique; comportement appareil non testé
+gestion.html,10,retour_attribut,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+gestion.html,10,retour_libelle,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+gestion.html,37,redirection_js,"location.href=$(""back"").href}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+gestion.html,16,affectation_href_js,.href=u.href}catch(_){},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+gestion.html,37,affectation_href_js,".href=$(""back"").href}",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,875,retour_attribut,#haut,local,public,Info · retour présent,statique; comportement appareil non testé
+index.html,896,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,910,lien_autre_domaine,https://babacar-plombier-pro.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,911,lien_autre_domaine,https://kourant.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,912,lien_autre_domaine,https://mbaye-macon.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,913,lien_autre_domaine,https://astou-boutique.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,914,lien_autre_domaine,https://partenaire-lamine.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,937,retour_attribut,/outils-gestion-demo.html,local,public,Info · retour présent,statique; comportement appareil non testé
+index.html,942,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,943,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,944,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,945,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,946,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,947,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,948,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,949,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,958,retour_attribut,/assets/videos/digiy-saly-signature-v2.mp4,local,public,Info · retour présent,statique; comportement appareil non testé
+index.html,1054,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,1342,lien_autre_domaine,https://astou-boutique.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,1343,lien_autre_domaine,https://babacar-plombier-pro.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,1344,lien_autre_domaine,https://mane-gning.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,1345,lien_autre_domaine,https://sarlat-chez-baptiste.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,1346,lien_autre_domaine,https://partenaire-lamine.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,1533,target_blank_js,.target='_blank',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+index.html,1533,affectation_href_js,.href=m.href,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+inscription-entreprise.html,621,lien_autre_domaine,https://digiy-hub.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+inscription-entreprise.html,803,lien_autre_domaine,https://digiy-hub.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+inscription-entreprise.html,1244,affectation_href_js,".href = ""https://wa.me/"" + TEL + ""?text="" + encodeURIComponent(msg())",local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+inscription-entreprise.html,1245,affectation_href_js,".href = ""https://wa.me/"" + TEL + ""?text="" + encodeURIComponent(proofMsg())",local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+inscription.html,21,retour_attribut,./presence-terrain.html,local,public,Info · retour présent,statique; comportement appareil non testé
+inscription.html,80,redirection_js,"location.href=""https://wa.me/""+DIGIY_PHONE+""?text=""+encodeURIComponent(buildMessage())})",local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+inscription.html,81,redirection_js,"location.href=""sms:""+DIGIY_PHONE_SMS+""?&body=""+encodeURIComponent(buildMessage())})",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+inscription.html,80,affectation_href_js,".href=""https://wa.me/""+DIGIY_PHONE+""?text=""+encodeURIComponent(buildMessage())})",local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+inscription.html,81,affectation_href_js,".href=""sms:""+DIGIY_PHONE_SMS+""?&body=""+encodeURIComponent(buildMessage())})",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+it/saly.html,55,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+it/saly.html,60,lien_autre_domaine,https://partenaire-lamine.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+it/saly.html,61,lien_autre_domaine,https://babacar-plombier-pro.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+it/saly.html,62,lien_autre_domaine,https://helage-plombier.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+it/saly.html,63,lien_autre_domaine,https://kourant.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+it/saly.html,64,lien_autre_domaine,https://astou-boutique.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+le-terrain-garde-la-main.html,87,retour_attribut,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+le-terrain-garde-la-main.html,92,retour_libelle,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+le-terrain-garde-la-main.html,140,target_blank,https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20sugg%C3%A9rer%20un%20pro%20du%20quartier.,externe/dynamique,contact direct,Info · conserver,destination conservée; aucun message envoyé
+le-terrain-garde-la-main.html,140,lien_autre_domaine,https://wa.me/221771342889?text=Bonjour%20DIGIY%2C%20je%20veux%20sugg%C3%A9rer%20un%20pro%20du%20quartier.,externe/dynamique,contact direct,Info · conserver,destination conservée; aucun message envoyé
+le-terrain-garde-la-main.html,147,retour_libelle,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+le-terrain-garde-la-main.html,148,lien_autre_domaine,https://explore.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+maroc.html,1,retour_attribut,/#territoires,local,public,Info · retour présent,statique; comportement appareil non testé
+maroc.html,1,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+maroc.html,1,retour_attribut,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,Info · retour présent,statique; comportement appareil non testé
+marrakech.html,1,retour_attribut,/maroc.html,local,public,Info · retour présent,statique; comportement appareil non testé
+marrakech.html,1,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+marrakech.html,1,retour_attribut,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,Info · retour présent,statique; comportement appareil non testé
+masters/ADHESIONS-ATELIER-DIGIYLYFE-V1.html,19,redirection_js,location.href=u.href},local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/ADHESIONS-ATELIER-DIGIYLYFE-V1.html,19,affectation_href_js,.href=u.href},local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/ADHESIONS-ATELIER-DIGIYLYFE-V1.html,20,target_blank_template_js,"target=""_blank""",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/ADHESIONS-ATELIER-DIGIYLYFE-V1.html,21,target_blank_template_js,"target=""_blank""",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/BAT-ATELIER-DIGIYLYFE-V1.html,19,target_blank_template_js,"target=""_blank""",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/BAT-ATELIER-DIGIYLYFE-V1.html,21,target_blank_template_js,"target=""_blank""",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/GENERATEUR-ATELIER-CARTE-DIGIYLYFE-V2-4-MASTERS.html,20,iframe,dynamique,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/GENERATEUR-ATELIER-CARTE-DIGIYLYFE-V2-4-MASTERS.html,96,affectation_href_js,.href=u,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/GENERATEUR-ATELIER-FICHE-DIGIYLYFE-V1.html,30,iframe,dynamique,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/GENERATEUR-ATELIER-FICHE-DIGIYLYFE-V1.html,55,affectation_href_js,.href=u,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-INDUSTRIEL-V1-8-LANGUES.html,52,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-INDUSTRIEL-V1-8-LANGUES.html,53,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-INDUSTRIEL-V1-8-LANGUES.html,54,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-INDUSTRIEL-V1-8-LANGUES.html,55,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-INDUSTRIEL-V1-8-LANGUES.html,56,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-INDUSTRIEL-V1-8-LANGUES.html,103,affectation_href_js,".href=""tel:+""+digits(CARD.phone)",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-INDUSTRIEL-V1-8-LANGUES.html,104,affectation_href_js,".href=""https://wa.me/""+digits(CARD.whatsapp)+""?text=""+encodeURIComponent(""Bonjour, je vous contacte depuis votre carte DIGIYLYFE."")",local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+masters/MASTER-CARTE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-INDUSTRIEL-V1-8-LANGUES.html,105,affectation_href_js,".href=""https://www.google.com/maps/search/?api=1&query=""+encodeURIComponent(d.zone)",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-INDUSTRIEL-V1-8-LANGUES.html,106,affectation_href_js,.href=u,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-COMMERCE-INDUSTRIEL-V1-8-LANGUES.html,138,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-COMMERCE-INDUSTRIEL-V1-8-LANGUES.html,139,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-COMMERCE-INDUSTRIEL-V1-8-LANGUES.html,140,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-COMMERCE-INDUSTRIEL-V1-8-LANGUES.html,141,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-COMMERCE-INDUSTRIEL-V1-8-LANGUES.html,333,affectation_href_js,".href = ""tel:+"" + digits(CARD.phone)",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-COMMERCE-INDUSTRIEL-V1-8-LANGUES.html,337,affectation_href_js,".href =
+          ""https://wa.me/"" + digits(CARD.whatsapp) +",local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+masters/MASTER-CARTE-COMMERCE-INDUSTRIEL-V1-8-LANGUES.html,343,affectation_href_js,".href =
+          ""https://www.google.com/maps/search/?api=1&query="" + encodeURIComponent(d.zone)",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-COMMERCE-INDUSTRIEL-V1-8-LANGUES.html,351,affectation_href_js,.href = ficheUrl,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-COMMERCE-INDUSTRIEL-V1-8-LANGUES.html,354,affectation_href_js,.href = siteUrl,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-LIEU-TOURISME-INDUSTRIEL-V1-8-LANGUES.html,138,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-LIEU-TOURISME-INDUSTRIEL-V1-8-LANGUES.html,139,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-LIEU-TOURISME-INDUSTRIEL-V1-8-LANGUES.html,140,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-LIEU-TOURISME-INDUSTRIEL-V1-8-LANGUES.html,141,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-LIEU-TOURISME-INDUSTRIEL-V1-8-LANGUES.html,333,affectation_href_js,".href = ""tel:+"" + digits(CARD.phone)",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-LIEU-TOURISME-INDUSTRIEL-V1-8-LANGUES.html,337,affectation_href_js,".href =
+          ""https://wa.me/"" + digits(CARD.whatsapp) +",local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+masters/MASTER-CARTE-LIEU-TOURISME-INDUSTRIEL-V1-8-LANGUES.html,343,affectation_href_js,".href =
+          ""https://www.google.com/maps/search/?api=1&query="" + encodeURIComponent(d.zone)",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-LIEU-TOURISME-INDUSTRIEL-V1-8-LANGUES.html,351,affectation_href_js,.href = ficheUrl,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-LIEU-TOURISME-INDUSTRIEL-V1-8-LANGUES.html,354,affectation_href_js,.href = siteUrl,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html,138,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html,139,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html,140,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html,141,target_blank,#,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html,333,affectation_href_js,".href = ""tel:+"" + digits(CARD.phone)",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html,337,affectation_href_js,".href =
+          ""https://wa.me/"" + digits(CARD.whatsapp) +",local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+masters/MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html,343,affectation_href_js,".href =
+          ""https://www.google.com/maps/search/?api=1&query="" + encodeURIComponent(d.zone)",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html,351,affectation_href_js,.href = ficheUrl,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-CARTE-SERVICE-ARTISAN-INDUSTRIEL-V3-8-LANGUES.html,354,affectation_href_js,.href = siteUrl,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-V1-TEST.html,15,target_blank,,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-V1-TEST.html,15,target_blank,,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-V1-TEST.html,25,affectation_href_js,.href='https://wa.me/'+cleanPhone(FICHE.whatsapp),local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+masters/MASTER-FICHE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-V1-TEST.html,25,affectation_href_js,.href='tel:'+FICHE.phone,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-V1-TEST.html,25,affectation_href_js,.href=FICHE.bookingUrl,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-BEAUTE-RESTAURATION-ACTIVITE-VISUELLE-V1-TEST.html,25,affectation_href_js,.href=FICHE.siteUrl,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-COMMERCE-V1-TEST.html,15,target_blank,,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-COMMERCE-V1-TEST.html,24,affectation_href_js,.href='https://wa.me/'+cleanPhone(FICHE.whatsapp),local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+masters/MASTER-FICHE-COMMERCE-V1-TEST.html,24,affectation_href_js,.href='tel:'+FICHE.phone,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-COMMERCE-V1-TEST.html,24,affectation_href_js,".href=FICHE.siteUrl}else{$('#site').style.display='none'}$('#products').innerHTML=(FICHE.products||[]).map(p=>`<article class=""product""><h3>${p.name||''}</h3>${p.price?`<div class=""price",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-LIEU-TOURISME-V1-TEST.html,15,target_blank,,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-LIEU-TOURISME-V1-TEST.html,25,affectation_href_js,.href='https://wa.me/'+cleanPhone(FICHE.whatsapp),local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+masters/MASTER-FICHE-LIEU-TOURISME-V1-TEST.html,25,affectation_href_js,.href='tel:'+FICHE.phone,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-LIEU-TOURISME-V1-TEST.html,25,affectation_href_js,".href=FICHE.siteUrl}else{$('#site').style.display='none'}$('#facts').innerHTML=(FICHE.facts||[]).map(x=>`<article class=""fact""><strong>${x.label||''}</strong><span>${x.value||''}</span><",local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-SERVICE-ARTISAN-V1-TEST.html,15,target_blank,,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-SERVICE-ARTISAN-V1-TEST.html,23,affectation_href_js,.href='https://wa.me/'+cleanPhone(FICHE.whatsapp),local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+masters/MASTER-FICHE-SERVICE-ARTISAN-V1-TEST.html,23,affectation_href_js,.href='tel:'+FICHE.phone,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/MASTER-FICHE-SERVICE-ARTISAN-V1-TEST.html,23,affectation_href_js,.href=FICHE.siteUrl}else{$('#site').style.display='none'}if(FICHE.qrUrl){$('#qr').src=FICHE.qrUrl}else{$('#qrPanel').style.display='none'}document.querySelectorAll('[data-l]').forEach(b=,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+masters/previews/TEST-LECTEUR-SERVICE-ARTISAN-DONNEES-UNIFIEES.html,25,iframe,dynamique,local,atelier/modèle,P3 · modèle/atelier,non exécuté; accès métier préservé
+menu.html,8,redirection_meta,0;url=https://digiylyfe.com/,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+menu.html,16,redirection_js,location.replace(target.href),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+miami.html,35,retour_attribut,https://digiylyfe.com/#territoires,local,public,Info · retour présent,statique; comportement appareil non testé
+miami.html,51,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+miami.html,51,retour_attribut,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,Info · retour présent,statique; comportement appareil non testé
+miami.html,65,affectation_href_js,.href='#proPath',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+miami.html,65,affectation_href_js,.href='/tarifs-adherents-1.html?country=us&lang='+l+'#carte-digitale',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+miami.html,65,affectation_href_js,.href='/tarifs-adherents-1.html?country=us&lang='+l,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+miami.html,65,affectation_href_js,.href='/preparer-ma-carte.html?plan=adherent-19900&country=us&lang='+l+'&flow=prevalidation-20260911',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+miami.html,80,affectation_href_js,.href='/preparer-ma-carte.html?plan=adherent-19900&country=us&lang='+encodeURIComponent(lang)+'&flow=prevalidation-20260911',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+miami.html,95,affectation_href_js,.href='/preparer-ma-carte.html?plan=adherent-19900&country=us&lang='+encodeURIComponent(lang)+'&flow=prevalidation-20260911',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+mon-digiy.html,45,retour_attribut,/,local,public,Info · retour présent,statique; comportement appareil non testé
+mon-digiy.html,45,retour_libelle,/,local,public,Info · retour présent,statique; comportement appareil non testé
+mon-digiy.html,107,affectation_href_js,.href=m.href||'/',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+nl/saly.html,55,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+nl/saly.html,60,lien_autre_domaine,https://partenaire-lamine.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+nl/saly.html,61,lien_autre_domaine,https://babacar-plombier-pro.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+nl/saly.html,62,lien_autre_domaine,https://helage-plombier.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+nl/saly.html,63,lien_autre_domaine,https://kourant.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+nl/saly.html,64,lien_autre_domaine,https://astou-boutique.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+notre-methode.html,580,retour_libelle,/,local,public,Info · retour présent,statique; comportement appareil non testé
+notre-methode.html,581,lien_autre_domaine,https://commencer-a-payer.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+notre-methode.html,614,lien_autre_domaine,https://commencer-a-payer.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+notre-methode.html,845,lien_autre_domaine,https://commencer-a-payer.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+outils-gestion-demo.html,3,retour_libelle,/,local,public,Info · retour présent,statique; comportement appareil non testé
+outils-gestion-demo.html,3,retour_libelle,/voir-pdf-metier.html?doc=loc,local,public,Info · retour présent,statique; comportement appareil non testé
+outils-gestion-demo.html,4,retour_libelle,/voir-pdf-metier.html?doc=driver,local,public,Info · retour présent,statique; comportement appareil non testé
+outils-gestion-demo.html,5,retour_libelle,/voir-pdf-metier.html?doc=commerce,local,public,Info · retour présent,statique; comportement appareil non testé
+outils-gestion-demo.html,6,retour_libelle,/voir-pdf-metier.html?doc=carnet,local,public,Info · retour présent,statique; comportement appareil non testé
+outils-gestion-demo.html,7,retour_libelle,/voir-pdf-metier.html?doc=explore,local,public,Info · retour présent,statique; comportement appareil non testé
+outils-gestion-demo.html,8,retour_libelle,/voir-pdf-metier.html?doc=resto,local,public,Info · retour présent,statique; comportement appareil non testé
+outils-gestion-demo.html,9,retour_libelle,/voir-pdf-metier.html?doc=build,local,public,Info · retour présent,statique; comportement appareil non testé
+outils-gestion-demo.html,3,pdf_reference,"""/loc.pdf""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+outils-gestion-demo.html,4,pdf_reference,"""/driver.pdf""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+outils-gestion-demo.html,5,pdf_reference,"""/commerce.pdf""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+outils-gestion-demo.html,6,pdf_reference,"""/carnet.pdf""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+outils-gestion-demo.html,7,pdf_reference,"""/explore.pdf""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+outils-gestion-demo.html,8,pdf_reference,"""/resto-exemple.pdf""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+outils-gestion-demo.html,9,pdf_reference,"""/build-exemple.pdf""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+paris.html,38,retour_attribut,/france.html,local,public,Info · retour présent,statique; comportement appareil non testé
+paris.html,55,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+paris.html,55,retour_attribut,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,Info · retour présent,statique; comportement appareil non testé
+paris.html,67,affectation_href_js,.href='/tarifs-adherents-1.html?country='+slug+'&lang='+l+'#carte-digitale',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+paris.html,67,affectation_href_js,.href='/tarifs-adherents-1.html?country='+slug+'&lang='+l,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+paris.html,67,affectation_href_js,.href='/preparer-ma-carte.html?plan=adherent-19900&country='+slug+'&lang='+l+'&flow=prevalidation-20260911',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+paris.html,82,affectation_href_js,.href='/preparer-ma-carte.html?plan=adherent-19900&country=fr&lang='+encodeURIComponent(lang)+'&flow=prevalidation-20260911',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+paris.html,97,affectation_href_js,.href='/preparer-ma-carte.html?plan=adherent-19900&country=fr&lang='+encodeURIComponent(lang)+'&flow=prevalidation-20260911',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+preparer-ma-carte-core-20260824.html,95,retour_attribut,./,local,public,Info · retour présent,statique; comportement appareil non testé
+preparer-ma-carte-core-20260824.html,95,retour_libelle,./,local,public,Info · retour présent,statique; comportement appareil non testé
+preparer-ma-carte-core-20260824.html,273,window_open,"window.open('about:blank','digiyWhatsAppAlert')",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+preparer-ma-carte-core-20260824.html,290,redirection_js,location.href=waUrl,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+preparer-ma-carte-core-20260824.html,290,redirection_js,window.location.href=waUrl,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+preparer-ma-carte-core-20260824.html,290,affectation_href_js,.href=waUrl,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+preparer-ma-carte-core-20260824.html,290,affectation_href_js,.href=waUrl,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+preparer-ma-carte.html,22,redirection_js,location.replace(u.pathname+u.search),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+presence-terrain.html,13,retour_attribut,./index.html,local,public,Info · retour présent,statique; comportement appareil non testé
+pt/saly.html,55,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+pt/saly.html,60,lien_autre_domaine,https://partenaire-lamine.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+pt/saly.html,61,lien_autre_domaine,https://babacar-plombier-pro.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+pt/saly.html,62,lien_autre_domaine,https://helage-plombier.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+pt/saly.html,63,lien_autre_domaine,https://kourant.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+pt/saly.html,64,lien_autre_domaine,https://astou-boutique.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+qr-module-digiylyfe.html,39,lien_autre_domaine,https://digiy-hub.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+qr.html,125,retour_libelle,./,local,public,Info · retour présent,statique; comportement appareil non testé
+recherche-cartes-officielles.js,113,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+recherche-cartes-officielles.js,114,target_blank_template_js,"target=""_blank""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+recherche.html,29,retour_attribut,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+recherche.html,29,retour_libelle,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+saly.html,34,retour_attribut,/,local,public,Info · retour présent,statique; comportement appareil non testé
+saly.html,40,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+saly.html,58,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+saly.html,59,redirection_js,location.href=u.pathname+u.search},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+saly.html,59,redirection_js,location.href=u.pathname+u.search}}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+saly.html,59,affectation_href_js,.href=u.pathname+u.search},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+saly.html,59,affectation_href_js,.href=r.pathname+r.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+saly.html,59,affectation_href_js,.href=j.pathname+j.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+saly.html,59,affectation_href_js,.href=j.pathname+j.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+saly.html,59,affectation_href_js,.href=h.pathname+h.search+h.hash}document.querySelectorAll('[data-l]').forEach(function(b){b.onclick=function(){var u=new URL(location.href),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+saly.html,59,affectation_href_js,.href=u.pathname+u.search}}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+saly.html,60,affectation_href_js,.href=u.pathname+u.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+sarlat.html,5,retour_attribut,/france.html,local,public,Info · retour présent,statique; comportement appareil non testé
+sarlat.html,7,lien_autre_domaine,https://malraux-entre2.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+sarlat.html,7,lien_autre_domaine,https://malraux-entre2.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+sarlat.html,7,lien_autre_domaine,https://sarlat-chez-baptiste.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+sarlat.html,10,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+sarlat.html,10,retour_attribut,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,Info · retour présent,statique; comportement appareil non testé
+sarlat.html,30,redirection_js,location.href=territoryDoor(n[0])},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+sarlat.html,30,redirection_js,location.href=u.pathname+u.search}}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+sarlat.html,30,affectation_href_js,.href=territoryDoor(n[0])},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+sarlat.html,30,affectation_href_js,.href=j.pathname+j.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+sarlat.html,30,affectation_href_js,.href=j.pathname+j.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+sarlat.html,30,affectation_href_js,.href=h.pathname+h.search+h.hash}document.querySelectorAll('[data-l]').forEach(function(b){b.onclick=function(){var u=new URL(location.href),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+sarlat.html,30,affectation_href_js,.href=u.pathname+u.search}}),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+sarlat.html,59,affectation_href_js,.href=j.pathname+j.search,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+senegal.html,31,retour_attribut,https://digiylyfe.com/#territoires,local,public,Info · retour présent,statique; comportement appareil non testé
+senegal.html,48,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+senegal.html,48,retour_attribut,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,Info · retour présent,statique; comportement appareil non testé
+services-terrain.html,25,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+services-terrain.html,54,affectation_href_js,".href=r.public_url||""#""",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+support-whatsapp.html,45,window_open,"window.open(url,'_blank','noopener')}",local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+tarif-entreprise-petite-cote.html,16,redirection_meta,0;url=https://digiylyfe.com/tarifs-adherents-1.html?country=sn,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarif-entreprise-petite-cote.html,19,lien_autre_domaine,https://digiy-hub.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarif-entreprise-petite-cote.html,23,retour_libelle,./index.html#entreprises-petite-cote,local,public,Info · retour présent,statique; comportement appareil non testé
+tarif-entreprise-petite-cote.html,16,redirection_js,"location.replace(""https://digiylyfe.com/tarifs-adherents-1.html?country=sn""+location.hash)",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarif-entreprise-petite-cote.html,35,redirection_js,location.href='https://wa.me/'+TEL+'?text='+encodeURIComponent(message(false))},local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+tarif-entreprise-petite-cote.html,35,redirection_js,location.href='https://wa.me/'+TEL+'?text='+encodeURIComponent(message(true))},local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+tarif-entreprise-petite-cote.html,35,redirection_js,location.href='sms:+221771342889?&body='+encodeURIComponent(message(false))},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarif-entreprise-petite-cote.html,35,affectation_href_js,.href='https://wa.me/'+TEL+'?text='+encodeURIComponent(message(false))},local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+tarif-entreprise-petite-cote.html,35,affectation_href_js,.href='https://wa.me/'+TEL+'?text='+encodeURIComponent(message(true))},local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+tarif-entreprise-petite-cote.html,35,affectation_href_js,.href='sms:+221771342889?&body='+encodeURIComponent(message(false))},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents-1.html,15,lien_autre_domaine,https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-18-aout-2026-01_14_59-1.png,externe/dynamique,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents-1.html,20,lien_autre_domaine,https://master-site-digiylyfe.digiylyfe.com/demo-babacar-001/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents-1.html,20,lien_autre_domaine,https://astou-boutique.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents-1.html,59,lien_autre_domaine,tel:+221771342889,externe/dynamique,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents-1.html,59,lien_autre_domaine,tel:+221771342889,externe/dynamique,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents-1.html,59,lien_autre_domaine,sms:+221771342889,externe/dynamique,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents-1.html,59,lien_autre_domaine,tel:+221771342889,externe/dynamique,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents-1.html,60,retour_attribut,https://digiylyfe.com/,local,public,Info · retour présent,statique; comportement appareil non testé
+tarifs-adherents-1.html,60,lien_autre_domaine,https://digiy-hub.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents-1.html,86,affectation_href_js,.href='/preparer-ma-carte.html?product=carnet-pro&country=sn&lang='+lang(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents-1.html,87,affectation_href_js,.href='/carte-gratuite.html?country='+countrySlug+'&lang='+lang(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents-1.html,87,affectation_href_js,.href='/preparer-ma-carte.html?plan=adherent-19900&country='+countrySlug+'&lang='+lang()+'&flow=prevalidation-20260911',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents-1.html,87,affectation_href_js,.href=payApproved?'#paiement':'/preparer-ma-carte.html?plan=adherent-19900&country='+countrySlug+'&lang='+lang()+'&flow=prevalidation-20260911',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents.html,9,redirection_meta,0;url=https://digiylyfe.com/tarifs-adherents-1.html,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-adherents.html,10,redirection_js,location.replace('https://digiylyfe.com/tarifs-adherents-1.html'+location.hash),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-loc-v2.html,168,lien_autre_domaine,tel:+221771342889,externe/dynamique,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-loc-v2.html,169,lien_autre_domaine,tel:+221771342889,externe/dynamique,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-loc-v2.html,169,lien_autre_domaine,tel:+221771342889,externe/dynamique,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-loc-v2.html,175,retour_attribut,./,local,public,Info · retour présent,statique; comportement appareil non testé
+tarifs-loc-v2.html,175,retour_libelle,./,local,public,Info · retour présent,statique; comportement appareil non testé
+tarifs-loc-v2.html,262,affectation_href_js,".href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(dossier(null,c,null,'DEMANDE DE DEVIS +40 UNITÉS'))",local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+tarifs-loc-v2.html,267,affectation_href_js,.href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg),local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+tarifs-loc-v2.html,267,affectation_href_js,.href='sms:+'+PHONE+'?body='+encodeURIComponent(msg),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-loc.html,6,redirection_meta,0;url=https://digiylyfe.com/tarifs-loc-v2.html,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-loc.html,137,lien_autre_domaine,tel:+221771342889,externe/dynamique,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-loc.html,138,lien_autre_domaine,tel:+221771342889,externe/dynamique,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-loc.html,138,lien_autre_domaine,tel:+221771342889,externe/dynamique,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-loc.html,144,retour_attribut,./,local,public,Info · retour présent,statique; comportement appareil non testé
+tarifs-loc.html,144,retour_libelle,./,local,public,Info · retour présent,statique; comportement appareil non testé
+tarifs-loc.html,6,redirection_js,"location.replace(""https://digiylyfe.com/tarifs-loc-v2.html""+location.search+location.hash)",local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+tarifs-loc.html,225,affectation_href_js,".href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(dossier(null,c,null,'DEMANDE DE DEVIS +40 UNITÉS'))",local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+tarifs-loc.html,230,affectation_href_js,.href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg),local,contact direct,Info · conserver,destination conservée; aucun message envoyé
+tarifs-loc.html,230,affectation_href_js,.href='sms:+'+PHONE+'?body='+encodeURIComponent(msg),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+territoire.html,23,retour_attribut,https://digiylyfe.com/#territoires,local,public,Info · retour présent,statique; comportement appareil non testé
+territoire.html,74,lien_autre_domaine,https://babacar-plombier-pro.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+territoire.html,75,lien_autre_domaine,https://astou-boutique.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+territoire.html,76,lien_autre_domaine,https://mane-gning.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+territoire.html,77,lien_autre_domaine,https://partenaire-lamine.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+territoire.html,88,lien_autre_domaine,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+territoire.html,88,retour_attribut,https://digiy-carnet-pro.digiylyfe.com,sous-domaine,public,Info · retour présent,statique; comportement appareil non testé
+territoire.html,93,affectation_href_js,.href=target(),local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+video-bcheikh.html,29,lien_autre_domaine,https://bcheikh.digiylyfe.com/?utm_source=tiktok&utm_medium=video&utm_campaign=bcheikh_social,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+video-bcheikh.html,35,lien_autre_domaine,https://bcheikh.digiylyfe.com/?utm_source=tiktok&utm_medium=video&utm_campaign=bcheikh_social,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+video-bcheikh.html,43,redirection_js,location.href=direct},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+video-bcheikh.html,43,affectation_href_js,.href=direct},local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+voice-live.html,707,retour_attribut,#haut,local,public,Info · retour présent,statique; comportement appareil non testé
+voice-live.html,734,lien_autre_domaine,https://pro-action-digiy.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+voice-live.html,1006,lien_autre_domaine,https://astou-boutique.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+voice-live.html,1007,lien_autre_domaine,https://babacar-plombier-pro.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+voice-live.html,1008,lien_autre_domaine,https://mane-gning.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+voice-live.html,1009,lien_autre_domaine,https://sarlat-chez-baptiste.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+voice-live.html,1010,lien_autre_domaine,https://partenaire-lamine.digiylyfe.com/,sous-domaine,public,P2 · risque à vérifier,statique; comportement appareil non testé
+voice-live.html,1113,target_blank_js,.target='_blank',local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+voice-live.html,1113,affectation_href_js,.href=m.href,local,public,P2 · risque à vérifier,statique; comportement appareil non testé
+voir-pdf-metier.html,3,retour_attribut,/outils-gestion-demo.html,local,outils → brochures,P2 · lecteur à vérifier,statique; comportement appareil non testé
+voir-pdf-metier.html,3,retour_libelle,/outils-gestion-demo.html,local,outils → brochures,P2 · lecteur à vérifier,statique; comportement appareil non testé
+voir-pdf-metier.html,3,iframe,dynamique,local,outils → brochures,P2 · lecteur à vérifier,statique; comportement appareil non testé
+voir-pdf-metier.html,3,retour_attribut,/outils-gestion-demo.html,local,outils → brochures,P2 · lecteur à vérifier,statique; comportement appareil non testé
+voir-pdf-metier.html,3,retour_libelle,/outils-gestion-demo.html,local,outils → brochures,P2 · lecteur à vérifier,statique; comportement appareil non testé
+voir-pdf-metier.html,6,pdf_reference,'/loc.pdf',local,outils → brochures,P2 · lecteur à vérifier,statique; comportement appareil non testé
+voir-pdf-metier.html,6,pdf_reference,'/driver.pdf',local,outils → brochures,P2 · lecteur à vérifier,statique; comportement appareil non testé
+voir-pdf-metier.html,6,pdf_reference,'/commerce.pdf',local,outils → brochures,P2 · lecteur à vérifier,statique; comportement appareil non testé
+voir-pdf-metier.html,6,pdf_reference,'/carnet.pdf',local,outils → brochures,P2 · lecteur à vérifier,statique; comportement appareil non testé
+voir-pdf-metier.html,6,pdf_reference,'/explore.pdf',local,outils → brochures,P2 · lecteur à vérifier,statique; comportement appareil non testé
+voir-pdf-metier.html,6,pdf_reference,'/resto-exemple.pdf',local,outils → brochures,P2 · lecteur à vérifier,statique; comportement appareil non testé
+voir-pdf-metier.html,6,pdf_reference,'/build-exemple.pdf',local,outils → brochures,P2 · lecteur à vérifier,statique; comportement appareil non testé
