@@ -2,7 +2,9 @@
 const {chromium, webkit}=require('playwright');
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'../..');
-const pdfDir=process.env.PDFJS_TEST_DIR||path.dirname(require.resolve('pdfjs-dist/build/pdf.min.js'));
+const pdfDir=path.join(root,'assets/vendor/pdfjs/3.11.174');
+assert.ok(fs.existsSync(path.join(pdfDir,'pdf.min.js')),'vendored official PDF.js main file');
+assert.ok(fs.existsSync(path.join(pdfDir,'pdf.worker.min.js')),'vendored official PDF.js worker');
 const types={'.html':'text/html','.js':'application/javascript','.pdf':'application/pdf'};
 const server=http.createServer((req,res)=>{let name=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(name.endsWith('/'))name+='index.html';const file=path.resolve(root,'.'+name);if(!file.startsWith(root+path.sep)){res.writeHead(403).end();return;}fs.readFile(file,(err,data)=>{if(err){res.writeHead(404).end();return;}res.setHeader('Content-Type',types[path.extname(file)]||'application/octet-stream');res.end(data)});});
 (async()=>{
@@ -12,11 +14,15 @@ const server=http.createServer((req,res)=>{let name=decodeURIComponent(new URL(r
  try{
  const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
  let mode='normal';
- await context.route('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/*',async r=>{
-  if(mode==='offline'){await r.abort();return;}
-  const name=r.request().url().split('/').pop();let body=fs.readFileSync(path.join(pdfDir,name),'utf8');
-  if(mode==='slow'&&name==='pdf.min.js')body+=`;const original=pdfjsLib.getDocument;window.pdfjsLib={...pdfjsLib,getDocument:function(...args){window.testPdfOptions=args[0];const task=original(...args);task.promise.then(pdf=>{const get=pdf.getPage.bind(pdf);pdf.getPage=async n=>{if(n===2)await new Promise(r=>setTimeout(r,1500));return get(n)}});return task}};`;
-  await r.fulfill({body,contentType:'application/javascript'});
+ await context.route('**/*',async r=>{
+  const url=r.request().url();
+  if(url.includes('cdnjs.cloudflare.com')||url.includes('unpkg.com')||url.includes('jsdelivr.net')){throw new Error('Unexpected CDN dependency '+url);}
+  if(mode==='slow'&&url.endsWith('/assets/vendor/pdfjs/3.11.174/pdf.min.js')){
+   let body=fs.readFileSync(path.join(pdfDir,'pdf.min.js'),'utf8');
+   body+=`\n;const original=pdfjsLib.getDocument;window.pdfjsLib={...pdfjsLib,getDocument:function(...args){window.testPdfOptions=args[0];const task=original(...args);task.promise.then(pdf=>{const get=pdf.getPage.bind(pdf);pdf.getPage=async n=>{if(n===2)await new Promise(r=>setTimeout(r,1500));return get(n)}});return task}};`;
+   await r.fulfill({body,contentType:'application/javascript'});return;
+  }
+  await r.continue();
  });
  const page=await context.newPage();
  const ready=()=>page.waitForFunction(()=>document.querySelector('#status').textContent.includes('Faites défiler'));
@@ -34,7 +40,7 @@ const server=http.createServer((req,res)=>{let name=decodeURIComponent(new URL(r
  await page.setViewportSize({width:844,height:390});await page.goto(base+'/voir-pdf-metier.html?doc=loc');await ready();await page.locator('#page-2').scrollIntoViewIfNeeded();await page.waitForFunction(()=>document.querySelector('#count').textContent==='2 / 2');console.log('PASS landscape manual scroll counter');
  await page.setViewportSize({width:320,height:568});await page.evaluate(()=>document.documentElement.style.fontSize='150%');await page.evaluate(()=>scrollTo(0,500));assert.ok(await page.evaluate(()=>{const a=document.querySelector('.bar').getBoundingClientRect(),b=document.querySelector('.tools').getBoundingClientRect();return b.top>=a.bottom-1}));console.log('PASS large text header does not overlap');
  mode='slow';await page.goto(base+'/voir-pdf-metier.html?doc=loc');await page.waitForFunction(()=>document.querySelector('#page-1'));assert.equal(await page.locator('#next').isDisabled(),true);await ready();assert.equal(await page.evaluate(()=>window.testPdfOptions.isEvalSupported),false);await page.locator('#next').click();assert.equal(await page.locator('#count').textContent(),'2 / 2');console.log('PASS slow rendering and evaluation disabled');
- mode='offline';await page.goto(base+'/voir-pdf-metier.html?doc=loc');await page.locator('#fallback').waitFor({state:'visible'});assert.equal(await page.locator('#next').isDisabled(),true);await page.locator('.bar .back').click();assert.equal(new URL(page.url()).pathname,'/outils-gestion-demo.html');console.log('PASS CDN failure retains return (native multipage NOT asserted)');
+ mode='offline';await page.goto(base+'/voir-pdf-metier.html?doc=loc');await ready();assert.equal(await page.locator('canvas').count(),2);await page.locator('#next').click();assert.equal(await page.locator('#count').textContent(),'2 / 2');await page.locator('.bar .back').click();assert.equal(new URL(page.url()).pathname,'/outils-gestion-demo.html');console.log('PASS CDN unavailable: real multipage PDF, arrows and return');
  await page.goto(base+'/voir-pdf-metier.html?doc=__proto__');assert.match(await page.locator('#status').textContent(),/introuvable/);assert.equal(await page.locator('canvas').count(),0);console.log('PASS invalid document allowlist');
  await context.close();
  }finally{await browser.close();server.close();}
