@@ -1,0 +1,30 @@
+name: PWA brochure navigation
+on:
+  pull_request:
+    paths:
+      - 'voir-pdf-metier.html'
+      - '*.pdf'
+      - 'outils-gestion-demo.html'
+      - 'tests/pwa/pdf-navigation.cjs'
+      - '.github/workflows/pwa-pdf-navigation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  brochures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --prefix /tmp/digiy-pwa-tests playwright@1.62.1 pdfjs-dist@3.11.174
+      - run: /tmp/digiy-pwa-tests/node_modules/.bin/playwright install --with-deps ${{ matrix.browser }}
+      - run: node tests/pwa/pdf-navigation.cjs
+        env:
+          NODE_PATH: /tmp/digiy-pwa-tests/node_modules
+          PWA_BROWSER: ${{ matrix.browser }}
