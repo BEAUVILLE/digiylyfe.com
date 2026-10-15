@@ -19,7 +19,7 @@ const server=http.createServer((req,res)=>{let name=decodeURIComponent(new URL(r
   if(url.includes('cdnjs.cloudflare.com')||url.includes('unpkg.com')||url.includes('jsdelivr.net')){throw new Error('Unexpected CDN dependency '+url);}
   if(mode==='slow'&&url.endsWith('/assets/vendor/pdfjs/3.11.174/pdf.min.js')){
    let body=fs.readFileSync(path.join(pdfDir,'pdf.min.js'),'utf8');
-   body+=`;const original=pdfjsLib.getDocument;window.pdfjsLib={...pdfjsLib,getDocument:function(...args){window.testPdfOptions=args[0];const task=original(...args);task.promise.then(pdf=>{const get=pdf.getPage.bind(pdf);pdf.getPage=async n=>{if(n===2)await new Promise(r=>setTimeout(r,1500));return get(n)}});return task}};`;
+   body+=`\n;const original=pdfjsLib.getDocument;window.pdfjsLib={...pdfjsLib,getDocument:function(...args){window.testPdfOptions=args[0];const task=original(...args);task.promise.then(pdf=>{const get=pdf.getPage.bind(pdf);pdf.getPage=async n=>{if(n===2)await new Promise(r=>setTimeout(r,1500));return get(n)}});return task}};`;
    await r.fulfill({body,contentType:'application/javascript'});return;
   }
   await r.continue();
