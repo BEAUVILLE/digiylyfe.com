@@ -1,6 +1,6 @@
 # DIGIYLYFE — Audit PWA du 15 octobre 2026
 
-**Conclusion : deux PR correctives indépendantes, CI verte, aucune fusion. Stabilisation partielle vérifiée ; validation sur appareils et traversée réelle des sous-domaines restent ouvertes.**
+**Conclusion : deux PR correctives indépendantes, CI verte. La PR #84 a été fusionnée sur GitHub pendant l’audit ; #85 reste ouverte au dernier contrôle. Aucune fusion déclenchée par cet agent. Stabilisation partielle vérifiée ; validation sur appareils et traversée réelle des sous-domaines restent ouvertes.**
 
 Référence auditée : `BEAUVILLE/digiylyfe.com`, commit `1c974947727f125ee2785f4ba90b611fc11b95c7` (main après PR #83). L'inventaire porte sur cet instant précis, pas sur les fichiers ajoutés par l'audit.
 
@@ -59,7 +59,7 @@ Essai local Chromium 153, tactile, DPR 2, fenêtre 390 × 844. PDF réels du dé
 
 https://github.com/BEAUVILLE/digiylyfe.com/pull/84
 
-Commit `48ae56ef31eafe44b893bccc77dd1e34e5f9b7ef`.
+Commit `48ae56ef31eafe44b893bccc77dd1e34e5f9b7ef`. Fusion observée le 15 octobre à 15:16:40 UTC, commit main `bf1add51663a6ee60e2f473bb1dbb6023012d3f9`. Ce contrôle ne valide pas le déploiement public, inaccessible ici.
 
 - **P2** : en 844 × 390, après défilement manuel à la page 2 de LOC, le compteur affiche 1 / 2. Le canvas mesure 820 × 1159 ; le seuil de visibilité de 50 % n'est jamais atteint. Correction : calcul de la page visible depuis la fenêtre disponible, indépendant de ce seuil.
 - **P2** : bouton Suivante actif avant la création de la page 2 ; clic constaté : compteur 2 / 2, aucun canvas page 2, puis position inchangée. Correction : flèches activées après rendu complet. Test avec délai contrôlé sur la vraie page 2, sans substituer les données PDF.
@@ -125,4 +125,4 @@ Les tentatives d'accès à digiylyfe.com et aux domaines LOC, DRIVER, EXPLORE, d
 
 ## Rollback et mise en ligne
 
-Aucune PR fusionnée. Chaque PR est basée sur le même main et peut être acceptée ou refusée indépendamment. Après autorisation explicite seulement, recontrôler la CI du dernier commit avant fusion. Rollback par revert du commit de fusion de la PR concernée (ou du squash correspondant) ; réexécuter son workflow et le garde PWA. Les PDF, service workers, manifests et données restent identiques. Ne pas faire de reset forcé de main.
+Les PR correctives ont été préparées depuis la même référence main et sont indépendantes. La fusion de #84 a été constatée pendant la mission, sans action de fusion de cet agent. #85 et la PR audit #86 restent soumises à autorisation ; les états GitHub peuvent évoluer après ce rapport. Après autorisation explicite seulement, recontrôler la CI du dernier commit avant fusion. Rollback par revert du commit de fusion de la PR concernée (ou du squash correspondant) ; réexécuter son workflow et le garde PWA. Les PDF, service workers, manifests et données restent identiques. Ne pas faire de reset forcé de main.
