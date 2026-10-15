@@ -1,0 +1,40 @@
+name: Vendor pinned PDF.js locally
+on:
+  push:
+    branches: [fix/pwa-pdfjs-local-20261015]
+    paths:
+      - .github/workflows/vendor-pdfjs-local.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Download official PDF.js 3.11.174 npm distribution
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp -d)"
+          npm pack pdfjs-dist@3.11.174 --pack-destination "$tmp" --silent
+          mkdir -p assets/vendor/pdfjs/3.11.174
+          tar -xzf "$tmp"/pdfjs-dist-3.11.174.tgz -C "$tmp"
+          cp "$tmp/package/build/pdf.min.js" assets/vendor/pdfjs/3.11.174/pdf.min.js
+          cp "$tmp/package/build/pdf.worker.min.js" assets/vendor/pdfjs/3.11.174/pdf.worker.min.js
+          cp "$tmp/package/LICENSE" assets/vendor/pdfjs/3.11.174/LICENSE
+          test -s assets/vendor/pdfjs/3.11.174/pdf.min.js
+          test -s assets/vendor/pdfjs/3.11.174/pdf.worker.min.js
+          grep -q '3.11.174' assets/vendor/pdfjs/3.11.174/pdf.min.js
+          grep -q '3.11.174' assets/vendor/pdfjs/3.11.174/pdf.worker.min.js
+      - name: Commit vendored official assets to PR branch
+        run: |
+          set -euo pipefail
+          git add assets/vendor/pdfjs/3.11.174/
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'vendor(pdfjs): pin official 3.11.174 runtime and license'
+          git push
