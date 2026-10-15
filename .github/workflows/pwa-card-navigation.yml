@@ -1,0 +1,29 @@
+name: PWA card return
+on:
+  pull_request:
+    paths:
+      - 'carte/index.html'
+      - 'carte.index.html'
+      - 'tests/pwa/card-navigation.cjs'
+      - '.github/workflows/pwa-card-navigation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  card:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --prefix /tmp/digiy-card-tests playwright@1.62.1
+      - run: /tmp/digiy-card-tests/node_modules/.bin/playwright install --with-deps ${{ matrix.browser }}
+      - run: node tests/pwa/card-navigation.cjs
+        env:
+          NODE_PATH: /tmp/digiy-card-tests/node_modules
+          PWA_BROWSER: ${{ matrix.browser }}
