@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#103d32">
+<title>Atelier DIGIYLYFE | Dossier d'identité numérique V1</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f1f5f2;color:#17342a;font:16px/1.5 system-ui,-apple-system,sans-serif}
+main{max-width:760px;margin:auto;padding:24px 16px 64px}h1{line-height:1.15;font-size:clamp(25px,5vw,36px)}h2{font-size:20px}
+fieldset{border:1px solid #c9d8d0;border-radius:14px;margin:18px 0;padding:18px;background:#fff}legend{font-weight:800;padding:0 6px}
+label{display:block;margin:14px 0 5px;font-weight:650}input,select,textarea{width:100%;font:inherit;border:1px solid #9eb8a8;border-radius:9px;background:white;padding:12px;color:#17342a}textarea{min-height:85px;resize:vertical}
+.hint,.note{font-size:13px;color:#415b50}.note{padding:13px;background:#e2eee6;border-radius:12px}
+button{font:inherit;border:0;background:#126548;color:white;padding:14px 18px;border-radius:10px;font-weight:750;cursor:pointer;min-height:48px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #dbb750}
+.controls{display:flex;flex-wrap:wrap;gap:10px}.secondary{background:#3d5a4e}.status{min-height:24px;font-weight:700}
+.check{display:flex;align-items:flex-start;gap:10px;font-weight:400}.check input{width:auto;margin-top:7px}
+a{color:#126548}footer{margin-top:30px;font-size:13px}
+</style></head><body><main>
+<p><a href="/">&larr; DIGIYLYFE</a></p>
+<h1>Dossier d'identité numérique <small>V1</small></h1>
+<p>Préparer une identité professionnelle claire, à vérifier dans l'Atelier DIGIYLYFE avant toute publication.</p>
+<p class="note"><strong>Confidentialité :</strong> les informations restent dans ce navigateur jusqu'à la copie. Aucun envoi vers un serveur, aucune sauvegarde automatique, aucun compte Google créé. Ne saisissez ni mot de passe ni document d'identité. Évitez un ordinateur partagé.</p>
+<form id="identite">
+<fieldset><legend>1. Identité de l'activité</legend>
+<label for="nom">Nom public de l'activité *</label><input id="nom" maxlength="130" required autocomplete="organization" placeholder="Ex. Babacar Plombier Pro">
+<label for="metier">Métier ou activité *</label><input id="metier" maxlength="120" required placeholder="Ex. Plomberie">
+<label for="type">Type d'activité *</label>
+<select id="type" required><option value="">Choisir</option><option value="itinerant">Intervention chez les clients</option><option value="local">Accueil du public dans un établissement</option><option value="mixte">Les deux (à confirmer)</option><option value="hebergement">Hébergement / location</option></select>
+<label for="zone">Villes ou zones réellement couvertes *</label><input id="zone" maxlength="200" required placeholder="Ex. Saly, Mbour">
+<label for="services">Prestations ou caractéristiques vérifiées</label><textarea id="services" maxlength="1500" placeholder="Un service par ligne, uniquement si confirmé"></textarea>
+</fieldset>
+<fieldset><legend>2. Contact professionnel</legend>
+<label for="contact">Téléphone / WhatsApp professionnel à publier</label><input id="contact" type="tel" maxlength="70" autocomplete="tel" placeholder="À confirmer par le professionnel">
+<label for="site">Site / fiche professionnelle existante</label><input id="site" type="url" maxlength="300" placeholder="https://...">
+</fieldset>
+<fieldset><legend>3. Présences extérieures</legend>
+<label for="google">Fiche Google Maps / Business Profile</label><select id="google"><option value="inconnu">Je ne sais pas</option><option value="oui">Oui, fiche existante à vérifier</option><option value="non">Non</option><option value="non-applicable">Non applicable (ex. location individuelle)</option></select>
+<label for="googleurl">Lien Google existant (facultatif)</label><input id="googleurl" type="url" maxlength="400" placeholder="https://...">
+<label for="facebook">Page professionnelle publique existante (facultatif)</label><input id="facebook" type="url" maxlength="400" placeholder="https://...">
+<p class="hint">L'existence et la propriété de tout profil extérieur doivent être confirmées séparément. Un logement individuel ne doit pas être déclaré automatiquement comme établissement Google Business Profile.</p>
+</fieldset>
+<fieldset><legend>4. Vérification humaine</legend>
+<label class="check"><input type="checkbox" id="accord"> Le professionnel a donné son accord de principe pour utiliser ces informations dans la préparation de sa fiche.</label>
+<p class="hint">Cet accord déclaré ne vaut ni signature ni autorisation définitive de publication. Le cockpit conserve la validation officielle.</p>
+</fieldset>
+<div class="controls"><button type="submit">Copier le dossier pour l'Atelier</button><button class="secondary" type="button" id="effacer">Effacer ce formulaire</button></div>
+<p id="statut" class="status" role="status" aria-live="polite"></p>
+</form>
+<footer>Atelier DIGIYLYFE · V1 · Dossier de préparation uniquement. Statut initial : À vérifier. Circuit BAT, paiement, propriétaire et publication inchangés.</footer>
+</main>
+<script>
+(function(){
+'use strict';
+const f=document.getElementById('identite'),status=document.getElementById('statut');
+const fields=['nom','metier','type','zone','services','contact','site','google','googleurl','facebook'];
+const tidy=s=>String(s||'').trim();
+f.addEventListener('submit',async function(e){
+e.preventDefault();if(!f.reportValidity())return;
+const d=Object.fromEntries(fields.map(id=>[id,tidy(document.getElementById(id).value)]));
+const lines=['DIGIYLYFE — DOSSIER IDENTITÉ NUMÉRIQUE V1','STATUT : À VÉRIFIER (non publié)','Nom : '+d.nom,'Activité : '+d.metier,'Typologie déclarée : '+d.type,'Zones : '+d.zone,'Services déclarés : '+(d.services||'Non renseignés'),'Contact à valider : '+(d.contact||'Non renseigné'),'Fiche existante : '+(d.site||'Non renseignée'),'Google Maps : '+d.google,'Lien Google à confirmer : '+(d.googleurl||'Non renseigné'),'Page sociale à confirmer : '+(d.facebook||'Non renseignée'),'Accord de principe déclaré : '+(document.getElementById('accord').checked?'Oui, à confirmer par le cockpit':'Non'),'Aucune publication, validation d’identité ou connexion extérieure effectuée.'];
+const value=lines.join('\n');
+try{
+if(!navigator.clipboard?.writeText)throw Error('Clipboard unavailable');
+await navigator.clipboard.writeText(value);
+status.textContent='Dossier copié. Transmettez-le à l’Atelier par votre canal interne sécurisé.';
+}catch(_){
+const t=document.createElement('textarea');t.value=value;t.setAttribute('readonly','');t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}t.remove();
+status.textContent=ok?'Dossier copié. Transmettez-le à l’Atelier.':'Copie impossible dans ce navigateur. Utilisez un navigateur compatible avec le presse-papiers.';
+}
+});
+document.getElementById('effacer').addEventListener('click',()=>{f.reset();status.textContent='Formulaire effacé localement.'});
+})();
+</script></body></html>
