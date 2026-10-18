@@ -301,6 +301,18 @@
       border-radius:22px
     }
 
+    .visionFutureQuote{
+      max-width:760px;margin:12px auto 2px;padding:20px 14px;
+      border:1px solid rgba(246,196,83,.35);border-radius:22px;
+      background:rgba(3,18,13,.64);text-align:center
+    }
+    .visionFutureSymbols{color:#f6c453;font-size:22px;line-height:1.3}
+    .visionFutureQuote p{
+      margin:9px auto 0;color:#fff;font-size:clamp(18px,3.6vw,28px);
+      font-weight:900;line-height:1.28
+    }
+    .visionFutureQuote .visionFutureGold{color:#f6c453;margin-top:5px}
+
     .digiyCardSection{
       margin-top:14px;padding:18px;border-radius:30px;
       border:1px solid rgba(246,196,83,.52);
@@ -1314,6 +1326,11 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
         loading="lazy"
         decoding="async"/>
       </picture>
+      <div class="visionFutureQuote">
+        <div class="visionFutureSymbols" aria-hidden="true">🦅 ❤️ ∞</div>
+        <p data-i18n="visionFutureFirst">Nous n'attendons pas l'avenir.</p>
+        <p class="visionFutureGold" data-i18n="visionFutureSecond">Nous nous préparons à le rencontrer.</p>
+      </div>
     </section>
 
       <div class="offer">
@@ -1445,6 +1462,14 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     // VISIBILITE V1 : translations via l'unique dictionnaire WORLD8 déjà présent.
     var DIGIY_PUBLIC_V1={"fr":{"v1Eyebrow":"DIGIYLYFE · LE PUBLIC D'ABORD","v1Question":"Vous cherchez quoi, près de chez vous ?","v1Promise":"Trouvez une réponse. Choisissez votre professionnel. Contactez-le directement.","v1SearchCta":"🎙️ Parler ou écrire mon besoin →","v1TerritoryCta":"📍 Voir les professionnels de la Petite Côte →","v1SearchHint":"La recherche existante vous permet de préciser votre pays, votre zone et votre besoin.","v1Stay":"Hébergement","v1Drive":"Chauffeur","v1Eat":"Restaurant","v1Fix":"Artisan / Service","v1Shop":"Commerce / Activité","v1PilotHint":"Premiers raccourcis : Saly et Petite Côte · choisissez un autre territoire depuis la recherche.","v1Proof":"Des professionnels déjà présents :","v1Principle":"Contact et paiement directs · 0 % commission DIGIYLYFE"},"en":{"v1Eyebrow":"DIGIYLYFE · PEOPLE FIRST","v1Question":"What are you looking for near you?","v1Promise":"Find an answer. Choose your professional. Contact them directly.","v1SearchCta":"🎙️ Speak or type what you need →","v1TerritoryCta":"📍 See Petite Côte professionals →","v1SearchHint":"Use the existing search to choose your country, area and need.","v1Stay":"Accommodation","v1Drive":"Driver","v1Eat":"Restaurant","v1Fix":"Trades & services","v1Shop":"Shops & activities","v1PilotHint":"First shortcuts: Saly and Petite Côte · use search for other territories.","v1Proof":"Professionals already present:","v1Principle":"Direct contact and payment · DIGIYLYFE charges 0% commission"},"es":{"v1Eyebrow":"DIGIYLYFE · PRIMERO LAS PERSONAS","v1Question":"¿Qué buscas cerca de ti?","v1Promise":"Encuentra una respuesta. Elige a tu profesional. Contáctalo directamente.","v1SearchCta":"🎙️ Habla o escribe lo que necesitas →","v1TerritoryCta":"📍 Ver profesionales de Petite Côte →","v1SearchHint":"Usa el buscador existente para elegir país, zona y necesidad.","v1Stay":"Alojamiento","v1Drive":"Conductor","v1Eat":"Restaurante","v1Fix":"Oficios y servicios","v1Shop":"Tiendas y actividades","v1PilotHint":"Primeros accesos: Saly y Petite Côte · usa el buscador para otros territorios.","v1Proof":"Profesionales ya presentes:","v1Principle":"Contacto y pago directos · 0 % de comisión DIGIYLYFE"},"pt":{"v1Eyebrow":"DIGIYLYFE · AS PESSOAS PRIMEIRO","v1Question":"O que procura perto de si?","v1Promise":"Encontre uma resposta. Escolha o profissional. Contacte-o diretamente.","v1SearchCta":"🎙️ Diga ou escreva o que precisa →","v1TerritoryCta":"📍 Ver profissionais da Petite Côte →","v1SearchHint":"Use a pesquisa existente para escolher país, zona e necessidade.","v1Stay":"Alojamento","v1Drive":"Motorista","v1Eat":"Restaurante","v1Fix":"Ofícios e serviços","v1Shop":"Lojas e atividades","v1PilotHint":"Primeiros atalhos: Saly e Petite Côte · pesquise outros territórios.","v1Proof":"Profissionais já presentes:","v1Principle":"Contacto e pagamento diretos · 0% de comissão DIGIYLYFE"},"it":{"v1Eyebrow":"DIGIYLYFE · PRIMA LE PERSONE","v1Question":"Che cosa cerchi vicino a te?","v1Promise":"Trova una risposta. Scegli il professionista. Contattalo direttamente.","v1SearchCta":"🎙️ Parla o scrivi ciò che cerchi →","v1TerritoryCta":"📍 Scopri i professionisti della Petite Côte →","v1SearchHint":"Usa la ricerca esistente per scegliere paese, zona e necessità.","v1Stay":"Alloggio","v1Drive":"Autista","v1Eat":"Ristorante","v1Fix":"Artigiani e servizi","v1Shop":"Negozi e attività","v1PilotHint":"Primi collegamenti: Saly e Petite Côte · cerca altri territori.","v1Proof":"Professionisti già presenti:","v1Principle":"Contatto e pagamento diretti · 0% di commissioni DIGIYLYFE"},"de":{"v1Eyebrow":"DIGIYLYFE · MENSCHEN ZUERST","v1Question":"Was suchen Sie in Ihrer Nähe?","v1Promise":"Finden Sie eine Lösung. Wählen Sie Ihren Anbieter. Kontaktieren Sie ihn direkt.","v1SearchCta":"🎙️ Bedarf sprechen oder eingeben →","v1TerritoryCta":"📍 Fachleute an der Petite Côte ansehen →","v1SearchHint":"Wählen Sie Land, Region und Anliegen in der bestehenden Suche.","v1Stay":"Unterkunft","v1Drive":"Fahrer","v1Eat":"Restaurant","v1Fix":"Handwerk & Dienste","v1Shop":"Geschäfte & Aktivitäten","v1PilotHint":"Erste Schnellzugriffe: Saly und Petite Côte · weitere Regionen über die Suche.","v1Proof":"Bereits vertretene Profis:","v1Principle":"Direkter Kontakt und Zahlung · 0 % DIGIYLYFE-Provision"},"nl":{"v1Eyebrow":"DIGIYLYFE · MENSEN EERST","v1Question":"Wat zoekt u bij u in de buurt?","v1Promise":"Vind een antwoord. Kies uw professional. Neem direct contact op.","v1SearchCta":"🎙️ Vertel of typ wat u zoekt →","v1TerritoryCta":"📍 Bekijk professionals op de Petite Côte →","v1SearchHint":"Kies land, gebied en behoefte via de bestaande zoekfunctie.","v1Stay":"Verblijf","v1Drive":"Chauffeur","v1Eat":"Restaurant","v1Fix":"Vakmensen & diensten","v1Shop":"Winkels & activiteiten","v1PilotHint":"Eerste snelkoppelingen: Saly en Petite Côte · zoek elders via de zoekfunctie.","v1Proof":"Al aanwezige professionals:","v1Principle":"Rechtstreeks contact en betaling · 0% DIGIYLYFE-commissie"},"ar":{"v1Eyebrow":"DIGIYLYFE · الناس أولاً","v1Question":"ما الذي تبحث عنه بالقرب منك؟","v1Promise":"اعثر على إجابة. اختر المهني المناسب. تواصل معه مباشرة.","v1SearchCta":"🎙️ تحدث أو اكتب حاجتك ←","v1TerritoryCta":"📍 شاهد مهنيي الساحل الصغير ←","v1SearchHint":"استخدم البحث الحالي لتحديد البلد والمنطقة وحاجتك.","v1Stay":"إقامة","v1Drive":"سائق","v1Eat":"مطعم","v1Fix":"حرفيون وخدمات","v1Shop":"متاجر وأنشطة","v1PilotHint":"روابط أولية: سالي والساحل الصغير · استخدم البحث لبقية المناطق.","v1Proof":"مهنيون متاحون للتعرف عليهم:","v1Principle":"اتصال ودفع مباشران · عمولة DIGIYLYFE صفر بالمئة"}};
     Object.keys(DIGIY_PUBLIC_V1).forEach(function(lang){Object.assign(TEXT[lang],DIGIY_PUBLIC_V1[lang]);});
+    Object.assign(TEXT.fr,{visionFutureFirst:"Nous n'attendons pas l'avenir.",visionFutureSecond:"Nous nous préparons à le rencontrer."});
+    Object.assign(TEXT.en,{visionFutureFirst:"We do not wait for the future.",visionFutureSecond:"We prepare to meet it."});
+    Object.assign(TEXT.es,{visionFutureFirst:"No esperamos al futuro.",visionFutureSecond:"Nos preparamos para encontrarnos con él."});
+    Object.assign(TEXT.pt,{visionFutureFirst:"Não esperamos pelo futuro.",visionFutureSecond:"Preparamo-nos para o encontrar."});
+    Object.assign(TEXT.it,{visionFutureFirst:"Non aspettiamo il futuro.",visionFutureSecond:"Ci prepariamo a incontrarlo."});
+    Object.assign(TEXT.de,{visionFutureFirst:"Wir warten nicht auf die Zukunft.",visionFutureSecond:"Wir bereiten uns darauf vor, ihr zu begegnen."});
+    Object.assign(TEXT.nl,{visionFutureFirst:"We wachten niet op de toekomst.",visionFutureSecond:"We bereiden ons voor om haar tegemoet te treden."});
+    Object.assign(TEXT.ar,{visionFutureFirst:"نحن لا ننتظر المستقبل.",visionFutureSecond:"نحن نستعد للقائه."});
     Object.assign(TEXT.fr,{metaTitle:"DIGIYLYFE — Trouvez un professionnel près de chez vous",metaDescription:"Vous cherchez un artisan, un chauffeur, un logement, un restaurant ou un commerce ? Explorez votre territoire et contactez directement les professionnels avec DIGIYLYFE."});
     function setLang(lang){
       if(!TEXT[lang])lang='fr';
