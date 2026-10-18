@@ -301,17 +301,24 @@
       border-radius:22px
     }
 
+    /* Phrase de vision visible dès l'entrée, sans repousser les outils du public */
     .visionFutureQuote{
-      max-width:760px;margin:12px auto 2px;padding:20px 14px;
-      border:1px solid rgba(246,196,83,.35);border-radius:22px;
-      background:rgba(3,18,13,.64);text-align:center
+      max-width:1030px;margin:4px auto 10px;padding:9px 12px;
+      border:1px solid rgba(246,196,83,.34);border-radius:15px;
+      background:rgba(3,18,13,.64);text-align:center;
+      display:flex;align-items:center;justify-content:center;gap:5px 12px;flex-wrap:wrap
     }
-    .visionFutureSymbols{color:#f6c453;font-size:22px;line-height:1.3}
+    .visionFutureSymbols{color:#f6c453;font-size:16px;line-height:1.25;white-space:nowrap}
     .visionFutureQuote p{
-      margin:9px auto 0;color:#fff;font-size:clamp(18px,3.6vw,28px);
-      font-weight:900;line-height:1.28
+      margin:0;color:#fff;font-size:clamp(13px,2vw,17px);
+      font-weight:850;line-height:1.3
     }
-    .visionFutureQuote .visionFutureGold{color:#f6c453;margin-top:5px}
+    .visionFutureQuote .visionFutureGold{color:#f6c453}
+    @media(max-width:520px){
+      .visionFutureQuote{margin:3px auto 8px;padding:9px 8px;gap:4px 8px}
+      .visionFutureQuote p{font-size:13px}
+      .visionFutureSymbols{font-size:14px}
+    }
 
     .digiyCardSection{
       margin-top:14px;padding:18px;border-radius:30px;
@@ -899,6 +906,12 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
       <button type="button" class="langBtn" data-lang="ar" aria-pressed="false">AR</button>
     </nav>
 
+      <div class="visionFutureQuote">
+        <div class="visionFutureSymbols" aria-hidden="true">🦅 ❤️ ∞</div>
+        <p data-i18n="visionFutureFirst">Nous n'attendons pas l'avenir.</p>
+        <p class="visionFutureGold" data-i18n="visionFutureSecond">Nous nous préparons à le rencontrer.</p>
+      </div>
+
     <!-- VISIBILITE V1 : porte publique prioritaire. Les liens réutilisent les routes métier existantes. -->
     <section class="digiyPublicFirstV1" id="digiyPublicFirstV1" aria-labelledby="digiyPublicQuestion">
       <span class="digiyPublicEyebrow" data-i18n="v1Eyebrow">DIGIYLYFE · LE PUBLIC D'ABORD</span>
@@ -1326,11 +1339,6 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
         loading="lazy"
         decoding="async"/>
       </picture>
-      <div class="visionFutureQuote">
-        <div class="visionFutureSymbols" aria-hidden="true">🦅 ❤️ ∞</div>
-        <p data-i18n="visionFutureFirst">Nous n'attendons pas l'avenir.</p>
-        <p class="visionFutureGold" data-i18n="visionFutureSecond">Nous nous préparons à le rencontrer.</p>
-      </div>
     </section>
 
       <div class="offer">
