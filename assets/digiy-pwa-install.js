@@ -21,6 +21,14 @@ if ('serviceWorker' in navigator) {
   var isIOS=/iPad|iPhone|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
   var isMobile=/Android|iPhone|iPad|iPod|Mobile/i.test(ua)||(navigator.maxTouchPoints>1&&/MacIntel/i.test(navigator.platform||''));
 
+  // Keep the desktop layout unchanged; make installation discoverable near the top on mobile.
+  if(isMobile){
+    var languageStrip=document.querySelector('.languageStrip');
+    if(languageStrip&&languageStrip.parentNode){
+      languageStrip.parentNode.insertBefore(band,languageStrip.nextSibling);
+    }
+  }
+
   var COPY={
     fr:['Installer DIGIYLYFE sur ce téléphone','Touchez la bande pour installer ou afficher les instructions.','Installation disponible : touchez la bande.','Sur iPhone : ouvrez cette page dans Safari → Partager ⬆︎ → Ajouter à l’écran d’accueil.','Ouvrez le menu du navigateur (⋮ ou Partager), puis choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil ».','DIGIYLYFE est déjà installé sur ce téléphone.','Installation annulée. Vous pouvez réessayer.','Impossible d’ouvrir l’installation automatique. Utilisez le menu du navigateur.'],
     en:['Install DIGIYLYFE on this phone','Tap the bar to install or show instructions.','Installation is ready: tap the bar.','On iPhone: open this page in Safari → Share ⬆︎ → Add to Home Screen.','Open the browser menu (⋮ or Share), then choose “Install app” or “Add to Home Screen”.','DIGIYLYFE is already installed on this phone.','Installation cancelled. You can try again.','Automatic installation could not open. Use the browser menu.'],
@@ -94,7 +102,16 @@ if ('serviceWorker' in navigator) {
       }catch(error){note.textContent=text(7);}
       return;
     }
-    note.textContent=isIOS?text(3):text(4);
+    var instruction=isIOS?text(3):text(4);
+    note.textContent=instruction;
+    // On iOS no browser installation prompt is exposed to this page.
+    // Explicitly show the instructions instead of changing a tiny caption unnoticed.
+    if(isIOS){
+      window.alert(instruction);
+    }else{
+      note.setAttribute('role','status');
+      note.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
   });
 
   document.querySelectorAll('.langBtn').forEach(function(b){b.addEventListener('click',function(){setTimeout(refreshCopy,0);});});
