@@ -24,7 +24,28 @@ function label(v){if(!v)return'';return TERRITORY_NAMES[v]||String(v).replace(/-
 function price(c,x){return EUROPE.has(c.territory)?x.priceEU:x.priceSN}
 function joinUrl(c){const u=new URL('https://digiylyfe.com/tarifs-adherents-1.html');u.searchParams.set('lang',c.lang);u.searchParams.set('territory',c.territory);if(c.local)u.searchParams.set('local',c.local);return u.toString()}
 function territoryUrl(c){const u=new URL('https://digiylyfe.com/territoire.html');u.searchParams.set('zone',c.territory);if(c.local)u.searchParams.set('local',c.local);u.searchParams.set('lang',c.lang);return u.toString()}
-function render(){const c=context(),x=T[c.lang]||T.fr,p=price(c,x);document.documentElement.lang=c.lang;document.documentElement.dir=c.lang==='ar'?'rtl':'ltr';document.title=x.title+' | DIGIYLYFE';document.querySelector('[data-title]').textContent=x.title;document.querySelector('[data-sub]').textContent=x.sub;document.querySelector('[data-context]').textContent='🧭 '+x.territory+' · '+label(c.territory)+(c.local?' · '+label(c.local):'');document.querySelector('[data-open]').textContent=x.open;document.querySelector('[data-lead]').textContent=x.lead;const grid=document.querySelector('[data-grid]');grid.innerHTML=x.items.map(it=>'<article class="place"><span class="badge">'+x.badge+'</span><div class="pt"><i>'+it[0]+'</i><strong>'+it[1]+'</strong></div><div class="chips">'+it[2].map(v=>'<span>'+v+'</span>').join('')+'</div><div class="meta">🪪 QR · '+p+' · DIGIYLYFE 0 %</div><a class="cta" href="'+joinUrl(c)+'">'+x.join+' · '+p+' →</a></article>').join('');const back=document.querySelector('[data-back]');back.href=territoryUrl(c);back.textContent=x.back;document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===c.lang));}
+
+const REAL_TEXT={
+fr:['PROFESSIONNELS · CONTACT DIRECT','Coiffure · Beauté · Soins capillaires','Appeler directement','Agrandir l’affiche et le QR'],
+en:['PROFESSIONALS · DIRECT CONTACT','Hair styling · Beauty · Hair care','Call directly','Enlarge poster and QR'],
+es:['PROFESIONALES · CONTACTO DIRECTO','Peluquería · Belleza · Cuidado capilar','Llamar directamente','Ampliar cartel y QR'],
+pt:['PROFISSIONAIS · CONTACTO DIRETO','Cabeleireiro · Beleza · Cuidados capilares','Ligar diretamente','Ampliar cartaz e QR'],
+de:['PROFIS · DIREKTKONTAKT','Friseur · Schönheit · Haarpflege','Direkt anrufen','Plakat und QR vergrößern'],
+it:['PROFESSIONISTI · CONTATTO DIRETTO','Parrucchiere · Bellezza · Cura dei capelli','Chiama direttamente','Ingrandisci locandina e QR'],
+nl:['PROFESSIONALS · DIRECT CONTACT','Kapper · Schoonheid · Haarverzorging','Direct bellen','Poster en QR vergroten'],
+ar:['مهنيون · تواصل مباشر','تصفيف الشعر · الجمال · العناية بالشعر','اتصل مباشرة','تكبير الملصق ورمز QR']
+};
+function renderReal(c){
+  const section=document.querySelector('[data-real-professionals]');
+  if(!section)return;
+  const local=c.local.toLowerCase().replace(/[ _]+/g,'-');
+  section.hidden=!(c.territory==='petite-cote'&&(!local||local==='saly'||local.startsWith('saly-')));
+  const t=REAL_TEXT[c.lang]||REAL_TEXT.fr;
+  ['[data-real-title]','[data-sly-description]','[data-sly-call]','[data-sly-enlarge]'].forEach((selector,i)=>{section.querySelector(selector).textContent=t[i]});
+  section.querySelector('[data-sly-poster]').setAttribute('aria-label',t[3]);
+}
+
+function render(){const c=context(),x=T[c.lang]||T.fr,p=price(c,x);renderReal(c);document.documentElement.lang=c.lang;document.documentElement.dir=c.lang==='ar'?'rtl':'ltr';document.title=x.title+' | DIGIYLYFE';document.querySelector('[data-title]').textContent=x.title;document.querySelector('[data-sub]').textContent=x.sub;document.querySelector('[data-context]').textContent='🧭 '+x.territory+' · '+label(c.territory)+(c.local?' · '+label(c.local):'');document.querySelector('[data-open]').textContent=x.open;document.querySelector('[data-lead]').textContent=x.lead;const grid=document.querySelector('[data-grid]');grid.innerHTML=x.items.map(it=>'<article class="place"><span class="badge">'+x.badge+'</span><div class="pt"><i>'+it[0]+'</i><strong>'+it[1]+'</strong></div><div class="chips">'+it[2].map(v=>'<span>'+v+'</span>').join('')+'</div><div class="meta">🪪 QR · '+p+' · DIGIYLYFE 0 %</div><a class="cta" href="'+joinUrl(c)+'">'+x.join+' · '+p+' →</a></article>').join('');const back=document.querySelector('[data-back]');back.href=territoryUrl(c);back.textContent=x.back;document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===c.lang));}
 function setLang(l){const u=new URL(location.href);u.searchParams.set('lang',l);history.replaceState(null,'',u);render()}
 function boot(){document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));render();window.DIGIY_BEAUTY_MASTER=Object.freeze({version:'20260829-v1',context});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
