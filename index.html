@@ -1401,6 +1401,7 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
 
       <div class="digiyCardActions">
         <a href="https://digiylyfe.com/carte/">📲 <span data-i18n="cardOpenBtn">Ouvrir la carte interactive</span></a>
+        <button type="button" id="digiyShareCard" style="cursor:pointer;border:1px solid rgba(246,196,83,.6);background:#f6c453;color:#062014;border-radius:12px;padding:12px 16px;font:inherit;font-weight:850;min-height:44px">↗️ Partager ma carte</button>
         <a href="https://digiylyfe.com/">🌍 DIGIYLYFE.COM</a>
       </div>
     </section>
@@ -1599,6 +1600,27 @@ window.DIGIY_FACADE_TWO_WORLDS_V1=true;
 <script src="/assets/digiy-mbaye-diouf-signature-v1.js?v=20260926-generic-v2" defer></script>
 <script src="/assets/digiy-helage-signature-v1.js?v=20260926-generic-v2" defer></script>
 
+
+<script>
+(function(){
+  'use strict';
+  var button=document.getElementById('digiyShareCard');
+  if(!button)return;
+  button.addEventListener('click',async function(){
+    var url='https://digiylyfe.com/carte/';
+    var data={title:'Carte de visite DIGIYLYFE',text:'Découvrez DIGIYLYFE — votre place dans le village numérique.',url:url};
+    if(navigator.share){
+      try{await navigator.share(data);return}catch(err){if(err && err.name==='AbortError')return}
+    }
+    try{
+      if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(url);alert('Lien de la carte copié. Collez-le dans WhatsApp, SMS ou email.');return}
+    }catch(err){}
+    var field=document.createElement('textarea');field.value=url;field.setAttribute('readonly','');field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();
+    var copied=false;try{copied=document.execCommand('copy')}catch(err){}field.remove();
+    if(copied)alert('Lien de la carte copié.');else window.prompt('Copiez le lien de votre carte :',url);
+  });
+})();
+</script>
 </body>
 </html>
 
