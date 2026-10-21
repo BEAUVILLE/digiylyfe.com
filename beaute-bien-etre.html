@@ -43,6 +43,8 @@
         <p data-sly-description>Coiffure · Beauté · Soins capillaires</p>
         <a href="tel:+221783064180"><span data-sly-call>Appeler directement</span>&nbsp;· <bdi>+221 78 306 41 80</bdi></a>
         <a href="https://bonne-affaire.digiylyfe.com/salon_by_sly_affiche_QR_corrige.png" target="_blank" rel="noopener noreferrer" data-sly-enlarge>Agrandir l’affiche et le QR</a>
+        <button type="button" id="slySharePoster" style="min-height:46px;border:0;border-radius:12px;padding:12px 16px;background:#facc15;color:#073f32;font:inherit;font-weight:900;cursor:pointer">↗️ Partager la carte</button>
+        <a href="https://bonne-affaire.digiylyfe.com/salon_by_sly_affiche_QR_corrige.png" download="Salon-by-Sly.png" data-sly-download>⬇️ Télécharger l’affiche</a>
       </div>
     </article>
   </section>
@@ -54,5 +56,22 @@
   <div class="doctrine">DIGIYLYFE publie la présence numérique du professionnel. Le professionnel garde son identité, ses prix, son paiement et sa relation client. 0 % commission DIGIYLYFE.</div>
 </main>
 <script src="/assets/digiy-beaute-bien-etre-master-v1.js?v=20261020-sly"></script>
+<script>
+(function(){
+  'use strict';
+  const btn=document.getElementById('slySharePoster');
+  if(!btn)return;
+  btn.addEventListener('click',async function(){
+    const url='https://bonne-affaire.digiylyfe.com/salon_by_sly_affiche_QR_corrige.png';
+    const message='Salon de coiffure by Sly · Saly, route de Ngaparou · +221 78 306 41 80';
+    if(navigator.share){
+      try{await navigator.share({title:'Salon by Sly',text:message,url});return}
+      catch(err){if(err && err.name==='AbortError')return}
+    }
+    try{if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(url);alert('Lien de la carte copié pour WhatsApp, SMS ou email.');return}}catch(err){}
+    window.prompt('Copiez le lien de la carte :',url);
+  });
+})();
+</script>
 </body>
 </html>
