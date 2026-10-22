@@ -14,6 +14,22 @@
 <section class="hero"><span class="kicker" id="kicker"></span><h1 id="h1"></h1><p id="lead"></p></section>
 <section class="freeEntry" id="carte-digitale"><div class="freeGrid"><div><span class="freeKicker" id="freeKicker"></span><h2 id="freeTitle"></h2><p id="freeText"></p></div><div class="freePrice"><strong>15 000 FCFA</strong><small id="freePriceLabel"></small></div></div><div class="freeBenefits"><span id="benefit1"></span><span id="benefit2"></span><span id="benefit3"></span><span id="benefit4"></span></div><div class="freeActions"><a class="cta primary" id="freeCta" href="/carte-gratuite.html?country=sn"></a><a class="cta secondary" href="https://digiylyfe.net/wp-content/uploads/2026/08/ChatGPT-Image-18-aout-2026-01_14_59-1.png" id="seeCard"></a></div></section>
 <section class="path"><strong id="pathTitle"></strong><span id="pathText"></span></section>
+<section id="offre-driver-fr" aria-label="Offre DIGIY DRIVER France" style="display:none;margin:14px 0;padding:20px;border:2px solid #2dd4bf88;border-radius:24px;background:#2dd4bf12">
+  <strong style="color:#ffe9a8">DIGIY DRIVER · FRANCE</strong>
+  <h2 style="margin:9px 0">45 € / mois · fiche chauffeur + logiciel inclus</h2>
+  <p style="line-height:1.5">Aucun frais supplémentaire de création de fiche pour l’adhérent DRIVER. Profil chauffeur personnalisé, accès au logiciel métier, QR et contact direct · 0 % de commission.</p>
+  <p style="line-height:1.5">Carte QR vendue seule : 15 € (paiement unique). Site professionnel personnalisé : sur devis.</p>
+  <p style="font-size:12px;color:#c5d3cc">Les tarifs de création de fiche indiqués plus bas concernent les autres offres professionnelles et ne s’appliquent pas à DIGIY DRIVER France.</p>
+</section>
+<script>
+(function(){
+  var box=document.getElementById('offre-driver-fr');
+  var buttons=document.querySelectorAll('[data-country]');
+  function sync(){var selected=document.querySelector('[data-country].active');box.style.display=selected&&selected.getAttribute('data-country')==='FR'?'block':'none';}
+  buttons.forEach(function(button){button.addEventListener('click',function(){setTimeout(sync,0);});});
+  sync();
+})();
+</script>
 <section class="cards">
 <article class="card required" id="fiche-pro"><span class="tag" id="sheet"></span><span class="eyebrow" id="sheetRequired"></span><p class="desc" id="sheetText"></p><div class="price" id="sheetPrice"></div><div class="period" id="sheetPeriod"></div><ul id="sheetItems"></ul><div class="ownership" id="sheetOwnership"></div><a class="cta primary proPay" href="/preparer-ma-carte.html?plan=adherent-19900&country=sn&lang=fr&flow=prevalidation-20260911" id="sheetCta">PRÉPARER MA FICHE →</a></article>
 <article class="card pro"><span class="tag" id="member"></span><span class="eyebrow" id="memberAfter"></span><p class="desc" id="memberText"></p><div class="price" id="memberPrice"></div><div class="period" id="memberPeriod"></div><ul id="memberItems"></ul><div class="proNote" id="memberNote"></div><a class="cta primary proPay" href="/preparer-ma-carte.html?plan=adherent-19900&country=sn&lang=fr&flow=prevalidation-20260911&v=20260923-email-v1" id="memberCta"></a></article>
