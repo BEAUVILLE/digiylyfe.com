@@ -38,6 +38,17 @@
     ar:{mini:'شبكة DIGIYLYFE',title:'نشاطك. استقلاليتك. شبكتك.',p1:'يحتفظ كل مهني بعملائه وجهات اتصاله ومدفوعاته واستقلاليته.',p2:'تُكمل DIGIYLYFE خدمات Google وBooking وYango وشبكات التواصل بحضور مباشر ودائم ومحلي.',p3:'اشتراك ثابت · عمولة 0٪ على كل بيع أو حجز. كلما زاد نشاطك، احتفظت بقيمة أكبر مما تصنعه.',p4:'الإقامة والسائق والمطعم والحرفي والتاجر والدليل والخدمات مترابطة: حاجة واحدة قد تؤدي إلى حاجة أخرى.',strong:'DIGIYLYFE لا تستحوذ على التجارة. بل تنظم الحركة بين الاحتياجات والمهنيين والمناطق.',promise:'أن تُرى. أن تُفهم. أن يتم العثور عليك. أن يتم التواصل معك.'}
   };
 
+  var PAID_CARD_LABELS={
+    fr:['Votre carte de visite DIGIY · {p} (paiement unique).','Carte DIGIY · {p}, paiement unique.','DEMANDER MA CARTE DIGIY →'],
+    en:['DIGIY business card · {p} (one-time payment).','DIGIY card · {p}, one-time payment.','REQUEST MY DIGIY CARD →'],
+    es:['Tarjeta DIGIY · {p} (pago único).','Tarjeta DIGIY · {p}, pago único.','SOLICITAR MI TARJETA DIGIY →'],
+    pt:['Cartão DIGIY · {p} (pagamento único).','Cartão DIGIY · {p}, pagamento único.','PEDIR O MEU CARTÃO DIGIY →'],
+    it:['Carta DIGIY · {p} (pagamento unico).','Carta DIGIY · {p}, pagamento unico.','RICHIEDI LA MIA CARTA DIGIY →'],
+    de:['DIGIY-Karte · {p} (einmalige Zahlung).','DIGIY-Karte · {p}, einmalige Zahlung.','DIGIY-KARTE ANFORDERN →'],
+    nl:['DIGIY-kaart · {p} (eenmalige betaling).','DIGIY-kaart · {p}, eenmalige betaling.','DIGIY-KAART AANVRAGEN →'],
+    ar:['بطاقة DIGIY · {p} (دفعة واحدة).','بطاقة DIGIY · {p} دفعة واحدة.','اطلب بطاقة DIGIY ←']
+  };
+  function cardUnitPrice(){var q=new URLSearchParams(location.search),k=(q.get('country')||'sn').toLowerCase();return k==='fr'?'20 €':k==='us'?'20 $':'15 000 FCFA';}
   function lang(){
     var q='';try{q=(new URLSearchParams(location.search).get('lang')||'').slice(0,2).toLowerCase()}catch(e){}
     var h=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
@@ -63,6 +74,7 @@
   }
   function render(box,mode){
     var l=lang(),t=COPY[l]||COPY.fr,loc=mode==='loc';
+    var paid=PAID_CARD_LABELS[l]||PAID_CARD_LABELS.fr,p=cardUnitPrice();t.homeTitle=paid[0].replace('{p}',p);t.locTitle=paid[1].replace('{p}',p);t.locMini='CARTE DIGIY · '+p;t.cta=paid[2];
     box.dir=l==='ar'?'rtl':'ltr';
     box.innerHTML='<span class="freeMini"></span><h2></h2><p></p><a class="freeCta"></a>';
     box.querySelector('.freeMini').textContent=loc?t.locMini:t.mini;
