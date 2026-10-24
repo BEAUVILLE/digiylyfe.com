@@ -51,6 +51,8 @@
   function loadRuntime(){
     return fetch(RUNTIME_URL,{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('runtime unavailable');return r.json();}).then(function(x){runtime=x;apply();return x;}).catch(function(){return null;});
   }
+  var PAID_CARD_TEXT={"fr":"Carte DIGIY : France 20 €, Sénégal 15 000 FCFA, USA 20 $, paiement unique. L’adhésion active DIGIY PRO.","en":"DIGIY card: France €20, Senegal 15,000 FCFA, USA $20, one-time purchase. Membership activates DIGIY PRO.","es":"Tarjeta DIGIY: Francia 20 €, Senegal 15 000 FCFA, EE. UU. 20 $, pago único. La adhesión activa DIGIY PRO.","pt":"Cartão DIGIY: França 20 €, Senegal 15 000 FCFA, EUA 20 $, pagamento único. A adesão ativa DIGIY PRO.","it":"Carta DIGIY: Francia 20 €, Senegal 15 000 FCFA, USA 20 $, pagamento unico. L’adesione attiva DIGIY PRO.","de":"DIGIY-Karte: Frankreich 20 €, Senegal 15.000 FCFA, USA 20 $, einmalige Zahlung. Mitgliedschaft aktiviert DIGIY PRO.","nl":"DIGIY-kaart: Frankrijk €20, Senegal 15.000 FCFA, VS $20, eenmalige betaling. Lidmaatschap activeert DIGIY PRO.","ar":"بطاقة DIGIY: فرنسا 20 €، السنغال 15000 فرنك إفريقي، أمريكا 20 $، دفعة واحدة. العضوية تفعّل DIGIY PRO."};
+  Object.keys(COPY).forEach(function(k){COPY[k].text=PAID_CARD_TEXT[k]||PAID_CARD_TEXT.fr;});
   function lang(){var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return COPY[l]?l:'fr';}
   function country(){
     var c='';
