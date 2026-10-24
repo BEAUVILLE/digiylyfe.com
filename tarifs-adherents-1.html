@@ -22,7 +22,7 @@ body.digiy-driver-fr-context .freeEntry,body.digiy-driver-fr-context .path,body.
   <p id="driverFrStandalone" style="line-height:1.5">Carte QR achetée seule : 15 € (paiement unique). Site professionnel entièrement sur mesure : sur devis.</p>
   <p id="driverFrException" style="font-size:12px;color:#c5d3cc">Les frais de création de fiche des autres métiers ne concernent pas DIGIY DRIVER France.</p>
   <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
-    <a class="cta primary" href="sms:+221771342889" id="driverFrContact">Demander mon adhésion DRIVER France →</a>
+    <a class="cta primary" href="/preparer-ma-carte.html?country=fr&amp;module=driver&amp;plan=driver-fr-45&amp;lang=fr" id="driverFrContact">Demander mon adhésion DRIVER France →</a>
     <a class="cta secondary" href="/tarifs-adherents-1.html?country=fr&amp;module=driver" id="driverFrDetailsLink">Voir uniquement l’offre DRIVER France</a>
     <a class="cta secondary" href="/tarifs-adherents-1.html?country=fr" id="driverFrOtherLink" hidden>Voir les autres offres France</a>
   </div>
@@ -114,6 +114,7 @@ const drvFocused=drvFrance&&drvMode;
 const drvBox=document.getElementById('offre-driver-fr');drvBox.hidden=!drvFrance;
 document.body.classList.toggle('digiy-driver-fr-context',drvFocused);
 document.getElementById('driverFrDetailsLink').hidden=drvFocused;
+const driverFrHref='/preparer-ma-carte.html?country=fr&module=driver&plan=driver-fr-45&lang='+encodeURIComponent(lang());document.getElementById('driverFrContact').href=driverFrHref;
 document.getElementById('driverFrOtherLink').hidden=!drvFocused;
 if(drvFrance){const dt=DRIVER_FR_T[lang()]||DRIVER_FR_T.fr;
 [['driverFrPrice','heading'],['driverFrDetails','details'],['driverFrStandalone','standalone'],['driverFrException','exception'],['driverFrContact','contact'],['driverFrDetailsLink','more'],['driverFrOtherLink','other'],['driverFrNoPayment','payment']].forEach(([id,key])=>{document.getElementById(id).textContent=dt[key]});
