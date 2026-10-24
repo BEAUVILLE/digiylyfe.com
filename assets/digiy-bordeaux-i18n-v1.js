@@ -12,6 +12,36 @@
   var isBordeauxPage=/\/bordeaux\.html$/i.test(path);
   var isBordeauxJoin=/\/adhesion-bordeaux\.html$/i.test(path);
   var isBordeauxDemo=/\/demo-bordeaux\.html$/i.test(path);
+  // DRIVER France Bordeaux uses a dedicated monthly plan, unlike the general France offer.
+  // Keep the shared legacy tariff tables untouched for non-DRIVER professions.
+  var DRIVER_BORDEAUX={
+    fr:{price:'45 € / MOIS',included:'CARTE QR + FICHE CHAUFFEUR + LOGICIEL INCLUS',heading:'DIGIY DRIVER · BORDEAUX',lead:'45 € par mois. Carte QR, fiche chauffeur personnalisée et logiciel inclus. Aucun frais de création de fiche.',steps:'Remplir la fiche de renseignements, envoyer volontairement le message WhatsApp, puis valider la carte et la fiche réalisées avec nos Masters.',cta:'REMPLIR MA FICHE DRIVER →',total:'DRIVER FRANCE · 45 € / MOIS · AUCUN FRAIS DE FICHE'},
+    en:{price:'€45 / MONTH',included:'QR CARD + DRIVER PROFILE + SOFTWARE INCLUDED',heading:'DIGIY DRIVER · BORDEAUX',lead:'€45 per month. QR card, driver profile and software included. No profile setup fee.',steps:'Complete the driver details, send your WhatsApp message yourself and approve the QR card and profile created with our Masters.',cta:'COMPLETE MY DRIVER DETAILS →',total:'DRIVER FRANCE · €45 / MONTH · NO SETUP FEE'},
+    es:{price:'45 € / MES',included:'TARJETA QR + FICHA + SOFTWARE INCLUIDOS',heading:'DIGIY DRIVER · BURDEOS',lead:'45 € al mes. Tarjeta QR, ficha y software incluidos, sin gastos de creación.',steps:'Complete los datos y envíe usted mismo el mensaje WhatsApp; confirme la tarjeta y la ficha después.',cta:'COMPLETAR DATOS DRIVER →',total:'DRIVER FRANCIA · 45 €/MES · SIN GASTOS'},
+    pt:{price:'45 € / MÊS',included:'CARTÃO QR + PERFIL + SOFTWARE INCLUÍDOS',heading:'DIGIY DRIVER · BORDÉUS',lead:'45 € por mês. Cartão QR, perfil e software incluídos, sem taxa de criação.',steps:'Preencha os dados e envie a mensagem WhatsApp voluntariamente; aprove depois o cartão e perfil.',cta:'PREENCHER DADOS DRIVER →',total:'DRIVER FRANÇA · 45 €/MÊS · SEM TAXA'},
+    it:{price:'45 € / MESE',included:'CARTA QR + PROFILO + SOFTWARE INCLUSI',heading:'DIGIY DRIVER · BORDEAUX',lead:'45 € al mese. Carta QR, profilo e software inclusi senza costo di creazione.',steps:'Compila i dati, invia tu il messaggio WhatsApp e approva carta e profilo prima dell’attivazione.',cta:'COMPILA DATI DRIVER →',total:'DRIVER FRANCIA · 45 €/MESE · SENZA COSTI'},
+    de:{price:'45 € / MONAT',included:'QR-KARTE + FAHRERPROFIL + SOFTWARE INKLUSIVE',heading:'DIGIY DRIVER · BORDEAUX',lead:'45 € pro Monat. QR-Karte, Fahrerprofil und Software inklusive, keine Einrichtungsgebühr.',steps:'Füllen Sie die Daten aus, senden Sie die WhatsApp-Nachricht selbst und genehmigen Sie Karte und Profil.',cta:'DRIVER-DATEN AUSFÜLLEN →',total:'DRIVER FRANKREICH · 45 €/MONAT · KEINE GEBÜHR'},
+    nl:{price:'€45 / MAAND',included:'QR-KAART + PROFIEL + SOFTWARE INBEGREPEN',heading:'DIGIY DRIVER · BORDEAUX',lead:'€45 per maand. QR-kaart, chauffeursprofiel en software inbegrepen, zonder aanmaakkosten.',steps:'Vul uw gegevens in, verstuur zelf het WhatsApp-bericht en keur daarna kaart en profiel goed.',cta:'DRIVER-GEGEVENS INVULLEN →',total:'DRIVER FRANKRIJK · €45/MAAND · GEEN KOSTEN'},
+    ar:{price:'45 € شهريًا',included:'بطاقة QR وملف السائق والبرنامج مشمولة',heading:'DIGIY DRIVER · بوردو',lead:'45 € شهريًا، بطاقة QR والملف والبرنامج مشمولة دون رسوم إنشاء.',steps:'أكمل البيانات وأرسل رسالة واتساب بنفسك ثم وافق على البطاقة والملف.',cta:'أكمل بيانات DRIVER ←',total:'DRIVER فرنسا · 45 € شهريًا · دون رسوم'}
+  };
+  function driverMode(){return (isBordeauxPage||isBordeauxJoin||isBordeauxDemo) && (new URLSearchParams(location.search).get('need')||'').toLowerCase()==='transport';}
+  function driverCopy(l){return DRIVER_BORDEAUX[l]||DRIVER_BORDEAUX.fr;}
+  function driverBordeauxJoin(l){
+    var s=new URLSearchParams(location.search);
+    var u=new URL('/adhesion-bordeaux.html',location.origin);
+    u.searchParams.set('need','transport');
+    var loc=s.get('local');if(loc)u.searchParams.set('local',loc);
+    u.searchParams.set('lang',l);
+    return u.pathname+u.search;
+  }
+  function driverFormLink(l){
+    var u=new URL('/driver-france-renseignements.html',location.origin);
+    u.searchParams.set('ville','Bordeaux');
+    u.searchParams.set('source','bordeaux-transport');
+    u.searchParams.set('lang',l);
+    var s=new URLSearchParams(location.search),z=s.get('local');if(z)u.searchParams.set('local',z);
+    return u.pathname+u.search;
+  }
 
   var prices={fr:'700 € · 1re année',en:'€700 · first year',es:'700 € · primer año',pt:'700 € · 1.º ano',it:'700 € · 1° anno',de:'700 € · 1. Jahr',nl:'€700 · 1e jaar',ar:'700 € · السنة الأولى'};
   var creation={fr:'À PARTIR DE 250 €',en:'FROM €250',es:'DESDE 250 €',pt:'A PARTIR DE 250 €',it:'DA 250 €',de:'AB 250 €',nl:'VANAF €250',ar:'ابتداءً من 250 €'};
@@ -58,7 +88,12 @@
     var price=document.querySelector('.price');if(!price)return;
     var box=document.getElementById('digiyBordeauxDemoTotal');
     if(!box){box=document.createElement('div');box.id='digiyBordeauxDemoTotal';box.className='digiyBordeauxTotal';price.insertAdjacentElement('afterend',box);}
-    box.innerHTML='<strong>'+total[l][0]+'</strong><span>'+total[l][1]+'</span>';
+    if(driverMode()){
+      var dc=driverCopy(l);
+      box.innerHTML='<strong>'+dc.total+'</strong><span>'+dc.included+' · 0 % commission. '+dc.steps+'</span>';
+    } else {
+      box.innerHTML='<strong>'+total[l][0]+'</strong><span>'+total[l][1]+'</span>';
+    }
   }
   function ensureFlow(){
     if(!isBordeauxPage)return;
@@ -69,31 +104,42 @@
       host=document.createElement('section');host.id='digiyBordeauxProFlow';host.className='digiyBordeauxFlow';hero.insertAdjacentElement('afterend',host);
     }
     var l=lang(),x=flow[l];
+    if(driverMode()){
+      var dc=driverCopy(l);
+      host.innerHTML='<h2>'+dc.heading+'</h2><p>'+dc.lead+'</p><div class="digiyBordeauxSteps"><article class="digiyBordeauxStep"><b>'+dc.price+'</b><strong>'+dc.included+'</strong><small>0 % commission</small></article><article class="digiyBordeauxStep"><b>1</b><strong>'+dc.cta+'</strong><small>'+dc.steps+'</small></article></div><a class="btn primary" href="'+driverBordeauxJoin(l)+'">'+dc.cta+'</a>';
+      return;
+    }
     host.innerHTML='<h2>'+x[0]+'</h2><p>'+x[1]+'</p><div class="digiyBordeauxSteps"><article class="digiyBordeauxStep"><b>0 €</b><strong>'+x[2]+'</strong><small>'+x[3]+'</small></article><article class="digiyBordeauxStep"><b>'+creation[l]+'</b><strong>'+x[4]+'</strong><small>'+x[5]+'</small></article><article class="digiyBordeauxStep"><b>'+prices[l]+'</b><strong>'+x[6]+'</strong><small>'+x[7]+'</small></article></div>'+totalHtml(l)+'<a class="btn primary" href="'+prepareHref(l)+'">'+x[8]+'</a>';
   }
   function patchDom(){
     patchAnnualPricing();
-    var l=lang();
+    var l=lang(),driver=driverMode(),dc=driverCopy(l);
     if(isBordeauxPage){
-      var hp=document.getElementById('heroPrice');if(hp)hp.textContent=prices[l];
-      var pt=document.getElementById('priceTop');if(pt)pt.textContent='DIGIY PRO · BORDEAUX';
-      var pl=document.getElementById('priceLead');if(pl)pl.textContent=(l==='fr'?'Fiche professionnelle à partir de 250 € + adhésion DIGIY PRO':'Professional profile from €250 + DIGIY PRO membership');
-      var fb=document.getElementById('finalBtn');if(fb){fb.textContent=finalCta[l];fb.href=prepareHref(l);}
-      var jb=document.getElementById('joinBtn');if(jb)jb.href=prepareHref(l);
-      var md=document.querySelector('meta[name="description"]');if(md)md.content='DIGIY BORDEAUX : carte DIGIY gratuite, fiche professionnelle à partir de 250 €, DIGIY PRO 450 € par an, soit un minimum de 700 € la première année, contact direct et 0 % commission.';
+      var hp=document.getElementById('heroPrice');if(hp)hp.textContent=driver?dc.price:prices[l];
+      var pt=document.getElementById('priceTop');if(pt)pt.textContent=driver?dc.heading:'DIGIY PRO · BORDEAUX';
+      var pl=document.getElementById('priceLead');if(pl)pl.textContent=driver?dc.included:(l==='fr'?'Fiche professionnelle à partir de 250 € + adhésion DIGIY PRO':'Professional profile from €250 + DIGIY PRO membership');
+      var fb=document.getElementById('finalBtn');if(fb){fb.textContent=driver?dc.cta:finalCta[l];fb.href=driver?driverBordeauxJoin(l):prepareHref(l);}
+      var jb=document.getElementById('joinBtn');if(jb)jb.href=driver?driverBordeauxJoin(l):prepareHref(l);
+      var md=document.querySelector('meta[name="description"]');if(md)md.content=driver?'DIGIY DRIVER France Bordeaux : 45 € par mois, fiche chauffeur, carte QR et logiciel inclus. Aucuns frais de fiche.':'DIGIY BORDEAUX : carte DIGIY gratuite, fiche professionnelle à partir de 250 €, DIGIY PRO 450 € par an, soit un minimum de 700 € la première année, contact direct et 0 % commission.';
       ensureFlow();
     }
     if(isBordeauxJoin){
-      var p=document.querySelector('.price strong');if(p)p.textContent=prices[l];
-      var m=document.getElementById('month');if(m)m.textContent=total[l][1];
-      var pay=document.getElementById('payBtn');if(pay)pay.href='/tarifs-adherents-1.html?country=fr#paiement';
+      var p=document.querySelector('.price strong');if(p)p.textContent=driver?dc.price:prices[l];
+      var m=document.getElementById('month');if(m)m.textContent=driver?(dc.included+' · 0 % commission'):total[l][1];
+      var pay=document.getElementById('payBtn');if(pay&& !driver)pay.href='/tarifs-adherents-1.html?country=fr#paiement';
+      if(driver){
+        var jt=document.getElementById('title');if(jt)jt.textContent=dc.heading;
+        var jf=document.getElementById('doneBtn');if(jf)jf.href=driverFormLink(l);
+      }
     }
     if(isBordeauxDemo){
-      var dp=document.querySelector('.price strong');if(dp)dp.textContent=creation[l];
-      var dm=document.getElementById('month');if(dm)dm.textContent=demoAnnualLabel[l];
+      var dp=document.querySelector('.price strong');if(dp)dp.textContent=driver?dc.price:creation[l];
+      var dm=document.getElementById('month');if(dm)dm.textContent=driver?(dc.included+' · 0 % commission'):demoAnnualLabel[l];
+      var notice=document.querySelector('.sheetNotice');if(notice)notice.textContent=driver?dc.total:demoAnnualLabel[l];
       ensureDemoTotal(l);
     }
   }
+  window.DIGIY_BORDEAUX_REFRESH_PRICING=patchDom;
   function bindDomPatch(){
     patchDom();
     document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('[data-l]'))setTimeout(patchDom,0);},true);
