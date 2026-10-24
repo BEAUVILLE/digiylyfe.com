@@ -51,7 +51,7 @@
     var lead=document.getElementById('priceLead');if(lead)lead.textContent=(l==='fr'?'Fiche professionnelle à partir de 250 € + adhésion DIGIY PRO':'Professional profile from €250 + DIGIY PRO membership');
     var f=document.getElementById('finalBtn');if(f)f.textContent=finalCta[l];
     ensureTotal(l);
-    var md=document.querySelector('meta[name="description"]');if(md)md.content='DIGIY Vallée de la Dordogne : Sarlat zone pilote, carte gratuite, fiche professionnelle à partir de 250 €, DIGIY PRO 450 € par an, soit un minimum de 700 € la première année, contact direct et 0 % commission.';
+    var md=document.querySelector('meta[name="description"]');if(md)md.content='DIGIY Vallée de la Dordogne : Sarlat zone pilote, carte DIGIY à 20 € en achat séparé, fiche professionnelle à partir de 250 €, DIGIY PRO 450 € par an, soit un minimum de 700 € la première année, contact direct et 0 % commission.';
   }
   function bind(){
     patchDom();
