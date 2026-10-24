@@ -75,6 +75,8 @@
     ar:['ادخل مجانًا. انتقل إلى PRO عبر ملفك المهني.','تتبع بوردو نفس نموذج فرنسا: البطاقة تفتح الشبكة، والملف هو نقطة الدخول المهنية، وتفعيله يبدأ عضوية DIGIY PRO.','بطاقة DIGIY','هويتك ومهنتك وبوردو وحيّك واتصالك المباشر داخل DIGIYLYFE.','الملف المهني','إنشاء وتخصيص ملفك المهني.','DIGIY PRO / السنة','دخول مالك آمن ووظائف مهنية واتصال مباشر و0٪ عمولة. شهران إضافيان عند أول عضوية.','حضّر ملفي المهني ←']
   };
 
+  var BORDEAUX_PAID_CARD={"fr":["La carte de visite DIGIY coûte 20 € (paiement unique). Passez ensuite en PRO si besoin.","La carte à 20 € est un service indépendant, sans obligation d’adhésion. La formule DRIVER inclut sa carte."],"en":["The DIGIY business card costs €20 (one-time payment). Upgrade to PRO if needed.","The €20 card is a separate service; DRIVER membership includes its card."],"es":["La tarjeta DIGIY cuesta 20 € (pago único). PRO es opcional.","La tarjeta es independiente; DRIVER incluye su tarjeta."],"pt":["O cartão DIGIY custa 20 € (pagamento único). PRO é opcional.","O cartão é independente; DRIVER inclui o cartão."],"it":["La carta DIGIY costa 20 € (pagamento unico). PRO è facoltativo.","La carta è indipendente; DRIVER include la carta."],"de":["DIGIY-Karte kostet 20 € (einmalig). PRO ist optional.","Die Karte ist separat erhältlich; bei DRIVER ist sie enthalten."],"nl":["DIGIY-kaart kost €20 (eenmalig). PRO is optioneel.","De kaart is los verkrijgbaar; bij DRIVER is ze inbegrepen."],"ar":["بطاقة DIGIY بسعر 20 € دفعة واحدة، وPRO اختياري.","البطاقة خدمة منفصلة، وهي مشمولة في DRIVER."]};
+  Object.keys(flow).forEach(function(l){var d=BORDEAUX_PAID_CARD[l]||BORDEAUX_PAID_CARD.fr;flow[l][0]=d[0];flow[l][1]=d[1];});
   function lang(){var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return prices[l]?l:'fr';}
   function prepareHref(l){return '/preparer-ma-carte.html?plan=adherent-19900&country=fr&lang='+l+'&flow=prevalidation-20260911';}
   function patchAnnualPricing(){
@@ -109,7 +111,7 @@
       host.innerHTML='<h2>'+dc.heading+'</h2><p>'+dc.lead+'</p><div class="digiyBordeauxSteps"><article class="digiyBordeauxStep"><b>'+dc.price+'</b><strong>'+dc.included+'</strong><small>0 % commission</small></article><article class="digiyBordeauxStep"><b>1</b><strong>'+dc.cta+'</strong><small>'+dc.steps+'</small></article></div><a class="btn primary" href="'+driverBordeauxJoin(l)+'">'+dc.cta+'</a>';
       return;
     }
-    host.innerHTML='<h2>'+x[0]+'</h2><p>'+x[1]+'</p><div class="digiyBordeauxSteps"><article class="digiyBordeauxStep"><b>0 €</b><strong>'+x[2]+'</strong><small>'+x[3]+'</small></article><article class="digiyBordeauxStep"><b>'+creation[l]+'</b><strong>'+x[4]+'</strong><small>'+x[5]+'</small></article><article class="digiyBordeauxStep"><b>'+prices[l]+'</b><strong>'+x[6]+'</strong><small>'+x[7]+'</small></article></div>'+totalHtml(l)+'<a class="btn primary" href="'+prepareHref(l)+'">'+x[8]+'</a>';
+    host.innerHTML='<h2>'+x[0]+'</h2><p>'+x[1]+'</p><div class="digiyBordeauxSteps"><article class="digiyBordeauxStep"><b>20 €</b><strong>'+x[2]+'</strong><small>'+x[3]+'</small></article><article class="digiyBordeauxStep"><b>'+creation[l]+'</b><strong>'+x[4]+'</strong><small>'+x[5]+'</small></article><article class="digiyBordeauxStep"><b>'+prices[l]+'</b><strong>'+x[6]+'</strong><small>'+x[7]+'</small></article></div>'+totalHtml(l)+'<a class="btn primary" href="'+prepareHref(l)+'">'+x[8]+'</a>';
   }
   function patchDom(){
     patchAnnualPricing();
