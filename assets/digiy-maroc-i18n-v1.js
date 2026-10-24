@@ -62,6 +62,14 @@ formMetaTitle:'DIGIY المغرب — احصل على بطاقتك المهني�
 };
 function getLang(){var p;try{p=(new URLSearchParams(location.search)).get('lang');}catch(_){};if(L.indexOf(p)>=0)return p;try{var s=localStorage.getItem('digiy_lang');if(L.indexOf(s)>=0)return s;}catch(_){}return 'fr';}
 var lang=getLang(),t=T[lang]||T.fr;
+var VITRINE_PENDING={"fr": ["DEMANDER MA CARTE DIGIY →", "Carte DIGIY Maroc : tarif à confirmer."], "en": ["REQUEST MY DIGIY CARD →", "DIGIY Morocco card: price to be confirmed."], "es": ["SOLICITAR MI TARJETA DIGIY →", "Tarjeta DIGIY Marruecos: precio por confirmar."], "pt": ["PEDIR O MEU CARTÃO DIGIY →", "Cartão DIGIY Marrocos: preço a confirmar."], "it": ["RICHIEDI LA MIA CARTA DIGIY →", "Carta DIGIY Marocco: prezzo da confermare."], "de": ["DIGIY-KARTE ANFORDERN →", "DIGIY-Karte Marokko: Preis noch zu bestätigen."], "nl": ["MIJN DIGIY-KAART AANVRAGEN →", "DIGIY-kaart Marokko: prijs nog te bevestigen."], "ar": ["طلب بطاقة DIGIY ←", "بطاقة DIGIY المغرب: السعر بانتظار التأكيد."]};
+if(/\/(maroc|casablanca|marrakech)\.html$/i.test(location.pathname)){
+ var v=VITRINE_PENDING[lang]||VITRINE_PENDING.fr;
+ t=Object.assign({},t);
+ t.freeCard=v[0];
+ ['maRule','caRule','mrRule','maLead','maPath','maMetaDesc','caMetaDesc','mrMetaDesc','caLead','mrLead','maEntryTitle'].forEach(function(k){t[k]=v[1];});
+}
+
 try{localStorage.setItem('digiy_lang',lang);}catch(_){}
 document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
 function apply(){

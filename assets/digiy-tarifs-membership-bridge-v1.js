@@ -7,14 +7,14 @@
   if(!/\/tarifs-adherents-1\.html$/i.test(p))return;
 
   var COPY={
-    fr:{free:'CARTE DIGIY · GRATUITE',label:'ADHÉSION ÉCOSYSTÈME',SN:'19 900 FCFA / MOIS',FR:'450 € / AN',US:'$29 / MOIS',note:'La carte est gratuite. L’adhésion active sa présence publique dans les territoires, catégories et recherches DIGIYLYFE.'},
-    en:{free:'DIGIY CARD · FREE',label:'ECOSYSTEM MEMBERSHIP',SN:'19,900 FCFA / MONTH',FR:'€450 / YEAR',US:'$29 / MONTH',note:'The card is free. Membership activates its public presence across DIGIYLYFE territories, categories and searches.'},
-    es:{free:'TARJETA DIGIY · GRATUITA',label:'ADHESIÓN AL ECOSISTEMA',SN:'19 900 FCFA / MES',FR:'450 € / AÑO',US:'$29 / MES',note:'La tarjeta es gratuita. La adhesión activa su presencia pública en territorios, categorías y búsquedas DIGIYLYFE.'},
-    pt:{free:'CARTÃO DIGIY · GRATUITO',label:'ADESÃO AO ECOSSISTEMA',SN:'19 900 FCFA / MÊS',FR:'450 € / ANO',US:'$29 / MÊS',note:'O cartão é gratuito. A adesão ativa a sua presença pública nos territórios, categorias e pesquisas DIGIYLYFE.'},
-    it:{free:'CARTA DIGIY · GRATUITA',label:'ADESIONE ALL’ECOSISTEMA',SN:'19 900 FCFA / MESE',FR:'450 € / ANNO',US:'$29 / MESE',note:'La carta è gratuita. L’adesione attiva la presenza pubblica nei territori, categorie e ricerche DIGIYLYFE.'},
-    de:{free:'DIGIY-KARTE · KOSTENLOS',label:'ÖKOSYSTEM-MITGLIEDSCHAFT',SN:'19.900 FCFA / MONAT',FR:'450 € / JAHR',US:'$29 / MONAT',note:'Die Karte ist kostenlos. Die Mitgliedschaft aktiviert die öffentliche Präsenz in DIGIYLYFE-Gebieten, Kategorien und Suchen.'},
-    nl:{free:'DIGIY-KAART · GRATIS',label:'ECOSYSTEEMLIDMAATSCHAP',SN:'19.900 FCFA / MAAND',FR:'€450 / JAAR',US:'$29 / MAAND',note:'De kaart is gratis. Het lidmaatschap activeert de publieke aanwezigheid in DIGIYLYFE-gebieden, categorieën en zoekopdrachten.'},
-    ar:{free:'بطاقة DIGIY · مجانية',label:'عضوية المنظومة',SN:'19 900 FCFA / شهر',FR:'450 € / سنة',US:'$29 / شهر',note:'البطاقة مجانية. العضوية تفعّل الظهور العام في مناطق وفئات وعمليات بحث DIGIYLYFE.'}
+    fr:{free:"Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique.",label:'ADHÉSION ÉCOSYSTÈME',SN:'19 900 FCFA / MOIS',FR:'450 € / AN',US:'$29 / MOIS',note:"Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique."},
+    en:{free:"Standalone card · France: €20 · Senegal: 15,000 FCFA · USA: $20 · one-time payment.",label:'ECOSYSTEM MEMBERSHIP',SN:'19,900 FCFA / MONTH',FR:'€450 / YEAR',US:'$29 / MONTH',note:"Standalone card · France: €20 · Senegal: 15,000 FCFA · USA: $20 · one-time payment."},
+    es:{free:"Tarjeta sola · Francia: 20 € · Senegal: 15 000 FCFA · EE. UU.: 20 $ · pago único.",label:'ADHESIÓN AL ECOSISTEMA',SN:'19 900 FCFA / MES',FR:'450 € / AÑO',US:'$29 / MES',note:"Tarjeta sola · Francia: 20 € · Senegal: 15 000 FCFA · EE. UU.: 20 $ · pago único."},
+    pt:{free:"Cartão avulso · França: 20 € · Senegal: 15 000 FCFA · EUA: 20 $ · pagamento único.",label:'ADESÃO AO ECOSSISTEMA',SN:'19 900 FCFA / MÊS',FR:'450 € / ANO',US:'$29 / MÊS',note:"Cartão avulso · França: 20 € · Senegal: 15 000 FCFA · EUA: 20 $ · pagamento único."},
+    it:{free:"Carta singola · Francia: 20 € · Senegal: 15 000 FCFA · USA: 20 $ · una tantum.",label:'ADESIONE ALL’ECOSISTEMA',SN:'19 900 FCFA / MESE',FR:'450 € / ANNO',US:'$29 / MESE',note:"Carta singola · Francia: 20 € · Senegal: 15 000 FCFA · USA: 20 $ · una tantum."},
+    de:{free:"Einzelne Karte · Frankreich: 20 € · Senegal: 15.000 FCFA · USA: 20 $ · einmalig.",label:'ÖKOSYSTEM-MITGLIEDSCHAFT',SN:'19.900 FCFA / MONAT',FR:'450 € / JAHR',US:'$29 / MONAT',note:"Einzelne Karte · Frankreich: 20 € · Senegal: 15.000 FCFA · USA: 20 $ · einmalig."},
+    nl:{free:"Losse kaart · Frankrijk: €20 · Senegal: 15.000 FCFA · VS: $20 · eenmalig.",label:'ECOSYSTEEMLIDMAATSCHAP',SN:'19.900 FCFA / MAAND',FR:'€450 / JAAR',US:'$29 / MAAND',note:"Losse kaart · Frankrijk: €20 · Senegal: 15.000 FCFA · VS: $20 · eenmalig."},
+    ar:{free:"بطاقة منفصلة · فرنسا: 20 € · السنغال: 15 000 FCFA · أمريكا: 20 $ · دفعة واحدة.",label:'عضوية المنظومة',SN:'19 900 FCFA / شهر',FR:'450 € / سنة',US:'$29 / شهر',note:"بطاقة منفصلة · فرنسا: 20 € · السنغال: 15 000 FCFA · أمريكا: 20 $ · دفعة واحدة."}
   };
 
   function lang(){var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return COPY[l]?l:'fr';}
