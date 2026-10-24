@@ -39,7 +39,7 @@
     u.searchParams.set('ville','Bordeaux');
     u.searchParams.set('source','bordeaux-transport');
     u.searchParams.set('lang',l);
-    var s=new URLSearchParams(location.search),z=s.get('local');if(z)u.searchParams.set('local',z);
+    var s=new URLSearchParams(location.search),z=s.get('local');if(z){u.searchParams.set('local',z);var places=window.DIGIY_BORDEAUX_ZONES||{};u.searchParams.set('quartier',places[z]||z.replace(/-/g,' '));}
     return u.pathname+u.search;
   }
 
