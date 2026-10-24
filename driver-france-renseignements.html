@@ -83,7 +83,19 @@ button:focus{outline:3px solid var(--gold);outline-offset:3px}.note{text-align:c
 var form=document.getElementById('driverForm');
 var result=document.getElementById('result');
 var recipient='221771342889';
-var fromQuery=new URLSearchParams(location.search).get('ville');if(fromQuery){var input=form.querySelector('input[name="ville"]');if(input&&!input.value)input.value=String(fromQuery).trim().slice(0,100)}
+var sourceParams=new URLSearchParams(location.search);
+var fromQuery=sourceParams.get('ville');
+if(fromQuery){var input=form.querySelector('input[name="ville"]');if(input&&!input.value)input.value=String(fromQuery).trim().slice(0,100)}
+if(sourceParams.get('source')==='bordeaux-transport'){
+ var neighborhood=sourceParams.get('quartier');
+ var zonesField=form.querySelector('input[name="zones"]');
+ if(neighborhood&&zonesField&&!zonesField.value)zonesField.value=String(neighborhood).trim().slice(0,180);
+ var back=new URL('/adhesion-bordeaux.html',location.origin);
+ back.searchParams.set('need','transport');
+ var area=sourceParams.get('local');if(area)back.searchParams.set('local',area);
+ var language=sourceParams.get('lang');if(language)back.searchParams.set('lang',language.slice(0,2));
+ document.querySelectorAll('a[href="/tarifs-adherents-1.html?country=fr&module=driver"]').forEach(function(link){link.href=back.pathname+back.search;link.textContent='← Revenir à DRIVER Bordeaux'});
+}
 function clean(x){return String(x||'').trim().replace(/[\r\n]+/g,' ').replace(/\s+/g,' ').slice(0,600);}
 form.addEventListener('submit',function(ev){
  ev.preventDefault();
