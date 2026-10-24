@@ -62,12 +62,12 @@ formMetaTitle:'DIGIY المغرب — احصل على بطاقتك المهني�
 };
 function getLang(){var p;try{p=(new URLSearchParams(location.search)).get('lang');}catch(_){};if(L.indexOf(p)>=0)return p;try{var s=localStorage.getItem('digiy_lang');if(L.indexOf(s)>=0)return s;}catch(_){}return 'fr';}
 var lang=getLang(),t=T[lang]||T.fr;
-var VITRINE_PAID={"fr":["DEMANDER MA CARTE DIGIY · 20 € →","Carte de visite DIGIY : 20 € en paiement unique. Aucune commission sur les prestations.","Casablanca et Marrakech : carte DIGIY à 20 €, contact direct et 0 % commission.","CARTE DIGIY · 20 € · PAIEMENT UNIQUE"],"en":["REQUEST MY DIGIY CARD · €20 →","DIGIY business card: €20 one-time payment. No commission on professional services.","Casablanca and Marrakech: DIGIY card €20, direct contact and 0% commission.","DIGIY CARD · €20 · ONE-TIME"],"es":["SOLICITAR TARJETA DIGIY · 20 € →","Tarjeta DIGIY: 20 € pago único. 0% comisión.","Casablanca y Marrakech: tarjeta DIGIY por 20 €, contacto directo.","TARJETA DIGIY · 20 € · PAGO ÚNICO"],"pt":["PEDIR CARTÃO DIGIY · 20 € →","Cartão DIGIY: 20 € pagamento único. 0% comissão.","Casablanca e Marrakech: cartão DIGIY a 20 €, contacto direto.","CARTÃO DIGIY · 20 € · PAGAMENTO ÚNICO"],"it":["RICHIEDI CARTA DIGIY · 20 € →","Carta DIGIY: 20 € pagamento unico. 0% commissioni.","Casablanca e Marrakech: carta DIGIY a 20 €, contatto diretto.","CARTA DIGIY · 20 € · UNA TANTUM"],"de":["DIGIY-KARTE ANFORDERN · 20 € →","DIGIY-Karte: 20 € einmalig. 0% Provision.","Casablanca und Marrakesch: DIGIY-Karte 20 €, direkter Kontakt.","DIGIY-KARTE · 20 € · EINMALIG"],"nl":["DIGIY-KAART AANVRAGEN · €20 →","DIGIY-kaart: eenmalig €20. 0% commissie.","Casablanca en Marrakech: DIGIY-kaart €20, direct contact.","DIGIY-KAART · €20 · EENMALIG"],"ar":["طلب بطاقة DIGIY · 20 € ←","بطاقة DIGIY بسعر 20 € تدفع مرة واحدة، عمولة 0٪.","الدار البيضاء ومراكش: بطاقة DIGIY بسعر 20 € واتصال مباشر.","بطاقة DIGIY · 20 € دفعة واحدة"]};
+var VITRINE_PENDING={"fr": ["DEMANDER MA CARTE DIGIY →", "Carte DIGIY Maroc : tarif à confirmer."], "en": ["REQUEST MY DIGIY CARD →", "DIGIY Morocco card: price to be confirmed."], "es": ["SOLICITAR MI TARJETA DIGIY →", "Tarjeta DIGIY Marruecos: precio por confirmar."], "pt": ["PEDIR O MEU CARTÃO DIGIY →", "Cartão DIGIY Marrocos: preço a confirmar."], "it": ["RICHIEDI LA MIA CARTA DIGIY →", "Carta DIGIY Marocco: prezzo da confermare."], "de": ["DIGIY-KARTE ANFORDERN →", "DIGIY-Karte Marokko: Preis noch zu bestätigen."], "nl": ["MIJN DIGIY-KAART AANVRAGEN →", "DIGIY-kaart Marokko: prijs nog te bevestigen."], "ar": ["طلب بطاقة DIGIY ←", "بطاقة DIGIY المغرب: السعر بانتظار التأكيد."]};
 if(/\/(maroc|casablanca|marrakech)\.html$/i.test(location.pathname)){
- var v=VITRINE_PAID[lang]||VITRINE_PAID.fr;
- t.freeCard=v[0];t.maRule=v[1];t.caRule=v[1];t.mrRule=v[1];
- t.maLead=v[2];t.maPath=v[3];t.maMetaDesc=v[2];t.caMetaDesc=v[2];t.mrMetaDesc=v[2];
- t.caLead=v[2];t.mrLead=v[2];t.maEntryLead=v[1];
+ var v=VITRINE_PENDING[lang]||VITRINE_PENDING.fr;
+ t=Object.assign({},t);
+ t.freeCard=v[0];
+ ['maRule','caRule','mrRule','maLead','maPath','maMetaDesc','caMetaDesc','mrMetaDesc','caLead','mrLead','maEntryTitle'].forEach(function(k){t[k]=v[1];});
 }
 
 try{localStorage.setItem('digiy_lang',lang);}catch(_){}

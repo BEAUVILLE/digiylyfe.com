@@ -43,6 +43,7 @@
     }
     box.innerHTML='<strong style="display:block;color:#f3d795;font-size:18px">'+total[l][0]+'</strong><span style="display:block;margin-top:5px;font-size:12px">'+total[l][1]+'</span>';
   }
+  var cardCopy={"fr": "Carte DIGIY seule : 20 € en paiement unique.", "en": "Standalone DIGIY card: €20 one-time payment.", "es": "Tarjeta DIGIY sola: 20 € en pago único.", "pt": "Cartão DIGIY avulso: 20 € em pagamento único.", "it": "Carta DIGIY singola: 20 € una tantum.", "de": "Einzelne DIGIY-Karte: einmalig 20 €.", "nl": "Losse DIGIY-kaart: eenmalig €20.", "ar": "بطاقة DIGIY منفصلة: 20 € دفعة واحدة."};
   function patchDom(){
     patchData();
     if(!isSarlat)return;
@@ -51,7 +52,7 @@
     var lead=document.getElementById('priceLead');if(lead)lead.textContent=(l==='fr'?'Fiche professionnelle à partir de 250 € + adhésion DIGIY PRO':'Professional profile from €250 + DIGIY PRO membership');
     var f=document.getElementById('finalBtn');if(f)f.textContent=finalCta[l];
     ensureTotal(l);
-    var md=document.querySelector('meta[name="description"]');if(md)md.content='DIGIY Vallée de la Dordogne : Sarlat zone pilote, carte DIGIY à 20 € en achat séparé, fiche professionnelle à partir de 250 €, DIGIY PRO 450 € par an, soit un minimum de 700 € la première année, contact direct et 0 % commission.';
+    var md=document.querySelector('meta[name="description"]');if(md)md.content='DIGIY · Sarlat · '+cardCopy[l]+' '+total[l][1];
   }
   function bind(){
     patchDom();
