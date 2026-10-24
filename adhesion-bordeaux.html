@@ -53,7 +53,7 @@ function set(l){var t=L[l]||L.fr;document.documentElement.lang=l;document.docume
   document.getElementById('context').textContent='🚗 DIGIY DRIVER FRANCE · '+where;
   var u=new URL('/driver-france-renseignements.html',location.origin);
   u.searchParams.set('ville','Bordeaux');u.searchParams.set('source','bordeaux-transport');
-  if(local)u.searchParams.set('quartier',where);
+  if(local){u.searchParams.set('local',local);u.searchParams.set('quartier',where);}
   document.getElementById('doneBtn').href=u.pathname+u.search;
  }else{
   var u=new URL('/preparer-ma-carte.html',location.origin);u.searchParams.set('country','fr');u.searchParams.set('territory','bordeaux');if(need&&need!=='guidance')u.searchParams.set('need',need);if(local)u.searchParams.set('local',local);u.searchParams.set('lang',l);document.getElementById('doneBtn').href=u.pathname+u.search;
