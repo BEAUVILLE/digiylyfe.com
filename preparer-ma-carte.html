@@ -100,7 +100,7 @@ if(driverFr){
   safeReplace("let extra=['fiche','site'].includes(Q.get('extra'))?Q.get('extra'):'none';",
     "let extra='none'; // fiche and software included for DRIVER France");
   safeReplace("source:'pre-validation-fiche-country-runtime',source_lang:lang",
-    "source:'pre-validation-driver-france-v1',source_lang:lang");
+    "source:'pre-validation-driver-france-v1',contract_version:'current_v1',billing:'monthly',source_lang:lang");
   safeReplace("let waWin=window.open('about:blank','digiyWhatsAppAlert');",
     "let waWin=null; // no admin WhatsApp popup for DRIVER France");
   safeReplace("const waUrl='https://wa.me/221771342889?text='+encodeURIComponent(buildAdminWhatsApp(base,id,site));\n    if(waWin&&!waWin.closed)waWin.location.href=waUrl;else window.location.href=waUrl;",
