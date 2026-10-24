@@ -83,6 +83,7 @@ button:focus{outline:3px solid var(--gold);outline-offset:3px}.note{text-align:c
 var form=document.getElementById('driverForm');
 var result=document.getElementById('result');
 var recipient='221771342889';
+var fromQuery=new URLSearchParams(location.search).get('ville');if(fromQuery){var input=form.querySelector('input[name="ville"]');if(input&&!input.value)input.value=String(fromQuery).trim().slice(0,100)}
 function clean(x){return String(x||'').trim().replace(/[\r\n]+/g,' ').replace(/\s+/g,' ').slice(0,600);}
 form.addEventListener('submit',function(ev){
  ev.preventDefault();
