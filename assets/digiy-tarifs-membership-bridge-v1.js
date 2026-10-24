@@ -7,14 +7,14 @@
   if(!/\/tarifs-adherents-1\.html$/i.test(p))return;
 
   var COPY={
-    fr:{free:'CARTE DIGIY · GRATUITE',label:'ADHÉSION ÉCOSYSTÈME',SN:'19 900 FCFA / MOIS',FR:'450 € / AN',US:'$29 / MOIS',note:'La carte est gratuite. L’adhésion active sa présence publique dans les territoires, catégories et recherches DIGIYLYFE.'},
-    en:{free:'DIGIY CARD · FREE',label:'ECOSYSTEM MEMBERSHIP',SN:'19,900 FCFA / MONTH',FR:'€450 / YEAR',US:'$29 / MONTH',note:'The card is free. Membership activates its public presence across DIGIYLYFE territories, categories and searches.'},
-    es:{free:'TARJETA DIGIY · GRATUITA',label:'ADHESIÓN AL ECOSISTEMA',SN:'19 900 FCFA / MES',FR:'450 € / AÑO',US:'$29 / MES',note:'La tarjeta es gratuita. La adhesión activa su presencia pública en territorios, categorías y búsquedas DIGIYLYFE.'},
-    pt:{free:'CARTÃO DIGIY · GRATUITO',label:'ADESÃO AO ECOSSISTEMA',SN:'19 900 FCFA / MÊS',FR:'450 € / ANO',US:'$29 / MÊS',note:'O cartão é gratuito. A adesão ativa a sua presença pública nos territórios, categorias e pesquisas DIGIYLYFE.'},
-    it:{free:'CARTA DIGIY · GRATUITA',label:'ADESIONE ALL’ECOSISTEMA',SN:'19 900 FCFA / MESE',FR:'450 € / ANNO',US:'$29 / MESE',note:'La carta è gratuita. L’adesione attiva la presenza pubblica nei territori, categorie e ricerche DIGIYLYFE.'},
-    de:{free:'DIGIY-KARTE · KOSTENLOS',label:'ÖKOSYSTEM-MITGLIEDSCHAFT',SN:'19.900 FCFA / MONAT',FR:'450 € / JAHR',US:'$29 / MONAT',note:'Die Karte ist kostenlos. Die Mitgliedschaft aktiviert die öffentliche Präsenz in DIGIYLYFE-Gebieten, Kategorien und Suchen.'},
-    nl:{free:'DIGIY-KAART · GRATIS',label:'ECOSYSTEEMLIDMAATSCHAP',SN:'19.900 FCFA / MAAND',FR:'€450 / JAAR',US:'$29 / MAAND',note:'De kaart is gratis. Het lidmaatschap activeert de publieke aanwezigheid in DIGIYLYFE-gebieden, categorieën en zoekopdrachten.'},
-    ar:{free:'بطاقة DIGIY · مجانية',label:'عضوية المنظومة',SN:'19 900 FCFA / شهر',FR:'450 € / سنة',US:'$29 / شهر',note:'البطاقة مجانية. العضوية تفعّل الظهور العام في مناطق وفئات وعمليات بحث DIGIYLYFE.'}
+    fr:{free:'CARTE DIGIY · 20 € EN FRANCE',label:'ADHÉSION ÉCOSYSTÈME',SN:'19 900 FCFA / MOIS',FR:'450 € / AN',US:'$29 / MOIS',note:'La carte seule est à 20 € en France. L’adhésion active sa présence publique dans les territoires, catégories et recherches DIGIYLYFE.'},
+    en:{free:'DIGIY CARD · €20 IN FRANCE',label:'ECOSYSTEM MEMBERSHIP',SN:'19,900 FCFA / MONTH',FR:'€450 / YEAR',US:'$29 / MONTH',note:'The card costs €20 standalone in France. Membership activates its public presence across DIGIYLYFE territories, categories and searches.'},
+    es:{free:'TARJETA DIGIY · 20 € EN FRANCIA',label:'ADHESIÓN AL ECOSISTEMA',SN:'19 900 FCFA / MES',FR:'450 € / AÑO',US:'$29 / MES',note:'La tarjeta cuesta 20 € en Francia. La adhesión activa su presencia pública en territorios, categorías y búsquedas DIGIYLYFE.'},
+    pt:{free:'CARTÃO DIGIY · 20 € EM FRANÇA',label:'ADESÃO AO ECOSSISTEMA',SN:'19 900 FCFA / MÊS',FR:'450 € / ANO',US:'$29 / MÊS',note:'O cartão custa 20 € em França. A adesão ativa a sua presença pública nos territórios, categorias e pesquisas DIGIYLYFE.'},
+    it:{free:'CARTA DIGIY · 20 € IN FRANCIA',label:'ADESIONE ALL’ECOSISTEMA',SN:'19 900 FCFA / MESE',FR:'450 € / ANNO',US:'$29 / MESE',note:'La carta costa 20 € in Francia. L’adesione attiva la presenza pubblica nei territori, categorie e ricerche DIGIYLYFE.'},
+    de:{free:'DIGIY-KARTE · 20 € IN FRANKREICH',label:'ÖKOSYSTEM-MITGLIEDSCHAFT',SN:'19.900 FCFA / MONAT',FR:'450 € / JAHR',US:'$29 / MONAT',note:'Die Karte kostet 20 € in Frankreich. Die Mitgliedschaft aktiviert die öffentliche Präsenz in DIGIYLYFE-Gebieten, Kategorien und Suchen.'},
+    nl:{free:'DIGIY-KAART · €20 IN FRANKRIJK',label:'ECOSYSTEEMLIDMAATSCHAP',SN:'19.900 FCFA / MAAND',FR:'€450 / JAAR',US:'$29 / MAAND',note:'De kaart kost €20 in Frankrijk. Het lidmaatschap activeert de publieke aanwezigheid in DIGIYLYFE-gebieden, categorieën en zoekopdrachten.'},
+    ar:{free:'بطاقة DIGIY · مجانية',label:'عضوية المنظومة',SN:'19 900 FCFA / شهر',FR:'450 € / سنة',US:'$29 / شهر',note:'البطاقة بسعر 20 € في فرنسا. العضوية تفعّل الظهور العام في مناطق وفئات وعمليات بحث DIGIYLYFE.'}
   };
 
   function lang(){var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return COPY[l]?l:'fr';}
