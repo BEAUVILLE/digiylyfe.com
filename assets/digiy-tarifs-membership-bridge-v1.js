@@ -17,6 +17,8 @@
     ar:{free:'بطاقة DIGIY · مجانية',label:'عضوية المنظومة',SN:'19 900 FCFA / شهر',FR:'450 € / سنة',US:'$29 / شهر',note:'البطاقة مجانية. العضوية تفعّل الظهور العام في مناطق وفئات وعمليات بحث DIGIYLYFE.'}
   };
 
+  var PAID_CARD_BRIDGE={"fr":["CARTE DIGIY · PAIEMENT UNIQUE","Carte de visite payante : France 20 €, Sénégal 15 000 FCFA, USA 20 $. L’adhésion active la présence publique."],"en":["DIGIY CARD · ONE-TIME PAYMENT","Paid business card: France €20, Senegal 15,000 FCFA, USA $20. Membership activates public presence."],"es":["TARJETA DIGIY · PAGO ÚNICO","Tarjeta de pago único: Francia 20 €, Senegal 15 000 FCFA, EE.UU. 20 $. La adhesión activa la presencia pública."],"pt":["CARTÃO DIGIY · PAGAMENTO ÚNICO","Cartão pago: França 20 €, Senegal 15 000 FCFA, EUA 20 $. A adesão ativa a presença pública."],"it":["CARTA DIGIY · PAGAMENTO UNICO","Carta a pagamento: Francia 20 €, Senegal 15 000 FCFA, USA 20 $. L’adesione attiva la presenza pubblica."],"de":["DIGIY-KARTE · EINMALIGE ZAHLUNG","Bezahlte Karte: Frankreich 20 €, Senegal 15.000 FCFA, USA 20 $. Mitgliedschaft aktiviert die öffentliche Präsenz."],"nl":["DIGIY-KAART · EENMALIGE BETALING","Betaalde kaart: Frankrijk €20, Senegal 15.000 FCFA, VS $20. Lidmaatschap activeert de openbare aanwezigheid."],"ar":["بطاقة DIGIY · دفعة واحدة","البطاقة مدفوعة: فرنسا 20 €، السنغال 15000 فرنك إفريقي، أمريكا 20 $. العضوية تفعّل الحضور العام."]};
+  Object.keys(COPY).forEach(function(k){COPY[k].free=PAID_CARD_BRIDGE[k][0];COPY[k].note=PAID_CARD_BRIDGE[k][1];});
   function lang(){var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return COPY[l]?l:'fr';}
   function country(){
     var c='';try{c=(new URLSearchParams(location.search).get('country')||'').toUpperCase()}catch(e){}
