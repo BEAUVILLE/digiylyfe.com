@@ -46,6 +46,21 @@
             "first_cycle_months": 14,
             "first_renewal_amount": 450,
             "first_renewal_months": 12
+          },
+          "driver-fr-45": {
+            "amount": 45,
+            "label": "DRIVER France · 45 € / mois · fiche chauffeur, QR et logiciel inclus · sans frais de création",
+            "billing_period": "month",
+            "billing_months": 1,
+            "module": "driver",
+            "profile_amount": 0,
+            "profile_included": true,
+            "qr_included": true,
+            "software_included": true,
+            "software_extra_amount": 0,
+            "commission_rate": 0,
+            "free_pilot": false,
+            "activation_requires_human_validation": true
           }
         },
         "services": {
@@ -186,6 +201,9 @@
     "unknown_locality_is_pending_validation": true,
     "examples_are_not_members": true,
     "human_validation_before_publication": true,
-    "fail_closed": true
+    "fail_closed": true,
+    "driver_france_plan": "driver-fr-45",
+    "driver_france_no_profile_fee": true,
+    "driver_france_no_whatsapp_redirect": true
   }
 }
