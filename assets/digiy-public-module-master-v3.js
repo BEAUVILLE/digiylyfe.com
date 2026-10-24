@@ -7,9 +7,9 @@ var META={
  'dakar':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'DAKAR',price:'19 900 FCFA / mois',loc:'À partir de 28 000 FCFA / mois'},
  'vallee-dordogne':{country:'FRANCE',flag:'🇫🇷',zone:'VALLÉE DE LA DORDOGNE',price:'45 € / mois',loc:'À partir de 75 € / mois'},
  'bordeaux':{country:'FRANCE',flag:'🇫🇷',zone:'BORDEAUX',price:'45 € / mois',loc:'À partir de 75 € / mois'},
- 'casablanca':{country:'MAROC',flag:'🇲🇦',zone:'CASABLANCA',price:'CARTE DIGIY GRATUITE · 0 MAD',loc:'CARTE DIGIY GRATUITE · 0 MAD'},
- 'marrakech':{country:'MAROC',flag:'🇲🇦',zone:'MARRAKECH',price:'CARTE DIGIY GRATUITE · 0 MAD',loc:'CARTE DIGIY GRATUITE · 0 MAD'},
- 'miami':{country:'USA',flag:'🇺🇸',zone:'MIAMI · FLORIDA',price:'DIGIY CARD · $0',loc:'À partir de $790 / an'}
+ 'casablanca':{country:'MAROC',flag:'🇲🇦',zone:'CASABLANCA',price:'CARTE DIGIY · 20 €',loc:'CARTE DIGIY · 20 €'},
+ 'marrakech':{country:'MAROC',flag:'🇲🇦',zone:'MARRAKECH',price:'CARTE DIGIY · 20 €',loc:'CARTE DIGIY · 20 €'},
+ 'miami':{country:'USA',flag:'🇺🇸',zone:'MIAMI · FLORIDA',price:'DIGIY CARD · $20',loc:'À partir de $790 / an'}
 };
 var T={
  fr:{back:'← RETOUR AU TERRITOIRE',real:'PRÉSENCES RÉELLES',none:'Aucun adhérent réel dans cette zone pour le moment.',open:'PLACES À PRENDRE',member:'ADHÉRENT DIGIYLYFE',place:'PLACE À PRENDRE',view:'OUVRIR LA FICHE →',take:'PRENDRE MA PLACE →',country:'PAYS',zone:'ZONE',sector:'SECTEUR',lead:'Uniquement les adhérents réellement rattachés à ce pays et cette zone.',openLead:'Aucun faux professionnel : ces cartes montrent les activités encore ouvertes.',zero:'0 % commission · contact direct'},
