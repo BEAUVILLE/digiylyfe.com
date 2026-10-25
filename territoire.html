@@ -22,7 +22,7 @@ html[dir="rtl"] body{text-align:right}html[dir="rtl"] .need{text-align:right;ali
   <div class="top">
     <a class="back" href="https://digiylyfe.com/#territoires" id="back">← DIGIYLYFE</a>
     <div class="langs" aria-label="Langues">
-      <button data-lang="fr">FR</button><button data-lang="en">EN</button><button data-lang="es">ES</button><button data-lang="pt">PT</button><button data-lang="de">DE</button><button data-lang="it">IT</button><button data-lang="nl">NL</button><button data-lang="ar">AR</button>
+      <button data-lang="fr">FR</button><button data-lang="en">EN</button><button data-lang="es">ES</button><button data-lang="pt">PT</button><button data-lang="de">DE</button><button data-lang="it">IT</button><button data-lang="nl">NL</button><button data-lang="ar">AR</button><button data-lang="wo" lang="wo">WO</button>
     </div>
   </div>
   <section class="hero">
@@ -30,6 +30,7 @@ html[dir="rtl"] body{text-align:right}html[dir="rtl"] .need{text-align:right;ali
     <h1 id="territoryName">DIGIY — TERRITOIRE</h1>
     <p id="tagline">Choisissez un besoin et une zone. Les professionnels réels viennent de Supabase ; les places d’exemple permettent de visualiser les catégories encore ouvertes.</p>
     <div class="path" id="path">Territoire → Besoin → Zone → Professionnel → Contact direct</div>
+    <p id="woLimit" lang="fr" hidden style="margin-top:10px;font-size:12px">Wolof V1 : navigation et catégories en wolof. Certaines descriptions des professionnels restent dans leur langue d’origine ; LA VOIX ne comprend pas encore le wolof.</p>
     <div class="sarlatDoor" id="sarlatDoor"><a href="https://digiylyfe.com/sarlat.html">SARLAT EN DIRECT →</a></div>
   </section>
   <section class="territoryHub" aria-labelledby="territoryHubTitle">
@@ -61,6 +62,19 @@ html[dir="rtl"] body{text-align:right}html[dir="rtl"] .need{text-align:right;ali
     var e=document.getElementById('territoryHubEyebrow'),l=document.getElementById('territoryHubLead');
     if(e)e.textContent=france?'DIGIYLYFE · FRANCE · TERRITOIRES ACTIFS':'DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS';
     if(l)l.textContent=france?'Une même logique en France : territoire → besoin → professionnel → fiche officielle → contact direct.':'Une même logique au Sénégal : territoire → besoin → professionnel → fiche officielle → contact direct.';
+    // Couche WO de la vitrine territoriale : données et fiches restent authentiques.
+    var wolof=(new URLSearchParams(location.search).get('lang')||'').toLowerCase()==='wo';
+    if(wolof){
+      document.getElementById('woLimit').hidden=false;
+      document.getElementById('back').href='/prototypes/digiy-wolof-v1/prototype.html';
+      document.getElementById('territoryHubTitle').textContent='Tànnal sa gox';
+      document.getElementById('territoryHubLead').textContent='Gox → Soxla → Ki liggéey → Jokkoo ci sa bopp';
+      document.getElementById('territoryHubEyebrow').textContent='DIGIYLYFE · GOX YI';
+      document.querySelector('.territoryHubFlow').textContent='DIGIYLYFE · Jokkoo ci sa bopp · 0 % commission';
+      document.querySelectorAll('.territoryHubLinks a[href^="/territoire.html"]').forEach(function(a){var u=new URL(a.href);u.searchParams.set('lang','wo');a.href=u.pathname+u.search;});
+      var names=document.querySelector('#petiteCoteProLinks h2');if(names)names.textContent='Ñiy liggéey ci Petite Côte';
+      var desc=document.querySelector('#petiteCoteProLinks p');if(desc)desc.textContent='Tànnal ki nga bëgg. Jokkoo ak moom ci sa bopp.';
+    }
   })();
   </script>
   <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>

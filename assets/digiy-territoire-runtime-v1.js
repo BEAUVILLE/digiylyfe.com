@@ -9,7 +9,7 @@ var SUPABASE_URL='https://wesqmwjjtsefyjnluosj.supabase.co';
 var SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA';
 var RUNTIME_URL='/assets/digiy-core-runtime-v1.json';
 var P=new URLSearchParams(location.search),territoryId=P.get('zone')||'';
-var LANGS=['fr','en','es','pt','de','it','nl','ar'];
+var LANGS=['fr','en','es','pt','de','it','nl','ar','wo'];
 var requested=(P.get('lang')||'').slice(0,2).toLowerCase(),stored='';
 try{stored=(localStorage.getItem('digiy-lang')||'').slice(0,2).toLowerCase()}catch(e){}
 var lang=LANGS.indexOf(requested)>=0?requested:(LANGS.indexOf(stored)>=0?stored:'fr');
@@ -21,6 +21,7 @@ var runtimeDefault='';
 var LOCAL_NEEDS={'petite-cote':[['cleaning','🧹'],['professional','🏛️']],'dakar':[['cleaning','🧹'],['professional','🏛️']],'vallee-dordogne':[['cleaning','🧹'],['professional','🏛️']],'bordeaux':[['cleaning','🧹'],['professional','🏛️']]};
 
 var T={
+wo:{tag:'Ñiy liggéey ci gox bi, jokkoo ak ñoom ci sa bopp.',path:'Gox → Soxla → Dëkk → Ki liggéey → Jokkoo ci sa bopp',need:'Lan nga seet ci sa gox?',zone:'Tànnal dëkk bi',all:'Gox bi yépp',results:'ñiy liggéey yu am fi',empty:'Amul ku méngoo ak li nga seet fii léegi.',based:'Dëkkam',serves:'Dafa liggéey ci',profile:'UBBI',whatsapp:'WhatsApp',call:'Woo',sourceLive:'Xibaar yu gox bi · Supabase',sourceFallback:'Xibaar yi ñu denc',configError:'Mënul nanu ubbi xibaar yu gox bi.',labels:{transport:'Dawalkat',artisan:'Artisan / Sarwiis',accommodation:'Béréb bu ñuy fanaan',food:'Restoran',shopping:'Jaay ak jënd',beauty:'Toppatoo ak taaru',jobs:'Liggéey',announcements:'Yëgle yi',guidance:'LA VOIX · wolof amagul',cleaning:'Setal ak toppatoo',professional:'Sarwiis yu liggéey'}},
 fr:{tag:'Les professionnels du territoire, joignables directement.',path:'Territoire → Besoin → Zone → Professionnel → Contact direct',need:'Que recherchez-vous ?',zone:'Préciser la zone',all:'Tout le territoire',results:'professionnel(s) disponible(s)',empty:'Aucun professionnel ne correspond encore à ce filtre.',based:'Basé à',serves:'Intervient à',profile:'OUVRIR',whatsapp:'WhatsApp',call:'Appeler',sourceLive:'Données territoriales : Supabase',sourceFallback:'Mode secours local',configError:'Configuration territoriale indisponible.',labels:{transport:'Se déplacer',artisan:'Trouver un artisan',accommodation:'Dormir ou louer',food:'Manger ou réserver',shopping:'Acheter local',beauty:'Beauté & Bien-être',jobs:'Emploi et missions',announcements:'Annonces',guidance:'La Voix',cleaning:'Service de nettoyage',professional:'Services professionnels'}},
 en:{tag:'Local professionals, reachable directly.',path:'Territory → Need → Area → Professional → Direct contact',need:'What are you looking for?',zone:'Choose an area',all:'Whole territory',results:'professional(s) available',empty:'No professional matches this filter yet.',based:'Based in',serves:'Serves',profile:'OPEN',whatsapp:'WhatsApp',call:'Call',sourceLive:'Territory data: Supabase',sourceFallback:'Local fallback mode',configError:'Territory configuration unavailable.',labels:{transport:'Get around',artisan:'Find a tradesperson',accommodation:'Stay or rent',food:'Eat or book',shopping:'Shop local',beauty:'Beauty & Wellness',jobs:'Jobs and gigs',announcements:'Listings',guidance:'The Voice',cleaning:'Cleaning service',professional:'Professional services'}},
 es:{tag:'Profesionales del territorio, contactables directamente.',path:'Territorio → Necesidad → Zona → Profesional → Contacto directo',need:'¿Qué buscas?',zone:'Precisar la zona',all:'Todo el territorio',results:'profesional(es) disponible(s)',empty:'Ningún profesional coincide todavía con este filtro.',based:'Con base en',serves:'Interviene en',profile:'ABRIR',whatsapp:'WhatsApp',call:'Llamar',sourceLive:'Datos territoriales: Supabase',sourceFallback:'Modo local de respaldo',configError:'Configuración territorial no disponible.',labels:{transport:'Desplazarse',artisan:'Encontrar un artesano',accommodation:'Alojarse o alquilar',food:'Comer o reservar',shopping:'Comprar local',beauty:'Belleza y bienestar',jobs:'Empleo y misiones',announcements:'Anuncios',guidance:'La Voz',cleaning:'Servicio de limpieza',professional:'Servicios profesionales'}},
@@ -32,6 +33,7 @@ ar:{tag:'مهنيون من المنطقة يمكن التواصل معهم مب�
 };
 
 var NEED_META={
+wo:{transport:'DIGIY DRIVER · Dawalkat',artisan:'DIGIY BUILD · Artisan / Sarwiis',accommodation:'DIGIY LOC · Béréb bu ñuy fanaan',food:'DIGIY RESTO · Restoran',shopping:'DIGIY COMMERCE · Jaay ak jënd',beauty:'BEAUTY · Toppatoo ak taaru',jobs:'DIGIY JOBS · Liggéey',announcements:'BONNE AFFAIRE · Yëgle yi',guidance:'LA VOIX · Wolof amagul',cleaning:'NETTOYAGE · MANÉ & GNING · Saly / Mbour',professional:'Sarwiis yu liggéey'},
 fr:{transport:'DRIVER · Chauffeurs & mobilité',artisan:'BUILD · Artisans & chantiers',accommodation:'LOC · Logements & locations',food:'RESTO · Restaurants & réservations',shopping:'MON COMMERCE · Boutiques & produits',beauty:'BEAUTÉ & BIEN-ÊTRE · Soins & rendez-vous',jobs:'JOBS · Emploi & missions',announcements:'BONNE AFFAIRE · Annonces & contact direct',guidance:'LA VOIX · ACTION PRO',cleaning:'NETTOYAGE · MANÉ & GNING · Saly / Mbour',professional:'AVOCAT · NOTAIRE · COMPTABLE · ARCHITECTE'},
 en:{transport:'DRIVER · Drivers & mobility',artisan:'BUILD · Trades & worksites',accommodation:'LOC · Accommodation & rentals',food:'RESTO · Restaurants & bookings',shopping:'MON COMMERCE · Shops & products',beauty:'BEAUTY & WELLNESS · Care & appointments',jobs:'JOBS · Jobs & missions',announcements:'BONNE AFFAIRE · Listings & direct contact',guidance:'THE VOICE · ACTION PRO',cleaning:'CLEANING · MANÉ & GNING · Saly / Mbour',professional:'LAWYER · NOTARY · ACCOUNTANT · ARCHITECT'},
 es:{transport:'DRIVER · Conductores y movilidad',artisan:'BUILD · Artesanos y obras',accommodation:'LOC · Alojamientos y alquileres',food:'RESTO · Restaurantes y reservas',shopping:'MON COMMERCE · Tiendas y productos',beauty:'BELLEZA Y BIENESTAR · Cuidados y citas',jobs:'JOBS · Empleo y misiones',announcements:'BONNE AFFAIRE · Anuncios y contacto directo',guidance:'LA VOZ · ACTION PRO',cleaning:'LIMPIEZA · MANÉ & GNING · Saly / Mbour',professional:'ABOGADO · NOTARIO · CONTABLE · ARQUITECTO'},
@@ -147,7 +149,7 @@ function renderHeader(){
   var isSenegal=territoryId==='petite-cote'||territoryId==='dakar';
   var isFrance=territoryId==='vallee-dordogne'||territoryId==='bordeaux'||territoryId==='sarlat';
   var isCountryHub=isSenegal||isFrance;
-  document.title=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase()+' | Professionnels du territoire':'DIGIY '+label(c.name)+' | DIGIYLYFE';
+  document.title=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase()+(lang==='wo'?' | Ñiy liggéey':' | Professionnels du territoire'):'DIGIY '+label(c.name)+' | DIGIYLYFE';
   document.getElementById('country').textContent=isCountryHub?label(c.name).toUpperCase()+' · '+label(c.country).toUpperCase():label(c.country);
   document.getElementById('territoryName').textContent=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase():'DIGIY '+label(c.name).toUpperCase();
   document.getElementById('tagline').textContent=tr.tag;document.getElementById('path').textContent=tr.path;
@@ -160,6 +162,7 @@ function renderHeader(){
 
 function localNeedMeta(id,meta){
   if(id==='cleaning'&&territoryId!=='petite-cote'){
+    if(lang==='wo')return 'NETTOYAGE · Setal kër ak biro';
     var generic={fr:'NETTOYAGE · Maison · Entretien · Bureaux',en:'CLEANING · Home · Maintenance · Offices',es:'LIMPIEZA · Hogar · Mantenimiento · Oficinas',pt:'LIMPEZA · Casa · Manutenção · Escritórios',de:'REINIGUNG · Haus · Pflege · Büros',it:'PULIZIA · Casa · Manutenzione · Uffici',nl:'SCHOONMAAK · Woning · Onderhoud · Kantoren',ar:'تنظيف · منازل · صيانة · مكاتب'};
     return generic[lang]||generic.fr;
   }
@@ -172,6 +175,8 @@ function renderNeeds(){
   var artisanIndex=list.findIndex(function(n){return n[0]==='artisan'});if(artisanIndex>=0)at=artisanIndex+1;
   extras.forEach(function(x){if(!list.some(function(n){return n[0]===x[0]})){list.splice(at,0,x);at++}});
   list.forEach(function(n){
+    // Pas de microphone wolof : ne pas présenter LA VOIX comme une catégorie disponible.
+    if(lang==='wo'&&n[0]==='guidance')return;
     var b=document.createElement('button');b.type='button';b.className='need'+(state.need===n[0]?' active':'');b.setAttribute('data-digiy-native-door','1');
     var ic=document.createElement('strong'),tx=document.createElement('span'),sm=document.createElement('small');
     ic.textContent=n[1];tx.textContent=tr.labels[n[0]]||n[0];sm.textContent=localNeedMeta(n[0],meta);
@@ -194,7 +199,7 @@ function matches(p){
   return (p.zones||[]).indexOf(territoryId)>=0;
 }
 
-function whatsappMessage(name){var M={fr:'Bonjour {name}, je viens de DIGIYLYFE.',en:'Hello {name}, I found you on DIGIYLYFE.',es:'Hola {name}, le encontré en DIGIYLYFE.',pt:'Olá {name}, encontrei-o na DIGIYLYFE.',de:'Hallo {name}, ich habe Sie auf DIGIYLYFE gefunden.',it:'Buongiorno {name}, l’ho trovata su DIGIYLYFE.',nl:'Hallo {name}, ik heb u gevonden via DIGIYLYFE.',ar:'مرحباً {name}، وجدتك عبر DIGIYLYFE.'};return(M[lang]||M.fr).replace('{name}',name||'');}
+function whatsappMessage(name){var M={wo:'Salaam {name}, DIGIYLYFE laa jaar.',fr:'Bonjour {name}, je viens de DIGIYLYFE.',en:'Hello {name}, I found you on DIGIYLYFE.',es:'Hola {name}, le encontré en DIGIYLYFE.',pt:'Olá {name}, encontrei-o na DIGIYLYFE.',de:'Hallo {name}, ich habe Sie auf DIGIYLYFE gefunden.',it:'Buongiorno {name}, l’ho trovata su DIGIYLYFE.',nl:'Hallo {name}, ik heb u gevonden via DIGIYLYFE.',ar:'مرحباً {name}، وجدتك عبر DIGIYLYFE.'};return(M[lang]||M.fr).replace('{name}',name||'');}
 function contactsOf(p){if(p.contacts&&p.contacts.length)return p.contacts.map(function(c){if(c.kind==='profile')return{label:T[lang].profile,url:c.url};if(c.kind==='whatsapp')return{label:T[lang].whatsapp,url:'https://wa.me/'+c.phone+'?text='+encodeURIComponent(whatsappMessage(p.name))};if(c.kind==='call')return{label:T[lang].call,url:'tel:+'+c.phone};return{label:c.label||T[lang].profile,url:c.url||'#'}});return p.url?[{label:T[lang].profile,url:p.url}]:[]}
 
 function renderResults(){
