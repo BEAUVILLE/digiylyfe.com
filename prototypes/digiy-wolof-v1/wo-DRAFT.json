@@ -1,0 +1,202 @@
+{
+  "meta": {
+    "id": "digiy-wolof-v1",
+    "locale": "wo",
+    "writingSystem": "Latn",
+    "direction": "ltr",
+    "status": "DRAFT_RELECTURE_NATIVE_OBLIGATOIRE",
+    "updated": "2026-10-25",
+    "target": "projet isolé (pas de déploiement)",
+    "fallback": "fr",
+    "notes": "Les termes DIGIY/LOC, liens et montants restent invariants. Ne pas utiliser cette version sur le site public sans contrôle linguistique et métier. Audit WORK : 6 clés auparavant non visibles sont ajoutées. Le bouton de recherche wolof n’est pas interactif; les conditions financières françaises sont balisées lang=fr.",
+    "auditStatus": "NO_GO_PUBLICATION_NATIVE_VALIDATION_ET_TESTS_MOBILES_A_REALISER"
+  },
+  "translations": {
+    "entryTitle": {
+      "fr": "ENTREZ DANS DIGIYLYFE",
+      "wo_proposed": "Dugg ci DIGIYLYFE",
+      "status": "A_VALIDER",
+      "review_note": "Sens impératif; valider le registre"
+    },
+    "entryLead": {
+      "fr": "Deux chemins. Choisissez simplement ce que vous venez faire.",
+      "wo_proposed": "Ñaari yoon nga am. Tànnal li nga bëgg def.",
+      "status": "A_VALIDER",
+      "review_note": "Vérifier naturel oral"
+    },
+    "entryPublicKicker": {
+      "fr": "PUBLIC",
+      "wo_proposed": "ÑÉPP",
+      "status": "A_VALIDER",
+      "review_note": "Libellé public"
+    },
+    "entryPublicTitle": {
+      "fr": "Je cherche / je découvre",
+      "wo_proposed": "Maa ngi seet / maa ngi xool",
+      "status": "A_VALIDER",
+      "review_note": "Confirmer première personne et formulation"
+    },
+    "entryPublicText": {
+      "fr": "Territoires, professionnels, services et contact direct.",
+      "wo_proposed": "Gox yi, ñiy liggéey, sarwiis yi ak jokkoo bu jub.",
+      "status": "A_VALIDER",
+      "review_note": "Confirmer les métiers et 'contact direct'"
+    },
+    "entryPublicCta": {
+      "fr": "EXPLORER LES TERRITOIRES →",
+      "wo_proposed": "XOOL GOX YI →",
+      "status": "A_VALIDER",
+      "review_note": "Bouton"
+    },
+    "entryProKicker": {
+      "fr": "PROFESSIONNEL",
+      "wo_proposed": "KI AM LIGGÉEY",
+      "status": "A_VALIDER",
+      "review_note": "Comparer au terme de commerçant indépendant"
+    },
+    "entryProTitle": {
+      "fr": "Je suis professionnel",
+      "wo_proposed": "Dama am sama liggéey",
+      "status": "A_VALIDER",
+      "review_note": "À faire tester par commerçants/artisans"
+    },
+    "entryProText": {
+      "fr": "Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique.",
+      "wo_proposed": "Kàrt rekk · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · benn yoon lañu koy fey.",
+      "status": "A_VALIDER",
+      "review_note": "NE PAS modifier les nombres, devises, ni la condition 'paiement unique'"
+    },
+    "entryProMembership": {
+      "fr": "🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AN",
+      "wo_proposed": "🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AT",
+      "status": "A_VALIDER",
+      "review_note": "Terme financier adhésion laissé en français jusqu'à validation"
+    },
+    "entryProCta": {
+      "fr": "DÉCOUVRIR L’ADHÉSION →",
+      "wo_proposed": "XAM MBIRUM ADHÉSION →",
+      "status": "A_VALIDER",
+      "review_note": "Relecture requise, idéalement langage métier"
+    },
+    "entryLocKicker": {
+      "fr": "HÉBERGEMENT · LOC",
+      "wo_proposed": "FANAAN · LOC",
+      "status": "A_VALIDER",
+      "review_note": "Graphie FANAAN corrigée selon l'audit WORK; validation du sens commercial hébergement toujours requise"
+    },
+    "entryLocTitle": {
+      "fr": "DIGIY LOC · tarifs par paliers",
+      "wo_proposed": "DIGIY LOC · njëg yi aju ci lim bi",
+      "status": "A_VALIDER",
+      "review_note": "Lim = nombre; clarifier unités"
+    },
+    "entryLocPrice": {
+      "fr": "Sénégal : 1 unité 21 000 FCFA / mois · 2–3 unités 28 000 FCFA / mois. Europe : 75 € / mois pour 1–3 unités.",
+      "wo_proposed": "Sénégal : 1 unité = 21 000 FCFA / mois · 2–3 unités = 28 000 FCFA / mois. Europe : 1–3 unités = 75 € / mois.",
+      "status": "A_VALIDER",
+      "review_note": "Texte français volontairement conservé et identifié lang=fr dans le prototype tant que les termes wolof pour mois/unité/coût de démarrage ne sont pas validés. Le tarif est un palier, pas un prix multiplié par unité."
+    },
+    "entryLocCta": {
+      "fr": "VOIR LES PALIERS LOC →",
+      "wo_proposed": "XOOL NJËG YU LOC →",
+      "status": "A_VALIDER",
+      "review_note": "Confirmer traduction de palier"
+    },
+    "v1Question": {
+      "fr": "Vous cherchez quoi, près de chez vous ?",
+      "wo_proposed": "Lan nga seet ci sa gox?",
+      "status": "A_VALIDER",
+      "review_note": "Tests d'intelligibilité Sénégal"
+    },
+    "v1Stay": {
+      "fr": "Hébergement",
+      "wo_proposed": "Béréb bu ñuy fanaan",
+      "status": "A_VALIDER",
+      "review_note": "Signifie lieu où dormir; vérifier"
+    },
+    "v1Drive": {
+      "fr": "Chauffeur",
+      "wo_proposed": "Dawalkat",
+      "status": "A_VALIDER",
+      "review_note": "Confirmer distinction chauffeur et conducteur"
+    },
+    "v1Eat": {
+      "fr": "Restaurant",
+      "wo_proposed": "Restoran",
+      "status": "A_VALIDER",
+      "review_note": "Emprunt phonétique, à valider"
+    },
+    "v1Fix": {
+      "fr": "Artisan / Service",
+      "wo_proposed": "Artisan / Sarwiis",
+      "status": "A_VALIDER",
+      "review_note": "Emprunt conservé pour clarté terrain"
+    },
+    "v1Shop": {
+      "fr": "Commerce / Activité",
+      "wo_proposed": "Jaay ak jënd / Liggéey",
+      "status": "A_VALIDER",
+      "review_note": "Éventuel ajustement du sens commerce"
+    },
+    "v1Promise": {
+      "fr": "Trouvez une réponse. Choisissez votre professionnel. Contactez-le directement.",
+      "wo_proposed": "Gisal li nga soxla. Tànnal ki nga bëgg. Jokkoo ak moom ci sa bopp.",
+      "status": "A_VALIDER",
+      "review_note": "Relecture sens et fluidité"
+    },
+    "v1SearchCta": {
+      "fr": "🎙️ Parler ou écrire mon besoin →",
+      "wo_proposed": "Wax walla bind li ma soxla →",
+      "status": "A_VALIDER",
+      "review_note": "Ancien CTA vocal désactivé dans la maquette. LA VOIX ne prend pas encore le wolof en charge. Non publiable sans test fonctionnel."
+    },
+    "v1TerritoryCta": {
+      "fr": "📍 Voir les professionnels de la Petite Côte →",
+      "wo_proposed": "📍 Xool ñiy liggéey ci Petite Côte →",
+      "status": "A_VALIDER",
+      "review_note": "Terme territoire conservé"
+    },
+    "v1Principle": {
+      "fr": "Contact et paiement directs · 0 % commission DIGIYLYFE",
+      "wo_proposed": "Jokkoo ak fayyante ci sa bopp · 0 % commission DIGIYLYFE",
+      "status": "A_VALIDER",
+      "review_note": "Soumettre au contrôle juridique marketing"
+    },
+    "worldTitle": {
+      "fr": "DIGIYLYFE · DU LOCAL AU MONDE",
+      "wo_proposed": "DIGIYLYFE · CI GOX BI BA CI ÀDDUNA BI",
+      "status": "A_VALIDER",
+      "review_note": "Titre optionnel V1"
+    },
+    "worldLead": {
+      "fr": "Un même CORE. Des territoires différents. Le professionnel reste local.",
+      "wo_proposed": "Benn CORE. Gox yu wuute. Ki liggéey ci sa gox la des.",
+      "status": "A_VALIDER",
+      "review_note": "Vérifier naturel Wolof"
+    },
+    "worldPath": {
+      "fr": "Pays → Territoire → Zone → Besoin → Professionnel → OUVRIR",
+      "wo_proposed": "Réew → Gox → Dëkk → Soxla → Ki liggéey → UBBI",
+      "status": "A_VALIDER",
+      "review_note": "Le terme zone est une approximation; réviser"
+    },
+    "claimTitle": {
+      "fr": "L’EMPREINTE NUMÉRIQUE DU PROFESSIONNEL",
+      "wo_proposed": "DIGIYLYFE · CI INTERNET, SA LIGGÉEY",
+      "status": "A_VALIDER",
+      "review_note": "Adaptation culturelle à valider, pas traduction littérale"
+    },
+    "claimLead": {
+      "fr": "Votre savoir-faire mérite une présence qui vous ressemble.",
+      "wo_proposed": "Sa xam-xam ci liggéey war na feeñ ci internet.",
+      "status": "A_VALIDER",
+      "review_note": "Vérifier naturel et registre"
+    },
+    "claimWorld": {
+      "fr": "Votre identité. Vos données. Votre relation directe.",
+      "wo_proposed": "Sa melokaan. Say njoxe. Sa jokkoo ci sa bopp.",
+      "status": "A_VALIDER",
+      "review_note": "'données' a une valeur juridique : validation stricte"
+    }
+  }
+}

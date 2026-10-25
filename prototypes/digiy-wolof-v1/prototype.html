@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="wo">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>DIGIY WOLOF V1 — Prototype de relecture non publié</title>
+<style>
+:root{color-scheme:dark;--bg:#04150f;--card:#0e3123;--gold:#f6c453;--fg:#fff9ee;--soft:#cddbd2}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#075f32,#062b1b 34%,var(--bg));color:var(--fg);font-family:system-ui,Arial,sans-serif;line-height:1.35}
+main{width:min(850px,100%);margin:auto;padding:12px 12px 60px}.head{display:flex;justify-content:space-between;align-items:center;gap:14px}
+h1{margin:0;font-size:clamp(22px,6vw,32px)}small,.tiny{color:var(--soft);font-size:11px}
+.banner{background:#fff0bd;color:#153021;border-radius:14px;padding:10px 12px;font-size:12px;font-weight:800;margin:12px 0}
+.switch{display:flex;gap:6px}.switch button{border:1px solid var(--gold);background:#0e3022;border-radius:11px;padding:9px 13px;color:#fff;font-weight:800;cursor:pointer}
+.switch button[aria-pressed="true"]{background:var(--gold);color:#062014}
+.box{padding:14px;margin-top:13px;background:rgba(8,42,30,.88);border:1px solid #786632;border-radius:21px}
+h2{margin:0 0 5px;font-size:clamp(19px,5vw,27px)}.lead{margin:3px 0 12px;color:var(--soft);font-size:13px}
+.entry{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+a.card{display:flex;flex-direction:column;gap:6px;min-width:0;border:1px solid #406752;border-radius:16px;padding:12px;color:var(--fg);text-decoration:none;background:linear-gradient(145deg,#13563a,#08231a)}
+a.card:nth-child(2){background:linear-gradient(145deg,#544320,#123c27)}
+.kicker{font-weight:850;font-size:10px;letter-spacing:.05em;color:#ffdfa0}
+.card strong{font-size:18px;line-height:1.13}.card p{margin:0;color:var(--soft);font-size:11.5px}.cta{display:block;border:1px solid #e8c57a;border-radius:30px;text-align:center;padding:9px;font-size:10px;font-weight:850;margin-top:auto}
+.price{font-size:11px;color:#ffe9ac;font-weight:800;margin-top:auto}
+.card.loc{grid-column:1/-1;display:flex;flex-direction:row;align-items:center;gap:15px}
+.loc .cta{min-width:108px;width:29%;flex-shrink:0;margin:0}.loc .inner{display:flex;flex-direction:column;gap:5px}
+.needs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.needs a{text-align:center;background:#135039;border:1px solid #62836b;border-radius:13px;padding:9px 4px;color:#fff;min-height:64px;text-decoration:none;font-size:12px;font-weight:750}
+.needs a>span:first-child{display:block;font-size:20px}.needs a [data-key]{display:block;font-size:clamp(10px,2.4vw,12px);overflow-wrap:anywhere}.actions a{display:inline-block;margin:8px 8px 0 0;background:#f6c453;color:#0b2116;padding:9px 13px;border-radius:20px;text-decoration:none;font-size:12px;font-weight:800}
+@media(max-width:620px){.head{flex-wrap:wrap}.entry{grid-template-columns:1fr}.card.loc{flex-direction:column;align-items:stretch}.loc .cta{min-width:0;width:100%}.needs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:400px){.head{gap:7px}.box{padding:10px}.entry{gap:7px}.card{padding:10px!important}.price{font-size:11px}.needs{gap:6px}}
+.review{padding:10px;border:1px dashed #d7c98b;border-radius:10px;margin-top:12px}.oldcta{display:block;font-size:12px;opacity:.75;text-decoration:line-through;overflow-wrap:anywhere;pointer-events:none;margin-top:5px}
+.alert{background:#322a08;border:1px solid #f6c453;padding:9px;border-radius:10px;font-size:12px;line-height:1.45}
+.commercial{padding-top:9px;border-top:1px solid #66836d;font-size:11.5px;line-height:1.5}
+.card{overflow-wrap:anywhere}
+button:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* Lecteur WO facultatif : aucune piste active sans fichier MP3 effectivement lisible. */
+[hidden]{display:none!important}
+.audio-review summary{cursor:pointer;font-weight:800;color:var(--gold);font-size:17px;padding:3px 0}
+.audio-review .audio-info{font-size:12px;line-height:1.5;color:var(--soft)}
+.audio-review .audio-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}
+.audio-review .audio-item{background:#0b2d20;border:1px solid #426b53;border-radius:12px;padding:9px;display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:0}
+.audio-item .audio-sentence{overflow-wrap:anywhere;font-size:13px;line-height:1.4}
+.audio-item button{background:var(--gold);color:#072418;border:0;border-radius:9px;padding:9px 10px;cursor:pointer;font-weight:800;min-height:40px}
+.audio-item button:disabled{cursor:not-allowed;background:#59645d;color:#fff;opacity:.75}
+.audio-item button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.audio-item small{font-size:10.5px}
+@media(max-width:620px){.audio-review .audio-items{grid-template-columns:1fr}}
+</style></head>
+<body><main>
+<header class="head"><h1>DIGIYLYFE <span style="color:#f6c453">· WO V1</span></h1><div class="switch" role="group" id="langSwitch" aria-label="Choisir la langue de la maquette"><button type="button" data-locale="fr" aria-pressed="false">FR</button><button type="button" data-locale="wo" aria-pressed="true">WO</button></div></header>
+<div class="banner"><strong>WOLOF V1 · VERSION DE RELECTURE NON VALIDÉE</strong><span lang="fr"> · Brouillon bilingue de test ; pas de publication ni de reconnaissance vocale wolof.</span></div>
+<section class="box" aria-label="DIGIYLYFE : entrée public et professionnel">
+<h2><span data-key="entryTitle"></span></h2><p class="lead"><span data-key="entryLead"></span></p>
+<div class="entry">
+<a class="card" href="https://digiylyfe.com/?lang=fr#territoires" target="_blank" rel="noopener noreferrer"><span data-key="entryPublicKicker"></span><strong data-key="entryPublicTitle"></strong><p data-key="entryPublicText"></p><span class="cta" data-key="entryPublicCta"></span></a>
+<a class="card" href="https://digiylyfe.com/tarifs-adherents-1.html?lang=fr" target="_blank" rel="noopener noreferrer"><span data-key="entryProKicker"></span><strong data-key="entryProTitle"></strong><p data-key="entryProText"></p><span class="price" data-key="entryProMembership" lang="fr" aria-label="Adhésion en français, traduction wolof à valider"></span><span class="cta" data-key="entryProCta"></span></a>
+<a class="card loc" href="https://digiylyfe.com/tarifs-loc-v2.html?lang=fr" target="_blank" rel="noopener noreferrer"><div class="inner"><span data-key="entryLocKicker"></span><strong data-key="entryLocTitle"></strong><p data-key="entryLocPrice" lang="fr" aria-label="Tarifs LOC en français, traduction wolof encore à valider"></p></div><span class="cta" data-key="entryLocCta"></span></a>
+</div>
+<p class="tiny commercial" lang="fr"><strong>Carte seule :</strong> paiement unique, sans abonnement obligatoire. <strong>Adhésion générale France :</strong> 450 € / an + création de fiche 250 € séparée (700 € au démarrage de cette formule ; conditions spécifiques à DRIVER France différentes). <strong>LOC :</strong> mensualités affichées par palier, non par logement ; fiche de création en sus au premier règlement : 100 000 FCFA au Sénégal ou 250 € en Europe ; fiche OU site selon la formule. Ces mentions restent en français en attendant la validation native.</p>
+</section>
+<section class="box"><h2><span data-key="v1Question"></span></h2><p data-key="v1Promise" class="lead"></p><div class="needs">
+<a href="https://digiylyfe.com/territoire.html?zone=petite-cote&amp;local=saly&amp;need=accommodation" target="_blank" rel="noopener noreferrer"><span>🏠</span><span data-key="v1Stay"></span></a>
+<a href="https://digiylyfe.com/territoire.html?zone=petite-cote&amp;local=saly&amp;need=transport" target="_blank" rel="noopener noreferrer"><span>🚘</span><span data-key="v1Drive"></span></a>
+<a href="https://digiylyfe.com/territoire.html?zone=petite-cote&amp;local=saly&amp;need=food" target="_blank" rel="noopener noreferrer"><span>🍽️</span><span data-key="v1Eat"></span></a>
+<a href="https://digiylyfe.com/territoire.html?zone=petite-cote&amp;local=saly&amp;need=artisan" target="_blank" rel="noopener noreferrer"><span>🔧</span><span data-key="v1Fix"></span></a>
+<a href="https://digiylyfe.com/territoire.html?zone=petite-cote&amp;local=saly&amp;need=shopping" target="_blank" rel="noopener noreferrer"><span>🛍️</span><span data-key="v1Shop"></span></a>
+</div>
+<div class="actions"><a href="https://pro-action-digiy.digiylyfe.com/" lang="fr" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir la recherche existante ; wolof non pris en charge">🔎 Ouvrir la recherche actuelle (FR, EN, ES, PT, IT, DE, NL, AR uniquement) →</a></div>
+<p class="alert" lang="fr"><strong>IMPORTANT :</strong> le wolof n'est pas pris en charge par LA VOIX, ni confirmé pour la recherche écrite. Ne parlez pas wolof au microphone en pensant être compris.</p>
+<div class="review"><span lang="fr"><strong>Ancien bouton à examiner, désactivé (aucune action vocale) :</strong></span><span class="oldcta" aria-disabled="true" data-key="v1SearchCta"></span></div>
+<p><a href="https://digiylyfe.com/territoire.html?zone=petite-cote&amp;local=saly" lang="fr" target="_blank" rel="noopener noreferrer"><span data-key="v1TerritoryCta"></span></a></p>
+<p class="tiny" data-key="v1Principle"></p>
+</section>
+<section class="box"><h2><span data-key="worldTitle"></span></h2><p class="lead"><span data-key="worldLead"></span></p><p><span data-key="worldPath"></span></p><p class="tiny" lang="fr">Territoires : 🇸🇳 Petite Côte / Dakar · 🇫🇷 Dordogne / Bordeaux / Paris · 🇺🇸 Miami. Les pages liées restent en français ou dans la langue mémorisée par le site.</p></section>
+<section class="box"><h2 data-key="claimTitle"></h2><p data-key="claimLead"></p><p class="lead" data-key="claimWorld"></p></section>
+
+<details class="box audio-review" id="woAudioPanel" open>
+  <summary lang="fr">🔊 Écouter les phrases en wolof <small id="woAudioCount">— 0 / 29 fichiers disponibles</small></summary>
+  <p lang="fr" class="audio-info">Lecture uniquement, sans microphone ni reconnaissance de la parole. Audios expérimentaux générés avec DIGIY STUDIO MAC : une voix audible n’atteste pas encore de la justesse de chaque prononciation. Aucun audio n'est diffusé sans action de l'utilisateur.</p>
+  <div id="woAudioItems" class="audio-items" aria-label="Phrases disponibles à écouter" role="list"></div>
+  <p id="woAudioNotice" class="audio-info" lang="fr" role="status">Activation uniquement si les fichiers MP3 correspondants sont disponibles dans le dossier audio du prototype.</p>
+</details>
+<p class="tiny" lang="fr">Propositions wolof non validées : le prototype affiche les 31 textes, mais les passages commerciaux français et les avertissements doivent encore être traduits et relus. L’accès public reste en français ou dans une langue précédemment mémorisée sur le site.</p>
+</main>
+<script>
+const ui={"fr":{"entryTitle":"ENTREZ DANS DIGIYLYFE","entryLead":"Deux chemins. Choisissez simplement ce que vous venez faire.","entryPublicKicker":"PUBLIC","entryPublicTitle":"Je cherche / je découvre","entryPublicText":"Territoires, professionnels, services et contact direct.","entryPublicCta":"EXPLORER LES TERRITOIRES →","entryProKicker":"PROFESSIONNEL","entryProTitle":"Je suis professionnel","entryProText":"Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique.","entryProMembership":"🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AN","entryProCta":"DÉCOUVRIR L’ADHÉSION →","entryLocKicker":"HÉBERGEMENT · LOC","entryLocTitle":"DIGIY LOC · tarifs par paliers","entryLocPrice":"Sénégal : 1 unité 21 000 FCFA / mois · 2–3 unités 28 000 FCFA / mois. Europe : 75 € / mois pour 1–3 unités.","entryLocCta":"VOIR LES PALIERS LOC →","v1Question":"Vous cherchez quoi, près de chez vous ?","v1Stay":"Hébergement","v1Drive":"Chauffeur","v1Eat":"Restaurant","v1Fix":"Artisan / Service","v1Shop":"Commerce / Activité","v1Promise":"Trouvez une réponse. Choisissez votre professionnel. Contactez-le directement.","v1SearchCta":"🎙️ Parler ou écrire mon besoin →","v1TerritoryCta":"📍 Voir les professionnels de la Petite Côte →","v1Principle":"Contact et paiement directs · 0 % commission DIGIYLYFE","worldTitle":"DIGIYLYFE · DU LOCAL AU MONDE","worldLead":"Un même CORE. Des territoires différents. Le professionnel reste local.","worldPath":"Pays → Territoire → Zone → Besoin → Professionnel → OUVRIR","claimTitle":"L’EMPREINTE NUMÉRIQUE DU PROFESSIONNEL","claimLead":"Votre savoir-faire mérite une présence qui vous ressemble.","claimWorld":"Votre identité. Vos données. Votre relation directe."},"wo":{"entryTitle":"Dugg ci DIGIYLYFE","entryLead":"Ñaari yoon nga am. Tànnal li nga bëgg def.","entryPublicKicker":"ÑÉPP","entryPublicTitle":"Maa ngi seet / maa ngi xool","entryPublicText":"Gox yi, ñiy liggéey, sarwiis yi ak jokkoo bu jub.","entryPublicCta":"XOOL GOX YI →","entryProKicker":"KI AM LIGGÉEY","entryProTitle":"Dama am sama liggéey","entryProText":"Kàrt rekk · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · benn yoon lañu koy fey.","entryProMembership":"🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AT","entryProCta":"XAM MBIRUM ADHÉSION →","entryLocKicker":"FANAAN · LOC","entryLocTitle":"DIGIY LOC · njëg yi aju ci lim bi","entryLocPrice":"Sénégal : 1 unité = 21 000 FCFA / mois · 2–3 unités = 28 000 FCFA / mois. Europe : 1–3 unités = 75 € / mois.","entryLocCta":"XOOL NJËG YU LOC →","v1Question":"Lan nga seet ci sa gox?","v1Stay":"Béréb bu ñuy fanaan","v1Drive":"Dawalkat","v1Eat":"Restoran","v1Fix":"Artisan / Sarwiis","v1Shop":"Jaay ak jënd / Liggéey","v1Promise":"Gisal li nga soxla. Tànnal ki nga bëgg. Jokkoo ak moom ci sa bopp.","v1SearchCta":"Wax walla bind li ma soxla →","v1TerritoryCta":"📍 Xool ñiy liggéey ci Petite Côte →","v1Principle":"Jokkoo ak fayyante ci sa bopp · 0 % commission DIGIYLYFE","worldTitle":"DIGIYLYFE · CI GOX BI BA CI ÀDDUNA BI","worldLead":"Benn CORE. Gox yu wuute. Ki liggéey ci sa gox la des.","worldPath":"Réew → Gox → Dëkk → Soxla → Ki liggéey → UBBI","claimTitle":"DIGIYLYFE · CI INTERNET, SA LIGGÉEY","claimLead":"Sa xam-xam ci liggéey war na feeñ ci internet.","claimWorld":"Sa melokaan. Say njoxe. Sa jokkoo ci sa bopp."}};
+// Le JSON wo-DRAFT.json reste la source de relecture ; la copie inline sert uniquement
+// au prototype autonome. Aucune valeur texte n'est dupliquée dans le HTML initial.
+
+// Ne touche ni LA VOIX, ni le micro, ni les liens de navigation existants.
+// Les 29 audios sont conservés sur le Mac ; le dépôt n'héberge pas de MP3
+// avant une importation explicite. Les boutons restent désactivés si absents.
+const audioPanel=document.getElementById('woAudioPanel');
+const audioItems=document.getElementById('woAudioItems');
+const audioCount=document.getElementById('woAudioCount');
+const audioNotice=document.getElementById('woAudioNotice');
+const audioEntries=Object.keys(ui.wo).map((key,i)=>({number:i+1,key}))
+  .filter(entry=>entry.number!==10&&entry.number!==14);
+let audioReady=0;
+let playingAudio=null;
+let playingButton=null;
+function resetPlay(button){if(button)button.textContent='▶ Écouter';}
+function stopAudio(){
+  if(playingAudio){playingAudio.pause();playingAudio.currentTime=0;}
+  resetPlay(playingButton);playingAudio=null;playingButton=null;
+}
+function setupAudioButtons(){
+  const fragment=document.createDocumentFragment();
+  for(const entry of audioEntries){
+    const item=document.createElement('div');item.className='audio-item';item.setAttribute('role','listitem');
+    const sentence=document.createElement('span');sentence.className='audio-sentence';sentence.lang='wo';
+    sentence.textContent='#'+entry.number+' · '+ui.wo[entry.key];
+    const button=document.createElement('button');button.type='button';button.disabled=true;
+    button.textContent='Audio indisponible';button.setAttribute('aria-label','Écouter la phrase wolof '+entry.number);
+    const status=document.createElement('small');status.textContent=entry.number===23
+      ? 'Ancien libellé « parler » désactivé : la lecture audio ne signifie pas que LA VOIX comprend le wolof.'
+      : 'Fichier MP3 non encore joint à la maquette.';
+    const player=document.createElement('audio');player.preload='metadata';
+    const stem='wo_'+String(entry.number).padStart(2,'0')+'_'+entry.key+'.mp3';
+    player.src='audio/'+stem;
+    let ready=false;
+    function enableWhenFound(){
+      if(ready)return;
+      ready=true;
+      button.disabled=false;button.textContent='▶ Écouter';
+      status.textContent=entry.number===23
+        ? 'Audio de relecture seulement : aucun microphone wolof n’est activé.'
+        : 'Audio expérimental · à vérifier à l’oreille';
+      audioReady++;audioCount.textContent='— '+audioReady+' / 29 fichiers disponibles';
+      if(audioReady>0)audioNotice.textContent='Ces extraits sont des essais : valider prononciation, chiffres et compréhension avant toute diffusion publique.';
+    }
+    player.addEventListener('loadedmetadata',()=>{
+      if(Number.isFinite(player.duration)&&player.duration>0)enableWhenFound();
+    },{once:true});
+    // Safari mobile ignore parfois preload=metadata. Sur HTTPS, vérifier la
+    // présence du MP3 par HEAD avant d'activer son bouton (aucune API externe).
+    if(location.protocol==='https:'||location.protocol==='http:'){
+      fetch(player.src,{method:'HEAD'}).then(response=>{
+        if(response.ok)enableWhenFound();
+      }).catch(()=>{});
+    }
+    player.addEventListener('error',()=>{button.disabled=true;});
+    player.addEventListener('ended',()=>{if(playingAudio===player){resetPlay(playingButton);playingAudio=null;playingButton=null;}});
+    button.addEventListener('click',()=>{
+      if(button.disabled)return;
+      if(playingAudio===player&&!player.paused){stopAudio();return;}
+      stopAudio();playingAudio=player;playingButton=button;
+      player.play().then(()=>{button.textContent='■ Arrêter';}).catch(()=>{
+        button.disabled=true;button.textContent='Audio indisponible';
+        status.textContent='Lecture impossible sur cet appareil.';playingAudio=null;playingButton=null;
+      });
+    });
+    item.append(sentence,button,status,player);fragment.append(item);
+  }
+  audioItems.append(fragment);
+}
+setupAudioButtons();
+function setLocale(locale){
+  if(!ui[locale])locale='fr';
+  if(locale!=='wo')stopAudio();
+  audioPanel.hidden=locale!=='wo';
+  document.documentElement.lang=locale;
+  document.documentElement.dir='ltr';
+  document.querySelectorAll('[data-key]').forEach(node=>{
+    const key=node.dataset.key;
+    node.textContent=ui[locale][key]||ui.fr[key]||key;
+    // Certaines conditions commerciales sont VOLONTAIREMENT en français tant que
+    // les termes wolof (unité, mois, adhésion, frais initiaux) ne sont pas validés.
+    if(key==='entryLocPrice'||(key==='entryProMembership'&&locale==='wo'))node.setAttribute('lang','fr');
+    else node.removeAttribute('lang');
+  });
+  document.getElementById('langSwitch').setAttribute('aria-label',locale==='wo'?'Tànnal làkk bi (FR / WO)':'Choisir la langue (FR / WO)');
+  document.querySelectorAll('button[data-locale]').forEach(button=>{
+    const active=button.dataset.locale===locale;
+    button.setAttribute('aria-pressed',String(active));
+  });
+}
+document.querySelectorAll('button[data-locale]').forEach(button=>button.addEventListener('click',()=>setLocale(button.dataset.locale)));
+setLocale('wo');
+</script></body></html>
