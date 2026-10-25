@@ -73,7 +73,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:3px}
 <section class="box"><h2 data-key="claimTitle"></h2><p data-key="claimLead"></p><p class="lead" data-key="claimWorld"></p></section>
 
 <details class="box audio-review" id="woAudioPanel" open>
-  <summary lang="fr">🔊 Écouter les phrases en wolof <small id="woAudioCount">— recherche des MP3...</small></summary>
+  <summary lang="fr">🔊 Écouter les phrases en wolof <small id="woAudioCount">— 0 / 29 fichiers disponibles</small></summary>
   <p lang="fr" class="audio-info">Lecture uniquement, sans microphone ni reconnaissance de la parole. Audios expérimentaux générés avec DIGIY STUDIO MAC : une voix audible n’atteste pas encore de la justesse de chaque prononciation. Aucun audio n'est diffusé sans action de l'utilisateur.</p>
   <div id="woAudioItems" class="audio-items" aria-label="Phrases disponibles à écouter" role="list"></div>
   <p id="woAudioNotice" class="audio-info" lang="fr" role="status">Activation uniquement si les fichiers MP3 correspondants sont disponibles dans le dossier audio du prototype.</p>
@@ -116,15 +116,27 @@ function setupAudioButtons(){
     const player=document.createElement('audio');player.preload='metadata';
     const stem='wo_'+String(entry.number).padStart(2,'0')+'_'+entry.key+'.mp3';
     player.src='audio/'+stem;
-    player.addEventListener('loadedmetadata',()=>{
-      if(!Number.isFinite(player.duration)||player.duration<=0)return;
+    let ready=false;
+    function enableWhenFound(){
+      if(ready)return;
+      ready=true;
       button.disabled=false;button.textContent='▶ Écouter';
       status.textContent=entry.number===23
         ? 'Audio de relecture seulement : aucun microphone wolof n’est activé.'
         : 'Audio expérimental · à vérifier à l’oreille';
       audioReady++;audioCount.textContent='— '+audioReady+' / 29 fichiers disponibles';
       if(audioReady>0)audioNotice.textContent='Ces extraits sont des essais : valider prononciation, chiffres et compréhension avant toute diffusion publique.';
+    }
+    player.addEventListener('loadedmetadata',()=>{
+      if(Number.isFinite(player.duration)&&player.duration>0)enableWhenFound();
     },{once:true});
+    // Safari mobile ignore parfois preload=metadata. Sur HTTPS, vérifier la
+    // présence du MP3 par HEAD avant d'activer son bouton (aucune API externe).
+    if(location.protocol==='https:'||location.protocol==='http:'){
+      fetch(player.src,{method:'HEAD'}).then(response=>{
+        if(response.ok)enableWhenFound();
+      }).catch(()=>{});
+    }
     player.addEventListener('error',()=>{button.disabled=true;});
     player.addEventListener('ended',()=>{if(playingAudio===player){resetPlay(playingButton);playingAudio=null;playingButton=null;}});
     button.addEventListener('click',()=>{
