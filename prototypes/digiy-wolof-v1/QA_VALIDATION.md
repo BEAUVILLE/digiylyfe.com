@@ -26,6 +26,16 @@
 - [ ] Ne pas annoncer prise en charge du wolof vocal tant que LA VOIX n'a pas été testée.
 - [ ] Vérifier liens sur iPhone/Android + navigation clavier ordinateur.
 
+### Étape audio WO (préparation uniquement)
+- [x] Panneau de lecture audio ajouté à la maquette privée sans microphone.
+- [x] Les 29 emplacements MP3 correspondent aux clés de `wo-DRAFT.json` (#10 et #14 exclus).
+- [x] Aucun contrôle d'écoute actif en l'absence de fichier MP3 local correspondant.
+- [ ] Transférer les **29 MP3 réels** depuis le studio Mac dans `audio/` sur la branche PR #114 (cf. `audio/README_IMPORT.md`).
+- [ ] Vérifier 29/29 boutons et la lecture sur Safari iPhone / Android / desktop.
+- [ ] Contrôler l'audio et la prononciation des 29 phrases, notamment chiffres et français mixte.
+- [ ] Confirmer licence et attribution conformes à la diffusion envisagée.
+- [ ] Préparer PR distincte pour la publication, après QA et accord explicite du fondateur.
+
 ### Étape D · Décision
 - [ ] Relecture terrain signée.
 - [ ] Vérification de fidélité des prix et conditions.
