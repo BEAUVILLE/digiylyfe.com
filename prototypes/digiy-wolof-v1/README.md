@@ -1,6 +1,6 @@
 # DIGIY WOLOF V1 — préparation indépendante
 
-**Statut : brouillon non validé / aucune diffusion sur le site.**  
+**Statut : prototype privé avec validation linguistique annoncée par le fondateur ; essais de compréhension/audio et publication encore non validés.**  
 **Date : 25 octobre 2026 · Projet : DIGIYLYFE · pilote Sénégal.**
 
 ## Rôle du dossier
@@ -33,10 +33,17 @@ Ne pas publier la traduction provisoire. Faire relire les **31 unités** par au 
 2. Mapper les clés validées vers le dictionnaire `TEXT.wo` et `DIGIY_PUBLIC_V1.wo`, avec repli FR pour les clés absentes.
 3. Afficher un choix `WO` sur l’accueil après QA, puis étendre aux parcours tarifs/territoires.
 4. Ne jamais laisser penser que **LA VOIX comprend le wolof** tant qu'un test complet de compréhension et de restitution ne l'atteste pas.
-5. Audio V2 possible, avec enregistrement humain et validation locale, séparé de cette V1 écrite.
+5. Audio WO V1 : un panneau « 🔊 Écouter » a été préparé dans `prototype.html` pour **29 pistes** (hors #10 et #14, textes financiers non complètement traduits). Les boutons ne s'activent que si un MP3 correspondant est présent dans `audio/`. **Aucun microphone, aucune reconnaissance vocale** ; le panneau reste privé.
 
 ## Invariants DIGIY
 Contact direct / paiement direct / 0 % commission. Pas de changement des engagements financiers, des liens, des permissions ou des données clients.
 
 ## Suite de l'audit WORK du 25/10/2026
 Corrections appliquées au brouillon uniquement : 31 champs affichables, micro wolof désactivé, informations tarifaires initiales précisées, graphie FANAAN, URLs Saly, premier rendu WO et CSS mobile préventif. Les conditions financières et notices non encore traduites sont explicites en français (`lang=fr`). Aucun test visuel réel ni validation native effectués, la V1 **reste NO-GO**. La PR #115 traite indépendamment le doublon LOC public et les copies France/USA ; ne pas fusionner la PR #114 pour activer WO.
+
+## Lecteur audio prêt, import des fichiers nécessaire
+
+- Le fondateur rapporte que les **29 pistes ont été produites et sont audibles localement** sur le Mac Intel, via CONCREE/Adia_TTS avec son studio. Le dépôt n'héberge **aucun de ces MP3** tant que le dossier local n'est pas importé.
+- Pistes exactes : `audio/wo_01_entryTitle.mp3` à `audio/wo_31_claimWorld.mp3` sauf #10 / #14 ; manifest identique à `WOLOF/phrases.json` sur le Mac.
+- Instructions : `audio/README_IMPORT.md`. Pour éviter les boutons morts, les contrôles sont **désactivés quand le MP3 est absent** ; sur iPhone (HTTPS), le panneau vérifie la présence par HEAD.
+- **Autorisation du fondateur : installation du panneau dans le prototype.** Cela ne vaut pas validation de prononciation, de qualité de sens, des frais ou d'une neuvième langue publique. Une intégration publique exige une PR distincte.
