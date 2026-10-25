@@ -911,6 +911,42 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     .digiyPublicHint{font-size:10.5px}
     .visionFutureQuote{margin-top:13px}
   }
+
+    /* Entrée DIGIYLYFE au premier écran : deux parcours, LOC en complément. */
+    .digiyEntryChoice{margin:4px 0 12px;padding:13px;border-color:rgba(246,196,83,.62);background:linear-gradient(145deg,rgba(10,67,45,.97),rgba(3,27,20,.97))}
+    .digiyEntryHead{margin-bottom:10px}
+    .digiyEntryHead strong{font-size:clamp(21px,4.6vw,29px)}
+    .digiyEntryHead span{font-size:11.5px;line-height:1.35}
+    .digiyEntryGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    .digiyEntryDoor{min-width:0;min-height:202px;padding:12px;border-radius:17px;gap:6px}
+    .digiyEntryDoor strong{font-size:clamp(16px,2.4vw,20px)}
+    .digiyEntryDoor p{font-size:11px;line-height:1.38}
+    .digiyEntryCta{min-height:40px;padding:8px;font-size:10px;line-height:1.2}
+    .digiyEntryMembership{display:block;margin-top:auto;padding:7px 8px;border:1px solid rgba(246,196,83,.32);border-radius:9px;color:#ffe7a0;background:rgba(246,196,83,.08);font-size:10.5px;font-weight:1000;line-height:1.3}
+    .digiyEntryDoor.pro .digiyEntryCta{margin-top:0}
+    .digiyEntryDoor.loc{grid-column:1/-1;display:flex;flex-direction:row;align-items:center;gap:12px;min-height:92px;background:linear-gradient(110deg,rgba(45,212,191,.12),rgba(246,196,83,.09))}
+    .digiyEntryLocCopy{display:flex;flex:1;min-width:0;flex-direction:column;gap:4px}
+    .digiyEntryLocPrice{font-size:11px;line-height:1.35;color:rgba(255,250,240,.82);font-weight:850}
+    .digiyEntryDoor.loc .digiyEntryCta{flex:0 0 28%;min-width:112px;max-width:175px;margin-top:0;background:rgba(255,255,255,.08)}
+    @media(max-width:620px){
+      .digiyEntryGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .digiyEntryDoor{min-height:215px}
+    }
+    @media(max-width:420px){
+      .digiyEntryChoice{padding:10px;border-radius:19px}
+      .digiyEntryHead strong{font-size:21px}
+      .digiyEntryHead span{font-size:11px}
+      .digiyEntryDoor{padding:9px;min-height:217px;gap:6px}
+      .digiyEntryDoor strong{font-size:14px;line-height:1.15}
+      .digiyEntryDoor p{font-size:10.3px;line-height:1.33}
+      .digiyEntryKicker{font-size:9px;letter-spacing:.06em}
+      .digiyEntryMembership{font-size:9.7px;padding:6px}
+      .digiyEntryCta{font-size:9.4px;min-height:40px;padding:7px 5px}
+      .digiyEntryDoor.loc{padding:9px;gap:8px;min-height:108px}
+      .digiyEntryDoor.loc strong{font-size:13px}
+      .digiyEntryLocPrice{font-size:10px}
+      .digiyEntryDoor.loc .digiyEntryCta{flex-basis:37%;min-width:99px;max-width:130px}
+    }
 </style>
 </head>
 <body>
@@ -930,6 +966,38 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
       <button type="button" class="langBtn" data-lang="nl" aria-pressed="false">NL</button>
       <button type="button" class="langBtn" data-lang="ar" aria-pressed="false">AR</button>
     </nav>
+
+    <section class="digiyEntryChoice" id="digiyEntryChoice" aria-label="Entrer dans DIGIYLYFE">
+      <div class="digiyEntryHead">
+        <strong data-i18n="entryTitle">ENTREZ DANS DIGIYLYFE</strong>
+        <span data-i18n="entryLead">Deux chemins. Choisissez simplement ce que vous venez faire.</span>
+      </div>
+
+      <div class="digiyEntryGrid">
+        <a class="digiyEntryDoor public" href="#territoires">
+          <span class="digiyEntryKicker" data-i18n="entryPublicKicker">PUBLIC</span>
+          <strong data-i18n="entryPublicTitle">Je cherche / je découvre</strong>
+          <p data-i18n="entryPublicText">Territoires, professionnels, services et contact direct.</p>
+          <span class="digiyEntryCta" data-i18n="entryPublicCta">EXPLORER LES TERRITOIRES →</span>
+        </a>
+
+        <a class="digiyEntryDoor pro" href="https://digiylyfe.com/tarifs-adherents-1.html">
+          <span class="digiyEntryKicker" data-i18n="entryProKicker">PROFESSIONNEL</span>
+          <strong data-i18n="entryProTitle">Je suis professionnel</strong>
+          <p data-i18n="entryProText">Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique.</p>
+          <span class="digiyEntryMembership" data-i18n="entryProMembership">🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AN</span>
+          <span class="digiyEntryCta" data-i18n="entryProCta">DÉCOUVRIR L’ADHÉSION →</span>
+        </a>
+        <a class="digiyEntryDoor loc" href="https://digiylyfe.com/tarifs-loc-v2.html">
+          <span class="digiyEntryLocCopy">
+            <span class="digiyEntryKicker" data-i18n="entryLocKicker">HÉBERGEMENT · LOC</span>
+            <strong data-i18n="entryLocTitle">DIGIY LOC · tarifs par paliers</strong>
+            <span class="digiyEntryLocPrice" data-i18n="entryLocPrice">Sénégal : 1 unité 21 000 FCFA / mois · 2–3 unités 28 000 FCFA / mois. Europe : 75 € / mois pour 1–3 unités.</span>
+          </span>
+          <span class="digiyEntryCta" data-i18n="entryLocCta">VOIR LES PALIERS LOC →</span>
+        </a>
+      </div>
+    </section>
 
     <!-- VISIBILITE V1 : porte publique prioritaire. Les liens réutilisent les routes métier existantes. -->
     <section class="digiyPublicFirstV1" id="digiyPublicFirstV1" aria-labelledby="digiyPublicQuestion">
@@ -1254,28 +1322,7 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     </section>
 
 
-    <section class="digiyEntryChoice" id="digiyEntryChoice" aria-label="Entrer dans DIGIYLYFE">
-      <div class="digiyEntryHead">
-        <strong data-i18n="entryTitle">ENTREZ DANS DIGIYLYFE</strong>
-        <span data-i18n="entryLead">Deux chemins. Choisissez simplement ce que vous venez faire.</span>
-      </div>
 
-      <div class="digiyEntryGrid">
-        <a class="digiyEntryDoor public" href="#territoires">
-          <span class="digiyEntryKicker" data-i18n="entryPublicKicker">PUBLIC</span>
-          <strong data-i18n="entryPublicTitle">Je cherche / je découvre</strong>
-          <p data-i18n="entryPublicText">Territoires, professionnels, services et contact direct.</p>
-          <span class="digiyEntryCta" data-i18n="entryPublicCta">EXPLORER LES TERRITOIRES →</span>
-        </a>
-
-        <a class="digiyEntryDoor pro" href="https://digiylyfe.com/tarifs-adherents-1.html">
-          <span class="digiyEntryKicker" data-i18n="entryProKicker">PROFESSIONNEL</span>
-          <strong data-i18n="entryProTitle">Je suis professionnel</strong>
-          <p data-i18n="entryProText">Construisez une présence numérique à votre image et faites-la grandir avec votre activité.</p>
-          <span class="digiyEntryCta" data-i18n="entryProCta">DÉCOUVRIR L’ADHÉSION →</span>
-        </a>
-      </div>
-    </section>
 
 
 
@@ -1500,6 +1547,16 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     Object.assign(TEXT.nl,{"salyVideoTitle": "Uw plek in het digitale dorp.", "salyVideoLead": "De beroepen. Het lokale leven. Uw regio. Ontdek DIGIYLYFE aan de Petite Côte.", "salyVideoHint": "Druk op afspelen · video in het Frans · 12 seconden", "salyVideoExplore": "Ontdek de Petite Côte →", "salyVideoFallback": "Open de DIGIYLYFE-video"});
     Object.assign(TEXT.ar,{"salyVideoTitle": "مكانك في القرية الرقمية.", "salyVideoLead": "المهن. الحياة المحلية. منطقتك. اكتشف DIGIYLYFE في Petite Côte.", "salyVideoHint": "اضغط للتشغيل · فيديو بالفرنسية · 12 ثانية", "salyVideoExplore": "استكشف Petite Côte ←", "salyVideoFallback": "افتح فيديو DIGIYLYFE"});
 
+
+    // Entrée au premier écran · tarifs explicites cohérents WORLD8.
+    Object.assign(TEXT.fr,{"entryProText":"Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique.","entryProMembership":"🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AN","entryLocKicker":"HÉBERGEMENT · LOC","entryLocTitle":"DIGIY LOC · tarifs par paliers","entryLocPrice":"Sénégal : 1 unité 21 000 FCFA / mois · 2–3 unités 28 000 FCFA / mois. Europe : 75 € / mois pour 1–3 unités.","entryLocCta":"VOIR LES PALIERS LOC →"});
+    Object.assign(TEXT.en,{"entryProText":"Digital card only · France: €20 · Senegal: 15,000 FCFA · USA: $20 · one-time payment.","entryProMembership":"🇫🇷 FRANCE · ECOSYSTEM MEMBERSHIP · €450 / YEAR","entryLocKicker":"ACCOMMODATION · LOC","entryLocTitle":"DIGIY LOC · tiered prices","entryLocPrice":"Senegal: 1 unit 21,000 FCFA/month · 2–3 units 28,000 FCFA/month. Europe: €75/month for 1–3 units.","entryLocCta":"SEE LOC PRICE TIERS →"});
+    Object.assign(TEXT.es,{"entryProText":"Solo tarjeta digital · Francia: 20 € · Senegal: 15 000 FCFA · EE. UU.: 20 $ · pago único.","entryProMembership":"🇫🇷 FRANCIA · ADHESIÓN AL ECOSISTEMA · 450 € / AÑO","entryLocKicker":"ALOJAMIENTO · LOC","entryLocTitle":"DIGIY LOC · precios por tramos","entryLocPrice":"Senegal: 1 unidad 21 000 FCFA/mes · 2–3 unidades 28 000 FCFA/mes. Europa: 75 €/mes para 1–3 unidades.","entryLocCta":"VER TRAMOS LOC →"});
+    Object.assign(TEXT.pt,{"entryProText":"Só cartão digital · França: 20 € · Senegal: 15 000 FCFA · EUA: 20 $ · pagamento único.","entryProMembership":"🇫🇷 FRANÇA · ADESÃO AO ECOSSISTEMA · 450 € / ANO","entryLocKicker":"ALOJAMENTO · LOC","entryLocTitle":"DIGIY LOC · preços por escalões","entryLocPrice":"Senegal: 1 unidade 21 000 FCFA/mês · 2–3 unidades 28 000 FCFA/mês. Europa: 75 €/mês para 1–3 unidades.","entryLocCta":"VER ESCALÕES LOC →"});
+    Object.assign(TEXT.it,{"entryProText":"Solo carta digitale · Francia: 20 € · Senegal: 15 000 FCFA · USA: 20 $ · pagamento unico.","entryProMembership":"🇫🇷 FRANCIA · ADESIONE ALL’ECOSISTEMA · 450 € / ANNO","entryLocKicker":"ALLOGGI · LOC","entryLocTitle":"DIGIY LOC · tariffe per fasce","entryLocPrice":"Senegal: 1 unità 21 000 FCFA/mese · 2–3 unità 28 000 FCFA/mese. Europa: 75 €/mese per 1–3 unità.","entryLocCta":"VEDI FASCE LOC →"});
+    Object.assign(TEXT.de,{"entryProText":"Nur digitale Karte · Frankreich: 20 € · Senegal: 15.000 FCFA · USA: 20 $ · Einmalzahlung.","entryProMembership":"🇫🇷 FRANKREICH · NETZWERKMITGLIEDSCHAFT · 450 € / JAHR","entryLocKicker":"UNTERKÜNFTE · LOC","entryLocTitle":"DIGIY LOC · Preisstufen","entryLocPrice":"Senegal: 1 Einheit 21.000 FCFA/Monat · 2–3 Einheiten 28.000 FCFA/Monat. Europa: 75 €/Monat für 1–3 Einheiten.","entryLocCta":"LOC-PREISSTUFEN ANSEHEN →"});
+    Object.assign(TEXT.nl,{"entryProText":"Alleen digitale kaart · Frankrijk: € 20 · Senegal: 15.000 FCFA · VS: $ 20 · eenmalige betaling.","entryProMembership":"🇫🇷 FRANKRIJK · ECOSYSTEEMLIDMAATSCHAP · € 450 / JAAR","entryLocKicker":"ACCOMMODATIE · LOC","entryLocTitle":"DIGIY LOC · prijzen per schaal","entryLocPrice":"Senegal: 1 eenheid 21.000 FCFA/maand · 2–3 eenheden 28.000 FCFA/maand. Europa: € 75/maand voor 1–3 eenheden.","entryLocCta":"BEKIJK LOC-TARIEVEN →"});
+    Object.assign(TEXT.ar,{"entryProText":"البطاقة الرقمية فقط · فرنسا: 20 € · السنغال: 15 000 FCFA · الولايات المتحدة: 20 $ · دفعة واحدة.","entryProMembership":"🇫🇷 فرنسا · عضوية المنظومة · 450 € / سنة","entryLocKicker":"الإقامة · LOC","entryLocTitle":"DIGIY LOC · أسعار حسب العدد","entryLocPrice":"السنغال: وحدة واحدة 21 000 FCFA/شهر · وحدتان إلى ثلاث وحدات 28 000 FCFA/شهر. أوروبا: 75 € / شهر لوحدة إلى ثلاث وحدات.","entryLocCta":"عرض شرائح أسعار LOC ←"});
 
     // Mobile explainer entry: the linked presentation is explicitly French.
     Object.assign(TEXT.fr,{"seriesTitle": "Comment fonctionne DIGIYLYFE ?", "seriesLead": "Une interface simple, les activités de votre territoire et le contact direct. Découvrez ce qui les relie.", "seriesCta": "Découvrir en 3 images", "seriesHint": "Présentation en français · voix au clic · lecture à votre rythme"});
