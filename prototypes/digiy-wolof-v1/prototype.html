@@ -30,6 +30,19 @@ a.card:nth-child(2){background:linear-gradient(145deg,#544320,#123c27)}
 .commercial{padding-top:9px;border-top:1px solid #66836d;font-size:11.5px;line-height:1.5}
 .card{overflow-wrap:anywhere}
 button:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* Lecteur WO facultatif : aucune piste active sans fichier MP3 effectivement lisible. */
+[hidden]{display:none!important}
+.audio-review summary{cursor:pointer;font-weight:800;color:var(--gold);font-size:17px;padding:3px 0}
+.audio-review .audio-info{font-size:12px;line-height:1.5;color:var(--soft)}
+.audio-review .audio-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}
+.audio-review .audio-item{background:#0b2d20;border:1px solid #426b53;border-radius:12px;padding:9px;display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:0}
+.audio-item .audio-sentence{overflow-wrap:anywhere;font-size:13px;line-height:1.4}
+.audio-item button{background:var(--gold);color:#072418;border:0;border-radius:9px;padding:9px 10px;cursor:pointer;font-weight:800;min-height:40px}
+.audio-item button:disabled{cursor:not-allowed;background:#59645d;color:#fff;opacity:.75}
+.audio-item button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.audio-item small{font-size:10.5px}
+@media(max-width:620px){.audio-review .audio-items{grid-template-columns:1fr}}
 </style></head>
 <body><main>
 <header class="head"><h1>DIGIYLYFE <span style="color:#f6c453">· WO V1</span></h1><div class="switch" role="group" id="langSwitch" aria-label="Choisir la langue de la maquette"><button type="button" data-locale="fr" aria-pressed="false">FR</button><button type="button" data-locale="wo" aria-pressed="true">WO</button></div></header>
@@ -58,14 +71,80 @@ button:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:3px}
 </section>
 <section class="box"><h2><span data-key="worldTitle"></span></h2><p class="lead"><span data-key="worldLead"></span></p><p><span data-key="worldPath"></span></p><p class="tiny" lang="fr">Territoires : 🇸🇳 Petite Côte / Dakar · 🇫🇷 Dordogne / Bordeaux / Paris · 🇺🇸 Miami. Les pages liées restent en français ou dans la langue mémorisée par le site.</p></section>
 <section class="box"><h2 data-key="claimTitle"></h2><p data-key="claimLead"></p><p class="lead" data-key="claimWorld"></p></section>
+
+<details class="box audio-review" id="woAudioPanel" open>
+  <summary lang="fr">🔊 Écouter les phrases en wolof <small id="woAudioCount">— recherche des MP3...</small></summary>
+  <p lang="fr" class="audio-info">Lecture uniquement, sans microphone ni reconnaissance de la parole. Audios expérimentaux générés avec DIGIY STUDIO MAC : une voix audible n’atteste pas encore de la justesse de chaque prononciation. Aucun audio n'est diffusé sans action de l'utilisateur.</p>
+  <div id="woAudioItems" class="audio-items" aria-label="Phrases disponibles à écouter" role="list"></div>
+  <p id="woAudioNotice" class="audio-info" lang="fr" role="status">Activation uniquement si les fichiers MP3 correspondants sont disponibles dans le dossier audio du prototype.</p>
+</details>
 <p class="tiny" lang="fr">Propositions wolof non validées : le prototype affiche les 31 textes, mais les passages commerciaux français et les avertissements doivent encore être traduits et relus. L’accès public reste en français ou dans une langue précédemment mémorisée sur le site.</p>
 </main>
 <script>
 const ui={"fr":{"entryTitle":"ENTREZ DANS DIGIYLYFE","entryLead":"Deux chemins. Choisissez simplement ce que vous venez faire.","entryPublicKicker":"PUBLIC","entryPublicTitle":"Je cherche / je découvre","entryPublicText":"Territoires, professionnels, services et contact direct.","entryPublicCta":"EXPLORER LES TERRITOIRES →","entryProKicker":"PROFESSIONNEL","entryProTitle":"Je suis professionnel","entryProText":"Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique.","entryProMembership":"🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AN","entryProCta":"DÉCOUVRIR L’ADHÉSION →","entryLocKicker":"HÉBERGEMENT · LOC","entryLocTitle":"DIGIY LOC · tarifs par paliers","entryLocPrice":"Sénégal : 1 unité 21 000 FCFA / mois · 2–3 unités 28 000 FCFA / mois. Europe : 75 € / mois pour 1–3 unités.","entryLocCta":"VOIR LES PALIERS LOC →","v1Question":"Vous cherchez quoi, près de chez vous ?","v1Stay":"Hébergement","v1Drive":"Chauffeur","v1Eat":"Restaurant","v1Fix":"Artisan / Service","v1Shop":"Commerce / Activité","v1Promise":"Trouvez une réponse. Choisissez votre professionnel. Contactez-le directement.","v1SearchCta":"🎙️ Parler ou écrire mon besoin →","v1TerritoryCta":"📍 Voir les professionnels de la Petite Côte →","v1Principle":"Contact et paiement directs · 0 % commission DIGIYLYFE","worldTitle":"DIGIYLYFE · DU LOCAL AU MONDE","worldLead":"Un même CORE. Des territoires différents. Le professionnel reste local.","worldPath":"Pays → Territoire → Zone → Besoin → Professionnel → OUVRIR","claimTitle":"L’EMPREINTE NUMÉRIQUE DU PROFESSIONNEL","claimLead":"Votre savoir-faire mérite une présence qui vous ressemble.","claimWorld":"Votre identité. Vos données. Votre relation directe."},"wo":{"entryTitle":"Dugg ci DIGIYLYFE","entryLead":"Ñaari yoon nga am. Tànnal li nga bëgg def.","entryPublicKicker":"ÑÉPP","entryPublicTitle":"Maa ngi seet / maa ngi xool","entryPublicText":"Gox yi, ñiy liggéey, sarwiis yi ak jokkoo bu jub.","entryPublicCta":"XOOL GOX YI →","entryProKicker":"KI AM LIGGÉEY","entryProTitle":"Dama am sama liggéey","entryProText":"Kàrt rekk · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · benn yoon lañu koy fey.","entryProMembership":"🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AT","entryProCta":"XAM MBIRUM ADHÉSION →","entryLocKicker":"FANAAN · LOC","entryLocTitle":"DIGIY LOC · njëg yi aju ci lim bi","entryLocPrice":"Sénégal : 1 unité = 21 000 FCFA / mois · 2–3 unités = 28 000 FCFA / mois. Europe : 1–3 unités = 75 € / mois.","entryLocCta":"XOOL NJËG YU LOC →","v1Question":"Lan nga seet ci sa gox?","v1Stay":"Béréb bu ñuy fanaan","v1Drive":"Dawalkat","v1Eat":"Restoran","v1Fix":"Artisan / Sarwiis","v1Shop":"Jaay ak jënd / Liggéey","v1Promise":"Gisal li nga soxla. Tànnal ki nga bëgg. Jokkoo ak moom ci sa bopp.","v1SearchCta":"Wax walla bind li ma soxla →","v1TerritoryCta":"📍 Xool ñiy liggéey ci Petite Côte →","v1Principle":"Jokkoo ak fayyante ci sa bopp · 0 % commission DIGIYLYFE","worldTitle":"DIGIYLYFE · CI GOX BI BA CI ÀDDUNA BI","worldLead":"Benn CORE. Gox yu wuute. Ki liggéey ci sa gox la des.","worldPath":"Réew → Gox → Dëkk → Soxla → Ki liggéey → UBBI","claimTitle":"DIGIYLYFE · CI INTERNET, SA LIGGÉEY","claimLead":"Sa xam-xam ci liggéey war na feeñ ci internet.","claimWorld":"Sa melokaan. Say njoxe. Sa jokkoo ci sa bopp."}};
 // Le JSON wo-DRAFT.json reste la source de relecture ; la copie inline sert uniquement
 // au prototype autonome. Aucune valeur texte n'est dupliquée dans le HTML initial.
+
+// Ne touche ni LA VOIX, ni le micro, ni les liens de navigation existants.
+// Les 29 audios sont conservés sur le Mac ; le dépôt n'héberge pas de MP3
+// avant une importation explicite. Les boutons restent désactivés si absents.
+const audioPanel=document.getElementById('woAudioPanel');
+const audioItems=document.getElementById('woAudioItems');
+const audioCount=document.getElementById('woAudioCount');
+const audioNotice=document.getElementById('woAudioNotice');
+const audioEntries=Object.keys(ui.wo).map((key,i)=>({number:i+1,key}))
+  .filter(entry=>entry.number!==10&&entry.number!==14);
+let audioReady=0;
+let playingAudio=null;
+let playingButton=null;
+function resetPlay(button){if(button)button.textContent='▶ Écouter';}
+function stopAudio(){
+  if(playingAudio){playingAudio.pause();playingAudio.currentTime=0;}
+  resetPlay(playingButton);playingAudio=null;playingButton=null;
+}
+function setupAudioButtons(){
+  const fragment=document.createDocumentFragment();
+  for(const entry of audioEntries){
+    const item=document.createElement('div');item.className='audio-item';item.setAttribute('role','listitem');
+    const sentence=document.createElement('span');sentence.className='audio-sentence';sentence.lang='wo';
+    sentence.textContent='#'+entry.number+' · '+ui.wo[entry.key];
+    const button=document.createElement('button');button.type='button';button.disabled=true;
+    button.textContent='Audio indisponible';button.setAttribute('aria-label','Écouter la phrase wolof '+entry.number);
+    const status=document.createElement('small');status.textContent=entry.number===23
+      ? 'Ancien libellé « parler » désactivé : la lecture audio ne signifie pas que LA VOIX comprend le wolof.'
+      : 'Fichier MP3 non encore joint à la maquette.';
+    const player=document.createElement('audio');player.preload='metadata';
+    const stem='wo_'+String(entry.number).padStart(2,'0')+'_'+entry.key+'.mp3';
+    player.src='audio/'+stem;
+    player.addEventListener('loadedmetadata',()=>{
+      if(!Number.isFinite(player.duration)||player.duration<=0)return;
+      button.disabled=false;button.textContent='▶ Écouter';
+      status.textContent=entry.number===23
+        ? 'Audio de relecture seulement : aucun microphone wolof n’est activé.'
+        : 'Audio expérimental · à vérifier à l’oreille';
+      audioReady++;audioCount.textContent='— '+audioReady+' / 29 fichiers disponibles';
+      if(audioReady>0)audioNotice.textContent='Ces extraits sont des essais : valider prononciation, chiffres et compréhension avant toute diffusion publique.';
+    },{once:true});
+    player.addEventListener('error',()=>{button.disabled=true;});
+    player.addEventListener('ended',()=>{if(playingAudio===player){resetPlay(playingButton);playingAudio=null;playingButton=null;}});
+    button.addEventListener('click',()=>{
+      if(button.disabled)return;
+      if(playingAudio===player&&!player.paused){stopAudio();return;}
+      stopAudio();playingAudio=player;playingButton=button;
+      player.play().then(()=>{button.textContent='■ Arrêter';}).catch(()=>{
+        button.disabled=true;button.textContent='Audio indisponible';
+        status.textContent='Lecture impossible sur cet appareil.';playingAudio=null;playingButton=null;
+      });
+    });
+    item.append(sentence,button,status,player);fragment.append(item);
+  }
+  audioItems.append(fragment);
+}
+setupAudioButtons();
 function setLocale(locale){
   if(!ui[locale])locale='fr';
+  if(locale!=='wo')stopAudio();
+  audioPanel.hidden=locale!=='wo';
   document.documentElement.lang=locale;
   document.documentElement.dir='ltr';
   document.querySelectorAll('[data-key]').forEach(node=>{
