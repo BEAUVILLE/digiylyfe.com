@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>DIGIY WOLOF V1 — Prototype de relecture non publié</title>
+<style>
+:root{color-scheme:dark;--bg:#04150f;--card:#0e3123;--gold:#f6c453;--fg:#fff9ee;--soft:#cddbd2}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#075f32,#062b1b 34%,var(--bg));color:var(--fg);font-family:system-ui,Arial,sans-serif;line-height:1.35}
+main{width:min(850px,100%);margin:auto;padding:12px 12px 60px}.head{display:flex;justify-content:space-between;align-items:center;gap:14px}
+h1{margin:0;font-size:clamp(22px,6vw,32px)}small,.tiny{color:var(--soft);font-size:11px}
+.banner{background:#fff0bd;color:#153021;border-radius:14px;padding:10px 12px;font-size:12px;font-weight:800;margin:12px 0}
+.switch{display:flex;gap:6px}.switch button{border:1px solid var(--gold);background:#0e3022;border-radius:11px;padding:9px 13px;color:#fff;font-weight:800;cursor:pointer}
+.switch button[aria-pressed="true"]{background:var(--gold);color:#062014}
+.box{padding:14px;margin-top:13px;background:rgba(8,42,30,.88);border:1px solid #786632;border-radius:21px}
+h2{margin:0 0 5px;font-size:clamp(19px,5vw,27px)}.lead{margin:3px 0 12px;color:var(--soft);font-size:13px}
+.entry{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+a.card{display:flex;flex-direction:column;gap:6px;min-width:0;border:1px solid #406752;border-radius:16px;padding:12px;color:var(--fg);text-decoration:none;background:linear-gradient(145deg,#13563a,#08231a)}
+a.card:nth-child(2){background:linear-gradient(145deg,#544320,#123c27)}
+.kicker{font-weight:850;font-size:10px;letter-spacing:.05em;color:#ffdfa0}
+.card strong{font-size:18px;line-height:1.13}.card p{margin:0;color:var(--soft);font-size:11.5px}.cta{display:block;border:1px solid #e8c57a;border-radius:30px;text-align:center;padding:9px;font-size:10px;font-weight:850;margin-top:auto}
+.price{font-size:11px;color:#ffe9ac;font-weight:800;margin-top:auto}
+.card.loc{grid-column:1/-1;display:flex;flex-direction:row;align-items:center;gap:15px}
+.loc .cta{min-width:108px;width:29%;flex-shrink:0;margin:0}.loc .inner{display:flex;flex-direction:column;gap:5px}
+.needs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.needs a{text-align:center;background:#135039;border:1px solid #62836b;border-radius:13px;padding:9px 4px;color:#fff;min-height:64px;text-decoration:none;font-size:12px;font-weight:750}
+.needs span{display:block;font-size:20px}.actions a{display:inline-block;margin:8px 8px 0 0;background:#f6c453;color:#0b2116;padding:9px 13px;border-radius:20px;text-decoration:none;font-size:12px;font-weight:800}
+@media(max-width:400px){.card strong{font-size:15px}.entry{gap:7px}.card{padding:9px!important}.loc .cta{width:37%} .price{font-size:10px} .needs{gap:5px}}
+button:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+</style></head>
+<body><main>
+<header class="head"><h1>DIGIYLYFE <span style="color:#f6c453">· WO V1</span></h1><div class="switch" role="group" aria-label="Langue de la maquette"><button type="button" data-locale="fr" aria-pressed="true">FR</button><button type="button" data-locale="wo" aria-pressed="false">WO</button></div></header>
+<div class="banner">PROTOTYPE DE RELECTURE · NON PUBLIÉ · TRADUCTION WOLOF NON VALIDÉE · Aucun changement du site réel</div>
+<section class="box" aria-label="Deux portes d'entrée">
+<h2><span data-key="entryTitle">ENTREZ DANS DIGIYLYFE</span></h2><p class="lead"><span data-key="entryLead">Deux chemins. Choisissez simplement ce que vous venez faire.</span></p>
+<div class="entry">
+<a class="card" href="https://digiylyfe.com/?lang=fr#territoires" target="_blank" rel="noopener noreferrer"><span data-key="entryPublicKicker">PUBLIC</span><strong data-key="entryPublicTitle">Je cherche / je découvre</strong><p data-key="entryPublicText">Territoires, professionnels, services et contact direct.</p><span class="cta" data-key="entryPublicCta">EXPLORER LES TERRITOIRES →</span></a>
+<a class="card" href="https://digiylyfe.com/tarifs-adherents-1.html" target="_blank" rel="noopener noreferrer"><span data-key="entryProKicker">PROFESSIONNEL</span><strong data-key="entryProTitle">Je suis professionnel</strong><p data-key="entryProText">Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique.</p><span class="price" data-key="entryProMembership">🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AN</span><span class="cta" data-key="entryProCta">DÉCOUVRIR L’ADHÉSION →</span></a>
+<a class="card loc" href="https://digiylyfe.com/tarifs-loc-v2.html" target="_blank" rel="noopener noreferrer"><div class="inner"><span data-key="entryLocKicker">HÉBERGEMENT · LOC</span><strong data-key="entryLocTitle">DIGIY LOC · tarifs par paliers</strong><p data-key="entryLocPrice">Sénégal : 1 unité 21 000 FCFA / mois · 2–3 unités 28 000 FCFA / mois. Europe : 75 € / mois pour 1–3 unités.</p></div><span class="cta" data-key="entryLocCta">VOIR LES PALIERS LOC →</span></a>
+</div>
+</section>
+<section class="box"><h2><span data-key="v1Question">Vous cherchez quoi, près de chez vous ?</span></h2><div class="needs">
+<a href="https://digiylyfe.com/territoire.html?zone=petite-cote&amp;need=accommodation" target="_blank" rel="noopener noreferrer"><span>🏠</span><span data-key="v1Stay">Hébergement</span></a>
+<a href="https://digiylyfe.com/territoire.html?zone=petite-cote&amp;need=transport" target="_blank" rel="noopener noreferrer"><span>🚘</span><span data-key="v1Drive">Chauffeur</span></a>
+<a href="https://digiylyfe.com/territoire.html?zone=petite-cote&amp;need=food" target="_blank" rel="noopener noreferrer"><span>🍽️</span><span data-key="v1Eat">Restaurant</span></a>
+<a href="https://digiylyfe.com/territoire.html?zone=petite-cote&amp;need=artisan" target="_blank" rel="noopener noreferrer"><span>🔧</span><span data-key="v1Fix">Artisan / Service</span></a>
+<a href="https://digiylyfe.com/territoire.html?zone=petite-cote&amp;need=shopping" target="_blank" rel="noopener noreferrer"><span>🛍️</span><span data-key="v1Shop">Commerce / Activité</span></a>
+</div>
+<div class="actions"><a href="https://pro-action-digiy.digiylyfe.com/" target="_blank" rel="noopener noreferrer"><span data-key="v1SearchCta">🎙️ Parler ou écrire mon besoin →</span></a></div><p class="tiny">Attention : le prototype traduit uniquement l'interface. Le moteur vocal n'est pas déclaré compatible wolof.</p>
+</section>
+<section class="box"><h2><span data-key="worldTitle">DIGIYLYFE · DU LOCAL AU MONDE</span></h2><p class="lead"><span data-key="worldLead">Un même CORE. Des territoires différents. Le professionnel reste local.</span></p><p><span data-key="worldPath">Pays → Territoire → Zone → Besoin → Professionnel → OUVRIR</span></p><p class="tiny">Territoires : 🇸🇳 Petite Côte / Dakar · 🇫🇷 Dordogne / Bordeaux / Paris · 🇺🇸 Miami. Le contenu complet de ces pages reste en français pendant le pilote.</p></section>
+<p class="tiny">La sélection WO met à jour uniquement cette page hors production ; les liens externes pointent vers la version publiée actuelle. Toute traduction doit être vérifiée sur le terrain avant intégration.</p>
+</main>
+<script>
+const ui={"fr":{"entryTitle":"ENTREZ DANS DIGIYLYFE","entryLead":"Deux chemins. Choisissez simplement ce que vous venez faire.","entryPublicKicker":"PUBLIC","entryPublicTitle":"Je cherche / je découvre","entryPublicText":"Territoires, professionnels, services et contact direct.","entryPublicCta":"EXPLORER LES TERRITOIRES →","entryProKicker":"PROFESSIONNEL","entryProTitle":"Je suis professionnel","entryProText":"Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique.","entryProMembership":"🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AN","entryProCta":"DÉCOUVRIR L’ADHÉSION →","entryLocKicker":"HÉBERGEMENT · LOC","entryLocTitle":"DIGIY LOC · tarifs par paliers","entryLocPrice":"Sénégal : 1 unité 21 000 FCFA / mois · 2–3 unités 28 000 FCFA / mois. Europe : 75 € / mois pour 1–3 unités.","entryLocCta":"VOIR LES PALIERS LOC →","v1Question":"Vous cherchez quoi, près de chez vous ?","v1Stay":"Hébergement","v1Drive":"Chauffeur","v1Eat":"Restaurant","v1Fix":"Artisan / Service","v1Shop":"Commerce / Activité","v1Promise":"Trouvez une réponse. Choisissez votre professionnel. Contactez-le directement.","v1SearchCta":"🎙️ Parler ou écrire mon besoin →","v1TerritoryCta":"📍 Voir les professionnels de la Petite Côte →","v1Principle":"Contact et paiement directs · 0 % commission DIGIYLYFE","worldTitle":"DIGIYLYFE · DU LOCAL AU MONDE","worldLead":"Un même CORE. Des territoires différents. Le professionnel reste local.","worldPath":"Pays → Territoire → Zone → Besoin → Professionnel → OUVRIR","claimTitle":"L’EMPREINTE NUMÉRIQUE DU PROFESSIONNEL","claimLead":"Votre savoir-faire mérite une présence qui vous ressemble.","claimWorld":"Votre identité. Vos données. Votre relation directe."},"wo":{"entryTitle":"Dugg ci DIGIYLYFE","entryLead":"Ñaari yoon nga am. Tànnal li nga bëgg def.","entryPublicKicker":"ÑÉPP","entryPublicTitle":"Maa ngi seet / maa ngi xool","entryPublicText":"Gox yi, ñiy liggéey, sarwiis yi ak jokkoo bu jub.","entryPublicCta":"XOOL GOX YI →","entryProKicker":"KI AM LIGGÉEY","entryProTitle":"Dama am sama liggéey","entryProText":"Kàrt rekk · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · benn yoon lañu koy fey.","entryProMembership":"🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AT","entryProCta":"XAM MBIRUM ADHÉSION →","entryLocKicker":"FANAN · LOC","entryLocTitle":"DIGIY LOC · njëg yi aju ci lim bi","entryLocPrice":"Sénégal : 1 unité = 21 000 FCFA / mois · 2–3 unités = 28 000 FCFA / mois. Europe : 1–3 unités = 75 € / mois.","entryLocCta":"XOOL NJËG YU LOC →","v1Question":"Lan nga seet ci sa gox?","v1Stay":"Béréb bu ñuy fanaan","v1Drive":"Dawalkat","v1Eat":"Restoran","v1Fix":"Artisan / Sarwiis","v1Shop":"Jaay ak jënd / Liggéey","v1Promise":"Gisal li nga soxla. Tànnal ki nga bëgg. Jokkoo ak moom ci sa bopp.","v1SearchCta":"🎙️ Wax walla bind li ma soxla →","v1TerritoryCta":"📍 Xool ñiy liggéey ci Petite Côte →","v1Principle":"Jokkoo ak fayyante ci sa bopp · 0 % commission DIGIYLYFE","worldTitle":"DIGIYLYFE · CI GOX BI BA CI ÀDDUNA BI","worldLead":"Benn CORE. Gox yu wuute. Ki liggéey ci sa gox la des.","worldPath":"Réew → Gox → Dëkk → Soxla → Ki liggéey → UBBI","claimTitle":"DIGIYLYFE · CI INTERNET, SA LIGGÉEY","claimLead":"Sa xam-xam ci liggéey war na feeñ ci internet.","claimWorld":"Sa melokaan. Say njoxe. Sa jokkoo ci sa bopp."}};
+document.querySelectorAll("button[data-locale]").forEach(button=>button.addEventListener("click",()=>{
+ const locale=button.dataset.locale;
+ document.documentElement.lang=locale;
+ document.querySelectorAll("[data-key]").forEach(node=>{const key=node.dataset.key;node.textContent=ui[locale][key]||ui.fr[key]||key;});
+ document.querySelectorAll("button[data-locale]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.locale===locale)));
+}));
+</script></body></html>
