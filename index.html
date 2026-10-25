@@ -119,6 +119,8 @@
     .languageStrip::-webkit-scrollbar{display:none}
     .langBtn{height:42px;min-width:41px;padding:0 9px;border-radius:999px;border:1px solid rgba(246,196,83,.38);background:rgba(255,255,255,.075);font-size:10px;font-weight:1000;cursor:pointer;flex:0 0 auto}
     .langBtn.active{background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;border-color:rgba(246,196,83,.80)}
+    /* WO est un lien vers la page wolof à écouter : pas un bouton de traduction WORLD8. */
+    .languageStrip a.woLangLink{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-width:58px;background:rgba(246,196,83,.15);border-color:var(--gold);color:#ffe4a0}
 
     .hero{
       position:relative;overflow:hidden;padding:27px 20px 20px;border:2px solid rgba(246,196,83,.78);border-radius:31px;
@@ -958,6 +960,7 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
 
     <nav class="languageStrip" aria-label="Choisir la langue / Choose language">
       <button type="button" class="langBtn active" data-lang="fr" aria-pressed="true">FR</button>
+      <a class="langBtn woLangLink" href="/prototypes/digiy-wolof-v1/prototype.html" lang="wo" hreflang="wo" aria-label="Wolof : découvrir DIGIYLYFE en wolof et écouter les 29 audios" title="Wolof · Lire et écouter DIGIYLYFE">WO 🔊</a>
       <button type="button" class="langBtn" data-lang="en" aria-pressed="false">EN</button>
       <button type="button" class="langBtn" data-lang="es" aria-pressed="false">ES</button>
       <button type="button" class="langBtn" data-lang="pt" aria-pressed="false">PT</button>
@@ -1602,7 +1605,7 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
         var key=el.getAttribute('data-i18n');
         if(Object.prototype.hasOwnProperty.call(t,key))el.textContent=t[key];
       });
-      document.querySelectorAll('.langBtn').forEach(function(btn){
+      document.querySelectorAll('.languageStrip button.langBtn[data-lang]').forEach(function(btn){
         var active=btn.getAttribute('data-lang')===lang;
         btn.classList.toggle('active',active);
         btn.setAttribute('aria-pressed',active?'true':'false');
@@ -1618,7 +1621,7 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
       if(window.digiyRenderFavoris){try{window.digiyRenderFavoris();}catch(e){}}
     }
 
-    document.querySelectorAll('.langBtn').forEach(function(btn){
+    document.querySelectorAll('.languageStrip button.langBtn[data-lang]').forEach(function(btn){
       btn.addEventListener('click',function(){setLang(btn.getAttribute('data-lang'));});
     });
 
