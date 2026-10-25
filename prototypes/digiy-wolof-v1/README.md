@@ -37,3 +37,6 @@ Ne pas publier la traduction provisoire. Faire relire les **31 unités** par au 
 
 ## Invariants DIGIY
 Contact direct / paiement direct / 0 % commission. Pas de changement des engagements financiers, des liens, des permissions ou des données clients.
+
+## Suite de l'audit WORK du 25/10/2026
+Corrections appliquées au brouillon uniquement : 31 champs affichables, micro wolof désactivé, informations tarifaires initiales précisées, graphie FANAAN, URLs Saly, premier rendu WO et CSS mobile préventif. Les conditions financières et notices non encore traduites sont explicites en français (`lang=fr`). Aucun test visuel réel ni validation native effectués, la V1 **reste NO-GO**. La PR #115 traite indépendamment le doublon LOC public et les copies France/USA ; ne pas fusionner la PR #114 pour activer WO.
