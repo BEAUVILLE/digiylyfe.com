@@ -86,17 +86,68 @@
     if(document.getElementById('digiyHomeLocDoor')) return;
     var grid=document.querySelector('#digiyEntryChoice .digiyEntryGrid');
     if(!grid) return;
+    // PR #113 fournit déjà la porte LOC complète et les bons paliers.
+    // Ne jamais recréer la porte historique et ses prix contradictoires.
+    if(grid.querySelector('a.digiyEntryDoor.loc[href*="tarifs-loc-v2.html"]')) return;
 
     var TEXT={
-      fr:{k:'HÉBERGEMENT · LOC',t:'DIGIY LOC · tarifs par paliers',p:'1–3 unités : 28 000 FCFA / 75 € par mois. Le tarif évolue avec le nombre d’hébergements.',c:'VOIR LES PALIERS LOC →'},
-      en:{k:'ACCOMMODATION · LOC',t:'DIGIY LOC · tiered pricing',p:'1–3 units: 28,000 FCFA / €75 per month. Pricing scales with the number of accommodation units.',c:'VIEW LOC TIERS →'},
-      es:{k:'ALOJAMIENTO · LOC',t:'DIGIY LOC · tarifas por tramos',p:'1–3 unidades: 28 000 FCFA / 75 € al mes. El precio evoluciona según el número de alojamientos.',c:'VER TRAMOS LOC →'},
-      pt:{k:'ALOJAMENTO · LOC',t:'DIGIY LOC · preços por escalões',p:'1–3 unidades: 28 000 FCFA / 75 € por mês. O preço evolui com o número de alojamentos.',c:'VER ESCALÕES LOC →'},
-      it:{k:'ALLOGGI · LOC',t:'DIGIY LOC · tariffe a fasce',p:'1–3 unità: 28.000 FCFA / 75 € al mese. Il prezzo cresce con il numero di alloggi.',c:'VEDI LE FASCE LOC →'},
-      de:{k:'UNTERKUNFT · LOC',t:'DIGIY LOC · Preisstaffeln',p:'1–3 Einheiten: 28.000 FCFA / 75 € pro Monat. Der Preis richtet sich nach der Zahl der Unterkünfte.',c:'LOC-STAFFELN ANSEHEN →'},
-      nl:{k:'ACCOMMODATIE · LOC',t:'DIGIY LOC · prijsstaffels',p:'1–3 eenheden: 28.000 FCFA / €75 per maand. De prijs groeit mee met het aantal accommodaties.',c:'BEKIJK LOC-STAFFELS →'},
-      ar:{k:'الإقامة · LOC',t:'DIGIY LOC · أسعار حسب الشرائح',p:'من 1 إلى 3 وحدات: 28 000 فرنك CFA / 75 € شهرياً. يتغير السعر حسب عدد وحدات الإقامة.',c:'عرض شرائح LOC ←'}
-    };
+  "fr": {
+    "k": "HÉBERGEMENT · LOC",
+    "t": "DIGIY LOC · tarifs par paliers",
+    "b": "1 unité : 21 000 FCFA · 2–3 : 28 000 FCFA · Europe : 75 € / mois",
+    "p": "Sénégal : 21 000 FCFA/mois (1 unité), 28 000 FCFA/mois (2–3 unités). Europe : 75 €/mois (1–3 unités). Frais de création de fiche en sus au départ : 100 000 FCFA au Sénégal ou 250 € en Europe.",
+    "c": "VOIR LES PALIERS LOC →"
+  },
+  "en": {
+    "k": "ACCOMMODATION · LOC",
+    "t": "DIGIY LOC · tiered pricing",
+    "b": "1 unit: 21,000 FCFA · 2–3: 28,000 FCFA · Europe: €75 / month",
+    "p": "Senegal: 21,000 FCFA/month (1 unit), 28,000 FCFA/month (2–3 units). Europe: €75/month (1–3 units). Separate initial professional profile setup: 100,000 FCFA in Senegal or €250 in Europe.",
+    "c": "VIEW LOC TIERS →"
+  },
+  "es": {
+    "k": "ALOJAMIENTO · LOC",
+    "t": "DIGIY LOC · precios por tramos",
+    "b": "1 unidad: 21 000 FCFA · 2–3: 28 000 FCFA · Europa: 75 €/mes",
+    "p": "Senegal: 21 000 FCFA/mes (1 unidad), 28 000 FCFA/mes (2–3 unidades). Europa: 75 €/mes (1–3 unidades). Creación inicial de ficha aparte: 100 000 FCFA en Senegal o 250 € en Europa.",
+    "c": "VER TRAMOS LOC →"
+  },
+  "pt": {
+    "k": "ALOJAMENTO · LOC",
+    "t": "DIGIY LOC · preços por escalões",
+    "b": "1 unidade: 21 000 FCFA · 2–3: 28 000 FCFA · Europa: 75 €/mês",
+    "p": "Senegal: 21 000 FCFA/mês (1 unidade), 28 000 FCFA/mês (2–3 unidades). Europa: 75 €/mês (1–3 unidades). Criação inicial da ficha à parte: 100 000 FCFA no Senegal ou 250 € na Europa.",
+    "c": "VER ESCALÕES LOC →"
+  },
+  "it": {
+    "k": "ALLOGGI · LOC",
+    "t": "DIGIY LOC · tariffe a fasce",
+    "b": "1 unità: 21 000 FCFA · 2–3: 28 000 FCFA · Europa: 75 €/mese",
+    "p": "Senegal: 21 000 FCFA/mese (1 unità), 28 000 FCFA/mese (2–3 unità). Europa: 75 €/mese (1–3 unità). Creazione iniziale della scheda a parte: 100 000 FCFA in Senegal o 250 € in Europa.",
+    "c": "VEDI LE FASCE LOC →"
+  },
+  "de": {
+    "k": "UNTERKUNFT · LOC",
+    "t": "DIGIY LOC · Preisstaffeln",
+    "b": "1 Einheit: 21.000 FCFA · 2–3: 28.000 FCFA · Europa: 75 €/Monat",
+    "p": "Senegal: 21.000 FCFA/Monat (1 Einheit), 28.000 FCFA/Monat (2–3 Einheiten). Europa: 75 €/Monat (1–3 Einheiten). Einmalige Profilerstellung zusätzlich: 100.000 FCFA im Senegal oder 250 € in Europa.",
+    "c": "LOC-STAFFELN ANSEHEN →"
+  },
+  "nl": {
+    "k": "ACCOMMODATIE · LOC",
+    "t": "DIGIY LOC · prijsstaffels",
+    "b": "1 eenheid: 21.000 FCFA · 2–3: 28.000 FCFA · Europa: € 75/maand",
+    "p": "Senegal: 21.000 FCFA/maand (1 eenheid), 28.000 FCFA/maand (2–3 eenheden). Europa: € 75/maand (1–3 eenheden). Eenmalige aanmaak van de professionele fiche apart: 100.000 FCFA in Senegal of € 250 in Europa.",
+    "c": "BEKIJK LOC-STAFFELS →"
+  },
+  "ar": {
+    "k": "الإقامة · LOC",
+    "t": "DIGIY LOC · أسعار حسب الشرائح",
+    "b": "وحدة واحدة: 21 000 FCFA · وحدتان–3: 28 000 FCFA · أوروبا: 75 € شهريًا",
+    "p": "السنغال: 21 000 FCFA شهريًا لوحدة واحدة، و28 000 FCFA شهريًا لوحدتين إلى ثلاث وحدات. أوروبا: 75 € شهريًا لوحدة إلى ثلاث وحدات. رسوم إنشاء الملف المهني مرة واحدة إضافية: 100 000 FCFA في السنغال أو 250 € في أوروبا.",
+    "c": "عرض شرائح LOC ←"
+  }
+};
 
     var style=document.createElement('style');
     style.setAttribute('data-digiy-home-loc-door','1');
@@ -108,7 +159,7 @@
     door.className='digiyEntryDoor pro digiyLocDoor';
     door.href='https://digiylyfe.com/tarifs-loc-v2.html';
     door.setAttribute('data-digiy-loc-entry','1');
-    door.innerHTML='<span class="digiyEntryKicker" data-loc-k></span><strong data-loc-t></strong><span class="digiyLocPrice">28 000 FCFA · 75 € / mois · dès 1–3 unités</span><p data-loc-p></p><span class="digiyEntryCta" data-loc-c></span>';
+    door.innerHTML='<span class="digiyEntryKicker" data-loc-k></span><strong data-loc-t></strong><span class="digiyLocPrice" data-loc-b></span><p data-loc-p></p><span class="digiyEntryCta" data-loc-c></span>';
     grid.appendChild(door);
 
     function applyLang(){
@@ -117,6 +168,7 @@
       door.querySelector('[data-loc-k]').textContent=x.k;
       door.querySelector('[data-loc-t]').textContent=x.t;
       door.querySelector('[data-loc-p]').textContent=x.p;
+      door.querySelector('[data-loc-b]').textContent=x.b;
       door.querySelector('[data-loc-c]').textContent=x.c;
       door.setAttribute('aria-label',x.t+' — '+x.c.replace(/\s*[→←]\s*$/,''));
     }
