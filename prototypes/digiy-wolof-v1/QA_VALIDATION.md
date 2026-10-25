@@ -31,3 +31,18 @@
 - [ ] Vérification de fidélité des prix et conditions.
 - [ ] Feu vert explicite du fondateur.
 - [ ] Nouvelle PR d'intégration dédiée ; jamais de fusion de la présente PR de préparation en guise d'activation.
+
+## Correctifs préparatoires après audit WORK — 25 octobre 2026
+
+- [x] Les 31 clés sont présentes dans le DOM de la maquette, dont les six auparavant absentes.
+- [x] Le libellé hébergement `FANAN` est corrigé en `FANAAN` à titre de proposition orthographique ; le sens commercial reste à valider.
+- [x] La recherche externe est signalée comme ne prenant pas WO en charge ; l'ancien libellé à microphone est affiché uniquement comme exemple **désactivé**.
+- [x] Les coûts de démarrage sont explicités en français, avec `lang=fr` quand ils n'ont pas de traduction wolof validée : fiche générale France 250 €, adhésion 450 €/an ; LOC 100 000 FCFA ou 250 € en supplément à la première mise en place (fiche OU site, selon offre).
+- [x] Les cinq liens Petite Côte incluent le périmètre `local=saly` du site.
+- [x] Au chargement, les traductions sont rendues depuis le même objet de dictionnaire que la bascule (fin de triple copie HTML initial / JS / JSON). Fichier JSON demeure la source de relecture.
+- [x] Ajustements CSS préventifs pour les petites largeurs (cartes en colonne, besoins en 2 colonnes, boutons adaptatifs). **Ne constitue pas un test visuel mesuré.**
+- [ ] Relecture wolof natif + confirmation des mots métier/financiers.
+- [ ] Vrais tests visuels 320/375/390/768/1280 et vrais appareils.
+- [ ] Confirmer absence de confusion vocale auprès de testeurs WO.
+- [ ] Vérifier et synchroniser automatiquement `wo-DRAFT.json` et l'objet `ui` à chaque modification ultérieure.
+- [ ] Autorisation d'une PR distincte d'intégration. **NO-GO public maintenu.**
