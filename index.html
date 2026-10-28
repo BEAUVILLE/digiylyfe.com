@@ -1002,6 +1002,18 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
       </div>
     </section>
 
+    <!-- ANNUAIRE DIGIY V1 — module d'entrée publique placé au sommet de la vitrine -->
+    <section id="digiyAnnuaireV1" aria-label="Annuaire DIGIY gratuit" style="margin:14px auto 17px;padding:clamp(16px,4vw,25px);border:2px solid #e7c878;border-radius:23px;background:linear-gradient(120deg,#fff7df,#f5f9e9);color:#123b2b;text-align:center">
+      <span style="display:block;font-size:11px;letter-spacing:.09em;font-weight:900;color:#165f3e" data-i18n="annKicker">NOUVEAU · ANNUAIRE DIGIY</span>
+      <h2 style="margin:8px 0;font-size:clamp(24px,5.6vw,36px);line-height:1.12" data-i18n="annTitle">Trouvez un professionnel près de chez vous</h2>
+      <p style="max-width:720px;margin:0 auto 14px;font-size:13px;line-height:1.55;font-weight:700" data-i18n="annLead">Classement alphabétique A à Z · Recherche par pays, zone et métier · WhatsApp direct · 0 % commission.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:9px;justify-content:center">
+        <a href="/annuaire.html" style="display:inline-flex;align-items:center;justify-content:center;min-height:49px;padding:10px 19px;border-radius:999px;background:#12633e;color:#fff;text-decoration:none;font-weight:950;font-size:13px" data-i18n="annFind">🔎 CONSULTER L'ANNUAIRE →</a>
+        <a href="/annuaire.html#inscription" style="display:inline-flex;align-items:center;justify-content:center;min-height:49px;padding:10px 19px;border:2px solid #12633e;border-radius:999px;background:#fff;color:#12633e;text-decoration:none;font-weight:950;font-size:13px" data-i18n="annJoin">+ INSCRIPTION GRATUITE →</a>
+      </div>
+      <small style="display:block;margin-top:11px;font-size:11px;line-height:1.45;color:#506653" data-i18n="annInfo">Inscription soumise à validation · Les cartes DIGIY et fiches professionnelles restent payantes.</small>
+    </section>
+
     <!-- VISIBILITE V1 : porte publique prioritaire. Les liens réutilisent les routes métier existantes. -->
     <section class="digiyPublicFirstV1" id="digiyPublicFirstV1" aria-labelledby="digiyPublicQuestion">
       <span class="digiyPublicEyebrow" data-i18n="v1Eyebrow">DIGIYLYFE · LE PUBLIC D'ABORD</span>
@@ -1031,6 +1043,8 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
       </div>
       <p class="digiyPublicPrinciple" data-i18n="v1Principle">Contact et paiement directs · 0 % commission DIGIYLYFE</p>
     </section>
+
+
 
     <!-- PARCOURS ACCUEIL V4 : valeur métier visible avant les vidéos -->
     <!-- DIGIY · APERÇU OUTILS MÉTIERS · DÉMONSTRATION PUBLIQUE -->
@@ -1583,6 +1597,9 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     Object.assign(TEXT.nl,{visionFutureFirst:"We wachten niet op de toekomst.",visionFutureSecond:"We bereiden ons voor om haar tegemoet te treden."});
     Object.assign(TEXT.ar,{visionFutureFirst:"نحن لا ننتظر المستقبل.",visionFutureSecond:"نحن نستعد للقائه."});
     Object.assign(TEXT.fr,{metaTitle:"DIGIYLYFE — Trouvez un professionnel près de chez vous",metaDescription:"Vous cherchez un artisan, un chauffeur, un logement, un restaurant ou un commerce ? Explorez votre territoire et contactez directement les professionnels avec DIGIYLYFE."});
+    // ANN V1 · copy translated via the existing homepage language switch.
+    var ANN_LOCALES={"fr":{"annKicker":"NOUVEAU · ANNUAIRE DIGIY","annTitle":"Trouvez un professionnel près de chez vous","annLead":"Classement alphabétique A à Z · Recherche par pays, zone et métier · WhatsApp direct · 0 % commission.","annFind":"🔎 CONSULTER L'ANNUAIRE →","annJoin":"+ INSCRIPTION GRATUITE →","annInfo":"Inscription soumise à validation · Les cartes DIGIY et fiches professionnelles restent payantes."},"en":{"annKicker":"NEW · DIGIY DIRECTORY","annTitle":"Find a professional near you","annLead":"A–Z alphabetical listing · Search by country, area and profession · Direct WhatsApp · 0% commission.","annFind":"🔎 EXPLORE THE DIRECTORY →","annJoin":"+ FREE REGISTRATION →","annInfo":"Registration subject to approval · DIGIY cards and professional profiles remain paid services."},"es":{"annKicker":"NUEVO · DIRECTORIO DIGIY","annTitle":"Encuentra profesionales cerca de ti","annLead":"Orden alfabético A–Z · Busca por país, zona y oficio · WhatsApp directo · 0 % comisión.","annFind":"🔎 VER EL DIRECTORIO →","annJoin":"+ INSCRIPCIÓN GRATUITA →","annInfo":"Inscripción sujeta a validación · Las tarjetas DIGIY y los perfiles profesionales siguen siendo de pago."},"pt":{"annKicker":"NOVO · DIRETÓRIO DIGIY","annTitle":"Encontre profissionais perto de si","annLead":"Ordem alfabética A–Z · Pesquisa por país, região e profissão · WhatsApp direto · 0 % comissão.","annFind":"🔎 ABRIR O DIRETÓRIO →","annJoin":"+ INSCRIÇÃO GRATUITA →","annInfo":"Inscrição sujeita a validação · Os cartões DIGIY e os perfis profissionais continuam pagos."},"it":{"annKicker":"NOVITÀ · ELENCO DIGIY","annTitle":"Trova un professionista vicino a te","annLead":"Ordine alfabetico A–Z · Ricerca per paese, zona e professione · WhatsApp diretto · 0% commissioni.","annFind":"🔎 APRI L'ELENCO →","annJoin":"+ ISCRIZIONE GRATUITA →","annInfo":"Iscrizione soggetta a verifica · Le carte DIGIY e i profili professionali restano a pagamento."},"de":{"annKicker":"NEU · DIGIY VERZEICHNIS","annTitle":"Finden Sie Fachleute in Ihrer Nähe","annLead":"Alphabetisch A–Z · Suche nach Land, Region und Beruf · Direkter WhatsApp-Kontakt · 0 % Provision.","annFind":"🔎 VERZEICHNIS ÖFFNEN →","annJoin":"+ KOSTENLOS EINTRAGEN →","annInfo":"Einträge werden vor Veröffentlichung geprüft · DIGIY-Karten und Profi-Profile bleiben kostenpflichtig."},"nl":{"annKicker":"NIEUW · DIGIY GIDS","annTitle":"Vind een vakmens bij jou in de buurt","annLead":"Alfabetisch A–Z · Zoek op land, regio en beroep · Rechtstreeks WhatsApp · 0% commissie.","annFind":"🔎 OPEN DE GIDS →","annJoin":"+ GRATIS AANMELDEN →","annInfo":"Aanmeldingen worden gecontroleerd · DIGIY-kaarten en professionele profielen blijven betaald."},"ar":{"annKicker":"جديد · دليل DIGIY","annTitle":"ابحث عن مهني بالقرب منك","annLead":"ترتيب أبجدي · البحث حسب البلد والمنطقة والمهنة · واتساب مباشر · عمولة 0٪.","annFind":"🔎 افتح الدليل ←","annJoin":"+ تسجيل مجاني ←","annInfo":"يخضع التسجيل للمراجعة · بطاقات DIGIY والملفات المهنية خدمات مدفوعة."}};
+    Object.keys(ANN_LOCALES).forEach(function(code){if(TEXT[code])Object.assign(TEXT[code],ANN_LOCALES[code]);});
     function setLang(lang){
       if(!TEXT[lang])lang='fr';
       var t=TEXT[lang];
