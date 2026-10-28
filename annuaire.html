@@ -167,7 +167,7 @@ var name=text(document.getElementById('name').value),activity=text(document.getE
 if(!whatsapp(phone)){document.getElementById('whatsapp').setCustomValidity('Indiquez un numéro international valide (8 à 15 chiffres).');form.reportValidity();return}
 document.getElementById('whatsapp').setCustomValidity('');
 var message=['Bonjour DIGIYLYFE, je demande mon INSCRIPTION GRATUITE dans l’ANNUAIRE DIGIY.','Nom / enseigne : '+name,'Métier / activité : '+activity,'Pays : '+country,'Ville / quartier : '+city,'WhatsApp public : '+phone,'Je consens à la publication de ces informations après vérification.','Je comprends que cette inscription n’est ni une Carte DIGIY ni une Fiche professionnelle payante.'].join('\n');
-window.open('https://wa.me/221771342889?text='+encodeURIComponent(message),'_blank','noopener,noreferrer');
+window.location.href='https://wa.me/221771342889?text='+encodeURIComponent(message);
 });
 document.getElementById('whatsapp').addEventListener('input',function(){this.setCustomValidity('')});
 })();
