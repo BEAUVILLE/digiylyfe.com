@@ -104,7 +104,7 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 var URL_BASE='https://wesqmwjjtsefyjnluosj.supabase.co/rest/v1/';
 var ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA';
 var SEARCH=['query','country','zone','job'].reduce(function(o,id){o[id]=document.getElementById(id);return o},{});
-var pro=[],zones={},jobs={},letter='',initial=new URLSearchParams(location.search);
+var pro=[],zones={},jobs={},servedZones={},letter='',initial=new URLSearchParams(location.search);
 var collator=new Intl.Collator('fr',{sensitivity:'base',numeric:true,ignorePunctuation:true});
 var FR_ZONES=new Set(['sarlat','vallee-dordogne','bordeaux','paris']);
 function normalized(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()}
@@ -124,7 +124,7 @@ function render(){
 var q=normalized(SEARCH.query.value),co=SEARCH.country.value,zo=SEARCH.zone.value,jo=SEARCH.job.value;
 var filtered=pro.filter(function(p){
 var z=zones[p.zone_id]||{},j=jobs[p.metier_id]||{};
-return(!co||countryOf(p)===co)&&(!zo||p.zone_id===zo)&&(!jo||p.metier_id===jo)&&(!letter||letterOf(p.display_name)===letter)
+return(!co||countryOf(p)===co)&&(!zo||p.zone_id===zo||(servedZones[p.id]||[]).includes(zo))&&(!jo||p.metier_id===jo)&&(!letter||letterOf(p.display_name)===letter)
 &&(!q||normalized([p.display_name,p.activity_label,p.short_description,p.category,z.label,j.label].join(' ')).includes(q));
 }).sort(function(a,b){return collator.compare(a.display_name||'',b.display_name||'')});
 var root=document.getElementById('results');root.replaceChildren();
@@ -150,10 +150,12 @@ function setZoneOptions(){var chosen=SEARCH.country.value,items=Object.values(zo
 Promise.all([
 request('digiy_annuaire_public',{select:'id,display_name,activity_label,short_description,metier_id,zone_id,category,public_url,whatsapp_public,phone_public',entry_type:'eq.professional',is_active:'eq.true',is_public:'eq.true',limit:'1000'}),
 request('digiy_zones',{select:'id,slug,label,is_active',is_active:'eq.true',limit:'300'}),
-request('digiy_metiers',{select:'id,label,is_active',is_active:'eq.true',limit:'300'})
+request('digiy_metiers',{select:'id,label,is_active',is_active:'eq.true',limit:'300'}),
+request('digiy_annuaire_public_zones',{select:'card_id,zone_id',limit:'1000'})
 ]).then(function(data){
 data[1].forEach(function(z){zones[z.id]={id:z.id,slug:z.slug,label:z.label,active:z.is_active}});
 data[2].forEach(function(j){jobs[j.id]={id:j.id,label:j.label}});
+data[3].forEach(function(z){(servedZones[z.card_id]||(servedZones[z.card_id]=[])).push(z.zone_id)});
 pro=data[0].filter(function(p){return text(p.display_name)});
 Object.values(jobs).sort(function(a,b){return collator.compare(a.label,b.label)}).forEach(function(j){option(SEARCH.job,j.id,j.label)});
 if(initial.get('pays')==='sn'||initial.get('pays')==='fr')SEARCH.country.value=initial.get('pays');
