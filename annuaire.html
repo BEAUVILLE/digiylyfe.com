@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Annuaire DIGIY | Professionnels et commerces, contact direct</title>
+<meta name="description" content="Annuaire DIGIY : trouvez un professionnel par pays, ville, métier et ordre alphabétique. Inscription gratuite, WhatsApp direct et 0 % commission.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#19593c">
+<link rel="canonical" href="https://digiylyfe.com/annuaire.html">
+<link rel="icon" href="/icon-192.png">
+<style>
+:root{--bg:#f8f5e9;--ink:#173a2b;--green:#16633d;--dark:#103d2c;--gold:#ecc77d;--muted:#54685c;--line:#d7decf;--white:#fff;--radius:18px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}a,button{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid #3ca773;outline-offset:3px}
+.wrap{max-width:1060px;margin:0 auto;padding:14px 14px 65px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 18px}
+.brand{font-size:23px;font-weight:1000;letter-spacing:-.04em;text-decoration:none}.brand span{color:var(--green)}
+.back{font-size:13px;font-weight:750;padding:10px 12px;border:1px solid var(--line);border-radius:999px;text-decoration:none}
+.hero{border-radius:26px;background:linear-gradient(120deg,#135637,#082d21);color:#fff9e9;padding:clamp(23px,5vw,44px);box-shadow:0 12px 32px #12382922}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.13em;color:#f0d494;font-weight:950}
+h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin:12px 0}h2{font-size:clamp(23px,5vw,32px);letter-spacing:-.03em;margin:0 0 10px}
+.hero p{max-width:760px;line-height:1.5;color:#ecf4ed;margin:0 0 17px}
+.heroNav{display:flex;gap:10px;flex-wrap:wrap}.cta{display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:11px 17px;border-radius:999px;font-weight:900;text-decoration:none;border:1px solid #ffffff55}
+.cta.primary{background:var(--gold);color:#173324;border-color:transparent}.cta.ghost{color:#fff9ec;background:#ffffff12}
+.section{background:white;border:1px solid var(--line);border-radius:23px;margin-top:20px;padding:clamp(17px,4vw,27px);box-shadow:0 8px 25px #1c52350b}
+.desc{color:var(--muted);font-size:14px;line-height:1.5;margin:0 0 18px}
+.filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}.field label{font-size:12px;font-weight:850}
+.field input,.field select{background:#fff;border:1px solid #b3c7b9;border-radius:12px;color:var(--ink);width:100%;min-height:48px;padding:10px 11px}
+.letters{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;padding:14px 0 6px;scroll-snap-type:x proximity}
+.letter{flex:0 0 auto;min-width:34px;min-height:37px;border-radius:9px;border:1px solid var(--line);color:var(--ink);background:#f6f8f5;font-size:13px;font-weight:850;scroll-snap-align:start}
+.letter[aria-pressed=true]{background:var(--green);color:white;border-color:var(--green)}
+.status{padding:11px 0;color:var(--muted);font-size:14px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.pro{border:1px solid #d8e5db;border-radius:17px;padding:17px;min-width:0;display:flex;flex-direction:column;gap:8px;background:#f9fbf8}
+.pro h3{margin:0;font-size:20px;overflow-wrap:anywhere}.pro .meta{font-size:12px;color:#43624d;font-weight:800}
+.pro p{margin:0;font-size:13px;color:#425448;line-height:1.45;overflow-wrap:anywhere}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto;padding-top:5px}
+.actions a{min-height:41px;display:inline-flex;align-items:center;padding:9px 13px;border-radius:11px;font-weight:850;font-size:12px;text-decoration:none;border:1px solid #a7c4ac;background:white}
+.actions a.wa{background:#daf5df;color:#165e35;border-color:#8dd5a1}
+.empty{padding:26px 15px;color:var(--muted);background:#f7faf6;border:1px dashed var(--line);border-radius:14px}
+.register{background:linear-gradient(160deg,#fffdfa,#f7f4e6)}.register .note{padding:12px;border:1px solid #dacda5;border-radius:13px;color:#655527;background:#fff8dd;font-size:12px;line-height:1.5}
+.regGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.regGrid .full{grid-column:1/-1}
+.consent{display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.5;color:#40574a}.consent input{width:18px;height:18px;flex:0 0 auto;margin-top:2px}
+.submit{border:0;background:var(--green);color:#fff;font-weight:950;border-radius:13px;min-height:51px;padding:12px 20px;margin-top:15px;width:100%;font-size:15px}
+.micro{color:var(--muted);font-size:12px;line-height:1.5;margin:12px 0 0}
+.footer{color:var(--muted);text-align:center;font-size:12px;padding:20px 0}
+@media(max-width:800px){.filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.filters,.grid,.regGrid{grid-template-columns:1fr}.hero{border-radius:19px}.top{flex-wrap:wrap}.section{border-radius:18px}.regGrid .full{grid-column:auto}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="top">
+<a class="brand" href="/">DIGIY<span>LYFE</span></a>
+<a class="back" href="/">← Accueil</a>
+</header>
+<section class="hero">
+<div class="kicker">Réseau territorial · inscription gratuite</div>
+<h1>ANNUAIRE DIGIY</h1>
+<p>Un métier, une ville, un nom : trouvez un professionnel et contactez-le directement. Classement alphabétique équitable, sans priorité payante.</p>
+<nav class="heroNav" aria-label="Parcours annuaire">
+<a href="#recherche" class="cta primary">🔎 Chercher un professionnel</a>
+<a href="#inscription" class="cta ghost">+ Inscription gratuite</a>
+</nav>
+</section>
+<section id="recherche" class="section" aria-labelledby="searchTitle">
+<h2 id="searchTitle">Trouver un professionnel</h2>
+<p class="desc">Classement A → Z. Seuls les professionnels publiés et actifs sont affichés. Contact et paiement directs · 0 % commission DIGIYLYFE.</p>
+<div class="filters">
+<div class="field"><label for="query">Nom ou activité</label><input id="query" type="search" placeholder="Ex. plombier, boutique, Astou" autocomplete="off"></div>
+<div class="field"><label for="country">Pays</label><select id="country"><option value="">Tous les pays</option><option value="sn">Sénégal</option><option value="fr">France</option></select></div>
+<div class="field"><label for="zone">Ville / zone</label><select id="zone"><option value="">Toutes les zones</option></select></div>
+<div class="field"><label for="job">Métier</label><select id="job"><option value="">Tous les métiers</option></select></div>
+</div>
+<nav class="letters" aria-label="Classement alphabétique" id="letters"></nav>
+<p id="status" class="status" aria-live="polite" role="status">Chargement des professionnels publics…</p>
+<div id="results" class="grid"></div>
+</section>
+<section id="inscription" class="section register" aria-labelledby="registerTitle">
+<h2 id="registerTitle">Inscription DIGIY gratuite</h2>
+<p class="desc">Vous êtes commerçant, artisan ou professionnel ? Demandez votre présence dans l'annuaire. Une inscription n'est ni une carte digitale ni une fiche professionnelle payante.</p>
+<p class="note"><strong>Pilote Saly / Petite Côte.</strong> La demande part par WhatsApp à l'équipe DIGIY. Aucun affichage automatique : nous vérifions votre activité et votre accord avant de publier vos coordonnées. Pas de création de compte ni de frais pour demander l'inscription.</p>
+<form id="registration">
+<div class="regGrid">
+<div class="field"><label for="name">Nom ou enseigne *</label><input id="name" name="name" maxlength="100" required autocomplete="organization" placeholder="Ex. Atelier Ba"></div>
+<div class="field"><label for="activity">Métier / activité *</label><input id="activity" name="activity" maxlength="100" required placeholder="Ex. couturier"></div>
+<div class="field"><label for="regCountry">Pays *</label><select id="regCountry" name="country" required><option value="Sénégal">Sénégal</option><option value="France">France</option><option value="Maroc">Maroc</option><option value="États-Unis">États-Unis</option><option value="Autre">Autre</option></select></div>
+<div class="field"><label for="city">Ville et quartier *</label><input id="city" name="city" maxlength="100" required placeholder="Ex. Saly Joseph"></div>
+<div class="field full"><label for="whatsapp">Votre WhatsApp (avec indicatif) *</label><input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" required placeholder="Ex. +221 77 123 45 67"></div>
+</div>
+<label class="consent"><input type="checkbox" id="consent" required><span>J'autorise DIGIYLYFE, après vérification, à publier le nom de mon activité, mon métier, ma zone et le numéro WhatsApp fourni dans l'annuaire public. Je peux demander une correction ou un retrait en contactant DIGIYLYFE. *</span></label>
+<button type="submit" class="submit">Envoyer ma demande sur WhatsApp →</button>
+<p class="micro">L'envoi ouvre WhatsApp avec un message préparé : vous devez appuyer vous-même sur « Envoyer ». Aucune donnée n'est enregistrée par ce formulaire. L'inscription publiée reste gratuite et distincte des offres payantes.</p>
+</form>
+</section>
+<div class="footer">DIGIYLYFE · Le terrain garde la main · <a href="/carte-gratuite.html">Carte DIGIY payante</a> · <a href="/">Accueil</a></div>
+</main>
+<script>
+(function(){
+'use strict';
+var URL_BASE='https://wesqmwjjtsefyjnluosj.supabase.co/rest/v1/';
+var ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA';
+var SEARCH=['query','country','zone','job'].reduce(function(o,id){o[id]=document.getElementById(id);return o},{});
+var pro=[],zones={},jobs={},letter='',initial=new URLSearchParams(location.search);
+var collator=new Intl.Collator('fr',{sensitivity:'base',numeric:true,ignorePunctuation:true});
+var FR_ZONES=new Set(['sarlat','vallee-dordogne','bordeaux','paris']);
+function normalized(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()}
+function text(s){return String(s||'').trim()}
+function countryOf(p){var slug=zones[p.zone_id]&&zones[p.zone_id].slug||'';return FR_ZONES.has(slug)?'fr':(slug?'sn':'')}
+function request(table,params){
+return fetch(URL_BASE+table+'?'+new URLSearchParams(params).toString(),{headers:{apikey:ANON_KEY,Authorization:'Bearer '+ANON_KEY,Accept:'application/json'},cache:'no-store'})
+.then(function(r){if(!r.ok)throw Error('Annuaire indisponible ('+r.status+')');return r.json()});
+}
+function option(select,value,label){var o=document.createElement('option');o.value=value;o.textContent=label;select.appendChild(o)}
+function make(tag,cls,label){var e=document.createElement(tag);if(cls)e.className=cls;if(label!==undefined)e.textContent=label;return e}
+function safeLink(url){try{var u=new URL(url,location.origin);return(u.protocol==='https:'||u.protocol==='http:')?u.href:null}catch(e){return null}}
+function whatsapp(v){var d=String(v||'').replace(/\D/g,'');return d.length>=8&&d.length<=15?d:''}
+function letterOf(v){var m=normalized(v).toUpperCase().match(/[A-Z]/);return m?m[0]:'#'}
+function updateLetters(){document.querySelectorAll('#letters button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.letter===letter))})}
+function render(){
+var q=normalized(SEARCH.query.value),co=SEARCH.country.value,zo=SEARCH.zone.value,jo=SEARCH.job.value;
+var filtered=pro.filter(function(p){
+var z=zones[p.zone_id]||{},j=jobs[p.metier_id]||{};
+return(!co||countryOf(p)===co)&&(!zo||p.zone_id===zo)&&(!jo||p.metier_id===jo)&&(!letter||letterOf(p.display_name)===letter)
+&&(!q||normalized([p.display_name,p.activity_label,p.short_description,p.category,z.label,j.label].join(' ')).includes(q));
+}).sort(function(a,b){return collator.compare(a.display_name||'',b.display_name||'')});
+var root=document.getElementById('results');root.replaceChildren();
+document.getElementById('status').textContent=filtered.length+' professionnel(s) · ordre alphabétique A → Z';
+if(!filtered.length){root.appendChild(make('div','empty','Aucun professionnel ne correspond à votre recherche. Essayez une autre zone ou un autre métier.'));return}
+filtered.forEach(function(p){
+var z=zones[p.zone_id]||{},j=jobs[p.metier_id]||{};
+var card=make('article','pro'),name=make('h3','',p.display_name);
+var info=make('div','meta',(z.label||'Zone non précisée')+' · '+(j.label||p.activity_label||'Professionnel'));
+var description=make('p','',p.short_description||p.activity_label||'Contact direct avec le professionnel.');
+var actions=make('div','actions'),num=whatsapp(p.whatsapp_public);
+if(num){var a=make('a','wa','WhatsApp direct');a.href='https://wa.me/'+num;a.target='_blank';a.rel='noopener noreferrer';actions.appendChild(a)}
+var link=safeLink(p.public_url);
+if(link){var site=make('a','','Voir sa présentation');site.href=link;site.target='_blank';site.rel='noopener noreferrer';actions.appendChild(site)}
+if(!actions.children.length&&whatsapp(p.phone_public)){var tel=make('a','','Appeler');tel.href='tel:+'+whatsapp(p.phone_public);actions.appendChild(tel)}
+card.append(name,info,description,actions);root.appendChild(card);
+});
+}
+var letters=document.getElementById('letters');
+['',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].forEach(function(l){var b=make('button','letter',l||'TOUS');b.type='button';b.dataset.letter=l;b.setAttribute('aria-label',l?'Noms commençant par '+l:'Toutes les lettres');b.setAttribute('aria-pressed',String(l===letter));b.addEventListener('click',function(){letter=l;updateLetters();render()});letters.appendChild(b)});
+Object.keys(SEARCH).forEach(function(k){SEARCH[k].addEventListener(k==='query'?'input':'change',function(){if(k==='country'){SEARCH.zone.value='';setZoneOptions()}render()})});
+function setZoneOptions(){var chosen=SEARCH.country.value,items=Object.values(zones).filter(function(z){return z.active&&(!chosen||(FR_ZONES.has(z.slug)?'fr':'sn')===chosen)}).sort(function(a,b){return collator.compare(a.label,b.label)}); SEARCH.zone.replaceChildren();option(SEARCH.zone,'','Toutes les zones');items.forEach(function(z){option(SEARCH.zone,z.id,z.label)})}
+Promise.all([
+request('digiy_annuaire_public',{select:'id,display_name,activity_label,short_description,metier_id,zone_id,category,public_url,whatsapp_public,phone_public',entry_type:'eq.professional',is_active:'eq.true',is_public:'eq.true',limit:'1000'}),
+request('digiy_zones',{select:'id,slug,label,is_active',is_active:'eq.true',limit:'300'}),
+request('digiy_metiers',{select:'id,label,is_active',is_active:'eq.true',limit:'300'})
+]).then(function(data){
+data[1].forEach(function(z){zones[z.id]={id:z.id,slug:z.slug,label:z.label,active:z.is_active}});
+data[2].forEach(function(j){jobs[j.id]={id:j.id,label:j.label}});
+pro=data[0].filter(function(p){return text(p.display_name)});
+Object.values(jobs).sort(function(a,b){return collator.compare(a.label,b.label)}).forEach(function(j){option(SEARCH.job,j.id,j.label)});
+if(initial.get('pays')==='sn'||initial.get('pays')==='fr')SEARCH.country.value=initial.get('pays');
+setZoneOptions();
+var requested=normalized(initial.get('ville'));if(requested){var selected=Object.values(zones).find(function(z){return normalized(z.slug)===requested||normalized(z.label)===requested});if(selected){if(SEARCH.country.value&&countryOf({zone_id:selected.id})!==SEARCH.country.value)SEARCH.country.value='';setZoneOptions();SEARCH.zone.value=selected.id}}
+render();
+}).catch(function(err){document.getElementById('status').textContent='Impossible de charger les résultats pour le moment.';document.getElementById('results').appendChild(make('div','empty','Le réseau est momentanément indisponible. Réessayez plus tard.'));});
+document.getElementById('registration').addEventListener('submit',function(e){
+e.preventDefault();var form=e.currentTarget;if(!form.reportValidity())return;
+var name=text(document.getElementById('name').value),activity=text(document.getElementById('activity').value),country=text(document.getElementById('regCountry').value),city=text(document.getElementById('city').value),phone=text(document.getElementById('whatsapp').value);
+if(!whatsapp(phone)){document.getElementById('whatsapp').setCustomValidity('Indiquez un numéro international valide (8 à 15 chiffres).');form.reportValidity();return}
+document.getElementById('whatsapp').setCustomValidity('');
+var message=['Bonjour DIGIYLYFE, je demande mon INSCRIPTION GRATUITE dans l’ANNUAIRE DIGIY.','Nom / enseigne : '+name,'Métier / activité : '+activity,'Pays : '+country,'Ville / quartier : '+city,'WhatsApp public : '+phone,'Je consens à la publication de ces informations après vérification.','Je comprends que cette inscription n’est ni une Carte DIGIY ni une Fiche professionnelle payante.'].join('\n');
+window.open('https://wa.me/221771342889?text='+encodeURIComponent(message),'_blank','noopener,noreferrer');
+});
+document.getElementById('whatsapp').addEventListener('input',function(){this.setCustomValidity('')});
+})();
+</script>
+</body></html>
