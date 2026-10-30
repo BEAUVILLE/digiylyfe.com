@@ -49,6 +49,16 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 .footer{color:var(--muted);text-align:center;font-size:12px;padding:20px 0}
 @media(max-width:800px){.filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.filters,.grid,.regGrid{grid-template-columns:1fr}.hero{border-radius:19px}.top{flex-wrap:wrap}.section{border-radius:18px}.regGrid .full{grid-column:auto}}
+
+/* DIGIY ECONOMIE DATA : accès simple, aucun chargement média */
+.ecoDataEntry{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0;padding:15px;border:1px solid #94bba0;border-radius:15px;background:#eef8ef;color:#173a2b}
+.ecoDataIntro{min-width:0;flex:1}
+.ecoDataIntro h3{font-size:16px;line-height:1.3;margin:0 0 5px;color:#125735}
+.ecoDataIntro p{font-size:13px;margin:0 0 7px;line-height:1.45}
+.ecoDataIntro small{display:block;font-size:11px;line-height:1.5;color:#4a6955}
+.ecoDataLink{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 14px;border-radius:11px;text-decoration:none;text-align:center;font-weight:850;font-size:13px;line-height:1.35;background:#14663e;color:#fff;max-width:265px}
+.ecoDataLink:hover,.ecoDataLink:focus-visible{background:#0a4930;outline-offset:3px}
+@media(max-width:680px){.ecoDataEntry{flex-direction:column;align-items:stretch}.ecoDataLink{max-width:none;width:100%}}
 </style>
 </head>
 <body>
@@ -75,6 +85,14 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 <div class="field"><label for="zone">Ville / zone</label><select id="zone"><option value="">Toutes les zones</option></select></div>
 <div class="field"><label for="job">Métier</label><select id="job"><option value="">Tous les métiers</option></select></div>
 </div>
+<aside class="ecoDataEntry" aria-labelledby="ecoDataTitle">
+  <div class="ecoDataIntro">
+    <h3 id="ecoDataTitle">📴 DIGIY ÉCONOMIE DATA</h3>
+    <p>Gardez l’essentiel de l’annuaire sur votre téléphone : métiers, zones et contacts publics, même sans données mobiles.</p>
+    <small>Une première connexion et un enregistrement sont nécessaires · Sans photos ni vidéos · Appels/SMS avec réseau mobile.</small>
+  </div>
+  <a class="ecoDataLink" href="/hors-connexion.html" aria-label="Ouvrir et enregistrer l’annuaire essentiel hors connexion">⬇ Enregistrer mon annuaire hors connexion</a>
+</aside>
 <nav class="letters" aria-label="Classement alphabétique" id="letters"></nav>
 <p id="status" class="status" aria-live="polite" role="status">Chargement des professionnels publics…</p>
 <div id="results" class="grid"></div>
