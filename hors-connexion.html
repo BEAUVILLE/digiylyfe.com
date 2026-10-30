@@ -90,6 +90,11 @@ function displayPublic(data){
  container.replaceChildren(content);
  cards=[].slice.call(container.querySelectorAll(".pro"));paint();
 }
+var CAUTION_SYNC={
+ fr:"Coordonnées publiques enregistrées le ",en:"Public contact details saved on ",es:"Contactos públicos guardados el ",
+ pt:"Contactos públicos guardados em ",it:"Contatti pubblici salvati il ",de:"Öffentliche Kontaktdaten gespeichert am ",
+ nl:"Openbare contactgegevens opgeslagen op ",ar:"تم حفظ جهات الاتصال العامة في "
+};
 function syncMessage(){
  var labels=SYNC_LABELS[lang]||SYNC_LABELS.fr;
  refresh.textContent=labels[0];
@@ -98,6 +103,7 @@ function syncMessage(){
  if(updatedAt){
   var date=new Date(updatedAt).toLocaleString(lang);
   syncStatus.textContent=(navigator.onLine===false?labels[3]:labels[2])+date;
+  document.querySelectorAll('[data-t="10"]').forEach(function(el){el.textContent=CAUTION_SYNC[lang]+date+" · "+D[lang][11]});
  }else syncStatus.textContent="";
 }
 function readLocalDirectory(){
