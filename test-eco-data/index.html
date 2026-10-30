@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#06563b">
+<title>DIGIY ÉCONOMIE DATA · Pilote Saly</title>
+<style>
+:root{color-scheme:light;--green:#075a3e;--ink:#143f2f;--soft:#506a59;--sand:#f8f2e6}
+*{box-sizing:border-box}body{margin:0;font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--sand);color:var(--ink)}
+main{max-width:750px;margin:auto;padding:12px 12px 80px}
+a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid #e1b552;outline-offset:2px}
+.intro{padding:19px;border-radius:17px;background:var(--green);color:#fff}
+.intro small{color:#ead398;font-weight:900;font-size:11px;letter-spacing:.08em}
+h1{font-size:clamp(27px,7vw,37px);line-height:1.08;margin:10px 0}
+.intro p{margin:7px 0 0;font-size:14px}
+.notice{background:#fff;border:1px solid #d8e3da;border-radius:15px;padding:14px;margin:11px 0}
+.notice h2{font-size:17px;margin:0 0 7px}
+.notice p{font-size:13px;color:var(--soft);margin:7px 0}
+#status{font-weight:900;color:var(--green);font-size:13px}
+.offline{border-color:#d7bb73;background:#fff7e5}
+.grid{display:grid;gap:11px}
+.person{background:#fff;border:1px solid #d8e3da;border-radius:15px;padding:14px}
+.person-head{display:flex;align-items:flex-start;gap:10px}
+.person h3{font-size:16px;margin:0}.person p{font-size:12px;color:var(--soft);margin:4px 0}
+.emoji{font-size:25px}.person .number{color:var(--ink);font-size:21px;font-weight:900;margin:8px 0}
+.action{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.action a,.button{min-height:46px;padding:11px;text-align:center;border-radius:10px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:13px;line-height:1.25;font-weight:900}
+.call,.button{background:var(--green);color:#fff;border:0}.sms{background:#e9f5ee;border:1px solid #bed9c8;color:var(--green)}
+.button{width:100%;cursor:pointer}.button:disabled{opacity:.6}
+.vcf{display:flex;margin-top:8px;padding:10px;min-height:44px;align-items:center;justify-content:center;border:1px solid var(--green);border-radius:10px;text-align:center;font-size:13px;font-weight:850;text-decoration:none}
+.online{display:block;font-size:12px;margin:8px 0 0}
+.hint{font-size:12px;color:var(--soft)}.foot{font-size:12px;color:var(--soft)}
+@media(min-width:600px){.grid{grid-template-columns:1fr 1fr}}
+</style>
+</head><body><main>
+<section class="intro"><small>🦅 DIGIYLYFE · TEST ISOLÉ · SALY</small><h1>ÉCONOMIE DATA</h1><p>Une connexion pour enregistrer les contacts publics. Puis, même sans données mobiles, retrouvez les numéros, appelez ou envoyez un SMS si le réseau téléphonique le permet.</p></section>
+<section class="notice" id="network" aria-live="polite"><strong id="networkLabel">État de la connexion</strong><p id="networkText">Vérification…</p><p>WhatsApp et les fiches complètes demandent Internet. Appels et SMS utilisent le réseau téléphonique.</p></section>
+<section class="notice"><h2>Préparer le kit hors connexion</h2><p>Quand Internet fonctionne, enregistrez cette page et ses cinq contacts. Aucun compte, aucune photo, aucune donnée privée.</p><button type="button" class="button" id="save">⬇ Enregistrer pour plus tard</button><a class="vcf" href="./contacts-saly.vcf">📇 Télécharger les cinq contacts (.vcf)</a><p id="status" aria-live="polite" role="status">Enregistrement non vérifié.</p><p>Ouvrez le fichier VCF sur votre téléphone si vous souhaitez importer ces contacts dans votre carnet téléphonique.</p></section>
+<h2>5 professionnels de la Petite Côte</h2><p class="hint">Copie des coordonnées publiques du 30 octobre 2026. Les numéros et les prestations peuvent changer ; vérifiez tarifs et disponibilités directement.</p>
+<section class="grid" aria-label="Répertoire professionnel">
+<article class="person"><header class="person-head"><span aria-hidden="true" class="emoji">🔧</span><div><h3>Babacar Plombier Pro</h3><p>Plomberie et dépannage · Saly · Mbour</p></div></header><p class="number">+221 776125124</p><div class="action"><a href="tel:+221776125124" class="call">📞 Appeler</a><a href="sms:+221776125124" class="sms">✉️ SMS</a></div><a class="online" href="https://build.digiylyfe.com/fiche.html?slug=babacar-plombier-pro" target="_blank" rel="noopener noreferrer">Fiche complète (connexion requise) ↗</a></article>
+<article class="person"><header class="person-head"><span aria-hidden="true" class="emoji">⚡</span><div><h3>Kourant Électricien</h3><p>Électricité et dépannage · Saly · Mbour</p></div></header><p class="number">+221 772084781</p><div class="action"><a href="tel:+221772084781" class="call">📞 Appeler</a><a href="sms:+221772084781" class="sms">✉️ SMS</a></div><a class="online" href="https://kourant.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Fiche complète (connexion requise) ↗</a></article>
+<article class="person"><header class="person-head"><span aria-hidden="true" class="emoji">🧱</span><div><h3>Mbaye Diouf</h3><p>Maçonnerie et rénovation · Saly · Mbour · Thiès</p></div></header><p class="number">+221 776427113</p><div class="action"><a href="tel:+221776427113" class="call">📞 Appeler</a><a href="sms:+221776427113" class="sms">✉️ SMS</a></div><a class="online" href="https://mbaye-macon.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Fiche complète (connexion requise) ↗</a></article>
+<article class="person"><header class="person-head"><span aria-hidden="true" class="emoji">🛍️</span><div><h3>Astou Boutique</h3><p>Linge de maison et boutique · Saly</p></div></header><p class="number">+221 778765785</p><div class="action"><a href="tel:+221778765785" class="call">📞 Appeler</a><a href="sms:+221778765785" class="sms">✉️ SMS</a></div><a class="online" href="https://astou-boutique.digiylyfe.com/" target="_blank" rel="noopener noreferrer">Fiche complète (connexion requise) ↗</a></article>
+<article class="person"><header class="person-head"><span aria-hidden="true" class="emoji">🏊</span><div><h3>PAP Piscine</h3><p>Piscines et jardinage · Saly</p></div></header><p class="number">+221 784547029</p><div class="action"><a href="tel:+221784547029" class="call">📞 Appeler</a><a href="sms:+221784547029" class="sms">✉️ SMS</a></div><a class="online" href="https://digiylyfe.com/fiches/pap-piscine-saly.html" target="_blank" rel="noopener noreferrer">Fiche complète (connexion requise) ↗</a></article>
+</section>
+<section class="notice"><h2>Tester sans forfait de données</h2><p><strong>1.</strong> Avec Internet, appuyez sur « Enregistrer » et vérifiez le message « Prêt hors connexion ».</p><p><strong>2.</strong> Coupez seulement les données mobiles, fermez et rouvrez <strong>la même adresse</strong>.</p><p><strong>3.</strong> Vérifiez que les cinq noms et numéros apparaissent.</p><p><strong>4.</strong> Testez « Appeler » ou « SMS » avec un réseau mobile actif (pas en mode avion).</p></section>
+<p class="foot">Pilote limité en lecture seule. Pas de réservation, paiement, synchronisation ou accès propriétaire. Le stockage local peut être effacé par le navigateur.</p>
+<p><a href="https://digiylyfe.com/">↖ Retour vitrine DIGIYLYFE (connexion requise)</a></p>
+</main>
+<script>
+(function(){"use strict";
+const save=document.getElementById("save"),status=document.getElementById("status"),box=document.getElementById("network");
+const label=document.getElementById("networkLabel"),message=document.getElementById("networkText");
+const page=new URL("./index.html",location.href).href,vcf=new URL("./contacts-saly.vcf",location.href).href;
+function network(){const off=navigator.onLine===false;box.classList.toggle("offline",off);label.textContent=off?"Données hors connexion détectées":"Connexion réseau signalée";message.textContent=off?"Les contacts déjà enregistrés restent consultables.":"Vous pouvez enregistrer le kit léger."}
+async function check(){try{if(!("caches" in window))return false;const [a,b]=await Promise.all([caches.match(page),caches.match(vcf)]);if(a&&b){status.textContent="✓ Prêt hors connexion : page + cinq contacts.";save.textContent="✓ Kit enregistré";return true}}catch(e){}return false}
+async function activate(){save.disabled=true;status.textContent="Enregistrement en cours…";try{if(!("serviceWorker" in navigator)||!("caches" in window)||navigator.onLine===false)throw Error("offline");const reg=await navigator.serviceWorker.register("./sw.js",{scope:"./"});const w=reg.installing||reg.waiting||reg.active;if(w&&w.state!=="activated"){await new Promise((resolve,reject)=>{w.addEventListener("statechange",()=>{if(w.state==="activated")resolve();else if(w.state==="redundant")reject(Error("worker"))})})}if(!await check())throw Error("cache")}catch(e){status.textContent="Kit non confirmé : reconnectez-vous et réessayez.";save.disabled=false}}
+save.addEventListener("click",activate);addEventListener("online",network);addEventListener("offline",network);network();check();
+})();
+</script></body></html>
