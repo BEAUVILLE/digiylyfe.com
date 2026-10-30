@@ -1026,6 +1026,10 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     </section>
 
 
+    <!-- DIGIY ÉCONOMIE DATA : accès à la copie des contacts publics, sans médias. -->
+    <p class="digiyEcoLink" style="margin:0 0 12px;padding:12px;border:1px solid #e7c878;border-radius:14px;background:#fff8e8;color:#175238;text-align:center;font-weight:850;font-size:13px">
+      <a href="/hors-connexion.html" data-i18n="offlineEssentialsEntry" style="color:#0b6948;text-decoration:underline;text-underline-offset:3px">📴 Enregistrer l'essentiel du réseau · Sans vidéos ni photos →</a>
+    </p>
     <!-- ANNUAIRE DIGIY V1 — module d'entrée publique placé au sommet de la vitrine -->
     <section id="digiyAnnuaireV1" aria-label="Annuaire DIGIY gratuit" style="margin:14px auto 17px;padding:clamp(16px,4vw,25px);border:2px solid #e7c878;border-radius:23px;background:linear-gradient(120deg,#fff7df,#f5f9e9);color:#123b2b;text-align:center">
       <span style="display:block;font-size:11px;letter-spacing:.09em;font-weight:900;color:#165f3e" data-i18n="annKicker">NOUVEAU · ANNUAIRE DIGIY</span>
@@ -1663,6 +1667,8 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
       if(!TEXT[code])return;
       CLARITY_KEYS.forEach(function(key,idx){TEXT[code][key]=CLARITY_LOCALES[code][idx];});
     });
+    var ECO_DATA_LABELS={"fr":"📴 Enregistrer l'essentiel du réseau · Sans vidéos ni photos →","en":"📴 Save essential contacts · No videos or photos →","es":"📴 Guardar contactos esenciales · Sin vídeos ni fotos →","pt":"📴 Guardar contactos essenciais · Sem vídeos nem fotos →","it":"📴 Salva i contatti essenziali · Senza video né foto →","de":"📴 Wichtige Kontakte speichern · Ohne Videos oder Fotos →","nl":"📴 Belangrijke contacten bewaren · Zonder video's of foto's →","ar":"📴 احفظ جهات الاتصال الأساسية · دون صور أو فيديوهات ←"};
+    Object.keys(ECO_DATA_LABELS).forEach(function(l){if(TEXT[l])TEXT[l].offlineEssentialsEntry=ECO_DATA_LABELS[l];});
     function setLang(lang){
       if(!TEXT[lang])lang='fr';
       var t=TEXT[lang];
