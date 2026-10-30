@@ -3,7 +3,7 @@
 */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function(){
-    navigator.serviceWorker.register('/sw.js?v=20261003-home-no-pioneer-v1').catch(function(){});
+    navigator.serviceWorker.register('/sw.js?v=20261030-public-essential-v1').catch(function(){});
   });
 }
 
