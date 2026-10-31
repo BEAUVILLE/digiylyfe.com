@@ -22,7 +22,11 @@ for(const d of departments) {
 assert(html.includes('annuaire-inscription-auto.js'),'Script d’inscription non chargé');
 assert(html.includes('<h1>QUI FAIT QUOI ? <span>ET OÙ LE TROUVER ?</span></h1>'),'Nouvelle appellation publique manquante');
 assert(html.includes('🔎 JE CHERCHE'),'Porte Je cherche manquante');
-assert(html.includes('+ JE M’INSCRIS'),'Porte Je m’inscris manquante');
+assert(html.includes('class="heroPromise"'),'Promesse de visibilité absente de l’accueil');
+assert(html.includes('Gagnez en visibilité sur le web'),'Bénéfice d’inscription manquant');
+assert(html.includes('+ INSCRIPTION GRATUITE'),'Appel à l’inscription gratuite manquant');
+assert(html.includes('une fiche publique à partager'),'Visibilité publique dans le formulaire manquante');
+assert(html.includes('href="#inscription" class="cta ghost"'),'Lien inscription absente');
 assert(html.includes('href="https://digiylyfe.com/annuaire.html"'),'URL canonique doit rester inchangée');
 assert(html.includes('id="registration"'),'Formulaire d’inscription à conserver');
 assert(html.includes('IMPORTANT — Gardez votre lien privé précieusement'),'Avertissement de sauvegarde du lien secret manquant');
