@@ -20,6 +20,11 @@ for(const d of departments) {
   assert(sql.includes("'"+d+"'"),'Département SQL manquant : '+d);
 }
 assert(html.includes('annuaire-inscription-auto.js'),'Script d’inscription non chargé');
+assert(html.includes('<h1>QUI FAIT QUOI ? <span>ET OÙ LE TROUVER ?</span></h1>'),'Nouvelle appellation publique manquante');
+assert(html.includes('🔎 JE CHERCHE'),'Porte Je cherche manquante');
+assert(html.includes('+ JE M’INSCRIS'),'Porte Je m’inscris manquante');
+assert(html.includes('href="https://digiylyfe.com/annuaire.html"'),'URL canonique doit rester inchangée');
+assert(html.includes('id="registration"'),'Formulaire d’inscription à conserver');
 assert(html.includes('IMPORTANT — Gardez votre lien privé précieusement'),'Avertissement de sauvegarde du lien secret manquant');
 assert(html.includes('Ne le partagez jamais'),'Avertissement de confidentialité manquant');
 assert(html.includes('id="copyManage"'),'Copie du lien de gestion manquante');
