@@ -1,0 +1,21 @@
+name: Annuaire DIGIY auto — validation statique
+on:
+  pull_request:
+    paths:
+      - 'annuaire.html'
+      - 'annuaire-inscription-auto.js'
+      - 'supabase/20261031_annuaire_volontaires.sql'
+      - 'scripts/verify-annuaire-auto.mjs'
+      - '.github/workflows/annuaire-auto-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  controle-statique:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Vérifier le parcours gratuit et les départements
+        run: node scripts/verify-annuaire-auto.mjs
