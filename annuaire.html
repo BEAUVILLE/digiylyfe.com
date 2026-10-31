@@ -142,13 +142,14 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 'use strict';
 var URL_BASE='https://wesqmwjjtsefyjnluosj.supabase.co/rest/v1/';
 var ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA';
+window.DIGIY_ANNUAIRE_CONFIG={base:URL_BASE,key:ANON_KEY};
 var SEARCH=['query','country','zone','job'].reduce(function(o,id){o[id]=document.getElementById(id);return o},{});
-var pro=[],zones={},jobs={},servedZones={},letter='',initial=new URLSearchParams(location.search);
+var pro=[],zones={},jobs={},servedZones={},letter='',department='',initial=new URLSearchParams(location.search);
 var collator=new Intl.Collator('fr',{sensitivity:'base',numeric:true,ignorePunctuation:true});
 var FR_ZONES=new Set(['sarlat','vallee-dordogne','bordeaux','paris']);
 function normalized(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()}
 function text(s){return String(s||'').trim()}
-function countryOf(p){var slug=zones[p.zone_id]&&zones[p.zone_id].slug||'';return FR_ZONES.has(slug)?'fr':(slug?'sn':'')}
+function countryOf(p){if(p.country_code)return p.country_code;var slug=zones[p.zone_id]&&zones[p.zone_id].slug||'';return FR_ZONES.has(slug)?'fr':(slug?'sn':'')}
 function request(table,params){
 return fetch(URL_BASE+table+'?'+new URLSearchParams(params).toString(),{headers:{apikey:ANON_KEY,Authorization:'Bearer '+ANON_KEY,Accept:'application/json'},cache:'no-store'})
 .then(function(r){if(!r.ok)throw Error('Annuaire indisponible ('+r.status+')');return r.json()});
@@ -159,12 +160,48 @@ function safeLink(url){try{var u=new URL(url,location.origin);return(u.protocol=
 function whatsapp(v){var d=String(v||'').replace(/\D/g,'');return d.length>=8&&d.length<=15?d:''}
 function letterOf(v){var m=normalized(v).toUpperCase().match(/[A-Z]/);return m?m[0]:'#'}
 function updateLetters(){document.querySelectorAll('#letters button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.letter===letter))})}
+
+var DEPARTMENTS=[['commerce','Commerces & marchés'],['batiment','Bâtiment & dépannage'],['artisanat','Artisanat & métiers'],['alimentation','Alimentation & restauration'],['beaute','Beauté & bien-être'],['mobilite','Transport & mobilité'],['hebergement','Logement & hébergement'],['tourisme','Tourisme & loisirs'],['services','Services du quotidien'],['agriculture','Agriculture & pêche'],['autres','Autres activités']];
+function departmentLabel(d){var found=DEPARTMENTS.find(function(x){return x[0]===d});return found?found[1]:'Autres activités'}
+function departmentOf(p){
+ if(p.department)return p.department;
+ var s=normalized([p.activity_label,p.category,p.short_description,(jobs[p.metier_id]||{}).label].join(' '));
+ if(/plomb|macon|maçon|electri|électri|piscine|construction|renov|rénov|batiment|bâtiment/.test(s))return 'batiment';
+ if(/tailleur|coutur|bijou|artisan|menuis|forger|tapiss/.test(s))return 'artisanat';
+ if(/restaur|cuisine|repas|alimenta|boulanger|poisson|boucher/.test(s))return 'alimentation';
+ if(/coiff|beaut|beauté|massage|ongle|bien.etre|soin/.test(s))return 'beaute';
+ if(/chauff|driver|transport|livraison|moto|taxi/.test(s))return 'mobilite';
+ if(/logement|location|hotel|hôtel|heberg|héberg|villa|chambre/.test(s))return 'hebergement';
+ if(/touris|golf|sortie|explor|decouvert|découvert|loisir/.test(s))return 'tourisme';
+ if(/boutique|commerce|market|vente|produit|caisse|magasin/.test(s))return 'commerce';
+ if(/peche|pêche|agric|cultiv|elevage|élevage|maraich/.test(s))return 'agriculture';
+ if(/service|nettoy|menag|ménag|medec|médec|docteur|emploi|travail/.test(s))return 'services';
+ return 'autres';
+}
+function matchZone(p,id){
+ if(!id)return true;
+ if(p.zone_id===id||(servedZones[p.id]||[]).includes(id))return true;
+ var z=zones[id]||{},a=normalized(p.city||''),b=normalized(z.label||''),slug=normalized(z.slug||'').replace(/-/g,' ');
+ return !!(a&&((b&&a.includes(b))||(slug&&a.includes(slug))));
+}
+function renderDepartments(){
+ var root=document.getElementById('departments');root.replaceChildren();
+ [['','Tous les métiers']].concat(DEPARTMENTS).forEach(function(d){
+ var n=pro.filter(function(p){return !d[0]||departmentOf(p)===d[0]}).length;
+ var btn=make('button','deptBtn',d[1]+' · '+n);btn.type='button';
+ btn.setAttribute('aria-pressed',String(department===d[0]));
+ btn.addEventListener('click',function(){department=d[0];render()});
+ root.appendChild(btn);
+ });
+}
+
 function render(){
-var q=normalized(SEARCH.query.value),co=SEARCH.country.value,zo=SEARCH.zone.value,jo=SEARCH.job.value;
+var q=normalized(SEARCH.query.value),co=SEARCH.country.value,zo=SEARCH.zone.value,jo=SEARCH.job.value,selectedId=initial.get('fiche');
+renderDepartments();
 var filtered=pro.filter(function(p){
 var z=zones[p.zone_id]||{},j=jobs[p.metier_id]||{};
-return(!co||countryOf(p)===co)&&(!zo||p.zone_id===zo||(servedZones[p.id]||[]).includes(zo))&&(!jo||p.metier_id===jo)&&(!letter||letterOf(p.display_name)===letter)
-&&(!q||normalized([p.display_name,p.activity_label,p.short_description,p.category,z.label,j.label].join(' ')).includes(q));
+return(!co||countryOf(p)===co)&&matchZone(p,zo)&&(!jo||p.metier_id===jo)&&(!department||departmentOf(p)===department)&&(!letter||letterOf(p.display_name)===letter)&&(!selectedId||p.id===selectedId)
+&&(!q||normalized([p.display_name,p.activity_label,p.short_description,p.category,z.label,p.city,j.label,departmentLabel(departmentOf(p))].join(' ')).includes(q));
 }).sort(function(a,b){return collator.compare(a.display_name||'',b.display_name||'')});
 var root=document.getElementById('results');root.replaceChildren();
 document.getElementById('status').textContent=filtered.length+' professionnel(s) · ordre alphabétique A → Z';
@@ -172,13 +209,14 @@ if(!filtered.length){root.appendChild(make('div','empty','Aucun professionnel ne
 filtered.forEach(function(p){
 var z=zones[p.zone_id]||{},j=jobs[p.metier_id]||{};
 var card=make('article','pro'),name=make('h3','',p.display_name);
-var info=make('div','meta',(z.label||'Zone non précisée')+' · '+(j.label||p.activity_label||'Professionnel'));
+var info=make('div','meta',departmentLabel(departmentOf(p))+' · '+(p.city||z.label||'Zone non précisée')+' · '+(j.label||p.activity_label||'Professionnel'));
 var description=make('p','',p.short_description||p.activity_label||'Contact direct avec le professionnel.');
 var actions=make('div','actions'),num=whatsapp(p.whatsapp_public);
 if(num){var a=make('a','wa','WhatsApp direct');a.href='https://wa.me/'+num;a.target='_blank';a.rel='noopener noreferrer';actions.appendChild(a)}
 var link=safeLink(p.public_url);
 if(link){var site=make('a','','Voir sa présentation');site.href=link;site.target='_blank';site.rel='noopener noreferrer';actions.appendChild(site)}
 if(!actions.children.length&&whatsapp(p.phone_public)){var tel=make('a','','Appeler');tel.href='tel:+'+whatsapp(p.phone_public);actions.appendChild(tel)}
+var personal=make('a','','Lien DIGIY');personal.href=location.origin+location.pathname+'?fiche='+encodeURIComponent(p.id);actions.appendChild(personal);
 card.append(name,info,description,actions);root.appendChild(card);
 });
 }
@@ -186,31 +224,34 @@ var letters=document.getElementById('letters');
 ['',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].forEach(function(l){var b=make('button','letter',l||'TOUS');b.type='button';b.dataset.letter=l;b.setAttribute('aria-label',l?'Noms commençant par '+l:'Toutes les lettres');b.setAttribute('aria-pressed',String(l===letter));b.addEventListener('click',function(){letter=l;updateLetters();render()});letters.appendChild(b)});
 Object.keys(SEARCH).forEach(function(k){SEARCH[k].addEventListener(k==='query'?'input':'change',function(){if(k==='country'){SEARCH.zone.value='';setZoneOptions()}render()})});
 function setZoneOptions(){var chosen=SEARCH.country.value,items=Object.values(zones).filter(function(z){return z.active&&(!chosen||(FR_ZONES.has(z.slug)?'fr':'sn')===chosen)}).sort(function(a,b){return collator.compare(a.label,b.label)}); SEARCH.zone.replaceChildren();option(SEARCH.zone,'','Toutes les zones');items.forEach(function(z){option(SEARCH.zone,z.id,z.label)})}
-Promise.all([
-request('digiy_annuaire_public',{select:'id,display_name,activity_label,short_description,metier_id,zone_id,category,public_url,whatsapp_public,phone_public',entry_type:'eq.professional',is_active:'eq.true',is_public:'eq.true',limit:'1000'}),
-request('digiy_zones',{select:'id,slug,label,is_active',is_active:'eq.true',limit:'300'}),
-request('digiy_metiers',{select:'id,label,is_active',is_active:'eq.true',limit:'300'}),
-request('digiy_annuaire_public_zones',{select:'card_id,zone_id',limit:'1000'})
+function loadDirectory(){
+return Promise.all([
+ request('digiy_annuaire_public',{select:'id,display_name,activity_label,short_description,metier_id,zone_id,category,public_url,whatsapp_public,phone_public',entry_type:'eq.professional',is_active:'eq.true',is_public:'eq.true',limit:'1000'}),
+ request('digiy_zones',{select:'id,slug,label,is_active',is_active:'eq.true',limit:'300'}),
+ request('digiy_metiers',{select:'id,label,is_active',is_active:'eq.true',limit:'300'}),
+ request('digiy_annuaire_public_zones',{select:'card_id,zone_id',limit:'1000'}),
+ request('digiy_annuaire_volontaires',{select:'id,display_name,activity_label,department,country_code,city,whatsapp_public',is_public:'eq.true',is_active:'eq.true',limit:'1000'}).catch(function(){return []})
 ]).then(function(data){
-data[1].forEach(function(z){zones[z.id]={id:z.id,slug:z.slug,label:z.label,active:z.is_active}});
-data[2].forEach(function(j){jobs[j.id]={id:j.id,label:j.label}});
-data[3].forEach(function(z){(servedZones[z.card_id]||(servedZones[z.card_id]=[])).push(z.zone_id)});
-pro=data[0].filter(function(p){return text(p.display_name)});
-Object.values(jobs).sort(function(a,b){return collator.compare(a.label,b.label)}).forEach(function(j){option(SEARCH.job,j.id,j.label)});
-if(initial.get('pays')==='sn'||initial.get('pays')==='fr')SEARCH.country.value=initial.get('pays');
-setZoneOptions();
-var requested=normalized(initial.get('ville'));if(requested){var selected=Object.values(zones).find(function(z){return normalized(z.slug)===requested||normalized(z.label)===requested});if(selected){if(SEARCH.country.value&&countryOf({zone_id:selected.id})!==SEARCH.country.value)SEARCH.country.value='';setZoneOptions();SEARCH.zone.value=selected.id}}
-render();
-}).catch(function(err){document.getElementById('status').textContent='Impossible de charger les résultats pour le moment.';document.getElementById('results').appendChild(make('div','empty','Le réseau est momentanément indisponible. Réessayez plus tard.'));});
-document.getElementById('registration').addEventListener('submit',function(e){
-e.preventDefault();var form=e.currentTarget;if(!form.reportValidity())return;
-var name=text(document.getElementById('name').value),activity=text(document.getElementById('activity').value),country=text(document.getElementById('regCountry').value),city=text(document.getElementById('city').value),phone=text(document.getElementById('whatsapp').value);
-if(!whatsapp(phone)){document.getElementById('whatsapp').setCustomValidity('Indiquez un numéro international valide (8 à 15 chiffres).');form.reportValidity();return}
-document.getElementById('whatsapp').setCustomValidity('');
-var message=['Bonjour DIGIYLYFE, je demande mon INSCRIPTION GRATUITE dans l’ANNUAIRE DIGIY.','Nom / enseigne : '+name,'Métier / activité : '+activity,'Pays : '+country,'Ville / quartier : '+city,'WhatsApp public : '+phone,'Je consens à la publication de ces informations après vérification.','Je comprends que cette inscription n’est ni une Carte DIGIY ni une Fiche professionnelle payante.'].join('\n');
-window.location.href='https://wa.me/221771342889?text='+encodeURIComponent(message);
+ zones={};jobs={};servedZones={};
+ data[1].forEach(function(z){zones[z.id]={id:z.id,slug:z.slug,label:z.label,active:z.is_active}});
+ data[2].forEach(function(j){jobs[j.id]={id:j.id,label:j.label}});
+ data[3].forEach(function(z){(servedZones[z.card_id]||(servedZones[z.card_id]=[])).push(z.zone_id)});
+ pro=data[0].concat(data[4]).filter(function(p){return text(p.display_name)});
+ SEARCH.job.replaceChildren();option(SEARCH.job,'','Tous les métiers');
+ Object.values(jobs).sort(function(a,b){return collator.compare(a.label,b.label)}).forEach(function(j){option(SEARCH.job,j.id,j.label)});
+ if(initial.get('pays')==='sn'||initial.get('pays')==='fr')SEARCH.country.value=initial.get('pays');
+ setZoneOptions();
+ var requested=normalized(initial.get('ville'));
+ if(requested){var selected=Object.values(zones).find(function(z){return normalized(z.slug)===requested||normalized(z.label)===requested});if(selected){if(SEARCH.country.value&&countryOf({zone_id:selected.id})!==SEARCH.country.value)SEARCH.country.value='';setZoneOptions();SEARCH.zone.value=selected.id}}
+ render();
+}).catch(function(err){
+ document.getElementById('status').textContent='Impossible de charger les résultats pour le moment.';
+ document.getElementById('results').replaceChildren(make('div','empty','Le réseau est momentanément indisponible. Réessayez plus tard.'));
+ throw err;
 });
-document.getElementById('whatsapp').addEventListener('input',function(){this.setCustomValidity('')});
+}
+window.DIGIY_ANNUAIRE_REFRESH=loadDirectory;
+loadDirectory().catch(function(){});
 })();
 </script>
 <script src="/annuaire-inscription-auto.js"></script>
