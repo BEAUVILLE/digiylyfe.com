@@ -59,6 +59,14 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 .ecoDataLink{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 14px;border-radius:11px;text-decoration:none;text-align:center;font-weight:850;font-size:13px;line-height:1.35;background:#14663e;color:#fff;max-width:265px}
 .ecoDataLink:hover,.ecoDataLink:focus-visible{background:#0a4930;outline-offset:3px}
 @media(max-width:680px){.ecoDataEntry{flex-direction:column;align-items:stretch}.ecoDataLink{max-width:none;width:100%}}
+.departments{display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;padding:8px 0 16px;scroll-snap-type:x proximity}
+.deptBtn{flex:0 0 auto;min-height:44px;padding:10px 14px;border:1px solid #bad2c0;background:#f1f8f1;border-radius:999px;color:var(--ink);font-weight:850;font-size:13px;scroll-snap-align:start;white-space:nowrap}
+.deptBtn[aria-pressed="true"]{background:var(--green);color:#fff;border-color:var(--green)}
+.linkBox{width:100%;font-size:13px;border-radius:9px;border:1px solid #bac8b8;padding:11px;background:#fff;color:var(--ink)}
+.linkTools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0 17px}.linkTools button{border:1px solid #9dbfa8;border-radius:11px;padding:10px 14px;background:#f0f8f1;color:var(--ink);font-weight:850}
+.msg{font-size:13px;color:var(--green);font-weight:800;line-height:1.5;padding:10px 0}
+#managementForm .actions button{border:1px solid #b5c5ba;background:white;color:var(--ink);border-radius:12px;padding:12px 16px;font-weight:850}#removeProfile{border-color:#b66!important;color:#842525!important}
+[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -81,10 +89,12 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 <p class="desc">Classement A → Z. Seuls les professionnels publiés et actifs sont affichés. Contact et paiement directs · 0 % commission DIGIYLYFE.</p>
 <div class="filters">
 <div class="field"><label for="query">Nom ou activité</label><input id="query" type="search" placeholder="Ex. plombier, boutique, Astou" autocomplete="off"></div>
-<div class="field"><label for="country">Pays</label><select id="country"><option value="">Tous les pays</option><option value="sn">Sénégal</option><option value="fr">France</option></select></div>
+<div class="field"><label for="country">Pays</label><select id="country"><option value="">Tous les pays</option><option value="sn">Sénégal</option><option value="fr">France</option><option value="ma">Maroc</option><option value="us">États-Unis</option><option value="other">Autres pays</option></select></div>
 <div class="field"><label for="zone">Ville / zone</label><select id="zone"><option value="">Toutes les zones</option></select></div>
 <div class="field"><label for="job">Métier</label><select id="job"><option value="">Tous les métiers</option></select></div>
 </div>
+<p class="desc" style="margin:14px 0 0;font-weight:850">Départements d’activité</p>
+<nav id="departments" class="departments" aria-label="Choisir un département d’activité"></nav>
 <aside class="ecoDataEntry" aria-labelledby="ecoDataTitle">
   <div class="ecoDataIntro">
     <h3 id="ecoDataTitle">📴 DIGIY ÉCONOMIE DATA</h3>
@@ -99,21 +109,32 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 </section>
 <section id="inscription" class="section register" aria-labelledby="registerTitle">
 <h2 id="registerTitle">Inscription DIGIY gratuite</h2>
-<p class="desc">Vous êtes commerçant, artisan ou professionnel ? Demandez votre présence dans l'annuaire. Une inscription n'est ni une carte digitale ni une fiche professionnelle payante.</p>
-<p class="note"><strong>Pilote Saly / Petite Côte.</strong> La demande part par WhatsApp à l'équipe DIGIY. Aucun affichage automatique : nous vérifions votre activité et votre accord avant de publier vos coordonnées. Pas de création de compte ni de frais pour demander l'inscription.</p>
-<form id="registration">
-<div class="regGrid">
-<div class="field"><label for="name">Nom ou enseigne *</label><input id="name" name="name" maxlength="100" required autocomplete="organization" placeholder="Ex. Atelier Ba"></div>
-<div class="field"><label for="activity">Métier / activité *</label><input id="activity" name="activity" maxlength="100" required placeholder="Ex. couturier"></div>
-<div class="field"><label for="regCountry">Pays *</label><select id="regCountry" name="country" required><option value="Sénégal">Sénégal</option><option value="France">France</option><option value="Maroc">Maroc</option><option value="États-Unis">États-Unis</option><option value="Autre">Autre</option></select></div>
-<div class="field"><label for="city">Ville et quartier *</label><input id="city" name="city" maxlength="100" required placeholder="Ex. Saly Joseph"></div>
-<div class="field full"><label for="whatsapp">Votre WhatsApp (avec indicatif) *</label><input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" required placeholder="Ex. +221 77 123 45 67"></div>
+<p class="desc">Commerçant, artisan ou professionnel ? Inscrivez-vous gratuitement, sans NINEA ni compte : votre fiche apparaît automatiquement dans l’annuaire.</p>
+<p class="note"><strong>Inscription immédiate.</strong> Renseignez vos coordonnées professionnelles et acceptez leur publication. Vous obtiendrez un lien public à partager et un lien privé pour gérer votre fiche. Gratuit · 0 % commission.</p>
+<form id="registration"><div class="regGrid">
+<div class="field"><label for="name">Nom ou enseigne *</label><input id="name" type="text" maxlength="100" required placeholder="Ex. Atelier Ba"></div>
+<div class="field"><label for="activity">Métier / activité *</label><input id="activity" type="text" maxlength="100" required placeholder="Ex. couturier"></div>
+<div class="field"><label for="regDepartment">Département d’activité *</label><select id="regDepartment" required><option value="">Choisir un département</option><option value="commerce">Commerces &amp; marchés</option><option value="batiment">Bâtiment &amp; dépannage</option><option value="artisanat">Artisanat &amp; métiers</option><option value="alimentation">Alimentation &amp; restauration</option><option value="beaute">Beauté &amp; bien-être</option><option value="mobilite">Transport &amp; mobilité</option><option value="hebergement">Logement &amp; hébergement</option><option value="tourisme">Tourisme &amp; loisirs</option><option value="services">Services du quotidien</option><option value="agriculture">Agriculture &amp; pêche</option><option value="autres">Autres activités</option></select></div>
+<div class="field"><label for="regCountry">Pays *</label><select id="regCountry" required><option value="sn">Sénégal</option><option value="fr">France</option><option value="ma">Maroc</option><option value="us">États-Unis</option><option value="other">Autre</option></select></div>
+<div class="field"><label for="city">Ville et quartier *</label><input id="city" type="text" maxlength="100" required placeholder="Ex. Saly Joseph"></div>
+<div class="field"><label for="whatsapp">WhatsApp public (avec indicatif) *</label><input id="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" required placeholder="Ex. +221 77 123 45 67"></div>
 </div>
-<label class="consent"><input type="checkbox" id="consent" required><span>J'autorise DIGIYLYFE, après vérification, à publier le nom de mon activité, mon métier, ma zone et le numéro WhatsApp fourni dans l'annuaire public. Je peux demander une correction ou un retrait en contactant DIGIYLYFE. *</span></label>
-<button type="submit" class="submit">Envoyer ma demande sur WhatsApp →</button>
-<p class="micro">L'envoi ouvre WhatsApp avec un message préparé : vous devez appuyer vous-même sur « Envoyer ». Aucune donnée n'est enregistrée par ce formulaire. L'inscription publiée reste gratuite et distincte des offres payantes.</p>
-</form>
-</section>
+<div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><label for="sitecheck">Ne pas remplir</label><input type="text" id="sitecheck" tabindex="-1" autocomplete="off"></div>
+<label class="consent"><input type="checkbox" id="consent" required><span>J’autorise la publication immédiate et gratuite du nom de mon activité, de mon métier, de mon département, de ma zone et de mon numéro WhatsApp dans l’annuaire DIGIY. Je peux modifier ou retirer ma fiche avec mon lien privé. *</span></label>
+<button type="submit" class="submit">M’inscrire et publier ma fiche gratuitement →</button>
+<p class="micro">Une inscription par activité et WhatsApp. Ne publiez que le numéro que vous acceptez de rendre public. L’annuaire gratuit reste distinct des offres payantes.</p>
+<p id="registrationStatus" class="msg" role="status" aria-live="polite"></p>
+<div id="registrationSuccess" hidden class="note"><strong>Votre fiche est en ligne !</strong><p>Votre lien public, à partager :</p><input class="linkBox" id="publicLink" readonly aria-label="Lien public de ma fiche"><div class="linkTools"><button id="copyPublic" type="button">Copier mon lien public</button></div><p><strong>Votre lien privé de gestion (à conserver, ne pas partager) :</strong></p><input class="linkBox" id="manageLink" readonly aria-label="Lien privé de gestion"><div class="linkTools"><button id="copyManage" type="button">Copier mon lien de gestion</button></div></div>
+</form></section>
+<section id="gestion" class="section" hidden aria-labelledby="managementTitle"><h2 id="managementTitle">Gérer ma fiche DIGIY</h2><p class="desc">Accès avec votre lien privé. Ne partagez pas ce lien.</p><p id="managementStatus" class="msg" role="status" aria-live="polite"></p>
+<form id="managementForm" hidden><div class="regGrid">
+<div class="field"><label for="editName">Nom / enseigne</label><input id="editName" type="text" maxlength="100" required placeholder="Votre enseigne"></div>
+<div class="field"><label for="editActivity">Métier / activité</label><input id="editActivity" type="text" maxlength="100" required placeholder="Votre activité"></div>
+<div class="field"><label for="editDepartment">Département</label><select id="editDepartment" required><option value="commerce">Commerces &amp; marchés</option><option value="batiment">Bâtiment &amp; dépannage</option><option value="artisanat">Artisanat &amp; métiers</option><option value="alimentation">Alimentation &amp; restauration</option><option value="beaute">Beauté &amp; bien-être</option><option value="mobilite">Transport &amp; mobilité</option><option value="hebergement">Logement &amp; hébergement</option><option value="tourisme">Tourisme &amp; loisirs</option><option value="services">Services du quotidien</option><option value="agriculture">Agriculture &amp; pêche</option><option value="autres">Autres activités</option></select></div>
+<div class="field"><label for="editCountry">Pays</label><select id="editCountry" required><option value="sn">Sénégal</option><option value="fr">France</option><option value="ma">Maroc</option><option value="us">États-Unis</option><option value="other">Autre</option></select></div>
+<div class="field"><label for="editCity">Ville / quartier</label><input id="editCity" type="text" maxlength="100" required placeholder="Votre quartier"></div>
+<div class="field"><label for="editWhatsapp">WhatsApp public (avec indicatif)</label><input id="editWhatsapp" type="tel" inputmode="tel" maxlength="24" required></div>
+</div><button class="submit" type="submit">Enregistrer mes modifications</button><div class="actions"><button type="button" id="removeProfile">Retirer ma fiche de l’annuaire</button></div></form></section>
 <div class="footer">DIGIYLYFE · Le terrain garde la main · <a href="/carte-gratuite.html">Carte DIGIY payante</a> · <a href="/">Accueil</a></div>
 </main>
 <script>
@@ -192,4 +213,5 @@ window.location.href='https://wa.me/221771342889?text='+encodeURIComponent(messa
 document.getElementById('whatsapp').addEventListener('input',function(){this.setCustomValidity('')});
 })();
 </script>
+<script src="/annuaire-inscription-auto.js"></script>
 </body></html>
