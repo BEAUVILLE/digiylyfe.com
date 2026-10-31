@@ -20,6 +20,9 @@ for(const d of departments) {
   assert(sql.includes("'"+d+"'"),'Département SQL manquant : '+d);
 }
 assert(html.includes('annuaire-inscription-auto.js'),'Script d’inscription non chargé');
+assert(html.includes('IMPORTANT — Gardez votre lien privé précieusement'),'Avertissement de sauvegarde du lien secret manquant');
+assert(html.includes('Ne le partagez jamais'),'Avertissement de confidentialité manquant');
+assert(html.includes('id="copyManage"'),'Copie du lien de gestion manquante');
 assert(!html.includes('Envoyer ma demande sur WhatsApp'),'Ancien parcours WhatsApp encore actif');
 assert(!html.includes('https://wa.me/221771342889?text='),'Ancien lien de collecte encore actif');
 assert(html.includes('DIGIY_ANNUAIRE_REFRESH'),'Rafraîchissement immédiat manquant');
