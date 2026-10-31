@@ -25,6 +25,12 @@ assert(!html.includes('https://wa.me/221771342889?text='),'Ancien lien de collec
 assert(html.includes('DIGIY_ANNUAIRE_REFRESH'),'Rafraîchissement immédiat manquant');
 assert(html.includes('digiy_annuaire_volontaires'),'Lecture des volontaires absente');
 assert(html.includes('departmentOf(p)'),'Classement par département manquant');
+assert(html.includes('id="departmentNext"'),'Flèche droite des activités absente');
+assert(html.includes('id="departmentPrev"'),'Flèche gauche des activités absente');
+assert(html.includes('aria-label="Voir les activités suivantes"'),'Accessibilité de la flèche droite absente');
+assert(html.includes('function updateDepartmentArrows()'),'Désactivation aux extrémités absente');
+assert(html.includes('list.scrollBy({left:direction*distance'),'Défilement par les flèches absent');
+assert(html.includes('root.scrollLeft=savedScroll'),'Position de défilement non préservée au filtrage');
 assert(html.includes("matchZone(p,zo)"),'Filtre territorial manquant');
 assert(external.includes('digiy_annuaire_inscrire')&&external.includes('digiy_annuaire_gerer'),'RPC manquantes');
 assert(sql.includes('enable row level security'),'RLS manquante');
