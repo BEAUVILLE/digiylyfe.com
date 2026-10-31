@@ -59,7 +59,13 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 .ecoDataLink{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 14px;border-radius:11px;text-decoration:none;text-align:center;font-weight:850;font-size:13px;line-height:1.35;background:#14663e;color:#fff;max-width:265px}
 .ecoDataLink:hover,.ecoDataLink:focus-visible{background:#0a4930;outline-offset:3px}
 @media(max-width:680px){.ecoDataEntry{flex-direction:column;align-items:stretch}.ecoDataLink{max-width:none;width:100%}}
-.departments{display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;padding:8px 0 16px;scroll-snap-type:x proximity}
+.departmentRail{display:flex;align-items:center;gap:6px;min-width:0;margin-top:4px}
+.departments{display:flex;flex:1;min-width:0;gap:8px;overflow-x:auto;scrollbar-width:thin;padding:8px 0 16px;scroll-snap-type:x proximity;overscroll-behavior-x:contain}
+.departmentArrow{flex:0 0 44px;width:44px;height:44px;border:1px solid #a5c3ac;border-radius:12px;background:#16633d;color:white;font-size:29px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
+.departmentArrow.next{background:var(--gold);border-color:#d6ac51;color:#173324}
+.departmentArrow:disabled{opacity:.25;cursor:default}
+.departmentArrow:focus-visible{outline:3px solid #3ca773;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.departments{scroll-behavior:auto}}
 .deptBtn{flex:0 0 auto;min-height:44px;padding:10px 14px;border:1px solid #bad2c0;background:#f1f8f1;border-radius:999px;color:var(--ink);font-weight:850;font-size:13px;scroll-snap-align:start;white-space:nowrap}
 .deptBtn[aria-pressed="true"]{background:var(--green);color:#fff;border-color:var(--green)}
 .linkBox{width:100%;font-size:13px;border-radius:9px;border:1px solid #bac8b8;padding:11px;background:#fff;color:var(--ink)}
@@ -94,7 +100,11 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 <div class="field"><label for="job">Métier</label><select id="job"><option value="">Tous les métiers</option></select></div>
 </div>
 <p class="desc" style="margin:14px 0 0;font-weight:850">Départements d’activité</p>
-<nav id="departments" class="departments" aria-label="Choisir un département d’activité"></nav>
+<div class="departmentRail" role="group" aria-label="Parcourir les départements d’activité">
+  <button id="departmentPrev" class="departmentArrow" type="button" aria-controls="departments" aria-label="Voir les activités précédentes" disabled>‹</button>
+  <nav id="departments" class="departments" aria-label="Choisir un département d’activité"></nav>
+  <button id="departmentNext" class="departmentArrow next" type="button" aria-controls="departments" aria-label="Voir les activités suivantes">›</button>
+</div>
 <aside class="ecoDataEntry" aria-labelledby="ecoDataTitle">
   <div class="ecoDataIntro">
     <h3 id="ecoDataTitle">📴 DIGIY ÉCONOMIE DATA</h3>
@@ -184,8 +194,22 @@ function matchZone(p,id){
  var z=zones[id]||{},a=normalized(p.city||''),b=normalized(z.label||''),slug=normalized(z.slug||'').replace(/-/g,' ');
  return !!(a&&((b&&a.includes(b))||(slug&&a.includes(slug))));
 }
+function updateDepartmentArrows(){
+ var list=document.getElementById('departments'),prev=document.getElementById('departmentPrev'),next=document.getElementById('departmentNext');
+ var limit=Math.max(0,list.scrollWidth-list.clientWidth);
+ prev.disabled=list.scrollLeft<=2;
+ next.disabled=limit<=2||list.scrollLeft>=limit-2;
+}
+function moveDepartments(direction){
+ var list=document.getElementById('departments'),distance=Math.max(200,Math.floor(list.clientWidth*.85));
+ list.scrollBy({left:direction*distance,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+}
+document.getElementById('departmentPrev').addEventListener('click',function(){moveDepartments(-1)});
+document.getElementById('departmentNext').addEventListener('click',function(){moveDepartments(1)});
+document.getElementById('departments').addEventListener('scroll',updateDepartmentArrows,{passive:true});
+window.addEventListener('resize',updateDepartmentArrows);
 function renderDepartments(){
- var root=document.getElementById('departments');root.replaceChildren();
+ var root=document.getElementById('departments'),savedScroll=root.scrollLeft;root.replaceChildren();
  [['','Tous les métiers']].concat(DEPARTMENTS).forEach(function(d){
  var n=pro.filter(function(p){return !d[0]||departmentOf(p)===d[0]}).length;
  var btn=make('button','deptBtn',d[1]+' · '+n);btn.type='button';
@@ -193,6 +217,8 @@ function renderDepartments(){
  btn.addEventListener('click',function(){department=d[0];render()});
  root.appendChild(btn);
  });
+ root.scrollLeft=savedScroll;
+ requestAnimationFrame(updateDepartmentArrows);
 }
 
 function render(){
