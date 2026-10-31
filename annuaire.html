@@ -217,6 +217,7 @@ var link=safeLink(p.public_url);
 if(link){var site=make('a','','Voir sa présentation');site.href=link;site.target='_blank';site.rel='noopener noreferrer';actions.appendChild(site)}
 if(!actions.children.length&&whatsapp(p.phone_public)){var tel=make('a','','Appeler');tel.href='tel:+'+whatsapp(p.phone_public);actions.appendChild(tel)}
 var personal=make('a','','Lien DIGIY');personal.href=location.origin+location.pathname+'?fiche='+encodeURIComponent(p.id);actions.appendChild(personal);
+var signal=make('a','','Signaler une fiche');signal.href='mailto:contact@digiylyfe.com?subject='+encodeURIComponent('Signalement Annuaire DIGIY')+'&body='+encodeURIComponent('Fiche concernée : '+personal.href+'\nMotif : ');actions.appendChild(signal);
 card.append(name,info,description,actions);root.appendChild(card);
 });
 }
