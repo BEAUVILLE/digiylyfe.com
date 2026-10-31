@@ -757,18 +757,18 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     .campusCopy h2{margin:0;color:#fff;font-size:23px;line-height:1.05}
     .campusTagline{margin:7px 0 0;color:#dffff8;font-size:14px;font-weight:900;line-height:1.35}
     .campusIntro{margin:14px 0 0;color:var(--soft);font-size:13px;line-height:1.55}
-    .campusMoney{margin:15px 0 0;padding:14px;border-radius:18px;background:rgba(0,0,0,.18);border:1px solid rgba(125,211,252,.24)}
-    .campusMoney strong{display:block;color:#fff3cf;font-size:14px;line-height:1.35}
-    .campusMoney p{margin:6px 0 0;color:#dceff7;font-size:12px;line-height:1.5}
-    .campusExamples{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
-    .campusExample{padding:10px 8px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);text-align:center}
-    .campusExample b{display:block;color:#fff;font-size:13px}
-    .campusExample span{display:block;margin-top:3px;color:#bfe9df;font-size:10px;font-weight:800}
-    .campusFine{margin:10px 0 0;color:#aebfc8;font-size:10px;line-height:1.45}
+    .campusGuide{margin:15px 0 0;padding:14px;border-radius:18px;background:rgba(0,0,0,.18);border:1px solid rgba(125,211,252,.24)}
+    .campusGuide strong{display:block;color:#fff3cf;font-size:14px;line-height:1.35}
+    .campusGuide p{margin:6px 0 0;color:#dceff7;font-size:12px;line-height:1.5}
+    .campusSteps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+    .campusStep{padding:10px 8px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);text-align:center}
+    .campusStep b{display:block;color:#fff;font-size:13px}
+    .campusStep span{display:block;margin-top:3px;color:#bfe9df;font-size:10px;font-weight:800}
+    .campusFine{margin:10px 0 0;color:#d8e4de;font-size:11px;line-height:1.5}.campusRouteLinks{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}.campusRouteLinks a{display:inline-flex;flex:1;min-width:190px;align-items:center;justify-content:center;min-height:44px;border-radius:12px;padding:9px 13px;background:#f6c453;color:#15271d;text-align:center;text-decoration:none;font-size:12px;font-weight:900}.campusRouteLinks a:last-child{background:#fff;color:#125239}
     .campusCta{display:flex;align-items:center;justify-content:center;text-align:center;margin-top:14px;padding:13px 16px;border-radius:16px;background:#f6c453;color:#101418;text-decoration:none;font-size:12px;font-weight:1000;letter-spacing:.02em}
     .campusCta:hover{transform:translateY(-1px)}
     .campusStatus{display:block;margin-top:10px;text-align:center;color:#bfe9df;font-size:10px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
-    @media(max-width:560px){.digiyCampus{padding:16px}.campusCopy h2{font-size:20px}.campusExamples{grid-template-columns:1fr}.campusExample{display:flex;align-items:center;justify-content:space-between;text-align:left}.campusExample span{margin-top:0}}
+    @media(max-width:560px){.digiyCampus{padding:16px}.campusCopy h2{font-size:20px}.campusSteps{grid-template-columns:1fr}.campusStep{display:flex;align-items:center;justify-content:space-between;text-align:left}.campusStep span{margin-top:0}}
 
     /* ===== BUGFIX PWA · touche d’installation mobile ===== */
     .digiyInstallBand{
@@ -1438,28 +1438,32 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
       <small class="digiyInstallNote" id="digiyInstallNote" aria-live="polite">Touchez la bande pour installer ou afficher les instructions.</small>
     </section>
 
-    <section class="digiyCampus" id="digiyCampus" aria-label="DIGIY CAMPUS">
+    <section class="digiyCampus" id="digiyCampus" aria-label="DIGIY CAMPUS · relais d'entraide">
       <div class="campusTop">
         <span class="campusIcon" aria-hidden="true">🎓</span>
         <div class="campusCopy">
-          <span class="campusEyebrow" data-i18n="campusEyebrow">PROGRAMME EN PRÉPARATION · SÉNÉGAL</span>
+          <span class="campusEyebrow" data-i18n="campusEyebrow">RELAIS DE PROXIMITÉ · ENTRAIDE</span>
           <h2 data-i18n="campusTitle">DIGIY CAMPUS</h2>
-          <p class="campusTagline" data-i18n="campusTagline">Deviens acteur numérique de ton territoire.</p>
+          <p class="campusTagline" data-i18n="campusTagline">Aidez votre entourage à être visible sur le web grâce à la plateforme DIGIYLYFE.</p>
         </div>
       </div>
-      <p class="campusIntro" data-i18n="campusIntro">Pour les étudiants et jeunes actifs qui veulent acquérir une vraie expérience terrain en accompagnant les professionnels locaux dans leur présence numérique.</p>
-      <div class="campusMoney">
-        <strong data-i18n="campusMoneyTitle">💸 Construis ton portefeuille · rémunération récurrente</strong>
-        <p data-i18n="campusMoneyText">Exemple prévu au Sénégal : 2 500 FCFA par mois et par adhérent actif apporté et effectivement payé.</p>
-        <div class="campusExamples" aria-label="Exemples de rémunération">
-          <div class="campusExample"><b>10</b><span>25 000 FCFA / mois</span></div>
-          <div class="campusExample"><b>20</b><span>50 000 FCFA / mois</span></div>
-          <div class="campusExample"><b>40</b><span>100 000 FCFA / mois</span></div>
+      <p class="campusIntro" data-i18n="campusIntro">Un proche, un voisin, un artisan ou un commerçant ? Montrez-lui comment présenter son activité gratuitement dans l’annuaire DIGIY. S’il le souhaite, expliquez aussi les offres PRO sans lui imposer d’adhésion.</p>
+      <div class="campusGuide">
+        <strong data-i18n="campusMoneyTitle">🤝 Un relais d'entraide, sans rémunération</strong>
+        <p data-i18n="campusMoneyText">Vous aidez à comprendre et à utiliser DIGIYLYFE. Aucun salaire, prime ni commission, même si un professionnel choisit une adhésion payante. L'inscription reste sa décision.</p>
+        <div class="campusSteps" aria-label="Les trois gestes des relais">
+          <div class="campusStep"><b>1</b><span data-i18n="campusStep1">Faire découvrir</span></div>
+          <div class="campusStep"><b>2</b><span data-i18n="campusStep2">Expliquer les choix</span></div>
+          <div class="campusStep"><b>3</b><span data-i18n="campusStep3">Aider sans pression</span></div>
         </div>
-        <p class="campusFine" data-i18n="campusFine">Montants indicatifs, non garantis. La rémunération dépend des adhérents réellement apportés, actifs et payés, selon les conditions du futur programme partenaire.</p>
+        <p class="campusFine" data-i18n="campusFine">Les relais particulièrement utiles pourront être remerciés ou mis à l'honneur, avec leur accord, selon leur entraide réelle et non selon les adhésions vendues. Aucune récompense financière promise.</p>
+        <div class="campusRouteLinks">
+          <a href="/annuaire.html#inscription" data-i18n="campusFreeLink">+ Inscription gratuite dans l'annuaire →</a>
+          <a href="/tarifs-adherents-1.html" data-i18n="campusProLink">Découvrir les offres PRO →</a>
+        </div>
       </div>
       <p class="campusCta" data-i18n="campusFallback">Le formulaire nécessite JavaScript. S’il ne s’affiche pas, activez JavaScript puis rechargez la page.</p>
-      <span class="campusStatus" data-i18n="campusStatus">Pré-inscription d’intérêt · aucun contrat · aucun paiement</span>
+      <span class="campusStatus" data-i18n="campusStatus">Rejoindre les relais · participation volontaire · sans rémunération</span>
     </section>
 
     <section class="digiyFavoris" id="digiyFavorisBar" aria-label="Favoris DIGIYLYFE">
