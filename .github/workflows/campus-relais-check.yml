@@ -1,0 +1,24 @@
+name: CAMPUS — relais solidaires (tests)
+on:
+  pull_request:
+    paths:
+      - index.html
+      - assets/digiy-campus-interest-v2.js
+      - scripts/verify-campus-relais.mjs
+      - .github/workflows/campus-relais-check.yml
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - assets/digiy-campus-interest-v2.js
+      - scripts/verify-campus-relais.mjs
+      - .github/workflows/campus-relais-check.yml
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/verify-campus-relais.mjs
