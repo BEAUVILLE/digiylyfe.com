@@ -64,6 +64,7 @@ html[dir="rtl"] body{text-align:right}html[dir="rtl"] .need{text-align:right;ali
     if(e)e.textContent=france?'DIGIYLYFE · FRANCE · TERRITOIRES ACTIFS':'DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS';
     if(l)l.textContent=france?'Une même logique en France : territoire → besoin → professionnel → fiche officielle → contact direct.':'Une même logique au Sénégal : territoire → besoin → professionnel → fiche officielle → contact direct.';
     // Couche WO de la vitrine territoriale : données et fiches restent authentiques.
+    var originalHeaderTexts={head:document.getElementById('territoryHubTitle').textContent,lead:document.getElementById('territoryHubLead').textContent,eyebrow:document.getElementById('territoryHubEyebrow').textContent,flow:document.querySelector('.territoryHubFlow').textContent};
     var wolof=(new URLSearchParams(location.search).get('lang')||'').toLowerCase()==='wo';
     if(wolof){
       document.getElementById('woLimit').hidden=false;
@@ -76,11 +77,12 @@ html[dir="rtl"] body{text-align:right}html[dir="rtl"] .need{text-align:right;ali
       var names=document.querySelector('#petiteCoteProLinks h2');if(names)names.textContent='Ñiy liggéey ci Petite Côte';
       var desc=document.querySelector('#petiteCoteProLinks p');if(desc)desc.textContent='Tànnal ki nga bëgg. Jokkoo ak moom ci sa bopp.';
     }
+    document.addEventListener('DOMContentLoaded',function(){
     var originals={
-      head:document.getElementById('territoryHubTitle').textContent,
-      lead:document.getElementById('territoryHubLead').textContent,
-      eyebrow:document.getElementById('territoryHubEyebrow').textContent,
-      flow:document.querySelector('.territoryHubFlow').textContent,
+      head:originalHeaderTexts.head,
+      lead:originalHeaderTexts.lead,
+      eyebrow:originalHeaderTexts.eyebrow,
+      flow:originalHeaderTexts.flow,
       proTitle:document.querySelector('#petiteCoteProLinks h2').textContent,
       proDescription:document.querySelector('#petiteCoteProLinks p').textContent,
       proDoorTitle:document.querySelector('#digiyCarnetProDoor h2')?.textContent||'CARNET PRO',
@@ -91,7 +93,18 @@ html[dir="rtl"] body{text-align:right}html[dir="rtl"] .need{text-align:right;ali
       var selected=(new URLSearchParams(location.search).get('lang')||document.documentElement.lang||'fr').slice(0,2).toLowerCase();
       var chinese=selected==='zh';
       var limit=document.getElementById('zhLimit');if(limit)limit.hidden=!chinese;
-      if(selected==='wo')return;
+      var woLimit=document.getElementById('woLimit');if(woLimit)woLimit.hidden=selected!=='wo';
+      if(selected==='wo'){
+        document.getElementById('territoryHubTitle').textContent='Tànnal sa gox';
+        document.getElementById('territoryHubLead').textContent='Gox → Soxla → Ki liggéey → Jokkoo ci sa bopp';
+        document.getElementById('territoryHubEyebrow').textContent='DIGIYLYFE · GOX YI';
+        document.querySelector('.territoryHubFlow').textContent='DIGIYLYFE · Jokkoo ci sa bopp · 0 % commission';
+        document.querySelector('#petiteCoteProLinks h2').textContent='Ñiy liggéey ci Petite Côte';
+        document.querySelector('#petiteCoteProLinks p').textContent='Tànnal ki nga bëgg. Jokkoo ak moom ci sa bopp.';
+        document.getElementById('back').href='/prototypes/digiy-wolof-v1/prototype.html';
+        document.querySelectorAll('.territoryHubLinks a[href^="/territoire.html"]').forEach(function(a){var u=new URL(a.href);u.searchParams.set('lang','wo');a.href=u.pathname+u.search;});
+        return;
+      }
       document.getElementById('territoryHubTitle').textContent=chinese?'选择地区':originals.head;
       document.getElementById('territoryHubLead').textContent=chinese?'地区 → 需求 → 专业人士 → 官方资料 → 直接联系':originals.lead;
       document.getElementById('territoryHubEyebrow').textContent=chinese?(france?'DIGIYLYFE · 法国 · 服务地区':'DIGIYLYFE · 塞内加尔 · 服务地区'):originals.eyebrow;
@@ -112,7 +125,7 @@ html[dir="rtl"] body{text-align:right}html[dir="rtl"] .need{text-align:right;ali
       var dakar=document.querySelector('.territoryHubLinks a[href="/dakar.html"]');
       if(chinese&&dakar)dakar.href='/territoire.html?zone=dakar&lang=zh';
       else{
-        var dakarZh=document.querySelector('.territoryHubLinks a[href="/territoire.html?zone=dakar&lang=zh"]');
+        var dakarZh=document.querySelector('.territoryHubLinks a[href="/territoire.html?zone=dakar"]');
         if(dakarZh)dakarZh.href='/dakar.html';
       }
     }
@@ -120,6 +133,7 @@ html[dir="rtl"] body{text-align:right}html[dir="rtl"] .need{text-align:right;ali
     document.querySelectorAll('[data-lang]').forEach(function(button){
       button.addEventListener('click',function(){setTimeout(syncChineseTerritoryShell,0)});
     });
+    },{once:true});
   })();
   </script>
   <section class="section"><h2 id="needTitle">Que recherchez-vous ?</h2><div class="grid" id="needs"></div></section>
