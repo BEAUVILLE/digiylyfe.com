@@ -89,10 +89,25 @@ html[dir="rtl"] body{text-align:right}html[dir="rtl"] .need{text-align:right;ali
       proDoorDescription:document.querySelector('#digiyCarnetProDoor p')?.textContent||'',
       proDoorLink:document.querySelector('#digiyCarnetProDoor a')?.textContent||''
     };
+    var countryCards=Array.prototype.map.call(document.querySelectorAll('[data-country-hub]'),function(el){
+      return{el:el,id:el.getAttribute('data-country-hub'),title:el.querySelector('strong').textContent,description:el.querySelector('p').textContent,
+        labels:Array.prototype.map.call(el.querySelectorAll('.territoryHubLinks a'),function(a){return a.textContent})};
+    });
+    function syncCountryCards(chinese){
+      var names={SN:{title:'🇸🇳 塞内加尔',description:'小海岸 · 达喀尔',labels:['小海岸','达喀尔']},
+        FR:{title:'🇫🇷 法国',description:'巴黎 · 波尔多 · 佩里戈尔 · 多尔多涅河谷',labels:['巴黎','波尔多','佩里戈尔 · 多尔多涅河谷']}};
+      countryCards.forEach(function(card){
+        var zh=names[card.id];
+        card.el.querySelector('strong').textContent=chinese&&zh?zh.title:card.title;
+        card.el.querySelector('p').textContent=chinese&&zh?zh.description:card.description;
+        card.el.querySelectorAll('.territoryHubLinks a').forEach(function(a,i){a.textContent=chinese&&zh?zh.labels[i]:card.labels[i]});
+      });
+    }
     function syncChineseTerritoryShell(){
       var selected=(new URLSearchParams(location.search).get('lang')||document.documentElement.lang||'fr').slice(0,2).toLowerCase();
       var chinese=selected==='zh';
       var limit=document.getElementById('zhLimit');if(limit)limit.hidden=!chinese;
+      syncCountryCards(chinese);
       var woLimit=document.getElementById('woLimit');if(woLimit)woLimit.hidden=selected!=='wo';
       if(selected==='wo'){
         document.getElementById('territoryHubTitle').textContent='Tànnal sa gox';
@@ -102,6 +117,7 @@ html[dir="rtl"] body{text-align:right}html[dir="rtl"] .need{text-align:right;ali
         document.querySelector('#petiteCoteProLinks h2').textContent='Ñiy liggéey ci Petite Côte';
         document.querySelector('#petiteCoteProLinks p').textContent='Tànnal ki nga bëgg. Jokkoo ak moom ci sa bopp.';
         document.getElementById('back').href='/prototypes/digiy-wolof-v1/prototype.html';
+        var oldDakar=document.querySelector('.territoryHubLinks a[href="/territoire.html?zone=dakar&lang=zh"]');if(oldDakar)oldDakar.href='/dakar.html';
         document.querySelectorAll('.territoryHubLinks a[href^="/territoire.html"]').forEach(function(a){var u=new URL(a.href);u.searchParams.set('lang','wo');a.href=u.pathname+u.search;});
         return;
       }
