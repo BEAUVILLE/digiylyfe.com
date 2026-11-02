@@ -120,7 +120,7 @@ class World8Homepage(unittest.TestCase):
         for url in (*SIMPLE_URL.values(), "/zh-CN/", "/zh-CN/saly.html"):
             self.assertIn(url, all_links)
         for need in NEEDS:
-            self.assertIn(f"local=saly&amp;need={need}&amp;lang=en", html)
+            self.assertIn(f"local=saly&amp;need={need}&amp;lang=zh", html)
         blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
         self.assertEqual(len(blocks), 1)
         structured = json.loads(blocks[0])
