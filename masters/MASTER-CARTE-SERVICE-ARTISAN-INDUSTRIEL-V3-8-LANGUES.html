@@ -107,6 +107,8 @@
       <button type="button" data-lang="de">DE</button>
       <button type="button" data-lang="nl">NL</button>
       <button type="button" data-lang="ar">AR</button>
+      <button type="button" data-lang="wo">WO</button>
+      <button type="button" data-lang="zh">中文</button>
     </nav>
     <div id="modeBanner" class="mode">MASTER / TEST · NON INDEXÉ · QR BLOQUÉ JUSQU’À L’URL FINALE</div>
 
@@ -150,7 +152,7 @@
         <span data-i18n="zeroCommission">0 % de commission DIGIYLYFE</span>
       </div>
 
-      <footer>DIGIYLYFE.COM</footer>
+      <footer><a href="https://digiylyfe.com/" data-i18n="backHome">← Retour à DIGIYLYFE.COM</a></footer>
     </article>
 
     <section id="machineDebug" class="debug">
@@ -195,7 +197,7 @@
       siteUrl: "",
 
       countryCode: "SN",
-      languages: ["fr","en","es","pt","it","de","nl","ar"],
+      languages: ["fr","en","es","pt","it","de","nl","ar","wo","zh"],
 
       /*
         CONTENU MÉTIER MULTILINGUE
@@ -249,7 +251,7 @@
     window.DIGIY_PRO_PWA_CARD = CARD;
     const $ = id => document.getElementById(id);
     const LANG_KEY = "digiy_card_lang_v1";
-    const LANGS = ["fr","en","es","pt","it","de","nl","ar"];
+    const LANGS = ["fr","en","es","pt","it","de","nl","ar","wo","zh"];
     const hasPlaceholder = v => /\{\{[^}]+\}\}/.test(String(v || ""));
     const clean = v => String(v || "").trim();
     const digits = v => clean(v).replace(/\D/g,"");
@@ -260,14 +262,16 @@
     };
 
     const UI = {
-      fr:{member:"ADHÉRENT DIGIYLYFE",servicesTitle:"MES SERVICES",contactTitle:"CONTACT DIRECT",call:"Appeler",whatsappBtn:"WhatsApp",zoneBtn:"Ma zone",ficheBtn:"Voir ma fiche",siteBtn:"Voir mon site",qrWaiting:"QR CLIENT À POSER APRÈS VALIDATION DE L’URL DÉFINITIVE",directContact:"Contact direct",directPayment:"Paiement direct",zeroCommission:"0 % de commission DIGIYLYFE",testMode:"MASTER / TEST · NON INDEXÉ · QR BLOQUÉ JUSQU’À L’URL FINALE",publicMode:"FICHE PUBLIQUE · FACE HUMAINE + FACE MACHINE ACTIVES"},
-      en:{member:"DIGIYLYFE MEMBER",servicesTitle:"MY SERVICES",contactTitle:"DIRECT CONTACT",call:"Call",whatsappBtn:"WhatsApp",zoneBtn:"My area",ficheBtn:"View my profile",siteBtn:"View my website",qrWaiting:"CLIENT QR AFTER FINAL URL VALIDATION",directContact:"Direct contact",directPayment:"Direct payment",zeroCommission:"0% DIGIYLYFE commission",testMode:"MASTER / TEST · NOT INDEXED · QR LOCKED UNTIL FINAL URL",publicMode:"PUBLIC CARD · HUMAN + MACHINE LAYERS ACTIVE"},
-      es:{member:"MIEMBRO DIGIYLYFE",servicesTitle:"MIS SERVICIOS",contactTitle:"CONTACTO DIRECTO",call:"Llamar",whatsappBtn:"WhatsApp",zoneBtn:"Mi zona",ficheBtn:"Ver mi ficha",siteBtn:"Ver mi sitio",qrWaiting:"QR DEL CLIENTE TRAS VALIDAR LA URL FINAL",directContact:"Contacto directo",directPayment:"Pago directo",zeroCommission:"0 % comisión DIGIYLYFE",testMode:"MASTER / PRUEBA · NO INDEXADO · QR BLOQUEADO HASTA LA URL FINAL",publicMode:"TARJETA PÚBLICA · CAPAS HUMANA + MÁQUINA ACTIVAS"},
-      pt:{member:"ADERENTE DIGIYLYFE",servicesTitle:"MEUS SERVIÇOS",contactTitle:"CONTACTO DIRETO",call:"Ligar",whatsappBtn:"WhatsApp",zoneBtn:"Minha zona",ficheBtn:"Ver minha ficha",siteBtn:"Ver meu site",qrWaiting:"QR DO CLIENTE APÓS VALIDAÇÃO DA URL FINAL",directContact:"Contacto direto",directPayment:"Pagamento direto",zeroCommission:"0% comissão DIGIYLYFE",testMode:"MASTER / TESTE · NÃO INDEXADO · QR BLOQUEADO ATÉ À URL FINAL",publicMode:"CARTÃO PÚBLICO · CAMADAS HUMANA + MÁQUINA ATIVAS"},
-      it:{member:"ADERENTE DIGIYLYFE",servicesTitle:"I MIEI SERVIZI",contactTitle:"CONTATTO DIRETTO",call:"Chiama",whatsappBtn:"WhatsApp",zoneBtn:"La mia zona",ficheBtn:"Vedi la mia scheda",siteBtn:"Vedi il mio sito",qrWaiting:"QR CLIENTE DOPO LA CONVALIDA DELL’URL FINALE",directContact:"Contatto diretto",directPayment:"Pagamento diretto",zeroCommission:"0% commissione DIGIYLYFE",testMode:"MASTER / TEST · NON INDICIZZATO · QR BLOCCATO FINO ALL’URL FINALE",publicMode:"BIGLIETTO PUBBLICO · LIVELLI UMANO + MACCHINA ATTIVI"},
-      de:{member:"DIGIYLYFE MITGLIED",servicesTitle:"MEINE LEISTUNGEN",contactTitle:"DIREKTER KONTAKT",call:"Anrufen",whatsappBtn:"WhatsApp",zoneBtn:"Mein Gebiet",ficheBtn:"Profil ansehen",siteBtn:"Website ansehen",qrWaiting:"KUNDEN-QR NACH FREIGABE DER ENDGÜLTIGEN URL",directContact:"Direkter Kontakt",directPayment:"Direkte Zahlung",zeroCommission:"0 % DIGIYLYFE-Provision",testMode:"MASTER / TEST · NICHT INDEXIERT · QR BIS ZUR FINALEN URL GESPERRT",publicMode:"ÖFFENTLICHE KARTE · MENSCH + MASCHINE AKTIV"},
-      nl:{member:"DIGIYLYFE LID",servicesTitle:"MIJN DIENSTEN",contactTitle:"DIRECT CONTACT",call:"Bellen",whatsappBtn:"WhatsApp",zoneBtn:"Mijn zone",ficheBtn:"Bekijk mijn fiche",siteBtn:"Bekijk mijn website",qrWaiting:"KLANT-QR NA VALIDATIE VAN DE DEFINITIEVE URL",directContact:"Direct contact",directPayment:"Directe betaling",zeroCommission:"0% DIGIYLYFE-commissie",testMode:"MASTER / TEST · NIET GEÏNDEXEERD · QR GEBLOKKEERD TOT DEFINITIEVE URL",publicMode:"PUBLIEKE KAART · MENS + MACHINE ACTIEF"},
-      ar:{member:"عضو DIGIYLYFE",servicesTitle:"خدماتي",contactTitle:"تواصل مباشر",call:"اتصال",whatsappBtn:"واتساب",zoneBtn:"منطقتي",ficheBtn:"عرض بطاقتي المفصلة",siteBtn:"عرض موقعي",qrWaiting:"رمز QR للعميل بعد اعتماد الرابط النهائي",directContact:"تواصل مباشر",directPayment:"دفع مباشر",zeroCommission:"0٪ عمولة DIGIYLYFE",testMode:"نموذج / اختبار · غير مفهرس · رمز QR مقفل حتى اعتماد الرابط النهائي",publicMode:"بطاقة عامة · الطبقة البشرية + طبقة الآلة مفعّلتان"}
+      fr:{backHome:"← Retour à DIGIYLYFE.COM",member:"ADHÉRENT DIGIYLYFE",servicesTitle:"MES SERVICES",contactTitle:"CONTACT DIRECT",call:"Appeler",whatsappBtn:"WhatsApp",zoneBtn:"Ma zone",ficheBtn:"Voir ma fiche",siteBtn:"Voir mon site",qrWaiting:"QR CLIENT À POSER APRÈS VALIDATION DE L’URL DÉFINITIVE",directContact:"Contact direct",directPayment:"Paiement direct",zeroCommission:"0 % de commission DIGIYLYFE",testMode:"MASTER / TEST · NON INDEXÉ · QR BLOQUÉ JUSQU’À L’URL FINALE",publicMode:"FICHE PUBLIQUE · FACE HUMAINE + FACE MACHINE ACTIVES"},
+      en:{backHome:"← Back to DIGIYLYFE.COM",member:"DIGIYLYFE MEMBER",servicesTitle:"MY SERVICES",contactTitle:"DIRECT CONTACT",call:"Call",whatsappBtn:"WhatsApp",zoneBtn:"My area",ficheBtn:"View my profile",siteBtn:"View my website",qrWaiting:"CLIENT QR AFTER FINAL URL VALIDATION",directContact:"Direct contact",directPayment:"Direct payment",zeroCommission:"0% DIGIYLYFE commission",testMode:"MASTER / TEST · NOT INDEXED · QR LOCKED UNTIL FINAL URL",publicMode:"PUBLIC CARD · HUMAN + MACHINE LAYERS ACTIVE"},
+      es:{backHome:"← Volver a DIGIYLYFE.COM",member:"MIEMBRO DIGIYLYFE",servicesTitle:"MIS SERVICIOS",contactTitle:"CONTACTO DIRECTO",call:"Llamar",whatsappBtn:"WhatsApp",zoneBtn:"Mi zona",ficheBtn:"Ver mi ficha",siteBtn:"Ver mi sitio",qrWaiting:"QR DEL CLIENTE TRAS VALIDAR LA URL FINAL",directContact:"Contacto directo",directPayment:"Pago directo",zeroCommission:"0 % comisión DIGIYLYFE",testMode:"MASTER / PRUEBA · NO INDEXADO · QR BLOQUEADO HASTA LA URL FINAL",publicMode:"TARJETA PÚBLICA · CAPAS HUMANA + MÁQUINA ACTIVAS"},
+      pt:{backHome:"← Voltar a DIGIYLYFE.COM",member:"ADERENTE DIGIYLYFE",servicesTitle:"MEUS SERVIÇOS",contactTitle:"CONTACTO DIRETO",call:"Ligar",whatsappBtn:"WhatsApp",zoneBtn:"Minha zona",ficheBtn:"Ver minha ficha",siteBtn:"Ver meu site",qrWaiting:"QR DO CLIENTE APÓS VALIDAÇÃO DA URL FINAL",directContact:"Contacto direto",directPayment:"Pagamento direto",zeroCommission:"0% comissão DIGIYLYFE",testMode:"MASTER / TESTE · NÃO INDEXADO · QR BLOQUEADO ATÉ À URL FINAL",publicMode:"CARTÃO PÚBLICO · CAMADAS HUMANA + MÁQUINA ATIVAS"},
+      it:{backHome:"← Torna a DIGIYLYFE.COM",member:"ADERENTE DIGIYLYFE",servicesTitle:"I MIEI SERVIZI",contactTitle:"CONTATTO DIRETTO",call:"Chiama",whatsappBtn:"WhatsApp",zoneBtn:"La mia zona",ficheBtn:"Vedi la mia scheda",siteBtn:"Vedi il mio sito",qrWaiting:"QR CLIENTE DOPO LA CONVALIDA DELL’URL FINALE",directContact:"Contatto diretto",directPayment:"Pagamento diretto",zeroCommission:"0% commissione DIGIYLYFE",testMode:"MASTER / TEST · NON INDICIZZATO · QR BLOCCATO FINO ALL’URL FINALE",publicMode:"BIGLIETTO PUBBLICO · LIVELLI UMANO + MACCHINA ATTIVI"},
+      de:{backHome:"← Zurück zu DIGIYLYFE.COM",member:"DIGIYLYFE MITGLIED",servicesTitle:"MEINE LEISTUNGEN",contactTitle:"DIREKTER KONTAKT",call:"Anrufen",whatsappBtn:"WhatsApp",zoneBtn:"Mein Gebiet",ficheBtn:"Profil ansehen",siteBtn:"Website ansehen",qrWaiting:"KUNDEN-QR NACH FREIGABE DER ENDGÜLTIGEN URL",directContact:"Direkter Kontakt",directPayment:"Direkte Zahlung",zeroCommission:"0 % DIGIYLYFE-Provision",testMode:"MASTER / TEST · NICHT INDEXIERT · QR BIS ZUR FINALEN URL GESPERRT",publicMode:"ÖFFENTLICHE KARTE · MENSCH + MASCHINE AKTIV"},
+      nl:{backHome:"← Terug naar DIGIYLYFE.COM",member:"DIGIYLYFE LID",servicesTitle:"MIJN DIENSTEN",contactTitle:"DIRECT CONTACT",call:"Bellen",whatsappBtn:"WhatsApp",zoneBtn:"Mijn zone",ficheBtn:"Bekijk mijn fiche",siteBtn:"Bekijk mijn website",qrWaiting:"KLANT-QR NA VALIDATIE VAN DE DEFINITIEVE URL",directContact:"Direct contact",directPayment:"Directe betaling",zeroCommission:"0% DIGIYLYFE-commissie",testMode:"MASTER / TEST · NIET GEÏNDEXEERD · QR GEBLOKKEERD TOT DEFINITIEVE URL",publicMode:"PUBLIEKE KAART · MENS + MACHINE ACTIEF"},
+      wo:{backHome:"← Dellu ci DIGIYLYFE.COM",member:"BOROOM KÀRT DIGIYLYFE",servicesTitle:"SAMA LIGGÉEY YI",contactTitle:"JOKKOO CI NJUB",call:"Woote",whatsappBtn:"WhatsApp",zoneBtn:"Sama gox",ficheBtn:"Seet sama fiche",siteBtn:"Seet sama dal",qrWaiting:"QR BI DINA FEEÑ BU URL BI JEEXEE",directContact:"Jokkoo ci njub",directPayment:"Fay ci njub",zeroCommission:"0% komision DIGIYLYFE",testMode:"MASTER / TEST · KÀRT BI DU FEEÑ BA URL BI WÓOR",publicMode:"KÀRTU ÑÉPP · NIT AK MASIN ÑOO AND"},
+      zh:{backHome:"← 返回 DIGIYLYFE.COM",member:"DIGIYLYFE 会员",servicesTitle:"我的服务",contactTitle:"直接联系",call:"拨打电话",whatsappBtn:"WhatsApp",zoneBtn:"我的地区",ficheBtn:"查看详情",siteBtn:"访问网站",qrWaiting:"最终链接确认后显示二维码",directContact:"直接联系",directPayment:"直接付款",zeroCommission:"DIGIYLYFE 0% 佣金",testMode:"模板测试 · 暂不收录 · 等待最终链接确认",publicMode:"公开名片 · 信息已发布"},
+      ar:{backHome:"← العودة إلى DIGIYLYFE.COM",member:"عضو DIGIYLYFE",servicesTitle:"خدماتي",contactTitle:"تواصل مباشر",call:"اتصال",whatsappBtn:"واتساب",zoneBtn:"منطقتي",ficheBtn:"عرض بطاقتي المفصلة",siteBtn:"عرض موقعي",qrWaiting:"رمز QR للعميل بعد اعتماد الرابط النهائي",directContact:"تواصل مباشر",directPayment:"دفع مباشر",zeroCommission:"0٪ عمولة DIGIYLYFE",testMode:"نموذج / اختبار · غير مفهرس · رمز QR مقفل حتى اعتماد الرابط النهائي",publicMode:"بطاقة عامة · الطبقة البشرية + طبقة الآلة مفعّلتان"}
     };
 
     let currentLang = "fr";
