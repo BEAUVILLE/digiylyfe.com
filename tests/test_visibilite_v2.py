@@ -128,7 +128,7 @@ class VisibiliteV2(unittest.TestCase):
         self.assertEqual(structured["inLanguage"], lang)
         self.assertEqual(structured["url"], ALT[lang])
         for need in NEEDS:
-            self.assertIn("local=saly&amp;need=" + need + "&amp;lang=en", html)
+            self.assertIn("local=saly&amp;need=" + need + "&amp;lang=zh", html)
         for url in (
             "https://partenaire-lamine.digiylyfe.com/",
             "https://babacar-plombier-pro.digiylyfe.com/",
