@@ -121,7 +121,7 @@ class VisibiliteV2(unittest.TestCase):
         self.assertNotIn('location.replace(', html)
         self.assertNotIn('trackDigiyEvent', html)
         self.assertNotIn('wa.me/', html)
-        blocks = re.findall(r'<script type="application/ld\\+json">(.*?)</script>', html, re.S)
+        blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
         self.assertEqual(len(blocks), 1)
         structured = json.loads(blocks[0])
         self.assertEqual(structured["@type"], "CollectionPage")
