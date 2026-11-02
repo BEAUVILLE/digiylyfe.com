@@ -260,6 +260,10 @@ function translateTerritoryShell(){
   }
   var limit=document.getElementById('zhLimit');
   if(limit)limit.hidden=!chinese;
+  var wolofLimit=document.getElementById('woLimit');
+  if(wolofLimit)wolofLimit.hidden=!wolof;
+  var back=document.getElementById('back');
+  if(back)back.href=wolof?'/prototypes/digiy-wolof-v1/prototype.html':'https://digiylyfe.com/#territoires';
   var proCard=document.getElementById('digiyCarnetProDoor');
   if(proCard){var t=proCard.querySelector('h2'),p=proCard.querySelector('p'),a=proCard.querySelector('a');if(t)t.textContent='CARNET PRO';if(p)p.textContent=chinese?'商家工作工具 · 跟进客户、业务和提醒。专业界面尚未翻译成中文。':'Gestion · suivi · rappels · clients · opérations métier.';if(a)a.textContent=chinese?'打开 CARNET PRO（法语界面） →':'OUVRIR CARNET PRO →'}
 }
