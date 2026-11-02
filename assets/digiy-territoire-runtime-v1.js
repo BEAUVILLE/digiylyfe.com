@@ -9,7 +9,7 @@ var SUPABASE_URL='https://wesqmwjjtsefyjnluosj.supabase.co';
 var SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA';
 var RUNTIME_URL='/assets/digiy-core-runtime-v1.json';
 var P=new URLSearchParams(location.search),territoryId=P.get('zone')||'';
-var LANGS=['fr','en','es','pt','de','it','nl','ar','wo'];
+var LANGS=['fr','en','es','pt','de','it','nl','ar','wo','zh'];
 var requested=(P.get('lang')||'').slice(0,2).toLowerCase(),stored='';
 try{stored=(localStorage.getItem('digiy-lang')||'').slice(0,2).toLowerCase()}catch(e){}
 var lang=LANGS.indexOf(requested)>=0?requested:(LANGS.indexOf(stored)>=0?stored:'fr');
@@ -21,6 +21,7 @@ var runtimeDefault='';
 var LOCAL_NEEDS={'petite-cote':[['cleaning','🧹'],['professional','🏛️']],'dakar':[['cleaning','🧹'],['professional','🏛️']],'vallee-dordogne':[['cleaning','🧹'],['professional','🏛️']],'bordeaux':[['cleaning','🧹'],['professional','🏛️']]};
 
 var T={
+zh:{tag:'查找本地专业服务，直接联系服务提供者。',path:'地区 → 需求 → 城镇 → 专业人士 → 直接联系',need:'您需要什么服务？',zone:'选择地点',all:'整个地区',results:'位可联系的专业人士',empty:'当前没有符合条件的商家或服务提供者。',based:'所在地：',serves:'服务范围：',profile:'查看资料',whatsapp:'WhatsApp',call:'电话联系',sourceLive:'地区公开资料 · Supabase',sourceFallback:'本地备用数据',configError:'地区资料暂时无法加载。',labels:{transport:'司机与交通',artisan:'工匠与维修',accommodation:'住宿与租赁',food:'餐饮与预订',shopping:'本地商店',beauty:'美容与健康',jobs:'招聘与工作',announcements:'分类信息',guidance:'语音助手（中文服务尚未验证）',cleaning:'清洁服务',professional:'专业服务'}},
 wo:{tag:'Ñiy liggéey ci gox bi, jokkoo ak ñoom ci sa bopp.',path:'Gox → Soxla → Dëkk → Ki liggéey → Jokkoo ci sa bopp',need:'Lan nga seet ci sa gox?',zone:'Tànnal dëkk bi',all:'Gox bi yépp',results:'ñiy liggéey yu am fi',empty:'Amul ku méngoo ak li nga seet fii léegi.',based:'Dëkkam',serves:'Dafa liggéey ci',profile:'UBBI',whatsapp:'WhatsApp',call:'Woo',sourceLive:'Xibaar yu gox bi · Supabase',sourceFallback:'Xibaar yi ñu denc',configError:'Mënul nanu ubbi xibaar yu gox bi.',labels:{transport:'Dawalkat',artisan:'Artisan / Sarwiis',accommodation:'Béréb bu ñuy fanaan',food:'Restoran',shopping:'Jaay ak jënd',beauty:'Toppatoo ak taaru',jobs:'Liggéey',announcements:'Yëgle yi',guidance:'LA VOIX · wolof amagul',cleaning:'Setal ak toppatoo',professional:'Sarwiis yu liggéey'}},
 fr:{tag:'Les professionnels du territoire, joignables directement.',path:'Territoire → Besoin → Zone → Professionnel → Contact direct',need:'Que recherchez-vous ?',zone:'Préciser la zone',all:'Tout le territoire',results:'professionnel(s) disponible(s)',empty:'Aucun professionnel ne correspond encore à ce filtre.',based:'Basé à',serves:'Intervient à',profile:'OUVRIR',whatsapp:'WhatsApp',call:'Appeler',sourceLive:'Données territoriales : Supabase',sourceFallback:'Mode secours local',configError:'Configuration territoriale indisponible.',labels:{transport:'Se déplacer',artisan:'Trouver un artisan',accommodation:'Dormir ou louer',food:'Manger ou réserver',shopping:'Acheter local',beauty:'Beauté & Bien-être',jobs:'Emploi et missions',announcements:'Annonces',guidance:'La Voix',cleaning:'Service de nettoyage',professional:'Services professionnels'}},
 en:{tag:'Local professionals, reachable directly.',path:'Territory → Need → Area → Professional → Direct contact',need:'What are you looking for?',zone:'Choose an area',all:'Whole territory',results:'professional(s) available',empty:'No professional matches this filter yet.',based:'Based in',serves:'Serves',profile:'OPEN',whatsapp:'WhatsApp',call:'Call',sourceLive:'Territory data: Supabase',sourceFallback:'Local fallback mode',configError:'Territory configuration unavailable.',labels:{transport:'Get around',artisan:'Find a tradesperson',accommodation:'Stay or rent',food:'Eat or book',shopping:'Shop local',beauty:'Beauty & Wellness',jobs:'Jobs and gigs',announcements:'Listings',guidance:'The Voice',cleaning:'Cleaning service',professional:'Professional services'}},
@@ -33,6 +34,7 @@ ar:{tag:'مهنيون من المنطقة يمكن التواصل معهم مب�
 };
 
 var NEED_META={
+zh:{transport:'DRIVER · 司机与出行',artisan:'BUILD · 维修与施工',accommodation:'LOC · 住宿与租赁',food:'RESTO · 餐厅与预订',shopping:'商店 · 产品与购物',beauty:'美容 · 护理与预约',jobs:'JOBS · 工作与任务',announcements:'信息发布 · 直接联系',guidance:'语音助手 · 中文尚未验证',cleaning:'清洁 · MANÉ & GNING · 萨利／姆布尔',professional:'律师 · 公证 · 会计 · 建筑师'},
 wo:{transport:'DIGIY DRIVER · Dawalkat',artisan:'DIGIY BUILD · Artisan / Sarwiis',accommodation:'DIGIY LOC · Béréb bu ñuy fanaan',food:'DIGIY RESTO · Restoran',shopping:'DIGIY COMMERCE · Jaay ak jënd',beauty:'BEAUTY · Toppatoo ak taaru',jobs:'DIGIY JOBS · Liggéey',announcements:'BONNE AFFAIRE · Yëgle yi',guidance:'LA VOIX · Wolof amagul',cleaning:'NETTOYAGE · MANÉ & GNING · Saly / Mbour',professional:'Sarwiis yu liggéey'},
 fr:{transport:'DRIVER · Chauffeurs & mobilité',artisan:'BUILD · Artisans & chantiers',accommodation:'LOC · Logements & locations',food:'RESTO · Restaurants & réservations',shopping:'MON COMMERCE · Boutiques & produits',beauty:'BEAUTÉ & BIEN-ÊTRE · Soins & rendez-vous',jobs:'JOBS · Emploi & missions',announcements:'BONNE AFFAIRE · Annonces & contact direct',guidance:'LA VOIX · ACTION PRO',cleaning:'NETTOYAGE · MANÉ & GNING · Saly / Mbour',professional:'AVOCAT · NOTAIRE · COMPTABLE · ARCHITECTE'},
 en:{transport:'DRIVER · Drivers & mobility',artisan:'BUILD · Trades & worksites',accommodation:'LOC · Accommodation & rentals',food:'RESTO · Restaurants & bookings',shopping:'MON COMMERCE · Shops & products',beauty:'BEAUTY & WELLNESS · Care & appointments',jobs:'JOBS · Jobs & missions',announcements:'BONNE AFFAIRE · Listings & direct contact',guidance:'THE VOICE · ACTION PRO',cleaning:'CLEANING · MANÉ & GNING · Saly / Mbour',professional:'LAWYER · NOTARY · ACCOUNTANT · ARCHITECT'},
@@ -63,9 +65,12 @@ var FALLBACK=[
 
 var state={need:P.get('need')||'',zone:P.get('local')||'all',pros:FALLBACK.slice(),live:false};
 
+var ZH_ZONES={aibd:'AIBD 机场',ndayane:'恩达亚内',popenguine:'波彭金',somone:'索莫内',ngaparou:'恩加帕鲁',saly:'萨利',mbour:'姆布尔',plateau:'达喀尔高原区','almadies-ngor':'阿尔马迪／恩戈尔','mermoz-sacre-coeur':'梅尔莫兹／圣心区','point-e-fann':'Point E／法恩','yoff-ouakam-mamelles':'约夫／瓦卡姆／马梅勒',sarlat:'萨尔拉','bordeaux-maritime':'波尔多海事区','chartrons-grand-parc-jardin-public':'沙特龙／大公园／公共花园','bordeaux-centre':'波尔多市中心','saint-augustin-tauzin-alphonse-dupeux':'圣奥古斯丁／陶赞','nansouty-saint-genes':'南苏蒂／圣热内斯','bordeaux-sud':'波尔多南区','la-bastide':'拉巴斯蒂德',cauderan:'科德朗'};
+var ZH_TERRITORIES={'petite-cote':'小海岸','dakar':'达喀尔','vallee-dordogne':'佩里戈尔／多尔多涅河谷','bordeaux':'波尔多'};
+var ZH_COUNTRIES={SN:'塞内加尔',FR:'法国'};
 function label(obj){return obj&&typeof obj==='object'?(obj[lang]||obj.fr||''):String(obj||'')}
 function current(){return TERRITORIES[territoryId]||null}
-function zoneName(z){if(TERRITORIES[z])return label(TERRITORIES[z].name);return ZN[z]||String(z||'').replace(/-/g,' ')}
+function zoneName(z){if(lang==='zh'&&ZH_ZONES[z])return ZH_ZONES[z];if(lang==='zh'&&ZH_TERRITORIES[z])return ZH_TERRITORIES[z];if(TERRITORIES[z])return label(TERRITORIES[z].name);return ZN[z]||String(z||'').replace(/-/g,' ')}
 function phoneDigits(v){return String(v||'').replace(/\D/g,'')}
 function territoryIdsOf(p){return Array.isArray(p.territoryIds)?p.territoryIds:(p.territoryId?[p.territoryId]:[])}
 
@@ -145,13 +150,15 @@ function revealResults(){
 
 function renderHeader(){
   var c=current(),tr=T[lang];if(!c)return;
-  document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.documentElement.lang=lang==='zh'?'zh-CN':lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
   var isSenegal=territoryId==='petite-cote'||territoryId==='dakar';
   var isFrance=territoryId==='vallee-dordogne'||territoryId==='bordeaux'||territoryId==='sarlat';
   var isCountryHub=isSenegal||isFrance;
-  document.title=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase()+(lang==='wo'?' | Ñiy liggéey':' | Professionnels du territoire'):'DIGIY '+label(c.name)+' | DIGIYLYFE';
-  document.getElementById('country').textContent=isCountryHub?label(c.name).toUpperCase()+' · '+label(c.country).toUpperCase():label(c.country);
-  document.getElementById('territoryName').textContent=isCountryHub?'DIGIYLYFE · '+label(c.country).toUpperCase():'DIGIY '+label(c.name).toUpperCase();
+  var name=lang==='zh'?(ZH_TERRITORIES[territoryId]||label(c.name)):label(c.name);
+  var country=lang==='zh'?(ZH_COUNTRIES[c.countryId]||label(c.country)):label(c.country);
+  document.title=isCountryHub?'DIGIYLYFE · '+country.toUpperCase()+(lang==='wo'?' | Ñiy liggéey':lang==='zh'?' | 寻找当地专业人士':' | Professionnels du territoire'):'DIGIY '+name+' | DIGIYLYFE';
+  document.getElementById('country').textContent=isCountryHub?name.toUpperCase()+' · '+country.toUpperCase():country;
+  document.getElementById('territoryName').textContent=isCountryHub?'DIGIYLYFE · '+country.toUpperCase():'DIGIY '+name.toUpperCase();
   document.getElementById('tagline').textContent=tr.tag;document.getElementById('path').textContent=tr.path;
   document.getElementById('needTitle').textContent=tr.need;document.getElementById('zoneTitle').textContent=tr.zone;
   var door=document.getElementById('sarlatDoor'),doorLink=door.querySelector('a');
@@ -163,7 +170,7 @@ function renderHeader(){
 function localNeedMeta(id,meta){
   if(id==='cleaning'&&territoryId!=='petite-cote'){
     if(lang==='wo')return 'NETTOYAGE · Setal kër ak biro';
-    var generic={fr:'NETTOYAGE · Maison · Entretien · Bureaux',en:'CLEANING · Home · Maintenance · Offices',es:'LIMPIEZA · Hogar · Mantenimiento · Oficinas',pt:'LIMPEZA · Casa · Manutenção · Escritórios',de:'REINIGUNG · Haus · Pflege · Büros',it:'PULIZIA · Casa · Manutenzione · Uffici',nl:'SCHOONMAAK · Woning · Onderhoud · Kantoren',ar:'تنظيف · منازل · صيانة · مكاتب'};
+    var generic={zh:'清洁服务 · 住宅 · 维护 · 办公室',fr:'NETTOYAGE · Maison · Entretien · Bureaux',en:'CLEANING · Home · Maintenance · Offices',es:'LIMPIEZA · Hogar · Mantenimiento · Oficinas',pt:'LIMPEZA · Casa · Manutenção · Escritórios',de:'REINIGUNG · Haus · Pflege · Büros',it:'PULIZIA · Casa · Manutenzione · Uffici',nl:'SCHOONMAAK · Woning · Onderhoud · Kantoren',ar:'تنظيف · منازل · صيانة · مكاتب'};
     return generic[lang]||generic.fr;
   }
   return meta[id]||'';
@@ -176,7 +183,7 @@ function renderNeeds(){
   extras.forEach(function(x){if(!list.some(function(n){return n[0]===x[0]})){list.splice(at,0,x);at++}});
   list.forEach(function(n){
     // Pas de microphone wolof : ne pas présenter LA VOIX comme une catégorie disponible.
-    if(lang==='wo'&&n[0]==='guidance')return;
+    if((lang==='wo'||lang==='zh')&&n[0]==='guidance')return;
     var b=document.createElement('button');b.type='button';b.className='need'+(state.need===n[0]?' active':'');b.setAttribute('data-digiy-native-door','1');
     var ic=document.createElement('strong'),tx=document.createElement('span'),sm=document.createElement('small');
     ic.textContent=n[1];tx.textContent=tr.labels[n[0]]||n[0];sm.textContent=localNeedMeta(n[0],meta);
@@ -199,7 +206,7 @@ function matches(p){
   return (p.zones||[]).indexOf(territoryId)>=0;
 }
 
-function whatsappMessage(name){var M={wo:'Salaam {name}, DIGIYLYFE laa jaar.',fr:'Bonjour {name}, je viens de DIGIYLYFE.',en:'Hello {name}, I found you on DIGIYLYFE.',es:'Hola {name}, le encontré en DIGIYLYFE.',pt:'Olá {name}, encontrei-o na DIGIYLYFE.',de:'Hallo {name}, ich habe Sie auf DIGIYLYFE gefunden.',it:'Buongiorno {name}, l’ho trovata su DIGIYLYFE.',nl:'Hallo {name}, ik heb u gevonden via DIGIYLYFE.',ar:'مرحباً {name}، وجدتك عبر DIGIYLYFE.'};return(M[lang]||M.fr).replace('{name}',name||'');}
+function whatsappMessage(name){var M={zh:'您好，{name}。我通过 DIGIYLYFE 找到了您。',wo:'Salaam {name}, DIGIYLYFE laa jaar.',fr:'Bonjour {name}, je viens de DIGIYLYFE.',en:'Hello {name}, I found you on DIGIYLYFE.',es:'Hola {name}, le encontré en DIGIYLYFE.',pt:'Olá {name}, encontrei-o na DIGIYLYFE.',de:'Hallo {name}, ich habe Sie auf DIGIYLYFE gefunden.',it:'Buongiorno {name}, l’ho trovata su DIGIYLYFE.',nl:'Hallo {name}, ik heb u gevonden via DIGIYLYFE.',ar:'مرحباً {name}، وجدتك عبر DIGIYLYFE.'};return(M[lang]||M.fr).replace('{name}',name||'');}
 function contactsOf(p){if(p.contacts&&p.contacts.length)return p.contacts.map(function(c){if(c.kind==='profile')return{label:T[lang].profile,url:c.url};if(c.kind==='whatsapp')return{label:T[lang].whatsapp,url:'https://wa.me/'+c.phone+'?text='+encodeURIComponent(whatsappMessage(p.name))};if(c.kind==='call')return{label:T[lang].call,url:'tel:+'+c.phone};return{label:c.label||T[lang].profile,url:c.url||'#'}});return p.url?[{label:T[lang].profile,url:p.url}]:[]}
 
 function renderResults(){
@@ -209,10 +216,57 @@ function renderResults(){
   list.forEach(function(p){var c=document.createElement('article');c.className='card';var h=document.createElement('h3');h.textContent=p.name;var s=document.createElement('p');s.className='summary';s.textContent=label(p.summary)||((p.services||[]).join(' · '));var m=document.createElement('div');m.className='meta';m.textContent='📍 '+tr.based+' '+zoneName(p.mainZone)+'\n🚐 '+tr.serves+' '+((p.zones||[]).map(zoneName).join(' · ')||tr.all);m.style.whiteSpace='pre-line';var sv=document.createElement('div');sv.className='services';(p.services||[]).forEach(function(x){var sp=document.createElement('span');sp.className='service';sp.textContent=x;sv.appendChild(sp)});var ac=document.createElement('div');ac.className='actions';contactsOf(p).forEach(function(x){var a=document.createElement('a');a.href=x.url;a.textContent=x.label||tr.profile;if(/^https?:/.test(x.url)){a.target='_blank';a.rel='noopener noreferrer'}ac.appendChild(a)});c.append(h,s,m,sv,ac);root.appendChild(c)});
 }
 
-function render(){renderHeader();renderNeeds();renderZones();renderResults()}
+function translateTerritoryShell(){
+  var chinese=lang==='zh',senegal=territoryId==='petite-cote'||territoryId==='dakar';
+  var wolof=lang==='wo';
+  var original={
+    territoryHubTitle:'Choisir son territoire',
+    territoryHubLead:senegal?'Territoire → besoin → professionnel → fiche officielle → contact direct.':'Une même logique en France : territoire → besoin → professionnel → fiche officielle → contact direct.',
+    territoryHubEyebrow:senegal?'DIGIYLYFE · SÉNÉGAL · TERRITOIRES ACTIFS':'DIGIYLYFE · FRANCE · TERRITOIRES ACTIFS',
+    hubFlow:'DIGIYLYFE relie le territoire au bon professionnel sans intermédiaire : QR, fiche officielle, contact direct et 0 % commission.',
+    proTitle:'Professionnels sur la Petite Côte',
+    proLead:'Découvrez leurs activités et contactez-les directement, sans commission DIGIYLYFE.'
+  };
+  var zh={
+    territoryHubTitle:'选择地区',
+    territoryHubLead:'地区 → 需求 → 专业人士 → 公开资料 → 直接联系。',
+    territoryHubEyebrow:'DIGIYLYFE · 地区探索',
+    hubFlow:'DIGIYLYFE 连接客户与本地服务提供者：资料、二维码、直接联系，平台不收取交易佣金。',
+    proTitle:'小海岸的专业人士',
+    proLead:'了解当地商家并直接联系。部分商家资料尚未翻译为中文，服务与价格请向本人确认。'
+  };
+  var wo={
+    territoryHubTitle:'Tànnal sa gox',
+    territoryHubLead:'Gox → Soxla → Ki liggéey → Jokkoo ci sa bopp',
+    territoryHubEyebrow:'DIGIYLYFE · GOX YI',
+    hubFlow:'DIGIYLYFE · Jokkoo ci sa bopp · 0 % commission',
+    proTitle:'Ñiy liggéey ci Petite Côte',
+    proLead:'Tànnal ki nga bëgg. Jokkoo ak moom ci sa bopp.'
+  };
+  var tr=chinese?zh:wolof?wo:original;
+  var selectors={territoryHubTitle:'#territoryHubTitle',territoryHubLead:'#territoryHubLead',territoryHubEyebrow:'#territoryHubEyebrow',hubFlow:'.territoryHubFlow',proTitle:'#petiteCoteProLinks h2',proLead:'#petiteCoteProLinks p'};
+  Object.keys(selectors).forEach(function(key){var el=document.querySelector(selectors[key]);if(el)el.textContent=tr[key]});
+  var hub=document.querySelector('.territoryHubGrid');
+  if(hub){
+    var cards=hub.querySelectorAll('[data-country-hub]');
+    cards.forEach(function(card){
+      var country=card.getAttribute('data-country-hub');
+      var title=card.querySelector('strong'),description=card.querySelector('p'),links=card.querySelectorAll('.territoryHubLinks a');
+      if(title)title.textContent=chinese?(country==='SN'?'🇸🇳 塞内加尔':'🇫🇷 法国'):(country==='SN'?'🇸🇳 Sénégal':'🇫🇷 France');
+      if(description)description.textContent=chinese?(country==='SN'?'小海岸 · 达喀尔':'巴黎 · 波尔多 · 佩里戈尔／多尔多涅河谷'):(country==='SN'?'Petite Côte · Dakar':'Paris · Bordeaux · Périgord · Vallée de la Dordogne');
+      var labels=country==='SN'?(chinese?['小海岸','达喀尔']:['Petite Côte','Dakar']):(chinese?['巴黎（法语页面）','波尔多（法语页面）','佩里戈尔／多尔多涅河谷（法语页面）']:['Paris','Bordeaux','Périgord · Vallée de la Dordogne']);
+      links.forEach(function(a,i){if(labels[i])a.textContent=labels[i]});
+    });
+  }
+  var limit=document.getElementById('zhLimit');
+  if(limit)limit.hidden=!chinese;
+  var proCard=document.getElementById('digiyCarnetProDoor');
+  if(proCard){var t=proCard.querySelector('h2'),p=proCard.querySelector('p'),a=proCard.querySelector('a');if(t)t.textContent='CARNET PRO';if(p)p.textContent=chinese?'商家工作工具 · 跟进客户、业务和提醒。专业界面尚未翻译成中文。':'Gestion · suivi · rappels · clients · opérations métier.';if(a)a.textContent=chinese?'打开 CARNET PRO（法语界面） →':'OUVRIR CARNET PRO →'}
+}
+function render(){renderHeader();renderNeeds();renderZones();renderResults();translateTerritoryShell()}
 
 function showRuntimeError(){
-  var tr=T[lang]||T.fr;document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  var tr=T[lang]||T.fr;document.documentElement.lang=lang==='zh'?'zh-CN':lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
   document.getElementById('country').textContent='DIGIYLYFE';document.getElementById('territoryName').textContent='CORE';document.getElementById('tagline').textContent=tr.configError;
   document.getElementById('needTitle').textContent='';document.getElementById('zoneTitle').textContent='';document.getElementById('needs').innerHTML='';document.getElementById('zones').innerHTML='';document.getElementById('status').textContent='';document.getElementById('results').innerHTML='<div class="empty">'+tr.configError+'</div>';document.getElementById('source').textContent='CORE runtime: fail closed';
 }
