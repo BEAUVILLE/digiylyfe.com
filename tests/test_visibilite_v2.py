@@ -17,6 +17,7 @@ PATHS = {
     "de": "/de/saly.html",
     "nl": "/nl/saly.html",
     "ar": "/ar/saly.html",
+    "zh-CN": "/zh-CN/saly.html",
 }
 ALT = {lang: BASE + path for lang, path in PATHS.items()}
 ALT["x-default"] = ALT["fr"]
@@ -85,7 +86,7 @@ class VisibiliteV2(unittest.TestCase):
                 if l.get("rel") == "alternate" and l.get("hreflang")
             }
             self.assertEqual(alternates, ALT, lang)
-            self.assertEqual(len(alternates), 9, lang)
+            self.assertEqual(len(alternates), 10, lang)
             self.assertEqual(doc.lang, lang)
 
     def test_indexable_static_localized_pages(self):
@@ -107,6 +108,33 @@ class VisibiliteV2(unittest.TestCase):
             self.assertEqual(data["@type"], "CollectionPage")
             self.assertEqual(data["inLanguage"], lang)
             self.assertNotIn("LocalBusiness", html)  # Saly directory != one individual business.
+
+    def test_chinese_landing_and_existing_routing(self):
+        lang = "zh-CN"
+        html = self.files[lang]
+        doc = self.parsed[lang]
+        self.assertTrue(any(m.get("name") == "robots" and m.get("content") == "index,follow" for m in doc.metas))
+        self.assertGreater(len(" ".join(doc.visible)), 250)
+        self.assertIn('digiy-saly-international-v2.css', html)
+        self.assertIn('href="/zh-CN/"', html)
+        self.assertNotIn('http-equiv="refresh"', html)
+        self.assertNotIn('location.replace(', html)
+        self.assertNotIn('trackDigiyEvent', html)
+        self.assertNotIn('wa.me/', html)
+        blocks = re.findall(r'<script type="application/ld\\+json">(.*?)</script>', html, re.S)
+        self.assertEqual(len(blocks), 1)
+        structured = json.loads(blocks[0])
+        self.assertEqual(structured["@type"], "CollectionPage")
+        self.assertEqual(structured["inLanguage"], lang)
+        self.assertEqual(structured["url"], ALT[lang])
+        for need in NEEDS:
+            self.assertIn("local=saly&amp;need=" + need + "&amp;lang=en", html)
+        for url in (
+            "https://partenaire-lamine.digiylyfe.com/",
+            "https://babacar-plombier-pro.digiylyfe.com/",
+            "https://astou-boutique.digiylyfe.com/",
+        ):
+            self.assertIn('href="' + url + '"', html)
 
     def test_existing_routing_and_real_professionals(self):
         professional_urls = (
