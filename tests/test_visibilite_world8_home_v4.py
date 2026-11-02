@@ -50,6 +50,7 @@ class World8Homepage(unittest.TestCase):
 
     def test_recipient_language_canonicals_and_reciprocal_hreflang(self):
         alt = dict(URL)
+        alt["zh-CN"] = ORIGIN + "/zh-CN/"
         alt["x-default"] = URL["fr"]
         for lang, p in self.parsed.items():
             self.assertEqual(p.html.get("lang"), lang)
@@ -59,9 +60,9 @@ class World8Homepage(unittest.TestCase):
                 for x in p.links if x.get("rel") == "alternate" and "hreflang" in x
             }
             self.assertEqual(alternates, alt, lang)
-            self.assertEqual(len(alternates), 9, lang)
+            self.assertEqual(len(alternates), 10, lang)
             all_links = {x.get("href") for x in p.anchors}
-            for url in SIMPLE_URL.values():
+            for url in (*SIMPLE_URL.values(), "/zh-CN/"):
                 self.assertIn(url, all_links, (lang, url))
 
     def test_seven_real_static_indexable_landing_pages(self):
@@ -88,6 +89,44 @@ class World8Homepage(unittest.TestCase):
             self.assertEqual(data["@type"], "WebPage")
             self.assertEqual(data["inLanguage"], lang)
             self.assertEqual(data["url"], URL[lang])
+
+    def test_ninth_chinese_static_landing_and_reciprocal_links(self):
+        """Chinese SEO has its own page; the eight-language legacy JS dictionary stays untouched."""
+        html = (ROOT / "zh-CN/index.html").read_text(encoding="utf-8")
+        parsed = PageParser()
+        parsed.feed(html)
+        self.assertEqual(parsed.html.get("lang"), "zh-CN")
+        self.assertEqual(parsed.h1, 1)
+        self.assertIn('content="index,follow"', html)
+        self.assertIn('<meta name="description"', html)
+        self.assertIn('/assets/digiy-saly-international-v2.css', html)
+        self.assertIn('/manifest.json', html)
+        self.assertNotIn('http-equiv="refresh"', html)
+        self.assertNotIn('location.replace(', html)
+        self.assertNotIn('trackDigiyEvent', html)
+        self.assertEqual(
+            [x.get("href") for x in parsed.links if x.get("rel") == "canonical"],
+            [ORIGIN + "/zh-CN/"],
+        )
+        expected = dict(URL)
+        expected["zh-CN"] = ORIGIN + "/zh-CN/"
+        expected["x-default"] = URL["fr"]
+        alternates = {
+            x["hreflang"]: x["href"] for x in parsed.links
+            if x.get("rel") == "alternate" and "hreflang" in x
+        }
+        self.assertEqual(alternates, expected)
+        all_links = {x.get("href") for x in parsed.anchors}
+        for url in (*SIMPLE_URL.values(), "/zh-CN/", "/zh-CN/saly.html"):
+            self.assertIn(url, all_links)
+        for need in NEEDS:
+            self.assertIn(f"local=saly&amp;need={need}&amp;lang=en", html)
+        blocks = re.findall(r'<script type="application/ld\\+json">(.*?)</script>', html, re.S)
+        self.assertEqual(len(blocks), 1)
+        structured = json.loads(blocks[0])
+        self.assertEqual(structured["@type"], "WebPage")
+        self.assertEqual(structured["inLanguage"], "zh-CN")
+        self.assertEqual(structured["url"], ORIGIN + "/zh-CN/")
 
     def test_h1_all_locales_match_existing_world8_home_dictionary(self):
         """Les titres des 7 portes SEO reprennent les traductions de l'accueil existant."""
@@ -119,6 +158,8 @@ class World8Homepage(unittest.TestCase):
         for link in URL.values():
             self.assertIn(link, urls)
         self.assertIn(ORIGIN + "/ar/saly.html", urls)
+        self.assertIn(ORIGIN + "/zh-CN/saly.html", urls)
+        self.assertIn(ORIGIN + "/zh-CN/", urls)
         self.assertIn(ORIGIN + "/fiches/pap-piscine-saly.html", urls)
 
 
