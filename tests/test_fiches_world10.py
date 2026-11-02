@@ -20,7 +20,8 @@ class FicheWorld10(unittest.TestCase):
         self.assertIn("['wo','WO']",s)
         self.assertIn("['zh','中文']",s)
         self.assertIn("10 langues",s)
-        self.assertIn("traduction "+'"'+ "(l==='zh'?'中文':'WO')",s)
+        self.assertIn("l==='zh'?'中文':'WO'",s)
+        self.assertIn("identique au français",s)
         self.assertIn("check('public')",s)
         self.assertIn("LANGS.forEach(([l])=>",s)
 
