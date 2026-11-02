@@ -24,7 +24,7 @@ const root=path.resolve(__dirname,'../..');
  console.log('PASS Petite Côte mobile → mandarin real locale → FR → 中文');
  await page.goto('https://digiylyfe.com/zh-CN/saly.html');
  await page.locator('a.choice[href*="need=transport"]').click();
- await page.waitForURL(/territoire\\.html.*lang=zh/);
+ await page.waitForURL(url=>url.pathname==='/territoire.html'&&url.searchParams.get('lang')==='zh');
  assert.equal(await page.locator('#needTitle').innerText(),'您需要什么服务？');
  console.log('PASS Chinese Saly landing → local territory translated navigation');
  await page.goto('https://digiylyfe.com/tarifs-loc.html?country=sn&lang=en');await page.waitForURL(/tarifs-loc-v2\.html/);assert.equal(new URL(page.url()).searchParams.get('country'),'sn');assert.equal(new URL(page.url()).searchParams.get('lang'),'en');console.log('PASS LOC redirect preserves country/lang');
