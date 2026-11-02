@@ -150,6 +150,21 @@ class World8Homepage(unittest.TestCase):
         self.assertIn('id="digiyWorld8SeoNav"', original)
         self.assertEqual(self.parsed["fr"].h1, 1)
 
+    def test_chinese_language_selector_visible_on_mobile(self):
+        """Mandarin must remain visible without hidden horizontal scrolling."""
+        home = self.html["fr"]
+        saly = (ROOT / "saly.html").read_text(encoding="utf-8")
+        head_nav = home.split('<nav class="languageStrip"', 1)[1].split("</nav>", 1)[0]
+        self.assertIn('href="/zh-CN/"', head_nav)
+        self.assertLess(head_nav.index('>WO 🔊</a>'), head_nav.index('href="/zh-CN/"'))
+        self.assertLess(head_nav.index('href="/zh-CN/"'), head_nav.index('data-lang="en"'))
+        self.assertIn('.languageStrip{flex-wrap:wrap;overflow-x:visible;row-gap:6px}', home)
+        self.assertIn('.languageStrip{justify-content:center;flex-wrap:wrap;overflow-x:visible;', home)
+        self.assertIn('overflow:visible;flex-wrap:wrap', saly)
+        saly_nav = saly.split('<div class="langs">', 1)[1].split('</div>', 1)[0]
+        self.assertIn('href="/zh-CN/saly.html"', saly_nav)
+        self.assertLess(saly_nav.index('href="/zh-CN/saly.html"'), saly_nav.index('data-l="en"'))
+
     def test_sitemap_contains_all_home_pages_without_duplicates(self):
         tree = ET.parse(ROOT / "sitemap.xml")
         ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
