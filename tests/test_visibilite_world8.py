@@ -8,7 +8,7 @@ from xml.etree import ElementTree as ET
 
 BASE = Path(__file__).resolve().parents[1]
 ROOT = "https://digiylyfe.com"
-SLUGS = ("fr", "en", "es", "pt", "it", "de", "nl", "ar")
+SLUGS = ("fr", "en", "es", "pt", "it", "de", "nl", "ar", "zh-CN")
 URLS = {lang: ("/saly.html" if lang == "fr" else f"/{lang}/saly.html") for lang in SLUGS}
 
 class LinkParser(HTMLParser):
@@ -56,7 +56,12 @@ class World8SEO(unittest.TestCase):
         for lang in SLUGS[1:]:
             html = (BASE / URLS[lang].lstrip("/")).read_text("utf8")
             self.assertIn('content="index,follow"', html)
-            self.assertIn(f'&amp;lang={lang}', html)
+            if lang == "zh-CN":
+                # Public downstream pages are still available in English; no false Chinese claim.
+                self.assertIn('&amp;lang=en', html)
+                self.assertIn('href="/zh-CN/"', html)
+            else:
+                self.assertIn(f'&amp;lang={lang}', html)
             self.assertNotIn('http-equiv="refresh"', html)
             self.assertNotIn("location.replace(", html)
             self.assertNotIn("trackDigiyEvent", html)
