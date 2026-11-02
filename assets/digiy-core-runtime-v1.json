@@ -19,7 +19,7 @@
         "de": "Senegal",
         "it": "Senegal",
         "nl": "Senegal",
-        "ar": "السنغال"
+        "ar": "السنغال", "zh": "塞内加尔"
       },
       "territories": [
         {
@@ -34,7 +34,7 @@
             "de": "Petite Côte",
             "it": "Petite Côte",
             "nl": "Petite Côte",
-            "ar": "الساحل الصغير"
+            "ar": "الساحل الصغير", "zh": "小海岸"
           },
           "zones": [
             {"id": "SN-PETITE-COTE-AIBD", "slug": "aibd", "label": "AIBD", "status": "active"},
@@ -58,7 +58,7 @@
             "de": "Dakar",
             "it": "Dakar",
             "nl": "Dakar",
-            "ar": "داكار"
+            "ar": "داكار", "zh": "达喀尔"
           },
           "zones": [
             {"id": "SN-DAKAR-PLATEAU", "slug": "plateau", "label": "Plateau", "status": "active"},
@@ -86,7 +86,7 @@
         "de": "Frankreich",
         "it": "Francia",
         "nl": "Frankrijk",
-        "ar": "فرنسا"
+        "ar": "فرنسا", "zh": "法国"
       },
       "territories": [
         {
@@ -101,7 +101,7 @@
             "de": "Périgord · Dordogne-Tal",
             "it": "Périgord · Valle della Dordogna",
             "nl": "Périgord · Dordognevallei",
-            "ar": "بيريغور · وادي دوردوني"
+            "ar": "بيريغور · وادي دوردوني", "zh": "佩里戈尔 · 多尔多涅河谷"
           },
           "zones": [
             {"id": "FR-DORDOGNE-SARLAT", "slug": "sarlat", "label": "Sarlat-la-Canéda", "status": "active"}
@@ -123,7 +123,7 @@
             "de": "Bordeaux",
             "it": "Bordeaux",
             "nl": "Bordeaux",
-            "ar": "بوردو"
+            "ar": "بوردو", "zh": "波尔多"
           },
           "zones": [
             {"id":"FR-BORDEAUX-MARITIME","slug":"bordeaux-maritime","label":"Bordeaux Maritime","status":"active"},
