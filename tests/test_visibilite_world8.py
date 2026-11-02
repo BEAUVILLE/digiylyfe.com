@@ -58,7 +58,7 @@ class World8SEO(unittest.TestCase):
             self.assertIn('content="index,follow"', html)
             if lang == "zh-CN":
                 # Public downstream pages are still available in English; no false Chinese claim.
-                self.assertIn('&amp;lang=en', html)
+                self.assertIn('&amp;lang=zh', html)
                 self.assertIn('href="/zh-CN/"', html)
             else:
                 self.assertIn(f'&amp;lang={lang}', html)
