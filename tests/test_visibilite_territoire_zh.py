@@ -43,7 +43,6 @@ class MandarinTerritory(unittest.TestCase):
                 )
             self.assertNotIn("local=saly&amp;need=food&amp;lang=en", content)
         self.assertIn('zone=dakar&amp;lang=zh', ZH_HOME)
-        self.assertIn("专业人士的原始", ZH_HOME) if False else None
 
     def test_no_paid_api_or_pro_access_changes(self):
         self.assertNotIn("translate.googleapis", RUNTIME)
