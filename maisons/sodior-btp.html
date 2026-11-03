@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111915">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="description" content="Démonstration de la maison numérique SODIOR BTP sur DIGIYLYFE, sous réserve de validation de sa dirigeante.">
+<title>SODIOR BTP · Ma maison numérique DIGIYLYFE — Démonstration</title>
+<link rel="canonical" href="https://digiylyfe.com/maisons/sodior-btp.html">
+<style>
+:root{--bg:#111915;--panel:#1b2720;--gold:#dabb82;--gold2:#f4e0b7;--ivory:#f6f0e5;--ink:#12231b;--muted:#b7c3b9;--green:#226445}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:#f4f2eb;color:var(--ink)}
+a{text-decoration:none;color:inherit}
+button{font:inherit;cursor:pointer}
+a:focus-visible,button:focus-visible{outline:3px solid #79df9e;outline-offset:3px}
+.wrap{width:min(1080px,calc(100% - 32px));margin-inline:auto}
+.proof{padding:12px 16px;text-align:center;color:#442c12;background:#f6e4bb;font-size:12px;line-height:1.5;font-weight:750}
+.top{background:var(--bg);color:#fff;border-bottom:1px solid #fff2}
+.topIn{display:flex;gap:16px;align-items:center;justify-content:space-between;min-height:76px}
+.brand{font-weight:950;letter-spacing:.12em;font-size:clamp(22px,4vw,30px);color:#f8efde;line-height:1.1}
+.brand small{display:block;color:var(--gold);letter-spacing:.13em;font-size:10px;margin-top:8px;font-weight:700}
+.menu{display:flex;gap:15px;align-items:center;font-size:13px;font-weight:650}
+.menu a:not(.menuOwner):hover{text-decoration:underline}
+.menuOwner{border:1px solid var(--gold);padding:10px 14px;border-radius:50px;color:var(--gold2)}
+.hero{background:radial-gradient(ellipse at 90% 10%,#314b3b 0%,transparent 46%),linear-gradient(120deg,#141e18 0%,#0b120e 100%);color:#fff}
+.heroIn{display:grid;grid-template-columns:1.06fr .94fr;gap:36px;align-items:center;padding:68px 0 76px}
+.eyebrow{font-size:11px;letter-spacing:.16em;color:var(--gold);font-weight:850;text-transform:uppercase}
+h1{font-size:clamp(38px,6.5vw,68px);letter-spacing:-.05em;line-height:1.06;margin:16px 0}
+h1 span{color:#e6c690}
+.lead{font-size:17px;line-height:1.75;max-width:620px;color:#dbe2da}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:23px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;border-radius:8px;font-weight:800;font-size:14px}
+.primary{color:#172218;background:var(--gold)}
+.secondary{border:1px solid #dcc59f;color:#f5e8cb}
+.heroArt{position:relative;min-height:395px;overflow:hidden;border:1px solid #d9bf815d;border-radius:6px;background:linear-gradient(145deg,#283a30,#0d1811)}
+.heroArt:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#111e18b3,transparent 64%),repeating-linear-gradient(90deg,transparent 0px,transparent 43px,#dcb98317 44px),repeating-linear-gradient(0deg,transparent 0px,transparent 43px,#dcb98317 44px)}
+.heroArt svg{position:absolute;width:95%;height:95%;inset:2.5%}
+.artLabel{position:absolute;left:24px;bottom:22px;right:24px;color:#efddb9;font-size:12px;letter-spacing:.11em;font-weight:650}
+.bar{background:#dbc28f;color:#263224}
+.barIn{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding:17px 0;font-weight:800}
+.section{padding:60px 0}
+.secTitle{margin:0 0 15px;letter-spacing:-.04em;font-size:clamp(28px,4.6vw,42px)}
+.secLead{color:#667569;line-height:1.65;max-width:730px;margin:0 0 25px}
+.triple{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.tile{padding:25px;background:#fff;border:1px solid #e1dfd6;border-radius:11px;min-height:200px;box-shadow:0 14px 25px #172c1710}
+.tile b{display:block;margin-top:18px;font-size:19px}
+.tile p{font-size:13px;line-height:1.65;color:#65716a}
+.tileIcon{font-size:30px;color:#a6874c}
+.dark{background:var(--bg);color:#fff}
+.dark .secLead{color:#bac9bd}
+.projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.project{min-height:230px;border:1px dashed #ae976e;border-radius:10px;background:radial-gradient(circle at 70% 25%,#314b3d,transparent 60%),#18251d;padding:24px;display:flex;flex-direction:column;justify-content:end}
+.project span{font-size:11px;letter-spacing:.14em;color:#dfc28d}
+.project b{margin-top:9px;font-size:19px}
+.project p{font-size:12px;color:#bac7b9;line-height:1.5}
+.contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.contactCard{border:1px solid #d5d7cc;background:white;border-radius:12px;padding:25px}
+.contactCard h3{margin:0 0 8px;font-size:22px}
+.contactCard p{line-height:1.6;color:#586e5f}
+.contactCard .btn{width:100%;margin-top:12px}
+.contactCard .primary{background:#217346;color:#fff}
+.contactCard .secondary{border-color:#58745e;color:#16311e}
+.qr{width:fit-content;min-width:194px;min-height:194px;margin:17px auto 8px;background:#fff;border:10px solid #fff;border-radius:4px;display:grid;place-items:center}
+.qr img,.qr canvas{display:block;max-width:100%}
+.small{font-size:12px;color:#56695b}
+.pair{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.path{border-left:3px solid #c1a166;padding:10px 16px;background:#fbf9f1;font-size:14px;line-height:1.7}
+.admin{background:#e5e7dd;border-top:1px solid #d2d4c9;border-bottom:1px solid #d2d4c9;padding:35px 0}
+.adminBox{display:flex;justify-content:space-between;gap:18px;align-items:center}
+.adminBox h2{margin:0 0 7px;font-size:25px}.adminBox p{margin:0;color:#586b5d;font-size:13px;line-height:1.6;max-width:680px}
+.owner{white-space:nowrap;display:inline-flex;border:1px solid #49644d;padding:13px 17px;border-radius:8px;color:#17432f;font-weight:800;font-size:13px}
+.footer{background:#0b130f;color:#b9c6b8;padding:25px 0;font-size:12px}
+.footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px}
+.footer a{text-decoration:underline;color:#eed3a3}
+@media(max-width:860px){.heroIn{grid-template-columns:1fr;gap:28px;padding:45px 0}.heroArt{max-width:590px;min-height:300px}.triple,.projects{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.menu a:not(.menuOwner){display:none}.heroIn{padding:34px 0 45px}.heroArt{min-height:220px}.lead{font-size:15px}.section{padding:40px 0}.triple,.projects,.contactGrid{grid-template-columns:1fr}.adminBox{display:block}.adminBox .owner{margin-top:20px}.topIn{min-height:70px}.menuOwner{padding:10px;font-size:11px}.brand{font-size:20px}.brand small{font-size:8px}}
+</style>
+</head>
+<body>
+<div class="proof">DÉMONSTRATION NON OFFICIELLE · Présentation destinée à SODIOR BTP, sous réserve de son acceptation. Aucun projet ni service non confirmé n'est annoncé comme réalisé.</div>
+<header class="top" id="haut"><div class="wrap topIn">
+  <a class="brand" href="#haut">SODIOR BTP<small>INGÉNIEURE ENTREPRENEURE · GÉNIE CIVIL</small></a>
+  <nav class="menu" aria-label="Navigation"><a href="#savoir-faire">Présentation</a><a href="#projets">Réalisations</a><a href="#contact">Contact</a><a class="menuOwner" href="#espace-proprietaire">🔐 Propriétaire</a></nav>
+</div></header>
+<main>
+<section class="hero" aria-labelledby="main-title"><div class="wrap heroIn">
+  <div><div class="eyebrow">Votre maison numérique · DIGIYLYFE</div>
+    <h1 id="main-title">Une identité.<br><span>Une adresse.</span><br>Un contact direct.</h1>
+    <p class="lead">Bienvenue dans la proposition d'espace professionnel SODIOR BTP : une porte personnelle vers son activité d'ingénieure entrepreneure en génie civil, ses futurs projets présentés et ses contacts directs.</p>
+    <div class="btns"><a class="btn primary" href="https://wa.me/221774212975" target="_blank" rel="noopener noreferrer">💬 Contacter sur WhatsApp</a><a class="btn secondary" href="https://sodiorbtp.com/" target="_blank" rel="noopener noreferrer">🌐 Site actuel SODIOR BTP</a></div>
+  </div>
+  <div class="heroArt" role="img" aria-label="Illustration abstraite d'un bâtiment, non issue du portfolio SODIOR BTP">
+    <svg viewBox="0 0 540 520" aria-hidden="true"><g fill="none" stroke="#d6bd8a" stroke-width="2" stroke-linejoin="round">
+      <path d="M55 425L268 350L490 426M94 399V216L238 155L405 227V395L265 344L94 399Z"/>
+      <path d="M238 155V316M94 216L260 271L405 227M165 242V364L233 343V264M300 258V359L366 382V245"/>
+      <path d="M105 169L238 111L450 199M180 140V73L285 125M70 432H486M275 50V445" stroke-dasharray="4 13" opacity=".34"/>
+      <path d="M120 276L232 310M300 289L386 259M120 310L232 345" opacity=".5"/>
+    </g><g fill="#b6a47c" opacity=".7"><circle cx="268" cy="350" r="3"/><circle cx="405" cy="227" r="3"/></g></svg>
+    <div class="artLabel">INGÉNIERIE • STRUCTURES • BÂTIMENT</div>
+  </div>
+</div></section>
+<div class="bar"><div class="wrap barIn"><span>🌍 DIGIYLYFE · LE TERRAIN GARDE LA MAIN</span><span>CONTACT DIRECT · 0 % COMMISSION DIGIYLYFE</span></div></div>
+<section class="section" id="savoir-faire"><div class="wrap">
+  <div class="eyebrow" style="color:#99764b">01 — PROFIL PROFESSIONNEL</div>
+  <h2 class="secTitle">Une présence qui lui ressemble.</h2>
+  <p class="secLead">Les contenus ci-dessous sont des rubriques proposées pour sa future maison DIGIY. Les prestations précises seront renseignées uniquement après confirmation de la dirigeante.</p>
+  <div class="triple">
+    <article class="tile"><div class="tileIcon" aria-hidden="true">⌗</div><b>Identité professionnelle</b><p>Présentation de son parcours et de ses compétences validées.</p></article>
+    <article class="tile"><div class="tileIcon" aria-hidden="true">▤</div><b>Projets & compétences</b><p>Des descriptions claires de ses interventions réelles.</p></article>
+    <article class="tile"><div class="tileIcon" aria-hidden="true">◇</div><b>Relation directe</b><p>WhatsApp, téléphone et accès à son propre site, sans intermédiaire commercial.</p></article>
+  </div>
+</div></section>
+<section class="section dark" id="projets"><div class="wrap">
+  <div class="eyebrow">02 — PORTFOLIO À COMPLÉTER</div>
+  <h2 class="secTitle">Ses réalisations, au centre.</h2>
+  <p class="secLead">Trois emplacements démonstratifs. Photos et descriptions de projets à fournir et autoriser par SODIOR BTP. Aucun chantier fictif n'est présenté.</p>
+  <div class="projects">
+    <div class="project"><span>EMPLACEMENT 01</span><b>Projet à documenter</b><p>Photographies réelles à ajouter avec accord.</p></div>
+    <div class="project"><span>EMPLACEMENT 02</span><b>Projet à documenter</b><p>Plans et mission à valider.</p></div>
+    <div class="project"><span>EMPLACEMENT 03</span><b>Projet à documenter</b><p>Description et autorisations à confirmer.</p></div>
+  </div>
+</div></section>
+<section class="section" id="contact"><div class="wrap">
+  <div class="eyebrow" style="color:#99764b">03 — CONTACT & PARTAGE</div>
+  <h2 class="secTitle">Une adresse, plusieurs chemins.</h2>
+  <p class="secLead">La carte DIGIY, cette maison numérique et le site actuel peuvent fonctionner ensemble. Chaque visiteur choisit comment entrer en relation.</p>
+  <div class="contactGrid">
+    <article class="contactCard">
+      <h3>Contact direct</h3><p><strong>+221 77 421 29 75</strong><br>WhatsApp et téléphone transmis pour SODIOR BTP.</p>
+      <a class="btn primary" href="https://wa.me/221774212975" target="_blank" rel="noopener noreferrer">💬 Ouvrir WhatsApp</a>
+      <a class="btn secondary" href="tel:+221774212975">📞 Appeler</a>
+      <a class="btn secondary" href="https://sodiorbtp.com/" target="_blank" rel="noopener noreferrer">🌐 Visiter sodiorbtp.com</a>
+    </article>
+    <article class="contactCard" style="text-align:center">
+      <h3>QR de la maison DIGIY</h3><p class="small">QR de démonstration : il renvoie vers cette page, distincte du QR de la carte créée précédemment.</p>
+      <div id="qr" class="qr" aria-label="QR renvoyant vers la démonstration SODIOR BTP sur DIGIYLYFE"><span class="small">Chargement du QR…</span></div>
+      <button class="btn secondary" type="button" id="share" style="width:100%">↗ Partager la démonstration</button>
+      <p class="small" id="shareMessage" role="status" aria-live="polite"></p>
+    </article>
+  </div>
+  <p class="path"><strong>Carte DIGIY → Maison DIGIY → Site actuel → Contact direct.</strong><br>Un parcours complémentaire, sans remplacer le domaine sodiorbtp.com et sans commission DIGIYLYFE sur ses prestations.</p>
+</div></section>
+<section class="admin" id="espace-proprietaire"><div class="wrap adminBox"><div>
+  <h2>La propriétaire garde la main.</h2>
+  <p>L'accès par magic link est prévu avec le système sécurisé DIGIY. Il sera activé uniquement après confirmation de l'adresse e-mail et autorisation de SODIOR BTP. Il n'est pas encore opérationnel pour cette démonstration.</p>
+</div><a class="owner" href="/acces-proprietaire.html?fiche=sodior-btp&amp;return=https%3A%2F%2Fdigiylyfe.com%2Fmaisons%2Fsodior-btp.html" title="Accessible après activation de l'email de la propriétaire">🔐 Accès propriétaire</a></div></section>
+<section class="section"><div class="wrap">
+  <div class="eyebrow" style="color:#99764b">04 — PRÉSENTER, PUIS VALIDER</div>
+  <h2 class="secTitle">Une proposition. Aucun engagement automatique.</h2>
+  <p class="secLead">La maison est une démonstration. Pour publier une fiche ou une maison officielle, il faut l'accord de sa dirigeante, ses informations vérifiées et la validation du contenu.</p>
+  <div class="pair">
+    <a class="btn primary" href="/propositions/sodior-btp-acceptation.html">📝 Bon d'acceptation</a>
+    <a class="btn" style="border:1px solid #879585" href="/propositions/sodior-btp.html">Voir la maquette du site</a>
+    <a class="btn" style="border:1px solid #879585" href="https://digiylyfe.com/">Retour à DIGIYLYFE</a>
+  </div>
+</div></section>
+</main>
+<footer class="footer"><div class="wrap"><span>© DIGIYLYFE · Maquette de démonstration SODIOR BTP · Non officielle</span><a href="https://sodiorbtp.com/" target="_blank" rel="noopener noreferrer">Site actuel SODIOR BTP</a></div></footer>
+<script>
+(function(){
+  'use strict';
+  const home='https://digiylyfe.com/maisons/sodior-btp.html';
+  const qrEl=document.getElementById('qr');
+  const script=document.createElement('script');
+  script.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+  script.onload=()=>{
+    if(typeof QRCode!=='function'){qrEl.textContent=home;return;}
+    qrEl.textContent='';
+    new QRCode(qrEl,{text:home,width:174,height:174,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+  };
+  script.onerror=()=>{qrEl.textContent=home;};
+  document.head.appendChild(script);
+  document.getElementById('share').addEventListener('click',async()=>{
+    const m=document.getElementById('shareMessage');
+    if(navigator.share){try{await navigator.share({title:'SODIOR BTP · Maison DIGIYLYFE — Démonstration',url:home});return;}catch(e){if(e.name==='AbortError')return;}}
+    try{await navigator.clipboard.writeText(home);m.textContent='Lien copié.';}catch(e){m.textContent='Copiez ce lien : '+home;}
+  });
+})();
+</script>
+</body></html>
