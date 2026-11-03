@@ -43,6 +43,7 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 .actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto;padding-top:5px}
 .actions a{min-height:41px;display:inline-flex;align-items:center;padding:9px 13px;border-radius:11px;font-weight:850;font-size:12px;text-decoration:none;border:1px solid #a7c4ac;background:white}
 .actions a.wa{background:#daf5df;color:#165e35;border-color:#8dd5a1}
+.actions a.profile{background:#f1d68e;color:#173324;border-color:#d5ab51;font-weight:950}
 .empty{padding:26px 15px;color:var(--muted);background:#f7faf6;border:1px dashed var(--line);border-radius:14px}
 .register{background:linear-gradient(160deg,#fffdfa,#f7f4e6)}.register .note{padding:12px;border:1px solid #dacda5;border-radius:13px;color:#655527;background:#fff8dd;font-size:12px;line-height:1.5}
 .regGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.regGrid .full{grid-column:1/-1}
@@ -98,7 +99,7 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 </section>
 <section id="recherche" class="section" aria-labelledby="searchTitle">
 <h2 id="searchTitle">Je cherche un professionnel</h2>
-<p class="desc">Classement A → Z. Seuls les professionnels publiés et actifs sont affichés. Contact et paiement directs · 0 % commission DIGIYLYFE.</p>
+<p class="desc">Classement A → Z. Retrouvez un nom, un métier ou un territoire. Si le professionnel dispose d’une carte ou d’une fiche DIGIY reliée, ouvrez directement sa présentation depuis le résultat. Contact et paiement directs · 0 % commission DIGIYLYFE.</p>
 <div class="filters">
 <div class="field"><label for="query">Nom ou activité</label><input id="query" type="search" placeholder="Ex. plombier, boutique, Astou" autocomplete="off"></div>
 <div class="field"><label for="country">Pays</label><select id="country"><option value="">Tous les pays</option><option value="sn">Sénégal</option><option value="fr">France</option><option value="ma">Maroc</option><option value="us">États-Unis</option><option value="other">Autres pays</option></select></div>
@@ -138,7 +139,7 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 <div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><label for="sitecheck">Ne pas remplir</label><input type="text" id="sitecheck" tabindex="-1" autocomplete="off"></div>
 <label class="consent"><input type="checkbox" id="consent" required><span>J’autorise la publication immédiate et gratuite du nom de mon activité, de mon métier, de mon département, de ma zone et de mon numéro WhatsApp sur le réseau public DIGIY. Je peux modifier ou retirer ma fiche avec mon lien privé. *</span></label>
 <button type="submit" class="submit">M’inscrire et publier ma fiche gratuitement →</button>
-<p class="micro">Une inscription par activité et WhatsApp. Ne publiez que le numéro que vous acceptez de rendre public. La présence gratuite reste distincte de la carte DIGIY avec QR et des autres offres payantes.</p>
+<p class="micro">Une inscription par activité et WhatsApp. Ne publiez que le numéro que vous acceptez de rendre public. La présence gratuite affiche uniquement les informations de contact et d’activité : pas de photo, de galerie ni de QR personnel. La carte DIGIY et la fiche professionnelle enrichie restent des offres distinctes.</p>
 <p id="registrationStatus" class="msg" role="status" aria-live="polite"></p>
 <div id="registrationSuccess" hidden class="note"><strong>Votre fiche est en ligne !</strong><p>Votre lien public, à partager :</p><input class="linkBox" id="publicLink" readonly aria-label="Lien public de ma fiche"><div class="linkTools"><button id="copyPublic" type="button">Copier mon lien public</button></div><p class="privateReminder" role="note"><strong>🔐 IMPORTANT — Gardez votre lien privé précieusement !</strong> Copiez-le maintenant dans vos notes ou dans un endroit sûr. Il vous permettra de modifier ou retirer votre fiche sans intervention de DIGIY. <strong>Ne le partagez jamais :</strong> toute personne qui le possède peut gérer votre fiche.</p><label for="manageLink"><strong>Mon lien privé de gestion</strong></label><input class="linkBox" id="manageLink" readonly aria-label="Lien privé de gestion à conserver précieusement"><div class="linkTools"><button id="copyManage" type="button">Copier mon lien privé de gestion</button></div></div>
 </form></section>
@@ -172,7 +173,17 @@ return fetch(URL_BASE+table+'?'+new URLSearchParams(params).toString(),{headers:
 }
 function option(select,value,label){var o=document.createElement('option');o.value=value;o.textContent=label;select.appendChild(o)}
 function make(tag,cls,label){var e=document.createElement(tag);if(cls)e.className=cls;if(label!==undefined)e.textContent=label;return e}
-function safeLink(url){try{var u=new URL(url,location.origin);return(u.protocol==='https:'||u.protocol==='http:')?u.href:null}catch(e){return null}}
+function safeLink(url){
+ var raw=typeof url==='string'?url.trim():'';
+ if(!raw||!(/^https?:\/\//i.test(raw)||raw.charAt(0)==='/'))return null;
+ try{var u=new URL(raw,location.origin);return(u.protocol==='https:'||u.protocol==='http:')?u.href:null}catch(e){return null}
+}
+function presentationLabel(url){
+ var path=new URL(url).pathname.toLowerCase();
+ if(/^\/cartes?\//.test(path))return '📇 Ouvrir sa carte DIGIY';
+ if(/^\/fiches?\//.test(path))return '📋 Ouvrir sa fiche DIGIY';
+ return '🔗 Ouvrir sa présentation';
+}
 function whatsapp(v){var d=String(v||'').replace(/\D/g,'');return d.length>=8&&d.length<=15?d:''}
 function letterOf(v){var m=normalized(v).toUpperCase().match(/[A-Z]/);return m?m[0]:'#'}
 function updateLetters(){document.querySelectorAll('#letters button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.letter===letter))})}
@@ -244,9 +255,10 @@ var card=make('article','pro'),name=make('h3','',p.display_name);
 var info=make('div','meta',departmentLabel(departmentOf(p))+' · '+(p.city||z.label||'Zone non précisée')+' · '+(j.label||p.activity_label||'Professionnel'));
 var description=make('p','',p.short_description||p.activity_label||'Contact direct avec le professionnel.');
 var actions=make('div','actions'),num=whatsapp(p.whatsapp_public);
-if(num){var a=make('a','wa','WhatsApp direct');a.href='https://wa.me/'+num;a.target='_blank';a.rel='noopener noreferrer';actions.appendChild(a)}
+// La présence gratuite n'ajoute aucune photo ni QR : seul un vrai public_url ouvre une page enrichie existante.
 var link=safeLink(p.public_url);
-if(link){var site=make('a','','Voir sa présentation');site.href=link;site.target='_blank';site.rel='noopener noreferrer';actions.appendChild(site)}
+if(link){var label=presentationLabel(link),site=make('a','profile',label);site.href=link;site.target='_blank';site.rel='noopener noreferrer';site.setAttribute('aria-label',label+' : '+p.display_name);actions.appendChild(site)}
+if(num){var a=make('a','wa','WhatsApp direct');a.href='https://wa.me/'+num;a.target='_blank';a.rel='noopener noreferrer';actions.appendChild(a)}
 if(!actions.children.length&&whatsapp(p.phone_public)){var tel=make('a','','Appeler');tel.href='tel:+'+whatsapp(p.phone_public);actions.appendChild(tel)}
 var personal=make('a','','Lien DIGIY');personal.href=location.origin+location.pathname+'?fiche='+encodeURIComponent(p.id);actions.appendChild(personal);
 var signal=make('a','','Signaler une fiche');signal.href='mailto:contact@digiylyfe.com?subject='+encodeURIComponent('Signalement fiche DIGIY')+'&body='+encodeURIComponent('Fiche concernée : '+personal.href+'\nMotif : ');actions.appendChild(signal);
