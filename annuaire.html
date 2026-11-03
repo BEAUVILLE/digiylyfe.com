@@ -173,7 +173,11 @@ return fetch(URL_BASE+table+'?'+new URLSearchParams(params).toString(),{headers:
 }
 function option(select,value,label){var o=document.createElement('option');o.value=value;o.textContent=label;select.appendChild(o)}
 function make(tag,cls,label){var e=document.createElement(tag);if(cls)e.className=cls;if(label!==undefined)e.textContent=label;return e}
-function safeLink(url){try{var u=new URL(url,location.origin);return(u.protocol==='https:'||u.protocol==='http:')?u.href:null}catch(e){return null}}
+function safeLink(url){
+ var raw=typeof url==='string'?url.trim():'';
+ if(!raw||!(/^https?:\/\//i.test(raw)||raw.charAt(0)==='/'))return null;
+ try{var u=new URL(raw,location.origin);return(u.protocol==='https:'||u.protocol==='http:')?u.href:null}catch(e){return null}
+}
 function presentationLabel(url){
  var path=new URL(url).pathname.toLowerCase();
  if(/^\/cartes?\//.test(path))return '📇 Ouvrir sa carte DIGIY';
