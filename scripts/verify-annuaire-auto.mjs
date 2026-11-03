@@ -20,13 +20,22 @@ for(const d of departments) {
   assert(sql.includes("'"+d+"'"),'Département SQL manquant : '+d);
 }
 assert(html.includes('annuaire-inscription-auto.js'),'Script d’inscription non chargé');
-assert(html.includes('<h1>QUI FAIT QUOI ? <span>ET OÙ LE TROUVER ?</span></h1>'),'Nouvelle appellation publique manquante');
-assert(html.includes('🔎 JE CHERCHE'),'Porte Je cherche manquante');
-assert(html.includes('class="heroPromise"'),'Promesse de visibilité absente de l’accueil');
-assert(html.includes('Gagnez en visibilité sur le web'),'Bénéfice d’inscription manquant');
-assert(html.includes('+ INSCRIPTION GRATUITE'),'Appel à l’inscription gratuite manquant');
-assert(html.includes('une fiche publique à partager'),'Visibilité publique dans le formulaire manquante');
-assert(html.includes('href="#inscription" class="cta ghost"'),'Lien inscription absente');
+// Le langage public parle au besoin humain, pas à la mécanique interne « annuaire ».
+assert(html.includes('<h1>DIGIY AIDE VOS CLIENTS <span>À NE PAS VOUS OUBLIER.</span></h1>'),'Promesse humaine DIGIY absente');
+assert(html.includes('🔎 JE CHERCHE UN PROFESSIONNEL'),'Porte visiteur manquante');
+assert(html.includes('class="heroPromise"'),'Promesse de présence gratuite absente');
+assert(html.includes('PRÉSENCE GRATUITE'),'Périmètre gratuit manquant');
+assert(html.includes('JE VEUX QUE MES CLIENTS ME RETROUVENT'),'Porte commerçant manquante');
+assert(html.includes('Un lien public à partager'),'Lien partageable public manquant');
+assert(html.includes('href="#inscription" class="cta primary"'),'Lien inscription manquant');
+assert(html.includes('href="#recherche" class="cta ghost"'),'Lien recherche manquant');
+// Une présence gratuite ne produit ni photo, ni galerie, ni QR personnel.
+assert(html.includes('pas de photo, de galerie ni de QR personnel'),'Frontière gratuite / carte et fiche absente');
+// Le professionnel équipé ouvre son URL réelle ; ne jamais inventer une URL quand elle est absente.
+assert(html.includes('var link=safeLink(p.public_url)'),'Pont vers la carte ou fiche existante manquant');
+assert(html.includes('site.href=link'),'Ouverture de la vraie URL manquante');
+assert(html.includes("var raw=typeof url==='string'?url.trim():''"),'Garde-fou URL vide manquant');
+assert(html.includes('function presentationLabel(url)'),'Libellés carte et fiche manquants');
 assert(html.includes('href="https://digiylyfe.com/annuaire.html"'),'URL canonique doit rester inchangée');
 assert(html.includes('id="registration"'),'Formulaire d’inscription à conserver');
 assert(html.includes('IMPORTANT — Gardez votre lien privé précieusement'),'Avertissement de sauvegarde du lien secret manquant');
