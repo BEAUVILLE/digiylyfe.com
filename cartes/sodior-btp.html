@@ -96,7 +96,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #f8da91;outline-offset:3p
 <small><a class="textlink" href="https://sodiorbtp.com/" target="_blank" rel="noopener noreferrer">www.sodiorbtp.com</a></small>
 <small id="qrText">Scannez pour ouvrir cette carte</small>
 </div>
-<div class="qrWrap" id="qr"><span class="qrFallback">QR DIGIY</span></div>
+<a class="qrWrap" id="qr" href="https://digiylyfe.com/cartes/sodior-btp.html" aria-label="Scanner le QR ou ouvrir la carte SODIOR BTP"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHUAAAB1AQAAAABYf5MRAAABmUlEQVR42s2VvWocMRSFj1YLSuMZuzQojGGfIN0YAjPvkhfIuNpqfnDjytrXcaeFgNz5CRbGzIJbTyotKHNSpEmqvVXw7QQfh3uPzpUU8XedVvi3/v95UGsq8PZIpS4FfM5xZ9b3/gYVewFPhZ9fLOu0O62F/WUvB7pfvXiebxHzVgt5RWT7zdXTESZJ+FnduO2PixrYq/PzgiQHTvxT8bz+Dkfg8x1em1qmH4ulHDOTuqjP64OLmVxMWVkwjp2AHwLpx85PzkPCM4yogFL3VRLx3uZ+chGtsbmAn6N2nN5N8W6sRH8OpLdd4Oy1E/jv6vXQva3wegkLgf8u0EUAtq1E+ihVU6cujOoBEv2lsh3ZG9uWovt11ENMedRDFPizAm9Py4vp6sPyHCT7qx7emu2hh17hWpLPR2MbFiTJSdL/EAGTcp+AQsKT7A1yTxcnJ+B7aIaxrWxWivLvOM3UDCmPEPmpgOdDV2+aT3Yne69Yb67m/eB1L+PVbFl//Y69xH/HiQEZxhai/PTQj6UeQsqDYH/VB/u/fgM5k/VhqbsbpAAAAABJRU5ErkJggg==" width="92" height="92" alt="QR de la carte SODIOR BTP"></a>
 </div>
 <div class="signature"><span id="commission">CONTACT DIRECT · 0 % COMMISSION DIGIY</span><span><b>DIGIYLYFE</b> · <span id="backLabel">RETOUR SITE</span></span></div>
 </div>
@@ -144,15 +144,6 @@ if(!TRANSLATIONS[lang]){try{lang=localStorage.getItem('digiy_sodior_card_lang')|
 if(!TRANSLATIONS[lang])lang='fr';
 for(const btn of document.querySelectorAll('[data-lang]'))btn.addEventListener('click',()=>setLang(btn.dataset.lang));
 setLang(lang);
-const qr=document.getElementById('qr'),script=document.createElement('script');
-script.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
-script.onload=()=>{
- if(typeof QRCode!=='function')return;
- qr.replaceChildren();
- new QRCode(qr,{text:CARD_URL,width:92,height:92,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
-};
-script.onerror=()=>{qr.firstElementChild.textContent='QR indisponible';};
-document.head.appendChild(script);
 document.getElementById('share').addEventListener('click',async()=>{
  const title='SODIOR BTP · Carte DIGIY',msg=document.getElementById('shareMessage');
  if(navigator.share){try{await navigator.share({title,url:CARD_URL});return;}catch(e){if(e&&e.name==='AbortError')return;}}
