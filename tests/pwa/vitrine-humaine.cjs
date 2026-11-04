@@ -52,6 +52,10 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.locator('html').getAttribute('lang'),lang);
    assert.equal(await page.locator('html').getAttribute('dir'),lang==='ar'?'rtl':'ltr');
    assert.ok((await page.locator('#solutionsTitle').innerText()).length>3);
+   if(lang==='ar'){
+    console.log('RTL dimensions',await page.evaluate(()=>JSON.stringify({innerWidth,innerHeight,scrollX,doc:{width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,dir:getComputedStyle(document.documentElement).direction},body:{width:document.body.clientWidth,scroll:document.body.scrollWidth,dir:getComputedStyle(document.body).direction},visual:{width:visualViewport.width,scale:visualViewport.scale},wide:[...document.querySelectorAll('body *')].map(e=>({tag:e.tagName,id:e.id,c:e.className,w:Math.round(e.getBoundingClientRect().width),scroll:e.scrollWidth,pos:getComputedStyle(e).position})).filter(e=>e.w>400||e.scroll>500).sort((a,b)=>b.w-a.w).slice(0,20)})));
+    await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-ar-dimensions.png`});
+   }
    assert.equal(await page.evaluate(()=>Math.abs(innerWidth-390)<=2),true,`locale viewport expansion ${lang}`);
   }
   // Explicitly center a far-down RTL control before testing its real pointer hit.
