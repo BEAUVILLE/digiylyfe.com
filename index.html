@@ -1001,9 +1001,8 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
 body{background:#f5efdf;color:#173e2d;--ink:#173e2d;--soft:#486451;--line:#c5d4c4;--card:#ffffffa8}
 .topbar{background:#f5efdfed}.brand small{color:#486451}
 .app>section:not(.digiyClarity),.app>footer{color:#fffaf0;--ink:#fffaf0;--soft:rgba(255,250,240,.8);--line:rgba(255,255,255,.18);--card:rgba(255,255,255,.065);background-color:#0a2b1e}
-/* Keep the viewport origin stable on Chrome mobile; RTL remains on the content. */
-html[dir="rtl"]{direction:ltr;scroll-behavior:auto}
-html[dir="rtl"] body{direction:rtl}
+/* Keep the anti-spam field hidden without an off-screen RTL scroll area. */
+.app .campusHoneypot{left:0!important;right:auto!important;clip-path:inset(50%)!important;pointer-events:none!important}
 html[dir="rtl"] .app{overflow-wrap:anywhere}
 .app>*{min-width:0}
 .languageStrip a.woLangLink{color:#175238;background:#fff8e8}
