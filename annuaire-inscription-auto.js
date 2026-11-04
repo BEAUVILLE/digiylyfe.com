@@ -129,7 +129,7 @@
       p_consent:field('consent').checked,
       p_piege:field('sitecheck').value
     };
-    busy=true;submit.disabled=true;status.textContent='Enregistrement de votre inscription…';success.hidden=true;
+    busy=true;submit.disabled=true;status.textContent='Enregistrement de votre inscription…';success.hidden=true;success.style.display='none';
     try {
       var result=await rpc('digiy_annuaire_inscrire',payload);
       // PostgreSQL RPCs can return an object, a JSON-encoded object or a one-row array.
@@ -159,7 +159,7 @@
         status.scrollIntoView({behavior:'smooth',block:'center'});
         return;
       }
-      publicLink.value=location.origin+location.pathname+'?fiche='+encodeURIComponent(result.id);
+      showPublicLink(result.id);
       manageLink.value=location.origin+location.pathname+'#gestion='+encodeURIComponent(result.id)+'.'+result.token;
       success.hidden=false;
       success.style.cssText='display:block;border:3px solid #14663e;background:#f0fff2;padding:20px;margin-top:18px;';
