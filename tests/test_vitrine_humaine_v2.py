@@ -46,8 +46,10 @@ class HumanHomepage(unittest.TestCase):
             self.assertIn('https://' + url + '.digiylyfe.com/', BODY)
         nav = BODY.split('<nav class="languageStrip"', 1)[1].split('</nav>', 1)[0]
         self.assertEqual(len(re.findall(r'class="langBtn', nav)), 10)
-        self.assertIn('/prototypes/digiy-wolof-v1/prototype.html', nav)
-        self.assertIn('/zh-CN/', nav)
+        self.assertIn('data-lang="wo"', nav)
+        self.assertIn('/prototypes/digiy-wolof-v1/prototype.html', BODY)
+        self.assertIn('data-lang="zh"', nav)
+        self.assertIn('/zh-CN/', BODY)
 
     def test_latest_saly_direct_door_preserved(self):
         self.assertIn('href="/saly.html" data-i18n="v1TerritoryCta"', BODY)

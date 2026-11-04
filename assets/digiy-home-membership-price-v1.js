@@ -19,6 +19,7 @@
     ar:{text:"بطاقة منفصلة · فرنسا: 20 € · السنغال: 15 000 FCFA · أمريكا: 20 $ · دفعة واحدة.",all:'عضوية المنظومة · 🇸🇳 19 900 FCFA / شهر · 🇫🇷 450 € / سنة · 🇺🇸 $29 / شهر',SN:'🇸🇳 عضوية المنظومة · 19 900 FCFA / شهر',FR:'🇫🇷 عضوية المنظومة · 450 € / سنة',US:'🇺🇸 عضوية المنظومة · $29 / شهر'}
   };
 
+  Object.assign(COPY,(window.DIGIY_HOME_WORLD10_UI||{}).membership||{});
   var RUNTIME_URL='/assets/digiy-adhesion-runtime-v1.json';
   var runtime=null;
   function runtimeCountry(id){
@@ -26,8 +27,8 @@
   }
   function billingWord(period,l){
     var map={
-      month:{fr:'MOIS',en:'MONTH',es:'MES',pt:'MÊS',it:'MESE',de:'MONAT',nl:'MAAND',ar:'شهر'},
-      year:{fr:'AN',en:'YEAR',es:'AÑO',pt:'ANO',it:'ANNO',de:'JAHR',nl:'JAAR',ar:'سنة'}
+      month:{wo:'WEER',zh:'月',fr:'MOIS',en:'MONTH',es:'MES',pt:'MÊS',it:'MESE',de:'MONAT',nl:'MAAND',ar:'شهر'},
+      year:{wo:'AT',zh:'年',fr:'AN',en:'YEAR',es:'AÑO',pt:'ANO',it:'ANNO',de:'JAHR',nl:'JAAR',ar:'سنة'}
     };
     return (map[period]&&map[period][l])||period||'';
   }
@@ -42,7 +43,7 @@
   function runtimePrice(id,l){
     var c=runtimeCountry(id),p=c&&c.pricing&&c.pricing.membership&&c.pricing.membership['adherent-19900'];
     if(!p||p.amount==null)return '';
-    return (id==='SN'?'🇸🇳 ':id==='FR'?'🇫🇷 ':'🇺🇸 ')+(l==='fr'?'ADHÉSION ÉCOSYSTÈME · ':l==='en'?'ECOSYSTEM MEMBERSHIP · ':l==='es'?'ADHESIÓN AL ECOSISTEMA · ':l==='pt'?'ADESÃO AO ECOSSISTEMA · ':l==='it'?'ADESIONE ALL’ECOSISTEMA · ':l==='de'?'ÖKOSYSTEM-MITGLIEDSCHAFT · ':l==='nl'?'ECOSYSTEEMLIDMAATSCHAP · ':'عضوية المنظومة · ')+formatAmount(p.amount,id,l)+' / '+billingWord(p.billing_period,l);
+    return (id==='SN'?'🇸🇳 ':id==='FR'?'🇫🇷 ':'🇺🇸 ')+(((window.DIGIY_HOME_WORLD10_UI||{}).membershipLabels||{})[l]||(l==='fr'?'ADHÉSION ÉCOSYSTÈME · ':l==='en'?'ECOSYSTEM MEMBERSHIP · ':l==='es'?'ADHESIÓN AL ECOSISTEMA · ':l==='pt'?'ADESÃO AO ECOSSISTEMA · ':l==='it'?'ADESIONE ALL’ECOSISTEMA · ':l==='de'?'ÖKOSYSTEM-MITGLIEDSCHAFT · ':l==='nl'?'ECOSYSTEEMLIDMAATSCHAP · ':'عضوية المنظومة · '))+formatAmount(p.amount,id,l)+' / '+billingWord(p.billing_period,l);
   }
   function runtimeAll(l){
     var a=['SN','FR','US'].map(function(id){return runtimePrice(id,l);}).filter(Boolean);

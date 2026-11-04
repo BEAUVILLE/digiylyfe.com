@@ -3,6 +3,12 @@ on:
   pull_request:
     paths:
       - 'index.html'
+      - 'assets/digiy-home-world10-v1.js'
+      - 'assets/digiy-campus-interest-v2.js'
+      - 'assets/digiy-home-membership-price-v1.js'
+      - 'assets/digiy-maitre-favoris-v1.js'
+      - 'assets/digiy-pwa-install.js'
+      - 'assets/digiy-bouche-a-oreille-v1.js'
       - 'outils-gestion-demo.html'
       - 'demo-*-gestion.html'
       - 'tarifs-adherents-1.html'

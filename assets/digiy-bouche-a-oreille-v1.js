@@ -20,6 +20,9 @@
     ar: {button:'↗️ أوصِ به', message:'اكتشف {name} على DIGIYLYFE. تواصل مباشرة مع صاحب النشاط:'}
   };
 
+  COPY.wo={button:'↗️ Digal ko',message:'Xam {name} ci DIGIYLYFE. Waxal ak boroom liggéey bii ci saa si :'};
+  COPY.zh={button:'↗️ 推荐',message:'在 DIGIYLYFE 了解 {name}，直接联系这位专业人士：'};
+
   var entries = [];
   var cards = grid.querySelectorAll('a.exampleCard[href]');
 
