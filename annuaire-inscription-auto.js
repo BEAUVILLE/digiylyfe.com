@@ -54,6 +54,63 @@
     try { await navigator.clipboard.writeText(v); el.textContent='Lien copié ✓'; }
     catch (_) { el.textContent='Sélectionnez puis copiez le lien affiché.'; }
   }
+  // Le lien PUBLIC peut rester accessible sur le même appareil après fermeture du formulaire.
+  // Ne jamais stocker le jeton ni le lien privé de gestion dans le navigateur.
+  var lastPublicKey='digiy_annuaire_dernier_lien_public_v1';
+  function savePublicLink(url) {
+    try { sessionStorage.setItem(lastPublicKey,url); } catch (_) {}
+  }
+  function addPublicActions(url) {
+    var actions=field('registrationPublicActions');
+    if(!actions) {
+      actions=document.createElement('div');
+      actions.id='registrationPublicActions';
+      actions.className='linkTools';
+      actions.style.cssText='display:flex;flex-wrap:wrap;gap:10px;margin:14px 0;';
+      publicLink.parentNode.insertBefore(actions,publicLink.nextSibling);
+    }
+    actions.replaceChildren();
+    var open=document.createElement('a');
+    open.href=url; open.target='_blank';open.rel='noopener';
+    open.textContent='🔎 Ouvrir ma fiche DIGIY';
+    open.className='cta primary';
+    open.style.cssText='display:inline-flex;min-height:48px;align-items:center;padding:12px 16px;border-radius:10px;background:#14663e;color:white;font-weight:800;text-decoration:none';
+    actions.appendChild(open);
+    var share=document.createElement('a');
+    share.href='https://wa.me/?text='+encodeURIComponent('Voici ma fiche DIGIY : '+url);
+    share.target='_blank';share.rel='noopener';
+    share.textContent='📲 Partager sur WhatsApp';
+    share.style.cssText='display:inline-flex;min-height:48px;align-items:center;padding:12px 16px;border-radius:10px;background:#e9f7ec;color:#125b32;font-weight:800;text-decoration:none';
+    actions.appendChild(share);
+  }
+  function showPublicLink(id) {
+    var url=location.origin+location.pathname+'?fiche='+encodeURIComponent(id);
+    publicLink.value=url;savePublicLink(url);addPublicActions(url);
+    return url;
+  }
+  function restorePublicLink() {
+    var url=null;
+    try { url=sessionStorage.getItem(lastPublicKey); } catch (_) {}
+    if(!url) return;
+    try {
+      var parsed=new URL(url);
+      if(parsed.origin!==location.origin || parsed.pathname!==location.pathname ||
+         !/^[0-9a-f-]{36}$/i.test(parsed.searchParams.get('fiche')||'')) return;
+    } catch (_) { return; }
+    var recovery=field('registrationPublicRecovery');
+    if(!recovery) {
+      recovery=document.createElement('p');
+      recovery.id='registrationPublicRecovery';
+      recovery.className='note';
+      form.insertBefore(recovery,status);
+    }
+    recovery.replaceChildren();
+    recovery.appendChild(document.createTextNode('Déjà inscrit sur cet appareil ? Retrouvez le lien public de votre dernière fiche : '));
+    var link=document.createElement('a');
+    link.href=url;link.textContent='Ouvrir ma fiche';link.target='_blank';link.rel='noopener';
+    recovery.appendChild(link);
+  }
+  restorePublicLink();
   field('copyPublic').addEventListener('click',function(){copy(publicLink.value,this)});
   field('copyManage').addEventListener('click',function(){copy(manageLink.value,this)});
 
@@ -72,7 +129,7 @@
       p_consent:field('consent').checked,
       p_piege:field('sitecheck').value
     };
-    busy=true;submit.disabled=true;status.textContent='Enregistrement de votre inscription…';success.hidden=true;
+    busy=true;submit.disabled=true;status.textContent='Enregistrement de votre inscription…';success.hidden=true;success.style.display='none';
     try {
       var result=await rpc('digiy_annuaire_inscrire',payload);
       // PostgreSQL RPCs can return an object, a JSON-encoded object or a one-row array.
@@ -88,7 +145,7 @@
         // In particular, do not invite a second registration or invent a management token.
         status.textContent='Réponse d’inscription incomplète : la publication est à vérifier. Recherchez votre nom dans « Comment me trouver » et contactez DIGIY à contact@digiylyfe.com pour récupérer un accès de gestion sécurisé. Ne vous réinscrivez pas.';
         if(validId) {
-          publicLink.value=location.origin+location.pathname+'?fiche='+encodeURIComponent(result.id);
+          showPublicLink(result.id);
           // Never display the success panel with a blank management link.
           var publicOnly=document.createElement('a');
           publicOnly.href=publicLink.value;
@@ -102,14 +159,16 @@
         status.scrollIntoView({behavior:'smooth',block:'center'});
         return;
       }
-      publicLink.value=location.origin+location.pathname+'?fiche='+encodeURIComponent(result.id);
+      showPublicLink(result.id);
       manageLink.value=location.origin+location.pathname+'#gestion='+encodeURIComponent(result.id)+'.'+result.token;
       success.hidden=false;
+      success.style.cssText='display:block;border:3px solid #14663e;background:#f0fff2;padding:20px;margin-top:18px;';
       status.textContent='Votre inscription gratuite est publiée ! Copiez votre lien public et conservez votre lien privé de gestion.';
       // Keep the confirmation displayed, even if refreshing the directory fails.
       form.reset();
       field('regCountry').value='sn';
-      success.scrollIntoView({behavior:'smooth',block:'start'});
+      restorePublicLink();
+      success.scrollIntoView({behavior:'smooth',block:'center'});
       if(typeof window.DIGIY_ANNUAIRE_REFRESH==='function') {
         window.DIGIY_ANNUAIRE_REFRESH().catch(function(){status.textContent+=' Actualisez la page si elle n’apparaît pas encore dans les résultats.'});
       }
