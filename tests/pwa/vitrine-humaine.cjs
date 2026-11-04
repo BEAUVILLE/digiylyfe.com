@@ -66,14 +66,43 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   await filmControl.click();
   await page.waitForFunction(()=>document.querySelector('#digiyFilmVitrine iframe').hasAttribute('src'));
   assert.ok((await page.locator('#digiyFilmVitrine iframe').getAttribute('src')).endsWith('/preview'));
-  for(const [label,selector,target] of [['WO','a.woLangLink','/prototypes/digiy-wolof-v1/prototype.html'],['中文','a[hreflang="zh-CN"]','/zh-CN/']]){
-   await page.goto('https://digiylyfe.com/?lang=fr');
-   await page.locator('.languageStrip '+selector).click();
-   await page.waitForURL('https://digiylyfe.com'+target);
-   assert.equal(await page.locator('a[href="/annuaire.html#recherche"]').count(),1);
-   assert.equal(await page.locator('a[href="/annuaire.html#inscription"]').count(),1);
-   console.log('PASS language route',label);
+  // All ten controls translate the same home. Audio remains an explicit separate link.
+  await page.goto('https://digiylyfe.com/?lang=fr');
+  const homePath=new URL(page.url()).pathname;
+  await page.waitForSelector('.digiyHomeMembershipPrice');
+  const digits=s=>s.replace(/[^0-9]/g,'');
+  const originalPrice=digits(await page.locator('.digiyHomeMembershipPrice').first().innerText());
+  const frenchTitle=await page.locator('h1').innerText();
+  for(const [lang,title] of [['wo','DIGIY dafay tax sa kiliyaan yi bañ laa fàtte.'],['zh','DIGIY 帮助您的客户记住您。']]){
+   await page.locator(`.languageStrip button[data-lang="${lang}"]`).click();
+   await page.waitForFunction(l=>document.documentElement.lang===(l==='zh'?'zh-CN':l),lang);
+   assert.equal(new URL(page.url()).pathname,homePath);
+   assert.equal(new URL(page.url()).searchParams.get('lang'),lang);
+   assert.equal(await page.locator('h1').innerText(),title);
+   assert.equal(await page.locator(`button[data-lang="${lang}"]`).getAttribute('aria-pressed'),'true');
+   assert.equal(await page.evaluate(()=>Math.abs(innerWidth-390)<=2),true);
+   assert.equal(await page.locator('.ownerModulesLang:visible').count(),1);
+   assert.equal(await page.locator('.ownerModulesLang:visible').getAttribute('data-owner-lang'),lang);
+   await page.waitForTimeout(100);
+   assert.equal(digits(await page.locator('.digiyHomeMembershipPrice').first().innerText()),originalPrice);
+   const labels=await page.locator('#campusInterestForm [data-campus-copy="send"]').innerText();
+   assert.ok(lang==='zh'?labels.includes('感兴趣'):labels.includes('BËGG'));
+   const missing=await page.evaluate(()=>[...document.querySelectorAll('[data-i18n]')].map(el=>el.dataset.i18n).filter(k=>!(k in window.DIGIY_HOME_WORLD10[document.documentElement.lang==='zh-CN'?'zh':'wo'])));
+   assert.deepEqual(missing,[]);
+   await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-${lang}-home.png`});
+   await page.reload();
+   assert.equal(await page.locator('h1').innerText(),title);
+   console.log('PASS in-place locale, persisted reload, owner tools, form and unchanged prices',lang);
   }
+  await page.goto('https://digiylyfe.com/?lang=zh-CN');
+  assert.equal(await page.locator('html').getAttribute('lang'),'zh-CN');
+  await page.locator('button[data-lang="fr"]').click();
+  assert.equal(await page.locator('h1').innerText(),frenchTitle);
+  assert.equal(await page.locator('.ownerModulesLang:visible').getAttribute('data-owner-lang'),'fr');
+  await page.locator('.homeLanguageHelp a').click();
+  await page.waitForURL('https://digiylyfe.com/prototypes/digiy-wolof-v1/prototype.html');
+  assert.equal(await page.locator('#woAudioPanel').count(),1);
+  console.log('PASS French return and preserved explicit Wolof audio path');
   publicRows=[];
   await page.goto('https://digiylyfe.com/?lang=fr');
   await page.waitForFunction(()=>document.querySelectorAll('.exampleGrid a.exampleCard,.exampleGrid .digiyRecommendAction').length===0);

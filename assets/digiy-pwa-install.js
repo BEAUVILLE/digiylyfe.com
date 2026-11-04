@@ -51,6 +51,8 @@ if ('serviceWorker' in navigator) {
     ar:['تثبيت DIGIYLYFE على هذا الكمبيوتر','على الكمبيوتر: افتح قائمة المتصفح واختر «تثبيت DIGIYLYFE» إذا لم يظهر التثبيت التلقائي.','DIGIYLYFE مثبت بالفعل على هذا الكمبيوتر.']
   };
 
+  Object.assign(COPY,(window.DIGIY_HOME_WORLD10_UI||{}).pwa||{});
+  Object.assign(DESKTOP,(window.DIGIY_HOME_WORLD10_UI||{}).pwaDesktop||{});
   function lang(){var l=(document.documentElement.lang||'fr').toLowerCase().split('-')[0];return COPY[l]?l:'fr';}
   function text(i){
     var l=lang();

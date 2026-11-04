@@ -67,6 +67,7 @@
     style.textContent='[data-fav-id="territoire-maroc"]{border-color:rgba(246,196,83,.64);background:linear-gradient(180deg,rgba(193,39,45,.15),rgba(0,98,51,.28) 55%,rgba(5,27,20,.98))}[data-fav-id="territoire-maroc"] .digiyMoroccoPhoto{position:relative;overflow:hidden;background:#4b241b}[data-fav-id="territoire-maroc"] .digiyMoroccoPhoto img{width:100%;height:100%;object-fit:cover;display:block}[data-fav-id="territoire-maroc"] .digiyMoroccoPhoto:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(3,18,13,.72));pointer-events:none}[data-fav-id="territoire-maroc"] .digiyMoroccoCities{position:absolute;left:12px;right:12px;bottom:12px;z-index:3;display:flex;gap:6px;justify-content:center;flex-wrap:wrap}[data-fav-id="territoire-maroc"] .digiyMoroccoCities i{font-style:normal;padding:5px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.33);background:rgba(3,18,13,.72);color:#fffaf0;font-size:9px;font-weight:1000}';
     document.head.appendChild(style);
 
+    Object.assign(COPY,(window.DIGIY_HOME_WORLD10_UI||{}).morocco||{});
     function applyLang(){
       var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
       var x=COPY[l]||COPY.fr;

@@ -5,6 +5,8 @@ on:
       - feature/digiy-visibilite-v4-world8-accueil
     paths:
       - index.html
+      - assets/digiy-home-world10-v1.js
+      - tests/test_home_world10.py
       - zh-CN/index.html
       - prototypes/digiy-wolof-v1/prototype.html
       - en/index.html
@@ -21,6 +23,8 @@ on:
   pull_request:
     paths:
       - index.html
+      - assets/digiy-home-world10-v1.js
+      - tests/test_home_world10.py
       - zh-CN/index.html
       - prototypes/digiy-wolof-v1/prototype.html
       - en/index.html
@@ -53,3 +57,5 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_visibilite_world8.py' -v
       - name: Controle vitrine humaine V2
         run: python3 -m unittest discover -s tests -p 'test_vitrine_humaine_v2.py' -v
+      - name: Controle des dix traductions de l’accueil
+        run: python3 -m unittest discover -s tests -p 'test_home_world10.py' -v

@@ -12,7 +12,7 @@
     var home=h==='digiylyfe.com'&&(p==='/'||/\/index\.html$/i.test(p));
     var tariffs=/\/tarifs-adherents-1\.html$/i.test(p);
     if(tariffs||home||(h==='digiy-hub.digiylyfe.com'&&(p==='/'||/\/index\.html$/i.test(p))))load('https://digiylyfe.com/assets/digiy-membership-visibility-v1.js?v=20260917-v3');
-    if(home)load('https://digiylyfe.com/assets/digiy-home-membership-price-v1.js?v=20260926-price-script-fix-v1');
+    if(home)load('https://digiylyfe.com/assets/digiy-home-membership-price-v1.js?v=20261104-home-world10');
     if(tariffs)load('https://digiylyfe.com/assets/digiy-tarifs-membership-bridge-v1.js?v=20260917-v1',function(){patchTariffs();setTimeout(patchTariffs,250);setTimeout(patchTariffs,1000);});
   });
 })();

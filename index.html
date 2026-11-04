@@ -121,7 +121,7 @@
     .languageStrip::-webkit-scrollbar{display:none}
     .langBtn{height:42px;min-width:41px;padding:0 9px;border-radius:999px;border:1px solid rgba(246,196,83,.38);background:rgba(255,255,255,.075);font-size:10px;font-weight:1000;cursor:pointer;flex:0 0 auto}
     .langBtn.active{background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;border-color:rgba(246,196,83,.80)}
-    /* WO est un lien vers la page wolof à écouter : pas un bouton de traduction WORLD8. */
+    /* WO et 中文 traduisent l’accueil ; l’écoute wolof garde son lien séparé. */
     .languageStrip a.woLangLink{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-width:58px;background:rgba(246,196,83,.15);border-color:var(--gold);color:#ffe4a0}
 
     .hero{
@@ -1012,6 +1012,10 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
 .digiyPublicFirstV1 h2{color:#fffaf0}.exampleCard{min-width:0}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
+<style>
+.homeLanguageHelp{margin:0 0 12px;text-align:center;font-size:12px;line-height:1.5;color:#175238}.homeLanguageHelp a{text-decoration:underline;display:inline-flex;align-items:center;min-height:44px}.homeLanguageHelp small{display:block}.homeLanguageHelp .woReviewNote{display:none}html[lang="wo"] .woReviewNote{display:block}
+html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerModulesLang[data-owner-lang="zh"]{display:block}
+</style>
 </head>
 <body>
   <main class="app" id="haut">
@@ -1022,8 +1026,8 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
 
     <nav class="languageStrip" aria-label="Choisir la langue / Choose language">
       <button type="button" class="langBtn active" data-lang="fr" aria-pressed="true">FR</button>
-      <a class="langBtn woLangLink" href="/prototypes/digiy-wolof-v1/prototype.html" lang="wo" hreflang="wo" aria-label="Wolof : découvrir DIGIYLYFE en wolof et écouter les 29 audios" title="Wolof · Lire et écouter DIGIYLYFE">WO 🔊</a>
-      <a class="langBtn" href="/zh-CN/" lang="zh-CN" hreflang="zh-CN" title="简体中文 · 访问 DIGIYLYFE 中文介绍" aria-label="中文（简体）">中文</a>
+      <button type="button" class="langBtn woLangLink" lang="wo" data-lang="wo" aria-pressed="false">WO</button>
+      <button type="button" class="langBtn" lang="zh-CN" data-lang="zh" aria-pressed="false">中文</button>
       <button type="button" class="langBtn" data-lang="en" aria-pressed="false">EN</button>
       <button type="button" class="langBtn" data-lang="es" aria-pressed="false">ES</button>
       <button type="button" class="langBtn" data-lang="pt" aria-pressed="false">PT</button>
@@ -1032,6 +1036,7 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
       <button type="button" class="langBtn" data-lang="nl" aria-pressed="false">NL</button>
       <button type="button" class="langBtn" data-lang="ar" aria-pressed="false">AR</button>
     </nav>
+    <p class="homeLanguageHelp"><a href="/prototypes/digiy-wolof-v1/prototype.html" lang="wo" hreflang="wo" data-i18n="woAudio">🔊 Écouter la présentation en wolof</a><small data-i18n="localeScope">Les langues disponibles peuvent varier selon les pages.</small><small class="woReviewNote" data-i18n="woReview">Texte wolof proposé à la relecture native.</small></p>
 <div id="digiyAnnuaireV1">
 <section class="digiyClarity" id="digiyClarity" aria-labelledby="digiyClarityTitle">
       <span class="digiyClarityKicker" data-i18n="clarKicker">DIGIYLYFE · DES CONTACTS DIRECTS, DES MÉTIERS LOCAUX</span>
@@ -1061,10 +1066,10 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
         <a class="exampleCard" href="https://astou-boutique.digiylyfe.com/" aria-label="Ouvrir Astou Boutique" data-fav-id="pro-astou-boutique"><i aria-hidden="true">🛍️</i><strong>Astou Boutique</strong><small data-i18n="astouText">Boutique locale · Saly</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
         <a class="exampleCard" href="https://babacar-plombier-pro.digiylyfe.com/" aria-label="Ouvrir Babacar Plombier Pro" data-fav-id="pro-babacar-plombier"><i aria-hidden="true">🔧</i><strong>Babacar Plombier Pro</strong><small data-i18n="babacarText">Artisan · Saly</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
         <a class="exampleCard" href="https://mane-gning.digiylyfe.com/" aria-label="Ouvrir MANÉ &amp; GNING — Service de nettoyage" data-fav-id="pro-mane-gning"><i aria-hidden="true">🧹</i><strong>MANÉ &amp; GNING</strong><small data-i18n="maneText">Service de nettoyage · Saly / Mbour</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
-        <a class="exampleCard" href="https://sarlat-chez-baptiste.digiylyfe.com/" aria-label="Ouvrir Chez Baptiste à Sarlat" data-fav-id="pro-chez-baptiste-sarlat"><i aria-hidden="true">🏠</i><strong>Chez Baptiste · Sarlat</strong><small>Chambre privée · Périgord Noir</small><b data-i18n="seeCard">Voir la fiche →</b></a>
+        <a class="exampleCard" href="https://sarlat-chez-baptiste.digiylyfe.com/" aria-label="Ouvrir Chez Baptiste à Sarlat" data-fav-id="pro-chez-baptiste-sarlat"><i aria-hidden="true">🏠</i><strong>Chez Baptiste · Sarlat</strong><small data-i18n="baptisteText">Chambre privée · Périgord Noir</small><b data-i18n="seeCard">Voir la fiche →</b></a>
         <a class="exampleCard" href="https://partenaire-lamine.digiylyfe.com/" aria-label="Ouvrir Lamine" data-fav-id="pro-lamine"><i aria-hidden="true">🚗</i><strong>Lamine</strong><small data-i18n="lamineText">Chauffeur privé · Petite Côte</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
-      <a class="exampleCard" href="https://kourant.digiylyfe.com/"><i aria-hidden="true">🔧</i><strong>Zal &amp; Kourant · Électricien</strong><b data-i18n="seeCard">Voir la fiche →</b></a>
-      <a class="exampleCard" href="https://mbaye-macon.digiylyfe.com/"><i aria-hidden="true">🔧</i><strong>Mbaye · Maçon</strong><b data-i18n="seeCard">Voir la fiche →</b></a>
+      <a class="exampleCard" href="https://kourant.digiylyfe.com/"><i aria-hidden="true">🔧</i><strong data-i18n="kourantName">Zal &amp; Kourant · Électricien</strong><b data-i18n="seeCard">Voir la fiche →</b></a>
+      <a class="exampleCard" href="https://mbaye-macon.digiylyfe.com/"><i aria-hidden="true">🔧</i><strong data-i18n="mbayeName">Mbaye · Maçon</strong><b data-i18n="seeCard">Voir la fiche →</b></a>
       </div>
       <div class="proofAction">
         <span data-i18n="proofInvite">Commencez par votre carte. Votre présence pourra grandir avec votre activité.</span>
@@ -1349,13 +1354,13 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
             <source src="/assets/digiy-international-web-v2.mp4?v=20260929-cadrage-v2" type="video/mp4"/>
             Votre navigateur ne peut pas lire cette vidéo.
           </video>
-          <small>▶ DIGIY INTERNATIONAL · Ouvert au monde. Ancré dans chaque territoire.</small>
+          <small data-i18n="internationalOpen">▶ DIGIY INTERNATIONAL · Ouvert au monde. Ancré dans chaque territoire.</small>
         </div>
         <div class="digiyInternationalStaticCopy">
-          <span class="digiyInternationalStaticMini">DIGIY INTERNATIONAL 🌍</span>
-          <h2>Ouvert au monde. Ancré dans chaque territoire.</h2>
-          <p class="digiyInternationalStaticLead">Le web ouvre les frontières. DIGIY relie les territoires.</p>
-          <p class="digiyInternationalStaticText">Une même logique : des besoins universels, des réponses locales et un contact direct avec les professionnels.</p>
+          <span class="digiyInternationalStaticMini" data-i18n="internationalTitle">DIGIY INTERNATIONAL 🌍</span>
+          <h2 data-i18n="internationalTag">Ouvert au monde. Ancré dans chaque territoire.</h2>
+          <p class="digiyInternationalStaticLead" data-i18n="internationalLead">Le web ouvre les frontières. DIGIY relie les territoires.</p>
+          <p class="digiyInternationalStaticText" data-i18n="internationalText">Une même logique : des besoins universels, des réponses locales et un contact direct avec les professionnels.</p>
         </div>
       </div>
     </section>
@@ -1374,7 +1379,7 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
           <span class="globalCountry future">🇲🇦 <span data-i18n="globalMorocco">Maroc</span> <b class="globalStatus" data-i18n="globalComing">À VENIR</b></span>
           <span class="globalCountry future">🇪🇸 <span data-i18n="globalSpain">Espagne</span> <b class="globalStatus" data-i18n="globalComing">À VENIR</b></span>
           <span class="globalCountry future">🇦🇪 <span data-i18n="globalUae">Émirats arabes unis</span> <b class="globalStatus" data-i18n="globalComing">À VENIR</b></span>
-          <a class="globalCountry active" href="https://digiylyfe.com/miami.html?lang=en">🇺🇸 <span data-i18n="globalUsa">États-Unis</span> <b class="globalStatus">MIAMI PILOT</b></a>
+          <a class="globalCountry active" href="https://digiylyfe.com/miami.html?lang=en">🇺🇸 <span data-i18n="globalUsa">États-Unis</span> <b class="globalStatus" data-i18n="miamiPilot">MIAMI PILOT</b></a>
         </div>
       </div>
       <p class="brandClaimChannels" data-i18n="claimChannels">Votre source DIGIYLYFE peut alimenter Google, WhatsApp, Facebook, les moteurs de recherche, les IA et les futurs canaux numériques.</p>
@@ -1413,15 +1418,15 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
     </section>
 
     <section class="digiyMasterVideo digiyExperience" aria-label="DIGIYLYFE · Besoin, solution, résultat, compréhension">
-      <strong>BESOIN → SOLUTION → RÉSULTAT → COMPRÉHENSION</strong>
-      <p>Regardez d’abord ce que DIGIYLYFE fait. L’explication vient ensuite.</p>
+      <strong data-i18n="experienceTitle">BESOIN → SOLUTION → RÉSULTAT → COMPRÉHENSION</strong>
+      <p data-i18n="experienceLead">Regardez d’abord ce que DIGIYLYFE fait. L’explication vient ensuite.</p>
       <div class="digiyMasterVideoFrame">
         <video controls playsinline webkit-playsinline preload="none" width="1080" height="1920" poster="/assets/videos/digiy-notice-territoire-activites-20261006-poster.webp" aria-label="DIGIYLYFE · Besoin → Solution → Résultat → Compréhension">
           <source src="/assets/videos/digiy-notice-territoire-activites-20261006.mp4" type="video/mp4"/>
-          <a href="/assets/videos/digiy-notice-territoire-activites-20261006.mp4">Ouvrir la vidéo DIGIYLYFE</a>
+          <a href="/assets/videos/digiy-notice-territoire-activites-20261006.mp4" data-i18n="experienceOpen">Ouvrir la vidéo DIGIYLYFE</a>
         </video>
       </div>
-      <small>Lecture avec le son · 45 secondes · format téléphone 9:16</small>
+      <small data-i18n="experienceHint">Lecture avec le son · 45 secondes · format téléphone 9:16</small>
     </section>
 
     <section class="fullStackIntro digiyNetworkCard" aria-labelledby="digiyLocalTitle">
@@ -1477,7 +1482,7 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
             <source src="/aly-kane-la-voix-digiylyfe.mp4?v=20261004-sans-vozo" type="video/mp4"/>
             Votre navigateur ne peut pas lire cette vidéo.
           </video>
-          <small class="voiceDemoHint">▶ Aly Kane · La voix du terrain · voix synthétique</small>
+          <small class="voiceDemoHint" data-i18n="alyHint">▶ Aly Kane · La voix du terrain · voix synthétique</small>
         </div>
       </div>
       <a class="publicLeadDoor voiceLeadDoor" href="https://pro-action-digiy.digiylyfe.com/" aria-label="Ouvrir LA VOIX · ACTION PRO" data-fav-id="service-voix-action-pro">
@@ -1604,7 +1609,7 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
 
       <div class="digiyCardActions">
         <a href="https://digiylyfe.com/carte/">📲 <span data-i18n="cardOpenBtn">Ouvrir la carte interactive</span></a>
-        <button type="button" id="digiyShareCard" style="cursor:pointer;border:1px solid rgba(246,196,83,.6);background:#f6c453;color:#062014;border-radius:12px;padding:12px 16px;font:inherit;font-weight:850;min-height:44px">↗️ Partager ma carte</button>
+        <button type="button" id="digiyShareCard" data-i18n="shareCard" style="cursor:pointer;border:1px solid rgba(246,196,83,.6);background:#f6c453;color:#062014;border-radius:12px;padding:12px 16px;font:inherit;font-weight:850;min-height:44px">↗️ Partager ma carte</button>
         <a href="https://digiylyfe.com/">🌍 DIGIYLYFE.COM</a>
       </div>
     </section>
@@ -1626,6 +1631,7 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
     </footer>
   </main>
 
+  <script src="/assets/digiy-home-world10-v1.js?v=20261104-v1"></script>
   <script>
   (function(){
     'use strict';
@@ -1720,10 +1726,14 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
     Object.keys(HUMAN_V2).forEach(function(l){Object.assign(TEXT[l],HUMAN_V2[l]);});
     var SERVICES_V2={"fr":{"servicesTitle":"Des services pour garder le lien","cardPaidTitle":"Carte DIGIY payante","cardPaidText":"Une identité visuelle, un QR et une URL propres à partager après une rencontre.","profilePaidTitle":"Fiche professionnelle payante","profilePaidText":"Présentez votre activité avec les contenus enrichis prévus par votre offre.","presenceTitle":"Présence professionnelle","presenceText":"Rendez votre activité visible dans son territoire, selon les conditions de votre pays.","countryPrices":"Voir les offres et tarifs par pays","toolsBenefits":"LOC : disponibilités et réservations. RESTO : services et organisation. DRIVER : trajets et demandes. COMMERCE : produits et contacts directs.","toolsOpen":"Découvrir les outils métiers"},"en":{"servicesTitle":"Services that keep you connected","cardPaidTitle":"Paid DIGIY card","cardPaidText":"A visual identity, your own QR and URL to share after meeting someone.","profilePaidTitle":"Paid professional profile","profilePaidText":"Present your business with the enriched content included in your offer.","presenceTitle":"Professional presence","presenceText":"Make your business visible locally, under the terms for your country.","countryPrices":"See offers and prices by country","toolsBenefits":"LOC: availability and bookings. RESTO: services and organisation. DRIVER: trips and enquiries. COMMERCE: products and direct contacts.","toolsOpen":"Explore business tools"},"es":{"servicesTitle":"Servicios para mantener el vínculo","cardPaidTitle":"Tarjeta DIGIY de pago","cardPaidText":"Identidad visual, QR y URL propios para compartir después de un encuentro.","profilePaidTitle":"Ficha profesional de pago","profilePaidText":"Presenta tu actividad con el contenido enriquecido incluido en tu oferta.","presenceTitle":"Presencia profesional","presenceText":"Da visibilidad local a tu actividad según las condiciones de tu país.","countryPrices":"Ver ofertas y tarifas por país","toolsBenefits":"LOC: disponibilidad y reservas. RESTO: servicios y organización. DRIVER: trayectos y solicitudes. COMMERCE: productos y contacto directo.","toolsOpen":"Descubrir las herramientas"},"pt":{"servicesTitle":"Serviços para manter a ligação","cardPaidTitle":"Cartão DIGIY pago","cardPaidText":"Identidade visual, QR e URL próprios para partilhar após um encontro.","profilePaidTitle":"Ficha profissional paga","profilePaidText":"Apresente a sua atividade com os conteúdos enriquecidos incluídos na oferta.","presenceTitle":"Presença profissional","presenceText":"Dê visibilidade local à sua atividade segundo as condições do seu país.","countryPrices":"Ver ofertas e preços por país","toolsBenefits":"LOC: disponibilidade e reservas. RESTO: serviços e organização. DRIVER: viagens e pedidos. COMMERCE: produtos e contacto direto.","toolsOpen":"Descobrir as ferramentas"},"it":{"servicesTitle":"Servizi per mantenere il legame","cardPaidTitle":"Carta DIGIY a pagamento","cardPaidText":"Identità visiva, QR e URL propri da condividere dopo un incontro.","profilePaidTitle":"Scheda professionale a pagamento","profilePaidText":"Presenta la tua attività con i contenuti arricchiti previsti dalla tua offerta.","presenceTitle":"Presenza professionale","presenceText":"Rendi visibile la tua attività nel territorio secondo le condizioni del tuo paese.","countryPrices":"Offerte e tariffe per paese","toolsBenefits":"LOC: disponibilità e prenotazioni. RESTO: servizi e organizzazione. DRIVER: tragitti e richieste. COMMERCE: prodotti e contatti diretti.","toolsOpen":"Scopri gli strumenti"},"de":{"servicesTitle":"Dienste für bleibenden Kontakt","cardPaidTitle":"Kostenpflichtige DIGIY-Karte","cardPaidText":"Eigene visuelle Identität, QR-Code und URL zum Teilen nach einer Begegnung.","profilePaidTitle":"Kostenpflichtiges Unternehmensprofil","profilePaidText":"Präsentieren Sie Ihr Geschäft mit den Inhalten Ihres gewählten Angebots.","presenceTitle":"Professionelle Präsenz","presenceText":"Machen Sie Ihr Geschäft vor Ort sichtbar, zu den Bedingungen Ihres Landes.","countryPrices":"Angebote und Preise nach Land","toolsBenefits":"LOC: Verfügbarkeit und Buchungen. RESTO: Service und Organisation. DRIVER: Fahrten und Anfragen. COMMERCE: Produkte und Direktkontakt.","toolsOpen":"Geschäftswerkzeuge entdecken"},"nl":{"servicesTitle":"Diensten om contact te houden","cardPaidTitle":"Betaalde DIGIY-kaart","cardPaidText":"Een eigen visuele identiteit, QR en URL om na een ontmoeting te delen.","profilePaidTitle":"Betaald professioneel profiel","profilePaidText":"Presenteer uw bedrijf met de uitgebreide inhoud van uw gekozen aanbod.","presenceTitle":"Professionele aanwezigheid","presenceText":"Maak uw bedrijf lokaal zichtbaar volgens de voorwaarden van uw land.","countryPrices":"Aanbod en prijzen per land","toolsBenefits":"LOC: beschikbaarheid en boekingen. RESTO: diensten en organisatie. DRIVER: ritten en aanvragen. COMMERCE: producten en direct contact.","toolsOpen":"Ontdek de tools"},"ar":{"servicesTitle":"خدمات للحفاظ على التواصل","cardPaidTitle":"بطاقة DIGIY مدفوعة","cardPaidText":"هوية بصرية ورمز QR ورابط خاص بك للمشاركة بعد اللقاء.","profilePaidTitle":"صفحة مهنية مدفوعة","profilePaidText":"قدّم نشاطك بالمحتويات الموسعة المشمولة في عرضك.","presenceTitle":"حضور مهني","presenceText":"عرّف بنشاطك في منطقتك وفق شروط بلدك.","countryPrices":"العروض والأسعار حسب البلد","toolsBenefits":"LOC: التوفر والحجوزات. RESTO: الخدمات والتنظيم. DRIVER: الرحلات والطلبات. COMMERCE: المنتجات والتواصل المباشر.","toolsOpen":"اكتشف أدوات المهن"}};
     Object.keys(SERVICES_V2).forEach(function(l){Object.assign(TEXT[l],SERVICES_V2[l]);});
+    Object.keys(TEXT).forEach(function(code){Object.assign(TEXT[code],(window.DIGIY_HOME_WORLD10_UI||{}).fixedDefaults||{},((window.DIGIY_HOME_WORLD10_UI||{}).helpers||{})[code]||{});});
+    Object.keys(window.DIGIY_HOME_WORLD10||{}).forEach(function(code){TEXT[code]=window.DIGIY_HOME_WORLD10[code];});
     function setLang(lang){
+      if(lang==='zh-cn')lang='zh';
       if(!TEXT[lang])lang='fr';
       var t=TEXT[lang];
-      document.documentElement.lang=lang;
+      document.documentElement.lang=lang==='zh'?'zh-CN':lang;
+      if(window.digiyHomeWorld10Extras)window.digiyHomeWorld10Extras(lang);
       document.documentElement.dir=lang==='ar'?'rtl':'ltr';
       document.title=t.metaTitle;
       var meta=document.querySelector('meta[name="description"]');
@@ -1765,8 +1775,8 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
     var initial='fr';
     try{
       var params=new URLSearchParams(location.search);
-      var fromUrl=(params.get('lang')||'').toLowerCase();
-      var saved=(localStorage.getItem('digiy-lang')||'').toLowerCase();
+      var fromUrl=(params.get('lang')||'').toLowerCase().replace('zh-cn','zh');
+      var saved=(localStorage.getItem('digiy-lang')||'').toLowerCase().replace('zh-cn','zh');
       if(TEXT[fromUrl])initial=fromUrl;
       else if(TEXT[saved])initial=saved;
     }catch(error){}
@@ -1829,10 +1839,10 @@ html[dir="rtl"] .app{overflow-wrap:anywhere}
 window.DIGIY_COM_MAITRE_V1=true;
 window.DIGIY_FACADE_TWO_WORLDS_V1=true;
 </script>
-<script src="/assets/digiy-maitre-favoris-v1.js?v=20261025-loc-unique-paliers"></script>
-<script src="/assets/digiy-campus-interest-v2.js?v=20260906-coherence-v1" data-digiy-campus-interest="1" defer></script>
+<script src="/assets/digiy-maitre-favoris-v1.js?v=20261104-home-world10"></script>
+<script src="/assets/digiy-campus-interest-v2.js?v=20261104-home-world10" data-digiy-campus-interest="1" defer></script>
 <script src="https://digiylyfe.com/digiy-contact-global-pre-membership-20260917.js?v=20260926-single-sw-v1" defer></script>
-<script src="/assets/digiy-pwa-install.js?v=20261005-pwa-lock-v1" defer></script>
+<script src="/assets/digiy-pwa-install.js?v=20261104-home-world10" defer></script>
 <script src="/assets/digiy-loc-signature-engine-v1.js?v=20260926-v1" defer></script>
 <script src="/assets/digiy-sarlat-baptiste-signature-v1.js?v=20260926-generic-loc-v1" defer></script>
 <script src="/assets/digiy-saly-baptiste-signature-v1.js?v=20260926-generic-loc-v1" defer></script>
@@ -1861,8 +1871,8 @@ window.DIGIY_FACADE_TWO_WORLDS_V1=true;
   });
 })();
 </script>
-  <script src="/assets/digiy-bouche-a-oreille-v1.js?v=20261104-retired-links-v2" defer></script>
-<script src="https://digiylyfe.com/digiy-contact-global.js?v=20260815"></script>
+  <script src="/assets/digiy-bouche-a-oreille-v1.js?v=20261104-home-world10" defer></script>
+<script src="https://digiylyfe.com/digiy-contact-global.js?v=20261104-home-world10"></script>
 <script>
 (function(){
  var panel=document.querySelector('#digiyFilmVitrine details');
