@@ -36,7 +36,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.locator('#digiyFilmVitrine iframe').getAttribute('src'),null);
    const order=await page.evaluate(()=>['digiyClarity','territoires','solutions-pro','digiyFilmVitrine','digiyInternational'].map(id=>document.getElementById(id).getBoundingClientRect().top));
    assert.deepEqual(order,[...order].sort((a,b)=>a-b));
-   const saly=page.locator('#digiyPublicFirstV1 a[href="/saly.html"]');
+   const saly=page.locator('#territoires a[href="/saly.html"]');
    await saly.scrollIntoViewIfNeeded();
    assert.equal(await saly.isVisible(),true);
    assert.equal(await page.locator('a[data-fav-id="territoire-petite-cote"]').getAttribute('href'),'https://digiylyfe.com/territoire.html?zone=petite-cote');
