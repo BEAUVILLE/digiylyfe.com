@@ -67,6 +67,24 @@ class HumanHomepage(unittest.TestCase):
         self.assertIn("const audioEntries=Object.keys(ui.wo)", wolof)
         self.assertIn('woAudioPanel', wolof)
 
+    def test_saly_labels_on_all_ten_routes_and_other_territories(self):
+        import json
+        labels = json.loads(re.search(r'var DIGIY_PUBLIC_V1=(.*?);\n', HOME)[1])
+        for lang in ['en', 'es', 'pt', 'it', 'de', 'nl', 'ar']:
+            text = (ROOT / lang / 'index.html').read_text()
+            self.assertIn(labels[lang]['v1TerritoryCta'], text)
+            self.assertIn('href="/' + lang + '/saly.html"', text)
+        self.assertIn('📍 探索萨利 →', (ROOT / 'zh-CN/index.html').read_text())
+        self.assertIn('href="/saly.html">📍 Xool Saly →',
+                      (ROOT / 'prototypes/digiy-wolof-v1/prototype.html').read_text())
+        for route in ['senegal.html', 'dakar.html', 'bordeaux.html', 'paris.html',
+                      'france.html', 'maroc.html', 'miami.html']:
+            self.assertIn('https://digiylyfe.com/' + route, BODY)
+            self.assertTrue((ROOT / route).is_file())
+        for zone in ['petite-cote', 'vallee-dordogne']:
+            self.assertIn('https://digiylyfe.com/territoire.html?zone=' + zone, BODY)
+        self.assertIn('id="digiyMoroccoHubDoor"', BODY)
+
     def test_paid_offers_and_legacy_anchors_preserved(self):
         for text in ['Carte DIGIY payante', 'Fiche professionnelle payante',
                      'Présence professionnelle', '15 000 FCFA', '450 € / AN',

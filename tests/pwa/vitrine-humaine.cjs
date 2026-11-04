@@ -31,7 +31,14 @@ const root=path.resolve(__dirname,'../..');
    assert.equal(await page.locator('#digiyFilmVitrine iframe').getAttribute('src'),null);
    const order=await page.evaluate(()=>['digiyClarity','territoires','solutions-pro','digiyFilmVitrine','digiyInternational'].map(id=>document.getElementById(id).getBoundingClientRect().top));
    assert.deepEqual(order,[...order].sort((a,b)=>a-b));
-   console.log('PASS human home layout',width);
+   const saly=page.locator('#digiyPublicFirstV1 a[href="/saly.html"]');
+   await saly.scrollIntoViewIfNeeded();
+   assert.equal(await saly.isVisible(),true);
+   assert.equal(await page.locator('a[data-fav-id="territoire-petite-cote"]').getAttribute('href'),'https://digiylyfe.com/territoire.html?zone=petite-cote');
+   await saly.click();
+   await page.waitForURL('https://digiylyfe.com/saly.html');
+   await page.goto('https://digiylyfe.com/?lang=fr');
+   console.log('PASS human home layout and direct Saly click',width);
   }
   for(const lang of ['fr','en','es','pt','it','de','nl','ar']){
    await page.locator(`button[data-lang="${lang}"]`).click();
