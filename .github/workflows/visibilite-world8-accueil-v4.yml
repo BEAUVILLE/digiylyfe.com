@@ -5,6 +5,8 @@ on:
       - feature/digiy-visibilite-v4-world8-accueil
     paths:
       - index.html
+      - zh-CN/index.html
+      - prototypes/digiy-wolof-v1/prototype.html
       - en/index.html
       - es/index.html
       - pt/index.html
@@ -14,10 +16,13 @@ on:
       - ar/index.html
       - sitemap.xml
       - tests/test_visibilite_world8_home_v4.py
+      - tests/test_vitrine_humaine_v2.py
       - .github/workflows/visibilite-world8-accueil-v4.yml
   pull_request:
     paths:
       - index.html
+      - zh-CN/index.html
+      - prototypes/digiy-wolof-v1/prototype.html
       - en/index.html
       - es/index.html
       - pt/index.html
@@ -27,6 +32,7 @@ on:
       - ar/index.html
       - sitemap.xml
       - tests/test_visibilite_world8_home_v4.py
+      - tests/test_vitrine_humaine_v2.py
       - .github/workflows/visibilite-world8-accueil-v4.yml
   workflow_dispatch:
 permissions:
@@ -45,3 +51,5 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_visibilite_v2.py' -v
       - name: Non regression WORLD8 Saly
         run: python3 -m unittest discover -s tests -p 'test_visibilite_world8.py' -v
+      - name: Controle vitrine humaine V2
+        run: python3 -m unittest discover -s tests -p 'test_vitrine_humaine_v2.py' -v
