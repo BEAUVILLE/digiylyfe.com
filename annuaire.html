@@ -270,6 +270,7 @@ if(isNieryArt){
  cardLink.setAttribute('aria-label','Voir la carte de Niery Art');
  actions.appendChild(cardLink);
 }
+if(p.id==='451383a1-7e3d-4d79-8ad3-6504113d4c2a'){var massCard=make('a','profile','Voir sa carte');massCard.href='/carte-mass-coolj.html';massCard.setAttribute('aria-label','Voir la carte partageable de Mass CoolJ');actions.appendChild(massCard);}
 var signal=make('a','','Signaler une fiche');signal.href='mailto:contact@digiylyfe.com?subject='+encodeURIComponent('Signalement fiche DIGIY')+'&body='+encodeURIComponent('Fiche concernée : '+personal.href+'\nMotif : ');actions.appendChild(signal);
 card.append(name,info,description,actions);root.appendChild(card);
 });
