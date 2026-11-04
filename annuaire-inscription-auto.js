@@ -38,7 +38,7 @@
     if(msg.includes('INSCRIPTION_REFUSEE')) return 'Inscription non acceptée. Réessayez.';
     if(msg.includes('CHAMPS_INVALIDES') || msg.includes('DEPARTEMENT_INVALIDE') || msg.includes('PAYS_INVALIDE')) return 'Vérifiez les champs du formulaire.';
     if(msg.includes('function') || msg.includes('PGRST202') || msg.includes('404')) return 'Le service automatique n’est pas encore disponible. Aucune inscription n’a été enregistrée.';
-    return 'L’enregistrement a échoué. Aucune publication confirmée. Réessayez plus tard.';
+    return 'La publication n’a pas pu être confirmée. Vérifiez d’abord si votre fiche apparaît dans « Comment me trouver » avant toute nouvelle tentative.';
   }
   async function rpc(name, body) {
     var response = await fetch(config.base+'rpc/'+name,{
@@ -75,18 +75,45 @@
     busy=true;submit.disabled=true;status.textContent='Enregistrement de votre inscription…';success.hidden=true;
     try {
       var result=await rpc('digiy_annuaire_inscrire',payload);
-      if(!result || !result.id || !/^[0-9a-f]{48}$/.test(result.token||'')) throw Error('Réponse serveur incomplète');
+      // PostgreSQL RPCs can return an object, a JSON-encoded object or a one-row array.
+      if(typeof result==='string') {
+        try { result=JSON.parse(result); } catch (_) { result=null; }
+      }
+      if(Array.isArray(result)) result=result.length===1?result[0]:null;
+      var validId=result && typeof result.id==='string' &&
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(result.id);
+      var validToken=result && typeof result.token==='string' && /^[0-9a-f]{48}$/i.test(result.token);
+      if(!validId || !validToken) {
+        // A successful HTTP response does not prove that the transaction was rolled back.
+        // In particular, do not invite a second registration or invent a management token.
+        status.textContent='Réponse d’inscription incomplète : la publication est à vérifier. Recherchez votre nom dans « Comment me trouver » et contactez DIGIY à contact@digiylyfe.com pour récupérer un accès de gestion sécurisé. Ne vous réinscrivez pas.';
+        if(validId) {
+          publicLink.value=location.origin+location.pathname+'?fiche='+encodeURIComponent(result.id);
+          // Never display the success panel with a blank management link.
+          var publicOnly=document.createElement('a');
+          publicOnly.href=publicLink.value;
+          publicOnly.textContent='Voir le lien public de ma fiche';
+          publicOnly.className='cta primary';
+          publicOnly.style.display='inline-block';
+          publicOnly.style.marginTop='12px';
+          status.appendChild(document.createTextNode(' '));
+          status.appendChild(publicOnly);
+        }
+        status.scrollIntoView({behavior:'smooth',block:'center'});
+        return;
+      }
       publicLink.value=location.origin+location.pathname+'?fiche='+encodeURIComponent(result.id);
       manageLink.value=location.origin+location.pathname+'#gestion='+encodeURIComponent(result.id)+'.'+result.token;
       success.hidden=false;
-      status.textContent='Votre inscription gratuite est publiée ! Copiez votre lien et conservez votre lien privé de gestion.';
+      status.textContent='Votre inscription gratuite est publiée ! Copiez votre lien public et conservez votre lien privé de gestion.';
+      // Keep the confirmation displayed, even if refreshing the directory fails.
       form.reset();
       field('regCountry').value='sn';
+      success.scrollIntoView({behavior:'smooth',block:'start'});
       if(typeof window.DIGIY_ANNUAIRE_REFRESH==='function') {
         window.DIGIY_ANNUAIRE_REFRESH().catch(function(){status.textContent+=' Actualisez la page si elle n’apparaît pas encore dans les résultats.'});
       }
-      success.scrollIntoView({behavior:'smooth',block:'nearest'});
-    } catch (err) {status.textContent=humanError(err);}
+    } catch (err) {status.textContent=humanError(err);status.scrollIntoView({behavior:'smooth',block:'center'});}
     finally {busy=false;submit.disabled=false;}
   });
 
