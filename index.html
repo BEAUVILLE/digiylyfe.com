@@ -1770,7 +1770,10 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
     }
 
     document.querySelectorAll('.languageStrip button.langBtn[data-lang]').forEach(function(btn){
-      btn.addEventListener('click',function(){setLang(btn.getAttribute('data-lang'));});
+      btn.addEventListener('click',function(){
+        setLang(btn.getAttribute('data-lang'));
+        requestAnimationFrame(function(){window.scrollTo({top:0,left:0,behavior:'instant'});});
+      });
     });
 
     var initial='fr';

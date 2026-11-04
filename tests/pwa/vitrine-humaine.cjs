@@ -84,6 +84,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.locator('.ownerModulesLang:visible').count(),1);
    assert.equal(await page.locator('.ownerModulesLang:visible').getAttribute('data-owner-lang'),lang);
    await page.waitForTimeout(100);
+   assert.equal(await page.locator('.languageStrip').evaluate(el=>{const r=el.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight;}),true,'language choices remain visible after changing locale');
    assert.equal(digits(await page.locator('.digiyHomeMembershipPrice').first().innerText()),originalPrice);
    const labels=await page.locator('#campusInterestForm [data-campus-copy="send"]').innerText();
    assert.ok(lang==='zh'?labels.includes('感兴趣'):labels.includes('BËGG'));
