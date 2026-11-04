@@ -45,12 +45,14 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    await page.goto('https://digiylyfe.com/?lang=fr');
    console.log('PASS human home layout and direct Saly click',width);
   }
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('https://digiylyfe.com/?lang=fr');
   for(const lang of ['fr','en','es','pt','it','de','nl','ar']){
    await page.locator(`button[data-lang="${lang}"]`).click();
    assert.equal(await page.locator('html').getAttribute('lang'),lang);
    assert.equal(await page.locator('html').getAttribute('dir'),lang==='ar'?'rtl':'ltr');
    assert.ok((await page.locator('#solutionsTitle').innerText()).length>3);
-   assert.equal(await page.evaluate(()=>innerWidth),1440,`locale viewport expansion ${lang}`);
+   assert.equal(await page.evaluate(()=>innerWidth),390,`locale viewport expansion ${lang}`);
   }
   // Explicitly center a far-down RTL control before testing its real pointer hit.
   const filmControl=page.locator('#digiyFilmVitrine summary');

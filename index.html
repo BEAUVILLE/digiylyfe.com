@@ -1001,8 +1001,10 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
 body{background:#f5efdf;color:#173e2d;--ink:#173e2d;--soft:#486451;--line:#c5d4c4;--card:#ffffffa8}
 .topbar{background:#f5efdfed}.brand small{color:#486451}
 .app>section:not(.digiyClarity),.app>footer{color:#fffaf0;--ink:#fffaf0;--soft:rgba(255,250,240,.8);--line:rgba(255,255,255,.18);--card:rgba(255,255,255,.065);background-color:#0a2b1e}
-html[dir="rtl"]{scroll-behavior:auto;overflow-x:hidden}
-html[dir="rtl"] .app{overflow-x:clip;overflow-wrap:anywhere}
+/* Keep the viewport origin stable on Chrome mobile; RTL remains on the content. */
+html[dir="rtl"]{direction:ltr;scroll-behavior:auto}
+html[dir="rtl"] body{direction:rtl}
+html[dir="rtl"] .app{overflow-wrap:anywhere}
 .app>*{min-width:0}
 .languageStrip a.woLangLink{color:#175238;background:#fff8e8}
 .languageStrip .langBtn{background:#fff8e8;color:#175238;border-color:#a3bca7}
