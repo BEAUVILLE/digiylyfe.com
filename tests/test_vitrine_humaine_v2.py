@@ -49,6 +49,9 @@ class HumanHomepage(unittest.TestCase):
         self.assertIn('/prototypes/digiy-wolof-v1/prototype.html', nav)
         self.assertIn('/zh-CN/', nav)
 
+    def test_latest_saly_direct_door_preserved(self):
+        self.assertIn('href="/saly.html" data-i18n="v1TerritoryCta"', BODY)
+
     def test_ten_language_routes_and_translated_new_choices(self):
         for lang in ['fr', 'en', 'es', 'pt', 'it', 'de', 'nl', 'ar', 'zh-CN', 'wo']:
             path = ('index.html' if lang == 'fr' else
