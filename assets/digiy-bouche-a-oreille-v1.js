@@ -77,6 +77,18 @@
     });
   }
 
+  // The publication gate can remove a professional after this script runs.
+  // Remove the associated share link too; never leave a route around that gate.
+  function removeRetiredRecommendations() {
+    Array.prototype.forEach.call(grid.querySelectorAll('.digiyRecommendation'), function(wrapper) {
+      if (!wrapper.querySelector('a.exampleCard[href]')) wrapper.remove();
+    });
+  }
+  removeRetiredRecommendations();
+  if (typeof MutationObserver !== 'undefined') {
+    new MutationObserver(removeRetiredRecommendations).observe(grid, {childList:true, subtree:true});
+  }
+
   refresh();
   // Le choix FR/EN/ES/PT/IT/DE/NL/AR de la vitrine s'applique également aux boutons.
   if (entries.length && typeof MutationObserver !== 'undefined') {

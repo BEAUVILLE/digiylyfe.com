@@ -2,6 +2,8 @@
 const {chromium,webkit}=require('playwright');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'../..');
+// Isolated fixture from existing public links; never contacts the live database.
+let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll(/<a class="exampleCard" href="([^"]+)"/g)].map(m=>({public_url:m[1]}));
 (async()=>{
  const engine=process.env.PWA_BROWSER==='webkit'?webkit:chromium;
  const browser=await engine.launch({headless:true});
@@ -9,6 +11,7 @@ const root=path.resolve(__dirname,'../..');
   const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});
   await context.route('**/*',async route=>{
    const u=new URL(route.request().url());
+   if(u.origin==='https://wesqmwjjtsefyjnluosj.supabase.co'&&u.pathname==='/rest/v1/digiy_annuaire_public')return route.fulfill({contentType:'application/json',body:JSON.stringify(publicRows)});
    if(u.origin!=='https://digiylyfe.com')return route.abort();
    let name=u.pathname;if(name.endsWith('/'))name+='index.html';
    const file=path.resolve(root,'.'+name);
@@ -26,6 +29,8 @@ const root=path.resolve(__dirname,'../..');
    await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-${width}.png`,fullPage:true});
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true,`horizontal overflow ${width}`);
    assert.equal(await page.locator('h1').count(),1);
+   assert.equal(await page.locator('.exampleGrid a.exampleCard').count(),publicRows.length);
+   for(const card of await page.locator('.exampleGrid a.exampleCard').all())assert.equal(await card.isVisible(),true);
    assert.equal(await page.locator('#digiyClarity a').count(),2);
    assert.equal(await page.locator('#digiyClarity a').first().getAttribute('href'),'/annuaire.html#recherche');
    assert.equal(await page.locator('#digiyFilmVitrine iframe').getAttribute('src'),null);
@@ -57,6 +62,10 @@ const root=path.resolve(__dirname,'../..');
    assert.equal(await page.locator('a[href="/annuaire.html#inscription"]').count(),1);
    console.log('PASS language route',label);
   }
+  publicRows=[];
+  await page.goto('https://digiylyfe.com/?lang=fr');
+  await page.waitForFunction(()=>document.querySelectorAll('.exampleGrid a.exampleCard,.exampleGrid .digiyRecommendAction').length===0);
+  console.log('PASS withdrawn presence also removes its recommendation link');
   assert.deepEqual(errors,[],'uncaught JavaScript errors');
   console.log('PASS ten language routes, opt-in film and JavaScript');
  }finally{await browser.close();}
