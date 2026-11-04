@@ -1,0 +1,56 @@
+/* Browser emulation against repository files only; no production writes. */
+const {chromium,webkit}=require('playwright');
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'../..');
+(async()=>{
+ const engine=process.env.PWA_BROWSER==='webkit'?webkit:chromium;
+ const browser=await engine.launch({headless:true});
+ try{
+  const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});
+  await context.route('**/*',async route=>{
+   const u=new URL(route.request().url());
+   if(u.origin!=='https://digiylyfe.com')return route.abort();
+   let name=u.pathname;if(name.endsWith('/'))name+='index.html';
+   const file=path.resolve(root,'.'+name);
+   if(!file.startsWith(root+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:'Not found'});
+   const types={'.html':'text/html','.js':'application/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.webp':'image/webp','.avif':'image/avif','.svg':'image/svg+xml'};
+   return route.fulfill({path:file,contentType:types[path.extname(file)]||'application/octet-stream'});
+  });
+  const page=await context.newPage(),errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  fs.mkdirSync('artifacts/vitrine-humaine',{recursive:true});
+  for(const width of [375,390,768,1024,1440]){
+   await page.setViewportSize({width,height:900});
+   await page.goto('https://digiylyfe.com/?lang=fr');
+   await page.waitForTimeout(400);
+   await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-${width}.png`,fullPage:true});
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true,`horizontal overflow ${width}`);
+   assert.equal(await page.locator('h1').count(),1);
+   assert.equal(await page.locator('#digiyClarity a').count(),2);
+   assert.equal(await page.locator('#digiyClarity a').first().getAttribute('href'),'/annuaire.html#recherche');
+   assert.equal(await page.locator('#digiyFilmVitrine iframe').getAttribute('src'),null);
+   const order=await page.evaluate(()=>['digiyClarity','territoires','solutions-pro','digiyFilmVitrine','digiyInternational'].map(id=>document.getElementById(id).getBoundingClientRect().top));
+   assert.deepEqual(order,[...order].sort((a,b)=>a-b));
+   console.log('PASS human home layout',width);
+  }
+  for(const lang of ['fr','en','es','pt','it','de','nl','ar']){
+   await page.locator(`button[data-lang="${lang}"]`).click();
+   assert.equal(await page.locator('html').getAttribute('lang'),lang);
+   assert.equal(await page.locator('html').getAttribute('dir'),lang==='ar'?'rtl':'ltr');
+   assert.ok((await page.locator('#solutionsTitle').innerText()).length>3);
+  }
+  await page.locator('#digiyFilmVitrine summary').click();
+  await page.waitForFunction(()=>document.querySelector('#digiyFilmVitrine iframe').hasAttribute('src'));
+  assert.ok((await page.locator('#digiyFilmVitrine iframe').getAttribute('src')).endsWith('/preview'));
+  for(const [label,selector,target] of [['WO','a.woLangLink','/prototypes/digiy-wolof-v1/prototype.html'],['中文','a[hreflang="zh-CN"]','/zh-CN/']]){
+   await page.goto('https://digiylyfe.com/?lang=fr');
+   await page.locator('.languageStrip '+selector).click();
+   await page.waitForURL('https://digiylyfe.com'+target);
+   assert.equal(await page.locator('a[href="/annuaire.html#recherche"]').count(),1);
+   assert.equal(await page.locator('a[href="/annuaire.html#inscription"]').count(),1);
+   console.log('PASS language route',label);
+  }
+  assert.deepEqual(errors,[],'uncaught JavaScript errors');
+  console.log('PASS ten language routes, opt-in film and JavaScript');
+ }finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});
