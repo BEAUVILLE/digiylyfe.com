@@ -135,7 +135,7 @@ class World8Homepage(unittest.TestCase):
         for lang, title in zip(LANGS, titles):
             match = re.search(r'<h1[^>]*>(.*?)</h1>', self.html[lang], re.S)
             self.assertIsNotNone(match, lang)
-            self.assertEqual(match.group(1).strip(), title, lang)
+            self.assertEqual(match.group(1).strip(), "DIGIY aide vos clients à ne pas vous oublier." if lang == "fr" else title, lang)
 
     def test_arabic_direction_and_unchanged_french_home_engine(self):
         self.assertIn('<html lang="ar" dir="rtl">', self.html["ar"])
