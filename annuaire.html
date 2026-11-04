@@ -261,6 +261,15 @@ if(link){var label=presentationLabel(link),site=make('a','profile',label);site.h
 if(num){var a=make('a','wa','WhatsApp direct');a.href='https://wa.me/'+num;a.target='_blank';a.rel='noopener noreferrer';actions.appendChild(a)}
 if(!actions.children.length&&whatsapp(p.phone_public)){var tel=make('a','','Appeler');tel.href='tel:+'+whatsapp(p.phone_public);actions.appendChild(tel)}
 var personal=make('a','','Lien DIGIY');personal.href=location.origin+location.pathname+'?fiche='+encodeURIComponent(p.id);actions.appendChild(personal);
+// Carte spécifique Niery Art : l'image n'est pas injectée dans la liste gratuite.
+var isNieryArt=normalized(p.display_name||'')==='niery art' ||
+  (normalized(p.display_name||'')==='sekou sow' && normalized(p.city||'').includes('keur massar'));
+if(isNieryArt){
+ var cardLink=make('a','profile','Voir sa carte');
+ cardLink.href='/carte-niery-art.html';
+ cardLink.setAttribute('aria-label','Voir la carte de Niery Art');
+ actions.appendChild(cardLink);
+}
 var signal=make('a','','Signaler une fiche');signal.href='mailto:contact@digiylyfe.com?subject='+encodeURIComponent('Signalement fiche DIGIY')+'&body='+encodeURIComponent('Fiche concernée : '+personal.href+'\nMotif : ');actions.appendChild(signal);
 card.append(name,info,description,actions);root.appendChild(card);
 });
