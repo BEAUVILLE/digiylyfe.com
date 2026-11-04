@@ -51,7 +51,12 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.locator('html').getAttribute('dir'),lang==='ar'?'rtl':'ltr');
    assert.ok((await page.locator('#solutionsTitle').innerText()).length>3);
   }
-  await page.locator('#digiyFilmVitrine summary').click();
+  // Explicitly center a far-down RTL control before testing its real pointer hit.
+  const filmControl=page.locator('#digiyFilmVitrine summary');
+  await filmControl.evaluate(el=>el.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'}));
+  await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-ar-film.png`});
+  console.log('RTL film pointer',await filmControl.evaluate(el=>{const r=el.getBoundingClientRect();const hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return JSON.stringify({rect:{x:r.x,y:r.y,width:r.width,height:r.height},scrollX,scrollY,hit:hit?.tagName,innerWidth,innerHeight});}));
+  await filmControl.click();
   await page.waitForFunction(()=>document.querySelector('#digiyFilmVitrine iframe').hasAttribute('src'));
   assert.ok((await page.locator('#digiyFilmVitrine iframe').getAttribute('src')).endsWith('/preview'));
   for(const [label,selector,target] of [['WO','a.woLangLink','/prototypes/digiy-wolof-v1/prototype.html'],['中文','a[hreflang="zh-CN"]','/zh-CN/']]){
