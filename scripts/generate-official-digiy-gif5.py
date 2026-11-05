@@ -22,7 +22,7 @@ def star(draw,x,y,r,opacity):
 
 def main():
     original=SOURCE.read_bytes()
-    git_blob=sha1(b"blob "+str(len(original)).encode()+b"\\0"+original).hexdigest()
+    git_blob=sha1(b"blob "+str(len(original)).encode()+b"\0"+original).hexdigest()
     assert git_blob=="df008bab3b618b246077c77d75c34b05d6429e38", "La carte officielle source a changé : revue humaine nécessaire"
     raw_before=sha256(original).hexdigest()
     with Image.open(SOURCE) as src:
