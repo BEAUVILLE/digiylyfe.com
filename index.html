@@ -353,10 +353,7 @@
     .digiyCardChoiceGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:860px;margin:0 auto}
     .digiyCardChoiceGrid .digiyCardFrame{width:100%;min-width:0;max-width:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:inherit}
     .digiyCardChoiceGrid .digiyCardFrame strong{font-size:clamp(15px,2.7vw,21px);line-height:1.25}
-    .digiyCardChoiceGrid .digiyCardFrame .cardAnimatedVisual{width:100%;min-height:185px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border-radius:21px;background:linear-gradient(145deg,#0c4c35,#052c22);color:#f5d78f}
-    .cardAnimatedVisual img{width:82px!important;height:82px!important;object-fit:contain;background:#fff;border-radius:15px!important}
-    .cardAnimatedVisual span{font-weight:900;font-size:15px}
-    @media(max-width:640px){.digiyCardChoiceGrid{grid-template-columns:1fr;max-width:430px}.digiyCardChoiceGrid .cardAnimatedVisual{min-height:165px}}
+    @media(max-width:640px){.digiyCardChoiceGrid{grid-template-columns:1fr;max-width:430px}}
 
     .digiyCardActions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
     .digiyCardActions a{
@@ -1605,7 +1602,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       </div>
     </section>
 
-    <section class="digiyCardSection" aria-label="Carte de visite DIGIYLYFE">
+    <section class="digiyCardSection" id="cartes-digiy" aria-label="Carte de visite DIGIYLYFE">
       <h2>🪪 <span data-i18n="cardSecTitle">Carte officielle DIGIYLYFE</span></h2>
       <p><span data-i18n="cardSecText">Ouvrez-la, partagez-la ou gardez-la sur votre téléphone.</span></p>
 
@@ -1619,10 +1616,9 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
         </a>
         <a class="digiyCardFrame" href="/essais/choisir-carte-digiy-babacar.html"
            aria-label="Voir la carte animée et choisir son modèle">
-          <div class="cardAnimatedVisual" aria-hidden="true">
-            <img src="/icon-192.png" alt="" loading="lazy"/>
-            <span>▶ 3 s · QR fixe</span>
-          </div>
+          <img src="/assets/digiy-babacar-animation-stop-20261105.gif"
+               alt="Carte DIGIY animée de Babacar : mouvement puis arrêt sur son QR et ses contacts"
+               loading="lazy" decoding="async" width="507" height="505"/>
           <strong id="digiyAnimatedModelLabel">Modèle animé</strong>
           <span id="digiyAnimatedModelHint">Voir l'animation de Babacar</span>
         </a>
