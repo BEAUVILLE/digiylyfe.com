@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Carte officielle DIGIYLYFE : 5 secondes de lumière, QR et graphisme d'origine intacts."""
 from pathlib import Path
-from hashlib import sha256
+from hashlib import sha256, sha1
 from math import sin, pi
 from PIL import Image, ImageDraw
 
@@ -21,7 +21,10 @@ def star(draw,x,y,r,opacity):
     draw.ellipse((int(x-q),int(y-q),int(x+q),int(y+q)),fill=(255,249,219,min(255,opacity+15)))
 
 def main():
-    raw_before=sha256(SOURCE.read_bytes()).hexdigest()
+    original=SOURCE.read_bytes()
+    git_blob=sha1(b"blob "+str(len(original)).encode()+b"\\0"+original).hexdigest()
+    assert git_blob=="df008bab3b618b246077c77d75c34b05d6429e38", "La carte officielle source a changé : revue humaine nécessaire"
+    raw_before=sha256(original).hexdigest()
     with Image.open(SOURCE) as src:
         rgb=src.convert("RGB")
         ratio=WIDTH/rgb.width
