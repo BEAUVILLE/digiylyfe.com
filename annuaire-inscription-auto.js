@@ -159,14 +159,14 @@
         status.scrollIntoView({behavior:'smooth',block:'center'});
         return;
       }
+      form.reset();
+      field('regCountry').value='sn';
       showPublicLink(result.id);
       manageLink.value=location.origin+location.pathname+'#gestion='+encodeURIComponent(result.id)+'.'+result.token;
       success.hidden=false;
       success.style.cssText='display:block;border:3px solid #14663e;background:#f0fff2;padding:20px;margin-top:18px;';
       status.textContent='Votre inscription gratuite est publiée ! Copiez votre lien public et conservez votre lien privé de gestion.';
       // Keep the confirmation displayed, even if refreshing the directory fails.
-      form.reset();
-      field('regCountry').value='sn';
       restorePublicLink();
       success.scrollIntoView({behavior:'smooth',block:'center'});
       if(typeof window.DIGIY_ANNUAIRE_REFRESH==='function') {
