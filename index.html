@@ -1611,7 +1611,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       <div class="digiyCardActions">
         <a href="https://digiylyfe.com/carte/">📲 <span data-i18n="cardOpenBtn">Ouvrir la carte interactive</span></a>
         <button type="button" id="digiyShareCard" data-i18n="shareCard" style="cursor:pointer;border:1px solid rgba(246,196,83,.6);background:#f6c453;color:#062014;border-radius:12px;padding:12px 16px;font:inherit;font-weight:850;min-height:44px">↗️ Partager ma carte</button>
-        <a href="/essais/choisir-carte-digiy-babacar.html" data-i18n="cardCompareBtn" aria-label="Comparer les deux modèles de cartes DIGIY : classique et animée">🪪 Choisir sa carte · classique ou animée</a>
+        <a href="/essais/choisir-carte-digiy-babacar.html" id="digiyCardCompareLink" aria-label="Choisir sa carte · classique ou animée">🪪 Choisir sa carte · classique ou animée</a>
         <a href="https://digiylyfe.com/">🌍 DIGIYLYFE.COM</a>
       </div>
     </section>
@@ -1731,12 +1731,13 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
     Object.keys(TEXT).forEach(function(code){Object.assign(TEXT[code],(window.DIGIY_HOME_WORLD10_UI||{}).fixedDefaults||{},((window.DIGIY_HOME_WORLD10_UI||{}).helpers||{})[code]||{});});
     Object.keys(window.DIGIY_HOME_WORLD10||{}).forEach(function(code){TEXT[code]=window.DIGIY_HOME_WORLD10[code];});
     var DIGIY_CARD_COMPARE_LABELS={fr:"🪪 Choisir sa carte · classique ou animée",wo:"🪪 Tànnal sa kart · bu dal walla buy yëngu",zh:"🪪 选择名片 · 静态或动态",en:"🪪 Choose your card · classic or animated",es:"🪪 Elige tu tarjeta · clásica o animada",pt:"🪪 Escolha o seu cartão · clássico ou animado",it:"🪪 Scegli il tuo biglietto · classico o animato",de:"🪪 Karte wählen · klassisch oder animiert",nl:"🪪 Kies je kaart · klassiek of geanimeerd",ar:"🪪 اختر بطاقتك · ثابتة أو متحركة"};
-    Object.keys(TEXT).forEach(function(code){TEXT[code].cardCompareBtn=DIGIY_CARD_COMPARE_LABELS[code]||DIGIY_CARD_COMPARE_LABELS.fr;});
 
     function setLang(lang){
       if(lang==='zh-cn')lang='zh';
       if(!TEXT[lang])lang='fr';
       var t=TEXT[lang];
+      var choiceLink=document.getElementById("digiyCardCompareLink");
+      if(choiceLink){var choiceLabel=DIGIY_CARD_COMPARE_LABELS[lang]||DIGIY_CARD_COMPARE_LABELS.fr;choiceLink.textContent=choiceLabel;choiceLink.setAttribute("aria-label",choiceLabel); }
       document.documentElement.lang=lang==='zh'?'zh-CN':lang;
       if(window.digiyHomeWorld10Extras)window.digiyHomeWorld10Extras(lang);
       document.documentElement.dir=lang==='ar'?'rtl':'ltr';
