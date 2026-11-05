@@ -1,0 +1,40 @@
+name: DIGIY Carte officielle — GIF 5s (construction contrôlée)
+on:
+  push:
+    branches:
+      - fix/vitrine-qr-digiy-gif5-20261105
+    paths:
+      - .github/workflows/digiy-official-gif5-build.yml
+      - scripts/generate-official-digiy-gif5.py
+      - tests/test_official_digiy_gif5.py
+      - index.html
+permissions:
+  contents: write
+jobs:
+  fabriquer-et-controler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Installer Pillow
+        run: python -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Générer depuis la carte officielle existante sans modifier son QR
+        run: python scripts/generate-official-digiy-gif5.py
+      - name: Tests du GIF et des routes DIGIY
+        run: python -m unittest discover -s tests -p "test_official_digiy_gif5.py" -v
+      - name: Versionner seulement le nouveau GIF après tests verts
+        shell: bash
+        run: |
+          git config user.name "DIGIYLYFE Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/digiy-carte-officielle-5s.gif
+          if git diff --cached --quiet; then
+            echo "GIF déjà identique, aucun nouveau commit"
+          else
+            git commit -m "asset(vitrine): GIF DIGIY officiel 5s vérifié"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
