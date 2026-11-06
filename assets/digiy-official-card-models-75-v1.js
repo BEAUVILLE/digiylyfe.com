@@ -8,10 +8,58 @@
   var animatedPanel=document.getElementById('digiyCardAnimatedPanel');
   var replay=document.getElementById('digiyOfficialReplay5');
   var image=document.getElementById('digiyOfficialAnimatedImage');
-  if(!btnFixed||!btnAnimated||!fixedPanel||!animatedPanel||!replay||!image)return;
+  var voiceButtons=document.getElementById('digiyVoiceButtons');
+  var thomasButton=document.getElementById('digiySpeakThomas');
+  var amelieButton=document.getElementById('digiySpeakAmelie');
+  var speakingPanel=document.getElementById('digiyCardSpeakingPanel');
+  var speakingVideo=document.getElementById('digiySpeakingVideo');
+  var speakingFinal=document.getElementById('digiySpeakingFinal');
+  if(!btnFixed||!btnAnimated||!fixedPanel||!animatedPanel||!replay||!image||
+     !voiceButtons||!thomasButton||!amelieButton||!speakingPanel||!speakingVideo||!speakingFinal)return;
   var gifURL='/assets/digiy-officiel-animation-75-9x16.gif';
   var finalURL='/assets/digiy-officiel-final-9x16.png';
   var duration=7500,mode='fixed',visible=false,playedOnce=false,serial=0;
+  var activeVoice=null;
+  var voiceMedia={
+    thomas:'/assets/digiy-qr-parlant-thomas-75.mp4',
+    amelie:'/assets/digiy-qr-parlant-amelie-75.mp4'
+  };
+  function voiceReplayLabel(isSpeaking){
+    replay.dataset.voiceActive=isSpeaking?'true':'false';
+    replay.textContent=isSpeaking?(replay.dataset.voiceReplayLabel||'▶ Revoir et réécouter'):
+      (replay.dataset.silentReplayLabel||'▶ Revoir l’animation');
+  }
+  function stopSpeaking(){
+    speakingVideo.pause();
+    speakingVideo.removeAttribute('src');
+    speakingVideo.load();
+    speakingFinal.hidden=true;
+    speakingVideo.hidden=false;
+  }
+  function endSpeaking(){
+    speakingVideo.pause();
+    speakingVideo.hidden=true;
+    speakingFinal.hidden=false; // QR fixe et cliquable après lecture.
+    replay.disabled=false;
+  }
+  function playVoice(voice){
+    if(mode!=='animated'||!voiceMedia[voice])return;
+    serial++; // Annule toute lecture GIF encore en attente.
+    stop();
+    stopSpeaking();
+    activeVoice=voice;
+    playedOnce=true;
+    animatedPanel.hidden=true;
+    speakingPanel.hidden=false;
+    voiceReplayLabel(true);
+    speakingVideo.src=voiceMedia[voice];
+    speakingVideo.currentTime=0;
+    // L'appel vient directement du clic utilisateur : autorise le son sur mobile.
+    var started=speakingVideo.play();
+    if(started&&typeof started.catch==='function')started.catch(endSpeaking);
+  }
+  speakingVideo.addEventListener('ended',endSpeaking);
+  speakingVideo.addEventListener('error',endSpeaking);
   var bytesPromise=null,blobURL=null,stopTimer=0,observer=null;
   function releaseURL(url){if(url)window.setTimeout(function(){URL.revokeObjectURL(url);},250);}
   function stop(){
@@ -59,9 +107,14 @@
   function select(which){
     serial++;
     stop();
+    stopSpeaking();
+    activeVoice=null;
+    voiceReplayLabel(false);
     mode=which;
     fixedPanel.hidden=which!=='fixed';
     animatedPanel.hidden=which!=='animated';
+    speakingPanel.hidden=true;
+    voiceButtons.hidden=which!=='animated';
     replay.hidden=which!=='animated';
     btnFixed.setAttribute('aria-pressed',String(which==='fixed'));
     btnAnimated.setAttribute('aria-pressed',String(which==='animated'));
@@ -69,7 +122,13 @@
   }
   btnFixed.addEventListener('click',function(){select('fixed');});
   btnAnimated.addEventListener('click',function(){select('animated');});
-  replay.addEventListener('click',function(){playedOnce=true;play();});
+  thomasButton.addEventListener('click',function(){playVoice('thomas');});
+  amelieButton.addEventListener('click',function(){playVoice('amelie');});
+  replay.addEventListener('click',function(){
+    playedOnce=true;
+    if(activeVoice)playVoice(activeVoice);
+    else play();
+  });
   var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   select(reduced?'fixed':'animated');
   if('IntersectionObserver' in window){

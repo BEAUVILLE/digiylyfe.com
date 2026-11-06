@@ -348,7 +348,12 @@
       background:linear-gradient(145deg,rgba(246,196,83,.18),rgba(255,255,255,.06));
       box-shadow:0 18px 42px rgba(0,0,0,.30)
     }
-    .digiyCardFrame img{width:100%;height:auto;display:block;border-radius:21px}
+    .digiyCardFrame img,.digiyCardFrame video{width:100%;height:auto;display:block;border-radius:21px}
+    .digiyCardFrame video{aspect-ratio:9/16;object-fit:contain;background:#071a18}
+    #digiyCardSpeakingPanel[hidden],#digiyVoiceButtons[hidden],#digiySpeakingVideo[hidden],#digiySpeakingFinal[hidden]{display:none!important}
+    #digiyVoiceButtons{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:10px auto 14px}
+    #digiyVoiceButtons button{border:1px solid rgba(246,196,83,.75);border-radius:999px;padding:11px 18px;min-height:48px;font:850 13px/1.3 system-ui,-apple-system,sans-serif;color:#08251e;background:linear-gradient(135deg,#fce29a,#d6ab43);cursor:pointer}
+    #digiyVoiceButtons button:focus-visible{outline:3px solid #fff;outline-offset:2px}
     .digiyCardFrame[hidden],.digiyOfficialReplayRow[hidden],#digiyOfficialReplay5[hidden]{display:none!important}
     .digiyCardModelButtons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px auto 16px}
     .digiyCardModelButtons button{min-height:48px;border-radius:999px;padding:10px 18px;cursor:pointer;
@@ -1618,6 +1623,10 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
         <button id="digiyCardChooseFixed" type="button" aria-pressed="true">🪪 Carte fixe</button>
         <button id="digiyCardChooseAnimated" type="button" aria-pressed="false">🎞 Carte animée · 7,5 s</button>
       </div>
+      <div id="digiyVoiceButtons" role="group" aria-label="Choisir la voix du QR" hidden>
+        <button id="digiySpeakThomas" type="button">🔊 Écouter Thomas</button>
+        <button id="digiySpeakAmelie" type="button">🔊 Écouter Amélie</button>
+      </div>
       <a class="digiyCardFrame" id="digiyCardFixedPanel"
          href="https://digiylyfe.com/carte/" aria-label="Ouvrir la carte de visite interactive DIGIYLYFE">
         <img src="https://digiylyfe.com/carte-visite-digiy.png"
@@ -1631,6 +1640,15 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
              alt="Carte DIGIYLYFE 9:16 avec QR officiel ; animation de 7,5 secondes à la demande"
              width="540" height="960" loading="lazy" decoding="async"/>
       </a>
+      <div class="digiyCardFrame" id="digiyCardSpeakingPanel" hidden>
+        <video id="digiySpeakingVideo" width="540" height="960" playsinline preload="none"
+               poster="/assets/digiy-officiel-final-9x16.png" aria-label="Carte DIGIY parlante, 7,5 secondes"></video>
+        <a href="https://digiylyfe.com/carte/" id="digiySpeakingFinal" hidden
+           aria-label="Ouvrir la carte DIGIY officielle après le message vocal">
+          <img src="/assets/digiy-officiel-final-9x16.png" width="540" height="960"
+               alt="QR DIGIY officiel, stable et scannable" loading="lazy"/>
+        </a>
+      </div>
       <div class="digiyOfficialReplayRow">
         <button type="button" id="digiyOfficialReplay5" hidden>▶ Revoir l’animation</button>
       </div>
@@ -1756,16 +1774,16 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
     Object.keys(TEXT).forEach(function(code){Object.assign(TEXT[code],(window.DIGIY_HOME_WORLD10_UI||{}).fixedDefaults||{},((window.DIGIY_HOME_WORLD10_UI||{}).helpers||{})[code]||{});});
     Object.keys(window.DIGIY_HOME_WORLD10||{}).forEach(function(code){TEXT[code]=window.DIGIY_HOME_WORLD10[code];});
     var DIGIY_CARD_LABELS={
-      fr:["🪪 Carte fixe","🎞 Carte animée · 7,5 s","▶ Revoir l’animation"],
-      wo:["🪪 Kart bu dal","🎞 Kart buy yëngu · 7,5 s","▶ Seetaat animation bi"],
-      zh:["🪪 静态名片","🎞 动态名片 · 7.5 秒","▶ 重播动画"],
-      en:["🪪 Static card","🎞 Animated card · 7.5 s","▶ Replay animation"],
-      es:["🪪 Tarjeta fija","🎞 Tarjeta animada · 7,5 s","▶ Repetir animación"],
-      pt:["🪪 Cartão fixo","🎞 Cartão animado · 7,5 s","▶ Repetir animação"],
-      it:["🪪 Biglietto fisso","🎞 Biglietto animato · 7,5 s","▶ Rivedi l’animazione"],
-      de:["🪪 Statische Karte","🎞 Animierte Karte · 7,5 s","▶ Animation erneut ansehen"],
-      nl:["🪪 Vaste kaart","🎞 Geanimeerde kaart · 7,5 s","▶ Animatie opnieuw afspelen"],
-      ar:["🪪 بطاقة ثابتة","🎞 بطاقة متحركة · ٧٫٥ ث","▶ إعادة مشاهدة الحركة"]
+      fr:["🪪 Carte fixe","🎞 Carte animée · 7,5 s","▶ Revoir l’animation","🔊 Écouter Thomas","🔊 Écouter Amélie","▶ Revoir et réécouter"],
+      wo:["🪪 Kart bu dal","🎞 Kart buy yëngu · 7,5 s","▶ Seetaat animation bi","🔊 Déglu Thomas","🔊 Déglu Amélie","▶ Seetaat te déglu"],
+      zh:["🪪 静态名片","🎞 动态名片 · 7.5 秒","▶ 重播动画","🔊 收听 Thomas","🔊 收听 Amélie","▶ 重看并重听"],
+      en:["🪪 Static card","🎞 Animated card · 7.5 s","▶ Replay animation","🔊 Listen to Thomas","🔊 Listen to Amélie","▶ Watch and listen again"],
+      es:["🪪 Tarjeta fija","🎞 Tarjeta animada · 7,5 s","▶ Repetir animación","🔊 Escuchar a Thomas","🔊 Escuchar a Amélie","▶ Volver a ver y escuchar"],
+      pt:["🪪 Cartão fixo","🎞 Cartão animado · 7,5 s","▶ Repetir animação","🔊 Ouvir Thomas","🔊 Ouvir Amélie","▶ Ver e ouvir novamente"],
+      it:["🪪 Biglietto fisso","🎞 Biglietto animato · 7,5 s","▶ Rivedi l’animazione","🔊 Ascolta Thomas","🔊 Ascolta Amélie","▶ Riguarda e riascolta"],
+      de:["🪪 Statische Karte","🎞 Animierte Karte · 7,5 s","▶ Animation erneut ansehen","🔊 Thomas anhören","🔊 Amélie anhören","▶ Erneut ansehen und anhören"],
+      nl:["🪪 Vaste kaart","🎞 Geanimeerde kaart · 7,5 s","▶ Animatie opnieuw afspelen","🔊 Luister naar Thomas","🔊 Luister naar Amélie","▶ Opnieuw kijken en luisteren"],
+      ar:["🪪 بطاقة ثابتة","🎞 بطاقة متحركة · ٧٫٥ ث","▶ إعادة مشاهدة الحركة","🔊 استمع إلى توماس","🔊 استمع إلى أميلي","▶ شاهد واستمع مجدداً"]
     };
     function setLang(lang){
       if(lang==='zh-cn')lang='zh';
@@ -1775,9 +1793,17 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       var fixedBtn=document.getElementById('digiyCardChooseFixed');
       var animatedBtn=document.getElementById('digiyCardChooseAnimated');
       var replay5=document.getElementById('digiyOfficialReplay5');
+      var thomasBtn=document.getElementById('digiySpeakThomas');
+      var amelieBtn=document.getElementById('digiySpeakAmelie');
+      if(thomasBtn)thomasBtn.textContent=cardLabels[3];
+      if(amelieBtn)amelieBtn.textContent=cardLabels[4];
+      if(replay5){
+        replay5.dataset.silentReplayLabel=cardLabels[2];
+        replay5.dataset.voiceReplayLabel=cardLabels[5];
+      }
       if(fixedBtn)fixedBtn.textContent=cardLabels[0];
       if(animatedBtn)animatedBtn.textContent=cardLabels[1];
-      if(replay5)replay5.textContent=cardLabels[2];
+      if(replay5)replay5.textContent=replay5.dataset.voiceActive==='true'?cardLabels[5]:cardLabels[2];
       document.documentElement.lang=lang==='zh'?'zh-CN':lang;
       if(window.digiyHomeWorld10Extras)window.digiyHomeWorld10Extras(lang);
       document.documentElement.dir=lang==='ar'?'rtl':'ltr';
@@ -1900,7 +1926,7 @@ window.DIGIY_FACADE_TWO_WORLDS_V1=true;
 <script src="/assets/digiy-helage-signature-v1.js?v=20260926-generic-v2" defer></script>
 
 
-<script src="/assets/digiy-official-card-models-75-v1.js?v=20261106"></script>
+<script src="/assets/digiy-official-card-models-75-v1.js?v=20261106-voix1"></script>
 <script>
 (function(){
   'use strict';
