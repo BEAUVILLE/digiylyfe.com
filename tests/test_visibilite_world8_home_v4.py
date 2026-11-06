@@ -128,14 +128,25 @@ class World8Homepage(unittest.TestCase):
         self.assertEqual(structured["inLanguage"], "zh-CN")
         self.assertEqual(structured["url"], ORIGIN + "/zh-CN/")
 
-    def test_h1_all_locales_match_existing_world8_home_dictionary(self):
-        """Les titres des 7 portes SEO reprennent les traductions de l'accueil existant."""
-        titles = re.findall(r'"v1Question":"([^"]+)"', self.html["fr"])
-        self.assertEqual(len(titles), len(LANGS), "Dictionnaire HOME V1 doit posséder 8 questions")
-        for lang, title in zip(LANGS, titles):
-            match = re.search(r'<h1[^>]*>(.*?)</h1>', self.html[lang], re.S)
-            self.assertIsNotNone(match, lang)
-            self.assertEqual(match.group(1).strip(), "DIGIY aide vos clients à ne pas vous oublier." if lang == "fr" else title, lang)
+    def test_h1_all_locales_match_bureau_universel_dictionary(self):
+        """Les portes SEO et l'accueil mondial affichent la même signature sans casser le parcours V1."""
+        legacy = re.findall(r'"v1Question":"([^"]+)"', self.html["fr"])
+        self.assertEqual(len(legacy), len(LANGS), "Conserver les 8 questions du parcours territorial V1")
+        source = re.search(r'var BUREAU_UNIVERSEL_COPY=(\\{[^\\n]+?\\});', self.html["fr"])
+        self.assertIsNotNone(source, "La signature traduite doit exister sur l'accueil principal")
+        translations = json.loads(source.group(1))
+        self.assertEqual(translations["fr"]["clarTitle"], "Chaque activité mérite sa place dans le monde.")
+        self.assertEqual(translations["fr"]["clarKicker"], "DIGIYLYFE · LE BUREAU UNIVERSEL")
+        for lang in LANGS:
+            with self.subTest(lang=lang):
+                self.assertIn(lang, translations)
+                match = re.search(r'<h1[^>]*>(.*?)</h1>', self.html[lang], re.S)
+                self.assertIsNotNone(match, lang)
+                self.assertEqual(match.group(1).strip(), translations[lang]["clarTitle"], lang)
+                self.assertIn(translations[lang]["clarKicker"], self.html[lang])
+                self.assertIn(translations[lang]["metaTitle"], self.html[lang])
+        zh = (ROOT / "zh-CN/index.html").read_text(encoding="utf-8")
+        self.assertIn(translations["zh"]["clarTitle"], zh)
 
     def test_arabic_direction_and_unchanged_french_home_engine(self):
         self.assertIn('<html lang="ar" dir="rtl">', self.html["ar"])
