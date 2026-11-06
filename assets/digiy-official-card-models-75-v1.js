@@ -9,8 +9,8 @@
   var replay=document.getElementById('digiyOfficialReplay5');
   var image=document.getElementById('digiyOfficialAnimatedImage');
   if(!btnFixed||!btnAnimated||!fixedPanel||!animatedPanel||!replay||!image)return;
-  var gifURL='/assets/digiy-carte-vitrine-9x16-7_5s.gif';
-  var finalURL='/assets/digiy-carte-vitrine-9x16-qr-final.png';
+  var gifURL='/assets/digiy-officiel-animation-75-9x16.gif';
+  var finalURL='/assets/digiy-officiel-final-9x16.png';
   var duration=7500,mode='fixed',visible=false,playedOnce=false,serial=0;
   var bytesPromise=null,blobURL=null,stopTimer=0,observer=null;
   function releaseURL(url){if(url)window.setTimeout(function(){URL.revokeObjectURL(url);},250);}
