@@ -74,12 +74,12 @@
   select(reduced?'fixed':'animated');
   if('IntersectionObserver' in window){
     observer=new IntersectionObserver(function(entries){
-      if(entries.some(function(e){return e.isIntersecting&&e.intersectionRatio>=0.35;})){
+      if(entries.some(function(e){return e.isIntersecting&&e.intersectionRatio>=0.10;})){
         visible=true;observer.disconnect();observer=null;
         if(mode==='animated'&&!playedOnce){playedOnce=true;play();}
       }
-    },{threshold:[0,0.35]});
-    observer.observe(animatedPanel.parentElement);
+    },{threshold:[0,0.10]});
+    observer.observe(animatedPanel);
   }else{
     visible=true; // Bouton replay reste utilisable si IntersectionObserver n'existe pas.
   }
