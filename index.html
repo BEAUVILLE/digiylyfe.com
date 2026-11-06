@@ -349,6 +349,13 @@
       box-shadow:0 18px 42px rgba(0,0,0,.30)
     }
     .digiyCardFrame img{width:100%;height:auto;display:block;border-radius:21px}
+    .digiyCardFrame[hidden],.digiyOfficialReplayRow[hidden],#digiyOfficialReplay5[hidden]{display:none!important}
+    .digiyCardModelButtons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px auto 16px}
+    .digiyCardModelButtons button{min-height:48px;border-radius:999px;padding:10px 18px;cursor:pointer;
+      border:1px solid rgba(246,196,83,.65);background:rgba(255,255,255,.08);color:#fff3cf;font:900 13px/1.3 system-ui,sans-serif}
+    .digiyCardModelButtons button[aria-pressed="true"]{color:#06140f;
+      background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green))}
+    .digiyCardModelButtons button:focus-visible{outline:3px solid #fff;outline-offset:2px}
 
     .digiyOfficialReplayRow{display:flex;justify-content:center;margin:12px auto 0}
     #digiyOfficialReplay5{min-height:48px;padding:10px 18px;border-radius:999px;
@@ -1607,20 +1614,26 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
     <section class="digiyCardSection" aria-label="Carte de visite DIGIYLYFE">
       <h2>🪪 <span data-i18n="cardSecTitle">Carte officielle DIGIYLYFE</span></h2>
       <p><span data-i18n="cardSecText">Ouvrez-la, partagez-la ou gardez-la sur votre téléphone.</span></p>
-
-      <a class="digiyCardFrame"
-         href="https://digiylyfe.com/carte/"
-         aria-label="Ouvrir la carte de visite interactive DIGIYLYFE">
-        <img id="digiyOfficialGif5" src="https://digiylyfe.com/carte-visite-digiy.png"
-             data-final-src="https://digiylyfe.com/carte-visite-digiy.png"
-             data-gif-src="/assets/digiy-carte-officielle-5s.gif"
-             alt="Carte de visite officielle DIGIYLYFE : QR stable"
-             loading="lazy" decoding="async"/>
+      <div class="digiyCardModelButtons" role="group" aria-label="Choix de la carte">
+        <button id="digiyCardChooseFixed" type="button" aria-pressed="true">🪪 Carte fixe</button>
+        <button id="digiyCardChooseAnimated" type="button" aria-pressed="false">🎞 Carte animée · 7,5 s</button>
+      </div>
+      <a class="digiyCardFrame" id="digiyCardFixedPanel"
+         href="https://digiylyfe.com/carte/" aria-label="Ouvrir la carte de visite interactive DIGIYLYFE">
+        <img src="https://digiylyfe.com/carte-visite-digiy.png"
+             alt="Carte de visite officielle fixe DIGIYLYFE avec QR authentique"
+             loading="lazy"/>
+      </a>
+      <a class="digiyCardFrame" id="digiyCardAnimatedPanel" hidden
+         href="https://digiylyfe.com/carte/" aria-label="Ouvrir la carte de visite interactive DIGIYLYFE">
+        <img id="digiyOfficialAnimatedImage"
+             src="/assets/digiy-officiel-final-9x16.png"
+             alt="Carte DIGIYLYFE 9:16 avec QR officiel ; animation de 7,5 secondes à la demande"
+             width="540" height="960" loading="lazy" decoding="async"/>
       </a>
       <div class="digiyOfficialReplayRow">
-        <button type="button" id="digiyOfficialReplay5">▶ Revoir l’animation · 5 s</button>
+        <button type="button" id="digiyOfficialReplay5" hidden>▶ Revoir l’animation</button>
       </div>
-
       <div class="digiyCardActions">
         <a href="https://digiylyfe.com/carte/">📲 <span data-i18n="cardOpenBtn">Ouvrir la carte interactive</span></a>
         <button type="button" id="digiyShareCard" data-i18n="shareCard" style="cursor:pointer;border:1px solid rgba(246,196,83,.6);background:#f6c453;color:#062014;border-radius:12px;padding:12px 16px;font:inherit;font-weight:850;min-height:44px">↗️ Partager ma carte</button>
@@ -1742,24 +1755,29 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
     Object.keys(SERVICES_V2).forEach(function(l){Object.assign(TEXT[l],SERVICES_V2[l]);});
     Object.keys(TEXT).forEach(function(code){Object.assign(TEXT[code],(window.DIGIY_HOME_WORLD10_UI||{}).fixedDefaults||{},((window.DIGIY_HOME_WORLD10_UI||{}).helpers||{})[code]||{});});
     Object.keys(window.DIGIY_HOME_WORLD10||{}).forEach(function(code){TEXT[code]=window.DIGIY_HOME_WORLD10[code];});
-    var DIGIY_OFFICIAL_REPLAY5_LABELS={
-      fr:"▶ Revoir l’animation · 5 s",
-      wo:"▶ Seetaat kart bi buy yëngu · 5 s",
-      zh:"▶ 重播动画 · 5 秒",
-      en:"▶ Replay animation · 5 s",
-      es:"▶ Repetir animación · 5 s",
-      pt:"▶ Repetir animação · 5 s",
-      it:"▶ Rivedi l’animazione · 5 s",
-      de:"▶ Animation erneut ansehen · 5 s",
-      nl:"▶ Animatie opnieuw afspelen · 5 s",
-      ar:"▶ إعادة مشاهدة الحركة · ٥ ث"
+    var DIGIY_CARD_LABELS={
+      fr:["🪪 Carte fixe","🎞 Carte animée · 7,5 s","▶ Revoir l’animation"],
+      wo:["🪪 Kart bu dal","🎞 Kart buy yëngu · 7,5 s","▶ Seetaat animation bi"],
+      zh:["🪪 静态名片","🎞 动态名片 · 7.5 秒","▶ 重播动画"],
+      en:["🪪 Static card","🎞 Animated card · 7.5 s","▶ Replay animation"],
+      es:["🪪 Tarjeta fija","🎞 Tarjeta animada · 7,5 s","▶ Repetir animación"],
+      pt:["🪪 Cartão fixo","🎞 Cartão animado · 7,5 s","▶ Repetir animação"],
+      it:["🪪 Biglietto fisso","🎞 Biglietto animato · 7,5 s","▶ Rivedi l’animazione"],
+      de:["🪪 Statische Karte","🎞 Animierte Karte · 7,5 s","▶ Animation erneut ansehen"],
+      nl:["🪪 Vaste kaart","🎞 Geanimeerde kaart · 7,5 s","▶ Animatie opnieuw afspelen"],
+      ar:["🪪 بطاقة ثابتة","🎞 بطاقة متحركة · ٧٫٥ ث","▶ إعادة مشاهدة الحركة"]
     };
     function setLang(lang){
       if(lang==='zh-cn')lang='zh';
       if(!TEXT[lang])lang='fr';
       var t=TEXT[lang];
-      var replay5=document.getElementById("digiyOfficialReplay5");
-      if(replay5)replay5.textContent=DIGIY_OFFICIAL_REPLAY5_LABELS[lang]||DIGIY_OFFICIAL_REPLAY5_LABELS.fr;
+      var cardLabels=DIGIY_CARD_LABELS[lang]||DIGIY_CARD_LABELS.fr;
+      var fixedBtn=document.getElementById('digiyCardChooseFixed');
+      var animatedBtn=document.getElementById('digiyCardChooseAnimated');
+      var replay5=document.getElementById('digiyOfficialReplay5');
+      if(fixedBtn)fixedBtn.textContent=cardLabels[0];
+      if(animatedBtn)animatedBtn.textContent=cardLabels[1];
+      if(replay5)replay5.textContent=cardLabels[2];
       document.documentElement.lang=lang==='zh'?'zh-CN':lang;
       if(window.digiyHomeWorld10Extras)window.digiyHomeWorld10Extras(lang);
       document.documentElement.dir=lang==='ar'?'rtl':'ltr';
@@ -1882,43 +1900,7 @@ window.DIGIY_FACADE_TWO_WORLDS_V1=true;
 <script src="/assets/digiy-helage-signature-v1.js?v=20260926-generic-v2" defer></script>
 
 
-<script id="digiy-official-card-gif5">
-(function(){
-  'use strict';
-  var card=document.getElementById('digiyOfficialGif5');
-  var replay=document.getElementById('digiyOfficialReplay5');
-  if(!card||!replay)return;
-  var count=0,stopTimer=0,observer=null;
-  function showFinal(){
-    clearTimeout(stopTimer);
-    card.onload=null;card.onerror=null;
-    if(card.isConnected)card.src=card.dataset.finalSrc;
-    replay.disabled=false;
-  }
-  function play(){
-    if(observer){observer.disconnect();observer=null;}
-    clearTimeout(stopTimer);
-    replay.disabled=true;
-    card.onload=function(){
-      card.onload=null;
-      stopTimer=setTimeout(showFinal,5000);
-    };
-    card.onerror=showFinal;
-    card.src=card.dataset.gifSrc+'?play='+(++count);
-  }
-  replay.addEventListener('click',play);
-  if('IntersectionObserver' in window){
-    observer=new IntersectionObserver(function(entries){
-      if(entries.some(function(e){return e.isIntersecting&&e.intersectionRatio>=0.35;})){
-        observer.disconnect();observer=null;
-        if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-        play();
-      }
-    },{threshold:[0,0.35]});
-    observer.observe(card);
-  }
-})();
-</script>
+<script src="/assets/digiy-official-card-models-75-v1.js?v=20261106"></script>
 <script>
 (function(){
   'use strict';

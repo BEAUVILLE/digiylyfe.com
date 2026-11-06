@@ -1,0 +1,26 @@
+name: Carte DIGIY 7,5s · QR et double modèle
+on:
+  pull_request:
+    paths:
+      - index.html
+      - assets/digiy-official-card-models-75-v1.js
+      - assets/digiy-officiel-animation-75-9x16.gif
+      - assets/digiy-officiel-final-9x16.png
+      - tests/test_official_digiy_gif5.py
+      - .github/workflows/digiy-qr-75-check.yml
+permissions:
+  contents: read
+jobs:
+  carte-qr-75:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Installer Pillow (test image / GIF)
+        run: python -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Contrôler durée 7,5 s, vrai QR final et liens
+        run: python -m unittest discover -s tests -p 'test_official_digiy_gif5.py' -v
+      - name: Valider syntaxe JavaScript du replay
+        run: node --check assets/digiy-official-card-models-75-v1.js
