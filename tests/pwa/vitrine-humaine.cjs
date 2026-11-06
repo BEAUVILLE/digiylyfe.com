@@ -73,12 +73,13 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   const digits=s=>s.replace(/[^0-9]/g,'');
   const originalPrice=digits(await page.locator('.digiyHomeMembershipPrice').first().innerText());
   const frenchTitle=await page.locator('h1').innerText();
-  for(const [lang,title] of [['wo','DIGIY dafay tax sa kiliyaan yi bañ laa fàtte.'],['zh','DIGIY 帮助您的客户记住您。']]){
+  for(const [lang,title,remember] of [['wo','LE BUREAU UNIVERSEL','DIGIY dafay tax sa kiliyaan yi bañ laa fàtte.'],['zh','每一项经营活动都值得在世界上拥有一席之地。','DIGIY 帮助客户再次找到您。']]){
    await page.locator(`.languageStrip button[data-lang="${lang}"]`).click();
    await page.waitForFunction(l=>document.documentElement.lang===(l==='zh'?'zh-CN':l),lang);
    assert.equal(new URL(page.url()).pathname,homePath);
    assert.equal(new URL(page.url()).searchParams.get('lang'),lang);
    assert.equal(await page.locator('h1').innerText(),title);
+   assert.equal(await page.locator('#digiyClarity .digiyClarityRemember').innerText(),remember);
    assert.equal(await page.locator(`button[data-lang="${lang}"]`).getAttribute('aria-pressed'),'true');
    assert.equal(await page.evaluate(()=>Math.abs(innerWidth-390)<=2),true);
    assert.equal(await page.locator('.ownerModulesLang:visible').count(),1);
