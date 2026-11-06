@@ -865,6 +865,40 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
   .digiyClarityStepsList p{margin:4px 0 0;font-size:11px;line-height:1.4;color:#d3e7d9}
   @media(max-width:650px){.digiyClarityGrid{grid-template-columns:1fr}.digiyClarityCard{padding:12px;gap:7px}.digiyClarityCard p{font-size:12px}.digiyClarityStepsList{grid-template-columns:1fr;gap:13px}.digiyClarity{padding:14px 12px}.digiyClaritySteps{padding:13px 12px}}
   html[dir="rtl"] .digiyClarity,html[dir="rtl"] .digiyClaritySteps{direction:rtl;text-align:right}
+
+  /* BUREAU UNIVERSEL — signature d'accueil mise à l'honneur, sans changer parcours ni traductions. */
+  #digiyClarity.digiyClarity{
+    position:relative;isolation:isolate;overflow:hidden;
+    margin:14px 0 22px;padding:clamp(24px,5vw,58px);
+    border:1px solid rgba(246,196,83,.75);border-radius:28px;
+    background:radial-gradient(circle at 88% 10%,rgba(34,197,94,.24),transparent 36%),
+      radial-gradient(circle at 0% 100%,rgba(246,196,83,.11),transparent 45%),
+      linear-gradient(145deg,#061b13 0%,#092e20 56%,#03150f 100%);
+    color:#fffaf0;box-shadow:0 25px 65px rgba(0,0,0,.32);
+  }
+  #digiyClarity::before{content:"";position:absolute;inset:13px;z-index:-1;pointer-events:none;border:1px solid rgba(246,196,83,.12);border-radius:19px}
+  #digiyClarity .digiyClarityKicker{display:inline-block;padding:9px 14px;border:1px solid rgba(246,196,83,.65);border-radius:999px;background:rgba(246,196,83,.12);color:#ffe3a0;font-size:clamp(12px,1.65vw,15px);font-weight:950;letter-spacing:.12em;text-transform:uppercase}
+  #digiyClarity #digiyClarityTitle{max-width:920px;margin:24px 0 16px;color:#fffdf5;font-size:clamp(34px,6.7vw,76px);line-height:1.06;letter-spacing:-.045em;font-weight:950;text-wrap:balance}
+  #digiyClarity .digiyClarityLead{max-width:850px;margin:0 0 30px;color:#e8f4e8;font-size:clamp(17px,2.45vw,23px);line-height:1.45;font-weight:650}
+  #digiyClarity .digiyClarityGrid{gap:clamp(12px,2vw,20px)}
+  #digiyClarity .digiyClarityCard{padding:clamp(19px,2.8vw,30px);gap:15px;border-radius:20px;background:#fffaf0;border:1px solid rgba(246,196,83,.42);box-shadow:0 15px 35px rgba(0,0,0,.14)}
+  #digiyClarity .digiyClarityCard h2{font-size:clamp(20px,2.6vw,27px);color:#103b2c}
+  #digiyClarity .digiyClarityCard p{font-size:clamp(14px,1.65vw,16px);line-height:1.5;color:#355246}
+  #digiyClarity .digiyClarityCard .digiyClarityRemember{flex:0;font-weight:850;color:#096c47}
+  #digiyClarity .digiyClarityCta{min-height:54px;padding:13px 18px;font-size:clamp(14px,1.65vw,16px);text-decoration:none;border-radius:13px}
+  #digiyClarity .digiyClarityPrimary{background:#0b6747;color:#fff}
+  #digiyClarity .digiyClaritySecondary{background:#f6c453;color:#132b1e;border:2px solid #dba93b}
+  #digiyClarity .digiyClarityNote{margin:22px auto 0;max-width:900px;color:#d7e7db;font-size:clamp(12px,1.5vw,14px);line-height:1.6}
+  #digiyClarity a:focus-visible{outline:3px solid #ffe49a;outline-offset:4px}
+  @media(max-width:650px){
+    #digiyClarity.digiyClarity{margin:10px 0 20px;padding:25px 17px;border-radius:22px}
+    #digiyClarity::before{inset:7px;border-radius:16px}
+    #digiyClarity #digiyClarityTitle{margin:20px 0 14px;font-size:clamp(33px,9vw,48px)}
+    #digiyClarity .digiyClarityLead{margin-bottom:23px;font-size:17px}
+    #digiyClarity .digiyClarityCard{padding:20px;gap:11px}
+    #digiyClarity .digiyClarityGrid{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){#digiyClarity *{scroll-behavior:auto}}
 </style>
 
 <style id="digiy-treasure-v1">
