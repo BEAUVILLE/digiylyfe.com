@@ -36,7 +36,20 @@ const root=path.resolve(__dirname,'../..');
  page.on('request',req=>{if(req.url().includes('/assets/digiy-officiel-animation-75-9x16.gif'))gifRequests++});
  assert.equal(await choiceAnimated.getAttribute('aria-pressed'),'true');
  await animatedImage.scrollIntoViewIfNeeded();
- await page.waitForFunction(()=>document.querySelector('#digiyOfficialAnimatedImage')?.src.startsWith('blob:'),null,{timeout:15000});
+ await page.waitForFunction(()=>document.querySelector('#digiyOfficialAnimatedImage')?.src.startsWith('blob:'),null,{timeout:13000}).catch(async err=>{
+   const diagnostic=await page.evaluate(async()=>{
+     const i=document.querySelector('#digiyOfficialAnimatedImage');
+     const p=document.querySelector('#digiyCardAnimatedPanel');
+     const b=document.querySelector('#digiyCardChooseAnimated');
+     const rect=p.getBoundingClientRect();
+     let asset;
+     try{const r=await fetch('/assets/digiy-officiel-animation-75-9x16.gif',{cache:'no-store'});asset={ok:r.ok,status:r.status,type:r.headers.get('content-type'),size:(await r.arrayBuffer()).byteLength};}
+     catch(e){asset={error:String(e)};}
+     return {src:i?.src,complete:i?.complete,naturalWidth:i?.naturalWidth,selected:b?.getAttribute('aria-pressed'),panelHidden:p?.hidden,rect:{top:rect.top,bottom:rect.bottom,width:rect.width,height:rect.height},winHeight:innerHeight,asset};
+   });
+   console.error('DIGIY_SAFARI_ANIMATION_DIAGNOSTIC',JSON.stringify(diagnostic));
+   throw err;
+ });
  await page.waitForFunction(()=>document.querySelector('#digiyOfficialAnimatedImage')?.src.endsWith('/assets/digiy-officiel-final-9x16.png'),null,{timeout:15000});
  assert.equal(await replay5.isVisible(),true);
  await replay5.click();
