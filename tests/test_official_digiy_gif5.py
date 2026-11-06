@@ -1,53 +1,68 @@
-"""Le GIF de vitrine n'altère pas le QR officiel ni les routes publiques DIGIY."""
+"""Garde-fous de la carte officielle DIGIY : 2 modèles, 7,5 s, QR vrai, sans boucle."""
 from pathlib import Path
 from hashlib import sha1
-from PIL import Image
 import unittest
+from PIL import Image
 
 ROOT=Path(__file__).resolve().parents[1]
-PAGE=(ROOT/"index.html").read_text(encoding="utf-8")
-SOURCE=ROOT/"carte-visite-digiy.png"
-ASSET=ROOT/"assets/digiy-carte-officielle-5s.gif"
+HOME=(ROOT/"index.html").read_text(encoding="utf-8")
+JS=(ROOT/"assets/digiy-official-card-models-75-v1.js").read_text(encoding="utf-8")
+OFFICIAL=ROOT/"carte-visite-digiy.png"
+GIF=ROOT/"assets/digiy-officiel-animation-75-9x16.gif"
+FINAL=ROOT/"assets/digiy-officiel-final-9x16.png"
 
-class OfficialDigiyGif5(unittest.TestCase):
-    def test_original_qr_file_exactly_preserved(self):
-        data=SOURCE.read_bytes()
-        blob_sha=sha1(b"blob "+str(len(data)).encode()+b"\0"+data).hexdigest()
-        self.assertEqual(blob_sha,"df008bab3b618b246077c77d75c34b05d6429e38")
-        self.assertIn('src="https://digiylyfe.com/carte-visite-digiy.png"',PAGE)
-        self.assertIn('data-final-src="https://digiylyfe.com/carte-visite-digiy.png"',PAGE)
-    def test_true_gif_five_seconds_no_loop(self):
-        self.assertTrue(ASSET.is_file())
-        with Image.open(ASSET) as gif:
+def git_blob_sha(path):
+    content=path.read_bytes()
+    return sha1(b"blob "+str(len(content)).encode()+b"\0"+content).hexdigest()
+
+class OfficialDigiyTwoCards(unittest.TestCase):
+    def test_original_card_unchanged(self):
+        self.assertEqual(git_blob_sha(OFFICIAL),"df008bab3b618b246077c77d75c34b05d6429e38")
+        self.assertIn('src="https://digiylyfe.com/carte-visite-digiy.png"',HOME)
+        self.assertIn('href="https://digiylyfe.com/carte/"',HOME)
+        self.assertIn("var url='https://digiylyfe.com/carte/';",HOME)
+        self.assertIn('id="digiyShareCard"',HOME)
+    def test_gif_75s_9x16_real_frames_no_loop(self):
+        self.assertEqual(git_blob_sha(GIF),"03995a492eb0c1fc70fbbc427756f850729ffff4")
+        with Image.open(GIF) as gif:
             self.assertEqual(gif.format,"GIF")
-            self.assertGreaterEqual(gif.n_frames,10)
-            self.assertIsNone(gif.info.get("loop"))
-            total=0
+            self.assertEqual(gif.size,(540,960))
+            self.assertEqual(gif.info.get("loop"),None)
+            self.assertEqual(gif.n_frames,8)
+            delays=[]
             for i in range(gif.n_frames):
                 gif.seek(i)
-                total+=gif.info.get("duration",0)
-            self.assertEqual(total,5000)
-    def test_mobile_replay_and_stable_final(self):
-        self.assertIn('id="digiyOfficialReplay5"',PAGE)
-        self.assertIn('id="digiyOfficialGif5"',PAGE)
-        self.assertIn('data-gif-src="/assets/digiy-carte-officielle-5s.gif"',PAGE)
-        self.assertIn("replay.addEventListener('click',play)",PAGE)
-        self.assertIn("card.src=card.dataset.gifSrc+'?play='+(++count)",PAGE)
-        self.assertIn("stopTimer=setTimeout(showFinal,5000)",PAGE)
-        self.assertIn("card.src=card.dataset.finalSrc",PAGE)
-        self.assertIn("IntersectionObserver",PAGE)
-        self.assertIn("prefers-reduced-motion: reduce",PAGE)
-    def test_original_card_share_pwa_routes(self):
-        self.assertIn('href="https://digiylyfe.com/carte/"',PAGE)
-        self.assertIn('id="digiyShareCard"',PAGE)
-        self.assertIn("var url='https://digiylyfe.com/carte/';",PAGE)
-        self.assertIn('href="https://digiylyfe.com/"',PAGE)
-        self.assertNotIn("digiy-babacar-animation-stop-20261105.gif",PAGE)
-    def test_all_ten_language_replay_labels(self):
-        for language in ("fr","wo","zh","en","es","pt","it","de","nl","ar"):
-            self.assertIn('      '+language+':"▶', PAGE)
-        self.assertIn("DIGIY_OFFICIAL_REPLAY5_LABELS[lang]",PAGE)
-        self.assertNotIn('data-i18n="digiyOfficialReplay5"',PAGE)
+                delays.append(gif.info.get("duration",0))
+        self.assertEqual(delays,[850,800,750,700,650,650,600,2500])
+        self.assertEqual(sum(delays),7500)
+        self.assertGreater(GIF.stat().st_size,100_000,"Une image seule ne doit pas passer pour un GIF")
+    def test_final_qr_asset_is_approved_and_stable(self):
+        self.assertEqual(git_blob_sha(FINAL),"7797e35e9ac3e7b50bc202781715b7830f589583")
+        with Image.open(FINAL) as picture:
+            self.assertEqual(picture.format,"PNG")
+            self.assertEqual(picture.size,(540,960))
+        self.assertIn('src="/assets/digiy-officiel-final-9x16.png"',HOME)
+        self.assertIn("var finalURL='/assets/digiy-officiel-final-9x16.png'",JS)
+        self.assertIn("image.src=finalURL",JS)
+    def test_two_models_and_instant_replay_without_refetch(self):
+        for key in ("digiyCardChooseFixed","digiyCardChooseAnimated","digiyCardFixedPanel","digiyCardAnimatedPanel","digiyOfficialReplay5"):
+            self.assertIn('id="'+key+'"',HOME)
+        self.assertIn("var duration=7500",JS)
+        self.assertIn("cache:'force-cache'",JS)
+        self.assertIn("new Blob([bytes],{type:'image/gif'})",JS)
+        self.assertIn("URL.createObjectURL",JS)
+        self.assertIn("replay.addEventListener('click'",JS)
+        self.assertIn("IntersectionObserver",JS)
+        self.assertIn("replay.hidden=which!=='animated'",JS)
+        self.assertIn("window.matchMedia('(prefers-reduced-motion: reduce)')",JS)
+        self.assertNotIn("?play=",JS)
+        self.assertNotIn('data-gif-src="/assets/digiy-carte-officielle-5s.gif"',HOME)
+    def test_ten_languages_and_no_babacar_mix(self):
+        for lang in ("fr","wo","zh","en","es","pt","it","de","nl","ar"):
+            self.assertIn('      '+lang+':["🪪',HOME)
+        self.assertIn("DIGIY_CARD_LABELS[lang]",HOME)
+        self.assertNotIn('digiy-babacar-animation-stop-20261105.gif',HOME)
+        self.assertNotIn('id="digiy-official-card-gif5"',HOME)
 
 if __name__=="__main__":
     unittest.main()
