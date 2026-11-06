@@ -132,7 +132,7 @@ class World8Homepage(unittest.TestCase):
         """Les portes SEO et l'accueil mondial affichent la même signature sans casser le parcours V1."""
         legacy = re.findall(r'"v1Question":"([^"]+)"', self.html["fr"])
         self.assertEqual(len(legacy), len(LANGS), "Conserver les 8 questions du parcours territorial V1")
-        source = re.search(r'var BUREAU_UNIVERSEL_COPY=(\\{[^\\n]+?\\});', self.html["fr"])
+        source = re.search(r'var BUREAU_UNIVERSEL_COPY=(\{[^\n]+?\});', self.html["fr"])
         self.assertIsNotNone(source, "La signature traduite doit exister sur l'accueil principal")
         translations = json.loads(source.group(1))
         self.assertEqual(translations["fr"]["clarTitle"], "Chaque activité mérite sa place dans le monde.")
