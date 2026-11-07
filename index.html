@@ -109,7 +109,7 @@
     .app{width:min(100%,980px);margin:auto;padding:10px 12px 44px}
 
     .topbar{
-      position:sticky;top:0;z-index:30;display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:center;
+      position:sticky;top:0;z-index:30;display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:center;
       padding:7px 0 5px;background:linear-gradient(180deg,rgba(3,18,13,.97),rgba(3,18,13,.80),transparent);
       backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)
     }
@@ -118,6 +118,8 @@
     .brand strong{display:block;font-size:clamp(20px,5.3vw,32px);line-height:.96;font-weight:1000;letter-spacing:.05em}
     .brand small{display:block;margin-top:5px;color:var(--soft);font-size:10px;line-height:1.1;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
 
+    .digiyMenuAccess{min-height:44px;padding:10px 13px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:14px;border:1px solid rgba(246,196,83,.75);background:linear-gradient(135deg,#ffe5a0,#f6c453);color:#08251a;font-weight:950;font-size:13px;white-space:nowrap;box-shadow:0 8px 19px rgba(0,0,0,.20)}
+    .digiyMenuAccess:hover{filter:brightness(1.06)}
     .languageStrip{display:flex;align-items:center;justify-content:center;gap:6px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
     .languageStrip::-webkit-scrollbar{display:none}
     .langBtn{height:42px;min-width:41px;padding:0 9px;border-radius:999px;border:1px solid rgba(246,196,83,.38);background:rgba(255,255,255,.075);font-size:10px;font-weight:1000;cursor:pointer;flex:0 0 auto}
@@ -397,7 +399,7 @@
     }
     @media(max-width:560px){
       .app{padding-left:9px;padding-right:9px}
-      .topbar{grid-template-columns:46px 1fr}.logo{width:46px;height:46px;border-radius:15px}.brand strong{font-size:22px}.brand small{font-size:8.5px}
+      .topbar{grid-template-columns:46px minmax(0,1fr) auto}.logo{width:46px;height:46px;border-radius:15px}.brand strong{font-size:22px}.brand small{font-size:8.5px}
       .languageStrip{justify-content:center;flex-wrap:wrap;overflow-x:visible;row-gap:6px;padding-bottom:7px}
       .langBtn{min-width:37px;height:39px;padding:0 7px;font-size:9.5px}
       .hero{padding:17px 11px 13px;border-radius:24px}.hero h2{font-size:clamp(31px,9vw,43px)}.heroLead{font-size:12.8px}
@@ -1109,6 +1111,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
     <header class="topbar">
       <a class="logo" href="#haut" aria-label="Accueil DIGIYLYFE"><img src="https://digiylyfe.com/icon-192.png?v=20260713" alt="DIGIYLYFE"/></a>
       <div class="brand"><strong>DIGIYLYFE</strong><small data-i18n="brandTag">Le terrain garde la main</small></div>
+      <a class="digiyMenuAccess" href="/menu-universel-v1.html" aria-label="Menu complet DIGIYLYFE — toutes les pages">☰ <span>Menu</span></a>
     </header>
 
     <nav class="languageStrip" aria-label="Choisir la langue / Choose language">
