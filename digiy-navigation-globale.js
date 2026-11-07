@@ -135,7 +135,7 @@
     ['⭐ MON DIGIY','https://digiylyfe.com/mon-digiy.html'],
     ['🗺️ EXPLORE','https://explore.digiylyfe.com/'],
     ['▣ Pack Présence Terrain','https://digiylyfe.com/presence-terrain.html',true],
-    ['📊 Voir les offres','https://digiylyfe.com/tarif-entreprise-petite-cote.html#choisir'],
+    ['📊 Tarifs adhésion','https://digiylyfe.com/tarifs-adherents-1.html'],
     ['🤝 Adhésion','https://digiylyfe.com/tarifs-adherents-1.html',true],
     ['🏛️ Architecture','https://digiylyfe.com/architecture-digiylyfe.html'],
     ['🌍 Accueil',HOME]
