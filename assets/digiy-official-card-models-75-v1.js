@@ -131,15 +131,37 @@
   });
   var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   select(reduced?'fixed':'animated');
+  // WebKit peut retarder l'IntersectionObserver sur une image hors ecran.
+  // Le controle de geometrie est un secours, declenche seulement quand la carte
+  // est effectivement visible. Ne change ni le QR, ni les 7,5 s, ni le GIF en cache.
+  function cardInViewport(){
+    if(animatedPanel.hidden)return false;
+    var r=animatedPanel.getBoundingClientRect();
+    var h=window.innerHeight||document.documentElement.clientHeight||0;
+    var w=window.innerWidth||document.documentElement.clientWidth||0;
+    var seenH=Math.max(0,Math.min(r.bottom,h)-Math.max(r.top,0));
+    var seenW=Math.max(0,Math.min(r.right,w)-Math.max(r.left,0));
+    return r.height>0&&r.width>0&&seenW>0&&seenH>=Math.min(r.height,h)*0.10;
+  }
+  function startWhenVisible(){
+    if(mode!=='animated'||playedOnce||!cardInViewport())return;
+    visible=true;
+    playedOnce=true;
+    if(observer){observer.disconnect();observer=null;}
+    play();
+  }
   if('IntersectionObserver' in window){
     observer=new IntersectionObserver(function(entries){
       if(entries.some(function(e){return e.isIntersecting&&e.intersectionRatio>=0.10;})){
-        visible=true;observer.disconnect();observer=null;
-        if(mode==='animated'&&!playedOnce){playedOnce=true;play();}
+        startWhenVisible();
       }
     },{threshold:[0,0.10]});
     observer.observe(animatedPanel);
   }else{
-    visible=true; // Bouton replay reste utilisable si IntersectionObserver n'existe pas.
+    visible=true; // Le bouton Revoir reste disponible sans IntersectionObserver.
   }
+  // Couverture Safari/WebKit : scrollIntoViewIfNeeded peut ne pas reveiller l'observateur.
+  window.addEventListener('scroll',startWhenVisible,{passive:true});
+  window.addEventListener('resize',startWhenVisible,{passive:true});
+  window.requestAnimationFrame(startWhenVisible);
 })();

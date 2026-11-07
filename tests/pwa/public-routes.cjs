@@ -1,7 +1,7 @@
 const {chromium,webkit}=require('playwright');const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'../..');
 (async()=>{const engine=process.env.PWA_BROWSER==='webkit'?webkit:chromium;const browser=await engine.launch(process.env.CHROMIUM_EXECUTABLE?{executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox','--disable-dev-shm-usage']}:{headless:true});try{const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});
- await context.route('**/*',async route=>{const u=new URL(route.request().url());if(u.origin!=='https://digiylyfe.com')return route.abort();let name=u.pathname;if(name.endsWith('/'))name+='index.html';const file=path.resolve(root,'.'+name);if(!file.startsWith(root+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:'Not found'});const types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.gif':'image/gif','.svg':'image/svg+xml'};await route.fulfill({path:file,contentType:types[path.extname(file)]||'application/octet-stream'});});
+ await context.route('**/*',async route=>{if(route.request().url().startsWith('blob:'))return route.continue();const u=new URL(route.request().url());if(u.origin!=='https://digiylyfe.com')return route.abort();let name=u.pathname;if(name.endsWith('/'))name+='index.html';const file=path.resolve(root,'.'+name);if(!file.startsWith(root+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:'Not found'});const types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.gif':'image/gif','.svg':'image/svg+xml'};await route.fulfill({path:file,contentType:types[path.extname(file)]||'application/octet-stream'});});
  const page=await context.newPage();await page.goto('https://digiylyfe.com/');await page.locator('a[href="/outils-gestion-demo.html"]').click();await page.waitForURL('https://digiylyfe.com/outils-gestion-demo.html');
  for(const doc of ['loc','driver','commerce','carnet','explore','resto','build']){await page.locator(`a[href="/demo-${doc}-gestion.html"]`).click();await page.waitForURL(`https://digiylyfe.com/demo-${doc}-gestion.html`);await page.locator('header a').click();await page.waitForURL('https://digiylyfe.com/outils-gestion-demo.html');console.log('PASS tools → '+doc+' → tools');}
  await page.locator('header a').click();await page.waitForURL('https://digiylyfe.com/');console.log('PASS home → tools → home');
@@ -47,7 +47,17 @@ const root=path.resolve(__dirname,'../..');
      catch(e){asset={error:String(e)};}
      return {src:i?.src,complete:i?.complete,naturalWidth:i?.naturalWidth,selected:b?.getAttribute('aria-pressed'),panelHidden:p?.hidden,rect:{top:rect.top,bottom:rect.bottom,width:rect.width,height:rect.height},winHeight:innerHeight,asset};
    });
-   console.error('DIGIY_SAFARI_ANIMATION_DIAGNOSTIC',JSON.stringify(diagnostic));
+   console.error('DIGIY_SAFARI_ANIMATION_DIAGNOSTIC',JSON.stringify({...diagnostic,gifRequests,scrollY:await page.evaluate(()=>window.scrollY)}));
+   // Confirmer en diagnostic que la lecture explicite reste accessible dans WebKit.
+   if(await replay5.isVisible()){
+     await replay5.click();
+     try{
+       await page.waitForFunction(()=>document.querySelector('#digiyOfficialAnimatedImage')?.src.startsWith('blob:'),null,{timeout:4000});
+       console.error('DIGIY_SAFARI_MANUAL_REPLAY_DIAGNOSTIC: blob visible after replay click');
+     }catch(replayError){
+       console.error('DIGIY_SAFARI_MANUAL_REPLAY_DIAGNOSTIC: '+replayError.message);
+     }
+   }
    throw err;
  });
  await page.waitForFunction(()=>document.querySelector('#digiyOfficialAnimatedImage')?.src.endsWith('/assets/digiy-officiel-final-9x16.png'),null,{timeout:15000});
