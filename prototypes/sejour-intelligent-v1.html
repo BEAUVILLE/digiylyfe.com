@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>DIGIY · Séjour intelligent · Prototype isolé</title>
+<style>
+:root{font-family:system-ui,-apple-system,sans-serif;color:#173c2b;background:#f8f5ea}
+*{box-sizing:border-box}body{max-width:740px;margin:0 auto;padding:20px}
+h1{font-size:clamp(25px,5vw,38px)}.sub{color:#425b4f}
+section{background:#fff;border:1px solid #d5e3d5;border-radius:18px;padding:18px;margin:16px 0}
+article{border-top:1px solid #e4ebe4;padding:12px 0}button{background:#17643d;color:#fff;border:0;border-radius:14px;padding:12px 20px;font-size:16px}
+label{display:block;font-weight:700;margin-bottom:8px}select{font-size:16px;padding:12px;border:1px solid #97b29e;border-radius:10px;width:100%}
+strong{color:#145731}.note{background:#fff1cb;border:1px solid #d9b75e;border-radius:12px;padding:12px}
+</style>
+</head>
+<body>
+<p><strong>DIGIYLYFE · BUREAU UNIVERSEL</strong></p>
+<h1>Votre séjour, les métiers autour de vous</h1>
+<p class="note"><strong>PROTOTYPE — DONNÉES FICTIVES.</strong> Cette page ne consulte pas Supabase, ne réserve rien et n'affiche aucun professionnel réel. Aucun lien client n'est ouvert.</p>
+<p class="sub">Démonstration interne du contrat commun : zone de séjour → métiers complémentaires → contact public autorisé.</p>
+<label for="zone">Zone du séjour</label>
+<select id="zone"><option value="saly">Saly</option><option value="mbour">Mbour</option></select>
+<div id="results" aria-live="polite"></div>
+<script src="/assets/digiy-sejour-adaptateur-public-v1.js"></script>
+<script src="/assets/digiy-sejour-recommandations-v1.js"></script>
+<script>
+(function(){
+'use strict';
+var fixtures={
+trades:[{id:'td',slug:'chauffeur',module_code:'DRIVER'},{id:'tf',slug:'restaurant',module_code:'RESA'},{id:'te',slug:'explore-lieux',module_code:'EXPLORE'}],
+zones:[{id:'s',slug:'saly',is_active:true},{id:'m',slug:'mbour',is_active:true}],
+serviceZones:[{card_id:'p2',zone_id:'s'}],
+professionals:[
+{id:'p1',display_name:'Chauffeur fictif Saly',metier_id:'td',zone_id:'s',entry_type:'professional',is_public:true,is_active:true,whatsapp_public:'221770000001'},
+{id:'p2',display_name:'Chauffeur fictif Mbour (dessert Saly)',metier_id:'td',zone_id:'m',entry_type:'professional',is_public:true,is_active:true,phone_public:'221770000002'},
+{id:'p3',display_name:'Restaurant fictif Saly',metier_id:'tf',zone_id:'s',entry_type:'professional',is_public:true,is_active:true,phone_public:'221770000003'},
+{id:'p4',display_name:'Activité fictive sans contact',metier_id:'te',zone_id:'s',entry_type:'professional',is_public:true,is_active:true},
+{id:'p5',display_name:'Découverte fictive Mbour',metier_id:'te',zone_id:'m',entry_type:'professional',is_public:true,is_active:true,phone_public:'221770000004'}
+]};
+var data=window.DIGIY_SEJOUR_ADAPTATEUR_V1.normalize(fixtures);
+var labels={transport:'🚗 Chauffeurs',food:'🍽️ Restaurants',explore:'🧭 Découvertes'};
+function elem(tag,text){var e=document.createElement(tag);e.textContent=text;return e;}
+function render(){
+var zone=document.getElementById('zone').value,out=window.DIGIY_SEJOUR_RECO_V1.recommend(data,{zone_id:zone,territory_id:'petite-cote'});
+var root=document.getElementById('results');root.replaceChildren();
+['transport','food','explore'].forEach(function(k){
+var section=document.createElement('section');section.appendChild(elem('h2',labels[k]));
+if(!out[k].length)section.appendChild(elem('p','Aucun professionnel joignable dans les données fictives de cette zone.'));
+out[k].forEach(function(p){var card=document.createElement('article');card.appendChild(elem('strong',p.name));card.appendChild(elem('p','Base : '+p.base_zone_id+' · Zone sélectionnée : '+zone));card.appendChild(elem('small','Contact simulé : aucun appel ou message envoyé.'));section.appendChild(card)});
+root.appendChild(section);
+});
+}
+document.getElementById('zone').addEventListener('change',render);render();
+})();
+</script>
+</body>
+</html>
