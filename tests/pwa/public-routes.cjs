@@ -47,17 +47,7 @@ const root=path.resolve(__dirname,'../..');
      catch(e){asset={error:String(e)};}
      return {src:i?.src,complete:i?.complete,naturalWidth:i?.naturalWidth,selected:b?.getAttribute('aria-pressed'),panelHidden:p?.hidden,rect:{top:rect.top,bottom:rect.bottom,width:rect.width,height:rect.height},winHeight:innerHeight,asset};
    });
-   console.error('DIGIY_SAFARI_ANIMATION_DIAGNOSTIC',JSON.stringify({...diagnostic,gifRequests,scrollY:await page.evaluate(()=>window.scrollY)}));
-   // Confirmer en diagnostic que la lecture explicite reste accessible dans WebKit.
-   if(await replay5.isVisible()){
-     await replay5.click();
-     try{
-       await page.waitForFunction(()=>document.querySelector('#digiyOfficialAnimatedImage')?.src.startsWith('blob:'),null,{timeout:4000});
-       console.error('DIGIY_SAFARI_MANUAL_REPLAY_DIAGNOSTIC: blob visible after replay click');
-     }catch(replayError){
-       console.error('DIGIY_SAFARI_MANUAL_REPLAY_DIAGNOSTIC: '+replayError.message);
-     }
-   }
+   console.error('DIGIY_SAFARI_ANIMATION_DIAGNOSTIC',JSON.stringify(diagnostic));
    throw err;
  });
  await page.waitForFunction(()=>document.querySelector('#digiyOfficialAnimatedImage')?.src.endsWith('/assets/digiy-officiel-final-9x16.png'),null,{timeout:15000});
