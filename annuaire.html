@@ -49,6 +49,13 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 .actions a{min-height:41px;display:inline-flex;align-items:center;padding:9px 13px;border-radius:11px;font-weight:850;font-size:12px;text-decoration:none;border:1px solid #a7c4ac;background:white}
 .actions a.wa{background:#daf5df;color:#165e35;border-color:#8dd5a1}
 .actions a.profile{background:#f1d68e;color:#173324;border-color:#d5ab51;font-weight:950}
+.actions a.share{background:#e5effe;color:#153c67;border-color:#aac9e9}
+.actions button.copy{min-height:41px;display:inline-flex;align-items:center;padding:9px 13px;border-radius:11px;font-weight:850;font-size:12px;border:1px solid #a7c4ac;background:white;color:var(--ink)}
+.actions .shareFeedback{flex-basis:100%;font-size:12px;margin:0;line-height:1.4}
+.actions .shareFallback{flex-basis:100%;width:100%;font-size:13px;padding:8px;border:1px solid var(--line);border-radius:8px}
+.shareHelp{margin:7px 0 12px;padding:9px 12px;border-radius:12px;background:#f5f8f3;border:1px solid var(--line);font-size:13px;line-height:1.5}
+.shareHelp summary{cursor:pointer;font-weight:850}
+.shareHelp ol{margin:8px 0 0;padding-left:22px}
 .empty{padding:26px 15px;color:var(--muted);background:#f7faf6;border:1px dashed var(--line);border-radius:14px}
 .register{background:linear-gradient(160deg,#fffdfa,#f7f4e6)}.register .note{padding:12px;border:1px solid #dacda5;border-radius:13px;color:#655527;background:#fff8dd;font-size:12px;line-height:1.5}
 .regGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.regGrid .full{grid-column:1/-1}
@@ -127,6 +134,11 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 </aside>
 <nav class="letters" aria-label="Classement alphabétique" id="letters"></nav>
 <p id="status" class="status" aria-live="polite" role="status">Chargement des professionnels publics…</p>
+<details class="shareHelp"><summary>Comment envoyer une carte sur WhatsApp ?</summary>
+<ol><li>Appuyez sur « Envoyer sa carte » pour partager directement.</li>
+<li>Si le lien ne s'affiche pas dans WhatsApp, revenez ici et appuyez sur « Copier le lien ».</li>
+<li>Ouvrez WhatsApp, choisissez la personne, gardez le doigt dans la zone du message, touchez « Coller », puis « Envoyer ».</li></ol>
+</details>
 <div id="results" class="grid"></div>
 </section>
 <section id="inscription" class="section register" aria-labelledby="registerTitle">
@@ -261,7 +273,7 @@ var info=make('div','meta',departmentLabel(departmentOf(p))+' · '+(p.city||z.la
 var description=make('p','',p.short_description||p.activity_label||'Contact direct avec le professionnel.');
 var actions=make('div','actions'),num=whatsapp(p.whatsapp_public);
 // La présence gratuite n'ajoute aucune photo ni QR : seul un vrai public_url ouvre une page enrichie existante.
-var link=safeLink(p.public_url);
+var link=safeLink(p.public_url),shareUrl=link;
 if(link){var label=presentationLabel(link),site=make('a','profile',label);site.href=link;site.target='_blank';site.rel='noopener noreferrer';site.setAttribute('aria-label',label+' : '+p.display_name);actions.appendChild(site)}
 if(num){var a=make('a','wa','WhatsApp direct');a.href='https://wa.me/'+num;a.target='_blank';a.rel='noopener noreferrer';actions.appendChild(a)}
 if(!actions.children.length&&whatsapp(p.phone_public)){var tel=make('a','','Appeler');tel.href='tel:+'+whatsapp(p.phone_public);actions.appendChild(tel)}
@@ -274,8 +286,30 @@ if(isNieryArt){
  cardLink.href='/carte-niery-art.html';
  cardLink.setAttribute('aria-label','Voir la carte de Niery Art');
  actions.appendChild(cardLink);
+ shareUrl=new URL('/carte-niery-art.html',location.origin).href;
 }
-if(p.id==='451383a1-7e3d-4d79-8ad3-6504113d4c2a'){var massCard=make('a','profile','Voir sa carte');massCard.href='/carte-mass-coolj.html';massCard.setAttribute('aria-label','Voir la carte partageable de Mass CoolJ');actions.appendChild(massCard);}
+if(p.id==='451383a1-7e3d-4d79-8ad3-6504113d4c2a'){
+ var massCard=make('a','profile','Voir sa carte');massCard.href='/carte-mass-coolj.html';massCard.setAttribute('aria-label','Voir la carte partageable de Mass CoolJ');actions.appendChild(massCard);
+ shareUrl=new URL('/carte-mass-coolj.html',location.origin).href;
+}
+if(shareUrl){
+ var shareAction=make('a','share','↗ Envoyer sa carte');
+ shareAction.href='https://wa.me/?text='+encodeURIComponent(p.display_name+' — voici sa carte DIGIY :\n'+shareUrl);
+ shareAction.target='_blank';shareAction.rel='noopener noreferrer';
+ shareAction.setAttribute('aria-label','Envoyer le lien de '+p.display_name+' sur WhatsApp');
+ actions.appendChild(shareAction);
+ var copyAction=make('button','copy','⧉ Copier le lien');copyAction.type='button';
+ var shareFeedback=make('p','shareFeedback');shareFeedback.setAttribute('role','status');
+ var shareFallback=make('input','shareFallback');shareFallback.type='text';shareFallback.readOnly=true;shareFallback.value=shareUrl;shareFallback.hidden=true;
+ shareFallback.setAttribute('aria-label','Lien public à copier');
+ copyAction.addEventListener('click',function(){
+  function manual(){shareFallback.hidden=false;shareFallback.focus();shareFallback.select();shareFeedback.textContent='Sélectionnez et copiez ce lien, puis collez-le dans WhatsApp.'}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+   navigator.clipboard.writeText(shareUrl).then(function(){shareFallback.hidden=true;shareFeedback.textContent='Lien copié ! Ouvrez WhatsApp, gardez le doigt sur le message et choisissez Coller.'}).catch(manual);
+  }else{manual()}
+ });
+ actions.append(copyAction,shareFeedback,shareFallback);
+}
 var signal=make('a','','Signaler une fiche');signal.href='mailto:contact@digiylyfe.com?subject='+encodeURIComponent('Signalement fiche DIGIY')+'&body='+encodeURIComponent('Fiche concernée : '+personal.href+'\nMotif : ');actions.appendChild(signal);
 card.append(name,info,description,actions);root.appendChild(card);
 });
