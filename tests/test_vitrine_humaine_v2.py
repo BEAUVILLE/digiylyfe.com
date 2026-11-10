@@ -31,6 +31,20 @@ class HumanHomepage(unittest.TestCase):
         positions = [BODY.index(marker) for marker in markers]
         self.assertEqual(positions, sorted(positions))
 
+    def test_three_existing_solutions_directly_below_main_hero(self):
+        hero_close = BODY.index('</div>\\n<section class="digiyEntryChoice"', BODY.index('id="digiyClarity"'))
+        entry = BODY.index('<section class="digiyEntryChoice" id="digiyEntryChoice"')
+        first_proof = BODY.index('<section class="section" aria-label="Preuves terrain DIGIYLYFE">')
+        self.assertLess(BODY.index('id="digiyClarity"'), hero_close)
+        self.assertLess(hero_close, first_proof)
+        self.assertEqual(BODY.count('id="digiyEntryChoice"'), 1)
+        self.assertEqual(entry, hero_close + len('</div>\\n'))
+        section = BODY[entry:first_proof]
+        self.assertEqual(section.count('class="digiyEntryDoor '), 3)
+        for href in ['#digiyPublicFirstV1', 'https://digiylyfe.com/tarifs-adherents-1.html',
+                     'https://digiylyfe.com/tarifs-loc-v2.html']:
+            self.assertIn('href="' + href + '"', section)
+
     def test_film_never_fetches_before_opt_in(self):
         film = BODY.split('id="digiyFilmVitrine"', 1)[1].split('</section>', 1)[0]
         nodes = Nodes(); nodes.feed(film)
