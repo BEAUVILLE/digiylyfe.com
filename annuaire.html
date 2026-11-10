@@ -293,8 +293,10 @@ if(p.id==='451383a1-7e3d-4d79-8ad3-6504113d4c2a'){
  shareUrl=new URL('/carte-mass-coolj.html',location.origin).href;
 }
 if(shareUrl){
- var shareAction=make('a','share','↗ Envoyer sa carte');
- shareAction.href='https://wa.me/?text='+encodeURIComponent(p.display_name+' — voici sa carte DIGIY :\n'+shareUrl);
+ var cardPath=new URL(shareUrl).pathname.toLowerCase();
+ var isCardLink=/^\/carte(?:s?\/|-)/.test(cardPath);
+ var shareAction=make('a','share',isCardLink?'↗ Envoyer sa carte':'↗ Partager son lien');
+ shareAction.href='https://wa.me/?text='+encodeURIComponent(p.display_name+' — voici '+(isCardLink?'sa carte DIGIY':'son lien public')+' :\n'+shareUrl);
  shareAction.target='_blank';shareAction.rel='noopener noreferrer';
  shareAction.setAttribute('aria-label','Envoyer le lien de '+p.display_name+' sur WhatsApp');
  actions.appendChild(shareAction);
