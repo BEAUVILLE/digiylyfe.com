@@ -6,7 +6,7 @@
 - Classement alphabétique A → Z sur le nom de l'enseigne, sans `rank_weight` ni priorité liée au paiement.
 - Filtres : recherche par nom / activité, pays disponible, ville / zone et métier, lettre A–Z.
 - Contact WhatsApp direct si publié, sinon lien de présentation ou téléphone public existant.
-- L'inscription **gratuite** n'est **pas** la Carte DIGIY (15 000 FCFA au Sénégal), ni la **Fiche professionnelle** (100 000 FCFA), ni l'adhésion (19 900 FCFA/mois).
+- L'inscription **gratuite** n'est **pas** la Carte DIGIY (15 000 FCFA au Sénégal), ni la **Fiche professionnelle** (100 000 FCFA), ni l'adhésion (12 000 FCFA/mois).
 - Aucun changement aux RLS, prix, abonnements, tables, fonctions Edge ni au site en production avant fusion.
 
 ## Inscription

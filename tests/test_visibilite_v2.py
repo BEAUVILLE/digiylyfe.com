@@ -155,7 +155,7 @@ class VisibiliteV2(unittest.TestCase):
         original = self.files["fr"]
         self.assertIn('id="salyPublicFirstV1"', original)
         self.assertIn('id="realGrid"', original)
-        self.assertIn("19 900 FCFA", original)
+        self.assertIn("12 000 FCFA", original)
         self.assertIn("13 000 FCFA", original)
         self.assertIn("digiy-petite-cote-config-v1.js", original)
         self.assertIn("/manifest.json", original)

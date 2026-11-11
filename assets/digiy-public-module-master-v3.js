@@ -3,8 +3,8 @@ var R=document.getElementById('digiy-master-root');if(!R)return;
 var P=new URLSearchParams(location.search),module=P.get('module')||'',territory=P.get('territory')||'',local=P.get('local')||'',lang=(P.get('lang')||'fr').slice(0,2).toLowerCase();
 if(['fr','en','es','pt','de','it','nl','ar'].indexOf(lang)<0)lang='fr';
 var META={
- 'petite-cote':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'PETITE CÔTE',price:'19 900 FCFA / mois',loc:'À partir de 28 000 FCFA / mois'},
- 'dakar':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'DAKAR',price:'19 900 FCFA / mois',loc:'À partir de 28 000 FCFA / mois'},
+ 'petite-cote':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'PETITE CÔTE',price:'12 000 FCFA / mois',loc:'À partir de 28 000 FCFA / mois'},
+ 'dakar':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'DAKAR',price:'12 000 FCFA / mois',loc:'À partir de 28 000 FCFA / mois'},
  'vallee-dordogne':{country:'FRANCE',flag:'🇫🇷',zone:'VALLÉE DE LA DORDOGNE',price:'45 € / mois',loc:'À partir de 75 € / mois'},
  'bordeaux':{country:'FRANCE',flag:'🇫🇷',zone:'BORDEAUX',price:'45 € / mois',loc:'À partir de 75 € / mois'},
  'casablanca':{country:'MAROC',flag:'🇲🇦',zone:'CASABLANCA',price:'CARTE DIGIY GRATUITE · 0 MAD',loc:'CARTE DIGIY GRATUITE · 0 MAD'},

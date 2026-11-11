@@ -54,7 +54,7 @@ class VisibiliteV1(unittest.TestCase):
         self.assertIn('data-i18n="claimTitle"', HOME)
         self.assertIn('id="joinBtn"', SALY)
         self.assertIn("digiy-petite-cote-config-v1.js", SALY)
-        self.assertIn("19 900 FCFA", SALY)
+        self.assertIn("12 000 FCFA", SALY)
         self.assertIn("13 000 FCFA", SALY)
         for page, canonical in ((HOME, "https://digiylyfe.com/"), (SALY, "https://digiylyfe.com/saly.html")):
             self.assertIn('rel="canonical" href="' + canonical + '"', page)
