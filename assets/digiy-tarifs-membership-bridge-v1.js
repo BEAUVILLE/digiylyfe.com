@@ -37,7 +37,7 @@
     style();var c=COPY[lang()]||COPY.fr,cc=country();
     var b=document.getElementById('digiyMembershipBridge');
     if(!b){b=document.createElement('div');b.id='digiyMembershipBridge';b.className='digiyMembershipBridge';var benefits=box.querySelector('.freeBenefits');if(benefits)benefits.insertAdjacentElement('afterend',b);else box.appendChild(b);}
-    b.innerHTML='<span class="digiyMembershipBridgeTop">'+c.free+'</span><strong class="digiyMembershipBridgePrice">'+c.label+' · '+c[cc]+'</strong><span class="digiyMembershipBridgeNote">'+c.note+'</span>';
+    b.innerHTML='<span class="digiyMembershipBridgeTop">'+c.free+'</span><strong class="digiyMembershipBridgePrice">'+c.label+' · '+c[cc]+'</strong>';
     document.documentElement.setAttribute('data-digiy-membership-bridge','20260917-v1');
   }
   apply();[80,250,700,1500].forEach(function(ms){setTimeout(apply,ms)});
