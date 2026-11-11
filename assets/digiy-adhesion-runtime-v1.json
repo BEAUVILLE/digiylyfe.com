@@ -46,8 +46,8 @@
       "pricing": {
         "membership": {
           "adherent-19900": {
-            "amount": 19900,
-            "label": "19 900 FCFA / mois",
+            "amount": 12000,
+            "label": "12 000 FCFA / mois",
             "billing_period": "month",
             "billing_months": 1
           },

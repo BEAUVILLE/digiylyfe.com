@@ -38,7 +38,7 @@ class HomeWorld10(unittest.TestCase):
             self.assertEqual(set(ui['campus'][lang]),set(ui['campus']['wo']))
             self.assertEqual(len(ui['pwa'][lang]),8)
             self.assertEqual(len(ui['pwaDesktop'][lang]),3)
-            for amount in ['19 900','450','$29']:
+            for amount in ['12 000','450','$29']:
                 self.assertIn(amount,ui['membership'][lang]['all'])
     def test_saly_audio_and_free_paid_boundaries_remain(self):
         self.assertIn('href="/saly.html" data-i18n="v1TerritoryCta"',HOME)

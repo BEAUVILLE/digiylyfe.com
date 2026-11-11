@@ -529,15 +529,15 @@ window.DIGIY_HOME_WORLD10_UI={
   "membership": {
     "wo": {
       "text": "Kart kese · France : 20 € · Senegaal : 15 000 FCFA · USA : 20 $ · benn yoon rekk ngay fay.",
-      "all": "BOKK CI ÉCOSYSTÈME BI · 🇸🇳 19 900 FCFA / WEER · 🇫🇷 450 € / AT · 🇺🇸 $29 / WEER",
-      "SN": "🇸🇳 BOKK CI ÉCOSYSTÈME BI · 19 900 FCFA / WEER",
+      "all": "BOKK CI ÉCOSYSTÈME BI · 🇸🇳 12 000 FCFA / WEER · 🇫🇷 450 € / AT · 🇺🇸 $29 / WEER",
+      "SN": "🇸🇳 BOKK CI ÉCOSYSTÈME BI · 12 000 FCFA / WEER",
       "FR": "🇫🇷 BOKK CI ÉCOSYSTÈME BI · 450 € / AT",
       "US": "🇺🇸 BOKK CI ÉCOSYSTÈME BI · $29 / WEER"
     },
     "zh": {
       "text": "单独名片 · 法国：20 € · 塞内加尔：15 000 FCFA · 美国：20 $ · 一次性付款。",
-      "all": "生态系统会员 · 🇸🇳 19 900 FCFA / 月 · 🇫🇷 450 € / 年 · 🇺🇸 $29 / 月",
-      "SN": "🇸🇳 生态系统会员 · 19 900 FCFA / 月",
+      "all": "生态系统会员 · 🇸🇳 12 000 FCFA / 月 · 🇫🇷 450 € / 年 · 🇺🇸 $29 / 月",
+      "SN": "🇸🇳 生态系统会员 · 12 000 FCFA / 月",
       "FR": "🇫🇷 生态系统会员 · 450 € / 年",
       "US": "🇺🇸 生态系统会员 · $29 / 月"
     }

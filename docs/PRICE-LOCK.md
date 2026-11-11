@@ -1,1 +1,1 @@
-15 000 FCFA carte digitale / paiement unique. 19 900 FCFA présence professionnelle / mois / optionnelle.
+15 000 FCFA carte digitale / paiement unique. 12 000 FCFA présence professionnelle / mois / optionnelle.

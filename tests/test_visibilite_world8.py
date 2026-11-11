@@ -91,7 +91,7 @@ class World8SEO(unittest.TestCase):
     def test_existing_pro_features_untouched(self):
         html = (BASE / "saly.html").read_text("utf8")
         self.assertIn('id="realGrid"', html)
-        self.assertIn("19 900 FCFA", html)
+        self.assertIn("12 000 FCFA", html)
         self.assertIn("13 000 FCFA", html)
         self.assertIn("digiy-petite-cote-config-v1.js", html)
         self.assertIn("salyPublicFirstV1", html)
