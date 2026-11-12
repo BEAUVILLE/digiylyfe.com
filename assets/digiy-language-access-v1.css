@@ -1,0 +1,9 @@
+/* DIGIYLYFE — Navigation multilingue V1, pages françaises sans traduction locale.
+   Le lien conduit à l'accueil réellement traduit; il ne prétend pas traduire cette page. */
+.digiyLanguageAccess{max-width:1060px;margin:12px auto 18px;padding:12px 14px;border:1px solid rgba(246,196,83,.55);border-radius:16px;background:#102e23;color:#fff8e9;font:inherit}
+.digiyLanguageAccess strong{display:block;font-size:14px;margin-bottom:5px;color:#ffe0a1}
+.digiyLanguageAccess p{font-size:12px;line-height:1.5;margin:2px 0 10px;color:#eee4c8}
+.digiyLanguageAccess .digiyLanguageLinks{display:flex;flex-wrap:wrap;gap:7px}
+.digiyLanguageAccess a{display:inline-flex;align-items:center;justify-content:center;min-width:42px;min-height:42px;padding:7px 10px;border:1px solid #a8b19b;border-radius:10px;text-decoration:none;background:#194631;color:#fff;text-align:center;font-size:12px;font-weight:750}
+.digiyLanguageAccess a:focus-visible{outline:3px solid #ffd575;outline-offset:3px}
+.digiyLanguageAccess a[aria-current="page"]{background:#f6c453;color:#102a20;border-color:#f6c453}
