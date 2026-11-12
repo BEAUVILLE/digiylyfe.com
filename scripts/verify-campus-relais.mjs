@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 
 const html=readFileSync('index.html','utf8');
+const i18n=readFileSync('assets/digiy-home-i18n-v1.js','utf8');
 const form=readFileSync('assets/digiy-campus-interest-v2.js','utf8');
 const match=html.match(/<section class="digiyCampus"[\s\S]*?<\/section>/);
 assert(match,'Section CAMPUS absente');
@@ -14,7 +15,7 @@ assert(block.includes('href="/annuaire.html#inscription"'),'Inscription gratuite
 assert(block.includes('href="/tarifs-adherents-1.html"'),'Tarifs PRO non liés');
 for(const term of ['2 500 FCFA','25 000 FCFA','rémunération récurrente','Exemples de rémunération'])
   assert(!block.includes(term),'Ancien schéma de commission affiché : '+term);
-const line=html.split('\n').find(x=>x.includes('var TEXT='));
+const line=i18n.split('\n').find(x=>x.includes('var TEXT='));
 assert(line,'Dictionnaire multilingue absent');
 const dict=JSON.parse(line.slice(line.indexOf('var TEXT=')+9,-1));
 for(const lang of ['fr','en','es','pt','it','de','nl','ar']){
