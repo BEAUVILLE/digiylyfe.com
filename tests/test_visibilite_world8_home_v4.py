@@ -8,6 +8,7 @@ from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://digiylyfe.com"
+HOME_I18N = (ROOT / "assets/digiy-home-i18n-v1.js").read_text(encoding="utf-8")
 LANGS = ("fr", "en", "es", "pt", "it", "de", "nl", "ar")
 PAGE = {lang: ("index.html" if lang == "fr" else f"{lang}/index.html") for lang in LANGS}
 URL = {lang: (ORIGIN + "/" if lang == "fr" else f"{ORIGIN}/{lang}/") for lang in LANGS}
@@ -130,9 +131,9 @@ class World8Homepage(unittest.TestCase):
 
     def test_h1_all_locales_match_bureau_universel_dictionary(self):
         """Les portes SEO et l'accueil mondial affichent la même signature sans casser le parcours V1."""
-        legacy = re.findall(r'"v1Question":"([^"]+)"', self.html["fr"])
+        legacy = re.findall(r'"v1Question":"([^"]+)"', HOME_I18N)
         self.assertEqual(len(legacy), len(LANGS), "Conserver les 8 questions du parcours territorial V1")
-        source = re.search(r'var BUREAU_UNIVERSEL_COPY=(\{[^\n]+?\});', self.html["fr"])
+        source = re.search(r'var BUREAU_UNIVERSEL_COPY=(\{[^\n]+?\});', HOME_I18N)
         self.assertIsNotNone(source, "La signature traduite doit exister sur l'accueil principal")
         translations = json.loads(source.group(1))
         self.assertEqual(translations["fr"]["clarTitle"], "Chaque activité mérite sa place dans le monde.")
@@ -154,8 +155,8 @@ class World8Homepage(unittest.TestCase):
         self.assertIn('id="digiyPublicFirstV1"', original)
         self.assertIn("window.DIGIY_COM_MAITRE_V1", original)
         self.assertIn("digiy-home-single-i18n-v1", original)
-        self.assertIn("localStorage.getItem('digiy-lang')", original)
-        self.assertIn("params.get('lang')", original)
+        self.assertIn("localStorage.getItem('digiy-lang')", HOME_I18N)
+        self.assertIn("params.get('lang')", HOME_I18N)
         self.assertIn("digiy-pwa-install.js", original)
         self.assertIn("/manifest.json", original)
         self.assertIn('id="digiyWorld8SeoNav"', original)

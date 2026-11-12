@@ -7,6 +7,7 @@ from html.parser import HTMLParser
 ROOT=Path(__file__).resolve().parents[1]
 HOME=(ROOT/'index.html').read_text()
 ASSET=(ROOT/'assets/digiy-home-world10-v1.js').read_text()
+HOME_I18N=(ROOT/'assets/digiy-home-i18n-v1.js').read_text()
 def data(name):
     return json.JSONDecoder().raw_decode(ASSET.split('window.'+name+'=',1)[1])[0]
 class Tags(HTMLParser):
@@ -54,8 +55,8 @@ class HomeWorld10(unittest.TestCase):
         self.assertIn("var LANGS=['fr','en','es','pt','it','de','nl','ar']",campus)
         self.assertIn('website:website',campus)
     def test_initial_url_alias_persistence_and_audio_scope(self):
-        self.assertIn("lang==='zh'?'zh-CN':lang",HOME)
-        self.assertIn(".replace('zh-cn','zh')",HOME)
-        self.assertIn("localStorage.setItem('digiy-lang',lang)",HOME)
+        self.assertIn("lang==='zh'?'zh-CN':lang",HOME_I18N)
+        self.assertIn(".replace('zh-cn','zh')",HOME_I18N)
+        self.assertIn("localStorage.setItem('digiy-lang',lang)",HOME_I18N)
         self.assertIn('La VOIX déggul wolof',data('DIGIY_HOME_WORLD10')['wo']['voiceSearchNote'])
 if __name__=='__main__':unittest.main()

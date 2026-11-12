@@ -5,6 +5,7 @@ import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
 HTML=(ROOT/"index.html").read_text(encoding="utf-8")
+HOME_I18N=(ROOT/"assets/digiy-home-i18n-v1.js").read_text(encoding="utf-8")
 JS=(ROOT/"assets/digiy-official-card-models-75-v1.js").read_text(encoding="utf-8")
 VOICES={
  "thomas":("assets/digiy-qr-parlant-thomas-75.mp4","9e7a136bdbd8b4ac4bf4ee8043c4829cd5d97516"),
@@ -39,9 +40,9 @@ class DigiyQRVoice(unittest.TestCase):
   self.assertIn('speakingVideo.pause()',JS)
  def test_ten_languages_and_replay(self):
   for lang in ('fr','wo','zh','en','es','pt','it','de','nl','ar'):
-   self.assertIn('      '+lang+':[',HTML)
-  self.assertIn('if(thomasBtn)thomasBtn.textContent=cardLabels[3]',HTML)
-  self.assertIn('if(amelieBtn)amelieBtn.textContent=cardLabels[4]',HTML)
+   self.assertIn('      '+lang+':[',HOME_I18N)
+  self.assertIn('if(thomasBtn)thomasBtn.textContent=cardLabels[3]',HOME_I18N)
+  self.assertIn('if(amelieBtn)amelieBtn.textContent=cardLabels[4]',HOME_I18N)
   self.assertIn('replay.dataset.voiceActive',JS)
   self.assertIn('if(activeVoice)playVoice(activeVoice)',JS)
 

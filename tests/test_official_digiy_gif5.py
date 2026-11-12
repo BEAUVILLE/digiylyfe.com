@@ -6,6 +6,7 @@ from PIL import Image
 
 ROOT=Path(__file__).resolve().parents[1]
 HOME=(ROOT/"index.html").read_text(encoding="utf-8")
+HOME_I18N=(ROOT/"assets/digiy-home-i18n-v1.js").read_text(encoding="utf-8")
 JS=(ROOT/"assets/digiy-official-card-models-75-v1.js").read_text(encoding="utf-8")
 OFFICIAL=ROOT/"carte-visite-digiy.png"
 GIF=ROOT/"assets/digiy-officiel-animation-75-9x16.gif"
@@ -59,8 +60,8 @@ class OfficialDigiyTwoCards(unittest.TestCase):
         self.assertNotIn('data-gif-src="/assets/digiy-carte-officielle-5s.gif"',HOME)
     def test_ten_languages_and_no_babacar_mix(self):
         for lang in ("fr","wo","zh","en","es","pt","it","de","nl","ar"):
-            self.assertIn('      '+lang+':["🪪',HOME)
-        self.assertIn("DIGIY_CARD_LABELS[lang]",HOME)
+            self.assertIn('      '+lang+':["🪪',HOME_I18N)
+        self.assertIn("DIGIY_CARD_LABELS[lang]",HOME_I18N)
         self.assertNotIn('digiy-babacar-animation-stop-20261105.gif',HOME)
         self.assertNotIn('id="digiy-official-card-gif5"',HOME)
 

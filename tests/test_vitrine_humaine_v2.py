@@ -6,6 +6,7 @@ from html.parser import HTMLParser
 
 ROOT = Path(__file__).resolve().parents[1]
 HOME = (ROOT / 'index.html').read_text()
+HOME_I18N = (ROOT / 'assets/digiy-home-i18n-v1.js').read_text(encoding='utf-8')
 BODY = HOME.split('<body>', 1)[1].split('</main>', 1)[0]
 
 class Nodes(HTMLParser):
@@ -84,7 +85,7 @@ class HumanHomepage(unittest.TestCase):
 
     def test_saly_labels_on_all_ten_routes_and_other_territories(self):
         import json
-        labels = json.loads(re.search(r'var DIGIY_PUBLIC_V1=(.*?);\n', HOME)[1])
+        labels = json.loads(re.search(r'var DIGIY_PUBLIC_V1=(.*?);\n', HOME_I18N)[1])
         for lang in ['en', 'es', 'pt', 'it', 'de', 'nl', 'ar']:
             text = (ROOT / lang / 'index.html').read_text()
             self.assertIn(labels[lang]['v1TerritoryCta'], text)
