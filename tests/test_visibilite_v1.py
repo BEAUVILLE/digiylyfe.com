@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HOME = (ROOT / "index.html").read_text(encoding="utf-8")
+HOME_I18N = (ROOT / "assets/digiy-home-i18n-v1.js").read_text(encoding="utf-8")
 SALY = (ROOT / "saly.html").read_text(encoding="utf-8")
 CONFIG = (ROOT / "assets/digiy-petite-cote-config-v1.js").read_text(encoding="utf-8")
 LANGS = {"fr", "en", "es", "pt", "it", "de", "nl", "ar"}
@@ -35,7 +36,7 @@ class VisibiliteV1(unittest.TestCase):
         self.assertIn('id="realGrid"', SALY)
 
     def test_all_eight_languages(self):
-        home_match = re.search(r"var DIGIY_PUBLIC_V1=(\{.*?\});\s*Object.keys", HOME, re.S)
+        home_match = re.search(r"var DIGIY_PUBLIC_V1=(\{.*?\});\s*Object.keys", HOME_I18N, re.S)
         saly_match = re.search(r"var D=(\{.*?\});var q=", SALY, re.S)
         self.assertIsNotNone(home_match)
         self.assertIsNotNone(saly_match)
