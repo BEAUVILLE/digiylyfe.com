@@ -43,7 +43,7 @@
       <div class="eyebrow" data-t="tag">Le Bureau Universel · Navigation</div>
       <h1 id="heroTitle" data-t="headline">Toute la richesse de DIGIY, sans le défilement.</h1>
       <p data-t="sub">Sept familles, toutes les portes utiles, un chemin direct.</p>
-      <div class="hero-actions"><button class="menu-btn" data-open-menu="1">☰ <span data-t="open">Ouvrir le menu</span></button><a class="secondary" target="_blank" rel="noopener noreferrer" href="https://digiylyfe.com/" data-t="vitrine">Vitrine</a></div>
+      <div class="hero-actions"><button class="menu-btn" data-open-menu="1" aria-haspopup="dialog" aria-controls="menuDialog" aria-expanded="false">☰ <span data-t="open">Ouvrir le menu</span></button><a class="secondary" target="_blank" rel="noopener noreferrer" href="https://digiylyfe.com/" data-t="vitrine">Vitrine</a></div>
     </div><div class="hero-mark" aria-hidden="true"><strong>∞</strong><small>DIGIYLYFE</small></div></section>
     <section class="quick" aria-label="Raccourcis"><div class="quick-head" data-t="quick">Accès immédiats</div><div class="quick-links">
       <a href="https://digiylyfe.com/annuaire.html#recherche" target="_blank" rel="noopener noreferrer">🔎 <span>Découvrir</span></a>
@@ -79,16 +79,21 @@ const counter=document.getElementById('counter');
 const noResults=document.getElementById('noResults');
 const toggleBtn=document.getElementById('toggleAll');
 const langBtns=[...document.querySelectorAll('.lang')];
+const heroOpenBtn=document.querySelector('[data-open-menu]');
 let lang='fr';let expanded=false;let previouslyFocused=null;
 const flatCount=GROUPS.reduce((n,g)=>n+g.items.length,0);
 function ui(key){return UI[lang]?.[key]||UI.fr[key]||key;}
 function normalize(s){return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
-function openDialog(){previouslyFocused=document.activeElement;dialog.showModal();openBtn.setAttribute('aria-expanded','true');searchInput.focus({preventScroll:true});}
-function closeDialog(){dialog.close();openBtn.setAttribute('aria-expanded','false');if(previouslyFocused&&previouslyFocused.focus)previouslyFocused.focus();}
+function syncDialogState(open){[openBtn,heroOpenBtn].forEach(btn=>btn.setAttribute('aria-expanded',String(open)));}
+function openDialog(){
+ if(dialog.open)return;
+ previouslyFocused=document.activeElement;dialog.showModal();syncDialogState(true);searchInput.focus({preventScroll:true});
+}
+function closeDialog(){if(dialog.open)dialog.close();}
 openBtn.addEventListener('click',openDialog);
-document.querySelector('[data-open-menu]').addEventListener('click',openDialog);
+heroOpenBtn.addEventListener('click',openDialog);
 closeBtn.addEventListener('click',closeDialog);
-dialog.addEventListener('cancel',e=>{e.preventDefault();closeDialog();});
+dialog.addEventListener('close',()=>{syncDialogState(false);if(previouslyFocused?.isConnected)previouslyFocused.focus();previouslyFocused=null;});
 dialog.addEventListener('click',e=>{if(e.target===dialog)closeDialog();});
 function create(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el;}
 function render(){
