@@ -7,3 +7,7 @@
 .digiyLanguageAccess a{display:inline-flex;align-items:center;justify-content:center;min-width:42px;min-height:42px;padding:7px 10px;border:1px solid #a8b19b;border-radius:10px;text-decoration:none;background:#194631;color:#fff;text-align:center;font-size:12px;font-weight:750}
 .digiyLanguageAccess a:focus-visible{outline:3px solid #ffd575;outline-offset:3px}
 .digiyLanguageAccess a[aria-current="page"]{background:#f6c453;color:#102a20;border-color:#f6c453}
+
+/* Two honest fallbacks on territory pages with eight fully wired local languages. */
+.langs a.digiyLocaleFallback{display:inline-flex;align-items:center;justify-content:center;min-height:36px;min-width:40px;padding:6px 9px;margin:0 2px;flex:0 0 auto;border:1px dashed #e9c97e;border-radius:8px;background:#143a2c;color:#fff8dc;text-decoration:none;font:inherit;font-size:12px;font-weight:750;white-space:nowrap}
+.langs a.digiyLocaleFallback:focus-visible{outline:3px solid #ffcf64;outline-offset:3px}
