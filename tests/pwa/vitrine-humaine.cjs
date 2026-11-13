@@ -111,8 +111,12 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   await page.locator('button[data-lang="fr"]').click();
   assert.equal(await page.locator('h1').innerText(),frenchTitle);
   assert.equal(await page.locator('.ownerModulesLang:visible').getAttribute('data-owner-lang'),'fr');
-  await page.locator('.homeLanguageHelp a').click();
-  await page.waitForURL(url=>url.pathname==='/prototypes/digiy-wolof-v1/prototype.html'&&url.searchParams.get('lang')==='fr');
+  const wolofAudioLink=page.locator('.homeLanguageHelp a');
+  const audioHref=new URL(await wolofAudioLink.getAttribute('href'),'https://digiylyfe.com');
+  assert.equal(audioHref.pathname,'/prototypes/digiy-wolof-v1/prototype.html');
+  assert.equal(audioHref.searchParams.has('lang'),false,'le lien audio hreflang ne doit pas être modifié');
+  await wolofAudioLink.click();
+  await page.waitForURL('https://digiylyfe.com/prototypes/digiy-wolof-v1/prototype.html');
   assert.equal(await page.locator('#woAudioPanel').count(),1);
   console.log('PASS French return and preserved explicit Wolof audio path');
   publicRows=[];
