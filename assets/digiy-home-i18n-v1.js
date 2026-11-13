@@ -117,6 +117,12 @@
       if(TEXT[code])Object.assign(TEXT[code],DIGIY_VITRINE_LITE_COPY[code]);
     });
 
+    // Ligne discrète de diversité · WO en français jusqu'à relecture par locuteur natif.
+    var DIGIY_VITRINE_TRADES={"fr":"Artisans · Commerçants · Hébergeurs · Restaurateurs · Chauffeurs · Fournisseurs · Services…","en":"Tradespeople · Shops · Hosts · Restaurants · Drivers · Suppliers · Services…","es":"Artesanos · Comerciantes · Alojamientos · Restaurantes · Conductores · Proveedores · Servicios…","pt":"Artesãos · Comerciantes · Alojamentos · Restaurantes · Motoristas · Fornecedores · Serviços…","it":"Artigiani · Commercianti · Ospitalità · Ristoratori · Autisti · Fornitori · Servizi…","de":"Handwerk · Handel · Unterkünfte · Gastronomie · Fahrer · Lieferanten · Dienstleistungen…","nl":"Vakmensen · Winkeliers · Accommodaties · Restaurants · Chauffeurs · Leveranciers · Diensten…","ar":"حرفيون · تجار · مستضيفون · مطاعم · سائقون · موردون · خدمات…","zh":"工匠 · 商家 · 住宿 · 餐饮 · 司机 · 供应商 · 服务…","wo":"Artisans · Commerçants · Hébergeurs · Restaurateurs · Chauffeurs · Fournisseurs · Services…"};
+    Object.keys(DIGIY_VITRINE_TRADES).forEach(function(code){
+      if(TEXT[code])TEXT[code].liteTradeLine=DIGIY_VITRINE_TRADES[code];
+    });
+
     var DIGIY_CARD_LABELS={
       fr:["🪪 Carte fixe","🎞 Carte animée · 7,5 s","▶ Revoir l’animation","🔊 Écouter Thomas","🔊 Écouter Amélie","▶ Revoir et réécouter"],
       wo:["🪪 Kart bu dal","🎞 Kart buy yëngu · 7,5 s","▶ Seetaat animation bi","🔊 Déglu Thomas","🔊 Déglu Amélie","▶ Seetaat te déglu"],
