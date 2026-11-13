@@ -34,6 +34,18 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 .cta.primary{background:var(--gold);color:#173324;border-color:transparent}.cta.ghost{color:#fff9ec;background:#ffffff12}
 .section{background:white;border:1px solid var(--line);border-radius:23px;margin-top:20px;padding:clamp(17px,4vw,27px);box-shadow:0 8px 25px #1c52350b}
 .desc{color:var(--muted);font-size:14px;line-height:1.5;margin:0 0 18px}
+
+/* Pont entre métiers : orientation légère dans la gare centrale existante. */
+.pontMetiers{margin:-2px 0 16px;border:1px solid #b3cfba;border-radius:14px;background:#f5faf4;color:var(--ink)}
+.pontMetiers summary{padding:13px 15px;font-size:14px;line-height:1.4;font-weight:900;color:#145d3b;cursor:pointer}
+.pontMetiers summary:focus-visible,.pontMetiers button:focus-visible{outline:3px solid #248c58;outline-offset:2px}
+.pontMetiers[open] summary{border-bottom:1px solid #c5dccb}
+.pontMetiers p{padding:0 15px;margin:12px 0;font-size:13px;line-height:1.5;color:var(--muted)}
+.pontMetiersActions{display:flex;flex-wrap:wrap;gap:8px;padding:0 15px 12px}
+.pontMetiersActions button{min-height:44px;border:1px solid #aac4af;border-radius:10px;background:white;color:var(--ink);font-size:12px;font-weight:850;padding:10px 12px;cursor:pointer}
+.pontMetiersActions button[aria-pressed="true"]{background:var(--green);color:white;border-color:var(--green)}
+.pontMetiers small{display:block;padding:0 15px 13px;font-size:11px;line-height:1.45;color:#4e6958}
+
 .filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
 .field{display:flex;flex-direction:column;gap:6px;min-width:0}.field label{font-size:12px;font-weight:850}
 .field input,.field select{background:#fff;border:1px solid #b3c7b9;border-radius:12px;color:var(--ink);width:100%;min-height:48px;padding:10px 11px}
@@ -128,6 +140,18 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 <section id="recherche" class="section" aria-labelledby="searchTitle">
 <h2 id="searchTitle">Je cherche un professionnel</h2>
 <p class="desc">Classement A → Z. Retrouvez un nom, un métier ou un territoire. Si le professionnel dispose d’une carte ou d’une fiche DIGIY reliée, ouvrez directement sa présentation depuis le résultat. Contact et paiement directs · 0 % commission DIGIYLYFE.</p>
+<details class="pontMetiers" id="pont-metiers">
+  <summary>↔ Vous êtes professionnel ? Trouvez un autre métier ici</summary>
+  <p><strong>Le pont entre métiers de DIGIYLYFE.</strong> Un hébergeur cherche un dépanneur, un commerçant un transporteur, un restaurateur un fournisseur. Choisissez un secteur : les résultats restent ceux de notre réseau public, dans le territoire sélectionné.</p>
+  <div class="pontMetiersActions" role="group" aria-label="Explorer les métiers complémentaires">
+    <button type="button" data-pont-department="batiment" aria-pressed="false">🔧 Travaux &amp; dépannage</button>
+    <button type="button" data-pont-department="services" aria-pressed="false">🧹 Services &amp; entretien</button>
+    <button type="button" data-pont-department="mobilite" aria-pressed="false">🚘 Transport</button>
+    <button type="button" data-pont-department="commerce" aria-pressed="false">🛍 Commerce &amp; fournitures</button>
+    <button type="button" data-pont-department="" aria-pressed="true">Tous les métiers</button>
+  </div>
+  <small>Contact et paiement directs · 0 % de commission DIGIY · Aucune collaboration présumée.</small>
+</details>
 <div class="filters">
 <div class="field"><label for="query">Nom ou activité</label><input id="query" type="search" placeholder="Ex. plombier, boutique, Astou" autocomplete="off"></div>
 <div class="field"><label for="country">Pays</label><select id="country"><option value="">Tous les pays</option><option value="sn">Sénégal</option><option value="fr">France</option><option value="ma">Maroc</option><option value="us">États-Unis</option><option value="other">Autres pays</option></select></div>
@@ -274,6 +298,7 @@ function renderDepartments(){
 function render(){
 var q=normalized(SEARCH.query.value),co=SEARCH.country.value,zo=SEARCH.zone.value,jo=SEARCH.job.value,selectedId=initial.get('fiche');
 renderDepartments();
+document.querySelectorAll('[data-pont-department]').forEach(function(btn){btn.setAttribute('aria-pressed',String(btn.dataset.pontDepartment===department))});
 var filtered=pro.filter(function(p){
 var z=zones[p.zone_id]||{},j=jobs[p.metier_id]||{};
 return(!co||countryOf(p)===co)&&matchZone(p,zo)&&(!jo||p.metier_id===jo)&&(!department||departmentOf(p)===department)&&(!letter||letterOf(p.display_name)===letter)&&(!selectedId||p.id===selectedId)
@@ -330,6 +355,20 @@ var signal=make('a','','Signaler une fiche');signal.href='mailto:contact@digiyly
 card.append(name,info,description,actions);root.appendChild(card);
 });
 }
+document.querySelectorAll('[data-pont-department]').forEach(function(btn){
+ btn.addEventListener('click',function(){
+  department=btn.dataset.pontDepartment||'';
+  SEARCH.query.value='';
+  SEARCH.job.value='';
+  letter='';
+  updateLetters();
+  render();
+  document.getElementById('status').scrollIntoView({
+   behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',
+   block:'start'
+  });
+ });
+});
 var letters=document.getElementById('letters');
 ['',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].forEach(function(l){var b=make('button','letter',l||'TOUS');b.type='button';b.dataset.letter=l;b.setAttribute('aria-label',l?'Noms commençant par '+l:'Toutes les lettres');b.setAttribute('aria-pressed',String(l===letter));b.addEventListener('click',function(){letter=l;updateLetters();render()});letters.appendChild(b)});
 Object.keys(SEARCH).forEach(function(k){SEARCH[k].addEventListener(k==='query'?'input':'change',function(){if(k==='country'){SEARCH.zone.value='';setZoneOptions()}render()})});
