@@ -25,9 +25,18 @@ class HomeWorld10(unittest.TestCase):
     def test_both_dictionaries_cover_every_rendered_key(self):
         dictionaries=data('DIGIY_HOME_WORLD10')
         keys=set(re.findall(r'data-i18n="([^"]+)"',HOME.split('<body>')[1].split('</main>')[0]))
+        # New explanatory card labels live in the final home i18n overlay.
+        match=re.search(r'var DIGIY_ENTRY_INFO_COPY=(.*?);\n',HOME_I18N)
+        self.assertIsNotNone(match)
+        overlay=json.loads(match.group(1))
+        self.assertIn('TEXT[code].entryProPrice=existingPrice;',HOME_I18N)
         for lang in ['wo','zh']:
-            self.assertTrue(keys <= set(dictionaries[lang]), sorted(keys-set(dictionaries[lang])))
-            self.assertTrue(all(dictionaries[lang][key].strip() for key in keys))
+            merged=dict(dictionaries[lang])
+            existing_price=merged['entryProText']
+            merged.update(overlay[lang])
+            merged['entryProPrice']=existing_price
+            self.assertTrue(keys <= set(merged), sorted(keys-set(merged)))
+            self.assertTrue(all(merged[key].strip() for key in keys))
         self.assertIn('kiliyaan',dictionaries['wo']['clarTitle'])
         self.assertIn('客户',dictionaries['zh']['clarTitle'])
         self.assertNotEqual(dictionaries['wo']['clarTitle'],dictionaries['zh']['clarTitle'])
