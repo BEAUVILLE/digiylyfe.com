@@ -35,16 +35,26 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 .section{background:white;border:1px solid var(--line);border-radius:23px;margin-top:20px;padding:clamp(17px,4vw,27px);box-shadow:0 8px 25px #1c52350b}
 .desc{color:var(--muted);font-size:14px;line-height:1.5;margin:0 0 18px}
 
-/* Pont entre métiers : orientation légère dans la gare centrale existante. */
-.pontMetiers{margin:-2px 0 16px;border:1px solid #b3cfba;border-radius:14px;background:#f5faf4;color:var(--ink)}
-.pontMetiers summary{padding:13px 15px;font-size:14px;line-height:1.4;font-weight:900;color:#145d3b;cursor:pointer}
-.pontMetiers summary:focus-visible,.pontMetiers button:focus-visible{outline:3px solid #248c58;outline-offset:2px}
-.pontMetiers[open] summary{border-bottom:1px solid #c5dccb}
-.pontMetiers p{padding:0 15px;margin:12px 0;font-size:13px;line-height:1.5;color:var(--muted)}
-.pontMetiersActions{display:flex;flex-wrap:wrap;gap:8px;padding:0 15px 12px}
-.pontMetiersActions button{min-height:44px;border:1px solid #aac4af;border-radius:10px;background:white;color:var(--ink);font-size:12px;font-weight:850;padding:10px 12px;cursor:pointer}
-.pontMetiersActions button[aria-pressed="true"]{background:var(--green);color:white;border-color:var(--green)}
-.pontMetiers small{display:block;padding:0 15px 13px;font-size:11px;line-height:1.45;color:#4e6958}
+/* CARREFOUR INTERPROFESSIONS — signal fort, action directe, pas de nouveau module. */
+.pontMetiers{position:relative;overflow:hidden;margin:18px 0 0;padding:clamp(20px,4vw,36px);border:3px solid #efc768;border-radius:22px;background:radial-gradient(circle at 95% 5%,#28734b 0,transparent 42%),linear-gradient(135deg,#092b1f 0%,#145437 56%,#092c20 100%);color:#fffdf5;box-shadow:0 12px 34px #12382938}
+.pontMetiers:before{content:"";position:absolute;inset:0 auto 0 0;width:7px;background:#f6d275}
+.pontMetiersKicker{display:inline-block;padding:7px 11px;border:1px solid #f6d275;border-radius:999px;background:#072b20;color:#ffe19a;font-size:11px;font-weight:950;letter-spacing:.11em}
+.pontMetiers h2{max-width:900px;margin:14px 0 11px;font-size:clamp(29px,5.3vw,46px);line-height:1.05;letter-spacing:-.04em;color:#ffe19a;font-weight:1000}
+.pontMetiersLead{max-width:780px;margin:0 0 16px;font-size:clamp(15px,2vw,18px);font-weight:750;line-height:1.45;color:#fffdf5}
+.pontMetiersPrompt{margin:0 0 10px;color:#ffdb8f;font-size:12px;letter-spacing:.07em;font-weight:950}
+.pontMetiersActions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.pontMetiersActions button{display:flex;min-height:100px;min-width:0;align-items:center;justify-content:center;flex-direction:column;gap:8px;border:2px solid #ffdc94;border-radius:14px;background:#fff9ea;color:#123b29;box-shadow:0 4px 13px #0002;padding:13px 10px;text-align:center;font-size:13px;line-height:1.25;font-weight:950;cursor:pointer;transition:transform .12s ease,background .12s ease}
+.pontMetiersActions button:hover{transform:translateY(-2px);background:#fff0c4}
+.pontMetiersActions button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.pontMetiersActions button[aria-pressed=true]{background:#dff9e3;border-color:#33d890;box-shadow:inset 0 0 0 1px #0f6845}
+.pontMetiersEmoji{font-size:27px;line-height:1}
+.pontMetiersActions .pontMetiersAll{grid-column:1/-1;min-height:50px;flex-direction:row;gap:11px;background:#f6d275;border-color:#f6d275;color:#0c3021;font-size:15px}
+.pontMetiersActions .pontMetiersAll[aria-pressed=true]{background:#f6d275;border-color:white}
+.pontMetiersFooter{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:13px;color:#eaf7ec;font-size:12px;font-weight:750;line-height:1.4}
+.pontMetiersFooter strong{color:#ffe19a}
+@media(max-width:680px){.pontMetiers{padding:19px 17px 22px;margin-top:14px;border-radius:18px}.pontMetiers h2{font-size:clamp(27px,7.2vw,38px)}.pontMetiersActions{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.pontMetiersActions button{min-height:91px}}
+@media(prefers-reduced-motion:reduce){.pontMetiersActions button{transition:none}.pontMetiersActions button:hover{transform:none}}
+
 
 .filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
 .field{display:flex;flex-direction:column;gap:6px;min-width:0}.field label{font-size:12px;font-weight:850}
@@ -137,21 +147,24 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 <a href="#recherche" class="cta ghost">🔎 JE CHERCHE UN PROFESSIONNEL</a>
 </nav>
 </section>
+<section class="pontMetiers" id="pont-metiers" aria-labelledby="pontMetiersTitle">
+  <div class="pontMetiersKicker">⚡ DIGIYLYFE · LE BUREAU UNIVERSEL</div>
+  <h2 id="pontMetiersTitle">CARREFOUR INTERPROFESSIONS</h2>
+  <p class="pontMetiersLead">Votre activité a besoin d’autres métiers. Trouvez un prestataire, un fournisseur ou un partenaire local et contactez-le directement.</p>
+  <p class="pontMetiersPrompt">QUEL PROFESSIONNEL CHERCHEZ-VOUS ?</p>
+  <div class="pontMetiersActions" role="group" aria-label="Choisir le métier recherché">
+    <button type="button" data-pont-department="batiment" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🔧</span><span>Travaux &amp; dépannage</span></button>
+    <button type="button" data-pont-department="services" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🧹</span><span>Entretien &amp; services</span></button>
+    <button type="button" data-pont-department="mobilite" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🚘</span><span>Transport &amp; mobilité</span></button>
+    <button type="button" data-pont-department="commerce" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🛍</span><span>Commerce &amp; fournitures</span></button>
+    <button class="pontMetiersAll" type="button" data-pont-department="" aria-pressed="true">🔎 Tous les métiers</button>
+  </div>
+  <div class="pontMetiersFooter"><span>Choisissez un métier : les résultats apparaissent juste en dessous ↓</span><strong>Contact direct · Paiement direct · 0 % commission DIGIY</strong></div>
+</section>
 <section id="recherche" class="section" aria-labelledby="searchTitle">
 <h2 id="searchTitle">Je cherche un professionnel</h2>
 <p class="desc">Classement A → Z. Retrouvez un nom, un métier ou un territoire. Si le professionnel dispose d’une carte ou d’une fiche DIGIY reliée, ouvrez directement sa présentation depuis le résultat. Contact et paiement directs · 0 % commission DIGIYLYFE.</p>
-<details class="pontMetiers" id="pont-metiers">
-  <summary>↔ Vous êtes professionnel ? Trouvez un autre métier ici</summary>
-  <p><strong>Le pont entre métiers de DIGIYLYFE.</strong> Un hébergeur cherche un dépanneur, un commerçant un transporteur, un restaurateur un fournisseur. Choisissez un secteur : les résultats restent ceux de notre réseau public, dans le territoire sélectionné.</p>
-  <div class="pontMetiersActions" role="group" aria-label="Explorer les métiers complémentaires">
-    <button type="button" data-pont-department="batiment" aria-pressed="false">🔧 Travaux &amp; dépannage</button>
-    <button type="button" data-pont-department="services" aria-pressed="false">🧹 Services &amp; entretien</button>
-    <button type="button" data-pont-department="mobilite" aria-pressed="false">🚘 Transport</button>
-    <button type="button" data-pont-department="commerce" aria-pressed="false">🛍 Commerce &amp; fournitures</button>
-    <button type="button" data-pont-department="" aria-pressed="true">Tous les métiers</button>
-  </div>
-  <small>Contact et paiement directs · 0 % de commission DIGIY · Aucune collaboration présumée.</small>
-</details>
+
 <div class="filters">
 <div class="field"><label for="query">Nom ou activité</label><input id="query" type="search" placeholder="Ex. plombier, boutique, Astou" autocomplete="off"></div>
 <div class="field"><label for="country">Pays</label><select id="country"><option value="">Tous les pays</option><option value="sn">Sénégal</option><option value="fr">France</option><option value="ma">Maroc</option><option value="us">États-Unis</option><option value="other">Autres pays</option></select></div>
