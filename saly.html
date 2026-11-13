@@ -32,6 +32,15 @@
 @media(max-width:720px){.salyPublicNeeds{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:440px){.salyPublicFirstV1{padding:17px 12px;border-radius:22px}.salyPublicFirstV1 h1{font-size:clamp(28px,8.7vw,38px)}.salyPublicNeeds{grid-template-columns:repeat(2,minmax(0,1fr))}.salyPublicNeeds a{min-height:77px}.salyPublicActions a{width:100%}}
 html[dir=rtl] .salyPublicFirstV1{direction:rtl}
+/* Les signatures PRO garde une largeur fluide sur téléphone, y compris WebKit. */
+@media(max-width:620px){
+  .realGrid{grid-template-columns:minmax(0,1fr)}
+  .real{min-width:0}
+  .real .digiyProSigMount,.real .digiyProSigCard{min-width:0;max-width:100%}
+  .real .digiyProSigCard{grid-template-columns:minmax(0,1fr)}
+  .real .digiyProSigVisual{width:100%;min-width:0;min-height:330px;aspect-ratio:auto}
+  .real .digiyProSigInfo{min-width:0;overflow-wrap:anywhere}
+}
 </style><script src="/assets/digiy-language-route-v1.js?v=20261113-wo"></script></head><body><main class="w"><div class="top"><a class="back" href="/" id="back">← DIGIYLYFE</a><div class="langs"><button data-l="fr">FR</button><button data-l="wo">WO</button><a href="/zh-CN/saly.html" lang="zh-CN" hreflang="zh-CN" title="简体中文 · 萨利" style="flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-width:50px;height:34px;padding:0 8px;border:1px solid #ffffff30;border-radius:999px;background:#ffffff12;color:#fff;font-size:10px;font-weight:900;text-decoration:none">中文</a><button data-l="en">EN</button><button data-l="es">ES</button><button data-l="pt">PT</button><button data-l="it">IT</button><button data-l="de">DE</button><button data-l="nl">NL</button><button data-l="ar">AR</button></div></div><!-- VISIBILITE V1 : besoin public prioritaire, moteur et routes existantes. -->
 <section class="salyPublicFirstV1" id="salyPublicFirstV1" aria-labelledby="salyPublicQuestion">
   <span class="salyPublicEyebrow" data-v1="eyebrow">SALY · PETITE CÔTE · LE PUBLIC D'ABORD</span>
