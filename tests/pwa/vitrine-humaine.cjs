@@ -23,7 +23,8 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   page.on('pageerror',e=>errors.push(e.message));
   fs.mkdirSync('artifacts/vitrine-humaine',{recursive:true});
   for(const width of [375,390,768,1024,1440]){
-   await page.setViewportSize({width,height:900});
+   const height=width===375?667:900;
+   await page.setViewportSize({width,height});
    await page.goto('https://digiylyfe.com/?lang=fr');
    await page.waitForTimeout(400);
    await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-${width}.png`,fullPage:true});
@@ -48,7 +49,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
      return blocks.map(el=>Math.round(el.getBoundingClientRect().top+scrollY));
    });
    assert.deepEqual(order,[...order].sort((a,b)=>a-b),'Les cinq blocs sont dans l’ordre');
-   console.log('VITRINE_5_BLOCS_POSITIONS',JSON.stringify({width,topPx:order}));
+   console.log('VITRINE_5_BLOCS_POSITIONS',JSON.stringify({width,viewportHeight:height,topPx:order,topScreens:order.map(px=>+(px/height).toFixed(2))}));
    const saly=page.locator('#territoires a[data-i18n="liteSaly"]');
    const salyUrl=new URL(await saly.getAttribute('href'),'https://digiylyfe.com');
    assert.equal(salyUrl.pathname,'/saly.html');
