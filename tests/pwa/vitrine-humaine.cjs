@@ -36,6 +36,18 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    await page.locator('.digiyVitrineExtraProof > summary').click();
    assert.equal(await page.locator('.exampleGrid a.exampleCard:visible').count(),publicRows.length,'Preuves supplémentaires accessibles');
    await page.locator('.digiyVitrineExtraProof > summary').click();
+   const tariffLink=page.locator('.topbar .digiyTarifsAccess');
+   assert.equal(await tariffLink.count(),1,'Un accès direct aux tarifs en barre haute');
+   assert.equal(await tariffLink.isVisible(),true,'Tarifs visibles sans défiler');
+   assert.equal(await tariffLink.evaluate(el=>el.getBoundingClientRect().width>=44),true,'Zone tactile des tarifs');
+   const tariffUrl=new URL(await tariffLink.getAttribute('href'),'https://digiylyfe.com');
+   assert.equal(tariffUrl.pathname,'/tarifs-adherents-1.html');
+   assert.equal(tariffUrl.searchParams.get('lang'),'fr');
+   if(width===375){
+     await tariffLink.click();
+     await page.waitForURL(url=>url.pathname==='/tarifs-adherents-1.html');
+     await page.goto('https://digiylyfe.com/?lang=fr');
+   }
    assert.equal(await page.locator('#digiyClarity a').count(),2);
    const searchUrl=new URL(await page.locator('#digiyClarity a').first().getAttribute('href'),'https://digiylyfe.com');
    assert.equal(searchUrl.pathname,'/annuaire.html');
