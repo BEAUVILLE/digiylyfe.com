@@ -53,7 +53,7 @@ class HumanHomepage(unittest.TestCase):
 
     def test_explanatory_copy_has_ten_languages_and_preserves_prices(self):
         import json
-        match = re.search(r'var DIGIY_ENTRY_INFO_COPY=(.*?);\\n', HOME_I18N)
+        match = re.search(r'var DIGIY_ENTRY_INFO_COPY=(.*?);\n', HOME_I18N)
         self.assertIsNotNone(match)
         copy = json.loads(match.group(1))
         expected = {'fr', 'wo', 'zh', 'en', 'es', 'pt', 'it', 'de', 'nl', 'ar'}
