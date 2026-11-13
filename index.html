@@ -1051,6 +1051,11 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
       .digiyEntryLocPrice{font-size:10px}
       .digiyEntryDoor.loc .digiyEntryCta{flex-basis:37%;min-width:99px;max-width:130px}
     }
+  /* Cartes de sens : lecture uniquement, aucun lien ni bouton Public/Pro en doublon. */
+  .digiyEntryInfo .digiyEntryInfoTitle{margin:0;color:#fffaf0;font-size:clamp(16px,2.4vw,20px);line-height:1.15;font-weight:1000}
+  .digiyEntryInfo .digiyEntryMeaning{margin-top:auto;color:#ffe8ad;font-size:11px;line-height:1.45;font-weight:900}
+  .digiyEntryInfo .digiyEntryPrice{margin:4px 0 0;font-size:10.5px;line-height:1.45;color:#e0eadf;font-weight:850}
+  @media(max-width:420px){.digiyEntryInfo .digiyEntryInfoTitle{font-size:14px}.digiyEntryInfo .digiyEntryMeaning{font-size:10.5px}.digiyEntryInfo .digiyEntryPrice{font-size:10px}}
 </style>
 <style id="digiyFilmVitrineStyles">
 /* Film de vitrine: ouverture volontaire pour économiser les données mobiles */
@@ -1175,20 +1180,22 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       </div>
 
       <div class="digiyEntryGrid">
-        <a class="digiyEntryDoor public" href="#digiyPublicFirstV1">
-          <span class="digiyEntryKicker" data-i18n="entryPublicKicker">PUBLIC</span>
-          <strong data-i18n="entryPublicTitle">Je cherche / je découvre</strong>
-          <p data-i18n="entryPublicText">Territoires, professionnels, services et contact direct.</p>
-          <span class="digiyEntryCta" data-i18n="entryPublicCta">EXPLORER LES TERRITOIRES →</span>
-        </a>
+        <!-- Les deux cartes expliquent; les seuls CTA Public / Pro restent dans le Hero. -->
+        <article class="digiyEntryDoor public digiyEntryInfo">
+          <span class="digiyEntryKicker" data-i18n="entryPublicKicker">VOUS CHERCHEZ</span>
+          <h2 class="digiyEntryInfoTitle" data-i18n="entryPublicTitle">Un hébergement, un chauffeur, un artisan, un resto, une boutique ?</h2>
+          <p data-i18n="entryPublicText">DIGIYLYFE vous montre les professionnels de votre territoire — leur métier, leur zone, leur contact. Vous comparez, vous choisissez, vous contactez directement par téléphone ou WhatsApp. DIGIYLYFE ne prélève aucune commission sur vos échanges : la relation reste entre vous et le professionnel.</p>
+          <p class="digiyEntryMeaning" data-i18n="entryPublicMeaning">Ce que vous voyez ici, c’est le terrain — pas un catalogue anonyme.</p>
+        </article>
 
-        <a class="digiyEntryDoor pro" href="https://digiylyfe.com/tarifs-adherents-1.html">
-          <span class="digiyEntryKicker" data-i18n="entryProKicker">PROFESSIONNEL</span>
-          <strong data-i18n="entryProTitle">Je suis professionnel</strong>
-          <p data-i18n="entryProText">Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique.</p>
+        <article class="digiyEntryDoor pro digiyEntryInfo">
+          <span class="digiyEntryKicker" data-i18n="entryProKicker">VOUS ÊTES PROFESSIONNEL</span>
+          <h2 class="digiyEntryInfoTitle" data-i18n="entryProTitle">Votre activité mérite d’être trouvée, même sans site internet.</h2>
+          <p data-i18n="entryProText">DIGIYLYFE vous donne une présence simple à partager : une inscription gratuite et, selon votre offre, une carte avec QR ou une fiche professionnelle. Vos clients vous trouvent par votre nom, votre métier et votre zone. Vous gardez vos clients, vos contacts et vos paiements. 0 % de commission DIGIYLYFE sur vos ventes.</p>
+          <p class="digiyEntryMeaning" data-i18n="entryProMeaning">Des solutions adaptées à votre activité et à son évolution.</p>
+          <p class="digiyEntryPrice" data-i18n="entryProPrice">Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique.</p>
           <span class="digiyEntryMembership" data-i18n="entryProMembership">🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AN</span>
-          <span class="digiyEntryCta" data-i18n="entryProCta">TARIFS ADHÉSION →</span>
-        </a>
+        </article>
         <a class="digiyEntryDoor loc" href="https://digiylyfe.com/tarifs-loc-v2.html">
           <span class="digiyEntryLocCopy">
             <span class="digiyEntryKicker" data-i18n="entryLocKicker">HÉBERGEMENT · LOC</span>

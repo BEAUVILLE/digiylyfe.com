@@ -32,7 +32,7 @@ class HumanHomepage(unittest.TestCase):
         positions = [BODY.index(marker) for marker in markers]
         self.assertEqual(positions, sorted(positions))
 
-    def test_solutions_position_and_three_routes(self):
+    def test_solutions_position_and_explanatory_cards(self):
         hero = BODY.index('id="digiyClarity"')
         entry = BODY.index('<section class="digiyEntryChoice" id="digiyEntryChoice"')
         proof = BODY.index('<section class="section" aria-label="Preuves terrain DIGIYLYFE">')
@@ -41,9 +41,28 @@ class HumanHomepage(unittest.TestCase):
         self.assertEqual(BODY.count('id="digiyEntryChoice"'), 1)
         section = BODY[entry:proof]
         self.assertEqual(section.count('class="digiyEntryDoor '), 3)
-        for link in ['#digiyPublicFirstV1', 'https://digiylyfe.com/tarifs-adherents-1.html',
-                     'https://digiylyfe.com/tarifs-loc-v2.html']:
-            self.assertIn('href="' + link + '"', section)
+        self.assertEqual(len(re.findall(r'<article class="digiyEntryDoor (?:public|pro) digiyEntryInfo">', section)), 2)
+        # Neither Public nor Pro is clickable in the second block; LOC retains its own route.
+        self.assertEqual(re.findall(r'href="([^"]+)"', section),
+                         ['https://digiylyfe.com/tarifs-loc-v2.html'])
+        self.assertIn('data-i18n="entryPublicMeaning"', section)
+        self.assertIn('data-i18n="entryProMeaning"', section)
+        self.assertIn('data-i18n="entryProPrice"', section)
+        self.assertIn('15 000 FCFA', section)
+        self.assertIn('450 € / AN', section)
+
+    def test_explanatory_copy_has_ten_languages_and_preserves_prices(self):
+        import json
+        match = re.search(r'var DIGIY_ENTRY_INFO_COPY=(.*?);\n', HOME_I18N)
+        self.assertIsNotNone(match)
+        copy = json.loads(match.group(1))
+        expected = {'fr', 'wo', 'zh', 'en', 'es', 'pt', 'it', 'de', 'nl', 'ar'}
+        self.assertEqual(set(copy), expected)
+        for lang in expected:
+            self.assertTrue(all(copy[lang].get(key) for key in
+                            ('entryPublicKicker', 'entryPublicTitle', 'entryPublicText', 'entryPublicMeaning',
+                             'entryProKicker', 'entryProTitle', 'entryProText', 'entryProMeaning')), lang)
+        self.assertIn('TEXT[code].entryProPrice=existingPrice', HOME_I18N)
 
     def test_film_never_fetches_before_opt_in(self):
         film = BODY.split('id="digiyFilmVitrine"', 1)[1].split('</section>', 1)[0]
