@@ -80,7 +80,8 @@
   function queryKind(value){
     const central=window.DIGIY_METIER?.resolve?.(value,(document.documentElement.lang||"fr"));
     if(central?.key && RULES[central.key]) return central.key;
-    const q=norm(value);
+    const raw=String(value||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+    const q=norm(window.DIGIY_SEARCH_DATA?.ALIASES?.[document.documentElement.lang]?.[raw]||value);
     if(/(^| )chauffeur( |$)|(^| )driver( |$)|(^| )vtc( |$)|(^| )taxi( |$)/.test(q)) return "chauffeur";
     if(/(^| )macon( |$)|(^| )maconnerie( |$)|(^| )batisseur( |$)/.test(q)) return "macon";
     if(/(^| )plombier( |$)|(^| )plomberie( |$)/.test(q)) return "plombier";
@@ -90,19 +91,20 @@
   }
 
   function officialCardHtml(profile,type){
-    const message=encodeURIComponent("Bonjour "+profile.name+", je vous contacte depuis la recherche DIGIYLYFE.");
+    const wo=document.documentElement.lang==="wo";
+    const message=encodeURIComponent(wo?"Salaam aleekum "+profile.name+", gis naa la ci DIGIYLYFE.":"Bonjour "+profile.name+", je vous contacte depuis la recherche DIGIYLYFE.");
     const avatar=profile.image
       ? `<div class="avatar"><img src="${escapeHtml(profile.image)}" alt="Carte de visite officielle de ${escapeHtml(profile.name)}" loading="eager"></div>`
       : `<div class="avatar">BP</div>`;
     const moduleCode=type==="lamine"?"DRIVER":"BUILD";
-    const moduleLabel=type==="lamine"?"Chauffeurs":"Artisans · Bâtiment";
+    const moduleLabel=wo?(type==="lamine"?"Dawalkat yi":"Artisan · Tabax"):(type==="lamine"?"Chauffeurs":"Artisans · Bâtiment");
 
     return `<article class="card" data-digiy-official="${escapeHtml(type)}" data-module="${moduleCode}">
       <span class="moduleBadge">${moduleLabel}</span>
       <div class="cardTop">
         ${avatar}
         <div>
-          <div class="titleRow"><h3>${escapeHtml(profile.name)}</h3><span class="verified">Vérifié</span></div>
+          <div class="titleRow"><h3>${escapeHtml(profile.name)}</h3><span class="verified">${wo?"Wóor na":"Vérifié"}</span></div>
           <p class="meta">${escapeHtml(profile.trade)}</p>
           <div class="location">📍 ${escapeHtml(profile.city)}</div>
         </div>
@@ -110,8 +112,8 @@
       <p class="description">${escapeHtml(profile.description)}</p>
       <div class="services">${profile.services.map(service=>`<span class="service">${escapeHtml(service)}</span>`).join("")}</div>
       <div class="actions">
-        <a class="btn btnPrimary" href="${escapeHtml(profile.profile)}" target="_blank" rel="noopener noreferrer">Voir la fiche officielle</a>
-        <a class="btn btnWhatsapp" href="https://wa.me/${profile.phone}?text=${message}" target="_blank" rel="noopener noreferrer">WhatsApp direct</a>
+        <a class="btn btnPrimary" href="${escapeHtml(profile.profile)}" target="_blank" rel="noopener noreferrer">${wo?"Xool xët wi":"Voir la fiche officielle"}</a>
+        <a class="btn btnWhatsapp" href="https://wa.me/${profile.phone}?text=${message}" target="_blank" rel="noopener noreferrer">${wo?"Jokkoo ci WhatsApp":"WhatsApp direct"}</a>
       </div>
     </article>`;
   }
@@ -154,10 +156,11 @@
   }
 
   function updateCount(visible,kind){
+    const wo=document.documentElement.lang==="wo";
     if(visible>0){
       results.hidden=false;
       if(statusBox) statusBox.hidden=true;
-      if(countBox) countBox.textContent=visible+" résultat"+(visible>1?"s":"");
+      if(countBox) countBox.textContent=wo?visible+" lañu gis":visible+" résultat"+(visible>1?"s":"");
       return;
     }
 
@@ -165,11 +168,11 @@
     if(statusBox){
       statusBox.hidden=false;
       statusBox.className="state";
-      statusBox.textContent=kind
+      statusBox.textContent=wo ? window.DIGIY_SEARCH_DATA.T.wo.empty : kind
         ? "Aucun professionnel "+kind+" correctement classé n'est encore disponible. Aucun autre métier ne sera affiché à sa place."
         : "Aucun professionnel ne correspond à cette recherche.";
     }
-    if(countBox) countBox.textContent="0 résultat";
+    if(countBox) countBox.textContent=wo?"0 lañu gis":"0 résultat";
   }
 
   function applyStrictFilter(){
