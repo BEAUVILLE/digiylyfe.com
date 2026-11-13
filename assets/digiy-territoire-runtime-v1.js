@@ -255,7 +255,7 @@ function translateTerritoryShell(){
       if(title)title.textContent=chinese?(country==='SN'?'🇸🇳 塞内加尔':'🇫🇷 法国'):(country==='SN'?'🇸🇳 Sénégal':'🇫🇷 France');
       if(description)description.textContent=chinese?(country==='SN'?'小海岸 · 达喀尔':'巴黎 · 波尔多 · 佩里戈尔／多尔多涅河谷'):(country==='SN'?'Petite Côte · Dakar':'Paris · Bordeaux · Périgord · Vallée de la Dordogne');
       var labels=country==='SN'?(chinese?['小海岸','达喀尔']:['Petite Côte','Dakar']):(chinese?['巴黎（法语页面）','波尔多（法语页面）','佩里戈尔／多尔多涅河谷（法语页面）']:['Paris','Bordeaux','Périgord · Vallée de la Dordogne']);
-      links.forEach(function(a,i){if(labels[i])a.textContent=labels[i]});
+      links.forEach(function(a,i){if(labels[i])a.textContent=labels[i];var u=new URL(a.href,location.href);if(u.hostname==='digiylyfe.com'&&u.pathname.endsWith('.html')){u.searchParams.set('lang',lang);a.href=u.pathname+u.search+u.hash}});
     });
   }
   var limit=document.getElementById('zhLimit');
