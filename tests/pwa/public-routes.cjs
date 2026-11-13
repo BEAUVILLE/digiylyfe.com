@@ -88,7 +88,15 @@ const root=path.resolve(__dirname,'../..');
  await salyLink.click();
  await page.waitForURL(url=>url.pathname==='/saly.html'&&url.searchParams.get('lang')==='wo');
  assert.match(await page.locator('#salyPublicQuestion').innerText(),/Lan ngay seet/);
- assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+3),true);
+ const salyOverflow=await page.evaluate(()=>({
+   innerWidth,scrollWidth:document.documentElement.scrollWidth,
+   elements:[...document.querySelectorAll('body *')].map(el=>{
+     const r=el.getBoundingClientRect();
+     return {tag:el.tagName,id:el.id,cls:typeof el.className==='string'?el.className:'',text:(el.textContent||'').trim().slice(0,60),left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),scroll:el.scrollWidth};
+   }).filter(el=>el.right>innerWidth+3||el.left < -3).sort((a,b)=>b.right-a.right).slice(0,20)
+ }));
+ if(salyOverflow.scrollWidth> salyOverflow.innerWidth+3)console.log('SALY WO OVERFLOW DIAGNOSTIC',JSON.stringify(salyOverflow));
+ assert.equal(salyOverflow.scrollWidth<=salyOverflow.innerWidth+3,true);
  await page.locator('[data-lien="find"]').click();
  await page.waitForURL(url=>url.pathname==='/recherche.html'&&url.searchParams.get('lang')==='wo');
  assert.equal(await page.locator('#city').inputValue(),'Saly');
