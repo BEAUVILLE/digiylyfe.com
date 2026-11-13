@@ -32,12 +32,16 @@ class HomeWorld10(unittest.TestCase):
         lite_match=re.search(r'var DIGIY_VITRINE_LITE_COPY=(.*?);\n',HOME_I18N)
         self.assertIsNotNone(lite_match)
         lite=json.loads(lite_match.group(1))
+        trades_match=re.search(r'var DIGIY_VITRINE_TRADES=(.*?);\n',HOME_I18N)
+        self.assertIsNotNone(trades_match)
+        trades=json.loads(trades_match.group(1))
         self.assertIn('TEXT[code].entryProPrice=existingPrice;',HOME_I18N)
         for lang in ['wo','zh']:
             merged=dict(dictionaries[lang])
             existing_price=merged['entryProText']
             merged.update(overlay[lang])
             merged.update(lite[lang])
+            merged['liteTradeLine']=trades[lang]
             merged['entryProPrice']=existing_price
             self.assertTrue(keys <= set(merged), sorted(keys-set(merged)))
             self.assertTrue(all(merged[key].strip() for key in keys))
