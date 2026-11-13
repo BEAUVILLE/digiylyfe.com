@@ -50,6 +50,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    });
    assert.deepEqual(order,[...order].sort((a,b)=>a-b),'Les cinq blocs sont dans l’ordre');
    console.log('VITRINE_5_BLOCS_POSITIONS',JSON.stringify({width,viewportHeight:height,topPx:order,topScreens:order.map(px=>+(px/height).toFixed(2))}));
+   if(width===375)assert.equal(order[1]<height,true,'La carte Public/Pro doit commencer à apparaître sur le premier écran 375×667');
    const saly=page.locator('#territoires a[data-i18n="liteSaly"]');
    const salyUrl=new URL(await saly.getAttribute('href'),'https://digiylyfe.com');
    assert.equal(salyUrl.pathname,'/saly.html');
