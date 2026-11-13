@@ -54,6 +54,20 @@ class HumanHomepage(unittest.TestCase):
         self.assertIn('12 000 FCFA / mois', offers)
         self.assertIn('450 € / an', offers)
         self.assertIn('href="/tarifs-loc-v2.html"', offers)
+        self.assertIn('href="/tarifs-adherents-1.html" data-i18n="liteTariffsFullCta"', offers)
+
+    def test_direct_membership_tariffs_visible_in_header(self):
+        header = BODY.split('<header class="topbar">', 1)[1].split('</header>', 1)[0]
+        self.assertIn('href="/tarifs-adherents-1.html"', header)
+        self.assertIn('class="digiyTarifsAccess"', header)
+        self.assertIn('data-i18n="liteTariffsNav"', header)
+        self.assertIn('data-i18n="liteTariffsShort"', header)
+        self.assertIn('href="/menu-universel-v1.html"', header)
+        self.assertEqual(header.count('href="/tarifs-adherents-1.html"'), 1)
+        self.assertEqual(re.findall(r'href="([^"]+)"', BODY.split('id="digiyClarity"', 1)[1].split('</section>', 1)[0]),
+                         ['/annuaire.html#recherche', '/annuaire.html#inscription'])
+        self.assertTrue((ROOT / 'tarifs-adherents-1.html').is_file())
+        self.assertIn('.digiyTarifsAccess{min-height:44px', HOME)
 
     def test_explanatory_copy_has_ten_languages_and_preserves_prices(self):
         import json
