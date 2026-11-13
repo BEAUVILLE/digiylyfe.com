@@ -123,6 +123,16 @@
       if(TEXT[code])TEXT[code].liteTradeLine=DIGIY_VITRINE_TRADES[code];
     });
 
+    // Accès direct aux tarifs de la vitrine. WO : repli français en attente de relecture.
+    var DIGIY_TARIFF_NAV_COPY={"fr":["Tarifs adhérents","Tarifs","Tarifs adhérents · carte et services →"],"en":["Membership pricing","Prices","Membership pricing · cards & services →"],"es":["Tarifas de adhesión","Tarifas","Tarifas de adhesión · tarjetas y servicios →"],"pt":["Preços de adesão","Preços","Preços de adesão · cartões e serviços →"],"it":["Tariffe di adesione","Tariffe","Tariffe di adesione · carte e servizi →"],"de":["Mitgliedspreise","Preise","Mitgliedspreise · Karten und Dienste →"],"nl":["Lidmaatschapstarieven","Prijzen","Lidmaatschapstarieven · kaarten en diensten →"],"ar":["أسعار العضوية","الأسعار","أسعار العضوية · البطاقات والخدمات ←"],"zh":["会员价格","价格","会员价格 · 名片与服务 →"],"wo":["Tarifs adhérents","Tarifs","Tarifs adhérents · carte et services →"]};
+    Object.keys(DIGIY_TARIFF_NAV_COPY).forEach(function(code){
+      if(TEXT[code]){
+        TEXT[code].liteTariffsNav=DIGIY_TARIFF_NAV_COPY[code][0];
+        TEXT[code].liteTariffsShort=DIGIY_TARIFF_NAV_COPY[code][1];
+        TEXT[code].liteTariffsFullCta=DIGIY_TARIFF_NAV_COPY[code][2];
+      }
+    });
+
     var DIGIY_CARD_LABELS={
       fr:["🪪 Carte fixe","🎞 Carte animée · 7,5 s","▶ Revoir l’animation","🔊 Écouter Thomas","🔊 Écouter Amélie","▶ Revoir et réécouter"],
       wo:["🪪 Kart bu dal","🎞 Kart buy yëngu · 7,5 s","▶ Seetaat animation bi","🔊 Déglu Thomas","🔊 Déglu Amélie","▶ Seetaat te déglu"],
