@@ -1056,6 +1056,57 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
   .digiyEntryInfo .digiyEntryMeaning{margin-top:auto;color:#ffe8ad;font-size:11px;line-height:1.45;font-weight:900}
   .digiyEntryInfo .digiyEntryPrice{margin:4px 0 0;font-size:10.5px;line-height:1.45;color:#e0eadf;font-weight:850}
   @media(max-width:420px){.digiyEntryInfo .digiyEntryInfoTitle{font-size:14px}.digiyEntryInfo .digiyEntryMeaning{font-size:10.5px}.digiyEntryInfo .digiyEntryPrice{font-size:10px}}
+
+  /* Vitrine légère : cinq blocs éditoriaux, détails préservés sous l'entrée volontaire. */
+  #digiyClarity.digiyClarity{margin:9px 0 12px;padding:clamp(16px,2.8vw,30px)}
+  #digiyClarity #digiyClarityTitle{margin:13px 0 9px;font-size:clamp(29px,5.2vw,58px)}
+  #digiyClarity .digiyClarityLead{margin:0 0 15px;font-size:clamp(14px,2vw,18px)}
+  #digiyClarity .digiyHeroUnity{font-size:clamp(17px,2.65vw,27px);margin-bottom:10px}
+  #digiyClarity .digiyVitrineActions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  #digiyClarity .digiyVitrineActions .digiyClarityCta{min-height:48px;padding:10px 12px;font-size:clamp(12px,1.4vw,15px)}
+  #digiyClarity .digiyVitrineRemember{margin:10px 0 0;font-size:13px;color:#ffe3a1;font-weight:900}
+  #digiyClarity .digiyClarityNote{margin:9px 0 0;font-size:11px}
+  .digiyEntryChoice .digiyEntryHead{margin-bottom:10px}
+  .digiyEntryChoice .digiyEntryGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .digiyEntryChoice .digiyEntryInfo{min-height:0}
+  .digiyEntryChoice .digiyEntryInfo .digiyEntryMeaning{margin-top:4px}
+  .digiyVitrineOffers,.digiyVitrineReach{margin:12px 0;padding:clamp(14px,2.8vw,24px);border:1px solid rgba(246,196,83,.4);border-radius:23px;background:#0a2d20;color:#fffaf0}
+  .digiyVitrineEyebrow{font-size:10px;letter-spacing:.09em;color:#f6c453;font-weight:950}
+  .digiyVitrineOffers h2,.digiyVitrineReach h2{font-size:clamp(23px,4vw,33px);line-height:1.13;margin:8px 0 13px;color:#fff4cf}
+  .digiyVitrineOfferGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .digiyVitrineOfferGrid article{min-width:0;display:flex;flex-direction:column;gap:9px;padding:15px;background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.16);border-radius:16px}
+  .digiyVitrineOfferGrid strong{font-size:15px;color:#fff}
+  .digiyVitrineOfferPrice{color:#f6c453;font-weight:950;font-size:13px;line-height:1.35}
+  .digiyVitrineOfferGrid p{margin:0;color:#dbecdf;font-size:12px;line-height:1.45}
+  .digiyVitrineOfferLinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+  .digiyVitrineOfferLinks a,.digiyVitrineMenuLink{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 15px;border-radius:12px;border:1px solid #e6bd62;color:#0c2b1d;background:#f6c453;text-decoration:none;font-size:12px;font-weight:900}
+  .digiyVitrineOfferLinks a+ a{background:transparent;color:#f6dc9c}
+  .digiyVitrineLoc{font-size:10px;color:#c9dfcd;margin:12px 0 0;line-height:1.4}
+  .digiyVitrineReach p{color:#dbece0;line-height:1.5;margin:8px 0;font-size:14px}
+  .digiyVitrineReach .digiyVitrineB2B{font-size:13px;color:#fff0c0;font-weight:750}
+  .digiyVitrineReachLinks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:15px 0}
+  .digiyVitrineReachLinks a{display:flex;align-items:center;justify-content:center;min-height:49px;padding:10px;border-radius:13px;border:1px solid #608368;background:#153f2d;text-decoration:none;font-weight:850;font-size:12px;color:#fff}
+  .digiyVitrineMenuLink{width:100%;margin-top:4px}
+  .digiyVitrineExtraProof{margin-top:10px;border-radius:14px;border:1px solid rgba(246,196,83,.32)}
+  .digiyVitrineExtraProof summary{cursor:pointer;padding:12px;color:#ffe2a1;font-size:12px;font-weight:850;text-align:center}
+  .digiyVitrineExtraProof .exampleGrid{padding:10px}
+  .digiyVitrineDetails{margin:0 0 12px;padding:10px;border:1px solid rgba(246,196,83,.32);border-radius:17px;background:#0a2b1e;color:#fffaf0;--ink:#fffaf0;--soft:rgba(255,250,240,.8);--line:rgba(255,255,255,.18);--card:rgba(255,255,255,.065)}
+  .digiyVitrineDetails>summary{cursor:pointer;padding:11px 10px;color:#ffe3a2;font-size:12px;line-height:1.45;font-weight:850;text-align:center}
+  .digiyVitrineDetails>section{color:#fffaf0;--ink:#fffaf0;--soft:rgba(255,250,240,.8);--line:rgba(255,255,255,.18);--card:rgba(255,255,255,.065)}
+  @media(max-width:650px){
+    #digiyClarity.digiyClarity{padding:17px 13px;margin:7px 0 11px}
+    #digiyClarity #digiyClarityTitle{margin:10px 0 8px;font-size:clamp(29px,8.2vw,38px)}
+    #digiyClarity .digiyClarityLead{margin-bottom:12px;font-size:14px}
+    #digiyClarity .digiyVitrineActions{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+    #digiyClarity .digiyVitrineActions .digiyClarityCta{font-size:12px;min-height:48px;padding:9px 7px}
+    .digiyEntryChoice .digiyEntryGrid{grid-template-columns:1fr}
+    .digiyEntryChoice .digiyEntryDoor{min-height:0;padding:12px}
+    .digiyVitrineOfferGrid{grid-template-columns:1fr}
+    .digiyVitrineOfferGrid article{gap:4px;padding:11px}
+    .digiyVitrineReachLinks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media(max-width:335px){#digiyClarity .digiyVitrineActions{grid-template-columns:1fr}}
+  html[dir="rtl"] .digiyVitrineOffers,html[dir="rtl"] .digiyVitrineReach{text-align:right;direction:rtl}
 </style>
 <style id="digiyFilmVitrineStyles">
 /* Film de vitrine: ouverture volontaire pour économiser les données mobiles */
@@ -1157,19 +1208,11 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
         <span class="digiyHeroUnityGold" data-i18n="heroUnityTwo">L’unité dans l’écosystème.</span>
       </p>
       <p class="digiyClarityLead" data-i18n="clarLead">Produits, services, savoir-faire et opportunités : le monde économique à portée de téléphone.</p>
-      <div class="digiyClarityGrid">
-        <article class="digiyClarityCard">
-          <div class="digiyClarityCardTitle"><span aria-hidden="true">🔎</span><h2 data-i18n="clarPublicTitle">Pour découvrir</h2></div>
-          <p data-i18n="clarPublicText">Je découvre des commerces, des services et des activités ici ou ailleurs, puis je contacte directement.</p>
-          <a class="digiyClarityCta digiyClarityPrimary" href="/annuaire.html#recherche" data-i18n="clarPublicCta">Je découvre</a>
-        </article>
-        <article class="digiyClarityCard">
-          <div class="digiyClarityCardTitle"><span aria-hidden="true">🛍️</span><h2 data-i18n="clarProTitle">Pour être visible</h2></div>
-          <p data-i18n="clarProText">Je présente mon activité, même sans site internet, pour être découvert et contacté directement.</p>
-          <p class="digiyClarityRemember" data-i18n="clarRemember">DIGIY aide vos clients à ne pas vous oublier.</p>
-          <a class="digiyClarityCta digiyClaritySecondary" href="/annuaire.html#inscription" data-i18n="clarProCta">Je présente mon activité</a>
-        </article>
+      <div class="digiyClarityGrid digiyVitrineActions">
+        <a class="digiyClarityCta digiyClarityPrimary" href="/annuaire.html#recherche" data-i18n="litePublicCta">🔎 Je cherche un professionnel</a>
+        <a class="digiyClarityCta digiyClaritySecondary" href="/annuaire.html#inscription" data-i18n="clarProCta">Je présente mon activité</a>
       </div>
+      <p class="digiyVitrineRemember" data-i18n="clarRemember">DIGIY aide vos clients à ne pas vous oublier.</p>
       <p class="digiyClarityNote" data-i18n="clarSmall">Présence gratuite et immédiate · Carte DIGIY avec QR et services professionnels selon tarifs · 0 % commission DIGIY sur vos ventes.</p>
     </section>
 </div>
@@ -1193,17 +1236,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
           <h2 class="digiyEntryInfoTitle" data-i18n="entryProTitle">Votre activité mérite d’être trouvée, même sans site internet.</h2>
           <p data-i18n="entryProText">DIGIYLYFE vous donne une présence simple à partager : une inscription gratuite et, selon votre offre, une carte avec QR ou une fiche professionnelle. Vos clients vous trouvent par votre nom, votre métier et votre zone. Vous gardez vos clients, vos contacts et vos paiements. 0 % de commission DIGIYLYFE sur vos ventes.</p>
           <p class="digiyEntryMeaning" data-i18n="entryProMeaning">Des solutions adaptées à votre activité et à son évolution.</p>
-          <p class="digiyEntryPrice" data-i18n="entryProPrice">Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique.</p>
-          <span class="digiyEntryMembership" data-i18n="entryProMembership">🇫🇷 ADHÉSION ÉCOSYSTÈME · 450 € / AN</span>
         </article>
-        <a class="digiyEntryDoor loc" href="https://digiylyfe.com/tarifs-loc-v2.html">
-          <span class="digiyEntryLocCopy">
-            <span class="digiyEntryKicker" data-i18n="entryLocKicker">HÉBERGEMENT · LOC</span>
-            <strong data-i18n="entryLocTitle">DIGIY LOC · tarifs par paliers</strong>
-            <span class="digiyEntryLocPrice" data-i18n="entryLocPrice">Sénégal : 1 unité 21 000 FCFA / mois · 2–3 unités 28 000 FCFA / mois. Europe : 75 € / mois pour 1–3 unités.</span>
-          </span>
-          <span class="digiyEntryCta" data-i18n="entryLocCta">VOIR LES PALIERS LOC →</span>
-        </a>
       </div>
     </section>
 <section class="section" aria-label="Preuves terrain DIGIYLYFE">
@@ -1216,6 +1249,10 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
         <a class="exampleCard" href="https://babacar-plombier-pro.digiylyfe.com/" aria-label="Ouvrir Babacar Plombier Pro" data-fav-id="pro-babacar-plombier"><i aria-hidden="true">🔧</i><strong>Babacar Plombier Pro</strong><small data-i18n="babacarText">Artisan · Saly</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
         <a class="exampleCard" href="https://mane-gning.digiylyfe.com/" aria-label="Ouvrir MANÉ &amp; GNING — Service de nettoyage" data-fav-id="pro-mane-gning"><i aria-hidden="true">🧹</i><strong>MANÉ &amp; GNING</strong><small data-i18n="maneText">Service de nettoyage · Saly / Mbour</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
         <a class="exampleCard" href="https://sarlat-chez-baptiste.digiylyfe.com/" aria-label="Ouvrir Chez Baptiste à Sarlat" data-fav-id="pro-chez-baptiste-sarlat"><i aria-hidden="true">🏠</i><strong>Chez Baptiste · Sarlat</strong><small data-i18n="baptisteText">Chambre privée · Périgord Noir</small><b data-i18n="seeCard">Voir la fiche →</b></a>
+      </div>
+      <details class="digiyVitrineExtraProof">
+        <summary data-i18n="liteMoreProof">Voir d'autres professionnels du réseau</summary>
+        <div class="exampleGrid">
         <a class="exampleCard" href="https://partenaire-lamine.digiylyfe.com/" aria-label="Ouvrir Lamine" data-fav-id="pro-lamine"><i aria-hidden="true">🚗</i><strong>Lamine</strong><small data-i18n="lamineText">Chauffeur privé · Petite Côte</small><b data-i18n="seeCard">Voir l’exemple →</b></a>
       <a class="exampleCard" href="https://kourant.digiylyfe.com/"><i aria-hidden="true">🔧</i><strong data-i18n="kourantName">Zal &amp; Kourant · Électricien</strong><b data-i18n="seeCard">Voir la fiche →</b></a>
       <a class="exampleCard" href="https://mbaye-macon.digiylyfe.com/"><i aria-hidden="true">🔧</i><strong data-i18n="mbayeName">Mbaye · Maçon</strong><b data-i18n="seeCard">Voir la fiche →</b></a>
@@ -1224,7 +1261,48 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
         <span data-i18n="proofInvite">Commencez par votre carte. Votre présence pourra grandir avec votre activité.</span>
       </div>
     </section>
-<section class="section worldHub" id="territoires" aria-label="DIGIYLYFE HUB des territoires">
+<section class="section digiyVitrineOffers" id="offres-essentielles" aria-labelledby="digiyVitrineOffersTitle">
+      <span class="digiyVitrineEyebrow" data-i18n="liteOfferKicker">DES OFFRES CLAIRES</span>
+      <h2 id="digiyVitrineOffersTitle" data-i18n="liteOfferTitle">Une entrée gratuite. Des solutions pour grandir.</h2>
+      <div class="digiyVitrineOfferGrid">
+        <article>
+          <strong data-i18n="liteFreeTitle">Présence gratuite</strong>
+          <span class="digiyVitrineOfferPrice" data-i18n="liteFreePrice">Gratuit</span>
+          <p data-i18n="liteFreeText">Votre activité peut être retrouvée par métier et territoire, sans abonnement obligatoire.</p>
+        </article>
+        <article>
+          <strong data-i18n="liteCardTitle">Carte DIGIY + QR</strong>
+          <span class="digiyVitrineOfferPrice" data-i18n="entryProPrice">Carte seule · France : 20 € · Sénégal : 15 000 FCFA · USA : 20 $ · paiement unique.</span>
+          <p data-i18n="liteCardText">Une carte partageable qui aide vos clients à vous retrouver.</p>
+        </article>
+        <article>
+          <strong data-i18n="liteMemberTitle">Adhésion écosystème</strong>
+          <span class="digiyVitrineOfferPrice" data-i18n="liteMemberPrice">Sénégal : 12 000 FCFA / mois · France : 450 € / an</span>
+          <p data-i18n="liteMemberText">Des services professionnels selon votre métier et votre pays. 0 % commission sur vos ventes.</p>
+        </article>
+      </div>
+      <nav class="digiyVitrineOfferLinks" aria-label="Offres complètes">
+        <a href="/tarifs-adherents-1.html" data-i18n="entryProCta">Voir les offres et tarifs →</a>
+        <a href="/tarifs-loc-v2.html" data-i18n="entryLocCta">Voir les paliers LOC →</a>
+      </nav>
+      <p class="digiyVitrineLoc" data-i18n="entryLocPrice">Sénégal : 1 unité 21 000 FCFA / mois · 2–3 unités 28 000 FCFA / mois. Europe : 75 € / mois pour 1–3 unités.</p>
+    </section>
+    <section class="section digiyVitrineReach" id="territoires" aria-labelledby="digiyVitrineReachTitle">
+      <span class="digiyVitrineEyebrow" data-i18n="worldTitle">DIGIYLYFE · DU LOCAL AU MONDE</span>
+      <h2 id="digiyVitrineReachTitle" data-i18n="worldLead">Des territoires vivants. Des activités ouvertes au monde.</h2>
+      <p data-i18n="internationalLead">Le web ouvre les frontières. DIGIY relie les territoires.</p>
+      <p class="digiyVitrineB2B" data-i18n="liteB2B">Artisans, commerces, restaurateurs, hébergeurs et fournisseurs indépendants peuvent se trouver, collaborer et traiter directement.</p>
+      <nav class="digiyVitrineReachLinks" aria-label="Territoires à découvrir">
+        <a href="/saly.html" data-i18n="liteSaly">Saly · Petite Côte</a>
+        <a href="/dakar.html" data-i18n="liteDakar">Dakar</a>
+        <a href="/sarlat.html" data-i18n="liteSarlat">Sarlat · Dordogne</a>
+        <a href="/france.html" data-i18n="liteFrance">France</a>
+      </nav>
+      <a class="digiyVitrineMenuLink" href="/menu-universel-v1.html" data-i18n="liteMenu">☰ Explorer tous les territoires, métiers et outils</a>
+    </section>
+    <details class="digiyVitrineDetails" id="digiyVitrineDetails">
+      <summary data-i18n="liteDetails">Explorer aussi les films, les outils, la voix, CAMPUS et la vision complète</summary>
+<section class="section worldHub" id="territoires-detail" aria-label="DIGIYLYFE HUB des territoires">
       <div class="worldHead">
         <span class="worldKicker" data-i18n="worldTitle">DIGIYLYFE · DU LOCAL AU MONDE</span>
         <h2 data-i18n="worldLead">Des territoires vivants. Des activités ouvertes au monde.</h2>
@@ -1798,6 +1876,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       </div>
     </section>
 
+    </details>
     <footer class="footer">
       <strong>DIGIYLYFE ∞</strong> · <span data-i18n="footerTag">Votre savoir-faire. Votre identité. Vos objectifs.</span><br/>
       <a href="#territoires" data-i18n="footerHub">TERRITOIRES</a>
@@ -1916,6 +1995,25 @@ window.DIGIY_FACADE_TWO_WORLDS_V1=true;
   var frame=panel.querySelector('iframe[data-src]');
   if(panel.open && frame){frame.src=frame.dataset.src;frame.removeAttribute('data-src');}
  });
+})();
+</script>
+<script id="digiy-vitrine-anchor-rescue-v1">
+(function(){
+  'use strict';
+  function reveal(){
+    var id='';
+    try{id=decodeURIComponent(location.hash.slice(1));}catch(_){return;}
+    if(!id)return;
+    var target=document.getElementById(id);
+    if(!target)return;
+    var panel=target.closest('.digiyVitrineDetails');
+    if(!panel)return;
+    panel.open=true;
+    requestAnimationFrame(function(){target.scrollIntoView({block:'start'});});
+  }
+  window.addEventListener('hashchange',reveal);
+  document.addEventListener('DOMContentLoaded',reveal);
+  reveal();
 })();
 </script>
 </body>
