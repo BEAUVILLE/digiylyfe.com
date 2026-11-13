@@ -82,7 +82,7 @@ class HumanHomepage(unittest.TestCase):
         menu = (ROOT / 'menu-universel-v1.html').read_text()
         line = next(s for s in menu.splitlines() if s.strip().startswith('const GROUPS='))
         groups = json.loads(line.split('=', 1)[1].rstrip(';'))
-        home_ids = set(re.findall(r'\\bid="([^"]+)"', BODY))
+        home_ids = set(re.findall(r'\bid="([^"]+)"', BODY))
         for group in groups:
             for entry in group['items']:
                 prefix = 'https://digiylyfe.com/#'
