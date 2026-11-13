@@ -50,6 +50,7 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 .pontMetiersEmoji{font-size:27px;line-height:1}
 .pontMetiersActions .pontMetiersAll{grid-column:1/-1;min-height:50px;flex-direction:row;gap:11px;background:#f6d275;border-color:#f6d275;color:#0c3021;font-size:15px}
 .pontMetiersActions .pontMetiersAll[aria-pressed=true]{background:#f6d275;border-color:white}
+.pontMetiersInvite{margin:13px 0 0;padding:12px 13px;border:1px solid #87b495;border-radius:12px;background:#0b3022;color:#f4f8ea;font-size:12px;line-height:1.5;font-weight:700}.pontMetiersInvite a{color:#ffe6a2;font-weight:950;text-underline-offset:3px}
 .pontMetiersFooter{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:13px;color:#eaf7ec;font-size:12px;font-weight:750;line-height:1.4}
 .pontMetiersFooter strong{color:#ffe19a}
 @media(max-width:680px){.pontMetiers{padding:19px 17px 22px;margin-top:14px;border-radius:18px}.pontMetiers h2{font-size:clamp(27px,7.2vw,38px)}.pontMetiersActions{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.pontMetiersActions button{min-height:91px}}
@@ -157,8 +158,12 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
     <button type="button" data-pont-department="services" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🧹</span><span>Entretien &amp; services</span></button>
     <button type="button" data-pont-department="mobilite" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🚘</span><span>Transport &amp; mobilité</span></button>
     <button type="button" data-pont-department="commerce" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🛍</span><span>Commerce &amp; fournitures</span></button>
+    <button type="button" data-pont-sector="grossistes" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">📦</span><span>Grossistes &amp; fournisseurs</span></button>
+    <button type="button" data-pont-sector="materiaux" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🧱</span><span>Quincailleries &amp; matériaux</span></button>
+    <button type="button" data-pont-sector="grandes-surfaces" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🏬</span><span>Grandes surfaces</span></button>
     <button class="pontMetiersAll" type="button" data-pont-department="" aria-pressed="true">🔎 Tous les métiers</button>
   </div>
+  <p class="pontMetiersInvite">Grossiste alimentaire, quincaillerie, fournisseur en matériaux ou grande surface ? <a href="#inscription">Inscrivez gratuitement votre activité →</a></p>
   <div class="pontMetiersFooter"><span>Choisissez un métier : les résultats apparaissent juste en dessous ↓</span><strong>Contact direct · Paiement direct · 0 % commission DIGIY</strong></div>
 </section>
 <section id="recherche" class="section" aria-labelledby="searchTitle">
@@ -231,7 +236,7 @@ var URL_BASE='https://wesqmwjjtsefyjnluosj.supabase.co/rest/v1/';
 var ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA';
 window.DIGIY_ANNUAIRE_CONFIG={base:URL_BASE,key:ANON_KEY};
 var SEARCH=['query','country','zone','job'].reduce(function(o,id){o[id]=document.getElementById(id);return o},{});
-var pro=[],zones={},jobs={},servedZones={},letter='',department='',initial=new URLSearchParams(location.search);
+var pro=[],zones={},jobs={},servedZones={},letter='',department='',sector='',initial=new URLSearchParams(location.search);
 var collator=new Intl.Collator('fr',{sensitivity:'base',numeric:true,ignorePunctuation:true});
 var FR_ZONES=new Set(['sarlat','vallee-dordogne','bordeaux','paris']);
 function normalized(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()}
@@ -262,6 +267,8 @@ var DEPARTMENTS=[['commerce','Commerces & marchés'],['batiment','Bâtiment & d�
 function departmentLabel(d){var found=DEPARTMENTS.find(function(x){return x[0]===d});return found?found[1]:'Autres activités'}
 function departmentOf(p){
  if(p.department)return p.department;
+ var explicit=normalized([p.activity_label,p.category,(jobs[p.metier_id]||{}).label].join(' '));
+ if(/grossist|fournisseur|distribut|negociant|centrale d.achat|commerce de gros|vente en gros|supermarche|hypermarche|superette|grandes? surfaces?|quincailler|materiaux|materiel de construction/.test(explicit))return 'commerce';
  var s=normalized([p.activity_label,p.category,p.short_description,(jobs[p.metier_id]||{}).label].join(' '));
  if(/plomb|macon|maçon|electri|électri|piscine|construction|renov|rénov|batiment|bâtiment/.test(s))return 'batiment';
  if(/tailleur|coutur|bijou|artisan|menuis|forger|tapiss/.test(s))return 'artisanat';
@@ -274,6 +281,14 @@ function departmentOf(p){
  if(/peche|pêche|agric|cultiv|elevage|élevage|maraich/.test(s))return 'agriculture';
  if(/service|nettoy|menag|ménag|medec|médec|docteur|emploi|travail/.test(s))return 'services';
  return 'autres';
+}
+function matchesPontSector(p,selected){
+ if(!selected)return true;
+ var s=normalized([p.display_name,p.activity_label,p.category,p.short_description,(jobs[p.metier_id]||{}).label].join(' '));
+ if(selected==='grossistes')return /grossist|fournisseur|distribut|centrale d.achat|commerce de gros|vente en gros|importateur|wholesale|negociant/.test(s);
+ if(selected==='materiaux')return /quincailler|materiaux|materiel de construction|fournitures? de chantier|fer a beton|ciment|carrelage|peinture batiment|bricolage/.test(s);
+ if(selected==='grandes-surfaces')return /supermarche|hypermarche|superette|grandes? surfaces?|cash.and.carry/.test(s);
+ return false;
 }
 function matchZone(p,id){
  if(!id)return true;
@@ -300,8 +315,8 @@ function renderDepartments(){
  [['','Tous les métiers']].concat(DEPARTMENTS).forEach(function(d){
  var n=pro.filter(function(p){return !d[0]||departmentOf(p)===d[0]}).length;
  var btn=make('button','deptBtn',d[1]+' · '+n);btn.type='button';
- btn.setAttribute('aria-pressed',String(department===d[0]));
- btn.addEventListener('click',function(){department=d[0];render()});
+ btn.setAttribute('aria-pressed',String(!sector&&department===d[0]));
+ btn.addEventListener('click',function(){sector='';department=d[0];render()});
  root.appendChild(btn);
  });
  root.scrollLeft=savedScroll;
@@ -311,15 +326,25 @@ function renderDepartments(){
 function render(){
 var q=normalized(SEARCH.query.value),co=SEARCH.country.value,zo=SEARCH.zone.value,jo=SEARCH.job.value,selectedId=initial.get('fiche');
 renderDepartments();
-document.querySelectorAll('[data-pont-department]').forEach(function(btn){btn.setAttribute('aria-pressed',String(btn.dataset.pontDepartment===department))});
+document.querySelectorAll('[data-pont-department]').forEach(function(btn){btn.setAttribute('aria-pressed',String(!sector&&btn.dataset.pontDepartment===department))});
+document.querySelectorAll('[data-pont-sector]').forEach(function(btn){btn.setAttribute('aria-pressed',String(btn.dataset.pontSector===sector))});
 var filtered=pro.filter(function(p){
 var z=zones[p.zone_id]||{},j=jobs[p.metier_id]||{};
 return(!co||countryOf(p)===co)&&matchZone(p,zo)&&(!jo||p.metier_id===jo)&&(!department||departmentOf(p)===department)&&(!letter||letterOf(p.display_name)===letter)&&(!selectedId||p.id===selectedId)
+&&matchesPontSector(p,sector)
 &&(!q||normalized([p.display_name,p.activity_label,p.short_description,p.category,z.label,p.city,j.label,departmentLabel(departmentOf(p))].join(' ')).includes(q));
 }).sort(function(a,b){return collator.compare(a.display_name||'',b.display_name||'')});
 var root=document.getElementById('results');root.replaceChildren();
 document.getElementById('status').textContent=filtered.length+' professionnel(s) · ordre alphabétique A → Z';
-if(!filtered.length){root.appendChild(make('div','empty','Aucun professionnel ne correspond à votre recherche. Essayez une autre zone ou un autre métier.'));return}
+if(!filtered.length){
+ var empty=make('div','empty',sector?'Aucun professionnel de ce secteur n’est actuellement visible dans cette recherche. Essayez une autre zone.':'Aucun professionnel ne correspond à votre recherche. Essayez une autre zone ou un autre métier.');
+ if(sector){
+  var register=make('a','','Vous exercez cette activité ? Inscrivez-vous gratuitement →');
+  register.href='#inscription';register.style.cssText='display:inline-block;margin-top:12px;color:#16633d;font-weight:900';
+  empty.appendChild(document.createElement('br'));empty.appendChild(register);
+ }
+ root.appendChild(empty);return
+}
 filtered.forEach(function(p){
 var z=zones[p.zone_id]||{},j=jobs[p.metier_id]||{};
 var card=make('article','pro'),name=make('h3','',p.display_name);
@@ -368,9 +393,15 @@ var signal=make('a','','Signaler une fiche');signal.href='mailto:contact@digiyly
 card.append(name,info,description,actions);root.appendChild(card);
 });
 }
-document.querySelectorAll('[data-pont-department]').forEach(function(btn){
+document.querySelectorAll('[data-pont-department], [data-pont-sector]').forEach(function(btn){
  btn.addEventListener('click',function(){
   department=btn.dataset.pontDepartment||'';
+  sector=btn.dataset.pontSector||'';
+  if(initial.has('fiche')){
+   initial.delete('fiche');
+   var next=new URL(location.href);next.searchParams.delete('fiche');
+   history.replaceState(history.state,'',next.pathname+next.search+next.hash);
+  }
   SEARCH.query.value='';
   SEARCH.job.value='';
   letter='';
