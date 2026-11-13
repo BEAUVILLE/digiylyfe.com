@@ -35,13 +35,14 @@ class VisibiliteV1(unittest.TestCase):
         self.assertIn('class="voiceSearchBand"', HOME)
         self.assertIn('id="realGrid"', SALY)
 
-    def test_all_eight_languages(self):
+    def test_existing_languages_and_saly_wolof(self):
         home_match = re.search(r"var DIGIY_PUBLIC_V1=(\{.*?\});\s*Object.keys", HOME_I18N, re.S)
         saly_match = re.search(r"var D=(\{.*?\});var q=", SALY, re.S)
         self.assertIsNotNone(home_match)
         self.assertIsNotNone(saly_match)
         for page, data in (("home", json.loads(home_match.group(1))), ("saly", json.loads(saly_match.group(1)))):
-            self.assertEqual(set(data), LANGS, page)
+            expected = LANGS | {"wo"} if page == "saly" else LANGS
+            self.assertEqual(set(data), expected, page)
             for lang, labels in data.items():
                 for key in HOME_KEYS if page == "home" else PUBLIC_KEYS:
                     self.assertTrue(labels.get(key), (page, lang, key))

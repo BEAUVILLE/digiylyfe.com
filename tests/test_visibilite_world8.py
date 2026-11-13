@@ -48,8 +48,10 @@ class World8SEO(unittest.TestCase):
             canonical = [x["href"] for x in parsed.links if x.get("rel") == "canonical"]
             self.assertEqual(canonical, [ROOT + URLS[lang]])
             self.assertIn(f'<html lang="{lang}"', html)
-            seen = {link.get("lang") for link in parsed.navs if link.get("href") in URLS.values()}
+            seen = {link.get("lang") for link in parsed.navs if link.get("href") in URLS.values() or (link.get("lang") == "fr" and link.get("href") == "/saly.html?lang=fr")}
             self.assertEqual(seen, set(SLUGS), lang)
+            if lang == "fr":
+                self.assertTrue(any(link.get("lang") == "wo" and link.get("href") == "/saly.html?lang=wo" for link in parsed.navs))
             self.assertEqual(parsed.h1, 1, lang)
 
     def test_static_language_pages_and_privacy(self):

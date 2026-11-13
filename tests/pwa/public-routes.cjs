@@ -2,10 +2,10 @@ const {chromium,webkit}=require('playwright');const fs=require('node:fs'),path=r
 const root=path.resolve(__dirname,'../..');
 (async()=>{const engine=process.env.PWA_BROWSER==='webkit'?webkit:chromium;const browser=await engine.launch(process.env.CHROMIUM_EXECUTABLE?{executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox','--disable-dev-shm-usage']}:{headless:true});try{const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});
  await context.route('**/*',async route=>{if(route.request().url().startsWith('blob:'))return route.continue();const u=new URL(route.request().url());if(u.origin!=='https://digiylyfe.com')return route.abort();let name=u.pathname;if(name.endsWith('/'))name+='index.html';const file=path.resolve(root,'.'+name);if(!file.startsWith(root+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:'Not found'});const types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.gif':'image/gif','.svg':'image/svg+xml'};await route.fulfill({path:file,contentType:types[path.extname(file)]||'application/octet-stream'});});
- const page=await context.newPage();await page.goto('https://digiylyfe.com/');await page.locator('a[href="/outils-gestion-demo.html"]').click();await page.waitForURL('https://digiylyfe.com/outils-gestion-demo.html');
- for(const doc of ['loc','driver','commerce','carnet','explore','resto','build']){await page.locator(`a[href="/demo-${doc}-gestion.html"]`).click();await page.waitForURL(`https://digiylyfe.com/demo-${doc}-gestion.html`);await page.locator('header a').click();await page.waitForURL('https://digiylyfe.com/outils-gestion-demo.html');console.log('PASS tools → '+doc+' → tools');}
- await page.locator('header a').click();await page.waitForURL('https://digiylyfe.com/');console.log('PASS home → tools → home');
- await page.goto('https://digiylyfe.com/fiches/pap-piscine-saly.html');await page.locator('a[href="https://digiylyfe.com/"]').click();await page.waitForURL('https://digiylyfe.com/');console.log('PASS public PAP fiche → home; data/API not loaded');
+ const page=await context.newPage();await page.goto('https://digiylyfe.com/');await page.locator('a[href*="/outils-gestion-demo.html"]').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/outils-gestion-demo.html');
+ for(const doc of ['loc','driver','commerce','carnet','explore','resto','build']){await page.locator(`a[href="/demo-${doc}-gestion.html"]`).click();await page.waitForURL(`https://digiylyfe.com/demo-${doc}-gestion.html`);await page.locator('header a').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/outils-gestion-demo.html');console.log('PASS tools → '+doc+' → tools');}
+ await page.locator('header a').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/');console.log('PASS home → tools → home');
+ await page.goto('https://digiylyfe.com/fiches/pap-piscine-saly.html');await page.locator('a[href="https://digiylyfe.com/"]').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/');console.log('PASS public PAP fiche → home; data/API not loaded');
  await page.goto('https://digiylyfe.com/tarifs-adherents-1.html');for(const a of await page.locator('a.demo').all()){assert.notEqual(await a.getAttribute('target'),'_blank');console.log('PASS tariff demonstration same context:',await a.getAttribute('href'));}
  await page.goto('https://digiylyfe.com/territoire.html?zone=petite-cote&lang=zh');
  await page.waitForFunction(()=>document.querySelector('#needTitle')?.textContent==='您需要什么服务？',{timeout:15000});
@@ -81,4 +81,30 @@ const root=path.resolve(__dirname,'../..');
  await page.locator('button.langBtn[data-lang="fr"]').click();
  assert.equal((await choiceAnimated.innerText()).includes('animée'),true);
  console.log('PASS libellés cartes DIGIY FR ↔ 中文');
+ await page.goto('https://digiylyfe.com/?lang=wo');
+ await page.waitForFunction(()=>document.documentElement.lang==='wo');
+ const salyLink=page.locator('a[href*="/saly.html"]').first();
+ assert.equal(new URL(await salyLink.getAttribute('href'),'https://digiylyfe.com').searchParams.get('lang'),'wo');
+ await salyLink.click();
+ await page.waitForURL(url=>url.pathname==='/saly.html'&&url.searchParams.get('lang')==='wo');
+ assert.match(await page.locator('#salyPublicQuestion').innerText(),/Lan ngay seet/);
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+3),true);
+ await page.locator('[data-lien="find"]').click();
+ await page.waitForURL(url=>url.pathname==='/recherche.html'&&url.searchParams.get('lang')==='wo');
+ assert.equal(await page.locator('#city').inputValue(),'Saly');
+ await page.waitForFunction(()=>!document.getElementById('submitBtn').disabled);
+ await page.locator('#query').fill('dawalkat');
+ await page.locator('#submitBtn').click();
+ const driver=page.locator('[data-digiy-official="lamine"]');
+ await driver.waitFor({state:'visible'});
+ assert.match(await driver.locator('.btnPrimary').getAttribute('href'),/lang=wo/);
+ const contact=new URL(await driver.locator('.btnWhatsapp').getAttribute('href'));
+ assert.equal(contact.hostname,'wa.me');
+ assert.match(contact.searchParams.get('text'),/Salaam aleekum/);
+ assert.equal(contact.searchParams.has('lang'),false);
+ await page.locator('[data-l="fr"]').click();
+ assert.equal(await page.locator('#submitBtn').innerText(),'Rechercher');
+ assert.equal(await page.locator('#city').inputValue(),'Saly');
+ console.log('PASS accueil WO → Saly WO → recherche WO → contact WhatsApp → FR');
+
  }finally{await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});
