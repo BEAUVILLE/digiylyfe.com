@@ -1105,6 +1105,8 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
     .digiyVitrineOfferGrid article{gap:4px;padding:11px}
     .digiyVitrineReachLinks{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
+  /* Le sous-texte est expliqué dans les cartes suivantes sur les petits mobiles. */
+  @media(max-width:420px){#digiyClarity .digiyClarityLead{display:none}}
   @media(max-width:335px){#digiyClarity .digiyVitrineActions{grid-template-columns:1fr}}
   html[dir="rtl"] .digiyVitrineOffers,html[dir="rtl"] .digiyVitrineReach{text-align:right;direction:rtl}
 </style>
