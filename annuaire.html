@@ -38,6 +38,9 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 /* CARREFOUR INTERPROFESSIONS — signal fort, action directe, pas de nouveau module. */
 .pontMetiers{position:relative;overflow:hidden;margin:18px 0 0;padding:clamp(20px,4vw,36px);border:3px solid #efc768;border-radius:22px;background:radial-gradient(circle at 95% 5%,#28734b 0,transparent 42%),linear-gradient(135deg,#092b1f 0%,#145437 56%,#092c20 100%);color:#fffdf5;box-shadow:0 12px 34px #12382938}
 .pontMetiers:before{content:"";position:absolute;inset:0 auto 0 0;width:7px;background:#f6d275}
+.pontMetiersTop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pontLang{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#fff1c9;font-weight:800}
+.pontLang select{background:#fff9ed;color:#123b29;border:1px solid #eac068;border-radius:9px;min-height:40px;padding:6px 8px;font-size:13px;font-weight:900}
 .pontMetiersKicker{display:inline-block;padding:7px 11px;border:1px solid #f6d275;border-radius:999px;background:#072b20;color:#ffe19a;font-size:11px;font-weight:950;letter-spacing:.11em}
 .pontMetiers h2{max-width:900px;margin:14px 0 11px;font-size:clamp(29px,5.3vw,46px);line-height:1.05;letter-spacing:-.04em;color:#ffe19a;font-weight:1000}
 .pontMetiersLead{max-width:780px;margin:0 0 16px;font-size:clamp(15px,2vw,18px);font-weight:750;line-height:1.45;color:#fffdf5}
@@ -51,6 +54,7 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 .pontMetiersActions .pontMetiersAll{grid-column:1/-1;min-height:50px;flex-direction:row;gap:11px;background:#f6d275;border-color:#f6d275;color:#0c3021;font-size:15px}
 .pontMetiersActions .pontMetiersAll[aria-pressed=true]{background:#f6d275;border-color:white}
 .pontMetiersInvite{margin:13px 0 0;padding:12px 13px;border:1px solid #87b495;border-radius:12px;background:#0b3022;color:#f4f8ea;font-size:12px;line-height:1.5;font-weight:700}.pontMetiersInvite a{color:#ffe6a2;font-weight:950;text-underline-offset:3px}
+.pontLangNote{display:block;margin-top:9px;color:#dceadc;font-size:11px;line-height:1.4}
 .pontMetiersFooter{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:13px;color:#eaf7ec;font-size:12px;font-weight:750;line-height:1.4}
 .pontMetiersFooter strong{color:#ffe19a}
 @media(max-width:680px){.pontMetiers{padding:19px 17px 22px;margin-top:14px;border-radius:18px}.pontMetiers h2{font-size:clamp(27px,7.2vw,38px)}.pontMetiersActions{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.pontMetiersActions button{min-height:91px}}
@@ -149,21 +153,23 @@ h1{font-size:clamp(35px,8vw,62px);line-height:1.04;letter-spacing:-.045em;margin
 </nav>
 </section>
 <section class="pontMetiers" id="pont-metiers" aria-labelledby="pontMetiersTitle">
-  <div class="pontMetiersKicker">⚡ DIGIYLYFE · LE BUREAU UNIVERSEL</div>
+  <div class="pontMetiersTop"><div class="pontMetiersKicker">⚡ DIGIYLYFE · LE BUREAU UNIVERSEL</div>
+    <label class="pontLang">🌍 Langue <select id="pontLang" aria-label="Langue des intitulés du Carrefour"><option value="fr">FR</option><option value="wo">WO (à relire)</option><option value="zh">中文</option><option value="en">EN</option><option value="es">ES</option><option value="pt">PT</option><option value="it">IT</option><option value="de">DE</option><option value="nl">NL</option><option value="ar">AR</option></select></label></div>
   <h2 id="pontMetiersTitle">CARREFOUR INTERPROFESSIONS</h2>
   <p class="pontMetiersLead">Votre activité a besoin d’autres métiers. Trouvez un prestataire, un fournisseur ou un partenaire local et contactez-le directement.</p>
   <p class="pontMetiersPrompt">QUEL PROFESSIONNEL CHERCHEZ-VOUS ?</p>
   <div class="pontMetiersActions" role="group" aria-label="Choisir le métier recherché">
-    <button type="button" data-pont-department="batiment" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🔧</span><span>Travaux &amp; dépannage</span></button>
-    <button type="button" data-pont-department="services" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🧹</span><span>Entretien &amp; services</span></button>
-    <button type="button" data-pont-department="mobilite" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🚘</span><span>Transport &amp; mobilité</span></button>
-    <button type="button" data-pont-department="commerce" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🛍</span><span>Commerce &amp; fournitures</span></button>
-    <button type="button" data-pont-sector="grossistes" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">📦</span><span>Grossistes &amp; fournisseurs</span></button>
-    <button type="button" data-pont-sector="materiaux" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🧱</span><span>Quincailleries &amp; matériaux</span></button>
-    <button type="button" data-pont-sector="grandes-surfaces" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🏬</span><span>Grandes surfaces</span></button>
-    <button class="pontMetiersAll" type="button" data-pont-department="" aria-pressed="true">🔎 Tous les métiers</button>
+    <button type="button" data-pont-department="batiment" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🔧</span><span data-cf="0">Travaux &amp; dépannage</span></button>
+    <button type="button" data-pont-department="services" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🧹</span><span data-cf="1">Entretien &amp; services</span></button>
+    <button type="button" data-pont-department="mobilite" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🚘</span><span data-cf="2">Transport &amp; mobilité</span></button>
+    <button type="button" data-pont-department="commerce" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🛍</span><span data-cf="3">Commerce &amp; fournitures</span></button>
+    <button type="button" data-pont-sector="grossistes" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">📦</span><span data-cf="4">Grossistes &amp; fournisseurs</span></button>
+    <button type="button" data-pont-sector="materiaux" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🧱</span><span data-cf="5">Quincailleries &amp; matériaux</span></button>
+    <button type="button" data-pont-sector="grandes-surfaces" aria-pressed="false"><span class="pontMetiersEmoji" aria-hidden="true">🏬</span><span data-cf="6">Grandes surfaces</span></button>
+    <button class="pontMetiersAll" type="button" data-pont-department="" aria-pressed="true">🔎 <span data-cf="7">Tous les métiers</span></button>
   </div>
   <p class="pontMetiersInvite">Grossiste alimentaire, quincaillerie, fournisseur en matériaux ou grande surface ? <a href="#inscription">Inscrivez gratuitement votre activité →</a></p>
+  <small class="pontLangNote">🌍 Les intitulés des directions sont disponibles en 10 langues. Les autres textes et les filtres restent en français ; le wolof doit être relu.</small>
   <div class="pontMetiersFooter"><span>Choisissez un métier : les résultats apparaissent juste en dessous ↓</span><strong>Contact direct · Paiement direct · 0 % commission DIGIY</strong></div>
 </section>
 <section id="recherche" class="section" aria-labelledby="searchTitle">
@@ -448,4 +454,21 @@ loadDirectory().catch(function(){});
 })();
 </script>
 <script src="/annuaire-inscription-auto.js?v=20261104-remise-lien"></script>
+<script>
+(function(){
+  'use strict';
+  var pane=document.getElementById('pont-metiers'),selector=document.getElementById('pontLang');
+  if(!pane||!selector)return;
+  var options={"fr":["Travaux & dépannage","Entretien & services","Transport & mobilité","Commerce & fournitures","Grossistes & fournisseurs","Quincailleries & matériaux","Grandes surfaces","Tous les métiers"],"wo":["Tabax ak defar","Set-setal ak services","Transport ak dem-dikk","Jaay-jaay ak fournitures","Grossistes ak fournisseurs","Quincaillerie ak matériaux","Grandes surfaces","Liggéey yépp"],"zh":["建筑与维修","清洁与服务","运输与出行","商贸与用品","批发商与供应商","五金与建材","大型商超","所有行业"],"en":["Construction & repairs","Cleaning & services","Transport & mobility","Trade & supplies","Wholesalers & suppliers","Hardware & building materials","Large retailers","All trades"],"es":["Obras y reparaciones","Limpieza y servicios","Transporte y movilidad","Comercio y suministros","Mayoristas y proveedores","Ferreterías y materiales","Grandes superficies","Todos los oficios"],"pt":["Obras e reparações","Limpeza e serviços","Transporte e mobilidade","Comércio e fornecimentos","Grossistas e fornecedores","Ferragens e materiais","Grandes superfícies","Todas as profissões"],"it":["Edilizia e riparazioni","Pulizia e servizi","Trasporti e mobilità","Commercio e forniture","Grossisti e fornitori","Ferramenta e materiali edili","Grande distribuzione","Tutti i mestieri"],"de":["Bau und Reparaturen","Reinigung und Dienste","Transport und Mobilität","Handel und Bedarf","Großhändler und Lieferanten","Baumärkte und Baustoffe","Großmärkte","Alle Berufe"],"nl":["Bouw en reparatie","Schoonmaak en diensten","Vervoer en mobiliteit","Handel en benodigdheden","Groothandels en leveranciers","Bouwmarkten en bouwmaterialen","Grote winkelketens","Alle beroepen"],"ar":["البناء والإصلاح","التنظيف والخدمات","النقل والتنقل","التجارة والتجهيزات","تجار الجملة والموردون","العدد ومواد البناء","المتاجر الكبرى","جميع المهن"]};
+  var nodes=[].slice.call(pane.querySelectorAll('[data-cf]'));
+  function selectLanguage(lang){
+    var labels=options[lang]||options.fr;
+    nodes.forEach(function(node,i){node.textContent=labels[i];node.dir='auto'});
+    selector.value=options[lang]?lang:'fr';
+  }
+  var initialLang=new URLSearchParams(location.search).get('lang')||'fr';
+  selectLanguage(initialLang);
+  selector.addEventListener('change',function(){selectLanguage(selector.value)});
+})();
+</script>
 </body></html>
