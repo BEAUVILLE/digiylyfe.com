@@ -28,7 +28,7 @@
   @media(max-width:670px){.top{padding:7px 0}.brand img{width:40px;height:40px}.brand strong{font-size:17px}.brand small{font-size:8px}.menu-btn{padding:10px 13px}.shell{padding:8px 11px 24px}.hero{border-radius:23px;min-height:370px;padding:26px 20px}.hero h1{font-size:clamp(33px,10vw,48px)}dialog{margin:0;max-height:100dvh;height:100dvh;width:100vw;border:0;border-radius:0}.dialog-layout{max-height:100dvh;min-height:100dvh}.groups{grid-template-columns:1fr}.toggle-all{min-width:96px}.searchrow{gap:7px}.search{padding:10px 12px;font-size:13px}.dialog-header{padding-top:max(13px,env(safe-area-inset-top))}.dialog-foot{padding-bottom:max(12px,env(safe-area-inset-bottom))}}
   @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
   </style>
-</head>
+<script src="/assets/digiy-language-route-v1.js?v=20261113-wo"></script></head>
 <body>
 <div class="shell" id="top">
   <header class="top" aria-label="Navigation DIGIYLYFE">
@@ -120,7 +120,7 @@ function render(){
  noResults.hidden=count!==0;
  toggleBtn.textContent=expanded?ui('closeall'):ui('all');
 }
-function changeLang(l){lang=l;document.documentElement.lang=l==='zh'?'zh-CN':l;document.documentElement.dir=l==='ar'?'rtl':'ltr';
+function changeLang(l){lang=l;const u=new URL(location.href);u.searchParams.set('lang',l);history.replaceState(history.state,'',u.pathname+u.search+u.hash);document.documentElement.lang=l==='zh'?'zh-CN':l;document.documentElement.dir=l==='ar'?'rtl':'ltr';
  for(const b of langBtns)b.setAttribute('aria-pressed',b.dataset.lang===l?'true':'false');
  document.querySelectorAll('[data-t]').forEach(el=>{el.textContent=ui(el.dataset.t)});
  searchInput.placeholder=ui('search');searchInput.setAttribute('aria-label',ui('search'));
@@ -133,6 +133,7 @@ langBtns.forEach(b=>b.addEventListener('click',()=>changeLang(b.dataset.lang)));
 searchInput.addEventListener('input',render);
 toggleBtn.addEventListener('click',()=>{expanded=!expanded;render()});
 // Keep menu navigation operational with an empty search.
-changeLang('fr');
+const initialLang=new URLSearchParams(location.search).get('lang')||'fr';
+changeLang(UI[initialLang]?initialLang:'fr');
 </script>
 </body></html>
