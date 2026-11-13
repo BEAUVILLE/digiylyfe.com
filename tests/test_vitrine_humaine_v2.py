@@ -44,6 +44,8 @@ class HumanHomepage(unittest.TestCase):
         self.assertEqual(len(re.findall(r'<article class="digiyEntryDoor (?:public|pro) digiyEntryInfo">', section)), 2)
         # Hero owns the Public/Pro CTAs; explanatory cards are not links.
         self.assertEqual(re.findall(r'href="([^"]+)"', section), [])
+        self.assertEqual(section.count('data-i18n="liteTradeLine"'), 1)
+        self.assertIn('Artisans · Commerçants · Hébergeurs', section)
         self.assertIn('data-i18n="entryPublicMeaning"', section)
         self.assertIn('data-i18n="entryProMeaning"', section)
         self.assertNotIn('data-i18n="entryProPrice"', section)
@@ -65,6 +67,16 @@ class HumanHomepage(unittest.TestCase):
                             ('entryPublicKicker', 'entryPublicTitle', 'entryPublicText', 'entryPublicMeaning',
                              'entryProKicker', 'entryProTitle', 'entryProText', 'entryProMeaning')), lang)
         self.assertIn('TEXT[code].entryProPrice=existingPrice', HOME_I18N)
+
+    def test_trade_line_covers_ten_languages_without_navigation(self):
+        import json
+        match = re.search(r'var DIGIY_VITRINE_TRADES=(.*?);\n', HOME_I18N)
+        self.assertIsNotNone(match)
+        translations = json.loads(match.group(1))
+        self.assertEqual(set(translations), {'fr', 'wo', 'zh', 'en', 'es', 'pt', 'it', 'de', 'nl', 'ar'})
+        self.assertTrue(all(value.strip() for value in translations.values()))
+        self.assertEqual(translations['wo'], translations['fr'])  # Relecture native requise.
+        self.assertIn('Fournisseurs', translations['fr'])
 
     def test_five_visible_blocks_and_menu_anchor_rescue(self):
         main_before_details = BODY.split('<details class="digiyVitrineDetails"', 1)[0]
