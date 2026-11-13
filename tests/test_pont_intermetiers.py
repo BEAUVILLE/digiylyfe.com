@@ -3,6 +3,13 @@ import pathlib
 import unittest
 S=(pathlib.Path(__file__).resolve().parents[1]/"annuaire.html").read_text(encoding="utf-8")
 class CarrefourTest(unittest.TestCase):
+ def test_langues_direction(self):
+  for lang in ("fr","wo","zh","en","es","pt","it","de","nl","ar"):
+   self.assertIn('<option value="'+lang+'">',S)
+   self.assertIn('"'+lang+'":[',S)
+  self.assertEqual(S.count('data-cf="0"'),1)
+  self.assertIn("le wolof doit être relu",S)
+
  def test_panneau(self):
   self.assertEqual(S.count('id="pont-metiers"'),1)
   self.assertIn('CARREFOUR INTERPROFESSIONS',S)
