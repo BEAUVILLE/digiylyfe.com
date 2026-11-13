@@ -2,7 +2,11 @@ const {chromium,webkit}=require('playwright');const fs=require('node:fs'),path=r
 const root=path.resolve(__dirname,'../..');
 (async()=>{const engine=process.env.PWA_BROWSER==='webkit'?webkit:chromium;const browser=await engine.launch(process.env.CHROMIUM_EXECUTABLE?{executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox','--disable-dev-shm-usage']}:{headless:true});try{const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});
  await context.route('**/*',async route=>{if(route.request().url().startsWith('blob:'))return route.continue();const u=new URL(route.request().url());if(u.origin!=='https://digiylyfe.com')return route.abort();let name=u.pathname;if(name.endsWith('/'))name+='index.html';const file=path.resolve(root,'.'+name);if(!file.startsWith(root+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:'Not found'});const types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.gif':'image/gif','.svg':'image/svg+xml'};await route.fulfill({path:file,contentType:types[path.extname(file)]||'application/octet-stream'});});
- const page=await context.newPage();await page.goto('https://digiylyfe.com/');await page.locator('a[href*="/outils-gestion-demo.html"]').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/outils-gestion-demo.html');
+ const page=await context.newPage();await page.goto('https://digiylyfe.com/');
+ assert.equal(await page.locator('#digiyVitrineDetails').evaluate(el=>el.open),false,'La vitrine détaillée doit être repliée par défaut');
+ assert.equal(await page.locator('.digiyMenuAccess').isVisible(),true,'Le menu universel doit rester accessible');
+ await page.locator('#digiyVitrineDetails > summary').click();
+ await page.locator('a[href*="/outils-gestion-demo.html"]').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/outils-gestion-demo.html');
  for(const doc of ['loc','driver','commerce','carnet','explore','resto','build']){await page.locator(`a[href="/demo-${doc}-gestion.html"]`).click();await page.waitForURL(`https://digiylyfe.com/demo-${doc}-gestion.html`);await page.locator('header a').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/outils-gestion-demo.html');console.log('PASS tools → '+doc+' → tools');}
  await page.locator('header a').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/');console.log('PASS home → tools → home');
  await page.goto('https://digiylyfe.com/fiches/pap-piscine-saly.html');await page.locator('a[href="https://digiylyfe.com/"]').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/');console.log('PASS public PAP fiche → home; data/API not loaded');
@@ -29,6 +33,7 @@ const root=path.resolve(__dirname,'../..');
  console.log('PASS Chinese Saly landing → local territory translated navigation');
  await page.goto('https://digiylyfe.com/tarifs-loc.html?country=sn&lang=en');await page.waitForURL(/tarifs-loc-v2\.html/);assert.equal(new URL(page.url()).searchParams.get('country'),'sn');assert.equal(new URL(page.url()).searchParams.get('lang'),'en');console.log('PASS LOC redirect preserves country/lang');
  await page.goto('https://digiylyfe.com/');
+ await page.locator('#digiyVitrineDetails > summary').click();
  const choiceFixed=page.locator('#digiyCardChooseFixed'), choiceAnimated=page.locator('#digiyCardChooseAnimated');
  const fixedPanel=page.locator('#digiyCardFixedPanel'), animatedPanel=page.locator('#digiyCardAnimatedPanel');
  const animatedImage=page.locator('#digiyOfficialAnimatedImage'), replay5=page.locator('#digiyOfficialReplay5');

@@ -40,16 +40,18 @@ class HumanHomepage(unittest.TestCase):
         self.assertLess(entry, proof)
         self.assertEqual(BODY.count('id="digiyEntryChoice"'), 1)
         section = BODY[entry:proof]
-        self.assertEqual(section.count('class="digiyEntryDoor '), 3)
+        self.assertEqual(section.count('class="digiyEntryDoor '), 2)
         self.assertEqual(len(re.findall(r'<article class="digiyEntryDoor (?:public|pro) digiyEntryInfo">', section)), 2)
-        # Neither Public nor Pro is clickable in the second block; LOC retains its own route.
-        self.assertEqual(re.findall(r'href="([^"]+)"', section),
-                         ['https://digiylyfe.com/tarifs-loc-v2.html'])
+        # Hero owns the Public/Pro CTAs; explanatory cards are not links.
+        self.assertEqual(re.findall(r'href="([^"]+)"', section), [])
         self.assertIn('data-i18n="entryPublicMeaning"', section)
         self.assertIn('data-i18n="entryProMeaning"', section)
-        self.assertIn('data-i18n="entryProPrice"', section)
-        self.assertIn('15 000 FCFA', section)
-        self.assertIn('450 € / AN', section)
+        self.assertNotIn('data-i18n="entryProPrice"', section)
+        offers = BODY.split('id="offres-essentielles"', 1)[1].split('</section>', 1)[0]
+        self.assertIn('data-i18n="entryProPrice"', offers)
+        self.assertIn('12 000 FCFA / mois', offers)
+        self.assertIn('450 € / an', offers)
+        self.assertIn('href="/tarifs-loc-v2.html"', offers)
 
     def test_explanatory_copy_has_ten_languages_and_preserves_prices(self):
         import json
@@ -63,6 +65,29 @@ class HumanHomepage(unittest.TestCase):
                             ('entryPublicKicker', 'entryPublicTitle', 'entryPublicText', 'entryPublicMeaning',
                              'entryProKicker', 'entryProTitle', 'entryProText', 'entryProMeaning')), lang)
         self.assertIn('TEXT[code].entryProPrice=existingPrice', HOME_I18N)
+
+    def test_five_visible_blocks_and_menu_anchor_rescue(self):
+        main_before_details = BODY.split('<details class="digiyVitrineDetails"', 1)[0]
+        self.assertEqual(main_before_details.count('<section '), 5)
+        self.assertEqual(BODY.count('id="territoires"'), 1)
+        self.assertIn('id="territoires-detail"', BODY)
+        self.assertIn('href="/menu-universel-v1.html"', main_before_details)
+        self.assertIn('id="digiyVitrineDetails"', BODY)
+        self.assertIn('</details>\n    <footer class="footer">', BODY)
+        self.assertIn("window.addEventListener('hashchange',reveal)", HOME)
+        self.assertIn("panel.open=true", HOME)
+
+    def test_menu_linked_home_anchors_remain_accessible(self):
+        import json
+        menu = (ROOT / 'menu-universel-v1.html').read_text()
+        line = next(s for s in menu.splitlines() if s.strip().startswith('const GROUPS='))
+        groups = json.loads(line.split('=', 1)[1].rstrip(';'))
+        home_ids = set(re.findall(r'\bid="([^"]+)"', BODY))
+        for group in groups:
+            for entry in group['items']:
+                prefix = 'https://digiylyfe.com/#'
+                if entry['url'].startswith(prefix):
+                    self.assertIn(entry['url'][len(prefix):], home_ids, entry['label'])
 
     def test_film_never_fetches_before_opt_in(self):
         film = BODY.split('id="digiyFilmVitrine"', 1)[1].split('</section>', 1)[0]
@@ -122,7 +147,7 @@ class HumanHomepage(unittest.TestCase):
 
     def test_paid_offers_and_legacy_anchors_preserved(self):
         for text in ['Carte DIGIY payante', 'Fiche professionnelle payante',
-                     'Présence professionnelle', '15 000 FCFA', '450 € / AN',
+                     'Présence professionnelle', '15 000 FCFA', '450 € / an',
                      '21 000 FCFA', '28 000 FCFA', '75 €']:
             self.assertIn(text, BODY)
         for anchor in ['digiyAnnuaireV1', 'digiyEntryChoice', 'digiyInstallBand',

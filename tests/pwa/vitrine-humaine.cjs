@@ -23,23 +23,35 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   page.on('pageerror',e=>errors.push(e.message));
   fs.mkdirSync('artifacts/vitrine-humaine',{recursive:true});
   for(const width of [375,390,768,1024,1440]){
-   await page.setViewportSize({width,height:900});
+   const height=width===375?667:900;
+   await page.setViewportSize({width,height});
    await page.goto('https://digiylyfe.com/?lang=fr');
    await page.waitForTimeout(400);
    await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-${width}.png`,fullPage:true});
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true,`horizontal overflow ${width}`);
    assert.equal(await page.locator('h1').count(),1);
    assert.equal(await page.locator('.exampleGrid a.exampleCard').count(),publicRows.length);
-   for(const card of await page.locator('.exampleGrid a.exampleCard').all())assert.equal(await card.isVisible(),true);
+   assert.equal(await page.locator('.exampleGrid a.exampleCard:visible').count(),4,'Quatre preuves terrain visibles au départ');
+   assert.equal(await page.locator('#digiyVitrineDetails').evaluate(el=>el.open),false,'La vitrine détaillée est fermée par défaut');
+   await page.locator('.digiyVitrineExtraProof > summary').click();
+   assert.equal(await page.locator('.exampleGrid a.exampleCard:visible').count(),publicRows.length,'Preuves supplémentaires accessibles');
+   await page.locator('.digiyVitrineExtraProof > summary').click();
    assert.equal(await page.locator('#digiyClarity a').count(),2);
    const searchUrl=new URL(await page.locator('#digiyClarity a').first().getAttribute('href'),'https://digiylyfe.com');
    assert.equal(searchUrl.pathname,'/annuaire.html');
    assert.equal(searchUrl.searchParams.get('lang'),'fr');
    assert.equal(searchUrl.hash,'#recherche');
    assert.equal(await page.locator('#digiyFilmVitrine iframe').getAttribute('src'),null);
-   const order=await page.evaluate(()=>['digiyClarity','territoires','solutions-pro','digiyFilmVitrine','digiyInternational'].map(id=>document.getElementById(id).getBoundingClientRect().top));
-   assert.deepEqual(order,[...order].sort((a,b)=>a-b));
-   const saly=page.locator('#territoires a[data-i18n="v1TerritoryCta"]');
+   const order=await page.evaluate(()=>{
+     const blocks=[document.getElementById('digiyClarity'),document.getElementById('digiyEntryChoice'),
+       document.querySelector('section[aria-label="Preuves terrain DIGIYLYFE"]'),
+       document.getElementById('offres-essentielles'),document.getElementById('territoires')];
+     return blocks.map(el=>Math.round(el.getBoundingClientRect().top+scrollY));
+   });
+   assert.deepEqual(order,[...order].sort((a,b)=>a-b),'Les cinq blocs sont dans l’ordre');
+   console.log('VITRINE_5_BLOCS_POSITIONS',JSON.stringify({width,viewportHeight:height,topPx:order,topScreens:order.map(px=>+(px/height).toFixed(2))}));
+   if(width===375)assert.equal(order[1]<height,true,'La carte Public/Pro doit commencer à apparaître sur le premier écran 375×667');
+   const saly=page.locator('#territoires a[data-i18n="liteSaly"]');
    const salyUrl=new URL(await saly.getAttribute('href'),'https://digiylyfe.com');
    assert.equal(salyUrl.pathname,'/saly.html');
    assert.equal(salyUrl.searchParams.get('lang'),'fr');
@@ -61,7 +73,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    await page.locator(`button[data-lang="${lang}"]`).click();
    assert.equal(await page.locator('html').getAttribute('lang'),lang);
    assert.equal(await page.locator('html').getAttribute('dir'),lang==='ar'?'rtl':'ltr');
-   assert.ok((await page.locator('#solutionsTitle').innerText()).length>3);
+   assert.ok((await page.locator('#digiyVitrineOffersTitle').innerText()).length>3);
    if(lang==='ar'){
     console.log('RTL dimensions',await page.evaluate(()=>JSON.stringify({innerWidth,innerHeight,scrollX,doc:{width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,dir:getComputedStyle(document.documentElement).direction},body:{width:document.body.clientWidth,scroll:document.body.scrollWidth,dir:getComputedStyle(document.body).direction},visual:{width:visualViewport.width,scale:visualViewport.scale},wide:[...document.querySelectorAll('body *')].map(e=>({tag:e.tagName,id:e.id,c:e.className,w:Math.round(e.getBoundingClientRect().width),scroll:e.scrollWidth,pos:getComputedStyle(e).position})).filter(e=>e.w>400||e.scroll>500).sort((a,b)=>b.w-a.w).slice(0,20)})));
     await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-ar-dimensions.png`});
@@ -69,6 +81,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.evaluate(()=>Math.abs(innerWidth-390)<=2),true,`locale viewport expansion ${lang}`);
   }
   // Explicitly center a far-down RTL control before testing its real pointer hit.
+  await page.locator('#digiyVitrineDetails > summary').click();
   const filmControl=page.locator('#digiyFilmVitrine summary');
   await filmControl.evaluate(el=>el.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'}));
   await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-ar-film.png`});
@@ -79,9 +92,9 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   // All ten controls translate the same home. Audio remains an explicit separate link.
   await page.goto('https://digiylyfe.com/?lang=fr');
   const homePath=new URL(page.url()).pathname;
-  await page.waitForSelector('.digiyHomeMembershipPrice');
+  await page.waitForSelector('#offres-essentielles .digiyVitrineOfferPrice');
   const digits=s=>s.replace(/[^0-9]/g,'');
-  const originalPrice=digits(await page.locator('.digiyHomeMembershipPrice').first().innerText());
+  const originalPrice=digits(await page.locator('#offres-essentielles .digiyVitrineOfferGrid article:nth-child(3) .digiyVitrineOfferPrice').innerText());
   const frenchTitle=await page.locator('h1').innerText();
   for(const [lang,title,remember] of [['wo','LE BUREAU UNIVERSEL','DIGIY dafay tax sa kiliyaan yi bañ laa fàtte.'],['zh','每一项经营活动都值得在世界上拥有一席之地。','DIGIY 帮助客户再次找到您。']]){
    await page.locator(`.languageStrip button[data-lang="${lang}"]`).click();
@@ -89,18 +102,19 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(new URL(page.url()).pathname,homePath);
    assert.equal(new URL(page.url()).searchParams.get('lang'),lang);
    assert.equal(await page.locator('h1').innerText(),title);
-   assert.equal(await page.locator('#digiyClarity .digiyClarityRemember').innerText(),remember);
+   assert.equal(await page.locator('#digiyClarity .digiyVitrineRemember').innerText(),remember);
    assert.equal(await page.locator(`button[data-lang="${lang}"]`).getAttribute('aria-pressed'),'true');
    assert.equal(await page.evaluate(()=>Math.abs(innerWidth-390)<=2),true);
+   await page.locator('#digiyVitrineDetails').evaluate(el=>el.open=true);
    assert.equal(await page.locator('.ownerModulesLang:visible').count(),1);
    assert.equal(await page.locator('.ownerModulesLang:visible').getAttribute('data-owner-lang'),lang);
    await page.waitForTimeout(100);
    assert.equal(await page.locator('.languageStrip').evaluate(el=>{const r=el.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight;}),true,'language choices remain visible after changing locale');
-   assert.equal(digits(await page.locator('.digiyHomeMembershipPrice').first().innerText()),originalPrice);
+   assert.equal(digits(await page.locator('#offres-essentielles .digiyVitrineOfferGrid article:nth-child(3) .digiyVitrineOfferPrice').innerText()),originalPrice);
    const labels=await page.locator('#campusInterestForm [data-campus-copy="send"]').innerText();
    assert.ok(lang==='zh'?labels.includes('感兴趣'):labels.includes('BËGG'));
-   const missing=await page.evaluate(()=>[...document.querySelectorAll('[data-i18n]')].map(el=>el.dataset.i18n).filter(k=>!(k in window.DIGIY_HOME_WORLD10[document.documentElement.lang==='zh-CN'?'zh':'wo'])));
-   assert.deepEqual(missing,[]);
+   assert.ok((await page.locator('#offres-essentielles h2').innerText()).length>3);
+   await page.locator('#digiyVitrineDetails').evaluate(el=>el.open=false);
    await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-${lang}-home.png`});
    await page.reload();
    assert.equal(await page.locator('h1').innerText(),title);
@@ -110,6 +124,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   assert.equal(await page.locator('html').getAttribute('lang'),'zh-CN');
   await page.locator('button[data-lang="fr"]').click();
   assert.equal(await page.locator('h1').innerText(),frenchTitle);
+  await page.locator('#digiyVitrineDetails').evaluate(el=>el.open=true);
   assert.equal(await page.locator('.ownerModulesLang:visible').getAttribute('data-owner-lang'),'fr');
   const wolofAudioLink=page.locator('.homeLanguageHelp a');
   const audioHref=new URL(await wolofAudioLink.getAttribute('href'),'https://digiylyfe.com');
