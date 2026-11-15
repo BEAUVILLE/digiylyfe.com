@@ -1066,6 +1066,21 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
   #digiyClarity .digiyVitrineActions .digiyClarityCta{min-height:48px;padding:10px 12px;font-size:clamp(12px,1.4vw,15px)}
   #digiyClarity .digiyVitrineRemember{margin:10px 0 0;font-size:13px;color:#ffe3a1;font-weight:900}
   #digiyClarity .digiyClarityNote{margin:9px 0 0;font-size:11px}
+  /* La Voix des adhérents : bandeau compact, portes Public/Pro inchangées. */
+  .digiyMemberVoice{margin:10px 0 13px;border:1px solid rgba(246,196,83,.35);border-radius:15px;background:#0a2d20;color:#fffaf0;padding:7px 14px}
+  .digiyMemberVoice summary{display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;cursor:pointer;min-height:48px}
+  .digiyMemberVoice summary::-webkit-details-marker{display:none}
+  .digiyMemberVoice summary strong{font-size:14px;color:#f6d68a}
+  .digiyMemberVoice summary small{display:block;color:#d7e6d8;font-size:12px;margin-top:3px;line-height:1.4}
+  .digiyMemberVoice summary:focus-visible,.digiyMemberVoice a:focus-visible{outline:3px solid #f6c453;outline-offset:3px}
+  .digiyMemberVoiceChevron{color:#f6d68a;transition:transform .2s ease}
+  .digiyMemberVoice[open] .digiyMemberVoiceChevron{transform:rotate(180deg)}
+  .digiyMemberVoiceOptions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;padding:12px 0 7px}
+  .digiyMemberVoiceOptions a{min-height:44px;padding:10px 12px;border:1px solid rgba(246,196,83,.52);border-radius:11px;background:#144532;color:#fffaf0;text-align:center;text-decoration:none;font-size:12px;font-weight:850;display:flex;align-items:center;justify-content:center}
+  .digiyMemberVoiceOptions a:hover{background:#1b5840}
+  .digiyMemberVoiceNote{margin:1px 0 8px;color:#cfe0d0;font-size:11px;line-height:1.4}
+  @media(max-width:620px){.digiyMemberVoiceOptions{grid-template-columns:1fr}.digiyMemberVoice summary strong{font-size:13px}}
+
   /* Tarifs toujours accessibles depuis la barre haute, sans alourdir le Hero. */
   .digiyTopActions{display:flex;align-items:center;justify-self:end;gap:6px;min-width:0}
   .digiyTarifsAccess{min-height:44px;padding:10px 12px;display:inline-flex;align-items:center;justify-content:center;border-radius:13px;border:1px solid rgba(246,196,83,.60);background:rgba(246,196,83,.12);color:#ffe8ad;font-size:12px;font-weight:900;white-space:nowrap}
@@ -1282,6 +1297,19 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
         <span data-i18n="proofInvite">Commencez par votre carte. Votre présence pourra grandir avec votre activité.</span>
       </div>
     </section>
+<!-- LA VOIX DES ADHÉRENTS · échange volontaire via WhatsApp, aucun stockage DIGIY. -->
+<details class="digiyMemberVoice" id="voix-adherents">
+  <summary>
+    <span><strong>💬 La Voix des adhérents</strong><small>Une idée, un besoin, une collaboration ? Parlons-en directement.</small></span>
+    <span class="digiyMemberVoiceChevron" aria-hidden="true">⌄</span>
+  </summary>
+  <div class="digiyMemberVoiceOptions">
+    <a href="https://wa.me/221771342889?text=Bonjour%20DIGIYLYFE%2C%20je%20souhaite%20partager%20une%20id%C3%A9e%20%3A%20" target="_blank" rel="noopener noreferrer">💡 J’ai une idée</a>
+    <a href="https://wa.me/221771342889?text=Bonjour%20DIGIYLYFE%2C%20je%20souhaite%20vous%20signaler%20un%20besoin%20li%C3%A9%20%C3%A0%20mon%20activit%C3%A9%20%3A%20" target="_blank" rel="noopener noreferrer">🛠️ J’ai un besoin</a>
+    <a href="https://wa.me/221771342889?text=Bonjour%20DIGIYLYFE%2C%20je%20souhaite%20proposer%20une%20collaboration%20%3A%20" target="_blank" rel="noopener noreferrer">🤝 Je propose une collaboration</a>
+  </div>
+  <p class="digiyMemberVoiceNote">Le message s’ouvre dans WhatsApp. Vous choisissez de l’envoyer ; rien n’est publié automatiquement.</p>
+</details>
 <section class="section digiyVitrineOffers" id="offres-essentielles" aria-labelledby="digiyVitrineOffersTitle">
       <span class="digiyVitrineEyebrow" data-i18n="liteOfferKicker">DES OFFRES CLAIRES</span>
       <h2 id="digiyVitrineOffersTitle" data-i18n="liteOfferTitle">Une entrée gratuite. Des solutions pour grandir.</h2>
