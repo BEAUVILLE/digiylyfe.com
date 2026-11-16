@@ -176,6 +176,7 @@ function localNeedMeta(id,meta){
   return meta[id]||'';
 }
 
+var DIGIY_NEED_SIGNATURE={"announcements":"DIGIY","transport":"DIGIY DRIVER","artisan":"DIGIY BUILD","cleaning":"DIGIY","professional":"DIGIY","health_care":"DIGIY","accommodation":"DIGIY LOC","food":"DIGIY RESTO","shopping":"DIGIY MON COMMERCE","beauty":"DIGIY BEAUTY","jobs":"DIGIY JOBS","guidance":"DIGIY"};
 function renderNeeds(){
   var root=document.getElementById('needs'),tr=T[lang],meta=(NEED_META[lang]||NEED_META.fr);root.innerHTML='';
   var list=NEEDS.slice(),extras=LOCAL_NEEDS[territoryId]||[],at=list.length;
@@ -187,7 +188,7 @@ function renderNeeds(){
     var b=document.createElement('button');b.type='button';b.className='need'+(state.need===n[0]?' active':'');b.setAttribute('data-digiy-native-door','1');
     var ic=document.createElement('strong'),tx=document.createElement('span'),sm=document.createElement('small');
     ic.textContent=n[1];tx.textContent=tr.labels[n[0]]||n[0];sm.textContent=localNeedMeta(n[0],meta);
-    b.append(ic,tx,sm);
+    var sig=document.createElement('em');sig.className='digiyNeedSignature';sig.textContent=DIGIY_NEED_SIGNATURE[n[0]]||'DIGIY';b.append(ic,sig,tx,sm);
     b.addEventListener('click',function(){if(n[0]==='guidance'){location.href='https://pro-action-digiy.digiylyfe.com/';return}state.need=state.need===n[0]?'':n[0];syncUrl();renderNeeds();renderResults();revealResults()});
     root.appendChild(b)
   });
