@@ -1139,6 +1139,49 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
   @media(max-width:335px){#digiyClarity .digiyVitrineActions{grid-template-columns:1fr}}
   html[dir="rtl"] .digiyVitrineOffers,html[dir="rtl"] .digiyVitrineReach{text-align:right;direction:rtl}
 </style>
+<style id="digiyWorldDirectV1Styles">
+
+/* DIGIY VITRINE WORLD10 · portes directes, sobre et accessible. */
+.digiyFrontWorld{margin:0 0 10px;padding:11px;border:1px solid rgba(246,196,83,.34);border-radius:18px;background:#092d21;color:#fff8e8}
+.digiyFrontWorldKicker{margin:0 0 9px;text-align:center;color:#f9de9c;font-size:clamp(11px,1.5vw,13px);font-weight:950;letter-spacing:.035em}
+.digiyFrontWorldGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.digiyFrontWorldGrid a{min-width:0;min-height:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px;text-align:center;color:#fffaf0;text-decoration:none;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:rgba(255,255,255,.065)}
+.digiyFrontWorldGrid strong{font-size:13px;line-height:1.2}
+.digiyFrontWorldGrid small{font-size:10px;color:#d9e9dd;line-height:1.25;overflow-wrap:anywhere}
+.digiyFrontWorldGrid a:hover{background:rgba(246,196,83,.13)}
+.digiyFrontWorldGrid a:focus-visible,.digiyFrontBridge:focus-visible,.digiyFrontModules a:focus-visible{outline:3px solid #f6c453;outline-offset:3px}
+.digiyFrontDirect{margin:10px 0 14px;padding:clamp(13px,2.5vw,21px);border:1px solid rgba(59,200,157,.45);border-radius:23px;background:linear-gradient(135deg,#0b3023,#09231b);color:#fffaf0}
+.digiyFrontDirectHead{text-align:center}
+.digiyFrontDirectHead>span{font-size:10px;line-height:1.35;font-weight:900;letter-spacing:.06em;color:#f6d48d}
+.digiyFrontDirect h2{font-size:clamp(21px,3.7vw,30px);line-height:1.17;margin:6px 0;color:#fff3d6}
+.digiyFrontDirectHead p{font-size:clamp(12px,1.7vw,14px);line-height:1.45;margin:0 auto 11px;max-width:680px;color:#deebe1}
+.digiyFrontBridge{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px;border-radius:15px;border:1px solid rgba(246,196,83,.65);background:rgba(246,196,83,.13);text-decoration:none;color:#fff9df}
+.digiyFrontBridge>span:first-child{font-size:25px}
+.digiyFrontBridge strong{display:block;font-size:15px;line-height:1.2;color:#ffe5a1}
+.digiyFrontBridge small{display:block;margin-top:3px;font-size:11px;line-height:1.35;color:#f0f4e9}
+.digiyFrontBridge b{font-size:11px;white-space:nowrap;color:#ffe9b8}
+.digiyFrontModules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:11px}
+.digiyFrontModules a{min-width:0;min-height:94px;padding:11px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(255,255,255,.17);border-radius:13px;background:rgba(255,255,255,.065);color:#fff;text-decoration:none;text-align:center}
+.digiyFrontModules a:hover{background:rgba(94,234,212,.11)}
+.digiyFrontModules a>span{font-size:23px;line-height:1.1}
+.digiyFrontModules strong{font-size:12px;line-height:1.2;overflow-wrap:anywhere}
+.digiyFrontModules small{font-size:10.5px;line-height:1.3;color:#d6e8dc;overflow-wrap:anywhere}
+.digiyFrontDirectNote{margin:10px 0 0;text-align:center;font-size:10px;line-height:1.45;color:#c9e4d1}
+@media(max-width:650px){
+ .digiyFrontWorldGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ .digiyFrontWorldGrid a{min-height:55px;padding:7px 5px}
+ .digiyFrontWorldGrid strong{font-size:12px}
+ .digiyFrontWorldGrid small{font-size:9.5px}
+ .digiyFrontBridge{grid-template-columns:auto 1fr;gap:8px}
+ .digiyFrontBridge b{grid-column:2;white-space:normal}
+ .digiyFrontModules{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ .digiyFrontModules a{min-height:78px;padding:9px 6px}
+ .digiyFrontModules strong{font-size:11px}
+ .digiyFrontModules small{font-size:10px}
+}
+html[dir="rtl"] .digiyFrontWorld,html[dir="rtl"] .digiyFrontDirect{direction:rtl}
+
+</style>
 <style id="digiyFilmVitrineStyles">
 /* Film de vitrine: ouverture volontaire pour économiser les données mobiles */
 .digiyFilmVitrine{margin:15px 0 18px;padding:clamp(14px,3vw,25px);border:1px solid rgba(246,196,83,.62);border-radius:26px;background:radial-gradient(circle at 15% 0%,rgba(34,197,94,.18),transparent 55%),linear-gradient(145deg,#0a3224,#061710 75%);box-shadow:0 16px 40px rgba(0,0,0,.23);text-align:center}
@@ -1232,6 +1275,16 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       <button type="button" class="langBtn" data-lang="ar" aria-pressed="false">AR</button>
     </nav>
     <p class="homeLanguageHelp"><a href="/prototypes/digiy-wolof-v1/prototype.html" lang="wo" hreflang="wo" data-i18n="woAudio">🔊 Écouter la présentation en wolof</a><small data-i18n="localeScope">Les langues disponibles peuvent varier selon les pages.</small><small class="woReviewNote" data-i18n="woReview">Texte wolof proposé à la relecture native.</small></p>
+<!-- VITRINE WORLD10 · pays et territoires visibles sans menu. -->
+<section class="digiyFrontWorld" aria-label="Pays et territoires DIGIYLYFE" id="pays-directs">
+  <p class="digiyFrontWorldKicker" data-direct-i18n="frontKicker">🌍 4 pays à découvrir · 10 langues</p>
+  <nav class="digiyFrontWorldGrid" aria-label="Choisir un pays ou territoire">
+    <a href="/senegal.html"><strong>🇸🇳 <span data-i18n="globalSenegal">Sénégal</span></strong><small>Dakar · Petite Côte · Saly · Mbour</small></a>
+    <a href="/france.html"><strong>🇫🇷 <span data-i18n="globalFrance">France</span></strong><small>Sarlat · Dordogne · Bordeaux · Paris</small></a>
+    <a href="/maroc.html"><strong>🇲🇦 <span data-i18n="globalMorocco">Maroc</span></strong><small data-direct-i18n="frontMoroccoAreas">Casablanca · Marrakech · ouverture</small></a>
+    <a href="/miami.html"><strong>🇺🇸 <span data-i18n="globalUsa">États-Unis</span></strong><small data-direct-i18n="frontUSAAreas">Miami · Floride · pilote</small></a>
+  </nav>
+</section>
 <div id="digiyAnnuaireV1">
 <section class="digiyClarity" id="digiyClarity" aria-labelledby="digiyClarityTitle">
       <span class="digiyClarityKicker" data-i18n="clarKicker">DIGIYLYFE · LE BUREAU UNIVERSEL</span>
@@ -1250,6 +1303,30 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       <p class="digiyClarityNote" data-i18n="clarSmall">Présence gratuite et immédiate · Carte DIGIY avec QR et services professionnels selon tarifs · 0 % commission DIGIY sur vos ventes.</p>
     </section>
 </div>
+<!-- VITRINE · portes métiers directes : destinations existantes du menu universel. -->
+<section class="digiyFrontDirect" id="outils-directs" aria-labelledby="digiyFrontDirectTitle">
+  <div class="digiyFrontDirectHead">
+    <span data-direct-i18n="hubKicker">🤝 DIGIYLYFE · LE RÉSEAU EN ACTION</span>
+    <h2 id="digiyFrontDirectTitle" data-direct-i18n="hubTitle">Des métiers indépendants. Des possibilités communes.</h2>
+    <p data-direct-i18n="hubLead">DIGIY relie métiers, territoires et langues pour faire circuler les opportunités.</p>
+  </div>
+  <a class="digiyFrontBridge" href="/annuaire.html#pont-metiers">
+    <span aria-hidden="true">🤝</span>
+    <span><strong data-direct-i18n="bridgeTitle">Carrefour interprofessions</strong><small data-direct-i18n="bridgeText">Professionnels, fournisseurs et partenaires : développez vos relations directes.</small></span>
+    <b data-direct-i18n="bridgeAction">Explorer le Carrefour →</b>
+  </a>
+  <nav class="digiyFrontModules" aria-label="Ouvrir directement les outils métiers">
+    <a href="https://loc.digiylyfe.com/"><span aria-hidden="true">🏠</span><strong>DIGIY LOC</strong><small data-direct-i18n="locDesc">Hébergements</small></a>
+    <a href="https://driver-client.digiylyfe.com/"><span aria-hidden="true">🚘</span><strong>DIGIY DRIVER</strong><small data-direct-i18n="driverDesc">Chauffeurs et trajets</small></a>
+    <a href="https://resa-table-resto.digiylyfe.com/"><span aria-hidden="true">📅</span><strong>DIGIY RÉSA</strong><small data-direct-i18n="resaDesc">Réservations</small></a>
+    <a href="https://mon-commerce.digiylyfe.com/"><span aria-hidden="true">🛍️</span><strong>MON COMMERCE</strong><small data-direct-i18n="commerceDesc">Boutiques et produits</small></a>
+    <a href="https://build.digiylyfe.com/"><span aria-hidden="true">🛠️</span><strong>DIGIY BUILD</strong><small data-direct-i18n="buildDesc">Bâtiment et travaux</small></a>
+    <a href="https://jobs.digiylyfe.com/"><span aria-hidden="true">💼</span><strong>DIGIY JOBS</strong><small data-direct-i18n="jobsDesc">Emplois et missions</small></a>
+    <a href="https://explore.digiylyfe.com/"><span aria-hidden="true">🌍</span><strong>DIGIY EXPLORE</strong><small data-direct-i18n="exploreDesc">Découvertes et activités</small></a>
+    <a href="https://digiy-carnet-pro.digiylyfe.com/"><span aria-hidden="true">📒</span><strong>CARNET PRO</strong><small data-direct-i18n="carnetDesc">Gestion quotidienne</small></a>
+  </nav>
+  <p class="digiyFrontDirectNote" data-direct-i18n="hubNote">Annuaire gratuit · Outils professionnels selon l'offre choisie · Contact et paiement directs · 0 % commission DIGIYLYFE.</p>
+</section>
 <section class="digiyEntryChoice" id="digiyEntryChoice" aria-label="Entrer dans DIGIYLYFE">
       <div class="digiyEntryHead">
         <strong data-i18n="entryTitle">DES SOLUTIONS SELON VOTRE BESOIN</strong>
@@ -1944,7 +2021,8 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
   </main>
 
   <script src="/assets/digiy-home-world10-v1.js?v=20261111-price12000"></script>
-  <script src="/assets/digiy-home-i18n-v1.js?v=20261113-tarifs-direct"></script>
+  <script src="/assets/digiy-vitrine-portes-world10-v1.js?v=20261116"></script>
+<script src="/assets/digiy-home-i18n-v1.js?v=20261113-tarifs-direct"></script>
   <script src="/assets/digiy-catalog.js?v=20260926-favorites-clear-v1"></script>
   <script>
   (function(){
