@@ -65,5 +65,23 @@ class FranceNavigation(unittest.TestCase):
         self.assertIn('<a class="back" href="/france.html" id="back">', BORDEAUX)
         self.assertIn("/territoire.html?zone=bordeaux", BORDEAUX)
 
+    def test_paris_card_links_preserve_profession(self):
+        script = (ROOT / "assets/digiy-paris-places-v1.js").read_text(encoding="utf-8")
+        for need in ("accommodation", "food", "artisan", "beauty", "transport", "shopping"):
+            self.assertIn('"' + need + '"', script)
+        for brand in ("DIGIY LOC", "DIGIY RESTO", "DIGIY BUILD", "DIGIY BEAUTY", "DIGIY DRIVER", "DIGIY MON COMMERCE"):
+            self.assertIn(brand, script)
+        self.assertIn("territory=paris", script)
+        self.assertIn("href(DIGIY_PARIS_NEEDS[x[0]])", script)
+
+    def test_paris_card_form_preserves_source_for_france_only(self):
+        card = (ROOT / "carte-gratuite.html").read_text(encoding="utf-8")
+        self.assertIn("requestedTerritory==='paris'&&country.value==='FR'", card)
+        self.assertIn("parisOrigin.hidden=!active", card)
+        self.assertIn("notes:(requestedTerritory==='paris'&&country.value==='FR'", card)
+        self.assertIn("source_lang:l", card)
+        self.assertIn("ENDPOINT='https://wesqmwjjtsefyjnluosj.supabase.co/functions/v1/digiy-network-card-request-submit'", card)
+        self.assertIn("renderPricing();syncParisContext();", card)
+
 if __name__ == "__main__":
     unittest.main()
