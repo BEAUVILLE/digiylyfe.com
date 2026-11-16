@@ -83,5 +83,26 @@ class FranceNavigation(unittest.TestCase):
         self.assertIn("ENDPOINT='https://wesqmwjjtsefyjnluosj.supabase.co/functions/v1/digiy-network-card-request-submit'", card)
         self.assertIn("renderPricing();syncParisContext();", card)
 
+
+    def test_france_prices_visible_in_card_page_without_forcing_subscription(self):
+        card = (ROOT / "carte-gratuite.html").read_text(encoding="utf-8")
+        self.assertIn('id="francePrices" hidden', card)
+        self.assertIn("root.hidden=id!=='FR'", card)
+        self.assertIn("renderFrancePriceOverview(l,id)", card)
+        self.assertIn("const FRANCE_PRICES_I18N=", card)
+        self.assertIn("const FRANCE_PRICES_DISPLAY=", card)
+        for value in ("250 €", "450 €/an", "700 €", "480 €+", "800 €+", "45 €/mois", "75 €/mois+"):
+            self.assertIn(value, card)
+        for lang in ("fr", "en", "es", "pt", "it", "de", "nl", "ar"):
+            self.assertIn('"' + lang + '":{', card)
+        self.assertIn("'/tarifs-adherents-1.html?country=fr&lang='", card)
+        self.assertIn("'/tarifs-loc-v2.html?country=fr&lang='", card)
+        # La carte reste un achat autonome, sans ajout d'une ligne payante au formulaire.
+        self.assertIn("const CARD_PRICES={SN:'15 000 FCFA',FR:'20 €',US:'20 
+    unittest.main()
+}", card)
+        self.assertIn("networkCardForm.addEventListener('submit'", card)
+        self.assertIn("consent:consent.checked", card)
+
 if __name__ == "__main__":
     unittest.main()
