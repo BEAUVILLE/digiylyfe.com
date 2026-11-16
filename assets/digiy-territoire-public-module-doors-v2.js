@@ -29,24 +29,24 @@ var RESA='https://resa-table-resto.digiylyfe.com/master.html';
 var CARNET='https://digiy-carnet-pro.digiylyfe.com/';
 var EXPLORE='https://explore.digiylyfe.com/';
 var EXPLORE_TEXT={
-fr:{title:'Découvrir & activités',meta:'EXPLORE · SPORT · LOISIRS · SORTIES · DÉCOUVERTES'},
-en:{title:'Discover & activities',meta:'EXPLORE · SPORT · LEISURE · OUTINGS'},
-es:{title:'Descubrir & actividades',meta:'EXPLORE · DEPORTE · OCIO · SALIDAS'},
-pt:{title:'Descobrir & atividades',meta:'EXPLORE · DESPORTO · LAZER · PASSEIOS'},
-de:{title:'Entdecken & Aktivitäten',meta:'EXPLORE · SPORT · FREIZEIT · AUSFLÜGE'},
-it:{title:'Scoprire & attività',meta:'EXPLORE · SPORT · TEMPO LIBERO · USCITE'},
-nl:{title:'Ontdekken & activiteiten',meta:'EXPLORE · SPORT · VRIJE TIJD · UITJES'},
-ar:{title:'اكتشاف وأنشطة',meta:'EXPLORE · رياضة · ترفيه · نزهات'}
+fr:{title:'Découvrir & activités',meta:'DIGIY EXPLORE · SPORT · LOISIRS · SORTIES · DÉCOUVERTES'},
+en:{title:'Discover & activities',meta:'DIGIY EXPLORE · SPORT · LEISURE · OUTINGS'},
+es:{title:'Descubrir & actividades',meta:'DIGIY EXPLORE · DEPORTE · OCIO · SALIDAS'},
+pt:{title:'Descobrir & atividades',meta:'DIGIY EXPLORE · DESPORTO · LAZER · PASSEIOS'},
+de:{title:'Entdecken & Aktivitäten',meta:'DIGIY EXPLORE · SPORT · FREIZEIT · AUSFLÜGE'},
+it:{title:'Scoprire & attività',meta:'DIGIY EXPLORE · SPORT · TEMPO LIBERO · USCITE'},
+nl:{title:'Ontdekken & activiteiten',meta:'DIGIY EXPLORE · SPORT · VRIJE TIJD · UITJES'},
+ar:{title:'اكتشاف وأنشطة',meta:'DIGIY EXPLORE · رياضة · ترفيه · نزهات'}
 };
 var CARNET_TEXT={
-fr:{title:'CARNET PRO',meta:'GESTION · SUIVI · RAPPELS · CLIENTS'},
-en:{title:'CARNET PRO',meta:'MANAGEMENT · FOLLOW-UP · REMINDERS · CLIENTS'},
-es:{title:'CARNET PRO',meta:'GESTIÓN · SEGUIMIENTO · RECORDATORIOS · CLIENTES'},
-pt:{title:'CARNET PRO',meta:'GESTÃO · ACOMPANHAMENTO · LEMBRETES · CLIENTES'},
-de:{title:'CARNET PRO',meta:'VERWALTUNG · NACHVERFOLGUNG · ERINNERUNGEN · KUNDEN'},
-it:{title:'CARNET PRO',meta:'GESTIONE · MONITORAGGIO · PROMEMORIA · CLIENTI'},
-nl:{title:'CARNET PRO',meta:'BEHEER · OPVOLGING · HERINNERINGEN · KLANTEN'},
-ar:{title:'CARNET PRO',meta:'إدارة · متابعة · تذكير · عملاء'}
+fr:{title:'DIGIY CARNET PRO',meta:'GESTION · SUIVI · RAPPELS · CLIENTS'},
+en:{title:'DIGIY CARNET PRO',meta:'MANAGEMENT · FOLLOW-UP · REMINDERS · CLIENTS'},
+es:{title:'DIGIY CARNET PRO',meta:'GESTIÓN · SEGUIMIENTO · RECORDATORIOS · CLIENTES'},
+pt:{title:'DIGIY CARNET PRO',meta:'GESTÃO · ACOMPANHAMENTO · LEMBRETES · CLIENTES'},
+de:{title:'DIGIY CARNET PRO',meta:'VERWALTUNG · NACHVERFOLGUNG · ERINNERUNGEN · KUNDEN'},
+it:{title:'DIGIY CARNET PRO',meta:'GESTIONE · MONITORAGGIO · PROMEMORIA · CLIENTI'},
+nl:{title:'DIGIY CARNET PRO',meta:'BEHEER · OPVOLGING · HERINNERINGEN · KLANTEN'},
+ar:{title:'DIGIY CARNET PRO',meta:'إدارة · متابعة · تذكير · عملاء'}
 };
 var HEALTH={
   fr:{title:'Santé & soins',meta:'MÉDECIN · DENTISTE · INFIRMIER · SAGE-FEMME · AIDE À LA PERSONNE'},
