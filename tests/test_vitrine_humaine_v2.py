@@ -26,7 +26,8 @@ class HumanHomepage(unittest.TestCase):
         self.assertNotIn('Deux chemins', BODY)
 
     def test_human_paths_before_film_and_vision(self):
-        markers = ['id="digiyClarity"', 'aria-label="Preuves terrain DIGIYLYFE"',
+        markers = ['id="digiyClarity"', 'id="digiyEntryChoice"',
+                   'id="outils-directs"', 'aria-label="Preuves terrain DIGIYLYFE"',
                    'id="territoires"', 'id="digiyPublicFirstV1"',
                    'id="solutions-pro"', 'id="digiyFilmVitrine"', 'id="digiyInternational"']
         positions = [BODY.index(marker) for marker in markers]
@@ -39,7 +40,7 @@ class HumanHomepage(unittest.TestCase):
         self.assertLess(hero, entry)
         self.assertLess(entry, proof)
         self.assertEqual(BODY.count('id="digiyEntryChoice"'), 1)
-        section = BODY[entry:proof]
+        section = BODY[entry:].split('</section>', 1)[0]  # Core Public/Pro cards only.
         self.assertEqual(section.count('class="digiyEntryDoor '), 2)
         self.assertEqual(len(re.findall(r'<article class="digiyEntryDoor (?:public|pro) digiyEntryInfo">', section)), 2)
         # Hero owns the Public/Pro CTAs; explanatory cards are not links.
@@ -92,9 +93,12 @@ class HumanHomepage(unittest.TestCase):
         self.assertEqual(translations['wo'], translations['fr'])  # Relecture native requise.
         self.assertIn('Fournisseurs', translations['fr'])
 
-    def test_five_visible_blocks_and_menu_anchor_rescue(self):
+    def test_core_blocks_and_menu_anchor_rescue(self):
         main_before_details = BODY.split('<details class="digiyVitrineDetails"', 1)[0]
-        self.assertEqual(main_before_details.count('<section '), 5)
+        # 5 historic editorial sections, plus the approved world and module entry sections.
+        self.assertEqual(main_before_details.count('<section '), 7)
+        self.assertEqual(main_before_details.count('id="pays-directs"'), 1)
+        self.assertEqual(main_before_details.count('id="outils-directs"'), 1)
         self.assertEqual(BODY.count('id="territoires"'), 1)
         self.assertIn('id="territoires-detail"', BODY)
         self.assertIn('href="/menu-universel-v1.html"', main_before_details)
@@ -102,6 +106,33 @@ class HumanHomepage(unittest.TestCase):
         self.assertIn('</details>\n    <footer class="footer">', BODY)
         self.assertIn("window.addEventListener('hashchange',reveal)", HOME)
         self.assertIn("panel.open=true", HOME)
+
+    def test_world10_countries_and_direct_modules(self):
+        import json
+        script_path = ROOT / 'assets/digiy-vitrine-portes-world10-v1.js'
+        script = script_path.read_text(encoding='utf-8')
+        keys = json.loads(re.search(r'var KEYS=(.*?);', script).group(1))
+        translations = json.loads(re.search(r'var TEXT=(.*?);', script).group(1))
+        self.assertEqual(set(translations), {'fr', 'wo', 'zh', 'en', 'es', 'pt', 'it', 'de', 'nl', 'ar'})
+        self.assertTrue(all(len(t) == len(keys) and all(t) for t in translations.values()))
+        self.assertEqual(len(keys), 18)
+        world = BODY.split('id="pays-directs"', 1)[1].split('</section>', 1)[0]
+        for path in ['/senegal.html', '/france.html', '/maroc.html', '/miami.html']:
+            self.assertIn('href="' + path + '"', world)
+        self.assertEqual(world.count('<a href='), 4)
+        direct = BODY.split('id="outils-directs"', 1)[1].split('</section>', 1)[0]
+        self.assertEqual(direct.count('class="digiyFrontBridge"'), 1)
+        self.assertIn('href="/annuaire.html#pont-metiers"', direct)
+        self.assertEqual(direct.count('class="digiyFrontModules"'), 1)
+        self.assertEqual(direct.split('class="digiyFrontModules"', 1)[1].count('<a href='), 8)
+        self.assertLess(BODY.index('id="pays-directs"'), BODY.index('id="digiyClarity"'))
+        self.assertLess(BODY.index('id="digiyEntryChoice"'), BODY.index('id="outils-directs"'))
+        self.assertLess(BODY.index('id="outils-directs"'), BODY.index('aria-label="Preuves terrain DIGIYLYFE"'))
+        self.assertIn('window.digiyHomeWorld10Extras', HOME_I18N)
+        self.assertLess(
+            HOME.index('/assets/digiy-vitrine-portes-world10-v1.js'),
+            HOME.index('/assets/digiy-home-i18n-v1.js')
+        )
 
     def test_menu_linked_home_anchors_remain_accessible(self):
         import json

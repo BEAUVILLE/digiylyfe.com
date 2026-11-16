@@ -62,7 +62,24 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    });
    assert.deepEqual(order,[...order].sort((a,b)=>a-b),'Les cinq blocs sont dans l’ordre');
    console.log('VITRINE_5_BLOCS_POSITIONS',JSON.stringify({width,viewportHeight:height,topPx:order,topScreens:order.map(px=>+(px/height).toFixed(2))}));
-   if(width===375)assert.equal(order[1]<height,true,'La carte Public/Pro doit commencer à apparaître sur le premier écran 375×667');
+   // L'entrée internationale validée donne maintenant priorité aux langues, pays et au Hero.
+   // Les deux cartes Public/Pro restent accessibles avant le Carrefour et les preuves.
+   const world=page.locator('#pays-directs');
+   assert.equal(await page.locator('.digiyFrontWorldGrid a').count(),4,'Quatre pays directement accessibles');
+   assert.equal(await page.locator('.digiyFrontModules a').count(),8,'Huit modules directement accessibles');
+   assert.equal(await page.locator('#digiyFrontBridge').count(),0,'Ne pas créer de deuxième Carrefour concurrent');
+   const topOrder=await page.evaluate(()=>[
+     document.getElementById('pays-directs'),
+     document.getElementById('digiyClarity'),
+     document.getElementById('digiyEntryChoice'),
+     document.getElementById('outils-directs')
+   ].map(el=>Math.round(el.getBoundingClientRect().top+scrollY)));
+   assert.deepEqual(topOrder,[...topOrder].sort((a,b)=>a-b),'Pays → Hero → Public/Pro → Carrefour et outils');
+   if(width===375){
+     assert.equal(await world.evaluate(el=>el.getBoundingClientRect().bottom <= innerHeight),true,'Les quatre pays doivent être lisibles sur le premier écran 375×667');
+     assert.equal(await page.locator('#digiyClarity').evaluate(el=>el.getBoundingClientRect().top < innerHeight),true,'Le Hero doit commencer à apparaître sur le premier écran');
+     assert.equal(await page.locator('#digiyEntryChoice').isVisible(),true,'Les cartes Public/Pro restent accessibles sans menu');
+   }
    const saly=page.locator('#territoires a[data-i18n="liteSaly"]');
    const salyUrl=new URL(await saly.getAttribute('href'),'https://digiylyfe.com');
    assert.equal(salyUrl.pathname,'/saly.html');
@@ -86,6 +103,8 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.locator('html').getAttribute('lang'),lang);
    assert.equal(await page.locator('html').getAttribute('dir'),lang==='ar'?'rtl':'ltr');
    assert.ok((await page.locator('#digiyVitrineOffersTitle').innerText()).length>3);
+   assert.ok((await page.locator('#digiyFrontDirectTitle').innerText()).length>8,'Titre Carrefour traduit');
+   assert.ok((await page.locator('.digiyFrontWorldKicker').innerText()).length>8,'Portes internationales traduites');
    if(lang==='ar'){
     console.log('RTL dimensions',await page.evaluate(()=>JSON.stringify({innerWidth,innerHeight,scrollX,doc:{width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,dir:getComputedStyle(document.documentElement).direction},body:{width:document.body.clientWidth,scroll:document.body.scrollWidth,dir:getComputedStyle(document.body).direction},visual:{width:visualViewport.width,scale:visualViewport.scale},wide:[...document.querySelectorAll('body *')].map(e=>({tag:e.tagName,id:e.id,c:e.className,w:Math.round(e.getBoundingClientRect().width),scroll:e.scrollWidth,pos:getComputedStyle(e).position})).filter(e=>e.w>400||e.scroll>500).sort((a,b)=>b.w-a.w).slice(0,20)})));
     await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-ar-dimensions.png`});
