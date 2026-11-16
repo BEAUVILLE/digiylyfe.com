@@ -61,6 +61,11 @@ var HEALTH={
 function params(){try{return new URLSearchParams(location.search)}catch(e){return new URLSearchParams()}}
 function currentLang(){var p=params(),l=(p.get('lang')||document.documentElement.lang||'fr').slice(0,2).toLowerCase();return LANGS.indexOf(l)>=0?l:'fr'}
 function target(raw){var p=params(),u=new URL(raw,location.origin),territory=p.get('zone')||'',local=p.get('local')||'';if(territory)u.searchParams.set('territory',territory);if(local)u.searchParams.set('local',local);u.searchParams.set('lang',currentLang());return u.toString()}
+/* En France, les annonces et artisans utilisent d'abord les résultats natifs de
+   Bordeaux / Dordogne. On évite ainsi Bonne Affaire forcé sur country=sn et
+   services-terrain.html (Petite Côte), sans toucher aux parcours Sénégal. */
+function isFranceTerritory(){var z=params().get('zone')||'';return z==='bordeaux'||z==='vallee-dordogne'}
+function nativeFranceCategory(icon){return isFranceTerritory()&&(icon==='⚡'||icon==='🔧')}
 function isDordogne(){return (params().get('zone')||'')==='vallee-dordogne'}
 function setText(el,value){if(el&&el.textContent!==value)el.textContent=value}
 function applyHealth(root){
@@ -89,6 +94,7 @@ document.addEventListener('click',function(e){
   if(resa){e.preventDefault();e.stopImmediatePropagation();location.href=target(RESA);return}
   var b=e.target.closest&&e.target.closest('button.need');if(!b)return;
   var s=b.querySelector('strong'),icon=s&&s.textContent.trim(),raw=STANDARD[icon]||SPECIAL[icon];
+  if(nativeFranceCategory(icon))return; // laisser le filtre territorial natif agir
   if(!raw)return;
   e.preventDefault();e.stopImmediatePropagation();location.href=target(raw);
 },true);
@@ -115,7 +121,7 @@ function ensureCarnetDoor(root){
   var voice=Array.prototype.slice.call(root.querySelectorAll('button.need')).find(function(x){var s=x.querySelector('strong');return s&&s.textContent.trim()==='🎙️'});
   if(voice)root.insertBefore(b,voice);else root.appendChild(b);
 }
-function install(){var root=document.getElementById('needs');if(!root)return;applyHealth(root);ensureExploreDoor(root);ensureCarnetDoor(root);Array.prototype.slice.call(root.querySelectorAll('button.need')).forEach(function(b){var s=b.querySelector('strong'),icon=s&&s.textContent.trim(),raw=STANDARD[icon]||SPECIAL[icon];if(raw)wire(b,icon,raw)});wireResa(root)}
+function install(){var root=document.getElementById('needs');if(!root)return;applyHealth(root);ensureExploreDoor(root);ensureCarnetDoor(root);Array.prototype.slice.call(root.querySelectorAll('button.need')).forEach(function(b){var s=b.querySelector('strong'),icon=s&&s.textContent.trim(),raw=STANDARD[icon]||SPECIAL[icon];if(raw&&!nativeFranceCategory(icon))wire(b,icon,raw)});wireResa(root)}
 function boot(){install();var root=document.getElementById('needs');if(root)new MutationObserver(function(){setTimeout(install,0)}).observe(root,{childList:true,subtree:true});var main=document.querySelector('main');if(main)new MutationObserver(function(){setTimeout(function(){applyHealth(root)},0)}).observe(main,{childList:true,subtree:true});document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-lang],#zones,#needs'))setTimeout(install,80)});window.addEventListener('popstate',function(){setTimeout(install,50)})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
