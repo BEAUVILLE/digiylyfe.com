@@ -52,7 +52,7 @@ function render(l){
  [t.direct,t.fee].forEach(function(x){var e=document.createElement('span');e.className='chip';e.textContent=x;promises.appendChild(e)});
  var back={lang:l,need:cat.id};if(quarter)back.quartier=quarter;
  document.getElementById('back').href=url('/miami.html',back)+'#miamiPlaces';
- document.getElementById('card').href=url('/carte-gratuite.html',{country:'us',lang:l,territory:'miami',need:cat.id});
+ var cardParams={country:'us',lang:l,territory:'miami',need:cat.id};if(quarter)cardParams.quartier=quarter;document.getElementById('card').href=url('/carte-gratuite.html',cardParams);
  document.getElementById('tariffs').href=url('/tarifs-adherents-1.html',{country:'us',lang:l});
  document.querySelectorAll('[data-l]').forEach(function(b){b.classList.toggle('on',b.dataset.l===l);b.setAttribute('aria-pressed',String(b.dataset.l===l));});
  try{localStorage.setItem('digiy_lang',l)}catch(_){}
