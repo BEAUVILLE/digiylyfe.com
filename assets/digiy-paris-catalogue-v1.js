@@ -815,7 +815,8 @@ window.DIGIY_PARIS_CATALOGUE_V1={
       "prices": "VOIR LES OFFRES PRO FRANCE →",
       "voice": "LA VOIX : recherche transversale",
       "cardsOnly": "La carte digitale à 20 € est indépendante. Les autres offres et les modules métiers ont leurs propres conditions.",
-      "number": "Modèle"
+      "number": "Modèle",
+      "headline": "PRENEZ VOTRE PLACE À PARIS"
     },
     "en": {
       "intro": "Presentation examples, never fake members. Choose an arrondissement, optionally add a neighborhood, and explore business models.",
@@ -844,7 +845,8 @@ window.DIGIY_PARIS_CATALOGUE_V1={
       "prices": "VIEW FRANCE PRO OFFERS →",
       "voice": "LA VOIX: cross-category search",
       "cardsOnly": "The €20 digital card is separate. Other offers and business modules have their own conditions.",
-      "number": "Model"
+      "number": "Model",
+      "headline": "TAKE YOUR PLACE IN PARIS"
     },
     "es": {
       "intro": "Ejemplos de presencia, nunca miembros ficticios. Elija un distrito, añada si desea un barrio y descubra los modelos.",
@@ -873,7 +875,8 @@ window.DIGIY_PARIS_CATALOGUE_V1={
       "prices": "VER OFERTAS PRO FRANCIA →",
       "voice": "LA VOIX: búsqueda transversal",
       "cardsOnly": "La tarjeta digital de 20 € es independiente. Los demás servicios tienen condiciones propias.",
-      "number": "Modelo"
+      "number": "Modelo",
+      "headline": "OCUPE SU LUGAR EN PARÍS"
     },
     "pt": {
       "intro": "Exemplos de presença, nunca membros fictícios. Escolha um arrondissement, indique um bairro se quiser e descubra modelos.",
@@ -902,7 +905,8 @@ window.DIGIY_PARIS_CATALOGUE_V1={
       "prices": "VER OFERTAS PRO FRANÇA →",
       "voice": "LA VOIX: pesquisa transversal",
       "cardsOnly": "O cartão digital de 20 € é independente. As outras ofertas têm condições próprias.",
-      "number": "Modelo"
+      "number": "Modelo",
+      "headline": "OCUPE O SEU LUGAR EM PARIS"
     },
     "it": {
       "intro": "Esempi di presenza, mai iscritti fittizi. Scegli l'arrondissement, indica eventualmente il quartiere e scopri i modelli.",
@@ -931,7 +935,8 @@ window.DIGIY_PARIS_CATALOGUE_V1={
       "prices": "VEDI OFFERTE PRO FRANCIA →",
       "voice": "LA VOIX: ricerca trasversale",
       "cardsOnly": "La carta digitale da 20 € è indipendente. Le altre offerte hanno condizioni proprie.",
-      "number": "Modello"
+      "number": "Modello",
+      "headline": "PRENDI IL TUO POSTO A PARIGI"
     },
     "de": {
       "intro": "Präsenzbeispiele, keine erfundenen Mitglieder. Arrondissement und optional Viertel wählen, dann Modelle je Beruf ansehen.",
@@ -960,7 +965,8 @@ window.DIGIY_PARIS_CATALOGUE_V1={
       "prices": "FRANKREICH PRO-ANGEBOTE →",
       "voice": "LA VOIX: bereichsübergreifende Suche",
       "cardsOnly": "Die digitale Karte für 20 € ist unabhängig. Weitere Angebote haben eigene Bedingungen.",
-      "number": "Modell"
+      "number": "Modell",
+      "headline": "SICHERN SIE SICH IHREN PLATZ IN PARIS"
     },
     "nl": {
       "intro": "Voorbeelden van zichtbaarheid, geen verzonnen leden. Kies een arrondissement en eventueel een wijk om modellen te bekijken.",
@@ -989,7 +995,8 @@ window.DIGIY_PARIS_CATALOGUE_V1={
       "prices": "BEKIJK PRO-AANBIEDINGEN FRANKRIJK →",
       "voice": "LA VOIX: zoeken over vakgebieden",
       "cardsOnly": "De digitale kaart van €20 staat op zichzelf. Andere aanbiedingen hebben eigen voorwaarden.",
-      "number": "Model"
+      "number": "Model",
+      "headline": "NEEM UW PLAATS IN PARIJS"
     },
     "ar": {
       "intro": "نماذج عرض وليست عضويات وهمية. اختر دائرة باريس ويمكنك إضافة الحي ثم تصفح نماذج المهن.",
@@ -1018,7 +1025,8 @@ window.DIGIY_PARIS_CATALOGUE_V1={
       "prices": "عرض عروض فرنسا المهنية ←",
       "voice": "LA VOIX: بحث في مختلف المهن",
       "cardsOnly": "بطاقة DIGIY الرقمية بقيمة 20 يورو مستقلة. العروض الأخرى لها شروط خاصة.",
-      "number": "نموذج"
+      "number": "نموذج",
+      "headline": "خذ مكانك في باريس"
     },
     "wo": {
       "intro": "Ay misaal la, duñu ay adhérent yu am dëgg. Tànnal arrondissement bi, bindal quartier su la neexee, te xool ay misaali métier.",
@@ -1047,7 +1055,8 @@ window.DIGIY_PARIS_CATALOGUE_V1={
       "prices": "XOOL TARIFS PRO FRANCE →",
       "voice": "LA VOIX: wut ci métier yu bari",
       "cardsOnly": "Kaart DIGIY 20 € mooy prestation bu boppam. Yeneen offres ak outils métier am nañu seeni sart.",
-      "number": "Misaal"
+      "number": "Misaal",
+      "headline": "AMAL SA BËRAB CI PARIS"
     },
     "zh": {
       "intro": "这里展示的是职业展示样例，并非虚构的会员。请选择巴黎区号，可填写街区，然后按行业查看样板。",
@@ -1076,7 +1085,8 @@ window.DIGIY_PARIS_CATALOGUE_V1={
       "prices": "查看法国专业服务价格 →",
       "voice": "LA VOIX：跨行业搜索",
       "cardsOnly": "20 欧元数字名片是独立服务。其他方案和专业工具另有相应条件。",
-      "number": "样板"
+      "number": "样板",
+      "headline": "在巴黎找到您的位置"
     }
   }
 };
