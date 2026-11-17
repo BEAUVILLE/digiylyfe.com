@@ -7,7 +7,7 @@
  * Santé : aucun identifiant technique health_care ne doit être visible.
  */
 (function(){'use strict';
-var LANGS=['fr','en','es','pt','de','it','nl','ar'];
+var LANGS=['fr','en','es','pt','de','it','nl','ar','wo','zh'];
 var VOICE='https://pro-action-digiy.digiylyfe.com/';
 var STANDARD={
   '⚡':'https://bonne-affaire.digiylyfe.com/?lang=fr&country=sn',
@@ -29,34 +29,130 @@ var RESA='https://resa-table-resto.digiylyfe.com/master.html';
 var CARNET='https://digiy-carnet-pro.digiylyfe.com/';
 var EXPLORE='https://explore.digiylyfe.com/';
 var EXPLORE_TEXT={
-fr:{title:'Découvrir & activités',meta:'DIGIY EXPLORE · SPORT · LOISIRS · SORTIES · DÉCOUVERTES'},
-en:{title:'Discover & activities',meta:'DIGIY EXPLORE · SPORT · LEISURE · OUTINGS'},
-es:{title:'Descubrir & actividades',meta:'DIGIY EXPLORE · DEPORTE · OCIO · SALIDAS'},
-pt:{title:'Descobrir & atividades',meta:'DIGIY EXPLORE · DESPORTO · LAZER · PASSEIOS'},
-de:{title:'Entdecken & Aktivitäten',meta:'DIGIY EXPLORE · SPORT · FREIZEIT · AUSFLÜGE'},
-it:{title:'Scoprire & attività',meta:'DIGIY EXPLORE · SPORT · TEMPO LIBERO · USCITE'},
-nl:{title:'Ontdekken & activiteiten',meta:'DIGIY EXPLORE · SPORT · VRIJE TIJD · UITJES'},
-ar:{title:'اكتشاف وأنشطة',meta:'DIGIY EXPLORE · رياضة · ترفيه · نزهات'}
+ "fr": {
+  "title": "Découvrir & activités",
+  "meta": "DIGIY EXPLORE · SPORT · LOISIRS · SORTIES · DÉCOUVERTES"
+ },
+ "en": {
+  "title": "Discover & activities",
+  "meta": "DIGIY EXPLORE · SPORT · LEISURE · OUTINGS"
+ },
+ "es": {
+  "title": "Descubrir & actividades",
+  "meta": "DIGIY EXPLORE · DEPORTE · OCIO · SALIDAS"
+ },
+ "pt": {
+  "title": "Descobrir & atividades",
+  "meta": "DIGIY EXPLORE · DESPORTO · LAZER · PASSEIOS"
+ },
+ "de": {
+  "title": "Entdecken & Aktivitäten",
+  "meta": "DIGIY EXPLORE · SPORT · FREIZEIT · AUSFLÜGE"
+ },
+ "it": {
+  "title": "Scoprire & attività",
+  "meta": "DIGIY EXPLORE · SPORT · TEMPO LIBERO · USCITE"
+ },
+ "nl": {
+  "title": "Ontdekken & activiteiten",
+  "meta": "DIGIY EXPLORE · SPORT · VRIJE TIJD · UITJES"
+ },
+ "ar": {
+  "title": "اكتشاف وأنشطة",
+  "meta": "DIGIY EXPLORE · رياضة · ترفيه · نزهات"
+ },
+ "wo": {
+  "title": "Gis ak doxantu",
+  "meta": "DIGIY EXPLORE · SPORT · DÓXANTU · YËNEEN ACTIVITÉ"
+ },
+ "zh": {
+  "title": "探索与体验活动",
+  "meta": "DIGIY EXPLORE · 运动 · 休闲 · 出游 · 探索"
+ }
 };
 var CARNET_TEXT={
-fr:{title:'DIGIY CARNET PRO',meta:'GESTION · SUIVI · RAPPELS · CLIENTS'},
-en:{title:'DIGIY CARNET PRO',meta:'MANAGEMENT · FOLLOW-UP · REMINDERS · CLIENTS'},
-es:{title:'DIGIY CARNET PRO',meta:'GESTIÓN · SEGUIMIENTO · RECORDATORIOS · CLIENTES'},
-pt:{title:'DIGIY CARNET PRO',meta:'GESTÃO · ACOMPANHAMENTO · LEMBRETES · CLIENTES'},
-de:{title:'DIGIY CARNET PRO',meta:'VERWALTUNG · NACHVERFOLGUNG · ERINNERUNGEN · KUNDEN'},
-it:{title:'DIGIY CARNET PRO',meta:'GESTIONE · MONITORAGGIO · PROMEMORIA · CLIENTI'},
-nl:{title:'DIGIY CARNET PRO',meta:'BEHEER · OPVOLGING · HERINNERINGEN · KLANTEN'},
-ar:{title:'DIGIY CARNET PRO',meta:'إدارة · متابعة · تذكير · عملاء'}
+ "fr": {
+  "title": "DIGIY CARNET PRO",
+  "meta": "GESTION · SUIVI · RAPPELS · CLIENTS"
+ },
+ "en": {
+  "title": "DIGIY CARNET PRO",
+  "meta": "MANAGEMENT · FOLLOW-UP · REMINDERS · CLIENTS"
+ },
+ "es": {
+  "title": "DIGIY CARNET PRO",
+  "meta": "GESTIÓN · SEGUIMIENTO · RECORDATORIOS · CLIENTES"
+ },
+ "pt": {
+  "title": "DIGIY CARNET PRO",
+  "meta": "GESTÃO · ACOMPANHAMENTO · LEMBRETES · CLIENTES"
+ },
+ "de": {
+  "title": "DIGIY CARNET PRO",
+  "meta": "VERWALTUNG · NACHVERFOLGUNG · ERINNERUNGEN · KUNDEN"
+ },
+ "it": {
+  "title": "DIGIY CARNET PRO",
+  "meta": "GESTIONE · MONITORAGGIO · PROMEMORIA · CLIENTI"
+ },
+ "nl": {
+  "title": "DIGIY CARNET PRO",
+  "meta": "BEHEER · OPVOLGING · HERINNERINGEN · KLANTEN"
+ },
+ "ar": {
+  "title": "DIGIY CARNET PRO",
+  "meta": "إدارة · متابعة · تذكير · عملاء"
+ },
+ "wo": {
+  "title": "DIGIY CARNET PRO",
+  "meta": "GESTION · TOPPATOO · RAPPELS · KILIYAAN"
+ },
+ "zh": {
+  "title": "DIGIY CARNET PRO",
+  "meta": "管理 · 跟进 · 提醒 · 客户"
+ }
 };
 var HEALTH={
-  fr:{title:'Santé & soins',meta:'MÉDECIN · DENTISTE · INFIRMIER · SAGE-FEMME · AIDE À LA PERSONNE'},
-  en:{title:'Health & care',meta:'DOCTOR · DENTIST · NURSE · MIDWIFE · PERSONAL ASSISTANCE'},
-  es:{title:'Salud y cuidados',meta:'MÉDICO · DENTISTA · ENFERMERÍA · MATRONA · AYUDA A LA PERSONA'},
-  pt:{title:'Saúde & cuidados',meta:'MÉDICO · DENTISTA · ENFERMEIRO · PARTEIRA · APOIO À PESSOA'},
-  de:{title:'Gesundheit & Pflege',meta:'ARZT · ZAHNARZT · PFLEGEKRAFT · HEBAMME · ALLTAGSHILFE'},
-  it:{title:'Salute & assistenza',meta:'MEDICO · DENTISTA · INFERMIERE · OSTETRICA · ASSISTENZA ALLA PERSONA'},
-  nl:{title:'Gezondheid & zorg',meta:'ARTS · TANDARTS · VERPLEEGKUNDIGE · VERLOSKUNDIGE · PERSOONLIJKE HULP'},
-  ar:{title:'الصحة والرعاية',meta:'طبيب · طبيب أسنان · ممرض · قابلة · مساعدة شخصية'}
+ "fr": {
+  "title": "Santé & soins",
+  "meta": "MÉDECIN · DENTISTE · INFIRMIER · SAGE-FEMME · AIDE À LA PERSONNE"
+ },
+ "en": {
+  "title": "Health & care",
+  "meta": "DOCTOR · DENTIST · NURSE · MIDWIFE · PERSONAL ASSISTANCE"
+ },
+ "es": {
+  "title": "Salud y cuidados",
+  "meta": "MÉDICO · DENTISTA · ENFERMERÍA · MATRONA · AYUDA A LA PERSONA"
+ },
+ "pt": {
+  "title": "Saúde & cuidados",
+  "meta": "MÉDICO · DENTISTA · ENFERMEIRO · PARTEIRA · APOIO À PESSOA"
+ },
+ "de": {
+  "title": "Gesundheit & Pflege",
+  "meta": "ARZT · ZAHNARZT · PFLEGEKRAFT · HEBAMME · ALLTAGSHILFE"
+ },
+ "it": {
+  "title": "Salute & assistenza",
+  "meta": "MEDICO · DENTISTA · INFERMIERE · OSTETRICA · ASSISTENZA ALLA PERSONA"
+ },
+ "nl": {
+  "title": "Gezondheid & zorg",
+  "meta": "ARTS · TANDARTS · VERPLEEGKUNDIGE · VERLOSKUNDIGE · PERSOONLIJKE HULP"
+ },
+ "ar": {
+  "title": "الصحة والرعاية",
+  "meta": "طبيب · طبيب أسنان · ممرض · قابلة · مساعدة شخصية"
+ },
+ "wo": {
+  "title": "Wér-gu-yaram ak soins",
+  "meta": "DOKTOOR · DENTISTE · INFIRMIER · SAGE-FEMME · NDIMBAL CI NIT ÑI"
+ },
+ "zh": {
+  "title": "健康与护理",
+  "meta": "医生 · 牙医 · 护士 · 助产士 · 居家照护"
+ }
 };
 function params(){try{return new URLSearchParams(location.search)}catch(e){return new URLSearchParams()}}
 function currentLang(){var p=params(),l=(p.get('lang')||document.documentElement.lang||'fr').slice(0,2).toLowerCase();return LANGS.indexOf(l)>=0?l:'fr'}
@@ -121,7 +217,8 @@ function ensureCarnetDoor(root){
   var voice=Array.prototype.slice.call(root.querySelectorAll('button.need')).find(function(x){var s=x.querySelector('strong');return s&&s.textContent.trim()==='🎙️'});
   if(voice)root.insertBefore(b,voice);else root.appendChild(b);
 }
-function install(){var root=document.getElementById('needs');if(!root)return;applyHealth(root);ensureExploreDoor(root);ensureCarnetDoor(root);Array.prototype.slice.call(root.querySelectorAll('button.need')).forEach(function(b){var s=b.querySelector('strong'),icon=s&&s.textContent.trim(),raw=STANDARD[icon]||SPECIAL[icon];if(raw&&!nativeFranceCategory(icon))wire(b,icon,raw)});wireResa(root)}
+function refreshLocalizedDoors(root){var x=root.querySelector('[data-digiy-explore-door]'),y=root.querySelector('[data-digiy-carnet-pro-door]'),l=currentLang();if(x){var t=EXPLORE_TEXT[l]||EXPLORE_TEXT.fr;setText(x.querySelector('span'),t.title);setText(x.querySelector('small'),t.meta)}if(y){var c=CARNET_TEXT[l]||CARNET_TEXT.fr;setText(y.querySelector('span'),c.title);setText(y.querySelector('small'),c.meta)}}
+function install(){var root=document.getElementById('needs');if(!root)return;applyHealth(root);ensureExploreDoor(root);ensureCarnetDoor(root);refreshLocalizedDoors(root);Array.prototype.slice.call(root.querySelectorAll('button.need')).forEach(function(b){var s=b.querySelector('strong'),icon=s&&s.textContent.trim(),raw=STANDARD[icon]||SPECIAL[icon];if(raw&&!nativeFranceCategory(icon))wire(b,icon,raw)});wireResa(root)}
 function boot(){install();var root=document.getElementById('needs');if(root)new MutationObserver(function(){setTimeout(install,0)}).observe(root,{childList:true,subtree:true});var main=document.querySelector('main');if(main)new MutationObserver(function(){setTimeout(function(){applyHealth(root)},0)}).observe(main,{childList:true,subtree:true});document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-lang],#zones,#needs'))setTimeout(install,80)});window.addEventListener('popstate',function(){setTimeout(install,50)})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
