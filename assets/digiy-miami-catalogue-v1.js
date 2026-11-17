@@ -790,7 +790,8 @@ window.DIGIY_MIAMI_CATALOGUE_V1={
       "project": "Your business could take this place",
       "projectNote": "This is a demonstration, not a registered business, booking, actual customer or job opening.",
       "notReal": "DEMO · NOT A REAL PROFESSIONAL",
-      "cardOnly": "The $20 digital card is separate. Other offers and business tools have their own terms."
+      "cardOnly": "The $20 digital card is separate. Other offers and business tools have their own terms.",
+      "number": "Model"
     },
     "fr": {
       "title": "PRENEZ VOTRE PLACE À MIAMI",
@@ -816,7 +817,8 @@ window.DIGIY_MIAMI_CATALOGUE_V1={
       "project": "Votre activité peut prendre cette place",
       "projectNote": "Ceci n'est ni une entreprise inscrite, ni une réservation, ni un client ni une offre d'emploi réelle.",
       "notReal": "DÉMONSTRATION · PAS UN PROFESSIONNEL RÉEL",
-      "cardOnly": "La carte digitale à 20 $ est indépendante. Les autres offres et modules métiers ont leurs propres conditions."
+      "cardOnly": "La carte digitale à 20 $ est indépendante. Les autres offres et modules métiers ont leurs propres conditions.",
+      "number": "Modèle"
     },
     "es": {
       "title": "OCUPE SU LUGAR EN MIAMI",
@@ -842,7 +844,8 @@ window.DIGIY_MIAMI_CATALOGUE_V1={
       "project": "Su actividad puede ocupar esta plaza",
       "projectNote": "Esto no es una empresa registrada, reserva, cliente ni oferta de trabajo real.",
       "notReal": "DEMO · NO ES UN PROFESIONAL REAL",
-      "cardOnly": "La tarjeta digital de 20 $ es independiente. Los otros servicios tienen sus propias condiciones."
+      "cardOnly": "La tarjeta digital de 20 $ es independiente. Los otros servicios tienen sus propias condiciones.",
+      "number": "Modelo"
     },
     "pt": {
       "title": "OCUPE O SEU LUGAR EM MIAMI",
@@ -868,7 +871,8 @@ window.DIGIY_MIAMI_CATALOGUE_V1={
       "project": "A sua atividade pode ocupar este lugar",
       "projectNote": "Não é uma empresa registada, reserva, cliente ou oferta de emprego real.",
       "notReal": "DEMO · NÃO É UM PROFISSIONAL REAL",
-      "cardOnly": "O cartão digital de 20 $ é independente. Outros serviços têm condições próprias."
+      "cardOnly": "O cartão digital de 20 $ é independente. Outros serviços têm condições próprias.",
+      "number": "Modelo"
     },
     "it": {
       "title": "PRENDI IL TUO POSTO A MIAMI",
@@ -894,7 +898,8 @@ window.DIGIY_MIAMI_CATALOGUE_V1={
       "project": "La tua attività può occupare questo posto",
       "projectNote": "Non è un'impresa registrata, una prenotazione, un cliente o un annuncio di lavoro reale.",
       "notReal": "DEMO · NON È UN PROFESSIONISTA REALE",
-      "cardOnly": "La carta digitale da 20 $ è indipendente. Altre offerte hanno condizioni separate."
+      "cardOnly": "La carta digitale da 20 $ è indipendente. Altre offerte hanno condizioni separate.",
+      "number": "Modello"
     },
     "de": {
       "title": "SICHERN SIE SICH IHREN PLATZ IN MIAMI",
@@ -920,7 +925,8 @@ window.DIGIY_MIAMI_CATALOGUE_V1={
       "project": "Ihr Betrieb könnte diesen Platz besetzen",
       "projectNote": "Keine registrierte Firma, Buchung, Kunde oder echte Stellenanzeige.",
       "notReal": "DEMO · KEIN ECHTER PROFI",
-      "cardOnly": "Die digitale Karte für 20 $ ist unabhängig. Andere Angebote haben eigene Bedingungen."
+      "cardOnly": "Die digitale Karte für 20 $ ist unabhängig. Andere Angebote haben eigene Bedingungen.",
+      "number": "Modell"
     },
     "nl": {
       "title": "NEEM UW PLAATS IN MIAMI",
@@ -946,7 +952,8 @@ window.DIGIY_MIAMI_CATALOGUE_V1={
       "project": "Uw activiteit kan deze plaats innemen",
       "projectNote": "Dit is geen geregistreerd bedrijf, boeking, klant of echte vacature.",
       "notReal": "DEMO · GEEN ECHTE PROFESSIONAL",
-      "cardOnly": "De digitale kaart van $20 is apart. Andere aanbiedingen hebben eigen voorwaarden."
+      "cardOnly": "De digitale kaart van $20 is apart. Andere aanbiedingen hebben eigen voorwaarden.",
+      "number": "Model"
     },
     "ar": {
       "title": "خذ مكانك في ميامي",
@@ -972,7 +979,8 @@ window.DIGIY_MIAMI_CATALOGUE_V1={
       "project": "يمكن أن يكون هذا المكان لنشاطك",
       "projectNote": "ليس شركة مسجلة أو حجزًا أو عميلاً أو عرض عمل حقيقيًا.",
       "notReal": "عرض تجريبي · ليس مهنيًا حقيقيًا",
-      "cardOnly": "بطاقة DIGIY الرقمية بـ20 دولارًا مستقلة. العروض الأخرى بشروط منفصلة."
+      "cardOnly": "بطاقة DIGIY الرقمية بـ20 دولارًا مستقلة. العروض الأخرى بشروط منفصلة.",
+      "number": "نموذج"
     },
     "wo": {
       "title": "AMAL SA BËRAB CI MIAMI",
@@ -998,7 +1006,8 @@ window.DIGIY_MIAMI_CATALOGUE_V1={
       "project": "Sa activité mën na am fii bërab",
       "projectNote": "Lii du entreprise bu bindu, réservation, client walla offre liggéey bu dëgg.",
       "notReal": "MISAAL · DU PROFESIONEEL BU DËGG",
-      "cardOnly": "Kaart DIGIY 20 $ mooy prestation bu boppam. Yeneen offres ak modules métier am nañu seeni sart."
+      "cardOnly": "Kaart DIGIY 20 $ mooy prestation bu boppam. Yeneen offres ak modules métier am nañu seeni sart.",
+      "number": "Misaal"
     },
     "zh": {
       "title": "在迈阿密找到您的位置",
@@ -1024,7 +1033,8 @@ window.DIGIY_MIAMI_CATALOGUE_V1={
       "project": "您的业务也可以加入",
       "projectNote": "这不是已注册公司、真实预订、客户或招聘信息。",
       "notReal": "演示 · 非真实职业人士",
-      "cardOnly": "20 美元 DIGIY 数字名片是独立服务，其他方案另有条件。"
+      "cardOnly": "20 美元 DIGIY 数字名片是独立服务，其他方案另有条件。",
+      "number": "样板"
     }
   }
 };
