@@ -1,0 +1,55 @@
+name: DIGIY WORLD10 · portes et masters métier
+
+on:
+  pull_request:
+    paths:
+      - assets/digiy-public-module-master-v2.js
+      - assets/digiy-public-module-master-v3.js
+      - assets/digiy-territoire-public-module-doors-v2.js
+      - assets/digiy-territoire-jobs-door-v1.js
+      - assets/digiy-territoire-beauty-door-v1.js
+      - assets/digiy-territoire-commerce-door-v1.js
+      - assets/digiy-carnet-entry-v1.js
+      - assets/digiy-pro-carnet-geo-v1.js
+      - tests/test_world10_module_doors_v1.py
+      - .github/workflows/world10-module-doors.yml
+  push:
+    branches:
+      - main
+    paths:
+      - assets/digiy-public-module-master-v2.js
+      - assets/digiy-public-module-master-v3.js
+      - assets/digiy-territoire-public-module-doors-v2.js
+      - assets/digiy-territoire-jobs-door-v1.js
+      - assets/digiy-territoire-beauty-door-v1.js
+      - assets/digiy-territoire-commerce-door-v1.js
+      - assets/digiy-carnet-entry-v1.js
+      - assets/digiy-pro-carnet-geo-v1.js
+      - tests/test_world10_module_doors_v1.py
+      - .github/workflows/world10-module-doors.yml
+
+permissions:
+  contents: read
+
+jobs:
+  world10:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Source
+        uses: actions/checkout@v4
+      - name: Assertions métiers sur 10 langues
+        run: python3 -m unittest discover -s tests -p 'test_world10_module_doors_v1.py' -v
+      - name: Syntaxe JavaScript des moteurs et des portes
+        run: |
+          for script in \
+            assets/digiy-public-module-master-v2.js \
+            assets/digiy-public-module-master-v3.js \
+            assets/digiy-territoire-public-module-doors-v2.js \
+            assets/digiy-territoire-jobs-door-v1.js \
+            assets/digiy-territoire-beauty-door-v1.js \
+            assets/digiy-territoire-commerce-door-v1.js \
+            assets/digiy-carnet-entry-v1.js \
+            assets/digiy-pro-carnet-geo-v1.js; do
+            node --check "$script"
+          done
