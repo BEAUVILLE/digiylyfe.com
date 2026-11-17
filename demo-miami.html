@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#06140f">
+<title>DIGIY MIAMI — Démonstration métier</title>
+<meta name="description" content="Modèles professionnels DIGIY MIAMI. Exemples clairement identifiés, jamais des adhérents fictifs, contact direct et 0 % de commission.">
+<style>
+:root{--bg:#06140f;--gold:#f6c453;--mint:#2dd4bf;--soft:#d2e0d7;--ink:#fffaf0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(800px 450px at 20% 0,#2dd4bf23,transparent),linear-gradient(180deg,#0b3424,var(--bg));color:var(--ink);font:15px/1.55 system-ui,-apple-system,sans-serif}
+a{color:inherit;text-decoration:none}.wrap{width:min(940px,calc(100% - 26px));margin:auto;padding:18px 0 42px}
+.top{display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;gap:12px}.back,.offer{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;border:1px solid #f6c45388;padding:11px 15px;font-weight:900;min-height:43px}
+.lang{display:flex;flex-wrap:wrap;gap:5px}.lang button{min-width:39px;min-height:36px;border:1px solid #ffffff55;background:#ffffff10;color:#fff;border-radius:999px;font-weight:900;cursor:pointer}.lang button.on{background:var(--gold);color:#06140f}
+.hero,.panel{border-radius:25px;border:1px solid #f6c45362;background:#ffffff0b;padding:clamp(18px,3vw,30px);margin-top:17px}
+.eyebrow{font-size:11px;color:#ffeba8;font-weight:1000;letter-spacing:.045em}h1{font-size:clamp(30px,5vw,52px);line-height:1.1;margin:12px 0}h2{margin:0 0 9px;font-size:21px}.muted{color:var(--soft)}.bigLabel{color:var(--gold);font-weight:1000;font-size:13px}.chips{display:flex;flex-wrap:wrap;gap:9px}.chip{padding:8px 11px;border:1px solid #ffffff44;background:#ffffff0d;border-radius:13px;font-weight:800;font-size:12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.preview{min-height:125px;border:1px solid #2dd4bf66;background:linear-gradient(135deg,#2dd4bf14,#f6c45313);border-radius:19px;padding:18px;display:grid;align-content:center;gap:5px}.preview strong{font-size:15px}.preview span{color:var(--soft);font-size:12px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.offer.primary{background:var(--gold);color:#06140f}.note{margin-top:17px;padding:13px;border-radius:15px;background:#f6c45313;border:1px solid #f6c45366;color:#ffeeba;font-size:12px;font-weight:800}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.actions{display:grid}.actions a{width:100%}}
+</style>
+</head>
+<body><main class="wrap">
+<div class="top"><a class="back" id="back" href="/miami.html">← DIGIY MIAMI</a>
+<div class="lang" id="langs"><button data-l="fr">FR</button><button data-l="en">EN</button><button data-l="es">ES</button><button data-l="pt">PT</button><button data-l="it">IT</button><button data-l="de">DE</button><button data-l="nl">NL</button><button data-l="ar">AR</button><button data-l="wo">WO</button><button data-l="zh">中文</button></div></div>
+<section class="hero"><div class="eyebrow" id="badge">EXEMPLE · PAS UN ADHÉRENT</div><h1 id="title">Modèle DIGIY MIAMI</h1><p class="muted" id="lead"></p><div class="chips" id="context"></div></section>
+<div class="grid"><section class="panel"><h2 id="serviceTitle"></h2><div class="preview"><strong id="sample"></strong><span id="zone"></span></div><div class="note" id="notReal"></div></section>
+<section class="panel"><h2 id="clientTitle"></h2><div class="chips" id="promises"></div><p class="muted" id="description"></p></section></div>
+<section class="panel"><h2 id="projectTitle"></h2><p class="muted" id="projectNote"></p><div class="actions"><a class="offer primary" id="card" href="/carte-gratuite.html?country=fr">DEMANDER MA CARTE DIGIY →</a><a class="offer" id="tariffs" href="/tarifs-adherents-1.html?country=fr">VOIR LES OFFRES PRO FRANCE →</a></div><p class="muted" id="cardsOnly"></p></section>
+</main>
+<script src="/assets/digiy-miami-catalogue-v1.js?v=20261117-miami-10l-v1"></script>
+<script>
+(function(){
+'use strict';
+var D=window.DIGIY_MIAMI_CATALOGUE_V1,q=new URLSearchParams(location.search);
+if(!D||!D.copy||!D.categories){document.getElementById('title').textContent='DIGIY MIAMI · exemple indisponible';return;}
+var cat=D.categories.find(function(c){return c.id===q.get('need')})||D.categories[0];
+var variant=Math.max(1,Math.min(3,parseInt(q.get('variant')||'1',10)||1));
+var quarter=(q.get('quartier')||'').slice(0,60);
+function url(base,values){return base+'?'+new URLSearchParams(values).toString();}
+function text(id,value){document.getElementById(id).textContent=value;}
+function render(l){
+ if(!D.copy[l])l='fr';
+ document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';
+ var t=D.copy[l],title=cat.names[l],sample=cat.examples[l][variant-1],arrText='Miami';
+ document.title='DIGIY MIAMI · '+title+' · '+t.number+' '+variant;
+ text('badge',t.notReal);text('title',cat.icon+' '+cat.signature+' · '+title);text('lead',t.demoLead);
+ text('serviceTitle',t.service);text('sample',sample);text('zone',t.location+' · '+arrText+(quarter?' · '+quarter:''));
+ text('notReal',t.notReal);text('clientTitle',t.client);text('description',t.demoLead);
+ text('projectTitle',t.project);text('projectNote',t.projectNote);text('cardsOnly',t.cardsOnly);
+ text('back',t.back);text('card',t.card);text('tariffs',t.prices);
+ var chips=document.getElementById('context'),promises=document.getElementById('promises');chips.textContent='';promises.textContent='';
+ [arrText,cat.names[l],t.number+' '+variant].concat(quarter?[quarter]:[]).forEach(function(x){var e=document.createElement('span');e.className='chip';e.textContent=x;chips.appendChild(e)});
+ [t.direct,t.fee].forEach(function(x){var e=document.createElement('span');e.className='chip';e.textContent=x;promises.appendChild(e)});
+ var back={lang:l,need:cat.id};if(quarter)back.quartier=quarter;
+ document.getElementById('back').href=url('/miami.html',back)+'#miamiPlaces';
+ document.getElementById('card').href=url('/carte-gratuite.html',{country:'us',lang:l,territory:'miami',need:cat.id});
+ document.getElementById('tariffs').href=url('/tarifs-adherents-1.html',{country:'us',lang:l});
+ document.querySelectorAll('[data-l]').forEach(function(b){b.classList.toggle('on',b.dataset.l===l);b.setAttribute('aria-pressed',String(b.dataset.l===l));});
+ try{localStorage.setItem('digiy_lang',l)}catch(_){}
+}
+document.querySelectorAll('[data-l]').forEach(function(b){b.addEventListener('click',function(){q.set('lang',b.dataset.l);try{history.replaceState({},'',location.pathname+'?'+q.toString())}catch(_){}render(b.dataset.l)})});
+var l=(q.get('lang')||'').slice(0,2).toLowerCase();if(!D.copy[l]){try{l=(localStorage.getItem('digiy_lang')||'fr').slice(0,2).toLowerCase()}catch(_){l='fr'}}
+render(D.copy[l]?l:'fr');
+})();
+</script>
+</body></html>
