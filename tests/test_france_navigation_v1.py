@@ -98,9 +98,7 @@ class FranceNavigation(unittest.TestCase):
         self.assertIn("'/tarifs-adherents-1.html?country=fr&lang='", card)
         self.assertIn("'/tarifs-loc-v2.html?country=fr&lang='", card)
         # La carte reste un achat autonome, sans ajout d'une ligne payante au formulaire.
-        self.assertIn("const CARD_PRICES={SN:'15 000 FCFA',FR:'20 €',US:'20 
-    unittest.main()
-}", card)
+        self.assertIn("const CARD_PRICES={SN:'15 000 FCFA',FR:'20 €',US:'20 $'}", card)
         self.assertIn("networkCardForm.addEventListener('submit'", card)
         self.assertIn("consent:consent.checked", card)
 

@@ -1,42 +1,88 @@
+/* DIGIY PARIS · 20 arrondissements · 11 familles métiers · 33 exemples.
+ * Chaque carte est une DEMONSTRATION, jamais une fausse inscription.
+ * Le quartier est un repère facultatif, pas un filtre bloquant.
+ */
 (function(){
 'use strict';
-if(window.DIGIY_PARIS_PLACES_V1)return;window.DIGIY_PARIS_PLACES_V1=true;
-
-var T={
-  fr:{title:'PRENEZ VOTRE PLACE À PARIS',lead:'Ces cartes sont des exemples. Elles montrent comment votre activité peut apparaître dans DIGIY PARIS. La place est ouverte dans tous les arrondissements.',badge:'EXEMPLE · PLACE À PRENDRE',cta:'PRENDRE LA PLACE →',foot:'Paris reste ouvert : arrondissement et quartier servent à vous trouver, jamais à vous bloquer.',s2t:'CRÉATION DE LA FICHE PROFESSIONNELLE',s2x:'Paiement unique à partir de 250 € pour la création et la personnalisation de votre fiche.',s3t:'TOTAL 1RE ANNÉE',s3x:'450 € par an. L’adhésion démarre avec l’activation de votre fiche : accès propriétaire sécurisé et outils professionnels. Deux mois offerts à la première adhésion.',total:'TOTAL MINIMUM 1RE ANNÉE : À PARTIR DE 700 €',totalText:'250 € minimum pour la création de la fiche + 450 € d’adhésion DIGIY PRO. À partir de la 2e année : 450 €/an, hors PREMIUM / EXTRA et prestations supplémentaires.',items:[['🏠','HÉBERGEMENT / LOCATION','Votre hébergement ici · Paris'],['🍽️','RESTAURANT','Votre restaurant ici · Paris'],['🔧','ARTISAN / DÉPANNAGE','Votre savoir-faire ici · Paris'],['✨','BEAUTÉ / BIEN-ÊTRE','Votre activité ici · Paris'],['🚘','CHAUFFEUR / TRANSPORT','Votre service ici · Paris'],['🛍️','COMMERCE','Votre commerce ici · Paris']]},
-  en:{title:'TAKE YOUR PLACE IN PARIS',lead:'These cards are examples. They show how your business can appear inside DIGIY PARIS. Every arrondissement is open.',badge:'EXAMPLE · PLACE AVAILABLE',cta:'TAKE THE PLACE →',foot:'Paris stays open: arrondissement and neighbourhood help people find you; they never block you.',s2t:'PROFESSIONAL PROFILE CREATION',s2x:'One-time payment from €250 for the creation and personalization of your professional profile.',s3t:'FIRST-YEAR TOTAL',s3x:'€450 per year. Membership starts when your profile is activated: secure owner access and professional tools. Two months offered on the first membership.',total:'MINIMUM FIRST-YEAR TOTAL: FROM €700',totalText:'Minimum €250 profile creation + €450 DIGIY PRO membership. From year 2: €450/year, excluding PREMIUM / EXTRA and additional services.',items:[['🏠','ACCOMMODATION / RENTAL','Your accommodation here · Paris'],['🍽️','RESTAURANT','Your restaurant here · Paris'],['🔧','TRADES / REPAIR','Your know-how here · Paris'],['✨','BEAUTY / WELLNESS','Your business here · Paris'],['🚘','DRIVER / TRANSPORT','Your service here · Paris'],['🛍️','SHOP / COMMERCE','Your shop here · Paris']]},
-  es:{title:'OCUPE SU LUGAR EN PARÍS',lead:'Estas tarjetas son ejemplos. Muestran cómo puede aparecer su actividad en DIGIY PARIS. Todos los distritos están abiertos.',badge:'EJEMPLO · LUGAR DISPONIBLE',cta:'OCUPAR EL LUGAR →',foot:'París sigue abierto: distrito y barrio sirven para encontrarle, nunca para bloquearle.',s2t:'CREACIÓN DE LA FICHA PROFESIONAL',s2x:'Pago único desde 250 € para crear y personalizar su ficha profesional.',s3t:'TOTAL PRIMER AÑO',s3x:'450 € al año. La adhesión comienza con la activación de su ficha: acceso propietario seguro y herramientas profesionales. Dos meses incluidos en la primera adhesión.',total:'TOTAL MÍNIMO PRIMER AÑO: DESDE 700 €',totalText:'Mínimo 250 € por la creación de la ficha + 450 € de adhesión DIGIY PRO. Desde el segundo año: 450 €/año, sin PREMIUM / EXTRA ni servicios adicionales.',items:[['🏠','ALOJAMIENTO / ALQUILER','Su alojamiento aquí · París'],['🍽️','RESTAURANTE','Su restaurante aquí · París'],['🔧','ARTESANO / REPARACIÓN','Su saber hacer aquí · París'],['✨','BELLEZA / BIENESTAR','Su actividad aquí · París'],['🚘','CONDUCTOR / TRANSPORTE','Su servicio aquí · París'],['🛍️','COMERCIO','Su comercio aquí · París']]},
-  pt:{title:'OCUPE O SEU LUGAR EM PARIS',lead:'Estes cartões são exemplos. Mostram como a sua atividade pode aparecer na DIGIY PARIS. Todos os bairros estão abertos.',badge:'EXEMPLO · LUGAR DISPONÍVEL',cta:'OCUPAR O LUGAR →',foot:'Paris continua aberto: arrondissement e bairro servem para o encontrar, nunca para o bloquear.',s2t:'CRIAÇÃO DA FICHA PROFISSIONAL',s2x:'Pagamento único a partir de 250 € para criar e personalizar a sua ficha profissional.',s3t:'TOTAL DO 1.º ANO',s3x:'450 € por ano. A adesão começa com a ativação da ficha: acesso seguro do proprietário e ferramentas profissionais. Dois meses oferecidos na primeira adesão.',total:'TOTAL MÍNIMO NO 1.º ANO: A PARTIR DE 700 €',totalText:'Mínimo 250 € pela criação da ficha + 450 € de adesão DIGIY PRO. A partir do 2.º ano: 450 €/ano, sem PREMIUM / EXTRA nem serviços adicionais.',items:[['🏠','ALOJAMENTO / ALUGUER','O seu alojamento aqui · Paris'],['🍽️','RESTAURANTE','O seu restaurante aqui · Paris'],['🔧','ARTESÃO / REPARAÇÃO','O seu saber-fazer aqui · Paris'],['✨','BELEZA / BEM-ESTAR','A sua atividade aqui · Paris'],['🚘','MOTORISTA / TRANSPORTE','O seu serviço aqui · Paris'],['🛍️','COMÉRCIO','O seu comércio aqui · Paris']]},
-  it:{title:'PRENDI IL TUO POSTO A PARIGI',lead:'Queste carte sono esempi. Mostrano come può apparire la tua attività in DIGIY PARIS. Tutti gli arrondissement sono aperti.',badge:'ESEMPIO · POSTO DISPONIBILE',cta:'PRENDI IL POSTO →',foot:'Parigi resta aperta: arrondissement e quartiere servono a farti trovare, mai a bloccarti.',s2t:'CREAZIONE DELLA SCHEDA PROFESSIONALE',s2x:'Pagamento unico a partire da 250 € per creare e personalizzare la scheda professionale.',s3t:'TOTALE 1° ANNO',s3x:'450 € all’anno. L’adesione inizia con l’attivazione della scheda: accesso proprietario sicuro e strumenti professionali. Due mesi offerti alla prima adesione.',total:'TOTALE MINIMO 1° ANNO: DA 700 €',totalText:'Minimo 250 € per la creazione della scheda + 450 € di adesione DIGIY PRO. Dal 2° anno: 450 €/anno, esclusi PREMIUM / EXTRA e servizi aggiuntivi.',items:[['🏠','ALLOGGIO / AFFITTO','Il tuo alloggio qui · Parigi'],['🍽️','RISTORANTE','Il tuo ristorante qui · Parigi'],['🔧','ARTIGIANO / RIPARAZIONE','Il tuo savoir-faire qui · Parigi'],['✨','BELLEZZA / BENESSERE','La tua attività qui · Parigi'],['🚘','AUTISTA / TRASPORTO','Il tuo servizio qui · Parigi'],['🛍️','COMMERCIO','Il tuo negozio qui · Parigi']]},
-  de:{title:'SICHERN SIE SICH IHREN PLATZ IN PARIS',lead:'Diese Karten sind Beispiele. Sie zeigen, wie Ihr Betrieb in DIGIY PARIS erscheinen kann. Alle Arrondissements sind offen.',badge:'BEISPIEL · PLATZ FREI',cta:'PLATZ SICHERN →',foot:'Paris bleibt offen: Arrondissement und Viertel helfen beim Finden, sie blockieren den Zugang nie.',s2t:'ERSTELLUNG DES PROFIPROFILS',s2x:'Einmalige Zahlung ab 250 € für Erstellung und Personalisierung Ihres Profiprofils.',s3t:'GESAMT 1. JAHR',s3x:'450 € pro Jahr. Die Mitgliedschaft beginnt mit der Aktivierung Ihres Profils: sicherer Eigentümerzugang und Profi-Werkzeuge. Zwei Monate bei der ersten Mitgliedschaft inklusive.',total:'MINDESTGESAMT 1. JAHR: AB 700 €',totalText:'Mindestens 250 € Profilerstellung + 450 € DIGIY PRO Mitgliedschaft. Ab dem 2. Jahr: 450 €/Jahr, ohne PREMIUM / EXTRA und Zusatzleistungen.',items:[['🏠','UNTERKUNFT / VERMIETUNG','Ihre Unterkunft hier · Paris'],['🍽️','RESTAURANT','Ihr Restaurant hier · Paris'],['🔧','HANDWERK / REPARATUR','Ihr Können hier · Paris'],['✨','BEAUTY / WELLNESS','Ihr Angebot hier · Paris'],['🚘','FAHRER / TRANSPORT','Ihr Service hier · Paris'],['🛍️','HANDEL','Ihr Geschäft hier · Paris']]},
-  nl:{title:'NEEM UW PLAATS IN PARIJS',lead:'Deze kaarten zijn voorbeelden. Ze tonen hoe uw activiteit in DIGIY PARIS kan verschijnen. Alle arrondissementen zijn open.',badge:'VOORBEELD · PLAATS VRIJ',cta:'NEEM DE PLAATS →',foot:'Parijs blijft open: arrondissement en wijk helpen mensen u te vinden en blokkeren u nooit.',s2t:'CREATIE VAN HET PROFESSIONELE PROFIEL',s2x:'Eenmalige betaling vanaf €250 voor creatie en personalisatie van uw professionele profiel.',s3t:'TOTAAL 1E JAAR',s3x:'€450 per jaar. Het lidmaatschap start bij activering van uw profiel: veilige eigenaarstoegang en professionele tools. Twee maanden inbegrepen bij de eerste aansluiting.',total:'MINIMUMTOTAAL 1E JAAR: VANAF €700',totalText:'Minimaal €250 profielcreatie + €450 DIGIY PRO-lidmaatschap. Vanaf jaar 2: €450/jaar, exclusief PREMIUM / EXTRA en aanvullende diensten.',items:[['🏠','ACCOMMODATIE / VERHUUR','Uw accommodatie hier · Parijs'],['🍽️','RESTAURANT','Uw restaurant hier · Parijs'],['🔧','VAKMAN / REPARATIE','Uw vakmanschap hier · Parijs'],['✨','BEAUTY / WELLNESS','Uw activiteit hier · Parijs'],['🚘','CHAUFFEUR / VERVOER','Uw service hier · Parijs'],['🛍️','HANDEL','Uw winkel hier · Parijs']]},
-  ar:{title:'خذ مكانك في باريس',lead:'هذه البطاقات أمثلة توضح كيف يمكن أن يظهر نشاطك داخل DIGIY PARIS. جميع دوائر باريس مفتوحة.',badge:'مثال · المكان متاح',cta:'خذ المكان ←',foot:'تبقى باريس مفتوحة: الدائرة والحي يساعدان الناس على العثور عليك ولا يمنعان دخولك أبداً.',s2t:'إنشاء الملف المهني',s2x:'دفعة واحدة تبدأ من 250 يورو لإنشاء وتخصيص ملفك المهني.',s3t:'إجمالي السنة الأولى',s3x:'450 يورو سنوياً. تبدأ العضوية عند تفعيل ملفك: دخول مالك آمن وأدوات مهنية. شهران إضافيان عند أول عضوية.',total:'الحد الأدنى لإجمالي السنة الأولى: ابتداءً من 700 €',totalText:'250 € كحد أدنى لإنشاء الملف + 450 € لعضوية DIGIY PRO. ابتداءً من السنة الثانية: 450 € سنويًا، باستثناء PREMIUM / EXTRA والخدمات الإضافية.',items:[['🏠','إقامة / إيجار','مكان إقامتك هنا · باريس'],['🍽️','مطعم','مطعمك هنا · باريس'],['🔧','حرفي / صيانة','خبرتك هنا · باريس'],['✨','جمال / عناية','نشاطك هنا · باريس'],['🚘','سائق / نقل','خدمتك هنا · باريس'],['🛍️','تجارة','متجرك هنا · باريس']]}
+if(window.DIGIY_PARIS_PLACES_V1)return;
+var DATA=window.DIGIY_PARIS_CATALOGUE_V1;
+if(!DATA||!DATA.categories||!DATA.copy)return;
+window.DIGIY_PARIS_PLACES_V1=true;
+var params=new URLSearchParams(location.search);
+var state={
+ arr:DATA.arrondissements.indexOf(params.get('arr'))>=0?params.get('arr'):'',
+ need:DATA.categories.some(function(c){return c.id===params.get('need')})?params.get('need'):'',
+ quarter:(params.get('quartier')||'').slice(0,60),
+ all:false
 };
-
-function lang(){var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return T[l]?l:'fr';}
-function href(need){return '/carte-gratuite.html?country=fr&lang='+lang()+'&territory=paris'+(need?'&need='+encodeURIComponent(need):'');}
-function ensureStyle(){
-  if(document.getElementById('digiyParisPlacesStyle'))return;
-  var s=document.createElement('style');s.id='digiyParisPlacesStyle';s.textContent='\n.parisPlaces{border-color:rgba(246,196,83,.54)!important;background:radial-gradient(520px 250px at 0 0,rgba(246,196,83,.12),transparent 68%),linear-gradient(145deg,rgba(255,255,255,.06),rgba(45,212,191,.045))!important}.parisPlacesHead{text-align:center}.parisPlacesHead h2{color:#fff3cf}.parisPlacesHead p{max-width:760px;margin:9px auto 0}.parisPlacesGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.parisPlace{min-height:190px;padding:16px;border-radius:22px;border:1px solid rgba(246,196,83,.34);background:linear-gradient(145deg,rgba(246,196,83,.08),rgba(255,255,255,.045));display:flex;flex-direction:column;gap:7px;transition:transform .15s ease,border-color .15s ease}.parisPlace:hover{transform:translateY(-2px);border-color:rgba(246,196,83,.78)}.parisPlaceIcon{font-size:31px;line-height:1}.parisPlaceSignature{display:block;color:#f6c453;font-size:11px;font-weight:1000;letter-spacing:.045em;line-height:1.3}.parisPlaceBadge{display:inline-flex;align-self:flex-start;padding:6px 8px;border-radius:999px;border:1px solid rgba(45,212,191,.40);background:rgba(45,212,191,.08);color:#d8fff8;font-size:9px;font-weight:1000;letter-spacing:.055em}.parisPlace strong{font-size:17px;line-height:1.08}.parisPlace small{color:rgba(255,250,240,.72);font-size:11px;line-height:1.4;font-weight:850}.parisPlaceCta{margin-top:auto;padding-top:10px;border-top:1px solid rgba(246,196,83,.18);color:#fff3cf;font-size:10px;font-weight:1000}.parisPlacesFoot{margin-top:14px;text-align:center;color:#dffcf3;font-size:11px;font-weight:900}.parisFirstYearTotal{margin-top:14px;padding:15px;border-radius:20px;border:2px solid rgba(246,196,83,.62);background:linear-gradient(145deg,rgba(246,196,83,.16),rgba(45,212,191,.08));color:#fff8ea}.parisFirstYearTotal strong{display:block;color:#fff3cf;font-size:18px}.parisFirstYearTotal span{display:block;margin-top:5px;font-size:12px;font-weight:850;line-height:1.45}@media(max-width:800px){.parisPlacesGrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.parisPlacesGrid{grid-template-columns:1fr}.parisPlace{min-height:165px}}\n';document.head.appendChild(s);
+function lang(){
+ var l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();
+ return DATA.copy[l]?l:'fr';
 }
-var DIGIY_PARIS_BRANDS={"🏠":"DIGIY LOC","🍽️":"DIGIY RESTO","🔧":"DIGIY BUILD","✨":"DIGIY BEAUTY","💅":"DIGIY BEAUTY","🚘":"DIGIY DRIVER","🚗":"DIGIY DRIVER","🛍️":"DIGIY MON COMMERCE"};
-var DIGIY_PARIS_NEEDS={"🏠":"accommodation","🍽️":"food","🔧":"artisan","✨":"beauty","💅":"beauty","🚘":"transport","🚗":"transport","🛍️":"shopping"};
+function el(tag,cls,content){
+ var n=document.createElement(tag);
+ if(cls)n.className=cls;
+ if(content!==undefined)n.textContent=content;
+ return n;
+}
+function link(base,values){
+ var q=new URLSearchParams(values);
+ return base+'?'+q.toString();
+}
+function queryVals(need,variant){
+ var p={need:need,lang:lang()};
+ if(variant)p.variant=String(variant);
+ if(state.arr)p.arr=state.arr;
+ if(state.quarter)p.quartier=state.quarter;
+ return p;
+}
+function syncUrl(){
+ try{
+  var u=new URL(location.href);
+  ['arr','need','quartier'].forEach(function(k){u.searchParams.delete(k)});
+  if(state.arr)u.searchParams.set('arr',state.arr);
+  if(state.need)u.searchParams.set('need',state.need);
+  if(state.quarter)u.searchParams.set('quartier',state.quarter);
+  history.replaceState({},'',u.pathname+u.search+u.hash);
+ }catch(_){}
+}
+var CSS='.parisPlaces{border:1px solid #f6c45366;border-radius:25px;background:linear-gradient(135deg,#f6c45312,#2dd4bf0c);padding:clamp(13px,3vw,24px);margin:22px 0}.parisPlaces h2{margin:0 0 9px;color:#fff0c8}.parisPlaces p{margin:0 0 14px;color:#d4e4da;font-size:13px;line-height:1.5}.parisFilters{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px}.parisFilter{display:grid;gap:6px}.parisFilter label{font-weight:900;color:#ffefc1;font-size:12px}.parisFilter select,.parisFilter input{width:100%;min-height:44px;color:#fff;background:#071a13;border:1px solid #ffffff4a;border-radius:12px;padding:9px;font:inherit}.parisToggle{display:flex;gap:9px;align-items:center;font-size:12px;font-weight:900;color:#fef1ce;margin-bottom:15px}.parisExampleGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.parisExampleCard{padding:15px;border:1px solid #f6c45344;border-radius:19px;background:#ffffff09;min-width:0;display:flex;flex-direction:column;gap:8px}.parisExampleCard .sig{color:#f6c453;font-size:12px;font-weight:1000}.parisExampleCard .badge{display:block;color:#bfe9e2;font-size:9px;line-height:1.4;font-weight:900}.parisExampleCard strong{font-size:16px;line-height:1.3}.parisExampleCard small{display:block;font-size:12px;color:#d3e0d8;line-height:1.4}.parisExampleCard .actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}.parisExampleCard a{display:inline-block;border:1px solid #f6c45377;border-radius:999px;padding:9px;color:#fff1c8;font-size:11px;font-weight:900}.parisExampleCard a.primary{color:#071a13;background:#f6c453}.parisPlacesFoot{font-size:11px;color:#ddf6e9;font-weight:800;margin-top:16px}@media(max-width:800px){.parisExampleGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:550px){.parisFilters,.parisExampleGrid{grid-template-columns:1fr}}';
+var style=document.createElement('style');style.id='digiyParisCatalogueStyle';style.textContent=CSS;document.head.appendChild(style);
+function buildSelect(title,options,value,onChange){
+ var w=el('div','parisFilter'),id='parisFilter'+Math.random().toString(36).slice(2);
+ var l=el('label','',title),s=el('select');l.htmlFor=id;s.id=id;
+ options.forEach(function(o){var item=el('option','',o[1]);item.value=o[0];s.appendChild(item)});
+ s.value=value;s.addEventListener('change',function(){onChange(s.value)});
+ w.append(l,s);return w;
+}
 function render(){
-  ensureStyle();
-  var t=T[lang()];
-  var s2t=document.getElementById('s2t'),s2x=document.getElementById('s2x'),s3t=document.getElementById('s3t'),s3x=document.getElementById('s3x');
-  if(s2t)s2t.textContent=t.s2t;if(s2x)s2x.textContent=t.s2x;if(s3t)s3t.textContent=t.s3t;if(s3x)s3x.textContent=t.s3x;
-  var steps=document.querySelector('.steps');
-  if(steps){var totalBox=document.getElementById('digiyParisFirstYearTotal');if(!totalBox){totalBox=document.createElement('div');totalBox.id='digiyParisFirstYearTotal';totalBox.className='parisFirstYearTotal';steps.insertAdjacentElement('afterend',totalBox);}totalBox.innerHTML='<strong>'+t.total+'</strong><span>'+t.totalText+'</span>';}
-  var anchor=document.getElementById('territoryTitle');if(!anchor)return;
-  var host=document.getElementById('digiyParisPlaces');
-  if(!host){host=document.createElement('section');host.id='digiyParisPlaces';host.className='section parisPlaces';var section=anchor.closest('.section');if(section)section.insertAdjacentElement('afterend',host);}
-  var html='<div class="parisPlacesHead"><h2>'+t.title+'</h2><p>'+t.lead+'</p></div><div class="parisPlacesGrid">';
-  t.items.forEach(function(x){var signature=DIGIY_PARIS_BRANDS[x[0]]||'DIGIY',url=href(DIGIY_PARIS_NEEDS[x[0]]);html+='<a class="parisPlace" href="'+url+'"><span class="parisPlaceIcon" aria-hidden="true">'+x[0]+'</span><span class="parisPlaceBadge">'+t.badge+'</span><span class="parisPlaceSignature">'+signature+'</span><strong>'+x[1]+'</strong><small>'+x[2]+'</small><span class="parisPlaceCta">'+t.cta+'</span></a>';});
-  html+='</div><div class="parisPlacesFoot">'+t.foot+'</div>';
-  host.innerHTML=html;
+ var anchor=document.getElementById('territoryTitle');if(!anchor)return;
+ var host=document.getElementById('digiyParisPlaces');
+ if(!host){host=el('section','section parisPlaces');host.id='digiyParisPlaces';var parent=anchor.closest('.section');if(parent)parent.insertAdjacentElement('afterend',host);}
+ host.textContent='';
+ var l=lang(),t=DATA.copy[l];
+ host.append(el('h2','',t.headline),el('p','',t.intro));
+ var filters=el('div','parisFilters'),arrOptions=[['',t.allArr]];
+ DATA.arrondissements.forEach(function(a,i){arrOptions.push([a,'Paris '+(i+1)+(l==='fr'&&i===0?'er':l==='fr'?'e':'')+' · '+String(i+1).padStart(2,'0')])});
+ filters.append(buildSelect(t.arr,arrOptions,state.arr,function(v){state.arr=v;syncUrl();render()}));
+ filters.append(buildSelect(t.trade,[['',t.allTrades]].concat(DATA.categories.map(function(c){return[c.id,c.names[l]]})),state.need,function(v){state.need=v;syncUrl();render()}));
+ var quarter=el('div','parisFilter'),label=el('label','',t.quarter),input=el('input');input.type='text';input.maxLength=60;input.placeholder=t.quarterHint;input.value=state.quarter;label.htmlFor='parisQuartier';input.id='parisQuartier';input.addEventListener('input',function(){state.quarter=input.value.trim().slice(0,60);syncUrl();host.querySelectorAll('a[data-paris-demo]').forEach(function(a){a.href=link('/demo-paris.html',queryVals(a.dataset.need,Number(a.dataset.variant)))});});quarter.append(label,input);filters.appendChild(quarter);
+ host.appendChild(filters);
+ var toggle=el('label','parisToggle'),box=el('input');box.type='checkbox';box.checked=state.all;box.addEventListener('change',function(){state.all=box.checked;render()});toggle.append(box,el('span','',t.allVariants));host.appendChild(toggle);
+ var grid=el('div','parisExampleGrid');
+ DATA.categories.filter(function(c){return !state.need||c.id===state.need}).forEach(function(c){
+  var titles=c.examples[l],variants=state.need||state.all?[1,2,3]:[1];
+  variants.forEach(function(v){
+   var item=el('article','parisExampleCard');
+   item.append(el('div','badge',t.example),el('div','sig',c.signature),el('strong','',c.icon+' '+c.names[l]),el('small','',titles[v-1]));
+   var actions=el('div','actions'),view=el('a','primary',t.model),card=el('a','',t.card);
+   view.href=link('/demo-paris.html',queryVals(c.id,v));view.dataset.parisDemo='1';view.dataset.need=c.id;view.dataset.variant=String(v);card.href=link('/carte-gratuite.html',{country:'fr',lang:l,territory:'paris',need:c.id});
+   actions.append(view,card);item.appendChild(actions);grid.appendChild(item);
+  });
+ });
+ host.append(grid,el('div','parisPlacesFoot',t.foot));
 }
-render();setTimeout(render,80);setTimeout(render,400);
-try{new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(_){ }
-document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('[data-lang],[data-l]'))setTimeout(render,0)},false);
+render();
+try{new MutationObserver(function(){render()}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']})}catch(_){}
+document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('[data-lang]'))setTimeout(render,0)},false);
 })();
