@@ -765,7 +765,7 @@
     /* ===== ACCÈS PROPRIÉTAIRE · aperçu transversal métiers ===== */
 .ownerModules{margin:14px 0;padding:16px;border-radius:26px;border:1px solid rgba(45,212,191,.34);background:linear-gradient(145deg,rgba(45,212,191,.09),rgba(246,196,83,.07));text-align:center}
 .ownerModulesLang{display:none}
-html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .ownerModulesLang[data-owner-lang="en"],html[lang^="es"] .ownerModulesLang[data-owner-lang="es"],html[lang^="pt"] .ownerModulesLang[data-owner-lang="pt"],html[lang^="it"] .ownerModulesLang[data-owner-lang="it"],html[lang^="de"] .ownerModulesLang[data-owner-lang="de"],html[lang^="nl"] .ownerModulesLang[data-owner-lang="nl"],html[lang^="ar"] .ownerModulesLang[data-owner-lang="ar"]{display:block}
+html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .ownerModulesLang[data-owner-lang="en"],html[lang^="es"] .ownerModulesLang[data-owner-lang="es"],html[lang^="pt"] .ownerModulesLang[data-owner-lang="pt"],html[lang^="it"] .ownerModulesLang[data-owner-lang="it"],html[lang^="de"] .ownerModulesLang[data-owner-lang="de"],html[lang^="nl"] .ownerModulesLang[data-owner-lang="nl"],html[lang^="ar"] .ownerModulesLang[data-owner-lang="ar"],html[lang^="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerModulesLang[data-owner-lang="zh"]{display:block}
 .ownerModulesKicker{display:inline-flex;padding:6px 9px;border-radius:999px;border:1px solid rgba(45,212,191,.48);background:rgba(45,212,191,.08);color:#c9fff7;font-size:9.5px;font-weight:1000;letter-spacing:.07em;text-transform:uppercase}
 .ownerModules h2{margin:9px 0 0;font-size:clamp(20px,4.6vw,29px);line-height:1.05;font-weight:1000;letter-spacing:-.025em}
 .ownerModules p{margin:8px auto 0;max-width:760px;color:var(--soft);font-size:11.5px;line-height:1.45;font-weight:850}
@@ -1377,15 +1377,15 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
 <!-- LA VOIX DES ADHÉRENTS · échange volontaire via WhatsApp, aucun stockage DIGIY. -->
 <details class="digiyMemberVoice" id="voix-adherents">
   <summary>
-    <span><strong>💬 La Voix des adhérents</strong><small>Une idée, un besoin, une collaboration ? Parlons-en directement.</small></span>
+    <span><strong data-i18n="memberVoiceTitle">💬 La Voix des adhérents</strong><small data-i18n="memberVoiceLead">Une idée, un besoin, une collaboration ? Parlons-en directement.</small></span>
     <span class="digiyMemberVoiceChevron" aria-hidden="true">⌄</span>
   </summary>
   <div class="digiyMemberVoiceOptions">
-    <a href="https://wa.me/221771342889?text=Bonjour%20DIGIYLYFE%2C%20je%20souhaite%20partager%20une%20id%C3%A9e%20%3A%20" target="_blank" rel="noopener noreferrer">💡 J’ai une idée</a>
-    <a href="https://wa.me/221771342889?text=Bonjour%20DIGIYLYFE%2C%20je%20souhaite%20vous%20signaler%20un%20besoin%20li%C3%A9%20%C3%A0%20mon%20activit%C3%A9%20%3A%20" target="_blank" rel="noopener noreferrer">🛠️ J’ai un besoin</a>
-    <a href="https://wa.me/221771342889?text=Bonjour%20DIGIYLYFE%2C%20je%20souhaite%20proposer%20une%20collaboration%20%3A%20" target="_blank" rel="noopener noreferrer">🤝 Je propose une collaboration</a>
+    <a href="https://wa.me/221771342889?text=Bonjour%20DIGIYLYFE%2C%20je%20souhaite%20partager%20une%20id%C3%A9e%20%3A%20" target="_blank" rel="noopener noreferrer" data-i18n="memberVoiceIdea">💡 J’ai une idée</a>
+    <a href="https://wa.me/221771342889?text=Bonjour%20DIGIYLYFE%2C%20je%20souhaite%20vous%20signaler%20un%20besoin%20li%C3%A9%20%C3%A0%20mon%20activit%C3%A9%20%3A%20" target="_blank" rel="noopener noreferrer" data-i18n="memberVoiceNeed">🛠️ J’ai un besoin</a>
+    <a href="https://wa.me/221771342889?text=Bonjour%20DIGIYLYFE%2C%20je%20souhaite%20proposer%20une%20collaboration%20%3A%20" target="_blank" rel="noopener noreferrer" data-i18n="memberVoiceCollab">🤝 Je propose une collaboration</a>
   </div>
-  <p class="digiyMemberVoiceNote">Le message s’ouvre dans WhatsApp. Vous choisissez de l’envoyer ; rien n’est publié automatiquement.</p>
+  <p class="digiyMemberVoiceNote" data-i18n="memberVoiceNote">Le message s’ouvre dans WhatsApp. Vous choisissez de l’envoyer ; rien n’est publié automatiquement.</p>
 </details>
 <section class="section digiyVitrineOffers" id="offres-essentielles" aria-labelledby="digiyVitrineOffersTitle">
       <span class="digiyVitrineEyebrow" data-i18n="liteOfferKicker">DES OFFRES CLAIRES</span>
