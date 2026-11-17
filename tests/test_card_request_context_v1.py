@@ -32,7 +32,7 @@ class CardRequestContext(unittest.TestCase):
         self.assertIn("qp.get('quartier')", CARD)
         self.assertIn("Arrondissement : ", CARD)
         self.assertIn("DIGIY PARIS", CARD)
-        self.assertIn("data-paris-card", PARIS)
+        self.assertIn("card.dataset.parisCard", PARIS)
         self.assertIn("queryVals(c.id)", PARIS)
         self.assertIn("cardParams.arr=arr", DEMO_PARIS)
         self.assertIn("cardParams.quartier=quarter", DEMO_PARIS)
@@ -41,7 +41,7 @@ class CardRequestContext(unittest.TestCase):
         self.assertIn("requestedTerritory==='miami'&&country.value==='US'", CARD)
         self.assertIn("MIAMI_SIGNATURES", CARD)
         self.assertIn("DIGIY MIAMI", CARD)
-        self.assertIn("data-miami-card", MIAMI)
+        self.assertIn("request.dataset.miamiCard", MIAMI)
         self.assertIn("requestParams.quartier=state.quartier", MIAMI)
         self.assertIn("cardParams.quartier=quarter", DEMO_MIAMI)
 
