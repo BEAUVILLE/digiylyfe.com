@@ -6,8 +6,8 @@ var LANGS=['fr','en','es','pt','de','it','nl','ar'];if(LANGS.indexOf(lang)<0)lan
 var META={
  'petite-cote':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'PETITE CÔTE',currency:'12 000 FCFA / mois',locPrice:'À partir de 21 000 FCFA / mois'},
  'dakar':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'DAKAR',currency:'12 000 FCFA / mois',locPrice:'À partir de 21 000 FCFA / mois'},
- 'vallee-dordogne':{country:'FRANCE',flag:'🇫🇷',zone:'VALLÉE DE LA DORDOGNE',currency:'45 € / mois',locPrice:'À partir de 75 € / mois'},
- 'bordeaux':{country:'FRANCE',flag:'🇫🇷',zone:'BORDEAUX',currency:'45 € / mois',locPrice:'À partir de 75 € / mois'}
+ 'vallee-dordogne':{country:'FRANCE',flag:'🇫🇷',zone:'VALLÉE DE LA DORDOGNE',currency:'450 €/an · ou 45 €/mois (fiche 250 € séparée)',locPrice:'DIGIY LOC · dès 75 €/mois · offre séparée'},
+ 'bordeaux':{country:'FRANCE',flag:'🇫🇷',zone:'BORDEAUX',currency:'450 €/an · ou 45 €/mois (fiche 250 € séparée)',locPrice:'DIGIY LOC · dès 75 €/mois · offre séparée'}
 };
 var I18N={
  fr:{back:'← RETOUR AU TERRITOIRE',real:'PRÉSENCES RÉELLES',realLead:'Uniquement les adhérents réellement rattachés à ce pays et à cette zone.',none:'Aucun adhérent réel rattaché à cette zone pour le moment.',open:'PLACES À PRENDRE',openLead:'Ces cartes représentent des activités ouvertes, jamais de faux professionnel.',member:'ADHÉRENT DIGIYLYFE',place:'PLACE À PRENDRE',view:'OUVRIR →',take:'PRENDRE MA PLACE →',zero:'0 % commission · contact direct',choose:'Choisissez un territoire depuis TERRITOIRE.',country:'PAYS',zone:'ZONE',local:'SECTEUR',profWhyTitle:"Pourquoi être présent sur le territoire ?",profWhyText:"Vous n’apparaissez pas ici pour entrer dans un annuaire de plus. Votre présence permet d’être identifié lorsqu’un besoin réel apparaît sur le territoire. DIGIYLYFE relie le besoin à la compétence utile, puis le contact reste direct avec le professionnel.",profWhyExamples:"Architecte · Comptable / expert-comptable · Avocat · Notaire · Géomètre · Assureur · Consultant · Bureau d’études"},
