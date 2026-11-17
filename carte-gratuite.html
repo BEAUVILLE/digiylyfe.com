@@ -10,6 +10,7 @@
 <div class="top"><button data-l="fr">FR</button><button data-l="en">EN</button><button data-l="es">ES</button><button data-l="pt">PT</button><button data-l="it">IT</button><button data-l="de">DE</button><button data-l="nl">NL</button><button data-l="ar">AR</button><button data-l="wo">WO</button><button data-l="zh">中文</button></div>
 <section class="hero"><span class="kicker" id="kicker"></span><h1 id="title"></h1><div class="price" id="cardPrice">Prix selon pays</div><p id="lead"></p></section>
 <section class="box"><p class="soft" style="margin:0 0 12px;text-align:center"><strong>📱 Format officiel DIGIY : vertical 9:16 · 1080 × 1920 px · conçu pour le téléphone.</strong></p><div class="benefits"><span>✓ Nom / activité</span><span>✓ Photo ou logo</span><span>✓ WhatsApp / téléphone</span><span>✓ QR code personnel</span><span>✓ Zone d’activité</span><span>✓ Lien partageable</span><span>✓ Carte verticale 9:16</span></div><div class="bridge" id="bridge"></div></section>
+<section class="box frPrices" id="usaPrices" hidden><h2 id="usaPricesTitle"></h2><p class="soft" id="usaPricesIntro"></p><div class="frPriceGrid" id="usaPricesGrid"></div><div class="frPriceLinks"><a id="usaPricesMore"></a><a id="usaLocMore"></a></div></section>
 <section class="box frPrices" id="francePrices" hidden><h2 id="francePricesTitle"></h2><p class="soft" id="francePricesIntro"></p><div class="frPriceGrid" id="francePricesGrid"></div><div class="frPriceLinks"><a id="francePricesMore" href="/tarifs-adherents-1.html?country=fr&amp;lang=fr"></a><a id="franceLocPricesMore" href="/tarifs-loc-v2.html?country=fr&amp;lang=fr"></a></div></section>
 <section class="box"><div class="parisOrigin" id="parisOrigin" hidden></div><h2 id="formTitle"></h2><p class="soft" id="formLead"></p><form id="networkCardForm"><div class="fields">
 <label class="field"><span id="countryLabel"></span><select id="country" required><option value="SN">🇸🇳 Sénégal</option><option value="FR">🇫🇷 France</option><option value="US">🇺🇸 USA</option></select></label>
@@ -52,6 +53,20 @@ function renderFrancePriceOverview(l,id){
  const all=document.getElementById('francePricesMore'),loc=document.getElementById('franceLocPricesMore');all.textContent=d.more;loc.textContent=d.locMore;
  all.href='/tarifs-adherents-1.html?country=fr&lang='+encodeURIComponent(l);loc.href='/tarifs-loc-v2.html?country=fr&lang='+encodeURIComponent(l);
 }
+
+/* Affichage informatif uniquement : la carte à 20 $ reste indépendante. */
+const USA_PRICES=['299 $','29 $/mois','290 $/an','589 $','790 $+','1 490 $+','790 $/an+'];
+const USA_LABELS={"fr":["Les autres offres DIGIY aux États-Unis",["Fiche professionnelle","DIGIY PRO mensuel","DIGIY PRO annuel","Fiche + PRO · 1re année","Site PREMIUM","Site EXTRA","DIGIY LOC"],"VOIR TOUS LES TARIFS USA →","VOIR LES PALIERS DIGIY LOC →"],"en":["Other DIGIY USA offers",["Professional profile","DIGIY PRO monthly","DIGIY PRO annual","Profile + PRO · first year","PREMIUM website","EXTRA website","DIGIY LOC"],"SEE ALL USA PRICES →","SEE DIGIY LOC TIERS →"],"es":["Otras ofertas DIGIY en EE. UU.",["Ficha profesional","DIGIY PRO mensual","DIGIY PRO anual","Ficha + PRO · primer año","Sitio PREMIUM","Sitio EXTRA","DIGIY LOC"],"VER PRECIOS USA →","VER TARIFAS DIGIY LOC →"],"pt":["Outras ofertas DIGIY nos EUA",["Ficha profissional","DIGIY PRO mensal","DIGIY PRO anual","Ficha + PRO · primeiro ano","Site PREMIUM","Site EXTRA","DIGIY LOC"],"VER TARIFAS EUA →","VER ESCALÕES DIGIY LOC →"],"it":["Altre offerte DIGIY negli USA",["Scheda professionale","DIGIY PRO mensile","DIGIY PRO annuale","Scheda + PRO · primo anno","Sito PREMIUM","Sito EXTRA","DIGIY LOC"],"VEDI PREZZI USA →","VEDI TARIFFE DIGIY LOC →"],"de":["Weitere DIGIY-Angebote in den USA",["Professionelles Profil","DIGIY PRO monatlich","DIGIY PRO jährlich","Profil + PRO · 1. Jahr","PREMIUM-Website","EXTRA-Website","DIGIY LOC"],"ALLE USA-TARIFE →","DIGIY LOC TARIFE →"],"nl":["Andere DIGIY-aanbiedingen in de VS",["Professioneel profiel","DIGIY PRO maandelijks","DIGIY PRO jaarlijks","Profiel + PRO · jaar één","PREMIUM-website","EXTRA-website","DIGIY LOC"],"BEKIJK VS-TARIEVEN →","BEKIJK DIGIY LOC-TARIEVEN →"],"ar":["عروض DIGIY الأخرى في الولايات المتحدة",["الملف المهني","DIGIY PRO شهري","DIGIY PRO سنوي","الملف + الاشتراك · السنة الأولى","موقع PREMIUM","موقع EXTRA","DIGIY LOC"],"عرض أسعار الولايات المتحدة ←","عرض فئات DIGIY LOC ←"],"wo":["Yeneen offres DIGIY ci USA",["Fiche profesioneel","DIGIY PRO / weer","DIGIY PRO / at","Fiche + PRO · at mu jëkk","Site PREMIUM","Site EXTRA","DIGIY LOC"],"XOOL TARIFS USA →","XOOL PALIERS DIGIY LOC →"],"zh":["美国 DIGIY 其他服务价格",["专业主页","DIGIY PRO 月费","DIGIY PRO 年费","主页 + 会员 · 首年","PREMIUM 网站","EXTRA 网站","DIGIY LOC"],"查看美国价格 →","查看 DIGIY LOC 分级价格 →"]};
+function renderUsaPrices(l,countryId){
+ var root=document.getElementById('usaPrices');root.hidden=countryId!=='US';if(root.hidden)return;
+ var t=USA_LABELS[l]||USA_LABELS.en;
+ document.getElementById('usaPricesTitle').textContent=t[0];
+ document.getElementById('usaPricesIntro').textContent=l==='fr'?'Carte à 20 $ indépendante · offres distinctes avec leurs conditions.':l==='zh'?'20 美元名片独立购买，其他服务分别计费。':l==='wo'?'Kaart 20 $ mooy prestation bu boppam; yeneen offres am nañu seeni sart.':'$20 digital card sold separately · other offers have their own conditions.';
+ var grid=document.getElementById('usaPricesGrid');grid.textContent='';
+ USA_PRICES.forEach(function(price,i){var item=document.createElement('div');item.className='frPriceItem';var h=document.createElement('strong'),p=document.createElement('b');h.textContent=t[1][i];p.textContent=price;item.append(h,p);grid.appendChild(item)});
+ var all=document.getElementById('usaPricesMore'),loc=document.getElementById('usaLocMore');all.textContent=t[2];loc.textContent=t[3];
+ all.href='/tarifs-adherents-1.html?country=us&lang='+encodeURIComponent(l);loc.href='/tarifs-loc-v2.html?country=us&lang='+encodeURIComponent(l);
+}
 function renderPricing(){
  const l=Object.prototype.hasOwnProperty.call(T,document.documentElement.lang)?document.documentElement.lang:'fr';
  const id=Object.prototype.hasOwnProperty.call(CARD_PRICES,country.value)?country.value:'SN';
@@ -65,6 +80,7 @@ function renderPricing(){
  const offers=document.querySelector('.foot a[href^="/tarifs-adherents-1.html"]');
  if(offers)offers.href='/tarifs-adherents-1.html?country='+id.toLowerCase()+'&lang='+l;
  renderFrancePriceOverview(l,id);
+ renderUsaPrices(l,id);
 }
 const originalSetLang=setLang;
 setLang=function(l){if(!T[l])l='fr';originalSetLang(l);renderPricing();};
