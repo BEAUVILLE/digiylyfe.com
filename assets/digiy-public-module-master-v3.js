@@ -5,11 +5,11 @@ var LANGS=['fr','en','es','pt','de','it','nl','ar','wo','zh'];if(LANGS.indexOf(l
 var META={
  'petite-cote':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'PETITE CÔTE',price:'12 000 FCFA / mois',loc:'À partir de 28 000 FCFA / mois'},
  'dakar':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'DAKAR',price:'12 000 FCFA / mois',loc:'À partir de 28 000 FCFA / mois'},
- 'vallee-dordogne':{country:'FRANCE',flag:'🇫🇷',zone:'VALLÉE DE LA DORDOGNE',price:'45 € / mois',loc:'À partir de 75 € / mois'},
- 'bordeaux':{country:'FRANCE',flag:'🇫🇷',zone:'BORDEAUX',price:'45 € / mois',loc:'À partir de 75 € / mois'},
- 'casablanca':{country:'MAROC',flag:'🇲🇦',zone:'CASABLANCA',price:'CARTE DIGIY GRATUITE · 0 MAD',loc:'CARTE DIGIY GRATUITE · 0 MAD'},
- 'marrakech':{country:'MAROC',flag:'🇲🇦',zone:'MARRAKECH',price:'CARTE DIGIY GRATUITE · 0 MAD',loc:'CARTE DIGIY GRATUITE · 0 MAD'},
- 'miami':{country:'USA',flag:'🇺🇸',zone:'MIAMI · FLORIDA',price:'DIGIY CARD · $0',loc:'À partir de $790 / an'}
+ 'vallee-dordogne':{country:'FRANCE',flag:'🇫🇷',zone:'VALLÉE DE LA DORDOGNE',price:'450 €/an ou 45 €/mois · fiche 250 € séparée',loc:'DIGIY LOC · dès 75 €/mois · offre séparée'},
+ 'bordeaux':{country:'FRANCE',flag:'🇫🇷',zone:'BORDEAUX',price:'450 €/an ou 45 €/mois · fiche 250 € séparée',loc:'DIGIY LOC · dès 75 €/mois · offre séparée'},
+ 'casablanca':{country:'MAROC',flag:'🇲🇦',zone:'CASABLANCA',price:'CARTE DIGIY · 250 MAD · paiement unique',loc:'DIGIY LOC · offre métier séparée'},
+ 'marrakech':{country:'MAROC',flag:'🇲🇦',zone:'MARRAKECH',price:'CARTE DIGIY · 250 MAD · paiement unique',loc:'DIGIY LOC · offre métier séparée'},
+ 'miami':{country:'USA',flag:'🇺🇸',zone:'MIAMI · FLORIDA',price:'DIGIY CARD · $20 · one-time payment',loc:'DIGIY LOC · à partir de $790 / an'}
 };
 var T={
  "fr": {
