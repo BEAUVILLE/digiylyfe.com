@@ -39,7 +39,9 @@ window.DIGIY_PARIS_CATALOGUE_V1={
         "it": "Annunci",
         "de": "Anzeigen",
         "nl": "Advertenties",
-        "ar": "إعلانات"
+        "ar": "إعلانات",
+        "wo": "Yëgle yi",
+        "zh": "本地公告"
       },
       "examples": {
         "fr": [
@@ -81,6 +83,16 @@ window.DIGIY_PARIS_CATALOGUE_V1={
           "إعلان محلي",
           "عرض خدمة",
           "نشر احتياج محلي"
+        ],
+        "wo": [
+          "Yëgle ci gox bi",
+          "Joxe sarwiis",
+          "Yëgle soxla"
+        ],
+        "zh": [
+          "社区公告",
+          "发布服务",
+          "发布本地需求"
         ]
       }
     },
@@ -96,7 +108,9 @@ window.DIGIY_PARIS_CATALOGUE_V1={
         "it": "Spostarsi",
         "de": "Mobilität",
         "nl": "Vervoer",
-        "ar": "التنقل"
+        "ar": "التنقل",
+        "wo": "Dem ak dikk",
+        "zh": "出行服务"
       },
       "examples": {
         "fr": [
@@ -138,6 +152,16 @@ window.DIGIY_PARIS_CATALOGUE_V1={
           "النقل إلى المحطة",
           "النقل إلى المطار",
           "سائق بالحجز"
+        ],
+        "wo": [
+          "Transport ci gaar bi",
+          "Transport ci aeroport",
+          "Sofëër bu ñu réservé"
+        ],
+        "zh": [
+          "火车站接送",
+          "机场接送",
+          "预约专车司机"
         ]
       }
     },
@@ -153,7 +177,9 @@ window.DIGIY_PARIS_CATALOGUE_V1={
         "it": "Trovare un artigiano",
         "de": "Handwerker finden",
         "nl": "Vakman vinden",
-        "ar": "العثور على حرفي"
+        "ar": "العثور على حرفي",
+        "wo": "Wut ab artisaan",
+        "zh": "寻找工匠"
       },
       "examples": {
         "fr": [
@@ -195,6 +221,16 @@ window.DIGIY_PARIS_CATALOGUE_V1={
           "إصلاح السباكة",
           "أعمال الكهرباء",
           "تجديد داخلي"
+        ],
+        "wo": [
+          "Defar robine",
+          "Liggéey elektrisite",
+          "Renovation kër"
+        ],
+        "zh": [
+          "水管维修",
+          "电工服务",
+          "室内装修"
         ]
       }
     },
@@ -210,7 +246,9 @@ window.DIGIY_PARIS_CATALOGUE_V1={
         "it": "Pulizie",
         "de": "Reinigung",
         "nl": "Schoonmaak",
-        "ar": "التنظيف"
+        "ar": "التنظيف",
+        "wo": "Setal ak raxas",
+        "zh": "清洁服务"
       },
       "examples": {
         "fr": [
@@ -252,6 +290,16 @@ window.DIGIY_PARIS_CATALOGUE_V1={
           "تنظيف شقة",
           "تنظيف مكاتب",
           "تنظيف شامل"
+        ],
+        "wo": [
+          "Setal appartement",
+          "Setal biro",
+          "Setal bu mat"
+        ],
+        "zh": [
+          "公寓清洁",
+          "办公室清洁",
+          "深度清洁"
         ]
       }
     },
@@ -267,7 +315,9 @@ window.DIGIY_PARIS_CATALOGUE_V1={
         "it": "Servizi professionali",
         "de": "Professionelle Dienste",
         "nl": "Professionele diensten",
-        "ar": "خدمات مهنية"
+        "ar": "خدمات مهنية",
+        "wo": "Sarwiis yu profesioneel",
+        "zh": "专业服务"
       },
       "examples": {
         "fr": [
@@ -309,6 +359,16 @@ window.DIGIY_PARIS_CATALOGUE_V1={
           "استشارة قانونية",
           "خدمات المحاسبة",
           "الهندسة والمخططات"
+        ],
+        "wo": [
+          "Conseil ci yoon",
+          "Comptabilité",
+          "Architecture ak plan"
+        ],
+        "zh": [
+          "法律咨询",
+          "会计服务",
+          "建筑与设计"
         ]
       }
     },
@@ -324,7 +384,9 @@ window.DIGIY_PARIS_CATALOGUE_V1={
         "it": "Salute e assistenza",
         "de": "Gesundheit & Pflege",
         "nl": "Gezondheid & zorg",
-        "ar": "الصحة والرعاية"
+        "ar": "الصحة والرعاية",
+        "wo": "Wér-gu-yaram ak toppatoo",
+        "zh": "健康与护理"
       },
       "examples": {
         "fr": [
@@ -366,6 +428,16 @@ window.DIGIY_PARIS_CATALOGUE_V1={
           "عيادة رعاية",
           "مساعدة منزلية",
           "حجز موعد"
+        ],
+        "wo": [
+          "Cabinet soins",
+          "Ndimbal ci kër",
+          "Jot ndaje"
+        ],
+        "zh": [
+          "护理诊所",
+          "居家照护",
+          "预约服务"
         ]
       }
     },
@@ -381,7 +453,9 @@ window.DIGIY_PARIS_CATALOGUE_V1={
         "it": "Alloggi e affitti",
         "de": "Unterkunft & Miete",
         "nl": "Verblijven of huren",
-        "ar": "الإقامة أو الإيجار"
+        "ar": "الإقامة أو الإيجار",
+        "wo": "Dal walla louer",
+        "zh": "住宿与租赁"
       },
       "examples": {
         "fr": [
@@ -423,6 +497,16 @@ window.DIGIY_PARIS_CATALOGUE_V1={
           "استوديو للإيجار",
           "شقة مفروشة",
           "إقامة قصيرة"
+        ],
+        "wo": [
+          "Studio bu ñuy louer",
+          "Appartement bu ame jumtukaay",
+          "Dal bu gàtt"
+        ],
+        "zh": [
+          "单间出租",
+          "家具齐全的公寓",
+          "短期住宿"
         ]
       }
     },
@@ -438,7 +522,9 @@ window.DIGIY_PARIS_CATALOGUE_V1={
         "it": "Mangiare o prenotare",
         "de": "Essen & Reservieren",
         "nl": "Eten of reserveren",
-        "ar": "الطعام والحجوزات"
+        "ar": "الطعام والحجوزات",
+        "wo": "Lekku walla réserver",
+        "zh": "餐饮与预订"
       },
       "examples": {
         "fr": [
@@ -480,6 +566,16 @@ window.DIGIY_PARIS_CATALOGUE_V1={
           "مطعم الحي",
           "طعام سفري",
           "حجز طاولة"
+        ],
+        "wo": [
+          "Restaurant ci gox bi",
+          "Lekku bu ñuy yóbbu",
+          "Réserver taabal"
+        ],
+        "zh": [
+          "社区餐厅",
+          "外卖餐饮",
+          "餐桌预订"
         ]
       }
     },
@@ -495,7 +591,9 @@ window.DIGIY_PARIS_CATALOGUE_V1={
         "it": "Acquisti locali",
         "de": "Lokal einkaufen",
         "nl": "Lokaal winkelen",
-        "ar": "التسوق المحلي"
+        "ar": "التسوق المحلي",
+        "wo": "Jënd ci dëkk bi",
+        "zh": "本地购物"
       },
       "examples": {
         "fr": [
@@ -537,6 +635,16 @@ window.DIGIY_PARIS_CATALOGUE_V1={
           "متجر الحي",
           "متجر متخصص",
           "منتجات محلية"
+        ],
+        "wo": [
+          "Boutique ci gox bi",
+          "Boutique bu am spécialité",
+          "Jaay jumtukaayi gox bi"
+        ],
+        "zh": [
+          "社区商店",
+          "特色店铺",
+          "本地商品"
         ]
       }
     },
@@ -552,7 +660,9 @@ window.DIGIY_PARIS_CATALOGUE_V1={
         "it": "Bellezza e benessere",
         "de": "Beauty & Wellness",
         "nl": "Schoonheid & welzijn",
-        "ar": "الجمال والعناية"
+        "ar": "الجمال والعناية",
+        "wo": "Taar ak toppatoo",
+        "zh": "美容与养护"
       },
       "examples": {
         "fr": [
@@ -594,6 +704,16 @@ window.DIGIY_PARIS_CATALOGUE_V1={
           "صالون شعر",
           "عناية تجميلية",
           "حلاق مستقل"
+        ],
+        "wo": [
+          "Salon coiffure",
+          "Soins esthétiques",
+          "Barbier indépendan"
+        ],
+        "zh": [
+          "美发沙龙",
+          "美容护理",
+          "独立理发师"
         ]
       }
     },
@@ -609,7 +729,9 @@ window.DIGIY_PARIS_CATALOGUE_V1={
         "it": "Lavoro e incarichi",
         "de": "Jobs & Aufträge",
         "nl": "Werk en opdrachten",
-        "ar": "الوظائف والمهام"
+        "ar": "الوظائف والمهام",
+        "wo": "Liggéey ak sas yi",
+        "zh": "工作与任务"
       },
       "examples": {
         "fr": [
@@ -651,6 +773,16 @@ window.DIGIY_PARIS_CATALOGUE_V1={
           "مهمة قصيرة",
           "فرصة عمل",
           "عرض مهارات"
+        ],
+        "wo": [
+          "Mission bu gàtt",
+          "Yëgle liggéey",
+          "Joxe xam-xam"
+        ],
+        "zh": [
+          "临时任务",
+          "招聘信息",
+          "专业技能服务"
         ]
       }
     }
@@ -887,6 +1019,64 @@ window.DIGIY_PARIS_CATALOGUE_V1={
       "voice": "LA VOIX: بحث في مختلف المهن",
       "cardsOnly": "بطاقة DIGIY الرقمية بقيمة 20 يورو مستقلة. العروض الأخرى لها شروط خاصة.",
       "number": "نموذج"
+    },
+    "wo": {
+      "intro": "Ay misaal la, duñu ay adhérent yu am dëgg. Tànnal arrondissement bi, bindal quartier su la neexee, te xool ay misaali métier.",
+      "arr": "Arrondissement",
+      "allArr": "Paris gépp · 20 arrondissement",
+      "quarter": "Quartier (bu la neexee)",
+      "quarterHint": "Misal: Montmartre, Nation…",
+      "trade": "Métier",
+      "allTrades": "Métier yépp",
+      "allVariants": "Wone 3 misaal ci métier bu nekk",
+      "example": "MISAAL · BËRAB BU NEKK · DU ADHÉRENT",
+      "model": "XOOL MISAAL BI →",
+      "card": "LAAJ SAMA KAART DIGIY →",
+      "foot": "Arrondissement yépp a ubbeeku. Lii ay misaal la, duñu ay fiches yu profesioneel yu bindu.",
+      "demo": "MISAAL DIGIY PARIS",
+      "demoLead": "Lii misaal la. Nataal, avis, jokkoo ak sarwiis yu dëgg dañuy jóge ci profesioneel bu ñu dëggal.",
+      "location": "Goxu misaal",
+      "service": "Misaalu activité",
+      "client": "Li seetkat bi di gis",
+      "direct": "Jokkoo ci sa bopp · QR",
+      "fee": "0 % commission DIGIYLYFE",
+      "notReal": "MISAAL · DU PROFESIONEEL BU DËGG",
+      "project": "Sa activité mën na am fii bërab",
+      "projectNote": "Lii du offre liggéey bu dëgg te du entreprise bu bindu. Misaalu fiche bu ëllëg la, amul jokkoo yu ñu sos.",
+      "back": "← DELUSI CI MISAALI PARIS",
+      "prices": "XOOL TARIFS PRO FRANCE →",
+      "voice": "LA VOIX: wut ci métier yu bari",
+      "cardsOnly": "Kaart DIGIY 20 € mooy prestation bu boppam. Yeneen offres ak outils métier am nañu seeni sart.",
+      "number": "Misaal"
+    },
+    "zh": {
+      "intro": "这里展示的是职业展示样例，并非虚构的会员。请选择巴黎区号，可填写街区，然后按行业查看样板。",
+      "arr": "巴黎区",
+      "allArr": "全巴黎 · 20 个区",
+      "quarter": "街区（选填）",
+      "quarterHint": "例如：蒙马特、民族广场…",
+      "trade": "行业",
+      "allTrades": "全部行业",
+      "allVariants": "显示每个行业的 3 个样板",
+      "example": "展示样例 · 名额开放 · 非真实会员",
+      "model": "查看样板 →",
+      "card": "申请 DIGIY 名片 →",
+      "foot": "巴黎所有区均可参与。这些是样板，不是已注册职业人士的资料。",
+      "demo": "DIGIY 巴黎展示样板",
+      "demoLead": "以下仅为展示样例。真实图片、评价、联系方式和服务将由核实后的职业人士提供。",
+      "location": "样例区域",
+      "service": "示例业务",
+      "client": "访客将会看到",
+      "direct": "直接联系 · 二维码",
+      "fee": "DIGIYLYFE 0% 佣金",
+      "notReal": "演示 · 非真实职业人士",
+      "project": "您的业务也可以加入",
+      "projectNote": "这不是真实招聘信息或已注册企业，仅用于展示未来职业主页，不虚构客户或联系方式。",
+      "back": "← 返回巴黎样例",
+      "prices": "查看法国专业服务价格 →",
+      "voice": "LA VOIX：跨行业搜索",
+      "cardsOnly": "20 欧元数字名片是独立服务。其他方案和专业工具另有相应条件。",
+      "number": "样板"
     }
   }
 };
