@@ -38,12 +38,12 @@ class HomeWorld10(unittest.TestCase):
         tariff_match=re.search(r'var DIGIY_TARIFF_NAV_COPY=(.*?);\n',HOME_I18N)
         self.assertIsNotNone(tariff_match)
         tariff=json.loads(tariff_match.group(1))
-        voice_default_match=re.search(r'var DIGIY_MEMBER_VOICE_DEFAULT=(.*?);',HOME_I18N)
-        voice_wo_match=re.search(r'var DIGIY_MEMBER_VOICE_WO=(.*?);',HOME_I18N)
-        self.assertIsNotNone(voice_default_match)
-        self.assertIsNotNone(voice_wo_match)
-        voice_default=json.loads(voice_default_match.group(1))
-        voice_wo=json.loads(voice_wo_match.group(1))
+        # Les textes peuvent contenir le caractère « ; » à l'intérieur de JSON.
+        # Le décodeur JSON est plus fiable qu'une capture jusqu'au premier point-virgule.
+        voice_default=json.JSONDecoder().raw_decode(
+            HOME_I18N.split('var DIGIY_MEMBER_VOICE_DEFAULT=',1)[1])[0]
+        voice_wo=json.JSONDecoder().raw_decode(
+            HOME_I18N.split('var DIGIY_MEMBER_VOICE_WO=',1)[1])[0]
         self.assertEqual(set(voice_default),set(voice_wo))
         self.assertEqual(len(voice_wo),6)
         self.assertIn('TEXT[code].entryProPrice=existingPrice;',HOME_I18N)
