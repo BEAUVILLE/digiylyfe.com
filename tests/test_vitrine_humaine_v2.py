@@ -90,7 +90,8 @@ class HumanHomepage(unittest.TestCase):
         translations = json.loads(match.group(1))
         self.assertEqual(set(translations), {'fr', 'wo', 'zh', 'en', 'es', 'pt', 'it', 'de', 'nl', 'ar'})
         self.assertTrue(all(value.strip() for value in translations.values()))
-        self.assertEqual(translations['wo'], translations['fr'])  # Relecture native requise.
+        self.assertNotEqual(translations['wo'], translations['fr'])  # Wolof présent, à faire relire par locuteur natif.
+        self.assertIn('Tabaxkat', translations['wo'])
         self.assertIn('Fournisseurs', translations['fr'])
 
     def test_core_blocks_and_menu_anchor_rescue(self):
