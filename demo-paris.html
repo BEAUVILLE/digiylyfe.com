@@ -53,7 +53,7 @@ function render(l){
  [t.direct,t.fee].forEach(function(x){var e=document.createElement('span');e.className='chip';e.textContent=x;promises.appendChild(e)});
  var back={lang:l,need:cat.id};if(arr)back.arr=arr;if(quarter)back.quartier=quarter;
  document.getElementById('back').href=url('/paris.html',back)+'#digiyParisPlaces';
- document.getElementById('card').href=url('/carte-gratuite.html',{country:'fr',lang:l,territory:'paris',need:cat.id});
+ var cardParams={country:'fr',lang:l,territory:'paris',need:cat.id};if(arr)cardParams.arr=arr;if(quarter)cardParams.quartier=quarter;document.getElementById('card').href=url('/carte-gratuite.html',cardParams);
  document.getElementById('tariffs').href=url('/tarifs-adherents-1.html',{country:'fr',lang:l});
  document.querySelectorAll('[data-l]').forEach(function(b){b.classList.toggle('on',b.dataset.l===l);b.setAttribute('aria-pressed',String(b.dataset.l===l));});
  try{localStorage.setItem('digiy_lang',l)}catch(_){}

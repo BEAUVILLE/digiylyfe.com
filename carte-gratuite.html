@@ -107,5 +107,25 @@ let initialLang=qp.get('lang')||'';
 if(!T[initialLang]){try{initialLang=localStorage.getItem('digiy_lang')||'fr'}catch(_){initialLang='fr'}}
 setLang(initialLang);
 syncParisContext();
-networkCardForm.addEventListener('submit',async e=>{e.preventDefault();const l=document.documentElement.lang||'fr',d=T[l]||T.fr;submit.disabled=true;status.classList.remove('bad');status.textContent=d.saving;after.classList.remove('show');try{const payload={country:country.value,pro_name:proName.value,responsible_name:responsible.value,job_label:job.value,zone_label:zone.value,phone_whatsapp:phone.value,source_lang:l,consent:consent.checked,notes:(requestedTerritory==='paris'&&country.value==='FR'?['DIGIY PARIS'+(PARIS_SIGNATURES[requestedNeed]?' · '+PARIS_SIGNATURES[requestedNeed]:''),about.value].filter(Boolean).join('\n'):requestedTerritory==='miami'&&country.value==='US'?['DIGIY MIAMI'+(MIAMI_SIGNATURES[requestedNeed]?' · '+MIAMI_SIGNATURES[requestedNeed]:''),about.value].filter(Boolean).join('\n'):about.value)};const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),cache:'no-store'});const j=await r.json();if(!r.ok||!j.ok)throw new Error();status.textContent=d.saved;if(j.wa_url){wa.href=j.wa_url;after.classList.add('show')}}catch(_){status.classList.add('bad');status.textContent=d.error}finally{submit.disabled=false}});
+/* Le serveur stocke activity_summary et requested_module, mais ignore le champ legacy notes.
+ * Pays / métier / arrondissement / quartier sont conservés dans le dossier enregistré.
+ * Ne jamais attribuer à une autre région le contexte Paris ou Miami.
+ */
+function cardRequestMetadata(language){
+ const isParis=requestedTerritory==='paris'&&country.value==='FR';
+ const isMiami=requestedTerritory==='miami'&&country.value==='US';
+ const place=isParis?'DIGIY PARIS':isMiami?'DIGIY MIAMI':'';
+ const category=isParis?PARIS_SIGNATURES:isMiami?MIAMI_SIGNATURES:null;
+ const module=category&&Object.prototype.hasOwnProperty.call(category,requestedNeed)?requestedNeed:'';
+ const signature=category&&Object.prototype.hasOwnProperty.call(category,requestedNeed)?category[requestedNeed]:'';
+ const arrondissement=isParis&&/^paris-(0[1-9]|1[0-9]|20)$/.test(qp.get('arr')||'')?qp.get('arr'):'';
+ const quartier=(isParis||isMiami)?(qp.get('quartier')||'').trim().slice(0,60):'';
+ const origin=[place,signature,arrondissement&&'Arrondissement : '+arrondissement,quartier&&'Quartier : '+quartier].filter(Boolean);
+ const note=(about.value||'').trim();
+ // Le serveur V10 ramène actuellement WO/ZH à FR dans source_lang.
+ // Le choix originel reste ainsi visible dans la description métier enregistrée.
+ if(language==='wo'||language==='zh')origin.push('Langue demandée : '+language.toUpperCase());
+ return {requested_module:module||null,activity_summary:origin.concat(note?[note]:[]).join('\n')};
+}
+networkCardForm.addEventListener('submit',async e=>{e.preventDefault();const l=document.documentElement.lang||'fr',d=T[l]||T.fr;submit.disabled=true;status.classList.remove('bad');status.textContent=d.saving;after.classList.remove('show');try{const payload={country:country.value,pro_name:proName.value,responsible_name:responsible.value,job_label:job.value,zone_label:zone.value,phone_whatsapp:phone.value,source_lang:l,consent:consent.checked,requested_module:cardRequestMetadata(l).requested_module,activity_summary:cardRequestMetadata(l).activity_summary};const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),cache:'no-store'});const j=await r.json();if(!r.ok||!j.ok)throw new Error();status.textContent=d.saved;if(j.wa_url){wa.href=j.wa_url;after.classList.add('show')}}catch(_){status.classList.add('bad');status.textContent=d.error}finally{submit.disabled=false}});
 </script></body></html>

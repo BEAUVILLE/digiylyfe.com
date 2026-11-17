@@ -1,0 +1,40 @@
+name: DIGIY CARTE · continuité du dossier international
+
+on:
+  pull_request:
+    paths:
+      - carte-gratuite.html
+      - assets/digiy-paris-places-v1.js
+      - assets/digiy-miami-places-v1.js
+      - demo-paris.html
+      - demo-miami.html
+      - tests/test_card_request_context_v1.py
+      - .github/workflows/card-request-context.yml
+  push:
+    branches:
+      - main
+    paths:
+      - carte-gratuite.html
+      - assets/digiy-paris-places-v1.js
+      - assets/digiy-miami-places-v1.js
+      - demo-paris.html
+      - demo-miami.html
+      - tests/test_card_request_context_v1.py
+      - .github/workflows/card-request-context.yml
+
+permissions:
+  contents: read
+
+jobs:
+  card-request-context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Lire le code
+        uses: actions/checkout@v4
+      - name: Vérifier la continuité jusqu'à Supabase
+        run: python3 -m unittest discover -s tests -p 'test_card_request_context_v1.py' -v
+      - name: Vérifier la syntaxe des catalogues métiers
+        run: |
+          node --check assets/digiy-paris-places-v1.js
+          node --check assets/digiy-miami-places-v1.js

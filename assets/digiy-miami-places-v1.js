@@ -29,7 +29,7 @@ function render(){
  [['',t.allTrades]].concat(D.categories.map(function(c){return[c.id,c.names[l]]})).forEach(function(z){var opt=el('option','',z[1]);opt.value=z[0];sel.appendChild(opt)});
  sel.value=state.need;sel.addEventListener('change',function(){state.need=sel.value;syncUrl();render()});needWrap.append(nlabel,sel);
  var qWrap=el('div','filter'),qLabel=el('label','',t.neighborhood),input=el('input');input.type='text';input.id='miamiQuarter';input.maxLength=60;input.placeholder=t.neighborhoodPlaceholder;input.value=state.quartier;qLabel.htmlFor=input.id;
- input.addEventListener('input',function(){state.quartier=input.value.trim().slice(0,60);syncUrl();host.querySelectorAll('a[data-demo]').forEach(function(a){a.href=url('/demo-miami.html',demoQuery(a.dataset.need,a.dataset.variant))})});
+ input.addEventListener('input',function(){state.quartier=input.value.trim().slice(0,60);syncUrl();host.querySelectorAll('a[data-demo]').forEach(function(a){a.href=url('/demo-miami.html',demoQuery(a.dataset.need,a.dataset.variant))});host.querySelectorAll('a[data-miami-card]').forEach(function(a){var v={country:'us',territory:'miami',need:a.dataset.need,lang:lang()};if(state.quartier)v.quartier=state.quartier;a.href=url('/carte-gratuite.html',v)})});
  qWrap.append(qLabel,input);filters.append(needWrap,qWrap);host.appendChild(filters);
  var toggle=el('label','toggle'),chk=el('input');chk.type='checkbox';chk.checked=state.all;chk.addEventListener('change',function(){state.all=chk.checked;render()});toggle.append(chk,el('span','',t.allVariants));host.appendChild(toggle);
  var grid=el('div','grid');
@@ -38,7 +38,7 @@ function render(){
    var card=el('article','sample');card.append(el('span','tag',t.example),el('span','brand',c.signature),el('strong','',c.icon+' '+c.names[l]),el('small','',c.examples[l][v-1]));
    var buttons=el('div','choices'),preview=el('a','primary',t.model),request=el('a','',t.card);
    preview.href=url('/demo-miami.html',demoQuery(c.id,v));preview.dataset.demo='1';preview.dataset.need=c.id;preview.dataset.variant=String(v);
-   request.href=url('/carte-gratuite.html',{country:'us',lang:l,territory:'miami',need:c.id});
+   var requestParams={country:'us',lang:l,territory:'miami',need:c.id};if(state.quartier)requestParams.quartier=state.quartier;request.href=url('/carte-gratuite.html',requestParams);request.dataset.miamiCard='1';request.dataset.need=c.id;
    buttons.append(preview,request);card.appendChild(buttons);grid.appendChild(card);
   });
  });
