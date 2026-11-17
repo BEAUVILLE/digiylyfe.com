@@ -61,12 +61,12 @@ function render(){
  if(!host){host=el('section','section parisPlaces');host.id='digiyParisPlaces';var parent=anchor.closest('.section');if(parent)parent.insertAdjacentElement('afterend',host);}
  host.textContent='';
  var l=lang(),t=DATA.copy[l];
- host.append(el('h2','',l==='fr'?'PRENEZ VOTRE PLACE À PARIS':t.demo),el('p','',t.intro));
+ host.append(el('h2','',t.headline),el('p','',t.intro));
  var filters=el('div','parisFilters'),arrOptions=[['',t.allArr]];
  DATA.arrondissements.forEach(function(a,i){arrOptions.push([a,'Paris '+(i+1)+(l==='fr'&&i===0?'er':l==='fr'?'e':'')+' · '+String(i+1).padStart(2,'0')])});
  filters.append(buildSelect(t.arr,arrOptions,state.arr,function(v){state.arr=v;syncUrl();render()}));
  filters.append(buildSelect(t.trade,[['',t.allTrades]].concat(DATA.categories.map(function(c){return[c.id,c.names[l]]})),state.need,function(v){state.need=v;syncUrl();render()}));
- var quarter=el('div','parisFilter'),label=el('label','',t.quarter),input=el('input');input.type='text';input.maxLength=60;input.placeholder=t.quarterHint;input.value=state.quarter;label.htmlFor='parisQuartier';input.id='parisQuartier';input.addEventListener('change',function(){state.quarter=input.value.trim().slice(0,60);syncUrl();render()});quarter.append(label,input);filters.appendChild(quarter);
+ var quarter=el('div','parisFilter'),label=el('label','',t.quarter),input=el('input');input.type='text';input.maxLength=60;input.placeholder=t.quarterHint;input.value=state.quarter;label.htmlFor='parisQuartier';input.id='parisQuartier';input.addEventListener('input',function(){state.quarter=input.value.trim().slice(0,60);syncUrl();host.querySelectorAll('a[data-paris-demo]').forEach(function(a){a.href=link('/demo-paris.html',queryVals(a.dataset.need,Number(a.dataset.variant)))});});quarter.append(label,input);filters.appendChild(quarter);
  host.appendChild(filters);
  var toggle=el('label','parisToggle'),box=el('input');box.type='checkbox';box.checked=state.all;box.addEventListener('change',function(){state.all=box.checked;render()});toggle.append(box,el('span','',t.allVariants));host.appendChild(toggle);
  var grid=el('div','parisExampleGrid');
@@ -76,7 +76,7 @@ function render(){
    var item=el('article','parisExampleCard');
    item.append(el('div','badge',t.example),el('div','sig',c.signature),el('strong','',c.icon+' '+c.names[l]),el('small','',titles[v-1]));
    var actions=el('div','actions'),view=el('a','primary',t.model),card=el('a','',t.card);
-   view.href=link('/demo-paris.html',queryVals(c.id,v));card.href=link('/carte-gratuite.html',{country:'fr',lang:l,territory:'paris',need:c.id});
+   view.href=link('/demo-paris.html',queryVals(c.id,v));view.dataset.parisDemo='1';view.dataset.need=c.id;view.dataset.variant=String(v);card.href=link('/carte-gratuite.html',{country:'fr',lang:l,territory:'paris',need:c.id});
    actions.append(view,card);item.appendChild(actions);grid.appendChild(item);
   });
  });
