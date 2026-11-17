@@ -38,6 +38,14 @@ class HomeWorld10(unittest.TestCase):
         tariff_match=re.search(r'var DIGIY_TARIFF_NAV_COPY=(.*?);\n',HOME_I18N)
         self.assertIsNotNone(tariff_match)
         tariff=json.loads(tariff_match.group(1))
+        # Les textes peuvent contenir le caractère « ; » à l'intérieur de JSON.
+        # Le décodeur JSON est plus fiable qu'une capture jusqu'au premier point-virgule.
+        voice_default=json.JSONDecoder().raw_decode(
+            HOME_I18N.split('var DIGIY_MEMBER_VOICE_DEFAULT=',1)[1])[0]
+        voice_wo=json.JSONDecoder().raw_decode(
+            HOME_I18N.split('var DIGIY_MEMBER_VOICE_WO=',1)[1])[0]
+        self.assertEqual(set(voice_default),set(voice_wo))
+        self.assertEqual(len(voice_wo),6)
         self.assertIn('TEXT[code].entryProPrice=existingPrice;',HOME_I18N)
         for lang in ['wo','zh']:
             merged=dict(dictionaries[lang])
@@ -47,6 +55,7 @@ class HomeWorld10(unittest.TestCase):
             merged['liteTradeLine']=trades[lang]
             merged['liteTariffsNav'],merged['liteTariffsShort'],merged['liteTariffsFullCta']=tariff[lang]
             merged['entryProPrice']=existing_price
+            merged.update(voice_wo if lang=='wo' else voice_default)
             self.assertTrue(keys <= set(merged), sorted(keys-set(merged)))
             self.assertTrue(all(merged[key].strip() for key in keys))
         self.assertIn('kiliyaan',dictionaries['wo']['clarTitle'])

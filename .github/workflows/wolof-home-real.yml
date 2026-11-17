@@ -1,0 +1,31 @@
+name: DIGIY WÓLOF · accueil sans repli français
+
+on:
+  pull_request:
+    paths:
+      - index.html
+      - assets/digiy-home-i18n-v1.js
+      - tests/test_wolof_home_real_v1.py
+      - .github/workflows/wolof-home-real.yml
+  push:
+    branches:
+      - main
+    paths:
+      - index.html
+      - assets/digiy-home-i18n-v1.js
+      - tests/test_wolof_home_real_v1.py
+      - .github/workflows/wolof-home-real.yml
+
+permissions:
+  contents: read
+
+jobs:
+  wolof-home:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Contrôle du parcours wolof
+        run: python3 -m unittest discover -s tests -p 'test_wolof_home_real_v1.py' -v
+      - name: Vérifier la syntaxe du moteur des langues
+        run: node --check assets/digiy-home-i18n-v1.js
