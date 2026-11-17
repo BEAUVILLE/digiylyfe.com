@@ -25,7 +25,8 @@ class InternationalQuality(unittest.TestCase):
     def test_card_prices_four_countries_ten_languages(self):
         for lang in ("fr", "en", "es", "pt", "it", "de", "nl", "ar"):
             self.assertIn("Object.assign(TEXT." + lang, HOME_I18N)
-        self.assertGreaterEqual(HOME_I18N.count("250 MAD"), 8)
+        self.assertGreaterEqual(HOME_I18N.count("250 MAD"), 7)
+        self.assertIn("250 درهماً", HOME_I18N)  # devise traduite en arabe
         self.assertIn("250 MAD", HOME_WO_ZH)
         self.assertIn('"entryProText"', HOME_WO_ZH)
 
