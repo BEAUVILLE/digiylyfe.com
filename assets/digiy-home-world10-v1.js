@@ -273,7 +273,7 @@ window.DIGIY_HOME_WORLD10={
     "entryProCta": "了解会员服务 →",
     "entryProKicker": "专业人士",
     "entryProMembership": "🇫🇷 生态系统会员 · 每年 450 €",
-    "entryProText": "仅购买 DIGIY 名片 · 塞内加尔：15,000 FCFA · 法国：20 欧元 · 摩洛哥：250 MAD · 美国：20 美元 · 一次性付款。",
+    "entryProText": "仅购买 DIGIY 名片 · 塞内加尔：15 000 FCFA · 法国：20 欧元 · 摩洛哥：250 MAD · 美国：20 美元 · 一次性付款。",
     "entryProTitle": "我是专业人士",
     "entryPublicCta": "探索各地 →",
     "entryPublicKicker": "公众",
