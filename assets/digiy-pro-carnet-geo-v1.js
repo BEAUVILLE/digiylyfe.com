@@ -6,16 +6,68 @@ window.DIGIY_PRO_CARNET_GEO_V1=true;
 
 var path=(location.pathname||'/').toLowerCase();
 var isSN=/\/(senegal|saly|dakar|territoire)\.html$/.test(path);
-var lang=(document.documentElement.lang||new URLSearchParams(location.search).get('lang')||'fr').slice(0,2).toLowerCase();
+var lang=(new URLSearchParams(location.search).get('lang')||document.documentElement.lang||'fr').slice(0,2).toLowerCase();
 var txt={
-fr:{k:'📒 OUTIL PROFESSIONNEL',t:'PRO CARNET',p:'Gestion · suivi · rappels · clients · opérations métier. Un outil de travail simple pour les professionnels du territoire.',c:'DÉCOUVRIR PRO CARNET →'},
-en:{k:'📒 PROFESSIONAL TOOL',t:'PRO CARNET',p:'Management · follow-up · reminders · clients · business operations. A simple work tool for local professionals.',c:'DISCOVER PRO CARNET →'},
-es:{k:'📒 HERRAMIENTA PROFESIONAL',t:'PRO CARNET',p:'Gestión · seguimiento · recordatorios · clientes · operaciones profesionales. Una herramienta simple para los profesionales locales.',c:'DESCUBRIR PRO CARNET →'},
-pt:{k:'📒 FERRAMENTA PROFISSIONAL',t:'PRO CARNET',p:'Gestão · acompanhamento · lembretes · clientes · operações profissionais. Uma ferramenta simples para profissionais locais.',c:'DESCOBRIR PRO CARNET →'},
-it:{k:'📒 STRUMENTO PROFESSIONALE',t:'PRO CARNET',p:'Gestione · monitoraggio · promemoria · clienti · operazioni. Uno strumento semplice per i professionisti locali.',c:'SCOPRI PRO CARNET →'},
-de:{k:'📒 PROFESSIONELLES WERKZEUG',t:'PRO CARNET',p:'Verwaltung · Nachverfolgung · Erinnerungen · Kunden · Abläufe. Ein einfaches Arbeitswerkzeug für lokale Profis.',c:'PRO CARNET ENTDECKEN →'},
-nl:{k:'📒 PROFESSIONELE TOOL',t:'PRO CARNET',p:'Beheer · opvolging · herinneringen · klanten · bedrijfsactiviteiten. Een eenvoudige werktool voor lokale professionals.',c:'ONTDEK PRO CARNET →'},
-ar:{k:'📒 أداة مهنية',t:'PRO CARNET',p:'إدارة · متابعة · تذكير · عملاء · عمليات مهنية. أداة عمل بسيطة للمهنيين المحليين.',c:'اكتشف PRO CARNET ←'}
+ "fr": {
+  "k": "📒 OUTIL PROFESSIONNEL",
+  "t": "PRO CARNET",
+  "p": "Gestion · suivi · rappels · clients · opérations métier. Un outil de travail simple pour les professionnels du territoire.",
+  "c": "DÉCOUVRIR PRO CARNET →"
+ },
+ "en": {
+  "k": "📒 PROFESSIONAL TOOL",
+  "t": "PRO CARNET",
+  "p": "Management · follow-up · reminders · clients · business operations. A simple work tool for local professionals.",
+  "c": "DISCOVER PRO CARNET →"
+ },
+ "es": {
+  "k": "📒 HERRAMIENTA PROFESIONAL",
+  "t": "PRO CARNET",
+  "p": "Gestión · seguimiento · recordatorios · clientes · operaciones profesionales. Una herramienta simple para los profesionales locales.",
+  "c": "DESCUBRIR PRO CARNET →"
+ },
+ "pt": {
+  "k": "📒 FERRAMENTA PROFISSIONAL",
+  "t": "PRO CARNET",
+  "p": "Gestão · acompanhamento · lembretes · clientes · operações profissionais. Uma ferramenta simples para profissionais locais.",
+  "c": "DESCOBRIR PRO CARNET →"
+ },
+ "it": {
+  "k": "📒 STRUMENTO PROFESSIONALE",
+  "t": "PRO CARNET",
+  "p": "Gestione · monitoraggio · promemoria · clienti · operazioni. Uno strumento semplice per i professionisti locali.",
+  "c": "SCOPRI PRO CARNET →"
+ },
+ "de": {
+  "k": "📒 PROFESSIONELLES WERKZEUG",
+  "t": "PRO CARNET",
+  "p": "Verwaltung · Nachverfolgung · Erinnerungen · Kunden · Abläufe. Ein einfaches Arbeitswerkzeug für lokale Profis.",
+  "c": "PRO CARNET ENTDECKEN →"
+ },
+ "nl": {
+  "k": "📒 PROFESSIONELE TOOL",
+  "t": "PRO CARNET",
+  "p": "Beheer · opvolging · herinneringen · klanten · bedrijfsactiviteiten. Een eenvoudige werktool voor lokale professionals.",
+  "c": "ONTDEK PRO CARNET →"
+ },
+ "ar": {
+  "k": "📒 أداة مهنية",
+  "t": "PRO CARNET",
+  "p": "إدارة · متابعة · تذكير · عملاء · عمليات مهنية. أداة عمل بسيطة للمهنيين المحليين.",
+  "c": "اكتشف PRO CARNET ←"
+ },
+ "wo": {
+  "k": "📒 OUTIL LIGGÉEY",
+  "t": "DIGIY CARNET PRO",
+  "p": "Gestion, toppatoo, rappels, kiliyaan ak yeneen opérations métier. Jumtukaay bu yomb ngir profesioneel yi.",
+  "c": "XOOL DIGIY CARNET PRO →"
+ },
+ "zh": {
+  "k": "📒 专业工具",
+  "t": "DIGIY CARNET PRO",
+  "p": "用于管理客户、业务跟踪、提醒事项和日常经营的简易专业工具。",
+  "c": "了解 DIGIY CARNET PRO →"
+ }
 };
 
 function mount(){

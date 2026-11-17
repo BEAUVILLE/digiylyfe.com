@@ -1,14 +1,66 @@
 /* DIGIYLYFE — vitrine porte CARNET PRO — 20260927 */
 (function(){'use strict';
 var L={
-fr:{k:'LOGICIEL MÉTIER',t:'CARNET PRO · 13 000 FCFA / mois',p:'Un vrai outil de travail : gestion, suivi, rappels, clients et opérations métier. Tarif unique · aucun palier.',c:'DÉCOUVRIR CARNET PRO →'},
-en:{k:'BUSINESS SOFTWARE',t:'CARNET PRO · 13,000 FCFA / month',p:'A real work tool for management, follow-up, reminders, clients and business operations. Single price · no tiers.',c:'DISCOVER CARNET PRO →'},
-es:{k:'SOFTWARE PROFESIONAL',t:'CARNET PRO · 13 000 FCFA / mes',p:'Una herramienta de trabajo para gestión, seguimiento, recordatorios, clientes y operaciones. Precio único · sin niveles.',c:'DESCUBRIR CARNET PRO →'},
-pt:{k:'SOFTWARE PROFISSIONAL',t:'CARNET PRO · 13 000 FCFA / mês',p:'Uma ferramenta de trabalho para gestão, acompanhamento, lembretes, clientes e operações. Preço único · sem níveis.',c:'DESCOBRIR CARNET PRO →'},
-it:{k:'SOFTWARE PROFESSIONALE',t:'CARNET PRO · 13 000 FCFA / mese',p:'Uno strumento di lavoro per gestione, monitoraggio, promemoria, clienti e operazioni. Prezzo unico · nessun livello.',c:'SCOPRI CARNET PRO →'},
-de:{k:'BUSINESS-SOFTWARE',t:'CARNET PRO · 13.000 FCFA / Monat',p:'Ein Arbeitswerkzeug für Verwaltung, Nachverfolgung, Erinnerungen, Kunden und Abläufe. Ein Preis · keine Stufen.',c:'CARNET PRO ENTDECKEN →'},
-nl:{k:'BEDRIJFSSOFTWARE',t:'CARNET PRO · 13.000 FCFA / maand',p:'Een werkinstrument voor beheer, opvolging, herinneringen, klanten en activiteiten. Eén prijs · geen niveaus.',c:'ONTDEK CARNET PRO →'},
-ar:{k:'برنامج مهني',t:'CARNET PRO · 13 000 FCFA / شهر',p:'أداة عمل للإدارة والمتابعة والتذكيرات والعملاء والعمليات المهنية. سعر واحد · بدون مستويات.',c:'اكتشف CARNET PRO ←'}
+ "fr": {
+  "k": "LOGICIEL MÉTIER",
+  "t": "CARNET PRO · 13 000 FCFA / mois",
+  "p": "Un vrai outil de travail : gestion, suivi, rappels, clients et opérations métier. Tarif unique · aucun palier.",
+  "c": "DÉCOUVRIR CARNET PRO →"
+ },
+ "en": {
+  "k": "BUSINESS SOFTWARE",
+  "t": "CARNET PRO · 13,000 FCFA / month",
+  "p": "A real work tool for management, follow-up, reminders, clients and business operations. Single price · no tiers.",
+  "c": "DISCOVER CARNET PRO →"
+ },
+ "es": {
+  "k": "SOFTWARE PROFESIONAL",
+  "t": "CARNET PRO · 13 000 FCFA / mes",
+  "p": "Una herramienta de trabajo para gestión, seguimiento, recordatorios, clientes y operaciones. Precio único · sin niveles.",
+  "c": "DESCUBRIR CARNET PRO →"
+ },
+ "pt": {
+  "k": "SOFTWARE PROFISSIONAL",
+  "t": "CARNET PRO · 13 000 FCFA / mês",
+  "p": "Uma ferramenta de trabalho para gestão, acompanhamento, lembretes, clientes e operações. Preço único · sem níveis.",
+  "c": "DESCOBRIR CARNET PRO →"
+ },
+ "it": {
+  "k": "SOFTWARE PROFESSIONALE",
+  "t": "CARNET PRO · 13 000 FCFA / mese",
+  "p": "Uno strumento di lavoro per gestione, monitoraggio, promemoria, clienti e operazioni. Prezzo unico · nessun livello.",
+  "c": "SCOPRI CARNET PRO →"
+ },
+ "de": {
+  "k": "BUSINESS-SOFTWARE",
+  "t": "CARNET PRO · 13.000 FCFA / Monat",
+  "p": "Ein Arbeitswerkzeug für Verwaltung, Nachverfolgung, Erinnerungen, Kunden und Abläufe. Ein Preis · keine Stufen.",
+  "c": "CARNET PRO ENTDECKEN →"
+ },
+ "nl": {
+  "k": "BEDRIJFSSOFTWARE",
+  "t": "CARNET PRO · 13.000 FCFA / maand",
+  "p": "Een werkinstrument voor beheer, opvolging, herinneringen, klanten en activiteiten. Eén prijs · geen niveaus.",
+  "c": "ONTDEK CARNET PRO →"
+ },
+ "ar": {
+  "k": "برنامج مهني",
+  "t": "CARNET PRO · 13 000 FCFA / شهر",
+  "p": "أداة عمل للإدارة والمتابعة والتذكيرات والعملاء والعمليات المهنية. سعر واحد · بدون مستويات.",
+  "c": "اكتشف CARNET PRO ←"
+ },
+ "wo": {
+  "k": "OUTIL LIGGÉEY",
+  "t": "DIGIY CARNET PRO · 13 000 FCFA / weer",
+  "p": "Jumtukaay bu dëgg ngir say comptes, toppatoo, rappels, kiliyaan ak yeneen liggéey. Benn njég rekk · amul paliers.",
+  "c": "XOOL DIGIY CARNET PRO →"
+ },
+ "zh": {
+  "k": "专业经营工具",
+  "t": "DIGIY CARNET PRO · 每月 13,000 FCFA",
+  "p": "用于管理经营、客户、任务跟踪、提醒和日常业务的实用工具。统一价格，不分档。",
+  "c": "了解 DIGIY CARNET PRO →"
+ }
 };
 function lang(){var x=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return L[x]?x:'fr'}
 function install(){
