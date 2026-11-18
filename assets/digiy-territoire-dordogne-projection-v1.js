@@ -7,8 +7,10 @@
   var STABLE='/assets/digiy-territoire-dordogne-projection-stable-20260909.js?v=20260909-stable';
   var path=location.pathname.replace(/\/+$/,'');
   var isSarlat=/\/sarlat\.html$/i.test(path);
-  var prices={fr:'700 € · 1re année',en:'€700 · first year',es:'700 € · primer año',pt:'700 € · 1.º ano',it:'700 € · 1° anno',de:'700 € · 1. Jahr',nl:'€700 · 1e jaar',ar:'700 € · السنة الأولى'};
+  var prices={wo:'700 € · at mu njëkk',zh:'700 欧元 · 首年',fr:'700 € · 1re année',en:'€700 · first year',es:'700 € · primer año',pt:'700 € · 1.º ano',it:'700 € · 1° anno',de:'700 € · 1. Jahr',nl:'€700 · 1e jaar',ar:'700 € · السنة الأولى'};
   var total={
+    wo:['NJËGU AT MU NJËKK · DALE KO CI 700 €','250 € lu néew ngir defar fiche bi ak 450 € ngir bokk ci DIGIY PRO. Dale ko ci at mu ñaareel: 450 €/at. PREMIUM / EXTRA ak sarwiis yu ñu yokk bokkuñu ci.'],
+    zh:['首年合计 700 欧元起','商家资料制作至少 250 欧元，DIGIY PRO 会员费 450 欧元。第二年起每年 450 欧元，高级方案、增强方案及附加服务另计。'],
     fr:['TOTAL MINIMUM 1RE ANNÉE : À PARTIR DE 700 €','250 € minimum pour la création de la fiche + 450 € d’adhésion DIGIY PRO. À partir de la 2e année : 450 €/an, hors PREMIUM / EXTRA et prestations supplémentaires.'],
     en:['MINIMUM FIRST-YEAR TOTAL: FROM €700','Minimum €250 profile creation + €450 DIGIY PRO membership. From year 2: €450/year, excluding PREMIUM / EXTRA and additional services.'],
     es:['TOTAL MÍNIMO PRIMER AÑO: DESDE 700 €','Mínimo 250 € por la creación de la ficha + 450 € de adhesión DIGIY PRO. Desde el segundo año: 450 €/año, sin PREMIUM / EXTRA ni servicios adicionales.'],
@@ -18,7 +20,7 @@
     nl:['MINIMUMTOTAAL 1E JAAR: VANAF €700','Minimaal €250 profielcreatie + €450 DIGIY PRO-lidmaatschap. Vanaf jaar 2: €450/jaar, exclusief PREMIUM / EXTRA en aanvullende diensten.'],
     ar:['الحد الأدنى لإجمالي السنة الأولى: ابتداءً من 700 €','250 € كحد أدنى لإنشاء الملف + 450 € لعضوية DIGIY PRO. ابتداءً من السنة الثانية: 450 € سنويًا، باستثناء PREMIUM / EXTRA والخدمات الإضافية.']
   };
-  var finalCta={
+  var finalCta={wo:'AM SA BÉRAB CI SARLAT →',zh:'加入萨尔拉试点 →',
     fr:'PRENDRE MA PLACE · SARLAT ZONE PILOTE →',
     en:'TAKE MY PLACE · SARLAT PILOT AREA →',
     es:'OCUPAR MI PLAZA · SARLAT ZONA PILOTO →',
@@ -43,13 +45,14 @@
     }
     box.innerHTML='<strong style="display:block;color:#f3d795;font-size:18px">'+total[l][0]+'</strong><span style="display:block;margin-top:5px;font-size:12px">'+total[l][1]+'</span>';
   }
-  var cardCopy={"fr": "Carte DIGIY seule : 20 € en paiement unique.", "en": "Standalone DIGIY card: €20 one-time payment.", "es": "Tarjeta DIGIY sola: 20 € en pago único.", "pt": "Cartão DIGIY avulso: 20 € em pagamento único.", "it": "Carta DIGIY singola: 20 € una tantum.", "de": "Einzelne DIGIY-Karte: einmalig 20 €.", "nl": "Losse DIGIY-kaart: eenmalig €20.", "ar": "بطاقة DIGIY منفصلة: 20 € دفعة واحدة."};
+  var cardCopy={wo:'Kart DIGIY kese: 20 € benn yoon.',zh:'单独购买 DIGIY 名片：一次性支付 20 欧元。',"fr": "Carte DIGIY seule : 20 € en paiement unique.", "en": "Standalone DIGIY card: €20 one-time payment.", "es": "Tarjeta DIGIY sola: 20 € en pago único.", "pt": "Cartão DIGIY avulso: 20 € em pagamento único.", "it": "Carta DIGIY singola: 20 € una tantum.", "de": "Einzelne DIGIY-Karte: einmalig 20 €.", "nl": "Losse DIGIY-kaart: eenmalig €20.", "ar": "بطاقة DIGIY منفصلة: 20 € دفعة واحدة."};
   function patchDom(){
     patchData();
     if(!isSarlat)return;
     var l=lang();
+    if((l==='wo'||l==='zh')&&new URLSearchParams(location.search).get('need')==='transport')return;
     var p=document.querySelector('.hero .price b');if(p)p.textContent=prices[l];
-    var lead=document.getElementById('priceLead');if(lead)lead.textContent=(l==='fr'?'Fiche professionnelle à partir de 250 € + adhésion DIGIY PRO':'Professional profile from €250 + DIGIY PRO membership');
+    var lead=document.getElementById('priceLead');if(lead)lead.textContent=({wo:'Fiche liggéey dale ko ci 250 € ak adhésion DIGIY PRO',zh:'商家资料制作 250 欧元起，另加 DIGIY PRO 会员费'}[l]|| (l==='fr'?'Fiche professionnelle à partir de 250 € + adhésion DIGIY PRO':'Professional profile from €250 + DIGIY PRO membership'));
     var f=document.getElementById('finalBtn');if(f)f.textContent=finalCta[l];
     ensureTotal(l);
     var md=document.querySelector('meta[name="description"]');if(md)md.content='DIGIY · Sarlat · '+cardCopy[l]+' '+total[l][1];
