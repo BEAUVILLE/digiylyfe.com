@@ -450,6 +450,82 @@ function dossier(t,c,amount,status){
  var b=billingMode();
  return ['DIGIY LOC — '+status,'Établissement : '+field('business'),'Responsable : '+field('manager'),'WhatsApp / téléphone : '+field('phone'),'E-mail : '+(field('email')||'—'),'Ville / zone : '+field('zone'),'Type : '+field('type'),'Unités actives : '+field('units'),'Palier : '+(t?t.label:'+40'),'Rythme : '+(b==='monthly'?'MENSUEL':'ANNUEL'),'Tarif mensuel de référence : '+(ref?money(ref,c)+' / mois':'—'),'Référence 12 mois : '+(ref12?money(ref12,c):'—'),'Montant DIGIY LOC : '+(amount?money(amount,c):'SUR DEVIS'),'Avantage : '+(c==='us'?'0 % commission DIGIYLYFE · tarif pilote Miami':(b==='monthly'?'trésorerie préservée · saisonnier possible':'-15 % sur 12 mois')),c==='us'?'Règlement : après validation humaine du dossier':(b==='monthly'?'Durée couverte : 1 mois renouvelable':'Durée couverte : 12 mois'),'Précision : '+(field('free')||'—')].join('\n');
 }
+const locPricingNotes={
+  "en": "Senegal: 1 unit costs 21,000 FCFA per month and 2–3 units cost 28,000 FCFA per month. Choose flexible monthly billing or annual billing with a 15% discount. Seasonal businesses can pay for the months they are open and pause LOC in the off-season. For every tier, the first monthly payment includes the mandatory professional profile (100,000 FCFA in Senegal or €250 in Europe). The profile is charged only on the first payment. Direct booking and payment · 0% DIGIYLYFE commission.",
+  "es": "Senegal: 1 unidad cuesta 21 000 FCFA al mes y 2–3 unidades cuestan 28 000 FCFA al mes. Elija el pago mensual flexible o anual con un 15 % de descuento. Las actividades estacionales pueden pagar durante los meses de apertura y pausar LOC fuera de temporada. En todos los niveles, el primer pago mensual incluye la ficha profesional obligatoria (100 000 FCFA en Senegal o 250 € en Europa). La ficha se cobra solo en el primer pago. Reserva y pago directos · 0 % de comisión DIGIYLYFE.",
+  "pt": "Senegal: 1 unidade custa 21 000 FCFA por mês e 2–3 unidades custam 28 000 FCFA por mês. Escolha o pagamento mensal flexível ou anual com 15 % de desconto. As atividades sazonais podem pagar nos meses de abertura e suspender LOC fora da época. Em todos os escalões, o primeiro pagamento mensal inclui a ficha profissional obrigatória (100 000 FCFA no Senegal ou 250 € na Europa). A ficha só é cobrada no primeiro pagamento. Reserva e pagamento diretos · 0 % de comissão DIGIYLYFE.",
+  "it": "Senegal: 1 unità costa 21 000 FCFA al mese e 2–3 unità costano 28 000 FCFA al mese. Scegli il pagamento mensile flessibile o quello annuale con uno sconto del 15%. Le attività stagionali possono pagare nei mesi di apertura e sospendere LOC fuori stagione. Per ogni fascia, il primo pagamento mensile include la scheda professionale obbligatoria (100 000 FCFA in Senegal o 250 € in Europa). La scheda si paga solo al primo versamento. Prenotazione e pagamento diretti · 0% commissioni DIGIYLYFE.",
+  "de": "Senegal: 1 Einheit kostet 21.000 FCFA pro Monat, 2–3 Einheiten kosten 28.000 FCFA pro Monat. Wählen Sie flexible Monatszahlung oder Jahreszahlung mit 15 % Rabatt. Saisonbetriebe können in den Öffnungsmonaten zahlen und LOC außerhalb der Saison pausieren. In jeder Stufe umfasst die erste Monatszahlung das obligatorische Berufsprofil (100.000 FCFA im Senegal oder 250 € in Europa). Das Profil wird nur bei der ersten Zahlung berechnet. Direkte Buchung und Zahlung · 0 % DIGIYLYFE-Provision.",
+  "nl": "Senegal: 1 unit kost 21.000 FCFA per maand en 2–3 units kosten 28.000 FCFA per maand. Kies flexibel maandelijks betalen of jaarlijks betalen met 15% korting. Seizoensbedrijven kunnen betalen tijdens de openingsmaanden en LOC buiten het seizoen pauzeren. Bij elk prijsniveau omvat de eerste maandbetaling het verplichte professionele profiel (100.000 FCFA in Senegal of € 250 in Europa). Het profiel wordt alleen bij de eerste betaling aangerekend. Rechtstreeks boeken en betalen · 0% DIGIYLYFE-commissie.",
+  "ar": "السنغال: تكلفة وحدة واحدة 21,000 فرنك إفريقي شهرياً، وتكلفة وحدتين إلى ثلاث 28,000 فرنك إفريقي شهرياً. اختر الدفع الشهري المرن أو الدفع السنوي بخصم 15٪. يمكن للأنشطة الموسمية الدفع خلال أشهر العمل وتعليق LOC خارج الموسم. تشمل أول دفعة شهرية في كل شريحة رسوم الملف المهني الإلزامي (100,000 فرنك إفريقي في السنغال أو 250 يورو في أوروبا). تُدفع رسوم الملف مرة واحدة عند أول دفعة. حجز ودفع مباشران · عمولة DIGIYLYFE ‏0٪.",
+  "zh": "塞内加尔：1 个住宿单元每月 21,000 FCFA，2–3 个单元每月 28,000 FCFA。可选择灵活月付，或享受 15% 优惠的年付。季节性经营者可只在营业月份付款，淡季暂停使用 LOC。各档位的首笔月付款包含必需的商家资料制作费（塞内加尔 100,000 FCFA，欧洲 250 欧元）。资料制作费仅在首次付款时收取。直接预订、直接付款 · DIGIYLYFE 零佣金。"
+};
+const locPricingHeadings={
+  "en": [
+    "month",
+    "FROM 1 UNIT · FLEXIBLE MONTHLY OR ANNUAL −15% · 0% COMMISSION",
+    "PRICE TIERS",
+    "BILLING AND PRICE",
+    "PAYMENT",
+    "PROOF / APPLICATION"
+  ],
+  "es": [
+    "mes",
+    "DESDE 1 UNIDAD · PAGO MENSUAL FLEXIBLE O ANUAL −15 % · 0 % DE COMISIÓN",
+    "NIVELES",
+    "PERIODICIDAD Y PRECIO",
+    "PAGO",
+    "JUSTIFICANTE / SOLICITUD"
+  ],
+  "pt": [
+    "mês",
+    "A PARTIR DE 1 UNIDADE · MENSAL FLEXÍVEL OU ANUAL −15 % · 0 % DE COMISSÃO",
+    "ESCALÕES",
+    "PERIODICIDADE E PREÇO",
+    "PAGAMENTO",
+    "COMPROVATIVO / PEDIDO"
+  ],
+  "it": [
+    "mese",
+    "DA 1 UNITÀ · MENSILE FLESSIBILE O ANNUALE −15% · 0% COMMISSIONI",
+    "FASCE",
+    "PERIODICITÀ E PREZZO",
+    "PAGAMENTO",
+    "RICEVUTA / PRATICA"
+  ],
+  "de": [
+    "Monat",
+    "AB 1 EINHEIT · FLEXIBEL MONATLICH ODER JÄHRLICH −15 % · 0 % PROVISION",
+    "PREISSTUFEN",
+    "ZAHLUNGSINTERVALL UND PREIS",
+    "ZAHLUNG",
+    "BELEG / ANTRAG"
+  ],
+  "nl": [
+    "maand",
+    "VANAF 1 UNIT · FLEXIBEL MAANDELIJKS OF JAARLIJKS −15% · 0% COMMISSIE",
+    "PRIJSNIVEAUS",
+    "BETAALPERIODE EN PRIJS",
+    "BETALING",
+    "BEWIJS / AANVRAAG"
+  ],
+  "ar": [
+    "شهر",
+    "من وحدة واحدة · دفع شهري مرن أو سنوي بخصم 15٪ · عمولة 0٪",
+    "شرائح الأسعار",
+    "دورية الدفع والسعر",
+    "الدفع",
+    "إثبات الدفع / الطلب"
+  ],
+  "zh": [
+    "月",
+    "1 个单元起 · 灵活月付或年付优惠 15% · 零佣金",
+    "价格档位",
+    "付款周期和价格",
+    "付款",
+    "凭证 / 申请"
+  ]
+};
 function setLang(l){
  l=T[l]?l:'fr';var x=T[l];document.getElementById('woLocNotice').hidden=l!=='wo';document.getElementById('zhLocNotice').hidden=l!=='zh';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';
  var map={title:'title',lead:'lead',offerTitle:'offerTitle',offerText:'offerText',formTitle:'formTitle',formLead:'formLead',lBusiness:'business',lManager:'manager',lPhone:'phone',lEmail:'email',lZone:'zone',lCountry:'country',lUnits:'units',lType:'type',lBilling:'billingLabel',billingHelp:'billingHelp',lChosenPrice:'price',priceHelp:'priceHelp',lFree:'free',continue:'continue',payTitle:'payTitle',payLead:'payLead',chosenLabel:'chosen',afterPayTitle:'afterTitle',afterPayText:'after',paidWa:'paid',paidSms:'sms',quoteTitle:'quoteTitle',quoteText:'quoteText',quoteWa:'quote',back:'back'};
@@ -475,6 +551,17 @@ function setLang(l){
    option.textContent=tierCopy?tierCopy[index+14]:option.value;
  });
  document.getElementById('note').innerHTML=wolof?"💚 Senegaal : 1 dalalukaay 21 000 FCFA / weer, 2–3 dalalukaay 28 000 FCFA / weer. Mën nga fay weer bu nekk walla fay at mi ak wàññiku 15 %. Boo liggéeye ci jamono rekk, mën nga fay weer yi nga ubbi. Ci fay bu njëkk, yokkal njëgu fiche liggéey bi: 100 000 FCFA ci Senegaal walla 250 € ci Europe. Benn yoon rekk ngay fay fiche bi. Jokkoo ak fay ci seen biir · 0 % komisioŋ DIGIYLYFE.":"💚 Sénégal : palier d’entrée spécial 1 unité à 21 000 FCFA / mois, puis 2–3 unités à 28 000 FCFA / mois. Deux rythmes : mensuel libre pour préserver votre trésorerie · annuel avec remise de 15 %. Les saisonniers peuvent cotiser pendant les mois d’ouverture et mettre LOC en sommeil hors saison. <strong>Pour chaque palier</strong>, la 1re adhésion mensuelle = mensualité du palier + fiche professionnelle obligatoire (100 000 FCFA au Sénégal ou 250 € en Europe). La fiche n’est ajoutée qu’au premier règlement. Réservation directe · paiement direct · 0 % commission DIGIYLYFE.<br><strong>GRILLE LOC MENSUEL + ANNUEL · VERSION 24/09/2026</strong>";
+ if(locPricingNotes[l]){
+   document.getElementById('note').textContent='💚 '+locPricingNotes[l];
+ }
+ const pricingHeading=locPricingHeadings[l];
+ if(pricingHeading){
+   document.getElementById('base').textContent='21 000 FCFA / '+pricingHeading[0]+' · 75 € / '+pricingHeading[0];
+   document.getElementById('baseNote').textContent=pricingHeading[1];
+   pricingHeading.slice(2).forEach(function(label,index){
+     document.getElementById('s'+(index+1)).textContent=(index+1)+' · '+label;
+   });
+ }
  renderTable(l);
 }
 document.querySelectorAll('.lang').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l)})});
