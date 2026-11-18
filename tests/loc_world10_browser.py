@@ -1,4 +1,5 @@
 """Run from repository root with Python Playwright and Chrome/Chromium installed."""
+import re
 import shutil
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -74,6 +75,25 @@ def check(context, origin, lang, country, billing, site):
     assert node('#tiersBody tr').count() == 10
     assert node('#tiersBody tr').first.locator('td').nth(1).inner_text().startswith('21 000 FCFA')
     assert node('#tiersBody tr').first.locator('td').nth(5).inner_text().startswith('$790')
+    # Ignore digits in translated prose by reading just the leading price text node.
+    rows = node('#tiersBody tr').evaluate_all("""rows=>rows.map(row=>Array.from(row.cells,
+        cell=>cell.firstChild.textContent))""")
+    for i, tier in enumerate(TIERS):
+        assert rows[i][0] == tier
+        amounts = [int(re.sub(r'[^0-9]', '', val)) for val in rows[i][1:5]]
+        assert amounts == [SN[i], round(SN[i]*12*.85), EU[i], round(EU[i]*12*.85)]
+        if i < len(US):
+            assert rows[i][5].startswith('$'+format(US[i],','))
+    assert all(cell == rows[-1][1] for cell in rows[-1][1:])
+    initial_offer = node('#offerText').inner_text()
+    node('#country').select_option('sn' if country == 'us' else 'us')
+    assert node('#offerText').inner_text() != initial_offer
+    node('#country').select_option(country)
+    assert node('#offerText').inner_text() == initial_offer
+    assert node('#free').get_attribute('placeholder')
+    for sel in ('#lBusiness','#lManager','#lPhone','#lEmail','#lCountry','#lZone','#lUnits',
+                '#lType','#lBilling','#lChosenPrice','#lFree','#s3','#s4','#formTitle','#formLead'):
+        assert node(sel).inner_text().strip()
     if country == 'us':
         assert node('#billing').input_value() == 'annual'
         assert node('#billing option[value=monthly]').is_disabled()
@@ -99,6 +119,7 @@ def check(context, origin, lang, country, billing, site):
     node('#units').fill(str(limit+1))
     node('#continue').click()
     assert node('#quote').is_visible() and not posts
+    assert 'WhatsApp' in node('#quoteWa').inner_text() or lang == 'ar'
     quote = message('#quoteWa')
     assert 'TEST LOC' in quote and str(limit) in node('#quoteTitle').inner_text()
     switch(other)

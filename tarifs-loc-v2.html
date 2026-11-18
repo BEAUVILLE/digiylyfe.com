@@ -52,7 +52,7 @@ html[lang="zh"] [data-toolkit-lang="zh"]{display:block}
 <p id="lead">Choisissez votre rythme selon votre trésorerie : mensuel libre ou annuel avec 15 % de remise. Les saisonniers peuvent activer DIGIY LOC uniquement pendant leurs mois d’ouverture.</p>
 <div class="price"><strong id="base">21 000 FCFA / mois · 75 € / mois</strong><span id="baseNote">DÈS 1 UNITÉ · MENSUEL LIBRE OU ANNUEL -15 % · 0 % COMMISSION</span></div>
 <div class="offer" id="offerBox"><strong id="offerTitle">💚 VOTRE TRÉSORERIE GARDE LA MAIN</strong><span id="offerText">Mensuel : vous payez au rythme de votre activité. Annuel : vous économisez 15 %. Saisonnier : vous pouvez activer LOC pendant votre saison puis le mettre en sommeil à la fermeture. La fiche professionnelle reste facturée séparément.</span></div>
-<div class="steps"><div class="step" id="s1">1 · PALIERS</div><div class="step" id="s2">2 · RYTHME + TARIF</div><div class="step" id="s3">3 · RÈGLEMENT</div><div class="step" id="s4">4 · PREUVE / DOSSIER</div></div>
+<div class="steps"><div class="step" id="s1">1 · PALIERS</div><div class="step" id="s2">2 · RYTHME + TARIF</div><div class="step" id="s3">3 · DOSSIER ET BON À TIRER</div><div class="step" id="s4">4 · RÈGLEMENT APRÈS ACCEPTATION</div></div>
 </section>
 
 <section class="box commissionPain" aria-label="Valeur du forfait annuel DIGIY LOC">
@@ -221,7 +221,6 @@ function refMonthly(t,c){return c==='sn'?t.snRef:c==='eu'?t.euRef:null}
 function annualAmount(t,c){return c==='sn'?t.snAnnual:c==='eu'?t.euAnnual:t.usAnnual}
 function expectedTier(n,c){if(c==='us'&&n>20)return null;for(var i=0;i<tiers.length;i++)if(n>=tiers[i].min&&n<=tiers[i].max)return tiers[i];return null}
 function currentLang(){return document.documentElement.lang||'fr'}
-function annualText(a,c,x){return money(a,c)+' / '+x.annual+' · '+x.single}
 const tierLocales={
   "en": [
     "LOC price tiers",
@@ -438,9 +437,80 @@ function renderTable(lang){
    }
  }
 }
-function chosen(){var v=document.getElementById('chosenPrice').value;if(!v)return null;var p=v.split('|');return{label:p[0],amount:Number(p[1]),country:p[2],billing:p[3]||'annual'}}
 function billingMode(){var e=document.getElementById('billing');return e?e.value:'annual'}
 function selectedAmount(t,c){return billingMode()==='monthly'?refMonthly(t,c):annualAmount(t,c)}
+const flowLabels={
+  "fr": {
+    "proof": "Dossier et bon à tirer",
+    "payment": "Règlement après acceptation",
+    "quote": "Préparer ma demande de devis",
+    "sendQuote": "Envoyer ma demande de devis sur WhatsApp",
+    "prepareMiami": "Préparer mon dossier Miami"
+  },
+  "en": {
+    "proof": "Application and proof",
+    "payment": "Payment after proof approval",
+    "quote": "Prepare my quote request",
+    "sendQuote": "Send my quote request via WhatsApp",
+    "prepareMiami": "Prepare my Miami application"
+  },
+  "es": {
+    "proof": "Solicitud y prueba",
+    "payment": "Pago tras aprobar la prueba",
+    "quote": "Preparar mi solicitud de presupuesto",
+    "sendQuote": "Enviar mi solicitud de presupuesto por WhatsApp",
+    "prepareMiami": "Preparar mi solicitud para Miami"
+  },
+  "pt": {
+    "proof": "Pedido e prova",
+    "payment": "Pagamento após aprovação da prova",
+    "quote": "Preparar o meu pedido de orçamento",
+    "sendQuote": "Enviar o pedido de orçamento pelo WhatsApp",
+    "prepareMiami": "Preparar o meu pedido para Miami"
+  },
+  "it": {
+    "proof": "Domanda e bozza",
+    "payment": "Pagamento dopo l’approvazione della bozza",
+    "quote": "Prepara la richiesta di preventivo",
+    "sendQuote": "Invia la richiesta di preventivo via WhatsApp",
+    "prepareMiami": "Prepara la domanda per Miami"
+  },
+  "de": {
+    "proof": "Unterlagen und Entwurf",
+    "payment": "Zahlung nach Freigabe",
+    "quote": "Angebotsanfrage vorbereiten",
+    "sendQuote": "Angebotsanfrage per WhatsApp senden",
+    "prepareMiami": "Unterlagen für Miami vorbereiten"
+  },
+  "nl": {
+    "proof": "Aanvraag en ontwerp",
+    "payment": "Betaling na goedkeuring",
+    "quote": "Mijn offerteaanvraag voorbereiden",
+    "sendQuote": "Mijn offerteaanvraag via WhatsApp versturen",
+    "prepareMiami": "Mijn aanvraag voor Miami voorbereiden"
+  },
+  "ar": {
+    "proof": "الملف ونسخة الاعتماد",
+    "payment": "الدفع بعد الموافقة",
+    "quote": "إعداد طلب عرض السعر",
+    "sendQuote": "إرسال طلب عرض السعر عبر واتساب",
+    "prepareMiami": "إعداد ملف ميامي"
+  },
+  "wo": {
+    "proof": "Dosiye ak li nga war a dëggal",
+    "payment": "Fay gannaaw nga nangu",
+    "quote": "Waajal sama laaju njëg",
+    "sendQuote": "Yónnee sama laaju njëg ci WhatsApp",
+    "prepareMiami": "Waajal sama dosiye Miami"
+  },
+  "zh": {
+    "proof": "申请与预览稿",
+    "payment": "确认预览稿后付款",
+    "quote": "准备询价申请",
+    "sendQuote": "通过 WhatsApp 发送询价申请",
+    "prepareMiami": "准备迈阿密申请"
+  }
+};
 function tierWords(lang){
  return tierLocales[lang] || ['Paliers DIGIY LOC','Hébergements / unités','Sénégal','Europe','Mensuel','Annuel','/ mois · mensuel libre · saisonnier possible','Fiche professionnelle au démarrage','1re adhésion mensuelle','remise annuelle 15 %','12 mois couverts · fiche professionnelle','1re adhésion annuelle','/ an · 0 % de commission DIGIYLYFE','SUR DEVIS'];
 }
@@ -467,6 +537,10 @@ function updateExpected(){
  const lang=currentLang(), x=T[lang], words=tierWords(lang), c=field('country'), n=Number(field('units')), us=c==='us';
  const tier=expectedTier(n,c), quote=n>(us?20:40), monthly=billingMode()==='monthly';
  const price=document.getElementById('chosenPrice'), heading=document.getElementById('summaryTitle'), detail=document.getElementById('summaryText');
+ const button=document.getElementById('continue');
+ button.dataset.action=quote?flowLabels[lang].quote:us?flowLabels[lang].prepareMiami:'';
+ if(button.dataset.action||button.dataset.submit)button.textContent=button.dataset.action||button.dataset.submit;
+ document.getElementById('quoteWa').textContent=flowLabels[lang].sendQuote;
  price.required=!quote;
  if(quote)price.setCustomValidity('');
  price.closest('.field').classList.toggle('hidden',quote);
@@ -988,13 +1062,26 @@ function setLang(l){
      document.getElementById('s'+(index+1)).textContent=(index+1)+' · '+label;
    });
  }
+ document.getElementById('s3').textContent='3 · '+flowLabels[l].proof;
+ document.getElementById('s4').textContent='4 · '+flowLabels[l].payment;
  const words=tierWords(l);
  document.querySelector('.hero .ey').textContent='DIGIY LOC · '+words[12].split('·').pop().trim();
  document.title=words[0];
  document.getElementById('chosenPrice').dataset.mismatch=x.mismatch;
  document.getElementById('country').options[0].textContent=words[2]+' · FCFA';
  document.getElementById('country').options[1].textContent=words[3]+' · €';
- document.getElementById('free').placeholder=x.free;
+ document.getElementById('free').placeholder={
+   fr:'Nom commercial, adresse, site actuel, particularité du parc…',
+   en:'Trading name, address, current website, property details…',
+   es:'Nombre comercial, dirección, sitio web actual, detalles de los alojamientos…',
+   pt:'Nome comercial, morada, site atual, características dos alojamentos…',
+   it:'Nome commerciale, indirizzo, sito attuale, particolarità delle strutture…',
+   de:'Geschäftsname, Adresse, aktuelle Website, Besonderheiten der Unterkünfte …',
+   nl:'Handelsnaam, adres, huidige website, bijzonderheden van de accommodaties…',
+   ar:'الاسم التجاري، العنوان، الموقع الإلكتروني الحالي، خصائص أماكن الإقامة…',
+   wo:'Turu liggéey bi, màkkaanu kër gi, sa dal ci internet, lu ràññeeku ci say dalalukaay…',
+   zh:'商号、地址、现有网站、房源特点等'
+ }[l];
  const miamiName={fr:'États-Unis · Miami',en:'USA · Miami',es:'EE. UU. · Miami',pt:'EUA · Miami',it:'USA · Miami',de:'USA · Miami',nl:'VS · Miami',ar:'الولايات المتحدة · ميامي',wo:'Amerig · Miami',zh:'美国 · 迈阿密'}[l];
  document.getElementById('country').options[2].textContent=miamiName+' · $';
  document.querySelector('.tablewrap thead th:last-child').textContent=miamiName+' · '+words[5];

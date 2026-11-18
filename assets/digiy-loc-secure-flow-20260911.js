@@ -161,7 +161,6 @@ nl:{label:'WILT U EEN WEBSITE?',help:'De website vervangt het professionele prof
 ar:{label:'هل تريد موقعًا إلكترونيًا؟',help:'يحل الموقع محل الملف المهني في الدفعة الأولى: الملف أو الموقع، وليس الاثنين معًا.',none:'بدون موقع · ملف مهني',premium:'موقع PREMIUM',extra:'موقع EXTRA'}
 };
 function lang(){const l=(document.documentElement.lang||'fr').slice(0,2).toLowerCase();return M[l]?l:'fr'}
-function fmt(n,c){if(c==='sn')return Number(n).toLocaleString('fr-FR').replace(/\u202f/g,' ')+' FCFA';if(c==='us')return '$'+Number(n).toLocaleString('en-US');return Number(n).toLocaleString('fr-FR')+' €'}
 function marketing(){
  // La grille tarifaire appartient désormais à tarifs-loc-v2.html.
  // Ce script sécurise le dossier/BAT mais ne réécrit plus les prix,
@@ -251,7 +250,9 @@ function renderStatus(){
 function copy(){
  const x=M[lang()];
  $('formTitle').textContent=x.title;$('formLead').textContent=x.lead;
- $('lEmail').textContent=x.email;$('continue').textContent=x.submit;
+ $('lEmail').textContent=x.email;
+ $('continue').dataset.submit=x.submit;
+ $('continue').textContent=$('continue').dataset.action||x.submit;
  $('email').required=true;
  for(const el of form.elements)if(el.setCustomValidity)el.setCustomValidity('');
  siteUi();marketing();standardOffer=null;renderMiamiOffer();renderStatus();
