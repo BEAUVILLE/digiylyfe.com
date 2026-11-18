@@ -147,7 +147,7 @@ th,td{padding:13px 12px;text-align:left;border-bottom:1px solid #ffffff18;vertic
 <div class="field"><label id="lZone" for="zone">Ville / zone *</label><input id="zone" required></div>
 <div class="field"><label id="lCountry" for="country">Pays de règlement *</label><select id="country" required><option value="sn">Sénégal · FCFA</option><option value="eu">Europe · €</option><option value="us">USA · Miami · $</option></select></div>
 <div class="field"><label id="lUnits" for="units">Nombre d’unités actives *</label><input id="units" required type="number" min="1" step="1" inputmode="numeric"></div>
-<div class="field"><label id="lType" for="type">Type d’hébergement</label><select id="type"><option>Appartement</option><option>Villa</option><option>Chambre</option><option>Hôtel / résidence</option><option>Autre</option></select></div>
+<div class="field"><label id="lType" for="type">Type d’hébergement</label><select id="type"><option value="Appartement">Appartement</option><option value="Villa">Villa</option><option value="Chambre">Chambre</option><option value="Hôtel / résidence">Hôtel / résidence</option><option value="Autre">Autre</option></select></div>
 <div class="field full priceField"><label id="lBilling" for="billing">MON RYTHME DE RÈGLEMENT *</label><select id="billing" required><option value="monthly">MENSUEL · je préserve ma trésorerie / activité saisonnière</option><option value="annual">ANNUEL · j’économise 15 %</option></select><small id="billingHelp">Mensuel : cotisez pendant les mois où vous êtes ouvert. Annuel : 12 mois couverts avec 15 % de remise.</small></div><div class="field full priceField"><label id="lChosenPrice" for="chosenPrice">MON TARIF LOC CHOISI *</label><select id="chosenPrice" required><option value="">— Choisir mon tarif LOC —</option></select><small id="priceHelp">Le montant s’adapte au rythme choisi : mensuel libre ou annuel avec remise de 15 %.</small></div>
 <div class="field full" id="siteOptionField"><label id="lSiteOption" for="siteOption">SOUHAITEZ-VOUS UN SITE WEB ?</label><select id="siteOption"><option value="none">Sans site · fiche professionnelle</option><option value="premium">SITE PREMIUM</option><option value="extra">SITE EXTRA</option></select><small id="siteHelp">Le site remplace la fiche professionnelle dans le premier règlement : fiche OU site, jamais les deux.</small></div>
 <div class="field full"><label id="lFree" for="free">Précision utile</label><textarea id="free" placeholder="Nom commercial, adresse, site actuel, particularité du parc…"></textarea></div>
@@ -209,6 +209,197 @@ function annualAmount(t,c){return c==='sn'?t.snAnnual:c==='eu'?t.euAnnual:t.usAn
 function expectedTier(n,c){if(c==='us'&&n>20)return null;for(var i=0;i<tiers.length;i++)if(n>=tiers[i].min&&n<=tiers[i].max)return tiers[i];return null}
 function currentLang(){return document.documentElement.lang||'fr'}
 function annualText(a,c,x){return money(a,c)+' / '+x.annual+' · '+x.single}
+const tierLocales={
+  "en": [
+    "LOC price tiers",
+    "Accommodation units",
+    "Senegal",
+    "Europe",
+    "Monthly",
+    "Annual",
+    "/ month · flexible monthly billing · seasonal use available",
+    "Professional profile at setup",
+    "First monthly payment",
+    "15% annual discount",
+    "12 months covered · professional profile",
+    "First annual payment",
+    "/ year · 0% DIGIYLYFE commission",
+    "ON REQUEST",
+    "Apartment",
+    "Villa",
+    "Room",
+    "Hotel / residence",
+    "Other"
+  ],
+  "es": [
+    "Tarifas LOC por nivel",
+    "Unidades de alojamiento",
+    "Senegal",
+    "Europa",
+    "Mensual",
+    "Anual",
+    "/ mes · pago mensual flexible · uso estacional",
+    "Ficha profesional inicial",
+    "Primer pago mensual",
+    "15 % de descuento anual",
+    "12 meses incluidos · ficha profesional",
+    "Primer pago anual",
+    "/ año · 0 % de comisión DIGIYLYFE",
+    "BAJO PRESUPUESTO",
+    "Apartamento",
+    "Villa",
+    "Habitación",
+    "Hotel / residencia",
+    "Otro"
+  ],
+  "pt": [
+    "Escalões de preços LOC",
+    "Unidades de alojamento",
+    "Senegal",
+    "Europa",
+    "Mensal",
+    "Anual",
+    "/ mês · pagamento mensal flexível · uso sazonal",
+    "Ficha profissional inicial",
+    "Primeiro pagamento mensal",
+    "15 % de desconto anual",
+    "12 meses incluídos · ficha profissional",
+    "Primeiro pagamento anual",
+    "/ ano · 0 % de comissão DIGIYLYFE",
+    "SOB ORÇAMENTO",
+    "Apartamento",
+    "Moradia",
+    "Quarto",
+    "Hotel / residência",
+    "Outro"
+  ],
+  "it": [
+    "Fasce tariffarie LOC",
+    "Unità di alloggio",
+    "Senegal",
+    "Europa",
+    "Mensile",
+    "Annuale",
+    "/ mese · pagamento mensile flessibile · uso stagionale",
+    "Scheda professionale iniziale",
+    "Primo pagamento mensile",
+    "Sconto annuale del 15%",
+    "12 mesi inclusi · scheda professionale",
+    "Primo pagamento annuale",
+    "/ anno · 0% commissioni DIGIYLYFE",
+    "SU PREVENTIVO",
+    "Appartamento",
+    "Villa",
+    "Camera",
+    "Hotel / residence",
+    "Altro"
+  ],
+  "de": [
+    "LOC-Preisstufen",
+    "Unterkunftseinheiten",
+    "Senegal",
+    "Europa",
+    "Monatlich",
+    "Jährlich",
+    "/ Monat · flexible Monatszahlung · saisonale Nutzung möglich",
+    "Berufsprofil bei Einrichtung",
+    "Erste Monatszahlung",
+    "15 % Jahresrabatt",
+    "12 Monate enthalten · Berufsprofil",
+    "Erste Jahreszahlung",
+    "/ Jahr · 0 % DIGIYLYFE-Provision",
+    "AUF ANFRAGE",
+    "Wohnung",
+    "Villa",
+    "Zimmer",
+    "Hotel / Wohnanlage",
+    "Sonstiges"
+  ],
+  "nl": [
+    "LOC-prijsniveaus",
+    "Verblijfsunits",
+    "Senegal",
+    "Europa",
+    "Maandelijks",
+    "Jaarlijks",
+    "/ maand · flexibel per maand · seizoensgebruik mogelijk",
+    "Professioneel profiel bij aanvang",
+    "Eerste maandbetaling",
+    "15% jaarkorting",
+    "12 maanden inbegrepen · professioneel profiel",
+    "Eerste jaarbetaling",
+    "/ jaar · 0% DIGIYLYFE-commissie",
+    "OP OFFERTE",
+    "Appartement",
+    "Villa",
+    "Kamer",
+    "Hotel / residentie",
+    "Anders"
+  ],
+  "ar": [
+    "شرائح أسعار LOC",
+    "وحدات الإقامة",
+    "السنغال",
+    "أوروبا",
+    "شهري",
+    "سنوي",
+    "/ شهر · دفع شهري مرن · استخدام موسمي متاح",
+    "الملف المهني عند البدء",
+    "أول دفعة شهرية",
+    "خصم سنوي 15٪",
+    "يشمل 12 شهراً · الملف المهني",
+    "أول دفعة سنوية",
+    "/ سنة · عمولة DIGIYLYFE ‏0٪",
+    "حسب عرض السعر",
+    "شقة",
+    "فيلا",
+    "غرفة",
+    "فندق / مجمع سكني",
+    "أخرى"
+  ],
+  "wo": [
+    "DIGIY LOC · njëg yi ci ay tolluwaay",
+    "Dalalukaay yi",
+    "Senegaal",
+    "Europe",
+    "Weer",
+    "At",
+    "/ weer · fay weer bu nekk · mën nga fay ci jamono liggéey",
+    "Fiche liggéey ci ndoorte li",
+    "Fayug weer bu njëkk",
+    "Wàññi 15 % ci at mi",
+    "12 weer · fiche liggéey",
+    "Fayug at bu njëkk",
+    "/ at · 0 % komisioŋ DIGIYLYFE",
+    "LAAJ NJËG",
+    "Apartamaa",
+    "Villa",
+    "Néeg",
+    "Otel / résidaas",
+    "Yeneen"
+  ],
+  "zh": [
+    "LOC 价格档位",
+    "住宿单元",
+    "塞内加尔",
+    "欧洲",
+    "月付",
+    "年付",
+    "/ 月 · 灵活月付 · 支持季节性使用",
+    "首次建立商家资料",
+    "首次月付款",
+    "年付优惠 15%",
+    "包含 12 个月 · 商家资料",
+    "首次年付款",
+    "/ 年 · DIGIYLYFE 零佣金",
+    "需询价",
+    "公寓",
+    "别墅",
+    "客房",
+    "酒店 / 公寓式酒店",
+    "其他"
+  ]
+};
 function renderTable(lang){
  var body=document.getElementById('tiersBody');body.innerHTML='';
  tiers.forEach(function(t){
@@ -223,8 +414,10 @@ function renderTable(lang){
    body.appendChild(tr);
  });
  var tr=document.createElement('tr');tr.innerHTML='<td>+40</td><td>SUR DEVIS</td><td>SUR DEVIS</td><td>SUR DEVIS</td><td>SUR DEVIS</td><td>SUR DEVIS</td>';body.appendChild(tr);
- if(lang==='wo'){
-   const phrases=[["/ mois · mensuel libre · saisonnier possible","/ weer · fay weer bu nekk · mën nga fay ci jamono liggéey"],["Fiche professionnelle au démarrage :","Fiche liggéey ci ndoorte li :"],["1re adhésion mensuelle :","Fayug weer bu njëkk :"],["remise annuelle 15 %","wàññi 15 % ci at mi"],["12 mois couverts · fiche professionnelle :","12 weer · fiche liggéey :"],["1re adhésion annuelle :","Fayug at bu njëkk :"],[" / year · 0% DIGIYLYFE commission"," / at · 0 % komisioŋ DIGIYLYFE"],["SUR DEVIS","LAJ NJËG"]];
+ const copy=tierLocales[lang];
+ if(copy){
+   const source=['/ mois · mensuel libre · saisonnier possible','Fiche professionnelle au démarrage','1re adhésion mensuelle','remise annuelle 15 %','12 mois couverts · fiche professionnelle','1re adhésion annuelle',' / year · 0% DIGIYLYFE commission','SUR DEVIS'];
+   const phrases=source.map(function(text,index){return [text,index===6?' '+copy[index+6]:copy[index+6]]});
    const walker=document.createTreeWalker(body,NodeFilter.SHOW_TEXT);
    while(walker.nextNode()){
      const node=walker.currentNode;
@@ -274,9 +467,12 @@ function setLang(l){
  Object.keys(locHeadings).forEach(function(id){
    document.getElementById(id).textContent=locHeadings[id][wolof?1:0];
  });
- document.getElementById('tiersTitle').textContent=wolof?'DIGIY LOC · njëg yi ci ay tolluwaay':'Paliers DIGIY LOC';
- document.querySelectorAll('.tablewrap thead th').forEach(function(th,index){
-   th.textContent=(wolof?["DALALUKAAY YI / LIM BI","SENEGAAL · WEER","SENEGAAL · AT −15 %","EUROPE · WEER","EUROPE · AT −15 %","USA · MIAMI · AT"]:["HÉBERGEMENTS / UNITÉS","SÉNÉGAL · MENSUEL","SÉNÉGAL · ANNUEL -15 %","EUROPE · MENSUEL","EUROPE · ANNUEL -15 %","USA · MIAMI PILOT · ANNUEL"])[index];
+ const tierCopy=tierLocales[l];
+ document.getElementById('tiersTitle').textContent=tierCopy?tierCopy[0]:'Paliers DIGIY LOC';
+ const columns=tierCopy?[tierCopy[1],tierCopy[2]+' · '+tierCopy[4],tierCopy[2]+' · '+tierCopy[5]+' −15 %',tierCopy[3]+' · '+tierCopy[4],tierCopy[3]+' · '+tierCopy[5]+' −15 %','USA · MIAMI · '+tierCopy[5]]:['HÉBERGEMENTS / UNITÉS','SÉNÉGAL · MENSUEL','SÉNÉGAL · ANNUEL -15 %','EUROPE · MENSUEL','EUROPE · ANNUEL -15 %','USA · MIAMI PILOT · ANNUEL'];
+ document.querySelectorAll('.tablewrap thead th').forEach(function(th,index){th.textContent=columns[index]});
+ document.querySelectorAll('#type option').forEach(function(option,index){
+   option.textContent=tierCopy?tierCopy[index+14]:option.value;
  });
  document.getElementById('note').innerHTML=wolof?"💚 Senegaal : 1 dalalukaay 21 000 FCFA / weer, 2–3 dalalukaay 28 000 FCFA / weer. Mën nga fay weer bu nekk walla fay at mi ak wàññiku 15 %. Boo liggéeye ci jamono rekk, mën nga fay weer yi nga ubbi. Ci fay bu njëkk, yokkal njëgu fiche liggéey bi: 100 000 FCFA ci Senegaal walla 250 € ci Europe. Benn yoon rekk ngay fay fiche bi. Jokkoo ak fay ci seen biir · 0 % komisioŋ DIGIYLYFE.":"💚 Sénégal : palier d’entrée spécial 1 unité à 21 000 FCFA / mois, puis 2–3 unités à 28 000 FCFA / mois. Deux rythmes : mensuel libre pour préserver votre trésorerie · annuel avec remise de 15 %. Les saisonniers peuvent cotiser pendant les mois d’ouverture et mettre LOC en sommeil hors saison. <strong>Pour chaque palier</strong>, la 1re adhésion mensuelle = mensualité du palier + fiche professionnelle obligatoire (100 000 FCFA au Sénégal ou 250 € en Europe). La fiche n’est ajoutée qu’au premier règlement. Réservation directe · paiement direct · 0 % commission DIGIYLYFE.<br><strong>GRILLE LOC MENSUEL + ANNUEL · VERSION 24/09/2026</strong>";
  renderTable(l);
