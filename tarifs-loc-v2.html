@@ -238,7 +238,7 @@ function selectedAmount(t,c){return billingMode()==='monthly'?refMonthly(t,c):an
 function priceOptions(){
  var c=document.getElementById('country').value,sel=document.getElementById('chosenPrice'),x=T[currentLang()]||T.fr,old=sel.value,b=billingMode();
  sel.innerHTML='';var first=document.createElement('option');first.value='';first.textContent=x.priceFirst;sel.appendChild(first);
- tiers.forEach(function(t){var a=selectedAmount(t,c);if(a==null)return;var o=document.createElement('option');o.value=t.label+'|'+a+'|'+c+'|'+b;o.textContent=t.label+' · '+money(a,c)+(b==='monthly'?' / mois':' / '+x.annual+' · '+x.single+' · -15 %');sel.appendChild(o)});
+ tiers.forEach(function(t){var a=selectedAmount(t,c);if(a==null)return;var o=document.createElement('option');o.value=t.label+'|'+a+'|'+c+'|'+b;o.textContent=t.label+' · '+money(a,c)+(b==='monthly'?(currentLang()==='wo'?' / weer':' / mois'):' / '+x.annual+' · '+x.single+' · -15 %');sel.appendChild(o)});
  if([].slice.call(sel.options).some(function(o){return o.value===old}))sel.value=old;
 }
 function updateExpected(){
@@ -263,6 +263,17 @@ function setLang(l){
  Object.keys(map).forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=x[map[id]]});var bo=document.getElementById('billing');if(bo&&bo.options.length>=2){bo.options[0].textContent=x.billingMonthly;bo.options[1].textContent=x.billingAnnual;}
  document.querySelectorAll('.lang').forEach(function(b){b.classList.toggle('on',b.dataset.l===l)});try{localStorage.setItem('digiy-lang',l)}catch(_){}priceOptions();updateExpected();
  const wolof=l==='wo';
+ const locHeadings={
+   base:['21 000 FCFA / mois · 75 € / mois','21 000 FCFA / weer · 75 € / weer'],
+   baseNote:['DÈS 1 UNITÉ · MENSUEL LIBRE OU ANNUEL -15 % · 0 % COMMISSION','DALE KO CI 1 DALALUKAAY · WEER WU NEKK WALLA AT MI −15 % · 0 % KOMISIOŊ'],
+   s1:['1 · PALIERS','1 · TOLLUWAAY YI'],
+   s2:['2 · RYTHME + TARIF','2 · ANAMU FAY AK NJËG'],
+   s3:['3 · RÈGLEMENT','3 · FAY'],
+   s4:['4 · PREUVE / DOSSIER','4 · SEEDU FAY / DOSIYE']
+ };
+ Object.keys(locHeadings).forEach(function(id){
+   document.getElementById(id).textContent=locHeadings[id][wolof?1:0];
+ });
  document.getElementById('tiersTitle').textContent=wolof?'DIGIY LOC · njëg yi ci ay tolluwaay':'Paliers DIGIY LOC';
  document.querySelectorAll('.tablewrap thead th').forEach(function(th,index){
    th.textContent=(wolof?["DALALUKAAY YI / LIM BI","SENEGAAL · WEER","SENEGAAL · AT −15 %","EUROPE · WEER","EUROPE · AT −15 %","USA · MIAMI · AT"]:["HÉBERGEMENTS / UNITÉS","SÉNÉGAL · MENSUEL","SÉNÉGAL · ANNUEL -15 %","EUROPE · MENSUEL","EUROPE · ANNUEL -15 %","USA · MIAMI PILOT · ANNUEL"])[index];
@@ -288,7 +299,7 @@ document.getElementById('locForm').addEventListener('submit',function(e){
 var init=(new URLSearchParams(location.search).get('lang')||'').slice(0,2).toLowerCase();try{if(!T[init]){var s=(localStorage.getItem('digiy-lang')||'').slice(0,2);if(T[s])init=s}}catch(_){}if(!T[init])init='fr';setLang(init);
 })();
 </script>
-<script src="/assets/digiy-loc-secure-flow-20260911.js?v=20260926-loc-v2-contract-v1"></script>
+<script src="/assets/digiy-loc-secure-flow-20260911.js?v=20261118-loc-wo"></script>
 <script src="/assets/digiy-free-card-entry-v1.js?v=20260913-v1" defer></script>
 </body>
 </html>
