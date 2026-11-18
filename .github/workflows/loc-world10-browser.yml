@@ -1,0 +1,19 @@
+name: LOC · parcours navigateur en dix langues
+on:
+  pull_request:
+    paths:
+      - tarifs-loc-v2.html
+      - assets/digiy-loc-secure-flow-20260911.js
+      - assets/digiy-free-card-entry-v1.js
+      - tests/loc_world10_browser.py
+      - .github/workflows/loc-world10-browser.yml
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install playwright==1.55.0
+      - run: python tests/loc_world10_browser.py

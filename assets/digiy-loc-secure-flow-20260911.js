@@ -141,11 +141,11 @@ zh:{"title":"确认预览稿前提交资料和 LOC 价格","lead":"请先提交�
 wo:{title:'Sa xibaar ak njëgu LOC bala nga dëggal',lead:'Yónneel sa dosiye ba mu jëkk. DIGIYLYFE dina waajal sa LOC te yónnee la li nga war a dëggal. Fay gannaaw nga nangu.',submit:'YÓNNEE SAMA DOSIYE LOC →',email:'E-mail *',need:'Sa e-mail lañu soxla ngir yónnee la sa duggub boroom bu wóor gannaaw fay.',sending:'Ñu ngi yónnee sa dosiye LOC…',done:'✅ Yónnee nañu sa dosiye LOC.',after:'DIGIYLYFE dina waajal sa LOC. Dinañu la yónnee li nga war a dëggal bala ngay fay. Gannaaw nangu ak dëggal fay bi, dinañu ubbi sa duggub boroom te yónnee la lëkkalekaayu dugg bi ci e-mail.',wa:'YÉGAL DIGIYLYFE CI WHATSAPP →'},
 fr:{title:'Vos coordonnées et votre tarif LOC avant bon à tirer',lead:'Envoyez d’abord votre dossier. DIGIYLYFE prépare votre version LOC et vous transmet un BON À TIRER. Aucun règlement avant votre acceptation.',submit:'ENVOYER MON DOSSIER LOC →',email:'E-mail *',need:'L’e-mail est obligatoire pour recevoir votre accès propriétaire sécurisé après paiement.',sending:'Envoi sécurisé du dossier LOC…',done:'✅ DOSSIER LOC REÇU',after:'DIGIYLYFE prépare maintenant votre version LOC. Vous recevrez votre BON À TIRER avant tout règlement. Après acceptation du BAT et confirmation du paiement, votre accès propriétaire sera activé et le magic link sera envoyé à votre e-mail.',wa:'PRÉVENIR DIGIYLYFE SUR WHATSAPP →'},
 en:{title:'Your details and LOC price before proof approval',lead:'Send your file first. DIGIYLYFE prepares your LOC version and sends you a PROOF FOR APPROVAL. No payment before you approve it.',submit:'SEND MY LOC FILE →',email:'Email *',need:'Email is required to receive your secure owner access after payment.',sending:'Sending your LOC file securely…',done:'✅ LOC FILE RECEIVED',after:'DIGIYLYFE now prepares your LOC version. You will receive the proof for approval before any payment. After approval and payment confirmation, owner access is activated and the magic link is sent to your email.',wa:'NOTIFY DIGIYLYFE ON WHATSAPP →'},
-es:{title:'Sus datos y tarifa LOC antes del visto bueno',lead:'Envíe primero su expediente. DIGIYLYFE prepara su versión LOC y le envía el BON À TIRER. Ningún pago antes de su aprobación.',submit:'ENVIAR MI EXPEDIENTE LOC →',email:'E-mail *',need:'El e-mail es obligatorio para recibir el acceso propietario seguro después del pago.',sending:'Envío seguro del expediente LOC…',done:'✅ EXPEDIENTE LOC RECIBIDO',after:'DIGIYLYFE prepara ahora su versión LOC. Recibirá el bon à tirer antes de pagar. Tras aprobarlo y confirmarse el pago, se activa su acceso propietario y se envía el magic link a su e-mail.',wa:'AVISAR A DIGIYLYFE POR WHATSAPP →'},
-pt:{title:'Os seus dados e tarifa LOC antes da aprovação',lead:'Envie primeiro o dossier. A DIGIYLYFE prepara a sua versão LOC e envia o BON À TIRER. Nenhum pagamento antes da sua aprovação.',submit:'ENVIAR O MEU DOSSIER LOC →',email:'E-mail *',need:'O e-mail é obrigatório para receber o acesso seguro do proprietário após o pagamento.',sending:'Envio seguro do dossier LOC…',done:'✅ DOSSIER LOC RECEBIDO',after:'A DIGIYLYFE prepara agora a sua versão LOC. Receberá o bon à tirer antes de qualquer pagamento. Após aprovação e confirmação do pagamento, o acesso do proprietário é ativado e o magic link é enviado para o seu e-mail.',wa:'AVISAR A DIGIYLYFE NO WHATSAPP →'},
-it:{title:'I tuoi dati e la tariffa LOC prima dell’approvazione',lead:'Invia prima il dossier. DIGIYLYFE prepara la versione LOC e ti invia il BON À TIRER. Nessun pagamento prima dell’approvazione.',submit:'INVIA IL DOSSIER LOC →',email:'E-mail *',need:'L’e-mail è obbligatoria per ricevere l’accesso proprietario sicuro dopo il pagamento.',sending:'Invio sicuro del dossier LOC…',done:'✅ DOSSIER LOC RICEVUTO',after:'DIGIYLYFE prepara ora la tua versione LOC. Riceverai il bon à tirer prima di qualsiasi pagamento. Dopo approvazione e conferma del pagamento, l’accesso proprietario viene attivato e il magic link viene inviato alla tua e-mail.',wa:'AVVISA DIGIYLYFE SU WHATSAPP →'},
-de:{title:'Ihre Angaben und Ihr LOC-Tarif vor der Freigabe',lead:'Senden Sie zuerst Ihre Unterlagen. DIGIYLYFE erstellt Ihre LOC-Version und sendet Ihnen den BON À TIRER. Keine Zahlung vor Ihrer Freigabe.',submit:'LOC-UNTERLAGEN SENDEN →',email:'E-Mail *',need:'Die E-Mail ist erforderlich, damit Sie nach der Zahlung Ihren sicheren Eigentümerzugang erhalten.',sending:'LOC-Unterlagen werden sicher gesendet…',done:'✅ LOC-UNTERLAGEN ERHALTEN',after:'DIGIYLYFE erstellt jetzt Ihre LOC-Version. Vor jeder Zahlung erhalten Sie den Bon à tirer. Nach Freigabe und Zahlungsbestätigung wird Ihr Eigentümerzugang aktiviert und der Magic Link an Ihre E-Mail gesendet.',wa:'DIGIYLYFE PER WHATSAPP INFORMIEREN →'},
-nl:{title:'Uw gegevens en LOC-tarief vóór goedkeuring',lead:'Stuur eerst uw dossier. DIGIYLYFE maakt uw LOC-versie en stuurt u de BON À TIRER. Geen betaling vóór uw goedkeuring.',submit:'MIJN LOC-DOSSIER VERSTUREN →',email:'E-mail *',need:'E-mail is verplicht om na betaling uw beveiligde eigenaarstoegang te ontvangen.',sending:'LOC-dossier veilig verzenden…',done:'✅ LOC-DOSSIER ONTVANGEN',after:'DIGIYLYFE maakt nu uw LOC-versie. U ontvangt de bon à tirer vóór elke betaling. Na goedkeuring en betalingsbevestiging wordt uw eigenaarstoegang geactiveerd en wordt de magic link naar uw e-mail gestuurd.',wa:'DIGIYLYFE VIA WHATSAPP MELDEN →'},
+es:{title:'Sus datos y tarifa LOC antes del visto bueno',lead:'Envíe primero su expediente. DIGIYLYFE prepara su versión LOC y le envía la prueba. Ningún pago antes de su aprobación.',submit:'ENVIAR MI EXPEDIENTE LOC →',email:'E-mail *',need:'El e-mail es obligatorio para recibir el acceso propietario seguro después del pago.',sending:'Envío seguro del expediente LOC…',done:'✅ EXPEDIENTE LOC RECIBIDO',after:'DIGIYLYFE prepara ahora su versión LOC. Recibirá la prueba antes de pagar. Tras aprobarlo y confirmarse el pago, se activa su acceso propietario y se envía el enlace seguro a su e-mail.',wa:'AVISAR A DIGIYLYFE POR WHATSAPP →'},
+pt:{title:'Os seus dados e tarifa LOC antes da aprovação',lead:'Envie primeiro o dossier. A DIGIYLYFE prepara a sua versão LOC e envia a prova. Nenhum pagamento antes da sua aprovação.',submit:'ENVIAR O MEU DOSSIER LOC →',email:'E-mail *',need:'O e-mail é obrigatório para receber o acesso seguro do proprietário após o pagamento.',sending:'Envio seguro do dossier LOC…',done:'✅ DOSSIER LOC RECEBIDO',after:'A DIGIYLYFE prepara agora a sua versão LOC. Receberá a prova antes de qualquer pagamento. Após aprovação e confirmação do pagamento, o acesso do proprietário é ativado e o ligação segura é enviado para o seu e-mail.',wa:'AVISAR A DIGIYLYFE NO WHATSAPP →'},
+it:{title:'I tuoi dati e la tariffa LOC prima dell’approvazione',lead:'Invia prima il dossier. DIGIYLYFE prepara la versione LOC e ti invia la bozza. Nessun pagamento prima dell’approvazione.',submit:'INVIA IL DOSSIER LOC →',email:'E-mail *',need:'L’e-mail è obbligatoria per ricevere l’accesso proprietario sicuro dopo il pagamento.',sending:'Invio sicuro del dossier LOC…',done:'✅ DOSSIER LOC RICEVUTO',after:'DIGIYLYFE prepara ora la tua versione LOC. Riceverai la bozza prima di qualsiasi pagamento. Dopo approvazione e conferma del pagamento, l’accesso proprietario viene attivato e il link sicuro viene inviato alla tua e-mail.',wa:'AVVISA DIGIYLYFE SU WHATSAPP →'},
+de:{title:'Ihre Angaben und Ihr LOC-Tarif vor der Freigabe',lead:'Senden Sie zuerst Ihre Unterlagen. DIGIYLYFE erstellt Ihre LOC-Version und sendet Ihnen den Entwurf. Keine Zahlung vor Ihrer Freigabe.',submit:'LOC-UNTERLAGEN SENDEN →',email:'E-Mail *',need:'Die E-Mail ist erforderlich, damit Sie nach der Zahlung Ihren sicheren Eigentümerzugang erhalten.',sending:'LOC-Unterlagen werden sicher gesendet…',done:'✅ LOC-UNTERLAGEN ERHALTEN',after:'DIGIYLYFE erstellt jetzt Ihre LOC-Version. Vor jeder Zahlung erhalten Sie den Entwurf. Nach Freigabe und Zahlungsbestätigung wird Ihr Eigentümerzugang aktiviert und der Anmeldelink an Ihre E-Mail gesendet.',wa:'DIGIYLYFE PER WHATSAPP INFORMIEREN →'},
+nl:{title:'Uw gegevens en LOC-tarief vóór goedkeuring',lead:'Stuur eerst uw dossier. DIGIYLYFE maakt uw LOC-versie en stuurt u het ontwerp. Geen betaling vóór uw goedkeuring.',submit:'MIJN LOC-DOSSIER VERSTUREN →',email:'E-mail *',need:'E-mail is verplicht om na betaling uw beveiligde eigenaarstoegang te ontvangen.',sending:'LOC-dossier veilig verzenden…',done:'✅ LOC-DOSSIER ONTVANGEN',after:'DIGIYLYFE maakt nu uw LOC-versie. U ontvangt het ontwerp vóór elke betaling. Na goedkeuring en betalingsbevestiging wordt uw eigenaarstoegang geactiveerd en wordt de inloglink naar uw e-mail gestuurd.',wa:'DIGIYLYFE VIA WHATSAPP MELDEN →'},
 ar:{title:'بياناتك وسعر LOC قبل الموافقة',lead:'أرسل ملفك أولاً. تُعد DIGIYLYFE نسخة LOC وترسل لك نسخة الاعتماد. لا دفع قبل موافقتك.',submit:'إرسال ملف LOC ←',email:'البريد الإلكتروني *',need:'البريد الإلكتروني إلزامي لاستلام دخول المالك الآمن بعد الدفع.',sending:'جارٍ إرسال ملف LOC بشكل آمن…',done:'✅ تم استلام ملف LOC',after:'تُعد DIGIYLYFE الآن نسخة LOC الخاصة بك. ستستلم نسخة الاعتماد قبل أي دفع. بعد الموافقة وتأكيد الدفع، يتم تفعيل دخول المالك وإرسال الرابط السحري إلى بريدك الإلكتروني.',wa:'إبلاغ DIGIYLYFE عبر واتساب ←'}
 };
 const $=id=>document.getElementById(id),form=$('locForm');if(!form)return;const SITE_COPY={
@@ -179,30 +179,131 @@ function preselectCountry(){
  }catch(_){}
 }
 function siteUi(){const c=value('country')||'sn',s=$('siteOption'),field=$('siteOptionField'),tx=SITE_COPY[lang()]||SITE_COPY.fr;if($('lSiteOption'))$('lSiteOption').textContent=tx.label;if($('siteHelp'))$('siteHelp').textContent=tx.help;if(!s)return;if(c==='us'){s.value='none';if(field)field.classList.add('hidden');return}if(field)field.classList.remove('hidden');const price=c==='eu'?{none:'250 €',premium:'480 €',extra:'800 €'}:{none:'100 000 FCFA',premium:'250 000 FCFA',extra:'450 000 FCFA'};s.options[0].textContent=tx.none+' · '+price.none;s.options[1].textContent=tx.premium+' · '+price.premium;s.options[2].textContent=tx.extra+' · '+price.extra}
-function copy(){const x=M[lang()];if($('formTitle'))$('formTitle').textContent=x.title;if($('formLead'))$('formLead').textContent=x.lead;if($('lEmail'))$('lEmail').textContent=x.email;if($('continue'))$('continue').textContent=x.submit;const em=$('email');if(em){em.required=true;em.setAttribute('aria-required','true')}const p=$('paiement');if(p)p.classList.add('hidden');siteUi();marketing();standardOffer=null;renderMiamiOffer()}
-function value(id){return String($(id)?.value||'').trim()}
-function statusBox(){let s=$('locSecureStatus');if(!s){s=document.createElement('div');s.id='locSecureStatus';s.className='summary';s.style.display='none';form.insertAdjacentElement('afterend',s)}return s}
-function show(text,bad){const s=statusBox();s.style.display='block';s.className=bad?'error':'summary ok';s.innerHTML=text}
-function tierFor(n){const a=[1,3,10,15,20,25,30,35,40],l=['1','2–3','4–10','11–15','16–20','21–25','26–30','31–35','36–40'];for(let i=0;i<a.length;i++)if(n<=a[i])return l[i];return null}
-form.addEventListener('submit',async function(e){
- e.preventDefault();e.stopImmediatePropagation();const x=M[lang()],btn=$('continue'),n=Number(value('units')),country=value('country'),raw=value('chosenPrice'),email=value('email').toLowerCase();
- if(n>40||(country==='us'&&n>20)){const q=$('quote');if(q){q.classList.remove('hidden');const h=$('quoteTitle');if(h&&country==='us')h.textContent='Miami pilot · 20+ units · quote';q.scrollIntoView({behavior:'smooth',block:'start'})}return}
- if(!email||!/^\S+@\S+\.\S+$/.test(email)){show(x.need,true);$('email')?.focus();return}
- const p=raw.split('|'),tier=tierFor(n),amount=Number(p[1]),billing=value('billing')||'annual';if(!tier||p[0]!==tier||p[2]!==country||p[3]!==billing||!Number.isFinite(amount)){show('Tarif LOC incohérent avec le nombre d’unités ou le rythme choisi.',true);return}
- btn.disabled=true;if(country==='us'){const body={country:'US',tier_label:tier,amount,units:n,business:value('business'),manager:value('manager'),phone:value('phone'),email,zone:value('zone'),lodging_type:value('type'),note:value('free'),lang:lang()};const adminText=['DIGIY LOC — MIAMI PILOT · DOSSIER AVANT BAT','Établissement : '+body.business,'Responsable : '+body.manager,'E-mail : '+body.email,'Téléphone : '+body.phone,'Zone : '+body.zone,'Unités : '+body.units,'Palier : '+body.tier_label,'Tarif annuel : $'+Number(body.amount).toLocaleString('en-US'),'Statut : BAT À PRÉPARER · AUCUN PAIEMENT ENCORE'].join('\n');const miami=miamiConfirmation[lang()];show('<strong>✅ '+miami[0]+'</strong><br><br>'+miami[1]+'<div class="actions" style="margin-top:12px"><a class="cta" target="_blank" rel="noopener" href="https://wa.me/'+PHONE+'?text='+encodeURIComponent(adminText)+'">'+x.wa+'</a></div>',false);Array.from(form.querySelectorAll('input,select,textarea,button')).forEach(el=>el.disabled=true);statusBox().scrollIntoView({behavior:'smooth',block:'center'});return}show(x.sending,false);
- try{
-  const body={country:country==='sn'?'SN':'FR',tier_label:tier,billing,amount,units:n,business:value('business'),manager:value('manager'),phone:value('phone'),email,zone:value('zone'),lodging_type:value('type'),site_option:value('siteOption')||'none',note:value('free'),lang:lang()};
-  const r=await fetch(U,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY},body:JSON.stringify(body)}),j=await r.json().catch(()=>({}));if(!r.ok||!j.ok){if(j.error==='price_mismatch')throw new Error('Le tarif LOC a été actualisé. Recharge la page puis sélectionne à nouveau ton palier'+(j.expected_amount?' · tarif attendu : '+j.expected_amount:'')+'.');throw new Error(j.error||'Envoi impossible')}
-  const isMonthly=j.billing==='monthly',periodLabel=isMonthly?'mensuelle':'annuelle',duration=isMonthly?'1 mois renouvelable':'12 mois';const adminText=['DIGIY LOC — DOSSIER AVANT BAT','Dossier : '+j.id,'Établissement : '+body.business,'Responsable : '+body.manager,'E-mail : '+body.email,'Téléphone : '+body.phone,'Zone : '+body.zone,'Unités : '+body.units,'Palier : '+j.tier,'Rythme : '+(isMonthly?'MENSUEL':'ANNUEL'),'Adhésion '+periodLabel+' LOC : '+j.amount+' '+j.currency,j.initial_service_label+' : + '+j.initial_service_amount+' '+j.currency,'TOTAL 1re adhésion : '+j.first_join_total+' '+j.currency,'Durée : '+duration,'Statut : BAT À PRÉPARER · AUCUN PAIEMENT ENCORE'].join('\n');
-  const summary=confirmationCopy[lang()];
-  const site=SITE_COPY[lang()]||SITE_COPY.fr;
-  const service=site[body.site_option]||site.none;
-  const breakdown='<div style="margin:14px 0;padding:12px;border:1px solid rgba(250,204,21,.45);border-radius:14px"><strong>'+summary[0]+'</strong><br>'+summary[isMonthly?1:2]+' <strong>'+j.amount+' '+j.currency+'</strong><br>'+service+' <strong>+ '+j.initial_service_amount+' '+j.currency+'</strong><br>'+summary[3]+' <strong>'+j.first_join_total+' '+j.currency+'</strong><br><span style="opacity:.8">'+summary[isMonthly?4:5]+' · '+summary[6]+'</span></div>';
-  show('<strong>'+x.done+'</strong><br><br>'+x.after+breakdown+'<div class="actions" style="margin-top:12px"><a class="cta" target="_blank" rel="noopener" href="https://wa.me/'+PHONE+'?text='+encodeURIComponent(adminText)+'">'+x.wa+'</a></div>',false);
-  Array.from(form.querySelectorAll('input,select,textarea,button')).forEach(el=>el.disabled=true);statusBox().scrollIntoView({behavior:'smooth',block:'center'});
- }catch(err){show(String(err?.message||err),true);btn.disabled=false}
+const errors={
+ fr:['Le tarif a changé. Rechargez la page et choisissez à nouveau votre palier.','Envoi impossible. Veuillez réessayer.','Vérifiez ce champ.'],
+ en:['The price has changed. Reload the page and select your tier again.','Submission failed. Please try again.','Please check this field.'],
+ es:['La tarifa ha cambiado. Recargue la página y vuelva a elegir el nivel.','No se pudo enviar. Inténtelo de nuevo.','Revise este campo.'],
+ pt:['A tarifa mudou. Recarregue a página e volte a escolher o escalão.','Não foi possível enviar. Tente novamente.','Verifique este campo.'],
+ it:['La tariffa è cambiata. Ricarica la pagina e scegli di nuovo la fascia.','Invio non riuscito. Riprova.','Controlla questo campo.'],
+ de:['Der Preis hat sich geändert. Laden Sie die Seite neu und wählen Sie Ihre Stufe erneut.','Senden fehlgeschlagen. Bitte erneut versuchen.','Bitte prüfen Sie dieses Feld.'],
+ nl:['Het tarief is gewijzigd. Vernieuw de pagina en kies uw tarief opnieuw.','Verzenden mislukt. Probeer het opnieuw.','Controleer dit veld.'],
+ ar:['تغيّر السعر. أعد تحميل الصفحة واختر الشريحة مجدداً.','تعذّر الإرسال. حاول مجدداً.','تحقق من هذا الحقل.'],
+ wo:['Njëg bi soppeekuna. Yeesalal xët wi te tànnaat sa tolluwaay.','Yónnee bi antuwul. Jéemaatal.','Seetaatal li nga bind fii.'],
+ zh:['价格已更新。请刷新页面并重新选择档位。','提交失败，请重试。','请检查此项。']
+};
+function value(id){return $(id).value.trim()}
+function label(id){return form.querySelector('label[for="'+id+'"]').textContent.replace(/\s*\*$/,'')}
+function selected(id){return $(id).selectedOptions[0]?.textContent||''}
+function fileLines(){
+ return ['business','manager','email','phone','country','zone','units','type','free']
+   .filter(id=>value(id)).map(id=>label(id)+' · '+(id==='type'||id==='country'?selected(id):value(id)));
+}
+function whatsapp(lines){return 'https://wa.me/'+PHONE+'?text='+encodeURIComponent(lines.join('\n'))}
+const status=document.createElement('div');
+status.id='locSecureStatus';
+status.setAttribute('aria-live','polite');
+form.after(status);
+let state=null;
+function renderStatus(){
+ const l=lang(), x=M[l], summary=confirmationCopy[l];
+ status.replaceChildren();
+ status.hidden=!state;
+ if(!state)return;
+ status.className='summary ok';
+ const {kind,data,siteOption}=state;
+ if(kind==='quote'){
+   $('quoteWa').href=whatsapp(['DIGIY LOC · '+$('quoteTitle').textContent,...fileLines(),$('quoteText').textContent,x.lead]);
+   status.hidden=true;
+   return;
+ }
+ if(kind==='sending'){status.textContent=x.sending;return}
+ if(kind==='error'){
+   status.className='error';
+   status.textContent=state.message==='email'?x.need:state.message==='tier'?$('summaryTitle').textContent+' · '+selected('billing'):errors[l][state.message==='price'?0:1];
+   if(state.expected)status.textContent+=' · '+state.expected;
+   return;
+ }
+ const miami=kind==='miami';
+ const heading=document.createElement('strong');
+ heading.textContent=miami?miamiConfirmation[l][0]:x.done;
+ const desc=document.createElement('p');
+ desc.textContent=miami?miamiConfirmation[l][1]:x.after;
+ status.append(heading,desc);
+ const lines=['DIGIY LOC · '+heading.textContent,...fileLines(),selected('chosenPrice')];
+ if(miami){lines.push(desc.textContent)}
+ else{
+   const money=n=>n+' '+data.currency;
+   const monthly=data.billing==='monthly';
+   const details=[summary[0],summary[monthly?1:2]+' · '+money(data.amount),
+     SITE_COPY[l][siteOption]+' · + '+money(data.initial_service_amount),
+     summary[3]+' · '+money(data.first_join_total),summary[monthly?4:5],summary[6]];
+   for(const text of details){
+     const row=document.createElement('div');
+     row.textContent=text;
+     status.append(row);
+   }
+   lines.push('ID · '+data.id,data.tier,...details);
+ }
+ const link=document.createElement('a');
+ link.className='cta';link.target='_blank';link.rel='noopener';link.href=whatsapp(lines);link.textContent=x.wa;
+ status.append(link);
+}
+function copy(){
+ const x=M[lang()];
+ $('formTitle').textContent=x.title;$('formLead').textContent=x.lead;
+ $('lEmail').textContent=x.email;$('continue').textContent=x.submit;
+ $('email').required=true;
+ for(const el of form.elements)if(el.setCustomValidity)el.setCustomValidity('');
+ siteUi();marketing();standardOffer=null;renderMiamiOffer();renderStatus();
+}
+function update(kind,props={}){
+ state={kind,...props};renderStatus();
+}
+form.addEventListener('invalid',event=>{
+ const el=event.target;
+ el.setCustomValidity(el.id==='email'?M[lang()].need:label(el.id)+' · '+errors[lang()][2]);
 },true);
-document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>setTimeout(copy,0)));$('siteOption')?.addEventListener('change',siteUi);$('country')?.addEventListener('change',()=>setTimeout(()=>{siteUi();renderMiamiOffer()},0));
+function clearFeedback(event){
+ event.target.setCustomValidity?.('');
+ if(state?.kind==='error'||state?.kind==='quote'){
+   state=null;$('quote').classList.add('hidden');renderStatus();
+ }
+}
+form.addEventListener('input',clearFeedback);
+form.addEventListener('change',clearFeedback);
+function lock(locked){for(const el of form.elements)el.disabled=locked}
+form.addEventListener('submit',async event=>{
+ event.preventDefault();
+ if(state && ['sending','complete','miami'].includes(state.kind))return;
+ const country=value('country'), units=Number(value('units')), email=value('email').toLowerCase();
+ if(!/^\S+@\S+\.\S+$/.test(email)){update('error',{message:'email'});$('email').focus();return}
+ if(units>(country==='us'?20:40)){
+   $('quote').classList.remove('hidden');update('quote');$('quote').scrollIntoView();return;
+ }
+ const [tier,price,region,period]=value('chosenPrice').split('|');
+ const bounds=(tier||'').split('–').map(Number), amount=Number(price), billing=value('billing');
+ if(!tier||units<bounds[0]||units>bounds[bounds.length-1]||region!==country||period!==billing||!Number.isFinite(amount)){
+   update('error',{message:'tier'});return;
+ }
+ lock(true);
+ if(country==='us'){update('miami');status.scrollIntoView();return}
+ const body={country:country==='sn'?'SN':'FR',tier_label:tier,billing,amount,units,business:value('business'),manager:value('manager'),phone:value('phone'),email,zone:value('zone'),lodging_type:value('type'),site_option:value('siteOption')||'none',note:value('free'),lang:lang()};
+ update('sending');
+ try{
+   const response=await fetch(U,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY},body:JSON.stringify(body)});
+   const data=await response.json();
+   if(!response.ok||!data.ok){
+     lock(false);
+     update('error',{message:data.error==='price_mismatch'?'price':'server',expected:data.error==='price_mismatch'?data.expected_amount:null});
+     return;
+   }
+   update('complete',{data,siteOption:body.site_option});status.scrollIntoView();
+ }catch{
+   lock(false);update('error',{message:'server'});
+ }
+});
+document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',copy));
+$('country').addEventListener('change',()=>{siteUi();renderMiamiOffer()});
 const miamiOffer={
   "fr": [
     "Pilote Miami · tarif annuel fixe",
@@ -257,5 +358,5 @@ function renderMiamiOffer(){
   title.textContent='🇺🇸 '+heading;
   text.textContent='$790 · $990 · $1,290 · $1,590 '+details;
 }
-preselectCountry();copy();if(value('country')==='us')$('country')?.dispatchEvent(new Event('change',{bubbles:true}));
+copy();preselectCountry();
 })();
