@@ -2,7 +2,100 @@
 (function(){
 'use strict';
 const U='https://wesqmwjjtsefyjnluosj.supabase.co/functions/v1/digiy-loc-dossier',KEY='sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3',PHONE='221771342889';
+const confirmationCopy={
+  "fr": [
+    "Première adhésion DIGIY LOC",
+    "Adhésion mensuelle",
+    "Adhésion annuelle",
+    "Total après acceptation du BAT",
+    "1 mois renouvelable",
+    "12 mois",
+    "Le premier règlement couvre la fiche ou le site choisi. Tout règlement intervient après acceptation du BAT."
+  ],
+  "en": [
+    "First DIGIY LOC membership payment",
+    "Monthly membership",
+    "Annual membership",
+    "Total after proof approval",
+    "1 renewable month",
+    "12 months",
+    "The first payment covers the chosen profile or website. Payment is due after proof approval."
+  ],
+  "es": [
+    "Primer pago de DIGIY LOC",
+    "Adhesión mensual",
+    "Adhesión anual",
+    "Total tras aprobar la prueba",
+    "1 mes renovable",
+    "12 meses",
+    "El primer pago incluye la ficha o el sitio elegido. El pago se realiza tras aprobar la prueba."
+  ],
+  "pt": [
+    "Primeiro pagamento DIGIY LOC",
+    "Adesão mensal",
+    "Adesão anual",
+    "Total após aprovação da prova",
+    "1 mês renovável",
+    "12 meses",
+    "O primeiro pagamento inclui a ficha ou o site escolhido. O pagamento é feito após aprovação da prova."
+  ],
+  "it": [
+    "Primo pagamento DIGIY LOC",
+    "Adesione mensile",
+    "Adesione annuale",
+    "Totale dopo l’approvazione della bozza",
+    "1 mese rinnovabile",
+    "12 mesi",
+    "Il primo pagamento comprende la scheda o il sito scelto. Il pagamento avviene dopo l’approvazione della bozza."
+  ],
+  "de": [
+    "Erste Zahlung für DIGIY LOC",
+    "Monatsmitgliedschaft",
+    "Jahresmitgliedschaft",
+    "Gesamtbetrag nach Freigabe des Entwurfs",
+    "1 verlängerbarer Monat",
+    "12 Monate",
+    "Die erste Zahlung umfasst das gewählte Profil oder die Website. Die Zahlung erfolgt nach Freigabe des Entwurfs."
+  ],
+  "nl": [
+    "Eerste betaling DIGIY LOC",
+    "Maandlidmaatschap",
+    "Jaarlidmaatschap",
+    "Totaal na goedkeuring van het ontwerp",
+    "1 verlengbare maand",
+    "12 maanden",
+    "De eerste betaling omvat het gekozen profiel of de website. Betaling volgt na goedkeuring van het ontwerp."
+  ],
+  "ar": [
+    "الدفعة الأولى لاشتراك DIGIY LOC",
+    "اشتراك شهري",
+    "اشتراك سنوي",
+    "الإجمالي بعد اعتماد المسودة",
+    "شهر واحد قابل للتجديد",
+    "12 شهراً",
+    "تشمل الدفعة الأولى الملف المهني أو الموقع المختار. يتم الدفع بعد اعتماد المسودة."
+  ],
+  "wo": [
+    "Fay bu njëkk ci DIGIY LOC",
+    "Bokk ci weer wi",
+    "Bokk ci at mi",
+    "Limu fay bi gannaaw nangu",
+    "1 weer bu mën a yeesal",
+    "12 weer",
+    "Fay bu njëkk bi dafay boole fiche bi walla site bi nga tànn. Dangay fay gannaaw nga nangu."
+  ],
+  "zh": [
+    "DIGIY LOC 首次付款",
+    "月度会员费",
+    "年度会员费",
+    "确认预览稿后应付总额",
+    "1 个月，可续订",
+    "12 个月",
+    "首次付款包含所选的商家资料或网站。确认预览稿后付款。"
+  ]
+};
 const M={
+zh:{"title":"确认预览稿前提交资料和 LOC 价格","lead":"请先提交申请。DIGIYLYFE 将准备 LOC 页面并发送预览稿。确认后再付款。","submit":"提交 LOC 申请 →","email":"电子邮件 *","need":"请填写电子邮件，以便付款后接收安全的业主登录链接。","sending":"正在安全提交 LOC 申请…","done":"✅ 已收到 LOC 申请","after":"DIGIYLYFE 将准备您的 LOC 页面并发送预览稿。确认预览稿并核实付款后，业主管理权限将启用，登录链接会发送到您的邮箱。","wa":"通过 WhatsApp 通知 DIGIYLYFE →"},
 wo:{title:'Sa xibaar ak njëgu LOC bala nga dëggal',lead:'Yónneel sa dosiye ba mu jëkk. DIGIYLYFE dina waajal sa LOC te yónnee la li nga war a dëggal. Fay gannaaw nga nangu.',submit:'YÓNNEE SAMA DOSIYE LOC →',email:'E-mail *',need:'Sa e-mail lañu soxla ngir yónnee la sa duggub boroom bu wóor gannaaw fay.',sending:'Ñu ngi yónnee sa dosiye LOC…',done:'✅ Yónnee nañu sa dosiye LOC.',after:'DIGIYLYFE dina waajal sa LOC. Dinañu la yónnee li nga war a dëggal bala ngay fay. Gannaaw nangu ak dëggal fay bi, dinañu ubbi sa duggub boroom te yónnee la lëkkalekaayu dugg bi ci e-mail.',wa:'YÉGAL DIGIYLYFE CI WHATSAPP →'},
 fr:{title:'Vos coordonnées et votre tarif LOC avant bon à tirer',lead:'Envoyez d’abord votre dossier. DIGIYLYFE prépare votre version LOC et vous transmet un BON À TIRER. Aucun règlement avant votre acceptation.',submit:'ENVOYER MON DOSSIER LOC →',email:'E-mail *',need:'L’e-mail est obligatoire pour recevoir votre accès propriétaire sécurisé après paiement.',sending:'Envoi sécurisé du dossier LOC…',done:'✅ DOSSIER LOC REÇU',after:'DIGIYLYFE prépare maintenant votre version LOC. Vous recevrez votre BON À TIRER avant tout règlement. Après acceptation du BAT et confirmation du paiement, votre accès propriétaire sera activé et le magic link sera envoyé à votre e-mail.',wa:'PRÉVENIR DIGIYLYFE SUR WHATSAPP →'},
 en:{title:'Your details and LOC price before proof approval',lead:'Send your file first. DIGIYLYFE prepares your LOC version and sends you a PROOF FOR APPROVAL. No payment before you approve it.',submit:'SEND MY LOC FILE →',email:'Email *',need:'Email is required to receive your secure owner access after payment.',sending:'Sending your LOC file securely…',done:'✅ LOC FILE RECEIVED',after:'DIGIYLYFE now prepares your LOC version. You will receive the proof for approval before any payment. After approval and payment confirmation, owner access is activated and the magic link is sent to your email.',wa:'NOTIFY DIGIYLYFE ON WHATSAPP →'},
@@ -14,6 +107,7 @@ nl:{title:'Uw gegevens en LOC-tarief vóór goedkeuring',lead:'Stuur eerst uw do
 ar:{title:'بياناتك وسعر LOC قبل الموافقة',lead:'أرسل ملفك أولاً. تُعد DIGIYLYFE نسخة LOC وترسل لك نسخة الاعتماد. لا دفع قبل موافقتك.',submit:'إرسال ملف LOC ←',email:'البريد الإلكتروني *',need:'البريد الإلكتروني إلزامي لاستلام دخول المالك الآمن بعد الدفع.',sending:'جارٍ إرسال ملف LOC بشكل آمن…',done:'✅ تم استلام ملف LOC',after:'تُعد DIGIYLYFE الآن نسخة LOC الخاصة بك. ستستلم نسخة الاعتماد قبل أي دفع. بعد الموافقة وتأكيد الدفع، يتم تفعيل دخول المالك وإرسال الرابط السحري إلى بريدك الإلكتروني.',wa:'إبلاغ DIGIYLYFE عبر واتساب ←'}
 };
 const $=id=>document.getElementById(id),form=$('locForm');if(!form)return;const SITE_COPY={
+zh:{"label":"您需要网站吗？","help":"首次付款包含商家资料或网站，两者任选其一。","none":"无需网站 · 商家资料","premium":"高级网站","extra":"增强版网站"},
 wo:{label:'BËGG NGA AM SITE WEB ?',help:'Ci fay bu njëkk, site bi wuutu na fiche liggéey bi. Dangay fay fiche bi walla site bi, benn rekk.',none:'Amul site · fiche liggéey',premium:'SITE PREMIUM',extra:'SITE EXTRA'},
 fr:{label:'SOUHAITEZ-VOUS UN SITE WEB ?',help:'Le site remplace la fiche professionnelle dans le premier règlement : fiche OU site, jamais les deux.',none:'Sans site · fiche professionnelle',premium:'SITE PREMIUM',extra:'SITE EXTRA'},
 en:{label:'WOULD YOU LIKE A WEBSITE?',help:'The website replaces the professional profile in the first payment: profile OR website, never both.',none:'No website · professional profile',premium:'PREMIUM WEBSITE',extra:'EXTRA WEBSITE'},
@@ -58,7 +152,10 @@ form.addEventListener('submit',async function(e){
   const body={country:country==='sn'?'SN':'FR',tier_label:tier,billing,amount,units:n,business:value('business'),manager:value('manager'),phone:value('phone'),email,zone:value('zone'),lodging_type:value('type'),site_option:value('siteOption')||'none',note:value('free'),lang:lang()};
   const r=await fetch(U,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY},body:JSON.stringify(body)}),j=await r.json().catch(()=>({}));if(!r.ok||!j.ok){if(j.error==='price_mismatch')throw new Error('Le tarif LOC a été actualisé. Recharge la page puis sélectionne à nouveau ton palier'+(j.expected_amount?' · tarif attendu : '+j.expected_amount:'')+'.');throw new Error(j.error||'Envoi impossible')}
   const isMonthly=j.billing==='monthly',periodLabel=isMonthly?'mensuelle':'annuelle',duration=isMonthly?'1 mois renouvelable':'12 mois';const adminText=['DIGIY LOC — DOSSIER AVANT BAT','Dossier : '+j.id,'Établissement : '+body.business,'Responsable : '+body.manager,'E-mail : '+body.email,'Téléphone : '+body.phone,'Zone : '+body.zone,'Unités : '+body.units,'Palier : '+j.tier,'Rythme : '+(isMonthly?'MENSUEL':'ANNUEL'),'Adhésion '+periodLabel+' LOC : '+j.amount+' '+j.currency,j.initial_service_label+' : + '+j.initial_service_amount+' '+j.currency,'TOTAL 1re adhésion : '+j.first_join_total+' '+j.currency,'Durée : '+duration,'Statut : BAT À PRÉPARER · AUCUN PAIEMENT ENCORE'].join('\n');
-  const breakdown='<div style="margin:14px 0;padding:12px;border:1px solid rgba(250,204,21,.45);border-radius:14px"><strong>1re adhésion DIGIY LOC</strong><br>Adhésion '+periodLabel+' : <strong>'+j.amount+' '+j.currency+'</strong><br>'+j.initial_service_label+' : <strong>+ '+j.initial_service_amount+' '+j.currency+'</strong><br>Total à régler après BAT accepté : <strong>'+j.first_join_total+' '+j.currency+'</strong><br><span style="opacity:.8">Durée : '+duration+' · fiche OU site, jamais les deux · aucun règlement avant acceptation du BAT.</span></div>';
+  const summary=confirmationCopy[lang()];
+  const site=SITE_COPY[lang()]||SITE_COPY.fr;
+  const service=site[body.site_option]||site.none;
+  const breakdown='<div style="margin:14px 0;padding:12px;border:1px solid rgba(250,204,21,.45);border-radius:14px"><strong>'+summary[0]+'</strong><br>'+summary[isMonthly?1:2]+' <strong>'+j.amount+' '+j.currency+'</strong><br>'+service+' <strong>+ '+j.initial_service_amount+' '+j.currency+'</strong><br>'+summary[3]+' <strong>'+j.first_join_total+' '+j.currency+'</strong><br><span style="opacity:.8">'+summary[isMonthly?4:5]+' · '+summary[6]+'</span></div>';
   show('<strong>'+x.done+'</strong><br><br>'+x.after+breakdown+'<div class="actions" style="margin-top:12px"><a class="cta" target="_blank" rel="noopener" href="https://wa.me/'+PHONE+'?text='+encodeURIComponent(adminText)+'">'+x.wa+'</a></div>',false);
   Array.from(form.querySelectorAll('input,select,textarea,button')).forEach(el=>el.disabled=true);statusBox().scrollIntoView({behavior:'smooth',block:'center'});
  }catch(err){show(String(err?.message||err),true);btn.disabled=false}
