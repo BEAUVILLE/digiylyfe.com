@@ -179,7 +179,7 @@ function preselectCountry(){
  }catch(_){}
 }
 function siteUi(){const c=value('country')||'sn',s=$('siteOption'),field=$('siteOptionField'),tx=SITE_COPY[lang()]||SITE_COPY.fr;if($('lSiteOption'))$('lSiteOption').textContent=tx.label;if($('siteHelp'))$('siteHelp').textContent=tx.help;if(!s)return;if(c==='us'){s.value='none';if(field)field.classList.add('hidden');return}if(field)field.classList.remove('hidden');const price=c==='eu'?{none:'250 €',premium:'480 €',extra:'800 €'}:{none:'100 000 FCFA',premium:'250 000 FCFA',extra:'450 000 FCFA'};s.options[0].textContent=tx.none+' · '+price.none;s.options[1].textContent=tx.premium+' · '+price.premium;s.options[2].textContent=tx.extra+' · '+price.extra}
-function copy(){const x=M[lang()];if($('formTitle'))$('formTitle').textContent=x.title;if($('formLead'))$('formLead').textContent=x.lead;if($('lEmail'))$('lEmail').textContent=x.email;if($('continue'))$('continue').textContent=x.submit;const em=$('email');if(em){em.required=true;em.setAttribute('aria-required','true')}const p=$('paiement');if(p)p.classList.add('hidden');siteUi();marketing()}
+function copy(){const x=M[lang()];if($('formTitle'))$('formTitle').textContent=x.title;if($('formLead'))$('formLead').textContent=x.lead;if($('lEmail'))$('lEmail').textContent=x.email;if($('continue'))$('continue').textContent=x.submit;const em=$('email');if(em){em.required=true;em.setAttribute('aria-required','true')}const p=$('paiement');if(p)p.classList.add('hidden');siteUi();marketing();standardOffer=null;renderMiamiOffer()}
 function value(id){return String($(id)?.value||'').trim()}
 function statusBox(){let s=$('locSecureStatus');if(!s){s=document.createElement('div');s.id='locSecureStatus';s.className='summary';s.style.display='none';form.insertAdjacentElement('afterend',s)}return s}
 function show(text,bad){const s=statusBox();s.style.display='block';s.className=bad?'error':'summary ok';s.innerHTML=text}
@@ -202,5 +202,60 @@ form.addEventListener('submit',async function(e){
   Array.from(form.querySelectorAll('input,select,textarea,button')).forEach(el=>el.disabled=true);statusBox().scrollIntoView({behavior:'smooth',block:'center'});
  }catch(err){show(String(err?.message||err),true);btn.disabled=false}
 },true);
-document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>setTimeout(copy,0)));$('siteOption')?.addEventListener('change',siteUi);$('country')?.addEventListener('change',()=>setTimeout(()=>{siteUi();if(value('country')==='us'){if($('offerTitle'))$('offerTitle').textContent='🇺🇸 MIAMI PILOT · FIXED ANNUAL PRICE';if($('offerText'))$('offerText').textContent='$790 · $990 · $1,290 · $1,590 per year depending on active units. Above 20 units: quote. 0% DIGIYLYFE commission.';if($('note'))$('note').textContent='Miami pilot · fixed annual LOC pricing · direct booking · direct customer relationship · 0% DIGIYLYFE commission · no payment before human validation.'}else marketing()},0));preselectCountry();copy();if(value('country')==='us')$('country')?.dispatchEvent(new Event('change',{bubbles:true}));
+document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>setTimeout(copy,0)));$('siteOption')?.addEventListener('change',siteUi);$('country')?.addEventListener('change',()=>setTimeout(()=>{siteUi();renderMiamiOffer()},0));
+const miamiOffer={
+  "fr": [
+    "Pilote Miami · tarif annuel fixe",
+    "par an selon les unités actives. Au-delà de 20 unités, demandez un devis. Réservation directe · 0 % commission DIGIYLYFE · règlement après validation du bon à tirer."
+  ],
+  "en": [
+    "Miami pilot · fixed annual pricing",
+    "per year based on active units. Above 20 units, request a quote. Direct booking · 0% DIGIYLYFE commission · payment after proof approval."
+  ],
+  "es": [
+    "Piloto Miami · tarifa anual fija",
+    "al año según las unidades activas. Para más de 20 unidades, solicite un presupuesto. Reserva directa · 0 % de comisión DIGIYLYFE · pago tras aprobar la prueba."
+  ],
+  "pt": [
+    "Piloto Miami · tarifa anual fixa",
+    "por ano conforme as unidades ativas. Para mais de 20 unidades, peça um orçamento. Reserva direta · 0 % de comissão DIGIYLYFE · pagamento após aprovação da prova."
+  ],
+  "it": [
+    "Progetto pilota Miami · tariffa annua fissa",
+    "all’anno secondo le unità attive. Oltre 20 unità, richiedi un preventivo. Prenotazione diretta · 0% commissioni DIGIYLYFE · pagamento dopo l’approvazione della bozza."
+  ],
+  "de": [
+    "Pilotprojekt Miami · fester Jahrespreis",
+    "pro Jahr je nach aktiven Einheiten. Bei mehr als 20 Einheiten bitte ein Angebot anfordern. Direkte Buchung · 0 % DIGIYLYFE-Provision · Zahlung nach Freigabe des Entwurfs."
+  ],
+  "nl": [
+    "Pilot Miami · vast jaartarief",
+    "per jaar op basis van actieve units. Vraag bij meer dan 20 units een offerte aan. Rechtstreeks boeken · 0% DIGIYLYFE-commissie · betaling na goedkeuring van het ontwerp."
+  ],
+  "ar": [
+    "مشروع ميامي التجريبي · سعر سنوي ثابت",
+    "سنوياً بحسب عدد الوحدات النشطة. اطلب عرض سعر لأكثر من 20 وحدة. حجز مباشر · عمولة DIGIYLYFE ‏0٪ · الدفع بعد اعتماد المسودة."
+  ],
+  "wo": [
+    "Jéemukaayu Miami · njëgu at bu sax",
+    "ci at mi, na méngoo ak limu dalalukaay yi nga ubbi. Su weesoo 20, laajal njëg. Tëye bérab ak boroom bi ci sa bopp · 0 % komisioŋ DIGIYLYFE · fay gannaaw nangu."
+  ],
+  "zh": [
+    "迈阿密试点 · 固定年费",
+    "每年，按启用单元数量计算。超过 20 个单元请询价。直接预订 · DIGIYLYFE 零佣金 · 确认预览稿后付款。"
+  ]
+};
+let standardOffer;
+function renderMiamiOffer(){
+  const title=$('offerTitle'),text=$('offerText');
+  if(value('country')!=='us'){
+    if(standardOffer){title.textContent=standardOffer[0];text.textContent=standardOffer[1];standardOffer=null}
+    return;
+  }
+  if(!standardOffer)standardOffer=[title.textContent,text.textContent];
+  const [heading,details]=miamiOffer[lang()];
+  title.textContent='🇺🇸 '+heading;
+  text.textContent='$790 · $990 · $1,290 · $1,590 '+details;
+}
+preselectCountry();copy();if(value('country')==='us')$('country')?.dispatchEvent(new Event('change',{bubbles:true}));
 })();
