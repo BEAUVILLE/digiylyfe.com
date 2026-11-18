@@ -37,6 +37,7 @@ html[lang="wo"] [data-toolkit-lang="wo"]{display:block}
 html[lang="zh"] [data-preview-lang="zh"]{display:block}
 html[lang="zh"] [data-pain-lang="zh"]{display:block}
 html[lang="zh"] [data-toolkit-lang="zh"]{display:block}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
@@ -467,7 +468,8 @@ function updateExpected(){
  const tier=expectedTier(n,c), quote=n>(us?20:40), monthly=billingMode()==='monthly';
  const price=document.getElementById('chosenPrice'), heading=document.getElementById('summaryTitle'), detail=document.getElementById('summaryText');
  price.required=!quote;
- price.closest('.field').hidden=quote;
+ if(quote)price.setCustomValidity('');
+ price.closest('.field').classList.toggle('hidden',quote);
  const title=x.quoteTitle.replace(/40/g,us?'20':'40');
  const text=x.quoteText.replace(/40/g,us?'20':'40');
  document.getElementById('quoteTitle').textContent=title;
@@ -989,6 +991,7 @@ function setLang(l){
  const words=tierWords(l);
  document.querySelector('.hero .ey').textContent='DIGIY LOC · '+words[12].split('·').pop().trim();
  document.title=words[0];
+ document.getElementById('chosenPrice').dataset.mismatch=x.mismatch;
  document.getElementById('country').options[0].textContent=words[2]+' · FCFA';
  document.getElementById('country').options[1].textContent=words[3]+' · €';
  document.getElementById('free').placeholder=x.free;

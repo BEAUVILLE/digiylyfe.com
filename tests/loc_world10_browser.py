@@ -1,5 +1,4 @@
 """Run from repository root with Python Playwright and Chrome/Chromium installed."""
-import json
 import shutil
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -21,6 +20,7 @@ def check(context, origin, lang, country, billing, site):
     page = context.new_page()
     page.set_default_timeout(5000)
     failures, posts = [], []
+    held = []
     mode = 'price'
     page.on('pageerror', lambda exc: failures.append(str(exc)))
 
@@ -39,11 +39,11 @@ def check(context, origin, lang, country, billing, site):
         if mode in ('price', 'server'):
             msg = 'price_mismatch' if mode == 'price' else 'INTERNAL_FIXTURE'
             return route.fulfill(status=409, json={'error': msg, 'expected_amount': 123})
-        return route.fulfill(json={
+        held.append((route, {
             'ok': True, 'id': 'TEST-LOC', 'tier': payload['tier_label'], 'billing': billing,
             'amount': payload['amount'], 'initial_service_amount': 54321,
             'first_join_total': 65432, 'currency': 'FCFA' if country == 'sn' else 'EUR'
-        })
+        }))
 
     page.route('**/*', intercept)
     page.goto(f'{origin}/tarifs-loc-v2.html?lang={lang}&country={country}')
@@ -127,6 +127,15 @@ def check(context, origin, lang, country, billing, site):
             switch(lang)
     mode = 'success'
     node('#continue').click()
+    if country != 'us':
+        node('#locSecureStatus.summary').wait_for()
+        sending = node('#locSecureStatus').inner_text()
+        switch(other)
+        assert node('#locSecureStatus').inner_text() != sending
+        assert len(held) == 1
+        held[0][0].fulfill(json=held[0][1])
+        node('#locSecureStatus a').wait_for()
+        switch(lang)
     node('#locSecureStatus a').wait_for()
     wa = message('#locSecureStatus a')
     assert 'TEST LOC' in wa and 'TEST note' in wa and node('#paiement').is_hidden()

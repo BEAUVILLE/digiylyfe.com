@@ -219,7 +219,7 @@ function renderStatus(){
  if(kind==='sending'){status.textContent=x.sending;return}
  if(kind==='error'){
    status.className='error';
-   status.textContent=state.message==='email'?x.need:state.message==='tier'?$('summaryTitle').textContent+' · '+selected('billing'):errors[l][state.message==='price'?0:1];
+   status.textContent=state.message==='email'?x.need:state.message==='tier'?$('chosenPrice').dataset.mismatch+' '+$('summaryTitle').textContent:errors[l][state.message==='price'?0:1];
    if(state.expected)status.textContent+=' · '+state.expected;
    return;
  }
