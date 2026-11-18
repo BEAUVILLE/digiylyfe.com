@@ -94,6 +94,48 @@ const confirmationCopy={
     "首次付款包含所选的商家资料或网站。确认预览稿后付款。"
   ]
 };
+const miamiConfirmation={
+  "fr": [
+    "Dossier LOC Miami prêt",
+    "Envoyez le dossier via WhatsApp pour validation. Réglez après acceptation du bon à tirer."
+  ],
+  "en": [
+    "Miami LOC application ready",
+    "Send the application via WhatsApp for review. Pay after approving the proof."
+  ],
+  "es": [
+    "Solicitud LOC Miami lista",
+    "Envíe la solicitud por WhatsApp para su revisión. Pague tras aprobar la prueba."
+  ],
+  "pt": [
+    "Pedido LOC Miami pronto",
+    "Envie o pedido pelo WhatsApp para análise. Pague após aprovar a prova."
+  ],
+  "it": [
+    "Domanda LOC Miami pronta",
+    "Invia la domanda via WhatsApp per la verifica. Paga dopo aver approvato la bozza."
+  ],
+  "de": [
+    "LOC-Antrag für Miami fertig",
+    "Senden Sie den Antrag per WhatsApp zur Prüfung. Zahlen Sie nach Freigabe des Entwurfs."
+  ],
+  "nl": [
+    "LOC-aanvraag voor Miami klaar",
+    "Stuur de aanvraag via WhatsApp ter beoordeling. Betaal na goedkeuring van het ontwerp."
+  ],
+  "ar": [
+    "طلب LOC لميامي جاهز",
+    "أرسل الطلب عبر واتساب للمراجعة. ادفع بعد اعتماد المسودة."
+  ],
+  "wo": [
+    "Dosiye LOC Miami bi pare na",
+    "Yónneel dosiye bi ci WhatsApp ngir ñu seet ko. Fay gannaaw nga nangu li ñu la yónnee."
+  ],
+  "zh": [
+    "迈阿密 LOC 申请已准备好",
+    "请通过 WhatsApp 发送申请供审核。确认预览稿后付款。"
+  ]
+};
 const M={
 zh:{"title":"确认预览稿前提交资料和 LOC 价格","lead":"请先提交申请。DIGIYLYFE 将准备 LOC 页面并发送预览稿。确认后再付款。","submit":"提交 LOC 申请 →","email":"电子邮件 *","need":"请填写电子邮件，以便付款后接收安全的业主登录链接。","sending":"正在安全提交 LOC 申请…","done":"✅ 已收到 LOC 申请","after":"DIGIYLYFE 将准备您的 LOC 页面并发送预览稿。确认预览稿并核实付款后，业主管理权限将启用，登录链接会发送到您的邮箱。","wa":"通过 WhatsApp 通知 DIGIYLYFE →"},
 wo:{title:'Sa xibaar ak njëgu LOC bala nga dëggal',lead:'Yónneel sa dosiye ba mu jëkk. DIGIYLYFE dina waajal sa LOC te yónnee la li nga war a dëggal. Fay gannaaw nga nangu.',submit:'YÓNNEE SAMA DOSIYE LOC →',email:'E-mail *',need:'Sa e-mail lañu soxla ngir yónnee la sa duggub boroom bu wóor gannaaw fay.',sending:'Ñu ngi yónnee sa dosiye LOC…',done:'✅ Yónnee nañu sa dosiye LOC.',after:'DIGIYLYFE dina waajal sa LOC. Dinañu la yónnee li nga war a dëggal bala ngay fay. Gannaaw nangu ak dëggal fay bi, dinañu ubbi sa duggub boroom te yónnee la lëkkalekaayu dugg bi ci e-mail.',wa:'YÉGAL DIGIYLYFE CI WHATSAPP →'},
@@ -147,7 +189,7 @@ form.addEventListener('submit',async function(e){
  if(n>40||(country==='us'&&n>20)){const q=$('quote');if(q){q.classList.remove('hidden');const h=$('quoteTitle');if(h&&country==='us')h.textContent='Miami pilot · 20+ units · quote';q.scrollIntoView({behavior:'smooth',block:'start'})}return}
  if(!email||!/^\S+@\S+\.\S+$/.test(email)){show(x.need,true);$('email')?.focus();return}
  const p=raw.split('|'),tier=tierFor(n),amount=Number(p[1]),billing=value('billing')||'annual';if(!tier||p[0]!==tier||p[2]!==country||p[3]!==billing||!Number.isFinite(amount)){show('Tarif LOC incohérent avec le nombre d’unités ou le rythme choisi.',true);return}
- btn.disabled=true;if(country==='us'){const body={country:'US',tier_label:tier,amount,units:n,business:value('business'),manager:value('manager'),phone:value('phone'),email,zone:value('zone'),lodging_type:value('type'),note:value('free'),lang:lang()};const adminText=['DIGIY LOC — MIAMI PILOT · DOSSIER AVANT BAT','Établissement : '+body.business,'Responsable : '+body.manager,'E-mail : '+body.email,'Téléphone : '+body.phone,'Zone : '+body.zone,'Unités : '+body.units,'Palier : '+body.tier_label,'Tarif annuel : $'+Number(body.amount).toLocaleString('en-US'),'Statut : BAT À PRÉPARER · AUCUN PAIEMENT ENCORE'].join('\n');show('<strong>✅ MIAMI PILOT · LOC FILE READY</strong><br><br>No payment now. Send this file to DIGIYLYFE on WhatsApp for human validation and proof approval.<div class="actions" style="margin-top:12px"><a class="cta" target="_blank" rel="noopener" href="https://wa.me/'+PHONE+'?text='+encodeURIComponent(adminText)+'">'+x.wa+'</a></div>',false);Array.from(form.querySelectorAll('input,select,textarea,button')).forEach(el=>el.disabled=true);statusBox().scrollIntoView({behavior:'smooth',block:'center'});return}show(x.sending,false);
+ btn.disabled=true;if(country==='us'){const body={country:'US',tier_label:tier,amount,units:n,business:value('business'),manager:value('manager'),phone:value('phone'),email,zone:value('zone'),lodging_type:value('type'),note:value('free'),lang:lang()};const adminText=['DIGIY LOC — MIAMI PILOT · DOSSIER AVANT BAT','Établissement : '+body.business,'Responsable : '+body.manager,'E-mail : '+body.email,'Téléphone : '+body.phone,'Zone : '+body.zone,'Unités : '+body.units,'Palier : '+body.tier_label,'Tarif annuel : $'+Number(body.amount).toLocaleString('en-US'),'Statut : BAT À PRÉPARER · AUCUN PAIEMENT ENCORE'].join('\n');const miami=miamiConfirmation[lang()];show('<strong>✅ '+miami[0]+'</strong><br><br>'+miami[1]+'<div class="actions" style="margin-top:12px"><a class="cta" target="_blank" rel="noopener" href="https://wa.me/'+PHONE+'?text='+encodeURIComponent(adminText)+'">'+x.wa+'</a></div>',false);Array.from(form.querySelectorAll('input,select,textarea,button')).forEach(el=>el.disabled=true);statusBox().scrollIntoView({behavior:'smooth',block:'center'});return}show(x.sending,false);
  try{
   const body={country:country==='sn'?'SN':'FR',tier_label:tier,billing,amount,units:n,business:value('business'),manager:value('manager'),phone:value('phone'),email,zone:value('zone'),lodging_type:value('type'),site_option:value('siteOption')||'none',note:value('free'),lang:lang()};
   const r=await fetch(U,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY},body:JSON.stringify(body)}),j=await r.json().catch(()=>({}));if(!r.ok||!j.ok){if(j.error==='price_mismatch')throw new Error('Le tarif LOC a été actualisé. Recharge la page puis sélectionne à nouveau ton palier'+(j.expected_amount?' · tarif attendu : '+j.expected_amount:'')+'.');throw new Error(j.error||'Envoi impossible')}
