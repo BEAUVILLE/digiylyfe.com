@@ -36,8 +36,9 @@ class InternationalQuality(unittest.TestCase):
         self.assertEqual(len(buttons), 10)
         self.assertIn('zh:{', LOC)
         self.assertIn("var T={", LOC)
-        self.assertIn("document.getElementById('zhLocNotice').hidden=l!=='zh'", LOC)
-        self.assertIn("document.getElementById('woLocNotice').hidden=l!=='wo'", LOC)
+        for lang in ("wo", "zh"):
+            for section in ("pain", "preview", "toolkit"):
+                self.assertIn(f'data-{section}-lang="{lang}"', LOC)
 
     def test_france_master_displays_annual_and_monthly_and_protection(self):
         price = "currency:'450 €/an · ou 45 €/mois (fiche 250 € séparée)'"
