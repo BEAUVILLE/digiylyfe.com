@@ -39,7 +39,7 @@ th,td{padding:13px 12px;text-align:left;border-bottom:1px solid #ffffff18;vertic
 <button class="lang" data-l="fr">FR</button><button class="lang" data-l="en">EN</button><button class="lang" data-l="es">ES</button><button class="lang" data-l="pt">PT</button><button class="lang" data-l="it">IT</button><button class="lang" data-l="de">DE</button><button class="lang" data-l="nl">NL</button><button class="lang" data-l="ar">AR</button><button class="lang" data-l="wo" lang="wo">WO</button><button class="lang" data-l="zh" lang="zh-CN">中文</button>
 </nav>
 
-<p id="woLocNotice" lang="fr" hidden style="font-size:12px;padding:10px 13px;border:1px solid #f6c45388;border-radius:14px">Wolof V1 : les libellés et le formulaire sont traduits. Les tableaux détaillés et les conditions financières restent en français pour éviter toute erreur de paiement. Montants inchangés.</p>
+<p id="woLocNotice" lang="wo" hidden style="font-size:12px;padding:10px 13px;border:1px solid #f6c45388;border-radius:14px">Tablo njëg yi ak formileer bi am nañu wolof. Yenn leeral ci sart yi ak anam wi ñuy faye dese nañu ci farañse.</p>
 <p id="zhLocNotice" lang="zh-CN" hidden style="font-size:12px;padding:10px 13px;border:1px solid #f6c45388;border-radius:14px">中文界面：主要表单和步骤已翻译。详细财务表格及付款条件部分仍以法语显示，请核对价格；金额不变。</p>
 <section class="hero">
 <span class="ey">DIGIY LOC · 0 % COMMISSION</span>
@@ -209,7 +209,7 @@ function annualAmount(t,c){return c==='sn'?t.snAnnual:c==='eu'?t.euAnnual:t.usAn
 function expectedTier(n,c){if(c==='us'&&n>20)return null;for(var i=0;i<tiers.length;i++)if(n>=tiers[i].min&&n<=tiers[i].max)return tiers[i];return null}
 function currentLang(){return document.documentElement.lang||'fr'}
 function annualText(a,c,x){return money(a,c)+' / '+x.annual+' · '+x.single}
-function renderTable(){
+function renderTable(lang){
  var body=document.getElementById('tiersBody');body.innerHTML='';
  tiers.forEach(function(t){
    var snRef12=t.snRef*12,euRef12=t.euRef*12,snSave=snRef12-t.snAnnual,euSave=euRef12-t.euAnnual;
@@ -223,6 +223,14 @@ function renderTable(){
    body.appendChild(tr);
  });
  var tr=document.createElement('tr');tr.innerHTML='<td>+40</td><td>SUR DEVIS</td><td>SUR DEVIS</td><td>SUR DEVIS</td><td>SUR DEVIS</td><td>SUR DEVIS</td>';body.appendChild(tr);
+ if(lang==='wo'){
+   const phrases=[["/ mois · mensuel libre · saisonnier possible","/ weer · fay weer bu nekk · mën nga fay ci jamono liggéey"],["Fiche professionnelle au démarrage :","Fiche liggéey ci ndoorte li :"],["1re adhésion mensuelle :","Fayug weer bu njëkk :"],["remise annuelle 15 %","wàññi 15 % ci at mi"],["12 mois couverts · fiche professionnelle :","12 weer · fiche liggéey :"],["1re adhésion annuelle :","Fayug at bu njëkk :"],[" / year · 0% DIGIYLYFE commission"," / at · 0 % komisioŋ DIGIYLYFE"],["SUR DEVIS","LAJ NJËG"]];
+   const walker=document.createTreeWalker(body,NodeFilter.SHOW_TEXT);
+   while(walker.nextNode()){
+     const node=walker.currentNode;
+     for(const [fr,wo] of phrases)node.nodeValue=node.nodeValue.replace(fr,wo);
+   }
+ }
 }
 function chosen(){var v=document.getElementById('chosenPrice').value;if(!v)return null;var p=v.split('|');return{label:p[0],amount:Number(p[1]),country:p[2],billing:p[3]||'annual'}}
 function billingMode(){var e=document.getElementById('billing');return e?e.value:'annual'}
@@ -230,7 +238,7 @@ function selectedAmount(t,c){return billingMode()==='monthly'?refMonthly(t,c):an
 function priceOptions(){
  var c=document.getElementById('country').value,sel=document.getElementById('chosenPrice'),x=T[currentLang()]||T.fr,old=sel.value,b=billingMode();
  sel.innerHTML='';var first=document.createElement('option');first.value='';first.textContent=x.priceFirst;sel.appendChild(first);
- tiers.forEach(function(t){var a=selectedAmount(t,c);if(a==null)return;var o=document.createElement('option');o.value=t.label+'|'+a+'|'+c+'|'+b;o.textContent=t.label+' · '+money(a,c)+(b==='monthly'?' / mois':' / '+x.annual+' · '+x.single+' · -15 %');sel.appendChild(o)});
+ tiers.forEach(function(t){var a=selectedAmount(t,c);if(a==null)return;var o=document.createElement('option');o.value=t.label+'|'+a+'|'+c+'|'+b;o.textContent=t.label+' · '+money(a,c)+(b==='monthly'?(currentLang()==='wo'?' / weer':' / mois'):' / '+x.annual+' · '+x.single+' · -15 %');sel.appendChild(o)});
  if([].slice.call(sel.options).some(function(o){return o.value===old}))sel.value=old;
 }
 function updateExpected(){
@@ -254,6 +262,24 @@ function setLang(l){
  var map={title:'title',lead:'lead',offerTitle:'offerTitle',offerText:'offerText',formTitle:'formTitle',formLead:'formLead',lBusiness:'business',lManager:'manager',lPhone:'phone',lEmail:'email',lZone:'zone',lCountry:'country',lUnits:'units',lType:'type',lBilling:'billingLabel',billingHelp:'billingHelp',lChosenPrice:'price',priceHelp:'priceHelp',lFree:'free',continue:'continue',payTitle:'payTitle',payLead:'payLead',chosenLabel:'chosen',afterPayTitle:'afterTitle',afterPayText:'after',paidWa:'paid',paidSms:'sms',quoteTitle:'quoteTitle',quoteText:'quoteText',quoteWa:'quote',back:'back'};
  Object.keys(map).forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=x[map[id]]});var bo=document.getElementById('billing');if(bo&&bo.options.length>=2){bo.options[0].textContent=x.billingMonthly;bo.options[1].textContent=x.billingAnnual;}
  document.querySelectorAll('.lang').forEach(function(b){b.classList.toggle('on',b.dataset.l===l)});try{localStorage.setItem('digiy-lang',l)}catch(_){}priceOptions();updateExpected();
+ const wolof=l==='wo';
+ const locHeadings={
+   base:['21 000 FCFA / mois · 75 € / mois','21 000 FCFA / weer · 75 € / weer'],
+   baseNote:['DÈS 1 UNITÉ · MENSUEL LIBRE OU ANNUEL -15 % · 0 % COMMISSION','DALE KO CI 1 DALALUKAAY · WEER WU NEKK WALLA AT MI −15 % · 0 % KOMISIOŊ'],
+   s1:['1 · PALIERS','1 · TOLLUWAAY YI'],
+   s2:['2 · RYTHME + TARIF','2 · ANAMU FAY AK NJËG'],
+   s3:['3 · RÈGLEMENT','3 · FAY'],
+   s4:['4 · PREUVE / DOSSIER','4 · SEEDU FAY / DOSIYE']
+ };
+ Object.keys(locHeadings).forEach(function(id){
+   document.getElementById(id).textContent=locHeadings[id][wolof?1:0];
+ });
+ document.getElementById('tiersTitle').textContent=wolof?'DIGIY LOC · njëg yi ci ay tolluwaay':'Paliers DIGIY LOC';
+ document.querySelectorAll('.tablewrap thead th').forEach(function(th,index){
+   th.textContent=(wolof?["DALALUKAAY YI / LIM BI","SENEGAAL · WEER","SENEGAAL · AT −15 %","EUROPE · WEER","EUROPE · AT −15 %","USA · MIAMI · AT"]:["HÉBERGEMENTS / UNITÉS","SÉNÉGAL · MENSUEL","SÉNÉGAL · ANNUEL -15 %","EUROPE · MENSUEL","EUROPE · ANNUEL -15 %","USA · MIAMI PILOT · ANNUEL"])[index];
+ });
+ document.getElementById('note').innerHTML=wolof?"💚 Senegaal : 1 dalalukaay 21 000 FCFA / weer, 2–3 dalalukaay 28 000 FCFA / weer. Mën nga fay weer bu nekk walla fay at mi ak wàññiku 15 %. Boo liggéeye ci jamono rekk, mën nga fay weer yi nga ubbi. Ci fay bu njëkk, yokkal njëgu fiche liggéey bi: 100 000 FCFA ci Senegaal walla 250 € ci Europe. Benn yoon rekk ngay fay fiche bi. Jokkoo ak fay ci seen biir · 0 % komisioŋ DIGIYLYFE.":"💚 Sénégal : palier d’entrée spécial 1 unité à 21 000 FCFA / mois, puis 2–3 unités à 28 000 FCFA / mois. Deux rythmes : mensuel libre pour préserver votre trésorerie · annuel avec remise de 15 %. Les saisonniers peuvent cotiser pendant les mois d’ouverture et mettre LOC en sommeil hors saison. <strong>Pour chaque palier</strong>, la 1re adhésion mensuelle = mensualité du palier + fiche professionnelle obligatoire (100 000 FCFA au Sénégal ou 250 € en Europe). La fiche n’est ajoutée qu’au premier règlement. Réservation directe · paiement direct · 0 % commission DIGIYLYFE.<br><strong>GRILLE LOC MENSUEL + ANNUEL · VERSION 24/09/2026</strong>";
+ renderTable(l);
 }
 document.querySelectorAll('.lang').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l)})});
 document.getElementById('country').addEventListener('change',function(){priceOptions();updateExpected();document.getElementById('paiement').classList.add('hidden')});
@@ -270,10 +296,10 @@ document.getElementById('locForm').addEventListener('submit',function(e){
  document.getElementById('paySn').classList.toggle('hidden',c!=='sn');document.getElementById('payEu').classList.toggle('hidden',c!=='eu');
  var msg=dossier(t,c,cp.amount,b==='monthly'?'RÈGLEMENT MENSUEL EFFECTUÉ — PREUVE À JOINDRE':'RÈGLEMENT ANNUEL EFFECTUÉ — PREUVE À JOINDRE');document.getElementById('paidWa').href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg);document.getElementById('paidSms').href='sms:+'+PHONE+'?body='+encodeURIComponent(msg);document.getElementById('paiement').classList.remove('hidden');document.getElementById('paiement').scrollIntoView({behavior:'smooth',block:'start'});
 });
-renderTable();var init=(new URLSearchParams(location.search).get('lang')||'').slice(0,2).toLowerCase();try{if(!T[init]){var s=(localStorage.getItem('digiy-lang')||'').slice(0,2);if(T[s])init=s}}catch(_){}if(!T[init])init='fr';setLang(init);
+var init=(new URLSearchParams(location.search).get('lang')||'').slice(0,2).toLowerCase();try{if(!T[init]){var s=(localStorage.getItem('digiy-lang')||'').slice(0,2);if(T[s])init=s}}catch(_){}if(!T[init])init='fr';setLang(init);
 })();
 </script>
-<script src="/assets/digiy-loc-secure-flow-20260911.js?v=20260926-loc-v2-contract-v1"></script>
+<script src="/assets/digiy-loc-secure-flow-20260911.js?v=20261118-loc-wo"></script>
 <script src="/assets/digiy-free-card-entry-v1.js?v=20260913-v1" defer></script>
 </body>
 </html>

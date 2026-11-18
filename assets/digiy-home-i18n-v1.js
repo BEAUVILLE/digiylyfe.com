@@ -213,6 +213,11 @@
           history.replaceState(history.state,'',url.pathname+url.search+url.hash);
         }
       }catch(error){}
+      document.querySelectorAll('a[href^="/tarifs-loc-v2.html"]').forEach(function(link){
+        var target=new URL(link.href);
+        target.searchParams.set('lang',lang);
+        link.href=target.pathname+target.search+target.hash;
+      });
       if(window.digiyRenderFavoris){try{window.digiyRenderFavoris();}catch(e){}}
     }
 
