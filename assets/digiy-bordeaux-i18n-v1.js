@@ -101,19 +101,73 @@
     var l=lang(),x=flow[l];
     if(driverMode()){
       var dc=driverCopy(l);
-      host.innerHTML='<h2>'+dc.heading+'</h2><p>'+dc.lead+'</p><div class="digiyBordeauxSteps"><article class="digiyBordeauxStep"><b>'+dc.price+'</b><strong>'+dc.included+'</strong><small>0 % commission</small></article><article class="digiyBordeauxStep"><b>1</b><strong>'+dc.cta+'</strong><small>'+dc.steps+'</small></article></div><a class="btn primary" href="'+driverBordeauxJoin(l)+'">'+dc.cta+'</a>';
+      host.innerHTML='<h2>'+dc.heading+'</h2><p>'+dc.lead+'</p><div class="digiyBordeauxSteps"><article class="digiyBordeauxStep"><b>'+dc.price+'</b><strong>'+dc.included+'</strong><small>'+({wo:'0 % komisioŋ',zh:'零佣金'}[l]||'0 % commission')+'</small></article><article class="digiyBordeauxStep"><b>1</b><strong>'+dc.cta+'</strong><small>'+dc.steps+'</small></article></div><a class="btn primary" href="'+driverBordeauxJoin(l)+'">'+dc.cta+'</a>';
       return;
     }
     host.innerHTML='<h2>'+x[0]+'</h2><p>'+x[1]+'</p><div class="digiyBordeauxSteps"><article class="digiyBordeauxStep"><b>20 €</b><strong>'+x[2]+'</strong><small>'+x[3]+'</small></article><article class="digiyBordeauxStep"><b>'+creation[l]+'</b><strong>'+x[4]+'</strong><small>'+x[5]+'</small></article><article class="digiyBordeauxStep"><b>'+prices[l]+'</b><strong>'+x[6]+'</strong><small>'+x[7]+'</small></article></div>'+totalHtml(l)+'<a class="btn primary" href="'+prepareHref(l)+'">'+x[8]+'</a>';
   }
   var xCard={"fr": "Carte DIGIY seule : 20 € en paiement unique.", "en": "Standalone DIGIY card: €20 one-time payment.", "es": "Tarjeta DIGIY sola: 20 € en pago único.", "pt": "Cartão DIGIY avulso: 20 € em pagamento único.", "it": "Carta DIGIY singola: 20 € una tantum.", "de": "Einzelne DIGIY-Karte: einmalig 20 €.", "nl": "Losse DIGIY-kaart: eenmalig €20.", "ar": "بطاقة DIGIY منفصلة: 20 € دفعة واحدة."};
+
+  if(isBordeauxPage){
+    var pageCopy={
+  "wo": [
+    "700 € · at mu njëkk",
+    "TAMBALEE CI 250 €",
+    "Fiche liggéey dale ko ci 250 € ak adhésion DIGIY PRO",
+    "Kart DIGIY kese: 20 € benn yoon.",
+    "NJËGU AT MU NJËKK: DALE KO CI 700 €",
+    "250 € lu néew ngir defar fiche bi ak 450 € ngir bokk ci DIGIY PRO. Dale ko ci at mu ñaareel: 450 €/at, PREMIUM / EXTRA ak sarwiis yu ñu yokk bokkuñu ci.",
+    "WAAJAL SAMA FICHE LIGGÉEY →",
+    "Kart DIGIY day ubbi réseau bi. Fiche bi mooy ubbi sa espace PRO.",
+    "Kart DIGIY",
+    "Sa tur, sa liggéey, sa gox ak sa jokkoo jub.",
+    "Fiche liggéey",
+    "Defar ak méngale sa fiche ak sa liggéey.",
+    "DIGIY PRO / at",
+    "Duggub boroom bu wóor, jumtukaayi liggéey, jokkoo jub ak 0 % komisioŋ. Ñaari weer ñu may la ci adhésion bu njëkk.",
+    "45 € / WEER",
+    "KART QR, FICHE DAWALKAT AK LOGISIEL BOKK NAÑU",
+    "45 € ci weer wi. Kart QR, fiche dawalkat ak logisiel bokk nañu. Fiche bi amul njëgu defar.",
+    "Bindal xibaari DRIVER, yónnee WhatsApp boo ko bëggee, te dëggal kart bi ak fiche bi ñu defar ak sunuy Masters.",
+    "BIND XIBAARI DRIVER →"
+  ],
+  "zh": [
+    "700 欧元 · 首年",
+    "250 欧元起",
+    "商家资料制作 250 欧元起，另加 DIGIY PRO 会员费",
+    "单独购买 DIGIY 名片：一次性支付 20 欧元。",
+    "首年合计 700 欧元起",
+    "商家资料制作至少 250 欧元，DIGIY PRO 会员费 450 欧元。第二年起每年 450 欧元，另选高级方案、增强方案及附加服务另计。",
+    "准备我的商家资料 →",
+    "DIGIY 名片连接网络。启用商家资料即可开启 DIGIY PRO。",
+    "DIGIY 名片",
+    "展示身份、业务、所在街区和直接联系方式。",
+    "商家资料",
+    "制作并定制您的商家资料。",
+    "DIGIY PRO 年费",
+    "业主安全登录、专业工具、直接联系和零佣金。首次加入赠送两个月。",
+    "45 欧元／月",
+    "含二维码名片、司机资料及软件",
+    "每月 45 欧元，包含二维码名片、司机资料和软件，免收资料制作费。",
+    "填写司机资料，自行发送 WhatsApp 消息，再确认我们与 Masters 制作的名片和资料。",
+    "填写司机资料 →"
+  ]
+};
+    Object.keys(pageCopy).forEach(function(l){
+      var c=pageCopy[l];
+      prices[l]=c[0];creation[l]=c[1];xCard[l]=c[3];
+      total[l]=[c[4],c[5]];finalCta[l]=c[6];demoAnnualLabel[l]=c[5];
+      flow[l]=[c[3],c[7],c[8],c[9],c[10],c[11],c[12],c[13],c[6]];
+      DRIVER_BORDEAUX[l]={price:c[14],included:c[15],heading:'DIGIY DRIVER · BORDEAUX',lead:c[16],steps:c[17],cta:c[18],total:c[14]};
+    });
+  }
   function patchDom(){
     patchAnnualPricing();
     var l=lang(),driver=driverMode(),dc=driverCopy(l);
     if(isBordeauxPage){
       var hp=document.getElementById('heroPrice');if(hp)hp.textContent=driver?dc.price:prices[l];
       var pt=document.getElementById('priceTop');if(pt)pt.textContent=driver?dc.heading:'DIGIY PRO · BORDEAUX';
-      var pl=document.getElementById('priceLead');if(pl)pl.textContent=driver?dc.included:(l==='fr'?'Fiche professionnelle à partir de 250 € + adhésion DIGIY PRO':'Professional profile from €250 + DIGIY PRO membership');
+      var pl=document.getElementById('priceLead');if(pl)pl.textContent=driver?dc.included:(isBordeauxPage&&pageCopy?.[l]?pageCopy[l][2]:l==='fr'?'Fiche professionnelle à partir de 250 € + adhésion DIGIY PRO':'Professional profile from €250 + DIGIY PRO membership');
       var fb=document.getElementById('finalBtn');if(fb){fb.textContent=driver?dc.cta:finalCta[l];fb.href=driver?driverBordeauxJoin(l):prepareHref(l);}
       var jb=document.getElementById('joinBtn');if(jb)jb.href=driver?driverBordeauxJoin(l):prepareHref(l);
       var md=document.querySelector('meta[name="description"]');if(md)md.content=driver?(dc.heading+' · '+dc.included):('DIGIY BORDEAUX · '+xCard[l]+' · '+demoAnnualLabel[l]);
