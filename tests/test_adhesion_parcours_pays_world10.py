@@ -70,6 +70,7 @@ class ParcoursTarifsPaysWorld10(unittest.TestCase):
         self.assertIn("'/preparer-ma-carte.html?plan=adherent-19900&country='+countrySlug+'&lang='+lang()", TARIFFS)
         self.assertIn("cc.href='/preparer-ma-carte.html?product=carnet-pro&country=sn&lang='+lang()", TARIFFS)
         self.assertIn("u.searchParams.set('lang',lang())", TARIFFS)
+        self.assertIn("u.searchParams.set('country',countrySlug);u.searchParams.set('lang',lang())", TARIFFS)
         self.assertIn("DRIVER_FR_T.wo=", TARIFFS)
         self.assertIn("DRIVER_FR_T.zh=", TARIFFS)
         self.assertIn("wo:'WAAJAL SAMA FICHE", TARIFFS)
