@@ -14,6 +14,8 @@ const COPY={
   ar:{title:'أسعارك الإرشادية · اختياري',lead:'هل تريد عرض بعض الأسعار على بطاقتك؟',toggle:'أرغب في عرض أسعاري',label:'الخدمة / العرض',price:'السعر',example:'مثال: قص الشعر، إصلاح، جلسة تصوير، Saly → AIBD',note:'ستظهر هذه الأسعار باعتبارها أسعارك المهنية الخاصة. ويمكنك طلب تعديلها من DIGIYLYFE.',partial:'أكمل الخدمة أو العرض والسعر لكل تعرفة تم إدخالها.'}
 };
 
+/* WORLD10 · indications de prix, présentation seulement. */
+Object.assign(COPY,{"wo":{"title":"Say njëg yu nga joxe · su nga bëggee","lead":"Ndax da nga bëgg wone ay njëg ci sa kart?","toggle":"Damaa bëgg wone sama njëg yi","label":"Sarwiis / prestation","price":"Njëg","example":"Misaal: defar kawar, dépannage, nataal, Saly → AIBD","note":"Ñu ngi wone njëg yii ni say njëg yu profesioneel. Mën nga laaj DIGIYLYFE ñu soppi leen.","partial":"Bindal turu sarwiis bi ak njëg bi ngir bépp ligne bu nga bind."},"zh":{"title":"您的参考价格 · 选填","lead":"是否希望在数字名片上展示部分服务价格？","toggle":"我希望展示价格","label":"服务 / 项目","price":"价格","example":"例如：理发、维修、摄影、萨利 → AIBD","note":"这些价格将作为您自行申报的业务价格展示。需要修改时可联系 DIGIYLYFE。","partial":"每一项参考价格都需要填写服务名称及对应价格。"}});
 function lang(){
   const l=(document.documentElement.lang||localStorage.getItem('digiy_lang')||'fr').slice(0,2).toLowerCase();
   return COPY[l]?l:'fr';

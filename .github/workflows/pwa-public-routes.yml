@@ -20,10 +20,44 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  pull-requests: read
 jobs:
-  public-routes:
+  scope:
+    name: Déterminer la portée des contrôles
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    outputs:
+      full: ${{ steps.filter.outputs.full }}
+    steps:
+      - name: Analyser les fichiers de la PR
+        id: filter
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [ -z "$PR_NUMBER" ]; then
+            echo "full=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          changed="$(gh api --paginate "repos/$REPO/pulls/$PR_NUMBER/files?per_page=100" --jq '.[].filename')"
+          if printf '%s\n' "$changed" | grep -Eq '^(index\.html|assets/digiy-home-world10-v1\.js|assets/digiy-campus-interest-v2\.js|assets/digiy-home-membership-price-v1\.js|assets/digiy-maitre-favoris-v1\.js|assets/digiy-pwa-install\.js|assets/digiy-bouche-a-oreille-v1\.js|outils-gestion-demo\.html|demo-[^/]*-gestion\.html|tarifs-loc\.html|fiches/pap-piscine-saly\.html|tests/pwa/public-routes\.cjs|tests/pwa/vitrine-humaine\.cjs)$'; then
+            echo "full=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "full=false" >> "$GITHUB_OUTPUT"
+          fi
+  targeted-check:
+    name: Vérifications rapides · tarifs et dossier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parcours tarifs et dossiers, sans navigateur lourd
+        run: python3 -m unittest discover -s tests -p 'test_adhesion_parcours_pays_world10.py'
+  public-routes:
+    needs: scope
+    if: needs.scope.outputs.full == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
     strategy:
       matrix:
         browser: [chromium, webkit]

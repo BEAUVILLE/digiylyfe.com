@@ -13,7 +13,9 @@
         "it": "Francia",
         "de": "Frankreich",
         "nl": "Frankrijk",
-        "ar": "فرنسا"
+        "ar": "فرنسا",
+        "wo": "Faraas",
+        "zh": "法国"
       },
       "currency": {
         "code": "EUR",
@@ -24,6 +26,8 @@
       "default_language": "fr",
       "interface_languages": [
         "fr",
+        "wo",
+        "zh",
         "en",
         "es",
         "pt",
