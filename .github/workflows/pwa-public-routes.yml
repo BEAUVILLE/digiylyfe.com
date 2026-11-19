@@ -41,35 +41,7 @@ jobs:
             exit 0
           fi
           changed="$(gh api --paginate "repos/$REPO/pulls/$PR_NUMBER/files?per_page=100" --jq '.[].filename')"
-          if printf '%s\n' "$changed" | grep -Eq '^(index\.html|assets/digiy-home-world10-v1\.js|assets/digiy-campus-interest-v2\.js|assets/digiy-home-membership-price-v1\.js|assets/digiy-maitre-favoris-v1\.js|assets/digiy-pwa-install\.js|assets/digiy-bouche-a-oreille-v1\.js|outils-gestion-demo\.html|demo-[^/]*-gestion\.html|tarifs-loc\.html|fiches/pap-piscine-saly\.html|tests/pwa/public-routes\.cjs|tests/pwa/vitrine-humaine\.cjs)    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    strategy:
-      matrix:
-        browser: [chromium, webkit]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - run: npm install --prefix /tmp/digiy-route-tests playwright@1.62.1
-      - run: /tmp/digiy-route-tests/node_modules/.bin/playwright install --with-deps ${{ matrix.browser }}
-      - run: node tests/pwa/public-routes.cjs
-        env:
-          NODE_PATH: /tmp/digiy-route-tests/node_modules
-          PWA_BROWSER: ${{ matrix.browser }}
-      - run: python3 -m unittest discover -s tests -p 'test_visibilite*.py'
-      - name: Vitrine humaine · mobile et dix parcours
-        run: node tests/pwa/vitrine-humaine.cjs
-        env:
-          NODE_PATH: /tmp/digiy-route-tests/node_modules
-          PWA_BROWSER: ${{ matrix.browser }}
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: vitrine-humaine-${{ matrix.browser }}
-          path: artifacts/vitrine-humaine/
-          if-no-files-found: ignore
-; then
+          if printf '%s\n' "$changed" | grep -Eq '^(index\.html|assets/digiy-home-world10-v1\.js|assets/digiy-campus-interest-v2\.js|assets/digiy-home-membership-price-v1\.js|assets/digiy-maitre-favoris-v1\.js|assets/digiy-pwa-install\.js|assets/digiy-bouche-a-oreille-v1\.js|outils-gestion-demo\.html|demo-[^/]*-gestion\.html|tarifs-loc\.html|fiches/pap-piscine-saly\.html|tests/pwa/public-routes\.cjs|tests/pwa/vitrine-humaine\.cjs)$'; then
             echo "full=true" >> "$GITHUB_OUTPUT"
           else
             echo "full=false" >> "$GITHUB_OUTPUT"
@@ -80,8 +52,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Parcours tarifs et dossiers, sans navigateur lourd
-        run: |
-          python3 -m unittest discover -s tests -p 'test_adhesion_parcours_pays_world10.py'
+        run: python3 -m unittest discover -s tests -p 'test_adhesion_parcours_pays_world10.py'
   public-routes:
     needs: scope
     if: needs.scope.outputs.full == 'true'
