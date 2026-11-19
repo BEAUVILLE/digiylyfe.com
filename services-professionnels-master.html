@@ -9,11 +9,19 @@
 <meta name="description" content="Services professionnels DIGIYLYFE par territoire : avocat, notaire, comptable, architecte, contact direct et 0 % commission.">
 <link rel="canonical" href="https://digiylyfe.com/services-professionnels-master.html">
 <link rel="stylesheet" href="/assets/digiy-master-ui-v1.css?v=20260830-pro-services-v1">
+<style>
+body[data-digiy-module="professional"] .digiyMasterLangs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0 14px}
+body[data-digiy-module="professional"] .digiyMasterLangs a{display:inline-flex;align-items:center;justify-content:center;min-width:42px;min-height:42px;padding:6px 10px;border:1px solid rgba(246,196,83,.55);border-radius:999px;text-decoration:none;color:#fffaf0;background:rgba(255,255,255,.08);font-weight:900;font-size:12px}
+body[data-digiy-module="professional"] .digiyMasterLangs a.active{background:linear-gradient(135deg,#f6c453,#22c55e);color:#06140f}
+body[data-digiy-module="professional"] .digiyMasterLangs a:focus-visible{outline:3px solid #5eead4;outline-offset:2px}
+@media(max-width:430px){body[data-digiy-module="professional"] .digiyMasterLangs{justify-content:center}}
+</style>
 </head>
 <body data-digiy-module="professional">
 <div id="digiy-master-root"></div>
 <script src="/assets/digiy-public-module-master-v2.js?v=20261111-price12000"></script>
-<script src="/assets/digiy-public-module-local-filter-v1.js?v=20260829-local-v1"></script>
+<script src="/assets/services-professionnels-world10.js?v=20261119-world10"></script>
+<script src="/assets/digiy-public-module-local-filter-v1.js?v=20261119-services-world10"></script>
 <script>
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js?v=20260830-master-ui-v9').catch(function(){})})}
 </script>
