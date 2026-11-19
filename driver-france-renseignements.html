@@ -29,53 +29,57 @@ textarea{min-height:88px;resize:vertical}.full{grid-column:1/-1}small,.muted{col
 button{display:block;width:100%;min-height:55px;border:0;border-radius:14px;background:linear-gradient(110deg,#36c885,#71f0bd);color:#06311c;font-size:17px;font-weight:900;cursor:pointer}
 button:focus{outline:3px solid var(--gold);outline-offset:3px}.note{text-align:center;margin:12px 0 0}
 .back{display:block;margin-top:18px;text-align:center;font-size:13px}
+.digiyDriverLangs{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:0 0 16px}.digiyDriverLangs button{display:inline-flex;width:auto;min-width:44px;min-height:38px;padding:8px 10px;border:1px solid #54785e;border-radius:999px;background:#143324;color:#fff9ea;font-size:12px;font-weight:800;cursor:pointer}.digiyDriverLangs button.selected{background:#f1c968;color:#082819;border-color:#f1c968}.digiyDriverLangs button:focus-visible{outline:2px solid #71f0bd;outline-offset:2px}html[dir="rtl"] .top,html[dir="rtl"] .grid,html[dir="rtl"] label{text-align:start}
 @media(max-width:610px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}
 </style>
 </head>
 <body>
 <main>
-<nav class="top"><a href="/tarifs-adherents-1.html?country=fr&amp;module=driver">← Tarifs DRIVER France</a><strong>DIGIYLYFE 🦅</strong></nav>
+<nav class="top"><a href="/tarifs-adherents-1.html?country=fr&amp;module=driver" data-digiy-i18n="navTariffs">← Tarifs DRIVER France</a><strong>DIGIYLYFE 🦅</strong></nav>
+<div class="digiyDriverLangs" role="group" aria-label="Languages · Langues">
+<button type="button" data-locale="fr" lang="fr">FR</button><button type="button" data-locale="wo" lang="wo">WO</button><button type="button" data-locale="zh" lang="zh-CN">中文</button><button type="button" data-locale="en" lang="en">EN</button><button type="button" data-locale="es" lang="es">ES</button><button type="button" data-locale="pt" lang="pt">PT</button><button type="button" data-locale="it" lang="it">IT</button><button type="button" data-locale="de" lang="de">DE</button><button type="button" data-locale="nl" lang="nl">NL</button><button type="button" data-locale="ar" lang="ar">AR</button>
+</div>
 <header>
-<p style="color:var(--gold);font-size:13px;font-weight:800;margin:0">🇫🇷 FRANCE · DIGIY DRIVER</p>
-<h1>Fiche de renseignements chauffeur</h1>
-<p class="lead">Complétez les informations de votre activité. Votre demande sera préparée pour WhatsApp et envoyée uniquement lorsque vous appuierez sur « Envoyer » dans WhatsApp. DIGIYLYFE vous recontacte après examen.</p>
+<p style="color:var(--gold);font-size:13px;font-weight:800;margin:0" data-digiy-i18n="eyebrow">🇫🇷 FRANCE · DIGIY DRIVER</p>
+<h1 data-digiy-i18n="title">Fiche de renseignements chauffeur</h1>
+<p class="lead" data-digiy-i18n="lead">Complétez les informations de votre activité. Votre demande sera préparée pour WhatsApp et envoyée uniquement lorsque vous appuierez sur « Envoyer » dans WhatsApp. DIGIYLYFE vous recontacte après examen.</p>
 </header>
-<div class="offer"><strong>45 € / mois</strong><p>Adhésion DRIVER France : carte de visite avec QR, fiche chauffeur personnalisée et logiciel métier inclus. <b>Aucun supplément de création de fiche. 0 % commission.</b></p></div>
+<div class="offer"><strong data-digiy-i18n="price">45 € / mois</strong><p><span data-digiy-i18n="offerStart">Adhésion DRIVER France : carte de visite avec QR, fiche chauffeur personnalisée et logiciel métier inclus.</span> <b data-digiy-i18n="offerBold">Aucun supplément de création de fiche. 0 % commission.</b></p></div>
 <form id="driverForm">
 <fieldset>
-<legend>1. Votre activité et vos coordonnées</legend>
+<legend data-digiy-i18n="s1">1. Votre activité et vos coordonnées</legend>
 <div class="grid">
-<label class="full">Nom professionnel ou société *<input name="nom" required maxlength="100" autocomplete="organization" placeholder="Ex. Pierre Martin Chauffeur"></label>
-<label>Téléphone professionnel *<input name="telephone" type="tel" required maxlength="32" autocomplete="tel" inputmode="tel" placeholder="+33 6 ..."></label>
-<label>WhatsApp professionnel *<input name="whatsapp" type="tel" required maxlength="32" inputmode="tel" placeholder="+33 6 ..."></label>
-<label class="full">Adresse e-mail pour l'accès propriétaire *<input name="email" type="email" required maxlength="140" autocomplete="email" placeholder="professionnel@exemple.fr"></label>
-<label>Ville de base en France *<input name="ville" required maxlength="100" placeholder="Ex. Sarlat ou Bordeaux"></label>
-<label>Zones desservies *<input name="zones" required maxlength="180" placeholder="Ex. Dordogne, Bordeaux, Aéroports"></label>
+<label class="full"><span data-digiy-i18n="name">Nom professionnel ou société *</span><input name="nom" required maxlength="100" autocomplete="organization" placeholder="Ex. Pierre Martin Chauffeur"></label>
+<label><span data-digiy-i18n="phone">Téléphone professionnel *</span><input name="telephone" type="tel" required maxlength="32" autocomplete="tel" inputmode="tel" placeholder="+33 6 ..."></label>
+<label><span data-digiy-i18n="whatsapp">WhatsApp professionnel *</span><input name="whatsapp" type="tel" required maxlength="32" inputmode="tel" placeholder="+33 6 ..."></label>
+<label class="full"><span data-digiy-i18n="email">Adresse e-mail pour l'accès propriétaire *</span><input name="email" type="email" required maxlength="140" autocomplete="email" placeholder="professionnel@exemple.fr"></label>
+<label><span data-digiy-i18n="city">Ville de base en France *</span><input name="ville" required maxlength="100" placeholder="Ex. Sarlat ou Bordeaux"></label>
+<label><span data-digiy-i18n="zones">Zones desservies *</span><input name="zones" required maxlength="180" placeholder="Ex. Dordogne, Bordeaux, Aéroports"></label>
 </div>
 </fieldset>
 <fieldset>
-<legend>2. Véhicule et prestations</legend>
+<legend data-digiy-i18n="s2">2. Véhicule et prestations</legend>
 <div class="grid">
-<label>Type de véhicule *<select name="vehicule" required><option value="">Choisir…</option><option>Voiture avec chauffeur</option><option>Van / VTC</option><option>Minibus</option><option>Bus</option><option>Autre véhicule avec chauffeur</option></select></label>
-<label>Nombre de passagers *<input name="places" type="number" min="1" max="80" required placeholder="Ex. 4"></label>
-<label>Modèle de véhicule (facultatif)<input name="modele" maxlength="100" placeholder="Marque et modèle"></label>
-<label>Bagages / confort (facultatif)<input name="confort" maxlength="140" placeholder="Ex. 3 valises, climatisation"></label>
-<label class="full">Services proposés *<textarea name="services" required maxlength="500" placeholder="Ex. Transfert gare et aéroport, excursions, mise à disposition..."></textarea></label>
-<label class="full">Langues parlées (facultatif)<input name="langues" maxlength="140" placeholder="Ex. Français, anglais, espagnol"></label>
-<label class="full">Tarifs indicatifs (facultatif)<textarea name="tarifs" maxlength="350" placeholder="Ex. Trajet aéroport : tarif à confirmer"></textarea></label>
-<label class="full">Remarques / besoins particuliers (facultatif)<textarea name="notes" maxlength="500" placeholder="Autres informations utiles à la fabrication de la fiche"></textarea></label>
+<label><span data-digiy-i18n="vehicle">Type de véhicule *</span><select name="vehicule" required><option value="">Choisir…</option><option value="Voiture avec chauffeur">Voiture avec chauffeur</option><option value="Van / VTC">Van / VTC</option><option value="Minibus">Minibus</option><option value="Bus">Bus</option><option value="Autre véhicule avec chauffeur">Autre véhicule avec chauffeur</option></select></label>
+<label><span data-digiy-i18n="passengers">Nombre de passagers *</span><input name="places" type="number" min="1" max="80" required placeholder="Ex. 4"></label>
+<label><span data-digiy-i18n="model">Modèle de véhicule (facultatif)</span><input name="modele" maxlength="100" placeholder="Marque et modèle"></label>
+<label><span data-digiy-i18n="comfort">Bagages / confort (facultatif)</span><input name="confort" maxlength="140" placeholder="Ex. 3 valises, climatisation"></label>
+<label class="full"><span data-digiy-i18n="services">Services proposés *</span><textarea name="services" required maxlength="500" placeholder="Ex. Transfert gare et aéroport, excursions, mise à disposition..."></textarea></label>
+<label class="full"><span data-digiy-i18n="languages">Langues parlées (facultatif)</span><input name="langues" maxlength="140" placeholder="Ex. Français, anglais, espagnol"></label>
+<label class="full"><span data-digiy-i18n="tariffs">Tarifs indicatifs (facultatif)</span><textarea name="tarifs" maxlength="350" placeholder="Ex. Trajet aéroport : tarif à confirmer"></textarea></label>
+<label class="full"><span data-digiy-i18n="notes">Remarques / besoins particuliers (facultatif)</span><textarea name="notes" maxlength="500" placeholder="Autres informations utiles à la fabrication de la fiche"></textarea></label>
 </div>
 </fieldset>
 <div class="steps">
-<strong>3. Photos et fabrication</strong>
-<p class="muted">Après l'envoi du texte sur WhatsApp, joignez dans la même conversation <b>une photo du chauffeur et une photo du véhicule</b> (et un logo si vous en avez un).</p>
-<p class="muted">DIGIYLYFE contrôle les renseignements, prépare la carte de visite et la fiche à partir du MASTER CARTE ADHÉRENT et du MASTER MAÎTRE DRIVER, puis vous soumet le résultat pour validation. Aucune publication automatique.</p>
+<strong data-digiy-i18n="s3">3. Photos et fabrication</strong>
+<p class="muted"><span data-digiy-i18n="photosBefore">Après l’envoi du texte sur WhatsApp, joignez dans la même conversation</span> <b data-digiy-i18n="photosBold">une photo du chauffeur et une photo du véhicule</b> <span data-digiy-i18n="photosAfter">(et un logo si vous en avez un).</span></p>
+<p class="muted" data-digiy-i18n="preparation">DIGIYLYFE contrôle les renseignements, prépare la carte de visite et la fiche à partir du MASTER CARTE ADHÉRENT et du MASTER MAÎTRE DRIVER, puis vous soumet le résultat pour validation. Aucune publication automatique.</p>
 </div>
-<label class="consent"><input name="consent" type="checkbox" required><span>Je demande à transmettre ces informations professionnelles à DIGIYLYFE via WhatsApp pour préparer mon dossier. J'ai compris qu'aucune adhésion ni publication n'est automatique. *</span></label>
-<button type="submit">📲 Préparer mon message WhatsApp →</button>
-<p class="note muted" id="result" role="status" aria-live="polite">Votre formulaire n'envoie aucune donnée automatiquement. L'envoi doit être confirmé dans WhatsApp.</p>
+<label class="consent"><input name="consent" type="checkbox" required><span data-digiy-i18n="consent">Je demande à transmettre ces informations professionnelles à DIGIYLYFE via WhatsApp pour préparer mon dossier. J’ai compris qu’aucune adhésion ni publication n’est automatique. *</span></label>
+<button type="submit" data-digiy-i18n="submit">📲 Préparer mon message WhatsApp →</button>
+<p class="note muted" id="result" role="status" aria-live="polite" data-digiy-i18n="result">Votre formulaire n’envoie aucune donnée automatiquement. L’envoi doit être confirmé dans WhatsApp.</p>
 </form>
-<a class="back" href="/tarifs-adherents-1.html?country=fr&amp;module=driver">← Retour à l'offre DRIVER France</a>
+<a class="back" href="/tarifs-adherents-1.html?country=fr&amp;module=driver" data-digiy-i18n="back">← Retour à l’offre DRIVER France</a>
 </main>
 <script>
 (function(){
@@ -129,10 +133,11 @@ form.addEventListener('submit',function(ev){
  'Aucun paiement ni adhésion validés par ce message.',
  'Référence : DRIVER-FR-RENSEIGNEMENTS-V1'
  ];
- result.textContent='WhatsApp va s’ouvrir avec votre fiche. Appuyez ensuite sur Envoyer et joignez vos photos dans la conversation.';
+ result.textContent=window.DIGIY_DRIVER_FI18N_MESSAGE?window.DIGIY_DRIVER_FI18N_MESSAGE():'WhatsApp va s’ouvrir avec votre fiche. Appuyez ensuite sur Envoyer et joignez vos photos dans la conversation.';
  window.location.assign('https://wa.me/'+recipient+'?text='+encodeURIComponent(rows.join('\n')));
 });
 })();
 </script>
+<script src="/assets/digiy-driver-france-world10.js?v=20261119"></script>
 </body>
 </html>
