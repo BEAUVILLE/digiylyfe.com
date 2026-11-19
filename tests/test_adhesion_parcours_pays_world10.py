@@ -85,5 +85,29 @@ class ParcoursTarifsPaysWorld10(unittest.TestCase):
         self.assertNotIn("fetch('https://", json.dumps(self.runtimes))
 
 
+    def test_professional_dossier_overlays_world10(self):
+        files = {
+            "M": "assets/digiy-prevalidation-flow-20260911.js",
+            "D": "assets/digiy-fiche-flow-20260911.js",
+            "COPY": "assets/digiy-indicative-tariffs-v1.js",
+        }
+        for dictionary, path in files.items():
+            with self.subTest(path=path):
+                js = (ROOT / path).read_text(encoding="utf-8")
+                self.assertIn('Object.assign(' + dictionary + ',{"wo":', js)
+                self.assertIn('"zh":', js)
+        prevalidation = (ROOT / files["M"]).read_text(encoding="utf-8")
+        self.assertIn("US_METHODS.wo=", prevalidation)
+        self.assertIn("US_METHODS.zh=", prevalidation)
+        guard = (ROOT / "assets/digiy-pro-form-guard-20260923.js").read_text(encoding="utf-8")
+        self.assertIn("const WORLD10_GUARD=", guard)
+        for lang in LANGS:
+            self.assertIn('"' + lang + '":', guard)
+        self.assertIn("translate('missing')", guard)
+        self.assertIn("el.closest('label')", guard)
+        # The CARNET PRO alternate product is not changed by this PR.
+        self.assertIn("if(!carnet)addon+=", WRAPPER)
+
+
 if __name__ == "__main__":
     unittest.main()
