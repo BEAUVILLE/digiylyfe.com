@@ -2,10 +2,10 @@
   "runtime":"DIGIYLYFE-DAKAR-ADHESION-V1",
   "countries":[{
     "id":"SN","slug":"senegal","status":"active",
-    "labels":{"fr":"Sénégal","en":"Senegal","es":"Senegal","pt":"Senegal","it":"Senegal","de":"Senegal","nl":"Senegal","ar":"السنغال"},
+    "labels":{"fr":"Sénégal","en":"Senegal","es":"Senegal","pt":"Senegal","it":"Senegal","de":"Senegal","nl":"Senegal","ar":"السنغال","wo":"Senegaal","zh":"塞内加尔"},
     "currency":{"code":"XOF","label":"FCFA"},
     "calling_code":"+221","timezone":"Africa/Dakar","default_language":"fr",
-    "interface_languages":["fr","en","es","pt","it","de","nl","ar"],
+    "interface_languages":["fr","wo","zh","en","es","pt","it","de","nl","ar"],
     "pricing":{
       "membership":{"adherent-19900":{"amount":12000,"label":"12 000 FCFA / mois","billing_period":"month","billing_months":1}},
       "services":{"fiche":{"starting_amount":100000,"label":"À partir de 100 000 FCFA"},"site_premium":{"starting_amount":250000,"label":"À partir de 250 000 FCFA"},"site_extra":{"starting_amount":450000,"label":"À partir de 450 000 FCFA"}}
