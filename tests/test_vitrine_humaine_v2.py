@@ -96,8 +96,15 @@ class HumanHomepage(unittest.TestCase):
 
     def test_core_blocks_and_menu_anchor_rescue(self):
         main_before_details = BODY.split('<details class="digiyVitrineDetails"', 1)[0]
-        # 5 historic editorial sections, plus the approved world and module entry sections.
-        self.assertEqual(main_before_details.count('<section '), 7)
+        # 5 historic sections, 2 direct entrances and the visible photo territory gallery.
+        self.assertEqual(main_before_details.count('<section '), 8)
+        self.assertEqual(main_before_details.count('id="territoires-detail"'), 1)
+        photo_gallery = main_before_details.split('id="territoires-detail"', 1)[1]
+        self.assertEqual(photo_gallery.count('class="territoryCard"'), 7)
+        for fav in ('territoire-petite-cote', 'territoire-dakar',
+                    'territoire-dordogne', 'territoire-bordeaux',
+                    'territoire-paris', 'territoire-miami', 'territoire-maroc'):
+            self.assertIn('data-fav-id="' + fav + '"', photo_gallery)
         self.assertEqual(main_before_details.count('id="pays-directs"'), 1)
         self.assertEqual(main_before_details.count('id="outils-directs"'), 1)
         self.assertEqual(BODY.count('id="territoires"'), 1)
