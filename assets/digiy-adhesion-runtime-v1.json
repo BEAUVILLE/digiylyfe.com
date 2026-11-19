@@ -24,7 +24,9 @@
         "it": "Senegal",
         "de": "Senegal",
         "nl": "Senegal",
-        "ar": "السنغال"
+        "ar": "السنغال",
+        "wo": "Senegaal",
+        "zh": "塞内加尔"
       },
       "currency": {
         "code": "XOF",
@@ -35,6 +37,8 @@
       "default_language": "fr",
       "interface_languages": [
         "fr",
+        "wo",
+        "zh",
         "en",
         "es",
         "pt",
@@ -162,7 +166,9 @@
         "it": "Francia",
         "de": "Frankreich",
         "nl": "Frankrijk",
-        "ar": "فرنسا"
+        "ar": "فرنسا",
+        "wo": "Faraas",
+        "zh": "法国"
       },
       "currency": {
         "code": "EUR",
@@ -173,6 +179,8 @@
       "default_language": "fr",
       "interface_languages": [
         "fr",
+        "wo",
+        "zh",
         "en",
         "es",
         "pt",
@@ -462,7 +470,9 @@
         "it": "Stati Uniti",
         "de": "Vereinigte Staaten",
         "nl": "Verenigde Staten",
-        "ar": "الولايات المتحدة"
+        "ar": "الولايات المتحدة",
+        "wo": "Etazuni",
+        "zh": "美国"
       },
       "currency": {
         "code": "USD",
@@ -475,6 +485,8 @@
         "en",
         "es",
         "fr",
+        "wo",
+        "zh",
         "pt",
         "it",
         "de",
@@ -531,7 +543,12 @@
             "above_20": "quote"
           }
         },
-        "services": {}
+        "services": {
+          "fiche": {
+            "starting_amount": 299,
+            "label": "$299"
+          }
+        }
       },
       "territories": [
         {
