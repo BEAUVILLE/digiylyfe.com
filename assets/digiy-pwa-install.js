@@ -21,11 +21,19 @@ if ('serviceWorker' in navigator) {
   var isIOS=/iPad|iPhone|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
   var isMobile=/Android|iPhone|iPad|iPod|Mobile/i.test(ua)||(navigator.maxTouchPoints>1&&/MacIntel/i.test(navigator.platform||''));
 
-  // Keep the desktop layout unchanged; make installation discoverable near the top on mobile.
+  // Mobile stays just below the language choices. Desktop displays the same
+  // existing installation control immediately after the official gold signature.
+  // Do not duplicate the banner or the installation workflow.
   if(isMobile){
     var languageStrip=document.querySelector('.languageStrip');
     if(languageStrip&&languageStrip.parentNode){
       languageStrip.parentNode.insertBefore(band,languageStrip.nextSibling);
+    }
+  }else{
+    var signature=document.querySelector('.digiyGoldSignature');
+    var desktopAnchor=signature||document.querySelector('.languageStrip');
+    if(desktopAnchor&&desktopAnchor.parentNode){
+      desktopAnchor.parentNode.insertBefore(band,desktopAnchor.nextSibling);
     }
   }
 
@@ -57,7 +65,7 @@ if ('serviceWorker' in navigator) {
   function text(i){
     var l=lang();
     if(!isMobile&&i===0)return DESKTOP[l][0];
-    if(!isMobile&&i===4)return DESKTOP[l][1];
+    if(!isMobile&&(i===1||i===4))return DESKTOP[l][1];
     if(!isMobile&&i===5)return DESKTOP[l][2];
     return COPY[l][i];
   }
