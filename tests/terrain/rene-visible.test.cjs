@@ -72,7 +72,7 @@ test('Existing active professionals are kept and duplicate René guest is not re
  const api={createClient(){return{from(table){
   const query={eq(){return this;},order(){return Promise.resolve({data:rows[table]||[],error:null});},then(resolve,reject){return Promise.resolve({data:rows[table]||[],error:null}).then(resolve,reject)}};
   return {select(){return query;}};
- }}}}};
+ }}}};
  const page=mount(api);
  await new Promise(resolve=>setImmediate(resolve));
  assert.equal(page.cards().length,1,'Real official record replaces duplicate guest');
