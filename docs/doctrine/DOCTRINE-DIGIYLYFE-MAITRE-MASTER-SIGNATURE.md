@@ -251,6 +251,111 @@ DIGIYLYFE signe.
 Préserver le jugement humain.  
 Garder le professionnel maître de son activité et de son contact.**
 
+
+## 12. Cohérence globale — deux regards, une seule constitution
+
+**Décision humaine validée le 21 novembre 2026.**
+
+La grandeur de DIGIYLYFE et la multiplication de ses portes PUBLIC et PRO ne doivent jamais faire perdre la base commune. Cette section précise la manière de travailler ; elle **complète** les règles du MAÎTRE et du MASTER, sans créer de nouveau MAÎTRE, de nouveau MASTER, de nouvelle base ni de nouvelle architecture.
+
+### 12.1. Deux regards, un cap
+
+Le fondateur porte la vision, le contexte terrain et la décision finale. L'assistance IA apporte l'analyse, la contradiction constructive, les rapprochements entre modules et la vérification technique. Chaque regard peut relever une erreur, y compris celle de l'autre.
+
+**La coopération n'est pas une délégation aveugle : l'humain garde la maîtrise, l'IA rend les écarts visibles.**
+
+L'absence de précipitation fait partie de la qualité du travail. Une PR verte n'est pas, à elle seule, une preuve de conformité de l'écosystème.
+
+### 12.2. Primauté de la chaîne existante
+
+Avant de créer, raccorder, corriger ou publier une présence professionnelle, vérifier la chaîne canonique déjà établie :
+
+```text
+MAÎTRE : VISION, RÈGLES ET INVARIANTS
+              ↓
+DOSSIER CENTRAL / SOURCE AUTORISÉE
+              ↓
+MASTER MÉTIER CHOISI ET CONTRÔLÉ
+              ↓
+CARTE / FICHE / SITE / QR / PRÉSENCE
+              ↓
+CONTRÔLE ET FINITION HUMAINE
+              ↓
+VALIDATION DU MAÎTRE
+              ↓
+PUBLICATION CONTRÔLÉE
+              ↓
+LECTURE PAR LES PORTES PUBLIC ET PRO AUTORISÉES
+```
+
+Cette représentation complète la séquence des sections 6 et 11 : elle n'en change ni les responsabilités ni les verrous de publication.
+
+Les modules BUILD, SERVICES TERRAIN, DRIVER, LOC, RESTO, BEAUTY, JOBS, MARKET/COMMERCE et les territoires sont des **portes ou capacités**, pas des autorités concurrentes de production ni des secondes sources d'identité.
+
+### 12.3. Une identité professionnelle, des portes multiples
+
+Pour chaque professionnel réel, conserver ou retrouver dans le dispositif existant :
+
+- une **identité de référence** et un identifiant ou rattachement traçable ;
+- un **métier principal et des activités associées** clairement distingués ;
+- un **statut de publication** justifié, distinct du statut d'adhésion, de paiement, d'invitation, de partenariat et de vérification ;
+- une **URL publique canonique**, des contacts exacts et, lorsqu'il existe, un QR stable ;
+- le **dossier/source autorisée** et la preuve de validation humaine.
+
+**Être « actif » ou « publié » en base ne prouve ni l'identité, ni le paiement, ni l'adhésion, ni la conformité professionnelle.** Un invité n'est pas présenté comme adhérent ; un module métier n'est pas présenté comme une personne ; une activité solaire n'est pas reclassée artificiellement en électricité.
+
+Plusieurs pages, tables ou modules peuvent afficher la même présence, **mais sans recréer un second professionnel, une seconde saisie fondatrice, un statut fictif ou une URL contradictoire**. Les projections publiques doivent réutiliser la référence autorisée. Les éventuels héritages techniques ne deviennent pas automatiquement des vérités métier.
+
+Aucune migration, aucune suppression et aucun changement de droits ne sont implicites dans cette doctrine.
+
+### 12.4. Devant une anomalie : retrouver la cause avant la rustine
+
+L'absence d'un artisan, un mauvais lien ou une catégorie erronée ne justifie pas, à lui seul, l'ajout manuel d'une fiche dans chaque module.
+
+**Ordre de diagnostic obligatoire :**
+
+1. **Lire le réel en lecture seule** : référent MAÎTRE/MASTER applicable, dossier, statut, source autorisée, fichier, tables et version effectivement déployée.
+2. **Comparer les deux faces** : PUBLIC (visibilité, recherche, métier, territoire, langues, QR, liens, mobile) et PRO (identité, propriété, autorisations, isolation des données).
+3. **Localiser la rupture** : production MASTER, validation, source, projection, catégorie, cache, route, autorisation ou déploiement.
+4. **Évaluer l'impact transversal** : autres métiers, pays, langues, invités/partenaires, fiches existantes et parcours de retour.
+5. **Proposer la correction minimale à la bonne source** : ne pas multiplier les listes parallèles ou inventer un nouvel outil lorsque le rail officiel existe.
+6. **Prouver la non-régression** : tests techniques **et** vérification réelle des parcours, dont le mobile et les liens, avant de déclarer la mission terminée.
+
+Si la source de vérité, l'identité ou le statut sont ambigus, **ne pas publier par supposition** : signaler l'incertitude, isoler la projection contestée si nécessaire, et solliciter une validation humaine. Préserver les données existantes plutôt que les effacer à l'aveugle.
+
+### 12.5. Méthode de modification et de fusion
+
+```text
+LECTURE SEULE
+    ↓
+DIAGNOSTIC ET RÉFÉRENCE À LA DOCTRINE
+    ↓
+PROPOSITION CIBLÉE + IMPACT GLOBAL
+    ↓
+TEST SUR COPIE / BRANCHE
+    ↓
+CONTRÔLES CI + PARCOURS PUBLIC/PRO
+    ↓
+PR EXPLICITE ET REVUE HUMAINE
+    ↓
+FEU VERT DU FONDATEUR AVANT FUSION STRUCTURELLE
+    ↓
+FUSION AUTORISÉE + VÉRIFICATION DU DÉPLOIEMENT
+```
+
+Le **FREEZE** existant demeure : corriger un bug réel, une rupture de parcours ou une contradiction doctrinale ne donne pas permission de refondre le produit, d'ajouter des options payantes, de toucher aux données privées ou de modifier plusieurs modules hors périmètre.
+
+Signaler précisément ce qui a été **observé**, **modifié**, **testé**, **fusionné**, **déployé** et **vérifié par un humain**. Ne jamais confondre ces états.
+
+### 12.6. Loi de cohérence
+
+> **Un professionnel. Une identité de référence. Un dossier/source autorisée. Une validation humaine. Plusieurs portes d'accès. Zéro contradiction.**
+
+> **Avant de corriger un module, contrôler son alignement avec le MAÎTRE, le MASTER et le reste de l'écosystème.**
+
+La finalité n'est pas de construire davantage, mais de faire fonctionner ensemble ce qui a déjà été construit, sans perdre la maîtrise humaine.
+
+
 ---
 
 Document canonique DIGIYLYFE — doctrine de production MAÎTRE / MASTER / finition humaine / signature DIGIYLYFE.
