@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>DIGIY · Gestion de mon inscription gratuite</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
+<style>
+:root{color-scheme:light;--green:#0a5534;--sand:#fff4d9}*{box-sizing:border-box}
+body{background:#f1eee7;color:#172c22;margin:0;font:16px system-ui,sans-serif}
+main{width:min(100% - 24px,570px);margin:24px auto;background:white;border:1px solid #d6d7d1;border-radius:20px;padding:20px}
+h1{font-size:24px;margin:12px 0}p{line-height:1.5}label{display:block;font-weight:750;margin:12px 0 5px}
+input,select{width:100%;border:1px solid #85938c;border-radius:10px;padding:12px;font:inherit;background:white;color:#172c22}
+button,.link{display:inline-block;margin:12px 5px 2px 0;border:0;border-radius:12px;padding:12px 16px;background:var(--green);color:white;text-decoration:none;font:inherit;font-weight:750;cursor:pointer}
+button:disabled{opacity:.5;cursor:wait}.danger{background:#862c31}.subtle{background:#e9eee9;color:var(--green)}
+#status{min-height:28px;background:var(--sand);padding:10px;border-radius:9px}
+[hidden]{display:none!important}footer{margin-top:18px;font-size:13px;color:#3d5348}
+</style></head>
+<body><main>
+<strong>🌍 DIGIYLYFE · Mon activité</strong>
+<h1>Gestion de mon inscription gratuite</h1>
+<p>Accès réservé au propriétaire dont l'e-mail a été autorisé par DIGIY. Aucun abonnement n'est créé.</p>
+<p id="status" role="status" aria-live="polite">Vérification du compte…</p>
+<section id="login" hidden>
+  <label for="email">Votre adresse e-mail autorisée</label>
+  <input id="email" type="email" autocomplete="email" required placeholder="nom@exemple.com">
+  <button id="send" type="button">Recevoir mon lien de connexion</button>
+  <p><small>Ouvrez le message depuis le même navigateur. Le lien est personnel.</small></p>
+</section>
+<section id="editor" hidden>
+  <h2>Mon inscription dans l'annuaire</h2>
+  <form id="form">
+    <label for="name">Nom public</label><input id="name" required maxlength="100">
+    <label for="activity">Activité</label><input id="activity" required maxlength="100">
+    <label for="department">Département</label><select id="department" required>
+      <option value="commerce">Commerce</option><option value="batiment">Bâtiment</option>
+      <option value="artisanat">Artisanat</option><option value="alimentation">Alimentation</option>
+      <option value="beaute">Beauté</option><option value="mobilite">Mobilité</option>
+      <option value="hebergement">Hébergement</option><option value="tourisme">Tourisme</option>
+      <option value="services">Services</option><option value="agriculture">Agriculture</option>
+      <option value="autres">Autres</option>
+    </select>
+    <label for="country">Pays</label><select id="country" required>
+      <option value="sn">Sénégal</option><option value="fr">France</option>
+      <option value="ma">Maroc</option><option value="us">États-Unis</option><option value="other">Autre</option>
+    </select>
+    <label for="city">Ville</label><input id="city" required maxlength="100">
+    <label for="whatsapp">WhatsApp public, indicatif compris</label>
+    <input id="whatsapp" required inputmode="tel" maxlength="18" autocomplete="tel">
+    <button id="save" type="submit">Enregistrer</button>
+  </form>
+  <button id="remove" class="danger" type="button">Retirer ma fiche de l'annuaire</button>
+</section>
+<button id="logout" class="subtle" type="button" hidden>Déconnexion</button>
+<a class="link subtle" href="/annuaire.html">← Annuaire</a>
+<footer>Carte et coordonnées publiques inchangées tant que vous ne les modifiez pas. Le lien privé de gestion existant reste valable.</footer>
+</main>
+<script>
+(() => {
+'use strict';
+const sb=window.supabase.createClient(
+ 'https://wesqmwjjtsefyjnluosj.supabase.co',
+ 'sb_publishable_tGHItRgeWDmGjnd0CK1DVQ_BIep4Ug3',
+ {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}
+);
+const $=id=>document.getElementById(id);
+const fiche=new URL(location.href).searchParams.get('fiche')||'';
+const valid=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(fiche);
+let busy=false;
+const status=s=>$('status').textContent=s;
+const digits=s=>String(s||'').replace(/\D/g,'');
+async function boot() {
+  if(!valid) {status('Identifiant de fiche manquant ou incorrect.');return}
+  const {data:{user},error:authError}=await sb.auth.getUser();
+  if(authError||!user){
+    $('login').hidden=false;$('editor').hidden=true;$('logout').hidden=true;
+    status('Entrez votre e-mail autorisé pour recevoir un lien de connexion.');
+    return;
+  }
+  $('logout').hidden=false;
+  const {data,error}=await sb.rpc('digiy_annuaire_owner_read',{p_id:fiche});
+  if(error){$('editor').hidden=true;$('login').hidden=true;status('Accès indisponible : '+error.message);return}
+  if(!data){
+    $('editor').hidden=true;$('login').hidden=true;
+    status('Cet e-mail n’a pas les droits de gestion pour cette fiche. Déconnectez-vous si nécessaire.');
+    return;
+  }
+  $('login').hidden=true;$('editor').hidden=false;
+  $('name').value=data.display_name||'';
+  $('activity').value=data.activity_label||'';
+  $('department').value=data.department||'commerce';
+  $('country').value=data.country_code||'sn';
+  $('city').value=data.city||'';
+  $('whatsapp').value=data.whatsapp_public||'';
+  status('Connexion validée. Vous pouvez modifier votre activité.');
+}
+$('send').addEventListener('click',async()=>{
+  if(busy||!valid)return;
+  const email=$('email').value.trim().toLowerCase();
+  if(!$('email').checkValidity()||!email){$('email').reportValidity();return}
+  busy=true;$('send').disabled=true;
+  const redirect=new URL('/annuaire-proprietaire.html',location.origin);
+  redirect.searchParams.set('fiche',fiche);
+  const {error}=await sb.auth.signInWithOtp({
+    email,options:{shouldCreateUser:true,emailRedirectTo:redirect.href}
+  });
+  busy=false;$('send').disabled=false;
+  status(error?'Connexion impossible : '+error.message:'Si le service accepte cette adresse, vérifiez votre boîte e-mail. Seule une adresse autorisée pourra gérer cette fiche.');
+});
+$('form').addEventListener('submit',async event=>{
+  event.preventDefault();if(busy||!valid||!$('form').reportValidity())return;
+  busy=true;$('save').disabled=true;
+  const {data,error}=await sb.rpc('digiy_annuaire_owner_write',{
+    p_id:fiche,p_action:'modifier',p_name:$('name').value.trim(),
+    p_activity:$('activity').value.trim(),p_department:$('department').value,
+    p_country:$('country').value,p_city:$('city').value.trim(),
+    p_whatsapp:digits($('whatsapp').value)
+  });
+  busy=false;$('save').disabled=false;
+  status(error?'Échec : '+error.message:(data===true?'Fiche modifiée avec succès.':'Modification refusée. Vérifiez votre accès.'));
+});
+$('remove').addEventListener('click',async()=>{
+  if(busy||!valid||!window.confirm('Retirer cette fiche de l’annuaire public ?'))return;
+  busy=true;$('remove').disabled=true;
+  const {data,error}=await sb.rpc('digiy_annuaire_owner_write',{p_id:fiche,p_action:'retirer'});
+  busy=false;$('remove').disabled=false;
+  if(!error&&data===true){$('editor').hidden=true;status('Fiche retirée de l’annuaire.');}
+  else status('Retrait non confirmé. Aucun changement annoncé.');
+});
+$('logout').addEventListener('click',async()=>{
+  await sb.auth.signOut();$('editor').hidden=true;boot();
+});
+sb.auth.onAuthStateChange((event)=>{if(event==='SIGNED_IN'||event==='SIGNED_OUT')setTimeout(boot,0)});
+boot();
+})();
+</script></body></html>
