@@ -42,13 +42,32 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   assert.equal(await desktopPage.locator('#digiyInstallBtn').isVisible(),true,'Installation desktop visible sans ouvrir les détails');
   assert.equal(await desktopPage.locator('#digiyInstallBand').evaluate(el=>el.previousElementSibling?.matches('.digiyGoldSignature')),true,'Bouton desktop juste sous la signature de marque');
   assert.match(await desktopPage.locator('#digiyInstallLabel').innerText(),/ordinateur/i);
-  assert.match(await desktopPage.locator('#digiyInstallNote').innerText(),/ordinateur/i,'Instructions adaptées au bureau');
+  const noteBeforeClick=await desktopPage.locator('#digiyInstallNote').innerText();
+  assert.match(noteBeforeClick,/ordinateur/i,'Invitation brève avant le clic');
+  // Regression: without native beforeinstallprompt, the desktop button must visibly react.
+  await desktopPage.locator('#digiyInstallBtn').click();
+  const fallbackGuide=await desktopPage.locator('#digiyInstallNote').innerText();
+  assert.notEqual(fallbackGuide,noteBeforeClick,'Le clic doit modifier le texte visible');
+  assert.match(fallbackGuide,/Caster, enregistrer et partager/,'Mode d’installation Chrome détaillé');
+  assert.match(fallbackGuide,/Installer la page en tant qu.appli/);
+  assert.equal(await desktopPage.locator('#digiyInstallBand').evaluate(el=>el.classList.contains('digiyInstallGuideOpen')),true);
+  assert.equal(await desktopPage.locator('#digiyInstallBtn').getAttribute('aria-expanded'),'true');
+  assert.equal(await desktopPage.locator('#digiyInstallNote').isVisible(),true);
+  // Language choices must translate the already opened guide (no French fallback).
+  await desktopPage.locator('.languageStrip button[data-lang="en"]').click();
+  await desktopPage.waitForFunction(()=>document.documentElement.lang==='en');
+  await desktopPage.waitForFunction(()=>document.getElementById('digiyInstallNote').textContent.includes('Cast, save and share'));
+  await desktopPage.locator('.languageStrip button[data-lang="fr"]').click();
+  await desktopPage.waitForFunction(()=>document.documentElement.lang==='fr');
+  await desktopPage.waitForFunction(()=>document.getElementById('digiyInstallNote').textContent.includes('Caster, enregistrer et partager'));
+  // If Chrome DOES provide the native prompt later, it must take precedence.
   await desktopPage.evaluate(()=>{
    const installEvent=new Event('beforeinstallprompt',{cancelable:true});
    installEvent.prompt=()=>{window.__digiyPwaPromptInvoked=true;};
    installEvent.userChoice=Promise.resolve({outcome:'dismissed'});
    window.dispatchEvent(installEvent);
   });
+  assert.equal(await desktopPage.locator('#digiyInstallBtn').getAttribute('aria-expanded'),'false','Le guide se ferme lorsqu’une invite native est disponible');
   await desktopPage.locator('#digiyInstallBtn').click();
   assert.equal(await desktopPage.evaluate(()=>window.__digiyPwaPromptInvoked),true,'Clique desktop appelle le vrai gestionnaire PWA');
   assert.equal(await desktopPage.locator('#digiyInstallBand').count(),1,'Aucun bouton dupliqué');
