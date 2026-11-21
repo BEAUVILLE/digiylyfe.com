@@ -48,18 +48,22 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   await desktopPage.locator('#digiyInstallBtn').click();
   const fallbackGuide=await desktopPage.locator('#digiyInstallNote').innerText();
   assert.notEqual(fallbackGuide,noteBeforeClick,'Le clic doit modifier le texte visible');
-  assert.match(fallbackGuide,/Caster, enregistrer et partager/,'Mode d’installation Chrome détaillé');
-  assert.match(fallbackGuide,/Installer la page en tant qu.appli/);
+  if(process.env.PWA_BROWSER==='webkit'){
+   assert.match(fallbackGuide,/utilisez le menu du navigateur/,'Safari : message de repli navigateur');
+  }else{
+   assert.match(fallbackGuide,/Caster, enregistrer et partager/,'Chrome : chemin d’installation détaillé');
+   assert.match(fallbackGuide,/Installer la page en tant qu.appli/);
+  }
   assert.equal(await desktopPage.locator('#digiyInstallBand').evaluate(el=>el.classList.contains('digiyInstallGuideOpen')),true);
   assert.equal(await desktopPage.locator('#digiyInstallBtn').getAttribute('aria-expanded'),'true');
   assert.equal(await desktopPage.locator('#digiyInstallNote').isVisible(),true);
   // Language choices must translate the already opened guide (no French fallback).
   await desktopPage.locator('.languageStrip button[data-lang="en"]').click();
   await desktopPage.waitForFunction(()=>document.documentElement.lang==='en');
-  await desktopPage.waitForFunction(()=>document.getElementById('digiyInstallNote').textContent.includes('Cast, save and share'));
+  await desktopPage.waitForFunction(isWebkit=>document.getElementById('digiyInstallNote').textContent.includes(isWebkit?'On desktop':'Cast, save and share'),process.env.PWA_BROWSER==='webkit');
   await desktopPage.locator('.languageStrip button[data-lang="fr"]').click();
   await desktopPage.waitForFunction(()=>document.documentElement.lang==='fr');
-  await desktopPage.waitForFunction(()=>document.getElementById('digiyInstallNote').textContent.includes('Caster, enregistrer et partager'));
+  await desktopPage.waitForFunction(isWebkit=>document.getElementById('digiyInstallNote').textContent.includes(isWebkit?'Sur ordinateur':'Caster, enregistrer et partager'),process.env.PWA_BROWSER==='webkit');
   // If Chrome DOES provide the native prompt later, it must take precedence.
   await desktopPage.evaluate(()=>{
    const installEvent=new Event('beforeinstallprompt',{cancelable:true});
