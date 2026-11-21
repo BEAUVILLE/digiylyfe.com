@@ -70,6 +70,26 @@ class HumanHomepage(unittest.TestCase):
         self.assertTrue((ROOT / 'tarifs-adherents-1.html').is_file())
         self.assertIn('.digiyTarifsAccess{min-height:44px', HOME)
 
+    def test_gold_signature_and_official_qr_visible_without_details(self):
+        # Existing gold identity asset, not a generated copy or a new brand.
+        gold = ROOT / 'assets/presse/signature-digiy-or.png'
+        qr_page = ROOT / 'qr.html'
+        self.assertTrue(gold.is_file())
+        self.assertTrue(qr_page.is_file())
+        before_details = BODY.split('<details class="digiyVitrineDetails"', 1)[0]
+        self.assertEqual(before_details.count('class="digiyGoldSignature"'), 1)
+        self.assertIn('src="/assets/presse/signature-digiy-or.png"', before_details)
+        self.assertIn('alt="Symbole infini doré officiel DIGIY"', before_details)
+        self.assertIn('href="/qr.html" aria-label="Ouvrir le QR officiel DIGIYLYFE"', before_details)
+        self.assertLess(before_details.index('class="digiyGoldSignature"'),
+                        before_details.index('id="pays-directs"'))
+        self.assertIn('.digiyGoldSignature img{width:64px;', HOME)
+        self.assertIn('@media(max-width:420px){.digiyGoldSignature{', HOME)
+        # Do not disturb the existing menu, two human journeys and the old card.
+        self.assertIn('href="/menu-universel-v1.html"', BODY)
+        self.assertIn('id="digiyCardFixedPanel"', BODY)
+        self.assertIn('id="digiyCardAnimatedPanel"', BODY)
+
     def test_explanatory_copy_has_ten_languages_and_preserves_prices(self):
         import json
         match = re.search(r'var DIGIY_ENTRY_INFO_COPY=(.*?);\n', HOME_I18N)
