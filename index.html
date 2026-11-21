@@ -1137,6 +1137,16 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
   /* Le sous-texte est expliqué dans les cartes suivantes sur les petits mobiles. */
   @media(max-width:420px){#digiyClarity .digiyClarityLead{display:none}}
   @media(max-width:335px){#digiyClarity .digiyVitrineActions{grid-template-columns:1fr}}
+  /* Signature de marque existante : visible sans ouvrir les détails, accès au QR officiel. */
+  .digiyGoldSignature{display:flex;align-items:center;gap:13px;margin:7px 0 11px;padding:8px 12px;min-height:82px;border:1px solid rgba(246,196,83,.62);border-radius:19px;background:linear-gradient(120deg,#0b3c2b,#06251b);color:#f6d681;text-decoration:none;box-shadow:0 9px 24px rgba(0,0,0,.16)}
+  .digiyGoldSignature:hover,.digiyGoldSignature:focus-visible{border-color:#ffe4a0;background:linear-gradient(120deg,#114b35,#082b20)}
+  .digiyGoldSignature img{width:64px;height:64px;flex:none;display:block;border-radius:12px;border:1px solid #d0aa58;background:#fff;object-fit:contain}
+  .digiyGoldSignatureWords{flex:1;min-width:0}
+  .digiyGoldSignatureWords strong{display:block;color:#f6d681;font-size:clamp(18px,3vw,28px);font-weight:950;letter-spacing:.055em;line-height:1.1;overflow-wrap:anywhere}
+  .digiyGoldSignatureWords small{display:block;margin-top:6px;color:#fff3d5;font-size:11px;letter-spacing:.03em;font-weight:850}
+  .digiyGoldSignatureQR{display:flex;align-items:center;justify-content:center;flex:none;min-height:44px;min-width:65px;padding:10px;border-radius:11px;border:1px solid rgba(246,196,83,.7);background:#f6c453;color:#08251a;font-weight:950;font-size:13px}
+  @media(max-width:420px){.digiyGoldSignature{gap:9px;padding:7px 9px;min-height:70px}.digiyGoldSignature img{width:54px;height:54px}.digiyGoldSignatureWords strong{font-size:clamp(14px,4.2vw,18px)}.digiyGoldSignatureWords small{font-size:9px}.digiyGoldSignatureQR{min-width:48px;font-size:12px;padding:8px}}
+  html[dir="rtl"] .digiyGoldSignature{direction:rtl}
   html[dir="rtl"] .digiyVitrineOffers,html[dir="rtl"] .digiyVitrineReach{text-align:right;direction:rtl}
 </style>
 <style id="digiyWorldDirectV1Styles">
@@ -1275,6 +1285,12 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       <button type="button" class="langBtn" data-lang="ar" aria-pressed="false">AR</button>
     </nav>
     <p class="homeLanguageHelp"><a href="/prototypes/digiy-wolof-v1/prototype.html" lang="wo" hreflang="wo" data-i18n="woAudio">🔊 Écouter la présentation en wolof</a><small data-i18n="localeScope">Les langues disponibles peuvent varier selon les pages.</small><small class="woReviewNote" data-i18n="woReview">Texte wolof proposé à la relecture native.</small></p>
+    <!-- Signature de marque originale DIGIY en or. Lien vers le QR officiel existant, sans nouveau QR. -->
+    <a class="digiyGoldSignature" href="/qr.html" aria-label="Ouvrir le QR officiel DIGIYLYFE">
+      <img src="/assets/presse/signature-digiy-or.png" width="512" height="512" alt="Symbole infini doré officiel DIGIY" decoding="async" fetchpriority="high">
+      <span class="digiyGoldSignatureWords"><strong>DIGIYLYFE.COM</strong><small>∞ · 0 % COMMISSION</small></span>
+      <span class="digiyGoldSignatureQR" aria-hidden="true">▦ QR</span>
+    </a>
 <!-- VITRINE WORLD10 · pays et territoires visibles sans menu. -->
 <section class="digiyFrontWorld" aria-label="Pays et territoires DIGIYLYFE" id="pays-directs">
   <p class="digiyFrontWorldKicker" data-direct-i18n="frontKicker">🌍 4 pays à découvrir · 10 langues</p>
