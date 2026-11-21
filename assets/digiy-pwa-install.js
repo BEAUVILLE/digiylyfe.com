@@ -101,6 +101,7 @@ if ('serviceWorker' in navigator) {
     return COPY[l][i];
   }
   function refreshCopy(){
+    var l=lang();
     label.textContent=text(0);
     band.setAttribute('aria-label',text(0));
     if(installed)note.textContent=text(5);
