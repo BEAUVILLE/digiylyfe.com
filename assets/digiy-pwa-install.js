@@ -59,6 +59,37 @@ if ('serviceWorker' in navigator) {
     ar:['تثبيت DIGIYLYFE على هذا الكمبيوتر','على الكمبيوتر: افتح قائمة المتصفح واختر «تثبيت DIGIYLYFE» إذا لم يظهر التثبيت التلقائي.','DIGIYLYFE مثبت بالفعل على هذا الكمبيوتر.']
   };
 
+
+  // Chrome cannot always expose a native beforeinstallprompt event. In that
+  // case, clicking MUST visibly reveal the browser's manual install steps.
+  // These instructions are local UI only: no new PWA, site or permissions.
+  var chromeDesktop=/Chrome|Chromium|CriOS/i.test(ua)&&!/Edg|OPR|Opera/i.test(ua);
+  var desktopHint={
+  "fr": "Cliquez pour afficher les étapes d’installation sur cet ordinateur.",
+  "wo": "Bësal ngir gis ni ngay samp DIGIYLYFE ci ordinatër bi.",
+  "zh": "点击查看在电脑上安装 DIGIYLYFE 的步骤。",
+  "en": "Click to see how to install DIGIYLYFE on this computer.",
+  "es": "Haz clic para ver cómo instalar DIGIYLYFE en este ordenador.",
+  "pt": "Clique para ver como instalar o DIGIYLYFE neste computador.",
+  "it": "Fai clic per vedere come installare DIGIYLYFE su questo computer.",
+  "de": "Klicken Sie hier, um die Installationsschritte für DIGIYLYFE auf diesem Computer anzuzeigen.",
+  "nl": "Klik om te zien hoe je DIGIYLYFE op deze computer installeert.",
+  "ar": "انقر لعرض خطوات تثبيت DIGIYLYFE على هذا الكمبيوتر."
+};
+  var chromeDesktopSteps={
+  "fr": "Dans Chrome :\n1. Cliquez sur les trois points ⋮ en haut à droite.\n2. Ouvrez « Caster, enregistrer et partager ».\n3. Choisissez « Installer la page en tant qu’appli ».\n4. Confirmez l’installation.",
+  "wo": "Ci Chrome :\n1. Bësal ci ñetti tomb yi ⋮ ci kaw ndijoor.\n2. Tànnal « Caster, enregistrer et partager ».\n3. Tànnal « Installer la page en tant qu’appli ».\n4. Dëggal samp bi.",
+  "zh": "在 Chrome 中：\n1. 点击右上角的 ⋮。\n2. 选择“投放、保存和分享”。\n3. 选择“将网页安装为应用”。\n4. 确认安装。",
+  "en": "In Chrome:\n1. Click ⋮ at the top right.\n2. Choose “Cast, save and share”.\n3. Choose “Install page as app”.\n4. Confirm installation.",
+  "es": "En Chrome:\n1. Haz clic en ⋮ arriba a la derecha.\n2. Selecciona «Enviar, guardar y compartir».\n3. Selecciona «Instalar página como aplicación».\n4. Confirma la instalación.",
+  "pt": "No Chrome:\n1. Clique em ⋮ no canto superior direito.\n2. Abra «Transmitir, guardar e partilhar».\n3. Escolha «Instalar página como aplicação».\n4. Confirme a instalação.",
+  "it": "In Chrome:\n1. Fai clic su ⋮ in alto a destra.\n2. Apri «Trasmetti, salva e condividi».\n3. Scegli «Installa pagina come app».\n4. Conferma l’installazione.",
+  "de": "In Chrome:\n1. Klicken Sie oben rechts auf ⋮.\n2. Öffnen Sie „Streamen, speichern und teilen“.\n3. Wählen Sie „Seite als App installieren“.\n4. Bestätigen Sie die Installation.",
+  "nl": "In Chrome:\n1. Klik rechtsboven op ⋮.\n2. Open 'Casten, opslaan en delen'.\n3. Kies 'Pagina installeren als app'.\n4. Bevestig de installatie.",
+  "ar": "في Chrome:\n1. انقر على ⋮ أعلى اليمين.\n2. اختر «البث والحفظ والمشاركة».\n3. اختر «تثبيت الصفحة كتطبيق».\n4. أكّد التثبيت."
+};
+  var desktopGuideOpen=false;
+
   Object.assign(COPY,(window.DIGIY_HOME_WORLD10_UI||{}).pwa||{});
   Object.assign(DESKTOP,(window.DIGIY_HOME_WORLD10_UI||{}).pwaDesktop||{});
   function lang(){var l=(document.documentElement.lang||'fr').toLowerCase().split('-')[0];return COPY[l]?l:'fr';}
@@ -70,11 +101,15 @@ if ('serviceWorker' in navigator) {
     return COPY[l][i];
   }
   function refreshCopy(){
+    var l=lang();
     label.textContent=text(0);
     band.setAttribute('aria-label',text(0));
     if(installed)note.textContent=text(5);
     else if(promptEvent)note.textContent=text(2);
-    else note.textContent=text(1);
+    else if(!isMobile&&desktopGuideOpen)note.textContent=chromeDesktop?(chromeDesktopSteps[l]||chromeDesktopSteps.fr):text(4);
+    else note.textContent=isMobile?text(1):(desktopHint[l]||desktopHint.fr);
+    band.classList.toggle('digiyInstallGuideOpen',!isMobile&&desktopGuideOpen);
+    btn.setAttribute('aria-expanded',String(!isMobile&&desktopGuideOpen));
   }
 
   if(installed){band.hidden=true;return;}
@@ -82,12 +117,14 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('beforeinstallprompt',function(ev){
     ev.preventDefault();
     promptEvent=ev;
-    note.textContent=text(2);
+    desktopGuideOpen=false;
+    refreshCopy();
   });
 
   window.addEventListener('appinstalled',function(){
     installed=true;
     promptEvent=null;
+    desktopGuideOpen=false;
     band.hidden=true;
   });
 
@@ -112,7 +149,9 @@ if ('serviceWorker' in navigator) {
       }catch(error){note.textContent=text(7);}
       return;
     }
-    var instruction=isIOS?text(3):text(4);
+    if(!isMobile)desktopGuideOpen=true;
+    var instruction=isIOS?text(3):(!isMobile&&chromeDesktop?(chromeDesktopSteps[lang()]||chromeDesktopSteps.fr):text(4));
+    refreshCopy();
     note.textContent=instruction;
     // On iOS no browser installation prompt is exposed to this page.
     // Explicitly show the instructions instead of changing a tiny caption unnoticed.
