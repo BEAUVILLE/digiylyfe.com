@@ -1,0 +1,28 @@
+name: DIGIYLYFE — Services terrain · René
+on:
+  pull_request:
+    paths:
+      - 'services-terrain.html'
+      - 'tests/terrain/rene-visible.test.cjs'
+      - '.github/workflows/services-terrain-rene.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'services-terrain.html'
+      - 'tests/terrain/rene-visible.test.cjs'
+      - '.github/workflows/services-terrain-rene.yml'
+permissions:
+  contents: read
+jobs:
+  terrain-rene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test painting filter, public fiche, fallback, deduplication
+        run: |
+          node --check tests/terrain/rene-visible.test.cjs
+          node --test tests/terrain/rene-visible.test.cjs
