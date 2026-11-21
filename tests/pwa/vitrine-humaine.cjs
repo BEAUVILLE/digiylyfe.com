@@ -21,6 +21,39 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   });
   const page=await context.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
+  // Desktop installation is a visible public entrance, not tucked inside <details>.
+  // Use the same local fixture as mobile; nothing is sent to a live endpoint.
+  const desktop=await browser.newContext({viewport:{width:1280,height:800},serviceWorkers:'block'});
+  await desktop.route('**/*',async route=>{
+   const u=new URL(route.request().url());
+   if(u.origin==='https://wesqmwjjtsefyjnluosj.supabase.co'&&u.pathname==='/rest/v1/digiy_annuaire_public')return route.fulfill({contentType:'application/json',body:JSON.stringify(publicRows)});
+   if(u.origin!=='https://digiylyfe.com')return route.abort();
+   let name=u.pathname;if(name.endsWith('/'))name+='index.html';
+   const file=path.resolve(root,'.'+name);
+   if(!file.startsWith(root+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:'Not found'});
+   const types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.avif':'image/avif','.svg':'image/svg+xml'};
+   return route.fulfill({path:file,contentType:types[path.extname(file)]||'application/octet-stream'});
+  });
+  const desktopPage=await desktop.newPage();
+  await desktopPage.goto('https://digiylyfe.com/?lang=fr');
+  await desktopPage.waitForFunction(()=>document.querySelector('#digiyInstallLabel')?.textContent.includes('ordinateur'));
+  assert.equal(await desktopPage.locator('#digiyVitrineDetails').evaluate(el=>el.open),false);
+  assert.equal(await desktopPage.locator('.digiyGoldSignature').isVisible(),true);
+  assert.equal(await desktopPage.locator('#digiyInstallBtn').isVisible(),true,'Installation desktop visible sans ouvrir les détails');
+  assert.equal(await desktopPage.locator('#digiyInstallBand').evaluate(el=>el.previousElementSibling?.matches('.digiyGoldSignature')),true,'Bouton desktop juste sous la signature de marque');
+  assert.match(await desktopPage.locator('#digiyInstallLabel').innerText(),/ordinateur/i);
+  assert.match(await desktopPage.locator('#digiyInstallNote').innerText(),/ordinateur/i,'Instructions adaptées au bureau');
+  await desktopPage.evaluate(()=>{
+   const installEvent=new Event('beforeinstallprompt',{cancelable:true});
+   installEvent.prompt=()=>{window.__digiyPwaPromptInvoked=true;};
+   installEvent.userChoice=Promise.resolve({outcome:'dismissed'});
+   window.dispatchEvent(installEvent);
+  });
+  await desktopPage.locator('#digiyInstallBtn').click();
+  assert.equal(await desktopPage.evaluate(()=>window.__digiyPwaPromptInvoked),true,'Clique desktop appelle le vrai gestionnaire PWA');
+  assert.equal(await desktopPage.locator('#digiyInstallBand').count(),1,'Aucun bouton dupliqué');
+  await desktop.close();
+  console.log('PASS installation PWA ordinateur visible + accès inchangé sur mobile');
   fs.mkdirSync('artifacts/vitrine-humaine',{recursive:true});
   for(const width of [375,390,768,1024,1440]){
    const height=width===375?667:900;
