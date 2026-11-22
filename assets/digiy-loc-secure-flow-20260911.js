@@ -177,7 +177,7 @@ function preselectCountry(){
   el.dispatchEvent(new Event('change',{bubbles:true}));
  }catch(_){}
 }
-function siteUi(){const c=value('country')||'sn',s=$('siteOption'),field=$('siteOptionField'),tx=SITE_COPY[lang()]||SITE_COPY.fr;if($('lSiteOption'))$('lSiteOption').textContent=tx.label;if($('siteHelp'))$('siteHelp').textContent=tx.help;if(!s)return;if(c==='us'){s.value='none';if(field)field.classList.add('hidden');return}if(field)field.classList.remove('hidden');const price=c==='eu'?{none:'250 €',premium:'480 €',extra:'800 €'}:{none:'100 000 FCFA',premium:'250 000 FCFA',extra:'450 000 FCFA'};s.options[0].textContent=tx.none+' · '+price.none;s.options[1].textContent=tx.premium+' · '+price.premium;s.options[2].textContent=tx.extra+' · '+price.extra}
+function siteUi(){const c=value('country')||'sn',s=$('siteOption'),field=$('siteOptionField'),tx=SITE_COPY[lang()]||SITE_COPY.fr;if($('lSiteOption'))$('lSiteOption').textContent=tx.label;if($('siteHelp'))$('siteHelp').textContent=tx.help;if(!s)return;if(c==='us'){s.value='none';if(field)field.classList.add('hidden');return}if(field)field.classList.remove('hidden');const price=c==='eu'?{none:'250 € HT',premium:'480 € HT',extra:'800 € HT'}:{none:'100 000 FCFA',premium:'250 000 FCFA',extra:'450 000 FCFA'};s.options[0].textContent=tx.none+' · '+price.none;s.options[1].textContent=tx.premium+' · '+price.premium;s.options[2].textContent=tx.extra+' · '+price.extra}
 const errors={
  fr:['Le tarif a changé. Rechargez la page et choisissez à nouveau votre palier.','Envoi impossible. Veuillez réessayer.','Vérifiez ce champ.'],
  en:['The price has changed. Reload the page and select your tier again.','Submission failed. Please try again.','Please check this field.'],
@@ -231,7 +231,7 @@ function renderStatus(){
  const lines=['DIGIY LOC · '+heading.textContent,...fileLines(),selected('chosenPrice')];
  if(miami){lines.push(desc.textContent)}
  else{
-   const money=n=>n+' '+data.currency;
+   const money=n=>n+' '+data.currency+(data.currency==='EUR'||data.currency==='€'?' HT':'');
    const monthly=data.billing==='monthly';
    const details=[summary[0],summary[monthly?1:2]+' · '+money(data.amount),
      SITE_COPY[l][siteOption]+' · + '+money(data.initial_service_amount),
