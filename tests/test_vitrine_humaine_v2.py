@@ -232,7 +232,7 @@ class HumanHomepage(unittest.TestCase):
 
     def test_paid_offers_and_legacy_anchors_preserved(self):
         for text in ['Carte DIGIY payante', 'Fiche professionnelle payante',
-                     'Présence professionnelle', '15 000 FCFA', '450 € / an',
+                     'Présence professionnelle', '15 000 FCFA', '29 € HT / mois',
                      '21 000 FCFA', '28 000 FCFA', '75 €']:
             self.assertIn(text, BODY)
         for anchor in ['digiyAnnuaireV1', 'digiyEntryChoice', 'digiyInstallBand',
