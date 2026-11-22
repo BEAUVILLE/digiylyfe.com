@@ -1,4 +1,4 @@
-/* Bordeaux public vitrine: carte 20 € seule en France ; inclus dans DRIVER. */
+/* Bordeaux public vitrine: carte 20 € seule en France ; QR inclus dans fiche payante. */
 (function(){
   'use strict';
   var STABLE='/assets/digiy-bordeaux-i18n-stable-20260901.js?v=20260901-stable';
@@ -161,13 +161,24 @@
       DRIVER_BORDEAUX[l]={price:c[14],included:c[15],heading:'DIGIY DRIVER · BORDEAUX',lead:c[16],steps:c[17],cta:c[18],total:c[14]};
     });
   }
+  // Price source shared by all French territories, including optional DRIVER dossier.
+  var FR_PRICE=window.DIGIY_FR_PRO_PRICING_V2||{};
+  Object.keys(prices).forEach(function(l){
+    var p=FR_PRICE[l]||FR_PRICE.fr;
+    if(!p)return;
+    prices[l]=p.rate;creation[l]=p.profile;total[l]=[p.total,p.detail];
+    annualLabel[l]=p.notice;demoAnnualLabel[l]=p.summary;
+    if(flow[l]){flow[l][6]="DIGIY PRO · "+p.rate;flow[l][7]=p.detail;}
+    var d=DRIVER_BORDEAUX[l];
+    if(d){d.price=p.rate;d.included=p.profile+" · QR inclus";d.lead=p.driver;d.total=p.driver;}
+  });
   function patchDom(){
     patchAnnualPricing();
     var l=lang(),driver=driverMode(),dc=driverCopy(l);
     if(isBordeauxPage){
       var hp=document.getElementById('heroPrice');if(hp)hp.textContent=driver?dc.price:prices[l];
       var pt=document.getElementById('priceTop');if(pt)pt.textContent=driver?dc.heading:'DIGIY PRO · BORDEAUX';
-      var pl=document.getElementById('priceLead');if(pl)pl.textContent=driver?dc.included:(isBordeauxPage&&pageCopy?.[l]?pageCopy[l][2]:l==='fr'?'Fiche professionnelle à partir de 250 € + adhésion DIGIY PRO':'Professional profile from €250 + DIGIY PRO membership');
+      var pl=document.getElementById('priceLead');if(pl)pl.textContent=driver?dc.lead:(FR_PRICE[l]||FR_PRICE.fr).summary;
       var fb=document.getElementById('finalBtn');if(fb){fb.textContent=driver?dc.cta:finalCta[l];fb.href=driver?driverBordeauxJoin(l):prepareHref(l);}
       var jb=document.getElementById('joinBtn');if(jb)jb.href=driver?driverBordeauxJoin(l):prepareHref(l);
       var md=document.querySelector('meta[name="description"]');if(md)md.content=driver?(dc.heading+' · '+dc.included):('DIGIY BORDEAUX · '+xCard[l]+' · '+demoAnnualLabel[l]);
