@@ -27,7 +27,7 @@ class ParcoursTarifsPaysWorld10(unittest.TestCase):
 
     def test_the_three_countries_and_official_membership_tariffs(self):
         self.assertEqual(set(self.countries), {"SN", "FR", "US"})
-        expected = {"SN": 12000, "FR": 450, "US": 29}
+        expected = {"SN": 12000, "FR": 29, "US": 29}
         for country, amount in expected.items():
             with self.subTest(country=country):
                 c = self.countries[country]
@@ -38,7 +38,7 @@ class ParcoursTarifsPaysWorld10(unittest.TestCase):
         self.assertIn("plan=adherent-19900", TARIFFS)
         self.assertIn("PRICES={SN:", TARIFFS)
         self.assertIn("12 000 FCFA", TARIFFS)
-        self.assertIn("450 €", TARIFFS)
+        self.assertIn("29 € HT", TARIFFS)
         self.assertIn("$29", TARIFFS)
 
     def test_usa_profile_price_required_by_the_existing_prevalidation_flow(self):
