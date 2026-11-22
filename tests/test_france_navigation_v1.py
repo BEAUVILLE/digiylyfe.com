@@ -91,7 +91,7 @@ class FranceNavigation(unittest.TestCase):
         self.assertIn("renderFrancePriceOverview(l,id)", card)
         self.assertIn("const FRANCE_PRICES_I18N=", card)
         self.assertIn("const FRANCE_PRICES_DISPLAY=", card)
-        for value in ("250 € HT", "29 € HT/mois", "598 € HT", "480 €+", "800 €+", "75 €/mois+"):
+        for value in ("250 € HT", "29 € HT/mois", "598 € HT", "480 € HT+", "800 € HT+", "75 €/mois+"):
             self.assertIn(value, card)
         for lang in ("fr", "en", "es", "pt", "it", "de", "nl", "ar"):
             self.assertIn('"' + lang + '":{', card)

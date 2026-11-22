@@ -57,11 +57,11 @@
           },
           "site_premium": {
             "starting_amount": 480,
-            "label": "À partir de 480 €"
+            "label": "À partir de 480 € HT"
           },
           "site_extra": {
             "starting_amount": 800,
-            "label": "À partir de 800 €"
+            "label": "À partir de 800 € HT"
           }
         }
       },

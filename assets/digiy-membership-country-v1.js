@@ -169,8 +169,9 @@
     var p=document.querySelector('[data-digiy-site-tiers] [data-tier="premium"] [data-tier-price]');
     var x=document.querySelector('[data-digiy-site-tiers] [data-tier="extra"] [data-tier-price]');
     var prefix=fromLabel();
-    var pv=prefix+' '+amount(premium.starting_amount,c);
-    var xv=prefix+' '+amount(extra.starting_amount,c);
+    var suffix=countryId==='FR'?' HT':'';
+    var pv=prefix+' '+amount(premium.starting_amount,c)+suffix;
+    var xv=prefix+' '+amount(extra.starting_amount,c)+suffix;
     if(p&&p.textContent!==pv)p.textContent=pv;
     if(x&&x.textContent!==xv)x.textContent=xv;
   }
@@ -196,7 +197,7 @@
     });
     var memberPrice=document.getElementById('memberPrice');if(memberPrice)memberPrice.textContent=countryId==='FR'&&plan==='adherent-19900'?'29 € HT / mois':amount(membership.amount,c);
     var sheetPrice=document.getElementById('sheetPrice');if(sheetPrice)sheetPrice.textContent=countryId==='FR'&&plan==='adherent-19900'?'250 € HT · création unique':fromLabel()+' '+amount(fiche.starting_amount,c);
-    var sitePrice=document.getElementById('sitePrice');if(sitePrice)sitePrice.textContent='SITE PREMIUM · '+fromLabel()+' '+amount(premium.starting_amount,c)+' · SITE EXTRA · '+fromLabel()+' '+amount(extra.starting_amount,c);
+    var sitePrice=document.getElementById('sitePrice');if(sitePrice)sitePrice.textContent='SITE PREMIUM · '+fromLabel()+' '+amount(premium.starting_amount,c)+(countryId==='FR'?' HT':'')+' · SITE EXTRA · '+fromLabel()+' '+amount(extra.starting_amount,c)+(countryId==='FR'?' HT':'');
     patchCommercialValue();
     patchMembershipPeriod(c,membership);
     patchSiteTiers(c,premium,extra);
