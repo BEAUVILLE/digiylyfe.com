@@ -1301,12 +1301,21 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
 <section class="digiyFrontWorld" aria-label="Pays et territoires DIGIYLYFE" id="pays-directs">
   <p class="digiyFrontWorldKicker" data-direct-i18n="frontKicker">🌍 4 pays à découvrir · 10 langues</p>
   <nav class="digiyFrontWorldGrid" aria-label="Choisir un pays ou territoire">
-    <a href="/senegal.html"><strong>🇸🇳 <span data-i18n="globalSenegal">Sénégal</span></strong><small>Dakar · Petite Côte · Saly · Mbour</small></a>
     <a href="/france.html"><strong>🇫🇷 <span data-i18n="globalFrance">France</span></strong><small>Sarlat · Dordogne · Bordeaux · Paris</small></a>
+    <a href="/senegal.html"><strong>🇸🇳 <span data-i18n="globalSenegal">Sénégal</span></strong><small>Dakar · Petite Côte · Saly · Mbour</small></a>
     <a href="/maroc.html"><strong>🇲🇦 <span data-i18n="globalMorocco">Maroc</span></strong><small data-direct-i18n="frontMoroccoAreas">Casablanca · Marrakech · ouverture</small></a>
     <a href="/miami.html"><strong>🇺🇸 <span data-i18n="globalUsa">États-Unis</span></strong><small data-direct-i18n="frontUSAAreas">Miami · Floride · pilote</small></a>
   </nav>
 </section>
+<style id="digiyFranceCommercialFocusStyle">
+.digiyFranceFocus{margin:12px auto 15px;max-width:850px;padding:13px 16px;border:1px solid rgba(246,196,83,.55);border-radius:19px;background:linear-gradient(135deg,rgba(246,196,83,.10),rgba(34,197,94,.06));text-align:center}
+.digiyFranceFocus strong{display:block;color:#ffe6a3;font-size:clamp(13px,2.5vw,17px);font-weight:1000}
+.digiyFranceFocus p{margin:7px auto;color:#e7f0e8;font-size:clamp(12px,2.2vw,14px);line-height:1.5}
+.digiyFranceFocusLinks{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:10px}
+.digiyFranceFocusLinks a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 15px;border:1px solid rgba(246,196,83,.55);border-radius:999px;color:#fff3c4;font-weight:900;text-decoration:none}
+.digiyFranceFocusLinks a:first-child{background:#f6c453;color:#06140f}
+.digiyFranceFocusLinks a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+</style>
 <div id="digiyAnnuaireV1">
 <section class="digiyClarity" id="digiyClarity" aria-labelledby="digiyClarityTitle">
       <span class="digiyClarityKicker" data-i18n="clarKicker">DIGIYLYFE · LE BUREAU UNIVERSEL</span>
@@ -1325,6 +1334,14 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       <p class="digiyClarityNote" data-i18n="clarSmall">Présence gratuite et immédiate · Carte DIGIY avec QR et services professionnels selon tarifs · 0 % commission DIGIY sur vos ventes.</p>
     </section>
 </div>
+<aside class="digiyFranceFocus" id="cap-france" aria-label="Orientation commerciale DIGIYLYFE en France">
+         <strong data-i18n="franceAnchorTitle">🇫🇷 SARLAT · CAP COMMERCIAL FRANCE</strong>
+         <p data-i18n="franceAnchorText">DIGIYLYFE donne la priorité à son développement commercial autour de Sarlat, en Périgord Noir. Nos outils sont ouverts aux professionnels d'ici et d'ailleurs ; le Sénégal reste un territoire actif du réseau.</p>
+         <nav class="digiyFranceFocusLinks" aria-label="Explorer notre priorité commerciale">
+           <a href="/sarlat.html" data-i18n="franceAnchorSarlat">Découvrir Sarlat →</a>
+           <a href="/france.html" data-i18n="franceAnchorFrance">Explorer la France →</a>
+         </nav>
+       </aside>
 <section class="digiyEntryChoice" id="digiyEntryChoice" aria-label="Entrer dans DIGIYLYFE">
       <div class="digiyEntryHead">
         <strong data-i18n="entryTitle">DES SOLUTIONS SELON VOTRE BESOIN</strong>
@@ -1441,10 +1458,10 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       <p data-i18n="internationalLead">Le web ouvre les frontières. DIGIY relie les territoires.</p>
       <p class="digiyVitrineB2B" data-i18n="liteB2B">Artisans, commerces, restaurateurs, hébergeurs et fournisseurs indépendants peuvent se trouver, collaborer et traiter directement.</p>
       <nav class="digiyVitrineReachLinks" aria-label="Territoires à découvrir">
-        <a href="/saly.html" data-i18n="liteSaly">Saly · Petite Côte</a>
-        <a href="/dakar.html" data-i18n="liteDakar">Dakar</a>
         <a href="/sarlat.html" data-i18n="liteSarlat">Sarlat · Dordogne</a>
         <a href="/france.html" data-i18n="liteFrance">France</a>
+        <a href="/saly.html" data-i18n="liteSaly">Saly · Petite Côte</a>
+        <a href="/dakar.html" data-i18n="liteDakar">Dakar</a>
       </nav>
       <a class="digiyVitrineMenuLink" href="/menu-universel-v1.html" data-i18n="liteMenu">☰ Explorer tous les territoires, métiers et outils</a>
     </section>
@@ -1459,59 +1476,6 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       </div>
 
       <div class="territoryGrid">
-        <a class="territoryCard" href="https://digiylyfe.com/territoire.html?zone=petite-cote" data-fav-id="territoire-petite-cote">
-          <span class="territoryCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b></span>
-          <picture class="territoryPhoto territoryPhotoSaly">
-  <source type="image/avif" media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile-card.avif"/>
-  <source type="image/webp" media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile.webp"/>
-  <source type="image/avif" srcset="/assets/territoires/petite-cote-desktop-card.avif"/>
-  <source type="image/webp" srcset="/assets/territoires/petite-cote-desktop.webp"/>
-  <source media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile.webp"/>
-  <img src="/assets/territoires/petite-cote-desktop.webp" width="1536" height="1024" alt="Pêcheurs et pirogue sénégalaise · Petite Côte" loading="lazy" decoding="async"/>
-</picture>
-          <strong data-i18n="petiteTitle">DIGIY PETITE CÔTE</strong>
-          <small data-i18n="petiteZones">AIBD · Ndayane · Popenguine · Somone · Ngaparou · Saly · Mbour</small>
-          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
-        </a>
-
-        <a class="territoryCard" href="https://digiylyfe.com/dakar.html" data-fav-id="territoire-dakar">
-          <span class="territoryCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b></span>
-          <picture class="territoryPhoto territoryPhotoDakar">
-  <source type="image/avif" media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile-card.avif"/>
-  <source type="image/webp" media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile.webp"/>
-  <source type="image/avif" srcset="/assets/territoires/dakar-desktop-card.avif"/>
-  <source type="image/webp" srcset="/assets/territoires/dakar-desktop.webp"/>
-  <source media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile.webp"/>
-  <img src="/assets/territoires/dakar-desktop.webp" width="1600" height="900" alt="Dakar · Corniche et ville" loading="lazy" decoding="async"/>
-</picture>
-          <strong>DIGIY DAKAR</strong>
-          <small>Dakar · capitale · territoire urbain</small>
-          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
-        </a>
-
-        <style id="senegalVitrineCartoucheStyle">
-          .senegalVitrineCartouche{grid-column:1/-1;display:grid;grid-template-columns:38% 62%;gap:14px;align-items:center;padding:15px;border-radius:24px;border:1px solid rgba(94,234,212,.48);background:radial-gradient(420px 220px at 15% 15%,rgba(34,197,94,.12),transparent 68%),linear-gradient(145deg,rgba(5,40,29,.97),rgba(4,24,18,.98));box-shadow:0 16px 38px rgba(0,0,0,.24)}
-          .senegalVitrineMap{min-height:220px;border:1px solid rgba(94,234,212,.22);border-radius:20px;background:rgba(255,255,255,.025);overflow:hidden}.senegalVitrineMap svg{width:100%;height:220px;display:block}.senegalVitrineInfo{display:flex;flex-direction:column;gap:8px}.senegalVitrineInfo>strong{font-size:clamp(22px,4.8vw,34px);line-height:1.02;font-weight:1000}.senegalVitrineInfo>small{color:var(--soft);font-size:12px;line-height:1.45;font-weight:850}.senegalVitrineCities{display:flex;flex-wrap:wrap;gap:7px}.senegalVitrineCities span{padding:7px 9px;border-radius:999px;border:1px solid rgba(94,234,212,.28);background:rgba(94,234,212,.07);font-size:10px;font-weight:950}.senegalVitrineOpen{min-height:48px;margin-top:3px;padding:11px 14px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;font-size:11px;font-weight:1000}.senegalVitrineCountry{color:#fde68a;font-size:11px;font-weight:1000;letter-spacing:.08em}
-          @media(max-width:760px){.senegalVitrineCartouche{grid-template-columns:1fr}.senegalVitrineMap{min-height:195px}.senegalVitrineMap svg{height:195px}}
-        </style>
-        <a class="senegalVitrineCartouche" id="senegalVitrineCartouche" href="https://digiylyfe.com/senegal.html" aria-label="Ouvrir la carte interactive des territoires DIGIYLYFE au Sénégal">
-          <div class="senegalVitrineMap" aria-hidden="true">
-            <svg viewBox="0 0 430 245">
-              <path d="M113 28 L202 19 L291 37 L353 77 L331 112 L363 143 L337 171 L361 198 L326 222 L258 231 L193 216 L164 190 L111 182 L84 154 L105 126 L76 102 L101 78 L75 56 Z" fill="rgba(8,70,52,.48)" stroke="rgba(94,234,212,.72)" stroke-width="3"/>
-              <g fill="#dbe5df" opacity=".55"><circle cx="178" cy="56" r="4"/><circle cx="197" cy="105" r="4"/><circle cx="262" cy="102" r="4"/><circle cx="251" cy="157" r="4"/><circle cx="191" cy="202" r="4"/></g>
-              <g><circle cx="115" cy="111" r="16" fill="rgba(246,196,83,.16)" stroke="rgba(246,196,83,.55)"/><circle cx="115" cy="111" r="7" fill="#f6c453" stroke="#fff1bd" stroke-width="2"/><text x="130" y="115" fill="#ffe897" font-size="15" font-weight="1000">Dakar</text></g>
-              <g><circle cx="137" cy="145" r="16" fill="rgba(246,196,83,.16)" stroke="rgba(246,196,83,.55)"/><circle cx="137" cy="145" r="7" fill="#f6c453" stroke="#fff1bd" stroke-width="2"/><text x="153" y="149" fill="#ffe897" font-size="15" font-weight="1000">Petite Côte</text></g>
-            </svg>
-          </div>
-          <div class="senegalVitrineInfo">
-            <span class="senegalVitrineCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b> · CARTE TERRITORIALE</span>
-            <strong>DIGIY SÉNÉGAL</strong>
-            <small>2 TERRITOIRES ACTIFS · Dakar · Petite Côte</small>
-            <div class="senegalVitrineCities"><span>Dakar</span><span>Petite Côte</span><span>Saly · Mbour</span></div>
-            <span class="senegalVitrineOpen">OUVRIR LE SÉNÉGAL</span>
-          </div>
-        </a>
-
         <a class="territoryCard" href="https://digiylyfe.com/territoire.html?zone=vallee-dordogne" data-fav-id="territoire-dordogne">
           <span class="territoryCountry">🇫🇷 <b data-i18n="franceCountry">FRANCE</b></span>
           <picture class="territoryPhoto territoryPhotoFrance">
@@ -1565,6 +1529,59 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
             <small data-i18n="franceZones">3 TERRITOIRES ACTIFS · Vallée de la Dordogne · Bordeaux · Paris</small>
             <div class="franceVitrineCities"><span data-digiy-paris-chip="1">Paris</span><span>Bordeaux</span><span>Vallée de la Dordogne</span><span>Sarlat</span></div>
             <span class="franceVitrineOpen" data-i18n="openFrance">OUVRIR LA FRANCE</span>
+          </div>
+        </a>
+
+        <a class="territoryCard" href="https://digiylyfe.com/territoire.html?zone=petite-cote" data-fav-id="territoire-petite-cote">
+          <span class="territoryCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b></span>
+          <picture class="territoryPhoto territoryPhotoSaly">
+  <source type="image/avif" media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile-card.avif"/>
+  <source type="image/webp" media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile.webp"/>
+  <source type="image/avif" srcset="/assets/territoires/petite-cote-desktop-card.avif"/>
+  <source type="image/webp" srcset="/assets/territoires/petite-cote-desktop.webp"/>
+  <source media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile.webp"/>
+  <img src="/assets/territoires/petite-cote-desktop.webp" width="1536" height="1024" alt="Pêcheurs et pirogue sénégalaise · Petite Côte" loading="lazy" decoding="async"/>
+</picture>
+          <strong data-i18n="petiteTitle">DIGIY PETITE CÔTE</strong>
+          <small data-i18n="petiteZones">AIBD · Ndayane · Popenguine · Somone · Ngaparou · Saly · Mbour</small>
+          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
+        </a>
+
+        <a class="territoryCard" href="https://digiylyfe.com/dakar.html" data-fav-id="territoire-dakar">
+          <span class="territoryCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b></span>
+          <picture class="territoryPhoto territoryPhotoDakar">
+  <source type="image/avif" media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile-card.avif"/>
+  <source type="image/webp" media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile.webp"/>
+  <source type="image/avif" srcset="/assets/territoires/dakar-desktop-card.avif"/>
+  <source type="image/webp" srcset="/assets/territoires/dakar-desktop.webp"/>
+  <source media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile.webp"/>
+  <img src="/assets/territoires/dakar-desktop.webp" width="1600" height="900" alt="Dakar · Corniche et ville" loading="lazy" decoding="async"/>
+</picture>
+          <strong>DIGIY DAKAR</strong>
+          <small>Dakar · capitale · territoire urbain</small>
+          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
+        </a>
+
+        <style id="senegalVitrineCartoucheStyle">
+          .senegalVitrineCartouche{grid-column:1/-1;display:grid;grid-template-columns:38% 62%;gap:14px;align-items:center;padding:15px;border-radius:24px;border:1px solid rgba(94,234,212,.48);background:radial-gradient(420px 220px at 15% 15%,rgba(34,197,94,.12),transparent 68%),linear-gradient(145deg,rgba(5,40,29,.97),rgba(4,24,18,.98));box-shadow:0 16px 38px rgba(0,0,0,.24)}
+          .senegalVitrineMap{min-height:220px;border:1px solid rgba(94,234,212,.22);border-radius:20px;background:rgba(255,255,255,.025);overflow:hidden}.senegalVitrineMap svg{width:100%;height:220px;display:block}.senegalVitrineInfo{display:flex;flex-direction:column;gap:8px}.senegalVitrineInfo>strong{font-size:clamp(22px,4.8vw,34px);line-height:1.02;font-weight:1000}.senegalVitrineInfo>small{color:var(--soft);font-size:12px;line-height:1.45;font-weight:850}.senegalVitrineCities{display:flex;flex-wrap:wrap;gap:7px}.senegalVitrineCities span{padding:7px 9px;border-radius:999px;border:1px solid rgba(94,234,212,.28);background:rgba(94,234,212,.07);font-size:10px;font-weight:950}.senegalVitrineOpen{min-height:48px;margin-top:3px;padding:11px 14px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;font-size:11px;font-weight:1000}.senegalVitrineCountry{color:#fde68a;font-size:11px;font-weight:1000;letter-spacing:.08em}
+          @media(max-width:760px){.senegalVitrineCartouche{grid-template-columns:1fr}.senegalVitrineMap{min-height:195px}.senegalVitrineMap svg{height:195px}}
+        </style>
+        <a class="senegalVitrineCartouche" id="senegalVitrineCartouche" href="https://digiylyfe.com/senegal.html" aria-label="Ouvrir la carte interactive des territoires DIGIYLYFE au Sénégal">
+          <div class="senegalVitrineMap" aria-hidden="true">
+            <svg viewBox="0 0 430 245">
+              <path d="M113 28 L202 19 L291 37 L353 77 L331 112 L363 143 L337 171 L361 198 L326 222 L258 231 L193 216 L164 190 L111 182 L84 154 L105 126 L76 102 L101 78 L75 56 Z" fill="rgba(8,70,52,.48)" stroke="rgba(94,234,212,.72)" stroke-width="3"/>
+              <g fill="#dbe5df" opacity=".55"><circle cx="178" cy="56" r="4"/><circle cx="197" cy="105" r="4"/><circle cx="262" cy="102" r="4"/><circle cx="251" cy="157" r="4"/><circle cx="191" cy="202" r="4"/></g>
+              <g><circle cx="115" cy="111" r="16" fill="rgba(246,196,83,.16)" stroke="rgba(246,196,83,.55)"/><circle cx="115" cy="111" r="7" fill="#f6c453" stroke="#fff1bd" stroke-width="2"/><text x="130" y="115" fill="#ffe897" font-size="15" font-weight="1000">Dakar</text></g>
+              <g><circle cx="137" cy="145" r="16" fill="rgba(246,196,83,.16)" stroke="rgba(246,196,83,.55)"/><circle cx="137" cy="145" r="7" fill="#f6c453" stroke="#fff1bd" stroke-width="2"/><text x="153" y="149" fill="#ffe897" font-size="15" font-weight="1000">Petite Côte</text></g>
+            </svg>
+          </div>
+          <div class="senegalVitrineInfo">
+            <span class="senegalVitrineCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b> · CARTE TERRITORIALE</span>
+            <strong>DIGIY SÉNÉGAL</strong>
+            <small>2 TERRITOIRES ACTIFS · Dakar · Petite Côte</small>
+            <div class="senegalVitrineCities"><span>Dakar</span><span>Petite Côte</span><span>Saly · Mbour</span></div>
+            <span class="senegalVitrineOpen">OUVRIR LE SÉNÉGAL</span>
           </div>
         </a>
 

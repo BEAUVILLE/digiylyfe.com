@@ -32,6 +32,11 @@ class HomeWorld10(unittest.TestCase):
         lite_match=re.search(r'var DIGIY_VITRINE_LITE_COPY=(.*?);\n',HOME_I18N)
         self.assertIsNotNone(lite_match)
         lite=json.loads(lite_match.group(1))
+        focus_match=re.search(r'var DIGIY_SARLAT_FOCUS_COPY=(.*?);\n',HOME_I18N)
+        self.assertIsNotNone(focus_match)
+        focus=json.loads(focus_match.group(1))
+        self.assertEqual(set(focus),set(['fr','wo','zh','en','es','pt','it','de','nl','ar']))
+        self.assertTrue(all(set(['franceAnchorTitle','franceAnchorText','franceAnchorSarlat','franceAnchorFrance']) <= set(values) for values in focus.values()))
         trades_match=re.search(r'var DIGIY_VITRINE_TRADES=(.*?);\n',HOME_I18N)
         self.assertIsNotNone(trades_match)
         trades=json.loads(trades_match.group(1))
@@ -52,6 +57,7 @@ class HomeWorld10(unittest.TestCase):
             existing_price=merged['entryProText']
             merged.update(overlay[lang])
             merged.update(lite[lang])
+            merged.update(focus[lang])
             merged['liteTradeLine']=trades[lang]
             merged['liteTariffsNav'],merged['liteTariffsShort'],merged['liteTariffsFullCta']=tariff[lang]
             merged['entryProPrice']=existing_price
