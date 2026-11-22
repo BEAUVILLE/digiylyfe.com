@@ -40,12 +40,12 @@ class InternationalQuality(unittest.TestCase):
             for section in ("pain", "preview", "toolkit"):
                 self.assertIn(f'data-{section}-lang="{lang}"', LOC)
 
-    def test_france_master_displays_annual_and_monthly_and_protection(self):
-        price = "currency:'450 €/an · ou 45 €/mois (fiche 250 € séparée)'"
+    def test_france_master_displays_monthly_and_loc_protection(self):
+        price = "currency:'29 € HT/mois (fiche 250 € HT une fois) · 0 % commission'"
         self.assertEqual(MASTER.count(price), 2)
         self.assertIn("currency:'12 000 FCFA / mois'", MASTER)
         self.assertIn("locPrice:'DIGIY LOC · dès 75 €/mois · offre séparée'", MASTER)
-        self.assertIn("450 €/an", FRANCE)
+        self.assertIn("29 € HT / mois", FRANCE)
 
     def test_no_auto_payment_or_pricing_modification_on_loc(self):
         # Les appels réseau du paiement et les barèmes restent contrôlés par leurs scripts existants.

@@ -34,7 +34,7 @@ class WolofHomeReal(unittest.TestCase):
         for k in ("liteOfferKicker","liteOfferTitle","liteFreeTitle","liteFreePrice","liteFreeText","liteMemberTitle","liteMemberPrice","liteMemberText","liteB2B","liteMenu"):
             self.assertNotEqual(d["wo"][k], d["fr"][k], k)
         self.assertIn("12 000 FCFA", d["wo"]["liteMemberPrice"])
-        self.assertIn("450 €", d["wo"]["liteMemberPrice"])
+        self.assertIn("29 € HT", d["wo"]["liteMemberPrice"])
 
     def test_hero_unity_trade_line_and_tariffs_are_localized(self):
         h = dictionary("DIGIY_HERO_UNITY_COPY")

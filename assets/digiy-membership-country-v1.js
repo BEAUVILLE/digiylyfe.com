@@ -2,7 +2,7 @@
  * Scope: tarifs-adherents-1.html + tarifs-adherents.html
  * Source of truth: /assets/digiy-adhesion-runtime-v1.json
  * Rule: one country => one currency => one visible price set.
- * Commercial 20260909: France Adherent 1 annual billing + 2 welcome months.
+ * Commercial 20261122: France PRO 29 EUR HT / month + 250 EUR HT one-time profile; LOC separate.
  */
 (function(){
   'use strict';
@@ -154,7 +154,7 @@
     if(lead){
       var l=lang();
       var source=(typeof LOC!=='undefined'&&LOC&&(LOC[l]||LOC.fr))?(LOC[l]||LOC.fr).lead:lead.textContent;
-      lead.textContent=source.replace(/28(?:[ .,\u00a0\u202f])000 FCFA\s*\/\s*(?:€\s*75|75\s*€)/gi,amount(membership.amount,c));
+      lead.textContent=countryId==='FR'?source:source.replace(/28(?:[ .,\u00a0\u202f])000 FCFA\s*\/\s*(?:€\s*75|75\s*€)/gi,amount(membership.amount,c));
     }
   }
   function patchPayments(){
@@ -194,8 +194,8 @@
     document.querySelectorAll('[data-digiy-country]').forEach(function(btn){
       var on=btn.getAttribute('data-digiy-country')===countryId;btn.classList.toggle('active',on);btn.setAttribute('aria-pressed',on?'true':'false');
     });
-    var memberPrice=document.getElementById('memberPrice');if(memberPrice)memberPrice.textContent=amount(membership.amount,c);
-    var sheetPrice=document.getElementById('sheetPrice');if(sheetPrice)sheetPrice.textContent=fromLabel()+' '+amount(fiche.starting_amount,c);
+    var memberPrice=document.getElementById('memberPrice');if(memberPrice)memberPrice.textContent=countryId==='FR'&&plan==='adherent-19900'?'29 € HT / mois':amount(membership.amount,c);
+    var sheetPrice=document.getElementById('sheetPrice');if(sheetPrice)sheetPrice.textContent=countryId==='FR'&&plan==='adherent-19900'?'250 € HT · création unique':fromLabel()+' '+amount(fiche.starting_amount,c);
     var sitePrice=document.getElementById('sitePrice');if(sitePrice)sitePrice.textContent='SITE PREMIUM · '+fromLabel()+' '+amount(premium.starting_amount,c)+' · SITE EXTRA · '+fromLabel()+' '+amount(extra.starting_amount,c);
     patchCommercialValue();
     patchMembershipPeriod(c,membership);
@@ -203,7 +203,7 @@
     patchLoc(c,membership);
     patchPayments();
     patchPrepareLink();
-    document.title='DIGIYLYFE — '+(plan==='adherent-19900'?'Adhérent 1':'Adhérent 2')+' · '+label(c)+' · '+amount(membership.amount,c)+(membership.billing_period==='year'?' / an':'');
+    document.title='DIGIYLYFE — '+(plan==='adherent-19900'?'Adhérent 1':'Adhérent 2')+' · '+label(c)+' · '+(countryId==='FR'&&plan==='adherent-19900'?'29 € HT / mois':amount(membership.amount,c)+(membership.billing_period==='year'?' / an':''));
     persist();
   }
 

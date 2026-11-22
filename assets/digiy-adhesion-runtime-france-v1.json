@@ -39,23 +39,25 @@
       "pricing": {
         "membership": {
           "adherent-19900": {
-            "amount": 450,
-            "label": "Fiche 250 € + adhésion 450 € / an · TOTAL 1re année 700 € · puis 450 € / an",
-            "billing_period": "year",
-            "billing_months": 12,
+            "amount": 29,
+            "label": "29 € HT / mois · Fiche professionnelle 250 € HT une fois · 1re année 598 € HT (12 mois)",
+            "billing_period": "month",
+            "billing_months": 1,
             "profile_amount": 250,
-            "first_year_total_amount": 700,
-            "first_year_total_label": "700 €",
-            "welcome_months": 2,
-            "first_cycle_months": 14,
-            "first_renewal_amount": 450,
-            "first_renewal_months": 12
+            "first_year_total_amount": 598,
+            "first_year_total_label": "598 € HT (250 € + 12 × 29 €)",
+            "welcome_months": 0,
+            "first_cycle_months": 1,
+            "first_renewal_amount": 29,
+            "first_renewal_months": 1,
+            "vat_basis": "HT",
+            "loc_excluded": true
           }
         },
         "services": {
           "fiche": {
             "starting_amount": 250,
-            "label": "250 €"
+            "label": "250 € HT · création unique"
           },
           "site_premium": {
             "starting_amount": 480,

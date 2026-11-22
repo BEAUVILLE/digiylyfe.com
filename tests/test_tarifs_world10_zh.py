@@ -23,8 +23,8 @@ class TarifsWorld10(unittest.TestCase):
 
     def test_price_constants_and_payment_sequence_unchanged(self):
         self.assertIn('const CARD_PRICES={SN:"15 000 FCFA",FR:"20 €",US:"20 $"};',HTML)
-        self.assertIn("c==='SN'?'12 000 FCFA / mois':c==='FR'?'450 € / an':'$29 / month'",HTML)
-        for amount in ("13 000 FCFA","250 €","700 €","450 €","299 $","290 $","45 €"):
+        self.assertIn("c==='SN'?'12 000 FCFA / mois':c==='FR'?'29 € HT / mois':'$29 / month'",HTML)
+        for amount in ("13 000 FCFA","250 €","598 € HT","29 € HT","299 $","290 $"):
             self.assertIn(amount,HTML)
         self.assertIn("document.getElementById('memberCta')",HTML)
         self.assertIn("approved",HTML)
