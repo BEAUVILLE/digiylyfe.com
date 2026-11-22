@@ -1,20 +1,104 @@
 {
-  "runtime":"DIGIYLYFE-DORDOGNE-ADHESION-V1",
-  "countries":[{
-    "id":"FR","slug":"france","status":"active",
-    "labels":{"fr":"France","en":"France","es":"Francia","pt":"França","it":"Francia","de":"Frankreich","nl":"Frankrijk","ar":"فرنسا"},
-    "currency":{"code":"EUR","label":"€"},
-    "calling_code":"+33","timezone":"Europe/Paris","default_language":"fr",
-    "interface_languages":["fr","en","es","pt","it","de","nl","ar"],
-    "pricing":{
-      "membership":{"adherent-19900":{"amount":450,"label":"450 € / an","billing_period":"year","billing_months":12,"welcome_months":2,"first_cycle_months":14,"first_renewal_amount":450,"first_renewal_months":12}},
-      "services":{"fiche":{"starting_amount":250,"label":"À partir de 250 €"},"site_premium":{"starting_amount":480,"label":"À partir de 480 €"},"site_extra":{"starting_amount":800,"label":"À partir de 800 €"}}
-    },
-    "territories":[{
-      "id":"FR-DORDOGNE","slug":"vallee-dordogne","status":"active",
-      "labels":{"fr":"Périgord · Vallée de la Dordogne","en":"Périgord · Dordogne Valley","es":"Périgord · Valle del Dordoña","pt":"Périgord · Vale da Dordogne","it":"Périgord · Valle della Dordogna","de":"Périgord · Dordogne-Tal","nl":"Périgord · Dordognevallei","ar":"بيريغور · وادي دوردوني"},
-      "zones":[{"id":"FR-DORDOGNE-SARLAT","slug":"sarlat","label":"Sarlat-la-Canéda","status":"active"}]
-    }]
-  }],
-  "rules":{"membership_is_single":true,"membership_plan":"adherent-19900","active_territory_only":true,"active_zone_only":true,"examples_are_not_members":true,"human_validation_before_publication":true,"fail_closed":true}
+  "runtime": "DIGIYLYFE-DORDOGNE-ADHESION-V1",
+  "countries": [
+    {
+      "id": "FR",
+      "slug": "france",
+      "status": "active",
+      "labels": {
+        "fr": "France",
+        "en": "France",
+        "es": "Francia",
+        "pt": "França",
+        "it": "Francia",
+        "de": "Frankreich",
+        "nl": "Frankrijk",
+        "ar": "فرنسا"
+      },
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "calling_code": "+33",
+      "timezone": "Europe/Paris",
+      "default_language": "fr",
+      "interface_languages": [
+        "fr",
+        "en",
+        "es",
+        "pt",
+        "it",
+        "de",
+        "nl",
+        "ar"
+      ],
+      "pricing": {
+        "membership": {
+          "adherent-19900": {
+            "amount": 29,
+            "label": "29 € HT / mois · Fiche professionnelle 250 € HT une fois · 1re année 598 € HT (12 mois)",
+            "billing_period": "month",
+            "billing_months": 1,
+            "welcome_months": 0,
+            "first_cycle_months": 1,
+            "first_renewal_amount": 29,
+            "first_renewal_months": 1,
+            "profile_amount": 250,
+            "first_year_total_amount": 598,
+            "first_year_total_label": "598 € HT (250 € + 12 × 29 €)",
+            "vat_basis": "HT",
+            "loc_excluded": true
+          }
+        },
+        "services": {
+          "fiche": {
+            "starting_amount": 250,
+            "label": "250 € HT · création unique"
+          },
+          "site_premium": {
+            "starting_amount": 480,
+            "label": "À partir de 480 €"
+          },
+          "site_extra": {
+            "starting_amount": 800,
+            "label": "À partir de 800 €"
+          }
+        }
+      },
+      "territories": [
+        {
+          "id": "FR-DORDOGNE",
+          "slug": "vallee-dordogne",
+          "status": "active",
+          "labels": {
+            "fr": "Périgord · Vallée de la Dordogne",
+            "en": "Périgord · Dordogne Valley",
+            "es": "Périgord · Valle del Dordoña",
+            "pt": "Périgord · Vale da Dordogne",
+            "it": "Périgord · Valle della Dordogna",
+            "de": "Périgord · Dordogne-Tal",
+            "nl": "Périgord · Dordognevallei",
+            "ar": "بيريغور · وادي دوردوني"
+          },
+          "zones": [
+            {
+              "id": "FR-DORDOGNE-SARLAT",
+              "slug": "sarlat",
+              "label": "Sarlat-la-Canéda",
+              "status": "active"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "rules": {
+    "membership_is_single": true,
+    "membership_plan": "adherent-19900",
+    "active_territory_only": true,
+    "active_zone_only": true,
+    "examples_are_not_members": true,
+    "human_validation_before_publication": true,
+    "fail_closed": true
+  }
 }
