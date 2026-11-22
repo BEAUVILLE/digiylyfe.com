@@ -1046,7 +1046,7 @@ function setLang(l){
  const tierCopy=tierLocales[l];
  document.getElementById('tiersTitle').textContent=tierCopy?tierCopy[0]:'Paliers DIGIY LOC';
  const columns=tierCopy?[tierCopy[1],tierCopy[2]+' · '+tierCopy[4],tierCopy[2]+' · '+tierCopy[5]+' −15 %',tierCopy[3]+' · '+tierCopy[4],tierCopy[3]+' · '+tierCopy[5]+' −15 %','USA · MIAMI · '+tierCopy[5]]:['HÉBERGEMENTS / UNITÉS','SÉNÉGAL · MENSUEL','SÉNÉGAL · ANNUEL -15 %','EUROPE · MENSUEL HT','EUROPE · ANNUEL HT -15 %','USA · MIAMI PILOT · ANNUEL'];
- columns[3]+=' · HT';columns[4]+=' · HT';
+ if(!columns[3].includes('HT'))columns[3]+=' · HT';if(!columns[4].includes('HT'))columns[4]+=' · HT';
   document.querySelectorAll('.tablewrap thead th').forEach(function(th,index){th.textContent=columns[index]});
  document.querySelectorAll('#type option').forEach(function(option,index){
    option.textContent=tierCopy?tierCopy[index+14]:option.value;
