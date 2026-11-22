@@ -29,6 +29,21 @@ assert(html.includes('JE VEUX QUE MES CLIENTS ME RETROUVENT'),'Porte commerçant
 assert(html.includes('Un lien public à partager'),'Lien partageable public manquant');
 assert(html.includes('href="#inscription" class="cta primary"'),'Lien inscription manquant');
 assert(html.includes('href="#recherche" class="cta ghost"'),'Lien recherche manquant');
+// Parcours visiteur / professionnel : les deux portes de l'accueil ciblent deja les bonnes sections.
+const home=readFileSync('index.html','utf8');
+assert(home.includes('href="/annuaire.html#recherche" data-i18n="litePublicCta"'),'Accueil : porte recherche mal orientee');
+assert(home.includes('href="/annuaire.html#inscription" data-i18n="clarProCta"'),'Accueil : porte inscription mal orientee');
+// Regression recherche : les mots peuvent etre dans des champs differents et dans un ordre quelconque.
+const searchHelpers=html.match(/function normalized\(s\)\{[^\n]*\}\n\/\/[^\n]*\nfunction matchesSearchQuery\(query,parts\)\{[^\n]*\}/);
+assert(searchHelpers,'Fonction de recherche multi-mots introuvable');
+const searchMatcher=new Script(searchHelpers[0]+'\nmatchesSearchQuery(query,parts)',{filename:'annuaire-search.js'});
+const sample=['Babacar Plombier','Artisan','Saly'];
+for(const [query,expected] of [
+  ['plombier Saly',true],['saly plombier',true],['PLÔMBIER  SALY',true],
+  ['plombier',true],['',true],['plombier Dakar',false]
+]) {
+  assert.equal(searchMatcher.runInNewContext({query,parts:sample}),expected,'Recherche annuaire : '+query);
+}
 // Une présence gratuite ne produit ni photo, ni galerie, ni QR personnel.
 assert(html.includes('pas de photo, de galerie ni de QR personnel'),'Frontière gratuite / carte et fiche absente');
 // Le professionnel équipé ouvre son URL réelle ; ne jamais inventer une URL quand elle est absente.
