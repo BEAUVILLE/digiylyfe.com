@@ -6,8 +6,8 @@ var LANGS=['fr','en','es','pt','de','it','nl','ar','wo','zh'];if(LANGS.indexOf(l
 var META={
  'petite-cote':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'PETITE CÔTE',currency:'12 000 FCFA / mois',locPrice:'À partir de 21 000 FCFA / mois'},
  'dakar':{country:'SÉNÉGAL',flag:'🇸🇳',zone:'DAKAR',currency:'12 000 FCFA / mois',locPrice:'À partir de 21 000 FCFA / mois'},
- 'vallee-dordogne':{country:'FRANCE',flag:'🇫🇷',zone:'VALLÉE DE LA DORDOGNE',currency:'450 €/an · ou 45 €/mois (fiche 250 € séparée)',locPrice:'DIGIY LOC · dès 75 €/mois · offre séparée'},
- 'bordeaux':{country:'FRANCE',flag:'🇫🇷',zone:'BORDEAUX',currency:'450 €/an · ou 45 €/mois (fiche 250 € séparée)',locPrice:'DIGIY LOC · dès 75 €/mois · offre séparée'}
+ 'vallee-dordogne':{country:'FRANCE',flag:'🇫🇷',zone:'VALLÉE DE LA DORDOGNE',currency:'29 € HT/mois (fiche 250 € HT une fois) · 0 % commission',locPrice:'DIGIY LOC · dès 75 €/mois · offre séparée'},
+ 'bordeaux':{country:'FRANCE',flag:'🇫🇷',zone:'BORDEAUX',currency:'29 € HT/mois (fiche 250 € HT une fois) · 0 % commission',locPrice:'DIGIY LOC · dès 75 €/mois · offre séparée'}
 };
 var I18N={
  "fr": {
