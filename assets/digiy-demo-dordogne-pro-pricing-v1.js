@@ -31,7 +31,7 @@ function apply(){
   var box=document.querySelector('#businessPanel .price');
   if(!box)return;
   style();
-  var t=T[lang()];
+  var t=T[lang()];var p=(window.DIGIY_FR_PRO_PRICING_V2||{})[lang()];if(p){t=Object.assign({},t,{createPrice:p.profile,memberPrice:p.rate,memberText:p.notice,total:p.total,totalText:p.detail});}
   box.innerHTML='<div class="digiyProPriceFlow"><div class="digiyProPriceStep"><strong>'+t.create+'</strong><b>'+t.createPrice+'</b><small>'+t.createText+'</small></div><div class="digiyProPriceStep"><strong>'+t.member+'</strong><b>'+t.memberPrice+'</b><small>'+t.memberText+'</small></div><div class="digiyProPriceTotal"><strong>'+t.total+'</strong><small>'+t.totalText+'</small></div></div>';
 }
 apply();setTimeout(apply,80);setTimeout(apply,350);
