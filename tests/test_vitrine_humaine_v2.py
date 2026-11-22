@@ -53,7 +53,7 @@ class HumanHomepage(unittest.TestCase):
         offers = BODY.split('id="offres-essentielles"', 1)[1].split('</section>', 1)[0]
         self.assertIn('data-i18n="entryProPrice"', offers)
         self.assertIn('12 000 FCFA / mois', offers)
-        self.assertIn('450 € / an', offers)
+        self.assertIn('29 € HT / mois', offers)
         self.assertIn('href="/tarifs-loc-v2.html"', offers)
         self.assertIn('href="/tarifs-adherents-1.html" data-i18n="liteTariffsFullCta"', offers)
 
