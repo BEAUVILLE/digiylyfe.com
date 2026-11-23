@@ -51,7 +51,7 @@ class InternationalQuality(unittest.TestCase):
         # Les appels réseau du paiement et les barèmes restent contrôlés par leurs scripts existants.
         for x in ("function refMonthly(", "function annualAmount(", "function expectedTier(", "function setLang("):
             self.assertIn(x, LOC)
-        self.assertIn('21 000 FCFA / mois · 75 € / mois', LOC)
+        self.assertIn('21 000 FCFA / mois · 75 € HT / mois', LOC)
 
 
 if __name__ == "__main__":
