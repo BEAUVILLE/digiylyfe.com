@@ -56,7 +56,7 @@ jobs:
   public-routes:
     needs: scope
     if: needs.scope.outputs.full == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     strategy:
       matrix:
