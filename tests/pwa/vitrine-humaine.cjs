@@ -110,13 +110,17 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(searchUrl.searchParams.get('lang'),'fr');
    assert.equal(searchUrl.hash,'#recherche');
    assert.equal(await page.locator('#digiyFilmVitrine iframe').getAttribute('src'),null);
+   // Ordre validé : Hero → offres claires → Public/Pro → preuves → territoires.
    const order=await page.evaluate(()=>{
-     const blocks=[document.getElementById('digiyClarity'),document.getElementById('digiyEntryChoice'),
+     const blocks=[document.getElementById('digiyClarity'),document.getElementById('offres-essentielles'),
+       document.getElementById('digiyEntryChoice'),
        document.querySelector('section[aria-label="Preuves terrain DIGIYLYFE"]'),
-       document.getElementById('offres-essentielles'),document.getElementById('territoires')];
+       document.getElementById('territoires')];
      return blocks.map(el=>Math.round(el.getBoundingClientRect().top+scrollY));
    });
-   assert.deepEqual(order,[...order].sort((a,b)=>a-b),'Les cinq blocs sont dans l’ordre');
+   assert.deepEqual(order,[...order].sort((a,b)=>a-b),'Hero → offres claires → Public/Pro → preuves → territoires');
+   assert.equal(await page.locator('#digiyClarity').evaluate(el=>el.parentElement?.nextElementSibling?.id),
+     'offres-essentielles','Les offres claires suivent immédiatement le Hero');
    console.log('VITRINE_5_BLOCS_POSITIONS',JSON.stringify({width,viewportHeight:height,topPx:order,topScreens:order.map(px=>+(px/height).toFixed(2))}));
    // L'entrée internationale validée donne maintenant priorité aux langues, pays et au Hero.
    // Les deux cartes Public/Pro restent accessibles avant le Carrefour et les preuves.
