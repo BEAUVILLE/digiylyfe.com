@@ -37,7 +37,7 @@ def expected():
         head = Head()
         head.feed(raw.decode("utf-8"))
         assert head.canonicals == [ORIGIN + path] and not head.noindex, f"{path}: canonical/public status changed"
-        assert r["id"] not in result, "Duplicate signal id"
+        assert r["id"] + ".json" not in result, "Duplicate signal id"
         assert r["id"] in ["babakar-plombier-saly","sodior-btp","oncle-noa","mass-coolj","niery-art"], "Unknown signal id"
         obj = {"@context": "https://schema.org", "@type": "WebPage", "name": r["name"],
                "url": ORIGIN + path, "inLanguage": "fr", "description": r["description"],
