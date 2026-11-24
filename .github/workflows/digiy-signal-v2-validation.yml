@@ -1,0 +1,43 @@
+name: DIGIY SIGNAL V2 — validation lecture seule
+on:
+  pull_request:
+    paths:
+      - 'scripts/signal-v2.mjs'
+      - '.github/workflows/digiy-signal-v2-validation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tests intégrés
+        run: node scripts/signal-v2.mjs --self-test
+      - name: Lecture anonyme réelle (aucune publication)
+        shell: bash
+        run: |
+          set -euo pipefail
+          export DIGIY_ANON_KEY="$(node --input-type=module -e "import fs from 'node:fs';const s=fs.readFileSync('annuaire.html','utf8');const m=s.match(/var ANON_KEY='([^']+)'/);if(!m)process.exit(1);process.stdout.write(m[1])")"
+          tmp="$(mktemp)"
+          trap 'rm -f "$tmp"' EXIT
+          node scripts/signal-v2.mjs > "$tmp"
+          node --input-type=module - "$tmp" <<'JS'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const data=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
+          assert.equal(data.version,2);
+          assert(Array.isArray(data.items));
+          assert(data.items.length>0,'Aucune fiche récupérée');
+          const allowed=new Set(['id','name','source','activity','territories','country_code']);
+          const ids=new Set();
+          for(const item of data.items){
+            assert(Object.keys(item).every(k=>allowed.has(k)));
+            assert(!ids.has(item.id));ids.add(item.id);
+            assert.equal(item.source,'https://digiylyfe.com/annuaire.html?fiche='+encodeURIComponent(item.id));
+            assert(typeof item.name==='string'&&item.name.length>0);
+          }
+          console.log('SIGNAL V2 : '+data.items.length+' fiches publiques récupérées ; structure validée.');
+          console.log('Aucune fiche publiée, aucun artefact conservé.');
+          JS
