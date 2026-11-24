@@ -63,7 +63,14 @@ class HumanHomepage(unittest.TestCase):
         self.assertIn('class="digiyTarifsAccess"', header)
         self.assertIn('data-i18n="liteTariffsNav"', header)
         self.assertIn('data-i18n="liteTariffsShort"', header)
-        self.assertIn('href="/menu-universel-v1.html"', header)
+        self.assertIn('class="digiyMenuAccess" href="/open.html"', header)
+        # OPEN is the direct lightweight entry; the complete menu stays reachable.
+        portal = (ROOT / 'open.html').read_text(encoding='utf-8')
+        self.assertIn('href="/menu-universel-v1.html"', portal)
+        self.assertIn('href="/"', portal)
+        self.assertEqual(portal.count('class="app" data-route href='), 9)
+        self.assertLess(len(portal.encode('utf-8')), 20000)
+        self.assertNotRegex(portal, r'<script\s+src=')
         self.assertEqual(header.count('href="/tarifs-adherents-1.html"'), 1)
         self.assertEqual(re.findall(r'href="([^"]+)"', BODY.split('id="digiyClarity"', 1)[1].split('</section>', 1)[0]),
                          ['/annuaire.html#recherche', '/annuaire.html#inscription'])
