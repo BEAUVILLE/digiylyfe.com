@@ -126,3 +126,8 @@ DIGIYLYFE met une route numérique devant la porte de chaque activité.
 Les professionnels créent l’offre. Les clients créent la circulation.
 
 La force du réseau. L’indépendance de chacun.
+
+## DIGIY SIGNAL — pilote public
+
+* Index statique des cartes pilotes (FR) : https://digiylyfe.com/signal/v1/index.json
+* Les pages sources restent la référence pour les contacts, les prix et les disponibilités. Aucun statut d'abonnement payant n'est attesté par le signal.

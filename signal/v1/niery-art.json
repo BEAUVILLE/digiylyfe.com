@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Niery Art",
+  "url": "https://digiylyfe.com/carte-niery-art.html",
+  "inLanguage": "fr",
+  "description": "Parfums et vêtements traditionnels. Carte publique ; aucun contact direct supplémentaire n'est publié dans ce signal.",
+  "about": {
+    "@type": "Store",
+    "name": "Niery Art",
+    "description": "Keur Massar, Dakar, Sénégal"
+  }
+}

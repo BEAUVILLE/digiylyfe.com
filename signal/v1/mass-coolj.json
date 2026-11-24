@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Mass CoolJ",
+  "url": "https://digiylyfe.com/carte-mass-coolj.html",
+  "inLanguage": "fr",
+  "description": "Cuisine, pâtisserie et rap.",
+  "about": {
+    "@type": "Thing",
+    "name": "Mass CoolJ",
+    "description": "Saly Centre, Sénégal"
+  }
+}
