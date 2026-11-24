@@ -1,0 +1,21 @@
+name: SIGNAL V2 cache preview
+on:
+  pull_request:
+    paths:
+      - 'scripts/signal-v2-cache.mjs'
+      - '.github/workflows/signal-v2-cache-preview.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - run: node scripts/signal-v2-cache.mjs --self-test
+      - name: Validate real snapshot without publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          export DIGIY_ANON_KEY="$(node --input-type=module -e "import fs from 'node:fs';const m=fs.readFileSync('annuaire.html','utf8').match(/var ANON_KEY='([^']+)'/);if(!m)process.exit(1);process.stdout.write(m[1])")"
+          node scripts/signal-v2.mjs | node scripts/signal-v2-cache.mjs | node --input-type=module -e "let s='';for await(const c of process.stdin)s+=c;const d=JSON.parse(s);if(!d.items.length)process.exit(1);console.log(d.items.length+' fiches, '+Buffer.byteLength(s)+' octets ; aucune publication')"
