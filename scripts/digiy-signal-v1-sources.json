@@ -1,0 +1,47 @@
+[
+  {
+    "id": "babakar-plombier-saly",
+    "source": "cartes/babakar-plombier-saly.html",
+    "sourceSha": "566bfff8ec6ccf652232a69629497697c856dd80",
+    "name": "Babakar",
+    "type": "Plumber",
+    "description": "Plombier à Saly : réparation de fuites, WC et douche, installation de plomberie et tuyauterie.",
+    "area": "Saly, Sénégal"
+  },
+  {
+    "id": "sodior-btp",
+    "source": "cartes/sodior-btp.html",
+    "sourceSha": "34dbf39143d8049f2298c8550781ee27db0b5fc3",
+    "name": "SODIOR BTP",
+    "type": "Organization",
+    "description": "Ingénierie, construction, rénovation et immobilier ; professionnelle invitée du réseau DIGIYLYFE.",
+    "area": "Saly, Sénégal"
+  },
+  {
+    "id": "oncle-noa",
+    "source": "oncle-noa.html",
+    "sourceSha": "61516956c72746ad44ba32c6ea7debf4aacbfb6f",
+    "name": "Oncle NOA",
+    "type": "Store",
+    "description": "Sacs, montres, ceintures et accessoires. Prix, disponibilité et caractéristiques à confirmer auprès du vendeur.",
+    "area": null
+  },
+  {
+    "id": "mass-coolj",
+    "source": "carte-mass-coolj.html",
+    "sourceSha": "b5da4ede4e69244b02db6f61c5cd0f1b617f73c7",
+    "name": "Mass CoolJ",
+    "type": "Thing",
+    "description": "Cuisine, pâtisserie et rap.",
+    "area": "Saly Centre, Sénégal"
+  },
+  {
+    "id": "niery-art",
+    "source": "carte-niery-art.html",
+    "sourceSha": "22105f89589ce08f5f65a53d88d4190873056d58",
+    "name": "Niery Art",
+    "type": "Store",
+    "description": "Parfums et vêtements traditionnels. Carte publique ; aucun contact direct supplémentaire n'est publié dans ce signal.",
+    "area": "Keur Massar, Dakar, Sénégal"
+  }
+]

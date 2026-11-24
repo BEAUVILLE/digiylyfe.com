@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Oncle NOA",
+  "url": "https://digiylyfe.com/oncle-noa.html",
+  "inLanguage": "fr",
+  "description": "Sacs, montres, ceintures et accessoires. Prix, disponibilité et caractéristiques à confirmer auprès du vendeur.",
+  "about": {
+    "@type": "Store",
+    "name": "Oncle NOA"
+  }
+}

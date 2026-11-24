@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Babakar",
+  "url": "https://digiylyfe.com/cartes/babakar-plombier-saly.html",
+  "inLanguage": "fr",
+  "description": "Plombier à Saly : réparation de fuites, WC et douche, installation de plomberie et tuyauterie.",
+  "about": {
+    "@type": "Plumber",
+    "name": "Babakar",
+    "description": "Saly, Sénégal"
+  }
+}

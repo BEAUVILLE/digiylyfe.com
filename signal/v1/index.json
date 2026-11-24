@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "publisher": "DIGIYLYFE",
+  "language": "fr",
+  "notice": "Pilote de données publiques en français. Consulter la page source pour les informations actuelles, les contacts autorisés et les disponibilités. Aucun statut d'adhésion payante ni disponibilité n'est attesté.",
+  "items": [
+    {
+      "name": "Babakar",
+      "source": "https://digiylyfe.com/cartes/babakar-plombier-saly.html",
+      "signal": "https://digiylyfe.com/signal/v1/babakar-plombier-saly.json"
+    },
+    {
+      "name": "SODIOR BTP",
+      "source": "https://digiylyfe.com/cartes/sodior-btp.html",
+      "signal": "https://digiylyfe.com/signal/v1/sodior-btp.json"
+    },
+    {
+      "name": "Oncle NOA",
+      "source": "https://digiylyfe.com/oncle-noa.html",
+      "signal": "https://digiylyfe.com/signal/v1/oncle-noa.json"
+    },
+    {
+      "name": "Mass CoolJ",
+      "source": "https://digiylyfe.com/carte-mass-coolj.html",
+      "signal": "https://digiylyfe.com/signal/v1/mass-coolj.json"
+    },
+    {
+      "name": "Niery Art",
+      "source": "https://digiylyfe.com/carte-niery-art.html",
+      "signal": "https://digiylyfe.com/signal/v1/niery-art.json"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "SODIOR BTP",
+  "url": "https://digiylyfe.com/cartes/sodior-btp.html",
+  "inLanguage": "fr",
+  "description": "Ingénierie, construction, rénovation et immobilier ; professionnelle invitée du réseau DIGIYLYFE.",
+  "about": {
+    "@type": "Organization",
+    "name": "SODIOR BTP",
+    "description": "Saly, Sénégal"
+  }
+}
