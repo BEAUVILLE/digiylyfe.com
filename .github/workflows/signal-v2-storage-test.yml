@@ -1,0 +1,19 @@
+name: SIGNAL V2 storage test
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: signal-storage-test
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test fictitious cache only
+        env:
+          DIGIY_SIGNAL_EMAIL: ${{ secrets.DIGIY_SIGNAL_EMAIL }}
+          DIGIY_SIGNAL_PASSWORD: ${{ secrets.DIGIY_SIGNAL_PASSWORD }}
+        run: node scripts/signal-v2-storage-test.mjs
