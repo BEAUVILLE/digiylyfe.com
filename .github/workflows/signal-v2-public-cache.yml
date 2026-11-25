@@ -1,0 +1,33 @@
+name: SIGNAL V2 public cache
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: signal-v2-public-cache
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main' && vars.DIGIY_SIGNAL_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate generators
+        run: |
+          node scripts/signal-v2.mjs --self-test
+          node scripts/signal-v2-cache.mjs --self-test
+      - name: Refresh public cache
+        env:
+          DIGIY_SIGNAL_EMAIL: ${{ secrets.DIGIY_SIGNAL_EMAIL }}
+          DIGIY_SIGNAL_PASSWORD: ${{ secrets.DIGIY_SIGNAL_PASSWORD }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          export DIGIY_ANON_KEY="$(node --input-type=module -e "import fs from 'node:fs';const m=fs.readFileSync('annuaire.html','utf8').match(/var ANON_KEY='([^']+)'/);if(!m)process.exit(1);process.stdout.write(m[1])")"
+          tmp="$(mktemp)"
+          trap 'rm -f "$tmp"' EXIT
+          node scripts/signal-v2.mjs | node scripts/signal-v2-cache.mjs > "$tmp"
+          node scripts/signal-v2-publish.mjs < "$tmp"
