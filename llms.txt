@@ -131,3 +131,9 @@ La force du réseau. L’indépendance de chacun.
 
 * Index statique des cartes pilotes (FR) : https://digiylyfe.com/signal/v1/index.json
 * Les pages sources restent la référence pour les contacts, les prix et les disponibilités. Aucun statut d'abonnement payant n'est attesté par le signal.
+
+## DIGIY SIGNAL V2 — annuaire public actualisé
+
+* [Index JSON V2](https://wesqmwjjtsefyjnluosj.supabase.co/storage/v1/object/public/digiy-signal/v2/index.json) : instantané des professionnels actifs et publics de l’annuaire, généré depuis Supabase. Actualisation horaire programmée, sous réserve du succès des exécutions.
+* Consulter `generated_at` pour connaître la fraîcheur des données et suivre les liens `source` pour vérifier chaque fiche. Les retraits sont reflétés au prochain rafraîchissement réussi, sous réserve des caches. Ne pas inventer les champs absents ni déduire un statut payant ou une disponibilité.
+* Le pilote V1 reste distinct et ne doit pas être additionné à V2 pour compter les professionnels.
