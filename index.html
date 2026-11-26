@@ -1300,7 +1300,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
 #digiyClarity .digiyHeroQr svg{display:block;width:111px;height:111px;background:#fff;border-radius:4px;flex:none}
 #digiyClarity .digiyHeroQr:focus-visible{outline:3px solid #ffe3a0;outline-offset:4px}
 @media(max-width:420px){#digiyClarity .digiyHeroQrRow{gap:8px}#digiyClarity .digiyHeroQr svg{width:93px;height:93px}#digiyClarity .digiyHeroQrCopy .mobileRailTitle{font-size:21px}}
-</style></head>
+</style><style>.digiyMenuBack{display:block;width:100%;min-height:44px;margin:4px 0 8px;padding:8px 12px;border:1px solid #e6bd62;border-radius:12px;background:#f6c453;color:#08251a;font:inherit;font-weight:850;cursor:pointer}.digiyMenuBack:focus-visible{outline:3px solid #fff;outline-offset:2px}</style></head>
 <body>
   <main class="app" id="haut">
     <header class="topbar">
@@ -1512,6 +1512,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
     </section>
 <details class="digiyVitrineDetails" id="digiyVitrineDetails">
       <summary data-i18n="liteMenu">☰ Explorer tous les territoires, métiers et outils</summary>
+      <button type="button" id="digiyMenuBack" class="digiyMenuBack">← Retour à la vitrine</button>
 <nav class="digiyQuickProof"><a href="/menu-universel-v1.html" data-i18n="liteMenu">☰ Explorer tous les territoires, métiers et outils</a><a href="/open.html">DIGIY OPEN</a></nav>
     <nav class="digiyQuickProof" id="acces-rapides-pro">
       <a href="/outils-gestion-demo.html" data-i18n="quickTools">Outils métiers (FR)</a>
@@ -2253,6 +2254,21 @@ window.DIGIY_FACADE_TWO_WORLDS_V1=true;
     panel.open=true;
     requestAnimationFrame(function(){target.scrollIntoView({block:'start'});});
   }
+  var back=document.getElementById('digiyMenuBack');
+  var panel=document.getElementById('digiyVitrineDetails');
+  var copy={fr:'← Retour à la vitrine',en:'← Back to home',wo:'← Dellu ci xët wu njëkk',zh:'← 返回首页',es:'← Volver al inicio',pt:'← Voltar ao início',it:'← Torna alla home',de:'← Zur Startseite',nl:'← Terug naar de startpagina',ar:'العودة إلى الصفحة الرئيسية ←'};
+  function translateBack(){if(back)back.textContent=copy[document.documentElement.lang.toLowerCase().split('-')[0]]||copy.fr;}
+  translateBack();
+  new MutationObserver(translateBack).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  if(back&&panel)back.addEventListener('click',function(){
+    panel.open=false;
+    var url=new URL(location.href);
+    url.hash='';
+    history.replaceState(history.state,'',url.pathname+url.search);
+    var menu=document.querySelector('.digiyMenuAccess');
+    if(menu)menu.focus({preventScroll:true});
+    window.scrollTo({top:0,left:0,behavior:'instant'});
+  });
   window.addEventListener('hashchange',reveal);
   document.addEventListener('DOMContentLoaded',reveal);
   reveal();

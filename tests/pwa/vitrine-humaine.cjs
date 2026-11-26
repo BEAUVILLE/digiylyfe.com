@@ -140,6 +140,24 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.locator('#digiyEntryChoice').isVisible(),true);
    assert.equal(await page.locator('.digiyFrontModules a').count(),8);
    assert.equal(await page.locator('#offres-essentielles .digiyVitrineOfferGrid article').count(),4);
+   if(width===375){
+     const back=page.locator('#digiyMenuBack');
+     assert.equal(await back.isVisible(),true);
+     assert.equal(await back.innerText(),'← Retour à la vitrine');
+     await page.locator('.languageStrip button[data-lang="en"]').click();
+     await page.waitForFunction(()=>document.documentElement.lang==='en');
+     await page.waitForFunction(()=>document.getElementById('digiyMenuBack').textContent==='← Back to home');
+     await back.click();
+     assert.equal(await page.locator('#digiyVitrineDetails').evaluate(el=>el.open),false);
+     assert.equal(new URL(page.url()).searchParams.get('lang'),'en');
+     assert.equal(new URL(page.url()).hash,'');
+     await page.waitForFunction(()=>window.scrollY<=2);
+     assert.equal(await page.locator('.digiyMenuAccess').evaluate(el=>el===document.activeElement),true);
+     await page.locator('.languageStrip button[data-lang="fr"]').click();
+     await page.waitForFunction(()=>document.documentElement.lang==='fr');
+     await page.locator('.digiyMenuAccess').click();
+     await page.waitForFunction(()=>document.getElementById('digiyVitrineDetails').open);
+   }
    const saly=page.locator('#territoires a[data-i18n="liteSaly"]');
    const salyUrl=new URL(await saly.getAttribute('href'),'https://digiylyfe.com');
    assert.equal(salyUrl.pathname,'/saly.html');
