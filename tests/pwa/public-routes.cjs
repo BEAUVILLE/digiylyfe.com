@@ -1,5 +1,15 @@
 const {chromium,webkit}=require('playwright');const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'../..');
+ // Guard the simulator against future divergence from the official LOC tariff table.
+ const simSource=fs.readFileSync(path.join(root,'simulateur-economies.html'),'utf8');
+ const locSource=fs.readFileSync(path.join(root,'tarifs-loc-v2.html'),'utf8');
+ const simRates=JSON.parse(simSource.match(/const RATES=(.*?);/)[1]);
+ const officialTiers=Function('return '+locSource.match(/var tiers=(\[[\s\S]*?\]);/)[1])();
+ assert.deepEqual(simRates,officialTiers.map(t=>[t.label,t.snRef,t.euRef,t.snAnnual,t.euAnnual]));
+ const simCopy=JSON.parse(simSource.match(/const COPY=(.*?);/)[1]);
+ assert.equal(Object.keys(simCopy).length,10);
+ for(const copy of Object.values(simCopy))for(const key of Object.keys(simCopy.fr))assert.ok(copy[key],key);
+
 // Local publication fixture only; the real Supabase publication gate remains unchanged.
 const publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll(/<a class="exampleCard" href="([^"]+)"/g)].map(m=>({public_url:m[1]}));
 (async()=>{const engine=process.env.PWA_BROWSER==='webkit'?webkit:chromium;const browser=await engine.launch(process.env.CHROMIUM_EXECUTABLE?{executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox','--disable-dev-shm-usage']}:{headless:true});try{const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});
