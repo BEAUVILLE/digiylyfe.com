@@ -1177,6 +1177,7 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
 .digiyFrontWorldGrid a{min-width:0;min-height:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px;text-align:center;color:#fffaf0;text-decoration:none;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:rgba(255,255,255,.065)}
 .digiyFrontWorldGrid strong{font-size:13px;line-height:1.2}
 .digiyFrontWorldGrid small{font-size:10px;color:#d9e9dd;line-height:1.25;overflow-wrap:anywhere}
+.digiyRegionsAccess{display:flex;align-items:center;justify-content:center;min-height:44px;margin:5px 0 0;color:#ffe3a0;font-size:12px;font-weight:850;text-align:center;text-decoration:underline;text-underline-offset:3px}.digiyRegionsAccess:focus-visible{outline:3px solid #f6c453;outline-offset:2px;border-radius:8px}
 .digiyFrontWorldGrid a:hover{background:rgba(246,196,83,.13)}
 .digiyFrontWorldGrid a:focus-visible,.digiyFrontBridge:focus-visible,.digiyFrontModules a:focus-visible{outline:3px solid #f6c453;outline-offset:3px}
 .digiyFrontDirect{margin:10px 0 14px;padding:clamp(13px,2.5vw,21px);border:1px solid rgba(59,200,157,.45);border-radius:23px;background:linear-gradient(135deg,#0b3023,#09231b);color:#fffaf0}
@@ -1303,6 +1304,16 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       <button type="button" class="langBtn" data-lang="nl" aria-pressed="false">NL</button>
       <button type="button" class="langBtn" data-lang="ar" aria-pressed="false">AR</button>
     </nav>
+<section class="digiyFrontWorld" aria-label="Pays et territoires DIGIYLYFE" id="pays-directs">
+  <p class="digiyFrontWorldKicker" data-direct-i18n="frontKicker">🌍 4 pays à découvrir · 10 langues</p>
+  <nav class="digiyFrontWorldGrid" aria-label="Choisir un pays ou territoire">
+    <a href="/france.html"><strong>🇫🇷 <span data-i18n="globalFrance">France</span></strong><small>Sarlat · Dordogne · Bordeaux · Paris</small></a>
+    <a href="/senegal.html"><strong>🇸🇳 <span data-i18n="globalSenegal">Sénégal</span></strong><small>Dakar · Petite Côte · Saly · Mbour</small></a>
+    <a href="/maroc.html"><strong>🇲🇦 <span data-i18n="globalMorocco">Maroc</span></strong><small data-direct-i18n="frontMoroccoAreas">Casablanca · Marrakech · ouverture</small></a>
+    <a href="/miami.html"><strong>🇺🇸 <span data-i18n="globalUsa">États-Unis</span></strong><small data-direct-i18n="frontUSAAreas">Miami · Floride · pilote</small></a>
+  </nav>
+  <a class="digiyRegionsAccess" href="#territoires-detail" data-i18n="quickRegions">Voir les régions et territoires</a>
+</section>
     <nav class="digiyQuickProof" id="acces-rapides-pro">
       <a href="/outils-gestion-demo.html" data-i18n="quickTools">Outils métiers (FR)</a>
       <a href="/simulateur-economies.html" data-i18n="quickSavings">Simuler mes économies</a>
@@ -1467,15 +1478,6 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
            <a href="/france.html" data-i18n="franceAnchorFrance">Explorer la France →</a>
          </nav>
        </aside>
-<section class="digiyFrontWorld" aria-label="Pays et territoires DIGIYLYFE" id="pays-directs">
-  <p class="digiyFrontWorldKicker" data-direct-i18n="frontKicker">🌍 4 pays à découvrir · 10 langues</p>
-  <nav class="digiyFrontWorldGrid" aria-label="Choisir un pays ou territoire">
-    <a href="/france.html"><strong>🇫🇷 <span data-i18n="globalFrance">France</span></strong><small>Sarlat · Dordogne · Bordeaux · Paris</small></a>
-    <a href="/senegal.html"><strong>🇸🇳 <span data-i18n="globalSenegal">Sénégal</span></strong><small>Dakar · Petite Côte · Saly · Mbour</small></a>
-    <a href="/maroc.html"><strong>🇲🇦 <span data-i18n="globalMorocco">Maroc</span></strong><small data-direct-i18n="frontMoroccoAreas">Casablanca · Marrakech · ouverture</small></a>
-    <a href="/miami.html"><strong>🇺🇸 <span data-i18n="globalUsa">États-Unis</span></strong><small data-direct-i18n="frontUSAAreas">Miami · Floride · pilote</small></a>
-  </nav>
-</section>
 <aside class="digiyProofInfo" id="questions-frequentes" aria-labelledby="digiyProofFaqTitle">
   <h2 id="digiyProofFaqTitle" data-i18n="proofFaqTitle">Vos questions, nos réponses</h2>
   <details><summary data-i18n="proofQ1">L’annuaire est-il gratuit ?</summary><p data-i18n="proofA1">Oui. Aucune carte, fiche payante ni adhésion n’est obligatoire pour s’inscrire.</p></details>
@@ -2114,7 +2116,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
 
   <script src="/assets/digiy-home-world10-v1.js?v=20261122-clarte-offres-v1"></script>
   <script src="/assets/digiy-vitrine-portes-world10-v1.js?v=20261116"></script>
-<script src="/assets/digiy-home-i18n-v1.js?v=20261126-preuve-visuelle"></script>
+<script src="/assets/digiy-home-i18n-v1.js?v=20261126-territoires"></script>
   <script src="/assets/digiy-catalog.js?v=20260926-favorites-clear-v1"></script>
   <script>
   (function(){
