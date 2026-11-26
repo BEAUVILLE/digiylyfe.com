@@ -20,10 +20,14 @@ const publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchA
  // PREUVE V2: shortcuts and local economic simulator, no production API.
  const quick=page.locator('#acces-rapides-pro');
  assert.equal(await quick.locator('a').count(),2);
- assert.equal(await quick.evaluate(el=>{const r=el.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight}),true);
+ assert.equal(await quick.isVisible(),false);
+ await page.locator('.digiyMenuAccess').click();
+ await page.waitForFunction(()=>document.getElementById('digiyVitrineDetails').open);
+ assert.equal(await quick.isVisible(),true);
  const quickTools=quick.locator('[data-i18n="quickTools"]');
  await quickTools.click();await page.waitForURL(url=>url.pathname==='/outils-gestion-demo.html');
  await page.locator('header a').click();await page.waitForURL(url=>url.pathname==='/');
+ await page.locator('.digiyMenuAccess').click();
  await quick.locator('[data-i18n="quickSavings"]').click();
  await page.waitForURL(url=>url.pathname==='/simulateur-economies.html');
  const value=async(id)=>Number(await page.locator('#'+id).getAttribute('data-value'));
@@ -67,6 +71,7 @@ const publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchA
  // PREUVE V1 : le message commercial reste visible à 390 px.
  assert.equal(await page.locator('#digiyClarity .digiyClarityLead').isVisible(),true);
  assert.equal(await page.locator('#digiyClarity .digiyProofZero').isVisible(),true);
+ await page.locator('.digiyMenuAccess').click();
  const proof=page.locator('section[aria-label="Preuves terrain DIGIYLYFE"]');
  const helage=proof.locator('a.exampleCard[href*="helage-plombier.digiylyfe.com"]');
  await helage.waitFor({state:'visible'});
@@ -105,6 +110,7 @@ const publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchA
  assert.equal(new URL(await page.locator('header a.back').getAttribute('href'),'https://digiylyfe.com').searchParams.get('lang'),'zh');
  await page.goto('https://digiylyfe.com/?lang=fr');
  console.log('PASS PREUVE VISUELLE: five existing PDF pages rendered, safe return and language');
+ await page.locator('.digiyMenuAccess').click();
  const question=page.locator('#questions-frequentes details').first();
  await question.locator('summary').click();
  assert.equal(await question.locator('p').isVisible(),true);
@@ -204,7 +210,8 @@ const publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchA
  console.log('PASS libellés cartes DIGIY FR ↔ 中文');
  await page.goto('https://digiylyfe.com/?lang=wo');
  await page.waitForFunction(()=>document.documentElement.lang==='wo');
- const salyLink=page.locator('a[href*="/saly.html"]').first();
+ await page.locator('.digiyMenuAccess').click();
+ const salyLink=page.locator('a[href*="/saly.html"]:visible').first();
  assert.equal(new URL(await salyLink.getAttribute('href'),'https://digiylyfe.com').searchParams.get('lang'),'wo');
  await salyLink.click();
  await page.waitForURL(url=>url.pathname==='/saly.html'&&url.searchParams.get('lang')==='wo');
