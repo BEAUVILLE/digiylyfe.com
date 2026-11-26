@@ -110,33 +110,37 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(searchUrl.searchParams.get('lang'),'fr');
    assert.equal(searchUrl.hash,'#recherche');
    assert.equal(await page.locator('#digiyFilmVitrine iframe').getAttribute('src'),null);
-   // Ordre validé : Hero → offres claires → Public/Pro → preuves → territoires.
+   // PREUVE V1 : la réalité des métiers précède l'offre tarifaire.
    const order=await page.evaluate(()=>{
-     const blocks=[document.getElementById('digiyClarity'),document.getElementById('offres-essentielles'),
-       document.getElementById('digiyEntryChoice'),
+     const blocks=[document.getElementById('digiyClarity'),
        document.querySelector('section[aria-label="Preuves terrain DIGIYLYFE"]'),
+       document.getElementById('digiyEntryChoice'),document.getElementById('outils-directs'),
+       document.getElementById('preuves-outils'),document.getElementById('offres-essentielles'),
+       document.getElementById('pays-directs'),document.getElementById('questions-frequentes'),
        document.getElementById('territoires')];
      return blocks.map(el=>Math.round(el.getBoundingClientRect().top+scrollY));
    });
-   assert.deepEqual(order,[...order].sort((a,b)=>a-b),'Hero → offres claires → Public/Pro → preuves → territoires');
-   assert.equal(await page.locator('#digiyClarity').evaluate(el=>el.parentElement?.nextElementSibling?.id),
-     'offres-essentielles','Les offres claires suivent immédiatement le Hero');
-   console.log('VITRINE_5_BLOCS_POSITIONS',JSON.stringify({width,viewportHeight:height,topPx:order,topScreens:order.map(px=>+(px/height).toFixed(2))}));
-   // L'entrée internationale validée donne maintenant priorité aux langues, pays et au Hero.
-   // Les deux cartes Public/Pro restent accessibles avant le Carrefour et les preuves.
+   assert.deepEqual(order,[...order].sort((a,b)=>a-b),'Hero → preuves → Public/Pro → outils → offres → pays → FAQ → territoires');
+   assert.equal(await page.locator('#digiyClarity').evaluate(el=>el.parentElement?.nextElementSibling?.matches('section[aria-label="Preuves terrain DIGIYLYFE"]')),true,'Les réalisations suivent immédiatement le Hero');
+   assert.equal(await page.locator('#digiyClarity .digiyClarityLead').isVisible(),true);
+   assert.equal(await page.locator('#digiyClarity .digiyProofZero').isVisible(),true);
+   assert.equal(await page.locator('#offres-essentielles .digiyVitrineOfferGrid article').count(),4);
+   assert.equal(await page.locator('section[aria-label="Preuves terrain DIGIYLYFE"] a.exampleCard[href*="helage-plombier.digiylyfe.com"]').isVisible(),true);
+   console.log('VITRINE_PREUVE_V1_POSITIONS',JSON.stringify({width,viewportHeight:height,topPx:order,topScreens:order.map(px=>+(px/height).toFixed(2))}));
+   // Les pays et modules restent directement accessibles, après les réalisations et les offres.
    const world=page.locator('#pays-directs');
    assert.equal(await page.locator('.digiyFrontWorldGrid a').count(),4,'Quatre pays directement accessibles');
    assert.equal(await page.locator('.digiyFrontModules a').count(),8,'Huit modules directement accessibles');
    assert.equal(await page.locator('#digiyFrontBridge').count(),0,'Ne pas créer de deuxième Carrefour concurrent');
    const topOrder=await page.evaluate(()=>[
-     document.getElementById('pays-directs'),
      document.getElementById('digiyClarity'),
      document.getElementById('digiyEntryChoice'),
-     document.getElementById('outils-directs')
+     document.getElementById('outils-directs'),
+     document.getElementById('pays-directs')
    ].map(el=>Math.round(el.getBoundingClientRect().top+scrollY)));
-   assert.deepEqual(topOrder,[...topOrder].sort((a,b)=>a-b),'Pays → Hero → Public/Pro → Carrefour et outils');
+   assert.deepEqual(topOrder,[...topOrder].sort((a,b)=>a-b),'Hero → Public/Pro → Carrefour et outils → pays');
    if(width===375){
-     assert.equal(await world.evaluate(el=>el.getBoundingClientRect().bottom <= innerHeight),true,'Les quatre pays doivent être lisibles sur le premier écran 375×667');
+     assert.equal(await world.isVisible(),true,'Les quatre pays restent accessibles sans ouvrir un menu');
      assert.equal(await page.locator('#digiyClarity').evaluate(el=>el.getBoundingClientRect().top < innerHeight),true,'Le Hero doit commencer à apparaître sur le premier écran');
      assert.equal(await page.locator('#digiyEntryChoice').isVisible(),true,'Les cartes Public/Pro restent accessibles sans menu');
    }
@@ -185,7 +189,10 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   const homePath=new URL(page.url()).pathname;
   await page.waitForSelector('#offres-essentielles .digiyVitrineOfferPrice');
   const digits=s=>s.replace(/[^0-9]/g,'');
-  const originalPrice=digits(await page.locator('#offres-essentielles .digiyVitrineOfferGrid article:nth-child(3) .digiyVitrineOfferPrice').innerText());
+  const memberPrice=page.locator('#offres-essentielles [data-i18n="liteMemberPrice"]');
+  const setupPrice=page.locator('#offres-essentielles [data-i18n="liteSetupNote"]');
+  const originalPrice=digits(await memberPrice.innerText());
+  const originalSetupPrice=digits(await setupPrice.innerText());
   const frenchTitle=await page.locator('h1').innerText();
   for(const [lang,title,remember] of [['wo','BIROO BU ÑÉPP MËN A DUGG','DIGIY dafay tax sa kiliyaan yi bañ laa fàtte.'],['zh','每一项经营活动都值得在世界上拥有一席之地。','DIGIY 帮助客户再次找到您。']]){
    await page.locator(`.languageStrip button[data-lang="${lang}"]`).click();
@@ -202,7 +209,8 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.locator('.ownerModulesLang:visible').getAttribute('data-owner-lang'),lang);
    await page.waitForTimeout(100);
    assert.equal(await page.locator('.languageStrip').evaluate(el=>{const r=el.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight;}),true,'language choices remain visible after changing locale');
-   assert.equal(digits(await page.locator('#offres-essentielles .digiyVitrineOfferGrid article:nth-child(3) .digiyVitrineOfferPrice').innerText()),originalPrice);
+   assert.equal(digits(await memberPrice.innerText()),originalPrice);
+   assert.equal(digits(await setupPrice.innerText()),originalSetupPrice);
    const labels=await page.locator('#campusInterestForm [data-campus-copy="send"]').innerText();
    assert.ok(lang==='zh'?labels.includes('感兴趣'):labels.includes('BËGG'));
    assert.ok((await page.locator('#offres-essentielles h2').innerText()).length>3);
