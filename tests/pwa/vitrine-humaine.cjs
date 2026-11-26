@@ -108,8 +108,8 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
      await page.waitForURL(url=>url.pathname==='/tarifs-adherents-1.html');
      await page.goto('https://digiylyfe.com/?lang=fr');
    }
-   assert.equal(await page.locator('#digiyClarity a').count(),2);
-   const searchUrl=new URL(await page.locator('#digiyClarity a').first().getAttribute('href'),'https://digiylyfe.com');
+   assert.equal(await page.locator('#digiyClarity .digiyVitrineActions a').count(),2);
+   const searchUrl=new URL(await page.locator('#digiyClarity .digiyVitrineActions a').first().getAttribute('href'),'https://digiylyfe.com');
    assert.equal(searchUrl.pathname,'/annuaire.html');
    assert.equal(searchUrl.searchParams.get('lang'),'fr');
    assert.equal(searchUrl.hash,'#recherche');
@@ -123,6 +123,13 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.locator('#offres-essentielles').isVisible(),false);
    if(width===375){
      assert.equal(await page.locator('#digiyClarity .digiyVitrineActions').evaluate(el=>el.getBoundingClientRect().bottom<=innerHeight),true,'Actions au premier écran');
+     const qr=page.locator('.digiyHeroQr');
+     assert.equal(await qr.isVisible(),true);
+     assert.equal(await qr.evaluate(el=>{const r=el.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight}),true,'QR officiel au premier écran');
+     assert.equal(new URL(await qr.getAttribute('href'),'https://digiylyfe.com').pathname,'/qr.html');
+     assert.equal(await qr.locator('svg path').count(),1);
+     await qr.click();await page.waitForURL(url=>url.pathname==='/qr.html');
+     await page.goto('https://digiylyfe.com/?lang=fr');
      await world.locator('a[data-i18n="quickRegions"]').click();
      await page.waitForURL(url=>url.hash==='#territoires-detail');
      await page.waitForFunction(()=>{const r=document.getElementById('territoires-detail').getBoundingClientRect();return r.top>=-4&&r.top<innerHeight&&r.bottom>0;},null,{timeout:5000});
