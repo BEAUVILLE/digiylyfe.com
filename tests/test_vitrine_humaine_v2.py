@@ -21,7 +21,7 @@ class HumanHomepage(unittest.TestCase):
         self.assertEqual(BODY.count('Les rails existent. Prenez votre place.'), 1)
         hero = BODY.split('id="digiyClarity"', 1)[1].split('</section>', 1)[0]
         self.assertEqual(re.findall(r'href="([^"]+)"', hero),
-                         ['/annuaire.html#recherche', '/annuaire.html#inscription'])
+                         ['/qr.html', '/annuaire.html#recherche', '/annuaire.html#inscription'])
         self.assertEqual(len(re.findall(r'<h1\b', BODY)), 1)
         self.assertNotIn('Deux chemins', BODY)
 
@@ -74,7 +74,7 @@ class HumanHomepage(unittest.TestCase):
         self.assertNotRegex(portal, r'<script\s+src=')
         self.assertEqual(header.count('href="/tarifs-adherents-1.html"'), 1)
         self.assertEqual(re.findall(r'href="([^"]+)"', BODY.split('id="digiyClarity"', 1)[1].split('</section>', 1)[0]),
-                         ['/annuaire.html#recherche', '/annuaire.html#inscription'])
+                         ['/qr.html', '/annuaire.html#recherche', '/annuaire.html#inscription'])
         self.assertTrue((ROOT / 'tarifs-adherents-1.html').is_file())
         self.assertIn('.digiyTarifsAccess{min-height:44px', HOME)
 
@@ -87,6 +87,10 @@ class HumanHomepage(unittest.TestCase):
         before_details, menu = BODY.split('<details class="digiyVitrineDetails"', 1)
         self.assertEqual(before_details.count('class="digiyGoldSignature"'), 0)
         self.assertEqual(menu.count('class="digiyGoldSignature"'), 1)
+        self.assertEqual(before_details.count('class="digiyHeroQr"'), 1)
+        self.assertIn('class="digiyHeroQr" href="/qr.html"', before_details)
+        official_svg = re.search(r'<svg\b[^>]*>.*?</svg>', qr_page.read_text(), re.S).group(0)
+        self.assertIn(official_svg.replace('id="qr-path"', 'id="digiyHeroQrPath"'), before_details)
         self.assertIn('src="/assets/presse/signature-digiy-or.png"', menu)
         self.assertIn('alt="Symbole infini doré officiel DIGIY"', menu)
         self.assertIn('href="/qr.html" aria-label="Ouvrir le QR officiel DIGIYLYFE"', menu)
