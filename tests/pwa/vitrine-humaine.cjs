@@ -149,7 +149,12 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
      assert.equal(await page.locator('#digiyClarity').evaluate(el=>el.getBoundingClientRect().top<innerHeight*1.4),true,'Hero proche du premier écran après accès géographiques');
      const regions=world.locator('a[data-i18n="quickRegions"]');
      await regions.click();await page.waitForURL(url=>url.hash==='#territoires-detail');
-     assert.equal(await page.locator('#territoires-detail .territoryGrid .territoryCard').count(),7);
+     assert.equal(await page.locator('#territoires').count(),1,'Identifiant du résumé territorial unique');
+     assert.equal(await page.locator('#territoires-detail').count(),1,'Ancre de la galerie préservée après chargement des relais');
+     const gallery=page.locator('#territoires-detail');
+     assert.equal(await gallery.locator('.territoryGrid .territoryCard').count(),7);
+     assert.equal(await gallery.locator('.territoryGrid .territoryCard:visible').count(),7,'Les sept cartes restent visibles après le clic');
+     assert.equal(await gallery.evaluate(el=>{const r=el.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;}),true,'La navigation atteint la galerie réelle');
      await page.goto('https://digiylyfe.com/?lang=fr');
      assert.equal(await page.locator('#digiyEntryChoice').isVisible(),true,'Les cartes Public/Pro restent accessibles sans menu');
    }
