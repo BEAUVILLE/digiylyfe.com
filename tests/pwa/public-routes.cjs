@@ -5,6 +5,23 @@ const root=path.resolve(__dirname,'../..');
  const page=await context.newPage();await page.goto('https://digiylyfe.com/');
  assert.equal(await page.locator('#digiyVitrineDetails').evaluate(el=>el.open),false,'La vitrine détaillée doit être repliée par défaut');
  assert.equal(await page.locator('.digiyMenuAccess').isVisible(),true,'Le menu universel doit rester accessible');
+ // PREUVE V1 : le message commercial reste visible à 390 px.
+ assert.equal(await page.locator('#digiyClarity .digiyClarityLead').isVisible(),true);
+ assert.equal(await page.locator('#digiyClarity .digiyProofZero').isVisible(),true);
+ const proof=page.locator('section[aria-label="Preuves terrain DIGIYLYFE"]');
+ assert.equal(await proof.locator('a[href*="helage-plombier.digiylyfe.com"]').count(),1);
+ assert.equal(await proof.locator('a[href*="babacar-plombier-pro.digiylyfe.com"]').count(),0);
+ assert.equal(await page.locator('#offres-essentielles .digiyVitrineOfferGrid article').count(),4);
+ for(const module of ['loc','driver','commerce']){
+   const link=page.locator('#preuves-outils a[href*="/demo-'+module+'-gestion.html"]');
+   assert.equal(await link.count(),1);
+   assert.equal(await link.isVisible(),true);
+ }
+ const question=page.locator('#questions-frequentes details').first();
+ await question.locator('summary').click();
+ assert.equal(await question.locator('p').isVisible(),true);
+ await question.locator('summary').click();
+ console.log('PASS PREUVE V1: mobile, Helage, four offers, documentation and FAQ');
  // Vérifier le nouvel accès direct sans ouvrir la vitrine détaillée.
  const directTools=page.locator('#offres-essentielles a[data-i18n="liteToolsCta"]');
  assert.equal(await directTools.count(),1);
