@@ -26,9 +26,9 @@ class HumanHomepage(unittest.TestCase):
         self.assertNotIn('Deux chemins', BODY)
 
     def test_human_paths_before_film_and_vision(self):
-        markers = ['id="digiyClarity"', 'aria-label="Preuves terrain DIGIYLYFE"',
+        markers = ['id="pays-directs"', 'id="acces-rapides-pro"', 'id="digiyClarity"', 'aria-label="Preuves terrain DIGIYLYFE"',
                    'id="digiyEntryChoice"', 'id="outils-directs"', 'id="preuves-outils"',
-                   'id="offres-essentielles"', 'id="pays-directs"', 'id="questions-frequentes"',
+                   'id="offres-essentielles"', 'id="questions-frequentes"',
                    'id="territoires"', 'id="digiyPublicFirstV1"',
                    'id="solutions-pro"', 'id="digiyFilmVitrine"', 'id="digiyInternational"']
         positions = [BODY.index(marker) for marker in markers]
@@ -89,8 +89,8 @@ class HumanHomepage(unittest.TestCase):
         self.assertIn('src="/assets/presse/signature-digiy-or.png"', before_details)
         self.assertIn('alt="Symbole infini doré officiel DIGIY"', before_details)
         self.assertIn('href="/qr.html" aria-label="Ouvrir le QR officiel DIGIYLYFE"', before_details)
-        self.assertLess(before_details.index('class="digiyGoldSignature"'),
-                        before_details.index('id="pays-directs"'))
+        self.assertLess(before_details.index('id="pays-directs"'),
+                        before_details.index('class="digiyGoldSignature"'))
         self.assertIn('.digiyGoldSignature img{width:64px;', HOME)
         self.assertIn('@media(max-width:420px){.digiyGoldSignature{', HOME)
         # Do not disturb the existing menu, two human journeys and the old card.
@@ -161,7 +161,14 @@ class HumanHomepage(unittest.TestCase):
         self.assertIn('href="/annuaire.html#pont-metiers"', direct)
         self.assertEqual(direct.count('class="digiyFrontModules"'), 1)
         self.assertEqual(direct.split('class="digiyFrontModules"', 1)[1].count('<a href='), 8)
-        self.assertLess(BODY.index('id="offres-essentielles"'), BODY.index('id="pays-directs"'))
+        self.assertLess(BODY.index('class="languageStrip"'), BODY.index('id="pays-directs"'))
+        self.assertLess(BODY.index('id="pays-directs"'), BODY.index('id="acces-rapides-pro"'))
+        self.assertLess(BODY.index('id="acces-rapides-pro"'), BODY.index('id="digiyClarity"'))
+        self.assertIn('href="#territoires-detail" data-i18n="quickRegions"', world)
+        # The historical core renames .worldHub to #territoires; this home gallery must opt out.
+        self.assertIn('class="section digiyWorldHub" id="territoires-detail"', BODY)
+        self.assertNotIn('class="section worldHub" id="territoires-detail"', BODY)
+        self.assertIn('.digiyWorldHub .territoryCard', HOME)
         self.assertLess(BODY.index('id="digiyEntryChoice"'), BODY.index('id="outils-directs"'))
         self.assertLess(BODY.index('aria-label="Preuves terrain DIGIYLYFE"'), BODY.index('id="outils-directs"'))
         self.assertIn('window.digiyHomeWorld10Extras', HOME_I18N)
