@@ -5,8 +5,19 @@ const root=path.resolve(__dirname,'../..');
  const page=await context.newPage();await page.goto('https://digiylyfe.com/');
  assert.equal(await page.locator('#digiyVitrineDetails').evaluate(el=>el.open),false,'La vitrine détaillée doit être repliée par défaut');
  assert.equal(await page.locator('.digiyMenuAccess').isVisible(),true,'Le menu universel doit rester accessible');
+ // Vérifier le nouvel accès direct sans ouvrir la vitrine détaillée.
+ const directTools=page.locator('#offres-essentielles a[data-i18n="liteToolsCta"]');
+ assert.equal(await directTools.count(),1);
+ assert.equal(await directTools.isVisible(),true);
+ await directTools.click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/outils-gestion-demo.html');
+ await page.locator('header a').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/');
+ assert.equal(await page.locator('#digiyVitrineDetails').evaluate(el=>el.open),false);
+ console.log('PASS home → direct tools from offers → home');
  await page.locator('#digiyVitrineDetails > summary').click();
- await page.locator('a[href*="/outils-gestion-demo.html"]').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/outils-gestion-demo.html');
+ const detailedTools=page.locator('#digiyVitrineDetails a[data-i18n="toolsOpen"]');
+ assert.equal(await detailedTools.count(),1);
+ assert.equal(await detailedTools.isVisible(),true);
+ await detailedTools.click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/outils-gestion-demo.html');
  for(const doc of ['loc','driver','commerce','carnet','explore','resto','build']){await page.locator(`a[href="/demo-${doc}-gestion.html"]`).click();await page.waitForURL(`https://digiylyfe.com/demo-${doc}-gestion.html`);await page.locator('header a').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/outils-gestion-demo.html');console.log('PASS tools → '+doc+' → tools');}
  await page.locator('header a').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/');console.log('PASS home → tools → home');
  await page.goto('https://digiylyfe.com/fiches/pap-piscine-saly.html');await page.locator('a[href="https://digiylyfe.com/"]').click();await page.waitForURL(url=>url.origin==='https://digiylyfe.com'&&url.pathname==='/');console.log('PASS public PAP fiche → home; data/API not loaded');
