@@ -13,7 +13,7 @@ const root=path.resolve(__dirname,'../..');
 // Local publication fixture only; the real Supabase publication gate remains unchanged.
 const publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll(/<a class="exampleCard" href="([^"]+)"/g)].map(m=>({public_url:m[1]}));
 (async()=>{const engine=process.env.PWA_BROWSER==='webkit'?webkit:chromium;const browser=await engine.launch(process.env.CHROMIUM_EXECUTABLE?{executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox','--disable-dev-shm-usage']}:{headless:true});try{const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});
- await context.route('**/*',async route=>{if(route.request().url().startsWith('blob:'))return route.continue();const u=new URL(route.request().url());if(u.origin==='https://wesqmwjjtsefyjnluosj.supabase.co'&&u.pathname==='/rest/v1/digiy_annuaire_public')return route.fulfill({contentType:'application/json',body:JSON.stringify(publicRows)});if(u.origin!=='https://digiylyfe.com')return route.abort();let name=u.pathname;if(name.endsWith('/'))name+='index.html';const file=path.resolve(root,'.'+name);if(!file.startsWith(root+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:'Not found'});const types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.gif':'image/gif','.svg':'image/svg+xml'};await route.fulfill({path:file,contentType:types[path.extname(file)]||'application/octet-stream'});});
+ await context.route('**/*',async route=>{if(route.request().url().startsWith('blob:'))return route.continue();const u=new URL(route.request().url());if(u.origin==='https://wesqmwjjtsefyjnluosj.supabase.co'&&u.pathname==='/rest/v1/digiy_annuaire_public')return route.fulfill({contentType:'application/json',body:JSON.stringify(publicRows)});if(u.origin!=='https://digiylyfe.com')return route.abort();let name=u.pathname;if(name.endsWith('/'))name+='index.html';const file=path.resolve(root,'.'+name);if(!file.startsWith(root+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:'Not found'});const types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.gif':'image/gif','.svg':'image/svg+xml','.pdf':'application/pdf'};await route.fulfill({path:file,contentType:types[path.extname(file)]||'application/octet-stream'});});
  const page=await context.newPage();await page.goto('https://digiylyfe.com/');
  assert.equal(await page.locator('#digiyVitrineDetails').evaluate(el=>el.open),false,'La vitrine détaillée doit être repliée par défaut');
  assert.equal(await page.locator('.digiyMenuAccess').isVisible(),true,'Le menu universel doit rester accessible');
@@ -80,6 +80,31 @@ const publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchA
    assert.equal(await link.count(),1);
    assert.equal(await link.isVisible(),true);
  }
+ // Direct access to existing reviewed PDF captures: all pages render and return to the same home block.
+ for(const [doc,count] of [['loc',2],['driver',2],['commerce',1]]){
+   const a=page.locator('#preuves-outils a.digiyProofCapture[href*="doc='+doc+'"]');
+   assert.equal(await a.count(),1);
+   assert.equal(await a.isVisible(),true);
+   const href=new URL(await a.getAttribute('href'),'https://digiylyfe.com');
+   assert.equal(href.searchParams.get('from'),'home');
+   assert.equal(href.searchParams.get('lang'),'fr');
+   await a.click();
+   await page.waitForURL(url=>url.pathname==='/voir-pdf-metier.html'&&url.searchParams.get('doc')===doc);
+   await page.waitForFunction(n=>document.querySelectorAll('#pages canvas').length===n&&document.getElementById('status').textContent.includes('Faites défiler'),count,{timeout:20000});
+   assert.equal(await page.locator('#pages canvas').count(),count);
+   assert.equal(await page.locator('#pages canvas').first().evaluate(c=>c.width>0&&c.height>0),true);
+   const back=page.locator('header a.back');
+   const returnUrl=new URL(await back.getAttribute('href'),'https://digiylyfe.com');
+   assert.equal(returnUrl.hash,'#preuves-outils');
+   assert.equal(returnUrl.searchParams.get('lang'),'fr');
+   await back.click();
+   await page.waitForURL(url=>url.pathname==='/'&&url.hash==='#preuves-outils');
+ }
+ await page.goto('https://digiylyfe.com/voir-pdf-metier.html?doc=invalid&from=home&lang=zh');
+ assert.match(await page.locator('#status').innerText(),/introuvable/);
+ assert.equal(new URL(await page.locator('header a.back').getAttribute('href'),'https://digiylyfe.com').searchParams.get('lang'),'zh');
+ await page.goto('https://digiylyfe.com/?lang=fr');
+ console.log('PASS PREUVE VISUELLE: five existing PDF pages rendered, safe return and language');
  const question=page.locator('#questions-frequentes details').first();
  await question.locator('summary').click();
  assert.equal(await question.locator('p').isVisible(),true);
