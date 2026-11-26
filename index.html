@@ -273,7 +273,7 @@
       .voiceSearchBand .publicLeadCopy span{font-size:11.8px}
     }
 
-    .worldHub{overflow:hidden;padding:18px;border-radius:30px;border:1px solid rgba(56,189,248,.34);background:linear-gradient(145deg,rgba(8,47,73,.96),rgba(5,46,22,.96) 58%,rgba(59,40,10,.96));box-shadow:0 18px 46px rgba(0,0,0,.30)}
+    .digiyWorldHub{overflow:hidden;padding:18px;border-radius:30px;border:1px solid rgba(56,189,248,.34);background:linear-gradient(145deg,rgba(8,47,73,.96),rgba(5,46,22,.96) 58%,rgba(59,40,10,.96));box-shadow:0 18px 46px rgba(0,0,0,.30)}
     .worldHead{padding:20px;border-radius:24px;border:1px solid rgba(125,211,252,.40);background:linear-gradient(135deg,rgba(14,116,144,.34),rgba(22,163,74,.18),rgba(234,179,8,.16))}
     .worldKicker{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid rgba(125,211,252,.70);background:rgba(14,116,144,.28);color:#e0f2fe;font-size:10px;font-weight:1000;letter-spacing:.08em}
     .worldHead h2{margin:12px 0 0;font-size:clamp(24px,4vw,36px);line-height:1.02;font-weight:1000;color:#fef3c7;text-shadow:0 2px 18px rgba(250,204,21,.12)}
@@ -575,14 +575,14 @@
     }
 
     /* 3 — TERRITOIRES : la photo porte l'identité et doit respirer */
-    .worldHub{
+    .digiyWorldHub{
       border-color:rgba(125,211,252,.46);
     }
-    .worldHub .territoryGrid{
+    .digiyWorldHub .territoryGrid{
       gap:14px;
       margin-top:14px;
     }
-    .worldHub .territoryCard{
+    .digiyWorldHub .territoryCard{
       min-height:330px;
       padding:0 16px 16px;
       gap:9px;
@@ -593,18 +593,18 @@
         linear-gradient(180deg,rgba(9,58,63,.18),rgba(8,39,28,.92) 52%,rgba(5,27,20,.98));
       box-shadow:0 18px 36px rgba(0,0,0,.22);
     }
-    .worldHub .territoryCard:hover{
+    .digiyWorldHub .territoryCard:hover{
       transform:translateY(-3px);
       border-color:rgba(246,196,83,.72);
       box-shadow:0 22px 44px rgba(0,0,0,.28);
     }
-    .worldHub .territoryCountry{
+    .digiyWorldHub .territoryCountry{
       order:2;
       margin-top:3px;
       font-size:10.5px;
       letter-spacing:.10em;
     }
-    .worldHub .territoryPhoto{
+    .digiyWorldHub .territoryPhoto{
       order:1;
       width:calc(100% + 32px);
       height:190px;
@@ -614,29 +614,29 @@
       background:#041510;
       position:relative;
     }
-    .worldHub .territoryPhoto::after{
+    .digiyWorldHub .territoryPhoto::after{
       content:"";
       position:absolute;inset:auto 0 0;
       height:42%;
       background:linear-gradient(180deg,transparent,rgba(3,18,13,.70));
       pointer-events:none;
     }
-    .worldHub .territoryPhoto img{
+    .digiyWorldHub .territoryPhoto img{
       width:100%;height:100%;object-fit:cover;display:block;
       transform:scale(1.002);
     }
-    .worldHub .territoryCard>strong{
+    .digiyWorldHub .territoryCard>strong{
       order:3;
       font-size:23px;
       line-height:1;
       letter-spacing:-.025em;
     }
-    .worldHub .territoryCard>small{
+    .digiyWorldHub .territoryCard>small{
       order:4;
       min-height:34px;
       font-size:11.2px;
     }
-    .worldHub .territoryBtn{
+    .digiyWorldHub .territoryBtn{
       order:5;
       min-height:47px;
       margin-top:auto;
@@ -646,9 +646,9 @@
     }
 
     @media(max-width:760px){
-      .worldHub .territoryGrid{gap:12px}
-      .worldHub .territoryCard{min-height:320px}
-      .worldHub .territoryPhoto{height:188px}
+      .digiyWorldHub .territoryGrid{gap:12px}
+      .digiyWorldHub .territoryCard{min-height:320px}
+      .digiyWorldHub .territoryPhoto{height:188px}
     }
 
     @media(max-width:560px){
@@ -665,15 +665,15 @@
       .section[aria-label="Portes publiques DIGIYLYFE"] .publicLeadIcon{
         width:52px;height:52px;border-radius:15px;font-size:27px;
       }
-      .worldHub .territoryCard{
+      .digiyWorldHub .territoryCard{
         min-height:304px;
         border-radius:23px;
       }
-      .worldHub .territoryPhoto{
+      .digiyWorldHub .territoryPhoto{
         height:176px;
         border-radius:22px 22px 0 0;
       }
-      .worldHub .territoryCard>strong{font-size:21px}
+      .digiyWorldHub .territoryCard>strong{font-size:21px}
     }
 
 
@@ -1515,7 +1515,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       <a class="digiyVitrineMenuLink" href="/menu-universel-v1.html" data-i18n="liteMenu">☰ Explorer tous les territoires, métiers et outils</a>
     </section>
     <!-- Cartes photographiques réelles : territoires visibles et cliquables sans ouvrir un volet. -->
-<section class="section worldHub" id="territoires-detail" aria-label="DIGIYLYFE HUB des territoires">
+<section class="section digiyWorldHub" id="territoires-detail" aria-label="DIGIYLYFE HUB des territoires">
       <div class="worldHead">
         <span class="worldKicker" data-i18n="worldTitle">DIGIYLYFE · DU LOCAL AU MONDE</span>
         <h2 data-i18n="worldLead">Des territoires vivants. Des activités ouvertes au monde.</h2>
