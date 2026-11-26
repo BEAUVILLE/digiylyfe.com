@@ -78,7 +78,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   assert.equal(await desktopPage.evaluate(()=>window.__digiyPwaPromptInvoked),true,'Clique desktop appelle le vrai gestionnaire PWA');
   assert.equal(await desktopPage.locator('#digiyInstallBand').count(),1,'Aucun bouton dupliqué');
   await desktop.close();
-  console.log('PASS installation PWA ordinateur visible + accès inchangé sur mobile');
+  console.log('PASS installation PWA ordinateur accessible par le menu + accès inchangé sur mobile');
   fs.mkdirSync('artifacts/vitrine-humaine',{recursive:true});
   for(const width of [375,390,768,1024,1440]){
    const height=width===375?667:900;
@@ -192,7 +192,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   }
   assertPrices(await memberPrice.innerText(),await setupPrice.innerText());
   const frenchTitle=await page.locator('h1').innerText();
-  for(const [lang,title,remember] of [['wo','Rayi numérik yi am nañu. Jëlal sa bérab.','400 FCFA'],['zh','轨道已经铺好。找到你的位置。','400']]){
+  for(const [lang,title,remember] of [['wo','BIROO BU ÑÉPP MËN A DUGG','400 FCFA'],['zh','每一项经营活动都值得在世界上拥有一席之地。','400']]){
    await page.locator(`.languageStrip button[data-lang="${lang}"]`).click();
    await page.waitForFunction(l=>document.documentElement.lang===(l==='zh'?'zh-CN':l),lang);
    assert.equal(new URL(page.url()).pathname,homePath);
