@@ -3,10 +3,10 @@ const root=path.resolve(__dirname,'../..');
  // Guard the simulator against future divergence from the official LOC tariff table.
  const simSource=fs.readFileSync(path.join(root,'simulateur-economies.html'),'utf8');
  const locSource=fs.readFileSync(path.join(root,'tarifs-loc-v2.html'),'utf8');
- const simRates=JSON.parse(simSource.match(/const RATES=(.*?);/)[1]);
+ const simRates=JSON.parse(simSource.match(/const RATES=(.*?);\n/)[1]);
  const officialTiers=Function('return '+locSource.match(/var tiers=(\[[\s\S]*?\]);/)[1])();
  assert.deepEqual(simRates,officialTiers.map(t=>[t.label,t.snRef,t.euRef,t.snAnnual,t.euAnnual]));
- const simCopy=JSON.parse(simSource.match(/const COPY=(.*?);/)[1]);
+ const simCopy=JSON.parse(simSource.match(/const COPY=(.*?);\n/)[1]);
  assert.equal(Object.keys(simCopy).length,10);
  for(const copy of Object.values(simCopy))for(const key of Object.keys(simCopy.fr))assert.ok(copy[key],key);
 
