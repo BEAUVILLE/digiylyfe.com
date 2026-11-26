@@ -4,7 +4,10 @@
 <script src="/assets/vendor/pdfjs/3.11.174/pdf.min.js"></script><script>
 (function(){'use strict';
 const docs={loc:['DIGIY LOC','/loc.pdf'],driver:['DIGIY DRIVER','/driver.pdf'],commerce:['MON COMMERCE','/commerce.pdf'],carnet:['PRO CARNET','/carnet.pdf'],explore:['DIGIY EXPLORE','/explore.pdf'],resto:['DIGIY RESTO · Exemple neutre','/resto-exemple.pdf'],build:['DIGIY BUILD · Exemple neutre','/build-exemple.pdf']};
-const key=new URLSearchParams(location.search).get('doc'),d=Object.prototype.hasOwnProperty.call(docs,key)?docs[key]:null;
+const params=new URLSearchParams(location.search),key=params.get('doc'),d=Object.prototype.hasOwnProperty.call(docs,key)?docs[key]:null;
+const lang=params.get('lang'),safeLang=['fr','wo','zh','en','es','pt','it','de','nl','ar'].includes(lang)?lang:'fr';
+const fromHome=params.get('from')==='home';
+document.querySelectorAll('a.back').forEach(a=>{a.href=(fromHome?'/?lang=':'/outils-gestion-demo.html?lang=')+safeLang+(fromHome?'#preuves-outils':'');if(fromHome)a.textContent='← Retour aux preuves de la vitrine';});
 const status=document.getElementById('status'),pages=document.getElementById('pages'),count=document.getElementById('count');
 const prev=document.getElementById('prev'),next=document.getElementById('next');let current=1,total=0,ready=false;
 if(!d){status.textContent='Brochure introuvable. Revenez aux outils.';return}
