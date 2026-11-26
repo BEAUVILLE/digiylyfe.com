@@ -151,6 +151,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   }
   await page.setViewportSize({width:390,height:844});
   await page.goto('https://digiylyfe.com/?lang=fr');
+  await page.locator('#digiyVitrineDetails > summary').click();
   for(const lang of ['fr','en','es','pt','it','de','nl','ar']){
    await page.locator(`button[data-lang="${lang}"]`).click();
    assert.equal(await page.locator('html').getAttribute('lang'),lang);
@@ -165,7 +166,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.evaluate(()=>Math.abs(innerWidth-390)<=2),true,`locale viewport expansion ${lang}`);
   }
   // Explicitly center a far-down RTL control before testing its real pointer hit.
-  await page.locator('#digiyVitrineDetails > summary').click();
+  assert.equal(await page.locator('#digiyVitrineDetails').evaluate(el=>el.open),true);
   const filmControl=page.locator('#digiyFilmVitrine summary');
   await filmControl.evaluate(el=>el.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'}));
   await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-ar-film.png`});
@@ -190,7 +191,9 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.match(setup,/(?:€\s*598|598\s*€)/,'Total annuel en euros inchangé');
    assert.equal(250+12*29,598);
   }
+  await page.locator('#digiyVitrineDetails').evaluate(el=>el.open=true);
   assertPrices(await memberPrice.innerText(),await setupPrice.innerText());
+  await page.locator('#digiyVitrineDetails').evaluate(el=>el.open=false);
   const frenchTitle=await page.locator('h1').innerText();
   for(const [lang,title,remember] of [['wo','BIROO BU ÑÉPP MËN A DUGG','400 FCFA'],['zh','每一项经营活动都值得在世界上拥有一席之地。','400']]){
    await page.locator(`.languageStrip button[data-lang="${lang}"]`).click();
