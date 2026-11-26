@@ -1108,6 +1108,9 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
   .digiyVitrineOffers,.digiyVitrineReach{margin:12px 0;padding:clamp(14px,2.8vw,24px);border:1px solid rgba(246,196,83,.4);border-radius:23px;background:#0a2d20;color:#fffaf0}
   .digiyVitrineEyebrow{font-size:10px;letter-spacing:.09em;color:#f6c453;font-weight:950}
   .digiyVitrineOffers h2,.digiyVitrineReach h2{font-size:clamp(23px,4vw,33px);line-height:1.13;margin:8px 0 13px;color:#fff4cf}
+  .digiyQuickProof{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:5px 0 8px}
+  .digiyQuickProof a{display:flex;min-height:44px;align-items:center;justify-content:center;padding:5px 8px;border:1px solid rgba(246,196,83,.66);border-radius:12px;color:#fff3cf;background:#103628;font-size:clamp(11px,2vw,13px);font-weight:850;text-align:center;line-height:1.25;overflow-wrap:anywhere;text-decoration:none}
+  .digiyQuickProof a:focus-visible{outline:3px solid #ffe3a0;outline-offset:3px}
   .digiyVitrineOfferGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   #digiyClarity .digiyProofZero{margin:0 0 12px;color:#ffe3a0;font-size:clamp(20px,4vw,32px);font-weight:950;line-height:1.15}
   .digiyProofInfo{margin:12px 0;padding:14px;border:1px solid rgba(246,196,83,.4);border-radius:18px;background:#0a2d20;color:#fffaf0}
@@ -1298,6 +1301,10 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       <button type="button" class="langBtn" data-lang="de" aria-pressed="false">DE</button>
       <button type="button" class="langBtn" data-lang="nl" aria-pressed="false">NL</button>
       <button type="button" class="langBtn" data-lang="ar" aria-pressed="false">AR</button>
+    </nav>
+    <nav class="digiyQuickProof" id="acces-rapides-pro">
+      <a href="/outils-gestion-demo.html" data-i18n="quickTools">Outils métiers (FR)</a>
+      <a href="/simulateur-economies.html" data-i18n="quickSavings">Simuler mes économies</a>
     </nav>
     <p class="homeLanguageHelp"><a href="/prototypes/digiy-wolof-v1/prototype.html" lang="wo" hreflang="wo" data-i18n="woAudio">🔊 Écouter la présentation en wolof</a><small data-i18n="localeScope">Les langues disponibles peuvent varier selon les pages.</small><small class="woReviewNote" data-i18n="woReview">Texte wolof proposé à la relecture native.</small></p>
     <!-- Signature de marque originale DIGIY en or. Lien vers le QR officiel existant, sans nouveau QR. -->
@@ -2106,7 +2113,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
 
   <script src="/assets/digiy-home-world10-v1.js?v=20261122-clarte-offres-v1"></script>
   <script src="/assets/digiy-vitrine-portes-world10-v1.js?v=20261116"></script>
-<script src="/assets/digiy-home-i18n-v1.js?v=20261126-preuve-v1"></script>
+<script src="/assets/digiy-home-i18n-v1.js?v=20261126-preuve-v2"></script>
   <script src="/assets/digiy-catalog.js?v=20260926-favorites-clear-v1"></script>
   <script>
   (function(){
