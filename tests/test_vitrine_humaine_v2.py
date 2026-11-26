@@ -18,7 +18,7 @@ class Nodes(HTMLParser):
 
 class HumanHomepage(unittest.TestCase):
     def test_promise_once_and_two_precise_actions(self):
-        self.assertEqual(BODY.count('DIGIY aide vos clients à ne pas vous oublier.'), 1)
+        self.assertEqual(BODY.count('Les rails existent. Prenez votre place.'), 1)
         hero = BODY.split('id="digiyClarity"', 1)[1].split('</section>', 1)[0]
         self.assertEqual(re.findall(r'href="([^"]+)"', hero),
                          ['/annuaire.html#recherche', '/annuaire.html#inscription'])
@@ -26,7 +26,7 @@ class HumanHomepage(unittest.TestCase):
         self.assertNotIn('Deux chemins', BODY)
 
     def test_human_paths_before_film_and_vision(self):
-        markers = ['id="pays-directs"', 'id="acces-rapides-pro"', 'id="digiyClarity"', 'aria-label="Preuves terrain DIGIYLYFE"',
+        markers = ['id="digiyClarity"', 'id="pays-directs"', 'id="territoires-detail"', 'id="digiyVitrineDetails"', 'id="acces-rapides-pro"', 'aria-label="Preuves terrain DIGIYLYFE"',
                    'id="digiyEntryChoice"', 'id="outils-directs"', 'id="preuves-outils"',
                    'id="offres-essentielles"', 'id="questions-frequentes"',
                    'id="territoires"', 'id="digiyPublicFirstV1"',
@@ -64,7 +64,7 @@ class HumanHomepage(unittest.TestCase):
         self.assertIn('class="digiyTarifsAccess"', header)
         self.assertIn('data-i18n="liteTariffsNav"', header)
         self.assertIn('data-i18n="liteTariffsShort"', header)
-        self.assertIn('class="digiyMenuAccess" href="/open.html"', header)
+        self.assertIn('class="digiyMenuAccess" href="#digiyVitrineDetails"', header)
         # OPEN is the direct lightweight entry; the complete menu stays reachable.
         portal = (ROOT / 'open.html').read_text(encoding='utf-8')
         self.assertIn('href="/menu-universel-v1.html"', portal)
@@ -78,19 +78,20 @@ class HumanHomepage(unittest.TestCase):
         self.assertTrue((ROOT / 'tarifs-adherents-1.html').is_file())
         self.assertIn('.digiyTarifsAccess{min-height:44px', HOME)
 
-    def test_gold_signature_and_official_qr_visible_without_details(self):
+    def test_gold_signature_and_official_qr_accessible_via_details(self):
         # Existing gold identity asset, not a generated copy or a new brand.
         gold = ROOT / 'assets/presse/signature-digiy-or.png'
         qr_page = ROOT / 'qr.html'
         self.assertTrue(gold.is_file())
         self.assertTrue(qr_page.is_file())
-        before_details = BODY.split('<details class="digiyVitrineDetails"', 1)[0]
-        self.assertEqual(before_details.count('class="digiyGoldSignature"'), 1)
-        self.assertIn('src="/assets/presse/signature-digiy-or.png"', before_details)
-        self.assertIn('alt="Symbole infini doré officiel DIGIY"', before_details)
-        self.assertIn('href="/qr.html" aria-label="Ouvrir le QR officiel DIGIYLYFE"', before_details)
-        self.assertLess(before_details.index('id="pays-directs"'),
-                        before_details.index('class="digiyGoldSignature"'))
+        before_details, menu = BODY.split('<details class="digiyVitrineDetails"', 1)
+        self.assertEqual(before_details.count('class="digiyGoldSignature"'), 0)
+        self.assertEqual(menu.count('class="digiyGoldSignature"'), 1)
+        self.assertIn('src="/assets/presse/signature-digiy-or.png"', menu)
+        self.assertIn('alt="Symbole infini doré officiel DIGIY"', menu)
+        self.assertIn('href="/qr.html" aria-label="Ouvrir le QR officiel DIGIYLYFE"', menu)
+        self.assertLess(BODY.index('id="pays-directs"'),
+                        BODY.index('class="digiyGoldSignature"'))
         self.assertIn('.digiyGoldSignature img{width:64px;', HOME)
         self.assertIn('@media(max-width:420px){.digiyGoldSignature{', HOME)
         # Do not disturb the existing menu, two human journeys and the old card.
@@ -124,8 +125,8 @@ class HumanHomepage(unittest.TestCase):
 
     def test_core_blocks_and_menu_anchor_rescue(self):
         main_before_details = BODY.split('<details class="digiyVitrineDetails"', 1)[0]
-        # 5 historic sections, 2 direct entrances and the visible photo territory gallery.
-        self.assertEqual(main_before_details.count('<section '), 8)
+        # Three primary sections: hero, countries and seven-card gallery.
+        self.assertEqual(main_before_details.count('<section '), 3)
         self.assertEqual(main_before_details.count('id="territoires-detail"'), 1)
         photo_gallery = main_before_details.split('id="territoires-detail"', 1)[1]
         self.assertEqual(photo_gallery.count('class="territoryCard"'), 7)
@@ -134,10 +135,11 @@ class HumanHomepage(unittest.TestCase):
                     'territoire-paris', 'territoire-miami', 'territoire-maroc'):
             self.assertIn('data-fav-id="' + fav + '"', photo_gallery)
         self.assertEqual(main_before_details.count('id="pays-directs"'), 1)
-        self.assertEqual(main_before_details.count('id="outils-directs"'), 1)
+        self.assertEqual(main_before_details.count('id="outils-directs"'), 0)
+        self.assertEqual(BODY.count('id="outils-directs"'), 1)
         self.assertEqual(BODY.count('id="territoires"'), 1)
         self.assertIn('id="territoires-detail"', BODY)
-        self.assertIn('href="/menu-universel-v1.html"', main_before_details)
+        self.assertIn('href="/menu-universel-v1.html"', BODY.split('<details class="digiyVitrineDetails"', 1)[1])
         self.assertIn('id="digiyVitrineDetails"', BODY)
         self.assertIn('</details>\n    <footer class="footer">', BODY)
         self.assertIn("window.addEventListener('hashchange',reveal)", HOME)
@@ -163,7 +165,8 @@ class HumanHomepage(unittest.TestCase):
         self.assertEqual(direct.split('class="digiyFrontModules"', 1)[1].count('<a href='), 8)
         self.assertLess(BODY.index('class="languageStrip"'), BODY.index('id="pays-directs"'))
         self.assertLess(BODY.index('id="pays-directs"'), BODY.index('id="acces-rapides-pro"'))
-        self.assertLess(BODY.index('id="acces-rapides-pro"'), BODY.index('id="digiyClarity"'))
+        self.assertLess(BODY.index('id="digiyClarity"'), BODY.index('id="pays-directs"'))
+        self.assertLess(BODY.index('id="digiyVitrineDetails"'), BODY.index('id="acces-rapides-pro"'))
         self.assertIn('href="#territoires-detail" data-i18n="quickRegions"', world)
         # The historical core renames .worldHub to #territoires; this home gallery must opt out.
         self.assertIn('class="section digiyWorldHub" id="territoires-detail"', BODY)

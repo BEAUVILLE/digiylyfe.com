@@ -38,6 +38,8 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   await desktopPage.goto('https://digiylyfe.com/?lang=fr');
   await desktopPage.waitForFunction(()=>document.querySelector('#digiyInstallLabel')?.textContent.includes('ordinateur'));
   assert.equal(await desktopPage.locator('#digiyVitrineDetails').evaluate(el=>el.open),false);
+  assert.equal(await desktopPage.locator('.digiyGoldSignature').isVisible(),false);
+  await desktopPage.locator('#digiyVitrineDetails > summary').click();
   assert.equal(await desktopPage.locator('.digiyGoldSignature').isVisible(),true);
   assert.equal(await desktopPage.locator('#digiyInstallBtn').isVisible(),true,'Installation desktop visible sans ouvrir les détails');
   assert.equal(await desktopPage.locator('#digiyInstallBand').evaluate(el=>el.previousElementSibling?.matches('.digiyGoldSignature')),true,'Bouton desktop juste sous la signature de marque');
@@ -76,7 +78,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   assert.equal(await desktopPage.evaluate(()=>window.__digiyPwaPromptInvoked),true,'Clique desktop appelle le vrai gestionnaire PWA');
   assert.equal(await desktopPage.locator('#digiyInstallBand').count(),1,'Aucun bouton dupliqué');
   await desktop.close();
-  console.log('PASS installation PWA ordinateur visible + accès inchangé sur mobile');
+  console.log('PASS installation PWA ordinateur accessible par le menu + accès inchangé sur mobile');
   fs.mkdirSync('artifacts/vitrine-humaine',{recursive:true});
   for(const width of [375,390,768,1024,1440]){
    const height=width===375?667:900;
@@ -87,11 +89,13 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true,`horizontal overflow ${width}`);
    assert.equal(await page.locator('h1').count(),1);
    assert.equal(await page.locator('.exampleGrid a.exampleCard').count(),publicRows.length);
-   assert.equal(await page.locator('.exampleGrid a.exampleCard:visible').count(),4,'Quatre preuves terrain visibles au départ');
+   assert.equal(await page.locator('.exampleGrid a.exampleCard:visible').count(),0,'Preuves accessibles par le menu');
    assert.equal(await page.locator('#digiyVitrineDetails').evaluate(el=>el.open),false,'La vitrine détaillée est fermée par défaut');
+   await page.locator('#digiyVitrineDetails > summary').click();
    await page.locator('.digiyVitrineExtraProof > summary').click();
    assert.equal(await page.locator('.exampleGrid a.exampleCard:visible').count(),publicRows.length,'Preuves supplémentaires accessibles');
    await page.locator('.digiyVitrineExtraProof > summary').click();
+   await page.locator('#digiyVitrineDetails').evaluate(el=>el.open=false);
    const tariffLink=page.locator('.topbar .digiyTarifsAccess');
    assert.equal(await tariffLink.count(),1,'Un accès direct aux tarifs en barre haute');
    assert.equal(await tariffLink.isVisible(),true,'Tarifs visibles sans défiler');
@@ -110,57 +114,25 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(searchUrl.searchParams.get('lang'),'fr');
    assert.equal(searchUrl.hash,'#recherche');
    assert.equal(await page.locator('#digiyFilmVitrine iframe').getAttribute('src'),null);
-   // PREUVE V1 : la réalité des métiers précède l'offre tarifaire.
-   const order=await page.evaluate(()=>{
-     const blocks=[document.getElementById('pays-directs'),document.getElementById('acces-rapides-pro'),document.getElementById('digiyClarity'),
-       document.querySelector('section[aria-label="Preuves terrain DIGIYLYFE"]'),
-       document.getElementById('digiyEntryChoice'),document.getElementById('outils-directs'),
-       document.getElementById('preuves-outils'),document.getElementById('offres-essentielles'),
-       document.getElementById('questions-frequentes'),
-       document.getElementById('territoires')];
-     return blocks.map(el=>Math.round(el.getBoundingClientRect().top+scrollY));
-   });
-   assert.deepEqual(order,[...order].sort((a,b)=>a-b),'Pays → accès rapides → Hero → preuves → Public/Pro → outils → offres → FAQ → territoires');
-   assert.equal(await page.locator('#digiyClarity').evaluate(el=>el.parentElement?.nextElementSibling?.matches('section[aria-label="Preuves terrain DIGIYLYFE"]')),true,'Les réalisations suivent immédiatement le Hero');
-   assert.equal(await page.locator('#digiyClarity .digiyClarityLead').isVisible(),true);
-   assert.equal(await page.locator('#digiyClarity .digiyProofZero').isVisible(),true);
-   assert.equal(await page.locator('#offres-essentielles .digiyVitrineOfferGrid article').count(),4);
-   assert.equal(await page.locator('section[aria-label="Preuves terrain DIGIYLYFE"] a.exampleCard[href*="helage-plombier.digiylyfe.com"]').isVisible(),true);
-   console.log('VITRINE_PREUVE_V1_POSITIONS',JSON.stringify({width,viewportHeight:height,topPx:order,topScreens:order.map(px=>+(px/height).toFixed(2))}));
-   // Priorité à la géographie, sans duplication des cartes territoriales.
    const world=page.locator('#pays-directs');
-   assert.equal(await page.locator('.digiyFrontWorldGrid a').count(),4,'Quatre pays directement accessibles');
-   assert.equal(await page.locator('.digiyFrontModules a').count(),8,'Huit modules directement accessibles');
-   assert.equal(await page.locator('#digiyFrontBridge').count(),0,'Ne pas créer de deuxième Carrefour concurrent');
-   const topOrder=await page.evaluate(()=>[
-     document.querySelector('.languageStrip'),
-     document.getElementById('pays-directs'),
-     document.getElementById('acces-rapides-pro'),
-     document.getElementById('digiyClarity'),
-     document.getElementById('digiyEntryChoice'),
-     document.getElementById('outils-directs')
-   ].map(el=>Math.round(el.getBoundingClientRect().top+scrollY)));
-   assert.deepEqual(topOrder,[...topOrder].sort((a,b)=>a-b),'Langues → pays → accès rapides → Hero → Public/Pro → Carrefour et outils');
+   assert.equal(await world.locator('.digiyFrontWorldGrid a').count(),4);
+   const gallery=page.locator('#territoires-detail');
+   assert.equal(await gallery.locator('.territoryGrid .territoryCard:visible').count(),7);
+   assert.equal(await page.locator('#digiyEntryChoice').isVisible(),false);
+   assert.equal(await page.locator('#outils-directs').isVisible(),false);
+   assert.equal(await page.locator('#offres-essentielles').isVisible(),false);
    if(width===375){
-     assert.equal(await world.isVisible(),true,'Les quatre pays restent accessibles sans ouvrir un menu');
-     assert.equal(await world.evaluate(el=>el.getBoundingClientRect().bottom<=innerHeight),true,'Pays et accès aux régions dans le premier écran');
-     assert.equal(await page.locator('#acces-rapides-pro').evaluate(el=>el.getBoundingClientRect().bottom<=innerHeight),true,'Outils et simulateur dans le premier écran');
-     assert.equal(await page.locator('.digiyGoldSignature').evaluate(el=>el.getBoundingClientRect().top<innerHeight),true,'Identité DIGIY et 0 % commission visibles dès le premier écran');
-     assert.equal(await page.locator('#digiyClarity').evaluate(el=>el.getBoundingClientRect().top<innerHeight*1.4),true,'Hero proche du premier écran après accès géographiques');
-     const regions=world.locator('a[data-i18n="quickRegions"]');
-     await regions.click();await page.waitForURL(url=>url.hash==='#territoires-detail');
-     assert.equal(await page.locator('#territoires').count(),1,'Identifiant du résumé territorial unique');
-     assert.equal(await page.locator('#territoires-detail').count(),1,'Ancre de la galerie préservée après chargement des relais');
-     const gallery=page.locator('#territoires-detail');
-     assert.equal(await gallery.locator('.territoryGrid .territoryCard').count(),7);
-     assert.equal(await gallery.locator('.territoryGrid .territoryCard:visible').count(),7,'Les sept cartes restent visibles après le clic');
-     // The hash updates immediately, while native smooth scrolling takes several frames.
-     // Do not force scrolling from the test: wait for the real user navigation to reach its target.
-     await page.waitForFunction(()=>{const el=document.getElementById('territoires-detail');if(!el)return false;const r=el.getBoundingClientRect();return r.top>=-4&&r.top<innerHeight&&r.bottom>0;},null,{timeout:5000});
-     assert.equal(await gallery.evaluate(el=>{const r=el.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;}),true,'La navigation atteint la galerie réelle');
+     assert.equal(await page.locator('#digiyClarity .digiyVitrineActions').evaluate(el=>el.getBoundingClientRect().bottom<=innerHeight),true,'Actions au premier écran');
+     await world.locator('a[data-i18n="quickRegions"]').click();
+     await page.waitForURL(url=>url.hash==='#territoires-detail');
+     await page.waitForFunction(()=>{const r=document.getElementById('territoires-detail').getBoundingClientRect();return r.top>=-4&&r.top<innerHeight&&r.bottom>0;},null,{timeout:5000});
      await page.goto('https://digiylyfe.com/?lang=fr');
-     assert.equal(await page.locator('#digiyEntryChoice').isVisible(),true,'Les cartes Public/Pro restent accessibles sans menu');
    }
+   await page.locator('.digiyMenuAccess').click();
+   await page.waitForFunction(()=>document.getElementById('digiyVitrineDetails').open);
+   assert.equal(await page.locator('#digiyEntryChoice').isVisible(),true);
+   assert.equal(await page.locator('.digiyFrontModules a').count(),8);
+   assert.equal(await page.locator('#offres-essentielles .digiyVitrineOfferGrid article').count(),4);
    const saly=page.locator('#territoires a[data-i18n="liteSaly"]');
    const salyUrl=new URL(await saly.getAttribute('href'),'https://digiylyfe.com');
    assert.equal(salyUrl.pathname,'/saly.html');
@@ -179,6 +151,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   }
   await page.setViewportSize({width:390,height:844});
   await page.goto('https://digiylyfe.com/?lang=fr');
+  await page.locator('#digiyVitrineDetails > summary').click();
   for(const lang of ['fr','en','es','pt','it','de','nl','ar']){
    await page.locator(`button[data-lang="${lang}"]`).click();
    assert.equal(await page.locator('html').getAttribute('lang'),lang);
@@ -193,7 +166,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.evaluate(()=>Math.abs(innerWidth-390)<=2),true,`locale viewport expansion ${lang}`);
   }
   // Explicitly center a far-down RTL control before testing its real pointer hit.
-  await page.locator('#digiyVitrineDetails > summary').click();
+  assert.equal(await page.locator('#digiyVitrineDetails').evaluate(el=>el.open),true);
   const filmControl=page.locator('#digiyFilmVitrine summary');
   await filmControl.evaluate(el=>el.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'}));
   await page.screenshot({path:`artifacts/vitrine-humaine/${process.env.PWA_BROWSER}-ar-film.png`});
@@ -204,7 +177,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   // All ten controls translate the same home. Audio remains an explicit separate link.
   await page.goto('https://digiylyfe.com/?lang=fr');
   const homePath=new URL(page.url()).pathname;
-  await page.waitForSelector('#offres-essentielles .digiyVitrineOfferPrice');
+  await page.waitForSelector('#offres-essentielles .digiyVitrineOfferPrice',{state:'attached'});
   // Compare numeric tokens with repetitions, not concatenated digits:
   // Mandarin may put the 12-month duration before the total.
   const numbers=s=>(s.match(/[0-9]+(?:[ ,.\u00a0\u202f][0-9]{3}(?![0-9]))*/g)||[])
@@ -218,16 +191,18 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.match(setup,/(?:€\s*598|598\s*€)/,'Total annuel en euros inchangé');
    assert.equal(250+12*29,598);
   }
+  await page.locator('#digiyVitrineDetails').evaluate(el=>el.open=true);
   assertPrices(await memberPrice.innerText(),await setupPrice.innerText());
+  await page.locator('#digiyVitrineDetails').evaluate(el=>el.open=false);
   const frenchTitle=await page.locator('h1').innerText();
-  for(const [lang,title,remember] of [['wo','BIROO BU ÑÉPP MËN A DUGG','DIGIY dafay tax sa kiliyaan yi bañ laa fàtte.'],['zh','每一项经营活动都值得在世界上拥有一席之地。','DIGIY 帮助客户再次找到您。']]){
+  for(const [lang,title,remember] of [['wo','BIROO BU ÑÉPP MËN A DUGG','400 FCFA'],['zh','每一项经营活动都值得在世界上拥有一席之地。','400']]){
    await page.locator(`.languageStrip button[data-lang="${lang}"]`).click();
    await page.waitForFunction(l=>document.documentElement.lang===(l==='zh'?'zh-CN':l),lang);
    assert.equal(new URL(page.url()).pathname,homePath);
    assert.equal(new URL(page.url()).searchParams.get('lang'),lang);
    assert.equal(await page.locator('h1').innerText(),title);
    if(lang==='wo')assert.notEqual(title,frenchTitle,'Le titre wolof ne doit plus rester en français');
-   assert.equal(await page.locator('#digiyClarity .digiyVitrineRemember').innerText(),remember);
+   assert.ok((await page.locator('#digiyClarity .mobileDaily').innerText()).includes(remember));
    assert.equal(await page.locator(`button[data-lang="${lang}"]`).getAttribute('aria-pressed'),'true');
    assert.equal(await page.evaluate(()=>Math.abs(innerWidth-390)<=2),true);
    await page.locator('#digiyVitrineDetails').evaluate(el=>el.open=true);

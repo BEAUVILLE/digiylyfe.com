@@ -1280,7 +1280,21 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
 @media(max-width:790px){#digiyPresseAudioV2 .dgpa-frame{grid-template-columns:minmax(0,1fr);gap:18px;padding:16px}#digiyPresseAudioV2 .dgpa-cover{max-width:420px;margin:0 auto}#digiyPresseAudioV2 .dgpa-text{padding:0 5px 6px}}
 @media(max-width:480px){#digiyPresseAudioV2{padding:0 5px}#digiyPresseAudioV2 .dgpa-frame{gap:10px;padding:11px;border-radius:21px}#digiyPresseAudioV2 .dgpa-cover{border-radius:14px}#digiyPresseAudioV2 .dgpa-seal{width:58px;height:58px}#digiyPresseAudioV2 h2{font-size:30px}#digiyPresseAudioV2 .dgpa-description{font-size:14px}}
 </style>
-<script src="/assets/digiy-language-route-v1.js?v=20261113-wo"></script></head>
+<script src="/assets/digiy-language-route-v1.js?v=20261113-wo"></script><style id="digiyMobileEssentiel">
+#digiyClarity.digiyClarity{padding:14px 12px;margin:6px 0 10px}
+#digiyClarity #digiyClarityTitle{font-size:clamp(23px,5.5vw,40px);margin:6px 0;line-height:1.1}
+#digiyClarity .digiyHeroUnity,#digiyClarity .digiyClarityLead,#digiyClarity .digiyProofZero{margin:4px 0;font-size:clamp(13px,3.8vw,20px);line-height:1.2}
+#digiyClarity .digiyClarityKicker{display:none}
+#digiyClarity #digiyClarityTitle{font-size:clamp(13px,2.5vw,18px);margin:3px 0;font-weight:700}
+#digiyClarity .mobileRailTitle{font-size:clamp(22px,5vw,36px);font-weight:950;line-height:1.1;margin:5px 0;color:#fffdf5}
+#digiyClarity .digiyVitrineActions{margin:8px 0;gap:6px}
+#digiyClarity .mobileDaily{margin:6px 0 3px;font-size:14px;font-weight:900;color:#ffe3a0}
+#digiyClarity .digiyClarityNote{font-size:11px;line-height:1.35;margin:4px 0}
+#territoires-detail .worldHead{padding:8px 10px}
+#territoires-detail .worldHead h2{font-size:20px;margin:3px 0}
+#territoires-detail .worldHead p,#territoires-detail .worldPath,#territoires-detail .digiyPublicActions{display:none}
+@media(max-width:650px){#territoires-detail .territoryGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}#territoires-detail .territoryCard{min-width:0;padding:7px;gap:5px}#territoires-detail .territoryPhoto{height:90px;aspect-ratio:auto}#territoires-detail .territoryCard strong{font-size:12px;overflow-wrap:anywhere}#territoires-detail .territoryCard small{font-size:10px}#territoires-detail .territoryBtn{font-size:10px;min-height:44px;white-space:normal}#territoires-detail .franceVitrineCartouche,#territoires-detail .senegalVitrineCartouche{grid-column:1/-1}}
+</style></head>
 <body>
   <main class="app" id="haut">
     <header class="topbar">
@@ -1288,7 +1302,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       <div class="brand"><strong>DIGIYLYFE</strong><small data-i18n="brandTag">Le terrain garde la main</small></div>
       <nav class="digiyTopActions" aria-label="Accès rapides DIGIYLYFE">
         <a class="digiyTarifsAccess" href="/tarifs-adherents-1.html"><span class="digiyTarifsFull" data-i18n="liteTariffsNav">Tarifs adhérents</span><span class="digiyTarifsShort" data-i18n="liteTariffsShort">Tarifs</span></a>
-        <a class="digiyMenuAccess" href="/open.html" aria-label="DIGIY OPEN">∞ <span>DIGIY OPEN</span></a>
+        <a class="digiyMenuAccess" href="#digiyVitrineDetails" aria-label="Menu DIGIYLYFE">☰ <span>MENU</span></a>
       </nav>
     </header>
 
@@ -1304,6 +1318,23 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       <button type="button" class="langBtn" data-lang="nl" aria-pressed="false">NL</button>
       <button type="button" class="langBtn" data-lang="ar" aria-pressed="false">AR</button>
     </nav>
+<div id="digiyAnnuaireV1">
+<section class="digiyClarity" id="digiyClarity" aria-labelledby="digiyClarityTitle">
+      <span class="digiyClarityKicker" data-i18n="clarKicker">DIGIYLYFE · LE BUREAU UNIVERSEL</span>
+      <h1 id="digiyClarityTitle" data-i18n="clarTitle">Chaque activité mérite sa place dans le monde.</h1>
+      <p class="mobileRailTitle" data-i18n="mobileRailTitle">Les rails existent. Prenez votre place.</p>
+      <!-- HERO VITRINE · loi du Bureau Universel : rassembler sans rendre dépendant. -->
+      <p class="digiyHeroUnity" data-i18n="mobileRailTag">Votre activité. Votre wagon. Votre indépendance.</p>
+      <p class="digiyClarityLead" data-i18n="liteFreeTitle">Annuaire gratuit</p>
+      <p class="digiyProofZero" data-i18n="proofZero">0 % de commission DIGIYLYFE</p>
+      <div class="digiyClarityGrid digiyVitrineActions">
+        <a class="digiyClarityCta digiyClarityPrimary" href="/annuaire.html#recherche" data-i18n="litePublicCta">🔎 Je cherche un professionnel</a>
+        <a class="digiyClarityCta digiyClaritySecondary" href="/annuaire.html#inscription" data-i18n="clarProCta">Je présente mon activité</a>
+      </div>
+      <p class="mobileDaily" data-i18n="mobileDaily">France : moins de 1 € HT/jour · Sénégal : 400 FCFA/jour</p>
+      <p class="digiyClarityNote" data-i18n="mobileDailyNote">Outils PRO : 29 € HT/mois en France, 12 000 FCFA/mois au Sénégal. Base 30 jours ; hors LOC et CARNET PRO au Sénégal, hors LOC en France ; frais de paiement éventuels non inclus.</p>
+    </section>
+</div>
 <section class="digiyFrontWorld" aria-label="Pays et territoires DIGIYLYFE" id="pays-directs">
   <p class="digiyFrontWorldKicker" data-direct-i18n="frontKicker">🌍 4 pays à découvrir · 10 langues</p>
   <nav class="digiyFrontWorldGrid" aria-label="Choisir un pays ou territoire">
@@ -1314,6 +1345,166 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
   </nav>
   <a class="digiyRegionsAccess" href="#territoires-detail" data-i18n="quickRegions">Voir les régions et territoires</a>
 </section>
+<section class="section digiyWorldHub" id="territoires-detail" aria-label="DIGIYLYFE HUB des territoires">
+      <div class="worldHead">
+        <span class="worldKicker" data-i18n="worldTitle">DIGIYLYFE · DU LOCAL AU MONDE</span>
+        <h2 data-i18n="worldLead">Des territoires vivants. Des activités ouvertes au monde.</h2>
+        <p data-i18n="worldIntro">Six portes réelles montrent aujourd’hui l’ouverture de DIGIYLYFE : Sénégal · Petite Côte et Dakar ; France · Vallée de la Dordogne, Bordeaux et Paris ; États-Unis · Miami. Choisissez votre territoire, puis votre besoin et votre zone.</p>
+        <div class="worldPath" data-i18n="worldPath">Pays → Territoire → Zone → Besoin → Professionnel → OUVRIR</div>
+        <div class="digiyPublicActions"><a class="digiyPublicActionSecondary" href="/saly.html" data-i18n="v1TerritoryCta">📍 Découvrir Saly →</a></div>
+      </div>
+
+      <div class="territoryGrid">
+        <a class="territoryCard" href="https://digiylyfe.com/territoire.html?zone=vallee-dordogne" data-fav-id="territoire-dordogne">
+          <span class="territoryCountry">🇫🇷 <b data-i18n="franceCountry">FRANCE</b></span>
+          <picture class="territoryPhoto territoryPhotoFrance">
+  <source type="image/avif" srcset="/assets/territoires/perigord-dordogne-card.avif"/>
+  <source type="image/webp" srcset="/assets/territoires/perigord-dordogne.webp"/>
+  <img src="/assets/territoires/perigord-dordogne.webp" width="1448" height="1086" alt="Périgord · Vallée de la Dordogne" loading="lazy" decoding="async"/>
+</picture>
+          <strong data-i18n="dordogneTitle">DIGIY PÉRIGORD · VALLÉE DE LA DORDOGNE</strong>
+          <small data-i18n="dordogneZones">Sarlat-la-Canéda · Périgord · Vallée de la Dordogne</small>
+          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
+        </a>
+
+        <a class="territoryCard" href="https://digiylyfe.com/bordeaux.html" data-fav-id="territoire-bordeaux">
+          <span class="territoryCountry">🇫🇷 <b data-i18n="franceCountry">FRANCE</b></span>
+          <picture class="territoryPhoto territoryPhotoFrance">
+  <source type="image/avif" srcset="/assets/territoires/bordeaux-card.avif"/>
+  <source type="image/webp" srcset="/assets/territoires/bordeaux.webp"/>
+  <img src="/assets/territoires/bordeaux.webp" width="1448" height="1086" alt="Bordeaux · Place de la Bourse et miroir d’eau" loading="lazy" decoding="async"/>
+</picture>
+          <strong>DIGIY BORDEAUX</strong>
+          <small>Bordeaux · Gironde · Nouvelle-Aquitaine</small>
+          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
+        </a>
+        <a class="territoryCard" href="https://digiylyfe.com/paris.html" data-fav-id="territoire-paris">
+          <span class="territoryCountry">🇫🇷 <b data-i18n="franceCountry">FRANCE</b></span>
+          <picture class="territoryPhoto territoryPhotoFrance">
+            <img src="https://digiylyfe.net/wp-content/uploads/2026/09/Image-12-09-2026-a-06.40.jpeg" width="1200" height="800" alt="Paris · Île-de-France" loading="lazy" decoding="async"/>
+          </picture>
+          <strong data-i18n="parisTitle">DIGIY PARIS</strong>
+          <small data-i18n="parisZones">Paris · Île-de-France · territoire ouvert</small>
+          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
+        </a>
+
+        <style id="franceVitrineCartoucheStyle">
+          .franceVitrineCartouche{grid-column:1/-1;display:grid;grid-template-columns:38% 62%;gap:14px;align-items:center;padding:15px;border-radius:24px;border:1px solid rgba(94,234,212,.48);background:radial-gradient(420px 220px at 15% 15%,rgba(94,234,212,.11),transparent 68%),linear-gradient(145deg,rgba(5,40,29,.97),rgba(4,24,18,.98));box-shadow:0 16px 38px rgba(0,0,0,.24)}
+          .franceVitrineMap{min-height:220px;border:1px solid rgba(94,234,212,.22);border-radius:20px;background:rgba(255,255,255,.025);overflow:hidden}.franceVitrineMap svg{width:100%;height:220px;display:block}.franceVitrineInfo{display:flex;flex-direction:column;gap:8px}.franceVitrineInfo>strong{font-size:clamp(22px,4.8vw,34px);line-height:1.02;font-weight:1000}.franceVitrineInfo>small{color:var(--soft);font-size:12px;line-height:1.45;font-weight:850}.franceVitrineCities{display:flex;flex-wrap:wrap;gap:7px}.franceVitrineCities span{padding:7px 9px;border-radius:999px;border:1px solid rgba(94,234,212,.28);background:rgba(94,234,212,.07);font-size:10px;font-weight:950}.franceVitrineOpen{min-height:48px;margin-top:3px;padding:11px 14px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;font-size:11px;font-weight:1000}.franceVitrineCountry{color:#fde68a;font-size:11px;font-weight:1000;letter-spacing:.08em}
+          @media(max-width:760px){.franceVitrineCartouche{grid-template-columns:1fr}.franceVitrineMap{min-height:195px}.franceVitrineMap svg{height:195px}}
+        </style>
+        <a class="franceVitrineCartouche" id="franceVitrineCartouche" href="https://digiylyfe.com/france.html" aria-label="Ouvrir la carte interactive des territoires DIGIYLYFE en France">
+          <div class="franceVitrineMap" aria-hidden="true">
+            <svg viewBox="0 0 430 245">
+              <path d="M142 27 L229 18 L303 50 L349 105 L337 155 L370 192 L333 224 L265 237 L188 228 L124 205 L74 169 L65 119 L89 82 L72 52 L112 35 Z" fill="rgba(8,70,52,.48)" stroke="rgba(94,234,212,.72)" stroke-width="3"/>
+              <g fill="#dbe5df" opacity=".55"><circle cx="221" cy="49" r="4"/><circle cx="214" cy="83" r="4"/><circle cx="316" cy="91" r="4"/><circle cx="111" cy="112" r="4"/><circle cx="275" cy="145" r="4"/><circle cx="315" cy="195" r="4"/><circle cx="161" cy="199" r="4"/></g>
+              <g><circle cx="112" cy="165" r="16" fill="rgba(246,196,83,.16)" stroke="rgba(246,196,83,.55)"/><circle cx="112" cy="165" r="7" fill="#f6c453" stroke="#fff1bd" stroke-width="2"/><text x="126" y="169" fill="#ffe897" font-size="15" font-weight="1000">Bordeaux</text></g>
+              <g><circle cx="176" cy="177" r="16" fill="rgba(246,196,83,.16)" stroke="rgba(246,196,83,.55)"/><circle cx="176" cy="177" r="7" fill="#f6c453" stroke="#fff1bd" stroke-width="2"/><text x="190" y="181" fill="#ffe897" font-size="15" font-weight="1000">Sarlat</text></g>
+            </svg>
+          </div>
+          <div class="franceVitrineInfo">
+            <span class="franceVitrineCountry">🇫🇷 <b data-i18n="franceCountry">FRANCE</b> · CARTE TERRITORIALE</span>
+            <strong data-i18n="franceTitle">DIGIY FRANCE</strong>
+            <small data-i18n="franceZones">3 TERRITOIRES ACTIFS · Vallée de la Dordogne · Bordeaux · Paris</small>
+            <div class="franceVitrineCities"><span data-digiy-paris-chip="1">Paris</span><span>Bordeaux</span><span>Vallée de la Dordogne</span><span>Sarlat</span></div>
+            <span class="franceVitrineOpen" data-i18n="openFrance">OUVRIR LA FRANCE</span>
+          </div>
+        </a>
+
+        <a class="territoryCard" href="https://digiylyfe.com/territoire.html?zone=petite-cote" data-fav-id="territoire-petite-cote">
+          <span class="territoryCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b></span>
+          <picture class="territoryPhoto territoryPhotoSaly">
+  <source type="image/avif" media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile-card.avif"/>
+  <source type="image/webp" media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile.webp"/>
+  <source type="image/avif" srcset="/assets/territoires/petite-cote-desktop-card.avif"/>
+  <source type="image/webp" srcset="/assets/territoires/petite-cote-desktop.webp"/>
+  <source media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile.webp"/>
+  <img src="/assets/territoires/petite-cote-desktop.webp" width="1536" height="1024" alt="Pêcheurs et pirogue sénégalaise · Petite Côte" loading="lazy" decoding="async"/>
+</picture>
+          <strong data-i18n="petiteTitle">DIGIY PETITE CÔTE</strong>
+          <small data-i18n="petiteZones">AIBD · Ndayane · Popenguine · Somone · Ngaparou · Saly · Mbour</small>
+          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
+        </a>
+
+        <a class="territoryCard" href="https://digiylyfe.com/dakar.html" data-fav-id="territoire-dakar">
+          <span class="territoryCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b></span>
+          <picture class="territoryPhoto territoryPhotoDakar">
+  <source type="image/avif" media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile-card.avif"/>
+  <source type="image/webp" media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile.webp"/>
+  <source type="image/avif" srcset="/assets/territoires/dakar-desktop-card.avif"/>
+  <source type="image/webp" srcset="/assets/territoires/dakar-desktop.webp"/>
+  <source media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile.webp"/>
+  <img src="/assets/territoires/dakar-desktop.webp" width="1600" height="900" alt="Dakar · Corniche et ville" loading="lazy" decoding="async"/>
+</picture>
+          <strong>DIGIY DAKAR</strong>
+          <small>Dakar · capitale · territoire urbain</small>
+          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
+        </a>
+
+        <style id="senegalVitrineCartoucheStyle">
+          .senegalVitrineCartouche{grid-column:1/-1;display:grid;grid-template-columns:38% 62%;gap:14px;align-items:center;padding:15px;border-radius:24px;border:1px solid rgba(94,234,212,.48);background:radial-gradient(420px 220px at 15% 15%,rgba(34,197,94,.12),transparent 68%),linear-gradient(145deg,rgba(5,40,29,.97),rgba(4,24,18,.98));box-shadow:0 16px 38px rgba(0,0,0,.24)}
+          .senegalVitrineMap{min-height:220px;border:1px solid rgba(94,234,212,.22);border-radius:20px;background:rgba(255,255,255,.025);overflow:hidden}.senegalVitrineMap svg{width:100%;height:220px;display:block}.senegalVitrineInfo{display:flex;flex-direction:column;gap:8px}.senegalVitrineInfo>strong{font-size:clamp(22px,4.8vw,34px);line-height:1.02;font-weight:1000}.senegalVitrineInfo>small{color:var(--soft);font-size:12px;line-height:1.45;font-weight:850}.senegalVitrineCities{display:flex;flex-wrap:wrap;gap:7px}.senegalVitrineCities span{padding:7px 9px;border-radius:999px;border:1px solid rgba(94,234,212,.28);background:rgba(94,234,212,.07);font-size:10px;font-weight:950}.senegalVitrineOpen{min-height:48px;margin-top:3px;padding:11px 14px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;font-size:11px;font-weight:1000}.senegalVitrineCountry{color:#fde68a;font-size:11px;font-weight:1000;letter-spacing:.08em}
+          @media(max-width:760px){.senegalVitrineCartouche{grid-template-columns:1fr}.senegalVitrineMap{min-height:195px}.senegalVitrineMap svg{height:195px}}
+        </style>
+        <a class="senegalVitrineCartouche" id="senegalVitrineCartouche" href="https://digiylyfe.com/senegal.html" aria-label="Ouvrir la carte interactive des territoires DIGIYLYFE au Sénégal">
+          <div class="senegalVitrineMap" aria-hidden="true">
+            <svg viewBox="0 0 430 245">
+              <path d="M113 28 L202 19 L291 37 L353 77 L331 112 L363 143 L337 171 L361 198 L326 222 L258 231 L193 216 L164 190 L111 182 L84 154 L105 126 L76 102 L101 78 L75 56 Z" fill="rgba(8,70,52,.48)" stroke="rgba(94,234,212,.72)" stroke-width="3"/>
+              <g fill="#dbe5df" opacity=".55"><circle cx="178" cy="56" r="4"/><circle cx="197" cy="105" r="4"/><circle cx="262" cy="102" r="4"/><circle cx="251" cy="157" r="4"/><circle cx="191" cy="202" r="4"/></g>
+              <g><circle cx="115" cy="111" r="16" fill="rgba(246,196,83,.16)" stroke="rgba(246,196,83,.55)"/><circle cx="115" cy="111" r="7" fill="#f6c453" stroke="#fff1bd" stroke-width="2"/><text x="130" y="115" fill="#ffe897" font-size="15" font-weight="1000">Dakar</text></g>
+              <g><circle cx="137" cy="145" r="16" fill="rgba(246,196,83,.16)" stroke="rgba(246,196,83,.55)"/><circle cx="137" cy="145" r="7" fill="#f6c453" stroke="#fff1bd" stroke-width="2"/><text x="153" y="149" fill="#ffe897" font-size="15" font-weight="1000">Petite Côte</text></g>
+            </svg>
+          </div>
+          <div class="senegalVitrineInfo">
+            <span class="senegalVitrineCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b> · CARTE TERRITORIALE</span>
+            <strong>DIGIY SÉNÉGAL</strong>
+            <small>2 TERRITOIRES ACTIFS · Dakar · Petite Côte</small>
+            <div class="senegalVitrineCities"><span>Dakar</span><span>Petite Côte</span><span>Saly · Mbour</span></div>
+            <span class="senegalVitrineOpen">OUVRIR LE SÉNÉGAL</span>
+          </div>
+        </a>
+
+        <style id="usaVitrineSectorStyle">
+          .usaVitrineSector{grid-column:1/-1;margin-top:8px;padding:15px 17px;border-radius:22px;border:1px solid rgba(59,130,246,.48);background:linear-gradient(145deg,rgba(10,35,70,.92),rgba(4,24,38,.98));box-shadow:0 14px 34px rgba(0,0,0,.22)}
+          .usaVitrineSector strong{display:block;color:#dbeafe;font-size:clamp(20px,4vw,29px);font-weight:1000;line-height:1.05}.usaVitrineSector small{display:block;margin-top:6px;color:#cbd5e1;font-size:11px;font-weight:850;line-height:1.45}
+        </style>
+        <div class="usaVitrineSector" data-digiy-usa-sector="1">
+          <strong data-miami-sector-title>🇺🇸 ÉTATS-UNIS · MIAMI PILOT</strong>
+          <small data-miami-sector-sub>1 TERRITOIRE PILOTE · Miami · Florida</small>
+        </div>
+
+        <a class="territoryCard" href="https://digiylyfe.com/miami.html?lang=fr" data-fav-id="territoire-miami">
+          <span class="territoryCountry">🇺🇸 <b data-miami-country>ÉTATS-UNIS</b></span>
+          <picture class="territoryPhoto">
+            <source type="image/avif" srcset="/assets/territoires/miami-card.avif"/>
+            <source type="image/webp" srcset="/assets/territoires/miami.webp"/>
+            <img src="/assets/territoires/miami.webp" width="1200" height="675" alt="Miami · Florida" loading="lazy" decoding="async"/>
+          </picture>
+          <strong data-miami-title>DIGIY MIAMI</strong>
+          <small data-miami-zones>Miami · Floride · territoire ouvert</small>
+          <span class="territoryBtn" data-miami-open>OUVRIR LE TERRITOIRE</span>
+        </a>
+
+        <a class="territoryCard" id="digiyMoroccoHubDoor" href="https://digiylyfe.com/maroc.html" data-fav-id="territoire-maroc" aria-label="DIGIY Maroc — Casablanca et Marrakech">
+          <span class="territoryCountry">🇲🇦 <b data-ma-country>MAROC · APPEL À CANDIDATURES</b></span>
+          <div class="territoryPhoto digiyMoroccoPhoto">
+            <picture>
+              <source type="image/avif" srcset="/assets/territoires/maroc-card.avif"/>
+              <source type="image/webp" srcset="/assets/territoires/maroc.webp"/>
+              <img src="/assets/territoires/maroc.webp" width="900" height="1200" alt="Casablanca, Maroc" loading="lazy" decoding="async"/>
+            </picture>
+
+            <span class="digiyMoroccoCities"><i>CASABLANCA</i><i>MARRAKECH</i></span>
+          </div>
+          <strong data-ma-title>DIGIY MAROC</strong>
+          <small data-ma-zones>Casablanca · Marrakech · soyez parmi les premiers professionnels</small>
+          <span class="territoryBtn" data-ma-cta>SOYEZ PARMI LES PREMIERS →</span>
+        </a>
+      </div>
+    </section>
+<details class="digiyVitrineDetails" id="digiyVitrineDetails">
+      <summary data-i18n="liteMenu">☰ Explorer tous les territoires, métiers et outils</summary>
+<nav class="digiyQuickProof"><a href="/menu-universel-v1.html" data-i18n="liteMenu">☰ Explorer tous les territoires, métiers et outils</a><a href="/open.html">DIGIY OPEN</a></nav>
     <nav class="digiyQuickProof" id="acces-rapides-pro">
       <a href="/outils-gestion-demo.html" data-i18n="quickTools">Outils métiers (FR)</a>
       <a href="/simulateur-economies.html" data-i18n="quickSavings">Simuler mes économies</a>
@@ -1336,25 +1527,6 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
 .digiyFranceFocusLinks a:first-child{background:#f6c453;color:#06140f}
 .digiyFranceFocusLinks a:focus-visible{outline:3px solid #fff;outline-offset:3px}
 </style>
-<div id="digiyAnnuaireV1">
-<section class="digiyClarity" id="digiyClarity" aria-labelledby="digiyClarityTitle">
-      <span class="digiyClarityKicker" data-i18n="clarKicker">DIGIYLYFE · LE BUREAU UNIVERSEL</span>
-      <h1 id="digiyClarityTitle" data-i18n="clarTitle">Chaque activité mérite sa place dans le monde.</h1>
-      <!-- HERO VITRINE · loi du Bureau Universel : rassembler sans rendre dépendant. -->
-      <p class="digiyHeroUnity">
-        <span data-i18n="heroUnityOne">L’indépendance dans l’activité.</span>
-        <span class="digiyHeroUnityGold" data-i18n="heroUnityTwo">L’unité dans l’écosystème.</span>
-      </p>
-      <p class="digiyClarityLead" data-i18n="clarLead">Trouvez un professionnel près de chez vous. Indépendants : présentez votre activité et organisez votre travail avec vos propres clients.</p>
-      <p class="digiyProofZero" data-i18n="proofZero">0 % de commission DIGIYLYFE</p>
-      <div class="digiyClarityGrid digiyVitrineActions">
-        <a class="digiyClarityCta digiyClarityPrimary" href="/annuaire.html#recherche" data-i18n="litePublicCta">🔎 Je cherche un professionnel</a>
-        <a class="digiyClarityCta digiyClaritySecondary" href="/annuaire.html#inscription" data-i18n="clarProCta">Je présente mon activité</a>
-      </div>
-      <p class="digiyVitrineRemember" data-i18n="clarRemember">DIGIY aide vos clients à ne pas vous oublier.</p>
-      <p class="digiyClarityNote" data-i18n="clarSmall">Présence gratuite et immédiate · Carte DIGIY avec QR et services professionnels selon tarifs · 0 % commission DIGIY sur vos ventes.</p>
-    </section>
-</div>
 <section class="section" aria-label="Preuves terrain DIGIYLYFE">
       <div class="sectionHead">
         <h2 data-i18n="proofTitle">Des réalisations concrètes</h2>
@@ -1515,165 +1687,6 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
       <a class="digiyVitrineMenuLink" href="/menu-universel-v1.html" data-i18n="liteMenu">☰ Explorer tous les territoires, métiers et outils</a>
     </section>
     <!-- Cartes photographiques réelles : territoires visibles et cliquables sans ouvrir un volet. -->
-<section class="section digiyWorldHub" id="territoires-detail" aria-label="DIGIYLYFE HUB des territoires">
-      <div class="worldHead">
-        <span class="worldKicker" data-i18n="worldTitle">DIGIYLYFE · DU LOCAL AU MONDE</span>
-        <h2 data-i18n="worldLead">Des territoires vivants. Des activités ouvertes au monde.</h2>
-        <p data-i18n="worldIntro">Six portes réelles montrent aujourd’hui l’ouverture de DIGIYLYFE : Sénégal · Petite Côte et Dakar ; France · Vallée de la Dordogne, Bordeaux et Paris ; États-Unis · Miami. Choisissez votre territoire, puis votre besoin et votre zone.</p>
-        <div class="worldPath" data-i18n="worldPath">Pays → Territoire → Zone → Besoin → Professionnel → OUVRIR</div>
-        <div class="digiyPublicActions"><a class="digiyPublicActionSecondary" href="/saly.html" data-i18n="v1TerritoryCta">📍 Découvrir Saly →</a></div>
-      </div>
-
-      <div class="territoryGrid">
-        <a class="territoryCard" href="https://digiylyfe.com/territoire.html?zone=vallee-dordogne" data-fav-id="territoire-dordogne">
-          <span class="territoryCountry">🇫🇷 <b data-i18n="franceCountry">FRANCE</b></span>
-          <picture class="territoryPhoto territoryPhotoFrance">
-  <source type="image/avif" srcset="/assets/territoires/perigord-dordogne-card.avif"/>
-  <source type="image/webp" srcset="/assets/territoires/perigord-dordogne.webp"/>
-  <img src="/assets/territoires/perigord-dordogne.webp" width="1448" height="1086" alt="Périgord · Vallée de la Dordogne" loading="lazy" decoding="async"/>
-</picture>
-          <strong data-i18n="dordogneTitle">DIGIY PÉRIGORD · VALLÉE DE LA DORDOGNE</strong>
-          <small data-i18n="dordogneZones">Sarlat-la-Canéda · Périgord · Vallée de la Dordogne</small>
-          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
-        </a>
-
-        <a class="territoryCard" href="https://digiylyfe.com/bordeaux.html" data-fav-id="territoire-bordeaux">
-          <span class="territoryCountry">🇫🇷 <b data-i18n="franceCountry">FRANCE</b></span>
-          <picture class="territoryPhoto territoryPhotoFrance">
-  <source type="image/avif" srcset="/assets/territoires/bordeaux-card.avif"/>
-  <source type="image/webp" srcset="/assets/territoires/bordeaux.webp"/>
-  <img src="/assets/territoires/bordeaux.webp" width="1448" height="1086" alt="Bordeaux · Place de la Bourse et miroir d’eau" loading="lazy" decoding="async"/>
-</picture>
-          <strong>DIGIY BORDEAUX</strong>
-          <small>Bordeaux · Gironde · Nouvelle-Aquitaine</small>
-          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
-        </a>
-        <a class="territoryCard" href="https://digiylyfe.com/paris.html" data-fav-id="territoire-paris">
-          <span class="territoryCountry">🇫🇷 <b data-i18n="franceCountry">FRANCE</b></span>
-          <picture class="territoryPhoto territoryPhotoFrance">
-            <img src="https://digiylyfe.net/wp-content/uploads/2026/09/Image-12-09-2026-a-06.40.jpeg" width="1200" height="800" alt="Paris · Île-de-France" loading="lazy" decoding="async"/>
-          </picture>
-          <strong data-i18n="parisTitle">DIGIY PARIS</strong>
-          <small data-i18n="parisZones">Paris · Île-de-France · territoire ouvert</small>
-          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
-        </a>
-
-        <style id="franceVitrineCartoucheStyle">
-          .franceVitrineCartouche{grid-column:1/-1;display:grid;grid-template-columns:38% 62%;gap:14px;align-items:center;padding:15px;border-radius:24px;border:1px solid rgba(94,234,212,.48);background:radial-gradient(420px 220px at 15% 15%,rgba(94,234,212,.11),transparent 68%),linear-gradient(145deg,rgba(5,40,29,.97),rgba(4,24,18,.98));box-shadow:0 16px 38px rgba(0,0,0,.24)}
-          .franceVitrineMap{min-height:220px;border:1px solid rgba(94,234,212,.22);border-radius:20px;background:rgba(255,255,255,.025);overflow:hidden}.franceVitrineMap svg{width:100%;height:220px;display:block}.franceVitrineInfo{display:flex;flex-direction:column;gap:8px}.franceVitrineInfo>strong{font-size:clamp(22px,4.8vw,34px);line-height:1.02;font-weight:1000}.franceVitrineInfo>small{color:var(--soft);font-size:12px;line-height:1.45;font-weight:850}.franceVitrineCities{display:flex;flex-wrap:wrap;gap:7px}.franceVitrineCities span{padding:7px 9px;border-radius:999px;border:1px solid rgba(94,234,212,.28);background:rgba(94,234,212,.07);font-size:10px;font-weight:950}.franceVitrineOpen{min-height:48px;margin-top:3px;padding:11px 14px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;font-size:11px;font-weight:1000}.franceVitrineCountry{color:#fde68a;font-size:11px;font-weight:1000;letter-spacing:.08em}
-          @media(max-width:760px){.franceVitrineCartouche{grid-template-columns:1fr}.franceVitrineMap{min-height:195px}.franceVitrineMap svg{height:195px}}
-        </style>
-        <a class="franceVitrineCartouche" id="franceVitrineCartouche" href="https://digiylyfe.com/france.html" aria-label="Ouvrir la carte interactive des territoires DIGIYLYFE en France">
-          <div class="franceVitrineMap" aria-hidden="true">
-            <svg viewBox="0 0 430 245">
-              <path d="M142 27 L229 18 L303 50 L349 105 L337 155 L370 192 L333 224 L265 237 L188 228 L124 205 L74 169 L65 119 L89 82 L72 52 L112 35 Z" fill="rgba(8,70,52,.48)" stroke="rgba(94,234,212,.72)" stroke-width="3"/>
-              <g fill="#dbe5df" opacity=".55"><circle cx="221" cy="49" r="4"/><circle cx="214" cy="83" r="4"/><circle cx="316" cy="91" r="4"/><circle cx="111" cy="112" r="4"/><circle cx="275" cy="145" r="4"/><circle cx="315" cy="195" r="4"/><circle cx="161" cy="199" r="4"/></g>
-              <g><circle cx="112" cy="165" r="16" fill="rgba(246,196,83,.16)" stroke="rgba(246,196,83,.55)"/><circle cx="112" cy="165" r="7" fill="#f6c453" stroke="#fff1bd" stroke-width="2"/><text x="126" y="169" fill="#ffe897" font-size="15" font-weight="1000">Bordeaux</text></g>
-              <g><circle cx="176" cy="177" r="16" fill="rgba(246,196,83,.16)" stroke="rgba(246,196,83,.55)"/><circle cx="176" cy="177" r="7" fill="#f6c453" stroke="#fff1bd" stroke-width="2"/><text x="190" y="181" fill="#ffe897" font-size="15" font-weight="1000">Sarlat</text></g>
-            </svg>
-          </div>
-          <div class="franceVitrineInfo">
-            <span class="franceVitrineCountry">🇫🇷 <b data-i18n="franceCountry">FRANCE</b> · CARTE TERRITORIALE</span>
-            <strong data-i18n="franceTitle">DIGIY FRANCE</strong>
-            <small data-i18n="franceZones">3 TERRITOIRES ACTIFS · Vallée de la Dordogne · Bordeaux · Paris</small>
-            <div class="franceVitrineCities"><span data-digiy-paris-chip="1">Paris</span><span>Bordeaux</span><span>Vallée de la Dordogne</span><span>Sarlat</span></div>
-            <span class="franceVitrineOpen" data-i18n="openFrance">OUVRIR LA FRANCE</span>
-          </div>
-        </a>
-
-        <a class="territoryCard" href="https://digiylyfe.com/territoire.html?zone=petite-cote" data-fav-id="territoire-petite-cote">
-          <span class="territoryCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b></span>
-          <picture class="territoryPhoto territoryPhotoSaly">
-  <source type="image/avif" media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile-card.avif"/>
-  <source type="image/webp" media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile.webp"/>
-  <source type="image/avif" srcset="/assets/territoires/petite-cote-desktop-card.avif"/>
-  <source type="image/webp" srcset="/assets/territoires/petite-cote-desktop.webp"/>
-  <source media="(max-width:760px)" srcset="/assets/territoires/petite-cote-mobile.webp"/>
-  <img src="/assets/territoires/petite-cote-desktop.webp" width="1536" height="1024" alt="Pêcheurs et pirogue sénégalaise · Petite Côte" loading="lazy" decoding="async"/>
-</picture>
-          <strong data-i18n="petiteTitle">DIGIY PETITE CÔTE</strong>
-          <small data-i18n="petiteZones">AIBD · Ndayane · Popenguine · Somone · Ngaparou · Saly · Mbour</small>
-          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
-        </a>
-
-        <a class="territoryCard" href="https://digiylyfe.com/dakar.html" data-fav-id="territoire-dakar">
-          <span class="territoryCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b></span>
-          <picture class="territoryPhoto territoryPhotoDakar">
-  <source type="image/avif" media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile-card.avif"/>
-  <source type="image/webp" media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile.webp"/>
-  <source type="image/avif" srcset="/assets/territoires/dakar-desktop-card.avif"/>
-  <source type="image/webp" srcset="/assets/territoires/dakar-desktop.webp"/>
-  <source media="(max-width:760px)" srcset="/assets/territoires/dakar-mobile.webp"/>
-  <img src="/assets/territoires/dakar-desktop.webp" width="1600" height="900" alt="Dakar · Corniche et ville" loading="lazy" decoding="async"/>
-</picture>
-          <strong>DIGIY DAKAR</strong>
-          <small>Dakar · capitale · territoire urbain</small>
-          <span class="territoryBtn" data-i18n="openTerritory">OUVRIR LE TERRITOIRE</span>
-        </a>
-
-        <style id="senegalVitrineCartoucheStyle">
-          .senegalVitrineCartouche{grid-column:1/-1;display:grid;grid-template-columns:38% 62%;gap:14px;align-items:center;padding:15px;border-radius:24px;border:1px solid rgba(94,234,212,.48);background:radial-gradient(420px 220px at 15% 15%,rgba(34,197,94,.12),transparent 68%),linear-gradient(145deg,rgba(5,40,29,.97),rgba(4,24,18,.98));box-shadow:0 16px 38px rgba(0,0,0,.24)}
-          .senegalVitrineMap{min-height:220px;border:1px solid rgba(94,234,212,.22);border-radius:20px;background:rgba(255,255,255,.025);overflow:hidden}.senegalVitrineMap svg{width:100%;height:220px;display:block}.senegalVitrineInfo{display:flex;flex-direction:column;gap:8px}.senegalVitrineInfo>strong{font-size:clamp(22px,4.8vw,34px);line-height:1.02;font-weight:1000}.senegalVitrineInfo>small{color:var(--soft);font-size:12px;line-height:1.45;font-weight:850}.senegalVitrineCities{display:flex;flex-wrap:wrap;gap:7px}.senegalVitrineCities span{padding:7px 9px;border-radius:999px;border:1px solid rgba(94,234,212,.28);background:rgba(94,234,212,.07);font-size:10px;font-weight:950}.senegalVitrineOpen{min-height:48px;margin-top:3px;padding:11px 14px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold-soft),var(--gold),var(--green));color:#06140f;font-size:11px;font-weight:1000}.senegalVitrineCountry{color:#fde68a;font-size:11px;font-weight:1000;letter-spacing:.08em}
-          @media(max-width:760px){.senegalVitrineCartouche{grid-template-columns:1fr}.senegalVitrineMap{min-height:195px}.senegalVitrineMap svg{height:195px}}
-        </style>
-        <a class="senegalVitrineCartouche" id="senegalVitrineCartouche" href="https://digiylyfe.com/senegal.html" aria-label="Ouvrir la carte interactive des territoires DIGIYLYFE au Sénégal">
-          <div class="senegalVitrineMap" aria-hidden="true">
-            <svg viewBox="0 0 430 245">
-              <path d="M113 28 L202 19 L291 37 L353 77 L331 112 L363 143 L337 171 L361 198 L326 222 L258 231 L193 216 L164 190 L111 182 L84 154 L105 126 L76 102 L101 78 L75 56 Z" fill="rgba(8,70,52,.48)" stroke="rgba(94,234,212,.72)" stroke-width="3"/>
-              <g fill="#dbe5df" opacity=".55"><circle cx="178" cy="56" r="4"/><circle cx="197" cy="105" r="4"/><circle cx="262" cy="102" r="4"/><circle cx="251" cy="157" r="4"/><circle cx="191" cy="202" r="4"/></g>
-              <g><circle cx="115" cy="111" r="16" fill="rgba(246,196,83,.16)" stroke="rgba(246,196,83,.55)"/><circle cx="115" cy="111" r="7" fill="#f6c453" stroke="#fff1bd" stroke-width="2"/><text x="130" y="115" fill="#ffe897" font-size="15" font-weight="1000">Dakar</text></g>
-              <g><circle cx="137" cy="145" r="16" fill="rgba(246,196,83,.16)" stroke="rgba(246,196,83,.55)"/><circle cx="137" cy="145" r="7" fill="#f6c453" stroke="#fff1bd" stroke-width="2"/><text x="153" y="149" fill="#ffe897" font-size="15" font-weight="1000">Petite Côte</text></g>
-            </svg>
-          </div>
-          <div class="senegalVitrineInfo">
-            <span class="senegalVitrineCountry">🇸🇳 <b data-i18n="senegalCountry">SÉNÉGAL</b> · CARTE TERRITORIALE</span>
-            <strong>DIGIY SÉNÉGAL</strong>
-            <small>2 TERRITOIRES ACTIFS · Dakar · Petite Côte</small>
-            <div class="senegalVitrineCities"><span>Dakar</span><span>Petite Côte</span><span>Saly · Mbour</span></div>
-            <span class="senegalVitrineOpen">OUVRIR LE SÉNÉGAL</span>
-          </div>
-        </a>
-
-        <style id="usaVitrineSectorStyle">
-          .usaVitrineSector{grid-column:1/-1;margin-top:8px;padding:15px 17px;border-radius:22px;border:1px solid rgba(59,130,246,.48);background:linear-gradient(145deg,rgba(10,35,70,.92),rgba(4,24,38,.98));box-shadow:0 14px 34px rgba(0,0,0,.22)}
-          .usaVitrineSector strong{display:block;color:#dbeafe;font-size:clamp(20px,4vw,29px);font-weight:1000;line-height:1.05}.usaVitrineSector small{display:block;margin-top:6px;color:#cbd5e1;font-size:11px;font-weight:850;line-height:1.45}
-        </style>
-        <div class="usaVitrineSector" data-digiy-usa-sector="1">
-          <strong data-miami-sector-title>🇺🇸 ÉTATS-UNIS · MIAMI PILOT</strong>
-          <small data-miami-sector-sub>1 TERRITOIRE PILOTE · Miami · Florida</small>
-        </div>
-
-        <a class="territoryCard" href="https://digiylyfe.com/miami.html?lang=fr" data-fav-id="territoire-miami">
-          <span class="territoryCountry">🇺🇸 <b data-miami-country>ÉTATS-UNIS</b></span>
-          <picture class="territoryPhoto">
-            <source type="image/avif" srcset="/assets/territoires/miami-card.avif"/>
-            <source type="image/webp" srcset="/assets/territoires/miami.webp"/>
-            <img src="/assets/territoires/miami.webp" width="1200" height="675" alt="Miami · Florida" loading="lazy" decoding="async"/>
-          </picture>
-          <strong data-miami-title>DIGIY MIAMI</strong>
-          <small data-miami-zones>Miami · Floride · territoire ouvert</small>
-          <span class="territoryBtn" data-miami-open>OUVRIR LE TERRITOIRE</span>
-        </a>
-
-        <a class="territoryCard" id="digiyMoroccoHubDoor" href="https://digiylyfe.com/maroc.html" data-fav-id="territoire-maroc" aria-label="DIGIY Maroc — Casablanca et Marrakech">
-          <span class="territoryCountry">🇲🇦 <b data-ma-country>MAROC · APPEL À CANDIDATURES</b></span>
-          <div class="territoryPhoto digiyMoroccoPhoto">
-            <picture>
-              <source type="image/avif" srcset="/assets/territoires/maroc-card.avif"/>
-              <source type="image/webp" srcset="/assets/territoires/maroc.webp"/>
-              <img src="/assets/territoires/maroc.webp" width="900" height="1200" alt="Casablanca, Maroc" loading="lazy" decoding="async"/>
-            </picture>
-
-            <span class="digiyMoroccoCities"><i>CASABLANCA</i><i>MARRAKECH</i></span>
-          </div>
-          <strong data-ma-title>DIGIY MAROC</strong>
-          <small data-ma-zones>Casablanca · Marrakech · soyez parmi les premiers professionnels</small>
-          <span class="territoryBtn" data-ma-cta>SOYEZ PARMI LES PREMIERS →</span>
-        </a>
-      </div>
-    </section>
-<details class="digiyVitrineDetails" id="digiyVitrineDetails">
-      <summary data-i18n="liteDetails">Explorer aussi les films, les outils, la voix, CAMPUS et la vision complète</summary>
 
 <section class="digiyPublicFirstV1" id="digiyPublicFirstV1" aria-labelledby="digiyPublicQuestion">
       <span class="digiyPublicEyebrow" data-i18n="v1Eyebrow">DIGIYLYFE · LE PUBLIC D'ABORD</span>
@@ -2116,7 +2129,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
 
   <script src="/assets/digiy-home-world10-v1.js?v=20261122-clarte-offres-v1"></script>
   <script src="/assets/digiy-vitrine-portes-world10-v1.js?v=20261116"></script>
-<script src="/assets/digiy-home-i18n-v1.js?v=20261126-territoires-v2"></script>
+<script src="/assets/digiy-home-i18n-v1.js?v=20261126-mobile-essentiel-v1"></script>
   <script src="/assets/digiy-catalog.js?v=20260926-favorites-clear-v1"></script>
   <script>
   (function(){
