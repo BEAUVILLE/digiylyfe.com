@@ -52,8 +52,17 @@ class HomeWorld10(unittest.TestCase):
         self.assertEqual(set(voice_default),set(voice_wo))
         self.assertEqual(len(voice_wo),6)
         self.assertIn('TEXT[code].entryProPrice=existingPrice;',HOME_I18N)
+        mobile=json.loads(re.search(r'var mobileCopy=(\{[^\n]+\})\[lang\];',HOME_I18N).group(1))
+        mobile_keys=('mobileRailTitle','mobileRailTag','mobileDaily','mobileDailyNote')
+        self.assertEqual(set(mobile),set(['fr','wo','zh','en','es','pt','it','de','nl','ar']))
+        for lang, values in mobile.items():
+            self.assertEqual(len(values),len(mobile_keys),lang)
+            self.assertTrue(all(v.strip() for v in values),lang)
+            self.assertIn('400',values[2],lang)
+            self.assertIn('29',values[3],lang)
         for lang in ['wo','zh']:
             merged=dict(dictionaries[lang])
+            merged.update(zip(mobile_keys,mobile[lang]))
             existing_price=merged['entryProText']
             merged.update(overlay[lang])
             merged.update(lite[lang])
