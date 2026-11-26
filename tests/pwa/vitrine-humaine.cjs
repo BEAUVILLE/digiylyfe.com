@@ -154,6 +154,9 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
      const gallery=page.locator('#territoires-detail');
      assert.equal(await gallery.locator('.territoryGrid .territoryCard').count(),7);
      assert.equal(await gallery.locator('.territoryGrid .territoryCard:visible').count(),7,'Les sept cartes restent visibles après le clic');
+     // The hash updates immediately, while native smooth scrolling takes several frames.
+     // Do not force scrolling from the test: wait for the real user navigation to reach its target.
+     await page.waitForFunction(()=>{const el=document.getElementById('territoires-detail');if(!el)return false;const r=el.getBoundingClientRect();return r.top>=-4&&r.top<innerHeight&&r.bottom>0;},null,{timeout:5000});
      assert.equal(await gallery.evaluate(el=>{const r=el.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;}),true,'La navigation atteint la galerie réelle');
      await page.goto('https://digiylyfe.com/?lang=fr');
      assert.equal(await page.locator('#digiyEntryChoice').isVisible(),true,'Les cartes Public/Pro restent accessibles sans menu');
