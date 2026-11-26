@@ -1,7 +1,9 @@
 const {chromium,webkit}=require('playwright');const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'../..');
+// Local publication fixture only; the real Supabase publication gate remains unchanged.
+const publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll(/<a class="exampleCard" href="([^"]+)"/g)].map(m=>({public_url:m[1]}));
 (async()=>{const engine=process.env.PWA_BROWSER==='webkit'?webkit:chromium;const browser=await engine.launch(process.env.CHROMIUM_EXECUTABLE?{executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox','--disable-dev-shm-usage']}:{headless:true});try{const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'block'});
- await context.route('**/*',async route=>{if(route.request().url().startsWith('blob:'))return route.continue();const u=new URL(route.request().url());if(u.origin!=='https://digiylyfe.com')return route.abort();let name=u.pathname;if(name.endsWith('/'))name+='index.html';const file=path.resolve(root,'.'+name);if(!file.startsWith(root+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:'Not found'});const types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.gif':'image/gif','.svg':'image/svg+xml'};await route.fulfill({path:file,contentType:types[path.extname(file)]||'application/octet-stream'});});
+ await context.route('**/*',async route=>{if(route.request().url().startsWith('blob:'))return route.continue();const u=new URL(route.request().url());if(u.origin==='https://wesqmwjjtsefyjnluosj.supabase.co'&&u.pathname==='/rest/v1/digiy_annuaire_public')return route.fulfill({contentType:'application/json',body:JSON.stringify(publicRows)});if(u.origin!=='https://digiylyfe.com')return route.abort();let name=u.pathname;if(name.endsWith('/'))name+='index.html';const file=path.resolve(root,'.'+name);if(!file.startsWith(root+path.sep)||!fs.existsSync(file))return route.fulfill({status:404,body:'Not found'});const types={'.html':'text/html','.js':'application/javascript','.json':'application/json','.css':'text/css','.png':'image/png','.webp':'image/webp','.gif':'image/gif','.svg':'image/svg+xml'};await route.fulfill({path:file,contentType:types[path.extname(file)]||'application/octet-stream'});});
  const page=await context.newPage();await page.goto('https://digiylyfe.com/');
  assert.equal(await page.locator('#digiyVitrineDetails').evaluate(el=>el.open),false,'La vitrine détaillée doit être repliée par défaut');
  assert.equal(await page.locator('.digiyMenuAccess').isVisible(),true,'Le menu universel doit rester accessible');
@@ -9,7 +11,11 @@ const root=path.resolve(__dirname,'../..');
  assert.equal(await page.locator('#digiyClarity .digiyClarityLead').isVisible(),true);
  assert.equal(await page.locator('#digiyClarity .digiyProofZero').isVisible(),true);
  const proof=page.locator('section[aria-label="Preuves terrain DIGIYLYFE"]');
- assert.equal(await proof.locator('a[href*="helage-plombier.digiylyfe.com"]').count(),1);
+ const helage=proof.locator('a.exampleCard[href*="helage-plombier.digiylyfe.com"]');
+ await helage.waitFor({state:'visible'});
+ await page.waitForFunction(()=>document.querySelector('.exampleGrid')?.hasAttribute('data-digiy-public-gate-layout'));
+ assert.equal(await helage.count(),1);
+ assert.equal(await helage.getAttribute('data-fav-id'),'pro-helage');
  assert.equal(await proof.locator('a[href*="babacar-plombier-pro.digiylyfe.com"]').count(),0);
  assert.equal(await page.locator('#offres-essentielles .digiyVitrineOfferGrid article').count(),4);
  for(const module of ['loc','driver','commerce']){
