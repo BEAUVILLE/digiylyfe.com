@@ -112,36 +112,45 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.locator('#digiyFilmVitrine iframe').getAttribute('src'),null);
    // PREUVE V1 : la réalité des métiers précède l'offre tarifaire.
    const order=await page.evaluate(()=>{
-     const blocks=[document.getElementById('digiyClarity'),
+     const blocks=[document.getElementById('pays-directs'),document.getElementById('acces-rapides-pro'),document.getElementById('digiyClarity'),
        document.querySelector('section[aria-label="Preuves terrain DIGIYLYFE"]'),
        document.getElementById('digiyEntryChoice'),document.getElementById('outils-directs'),
        document.getElementById('preuves-outils'),document.getElementById('offres-essentielles'),
-       document.getElementById('pays-directs'),document.getElementById('questions-frequentes'),
+       document.getElementById('questions-frequentes'),
        document.getElementById('territoires')];
      return blocks.map(el=>Math.round(el.getBoundingClientRect().top+scrollY));
    });
-   assert.deepEqual(order,[...order].sort((a,b)=>a-b),'Hero → preuves → Public/Pro → outils → offres → pays → FAQ → territoires');
+   assert.deepEqual(order,[...order].sort((a,b)=>a-b),'Pays → accès rapides → Hero → preuves → Public/Pro → outils → offres → FAQ → territoires');
    assert.equal(await page.locator('#digiyClarity').evaluate(el=>el.parentElement?.nextElementSibling?.matches('section[aria-label="Preuves terrain DIGIYLYFE"]')),true,'Les réalisations suivent immédiatement le Hero');
    assert.equal(await page.locator('#digiyClarity .digiyClarityLead').isVisible(),true);
    assert.equal(await page.locator('#digiyClarity .digiyProofZero').isVisible(),true);
    assert.equal(await page.locator('#offres-essentielles .digiyVitrineOfferGrid article').count(),4);
    assert.equal(await page.locator('section[aria-label="Preuves terrain DIGIYLYFE"] a.exampleCard[href*="helage-plombier.digiylyfe.com"]').isVisible(),true);
    console.log('VITRINE_PREUVE_V1_POSITIONS',JSON.stringify({width,viewportHeight:height,topPx:order,topScreens:order.map(px=>+(px/height).toFixed(2))}));
-   // Les pays et modules restent directement accessibles, après les réalisations et les offres.
+   // Priorité à la géographie, sans duplication des cartes territoriales.
    const world=page.locator('#pays-directs');
    assert.equal(await page.locator('.digiyFrontWorldGrid a').count(),4,'Quatre pays directement accessibles');
    assert.equal(await page.locator('.digiyFrontModules a').count(),8,'Huit modules directement accessibles');
    assert.equal(await page.locator('#digiyFrontBridge').count(),0,'Ne pas créer de deuxième Carrefour concurrent');
    const topOrder=await page.evaluate(()=>[
+     document.querySelector('.languageStrip'),
+     document.getElementById('pays-directs'),
+     document.getElementById('acces-rapides-pro'),
      document.getElementById('digiyClarity'),
      document.getElementById('digiyEntryChoice'),
-     document.getElementById('outils-directs'),
-     document.getElementById('pays-directs')
+     document.getElementById('outils-directs')
    ].map(el=>Math.round(el.getBoundingClientRect().top+scrollY)));
-   assert.deepEqual(topOrder,[...topOrder].sort((a,b)=>a-b),'Hero → Public/Pro → Carrefour et outils → pays');
+   assert.deepEqual(topOrder,[...topOrder].sort((a,b)=>a-b),'Langues → pays → accès rapides → Hero → Public/Pro → Carrefour et outils');
    if(width===375){
      assert.equal(await world.isVisible(),true,'Les quatre pays restent accessibles sans ouvrir un menu');
-     assert.equal(await page.locator('#digiyClarity').evaluate(el=>el.getBoundingClientRect().top < innerHeight),true,'Le Hero doit commencer à apparaître sur le premier écran');
+     assert.equal(await world.evaluate(el=>el.getBoundingClientRect().bottom<=innerHeight),true,'Pays et accès aux régions dans le premier écran');
+     assert.equal(await page.locator('#acces-rapides-pro').evaluate(el=>el.getBoundingClientRect().bottom<=innerHeight),true,'Outils et simulateur dans le premier écran');
+     assert.equal(await page.locator('.digiyGoldSignature').evaluate(el=>el.getBoundingClientRect().top<innerHeight),true,'Identité DIGIY et 0 % commission visibles dès le premier écran');
+     assert.equal(await page.locator('#digiyClarity').evaluate(el=>el.getBoundingClientRect().top<innerHeight*1.4),true,'Hero proche du premier écran après accès géographiques');
+     const regions=world.locator('a[data-i18n="quickRegions"]');
+     await regions.click();await page.waitForURL(url=>url.hash==='#territoires-detail');
+     assert.equal(await page.locator('#territoires-detail .territoryGrid .territoryCard').count(),7);
+     await page.goto('https://digiylyfe.com/?lang=fr');
      assert.equal(await page.locator('#digiyEntryChoice').isVisible(),true,'Les cartes Public/Pro restent accessibles sans menu');
    }
    const saly=page.locator('#territoires a[data-i18n="liteSaly"]');
