@@ -26,8 +26,9 @@ class HumanHomepage(unittest.TestCase):
         self.assertNotIn('Deux chemins', BODY)
 
     def test_human_paths_before_film_and_vision(self):
-        markers = ['id="digiyClarity"', 'id="digiyEntryChoice"',
-                   'id="outils-directs"', 'aria-label="Preuves terrain DIGIYLYFE"',
+        markers = ['id="digiyClarity"', 'aria-label="Preuves terrain DIGIYLYFE"',
+                   'id="digiyEntryChoice"', 'id="outils-directs"', 'id="preuves-outils"',
+                   'id="offres-essentielles"', 'id="pays-directs"', 'id="questions-frequentes"',
                    'id="territoires"', 'id="digiyPublicFirstV1"',
                    'id="solutions-pro"', 'id="digiyFilmVitrine"', 'id="digiyInternational"']
         positions = [BODY.index(marker) for marker in markers]
@@ -37,8 +38,8 @@ class HumanHomepage(unittest.TestCase):
         hero = BODY.index('id="digiyClarity"')
         entry = BODY.index('<section class="digiyEntryChoice" id="digiyEntryChoice"')
         proof = BODY.index('<section class="section" aria-label="Preuves terrain DIGIYLYFE">')
-        self.assertLess(hero, entry)
-        self.assertLess(entry, proof)
+        self.assertLess(hero, proof)
+        self.assertLess(proof, entry)
         self.assertEqual(BODY.count('id="digiyEntryChoice"'), 1)
         section = BODY[entry:].split('</section>', 1)[0]  # Core Public/Pro cards only.
         self.assertEqual(section.count('class="digiyEntryDoor '), 2)
@@ -160,9 +161,9 @@ class HumanHomepage(unittest.TestCase):
         self.assertIn('href="/annuaire.html#pont-metiers"', direct)
         self.assertEqual(direct.count('class="digiyFrontModules"'), 1)
         self.assertEqual(direct.split('class="digiyFrontModules"', 1)[1].count('<a href='), 8)
-        self.assertLess(BODY.index('id="pays-directs"'), BODY.index('id="digiyClarity"'))
+        self.assertLess(BODY.index('id="offres-essentielles"'), BODY.index('id="pays-directs"'))
         self.assertLess(BODY.index('id="digiyEntryChoice"'), BODY.index('id="outils-directs"'))
-        self.assertLess(BODY.index('id="outils-directs"'), BODY.index('aria-label="Preuves terrain DIGIYLYFE"'))
+        self.assertLess(BODY.index('aria-label="Preuves terrain DIGIYLYFE"'), BODY.index('id="outils-directs"'))
         self.assertIn('window.digiyHomeWorld10Extras', HOME_I18N)
         self.assertLess(
             HOME.index('/assets/digiy-vitrine-portes-world10-v1.js'),
@@ -191,7 +192,7 @@ class HumanHomepage(unittest.TestCase):
         self.assertNotIn('autoplay', film)
 
     def test_real_professionals_and_ten_existing_language_entries(self):
-        for url in ['astou-boutique', 'babacar-plombier-pro', 'mane-gning',
+        for url in ['astou-boutique', 'helage-plombier', 'mane-gning',
                     'sarlat-chez-baptiste', 'partenaire-lamine', 'kourant', 'mbaye-macon']:
             self.assertIn('https://' + url + '.digiylyfe.com/', BODY)
         nav = BODY.split('<nav class="languageStrip"', 1)[1].split('</nav>', 1)[0]
@@ -200,6 +201,24 @@ class HumanHomepage(unittest.TestCase):
         self.assertIn('/prototypes/digiy-wolof-v1/prototype.html', BODY)
         self.assertIn('data-lang="zh"', nav)
         self.assertIn('/zh-CN/', BODY)
+
+    def test_preuve_v1_preserves_truth_and_four_offers(self):
+        proof = BODY.split('aria-label="Preuves terrain DIGIYLYFE">', 1)[1].split('</section>', 1)[0]
+        self.assertNotIn('babacar-plombier-pro', proof)
+        self.assertIn('helage-plombier.digiylyfe.com', proof)
+        self.assertIn('ne prouve pas un usage régulier', proof)
+        self.assertIn('data-i18n="proofZero"', BODY.split('id="digiyClarity"', 1)[1].split('</section>', 1)[0])
+        self.assertNotIn('.digiyClarityLead{display:none}', HOME)
+        offers = BODY.split('id="offres-essentielles"', 1)[1].split('</section>', 1)[0]
+        self.assertEqual(offers.count('<article>'), 4)
+        self.assertIn('598 € HT', offers)
+        faq = BODY.split('id="questions-frequentes"', 1)[1].split('</aside>', 1)[0]
+        self.assertEqual(faq.count('<details>'), 5)
+        self.assertIn('Aucun nombre de clients ni revenu', faq)
+        tools = BODY.split('id="preuves-outils"', 1)[1].split('</aside>', 1)[0]
+        self.assertIn('Ce ne sont pas des démonstrations interactives', tools)
+        for module in ('loc', 'driver', 'commerce'):
+            self.assertIn('/demo-' + module + '-gestion.html', tools)
 
     def test_latest_saly_direct_door_preserved(self):
         self.assertIn('href="/saly.html" data-i18n="v1TerritoryCta"', BODY)
