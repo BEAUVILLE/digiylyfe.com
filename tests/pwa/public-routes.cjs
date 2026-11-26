@@ -7,6 +7,53 @@ const publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchA
  const page=await context.newPage();await page.goto('https://digiylyfe.com/');
  assert.equal(await page.locator('#digiyVitrineDetails').evaluate(el=>el.open),false,'La vitrine détaillée doit être repliée par défaut');
  assert.equal(await page.locator('.digiyMenuAccess').isVisible(),true,'Le menu universel doit rester accessible');
+ // PREUVE V2: shortcuts and local economic simulator, no production API.
+ const quick=page.locator('#acces-rapides-pro');
+ assert.equal(await quick.locator('a').count(),2);
+ assert.equal(await quick.evaluate(el=>{const r=el.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight}),true);
+ const quickTools=quick.locator('[data-i18n="quickTools"]');
+ await quickTools.click();await page.waitForURL(url=>url.pathname==='/outils-gestion-demo.html');
+ await page.locator('header a').click();await page.waitForURL(url=>url.pathname==='/');
+ await quick.locator('[data-i18n="quickSavings"]').click();
+ await page.waitForURL(url=>url.pathname==='/simulateur-economies.html');
+ const value=async(id)=>Number(await page.locator('#'+id).getAttribute('data-value'));
+ assert.equal(await value('total'),1150,'LOC 12 mois + fiche, mensualités');
+ assert.equal(await value('avoided'),900);
+ assert.equal(await value('balance'),-250);
+ await page.locator('#annual').check();
+ assert.equal(await value('total'),1015,'LOC annuel 765 + 250');
+ await page.locator('#months').fill('6');
+ assert.equal(await value('total'),1015,'Annuel facture 12 mois même en saison');
+ assert.equal(await value('avoided'),450);
+ await page.locator('#plan').selectOption('pro-fr');
+ await page.locator('#months').fill('12');
+ assert.equal(await value('total'),598);
+ assert.equal(await page.locator('#annualRow').isHidden(),true);
+ await page.locator('#rate').fill('0');
+ assert.equal(await value('avoided'),0);
+ assert.equal(await page.locator('#threshold').getAttribute('data-value'),'');
+ await page.locator('#plan').selectOption('loc-sn-2–3');
+ assert.equal(await page.locator('#volume').inputValue(),'');
+ assert.equal(await page.locator('#invalid').isVisible(),true);
+ await page.locator('#volume').fill('200000');
+ await page.locator('#rate').fill('15');
+ assert.equal(await value('total'),436000);
+ await page.locator('#annual').check();
+ assert.equal(await value('total'),385600);
+ await page.locator('#initial').uncheck();
+ assert.equal(await value('total'),285600);
+ await page.locator('#rate').fill('101');
+ assert.equal(await page.locator('#invalid').isVisible(),true);
+ await page.locator('#rate').fill('15');
+ for(const lang of ['wo','zh','ar','en','fr']){
+   await page.locator('#lang').selectOption(lang);
+   assert.equal(await page.locator('html').getAttribute('lang'),lang==='zh'?'zh-CN':lang);
+   assert.equal(await page.locator('html').getAttribute('dir'),lang==='ar'?'rtl':'ltr');
+   assert.equal(await value('total'),285600);
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true);
+ }
+ await page.locator('#home').click();await page.waitForURL(url=>url.pathname==='/');
+ console.log('PASS PREUVE V2: shortcuts, LOC/PRO, annual, zero and invalid inputs, languages, return');
  // PREUVE V1 : le message commercial reste visible à 390 px.
  assert.equal(await page.locator('#digiyClarity .digiyClarityLead').isVisible(),true);
  assert.equal(await page.locator('#digiyClarity .digiyProofZero').isVisible(),true);
