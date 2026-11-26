@@ -1117,6 +1117,7 @@ html[lang^="fr"] .ownerModulesLang[data-owner-lang="fr"],html[lang^="en"] .owner
   .digiyProofInfo h2{font-size:clamp(19px,3vw,25px);margin:0 0 8px;color:#ffe3a0}
   .digiyProofInfo p{font-size:13px;line-height:1.5;margin:7px 0;color:#e5efe6}
   .digiyProofTools{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+  .digiyProofToolCard{display:flex;flex-direction:column;gap:6px;min-width:0;padding:9px;border:1px solid #657a56;border-radius:12px}.digiyProofToolCard>strong{font-size:13px;color:#ffe3a0}.digiyProofTools .digiyProofCapture{background:#f6c453;color:#08251a;font-weight:850;min-height:44px}
   .digiyProofTools a{display:flex;flex-direction:column;gap:5px;justify-content:center;min-height:50px;padding:10px;border:1px solid #cfa95d;border-radius:11px;color:#fff4cf;text-decoration:none;font-size:13px;overflow-wrap:anywhere}
   .digiyProofInfo details{border-top:1px solid rgba(255,255,255,.18);padding:10px 0}
   .digiyProofInfo summary{cursor:pointer;font-weight:800;min-height:28px;color:#fff4cf}
@@ -1418,12 +1419,12 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
   <p class="digiyFrontDirectNote" data-direct-i18n="hubNote">Annuaire gratuit · Outils professionnels selon l'offre choisie · Contact et paiement directs · 0 % commission DIGIYLYFE.</p>
 </section>
 <aside class="digiyProofInfo" id="preuves-outils" aria-labelledby="digiyProofToolsTitle">
-  <h2 id="digiyProofToolsTitle" data-i18n="proofToolsTitle">Découvrez les fonctions de gestion</h2>
-  <p data-i18n="proofToolsNote">Présentations documentées en français, sans données privées. Ce ne sont pas des démonstrations interactives.</p>
+  <h2 id="digiyProofToolsTitle" data-i18n="proofToolsTitle">Voir les logiciels en images</h2>
+  <p data-i18n="proofToolsNote">Captures existantes présentées comme réelles dans nos brochures métier (FR). Elles illustrent les interfaces, pas leur usage régulier ni un résultat économique.</p>
   <div class="digiyProofTools">
-    <a href="/demo-loc-gestion.html"><strong>DIGIY LOC</strong><span data-i18n="proofLoc">Calendrier et réservations</span></a>
-    <a href="/demo-driver-gestion.html"><strong>DIGIY DRIVER</strong><span data-i18n="proofDriver">Prestations, tarifs et zones</span></a>
-    <a href="/demo-commerce-gestion.html"><strong>MON COMMERCE</strong><span data-i18n="proofCommerce">Produits, prix et stock</span></a>
+    <div class="digiyProofToolCard"><strong>DIGIY LOC</strong><a class="digiyProofCapture" href="/voir-pdf-metier.html?doc=loc&amp;from=home" data-i18n="proofScreensCta">Voir les captures (PDF · FR)</a><a href="/demo-loc-gestion.html"><span data-i18n="proofLoc">Calendrier et réservations</span></a></div>
+    <div class="digiyProofToolCard"><strong>DIGIY DRIVER</strong><a class="digiyProofCapture" href="/voir-pdf-metier.html?doc=driver&amp;from=home" data-i18n="proofScreensCta">Voir les captures (PDF · FR)</a><a href="/demo-driver-gestion.html"><span data-i18n="proofDriver">Prestations, tarifs et zones</span></a></div>
+    <div class="digiyProofToolCard"><strong>MON COMMERCE</strong><a class="digiyProofCapture" href="/voir-pdf-metier.html?doc=commerce&amp;from=home" data-i18n="proofScreensCta">Voir les captures (PDF · FR)</a><a href="/demo-commerce-gestion.html"><span data-i18n="proofCommerce">Produits, prix et stock</span></a></div>
   </div>
 </aside>
 <section class="section digiyVitrineOffers" id="offres-essentielles" aria-labelledby="digiyVitrineOffersTitle">
@@ -2113,7 +2114,7 @@ html[lang="wo"] .ownerModulesLang[data-owner-lang="wo"],html[lang^="zh"] .ownerM
 
   <script src="/assets/digiy-home-world10-v1.js?v=20261122-clarte-offres-v1"></script>
   <script src="/assets/digiy-vitrine-portes-world10-v1.js?v=20261116"></script>
-<script src="/assets/digiy-home-i18n-v1.js?v=20261126-preuve-v2"></script>
+<script src="/assets/digiy-home-i18n-v1.js?v=20261126-preuve-visuelle"></script>
   <script src="/assets/digiy-catalog.js?v=20260926-favorites-clear-v1"></script>
   <script>
   (function(){
