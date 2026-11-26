@@ -188,11 +188,20 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
   await page.goto('https://digiylyfe.com/?lang=fr');
   const homePath=new URL(page.url()).pathname;
   await page.waitForSelector('#offres-essentielles .digiyVitrineOfferPrice');
-  const digits=s=>s.replace(/[^0-9]/g,'');
+  // Compare numeric tokens with repetitions, not concatenated digits:
+  // Mandarin may put the 12-month duration before the total.
+  const numbers=s=>(s.match(/[0-9]+(?:[ ,.\u00a0\u202f][0-9]{3}(?![0-9]))*/g)||[])
+    .map(n=>Number(n.replace(/[^0-9]/g,''))).sort((a,b)=>a-b);
   const memberPrice=page.locator('#offres-essentielles [data-i18n="liteMemberPrice"]');
   const setupPrice=page.locator('#offres-essentielles [data-i18n="liteSetupNote"]');
-  const originalPrice=digits(await memberPrice.innerText());
-  const originalSetupPrice=digits(await setupPrice.innerText());
+  function assertPrices(member,setup){
+   assert.deepEqual(numbers(member),[29,12000],'Adhésion France et Sénégal inchangée');
+   assert.deepEqual(numbers(setup),[12,12,29,250,250,598,100000],'Création, exemple annuel et durée inchangés');
+   assert.match(setup,/(?:€\s*250|250\s*€)(?:\s*HT)?\s*\+\s*12\s*×\s*(?:€\s*29|29\s*€)(?:\s*HT)?\s*=/,'Calcul annuel inchangé');
+   assert.match(setup,/(?:€\s*598|598\s*€)/,'Total annuel en euros inchangé');
+   assert.equal(250+12*29,598);
+  }
+  assertPrices(await memberPrice.innerText(),await setupPrice.innerText());
   const frenchTitle=await page.locator('h1').innerText();
   for(const [lang,title,remember] of [['wo','BIROO BU ÑÉPP MËN A DUGG','DIGIY dafay tax sa kiliyaan yi bañ laa fàtte.'],['zh','每一项经营活动都值得在世界上拥有一席之地。','DIGIY 帮助客户再次找到您。']]){
    await page.locator(`.languageStrip button[data-lang="${lang}"]`).click();
@@ -209,8 +218,7 @@ let publicRows=[...fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll
    assert.equal(await page.locator('.ownerModulesLang:visible').getAttribute('data-owner-lang'),lang);
    await page.waitForTimeout(100);
    assert.equal(await page.locator('.languageStrip').evaluate(el=>{const r=el.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight;}),true,'language choices remain visible after changing locale');
-   assert.equal(digits(await memberPrice.innerText()),originalPrice);
-   assert.equal(digits(await setupPrice.innerText()),originalSetupPrice);
+   assertPrices(await memberPrice.innerText(),await setupPrice.innerText());
    const labels=await page.locator('#campusInterestForm [data-campus-copy="send"]').innerText();
    assert.ok(lang==='zh'?labels.includes('感兴趣'):labels.includes('BËGG'));
    assert.ok((await page.locator('#offres-essentielles h2').innerText()).length>3);
