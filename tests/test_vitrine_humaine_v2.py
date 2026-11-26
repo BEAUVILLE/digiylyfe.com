@@ -165,6 +165,10 @@ class HumanHomepage(unittest.TestCase):
         self.assertLess(BODY.index('id="pays-directs"'), BODY.index('id="acces-rapides-pro"'))
         self.assertLess(BODY.index('id="acces-rapides-pro"'), BODY.index('id="digiyClarity"'))
         self.assertIn('href="#territoires-detail" data-i18n="quickRegions"', world)
+        # The historical core renames .worldHub to #territoires; this home gallery must opt out.
+        self.assertIn('class="section digiyWorldHub" id="territoires-detail"', BODY)
+        self.assertNotIn('class="section worldHub" id="territoires-detail"', BODY)
+        self.assertIn('.digiyWorldHub .territoryCard', HOME)
         self.assertLess(BODY.index('id="digiyEntryChoice"'), BODY.index('id="outils-directs"'))
         self.assertLess(BODY.index('aria-label="Preuves terrain DIGIYLYFE"'), BODY.index('id="outils-directs"'))
         self.assertIn('window.digiyHomeWorld10Extras', HOME_I18N)
