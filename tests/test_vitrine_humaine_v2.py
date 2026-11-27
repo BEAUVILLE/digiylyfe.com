@@ -19,6 +19,9 @@ class Nodes(HTMLParser):
 class HumanHomepage(unittest.TestCase):
     def test_promise_once_and_two_precise_actions(self):
         self.assertEqual(BODY.count('Les rails existent. Prenez votre place.'), 1)
+        self.assertEqual(BODY.count('Ne demande plus. Trouve avec DIGIYLYFE.'), 1)
+        self.assertEqual(BODY.count('Du quartier, par le quartier, vers le monde.'), 1)
+        self.assertLess(BODY.index('Ne demande plus. Trouve avec DIGIYLYFE.'), BODY.index('Les rails existent. Prenez votre place.'))
         hero = BODY.split('id="digiyClarity"', 1)[1].split('</section>', 1)[0]
         self.assertEqual(re.findall(r'href="([^"]+)"', hero),
                          ['/qr.html', '/annuaire.html#recherche', '/annuaire.html#inscription'])
