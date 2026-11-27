@@ -60,8 +60,15 @@ class HomeWorld10(unittest.TestCase):
             self.assertTrue(all(v.strip() for v in values),lang)
             self.assertIn('400',values[2],lang)
             self.assertIn('29',values[3],lang)
+        quarter=json.loads(re.search(r'var quarterCopy=(\{[^\n]+\})\[lang\];',HOME_I18N).group(1))
+        self.assertEqual(set(quarter),set(mobile))
+        for lang, values in quarter.items():
+            self.assertEqual(len(values),2,lang)
+            self.assertTrue(all(v.strip() for v in values),lang)
+            self.assertIn('DIGIYLYFE',values[0],lang)
         for lang in ['wo','zh']:
             merged=dict(dictionaries[lang])
+            merged.update(zip(('mobilePublicTitle','mobileQuarterTag'),quarter[lang]))
             merged.update(zip(mobile_keys,mobile[lang]))
             existing_price=merged['entryProText']
             merged.update(overlay[lang])
